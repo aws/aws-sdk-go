@@ -3,7 +3,7 @@
   "service": "<p>Operations and objects for transcribing speech to text.</p>",
   "operations": {
     "CreateVocabulary": "<p>Creates a new custom vocabulary that you can use to change the way Amazon Transcribe handles transcription of an audio file. Note that vocabularies for en-AU, en-UK, and fr-CA languages that are in preview are not available. In the console, the vocabulary section will be greyed-out and SDK will return error message. </p>",
-    "DeleteTranscriptionJob": "<p>Deletes a previously submitted transcription job as well as any other generated results such as the transcription, models, and so on.</p>",
+    "DeleteTranscriptionJob": "<p>Deletes a previously submitted transcription job along with any other generated results such as the transcription, models, and so on.</p>",
     "DeleteVocabulary": "<p>Deletes a vocabulary from Amazon Transcribe. </p>",
     "GetTranscriptionJob": "<p>Returns information about a transcription job. To see the status of the job, check the <code>TranscriptionJobStatus</code> field. If the status is <code>COMPLETED</code>, the job is finished and you can find the results at the location specified in the <code>TranscriptionFileUri</code> field.</p>",
     "GetVocabulary": "<p>Gets information about a vocabulary. Note that vocabularies for en-AU, en-UK, and fr-CA languages that are in preview are not available. In the console, the vocabulary section will be greyed-out and SDK will return error message.</p>",
@@ -14,7 +14,7 @@
   },
   "shapes": {
     "BadRequestException": {
-      "base": "<p>Your request didn't pass one or more validation tests. For example, if the transcription you're trying to delete doesn't exist of if it is in a non-terminal state (for example, it's \"in progress\"). See the exception <code>Message</code> field for more information.</p>",
+      "base": "<p>Your request didn't pass one or more validation tests. For example, if the transcription you're trying to delete doesn't exist or if it is in a non-terminal state (for example, it's \"in progress\"). See the exception <code>Message</code> field for more information.</p>",
       "refs": {
       }
     },
@@ -255,7 +255,7 @@
         "DeleteTranscriptionJobRequest$TranscriptionJobName": "<p>The name of the transcription job to be deleted.</p>",
         "GetTranscriptionJobRequest$TranscriptionJobName": "<p>The name of the job.</p>",
         "ListTranscriptionJobsRequest$JobNameContains": "<p>When specified, the jobs returned in the list are limited to jobs whose name contains the specified string.</p>",
-        "StartTranscriptionJobRequest$TranscriptionJobName": "<p>The name of the job. You can't use the strings \".\" or \"..\" in the job name. The name must be unique within an AWS account.</p>",
+        "StartTranscriptionJobRequest$TranscriptionJobName": "<p>The name of the job. Note that you can't use the strings \".\" or \"..\" by themselves as the job name. The name must also be unique within an AWS account.</p>",
         "TranscriptionJob$TranscriptionJobName": "<p>The name of the transcription job.</p>",
         "TranscriptionJobSummary$TranscriptionJobName": "<p>The name of the transcription job.</p>"
       }

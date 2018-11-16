@@ -72,7 +72,7 @@ func (c *TranscribeService) CreateVocabularyRequest(input *CreateVocabularyInput
 // Returned Error Codes:
 //   * ErrCodeBadRequestException "BadRequestException"
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist of if it is in a non-terminal
+//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -160,7 +160,7 @@ func (c *TranscribeService) DeleteTranscriptionJobRequest(input *DeleteTranscrip
 
 // DeleteTranscriptionJob API operation for Amazon Transcribe Service.
 //
-// Deletes a previously submitted transcription job as well as any other generated
+// Deletes a previously submitted transcription job along with any other generated
 // results such as the transcription, models, and so on.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -177,7 +177,7 @@ func (c *TranscribeService) DeleteTranscriptionJobRequest(input *DeleteTranscrip
 //
 //   * ErrCodeBadRequestException "BadRequestException"
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist of if it is in a non-terminal
+//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -273,7 +273,7 @@ func (c *TranscribeService) DeleteVocabularyRequest(input *DeleteVocabularyInput
 //
 //   * ErrCodeBadRequestException "BadRequestException"
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist of if it is in a non-terminal
+//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -362,7 +362,7 @@ func (c *TranscribeService) GetTranscriptionJobRequest(input *GetTranscriptionJo
 // Returned Error Codes:
 //   * ErrCodeBadRequestException "BadRequestException"
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist of if it is in a non-terminal
+//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -470,7 +470,7 @@ func (c *TranscribeService) GetVocabularyRequest(input *GetVocabularyInput) (req
 //
 //   * ErrCodeBadRequestException "BadRequestException"
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist of if it is in a non-terminal
+//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -558,7 +558,7 @@ func (c *TranscribeService) ListTranscriptionJobsRequest(input *ListTranscriptio
 // Returned Error Codes:
 //   * ErrCodeBadRequestException "BadRequestException"
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist of if it is in a non-terminal
+//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -705,7 +705,7 @@ func (c *TranscribeService) ListVocabulariesRequest(input *ListVocabulariesInput
 // Returned Error Codes:
 //   * ErrCodeBadRequestException "BadRequestException"
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist of if it is in a non-terminal
+//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -847,7 +847,7 @@ func (c *TranscribeService) StartTranscriptionJobRequest(input *StartTranscripti
 // Returned Error Codes:
 //   * ErrCodeBadRequestException "BadRequestException"
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist of if it is in a non-terminal
+//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -949,7 +949,7 @@ func (c *TranscribeService) UpdateVocabularyRequest(input *UpdateVocabularyInput
 // Returned Error Codes:
 //   * ErrCodeBadRequestException "BadRequestException"
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist of if it is in a non-terminal
+//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -1815,8 +1815,8 @@ type StartTranscriptionJobInput struct {
 	// A Settings object that provides optional settings for a transcription job.
 	Settings *Settings `type:"structure"`
 
-	// The name of the job. You can't use the strings "." or ".." in the job name.
-	// The name must be unique within an AWS account.
+	// The name of the job. Note that you can't use the strings "." or ".." by themselves
+	// as the job name. The name must also be unique within an AWS account.
 	//
 	// TranscriptionJobName is a required field
 	TranscriptionJobName *string `min:"1" type:"string" required:"true"`
@@ -2361,8 +2361,17 @@ const (
 	// LanguageCodeFrCa is a LanguageCode enum value
 	LanguageCodeFrCa = "fr-CA"
 
-	// LanguageCodeEnUk is a LanguageCode enum value
-	LanguageCodeEnUk = "en-UK"
+	// LanguageCodeEnGb is a LanguageCode enum value
+	LanguageCodeEnGb = "en-GB"
+
+	// LanguageCodeDeDe is a LanguageCode enum value
+	LanguageCodeDeDe = "de-DE"
+
+	// LanguageCodePtBr is a LanguageCode enum value
+	LanguageCodePtBr = "pt-BR"
+
+	// LanguageCodeFrFr is a LanguageCode enum value
+	LanguageCodeFrFr = "fr-FR"
 )
 
 const (

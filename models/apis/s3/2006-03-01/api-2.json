@@ -200,6 +200,14 @@
       "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/multiobjectdeleteapi.html",
       "alias":"DeleteMultipleObjects"
     },
+    "DeletePublicAccessBlock":{
+      "name":"DeletePublicAccessBlock",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/{Bucket}?publicAccessBlock"
+      },
+      "input":{"shape":"DeletePublicAccessBlockRequest"}
+    },
     "GetBucketAccelerateConfiguration":{
       "name":"GetBucketAccelerateConfiguration",
       "http":{
@@ -335,6 +343,15 @@
       "output":{"shape":"GetBucketPolicyOutput"},
       "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketGETpolicy.html"
     },
+    "GetBucketPolicyStatus":{
+      "name":"GetBucketPolicyStatus",
+      "http":{
+        "method":"GET",
+        "requestUri":"/{Bucket}?policyStatus"
+      },
+      "input":{"shape":"GetBucketPolicyStatusRequest"},
+      "output":{"shape":"GetBucketPolicyStatusOutput"}
+    },
     "GetBucketReplication":{
       "name":"GetBucketReplication",
       "http":{
@@ -428,6 +445,15 @@
       "input":{"shape":"GetObjectTorrentRequest"},
       "output":{"shape":"GetObjectTorrentOutput"},
       "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTObjectGETtorrent.html"
+    },
+    "GetPublicAccessBlock":{
+      "name":"GetPublicAccessBlock",
+      "http":{
+        "method":"GET",
+        "requestUri":"/{Bucket}?publicAccessBlock"
+      },
+      "input":{"shape":"GetPublicAccessBlockRequest"},
+      "output":{"shape":"GetPublicAccessBlockOutput"}
     },
     "HeadBucket":{
       "name":"HeadBucket",
@@ -735,6 +761,14 @@
       },
       "input":{"shape":"PutObjectTaggingRequest"},
       "output":{"shape":"PutObjectTaggingOutput"}
+    },
+    "PutPublicAccessBlock":{
+      "name":"PutPublicAccessBlock",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/{Bucket}?publicAccessBlock"
+      },
+      "input":{"shape":"PutPublicAccessBlockRequest"}
     },
     "RestoreObject":{
       "name":"RestoreObject",
@@ -2058,6 +2092,17 @@
       },
       "payload":"Delete"
     },
+    "DeletePublicAccessBlockRequest":{
+      "type":"structure",
+      "required":["Bucket"],
+      "members":{
+        "Bucket":{
+          "shape":"BucketName",
+          "location":"uri",
+          "locationName":"Bucket"
+        }
+      }
+    },
     "DeletedObject":{
       "type":"structure",
       "members":{
@@ -2452,6 +2497,24 @@
       "payload":"Policy"
     },
     "GetBucketPolicyRequest":{
+      "type":"structure",
+      "required":["Bucket"],
+      "members":{
+        "Bucket":{
+          "shape":"BucketName",
+          "location":"uri",
+          "locationName":"Bucket"
+        }
+      }
+    },
+    "GetBucketPolicyStatusOutput":{
+      "type":"structure",
+      "members":{
+        "PolicyStatus":{"shape":"PolicyStatus"}
+      },
+      "payload":"PolicyStatus"
+    },
+    "GetBucketPolicyStatusRequest":{
       "type":"structure",
       "required":["Bucket"],
       "members":{
@@ -2924,6 +2987,24 @@
         }
       }
     },
+    "GetPublicAccessBlockOutput":{
+      "type":"structure",
+      "members":{
+        "PublicAccessBlockConfiguration":{"shape":"PublicAccessBlockConfiguration"}
+      },
+      "payload":"PublicAccessBlockConfiguration"
+    },
+    "GetPublicAccessBlockRequest":{
+      "type":"structure",
+      "required":["Bucket"],
+      "members":{
+        "Bucket":{
+          "shape":"BucketName",
+          "location":"uri",
+          "locationName":"Bucket"
+        }
+      }
+    },
     "GlacierJobParameters":{
       "type":"structure",
       "required":["Tier"],
@@ -3331,6 +3412,7 @@
     },
     "IsEnabled":{"type":"boolean"},
     "IsLatest":{"type":"boolean"},
+    "IsPublic":{"type":"boolean"},
     "IsTruncated":{"type":"boolean"},
     "JSONInput":{
       "type":"structure",
@@ -4200,6 +4282,15 @@
       ]
     },
     "Policy":{"type":"string"},
+    "PolicyStatus":{
+      "type":"structure",
+      "members":{
+        "IsPublic":{
+          "shape":"IsPublic",
+          "locationName":"IsPublic"
+        }
+      }
+    },
     "Prefix":{"type":"string"},
     "Priority":{"type":"integer"},
     "Progress":{
@@ -4226,6 +4317,27 @@
         "http",
         "https"
       ]
+    },
+    "PublicAccessBlockConfiguration":{
+      "type":"structure",
+      "members":{
+        "BlockPublicAcls":{
+          "shape":"Setting",
+          "locationName":"BlockPublicAcls"
+        },
+        "IgnorePublicAcls":{
+          "shape":"Setting",
+          "locationName":"IgnorePublicAcls"
+        },
+        "BlockPublicPolicy":{
+          "shape":"Setting",
+          "locationName":"BlockPublicPolicy"
+        },
+        "RestrictPublicBuckets":{
+          "shape":"Setting",
+          "locationName":"RestrictPublicBuckets"
+        }
+      }
     },
     "PutBucketAccelerateConfigurationRequest":{
       "type":"structure",
@@ -5002,6 +5114,31 @@
       },
       "payload":"Tagging"
     },
+    "PutPublicAccessBlockRequest":{
+      "type":"structure",
+      "required":[
+        "Bucket",
+        "PublicAccessBlockConfiguration"
+      ],
+      "members":{
+        "Bucket":{
+          "shape":"BucketName",
+          "location":"uri",
+          "locationName":"Bucket"
+        },
+        "ContentMD5":{
+          "shape":"ContentMD5",
+          "location":"header",
+          "locationName":"Content-MD5"
+        },
+        "PublicAccessBlockConfiguration":{
+          "shape":"PublicAccessBlockConfiguration",
+          "locationName":"PublicAccessBlockConfiguration",
+          "xmlNamespace":{"uri":"http://s3.amazonaws.com/doc/2006-03-01/"}
+        }
+      },
+      "payload":"PublicAccessBlockConfiguration"
+    },
     "QueueArn":{"type":"string"},
     "QueueConfiguration":{
       "type":"structure",
@@ -5454,6 +5591,7 @@
       "member":{"shape":"ServerSideEncryptionRule"},
       "flattened":true
     },
+    "Setting":{"type":"boolean"},
     "Size":{"type":"integer"},
     "SourceSelectionCriteria":{
       "type":"structure",

@@ -92,6 +92,70 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "CreateDocumentClassifier":{
+      "name":"CreateDocumentClassifier",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateDocumentClassifierRequest"},
+      "output":{"shape":"CreateDocumentClassifierResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"UnsupportedLanguageException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DeleteDocumentClassifier":{
+      "name":"DeleteDocumentClassifier",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteDocumentClassifierRequest"},
+      "output":{"shape":"DeleteDocumentClassifierResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceUnavailableException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeDocumentClassificationJob":{
+      "name":"DescribeDocumentClassificationJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDocumentClassificationJobRequest"},
+      "output":{"shape":"DescribeDocumentClassificationJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"JobNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeDocumentClassifier":{
+      "name":"DescribeDocumentClassifier",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDocumentClassifierRequest"},
+      "output":{"shape":"DescribeDocumentClassifierResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DescribeDominantLanguageDetectionJob":{
       "name":"DescribeDominantLanguageDetectionJob",
       "http":{
@@ -241,6 +305,36 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListDocumentClassificationJobs":{
+      "name":"ListDocumentClassificationJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListDocumentClassificationJobsRequest"},
+      "output":{"shape":"ListDocumentClassificationJobsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InvalidFilterException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListDocumentClassifiers":{
+      "name":"ListDocumentClassifiers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListDocumentClassifiersRequest"},
+      "output":{"shape":"ListDocumentClassifiersResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InvalidFilterException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListDominantLanguageDetectionJobs":{
       "name":"ListDominantLanguageDetectionJobs",
       "http":{
@@ -313,6 +407,22 @@
         {"shape":"InvalidRequestException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"InvalidFilterException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "StartDocumentClassificationJob":{
+      "name":"StartDocumentClassificationJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartDocumentClassificationJobRequest"},
+      "output":{"shape":"StartDocumentClassificationJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceUnavailableException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -606,11 +716,97 @@
       },
       "exception":true
     },
+    "ClassifierEvaluationMetrics":{
+      "type":"structure",
+      "members":{
+        "Accuracy":{"shape":"Double"},
+        "Precision":{"shape":"Double"},
+        "Recall":{"shape":"Double"},
+        "F1Score":{"shape":"Double"}
+      }
+    },
+    "ClassifierMetadata":{
+      "type":"structure",
+      "members":{
+        "NumberOfLabels":{"shape":"Integer"},
+        "NumberOfTrainedDocuments":{"shape":"Integer"},
+        "NumberOfTestDocuments":{"shape":"Integer"},
+        "EvaluationMetrics":{"shape":"ClassifierEvaluationMetrics"}
+      }
+    },
     "ClientRequestTokenString":{
       "type":"string",
       "max":64,
       "min":1,
       "pattern":"^[a-zA-Z0-9-]+$"
+    },
+    "ComprehendArnName":{
+      "type":"string",
+      "max":63,
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+    },
+    "CreateDocumentClassifierRequest":{
+      "type":"structure",
+      "required":[
+        "DocumentClassifierName",
+        "DataAccessRoleArn",
+        "InputDataConfig",
+        "LanguageCode"
+      ],
+      "members":{
+        "DocumentClassifierName":{"shape":"ComprehendArnName"},
+        "DataAccessRoleArn":{"shape":"IamRoleArn"},
+        "InputDataConfig":{"shape":"DocumentClassifierInputDataConfig"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestTokenString",
+          "idempotencyToken":true
+        },
+        "LanguageCode":{"shape":"LanguageCode"}
+      }
+    },
+    "CreateDocumentClassifierResponse":{
+      "type":"structure",
+      "members":{
+        "DocumentClassifierArn":{"shape":"DocumentClassifierArn"}
+      }
+    },
+    "DeleteDocumentClassifierRequest":{
+      "type":"structure",
+      "required":["DocumentClassifierArn"],
+      "members":{
+        "DocumentClassifierArn":{"shape":"DocumentClassifierArn"}
+      }
+    },
+    "DeleteDocumentClassifierResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DescribeDocumentClassificationJobRequest":{
+      "type":"structure",
+      "required":["JobId"],
+      "members":{
+        "JobId":{"shape":"JobId"}
+      }
+    },
+    "DescribeDocumentClassificationJobResponse":{
+      "type":"structure",
+      "members":{
+        "DocumentClassificationJobProperties":{"shape":"DocumentClassificationJobProperties"}
+      }
+    },
+    "DescribeDocumentClassifierRequest":{
+      "type":"structure",
+      "required":["DocumentClassifierArn"],
+      "members":{
+        "DocumentClassifierArn":{"shape":"DocumentClassifierArn"}
+      }
+    },
+    "DescribeDocumentClassifierResponse":{
+      "type":"structure",
+      "members":{
+        "DocumentClassifierProperties":{"shape":"DocumentClassifierProperties"}
+      }
     },
     "DescribeDominantLanguageDetectionJobRequest":{
       "type":"structure",
@@ -759,6 +955,74 @@
         "SyntaxTokens":{"shape":"ListOfSyntaxTokens"}
       }
     },
+    "DocumentClassificationJobFilter":{
+      "type":"structure",
+      "members":{
+        "JobName":{"shape":"JobName"},
+        "JobStatus":{"shape":"JobStatus"},
+        "SubmitTimeBefore":{"shape":"Timestamp"},
+        "SubmitTimeAfter":{"shape":"Timestamp"}
+      }
+    },
+    "DocumentClassificationJobProperties":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"JobId"},
+        "JobName":{"shape":"JobName"},
+        "JobStatus":{"shape":"JobStatus"},
+        "Message":{"shape":"AnyLengthString"},
+        "SubmitTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"},
+        "DocumentClassifierArn":{"shape":"DocumentClassifierArn"},
+        "InputDataConfig":{"shape":"InputDataConfig"},
+        "OutputDataConfig":{"shape":"OutputDataConfig"},
+        "DataAccessRoleArn":{"shape":"IamRoleArn"}
+      }
+    },
+    "DocumentClassificationJobPropertiesList":{
+      "type":"list",
+      "member":{"shape":"DocumentClassificationJobProperties"}
+    },
+    "DocumentClassifierArn":{
+      "type":"string",
+      "max":256,
+      "pattern":"arn:aws:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document-classifier/[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+    },
+    "DocumentClassifierFilter":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"ModelStatus"},
+        "SubmitTimeBefore":{"shape":"Timestamp"},
+        "SubmitTimeAfter":{"shape":"Timestamp"}
+      }
+    },
+    "DocumentClassifierInputDataConfig":{
+      "type":"structure",
+      "required":["S3Uri"],
+      "members":{
+        "S3Uri":{"shape":"S3Uri"}
+      }
+    },
+    "DocumentClassifierProperties":{
+      "type":"structure",
+      "members":{
+        "DocumentClassifierArn":{"shape":"DocumentClassifierArn"},
+        "LanguageCode":{"shape":"LanguageCode"},
+        "Status":{"shape":"ModelStatus"},
+        "Message":{"shape":"AnyLengthString"},
+        "SubmitTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"},
+        "TrainingStartTime":{"shape":"Timestamp"},
+        "TrainingEndTime":{"shape":"Timestamp"},
+        "InputDataConfig":{"shape":"DocumentClassifierInputDataConfig"},
+        "ClassifierMetadata":{"shape":"ClassifierMetadata"},
+        "DataAccessRoleArn":{"shape":"IamRoleArn"}
+      }
+    },
+    "DocumentClassifierPropertiesList":{
+      "type":"list",
+      "member":{"shape":"DocumentClassifierProperties"}
+    },
     "DominantLanguage":{
       "type":"structure",
       "members":{
@@ -793,6 +1057,7 @@
       "type":"list",
       "member":{"shape":"DominantLanguageDetectionJobProperties"}
     },
+    "Double":{"type":"double"},
     "EntitiesDetectionJobFilter":{
       "type":"structure",
       "members":{
@@ -848,6 +1113,8 @@
     "Float":{"type":"float"},
     "IamRoleArn":{
       "type":"string",
+      "max":2048,
+      "min":20,
       "pattern":"arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+"
     },
     "InputDataConfig":{
@@ -891,7 +1158,8 @@
     "JobId":{
       "type":"string",
       "max":32,
-      "min":1
+      "min":1,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-%@]*)$"
     },
     "JobName":{
       "type":"string",
@@ -964,6 +1232,36 @@
         "it",
         "pt"
       ]
+    },
+    "ListDocumentClassificationJobsRequest":{
+      "type":"structure",
+      "members":{
+        "Filter":{"shape":"DocumentClassificationJobFilter"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"MaxResultsInteger"}
+      }
+    },
+    "ListDocumentClassificationJobsResponse":{
+      "type":"structure",
+      "members":{
+        "DocumentClassificationJobPropertiesList":{"shape":"DocumentClassificationJobPropertiesList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListDocumentClassifiersRequest":{
+      "type":"structure",
+      "members":{
+        "Filter":{"shape":"DocumentClassifierFilter"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"MaxResultsInteger"}
+      }
+    },
+    "ListDocumentClassifiersResponse":{
+      "type":"structure",
+      "members":{
+        "DocumentClassifierPropertiesList":{"shape":"DocumentClassifierPropertiesList"},
+        "NextToken":{"shape":"String"}
+      }
     },
     "ListDominantLanguageDetectionJobsRequest":{
       "type":"structure",
@@ -1081,6 +1379,16 @@
       "max":500,
       "min":1
     },
+    "ModelStatus":{
+      "type":"string",
+      "enum":[
+        "SUBMITTED",
+        "TRAINING",
+        "DELETING",
+        "IN_ERROR",
+        "TRAINED"
+      ]
+    },
     "NumberOfTopicsInteger":{
       "type":"integer",
       "max":100,
@@ -1108,6 +1416,7 @@
         "ADV",
         "AUX",
         "CONJ",
+        "CCONJ",
         "DET",
         "INTJ",
         "NOUN",
@@ -1121,6 +1430,34 @@
         "SYM",
         "VERB"
       ]
+    },
+    "ResourceInUseException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "ResourceLimitExceededException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "ResourceNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "ResourceUnavailableException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
     },
     "S3Uri":{
       "type":"string",
@@ -1172,6 +1509,33 @@
         "NEUTRAL",
         "MIXED"
       ]
+    },
+    "StartDocumentClassificationJobRequest":{
+      "type":"structure",
+      "required":[
+        "DocumentClassifierArn",
+        "InputDataConfig",
+        "OutputDataConfig",
+        "DataAccessRoleArn"
+      ],
+      "members":{
+        "JobName":{"shape":"JobName"},
+        "DocumentClassifierArn":{"shape":"DocumentClassifierArn"},
+        "InputDataConfig":{"shape":"InputDataConfig"},
+        "OutputDataConfig":{"shape":"OutputDataConfig"},
+        "DataAccessRoleArn":{"shape":"IamRoleArn"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestTokenString",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "StartDocumentClassificationJobResponse":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"JobId"},
+        "JobStatus":{"shape":"JobStatus"}
+      }
     },
     "StartDominantLanguageDetectionJobRequest":{
       "type":"structure",

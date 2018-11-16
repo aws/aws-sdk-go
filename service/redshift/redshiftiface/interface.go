@@ -72,6 +72,14 @@ type RedshiftAPI interface {
 	AuthorizeSnapshotAccessWithContext(aws.Context, *redshift.AuthorizeSnapshotAccessInput, ...request.Option) (*redshift.AuthorizeSnapshotAccessOutput, error)
 	AuthorizeSnapshotAccessRequest(*redshift.AuthorizeSnapshotAccessInput) (*request.Request, *redshift.AuthorizeSnapshotAccessOutput)
 
+	BatchDeleteClusterSnapshots(*redshift.BatchDeleteClusterSnapshotsInput) (*redshift.BatchDeleteClusterSnapshotsOutput, error)
+	BatchDeleteClusterSnapshotsWithContext(aws.Context, *redshift.BatchDeleteClusterSnapshotsInput, ...request.Option) (*redshift.BatchDeleteClusterSnapshotsOutput, error)
+	BatchDeleteClusterSnapshotsRequest(*redshift.BatchDeleteClusterSnapshotsInput) (*request.Request, *redshift.BatchDeleteClusterSnapshotsOutput)
+
+	BatchModifyClusterSnapshots(*redshift.BatchModifyClusterSnapshotsInput) (*redshift.BatchModifyClusterSnapshotsOutput, error)
+	BatchModifyClusterSnapshotsWithContext(aws.Context, *redshift.BatchModifyClusterSnapshotsInput, ...request.Option) (*redshift.BatchModifyClusterSnapshotsOutput, error)
+	BatchModifyClusterSnapshotsRequest(*redshift.BatchModifyClusterSnapshotsInput) (*request.Request, *redshift.BatchModifyClusterSnapshotsOutput)
+
 	CancelResize(*redshift.CancelResizeInput) (*redshift.CancelResizeOutput, error)
 	CancelResizeWithContext(aws.Context, *redshift.CancelResizeInput, ...request.Option) (*redshift.CancelResizeOutput, error)
 	CancelResizeRequest(*redshift.CancelResizeInput) (*request.Request, *redshift.CancelResizeOutput)
@@ -116,6 +124,10 @@ type RedshiftAPI interface {
 	CreateSnapshotCopyGrantWithContext(aws.Context, *redshift.CreateSnapshotCopyGrantInput, ...request.Option) (*redshift.CreateSnapshotCopyGrantOutput, error)
 	CreateSnapshotCopyGrantRequest(*redshift.CreateSnapshotCopyGrantInput) (*request.Request, *redshift.CreateSnapshotCopyGrantOutput)
 
+	CreateSnapshotSchedule(*redshift.CreateSnapshotScheduleInput) (*redshift.CreateSnapshotScheduleOutput, error)
+	CreateSnapshotScheduleWithContext(aws.Context, *redshift.CreateSnapshotScheduleInput, ...request.Option) (*redshift.CreateSnapshotScheduleOutput, error)
+	CreateSnapshotScheduleRequest(*redshift.CreateSnapshotScheduleInput) (*request.Request, *redshift.CreateSnapshotScheduleOutput)
+
 	CreateTags(*redshift.CreateTagsInput) (*redshift.CreateTagsOutput, error)
 	CreateTagsWithContext(aws.Context, *redshift.CreateTagsInput, ...request.Option) (*redshift.CreateTagsOutput, error)
 	CreateTagsRequest(*redshift.CreateTagsInput) (*request.Request, *redshift.CreateTagsOutput)
@@ -155,6 +167,10 @@ type RedshiftAPI interface {
 	DeleteSnapshotCopyGrant(*redshift.DeleteSnapshotCopyGrantInput) (*redshift.DeleteSnapshotCopyGrantOutput, error)
 	DeleteSnapshotCopyGrantWithContext(aws.Context, *redshift.DeleteSnapshotCopyGrantInput, ...request.Option) (*redshift.DeleteSnapshotCopyGrantOutput, error)
 	DeleteSnapshotCopyGrantRequest(*redshift.DeleteSnapshotCopyGrantInput) (*request.Request, *redshift.DeleteSnapshotCopyGrantOutput)
+
+	DeleteSnapshotSchedule(*redshift.DeleteSnapshotScheduleInput) (*redshift.DeleteSnapshotScheduleOutput, error)
+	DeleteSnapshotScheduleWithContext(aws.Context, *redshift.DeleteSnapshotScheduleInput, ...request.Option) (*redshift.DeleteSnapshotScheduleOutput, error)
+	DeleteSnapshotScheduleRequest(*redshift.DeleteSnapshotScheduleInput) (*request.Request, *redshift.DeleteSnapshotScheduleOutput)
 
 	DeleteTags(*redshift.DeleteTagsInput) (*redshift.DeleteTagsOutput, error)
 	DeleteTagsWithContext(aws.Context, *redshift.DeleteTagsInput, ...request.Option) (*redshift.DeleteTagsOutput, error)
@@ -293,6 +309,14 @@ type RedshiftAPI interface {
 	DescribeSnapshotCopyGrantsWithContext(aws.Context, *redshift.DescribeSnapshotCopyGrantsInput, ...request.Option) (*redshift.DescribeSnapshotCopyGrantsOutput, error)
 	DescribeSnapshotCopyGrantsRequest(*redshift.DescribeSnapshotCopyGrantsInput) (*request.Request, *redshift.DescribeSnapshotCopyGrantsOutput)
 
+	DescribeSnapshotSchedules(*redshift.DescribeSnapshotSchedulesInput) (*redshift.DescribeSnapshotSchedulesOutput, error)
+	DescribeSnapshotSchedulesWithContext(aws.Context, *redshift.DescribeSnapshotSchedulesInput, ...request.Option) (*redshift.DescribeSnapshotSchedulesOutput, error)
+	DescribeSnapshotSchedulesRequest(*redshift.DescribeSnapshotSchedulesInput) (*request.Request, *redshift.DescribeSnapshotSchedulesOutput)
+
+	DescribeStorage(*redshift.DescribeStorageInput) (*redshift.DescribeStorageOutput, error)
+	DescribeStorageWithContext(aws.Context, *redshift.DescribeStorageInput, ...request.Option) (*redshift.DescribeStorageOutput, error)
+	DescribeStorageRequest(*redshift.DescribeStorageInput) (*request.Request, *redshift.DescribeStorageOutput)
+
 	DescribeTableRestoreStatus(*redshift.DescribeTableRestoreStatusInput) (*redshift.DescribeTableRestoreStatusOutput, error)
 	DescribeTableRestoreStatusWithContext(aws.Context, *redshift.DescribeTableRestoreStatusInput, ...request.Option) (*redshift.DescribeTableRestoreStatusOutput, error)
 	DescribeTableRestoreStatusRequest(*redshift.DescribeTableRestoreStatusInput) (*request.Request, *redshift.DescribeTableRestoreStatusOutput)
@@ -345,6 +369,14 @@ type RedshiftAPI interface {
 	ModifyClusterParameterGroupWithContext(aws.Context, *redshift.ModifyClusterParameterGroupInput, ...request.Option) (*redshift.ClusterParameterGroupNameMessage, error)
 	ModifyClusterParameterGroupRequest(*redshift.ModifyClusterParameterGroupInput) (*request.Request, *redshift.ClusterParameterGroupNameMessage)
 
+	ModifyClusterSnapshot(*redshift.ModifyClusterSnapshotInput) (*redshift.ModifyClusterSnapshotOutput, error)
+	ModifyClusterSnapshotWithContext(aws.Context, *redshift.ModifyClusterSnapshotInput, ...request.Option) (*redshift.ModifyClusterSnapshotOutput, error)
+	ModifyClusterSnapshotRequest(*redshift.ModifyClusterSnapshotInput) (*request.Request, *redshift.ModifyClusterSnapshotOutput)
+
+	ModifyClusterSnapshotSchedule(*redshift.ModifyClusterSnapshotScheduleInput) (*redshift.ModifyClusterSnapshotScheduleOutput, error)
+	ModifyClusterSnapshotScheduleWithContext(aws.Context, *redshift.ModifyClusterSnapshotScheduleInput, ...request.Option) (*redshift.ModifyClusterSnapshotScheduleOutput, error)
+	ModifyClusterSnapshotScheduleRequest(*redshift.ModifyClusterSnapshotScheduleInput) (*request.Request, *redshift.ModifyClusterSnapshotScheduleOutput)
+
 	ModifyClusterSubnetGroup(*redshift.ModifyClusterSubnetGroupInput) (*redshift.ModifyClusterSubnetGroupOutput, error)
 	ModifyClusterSubnetGroupWithContext(aws.Context, *redshift.ModifyClusterSubnetGroupInput, ...request.Option) (*redshift.ModifyClusterSubnetGroupOutput, error)
 	ModifyClusterSubnetGroupRequest(*redshift.ModifyClusterSubnetGroupInput) (*request.Request, *redshift.ModifyClusterSubnetGroupOutput)
@@ -356,6 +388,10 @@ type RedshiftAPI interface {
 	ModifySnapshotCopyRetentionPeriod(*redshift.ModifySnapshotCopyRetentionPeriodInput) (*redshift.ModifySnapshotCopyRetentionPeriodOutput, error)
 	ModifySnapshotCopyRetentionPeriodWithContext(aws.Context, *redshift.ModifySnapshotCopyRetentionPeriodInput, ...request.Option) (*redshift.ModifySnapshotCopyRetentionPeriodOutput, error)
 	ModifySnapshotCopyRetentionPeriodRequest(*redshift.ModifySnapshotCopyRetentionPeriodInput) (*request.Request, *redshift.ModifySnapshotCopyRetentionPeriodOutput)
+
+	ModifySnapshotSchedule(*redshift.ModifySnapshotScheduleInput) (*redshift.ModifySnapshotScheduleOutput, error)
+	ModifySnapshotScheduleWithContext(aws.Context, *redshift.ModifySnapshotScheduleInput, ...request.Option) (*redshift.ModifySnapshotScheduleOutput, error)
+	ModifySnapshotScheduleRequest(*redshift.ModifySnapshotScheduleInput) (*request.Request, *redshift.ModifySnapshotScheduleOutput)
 
 	PurchaseReservedNodeOffering(*redshift.PurchaseReservedNodeOfferingInput) (*redshift.PurchaseReservedNodeOfferingOutput, error)
 	PurchaseReservedNodeOfferingWithContext(aws.Context, *redshift.PurchaseReservedNodeOfferingInput, ...request.Option) (*redshift.PurchaseReservedNodeOfferingOutput, error)
