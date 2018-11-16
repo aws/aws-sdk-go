@@ -1241,6 +1241,14 @@
       },
       "exception":true
     },
+    "IpcMode":{
+      "type":"string",
+      "enum":[
+        "host",
+        "task",
+        "none"
+      ]
+    },
     "KernelCapabilities":{
       "type":"structure",
       "members":{
@@ -1527,6 +1535,13 @@
       },
       "exception":true
     },
+    "PidMode":{
+      "type":"string",
+      "enum":[
+        "host",
+        "task"
+      ]
+    },
     "PlacementConstraint":{
       "type":"structure",
       "members":{
@@ -1663,7 +1678,9 @@
         "requiresCompatibilities":{"shape":"CompatibilityList"},
         "cpu":{"shape":"String"},
         "memory":{"shape":"String"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "pidMode":{"shape":"PidMode"},
+        "ipcMode":{"shape":"IpcMode"}
       }
     },
     "RegisterTaskDefinitionResponse":{
@@ -2086,7 +2103,9 @@
         "compatibilities":{"shape":"CompatibilityList"},
         "requiresCompatibilities":{"shape":"CompatibilityList"},
         "cpu":{"shape":"String"},
-        "memory":{"shape":"String"}
+        "memory":{"shape":"String"},
+        "pidMode":{"shape":"PidMode"},
+        "ipcMode":{"shape":"IpcMode"}
       }
     },
     "TaskDefinitionFamilyStatus":{
