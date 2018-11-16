@@ -60,11 +60,19 @@ func main() {
 		api.LogDebug(os.Stdout)
 	}
 
-	modelPaths, err := api.ExpandModelGlobPath(flag.Args()...)
+	// Make sure all paths are based on platform's pathing not Unix
+	globs := flag.Args()
+	for i, g := range globs {
+		globs[i] = filepath.FromSlash(g)
+	}
+	svcPath = filepath.FromSlash(svcPath)
+
+	modelPaths, err := api.ExpandModelGlobPath(globs...)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "failed to glob file pattern", err)
 		os.Exit(1)
 	}
+	modelPaths, _ = api.TrimModelServiceVersions(modelPaths)
 
 	apis, err := api.LoadAPIs(modelPaths, svcImportPath)
 	if err != nil {

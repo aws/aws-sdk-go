@@ -157,7 +157,7 @@ func mergeServicesCustomizations(a *API) {
 	p := strings.Replace(a.path, info.srcName, info.dstName, -1)
 
 	if info.serviceVersion != "" {
-		index := strings.LastIndex(p, "/")
+		index := strings.LastIndex(p, string(filepath.Separator))
 		files, _ := ioutil.ReadDir(p[:index])
 		if len(files) > 1 {
 			panic("New version was introduced")

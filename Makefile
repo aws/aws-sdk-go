@@ -49,9 +49,9 @@ gen-protocol-test: get-deps-codegen
 gen-endpoints: get-deps-codegen
 	go generate ./models/endpoints/
 
-cleanup-models:
+cleanup-models: get-deps-codegen
 	@echo "Cleaning up stale model versions"
-	@./cleanup_models.sh
+	go run -tags codegen ./private/model/cli/cleanup-models/* "./models/apis/*/*/api-2.json"
 
 unit: get-deps verify
 	@echo "go test SDK and vendor packages"
@@ -186,7 +186,7 @@ get-deps-integ: get-deps-tests
 	@echo "go get SDK integ testing dependencies"
 	go get github.com/gucumber/gucumber/cmd/gucumber
 
-get-deps-codegen:
+get-deps-codegen: get-deps-x-tests
 	@echo "go get SDK codegen dependencies"
 	go get golang.org/x/net/html
 

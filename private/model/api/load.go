@@ -103,7 +103,9 @@ func ExpandModelGlobPath(globs ...string) ([]string, error) {
 	return modelPaths, nil
 }
 
-func trimModelServiceVersions(modelPaths []string) []string {
+// TrimModelServiceVersions sorts the model paths by service version then
+// returns recent model versions, and model version excluded.
+func TrimModelServiceVersions(modelPaths []string) (include, exclude []string) {
 	sort.Strings(modelPaths)
 
 	// Remove old API versions from list
@@ -115,13 +117,14 @@ func trimModelServiceVersions(modelPaths []string) []string {
 
 		if _, ok := m[svc]; ok {
 			// Removed unused service version
-			modelPaths = append(modelPaths[:i], modelPaths[i+1:]...)
+			exclude = append(exclude, modelPaths[i])
 			continue
 		}
+		include = append(include, modelPaths[i])
 		m[svc] = struct{}{}
 	}
 
-	return modelPaths
+	return include, exclude
 }
 
 // Attach opens a file by name, and unmarshal its JSON data.
