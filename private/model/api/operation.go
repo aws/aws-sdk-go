@@ -13,19 +13,21 @@ import (
 
 // An Operation defines a specific API Operation.
 type Operation struct {
-	API           *API `json:"-"`
-	ExportedName  string
-	Name          string
-	Documentation string
-	HTTP          HTTPInfo
-	InputRef      ShapeRef   `json:"input"`
-	OutputRef     ShapeRef   `json:"output"`
-	ErrorRefs     []ShapeRef `json:"errors"`
-	Paginator     *Paginator
-	Deprecated    bool   `json:"deprecated"`
-	DeprecatedMsg string `json:"deprecatedMessage"`
-	AuthType      string `json:"authtype"`
-	imports       map[string]bool
+	API                 *API `json:"-"`
+	ExportedName        string
+	Name                string
+	Documentation       string
+	HTTP                HTTPInfo
+	Host                string     `json:"host"`
+	InputRef            ShapeRef   `json:"input"`
+	OutputRef           ShapeRef   `json:"output"`
+	ErrorRefs           []ShapeRef `json:"errors"`
+	Paginator           *Paginator
+	Deprecated          bool   `json:"deprecated"`
+	DeprecatedMsg       string `json:"deprecatedMessage"`
+	AuthType            string `json:"authtype"`
+	imports             map[string]bool
+	CustomBuildHandlers []string
 
 	EventStreamAPI *EventStreamAPI
 
@@ -188,37 +190,39 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 		{{ end -}}
 	{{ end -}}
 	{{ if .EndpointDiscovery -}}
-
-	{{if not .EndpointDiscovery.Required -}}
-		if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
-	{{end -}}
-			de := discoverer{{ .API.EndpointDiscoveryOp.Name }}{
-				Required: {{ .EndpointDiscovery.Required }},
-				EndpointCache: c.endpointCache,
-				Params: map[string]*string{
-					"op": aws.String(req.Operation.Name),
-					{{ range $key, $ref := .InputRef.Shape.MemberRefs -}}
-					{{ if $ref.EndpointDiscoveryID -}}
-					"{{ $ref.OrigShapeName }}": input.{{ $key }},
-					{{ end -}}
-					{{- end }}
-				},
-				Client: c,
-			}
-
-			for k, v := range de.Params {
-				if v == nil {
-					delete(de.Params, k)
-				}
-			}
-
-			req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-				Name: "crr.endpointdiscovery",
-				Fn: de.Handler,
-			})
-	{{if not .EndpointDiscovery.Required -}}
+		{{if not .EndpointDiscovery.Required -}}
+			if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+		{{end -}}
+		de := discoverer{{ .API.EndpointDiscoveryOp.Name }}{
+			Required: {{ .EndpointDiscovery.Required }},
+			EndpointCache: c.endpointCache,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
+				{{ range $key, $ref := .InputRef.Shape.MemberRefs -}}
+				{{ if $ref.EndpointDiscoveryID -}}
+				"{{ $ref.OrigShapeName }}": input.{{ $key }},
+				{{ end -}}
+				{{- end }}
+			},
+			Client: c,
 		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn: de.Handler,
+		})
+		{{if not .EndpointDiscovery.Required -}}
+			}
+		{{ end -}}
 	{{ end -}}
+	{{- range $_, $handler := $.CustomBuildHandlers -}}
+		req.Handlers.Build.PushBackNamed({{ $handler }})
 	{{ end -}}
 	return
 }
