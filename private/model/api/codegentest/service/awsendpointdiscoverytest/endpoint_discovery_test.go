@@ -2,122 +2,97 @@ package awsendpointdiscoverytest
 
 import (
 	"sync"
+	"sync/atomic"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/awstesting/unit"
 )
 
 func TestEndpointDiscovery(t *testing.T) {
-	cfg := &aws.Config{
-		Region:                  aws.String("mock-region"),
-		Credentials:             credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
+	svc := New(unit.Session, &aws.Config{
 		EnableEndpointDiscovery: aws.Bool(true),
-	}
-	sess := session.New(cfg)
-	sess.Handlers = removeHandlers(sess.Handlers, true)
+	})
+	svc.Handlers.Clear()
+	svc.Handlers.Send.PushBack(mockSendDescEndpoint)
 
-	sess.Handlers.Send.PushBack(func(r *request.Request) {
-		out, ok := r.Data.(*DescribeEndpointsOutput)
-		if !ok {
+	var descCount int32
+	svc.Handlers.Complete.PushBack(func(r *request.Request) {
+		if r.Operation.Name != opDescribeEndpoints {
 			return
 		}
+		atomic.AddInt32(&descCount, 1)
+	})
 
-		out.Endpoints = []*Endpoint{
-			{
-				Address:              aws.String("http://foo"),
-				CachePeriodInMinutes: aws.Int64(5),
+	for i := 0; i < 2; i++ {
+		req, _ := svc.TestDiscoveryIdentifiersRequiredRequest(
+			&TestDiscoveryIdentifiersRequiredInput{
+				Sdk: aws.String("sdk"),
 			},
+		)
+		req.Handlers.Send.PushBack(func(r *request.Request) {
+			if e, a := "http://foo", r.HTTPRequest.URL.String(); e != a {
+				t.Errorf("expected %q, but received %q", e, a)
+			}
+		})
+		if err := req.Send(); err != nil {
+			t.Fatal(err)
 		}
-		r.Data = out
-	})
+	}
 
-	svc := New(sess)
-	svc.Handlers = removeHandlers(svc.Handlers, false)
-
-	req, _ := svc.TestDiscoveryIdentifiersRequiredRequest(&TestDiscoveryIdentifiersRequiredInput{
-		Sdk: aws.String("sdk"),
-	})
-
-	req.Handlers = removeHandlers(req.Handlers, false)
-
-	req.Handlers.Send.PushBack(func(r *request.Request) {
-		if e, a := "http://foo", r.HTTPRequest.URL.String(); e != a {
-			t.Errorf("expected %q, but received %q", e, a)
-		}
-	})
-
-	if err := req.Send(); err != nil {
-		t.Fatal(err)
+	if e, a := int32(1), atomic.LoadInt32(&descCount); e != a {
+		t.Errorf("expect desc endpoint called %d, got %d", e, a)
 	}
 }
 
 func TestAsyncEndpointDiscovery(t *testing.T) {
-	cfg := &aws.Config{
-		Region:                  aws.String("mock-region"),
-		Credentials:             credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
+	svc := New(unit.Session, &aws.Config{
 		EnableEndpointDiscovery: aws.Bool(true),
-	}
-	sess := session.New(cfg)
-	sess.Handlers = removeHandlers(sess.Handlers, true)
-
-	sess.Handlers.Send.PushBack(func(r *request.Request) {
-		out, ok := r.Data.(*DescribeEndpointsOutput)
-		if !ok {
-			return
-		}
-
-		out.Endpoints = []*Endpoint{
-			{
-				Address:              aws.String("http://foo"),
-				CachePeriodInMinutes: aws.Int64(5),
-			},
-		}
-		r.Data = out
 	})
+	svc.Handlers.Clear()
 
-	svc := New(sess)
-	svc.Handlers = removeHandlers(svc.Handlers, false)
+	var firstAsyncReq sync.WaitGroup
+	firstAsyncReq.Add(1)
+	svc.Handlers.Send.PushBack(func(r *request.Request) {
+		if r.Operation.Name == opDescribeEndpoints {
+			firstAsyncReq.Wait()
+		}
+	})
+	svc.Handlers.Send.PushBack(mockSendDescEndpoint)
 
-	var wg sync.WaitGroup
-	wg.Add(1)
+	var descWg sync.WaitGroup
+	descWg.Add(1)
 	svc.Handlers.Complete.PushBack(func(r *request.Request) {
-		if r.Operation.Name == "DescribeEndpoints" {
-			wg.Done()
+		if r.Operation.Name == opDescribeEndpoints {
+			descWg.Done()
 		}
 	})
 
 	req, _ := svc.TestDiscoveryOptionalRequest(&TestDiscoveryOptionalInput{
 		Sdk: aws.String("sdk"),
 	})
-
-	req.Handlers = removeHandlers(req.Handlers, false)
-
-	const expectedURI = "awsendpointdiscoverytestservice.mock-region.amazonaws.com"
+	const clientHost = "awsendpointdiscoverytestservice.mock-region.amazonaws.com"
 	req.Handlers.Send.PushBack(func(r *request.Request) {
-		if e, a := expectedURI, r.HTTPRequest.URL.Host; e != a {
+		if e, a := clientHost, r.HTTPRequest.URL.Host; e != a {
 			t.Errorf("expected %q, but received %q", e, a)
 		}
 	})
-
 	if err := req.Send(); err != nil {
 		t.Fatal(err)
 	}
 
-	wg.Wait()
+	firstAsyncReq.Done()
+	descWg.Wait()
+
 	req, _ = svc.TestDiscoveryOptionalRequest(&TestDiscoveryOptionalInput{
 		Sdk: aws.String("sdk"),
 	})
-
-	req.Handlers = removeHandlers(req.Handlers, false)
 	req.Handlers.Send.PushBack(func(r *request.Request) {
 		if e, a := "http://foo", r.HTTPRequest.URL.String(); e != a {
 			t.Errorf("expected %q, but received %q", e, a)
 		}
 	})
-
 	if err := req.Send(); err != nil {
 		t.Fatal(err)
 	}
@@ -135,4 +110,19 @@ func removeHandlers(h request.Handlers, removeSendHandlers bool) request.Handler
 	h.Complete.Clear()
 	h.ValidateResponse.Clear()
 	return h
+}
+
+func mockSendDescEndpoint(r *request.Request) {
+	if r.Operation.Name != opDescribeEndpoints {
+		return
+	}
+
+	out, _ := r.Data.(*DescribeEndpointsOutput)
+	out.Endpoints = []*Endpoint{
+		{
+			Address:              aws.String("http://foo"),
+			CachePeriodInMinutes: aws.Int64(5),
+		},
+	}
+	r.Data = out
 }
