@@ -42,22 +42,22 @@ func TestTrimModelServiceVersions(t *testing.T) {
 	}{
 		{
 			Paths: []string{
-				filepath.Join("foo", "baz", "2018-01-02"),
-				filepath.Join("foo", "baz", "2019-01-02"),
-				filepath.Join("foo", "baz", "2017-01-02"),
-				filepath.Join("foo", "bar", "2019-01-02"),
-				filepath.Join("foo", "bar", "2013-04-02"),
-				filepath.Join("foo", "bar", "2019-01-03"),
+				filepath.Join("foo", "baz", "2018-01-02", "api-2.json"),
+				filepath.Join("foo", "baz", "2019-01-02", "api-2.json"),
+				filepath.Join("foo", "baz", "2017-01-02", "api-2.json"),
+				filepath.Join("foo", "bar", "2019-01-02", "api-2.json"),
+				filepath.Join("foo", "bar", "2013-04-02", "api-2.json"),
+				filepath.Join("foo", "bar", "2019-01-03", "api-2.json"),
 			},
 			Include: []string{
-				filepath.Join("foo", "baz", "2019-01-02"),
-				filepath.Join("foo", "bar", "2019-01-03"),
+				filepath.Join("foo", "baz", "2019-01-02", "api-2.json"),
+				filepath.Join("foo", "bar", "2019-01-03", "api-2.json"),
 			},
 			Exclude: []string{
-				filepath.Join("foo", "baz", "2018-01-02"),
-				filepath.Join("foo", "baz", "2017-01-02"),
-				filepath.Join("foo", "bar", "2019-01-02"),
-				filepath.Join("foo", "bar", "2013-04-02"),
+				filepath.Join("foo", "baz", "2018-01-02", "api-2.json"),
+				filepath.Join("foo", "baz", "2017-01-02", "api-2.json"),
+				filepath.Join("foo", "bar", "2019-01-02", "api-2.json"),
+				filepath.Join("foo", "bar", "2013-04-02", "api-2.json"),
 			},
 		},
 	}
