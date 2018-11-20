@@ -1,3 +1,27 @@
+Release v1.15.80 (2018-11-20)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/autoscaling-plans`: Updates service API and documentation
+* `service/cloudfront`: Adds new service
+  * With Origin Failover capability in CloudFront, you can setup two origins for your distributions - primary and secondary, such that your content is served from your secondary origin if CloudFront detects that your primary origin is unavailable. These origins can be any combination of AWS origins or non-AWS custom HTTP origins. For example, you can have two Amazon S3 buckets that serve as your origin that you independently upload your content to. If an object that CloudFront requests from your primary bucket is not present or if connection to your primary bucket times-out, CloudFront will request the object from your secondary bucket. So, you can configure CloudFront to trigger a failover in response to either HTTP 4xx or 5xx status codes.
+* `service/devicefarm`: Updates service API and documentation
+  * Disabling device filters
+* `service/medialive`: Updates service API and documentation
+  * You can now include the media playlist(s) from both pipelines in the HLS master manifest for seamless failover.
+* `service/monitoring`: Updates service API and documentation
+  * Amazon CloudWatch now supports alarms on metric math expressions.
+* `service/quicksight`: Adds new service
+  * Amazon QuickSight is a fully managed, serverless, cloud business intelligence system that allows you to extend data and insights to every user in your organization. The first release of APIs for Amazon QuickSight introduces embedding and user/group management capabilities. The get-dashboard-embed-url API allows you to obtain an authenticated dashboard URL that can be embedded in application domains whitelisted for QuickSight dashboard embedding. User APIs allow you to programmatically expand and manage your QuickSight deployments while group APIs allow easier permissions management for resources within QuickSight.
+* `service/rds-data`: Adds new service
+* `service/redshift`: Updates service documentation
+  * Documentation updates for redshift
+* `service/ssm`: Updates service API and documentation
+  * AWS Systems Manager Distributor helps you securely distribute and install software packages.
+* `service/xray`: Updates service API and documentation
+  * Groups build upon X-Ray filter expressions to allow for fine tuning trace summaries and service graph results. You can configure groups by using the AWS X-Ray console or by using the CreateGroup API. The addition of groups has extended the available request fields to the GetServiceGraph API. You can now specify a group name or group ARN to retrieve its service graph.
+
 Release v1.15.79 (2018-11-20)
 ===
 

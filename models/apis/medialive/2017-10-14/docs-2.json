@@ -996,6 +996,12 @@
         "HlsGroupSettings$ProgramDateTime": "Includes or excludes EXT-X-PROGRAM-DATE-TIME tag in .m3u8 manifest files. The value is calculated as follows: either the program date and time are initialized using the input timecode source, or the time is initialized using the input timecode source and the date is initialized using the timestampOffset."
       }
     },
+    "HlsRedundantManifest": {
+      "base": null,
+      "refs": {
+        "HlsGroupSettings$RedundantManifest": "When set to \"enabled\", includes the media playlists from both pipelines in the master manifest (.m3u8) file."
+      }
+    },
     "HlsSegmentationMode": {
       "base": null,
       "refs": {
@@ -1118,6 +1124,12 @@
       "base": null,
       "refs": {
         "MsSmoothGroupSettings$InputLossAction": "Parameter that control output group behavior on input loss."
+      }
+    },
+    "InputLossActionForRtmpOut": {
+      "base": null,
+      "refs": {
+        "RtmpGroupSettings$InputLossAction": "Controls the behavior of this RTMP group if input becomes unavailable.\n\n- emitOutput: Emit a slate until input returns.\n- pauseOutput: Stop transmitting data until input returns. This does not close the underlying RTMP connection."
       }
     },
     "InputLossActionForUdpOut": {

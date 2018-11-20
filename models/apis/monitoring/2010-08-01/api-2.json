@@ -828,7 +828,8 @@
         "Threshold":{"shape":"Threshold"},
         "ComparisonOperator":{"shape":"ComparisonOperator"},
         "TreatMissingData":{"shape":"TreatMissingData"},
-        "EvaluateLowSampleCountPercentile":{"shape":"EvaluateLowSampleCountPercentile"}
+        "EvaluateLowSampleCountPercentile":{"shape":"EvaluateLowSampleCountPercentile"},
+        "Metrics":{"shape":"MetricDataQueries"}
       },
       "xmlOrder":[
         "AlarmName",
@@ -855,7 +856,8 @@
         "ExtendedStatistic",
         "TreatMissingData",
         "EvaluateLowSampleCountPercentile",
-        "DatapointsToAlarm"
+        "DatapointsToAlarm",
+        "Metrics"
       ]
     },
     "MetricAlarms":{
@@ -1001,9 +1003,6 @@
       "type":"structure",
       "required":[
         "AlarmName",
-        "MetricName",
-        "Namespace",
-        "Period",
         "EvaluationPeriods",
         "Threshold",
         "ComparisonOperator"
@@ -1027,7 +1026,8 @@
         "Threshold":{"shape":"Threshold"},
         "ComparisonOperator":{"shape":"ComparisonOperator"},
         "TreatMissingData":{"shape":"TreatMissingData"},
-        "EvaluateLowSampleCountPercentile":{"shape":"EvaluateLowSampleCountPercentile"}
+        "EvaluateLowSampleCountPercentile":{"shape":"EvaluateLowSampleCountPercentile"},
+        "Metrics":{"shape":"MetricDataQueries"}
       }
     },
     "PutMetricDataInput":{

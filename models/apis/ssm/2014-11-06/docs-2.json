@@ -495,6 +495,86 @@
         "ListAssociationVersionsResult$AssociationVersions": "<p>Information about all versions of the association for the specified association ID.</p>"
       }
     },
+    "AttachmentContent": {
+      "base": "<p>A structure that includes attributes that describe a document attachment.</p>",
+      "refs": {
+        "AttachmentContentList$member": null
+      }
+    },
+    "AttachmentContentList": {
+      "base": null,
+      "refs": {
+        "GetDocumentResult$AttachmentsContent": "<p>A description of the document attachments, including names, locations, sizes, etc.</p>"
+      }
+    },
+    "AttachmentHash": {
+      "base": null,
+      "refs": {
+        "AttachmentContent$Hash": "<p>The cryptographic hash value of the document content.</p>"
+      }
+    },
+    "AttachmentHashType": {
+      "base": null,
+      "refs": {
+        "AttachmentContent$HashType": "<p>The hash algorithm used to calculate the hash value.</p>"
+      }
+    },
+    "AttachmentInformation": {
+      "base": "<p>An attribute of an attachment, such as the attachment name or size.</p>",
+      "refs": {
+        "AttachmentInformationList$member": null
+      }
+    },
+    "AttachmentInformationList": {
+      "base": null,
+      "refs": {
+        "DocumentDescription$AttachmentsInformation": "<p>Details about the document attachments, including names, locations, sizes, etc.</p>"
+      }
+    },
+    "AttachmentName": {
+      "base": null,
+      "refs": {
+        "AttachmentContent$Name": "<p>The name of an attachment.</p>",
+        "AttachmentInformation$Name": null
+      }
+    },
+    "AttachmentUrl": {
+      "base": null,
+      "refs": {
+        "AttachmentContent$Url": "<p>The URL location of the attachment content.</p>"
+      }
+    },
+    "AttachmentsSource": {
+      "base": "<p>A key and value pair that identifies the location of an attachment to a document.</p>",
+      "refs": {
+        "AttachmentsSourceList$member": null
+      }
+    },
+    "AttachmentsSourceKey": {
+      "base": null,
+      "refs": {
+        "AttachmentsSource$Key": "<p>The key of a key and value pair that identifies the location of an attachment to a document.</p>"
+      }
+    },
+    "AttachmentsSourceList": {
+      "base": null,
+      "refs": {
+        "CreateDocumentRequest$Attachments": "<p>A list of key and value pairs that describe attachments to a version of a document.</p>",
+        "UpdateDocumentRequest$Attachments": "<p>A list of key and value pairs that describe attachments to a version of a document.</p>"
+      }
+    },
+    "AttachmentsSourceValue": {
+      "base": null,
+      "refs": {
+        "AttachmentsSourceValues$member": null
+      }
+    },
+    "AttachmentsSourceValues": {
+      "base": null,
+      "refs": {
+        "AttachmentsSource$Values": "<p>The URL of the location of a document attachment, such as the URL of an Amazon S3 bucket.</p>"
+      }
+    },
     "AttributeName": {
       "base": null,
       "refs": {
@@ -1124,6 +1204,12 @@
       "base": null,
       "refs": {
         "GetConnectionStatusResponse$Status": "<p>The status of the connection to the instance. For example, 'Connected' or 'Not Connected'.</p>"
+      }
+    },
+    "ContentLength": {
+      "base": null,
+      "refs": {
+        "AttachmentContent$Size": "<p>The size of an attachment in bytes.</p>"
       }
     },
     "CreateActivationRequest": {
@@ -1779,7 +1865,7 @@
         "CreateDocumentRequest$Content": "<p>A valid JSON or YAML string.</p>",
         "GetDocumentResult$Content": "<p>The contents of the Systems Manager document.</p>",
         "InstanceAssociation$Content": "<p>The content of the association document for the instance(s).</p>",
-        "UpdateDocumentRequest$Content": "<p>The content in a document that you want to update.</p>"
+        "UpdateDocumentRequest$Content": "<p>A valid JSON or YAML string.</p>"
       }
     },
     "DocumentDefaultVersionDescription": {
@@ -1843,7 +1929,7 @@
     "DocumentHashType": {
       "base": null,
       "refs": {
-        "DocumentDescription$HashType": "<p>Sha256 or Sha1.</p> <note> <p>Sha1 hashes have been deprecated.</p> </note>",
+        "DocumentDescription$HashType": "<p>The hash type of the document. Valid values include <code>Sha256</code> or <code>Sha1</code>.</p> <note> <p>Sha1 hashes have been deprecated.</p> </note>",
         "MaintenanceWindowRunCommandParameters$DocumentHashType": "<p>SHA-256 or SHA-1. SHA-1 hashes have been deprecated.</p>",
         "SendCommandRequest$DocumentHashType": "<p>Sha256 or Sha1.</p> <note> <p>Sha1 hashes have been deprecated.</p> </note>"
       }
@@ -1994,16 +2080,26 @@
       }
     },
     "DocumentStatus": {
+      "base": "<p>The status of a document.</p>",
+      "refs": {
+        "DocumentDescription$Status": "<p>The status of the Systems Manager document.</p>",
+        "DocumentVersionInfo$Status": "<p>The status of the Systems Manager document, such as <code>Creating</code>, <code>Active</code>, <code>Failed</code>, and <code>Deleting</code>.</p>",
+        "GetDocumentResult$Status": "<p>The status of the Systems Manager document, such as <code>Creating</code>, <code>Active</code>, <code>Updating</code>, <code>Failed</code>, and <code>Deleting</code>.</p>"
+      }
+    },
+    "DocumentStatusInformation": {
       "base": null,
       "refs": {
-        "DocumentDescription$Status": "<p>The status of the Systems Manager document.</p>"
+        "DocumentDescription$StatusInformation": "<p>A message returned by AWS Systems Manager that explains the <code>Status</code> value. For example, a <code>Failed</code> status might be explained by the <code>StatusInformation</code> message, \"The specified S3 bucket does not exist. Verify that the URL of the S3 bucket is correct.\"</p>",
+        "DocumentVersionInfo$StatusInformation": "<p>A message returned by AWS Systems Manager that explains the <code>Status</code> value. For example, a <code>Failed</code> status might be explained by the <code>StatusInformation</code> message, \"The specified S3 bucket does not exist. Verify that the URL of the S3 bucket is correct.\"</p>",
+        "GetDocumentResult$StatusInformation": "<p>A message returned by AWS Systems Manager that explains the <code>Status</code> value. For example, a <code>Failed</code> status might be explained by the <code>StatusInformation</code> message, \"The specified S3 bucket does not exist. Verify that the URL of the S3 bucket is correct.\"</p>"
       }
     },
     "DocumentType": {
       "base": null,
       "refs": {
-        "CreateDocumentRequest$DocumentType": "<p>The type of document to create. Valid document types include: Policy, Automation, and Command.</p>",
-        "DocumentDescription$DocumentType": "<p>The type of document. </p>",
+        "CreateDocumentRequest$DocumentType": "<p>The type of document to create. Valid document types include: <code>Command</code>, <code>Policy</code>, <code>Automation</code>, <code>Session</code>, and <code>Package</code>.</p>",
+        "DocumentDescription$DocumentType": "<p>The type of document.</p>",
         "DocumentIdentifier$DocumentType": "<p>The document type.</p>",
         "GetDocumentResult$DocumentType": "<p>The document type.</p>"
       }
@@ -2055,6 +2151,20 @@
         "ListDocumentVersionsResult$DocumentVersions": "<p>The document versions.</p>"
       }
     },
+    "DocumentVersionName": {
+      "base": null,
+      "refs": {
+        "CreateDocumentRequest$VersionName": "<p>An optional field specifying the version of the artifact you are creating with the document. For example, \"Release 12, Update 6\". This value is unique across all versions of a document, and cannot be changed.</p>",
+        "DescribeDocumentRequest$VersionName": "<p>An optional field specifying the version of the artifact associated with the document. For example, \"Release 12, Update 6\". This value is unique across all versions of a document, and cannot be changed.</p>",
+        "DocumentDefaultVersionDescription$DefaultVersionName": "<p>The default version of the artifact associated with the document.</p>",
+        "DocumentDescription$VersionName": "<p>The version of the artifact associated with the document.</p>",
+        "DocumentIdentifier$VersionName": "<p>An optional field specifying the version of the artifact associated with the document. For example, \"Release 12, Update 6\". This value is unique across all versions of a document, and cannot be changed.</p>",
+        "DocumentVersionInfo$VersionName": "<p>The version of the artifact associated with the document. For example, \"Release 12, Update 6\". This value is unique across all versions of a document, and cannot be changed.</p>",
+        "GetDocumentRequest$VersionName": "<p>An optional field specifying the version of the artifact associated with the document. For example, \"Release 12, Update 6\". This value is unique across all versions of a document, and cannot be changed.</p>",
+        "GetDocumentResult$VersionName": "<p>The version of the artifact associated with the document. For example, \"Release 12, Update 6\". This value is unique across all versions of a document, and cannot be changed.</p>",
+        "UpdateDocumentRequest$VersionName": "<p>An optional field specifying the version of the artifact you are updating with the document. For example, \"Release 12, Update 6\". This value is unique across all versions of a document, and cannot be changed.</p>"
+      }
+    },
     "DocumentVersionNumber": {
       "base": null,
       "refs": {
@@ -2074,6 +2184,11 @@
     },
     "DuplicateDocumentContent": {
       "base": "<p>The content of the association document matches another document. Change the content of the document and try again.</p>",
+      "refs": {
+      }
+    },
+    "DuplicateDocumentVersionName": {
+      "base": "<p>The version name has already been used in this document. Specify a different version name, and then try again.</p>",
       "refs": {
       }
     },
@@ -5623,6 +5738,7 @@
         "DocumentVersionLimitExceeded$Message": null,
         "DoesNotExistException$Message": null,
         "DuplicateDocumentContent$Message": null,
+        "DuplicateDocumentVersionName$Message": null,
         "FailureDetails$FailureStage": "<p>The stage of the Automation execution when the failure occurred. The stages include the following: InputValidation, PreVerification, Invocation, PostVerification.</p>",
         "FailureDetails$FailureType": "<p>The type of Automation failure. Failure types include the following: Action, Permission, Throttling, Verification, Internal.</p>",
         "FeatureNotAvailableException$Message": null,

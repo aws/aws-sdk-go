@@ -3,9 +3,13 @@
   "service": "<p>AWS X-Ray provides APIs for managing debug traces and retrieving service maps and other data created by processing those traces.</p>",
   "operations": {
     "BatchGetTraces": "<p>Retrieves a list of traces specified by ID. Each trace is a collection of segment documents that originates from a single request. Use <code>GetTraceSummaries</code> to get a list of trace IDs.</p>",
+    "CreateGroup": "<p>Creates a group resource with a name and a filter expression. </p>",
     "CreateSamplingRule": "<p>Creates a rule to control sampling behavior for instrumented applications. Services retrieve rules with <a>GetSamplingRules</a>, and evaluate each rule in ascending order of <i>priority</i> for each request. If a rule matches, the service records a trace, borrowing it from the reservoir size. After 10 seconds, the service reports back to X-Ray with <a>GetSamplingTargets</a> to get updated versions of each in-use rule. The updated rule contains a trace quota that the service can use instead of borrowing from the reservoir.</p>",
+    "DeleteGroup": "<p>Deletes a group resource.</p>",
     "DeleteSamplingRule": "<p>Deletes a sampling rule.</p>",
     "GetEncryptionConfig": "<p>Retrieves the current encryption configuration for X-Ray data.</p>",
+    "GetGroup": "<p>Retrieves group resource details.</p>",
+    "GetGroups": "<p>Retrieves all active group details.</p>",
     "GetSamplingRules": "<p>Retrieves all sampling rules.</p>",
     "GetSamplingStatisticSummaries": "<p>Retrieves information about recent sampling results for all sampling rules.</p>",
     "GetSamplingTargets": "<p>Requests a sampling quota for rules that the service is using to sample requests. </p>",
@@ -15,6 +19,7 @@
     "PutEncryptionConfig": "<p>Updates the encryption configuration for X-Ray data.</p>",
     "PutTelemetryRecords": "<p>Used by the AWS X-Ray daemon to upload telemetry.</p>",
     "PutTraceSegments": "<p>Uploads segment documents to AWS X-Ray. The X-Ray SDK generates segment documents and sends them to the X-Ray daemon, which uploads them in batches. A segment document can be a completed segment, an in-progress segment, or an array of subsegments.</p> <p>Segments must include the following fields. For the full segment document schema, see <a href=\"https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html\">AWS X-Ray Segment Documents</a> in the <i>AWS X-Ray Developer Guide</i>.</p> <p class=\"title\"> <b>Required Segment Document Fields</b> </p> <ul> <li> <p> <code>name</code> - The name of the service that handled the request.</p> </li> <li> <p> <code>id</code> - A 64-bit identifier for the segment, unique among segments in the same trace, in 16 hexadecimal digits.</p> </li> <li> <p> <code>trace_id</code> - A unique identifier that connects all segments and subsegments originating from a single client request.</p> </li> <li> <p> <code>start_time</code> - Time the segment or subsegment was created, in floating point seconds in epoch time, accurate to milliseconds. For example, <code>1480615200.010</code> or <code>1.480615200010E9</code>.</p> </li> <li> <p> <code>end_time</code> - Time the segment or subsegment was closed. For example, <code>1480615200.090</code> or <code>1.480615200090E9</code>. Specify either an <code>end_time</code> or <code>in_progress</code>.</p> </li> <li> <p> <code>in_progress</code> - Set to <code>true</code> instead of specifying an <code>end_time</code> to record that a segment has been started, but is not complete. Send an in progress segment when your application receives a request that will take a long time to serve, to trace the fact that the request was received. When the response is sent, send the complete segment to overwrite the in-progress segment.</p> </li> </ul> <p>A <code>trace_id</code> consists of three numbers separated by hyphens. For example, 1-58406520-a006649127e371903a2de979. This includes:</p> <p class=\"title\"> <b>Trace ID Format</b> </p> <ul> <li> <p>The version number, i.e. <code>1</code>.</p> </li> <li> <p>The time of the original request, in Unix epoch time, in 8 hexadecimal digits. For example, 10:00AM December 2nd, 2016 PST in epoch time is <code>1480615200</code> seconds, or <code>58406520</code> in hexadecimal.</p> </li> <li> <p>A 96-bit identifier for the trace, globally unique, in 24 hexadecimal digits.</p> </li> </ul>",
+    "UpdateGroup": "<p>Updates a group resource.</p>",
     "UpdateSamplingRule": "<p>Modifies a sampling rule's configuration.</p>"
   },
   "shapes": {
@@ -89,6 +94,12 @@
       "refs": {
       }
     },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "GetServiceGraphResult$ContainsOldGroupVersions": "<p>A flag indicating whether or not the group's filter expression has been consistent, or if the returned service graph may show traces from an older version of the group's filter expression.</p>"
+      }
+    },
     "BorrowCount": {
       "base": null,
       "refs": {
@@ -101,12 +112,32 @@
         "SamplingStatisticsDocument$ClientID": "<p>A unique identifier for the service in hexadecimal.</p>"
       }
     },
+    "CreateGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateGroupResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateSamplingRuleRequest": {
       "base": null,
       "refs": {
       }
     },
     "CreateSamplingRuleResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteGroupResult": {
       "base": null,
       "refs": {
       }
@@ -203,7 +234,9 @@
     "FilterExpression": {
       "base": null,
       "refs": {
-        "GetTraceSummariesRequest$FilterExpression": "<p>Specify a filter expression to retrieve trace summaries for services or requests that meet certain requirements.</p>"
+        "CreateGroupRequest$FilterExpression": "<p>The filter expression defining criteria by which to group traces.</p>",
+        "GetTraceSummariesRequest$FilterExpression": "<p>Specify a filter expression to retrieve trace summaries for services or requests that meet certain requirements.</p>",
+        "UpdateGroupRequest$FilterExpression": "<p>The updated filter expression defining criteria by which to group traces.</p>"
       }
     },
     "FixedRate": {
@@ -218,6 +251,32 @@
       }
     },
     "GetEncryptionConfigResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetGroupResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetGroupsNextToken": {
+      "base": null,
+      "refs": {
+        "GetGroupsRequest$NextToken": "<p>Pagination token. Not used.</p>"
+      }
+    },
+    "GetGroupsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetGroupsResult": {
       "base": null,
       "refs": {
       }
@@ -280,6 +339,45 @@
     "GetTraceSummariesResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "Group": {
+      "base": "<p>Details and metadata for a group.</p>",
+      "refs": {
+        "CreateGroupResult$Group": "<p>The group that was created. Contains the name of the group that was created, the ARN of the group that was generated based on the group name, and the filter expression that was assigned to the group.</p>",
+        "GetGroupResult$Group": "<p>The group that was requested. Contains the name of the group, the ARN of the group, and the filter expression that assigned to the group.</p>",
+        "UpdateGroupResult$Group": "<p>The group that was updated. Contains the name of the group that was updated, the ARN of the group that was updated, and the updated filter expression assigned to the group.</p>"
+      }
+    },
+    "GroupARN": {
+      "base": null,
+      "refs": {
+        "DeleteGroupRequest$GroupARN": "<p>The ARN of the group that was generated on creation.</p>",
+        "GetGroupRequest$GroupARN": "<p>The ARN of the group that was generated on creation.</p>",
+        "GetServiceGraphRequest$GroupARN": "<p>The ARN of a group to generate a graph based on.</p>",
+        "UpdateGroupRequest$GroupARN": "<p>The ARN that was generated upon create.</p>"
+      }
+    },
+    "GroupName": {
+      "base": null,
+      "refs": {
+        "CreateGroupRequest$GroupName": "<p>The case-sensitive name of the new group. Default is a reserved name and names must be unique.</p>",
+        "DeleteGroupRequest$GroupName": "<p>The case-sensitive name of the group.</p>",
+        "GetGroupRequest$GroupName": "<p>The case-sensitive name of the group.</p>",
+        "GetServiceGraphRequest$GroupName": "<p>The name of a group to generate a graph based on.</p>",
+        "UpdateGroupRequest$GroupName": "<p>The case-sensitive name of the group.</p>"
+      }
+    },
+    "GroupSummary": {
+      "base": "<p>Details for a group without metadata.</p>",
+      "refs": {
+        "GroupSummaryList$member": null
+      }
+    },
+    "GroupSummaryList": {
+      "base": null,
+      "refs": {
+        "GetGroupsResult$Groups": "<p>The collection of all active groups.</p>"
       }
     },
     "HTTPMethod": {
@@ -626,6 +724,7 @@
         "DeleteSamplingRuleRequest$RuleName": "<p>The name of the sampling rule. Specify a rule by either name or ARN, but not both.</p>",
         "DeleteSamplingRuleRequest$RuleARN": "<p>The ARN of the sampling rule. Specify a rule by either name or ARN, but not both.</p>",
         "EncryptionConfig$KeyId": "<p>The ID of the customer master key (CMK) used for encryption, if applicable.</p>",
+        "GetGroupsResult$NextToken": "<p>Pagination token. Not used.</p>",
         "GetSamplingRulesRequest$NextToken": "<p>Pagination token. Not used.</p>",
         "GetSamplingRulesResult$NextToken": "<p>Pagination token. Not used.</p>",
         "GetSamplingStatisticSummariesRequest$NextToken": "<p>Pagination token. Not used.</p>",
@@ -636,6 +735,12 @@
         "GetTraceGraphResult$NextToken": "<p>Pagination token. Not used.</p>",
         "GetTraceSummariesRequest$NextToken": "<p>Specify the pagination token returned by a previous request to retrieve the next page of results.</p>",
         "GetTraceSummariesResult$NextToken": "<p>If the requested time frame contained more than one page of results, you can use this token to retrieve the next page. The first page contains the most most recent results, closest to the end of the time frame.</p>",
+        "Group$GroupName": "<p>The unique case-sensitive name of the group.</p>",
+        "Group$GroupARN": "<p>The ARN of the group generated based on the GroupName.</p>",
+        "Group$FilterExpression": "<p>The filter expression defining the parameters to include traces.</p>",
+        "GroupSummary$GroupName": "<p>The unique case-sensitive name of the group.</p>",
+        "GroupSummary$GroupARN": "<p>The ARN of the group generated based on the GroupName.</p>",
+        "GroupSummary$FilterExpression": "<p>The filter expression defining the parameters to include traces.</p>",
         "Http$HttpURL": "<p>The request URL.</p>",
         "Http$HttpMethod": "<p>The request method.</p>",
         "Http$UserAgent": "<p>The request's user agent string.</p>",
@@ -800,6 +905,16 @@
       "base": null,
       "refs": {
         "PutTraceSegmentsResult$UnprocessedTraceSegments": "<p>Segments that failed processing.</p>"
+      }
+    },
+    "UpdateGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateGroupResult": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateSamplingRuleRequest": {
