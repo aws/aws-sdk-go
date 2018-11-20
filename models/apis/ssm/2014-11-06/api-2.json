@@ -1547,10 +1547,12 @@
         {"shape":"DocumentVersionLimitExceeded"},
         {"shape":"InternalServerError"},
         {"shape":"DuplicateDocumentContent"},
+        {"shape":"DuplicateDocumentVersionName"},
         {"shape":"InvalidDocumentContent"},
         {"shape":"InvalidDocumentVersion"},
         {"shape":"InvalidDocumentSchemaVersion"},
-        {"shape":"InvalidDocument"}
+        {"shape":"InvalidDocument"},
+        {"shape":"InvalidDocumentOperation"}
       ]
     },
     "UpdateDocumentDefaultVersion":{
@@ -2040,6 +2042,71 @@
     "AssociationVersionList":{
       "type":"list",
       "member":{"shape":"AssociationVersionInfo"},
+      "min":1
+    },
+    "AttachmentContent":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"AttachmentName"},
+        "Size":{"shape":"ContentLength"},
+        "Hash":{"shape":"AttachmentHash"},
+        "HashType":{"shape":"AttachmentHashType"},
+        "Url":{"shape":"AttachmentUrl"}
+      }
+    },
+    "AttachmentContentList":{
+      "type":"list",
+      "member":{"shape":"AttachmentContent"}
+    },
+    "AttachmentHash":{
+      "type":"string",
+      "max":256
+    },
+    "AttachmentHashType":{
+      "type":"string",
+      "enum":["Sha256"]
+    },
+    "AttachmentInformation":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"AttachmentName"}
+      }
+    },
+    "AttachmentInformationList":{
+      "type":"list",
+      "member":{"shape":"AttachmentInformation"}
+    },
+    "AttachmentName":{
+      "type":"string",
+      "pattern":"^[a-zA-Z0-9_\\-.]{3,128}$"
+    },
+    "AttachmentUrl":{"type":"string"},
+    "AttachmentsSource":{
+      "type":"structure",
+      "members":{
+        "Key":{"shape":"AttachmentsSourceKey"},
+        "Values":{"shape":"AttachmentsSourceValues"}
+      }
+    },
+    "AttachmentsSourceKey":{
+      "type":"string",
+      "enum":["SourceUrl"]
+    },
+    "AttachmentsSourceList":{
+      "type":"list",
+      "member":{"shape":"AttachmentsSource"},
+      "max":1,
+      "min":0
+    },
+    "AttachmentsSourceValue":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
+    "AttachmentsSourceValues":{
+      "type":"list",
+      "member":{"shape":"AttachmentsSourceValue"},
+      "max":1,
       "min":1
     },
     "AttributeName":{
@@ -2667,6 +2734,7 @@
         "NotConnected"
       ]
     },
+    "ContentLength":{"type":"long"},
     "CreateActivationRequest":{
       "type":"structure",
       "required":["IamRole"],
@@ -2755,7 +2823,9 @@
       ],
       "members":{
         "Content":{"shape":"DocumentContent"},
+        "Attachments":{"shape":"AttachmentsSourceList"},
         "Name":{"shape":"DocumentName"},
+        "VersionName":{"shape":"DocumentVersionName"},
         "DocumentType":{"shape":"DocumentType"},
         "DocumentFormat":{"shape":"DocumentFormat"},
         "TargetType":{"shape":"TargetType"}
@@ -3231,7 +3301,8 @@
       "required":["Name"],
       "members":{
         "Name":{"shape":"DocumentARN"},
-        "DocumentVersion":{"shape":"DocumentVersion"}
+        "DocumentVersion":{"shape":"DocumentVersion"},
+        "VersionName":{"shape":"DocumentVersionName"}
       }
     },
     "DescribeDocumentResult":{
@@ -3676,7 +3747,8 @@
       "type":"structure",
       "members":{
         "Name":{"shape":"DocumentName"},
-        "DefaultVersion":{"shape":"DocumentVersion"}
+        "DefaultVersion":{"shape":"DocumentVersion"},
+        "DefaultVersionName":{"shape":"DocumentVersionName"}
       }
     },
     "DocumentDescription":{
@@ -3686,9 +3758,11 @@
         "Hash":{"shape":"DocumentHash"},
         "HashType":{"shape":"DocumentHashType"},
         "Name":{"shape":"DocumentARN"},
+        "VersionName":{"shape":"DocumentVersionName"},
         "Owner":{"shape":"DocumentOwner"},
         "CreatedDate":{"shape":"DateTime"},
         "Status":{"shape":"DocumentStatus"},
+        "StatusInformation":{"shape":"DocumentStatusInformation"},
         "DocumentVersion":{"shape":"DocumentVersion"},
         "Description":{"shape":"DescriptionInDocument"},
         "Parameters":{"shape":"DocumentParameterList"},
@@ -3699,7 +3773,8 @@
         "DefaultVersion":{"shape":"DocumentVersion"},
         "DocumentFormat":{"shape":"DocumentFormat"},
         "TargetType":{"shape":"TargetType"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "AttachmentsInformation":{"shape":"AttachmentInformationList"}
       }
     },
     "DocumentFilter":{
@@ -3754,6 +3829,7 @@
       "members":{
         "Name":{"shape":"DocumentARN"},
         "Owner":{"shape":"DocumentOwner"},
+        "VersionName":{"shape":"DocumentVersionName"},
         "PlatformTypes":{"shape":"PlatformTypeList"},
         "DocumentVersion":{"shape":"DocumentVersion"},
         "DocumentType":{"shape":"DocumentType"},
@@ -3851,16 +3927,19 @@
         "Creating",
         "Active",
         "Updating",
-        "Deleting"
+        "Deleting",
+        "Failed"
       ]
     },
+    "DocumentStatusInformation":{"type":"string"},
     "DocumentType":{
       "type":"string",
       "enum":[
         "Command",
         "Policy",
         "Automation",
-        "Session"
+        "Session",
+        "Package"
       ]
     },
     "DocumentVersion":{
@@ -3872,9 +3951,12 @@
       "members":{
         "Name":{"shape":"DocumentName"},
         "DocumentVersion":{"shape":"DocumentVersion"},
+        "VersionName":{"shape":"DocumentVersionName"},
         "CreatedDate":{"shape":"DateTime"},
         "IsDefaultVersion":{"shape":"Boolean"},
-        "DocumentFormat":{"shape":"DocumentFormat"}
+        "DocumentFormat":{"shape":"DocumentFormat"},
+        "Status":{"shape":"DocumentStatus"},
+        "StatusInformation":{"shape":"DocumentStatusInformation"}
       }
     },
     "DocumentVersionLimitExceeded":{
@@ -3889,6 +3971,10 @@
       "member":{"shape":"DocumentVersionInfo"},
       "min":1
     },
+    "DocumentVersionName":{
+      "type":"string",
+      "pattern":"^[a-zA-Z0-9_\\-.]{1,128}$"
+    },
     "DocumentVersionNumber":{
       "type":"string",
       "pattern":"(^[1-9][0-9]*$)"
@@ -3902,6 +3988,13 @@
     },
     "DryRun":{"type":"boolean"},
     "DuplicateDocumentContent":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "DuplicateDocumentVersionName":{
       "type":"structure",
       "members":{
         "Message":{"shape":"String"}
@@ -4078,6 +4171,7 @@
       "required":["Name"],
       "members":{
         "Name":{"shape":"DocumentARN"},
+        "VersionName":{"shape":"DocumentVersionName"},
         "DocumentVersion":{"shape":"DocumentVersion"},
         "DocumentFormat":{"shape":"DocumentFormat"}
       }
@@ -4086,10 +4180,14 @@
       "type":"structure",
       "members":{
         "Name":{"shape":"DocumentARN"},
+        "VersionName":{"shape":"DocumentVersionName"},
         "DocumentVersion":{"shape":"DocumentVersion"},
+        "Status":{"shape":"DocumentStatus"},
+        "StatusInformation":{"shape":"DocumentStatusInformation"},
         "Content":{"shape":"DocumentContent"},
         "DocumentType":{"shape":"DocumentType"},
-        "DocumentFormat":{"shape":"DocumentFormat"}
+        "DocumentFormat":{"shape":"DocumentFormat"},
+        "AttachmentsContent":{"shape":"AttachmentContentList"}
       }
     },
     "GetInventoryRequest":{
@@ -7822,7 +7920,9 @@
       ],
       "members":{
         "Content":{"shape":"DocumentContent"},
+        "Attachments":{"shape":"AttachmentsSourceList"},
         "Name":{"shape":"DocumentName"},
+        "VersionName":{"shape":"DocumentVersionName"},
         "DocumentVersion":{"shape":"DocumentVersion"},
         "DocumentFormat":{"shape":"DocumentFormat"},
         "TargetType":{"shape":"TargetType"}

@@ -3974,6 +3974,10 @@
           "shape": "__integerMin0Max3600",
           "locationName": "programDateTimePeriod"
         },
+        "RedundantManifest": {
+          "shape": "HlsRedundantManifest",
+          "locationName": "redundantManifest"
+        },
         "SegmentLength": {
           "shape": "__integerMin1",
           "locationName": "segmentLength"
@@ -4130,6 +4134,13 @@
       "enum": [
         "EXCLUDE",
         "INCLUDE"
+      ]
+    },
+    "HlsRedundantManifest": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "ENABLED"
       ]
     },
     "HlsSegmentationMode": {
@@ -4365,6 +4376,13 @@
       ]
     },
     "InputLossActionForMsSmoothOut": {
+      "type": "string",
+      "enum": [
+        "EMIT_OUTPUT",
+        "PAUSE_OUTPUT"
+      ]
+    },
+    "InputLossActionForRtmpOut": {
       "type": "string",
       "enum": [
         "EMIT_OUTPUT",
@@ -6051,6 +6069,10 @@
         "CaptionData": {
           "shape": "RtmpCaptionData",
           "locationName": "captionData"
+        },
+        "InputLossAction": {
+          "shape": "InputLossActionForRtmpOut",
+          "locationName": "inputLossAction"
         },
         "RestartDelay": {
           "shape": "__integerMin0",

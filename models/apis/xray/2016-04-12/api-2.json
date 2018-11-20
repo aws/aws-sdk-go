@@ -23,6 +23,19 @@
         {"shape":"ThrottledException"}
       ]
     },
+    "CreateGroup":{
+      "name":"CreateGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/CreateGroup"
+      },
+      "input":{"shape":"CreateGroupRequest"},
+      "output":{"shape":"CreateGroupResult"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottledException"}
+      ]
+    },
     "CreateSamplingRule":{
       "name":"CreateSamplingRule",
       "http":{
@@ -35,6 +48,19 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ThrottledException"},
         {"shape":"RuleLimitExceededException"}
+      ]
+    },
+    "DeleteGroup":{
+      "name":"DeleteGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/DeleteGroup"
+      },
+      "input":{"shape":"DeleteGroupRequest"},
+      "output":{"shape":"DeleteGroupResult"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottledException"}
       ]
     },
     "DeleteSamplingRule":{
@@ -58,6 +84,32 @@
       },
       "input":{"shape":"GetEncryptionConfigRequest"},
       "output":{"shape":"GetEncryptionConfigResult"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottledException"}
+      ]
+    },
+    "GetGroup":{
+      "name":"GetGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/GetGroup"
+      },
+      "input":{"shape":"GetGroupRequest"},
+      "output":{"shape":"GetGroupResult"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottledException"}
+      ]
+    },
+    "GetGroups":{
+      "name":"GetGroups",
+      "http":{
+        "method":"POST",
+        "requestUri":"/Groups"
+      },
+      "input":{"shape":"GetGroupsRequest"},
+      "output":{"shape":"GetGroupsResult"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"ThrottledException"}
@@ -180,6 +232,19 @@
         {"shape":"ThrottledException"}
       ]
     },
+    "UpdateGroup":{
+      "name":"UpdateGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/UpdateGroup"
+      },
+      "input":{"shape":"UpdateGroupRequest"},
+      "output":{"shape":"UpdateGroupResult"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottledException"}
+      ]
+    },
     "UpdateSamplingRule":{
       "name":"UpdateSamplingRule",
       "http":{
@@ -268,6 +333,7 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "Boolean":{"type":"boolean"},
     "BorrowCount":{
       "type":"integer",
       "min":0
@@ -276,6 +342,20 @@
       "type":"string",
       "max":24,
       "min":24
+    },
+    "CreateGroupRequest":{
+      "type":"structure",
+      "required":["GroupName"],
+      "members":{
+        "GroupName":{"shape":"GroupName"},
+        "FilterExpression":{"shape":"FilterExpression"}
+      }
+    },
+    "CreateGroupResult":{
+      "type":"structure",
+      "members":{
+        "Group":{"shape":"Group"}
+      }
     },
     "CreateSamplingRuleRequest":{
       "type":"structure",
@@ -288,6 +368,18 @@
       "type":"structure",
       "members":{
         "SamplingRuleRecord":{"shape":"SamplingRuleRecord"}
+      }
+    },
+    "DeleteGroupRequest":{
+      "type":"structure",
+      "members":{
+        "GroupName":{"shape":"GroupName"},
+        "GroupARN":{"shape":"GroupARN"}
+      }
+    },
+    "DeleteGroupResult":{
+      "type":"structure",
+      "members":{
       }
     },
     "DeleteSamplingRuleRequest":{
@@ -397,6 +489,37 @@
         "EncryptionConfig":{"shape":"EncryptionConfig"}
       }
     },
+    "GetGroupRequest":{
+      "type":"structure",
+      "members":{
+        "GroupName":{"shape":"GroupName"},
+        "GroupARN":{"shape":"GroupARN"}
+      }
+    },
+    "GetGroupResult":{
+      "type":"structure",
+      "members":{
+        "Group":{"shape":"Group"}
+      }
+    },
+    "GetGroupsNextToken":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "GetGroupsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"GetGroupsNextToken"}
+      }
+    },
+    "GetGroupsResult":{
+      "type":"structure",
+      "members":{
+        "Groups":{"shape":"GroupSummaryList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
     "GetSamplingRulesRequest":{
       "type":"structure",
       "members":{
@@ -447,6 +570,8 @@
       "members":{
         "StartTime":{"shape":"Timestamp"},
         "EndTime":{"shape":"Timestamp"},
+        "GroupName":{"shape":"GroupName"},
+        "GroupARN":{"shape":"GroupARN"},
         "NextToken":{"shape":"String"}
       }
     },
@@ -456,6 +581,7 @@
         "StartTime":{"shape":"Timestamp"},
         "EndTime":{"shape":"Timestamp"},
         "Services":{"shape":"ServiceList"},
+        "ContainsOldGroupVersions":{"shape":"Boolean"},
         "NextToken":{"shape":"String"}
       }
     },
@@ -496,6 +622,36 @@
         "TracesProcessedCount":{"shape":"NullableLong"},
         "NextToken":{"shape":"String"}
       }
+    },
+    "Group":{
+      "type":"structure",
+      "members":{
+        "GroupName":{"shape":"String"},
+        "GroupARN":{"shape":"String"},
+        "FilterExpression":{"shape":"String"}
+      }
+    },
+    "GroupARN":{
+      "type":"string",
+      "max":400,
+      "min":1
+    },
+    "GroupName":{
+      "type":"string",
+      "max":32,
+      "min":1
+    },
+    "GroupSummary":{
+      "type":"structure",
+      "members":{
+        "GroupName":{"shape":"String"},
+        "GroupARN":{"shape":"String"},
+        "FilterExpression":{"shape":"String"}
+      }
+    },
+    "GroupSummaryList":{
+      "type":"list",
+      "member":{"shape":"GroupSummary"}
     },
     "HTTPMethod":{
       "type":"string",
@@ -914,6 +1070,20 @@
     "UnprocessedTraceSegmentList":{
       "type":"list",
       "member":{"shape":"UnprocessedTraceSegment"}
+    },
+    "UpdateGroupRequest":{
+      "type":"structure",
+      "members":{
+        "GroupName":{"shape":"GroupName"},
+        "GroupARN":{"shape":"GroupARN"},
+        "FilterExpression":{"shape":"FilterExpression"}
+      }
+    },
+    "UpdateGroupResult":{
+      "type":"structure",
+      "members":{
+        "Group":{"shape":"Group"}
+      }
     },
     "UpdateSamplingRuleRequest":{
       "type":"structure",

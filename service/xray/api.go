@@ -151,6 +151,88 @@ func (c *XRay) BatchGetTracesPagesWithContext(ctx aws.Context, input *BatchGetTr
 	return p.Err()
 }
 
+const opCreateGroup = "CreateGroup"
+
+// CreateGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateGroup for more information on using the CreateGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateGroupRequest method.
+//    req, resp := client.CreateGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/CreateGroup
+func (c *XRay) CreateGroupRequest(input *CreateGroupInput) (req *request.Request, output *CreateGroupOutput) {
+	op := &request.Operation{
+		Name:       opCreateGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/CreateGroup",
+	}
+
+	if input == nil {
+		input = &CreateGroupInput{}
+	}
+
+	output = &CreateGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateGroup API operation for AWS X-Ray.
+//
+// Creates a group resource with a name and a filter expression.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS X-Ray's
+// API operation CreateGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is missing required parameters or has invalid parameters.
+//
+//   * ErrCodeThrottledException "ThrottledException"
+//   The request exceeds the maximum number of requests per second.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/CreateGroup
+func (c *XRay) CreateGroup(input *CreateGroupInput) (*CreateGroupOutput, error) {
+	req, out := c.CreateGroupRequest(input)
+	return out, req.Send()
+}
+
+// CreateGroupWithContext is the same as CreateGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *XRay) CreateGroupWithContext(ctx aws.Context, input *CreateGroupInput, opts ...request.Option) (*CreateGroupOutput, error) {
+	req, out := c.CreateGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateSamplingRule = "CreateSamplingRule"
 
 // CreateSamplingRuleRequest generates a "aws/request.Request" representing the
@@ -237,6 +319,88 @@ func (c *XRay) CreateSamplingRule(input *CreateSamplingRuleInput) (*CreateSampli
 // for more information on using Contexts.
 func (c *XRay) CreateSamplingRuleWithContext(ctx aws.Context, input *CreateSamplingRuleInput, opts ...request.Option) (*CreateSamplingRuleOutput, error) {
 	req, out := c.CreateSamplingRuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteGroup = "DeleteGroup"
+
+// DeleteGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteGroup for more information on using the DeleteGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteGroupRequest method.
+//    req, resp := client.DeleteGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/DeleteGroup
+func (c *XRay) DeleteGroupRequest(input *DeleteGroupInput) (req *request.Request, output *DeleteGroupOutput) {
+	op := &request.Operation{
+		Name:       opDeleteGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/DeleteGroup",
+	}
+
+	if input == nil {
+		input = &DeleteGroupInput{}
+	}
+
+	output = &DeleteGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteGroup API operation for AWS X-Ray.
+//
+// Deletes a group resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS X-Ray's
+// API operation DeleteGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is missing required parameters or has invalid parameters.
+//
+//   * ErrCodeThrottledException "ThrottledException"
+//   The request exceeds the maximum number of requests per second.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/DeleteGroup
+func (c *XRay) DeleteGroup(input *DeleteGroupInput) (*DeleteGroupOutput, error) {
+	req, out := c.DeleteGroupRequest(input)
+	return out, req.Send()
+}
+
+// DeleteGroupWithContext is the same as DeleteGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *XRay) DeleteGroupWithContext(ctx aws.Context, input *DeleteGroupInput, opts ...request.Option) (*DeleteGroupOutput, error) {
+	req, out := c.DeleteGroupRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -401,6 +565,170 @@ func (c *XRay) GetEncryptionConfig(input *GetEncryptionConfigInput) (*GetEncrypt
 // for more information on using Contexts.
 func (c *XRay) GetEncryptionConfigWithContext(ctx aws.Context, input *GetEncryptionConfigInput, opts ...request.Option) (*GetEncryptionConfigOutput, error) {
 	req, out := c.GetEncryptionConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetGroup = "GetGroup"
+
+// GetGroupRequest generates a "aws/request.Request" representing the
+// client's request for the GetGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetGroup for more information on using the GetGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetGroupRequest method.
+//    req, resp := client.GetGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetGroup
+func (c *XRay) GetGroupRequest(input *GetGroupInput) (req *request.Request, output *GetGroupOutput) {
+	op := &request.Operation{
+		Name:       opGetGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/GetGroup",
+	}
+
+	if input == nil {
+		input = &GetGroupInput{}
+	}
+
+	output = &GetGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetGroup API operation for AWS X-Ray.
+//
+// Retrieves group resource details.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS X-Ray's
+// API operation GetGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is missing required parameters or has invalid parameters.
+//
+//   * ErrCodeThrottledException "ThrottledException"
+//   The request exceeds the maximum number of requests per second.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetGroup
+func (c *XRay) GetGroup(input *GetGroupInput) (*GetGroupOutput, error) {
+	req, out := c.GetGroupRequest(input)
+	return out, req.Send()
+}
+
+// GetGroupWithContext is the same as GetGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *XRay) GetGroupWithContext(ctx aws.Context, input *GetGroupInput, opts ...request.Option) (*GetGroupOutput, error) {
+	req, out := c.GetGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetGroups = "GetGroups"
+
+// GetGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the GetGroups operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetGroups for more information on using the GetGroups
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetGroupsRequest method.
+//    req, resp := client.GetGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetGroups
+func (c *XRay) GetGroupsRequest(input *GetGroupsInput) (req *request.Request, output *GetGroupsOutput) {
+	op := &request.Operation{
+		Name:       opGetGroups,
+		HTTPMethod: "POST",
+		HTTPPath:   "/Groups",
+	}
+
+	if input == nil {
+		input = &GetGroupsInput{}
+	}
+
+	output = &GetGroupsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetGroups API operation for AWS X-Ray.
+//
+// Retrieves all active group details.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS X-Ray's
+// API operation GetGroups for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is missing required parameters or has invalid parameters.
+//
+//   * ErrCodeThrottledException "ThrottledException"
+//   The request exceeds the maximum number of requests per second.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetGroups
+func (c *XRay) GetGroups(input *GetGroupsInput) (*GetGroupsOutput, error) {
+	req, out := c.GetGroupsRequest(input)
+	return out, req.Send()
+}
+
+// GetGroupsWithContext is the same as GetGroups with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetGroups for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *XRay) GetGroupsWithContext(ctx aws.Context, input *GetGroupsInput, opts ...request.Option) (*GetGroupsOutput, error) {
+	req, out := c.GetGroupsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1377,6 +1705,88 @@ func (c *XRay) PutTraceSegmentsWithContext(ctx aws.Context, input *PutTraceSegme
 	return out, req.Send()
 }
 
+const opUpdateGroup = "UpdateGroup"
+
+// UpdateGroupRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateGroup for more information on using the UpdateGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateGroupRequest method.
+//    req, resp := client.UpdateGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/UpdateGroup
+func (c *XRay) UpdateGroupRequest(input *UpdateGroupInput) (req *request.Request, output *UpdateGroupOutput) {
+	op := &request.Operation{
+		Name:       opUpdateGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/UpdateGroup",
+	}
+
+	if input == nil {
+		input = &UpdateGroupInput{}
+	}
+
+	output = &UpdateGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateGroup API operation for AWS X-Ray.
+//
+// Updates a group resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS X-Ray's
+// API operation UpdateGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is missing required parameters or has invalid parameters.
+//
+//   * ErrCodeThrottledException "ThrottledException"
+//   The request exceeds the maximum number of requests per second.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/UpdateGroup
+func (c *XRay) UpdateGroup(input *UpdateGroupInput) (*UpdateGroupOutput, error) {
+	req, out := c.UpdateGroupRequest(input)
+	return out, req.Send()
+}
+
+// UpdateGroupWithContext is the same as UpdateGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *XRay) UpdateGroupWithContext(ctx aws.Context, input *UpdateGroupInput, opts ...request.Option) (*UpdateGroupOutput, error) {
+	req, out := c.UpdateGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateSamplingRule = "UpdateSamplingRule"
 
 // UpdateSamplingRuleRequest generates a "aws/request.Request" representing the
@@ -1694,6 +2104,85 @@ func (s *BatchGetTracesOutput) SetUnprocessedTraceIds(v []*string) *BatchGetTrac
 	return s
 }
 
+type CreateGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The filter expression defining criteria by which to group traces.
+	FilterExpression *string `min:"1" type:"string"`
+
+	// The case-sensitive name of the new group. Default is a reserved name and
+	// names must be unique.
+	//
+	// GroupName is a required field
+	GroupName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateGroupInput"}
+	if s.FilterExpression != nil && len(*s.FilterExpression) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FilterExpression", 1))
+	}
+	if s.GroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupName"))
+	}
+	if s.GroupName != nil && len(*s.GroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilterExpression sets the FilterExpression field's value.
+func (s *CreateGroupInput) SetFilterExpression(v string) *CreateGroupInput {
+	s.FilterExpression = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *CreateGroupInput) SetGroupName(v string) *CreateGroupInput {
+	s.GroupName = &v
+	return s
+}
+
+type CreateGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The group that was created. Contains the name of the group that was created,
+	// the ARN of the group that was generated based on the group name, and the
+	// filter expression that was assigned to the group.
+	Group *Group `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetGroup sets the Group field's value.
+func (s *CreateGroupOutput) SetGroup(v *Group) *CreateGroupOutput {
+	s.Group = v
+	return s
+}
+
 type CreateSamplingRuleInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1758,6 +2247,68 @@ func (s CreateSamplingRuleOutput) GoString() string {
 func (s *CreateSamplingRuleOutput) SetSamplingRuleRecord(v *SamplingRuleRecord) *CreateSamplingRuleOutput {
 	s.SamplingRuleRecord = v
 	return s
+}
+
+type DeleteGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the group that was generated on creation.
+	GroupARN *string `min:"1" type:"string"`
+
+	// The case-sensitive name of the group.
+	GroupName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteGroupInput"}
+	if s.GroupARN != nil && len(*s.GroupARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupARN", 1))
+	}
+	if s.GroupName != nil && len(*s.GroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGroupARN sets the GroupARN field's value.
+func (s *DeleteGroupInput) SetGroupARN(v string) *DeleteGroupInput {
+	s.GroupARN = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *DeleteGroupInput) SetGroupName(v string) *DeleteGroupInput {
+	s.GroupName = &v
+	return s
+}
+
+type DeleteGroupOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteGroupOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteSamplingRuleInput struct {
@@ -2104,6 +2655,146 @@ func (s *GetEncryptionConfigOutput) SetEncryptionConfig(v *EncryptionConfig) *Ge
 	return s
 }
 
+type GetGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the group that was generated on creation.
+	GroupARN *string `min:"1" type:"string"`
+
+	// The case-sensitive name of the group.
+	GroupName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s GetGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetGroupInput"}
+	if s.GroupARN != nil && len(*s.GroupARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupARN", 1))
+	}
+	if s.GroupName != nil && len(*s.GroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGroupARN sets the GroupARN field's value.
+func (s *GetGroupInput) SetGroupARN(v string) *GetGroupInput {
+	s.GroupARN = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *GetGroupInput) SetGroupName(v string) *GetGroupInput {
+	s.GroupName = &v
+	return s
+}
+
+type GetGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The group that was requested. Contains the name of the group, the ARN of
+	// the group, and the filter expression that assigned to the group.
+	Group *Group `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetGroup sets the Group field's value.
+func (s *GetGroupOutput) SetGroup(v *Group) *GetGroupOutput {
+	s.Group = v
+	return s
+}
+
+type GetGroupsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Pagination token. Not used.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s GetGroupsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetGroupsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetGroupsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetGroupsInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetGroupsInput) SetNextToken(v string) *GetGroupsInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetGroupsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The collection of all active groups.
+	Groups []*GroupSummary `type:"list"`
+
+	// Pagination token. Not used.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GetGroupsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetGroupsOutput) GoString() string {
+	return s.String()
+}
+
+// SetGroups sets the Groups field's value.
+func (s *GetGroupsOutput) SetGroups(v []*GroupSummary) *GetGroupsOutput {
+	s.Groups = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetGroupsOutput) SetNextToken(v string) *GetGroupsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type GetSamplingRulesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2313,6 +3004,12 @@ type GetServiceGraphInput struct {
 	// EndTime is a required field
 	EndTime *time.Time `type:"timestamp" required:"true"`
 
+	// The ARN of a group to generate a graph based on.
+	GroupARN *string `min:"1" type:"string"`
+
+	// The name of a group to generate a graph based on.
+	GroupName *string `min:"1" type:"string"`
+
 	// Pagination token. Not used.
 	NextToken *string `type:"string"`
 
@@ -2338,6 +3035,12 @@ func (s *GetServiceGraphInput) Validate() error {
 	if s.EndTime == nil {
 		invalidParams.Add(request.NewErrParamRequired("EndTime"))
 	}
+	if s.GroupARN != nil && len(*s.GroupARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupARN", 1))
+	}
+	if s.GroupName != nil && len(*s.GroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
+	}
 	if s.StartTime == nil {
 		invalidParams.Add(request.NewErrParamRequired("StartTime"))
 	}
@@ -2351,6 +3054,18 @@ func (s *GetServiceGraphInput) Validate() error {
 // SetEndTime sets the EndTime field's value.
 func (s *GetServiceGraphInput) SetEndTime(v time.Time) *GetServiceGraphInput {
 	s.EndTime = &v
+	return s
+}
+
+// SetGroupARN sets the GroupARN field's value.
+func (s *GetServiceGraphInput) SetGroupARN(v string) *GetServiceGraphInput {
+	s.GroupARN = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *GetServiceGraphInput) SetGroupName(v string) *GetServiceGraphInput {
+	s.GroupName = &v
 	return s
 }
 
@@ -2368,6 +3083,11 @@ func (s *GetServiceGraphInput) SetStartTime(v time.Time) *GetServiceGraphInput {
 
 type GetServiceGraphOutput struct {
 	_ struct{} `type:"structure"`
+
+	// A flag indicating whether or not the group's filter expression has been consistent,
+	// or if the returned service graph may show traces from an older version of
+	// the group's filter expression.
+	ContainsOldGroupVersions *bool `type:"boolean"`
 
 	// The end of the time frame for which the graph was generated.
 	EndTime *time.Time `type:"timestamp"`
@@ -2391,6 +3111,12 @@ func (s GetServiceGraphOutput) String() string {
 // GoString returns the string representation
 func (s GetServiceGraphOutput) GoString() string {
 	return s.String()
+}
+
+// SetContainsOldGroupVersions sets the ContainsOldGroupVersions field's value.
+func (s *GetServiceGraphOutput) SetContainsOldGroupVersions(v bool) *GetServiceGraphOutput {
+	s.ContainsOldGroupVersions = &v
+	return s
 }
 
 // SetEndTime sets the EndTime field's value.
@@ -2630,6 +3356,90 @@ func (s *GetTraceSummariesOutput) SetTraceSummaries(v []*TraceSummary) *GetTrace
 // SetTracesProcessedCount sets the TracesProcessedCount field's value.
 func (s *GetTraceSummariesOutput) SetTracesProcessedCount(v int64) *GetTraceSummariesOutput {
 	s.TracesProcessedCount = &v
+	return s
+}
+
+// Details and metadata for a group.
+type Group struct {
+	_ struct{} `type:"structure"`
+
+	// The filter expression defining the parameters to include traces.
+	FilterExpression *string `type:"string"`
+
+	// The ARN of the group generated based on the GroupName.
+	GroupARN *string `type:"string"`
+
+	// The unique case-sensitive name of the group.
+	GroupName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s Group) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Group) GoString() string {
+	return s.String()
+}
+
+// SetFilterExpression sets the FilterExpression field's value.
+func (s *Group) SetFilterExpression(v string) *Group {
+	s.FilterExpression = &v
+	return s
+}
+
+// SetGroupARN sets the GroupARN field's value.
+func (s *Group) SetGroupARN(v string) *Group {
+	s.GroupARN = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *Group) SetGroupName(v string) *Group {
+	s.GroupName = &v
+	return s
+}
+
+// Details for a group without metadata.
+type GroupSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The filter expression defining the parameters to include traces.
+	FilterExpression *string `type:"string"`
+
+	// The ARN of the group generated based on the GroupName.
+	GroupARN *string `type:"string"`
+
+	// The unique case-sensitive name of the group.
+	GroupName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GroupSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GroupSummary) GoString() string {
+	return s.String()
+}
+
+// SetFilterExpression sets the FilterExpression field's value.
+func (s *GroupSummary) SetFilterExpression(v string) *GroupSummary {
+	s.FilterExpression = &v
+	return s
+}
+
+// SetGroupARN sets the GroupARN field's value.
+func (s *GroupSummary) SetGroupARN(v string) *GroupSummary {
+	s.GroupARN = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *GroupSummary) SetGroupName(v string) *GroupSummary {
+	s.GroupName = &v
 	return s
 }
 
@@ -4229,6 +5039,91 @@ func (s *UnprocessedTraceSegment) SetId(v string) *UnprocessedTraceSegment {
 // SetMessage sets the Message field's value.
 func (s *UnprocessedTraceSegment) SetMessage(v string) *UnprocessedTraceSegment {
 	s.Message = &v
+	return s
+}
+
+type UpdateGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The updated filter expression defining criteria by which to group traces.
+	FilterExpression *string `min:"1" type:"string"`
+
+	// The ARN that was generated upon create.
+	GroupARN *string `min:"1" type:"string"`
+
+	// The case-sensitive name of the group.
+	GroupName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateGroupInput"}
+	if s.FilterExpression != nil && len(*s.FilterExpression) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FilterExpression", 1))
+	}
+	if s.GroupARN != nil && len(*s.GroupARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupARN", 1))
+	}
+	if s.GroupName != nil && len(*s.GroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilterExpression sets the FilterExpression field's value.
+func (s *UpdateGroupInput) SetFilterExpression(v string) *UpdateGroupInput {
+	s.FilterExpression = &v
+	return s
+}
+
+// SetGroupARN sets the GroupARN field's value.
+func (s *UpdateGroupInput) SetGroupARN(v string) *UpdateGroupInput {
+	s.GroupARN = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *UpdateGroupInput) SetGroupName(v string) *UpdateGroupInput {
+	s.GroupName = &v
+	return s
+}
+
+type UpdateGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The group that was updated. Contains the name of the group that was updated,
+	// the ARN of the group that was updated, and the updated filter expression
+	// assigned to the group.
+	Group *Group `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetGroup sets the Group field's value.
+func (s *UpdateGroupOutput) SetGroup(v *Group) *UpdateGroupOutput {
+	s.Group = v
 	return s
 }
 
