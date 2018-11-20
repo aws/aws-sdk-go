@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS Elemental MediaConvert.
 //    func myFunc(svc mediaconvertiface.MediaConvertAPI) bool {
-//        // Make svc.CancelJob request
+//        // Make svc.AssociateCertificate request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockMediaConvertClient struct {
 //        mediaconvertiface.MediaConvertAPI
 //    }
-//    func (m *mockMediaConvertClient) CancelJob(input *mediaconvert.CancelJobInput) (*mediaconvert.CancelJobOutput, error) {
+//    func (m *mockMediaConvertClient) AssociateCertificate(input *mediaconvert.AssociateCertificateInput) (*mediaconvert.AssociateCertificateOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type MediaConvertAPI interface {
+	AssociateCertificate(*mediaconvert.AssociateCertificateInput) (*mediaconvert.AssociateCertificateOutput, error)
+	AssociateCertificateWithContext(aws.Context, *mediaconvert.AssociateCertificateInput, ...request.Option) (*mediaconvert.AssociateCertificateOutput, error)
+	AssociateCertificateRequest(*mediaconvert.AssociateCertificateInput) (*request.Request, *mediaconvert.AssociateCertificateOutput)
+
 	CancelJob(*mediaconvert.CancelJobInput) (*mediaconvert.CancelJobOutput, error)
 	CancelJobWithContext(aws.Context, *mediaconvert.CancelJobInput, ...request.Option) (*mediaconvert.CancelJobOutput, error)
 	CancelJobRequest(*mediaconvert.CancelJobInput) (*request.Request, *mediaconvert.CancelJobOutput)
@@ -98,6 +102,10 @@ type MediaConvertAPI interface {
 
 	DescribeEndpointsPages(*mediaconvert.DescribeEndpointsInput, func(*mediaconvert.DescribeEndpointsOutput, bool) bool) error
 	DescribeEndpointsPagesWithContext(aws.Context, *mediaconvert.DescribeEndpointsInput, func(*mediaconvert.DescribeEndpointsOutput, bool) bool, ...request.Option) error
+
+	DisassociateCertificate(*mediaconvert.DisassociateCertificateInput) (*mediaconvert.DisassociateCertificateOutput, error)
+	DisassociateCertificateWithContext(aws.Context, *mediaconvert.DisassociateCertificateInput, ...request.Option) (*mediaconvert.DisassociateCertificateOutput, error)
+	DisassociateCertificateRequest(*mediaconvert.DisassociateCertificateInput) (*request.Request, *mediaconvert.DisassociateCertificateOutput)
 
 	GetJob(*mediaconvert.GetJobInput) (*mediaconvert.GetJobOutput, error)
 	GetJobWithContext(aws.Context, *mediaconvert.GetJobInput, ...request.Option) (*mediaconvert.GetJobOutput, error)

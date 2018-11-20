@@ -3342,6 +3342,10 @@
         "ZoneName":{
           "shape":"String",
           "locationName":"zoneName"
+        },
+        "ZoneId":{
+          "shape":"String",
+          "locationName":"zoneId"
         }
       }
     },
@@ -6354,6 +6358,10 @@
         "ZoneNames":{
           "shape":"ZoneNameStringList",
           "locationName":"ZoneName"
+        },
+        "ZoneIds":{
+          "shape":"ZoneIdStringList",
+          "locationName":"ZoneId"
         },
         "DryRun":{
           "shape":"Boolean",
@@ -16707,19 +16715,25 @@
         "customer-gateway",
         "dedicated-host",
         "dhcp-options",
+        "elastic-ip",
+        "fleet",
+        "fpga-image",
         "image",
         "instance",
         "internet-gateway",
+        "launch-template",
+        "natgateway",
         "network-acl",
         "network-interface",
         "reserved-instances",
         "route-table",
+        "security-group",
         "snapshot",
         "spot-instances-request",
         "subnet",
-        "security-group",
         "volume",
         "vpc",
+        "vpc-peering-connection",
         "vpn-connection",
         "vpn-gateway"
       ]
@@ -20355,6 +20369,13 @@
           "shape":"ByoipCidr",
           "locationName":"byoipCidr"
         }
+      }
+    },
+    "ZoneIdStringList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"ZoneId"
       }
     },
     "ZoneNameStringList":{

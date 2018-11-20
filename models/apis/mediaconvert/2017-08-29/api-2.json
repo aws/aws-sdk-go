@@ -12,6 +12,40 @@
     "serviceAbbreviation": "MediaConvert"
   },
   "operations": {
+    "AssociateCertificate": {
+      "name": "AssociateCertificate",
+      "http": {
+        "method": "POST",
+        "requestUri": "/2017-08-29/certificates",
+        "responseCode": 201
+      },
+      "input": {
+        "shape": "AssociateCertificateRequest"
+      },
+      "output": {
+        "shape": "AssociateCertificateResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
     "CancelJob": {
       "name": "CancelJob",
       "http": {
@@ -296,6 +330,40 @@
       },
       "output": {
         "shape": "DescribeEndpointsResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "DisassociateCertificate": {
+      "name": "DisassociateCertificate",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/2017-08-29/certificates/{arn}",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "DisassociateCertificateRequest"
+      },
+      "output": {
+        "shape": "DisassociateCertificateResponse"
       },
       "errors": [
         {
@@ -1013,6 +1081,23 @@
         "ENABLED"
       ]
     },
+    "AssociateCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        }
+      },
+      "required": [
+        "Arn"
+      ]
+    },
+    "AssociateCertificateResponse": {
+      "type": "structure",
+      "members": {
+      }
+    },
     "AudioCodec": {
       "type": "string",
       "enum": [
@@ -1493,8 +1578,11 @@
         "BURN_IN",
         "DVB_SUB",
         "EMBEDDED",
+        "EMBEDDED_PLUS_SCTE20",
+        "SCTE20_PLUS_EMBEDDED",
         "SCC",
         "SRT",
+        "SMI",
         "TELETEXT",
         "TTML",
         "WEBVTT"
@@ -1552,10 +1640,12 @@
         "ANCILLARY",
         "DVB_SUB",
         "EMBEDDED",
+        "SCTE20",
         "SCC",
         "TTML",
         "STL",
         "SRT",
+        "SMI",
         "TELETEXT",
         "NULL_SOURCE"
       ]
@@ -2095,6 +2185,14 @@
         "DISABLED"
       ]
     },
+    "DecryptionMode": {
+      "type": "string",
+      "enum": [
+        "AES_CTR",
+        "AES_CBC",
+        "AES_GCM"
+      ]
+    },
     "DeinterlaceAlgorithm": {
       "type": "string",
       "enum": [
@@ -2225,6 +2323,23 @@
           "shape": "__string",
           "locationName": "nextToken"
         }
+      }
+    },
+    "DisassociateCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        }
+      },
+      "required": [
+        "Arn"
+      ]
+    },
+    "DisassociateCertificateResponse": {
+      "type": "structure",
+      "members": {
       }
     },
     "DropFrameTimecode": {
@@ -3951,6 +4066,10 @@
           "shape": "InputDeblockFilter",
           "locationName": "deblockFilter"
         },
+        "DecryptionSettings": {
+          "shape": "InputDecryptionSettings",
+          "locationName": "decryptionSettings"
+        },
         "DenoiseFilter": {
           "shape": "InputDenoiseFilter",
           "locationName": "denoiseFilter"
@@ -3966,6 +4085,10 @@
         "FilterStrength": {
           "shape": "__integerMinNegative5Max5",
           "locationName": "filterStrength"
+        },
+        "ImageInserter": {
+          "shape": "ImageInserter",
+          "locationName": "imageInserter"
         },
         "InputClippings": {
           "shape": "__listOfInputClipping",
@@ -4008,6 +4131,27 @@
         "ENABLED",
         "DISABLED"
       ]
+    },
+    "InputDecryptionSettings": {
+      "type": "structure",
+      "members": {
+        "DecryptionMode": {
+          "shape": "DecryptionMode",
+          "locationName": "decryptionMode"
+        },
+        "EncryptedDecryptionKey": {
+          "shape": "__stringMin24Max512PatternAZaZ0902",
+          "locationName": "encryptedDecryptionKey"
+        },
+        "InitializationVector": {
+          "shape": "__stringMin16Max24PatternAZaZ0922AZaZ0916",
+          "locationName": "initializationVector"
+        },
+        "KmsKeyRegion": {
+          "shape": "__stringMin9Max19PatternAZ26EastWestCentralNorthSouthEastWest1912",
+          "locationName": "kmsKeyRegion"
+        }
+      }
     },
     "InputDenoiseFilter": {
       "type": "string",
@@ -4062,6 +4206,10 @@
           "shape": "__integerMinNegative5Max5",
           "locationName": "filterStrength"
         },
+        "ImageInserter": {
+          "shape": "ImageInserter",
+          "locationName": "imageInserter"
+        },
         "InputClippings": {
           "shape": "__listOfInputClipping",
           "locationName": "inputClippings"
@@ -4096,19 +4244,19 @@
       "type": "structure",
       "members": {
         "Duration": {
-          "shape": "__integerMinNegative2147483648Max2147483647",
+          "shape": "__integerMin0Max2147483647",
           "locationName": "duration"
         },
         "FadeIn": {
-          "shape": "__integerMinNegative2147483648Max2147483647",
+          "shape": "__integerMin0Max2147483647",
           "locationName": "fadeIn"
         },
         "FadeOut": {
-          "shape": "__integerMinNegative2147483648Max2147483647",
+          "shape": "__integerMin0Max2147483647",
           "locationName": "fadeOut"
         },
         "Height": {
-          "shape": "__integerMinNegative2147483648Max2147483647",
+          "shape": "__integerMin0Max2147483647",
           "locationName": "height"
         },
         "ImageInserterInput": {
@@ -4116,11 +4264,11 @@
           "locationName": "imageInserterInput"
         },
         "ImageX": {
-          "shape": "__integerMinNegative2147483648Max2147483647",
+          "shape": "__integerMin0Max2147483647",
           "locationName": "imageX"
         },
         "ImageY": {
-          "shape": "__integerMinNegative2147483648Max2147483647",
+          "shape": "__integerMin0Max2147483647",
           "locationName": "imageY"
         },
         "Layer": {
@@ -4136,7 +4284,7 @@
           "locationName": "startTime"
         },
         "Width": {
-          "shape": "__integerMinNegative2147483648Max2147483647",
+          "shape": "__integerMin0Max2147483647",
           "locationName": "width"
         }
       }
@@ -4234,6 +4382,10 @@
           "shape": "__listOfInput",
           "locationName": "inputs"
         },
+        "MotionImageInserter": {
+          "shape": "MotionImageInserter",
+          "locationName": "motionImageInserter"
+        },
         "NielsenConfiguration": {
           "shape": "NielsenConfiguration",
           "locationName": "nielsenConfiguration"
@@ -4329,6 +4481,10 @@
         "Inputs": {
           "shape": "__listOfInputTemplate",
           "locationName": "inputs"
+        },
+        "MotionImageInserter": {
+          "shape": "MotionImageInserter",
+          "locationName": "motionImageInserter"
         },
         "NielsenConfiguration": {
           "shape": "NielsenConfiguration",
@@ -5044,6 +5200,75 @@
           "locationName": "videoPid"
         }
       }
+    },
+    "MotionImageInserter": {
+      "type": "structure",
+      "members": {
+        "Framerate": {
+          "shape": "MotionImageInsertionFramerate",
+          "locationName": "framerate"
+        },
+        "Input": {
+          "shape": "__stringMin14Max1285PatternS3Mov09Png",
+          "locationName": "input"
+        },
+        "InsertionMode": {
+          "shape": "MotionImageInsertionMode",
+          "locationName": "insertionMode"
+        },
+        "Offset": {
+          "shape": "MotionImageInsertionOffset",
+          "locationName": "offset"
+        },
+        "Playback": {
+          "shape": "MotionImagePlayback",
+          "locationName": "playback"
+        },
+        "StartTime": {
+          "shape": "__stringMin11Max11Pattern01D20305D205D",
+          "locationName": "startTime"
+        }
+      }
+    },
+    "MotionImageInsertionFramerate": {
+      "type": "structure",
+      "members": {
+        "FramerateDenominator": {
+          "shape": "__integerMin1Max17895697",
+          "locationName": "framerateDenominator"
+        },
+        "FramerateNumerator": {
+          "shape": "__integerMin1Max2147483640",
+          "locationName": "framerateNumerator"
+        }
+      }
+    },
+    "MotionImageInsertionMode": {
+      "type": "string",
+      "enum": [
+        "MOV",
+        "PNG"
+      ]
+    },
+    "MotionImageInsertionOffset": {
+      "type": "structure",
+      "members": {
+        "ImageX": {
+          "shape": "__integerMin0Max2147483647",
+          "locationName": "imageX"
+        },
+        "ImageY": {
+          "shape": "__integerMin0Max2147483647",
+          "locationName": "imageY"
+        }
+      }
+    },
+    "MotionImagePlayback": {
+      "type": "string",
+      "enum": [
+        "ONCE",
+        "REPEAT"
+      ]
     },
     "MovClapAtom": {
       "type": "string",
@@ -6050,8 +6275,8 @@
         }
       },
       "required": [
-        "ReservedSlots",
         "Commitment",
+        "ReservedSlots",
         "RenewalType"
       ]
     },
@@ -6111,6 +6336,10 @@
     "SpekeKeyProvider": {
       "type": "structure",
       "members": {
+        "CertificateArn": {
+          "shape": "__stringPatternArnAwsAcm",
+          "locationName": "certificateArn"
+        },
         "ResourceId": {
           "shape": "__string",
           "locationName": "resourceId"
@@ -6849,6 +7078,11 @@
       "min": 1,
       "max": 16
     },
+    "__integerMin1Max17895697": {
+      "type": "integer",
+      "min": 1,
+      "max": 17895697
+    },
     "__integerMin1Max2": {
       "type": "integer",
       "min": 1,
@@ -6858,6 +7092,11 @@
       "type": "integer",
       "min": 1,
       "max": 20
+    },
+    "__integerMin1Max2147483640": {
+      "type": "integer",
+      "min": 1,
+      "max": 2147483640
     },
     "__integerMin1Max2147483647": {
       "type": "integer",
@@ -7205,6 +7444,18 @@
       "type": "string",
       "min": 1
     },
+    "__stringMin11Max11Pattern01D20305D205D": {
+      "type": "string",
+      "min": 11,
+      "max": 11,
+      "pattern": "^((([0-1]\\d)|(2[0-3]))(:[0-5]\\d){2}([:;][0-5]\\d))$"
+    },
+    "__stringMin14Max1285PatternS3Mov09Png": {
+      "type": "string",
+      "min": 14,
+      "max": 1285,
+      "pattern": "^(s3:\\/\\/)(.*)(\\.mov|[0-9]+\\.png)$"
+    },
     "__stringMin14PatternS3BmpBMPPngPNG": {
       "type": "string",
       "min": 14,
@@ -7220,10 +7471,22 @@
       "min": 14,
       "pattern": "^(s3:\\/\\/)(.*?)\\.(scc|SCC|ttml|TTML|dfxp|DFXP|stl|STL|srt|SRT|smi|SMI)$"
     },
+    "__stringMin16Max24PatternAZaZ0922AZaZ0916": {
+      "type": "string",
+      "min": 16,
+      "max": 24,
+      "pattern": "^[A-Za-z0-9+\\/]{22}==$|^[A-Za-z0-9+\\/]{16}$"
+    },
     "__stringMin1Max256": {
       "type": "string",
       "min": 1,
       "max": 256
+    },
+    "__stringMin24Max512PatternAZaZ0902": {
+      "type": "string",
+      "min": 24,
+      "max": 512,
+      "pattern": "^[A-Za-z0-9+\\/]+={0,2}$"
     },
     "__stringMin32Max32Pattern09aFAF32": {
       "type": "string",
@@ -7242,6 +7505,12 @@
       "min": 3,
       "max": 3,
       "pattern": "^[A-Za-z]{3}$"
+    },
+    "__stringMin9Max19PatternAZ26EastWestCentralNorthSouthEastWest1912": {
+      "type": "string",
+      "min": 9,
+      "max": 19,
+      "pattern": "^[a-z-]{2,6}-(east|west|central|((north|south)(east|west)?))-[1-9]{1,2}$"
     },
     "__stringPattern": {
       "type": "string",
@@ -7270,6 +7539,10 @@
     "__stringPatternAZaZ0932": {
       "type": "string",
       "pattern": "^[A-Za-z0-9]{32}$"
+    },
+    "__stringPatternArnAwsAcm": {
+      "type": "string",
+      "pattern": "^arn:aws:acm:"
     },
     "__stringPatternDD": {
       "type": "string",

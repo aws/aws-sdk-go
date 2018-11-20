@@ -375,6 +375,9 @@ func (c *WorkDocs) CreateCommentRequest(input *CreateCommentInput) (req *request
 //   This exception is thrown when the document is locked for comments and user
 //   tries to create or delete a comment on that document.
 //
+//   * ErrCodeInvalidCommentOperationException "InvalidCommentOperationException"
+//   The requested operation is not allowed on the specified comment object.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateComment
 func (c *WorkDocs) CreateComment(input *CreateCommentInput) (*CreateCommentOutput, error) {
 	req, out := c.CreateCommentRequest(input)
@@ -561,6 +564,10 @@ func (c *WorkDocs) CreateFolderRequest(input *CreateFolderInput) (req *request.R
 //   * ErrCodeProhibitedStateException "ProhibitedStateException"
 //   The specified document version is not in the INITIALIZED state.
 //
+//   * ErrCodeConflictingOperationException "ConflictingOperationException"
+//   Another operation is in progress on the resource that conflicts with the
+//   current operation.
+//
 //   * ErrCodeLimitExceededException "LimitExceededException"
 //   The maximum of 100,000 folders under the parent folder has been exceeded.
 //
@@ -740,11 +747,11 @@ func (c *WorkDocs) CreateNotificationSubscriptionRequest(input *CreateNotificati
 
 // CreateNotificationSubscription API operation for Amazon WorkDocs.
 //
-// Configure WorkDocs to use Amazon SNS notifications.
+// Configure Amazon WorkDocs to use Amazon SNS notifications. The endpoint receives
+// a confirmation message, and must confirm the subscription.
 //
-// The endpoint receives a confirmation message, and must confirm the subscription.
-// For more information, see Confirm the Subscription (http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.html#SendMessageToHttp.confirm)
-// in the Amazon Simple Notification Service Developer Guide.
+// For more information, see Subscribe to Notifications (http://docs.aws.amazon.com/workdocs/latest/developerguide/subscribe-notifications.html)
+// in the Amazon WorkDocs Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1236,6 +1243,10 @@ func (c *WorkDocs) DeleteDocumentRequest(input *DeleteDocumentInput) (req *reque
 //   * ErrCodeProhibitedStateException "ProhibitedStateException"
 //   The specified document version is not in the INITIALIZED state.
 //
+//   * ErrCodeConflictingOperationException "ConflictingOperationException"
+//   Another operation is in progress on the resource that conflicts with the
+//   current operation.
+//
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
 //   The resource hierarchy is changing.
 //
@@ -1337,6 +1348,10 @@ func (c *WorkDocs) DeleteFolderRequest(input *DeleteFolderInput) (req *request.R
 //   * ErrCodeProhibitedStateException "ProhibitedStateException"
 //   The specified document version is not in the INITIALIZED state.
 //
+//   * ErrCodeConflictingOperationException "ConflictingOperationException"
+//   Another operation is in progress on the resource that conflicts with the
+//   current operation.
+//
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
 //   The resource hierarchy is changing.
 //
@@ -1434,6 +1449,13 @@ func (c *WorkDocs) DeleteFolderContentsRequest(input *DeleteFolderContentsInput)
 // Returned Error Codes:
 //   * ErrCodeEntityNotExistsException "EntityNotExistsException"
 //   The resource does not exist.
+//
+//   * ErrCodeProhibitedStateException "ProhibitedStateException"
+//   The specified document version is not in the INITIALIZED state.
+//
+//   * ErrCodeConflictingOperationException "ConflictingOperationException"
+//   Another operation is in progress on the resource that conflicts with the
+//   current operation.
 //
 //   * ErrCodeUnauthorizedOperationException "UnauthorizedOperationException"
 //   The operation is not permitted.
@@ -2297,7 +2319,8 @@ func (c *WorkDocs) DescribeGroupsRequest(input *DescribeGroupsInput) (req *reque
 
 // DescribeGroups API operation for Amazon WorkDocs.
 //
-// Describes the groups specified by query.
+// Describes the groups specified by the query. Groups are defined by the underlying
+// Active Directory.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2567,6 +2590,11 @@ func (c *WorkDocs) DescribeRootFoldersRequest(input *DescribeRootFoldersInput) (
 // root of recycled items. This is not a valid action for SigV4 (administrative
 // API) clients.
 //
+// This action requires an authentication token. To get an authentication token,
+// register an application with Amazon WorkDocs. For more information, see Authentication
+// and Access Control for User Applications (http://docs.aws.amazon.com/workdocs/latest/developerguide/wd-auth-user.html)
+// in the Amazon WorkDocs Developer Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2679,6 +2707,9 @@ func (c *WorkDocs) DescribeUsersRequest(input *DescribeUsersInput) (req *request
 // API operation DescribeUsers for usage and error information.
 //
 // Returned Error Codes:
+//   * ErrCodeEntityNotExistsException "EntityNotExistsException"
+//   The resource does not exist.
+//
 //   * ErrCodeUnauthorizedOperationException "UnauthorizedOperationException"
 //   The operation is not permitted.
 //
@@ -2695,6 +2726,10 @@ func (c *WorkDocs) DescribeUsersRequest(input *DescribeUsersInput) (req *request
 //
 //   * ErrCodeInvalidArgumentException "InvalidArgumentException"
 //   The pagination marker or limit fields are not valid.
+//
+//   * ErrCodeRequestedEntityTooLargeException "RequestedEntityTooLargeException"
+//   The response is too large to return. The request must include a filter to
+//   reduce the size of the response.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeUsers
 func (c *WorkDocs) DescribeUsers(input *DescribeUsersInput) (*DescribeUsersOutput, error) {
@@ -3357,6 +3392,100 @@ func (c *WorkDocs) GetFolderPathWithContext(ctx aws.Context, input *GetFolderPat
 	return out, req.Send()
 }
 
+const opGetResources = "GetResources"
+
+// GetResourcesRequest generates a "aws/request.Request" representing the
+// client's request for the GetResources operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetResources for more information on using the GetResources
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetResourcesRequest method.
+//    req, resp := client.GetResourcesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetResources
+func (c *WorkDocs) GetResourcesRequest(input *GetResourcesInput) (req *request.Request, output *GetResourcesOutput) {
+	op := &request.Operation{
+		Name:       opGetResources,
+		HTTPMethod: "GET",
+		HTTPPath:   "/api/v1/resources",
+	}
+
+	if input == nil {
+		input = &GetResourcesInput{}
+	}
+
+	output = &GetResourcesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetResources API operation for Amazon WorkDocs.
+//
+// Retrieves a collection of resources, including folders and documents. The
+// only CollectionType supported is SHARED_WITH_ME.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkDocs's
+// API operation GetResources for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeUnauthorizedResourceAccessException "UnauthorizedResourceAccessException"
+//   The caller does not have access to perform the action on the resource.
+//
+//   * ErrCodeUnauthorizedOperationException "UnauthorizedOperationException"
+//   The operation is not permitted.
+//
+//   * ErrCodeInvalidArgumentException "InvalidArgumentException"
+//   The pagination marker or limit fields are not valid.
+//
+//   * ErrCodeFailedDependencyException "FailedDependencyException"
+//   The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//   under the control of the organization is failing, such as a connected Active
+//   Directory.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   One or more of the dependencies is unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/GetResources
+func (c *WorkDocs) GetResources(input *GetResourcesInput) (*GetResourcesOutput, error) {
+	req, out := c.GetResourcesRequest(input)
+	return out, req.Send()
+}
+
+// GetResourcesWithContext is the same as GetResources with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetResources for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkDocs) GetResourcesWithContext(ctx aws.Context, input *GetResourcesInput, opts ...request.Option) (*GetResourcesOutput, error) {
+	req, out := c.GetResourcesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opInitiateDocumentVersionUpload = "InitiateDocumentVersionUpload"
 
 // InitiateDocumentVersionUploadRequest generates a "aws/request.Request" representing the
@@ -3729,6 +3858,10 @@ func (c *WorkDocs) UpdateDocumentRequest(input *UpdateDocumentInput) (req *reque
 //   * ErrCodeProhibitedStateException "ProhibitedStateException"
 //   The specified document version is not in the INITIALIZED state.
 //
+//   * ErrCodeConflictingOperationException "ConflictingOperationException"
+//   Another operation is in progress on the resource that conflicts with the
+//   current operation.
+//
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
 //   The resource hierarchy is changing.
 //
@@ -3941,6 +4074,10 @@ func (c *WorkDocs) UpdateFolderRequest(input *UpdateFolderInput) (req *request.R
 //
 //   * ErrCodeProhibitedStateException "ProhibitedStateException"
 //   The specified document version is not in the INITIALIZED state.
+//
+//   * ErrCodeConflictingOperationException "ConflictingOperationException"
+//   Another operation is in progress on the resource that conflicts with the
+//   current operation.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
 //   The resource hierarchy is changing.
@@ -4260,6 +4397,12 @@ type Activity struct {
 	// The user who performed the action.
 	Initiator *UserMetadata `type:"structure"`
 
+	// Indicates whether an activity is indirect or direct. An indirect activity
+	// results from a direct activity performed on a parent resource. For example,
+	// sharing a parent folder (the direct activity) shares all of the subfolders
+	// and documents within the parent folder (the indirect activity).
+	IsIndirectActivity *bool `type:"boolean"`
+
 	// The ID of the organization.
 	OrganizationId *string `min:"1" type:"string"`
 
@@ -4301,6 +4444,12 @@ func (s *Activity) SetCommentMetadata(v *CommentMetadata) *Activity {
 // SetInitiator sets the Initiator field's value.
 func (s *Activity) SetInitiator(v *UserMetadata) *Activity {
 	s.Initiator = v
+	return s
+}
+
+// SetIsIndirectActivity sets the IsIndirectActivity field's value.
+func (s *Activity) SetIsIndirectActivity(v bool) *Activity {
+	s.IsIndirectActivity = &v
 	return s
 }
 
@@ -6023,6 +6172,10 @@ func (s DeleteUserOutput) GoString() string {
 type DescribeActivitiesInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies which activity types to include in the response. If this field
+	// is left empty, all activity types are returned.
+	ActivityTypes *string `location:"querystring" locationName:"activityTypes" min:"1" type:"string"`
+
 	// Amazon WorkDocs authentication token. Do not set this field when using administrative
 	// API actions, as in accessing the API using AWS credentials.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
@@ -6030,6 +6183,12 @@ type DescribeActivitiesInput struct {
 	// The timestamp that determines the end time of the activities. The response
 	// includes the activities performed before the specified timestamp.
 	EndTime *time.Time `location:"querystring" locationName:"endTime" type:"timestamp"`
+
+	// Includes indirect activities. An indirect activity results from a direct
+	// activity performed on a parent resource. For example, sharing a parent folder
+	// (the direct activity) shares all of the subfolders and documents within the
+	// parent folder (the indirect activity).
+	IncludeIndirectActivities *bool `location:"querystring" locationName:"includeIndirectActivities" type:"boolean"`
 
 	// The maximum number of items to return.
 	Limit *int64 `location:"querystring" locationName:"limit" min:"1" type:"integer"`
@@ -6040,6 +6199,9 @@ type DescribeActivitiesInput struct {
 	// The ID of the organization. This is a mandatory parameter when using administrative
 	// API (SigV4) requests.
 	OrganizationId *string `location:"querystring" locationName:"organizationId" min:"1" type:"string"`
+
+	// The document or folder ID for which to describe activity types.
+	ResourceId *string `location:"querystring" locationName:"resourceId" min:"1" type:"string"`
 
 	// The timestamp that determines the starting time of the activities. The response
 	// includes the activities performed after the specified timestamp.
@@ -6064,6 +6226,9 @@ func (s DescribeActivitiesInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeActivitiesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeActivitiesInput"}
+	if s.ActivityTypes != nil && len(*s.ActivityTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ActivityTypes", 1))
+	}
 	if s.AuthenticationToken != nil && len(*s.AuthenticationToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("AuthenticationToken", 1))
 	}
@@ -6076,6 +6241,9 @@ func (s *DescribeActivitiesInput) Validate() error {
 	if s.OrganizationId != nil && len(*s.OrganizationId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 1))
 	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
+	}
 	if s.UserId != nil && len(*s.UserId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
 	}
@@ -6084,6 +6252,12 @@ func (s *DescribeActivitiesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetActivityTypes sets the ActivityTypes field's value.
+func (s *DescribeActivitiesInput) SetActivityTypes(v string) *DescribeActivitiesInput {
+	s.ActivityTypes = &v
+	return s
 }
 
 // SetAuthenticationToken sets the AuthenticationToken field's value.
@@ -6095,6 +6269,12 @@ func (s *DescribeActivitiesInput) SetAuthenticationToken(v string) *DescribeActi
 // SetEndTime sets the EndTime field's value.
 func (s *DescribeActivitiesInput) SetEndTime(v time.Time) *DescribeActivitiesInput {
 	s.EndTime = &v
+	return s
+}
+
+// SetIncludeIndirectActivities sets the IncludeIndirectActivities field's value.
+func (s *DescribeActivitiesInput) SetIncludeIndirectActivities(v bool) *DescribeActivitiesInput {
+	s.IncludeIndirectActivities = &v
 	return s
 }
 
@@ -6113,6 +6293,12 @@ func (s *DescribeActivitiesInput) SetMarker(v string) *DescribeActivitiesInput {
 // SetOrganizationId sets the OrganizationId field's value.
 func (s *DescribeActivitiesInput) SetOrganizationId(v string) *DescribeActivitiesInput {
 	s.OrganizationId = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *DescribeActivitiesInput) SetResourceId(v string) *DescribeActivitiesInput {
+	s.ResourceId = &v
 	return s
 }
 
@@ -8156,6 +8342,132 @@ func (s *GetFolderPathOutput) SetPath(v *ResourcePath) *GetFolderPathOutput {
 	return s
 }
 
+type GetResourcesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon WorkDocs authentication token. Do not set this field when using
+	// administrative API actions, as in accessing the API operation using AWS credentials.
+	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string"`
+
+	// The collection type.
+	CollectionType *string `location:"querystring" locationName:"collectionType" type:"string" enum:"ResourceCollectionType"`
+
+	// The maximum number of resources to return.
+	Limit *int64 `location:"querystring" locationName:"limit" min:"1" type:"integer"`
+
+	// The marker for the next set of results. This marker was received from a previous
+	// call.
+	Marker *string `location:"querystring" locationName:"marker" min:"1" type:"string"`
+
+	// The user ID for the resource collection. This is a required field for accessing
+	// the API operation using IAM credentials.
+	UserId *string `location:"querystring" locationName:"userId" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s GetResourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetResourcesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetResourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetResourcesInput"}
+	if s.AuthenticationToken != nil && len(*s.AuthenticationToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AuthenticationToken", 1))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.Marker != nil && len(*s.Marker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Marker", 1))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthenticationToken sets the AuthenticationToken field's value.
+func (s *GetResourcesInput) SetAuthenticationToken(v string) *GetResourcesInput {
+	s.AuthenticationToken = &v
+	return s
+}
+
+// SetCollectionType sets the CollectionType field's value.
+func (s *GetResourcesInput) SetCollectionType(v string) *GetResourcesInput {
+	s.CollectionType = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *GetResourcesInput) SetLimit(v int64) *GetResourcesInput {
+	s.Limit = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *GetResourcesInput) SetMarker(v string) *GetResourcesInput {
+	s.Marker = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *GetResourcesInput) SetUserId(v string) *GetResourcesInput {
+	s.UserId = &v
+	return s
+}
+
+type GetResourcesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The documents in the specified collection.
+	Documents []*DocumentMetadata `type:"list"`
+
+	// The folders in the specified folder.
+	Folders []*FolderMetadata `type:"list"`
+
+	// The marker to use when requesting the next set of results. If there are no
+	// additional results, the string is empty.
+	Marker *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s GetResourcesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetResourcesOutput) GoString() string {
+	return s.String()
+}
+
+// SetDocuments sets the Documents field's value.
+func (s *GetResourcesOutput) SetDocuments(v []*DocumentMetadata) *GetResourcesOutput {
+	s.Documents = v
+	return s
+}
+
+// SetFolders sets the Folders field's value.
+func (s *GetResourcesOutput) SetFolders(v []*FolderMetadata) *GetResourcesOutput {
+	s.Folders = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *GetResourcesOutput) SetMarker(v string) *GetResourcesOutput {
+	s.Marker = &v
+	return s
+}
+
 // Describes the metadata of a user group.
 type GroupMetadata struct {
 	_ struct{} `type:"structure"`
@@ -8851,6 +9163,9 @@ func (s *SharePrincipal) SetType(v string) *SharePrincipal {
 type ShareResult struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the invited user.
+	InviteePrincipalId *string `min:"1" type:"string"`
+
 	// The ID of the principal.
 	PrincipalId *string `min:"1" type:"string"`
 
@@ -8875,6 +9190,12 @@ func (s ShareResult) String() string {
 // GoString returns the string representation
 func (s ShareResult) GoString() string {
 	return s.String()
+}
+
+// SetInviteePrincipalId sets the InviteePrincipalId field's value.
+func (s *ShareResult) SetInviteePrincipalId(v string) *ShareResult {
+	s.InviteePrincipalId = &v
+	return s
 }
 
 // SetPrincipalId sets the PrincipalId field's value.
@@ -9720,6 +10041,12 @@ const (
 	// ActivityTypeDocumentVersionDeleted is a ActivityType enum value
 	ActivityTypeDocumentVersionDeleted = "DOCUMENT_VERSION_DELETED"
 
+	// ActivityTypeDocumentVersionViewed is a ActivityType enum value
+	ActivityTypeDocumentVersionViewed = "DOCUMENT_VERSION_VIEWED"
+
+	// ActivityTypeDocumentVersionDownloaded is a ActivityType enum value
+	ActivityTypeDocumentVersionDownloaded = "DOCUMENT_VERSION_DOWNLOADED"
+
 	// ActivityTypeDocumentRecycled is a ActivityType enum value
 	ActivityTypeDocumentRecycled = "DOCUMENT_RECYCLED"
 
@@ -9927,6 +10254,11 @@ const (
 
 	// PrincipalTypeOrganization is a PrincipalType enum value
 	PrincipalTypeOrganization = "ORGANIZATION"
+)
+
+const (
+	// ResourceCollectionTypeSharedWithMe is a ResourceCollectionType enum value
+	ResourceCollectionTypeSharedWithMe = "SHARED_WITH_ME"
 )
 
 const (
