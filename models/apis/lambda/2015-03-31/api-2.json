@@ -1559,6 +1559,7 @@
         "java8",
         "python2.7",
         "python3.6",
+        "python3.7",
         "dotnetcore1.0",
         "dotnetcore2.0",
         "dotnetcore2.1",

@@ -226,7 +226,7 @@
     "ModifyFleet": "<p>Modifies the specified EC2 Fleet.</p> <p>While the EC2 Fleet is being modified, it is in the <code>modifying</code> state.</p>",
     "ModifyFpgaImageAttribute": "<p>Modifies the specified attribute of the specified Amazon FPGA Image (AFI).</p>",
     "ModifyHosts": "<p>Modify the auto-placement setting of a Dedicated Host. When auto-placement is enabled, any instances that you launch with a tenancy of <code>host</code> but without a specific host ID are placed onto any available Dedicated Host in your account that has auto-placement enabled. When auto-placement is disabled, you need to provide a host ID to have the instance launch onto a specific host. If no host ID is provided, the instance is launched onto a suitable host with auto-placement enabled.</p>",
-    "ModifyIdFormat": "<p>Modifies the ID format for the specified resource on a per-region basis. You can specify that resources should receive longer IDs (17-character IDs) when they are created.</p> <p>This request can only be used to modify longer ID settings for resource types that are within the opt-in period. Resources currently in their opt-in period include: <code>bundle</code> | <code>conversion-task</code> | <code>customer-gateway</code> | <code>dhcp-options</code> | <code>elastic-ip-allocation</code> | <code>elastic-ip-association</code> | <code>export-task</code> | <code>flow-log</code> | <code>image</code> | <code>import-task</code> | <code>internet-gateway</code> | <code>network-acl</code> | <code>network-acl-association</code> | <code>network-interface</code> | <code>network-interface-attachment</code> | <code>prefix-list</code> | <code>route-table</code> | <code>route-table-association</code> | <code>security-group</code> | <code>subnet</code> | <code>subnet-cidr-block-association</code> | <code>vpc</code> | <code>vpc-cidr-block-association</code> | <code>vpc-endpoint</code> | <code>vpc-peering-connection</code> | <code>vpn-connection</code> | <code>vpn-gateway</code>.</p> <p>This setting applies to the IAM user who makes the request; it does not apply to the entire AWS account. By default, an IAM user defaults to the same settings as the root user. If you're using this action as the root user, then these settings apply to the entire account, unless an IAM user explicitly overrides these settings for themselves. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/resource-ids.html\">Resource IDs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. </p> <p>Resources created with longer IDs are visible to all IAM roles and users, regardless of these settings and provided that they have permission to use the relevant <code>Describe</code> command for the resource type.</p>",
+    "ModifyIdFormat": "<p>Modifies the ID format for the specified resource on a per-region basis. You can specify that resources should receive longer IDs (17-character IDs) when they are created.</p> <p>This request can only be used to modify longer ID settings for resource types that are within the opt-in period. Resources currently in their opt-in period include: <code>bundle</code> | <code>conversion-task</code> | <code>customer-gateway</code> | <code>dhcp-options</code> | <code>elastic-ip-allocation</code> | <code>elastic-ip-association</code> | <code>export-task</code> | <code>flow-log</code> | <code>image</code> | <code>import-task</code> | <code>internet-gateway</code> | <code>network-acl</code> | <code>network-acl-association</code> | <code>network-interface</code> | <code>network-interface-attachment</code> | <code>prefix-list</code> | <code>route-table</code> | <code>route-table-association</code> | <code>security-group</code> | <code>subnet</code> | <code>subnet-cidr-block-association</code> | <code>vpc</code> | <code>vpc-cidr-block-association</code> | <code>vpc-endpoint</code> | <code>vpc-peering-connection</code> | <code>vpn-connection</code> | <code>vpn-gateway</code>.</p> <p>This setting applies to the IAM user who makes the request; it does not apply to the entire AWS account. By default, an IAM user defaults to the same settings as the root user. If you're using this action as the root user, then these settings apply to the entire account, unless an IAM user explicitly overrides these settings for themselves. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/resource-ids.html\">Resource IDs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Resources created with longer IDs are visible to all IAM roles and users, regardless of these settings and provided that they have permission to use the relevant <code>Describe</code> command for the resource type.</p>",
     "ModifyIdentityIdFormat": "<p>Modifies the ID format of a resource for a specified IAM user, IAM role, or the root user for an account; or all IAM users, IAM roles, and the root user for an account. You can specify that resources should receive longer IDs (17-character IDs) when they are created. </p> <p>This request can only be used to modify longer ID settings for resource types that are within the opt-in period. Resources currently in their opt-in period include: <code>bundle</code> | <code>conversion-task</code> | <code>customer-gateway</code> | <code>dhcp-options</code> | <code>elastic-ip-allocation</code> | <code>elastic-ip-association</code> | <code>export-task</code> | <code>flow-log</code> | <code>image</code> | <code>import-task</code> | <code>internet-gateway</code> | <code>network-acl</code> | <code>network-acl-association</code> | <code>network-interface</code> | <code>network-interface-attachment</code> | <code>prefix-list</code> | <code>route-table</code> | <code>route-table-association</code> | <code>security-group</code> | <code>subnet</code> | <code>subnet-cidr-block-association</code> | <code>vpc</code> | <code>vpc-cidr-block-association</code> | <code>vpc-endpoint</code> | <code>vpc-peering-connection</code> | <code>vpn-connection</code> | <code>vpn-gateway</code>. </p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/resource-ids.html\">Resource IDs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. </p> <p>This setting applies to the principal specified in the request; it does not apply to the principal that makes the request. </p> <p>Resources created with longer IDs are visible to all IAM roles and users, regardless of these settings and provided that they have permission to use the relevant <code>Describe</code> command for the resource type.</p>",
     "ModifyImageAttribute": "<p>Modifies the specified attribute of the specified AMI. You can specify only one attribute at a time. You can use the <code>Attribute</code> parameter to specify the attribute or one of the following parameters: <code>Description</code>, <code>LaunchPermission</code>, or <code>ProductCode</code>.</p> <p>AWS Marketplace product codes cannot be modified. Images with an AWS Marketplace product code cannot be made public.</p> <p>To enable the SriovNetSupport enhanced networking attribute of an image, enable SriovNetSupport on an instance and create an AMI from the instance.</p>",
     "ModifyInstanceAttribute": "<p>Modifies the specified attribute of the specified instance. You can specify only one attribute at a time.</p> <p> <b>Note: </b>Using this action to change the security groups associated with an elastic network interface (ENI) attached to an instance in a VPC can result in an error if the instance has more than one ENI. To change the security groups associated with an ENI attached to an instance that has multiple ENIs, we recommend that you use the <a>ModifyNetworkInterfaceAttribute</a> action.</p> <p>To modify some attributes, the instance must be stopped. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ChangingAttributesWhileInstanceStopped.html\">Modifying Attributes of a Stopped Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
@@ -246,7 +246,7 @@
     "ModifyVpcEndpointConnectionNotification": "<p>Modifies a connection notification for VPC endpoint or VPC endpoint service. You can change the SNS topic for the notification, or the events for which to be notified. </p>",
     "ModifyVpcEndpointServiceConfiguration": "<p>Modifies the attributes of your VPC endpoint service configuration. You can change the Network Load Balancers for your service, and you can specify whether acceptance is required for requests to connect to your endpoint service through an interface VPC endpoint.</p>",
     "ModifyVpcEndpointServicePermissions": "<p>Modifies the permissions for your <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/endpoint-service.html\">VPC endpoint service</a>. You can add or remove permissions for service consumers (IAM users, IAM roles, and AWS accounts) to connect to your endpoint service.</p> <p>If you grant permissions to all principals, the service is public. Any users who know the name of a public service can send a request to attach an endpoint. If the service does not require manual approval, attachments are automatically approved.</p>",
-    "ModifyVpcPeeringConnectionOptions": "<p>Modifies the VPC peering connection options on one side of a VPC peering connection. You can do the following:</p> <ul> <li> <p>Enable/disable communication over the peering connection between an EC2-Classic instance that's linked to your VPC (using ClassicLink) and instances in the peer VPC.</p> </li> <li> <p>Enable/disable communication over the peering connection between instances in your VPC and an EC2-Classic instance that's linked to the peer VPC.</p> </li> <li> <p>Enable/disable the ability to resolve public DNS hostnames to private IP addresses when queried from instances in the peer VPC.</p> </li> </ul> <p>If the peered VPCs are in different accounts, each owner must initiate a separate request to modify the peering connection options, depending on whether their VPC was the requester or accepter for the VPC peering connection. If the peered VPCs are in the same account, you can modify the requester and accepter options in the same request. To confirm which VPC is the accepter and requester for a VPC peering connection, use the <a>DescribeVpcPeeringConnections</a> command.</p>",
+    "ModifyVpcPeeringConnectionOptions": "<p>Modifies the VPC peering connection options on one side of a VPC peering connection. You can do the following:</p> <ul> <li> <p>Enable/disable communication over the peering connection between an EC2-Classic instance that's linked to your VPC (using ClassicLink) and instances in the peer VPC.</p> </li> <li> <p>Enable/disable communication over the peering connection between instances in your VPC and an EC2-Classic instance that's linked to the peer VPC.</p> </li> <li> <p>Enable/disable the ability to resolve public DNS hostnames to private IP addresses when queried from instances in the peer VPC.</p> </li> </ul> <p>If the peered VPCs are in the same AWS account, you can enable DNS resolution for queries from the local VPC. This ensures that queries from the local VPC resolve to private IP addresses in the peer VPC. This option is not available if the peered VPCs are in different AWS accounts or different regions. For peered VPCs in different AWS accounts, each AWS account owner must initiate a separate request to modify the peering connection options. For inter-region peering connections, you must use the region for the requester VPC to modify the requester VPC peering options and the region for the accepter VPC to modify the accepter VPC peering options. To verify which VPCs are the accepter and the requester for a VPC peering connection, use the <a>DescribeVpcPeeringConnections</a> command.</p>",
     "ModifyVpcTenancy": "<p>Modifies the instance tenancy attribute of the specified VPC. You can change the instance tenancy attribute of a VPC to <code>default</code> only. You cannot change the instance tenancy attribute to <code>dedicated</code>.</p> <p>After you modify the tenancy of the VPC, any new instances that you launch into the VPC have a tenancy of <code>default</code>, unless you specify otherwise during launch. The tenancy of any existing instances in the VPC is not affected.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-instance.html\">Dedicated Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "MonitorInstances": "<p>Enables detailed monitoring for a running instance. Otherwise, basic monitoring is enabled. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html\">Monitoring Your Instances and Volumes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>To disable detailed monitoring, see .</p>",
     "MoveAddressToVpc": "<p>Moves an Elastic IP address from the EC2-Classic platform to the EC2-VPC platform. The Elastic IP address must be allocated to your account for more than 24 hours, and it must not be associated with an instance. After the Elastic IP address is moved, it is no longer available for use in the EC2-Classic platform, unless you move it back using the <a>RestoreAddressToClassic</a> request. You cannot move an Elastic IP address that was originally allocated for use in the EC2-VPC platform to the EC2-Classic platform. </p>",
@@ -2427,12 +2427,12 @@
       }
     },
     "DescribeAccountAttributesRequest": {
-      "base": "<p>Contains the parameters for DescribeAccountAttributes.</p>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeAccountAttributesResult": {
-      "base": "<p>Contains the output of DescribeAccountAttributes.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -2457,12 +2457,12 @@
       }
     },
     "DescribeAvailabilityZonesRequest": {
-      "base": "<p>Contains the parameters for DescribeAvailabilityZones.</p>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeAvailabilityZonesResult": {
-      "base": "<p>Contains the output of DescribeAvailabiltyZones.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -2697,22 +2697,22 @@
       }
     },
     "DescribeIdFormatRequest": {
-      "base": "<p>Contains the parameters for DescribeIdFormat.</p>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeIdFormatResult": {
-      "base": "<p>Contains the output of DescribeIdFormat.</p>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeIdentityIdFormatRequest": {
-      "base": "<p>Contains the parameters for DescribeIdentityIdFormat.</p>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeIdentityIdFormatResult": {
-      "base": "<p>Contains the output of DescribeIdentityIdFormat.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -2927,12 +2927,12 @@
       }
     },
     "DescribeRegionsRequest": {
-      "base": "<p>Contains the parameters for DescribeRegions.</p>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeRegionsResult": {
-      "base": "<p>Contains the output of DescribeRegions.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -3780,7 +3780,7 @@
       "base": null,
       "refs": {
         "DescribeAddressesRequest$Filters": "<p>One or more filters. Filter names and values are case-sensitive.</p> <ul> <li> <p> <code>allocation-id</code> - [EC2-VPC] The allocation ID for the address.</p> </li> <li> <p> <code>association-id</code> - [EC2-VPC] The association ID for the address.</p> </li> <li> <p> <code>domain</code> - Indicates whether the address is for use in EC2-Classic (<code>standard</code>) or in a VPC (<code>vpc</code>).</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance the address is associated with, if any.</p> </li> <li> <p> <code>network-interface-id</code> - [EC2-VPC] The ID of the network interface that the address is associated with, if any.</p> </li> <li> <p> <code>network-interface-owner-id</code> - The AWS account ID of the owner.</p> </li> <li> <p> <code>private-ip-address</code> - [EC2-VPC] The private IP address associated with the Elastic IP address.</p> </li> <li> <p> <code>public-ip</code> - The Elastic IP address.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
-        "DescribeAvailabilityZonesRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>message</code> - Information about the Availability Zone.</p> </li> <li> <p> <code>region-name</code> - The name of the region for the Availability Zone (for example, <code>us-east-1</code>).</p> </li> <li> <p> <code>state</code> - The state of the Availability Zone (<code>available</code> | <code>information</code> | <code>impaired</code> | <code>unavailable</code>).</p> </li> <li> <p> <code>zone-name</code> - The name of the Availability Zone (for example, <code>us-east-1a</code>).</p> </li> </ul>",
+        "DescribeAvailabilityZonesRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>message</code> - Information about the Availability Zone.</p> </li> <li> <p> <code>region-name</code> - The name of the region for the Availability Zone (for example, <code>us-east-1</code>).</p> </li> <li> <p> <code>state</code> - The state of the Availability Zone (<code>available</code> | <code>information</code> | <code>impaired</code> | <code>unavailable</code>).</p> </li> <li> <p> <code>zone-id</code> - The ID of the Availability Zone (for example, <code>use1-az1</code>).</p> </li> <li> <p> <code>zone-name</code> - The name of the Availability Zone (for example, <code>us-east-1a</code>).</p> </li> </ul>",
         "DescribeBundleTasksRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>bundle-id</code> - The ID of the bundle task.</p> </li> <li> <p> <code>error-code</code> - If the task failed, the error code returned.</p> </li> <li> <p> <code>error-message</code> - If the task failed, the error message returned.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance.</p> </li> <li> <p> <code>progress</code> - The level of task completion, as a percentage (for example, 20%).</p> </li> <li> <p> <code>s3-bucket</code> - The Amazon S3 bucket to store the AMI.</p> </li> <li> <p> <code>s3-prefix</code> - The beginning of the AMI name.</p> </li> <li> <p> <code>start-time</code> - The time the task started (for example, 2013-09-15T17:15:20.000Z).</p> </li> <li> <p> <code>state</code> - The state of the task (<code>pending</code> | <code>waiting-for-shutdown</code> | <code>bundling</code> | <code>storing</code> | <code>cancelling</code> | <code>complete</code> | <code>failed</code>).</p> </li> <li> <p> <code>update-time</code> - The time of the most recent update for the task.</p> </li> </ul>",
         "DescribeCapacityReservationsRequest$Filters": "<p>One or more filters.</p>",
         "DescribeClassicLinkInstancesRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>group-id</code> - The ID of a VPC security group that's associated with the instance.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC to which the instance is linked.</p> <p> <code>vpc-id</code> - The ID of the VPC that the instance is linked to.</p> </li> </ul>",
@@ -3978,7 +3978,7 @@
     "FleetType": {
       "base": null,
       "refs": {
-        "CreateFleetRequest$Type": "<p>The type of request. <code>instant</code> indicates whether the EC2 Fleet submits a one-time request for your desired capacity. <code>request</code> indicates whether the EC2 Fleet submits ongoing requests until your desired capacity is fulfilled, but does not attempt to submit requests in alternative capacity pools if capacity is unavailable or maintain the capacity. <code>maintain</code> indicates whether the EC2 Fleet submits ongoing requests until your desired capacity is fulfilled, and continues to maintain your desired capacity by replenishing interrupted Spot Instances. Default: <code>maintain</code>.</p>",
+        "CreateFleetRequest$Type": "<p>The type of the request. By default, the EC2 Fleet places an asynchronous request for your desired capacity, and maintains it by replenishing interrupted Spot Instances (<code>maintain</code>). A value of <code>instant</code> places a synchronous one-time request, and returns errors for any instances that could not be launched. A value of <code>request</code> places an asynchronous one-time request without maintaining capacity or submitting requests in alternative capacity pools if capacity is unavailable. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-configuration-strategies.html#ec2-fleet-request-type\">EC2 Fleet Request Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "FleetData$Type": "<p>The type of request. Indicates whether the EC2 Fleet only <code>requests</code> the target capacity, or also attempts to <code>maintain</code> it. If you request a certain target capacity, EC2 Fleet only places the required requests; it does not attempt to replenish instances if capacity is diminished, and does not submit requests in alternative capacity pools if capacity is unavailable. To maintain a certain target capacity, EC2 Fleet places the required requests to meet this target capacity. It also automatically replenishes any interrupted Spot Instances. Default: <code>maintain</code>.</p>",
         "SpotFleetRequestConfigData$Type": "<p>The type of request. Indicates whether the Spot Fleet only requests the target capacity or also attempts to maintain it. When this value is <code>request</code>, the Spot Fleet only places the required requests. It does not attempt to replenish Spot Instances if capacity is diminished, nor does it submit requests in alternative Spot pools if capacity is not available. To maintain a certain target capacity, the Spot Fleet places the required requests to meet capacity and automatically replenishes any interrupted instances. Default: <code>maintain</code>.</p>"
       }
@@ -5626,12 +5626,12 @@
       }
     },
     "ModifyIdFormatRequest": {
-      "base": "<p>Contains the parameters of ModifyIdFormat.</p>",
+      "base": null,
       "refs": {
       }
     },
     "ModifyIdentityIdFormatRequest": {
-      "base": "<p>Contains the parameters of ModifyIdentityIdFormat.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -7699,6 +7699,7 @@
         "AuthorizeSecurityGroupIngressRequest$SourceSecurityGroupOwnerId": "<p>[EC2-Classic] The AWS account ID for the source security group, if the source security group is in a different account. You can't specify this parameter in combination with the following parameters: the CIDR IP address range, the IP protocol, the start of the port range, and the end of the port range. Creates rules that grant full ICMP, UDP, and TCP access. To create a rule with a specific IP protocol and port range, use a set of IP permissions instead.</p>",
         "AvailabilityZone$RegionName": "<p>The name of the region.</p>",
         "AvailabilityZone$ZoneName": "<p>The name of the Availability Zone.</p>",
+        "AvailabilityZone$ZoneId": "<p>The ID of the Availability Zone.</p>",
         "AvailabilityZoneMessage$Message": "<p>The message about the Availability Zone.</p>",
         "BillingProductList$member": null,
         "BlockDeviceMapping$DeviceName": "<p>The device name (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p>",
@@ -8893,6 +8894,7 @@
         "VpnTunnelOptionsSpecification$TunnelInsideCidr": "<p>The range of inside IP addresses for the tunnel. Any specified CIDR blocks must be unique across all VPN connections that use the same virtual private gateway. </p> <p>Constraints: A size /30 CIDR block from the <code>169.254.0.0/16</code> range. The following CIDR blocks are reserved and cannot be used:</p> <ul> <li> <p> <code>169.254.0.0/30</code> </p> </li> <li> <p> <code>169.254.1.0/30</code> </p> </li> <li> <p> <code>169.254.2.0/30</code> </p> </li> <li> <p> <code>169.254.3.0/30</code> </p> </li> <li> <p> <code>169.254.4.0/30</code> </p> </li> <li> <p> <code>169.254.5.0/30</code> </p> </li> <li> <p> <code>169.254.169.252/30</code> </p> </li> </ul>",
         "VpnTunnelOptionsSpecification$PreSharedKey": "<p>The pre-shared key (PSK) to establish initial authentication between the virtual private gateway and customer gateway.</p> <p>Constraints: Allowed characters are alphanumeric characters and ._. Must be between 8 and 64 characters in length and cannot start with zero (0).</p>",
         "WithdrawByoipCidrRequest$Cidr": "<p>The public IPv4 address range, in CIDR notation.</p>",
+        "ZoneIdStringList$member": null,
         "ZoneNameStringList$member": null
       }
     },
@@ -9823,6 +9825,12 @@
     "WithdrawByoipCidrResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "ZoneIdStringList": {
+      "base": null,
+      "refs": {
+        "DescribeAvailabilityZonesRequest$ZoneIds": "<p>The IDs of one or more Availability Zones.</p>"
       }
     },
     "ZoneNameStringList": {

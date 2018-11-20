@@ -12,6 +12,7 @@
     "DeleteWorkspaceImage": "<p>Deletes the specified image from your account. To delete an image, you must first delete any bundles that are associated with the image. </p>",
     "DescribeAccount": "<p>Retrieves a list that describes the configuration of bring your own license (BYOL) for the specified account.</p>",
     "DescribeAccountModifications": "<p>Retrieves a list that describes modifications to the configuration of bring your own license (BYOL) for the specified account.</p>",
+    "DescribeClientProperties": "<p>Retrieves a list that describes one or more specified Amazon WorkSpaces clients.</p>",
     "DescribeIpGroups": "<p>Describes one or more of your IP access control groups.</p>",
     "DescribeTags": "<p>Describes the specified tags for the specified WorkSpace.</p>",
     "DescribeWorkspaceBundles": "<p>Retrieves a list that describes the available WorkSpace bundles.</p> <p>You can filter the results using either bundle ID or owner, but not both.</p>",
@@ -23,6 +24,7 @@
     "ImportWorkspaceImage": "<p>Imports the specified Windows 7 or Windows 10 bring your own license (BYOL) image into Amazon WorkSpaces. The image must be an already licensed EC2 image that is in your AWS account, and you must own the image. </p>",
     "ListAvailableManagementCidrRanges": "<p>Retrieves a list of IP address ranges, specified as IPv4 CIDR blocks, that you can use for the network management interface when you enable bring your own license (BYOL). </p> <p>The management network interface is connected to a secure Amazon WorkSpaces management network. It is used for interactive streaming of the WorkSpace desktop to Amazon WorkSpaces clients, and to allow Amazon WorkSpaces to manage the WorkSpace.</p>",
     "ModifyAccount": "<p>Modifies the configuration of bring your own license (BYOL) for the specified account.</p>",
+    "ModifyClientProperties": "<p>Modifies the properties of the specified Amazon WorkSpaces client.</p>",
     "ModifyWorkspaceProperties": "<p>Modifies the specified WorkSpace properties.</p>",
     "ModifyWorkspaceState": "<p>Sets the state of the specified WorkSpace.</p> <p>To maintain a WorkSpace without being interrupted, set the WorkSpace state to <code>ADMIN_MAINTENANCE</code>. WorkSpaces in this state do not respond to requests to reboot, stop, start, or rebuild. An AutoStop WorkSpace in this state is not stopped. Users can log into a WorkSpace in the <code>ADMIN_MAINTENANCE</code> state.</p>",
     "RebootWorkspaces": "<p>Reboots the specified WorkSpaces.</p> <p>You cannot reboot a WorkSpace unless its state is <code>AVAILABLE</code> or <code>UNHEALTHY</code>.</p> <p>This operation is asynchronous and returns before the WorkSpaces have rebooted.</p>",
@@ -122,6 +124,25 @@
       "refs": {
         "DescribeWorkspaceBundlesRequest$Owner": "<p>The owner of the bundles. You cannot combine this parameter with any other filter.</p> <p>Specify <code>AMAZON</code> to describe the bundles provided by AWS or null to describe the bundles that belong to your account.</p>",
         "WorkspaceBundle$Owner": "<p>The owner of the bundle. This is the account identifier of the owner, or <code>AMAZON</code> if the bundle is provided by AWS.</p>"
+      }
+    },
+    "ClientProperties": {
+      "base": "<p>Describes an Amazon WorkSpaces client.</p>",
+      "refs": {
+        "ClientPropertiesResult$ClientProperties": "<p>Information about the Amazon WorkSpaces client.</p>",
+        "ModifyClientPropertiesRequest$ClientProperties": "<p>Information about the Amazon WorkSpaces client.</p>"
+      }
+    },
+    "ClientPropertiesList": {
+      "base": null,
+      "refs": {
+        "DescribeClientPropertiesResult$ClientPropertiesList": "<p>Information about the specified Amazon WorkSpaces clients.</p>"
+      }
+    },
+    "ClientPropertiesResult": {
+      "base": "<p>Information about the Amazon WorkSpaces client.</p>",
+      "refs": {
+        "ClientPropertiesList$member": null
       }
     },
     "Compute": {
@@ -271,6 +292,16 @@
       }
     },
     "DescribeAccountResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeClientPropertiesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeClientPropertiesResult": {
       "base": null,
       "refs": {
       }
@@ -644,6 +675,16 @@
       "refs": {
       }
     },
+    "ModifyClientPropertiesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyClientPropertiesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ModifyWorkspacePropertiesRequest": {
       "base": null,
       "refs": {
@@ -667,9 +708,12 @@
     "NonEmptyString": {
       "base": null,
       "refs": {
+        "ClientPropertiesResult$ResourceId": "<p>The resource identifier, in the form of a directory ID.</p>",
         "CreateTagsRequest$ResourceId": "<p>The identifier of the WorkSpace. To find this ID, use <a>DescribeWorkspaces</a>.</p>",
         "DeleteTagsRequest$ResourceId": "<p>The identifier of the WorkSpace. To find this ID, use <a>DescribeWorkspaces</a>.</p>",
         "DescribeTagsRequest$ResourceId": "<p>The identifier of the WorkSpace. To find this ID, use <a>DescribeWorkspaces</a>.</p>",
+        "ModifyClientPropertiesRequest$ResourceId": "<p>The resource identifiers, in the form of directory IDs.</p>",
+        "ResourceIdList$member": null,
         "ResourceNotFoundException$ResourceId": "<p>The ID of the resource that could not be found.</p>",
         "ResourceUnavailableException$ResourceId": "<p>The identifier of the resource that is not available.</p>",
         "RootStorage$Capacity": "<p>The size of the root volume.</p>",
@@ -765,6 +809,12 @@
       "refs": {
       }
     },
+    "ReconnectEnum": {
+      "base": null,
+      "refs": {
+        "ClientProperties$ReconnectEnabled": "<p>Specifies whether users can cache their credentials on the Amazon WorkSpaces client. When enabled, users can choose to reconnect to their WorkSpaces without re-entering their credentials. </p>"
+      }
+    },
     "RegistrationCode": {
       "base": null,
       "refs": {
@@ -784,6 +834,12 @@
     "ResourceCreationFailedException": {
       "base": "<p>The resource could not be created.</p>",
       "refs": {
+      }
+    },
+    "ResourceIdList": {
+      "base": null,
+      "refs": {
+        "DescribeClientPropertiesRequest$ResourceIds": "<p>The resource identifiers, in the form of directory IDs.</p>"
       }
     },
     "ResourceLimitExceededException": {

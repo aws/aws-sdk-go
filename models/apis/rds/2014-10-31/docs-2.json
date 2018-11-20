@@ -3591,13 +3591,16 @@
       "refs": {
         "CreateDBClusterMessage$VpcSecurityGroupIds": "<p>A list of EC2 VPC security groups to associate with this DB cluster.</p>",
         "CreateDBInstanceMessage$VpcSecurityGroupIds": "<p>A list of EC2 VPC security groups to associate with this DB instance.</p> <p> <b>Amazon Aurora</b> </p> <p>Not applicable. The associated list of EC2 VPC security groups is managed by the DB cluster. For more information, see <a>CreateDBCluster</a>.</p> <p>Default: The default EC2 VPC security group for the DB subnet group's VPC.</p>",
+        "CreateDBInstanceReadReplicaMessage$VpcSecurityGroupIds": "<p> A list of EC2 VPC security groups to associate with the Read Replica. </p> <p> Default: The default EC2 VPC security group for the DB subnet group's VPC. </p>",
         "ModifyDBClusterMessage$VpcSecurityGroupIds": "<p>A list of VPC security groups that the DB cluster will belong to.</p>",
         "ModifyDBInstanceMessage$VpcSecurityGroupIds": "<p>A list of EC2 VPC security groups to authorize on this DB instance. This change is asynchronously applied as soon as possible.</p> <p> <b>Amazon Aurora</b> </p> <p>Not applicable. The associated list of EC2 VPC security groups is managed by the DB cluster. For more information, see <a>ModifyDBCluster</a>.</p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match existing VpcSecurityGroupIds.</p> </li> </ul>",
         "OptionConfiguration$VpcSecurityGroupMemberships": "<p>A list of VpcSecurityGroupMemebrship name strings used for this option.</p>",
         "RestoreDBClusterFromS3Message$VpcSecurityGroupIds": "<p>A list of EC2 VPC security groups to associate with the restored DB cluster.</p>",
         "RestoreDBClusterFromSnapshotMessage$VpcSecurityGroupIds": "<p>A list of VPC security groups that the new DB cluster will belong to.</p>",
         "RestoreDBClusterToPointInTimeMessage$VpcSecurityGroupIds": "<p>A list of VPC security groups that the new DB cluster belongs to.</p>",
-        "RestoreDBInstanceFromS3Message$VpcSecurityGroupIds": "<p>A list of VPC security groups to associate with this DB instance. </p>"
+        "RestoreDBInstanceFromDBSnapshotMessage$VpcSecurityGroupIds": "<p> A list of EC2 VPC security groups to associate with this DB instance. </p> <p> Default: The default EC2 VPC security group for the DB subnet group's VPC. </p>",
+        "RestoreDBInstanceFromS3Message$VpcSecurityGroupIds": "<p>A list of VPC security groups to associate with this DB instance. </p>",
+        "RestoreDBInstanceToPointInTimeMessage$VpcSecurityGroupIds": "<p> A list of EC2 VPC security groups to associate with this DB instance. </p> <p> Default: The default EC2 VPC security group for the DB subnet group's VPC. </p>"
       }
     },
     "VpcSecurityGroupMembership": {

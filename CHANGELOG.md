@@ -1,3 +1,36 @@
+Release v1.15.79 (2018-11-20)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API and documentation
+  * Adding multinode parallel jobs, placement group support for compute environments.
+* `service/cloudformation`: Updates service API and documentation
+  * Use the CAPABILITY_AUTO_EXPAND capability to create or update a stack directly from a stack template that contains macros, without first reviewing the resulting changes in a change set first.
+* `service/cloudtrail`: Updates service API and documentation
+  * This release supports creating a trail in CloudTrail that logs events for all AWS accounts in an organization in AWS Organizations. This helps enable you to define a uniform event logging strategy for your organization. An organization trail is applied automatically to each account in the organization and cannot be modified by member accounts. To learn more, please see the AWS CloudTrail User Guide https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html
+* `service/config`: Updates service API and documentation
+* `service/devicefarm`: Updates service API and documentation
+  * Customers can now schedule runs without a need to create a Device Pool. They also get realtime information on public device availability.
+* `service/ec2`: Updates service API and documentation
+  * Adding AvailabilityZoneId to DescribeAvailabilityZones
+* `service/iot`: Updates service API and documentation
+  * IoT now supports resource tagging and tag based access control for Billing Groups, Thing Groups, Thing Types, Jobs, and Security Profiles. IoT Billing Groups help you group devices to categorize and track your costs. AWS IoT Device Management also introduces three new features: 1. Dynamic thing groups. 2. Jobs dynamic rollouts. 3. Device connectivity indexing. Dynamic thing groups lets you to create a group of devices using a Fleet Indexing query. The devices in your group will be automatically added or removed when they match your specified query criteria. Jobs dynamic rollout allows you to configure an exponentially increasing rate of deployment for device updates and define failure criteria to cancel your job. Device connectivity indexing allows you to index your devices' lifecycle events to discover whether devices are connected or disconnected to AWS IoT.
+* `service/lambda`: Updates service API and documentation
+  * AWS Lambda now supports python3.7 and  the Kinesis Data Streams (KDS) enhanced fan-out and HTTP/2 data retrieval features for Kinesis event sources.
+* `service/lightsail`: Updates service API
+  * Add Managed Database operations to OperationType enum.
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added several features including support for: SPEKE full document encryption, up to 150 elements for input stitching, input and motion image insertion, AWS CLI path arguments in S3 links including special characters, AFD signaling, additional caption types, and client-side encrypted input files.
+* `service/rds`: Updates service API and documentation
+  * This release adds a new parameter to specify VPC security groups for restore from DB snapshot, restore to point int time and create read replica operations. For more information, see Amazon RDS Documentation.
+* `service/workdocs`: Updates service API and documentation
+  * With this release, clients can now use the GetResources API to fetch files and folders from the user's SharedWithMe collection. And also through this release, the existing DescribeActivities API has been enhanced to support additional filters such as the ActivityType and the ResourceId.
+* `service/workspaces`: Updates service API and documentation
+  * Added new APIs to Modify and Describe WorkSpaces client properties for users in a directory. With the new APIs, you can enable/disable remember me option in WorkSpaces client for users in a directory.
+
+### SDK Bugs
+* `internal/ini`: trimSpaces not trimming rhs properly (#2282)
+  * Fixes trimSpaces to behave properly by removing the necessary rhs spaces of a literal.
 Release v1.15.78 (2018-11-16)
 ===
 
