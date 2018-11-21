@@ -203,6 +203,9 @@ func (c *Rekognition) CreateCollectionRequest(input *CreateCollectionInput) (req
 // results in a specific collection. Then, a user can search the collection
 // for faces in the user-specific container.
 //
+// When you create a collection, it is associated with the latest version of
+// the face model version.
+//
 // Collection names are case-sensitive.
 //
 // This operation requires permissions to perform the rekognition:CreateCollection
@@ -918,9 +921,9 @@ func (c *Rekognition) DetectFacesRequest(input *DetectFacesInput) (req *request.
 // faces with lower confidence.
 //
 // You pass the input image either as base64-encoded image bytes or as a reference
-// to an image in an Amazon S3 bucket. If you use the AWS CLI to call Amazon
-// Rekognition operations, passing image bytes is not supported. The image must
-// be either a PNG or JPEG formatted file.
+// to an image in an Amazon S3 bucket. If you use the to call Amazon Rekognition
+// operations, passing image bytes is not supported. The image must be either
+// a PNG or JPEG formatted file.
 //
 // This is a stateless API operation. That is, the operation does not persist
 // any data.
@@ -2658,10 +2661,14 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 //
 // If you're using version 1.0 of the face detection model, IndexFaces indexes
 // the 15 largest faces in the input image. Later versions of the face detection
-// model index the 100 largest faces in the input image. To determine which
-// version of the model you're using, call and supply the collection ID. You
-// can also get the model version from the value of FaceModelVersion in the
-// response from IndexFaces.
+// model index the 100 largest faces in the input image.
+//
+// If you're using version 4 or later of the face model, image orientation information
+// is not returned in the OrientationCorrection field.
+//
+// To determine which version of the model you're using, call and supply the
+// collection ID. You can also get the model version from the value of FaceModelVersion
+// in the response from IndexFaces
 //
 // For more information, see Model Versioning in the Amazon Rekognition Developer
 // Guide.
@@ -5010,31 +5017,34 @@ type CompareFacesOutput struct {
 	// The face in the source image that was used for comparison.
 	SourceImageFace *ComparedSourceImageFace `type:"structure"`
 
-	// The orientation of the source image (counterclockwise direction). If your
-	// application displays the source image, you can use this value to correct
-	// image orientation. The bounding box coordinates returned in SourceImageFace
-	// represent the location of the face before the image orientation is corrected.
+	// The value of SourceImageOrientationCorrection is always null.
 	//
-	// If the source image is in .jpeg format, it might contain exchangeable image
-	// (Exif) metadata that includes the image's orientation. If the Exif metadata
-	// for the source image populates the orientation field, the value of OrientationCorrection
-	// is null. The SourceImageFace bounding box coordinates represent the location
-	// of the face after Exif metadata is used to correct the orientation. Images
-	// in .png format don't contain Exif metadata.
+	// If the input image is in .jpeg format, it might contain exchangeable image
+	// file format (Exif) metadata that includes the image's orientation. Amazon
+	// Rekognition uses this orientation information to perform image correction.
+	// The bounding box coordinates are translated to represent object locations
+	// after the orientation information in the Exif metadata is used to correct
+	// the image orientation. Images in .png format don't contain Exif metadata.
+	//
+	// Amazon Rekognition doesn’t perform image correction for images in .png format
+	// and .jpeg images without orientation information in the image Exif metadata.
+	// The bounding box coordinates aren't translated and represent the object locations
+	// before the image is rotated.
 	SourceImageOrientationCorrection *string `type:"string" enum:"OrientationCorrection"`
 
-	// The orientation of the target image (in counterclockwise direction). If your
-	// application displays the target image, you can use this value to correct
-	// the orientation of the image. The bounding box coordinates returned in FaceMatches
-	// and UnmatchedFaces represent face locations before the image orientation
-	// is corrected.
+	// The value of TargetImageOrientationCorrection is always null.
 	//
-	// If the target image is in .jpg format, it might contain Exif metadata that
-	// includes the orientation of the image. If the Exif metadata for the target
-	// image populates the orientation field, the value of OrientationCorrection
-	// is null. The bounding box coordinates in FaceMatches and UnmatchedFaces represent
-	// the location of the face after Exif metadata is used to correct the orientation.
-	// Images in .png format don't contain Exif metadata.
+	// If the input image is in .jpeg format, it might contain exchangeable image
+	// file format (Exif) metadata that includes the image's orientation. Amazon
+	// Rekognition uses this orientation information to perform image correction.
+	// The bounding box coordinates are translated to represent object locations
+	// after the orientation information in the Exif metadata is used to correct
+	// the image orientation. Images in .png format don't contain Exif metadata.
+	//
+	// Amazon Rekognition doesn’t perform image correction for images in .png format
+	// and .jpeg images without orientation information in the image Exif metadata.
+	// The bounding box coordinates aren't translated and represent the object locations
+	// before the image is rotated.
 	TargetImageOrientationCorrection *string `type:"string" enum:"OrientationCorrection"`
 
 	// An array of faces in the target image that did not match the source image
@@ -5941,17 +5951,19 @@ type DetectFacesOutput struct {
 	// Details of each face found in the image.
 	FaceDetails []*FaceDetail `type:"list"`
 
-	// The orientation of the input image (counter-clockwise direction). If your
-	// application displays the image, you can use this value to correct image orientation.
-	// The bounding box coordinates returned in FaceDetails represent face locations
-	// before the image orientation is corrected.
+	// The value of OrientationCorrection is always null.
 	//
 	// If the input image is in .jpeg format, it might contain exchangeable image
-	// (Exif) metadata that includes the image's orientation. If so, and the Exif
-	// metadata for the input image populates the orientation field, the value of
-	// OrientationCorrection is null. The FaceDetails bounding box coordinates represent
-	// face locations after Exif metadata is used to correct the image orientation.
-	// Images in .png format don't contain Exif metadata.
+	// file format (Exif) metadata that includes the image's orientation. Amazon
+	// Rekognition uses this orientation information to perform image correction.
+	// The bounding box coordinates are translated to represent object locations
+	// after the orientation information in the Exif metadata is used to correct
+	// the image orientation. Images in .png format don't contain Exif metadata.
+	//
+	// Amazon Rekognition doesn’t perform image correction for images in .png format
+	// and .jpeg images without orientation information in the image Exif metadata.
+	// The bounding box coordinates aren't translated and represent the object locations
+	// before the image is rotated.
 	OrientationCorrection *string `type:"string" enum:"OrientationCorrection"`
 }
 
@@ -6057,16 +6069,16 @@ type DetectLabelsOutput struct {
 	// The value of OrientationCorrection is always null.
 	//
 	// If the input image is in .jpeg format, it might contain exchangeable image
-	// (Exif) metadata that includes the image's orientation. Amazon Rekognition
-	// uses this orientation information to perform image correction - the bounding
-	// box coordinates are translated to represent object locations after the orientation
-	// information in the Exif metadata is used to correct the image orientation.
-	// Images in .png format don't contain Exif metadata.
+	// file format (Exif) metadata that includes the image's orientation. Amazon
+	// Rekognition uses this orientation information to perform image correction.
+	// The bounding box coordinates are translated to represent object locations
+	// after the orientation information in the Exif metadata is used to correct
+	// the image orientation. Images in .png format don't contain Exif metadata.
 	//
 	// Amazon Rekognition doesn’t perform image correction for images in .png format
 	// and .jpeg images without orientation information in the image Exif metadata.
-	// The bounding box coordinates are not translated and represent the object
-	// locations before the image is rotated.
+	// The bounding box coordinates aren't translated and represent the object locations
+	// before the image is rotated.
 	OrientationCorrection *string `type:"string" enum:"OrientationCorrection"`
 }
 
@@ -7992,16 +8004,29 @@ type IndexFacesOutput struct {
 	// see Searching Faces in a Collection in the Amazon Rekognition Developer Guide.
 	FaceRecords []*FaceRecord `type:"list"`
 
-	// The orientation of the input image (counterclockwise direction). If your
-	// application displays the image, you can use this value to correct image orientation.
-	// The bounding box coordinates returned in FaceRecords represent face locations
-	// before the image orientation is corrected.
+	// If your collection is associated with a face detection model that's later
+	// than version 3.0, the value of OrientationCorrection is always null and no
+	// orientation information is returned.
 	//
-	// If the input image is in jpeg format, it might contain exchangeable image
-	// (Exif) metadata. If so, and the Exif metadata populates the orientation field,
-	// the value of OrientationCorrection is null. The bounding box coordinates
-	// in FaceRecords represent face locations after Exif metadata is used to correct
-	// the image orientation. Images in .png format don't contain Exif metadata.
+	// If your collection is associated with a face detection model that's version
+	// 3.0 or earlier, the following applies:
+	//
+	//    * If the input image is in .jpeg format, it might contain exchangeable
+	//    image file format (Exif) metadata that includes the image's orientation.
+	//    Amazon Rekognition uses this orientation information to perform image
+	//    correction - the bounding box coordinates are translated to represent
+	//    object locations after the orientation information in the Exif metadata
+	//    is used to correct the image orientation. Images in .png format don't
+	//    contain Exif metadata. The value of OrientationCorrection is null.
+	//
+	//    * If the image doesn't contain orientation information in its Exif metadata,
+	//    Amazon Rekognition returns an estimated orientation (ROTATE_0, ROTATE_90,
+	//    ROTATE_180, ROTATE_270). Amazon Rekognition doesn’t perform image correction
+	//    for images. The bounding box coordinates aren't translated and represent
+	//    the object locations before the image is rotated.
+	//
+	// Bounding box information is returned in the FaceRecords array. You can get
+	// the version of the face detection model by calling .
 	OrientationCorrection *string `type:"string" enum:"OrientationCorrection"`
 
 	// An array of faces that were detected in the image but weren't indexed. They
@@ -10826,6 +10851,21 @@ const (
 
 	// LandmarkTypeRightPupil is a LandmarkType enum value
 	LandmarkTypeRightPupil = "rightPupil"
+
+	// LandmarkTypeUpperJawlineLeft is a LandmarkType enum value
+	LandmarkTypeUpperJawlineLeft = "upperJawlineLeft"
+
+	// LandmarkTypeMidJawlineLeft is a LandmarkType enum value
+	LandmarkTypeMidJawlineLeft = "midJawlineLeft"
+
+	// LandmarkTypeChinBottom is a LandmarkType enum value
+	LandmarkTypeChinBottom = "chinBottom"
+
+	// LandmarkTypeMidJawlineRight is a LandmarkType enum value
+	LandmarkTypeMidJawlineRight = "midJawlineRight"
+
+	// LandmarkTypeUpperJawlineRight is a LandmarkType enum value
+	LandmarkTypeUpperJawlineRight = "upperJawlineRight"
 )
 
 const (
