@@ -1,3 +1,10 @@
+Release v1.15.81 (2018-11-21)
+===
+
+### Service Client Updates
+* `service/rekognition`: Updates service API and documentation
+  * This release updates the DetectFaces and IndexFaces operation. When the Attributes input parameter is set to ALL, the face location landmarks includes 5 new landmarks: upperJawlineLeft, midJawlineLeft, chinBottom, midJawlineRight, upperJawlineRight.
+
 Release v1.15.80 (2018-11-20)
 ===
 
