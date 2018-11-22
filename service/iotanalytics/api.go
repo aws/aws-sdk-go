@@ -3677,6 +3677,9 @@ func (s *CancelPipelineReprocessingInput) Validate() error {
 	if s.ReprocessingId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ReprocessingId"))
 	}
+	if s.ReprocessingId != nil && len(*s.ReprocessingId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReprocessingId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams

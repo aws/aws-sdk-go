@@ -159,6 +159,9 @@ func (s *InvokeEndpointInput) Validate() error {
 	if s.EndpointName == nil {
 		invalidParams.Add(request.NewErrParamRequired("EndpointName"))
 	}
+	if s.EndpointName != nil && len(*s.EndpointName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EndpointName", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams

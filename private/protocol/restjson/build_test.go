@@ -317,7 +317,24 @@ func (c *InputService2ProtocolTest) InputService2TestCaseOperation1WithContext(c
 type InputService2TestShapeInputService2TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 
-	PipelineId *string `location:"uri" type:"string"`
+	// PipelineId is a required field
+	PipelineId *string `location:"uri" type:"string" required:"true"`
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InputService2TestShapeInputService2TestCaseOperation1Input) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InputService2TestShapeInputService2TestCaseOperation1Input"}
+	if s.PipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineId"))
+	}
+	if s.PipelineId != nil && len(*s.PipelineId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetPipelineId sets the PipelineId field's value.
@@ -464,7 +481,24 @@ func (c *InputService3ProtocolTest) InputService3TestCaseOperation1WithContext(c
 type InputService3TestShapeInputService3TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 
-	Foo *string `location:"uri" locationName:"PipelineId" type:"string"`
+	// Foo is a required field
+	Foo *string `location:"uri" locationName:"PipelineId" type:"string" required:"true"`
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InputService3TestShapeInputService3TestCaseOperation1Input) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InputService3TestShapeInputService3TestCaseOperation1Input"}
+	if s.Foo == nil {
+		invalidParams.Add(request.NewErrParamRequired("Foo"))
+	}
+	if s.Foo != nil && len(*s.Foo) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Foo", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetFoo sets the Foo field's value.
@@ -758,9 +792,26 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation1WithContext(c
 type InputService5TestShapeInputService5TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 
-	PipelineId *string `location:"uri" type:"string"`
+	// PipelineId is a required field
+	PipelineId *string `location:"uri" type:"string" required:"true"`
 
 	QueryDoc map[string]*string `location:"querystring" type:"map"`
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InputService5TestShapeInputService5TestCaseOperation1Input) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InputService5TestShapeInputService5TestCaseOperation1Input"}
+	if s.PipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineId"))
+	}
+	if s.PipelineId != nil && len(*s.PipelineId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetPipelineId sets the PipelineId field's value.
@@ -913,9 +964,26 @@ func (c *InputService6ProtocolTest) InputService6TestCaseOperation1WithContext(c
 type InputService6TestShapeInputService6TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 
-	PipelineId *string `location:"uri" type:"string"`
+	// PipelineId is a required field
+	PipelineId *string `location:"uri" type:"string" required:"true"`
 
 	QueryDoc map[string][]*string `location:"querystring" type:"map"`
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InputService6TestShapeInputService6TestCaseOperation1Input) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InputService6TestShapeInputService6TestCaseOperation1Input"}
+	if s.PipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineId"))
+	}
+	if s.PipelineId != nil && len(*s.PipelineId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetPipelineId sets the PipelineId field's value.
@@ -1306,7 +1374,24 @@ type InputService8TestShapeInputService8TestCaseOperation1Input struct {
 
 	PageToken *string `location:"querystring" locationName:"PageToken" type:"string"`
 
-	PipelineId *string `location:"uri" locationName:"PipelineId" type:"string"`
+	// PipelineId is a required field
+	PipelineId *string `location:"uri" locationName:"PipelineId" type:"string" required:"true"`
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InputService8TestShapeInputService8TestCaseOperation1Input) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InputService8TestShapeInputService8TestCaseOperation1Input"}
+	if s.PipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineId"))
+	}
+	if s.PipelineId != nil && len(*s.PipelineId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetAscending sets the Ascending field's value.
@@ -1471,7 +1556,24 @@ type InputService9TestShapeInputService9TestCaseOperation1Input struct {
 
 	PageToken *string `location:"querystring" locationName:"PageToken" type:"string"`
 
-	PipelineId *string `location:"uri" locationName:"PipelineId" type:"string"`
+	// PipelineId is a required field
+	PipelineId *string `location:"uri" locationName:"PipelineId" type:"string" required:"true"`
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InputService9TestShapeInputService9TestCaseOperation1Input) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InputService9TestShapeInputService9TestCaseOperation1Input"}
+	if s.PipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineId"))
+	}
+	if s.PipelineId != nil && len(*s.PipelineId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetAscending sets the Ascending field's value.
@@ -1664,7 +1766,24 @@ type InputService10TestShapeInputService10TestCaseOperation1Input struct {
 
 	PageToken *string `location:"querystring" locationName:"PageToken" type:"string"`
 
-	PipelineId *string `location:"uri" locationName:"PipelineId" type:"string"`
+	// PipelineId is a required field
+	PipelineId *string `location:"uri" locationName:"PipelineId" type:"string" required:"true"`
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InputService10TestShapeInputService10TestCaseOperation1Input) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InputService10TestShapeInputService10TestCaseOperation1Input"}
+	if s.PipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineId"))
+	}
+	if s.PipelineId != nil && len(*s.PipelineId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetAscending sets the Ascending field's value.
@@ -1869,6 +1988,9 @@ func (s *InputService11TestShapeInputService11TestCaseOperation1Input) Validate(
 	if s.VaultName == nil {
 		invalidParams.Add(request.NewErrParamRequired("VaultName"))
 	}
+	if s.VaultName != nil && len(*s.VaultName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VaultName", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2044,6 +2166,9 @@ func (s *InputService12TestShapeInputService12TestCaseOperation1Input) Validate(
 	invalidParams := request.ErrInvalidParams{Context: "InputService12TestShapeInputService12TestCaseOperation1Input"}
 	if s.Foo == nil {
 		invalidParams.Add(request.NewErrParamRequired("Foo"))
+	}
+	if s.Foo != nil && len(*s.Foo) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Foo", 1))
 	}
 
 	if invalidParams.Len() > 0 {

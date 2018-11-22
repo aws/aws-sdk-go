@@ -1185,6 +1185,9 @@ func (s *DeleteProjectInput) Validate() error {
 	if s.ProjectId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProjectId"))
 	}
+	if s.ProjectId != nil && len(*s.ProjectId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -1257,6 +1260,9 @@ func (s *DescribeBundleInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeBundleInput"}
 	if s.BundleId == nil {
 		invalidParams.Add(request.NewErrParamRequired("BundleId"))
+	}
+	if s.BundleId != nil && len(*s.BundleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BundleId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -1402,6 +1408,9 @@ func (s *ExportBundleInput) Validate() error {
 	if s.BundleId == nil {
 		invalidParams.Add(request.NewErrParamRequired("BundleId"))
 	}
+	if s.BundleId != nil && len(*s.BundleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BundleId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -1480,6 +1489,9 @@ func (s *ExportProjectInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ExportProjectInput"}
 	if s.ProjectId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProjectId"))
+	}
+	if s.ProjectId != nil && len(*s.ProjectId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectId", 1))
 	}
 
 	if invalidParams.Len() > 0 {

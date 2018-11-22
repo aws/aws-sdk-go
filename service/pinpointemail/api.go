@@ -3201,6 +3201,9 @@ func (s *CreateConfigurationSetEventDestinationInput) Validate() error {
 	if s.ConfigurationSetName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
 	}
+	if s.ConfigurationSetName != nil && len(*s.ConfigurationSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationSetName", 1))
+	}
 	if s.EventDestination == nil {
 		invalidParams.Add(request.NewErrParamRequired("EventDestination"))
 	}
@@ -3592,8 +3595,14 @@ func (s *DeleteConfigurationSetEventDestinationInput) Validate() error {
 	if s.ConfigurationSetName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
 	}
+	if s.ConfigurationSetName != nil && len(*s.ConfigurationSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationSetName", 1))
+	}
 	if s.EventDestinationName == nil {
 		invalidParams.Add(request.NewErrParamRequired("EventDestinationName"))
+	}
+	if s.EventDestinationName != nil && len(*s.EventDestinationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventDestinationName", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -3656,6 +3665,9 @@ func (s *DeleteConfigurationSetInput) Validate() error {
 	if s.ConfigurationSetName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
 	}
+	if s.ConfigurationSetName != nil && len(*s.ConfigurationSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationSetName", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3710,6 +3722,9 @@ func (s *DeleteDedicatedIpPoolInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeleteDedicatedIpPoolInput"}
 	if s.PoolName == nil {
 		invalidParams.Add(request.NewErrParamRequired("PoolName"))
+	}
+	if s.PoolName != nil && len(*s.PoolName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PoolName", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -3769,6 +3784,9 @@ func (s *DeleteEmailIdentityInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeleteEmailIdentityInput"}
 	if s.EmailIdentity == nil {
 		invalidParams.Add(request.NewErrParamRequired("EmailIdentity"))
+	}
+	if s.EmailIdentity != nil && len(*s.EmailIdentity) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EmailIdentity", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -4352,6 +4370,9 @@ func (s *GetConfigurationSetEventDestinationsInput) Validate() error {
 	if s.ConfigurationSetName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
 	}
+	if s.ConfigurationSetName != nil && len(*s.ConfigurationSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationSetName", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4416,6 +4437,9 @@ func (s *GetConfigurationSetInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetConfigurationSetInput"}
 	if s.ConfigurationSetName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
+	}
+	if s.ConfigurationSetName != nil && len(*s.ConfigurationSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationSetName", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -4521,6 +4545,9 @@ func (s *GetDedicatedIpInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetDedicatedIpInput"}
 	if s.Ip == nil {
 		invalidParams.Add(request.NewErrParamRequired("Ip"))
+	}
+	if s.Ip != nil && len(*s.Ip) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Ip", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -4667,6 +4694,9 @@ func (s *GetEmailIdentityInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetEmailIdentityInput"}
 	if s.EmailIdentity == nil {
 		invalidParams.Add(request.NewErrParamRequired("EmailIdentity"))
+	}
+	if s.EmailIdentity != nil && len(*s.EmailIdentity) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EmailIdentity", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5441,6 +5471,9 @@ func (s *PutConfigurationSetDeliveryOptionsInput) Validate() error {
 	if s.ConfigurationSetName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
 	}
+	if s.ConfigurationSetName != nil && len(*s.ConfigurationSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationSetName", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5509,6 +5542,9 @@ func (s *PutConfigurationSetReputationOptionsInput) Validate() error {
 	if s.ConfigurationSetName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
 	}
+	if s.ConfigurationSetName != nil && len(*s.ConfigurationSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationSetName", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5576,6 +5612,9 @@ func (s *PutConfigurationSetSendingOptionsInput) Validate() error {
 	if s.ConfigurationSetName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
 	}
+	if s.ConfigurationSetName != nil && len(*s.ConfigurationSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationSetName", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5641,6 +5680,9 @@ func (s *PutConfigurationSetTrackingOptionsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PutConfigurationSetTrackingOptionsInput"}
 	if s.ConfigurationSetName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
+	}
+	if s.ConfigurationSetName != nil && len(*s.ConfigurationSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationSetName", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5714,6 +5756,9 @@ func (s *PutDedicatedIpInPoolInput) Validate() error {
 	if s.Ip == nil {
 		invalidParams.Add(request.NewErrParamRequired("Ip"))
 	}
+	if s.Ip != nil && len(*s.Ip) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Ip", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5779,6 +5824,9 @@ func (s *PutDedicatedIpWarmupAttributesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PutDedicatedIpWarmupAttributesInput"}
 	if s.Ip == nil {
 		invalidParams.Add(request.NewErrParamRequired("Ip"))
+	}
+	if s.Ip != nil && len(*s.Ip) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Ip", 1))
 	}
 	if s.WarmupPercentage == nil {
 		invalidParams.Add(request.NewErrParamRequired("WarmupPercentage"))
@@ -5851,6 +5899,9 @@ func (s *PutEmailIdentityDkimAttributesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PutEmailIdentityDkimAttributesInput"}
 	if s.EmailIdentity == nil {
 		invalidParams.Add(request.NewErrParamRequired("EmailIdentity"))
+	}
+	if s.EmailIdentity != nil && len(*s.EmailIdentity) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EmailIdentity", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5929,6 +5980,9 @@ func (s *PutEmailIdentityFeedbackAttributesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PutEmailIdentityFeedbackAttributesInput"}
 	if s.EmailIdentity == nil {
 		invalidParams.Add(request.NewErrParamRequired("EmailIdentity"))
+	}
+	if s.EmailIdentity != nil && len(*s.EmailIdentity) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EmailIdentity", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6012,6 +6066,9 @@ func (s *PutEmailIdentityMailFromAttributesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PutEmailIdentityMailFromAttributesInput"}
 	if s.EmailIdentity == nil {
 		invalidParams.Add(request.NewErrParamRequired("EmailIdentity"))
+	}
+	if s.EmailIdentity != nil && len(*s.EmailIdentity) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EmailIdentity", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6502,11 +6559,17 @@ func (s *UpdateConfigurationSetEventDestinationInput) Validate() error {
 	if s.ConfigurationSetName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
 	}
+	if s.ConfigurationSetName != nil && len(*s.ConfigurationSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationSetName", 1))
+	}
 	if s.EventDestination == nil {
 		invalidParams.Add(request.NewErrParamRequired("EventDestination"))
 	}
 	if s.EventDestinationName == nil {
 		invalidParams.Add(request.NewErrParamRequired("EventDestinationName"))
+	}
+	if s.EventDestinationName != nil && len(*s.EventDestinationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventDestinationName", 1))
 	}
 	if s.EventDestination != nil {
 		if err := s.EventDestination.Validate(); err != nil {

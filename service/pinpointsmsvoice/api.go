@@ -712,6 +712,9 @@ func (s *CreateConfigurationSetEventDestinationInput) Validate() error {
 	if s.ConfigurationSetName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
 	}
+	if s.ConfigurationSetName != nil && len(*s.ConfigurationSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationSetName", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -818,8 +821,14 @@ func (s *DeleteConfigurationSetEventDestinationInput) Validate() error {
 	if s.ConfigurationSetName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
 	}
+	if s.ConfigurationSetName != nil && len(*s.ConfigurationSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationSetName", 1))
+	}
 	if s.EventDestinationName == nil {
 		invalidParams.Add(request.NewErrParamRequired("EventDestinationName"))
+	}
+	if s.EventDestinationName != nil && len(*s.EventDestinationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventDestinationName", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -877,6 +886,9 @@ func (s *DeleteConfigurationSetInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeleteConfigurationSetInput"}
 	if s.ConfigurationSetName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
+	}
+	if s.ConfigurationSetName != nil && len(*s.ConfigurationSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationSetName", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -1049,6 +1061,9 @@ func (s *GetConfigurationSetEventDestinationsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetConfigurationSetEventDestinationsInput"}
 	if s.ConfigurationSetName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
+	}
+	if s.ConfigurationSetName != nil && len(*s.ConfigurationSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationSetName", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -1330,8 +1345,14 @@ func (s *UpdateConfigurationSetEventDestinationInput) Validate() error {
 	if s.ConfigurationSetName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
 	}
+	if s.ConfigurationSetName != nil && len(*s.ConfigurationSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationSetName", 1))
+	}
 	if s.EventDestinationName == nil {
 		invalidParams.Add(request.NewErrParamRequired("EventDestinationName"))
+	}
+	if s.EventDestinationName != nil && len(*s.EventDestinationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventDestinationName", 1))
 	}
 
 	if invalidParams.Len() > 0 {

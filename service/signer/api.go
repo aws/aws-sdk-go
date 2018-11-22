@@ -1097,6 +1097,9 @@ func (s *DescribeSigningJobInput) Validate() error {
 	if s.JobId == nil {
 		invalidParams.Add(request.NewErrParamRequired("JobId"))
 	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -1329,6 +1332,9 @@ func (s *GetSigningPlatformInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetSigningPlatformInput"}
 	if s.PlatformId == nil {
 		invalidParams.Add(request.NewErrParamRequired("PlatformId"))
+	}
+	if s.PlatformId != nil && len(*s.PlatformId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PlatformId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
