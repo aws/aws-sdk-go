@@ -2013,6 +2013,269 @@ const (
 	EnumTypeBar = "bar"
 )
 
+// InputService9ProtocolTest provides the API operation methods for making requests to
+// . See this package's package overview docs
+// for details on the service.
+//
+// InputService9ProtocolTest methods are safe to use concurrently. It is not safe to
+// modify mutate any of the struct's properties though.
+type InputService9ProtocolTest struct {
+	*client.Client
+}
+
+// New creates a new instance of the InputService9ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService9ProtocolTest client from just a session.
+//     svc := inputservice9protocoltest.New(mySession)
+//
+//     // Create a InputService9ProtocolTest client with additional configuration
+//     svc := inputservice9protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService9ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService9ProtocolTest {
+	c := p.ClientConfig("inputservice9protocoltest", cfgs...)
+	return newInputService9ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService9ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *InputService9ProtocolTest {
+	svc := &InputService9ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "InputService9ProtocolTest",
+				ServiceID:     "InputService9ProtocolTest",
+				SigningName:   signingName,
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "",
+				JSONVersion:   "1.1",
+				TargetPrefix:  "com.amazonaws.foo",
+			},
+			handlers,
+		),
+	}
+
+	// Handlers
+	svc.Handlers.Sign.PushBackNamed(v4.SignRequestHandler)
+	svc.Handlers.Build.PushBackNamed(jsonrpc.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(jsonrpc.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(jsonrpc.UnmarshalMetaHandler)
+	svc.Handlers.UnmarshalError.PushBackNamed(jsonrpc.UnmarshalErrorHandler)
+
+	return svc
+}
+
+// newRequest creates a new request for a InputService9ProtocolTest operation and runs any
+// custom request initialization.
+func (c *InputService9ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(op, params, data)
+
+	return req
+}
+
+const opInputService9TestCaseOperation1 = "StaticOp"
+
+// InputService9TestCaseOperation1Request generates a "aws/request.Request" representing the
+// client's request for the InputService9TestCaseOperation1 operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See InputService9TestCaseOperation1 for more information on using the InputService9TestCaseOperation1
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the InputService9TestCaseOperation1Request method.
+//    req, resp := client.InputService9TestCaseOperation1Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *InputService9ProtocolTest) InputService9TestCaseOperation1Request(input *InputService9TestShapeInputService9TestCaseOperation1Input) (req *request.Request, output *InputService9TestShapeInputService9TestCaseOperation1Output) {
+	op := &request.Operation{
+		Name:       opInputService9TestCaseOperation1,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &InputService9TestShapeInputService9TestCaseOperation1Input{}
+	}
+
+	output = &InputService9TestShapeInputService9TestCaseOperation1Output{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(jsonrpc.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("data-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// InputService9TestCaseOperation1 API operation for .
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for 's
+// API operation InputService9TestCaseOperation1 for usage and error information.
+func (c *InputService9ProtocolTest) InputService9TestCaseOperation1(input *InputService9TestShapeInputService9TestCaseOperation1Input) (*InputService9TestShapeInputService9TestCaseOperation1Output, error) {
+	req, out := c.InputService9TestCaseOperation1Request(input)
+	return out, req.Send()
+}
+
+// InputService9TestCaseOperation1WithContext is the same as InputService9TestCaseOperation1 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See InputService9TestCaseOperation1 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *InputService9ProtocolTest) InputService9TestCaseOperation1WithContext(ctx aws.Context, input *InputService9TestShapeInputService9TestCaseOperation1Input, opts ...request.Option) (*InputService9TestShapeInputService9TestCaseOperation1Output, error) {
+	req, out := c.InputService9TestCaseOperation1Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opInputService9TestCaseOperation2 = "MemberRefOp"
+
+// InputService9TestCaseOperation2Request generates a "aws/request.Request" representing the
+// client's request for the InputService9TestCaseOperation2 operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See InputService9TestCaseOperation2 for more information on using the InputService9TestCaseOperation2
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the InputService9TestCaseOperation2Request method.
+//    req, resp := client.InputService9TestCaseOperation2Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *InputService9ProtocolTest) InputService9TestCaseOperation2Request(input *InputService9TestShapeInputService9TestCaseOperation2Input) (req *request.Request, output *InputService9TestShapeInputService9TestCaseOperation2Output) {
+	op := &request.Operation{
+		Name:       opInputService9TestCaseOperation2,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &InputService9TestShapeInputService9TestCaseOperation2Input{}
+	}
+
+	output = &InputService9TestShapeInputService9TestCaseOperation2Output{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(jsonrpc.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("foo-{Name}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// InputService9TestCaseOperation2 API operation for .
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for 's
+// API operation InputService9TestCaseOperation2 for usage and error information.
+func (c *InputService9ProtocolTest) InputService9TestCaseOperation2(input *InputService9TestShapeInputService9TestCaseOperation2Input) (*InputService9TestShapeInputService9TestCaseOperation2Output, error) {
+	req, out := c.InputService9TestCaseOperation2Request(input)
+	return out, req.Send()
+}
+
+// InputService9TestCaseOperation2WithContext is the same as InputService9TestCaseOperation2 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See InputService9TestCaseOperation2 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *InputService9ProtocolTest) InputService9TestCaseOperation2WithContext(ctx aws.Context, input *InputService9TestShapeInputService9TestCaseOperation2Input, opts ...request.Option) (*InputService9TestShapeInputService9TestCaseOperation2Output, error) {
+	req, out := c.InputService9TestCaseOperation2Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+type InputService9TestShapeInputService9TestCaseOperation1Input struct {
+	_ struct{} `type:"structure"`
+
+	Name *string `type:"string"`
+}
+
+// SetName sets the Name field's value.
+func (s *InputService9TestShapeInputService9TestCaseOperation1Input) SetName(v string) *InputService9TestShapeInputService9TestCaseOperation1Input {
+	s.Name = &v
+	return s
+}
+
+type InputService9TestShapeInputService9TestCaseOperation1Output struct {
+	_ struct{} `type:"structure"`
+}
+
+type InputService9TestShapeInputService9TestCaseOperation2Input struct {
+	_ struct{} `type:"structure"`
+
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InputService9TestShapeInputService9TestCaseOperation2Input) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InputService9TestShapeInputService9TestCaseOperation2Input"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *InputService9TestShapeInputService9TestCaseOperation2Input) SetName(v string) *InputService9TestShapeInputService9TestCaseOperation2Input {
+	s.Name = &v
+	return s
+}
+
+func (s *InputService9TestShapeInputService9TestCaseOperation2Input) hostLabels() map[string]string {
+	return map[string]string{
+		"Name": aws.StringValue(s.Name),
+	}
+}
+
+type InputService9TestShapeInputService9TestCaseOperation2Output struct {
+	_ struct{} `type:"structure"`
+}
+
 //
 // Tests begin here
 //
@@ -2026,7 +2289,7 @@ func TestInputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	jsonrpc.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -2062,7 +2325,7 @@ func TestInputService2ProtocolTestTimestampValuesCase1(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	jsonrpc.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -2096,7 +2359,7 @@ func TestInputService3ProtocolTestBase64EncodedBlobsCase1(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	jsonrpc.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -2133,7 +2396,7 @@ func TestInputService3ProtocolTestBase64EncodedBlobsCase2(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	jsonrpc.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -2170,7 +2433,7 @@ func TestInputService4ProtocolTestNestedBlobsCase1(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	jsonrpc.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -2206,7 +2469,7 @@ func TestInputService5ProtocolTestRecursiveShapesCase1(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	jsonrpc.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -2244,7 +2507,7 @@ func TestInputService5ProtocolTestRecursiveShapesCase2(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	jsonrpc.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -2286,7 +2549,7 @@ func TestInputService5ProtocolTestRecursiveShapesCase3(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	jsonrpc.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -2329,7 +2592,7 @@ func TestInputService5ProtocolTestRecursiveShapesCase4(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	jsonrpc.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -2374,7 +2637,7 @@ func TestInputService5ProtocolTestRecursiveShapesCase5(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	jsonrpc.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -2417,7 +2680,7 @@ func TestInputService5ProtocolTestRecursiveShapesCase6(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	jsonrpc.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -2451,7 +2714,7 @@ func TestInputService6ProtocolTestEmptyMapsCase1(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	jsonrpc.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -2485,7 +2748,7 @@ func TestInputService7ProtocolTestIdempotencyTokenAutoFillCase1(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	jsonrpc.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -2511,7 +2774,7 @@ func TestInputService7ProtocolTestIdempotencyTokenAutoFillCase2(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	jsonrpc.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -2544,7 +2807,7 @@ func TestInputService8ProtocolTestEnumCase1(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	jsonrpc.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -2570,7 +2833,7 @@ func TestInputService8ProtocolTestEnumCase2(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	jsonrpc.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -2579,5 +2842,73 @@ func TestInputService8ProtocolTestEnumCase2(t *testing.T) {
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
+
+}
+
+func TestInputService9ProtocolTestEndpointHostTraitStaticPrefixCase1(t *testing.T) {
+	svc := NewInputService9ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://service.region.amazonaws.com")})
+	input := &InputService9TestShapeInputService9TestCaseOperation1Input{
+		Name: aws.String("myname"),
+	}
+	req, _ := svc.InputService9TestCaseOperation1Request(input)
+	r := req.HTTPRequest
+
+	// build request
+	req.Build()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
+
+	// assert body
+	if r.Body == nil {
+		t.Errorf("expect body not to be nil")
+	}
+	body, _ := ioutil.ReadAll(r.Body)
+	awstesting.AssertJSON(t, `{"Name": "myname"}`, util.Trim(string(body)))
+
+	// assert URL
+	awstesting.AssertURL(t, "https://data-service.region.amazonaws.com/", r.URL.String())
+
+	// assert headers
+	if e, a := "application/x-amz-json-1.1", r.Header.Get("Content-Type"); e != a {
+		t.Errorf("expect %v to be %v", e, a)
+	}
+	if e, a := "com.amazonaws.foo.StaticOp", r.Header.Get("X-Amz-Target"); e != a {
+		t.Errorf("expect %v to be %v", e, a)
+	}
+
+}
+
+func TestInputService9ProtocolTestEndpointHostTraitStaticPrefixCase2(t *testing.T) {
+	svc := NewInputService9ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://service.region.amazonaws.com")})
+	input := &InputService9TestShapeInputService9TestCaseOperation2Input{
+		Name: aws.String("myname"),
+	}
+	req, _ := svc.InputService9TestCaseOperation2Request(input)
+	r := req.HTTPRequest
+
+	// build request
+	req.Build()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
+
+	// assert body
+	if r.Body == nil {
+		t.Errorf("expect body not to be nil")
+	}
+	body, _ := ioutil.ReadAll(r.Body)
+	awstesting.AssertJSON(t, `{"Name": "myname"}`, util.Trim(string(body)))
+
+	// assert URL
+	awstesting.AssertURL(t, "https://foo-myname.service.region.amazonaws.com/", r.URL.String())
+
+	// assert headers
+	if e, a := "application/x-amz-json-1.1", r.Header.Get("Content-Type"); e != a {
+		t.Errorf("expect %v to be %v", e, a)
+	}
+	if e, a := "com.amazonaws.foo.MemberRefOp", r.Header.Get("X-Amz-Target"); e != a {
+		t.Errorf("expect %v to be %v", e, a)
+	}
 
 }

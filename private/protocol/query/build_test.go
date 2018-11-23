@@ -3456,6 +3456,267 @@ const (
 	EnumTypeBar = "bar"
 )
 
+// InputService16ProtocolTest provides the API operation methods for making requests to
+// . See this package's package overview docs
+// for details on the service.
+//
+// InputService16ProtocolTest methods are safe to use concurrently. It is not safe to
+// modify mutate any of the struct's properties though.
+type InputService16ProtocolTest struct {
+	*client.Client
+}
+
+// New creates a new instance of the InputService16ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService16ProtocolTest client from just a session.
+//     svc := inputservice16protocoltest.New(mySession)
+//
+//     // Create a InputService16ProtocolTest client with additional configuration
+//     svc := inputservice16protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService16ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService16ProtocolTest {
+	c := p.ClientConfig("inputservice16protocoltest", cfgs...)
+	return newInputService16ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService16ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *InputService16ProtocolTest {
+	svc := &InputService16ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "InputService16ProtocolTest",
+				ServiceID:     "InputService16ProtocolTest",
+				SigningName:   signingName,
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
+	}
+
+	// Handlers
+	svc.Handlers.Sign.PushBackNamed(v4.SignRequestHandler)
+	svc.Handlers.Build.PushBackNamed(query.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(query.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(query.UnmarshalMetaHandler)
+	svc.Handlers.UnmarshalError.PushBackNamed(query.UnmarshalErrorHandler)
+
+	return svc
+}
+
+// newRequest creates a new request for a InputService16ProtocolTest operation and runs any
+// custom request initialization.
+func (c *InputService16ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(op, params, data)
+
+	return req
+}
+
+const opInputService16TestCaseOperation1 = "StaticOp"
+
+// InputService16TestCaseOperation1Request generates a "aws/request.Request" representing the
+// client's request for the InputService16TestCaseOperation1 operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See InputService16TestCaseOperation1 for more information on using the InputService16TestCaseOperation1
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the InputService16TestCaseOperation1Request method.
+//    req, resp := client.InputService16TestCaseOperation1Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *InputService16ProtocolTest) InputService16TestCaseOperation1Request(input *InputService16TestShapeInputService16TestCaseOperation1Input) (req *request.Request, output *InputService16TestShapeInputService16TestCaseOperation1Output) {
+	op := &request.Operation{
+		Name:       opInputService16TestCaseOperation1,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &InputService16TestShapeInputService16TestCaseOperation1Input{}
+	}
+
+	output = &InputService16TestShapeInputService16TestCaseOperation1Output{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("data-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// InputService16TestCaseOperation1 API operation for .
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for 's
+// API operation InputService16TestCaseOperation1 for usage and error information.
+func (c *InputService16ProtocolTest) InputService16TestCaseOperation1(input *InputService16TestShapeInputService16TestCaseOperation1Input) (*InputService16TestShapeInputService16TestCaseOperation1Output, error) {
+	req, out := c.InputService16TestCaseOperation1Request(input)
+	return out, req.Send()
+}
+
+// InputService16TestCaseOperation1WithContext is the same as InputService16TestCaseOperation1 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See InputService16TestCaseOperation1 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *InputService16ProtocolTest) InputService16TestCaseOperation1WithContext(ctx aws.Context, input *InputService16TestShapeInputService16TestCaseOperation1Input, opts ...request.Option) (*InputService16TestShapeInputService16TestCaseOperation1Output, error) {
+	req, out := c.InputService16TestCaseOperation1Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opInputService16TestCaseOperation2 = "MemberRefOp"
+
+// InputService16TestCaseOperation2Request generates a "aws/request.Request" representing the
+// client's request for the InputService16TestCaseOperation2 operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See InputService16TestCaseOperation2 for more information on using the InputService16TestCaseOperation2
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the InputService16TestCaseOperation2Request method.
+//    req, resp := client.InputService16TestCaseOperation2Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *InputService16ProtocolTest) InputService16TestCaseOperation2Request(input *InputService16TestShapeInputService16TestCaseOperation2Input) (req *request.Request, output *InputService16TestShapeInputService16TestCaseOperation2Output) {
+	op := &request.Operation{
+		Name:       opInputService16TestCaseOperation2,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &InputService16TestShapeInputService16TestCaseOperation2Input{}
+	}
+
+	output = &InputService16TestShapeInputService16TestCaseOperation2Output{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("foo-{Name}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// InputService16TestCaseOperation2 API operation for .
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for 's
+// API operation InputService16TestCaseOperation2 for usage and error information.
+func (c *InputService16ProtocolTest) InputService16TestCaseOperation2(input *InputService16TestShapeInputService16TestCaseOperation2Input) (*InputService16TestShapeInputService16TestCaseOperation2Output, error) {
+	req, out := c.InputService16TestCaseOperation2Request(input)
+	return out, req.Send()
+}
+
+// InputService16TestCaseOperation2WithContext is the same as InputService16TestCaseOperation2 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See InputService16TestCaseOperation2 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *InputService16ProtocolTest) InputService16TestCaseOperation2WithContext(ctx aws.Context, input *InputService16TestShapeInputService16TestCaseOperation2Input, opts ...request.Option) (*InputService16TestShapeInputService16TestCaseOperation2Output, error) {
+	req, out := c.InputService16TestCaseOperation2Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+type InputService16TestShapeInputService16TestCaseOperation1Input struct {
+	_ struct{} `type:"structure"`
+
+	Name *string `type:"string"`
+}
+
+// SetName sets the Name field's value.
+func (s *InputService16TestShapeInputService16TestCaseOperation1Input) SetName(v string) *InputService16TestShapeInputService16TestCaseOperation1Input {
+	s.Name = &v
+	return s
+}
+
+type InputService16TestShapeInputService16TestCaseOperation1Output struct {
+	_ struct{} `type:"structure"`
+}
+
+type InputService16TestShapeInputService16TestCaseOperation2Input struct {
+	_ struct{} `type:"structure"`
+
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InputService16TestShapeInputService16TestCaseOperation2Input) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InputService16TestShapeInputService16TestCaseOperation2Input"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *InputService16TestShapeInputService16TestCaseOperation2Input) SetName(v string) *InputService16TestShapeInputService16TestCaseOperation2Input {
+	s.Name = &v
+	return s
+}
+
+func (s *InputService16TestShapeInputService16TestCaseOperation2Input) hostLabels() map[string]string {
+	return map[string]string{
+		"Name": aws.StringValue(s.Name),
+	}
+}
+
+type InputService16TestShapeInputService16TestCaseOperation2Output struct {
+	_ struct{} `type:"structure"`
+}
+
 //
 // Tests begin here
 //
@@ -3470,7 +3731,7 @@ func TestInputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -3498,7 +3759,7 @@ func TestInputService1ProtocolTestScalarMembersCase2(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -3526,7 +3787,7 @@ func TestInputService1ProtocolTestScalarMembersCase3(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -3556,7 +3817,7 @@ func TestInputService2ProtocolTestNestedStructureMembersCase1(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -3588,7 +3849,7 @@ func TestInputService3ProtocolTestListTypesCase1(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -3616,7 +3877,7 @@ func TestInputService3ProtocolTestListTypesCase2(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -3649,7 +3910,7 @@ func TestInputService4ProtocolTestFlattenedListCase1(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -3679,7 +3940,7 @@ func TestInputService4ProtocolTestFlattenedListCase2(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -3710,7 +3971,7 @@ func TestInputService5ProtocolTestSerializeFlattenedMapTypeCase1(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -3742,7 +4003,7 @@ func TestInputService6ProtocolTestNonFlattenedListWithLocationNameCase1(t *testi
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -3775,7 +4036,7 @@ func TestInputService7ProtocolTestFlattenedListWithLocationNameCase1(t *testing.
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -3806,7 +4067,7 @@ func TestInputService8ProtocolTestSerializeMapTypeCase1(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -3837,7 +4098,7 @@ func TestInputService9ProtocolTestSerializeMapTypeWithLocationNameCase1(t *testi
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -3865,7 +4126,7 @@ func TestInputService10ProtocolTestBase64EncodedBlobsCase1(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -3895,7 +4156,7 @@ func TestInputService11ProtocolTestBase64EncodedBlobsNestedCase1(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -3925,7 +4186,7 @@ func TestInputService12ProtocolTestTimestampValuesCase1(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -3955,7 +4216,7 @@ func TestInputService13ProtocolTestRecursiveShapesCase1(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -3987,7 +4248,7 @@ func TestInputService13ProtocolTestRecursiveShapesCase2(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -4023,7 +4284,7 @@ func TestInputService13ProtocolTestRecursiveShapesCase3(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -4060,7 +4321,7 @@ func TestInputService13ProtocolTestRecursiveShapesCase4(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -4099,7 +4360,7 @@ func TestInputService13ProtocolTestRecursiveShapesCase5(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -4136,7 +4397,7 @@ func TestInputService13ProtocolTestRecursiveShapesCase6(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -4164,7 +4425,7 @@ func TestInputService14ProtocolTestIdempotencyTokenAutoFillCase1(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -4190,7 +4451,7 @@ func TestInputService14ProtocolTestIdempotencyTokenAutoFillCase2(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -4223,7 +4484,7 @@ func TestInputService15ProtocolTestEnumCase1(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -4251,7 +4512,7 @@ func TestInputService15ProtocolTestEnumCase2(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -4277,7 +4538,7 @@ func TestInputService15ProtocolTestEnumCase3(t *testing.T) {
 	r := req.HTTPRequest
 
 	// build request
-	query.Build(req)
+	req.Build()
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
@@ -4291,6 +4552,62 @@ func TestInputService15ProtocolTestEnumCase3(t *testing.T) {
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
+
+	// assert headers
+
+}
+
+func TestInputService16ProtocolTestEndpointHostTraitCase1(t *testing.T) {
+	svc := NewInputService16ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://service.region.amazonaws.com")})
+	input := &InputService16TestShapeInputService16TestCaseOperation1Input{
+		Name: aws.String("myname"),
+	}
+	req, _ := svc.InputService16TestCaseOperation1Request(input)
+	r := req.HTTPRequest
+
+	// build request
+	req.Build()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
+
+	// assert body
+	if r.Body == nil {
+		t.Errorf("expect body not to be nil")
+	}
+	body, _ := ioutil.ReadAll(r.Body)
+	awstesting.AssertQuery(t, `Action=StaticOp&Name=myname&Version=2014-01-01`, util.Trim(string(body)))
+
+	// assert URL
+	awstesting.AssertURL(t, "https://data-service.region.amazonaws.com/", r.URL.String())
+
+	// assert headers
+
+}
+
+func TestInputService16ProtocolTestEndpointHostTraitCase2(t *testing.T) {
+	svc := NewInputService16ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://service.region.amazonaws.com")})
+	input := &InputService16TestShapeInputService16TestCaseOperation2Input{
+		Name: aws.String("myname"),
+	}
+	req, _ := svc.InputService16TestCaseOperation2Request(input)
+	r := req.HTTPRequest
+
+	// build request
+	req.Build()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
+
+	// assert body
+	if r.Body == nil {
+		t.Errorf("expect body not to be nil")
+	}
+	body, _ := ioutil.ReadAll(r.Body)
+	awstesting.AssertQuery(t, `Action=MemberRefOp&Name=myname&Version=2014-01-01`, util.Trim(string(body)))
+
+	// assert URL
+	awstesting.AssertURL(t, "https://foo-myname.service.region.amazonaws.com/", r.URL.String())
 
 	// assert headers
 
