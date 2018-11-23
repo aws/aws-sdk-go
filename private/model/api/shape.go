@@ -49,6 +49,7 @@ type ShapeRef struct {
 	Deprecated          bool   `json:"deprecated"`
 	DeprecatedMsg       string `json:"deprecatedMessage"`
 	EndpointDiscoveryID bool   `json:"endpointdiscoveryid"`
+	HostLabel           bool   `json:"hostLabel"`
 
 	OrigShapeName string `json:"-"`
 
@@ -81,7 +82,6 @@ type Shape struct {
 	TimestampFormat  string `json:"timestampFormat"`
 	XMLNamespace     XMLInfo
 	Min              float64 // optional Minimum length (string, list) or value (number)
-	Max              float64 // optional Maximum length (string, list) or value (number)
 
 	EventStreamsMemberName string          `json:"-"`
 	EventStreamAPI         *EventStreamAPI `json:"-"`
@@ -110,6 +110,18 @@ type Shape struct {
 	// Flags that the shape cannot be rename. Prevents the shape from being
 	// renamed further by the Input/Output.
 	AliasedShapeName bool
+}
+
+// CanBeEmpty returns if the shape value can sent request as an empty value.
+// String, blob, list, and map are types must not be empty when the member is
+// decorated with HostLabel.
+func (ref *ShapeRef) CanBeEmpty() bool {
+	switch ref.Shape.Type {
+	case "string":
+		return !ref.HostLabel
+	default:
+		return true
+	}
 }
 
 // ErrorCodeName will return the error shape's name formated for
@@ -616,6 +628,12 @@ var structShapeTmpl = func() *template.Template {
 	)
 	shapeTmpl.Funcs(eventStreamEventShapeTmplFuncs)
 
+	template.Must(
+		shapeTmpl.AddParseTree(
+			"hostLabelsShapeTmpl",
+			hostLabelsShapeTmpl.Tree),
+	)
+
 	return shapeTmpl
 }()
 
@@ -710,6 +728,10 @@ type {{ .ShapeName }} struct {
 		{{ template "eventStreamExceptionEventShapeTmpl" $ }}
 	{{ end -}}
 {{ end }}
+
+{{ if $.HasHostLabelMembers }}
+	{{ template "hostLabelsShapeTmpl" $ }}
+{{ end }}
 `
 
 var enumShapeTmpl = template.Must(template.New("EnumShape").Parse(`
@@ -766,8 +788,19 @@ func (s *Shape) IsEnum() bool {
 	return s.Type == "string" && len(s.Enum) > 0
 }
 
-// IsRequired returns if member is a required field.
+// IsRequired returns if member is a required field. Required fields are fields
+// marked as required, or hostLabels.
 func (s *Shape) IsRequired(member string) bool {
+	ref, ok := s.MemberRefs[member]
+	if !ok {
+		panic(fmt.Sprintf(
+			"attemped to check required for unknown member, %s.%s",
+			s.ShapeName, member,
+		))
+	}
+	if ref.HostLabel {
+		return true
+	}
 	for _, n := range s.Required {
 		if n == member {
 			return true
