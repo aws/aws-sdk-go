@@ -3,7 +3,9 @@
 package api
 
 import (
+	"fmt"
 	"io/ioutil"
+	"os"
 	"path/filepath"
 	"strings"
 )
@@ -135,13 +137,15 @@ func s3CustRemoveHeadObjectModeledErrors(a *API) {
 // S3 service operations with an AccountId need accessors to be generated for
 // them so the fields can be dynamically accessed without reflection.
 func s3ControlCustomizations(a *API) {
-	for _, op := range a.Operations {
+	for opName, op := range a.Operations {
 		// Add moving AccountId into the hostname instead of header.
-		if _, ok := op.InputRef.Shape.MemberRefs["AccountId"]; ok {
-			op.CustomBuildHandlers = append(op.CustomBuildHandlers,
-				`buildPrefixHostHandler("AccountID", aws.StringValue(input.AccountId))`,
-				`buildRemoveHeaderHandler("X-Amz-Account-Id")`,
-			)
+		if ref, ok := op.InputRef.Shape.MemberRefs["AccountId"]; ok {
+			if op.Endpoint != nil {
+				fmt.Fprintf(os.Stderr, "S3 Control, %s, model already defining endpoint trait, remove this customization.\n", opName)
+			}
+
+			op.Endpoint = &EndpointTrait{HostPrefix: "{AccountId}."}
+			ref.HostLabel = true
 		}
 	}
 }
@@ -181,7 +185,7 @@ func mergeServicesCustomizations(a *API) {
 
 	for n := range a.Shapes {
 		if _, ok := serviceAPI.Shapes[n]; ok {
-			a.Shapes[n].resolvePkg = SDKImportRoot+"/service/" + info.dstName
+			a.Shapes[n].resolvePkg = SDKImportRoot + "/service/" + info.dstName
 		}
 	}
 }
