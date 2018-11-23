@@ -565,24 +565,22 @@ type temporary interface {
 	Temporary() bool
 }
 
-func shouldRetryCancel(r *Request) bool {
-	temporaryError := false
-	err := r.Error
-	if awsErr, ok := err.(awserr.Error); ok {
-		if awsErr.Code() == CanceledErrorCode {
+func shouldRetryCancel(err error) bool {
+	switch err := err.(type) {
+	case awserr.Error:
+		if err.Code() == CanceledErrorCode {
 			return false
 		}
-		err = awsErr.OrigErr()
-	}
-
-	switch err := err.(type) {
+		return shouldRetryCancel(err.OrigErr())
 	case temporary:
-		temporaryError = err.Temporary()
+		// If the error is temporary, we want to
+		// allow continuation of the retry process.
+		return err.Temporary()
+	default:
+		// here we don't know the error;
+		// so we allow a retry.
+		return true
 	}
-
-	// If the error is temporary, we want to continue the retry
-	// process. Otherwise, we don't.
-	return temporaryError
 }
 
 // SanitizeHostForHeader removes default port from host and updates request.Host
