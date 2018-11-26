@@ -1,3 +1,17 @@
+Release v1.15.82 (2018-11-26)
+===
+
+### Service Client Updates
+* `service/amplify`: Adds new service
+* `service/datasync`: Adds new service
+* `service/robomaker`: Adds new service
+* `service/s3`: Updates service API, documentation, and examples
+  * The INTELLIGENT_TIERING storage class is designed to optimize storage costs by automatically moving data to the most cost effective storage access tier, without performance impact or operational overhead. This SDK release provides API support for this new storage class.
+* `service/snowball`: Updates service API and documentation
+  * AWS announces the availability of AWS Snowball Edge Compute Optimized to run compute-intensive applications is disconnected and physically harsh environments. It comes with 52 vCPUs, 208GB memory, 8TB NVMe SSD, and 42TB S3-compatible storage to accelerate local processing and is well suited for use cases such as full motion video processing, deep IoT analytics, and continuous machine learning in bandwidth-constrained locations. It features new instances types called SBE-C instances that are available in eight sizes and multiple instances can be run on the device at the same time. Optionally, developers can choose the compute optimized device to include a GPU and use SBE-G instances for accelerating their application performance.
+* `service/transfer`: Adds new service
+  * AWS Transfer for SFTP is a fully managed service that enables transfer of secure data over the internet into and out of Amazon S3. SFTP is deeply embedded in data exchange workflows across different industries such as financial services, healthcare, advertising, and retail, among others.
+
 Release v1.15.81 (2018-11-21)
 ===
 
