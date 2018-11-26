@@ -80,12 +80,17 @@ func TestAsyncEndpointDiscovery(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	for s := time.Now().Add(1 * time.Second); s.After(time.Now()); {
+	var cacheUpdated bool
+	for s := time.Now().Add(10 * time.Second); s.After(time.Now()); {
 		// Wait for the cache to be updated before making second request.
 		if svc.endpointCache.Has(req.Operation.Name) {
+			cacheUpdated = true
 			break
 		}
 		time.Sleep(10 * time.Millisecond)
+	}
+	if !cacheUpdated {
+		t.Fatalf("expect endpoint cache to be updated, was not")
 	}
 
 	req, _ = svc.TestDiscoveryOptionalRequest(&TestDiscoveryOptionalInput{
