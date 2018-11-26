@@ -21,7 +21,7 @@
     "DeleteObject": "<p>Removes the null version (if there is one) of an object and inserts a delete marker, which becomes the latest version of the object. If there isn't a null version, Amazon S3 does not remove any objects.</p>",
     "DeleteObjectTagging": "<p>Removes the tag-set from an existing object.</p>",
     "DeleteObjects": "<p>This operation enables you to delete multiple objects from a bucket using a single HTTP request. You may specify up to 1000 keys.</p>",
-    "DeletePublicAccessBlock": "<p>Removes the Public Access Block configuration for an Amazon S3 bucket.</p>",
+    "DeletePublicAccessBlock": "<p>Removes the <code>PublicAccessBlock</code> configuration from an Amazon S3 bucket.</p>",
     "GetBucketAccelerateConfiguration": "<p>Returns the accelerate configuration of a bucket.</p>",
     "GetBucketAcl": "<p>Gets the access control policy for the bucket.</p>",
     "GetBucketAnalyticsConfiguration": "<p>Gets an analytics configuration for the bucket (specified by the analytics configuration ID).</p>",
@@ -46,7 +46,7 @@
     "GetObjectAcl": "<p>Returns the access control list (ACL) of an object.</p>",
     "GetObjectTagging": "<p>Returns the tag-set of an object.</p>",
     "GetObjectTorrent": "<p>Return torrent files from a bucket.</p>",
-    "GetPublicAccessBlock": "<p>Retrieves the Public Access Block configuration for an Amazon S3 bucket.</p>",
+    "GetPublicAccessBlock": "<p>Retrieves the <code>PublicAccessBlock</code> configuration for an Amazon S3 bucket.</p>",
     "HeadBucket": "<p>This operation is useful to determine if a bucket exists and you have permission to access it.</p>",
     "HeadObject": "<p>The HEAD operation retrieves metadata from an object without returning the object itself. This operation is useful if you're only interested in an object's metadata. To use HEAD, you must have READ access to the object.</p>",
     "ListBucketAnalyticsConfigurations": "<p>Lists the analytics configurations for the bucket.</p>",
@@ -79,7 +79,7 @@
     "PutObject": "<p>Adds an object to a bucket.</p>",
     "PutObjectAcl": "<p>uses the acl subresource to set the access control list (ACL) permissions for an object that already exists in a bucket</p>",
     "PutObjectTagging": "<p>Sets the supplied tag-set to an object that already exists in a bucket</p>",
-    "PutPublicAccessBlock": "<p>Creates or modifies the Public Access Block configuration for an Amazon S3 bucket.</p>",
+    "PutPublicAccessBlock": "<p>Creates or modifies the <code>PublicAccessBlock</code> configuration for an Amazon S3 bucket.</p>",
     "RestoreObject": "<p>Restores an archived copy of an object back into Amazon S3</p>",
     "SelectObjectContent": "<p>This operation filters the contents of an Amazon S3 object based on a simple Structured Query Language (SQL) statement. In the request, along with the SQL expression, you must also specify a data serialization format (JSON or CSV) of the object. Amazon S3 uses this to parse object data into records, and returns only records that match the specified SQL expression. You must also specify the data serialization format for the response.</p>",
     "UploadPart": "<p>Uploads a part in a multipart upload.</p> <p> <b>Note:</b> After you initiate multipart upload and upload one or more parts, you must either complete or abort multipart upload in order to stop getting charged for storage of the uploaded parts. Only after you either complete or abort multipart upload, Amazon S3 frees up the parts storage and stops charging you for the parts storage.</p>",
@@ -337,7 +337,7 @@
         "DeleteObjectRequest$Bucket": null,
         "DeleteObjectTaggingRequest$Bucket": null,
         "DeleteObjectsRequest$Bucket": null,
-        "DeletePublicAccessBlockRequest$Bucket": "<p> The Amazon S3 bucket whose Public Access Block configuration you want to delete. </p>",
+        "DeletePublicAccessBlockRequest$Bucket": "<p>The Amazon S3 bucket whose <code>PublicAccessBlock</code> configuration you want to delete. </p>",
         "Destination$Bucket": "<p> The Amazon Resource Name (ARN) of the bucket where you want Amazon S3 to store replicas of the object identified by the rule. </p> <p> If there are multiple rules in your replication configuration, all rules must specify the same bucket as the destination. A replication configuration can replicate objects to only one destination bucket. </p>",
         "GetBucketAccelerateConfigurationRequest$Bucket": "<p>Name of the bucket for which the accelerate configuration is retrieved.</p>",
         "GetBucketAclRequest$Bucket": null,
@@ -352,7 +352,7 @@
         "GetBucketMetricsConfigurationRequest$Bucket": "<p>The name of the bucket containing the metrics configuration to retrieve.</p>",
         "GetBucketNotificationConfigurationRequest$Bucket": "<p>Name of the bucket to get the notification configuration for.</p>",
         "GetBucketPolicyRequest$Bucket": null,
-        "GetBucketPolicyStatusRequest$Bucket": "<p>The name of the Amazon S3 bucket whose public-policy status you want to retrieve.</p>",
+        "GetBucketPolicyStatusRequest$Bucket": "<p>The name of the Amazon S3 bucket whose policy status you want to retrieve.</p>",
         "GetBucketReplicationRequest$Bucket": null,
         "GetBucketRequestPaymentRequest$Bucket": null,
         "GetBucketTaggingRequest$Bucket": null,
@@ -362,7 +362,7 @@
         "GetObjectRequest$Bucket": null,
         "GetObjectTaggingRequest$Bucket": null,
         "GetObjectTorrentRequest$Bucket": null,
-        "GetPublicAccessBlockRequest$Bucket": "<p> The name of the Amazon S3 bucket whose Public Access Block configuration you want to retrieve. </p>",
+        "GetPublicAccessBlockRequest$Bucket": "<p>The name of the Amazon S3 bucket whose <code>PublicAccessBlock</code> configuration you want to retrieve. </p>",
         "HeadBucketRequest$Bucket": null,
         "HeadObjectRequest$Bucket": null,
         "InventoryS3BucketDestination$Bucket": "<p>The Amazon resource name (ARN) of the bucket where inventory results will be published.</p>",
@@ -400,7 +400,7 @@
         "PutObjectAclRequest$Bucket": null,
         "PutObjectRequest$Bucket": "<p>Name of the bucket to which the PUT operation was initiated.</p>",
         "PutObjectTaggingRequest$Bucket": null,
-        "PutPublicAccessBlockRequest$Bucket": "<p>The name of the Amazon S3 bucket whose Public Access Block configuration you want to set.</p>",
+        "PutPublicAccessBlockRequest$Bucket": "<p>The name of the Amazon S3 bucket whose <code>PublicAccessBlock</code> configuration you want to set.</p>",
         "RestoreObjectRequest$Bucket": null,
         "S3Location$BucketName": "<p>The name of the bucket where the restore results will be placed.</p>",
         "SelectObjectContentRequest$Bucket": "<p>The S3 bucket.</p>",
@@ -631,7 +631,7 @@
         "PutObjectAclRequest$ContentMD5": null,
         "PutObjectRequest$ContentMD5": "<p>The base64-encoded 128-bit MD5 digest of the part data.</p>",
         "PutObjectTaggingRequest$ContentMD5": null,
-        "PutPublicAccessBlockRequest$ContentMD5": "<p> The MD5 hash of the <code>PutPublicBlock</code> request body. </p>",
+        "PutPublicAccessBlockRequest$ContentMD5": "<p>The MD5 hash of the <code>PutPublicAccessBlock</code> request body. </p>",
         "UploadPartRequest$ContentMD5": "<p>The base64-encoded 128-bit MD5 digest of the part data.</p>"
       }
     },
@@ -1697,7 +1697,7 @@
     "IsPublic": {
       "base": null,
       "refs": {
-        "PolicyStatus$IsPublic": "<p>The public-policy status for this bucket. <code>TRUE</code> indicates that this bucket is public. <code>FALSE</code> indicates that the bucket is not public.</p>"
+        "PolicyStatus$IsPublic": "<p>The policy status for this bucket. <code>TRUE</code> indicates that this bucket is public. <code>FALSE</code> indicates that the bucket is not public.</p>"
       }
     },
     "IsTruncated": {
@@ -2162,7 +2162,7 @@
       }
     },
     "NoncurrentVersionTransition": {
-      "base": "<p>Container for the transition rule that describes when noncurrent objects transition to the STANDARD_IA, ONEZONE_IA, or GLACIER storage class. If your bucket is versioning-enabled (or versioning is suspended), you can set this action to request that Amazon S3 transition noncurrent object versions to the STANDARD_IA, ONEZONE_IA, or GLACIER storage class at a specific period in the object's lifetime.</p>",
+      "base": "<p>Container for the transition rule that describes when noncurrent objects transition to the STANDARD_IA, ONEZONE_IA, INTELLIGENT_TIERING or GLACIER storage class. If your bucket is versioning-enabled (or versioning is suspended), you can set this action to request that Amazon S3 transition noncurrent object versions to the STANDARD_IA, ONEZONE_IA, INTELLIGENT_TIERING or GLACIER storage class at a specific period in the object's lifetime.</p>",
       "refs": {
         "NoncurrentVersionTransitionList$member": null,
         "Rule$NoncurrentVersionTransition": null
@@ -2435,9 +2435,9 @@
       }
     },
     "PolicyStatus": {
-      "base": "<p>The container element for this bucket's public-policy status.</p>",
+      "base": "<p>The container element for a bucket's policy status.</p>",
       "refs": {
-        "GetBucketPolicyStatusOutput$PolicyStatus": "<p>The public-policy status for this bucket.</p>"
+        "GetBucketPolicyStatusOutput$PolicyStatus": "<p>The policy status for the specified bucket.</p>"
       }
     },
     "Prefix": {
@@ -2494,10 +2494,10 @@
       }
     },
     "PublicAccessBlockConfiguration": {
-      "base": "<p>The container element for all Public Access Block configuration options. You can enable the configuration options in any combination.</p> <p>Amazon S3 considers a bucket policy public unless at least one of the following conditions is true:</p> <ol> <li> <p>The policy limits access to a set of CIDRs using <code>aws:SourceIp</code>. For more information on CIDR, see <a href=\"http://www.rfc-editor.org/rfc/rfc4632.txt\">http://www.rfc-editor.org/rfc/rfc4632.txt</a> </p> </li> <li> <p>The policy grants permissions, not including any \"bad actions,\" to one of the following:</p> <ul> <li> <p>A fixed AWS principal, user, role, or service principal</p> </li> <li> <p>A fixed <code>aws:SourceArn</code> </p> </li> <li> <p>A fixed <code>aws:SourceVpc</code> </p> </li> <li> <p>A fixed <code>aws:SourceVpce</code> </p> </li> <li> <p>A fixed <code>aws:SourceOwner</code> </p> </li> <li> <p>A fixed <code>aws:SourceAccount</code> </p> </li> <li> <p>A fixed value of <code>s3:x-amz-server-side-encryption-aws-kms-key-id</code> </p> </li> <li> <p>A fixed value of <code>aws:userid</code> outside the pattern \"<code>AROLEID:*</code>\"</p> </li> </ul> </li> </ol> <p>\"Bad actions\" are those that could expose the data inside a bucket to reads or writes by the public. These actions are <code>s3:Get*</code>, <code>s3:List*</code>, <code>s3:AbortMultipartUpload</code>, <code>s3:Delete*</code>, <code>s3:Put*</code>, and <code>s3:RestoreObject</code>.</p> <p>The star notation for bad actions indicates that all matching operations are considered bad actions. For example, because <code>s3:Get*</code> is a bad action, <code>s3:GetObject</code>, <code>s3:GetObjectVersion</code>, and <code>s3:GetObjectAcl</code> are all bad actions.</p>",
+      "base": null,
       "refs": {
-        "GetPublicAccessBlockOutput$PublicAccessBlockConfiguration": "<p>The Public Access Block configuration currently in effect for this Amazon S3 bucket.</p>",
-        "PutPublicAccessBlockRequest$PublicAccessBlockConfiguration": "<p>The Public Access Block configuration that you want to apply to this Amazon S3 bucket.</p>"
+        "GetPublicAccessBlockOutput$PublicAccessBlockConfiguration": "<p>The <code>PublicAccessBlock</code> configuration currently in effect for this Amazon S3 bucket.</p>",
+        "PutPublicAccessBlockRequest$PublicAccessBlockConfiguration": "<p>The <code>PublicAccessBlock</code> configuration that you want to apply to this Amazon S3 bucket. You can enable the configuration options in any combination. For more information about when &amp;S3; considers a bucket or object public, see For more information about when Amazon S3 considers a bucket or object public, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status\">The Meaning of \"Public\"</a> in the Amazon Simple Storage Service Developer Guide.</p>"
       }
     },
     "PutBucketAccelerateConfigurationRequest": {
@@ -3095,10 +3095,10 @@
     "Setting": {
       "base": null,
       "refs": {
-        "PublicAccessBlockConfiguration$BlockPublicAcls": "<p/> <p>Specifies whether Amazon S3 should block public ACLs for this bucket. Setting this element to <code>TRUE</code> causes the following behavior:</p> <ul> <li> <p>PUT Bucket acl and PUT Object acl calls will fail if the specified ACL allows public access.</p> </li> <li> <p>PUT Object calls will fail if the request includes an object ACL.</p> </li> </ul> <p>Note that enabling this setting doesn't affect existing policies or ACLs.</p>",
-        "PublicAccessBlockConfiguration$IgnorePublicAcls": "<p>Specifies whether Amazon S3 should ignore public ACLs for this bucket. Setting this element to <code>TRUE</code> causes Amazon S3 to ignore all public ACLs on this bucket and any objects that it contains. </p> <p>Note that enabling this setting doesn't affect the persistence of any existing ACLs and doesn't prevent new public ACLs from being set.</p>",
-        "PublicAccessBlockConfiguration$BlockPublicPolicy": "<p>Specifies whether Amazon S3 should block public bucket policies for this bucket. Setting this element to <code>TRUE</code> causes Amazon S3 to reject calls to PUT Bucket policy if the specified bucket policy allows public access. </p> <p>Note that enabling this setting doesn't affect existing bucket policies.</p>",
-        "PublicAccessBlockConfiguration$RestrictPublicBuckets": "<p>Specifies whether Amazon S3 should restrict public bucket policies for this bucket. If this element is set to <code>TRUE</code>, then only the bucket owner and AWS Services can access this bucket if it has a public policy.</p> <p>Note that enabling this setting doesn't affect previously stored bucket policies, except that public and cross-account access within any public bucket policy, including non-public delegation to specific accounts, is blocked.</p>"
+        "PublicAccessBlockConfiguration$BlockPublicAcls": "<p>Specifies whether Amazon S3 should block public access control lists (ACLs) for this bucket and objects in this bucket. Setting this element to <code>TRUE</code> causes the following behavior:</p> <ul> <li> <p>PUT Bucket acl and PUT Object acl calls fail if the specified ACL is public.</p> </li> <li> <p>PUT Object calls fail if the request includes a public ACL.</p> </li> </ul> <p>Enabling this setting doesn't affect existing policies or ACLs.</p>",
+        "PublicAccessBlockConfiguration$IgnorePublicAcls": "<p>Specifies whether Amazon S3 should ignore public ACLs for this bucket and objects in this bucket. Setting this element to <code>TRUE</code> causes Amazon S3 to ignore all public ACLs on this bucket and objects in this bucket.</p> <p>Enabling this setting doesn't affect the persistence of any existing ACLs and doesn't prevent new public ACLs from being set.</p>",
+        "PublicAccessBlockConfiguration$BlockPublicPolicy": "<p>Specifies whether Amazon S3 should block public bucket policies for this bucket. Setting this element to <code>TRUE</code> causes Amazon S3 to reject calls to PUT Bucket policy if the specified bucket policy allows public access. </p> <p>Enabling this setting doesn't affect existing bucket policies.</p>",
+        "PublicAccessBlockConfiguration$RestrictPublicBuckets": "<p>Specifies whether Amazon S3 should restrict public bucket policies for this bucket. Setting this element to <code>TRUE</code> restricts access to this bucket to only AWS services and authorized users within this account if the bucket has a public policy.</p> <p>Enabling this setting doesn't affect previously stored bucket policies, except that public and cross-account access within any public bucket policy, including non-public delegation to specific accounts, is blocked.</p>"
       }
     },
     "Size": {

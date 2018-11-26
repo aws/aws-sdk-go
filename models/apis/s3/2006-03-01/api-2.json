@@ -4192,7 +4192,8 @@
         "REDUCED_REDUNDANCY",
         "GLACIER",
         "STANDARD_IA",
-        "ONEZONE_IA"
+        "ONEZONE_IA",
+        "INTELLIGENT_TIERING"
       ]
     },
     "ObjectVersion":{
@@ -5638,7 +5639,8 @@
         "STANDARD",
         "REDUCED_REDUNDANCY",
         "STANDARD_IA",
-        "ONEZONE_IA"
+        "ONEZONE_IA",
+        "INTELLIGENT_TIERING"
       ]
     },
     "StorageClassAnalysis":{
@@ -5780,7 +5782,8 @@
       "enum":[
         "GLACIER",
         "STANDARD_IA",
-        "ONEZONE_IA"
+        "ONEZONE_IA",
+        "INTELLIGENT_TIERING"
       ]
     },
     "Type":{
