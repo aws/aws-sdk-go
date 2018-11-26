@@ -76,14 +76,14 @@ ci-test-generate-validate:
 
 integration: integ-custom smoke-tests performance
 
-integ-custom: get-deps-integ
+integ-custom:
 	go test -tags "integration" -v ./awstesting/integration/customizations/...
 
 cleanup-integ-buckets:
 	go run -tags "integration" ./awstesting/cmd/bucket_cleanup/main.go "aws-sdk-go-integration"
 
-smoke-tests: get-deps-integ
-	gucumber -go-tags "integration" ./awstesting/integration/smoke
+smoke-tests:
+	go test -count=1 -tags "integration" -run TestInteg_ -v ./service/... | grep -v '?'
 
 performance: get-deps-integ
 	AWS_TESTING_LOG_RESULTS=${log-detailed} AWS_TESTING_REGION=$(region) AWS_TESTING_DB_TABLE=$(table) gucumber -go-tags "integration" ./awstesting/performance
