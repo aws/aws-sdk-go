@@ -576,6 +576,12 @@ func shouldRetryCancel(err error) bool {
 		// If the error is temporary, we want to
 		// allow continuation of the retry process.
 		return err.Temporary()
+	case *url.Error:
+		// *url.Error only implements Temporary
+		// after golang 1.6
+		// but since url.Error only wraps
+		// the error:
+		return shouldRetryCancel(err.Err)
 	default:
 		// here we don't know the error;
 		// so we allow a retry.
