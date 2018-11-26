@@ -1,6 +1,6 @@
 // +build integration
 
-package s3
+package s3_test
 
 import (
 	"fmt"
@@ -10,6 +10,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/awstesting/integration"
+	"github.com/aws/aws-sdk-go/awstesting/integration/s3integ"
 	"github.com/aws/aws-sdk-go/service/s3"
 )
 
@@ -19,15 +20,16 @@ var bucketName *string
 var svc *s3.S3
 
 func TestMain(m *testing.M) {
-	svc = s3.New(integration.Session)
-	bucketName = aws.String(GenerateBucketName())
-	if err := SetupTest(svc, *bucketName); err != nil {
+	sess := integration.SessionWithDefaultRegion("us-west-2")
+	svc = s3.New(sess)
+	bucketName = aws.String(s3integ.GenerateBucketName())
+	if err := s3integ.SetupTest(svc, *bucketName); err != nil {
 		panic(err)
 	}
 
 	var result int
 	defer func() {
-		if err := CleanupTest(svc, *bucketName); err != nil {
+		if err := s3integ.CleanupTest(svc, *bucketName); err != nil {
 			fmt.Fprintln(os.Stderr, err)
 		}
 		if r := recover(); r != nil {
@@ -51,6 +53,7 @@ func putTestFile(t *testing.T, filename, key string) {
 }
 
 func putTestContent(t *testing.T, reader io.ReadSeeker, key string) {
+	fmt.Println(bucketName, key, svc)
 	_, err := svc.PutObject(&s3.PutObjectInput{
 		Bucket: bucketName,
 		Key:    aws.String(key),

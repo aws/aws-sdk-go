@@ -1,7 +1,6 @@
 // +build integration
 
-// Package s3manager provides integration tests for the service/s3/s3manager package
-package s3manager
+package s3manager_test
 
 import (
 	"bytes"
@@ -13,7 +12,6 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/awstesting/integration"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 )
@@ -23,7 +21,7 @@ var integMD512MB = fmt.Sprintf("%x", md5.Sum(integBuf12MB))
 
 func TestUploadConcurrently(t *testing.T) {
 	key := "12mb-1"
-	mgr := s3manager.NewUploader(integration.Session)
+	mgr := s3manager.NewUploader(integSess)
 	out, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: bucketName,
 		Key:    &key,
@@ -46,8 +44,6 @@ func TestUploadConcurrently(t *testing.T) {
 }
 
 func TestUploadFailCleanup(t *testing.T) {
-	svc := s3.New(integration.Session)
-
 	// Break checksum on 2nd part so it fails
 	part := 0
 	svc.Handlers.Build.PushBack(func(r *request.Request) {

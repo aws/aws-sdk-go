@@ -1,7 +1,6 @@
 // +build integration
 
-// Package s3 runs integration tests for S3
-package s3
+package s3_test
 
 import (
 	"bytes"

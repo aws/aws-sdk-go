@@ -1,6 +1,6 @@
 // +build integration
 
-package s3manager
+package s3manager_test
 
 import (
 	"crypto/md5"
@@ -10,16 +10,23 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/awstesting/integration"
-	s3integ "github.com/aws/aws-sdk-go/awstesting/integration/customizations/s3"
+	"github.com/aws/aws-sdk-go/awstesting/integration/s3integ"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 )
 
+func init() {
+	integSess = integration.SessionWithDefaultRegion("us-west-2")
+}
+
+var integSess *session.Session
 var bucketName *string
+var svc *s3.S3
 
 func TestMain(m *testing.M) {
-	svc := s3.New(integration.Session)
+	svc = s3.New(integSess)
 	bucketName = aws.String(s3integ.GenerateBucketName())
 	if err := s3integ.SetupTest(svc, *bucketName); err != nil {
 		panic(err)
@@ -65,7 +72,7 @@ func (d dlwriter) WriteAt(p []byte, pos int64) (n int, err error) {
 }
 
 func validate(t *testing.T, key string, md5value string) {
-	mgr := s3manager.NewDownloader(integration.Session)
+	mgr := s3manager.NewDownloader(integSess)
 	params := &s3.GetObjectInput{Bucket: bucketName, Key: &key}
 
 	w := newDLWriter(1024 * 1024 * 20)

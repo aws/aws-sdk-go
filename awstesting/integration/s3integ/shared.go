@@ -1,6 +1,6 @@
 // +build integration
 
-package s3
+package s3integ
 
 import (
 	"fmt"

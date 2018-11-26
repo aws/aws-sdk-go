@@ -1,20 +1,19 @@
 // +build integration
 
-package s3manager
+package s3manager_test
 
 import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/awstesting/integration"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 )
 
 func TestGetBucketRegion(t *testing.T) {
-	expectRegion := aws.StringValue(integration.Session.Config.Region)
+	expectRegion := aws.StringValue(integSess.Config.Region)
 
 	ctx := aws.BackgroundContext()
-	region, err := s3manager.GetBucketRegion(ctx, integration.Session,
+	region, err := s3manager.GetBucketRegion(ctx, integSess,
 		aws.StringValue(bucketName), expectRegion)
 
 	if err != nil {

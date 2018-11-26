@@ -55,7 +55,8 @@ func setup() {
 		tlsCfg.InsecureSkipVerify = true
 	}
 
-	sess := integration.Session.Copy(&aws.Config{
+	sess := integration.SessionWithDefaultRegion("us-west-2")
+	sess.Copy(&aws.Config{
 		HTTPClient: &http.Client{
 			Transport: &http.Transport{
 				TLSClientConfig: tlsCfg,

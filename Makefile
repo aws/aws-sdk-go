@@ -74,10 +74,8 @@ ci-test-generate-validate:
 	echo "$$gitstatus"; \
 	if [ "$$gitstatus" != "" ] && [ "$$gitstatus" != "skipping validation" ]; then echo "$$gitstatus"; exit 1; fi
 
-integration: integ-custom smoke-tests performance
-
-integ-custom:
-	go test -tags "integration" -v ./awstesting/integration/customizations/...
+integration: get-deps-integ
+	go test -count=1 -tags "integration" -v ./service/...
 
 cleanup-integ-buckets:
 	go run -tags "integration" ./awstesting/cmd/bucket_cleanup/main.go "aws-sdk-go-integration"
