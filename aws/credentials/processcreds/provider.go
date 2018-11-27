@@ -2,8 +2,7 @@
 Package processcreds is a credential Provider to retrieve `credential_process`
 credentials.
 
-**Warning:**
-The following describes a method of sourcing credentials from an external
+WARNING: The following describes a method of sourcing credentials from an external
 process. This can potentially be dangerous, so proceed with caution. Other
 credential providers should be preferred if at all possible. If using this
 option, you should make sure that the config file is as locked down as possible
@@ -65,15 +64,15 @@ buffer size of 2k.
 
 You can also use your own `exec.Cmd`:
 
-    // Create an exec.Cmd
-    myCommand := exec.Command("/path/to/command")
+	// Create an exec.Cmd
+	myCommand := exec.Command("/path/to/command")
 
-    // Create credentials using the ProcessProvider.
-    creds := credentials.NewCredentials(&processcreds.ProcessProvider{
-        Command:    myCommand,
-        Timeout:    time.Duration(2) * time.Minute,
-        MaxBufSize: 500,
-    })
+	// Create credentials using your exec.Cmd and custom timeout
+	creds := processcreds.NewCredentialsCommand(
+		myCommand,
+		func(opt *processcreds.ProcessProvider) {
+			opt.Timeout = time.Duration(1) * time.Second
+		})
 */
 package processcreds
 
@@ -110,52 +109,40 @@ const (
 	// ErrCodeProcessProviderExecution execution of command failed
 	ErrCodeProcessProviderExecution = "ProcessProviderExecutionError"
 
-	// ErrMsgProcessProviderTimeout process took longer than allowed
-	ErrMsgProcessProviderTimeout = "credential process timed out"
+	// errMsgProcessProviderTimeout process took longer than allowed
+	errMsgProcessProviderTimeout = "credential process timed out"
 
-	// ErrMsgProcessProviderNoKill process could not be killed
-	ErrMsgProcessProviderNoKill = "unable to kill process"
+	// errMsgProcessProviderProcess process error
+	errMsgProcessProviderProcess = "error in credential_process"
 
-	// ErrMsgProcessProviderProcess process error
-	ErrMsgProcessProviderProcess = "error in credential_process"
+	// errMsgProcessProviderParse problem parsing output
+	errMsgProcessProviderParse = "parse failed of credential_process output"
 
-	// ErrMsgProcessProviderParse problem parsing output
-	ErrMsgProcessProviderParse = "parse failed of credential_process output"
+	// errMsgProcessProviderVersion version error in output
+	errMsgProcessProviderVersion = "wrong version in process output (not 1)"
 
-	// ErrMsgProcessProviderVersion version error in output
-	ErrMsgProcessProviderVersion = "wrong version in process output (not 1)"
+	// errMsgProcessProviderMissKey missing access key id in output
+	errMsgProcessProviderMissKey = "missing AccessKeyId in process output"
 
-	// ErrMsgProcessProviderMissKey missing access key id in output
-	ErrMsgProcessProviderMissKey = "missing AccessKeyId in process output"
+	// errMsgProcessProviderMissSecret missing secret acess key in output
+	errMsgProcessProviderMissSecret = "missing SecretAccessKey in process output"
 
-	// ErrMsgProcessProviderMissSecret missing secret acess key in output
-	ErrMsgProcessProviderMissSecret = "missing SecretAccessKey in process output"
+	// errMsgProcessProviderPrepareCmd prepare of command failed
+	errMsgProcessProviderPrepareCmd = "failed to prepare command"
 
-	// ErrMsgProcessProviderPrepareCmd prepare of command failed
-	ErrMsgProcessProviderPrepareCmd = "failed to prepare command"
+	// errMsgProcessProviderEmptyCmd command must not be empty
+	errMsgProcessProviderEmptyCmd = "command must not be empty"
 
-	// ErrMsgProcessProviderFewArgs not enough args
-	ErrMsgProcessProviderFewArgs = "not enough args"
-
-	// ErrMsgProcessProviderEmptyCmd command must not be empty
-	ErrMsgProcessProviderEmptyCmd = "command must not be empty"
-
-	// ErrMsgProcessProviderPipe failed to initialize pipe
-	ErrMsgProcessProviderPipe = "failed to initialize pipe"
-
-	// GoOSWindowsKey for identifying Windows OS
-	GoOSWindowsKey = "windows"
+	// errMsgProcessProviderPipe failed to initialize pipe
+	errMsgProcessProviderPipe = "failed to initialize pipe"
 
 	// DefaultDuration is the default amount of time in minutes that the
 	// credentials will be valid for.
 	DefaultDuration = time.Duration(15) * time.Minute
 
-	// DefaultInitialBufSize size for initial buffer.
-	DefaultInitialBufSize = 200
-
-	// DefaultMaxBufSize limits buffer size from growing to an enormous
+	// DefaultBufSize limits buffer size from growing to an enormous
 	// amount due to a faulty process.
-	DefaultMaxBufSize = 512
+	DefaultBufSize = 512
 
 	// DefaultTimeout default limit on time a process can run.
 	DefaultTimeout = time.Duration(1) * time.Minute
@@ -184,7 +171,7 @@ type ProcessProvider struct {
 
 	// A string representing an os command that should return a JSON with
 	// credential information.
-	Command *exec.Cmd
+	command *exec.Cmd
 
 	// MaxBufSize limits memory usage from growing to an enormous
 	// amount due to a faulty process.
@@ -198,10 +185,10 @@ type ProcessProvider struct {
 // ProcessProvider. The credentials will expire every 15 minutes by default.
 func NewCredentials(command string, options ...func(*ProcessProvider)) *credentials.Credentials {
 	p := &ProcessProvider{
-		Command:    exec.Command(command),
+		command:    exec.Command(command),
 		Duration:   DefaultDuration,
 		Timeout:    DefaultTimeout,
-		MaxBufSize: DefaultMaxBufSize,
+		MaxBufSize: DefaultBufSize,
 	}
 
 	for _, option := range options {
@@ -219,6 +206,23 @@ func NewCredentialsTimeout(command string, timeout time.Duration) *credentials.C
 	})
 
 	return p
+}
+
+// NewCredentialsCommand returns a pointer to a new Credentials object with
+// the specified command, and default timeout, duration and max buffer size.
+func NewCredentialsCommand(command *exec.Cmd, options ...func(*ProcessProvider)) *credentials.Credentials {
+	p := &ProcessProvider{
+		command:    command,
+		Duration:   DefaultDuration,
+		Timeout:    DefaultTimeout,
+		MaxBufSize: DefaultBufSize,
+	}
+
+	for _, option := range options {
+		option(p)
+	}
+
+	return credentials.NewCredentials(p)
 }
 
 type credentialProcessResponse struct {
@@ -241,28 +245,28 @@ func (p *ProcessProvider) Retrieve() (credentials.Value, error) {
 	if err = json.Unmarshal(out, resp); err != nil {
 		return credentials.Value{ProviderName: ProviderName}, awserr.New(
 			ErrCodeProcessProviderParse,
-			fmt.Sprintf("%s: %s", ErrMsgProcessProviderParse, string(out)),
+			fmt.Sprintf("%s: %s", errMsgProcessProviderParse, string(out)),
 			err)
 	}
 
 	if resp.Version != 1 {
 		return credentials.Value{ProviderName: ProviderName}, awserr.New(
 			ErrCodeProcessProviderVersion,
-			ErrMsgProcessProviderVersion,
+			errMsgProcessProviderVersion,
 			nil)
 	}
 
 	if len(resp.AccessKeyID) == 0 {
 		return credentials.Value{ProviderName: ProviderName}, awserr.New(
 			ErrCodeProcessProviderRequired,
-			ErrMsgProcessProviderMissKey,
+			errMsgProcessProviderMissKey,
 			nil)
 	}
 
 	if len(resp.SecretAccessKey) == 0 {
 		return credentials.Value{ProviderName: ProviderName}, awserr.New(
 			ErrCodeProcessProviderRequired,
-			ErrMsgProcessProviderMissSecret,
+			errMsgProcessProviderMissSecret,
 			nil)
 	}
 
@@ -293,15 +297,15 @@ func (p *ProcessProvider) IsExpired() bool {
 func (p *ProcessProvider) prepareCommand() error {
 
 	var cmdArgs []string
-	if runtime.GOOS == GoOSWindowsKey {
+	if runtime.GOOS == "windows" {
 		cmdArgs = []string{"cmd.exe", "/C"}
 	} else {
 		cmdArgs = []string{"sh", "-c"}
 	}
 
 	if len(p.originalCommand) == 0 {
-		p.originalCommand = make([]string, len(p.Command.Args))
-		copy(p.originalCommand, p.Command.Args)
+		p.originalCommand = make([]string, len(p.command.Args))
+		copy(p.originalCommand, p.command.Args)
 
 		// check for empty command because it succeeds
 		if len(strings.TrimSpace(p.originalCommand[0])) < 1 {
@@ -309,15 +313,15 @@ func (p *ProcessProvider) prepareCommand() error {
 				ErrCodeProcessProviderExecution,
 				fmt.Sprintf(
 					"%s: %s",
-					ErrMsgProcessProviderPrepareCmd,
-					ErrMsgProcessProviderEmptyCmd),
+					errMsgProcessProviderPrepareCmd,
+					errMsgProcessProviderEmptyCmd),
 				nil)
 		}
 	}
 
 	cmdArgs = append(cmdArgs, p.originalCommand...)
-	p.Command = exec.Command(cmdArgs[0], cmdArgs[1:]...)
-	p.Command.Env = os.Environ()
+	p.command = exec.Command(cmdArgs[0], cmdArgs[1:]...)
+	p.command.Env = os.Environ()
 
 	return nil
 }
@@ -335,13 +339,13 @@ func (p *ProcessProvider) executeCredentialProcess() ([]byte, error) {
 	if err != nil {
 		return nil, awserr.New(
 			ErrCodeProcessProviderExecution,
-			ErrMsgProcessProviderPipe,
+			errMsgProcessProviderPipe,
 			err)
 	}
 
-	p.Command.Stderr = os.Stderr    // display stderr on console for MFA
-	p.Command.Stdout = outWritePipe // get creds json on process's stdout
-	p.Command.Stdin = os.Stdin      // enable stdin for MFA
+	p.command.Stderr = os.Stderr    // display stderr on console for MFA
+	p.command.Stdout = outWritePipe // get creds json on process's stdout
+	p.command.Stdin = os.Stdin      // enable stdin for MFA
 
 	output := bytes.NewBuffer(make([]byte, 0, p.MaxBufSize))
 
@@ -352,7 +356,7 @@ func (p *ProcessProvider) executeCredentialProcess() ([]byte, error) {
 		stdoutCh)
 
 	execCh := make(chan error, 1)
-	go executeCommand(*p.Command, execCh)
+	go executeCommand(*p.command, execCh)
 
 	finished := false
 	var errors []error
@@ -368,21 +372,21 @@ func (p *ProcessProvider) executeCredentialProcess() ([]byte, error) {
 			if errors != nil {
 				return output.Bytes(), awserr.NewBatchError(
 					ErrCodeProcessProviderExecution,
-					ErrMsgProcessProviderProcess,
+					errMsgProcessProviderProcess,
 					errors)
 			}
 		case <-time.After(p.Timeout):
 			finished = true
 			return output.Bytes(), awserr.NewBatchError(
 				ErrCodeProcessProviderExecution,
-				ErrMsgProcessProviderTimeout,
+				errMsgProcessProviderTimeout,
 				errors) // errors can be nil
 		}
 	}
 
 	out := output.Bytes()
 
-	if runtime.GOOS == GoOSWindowsKey {
+	if runtime.GOOS == "windows" {
 		// windows adds slashes to quotes
 		out = []byte(strings.Replace(string(out), `\"`, `"`, -1))
 	}
