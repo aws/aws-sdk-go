@@ -670,6 +670,7 @@
         "GetV2LoggingOptionsResponse$roleArn": "<p>The IAM role ARN AWS IoT uses to write to your CloudWatch logs.</p>",
         "IotAnalyticsAction$channelArn": "<p>(deprecated) The ARN of the IoT Analytics channel to which message data will be sent.</p>",
         "IotAnalyticsAction$roleArn": "<p>The ARN of the role which has a policy that grants IoT Analytics permission to send message data via IoT Analytics (iotanalytics:BatchPutMessage).</p>",
+        "IotEventsAction$roleArn": "<p>The ARN of the role that grants AWS IoT permission to send an input to an AWS IoT Events detector. (\"Action\":\"iotevents:BatchPutMessage\").</p>",
         "KinesisAction$roleArn": "<p>The ARN of the IAM role that grants access to the Amazon Kinesis stream.</p>",
         "LoggingOptionsPayload$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
         "RepublishAction$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
@@ -2377,6 +2378,12 @@
         "CodeSigningCertificateChain$inlineDocument": "<p>A base64 encoded binary representation of the code signing certificate chain.</p>"
       }
     },
+    "InputName": {
+      "base": null,
+      "refs": {
+        "IotEventsAction$inputName": "<p>The name of the AWS IoT Events input.</p>"
+      }
+    },
     "InternalException": {
       "base": "<p>An unexpected error has occurred.</p>",
       "refs": {
@@ -2411,6 +2418,12 @@
       "base": "<p>Sends messge data to an AWS IoT Analytics channel.</p>",
       "refs": {
         "Action$iotAnalytics": "<p>Sends message data to an AWS IoT Analytics channel.</p>"
+      }
+    },
+    "IotEventsAction": {
+      "base": "<p>Sends an input to an AWS IoT Events detector.</p>",
+      "refs": {
+        "Action$iotEvents": "<p>Sends an input to an AWS IoT Events detector.</p>"
       }
     },
     "IsAuthenticated": {
@@ -3186,6 +3199,12 @@
       "base": null,
       "refs": {
         "SnsAction$messageFormat": "<p>(Optional) The message format of the message to publish. Accepted values are \"JSON\" and \"RAW\". The default value of the attribute is \"RAW\". SNS uses this setting to determine if the payload should be parsed and relevant platform-specific bits of the payload should be extracted. To read more about SNS message formats, see <a href=\"http://docs.aws.amazon.com/sns/latest/dg/json-formats.html\">http://docs.aws.amazon.com/sns/latest/dg/json-formats.html</a> refer to their official documentation.</p>"
+      }
+    },
+    "MessageId": {
+      "base": null,
+      "refs": {
+        "IotEventsAction$messageId": "<p>[Optional] Use this to ensure that only one input (message) with a given messageId will be processed by an AWS IoT Events detector.</p>"
       }
     },
     "MetricValue": {

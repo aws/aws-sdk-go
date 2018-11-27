@@ -44,6 +44,9 @@
     "GetBucketWebsite": "<p>Returns the website configuration for a bucket.</p>",
     "GetObject": "<p>Retrieves objects from Amazon S3.</p>",
     "GetObjectAcl": "<p>Returns the access control list (ACL) of an object.</p>",
+    "GetObjectLegalHold": "<p>Gets an object's current Legal Hold status.</p>",
+    "GetObjectLockConfiguration": "<p>Gets the Object Lock configuration for a bucket. The rule specified in the Object Lock configuration will be applied by default to every new object placed in the specified bucket.</p>",
+    "GetObjectRetention": "<p>Retrieves an object's retention settings.</p>",
     "GetObjectTagging": "<p>Returns the tag-set of an object.</p>",
     "GetObjectTorrent": "<p>Return torrent files from a bucket.</p>",
     "GetPublicAccessBlock": "<p>Retrieves the <code>PublicAccessBlock</code> configuration for an Amazon S3 bucket.</p>",
@@ -78,6 +81,9 @@
     "PutBucketWebsite": "<p>Set the website configuration for a bucket.</p>",
     "PutObject": "<p>Adds an object to a bucket.</p>",
     "PutObjectAcl": "<p>uses the acl subresource to set the access control list (ACL) permissions for an object that already exists in a bucket</p>",
+    "PutObjectLegalHold": "<p>Applies a Legal Hold configuration to the specified object.</p>",
+    "PutObjectLockConfiguration": "<p>Places an Object Lock configuration on the specified bucket. The rule specified in the Object Lock configuration will be applied by default to every new object placed in the specified bucket.</p>",
+    "PutObjectRetention": "<p>Places an Object Retention configuration on an object.</p>",
     "PutObjectTagging": "<p>Sets the supplied tag-set to an object that already exists in a bucket</p>",
     "PutPublicAccessBlock": "<p>Creates or modifies the <code>PublicAccessBlock</code> configuration for an Amazon S3 bucket.</p>",
     "RestoreObject": "<p>Restores an archived copy of an object back into Amazon S3</p>",
@@ -359,7 +365,10 @@
         "GetBucketVersioningRequest$Bucket": null,
         "GetBucketWebsiteRequest$Bucket": null,
         "GetObjectAclRequest$Bucket": null,
+        "GetObjectLegalHoldRequest$Bucket": "<p>The bucket containing the object whose Legal Hold status you want to retrieve.</p>",
+        "GetObjectLockConfigurationRequest$Bucket": "<p>The bucket whose Object Lock configuration you want to retrieve.</p>",
         "GetObjectRequest$Bucket": null,
+        "GetObjectRetentionRequest$Bucket": "<p>The bucket containing the object whose retention settings you want to retrieve.</p>",
         "GetObjectTaggingRequest$Bucket": null,
         "GetObjectTorrentRequest$Bucket": null,
         "GetPublicAccessBlockRequest$Bucket": "<p>The name of the Amazon S3 bucket whose <code>PublicAccessBlock</code> configuration you want to retrieve. </p>",
@@ -398,7 +407,10 @@
         "PutBucketVersioningRequest$Bucket": null,
         "PutBucketWebsiteRequest$Bucket": null,
         "PutObjectAclRequest$Bucket": null,
+        "PutObjectLegalHoldRequest$Bucket": "<p>The bucket containing the object that you want to place a Legal Hold on.</p>",
+        "PutObjectLockConfigurationRequest$Bucket": "<p>The bucket whose Object Lock configuration you want to create or replace.</p>",
         "PutObjectRequest$Bucket": "<p>Name of the bucket to which the PUT operation was initiated.</p>",
+        "PutObjectRetentionRequest$Bucket": "<p>The bucket that contains the object you want to apply this Object Retention configuration to.</p>",
         "PutObjectTaggingRequest$Bucket": null,
         "PutPublicAccessBlockRequest$Bucket": "<p>The name of the Amazon S3 bucket whose <code>PublicAccessBlock</code> configuration you want to set.</p>",
         "RestoreObjectRequest$Bucket": null,
@@ -419,6 +431,14 @@
       "base": null,
       "refs": {
         "ListBucketsOutput$Buckets": null
+      }
+    },
+    "BypassGovernanceRetention": {
+      "base": null,
+      "refs": {
+        "DeleteObjectRequest$BypassGovernanceRetention": "<p/>",
+        "DeleteObjectsRequest$BypassGovernanceRetention": "<p>Specifies whether you want to delete this object even if it has a Governance-type Object Lock in place. You must have sufficient permissions to perform this operation.</p>",
+        "PutObjectRetentionRequest$BypassGovernanceRetention": "<p/>"
       }
     },
     "BytesProcessed": {
@@ -629,7 +649,10 @@
         "PutBucketVersioningRequest$ContentMD5": null,
         "PutBucketWebsiteRequest$ContentMD5": null,
         "PutObjectAclRequest$ContentMD5": null,
+        "PutObjectLegalHoldRequest$ContentMD5": "<p>The MD5 signature for the configuration included in your request.</p>",
+        "PutObjectLockConfigurationRequest$ContentMD5": "<p>The MD5 signature for the configuration included in your request.</p>",
         "PutObjectRequest$ContentMD5": "<p>The base64-encoded 128-bit MD5 digest of the part data.</p>",
+        "PutObjectRetentionRequest$ContentMD5": "<p>The MD5 signature for the configuration included in your request.</p>",
         "PutObjectTaggingRequest$ContentMD5": null,
         "PutPublicAccessBlockRequest$ContentMD5": "<p>The MD5 hash of the <code>PutPublicAccessBlock</code> request body. </p>",
         "UploadPartRequest$ContentMD5": "<p>The base64-encoded 128-bit MD5 digest of the part data.</p>"
@@ -784,12 +807,14 @@
       "base": null,
       "refs": {
         "LifecycleExpiration$Date": "<p>Indicates at what date the object is to be moved or deleted. Should be in GMT ISO 8601 Format.</p>",
+        "ObjectLockRetention$RetainUntilDate": "<p/>",
         "Transition$Date": "<p>Indicates at what date the object is to be moved or deleted. Should be in GMT ISO 8601 Format.</p>"
       }
     },
     "Days": {
       "base": null,
       "refs": {
+        "DefaultRetention$Days": "<p>The number of days that you want to specify for the default retention period.</p>",
         "LifecycleExpiration$Days": "<p>Indicates the lifetime, in days, of the objects that are subject to the rule. The value must be a non-zero positive integer.</p>",
         "NoncurrentVersionExpiration$NoncurrentDays": "<p>Specifies the number of days an object is noncurrent before Amazon S3 can perform the associated action. For information about the noncurrent days calculations, see <a href=\"http://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html\">How Amazon S3 Calculates When an Object Became Noncurrent</a> in the Amazon Simple Storage Service Developer Guide.</p>",
         "NoncurrentVersionTransition$NoncurrentDays": "<p>Specifies the number of days an object is noncurrent before Amazon S3 can perform the associated action. For information about the noncurrent days calculations, see <a href=\"http://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html\">How Amazon S3 Calculates When an Object Became Noncurrent</a> in the Amazon Simple Storage Service Developer Guide.</p>",
@@ -801,6 +826,12 @@
       "base": null,
       "refs": {
         "AbortIncompleteMultipartUpload$DaysAfterInitiation": "<p>Indicates the number of days that must pass since initiation for Lifecycle to abort an Incomplete Multipart Upload.</p>"
+      }
+    },
+    "DefaultRetention": {
+      "base": "<p>The container element for specifying the default Object Lock retention settings for new objects placed in the specified bucket.</p>",
+      "refs": {
+        "ObjectLockRule$DefaultRetention": "<p>The default retention period that you want to apply to new objects placed in the specified bucket.</p>"
       }
     },
     "Delete": {
@@ -1378,12 +1409,42 @@
       "refs": {
       }
     },
+    "GetObjectLegalHoldOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetObjectLegalHoldRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetObjectLockConfigurationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetObjectLockConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetObjectOutput": {
       "base": null,
       "refs": {
       }
     },
     "GetObjectRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetObjectRetentionOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetObjectRetentionRequest": {
       "base": null,
       "refs": {
       }
@@ -2254,7 +2315,9 @@
         "Error$Key": null,
         "ErrorDocument$Key": "<p>The object key name to use when a 4XX class error occurs.</p>",
         "GetObjectAclRequest$Key": null,
+        "GetObjectLegalHoldRequest$Key": "<p>The key name for the object whose Legal Hold status you want to retrieve.</p>",
         "GetObjectRequest$Key": null,
+        "GetObjectRetentionRequest$Key": "<p>The key name for the object whose retention settings you want to retrieve.</p>",
         "GetObjectTaggingRequest$Key": null,
         "GetObjectTorrentRequest$Key": null,
         "HeadObjectRequest$Key": null,
@@ -2265,7 +2328,9 @@
         "ObjectIdentifier$Key": "<p>Key name of the object to delete.</p>",
         "ObjectVersion$Key": "<p>The object key.</p>",
         "PutObjectAclRequest$Key": null,
+        "PutObjectLegalHoldRequest$Key": "<p>The key name for the object that you want to place a Legal Hold on.</p>",
         "PutObjectRequest$Key": "<p>Object key for which the PUT operation was initiated.</p>",
+        "PutObjectRetentionRequest$Key": "<p>The key name for the object that you want to apply this Object Retention configuration to.</p>",
         "PutObjectTaggingRequest$Key": null,
         "RestoreObjectRequest$Key": null,
         "SelectObjectContentRequest$Key": "<p>The object key.</p>",
@@ -2279,6 +2344,89 @@
       "refs": {
         "ListObjectsOutput$Contents": null,
         "ListObjectsV2Output$Contents": "<p>Metadata about each object returned.</p>"
+      }
+    },
+    "ObjectLockConfiguration": {
+      "base": "<p>The container element for Object Lock configuration parameters.</p>",
+      "refs": {
+        "GetObjectLockConfigurationOutput$ObjectLockConfiguration": "<p>The specified bucket's Object Lock configuration.</p>",
+        "PutObjectLockConfigurationRequest$ObjectLockConfiguration": "<p>The Object Lock configuration that you want to apply to the specified bucket.</p>"
+      }
+    },
+    "ObjectLockEnabled": {
+      "base": null,
+      "refs": {
+        "ObjectLockConfiguration$ObjectLockEnabled": "<p>Indicates whether this object has an Object Lock configuration enabled.</p>"
+      }
+    },
+    "ObjectLockEnabledForBucket": {
+      "base": null,
+      "refs": {
+        "CreateBucketRequest$ObjectLockEnabledForBucket": "<p>Specifies whether you want S3 Object Lock to be enabled for the new bucket.</p>"
+      }
+    },
+    "ObjectLockLegalHold": {
+      "base": "<p>A Legal Hold configuration for an object.</p>",
+      "refs": {
+        "GetObjectLegalHoldOutput$LegalHold": "<p>The current Legal Hold status for the specified object.</p>",
+        "PutObjectLegalHoldRequest$LegalHold": "<p>Container element for the Legal Hold configuration you want to apply to the specified object.</p>"
+      }
+    },
+    "ObjectLockLegalHoldStatus": {
+      "base": null,
+      "refs": {
+        "CopyObjectRequest$ObjectLockLegalHoldStatus": "<p>Specifies whether you want to apply a Legal Hold to the copied object.</p>",
+        "CreateMultipartUploadRequest$ObjectLockLegalHoldStatus": "<p>Specifies whether you want to apply a Legal Hold to the uploaded object.</p>",
+        "GetObjectOutput$ObjectLockLegalHoldStatus": "<p/>",
+        "HeadObjectOutput$ObjectLockLegalHoldStatus": "<p>The Legal Hold status for the specified object.</p>",
+        "ObjectLockLegalHold$Status": "<p>Indicates whether the specified object has a Legal Hold in place.</p>",
+        "PutObjectRequest$ObjectLockLegalHoldStatus": "<p>The Legal Hold status that you want to apply to the specified object.</p>"
+      }
+    },
+    "ObjectLockMode": {
+      "base": null,
+      "refs": {
+        "CopyObjectRequest$ObjectLockMode": "<p>The Object Lock mode that you want to apply to the copied object.</p>",
+        "CreateMultipartUploadRequest$ObjectLockMode": "<p>Specifies the Object Lock mode that you want to apply to the uploaded object.</p>",
+        "GetObjectOutput$ObjectLockMode": "<p>The Object Lock mode currently in place for this object.</p>",
+        "HeadObjectOutput$ObjectLockMode": "<p>The Object Lock mode currently in place for this object.</p>",
+        "PutObjectRequest$ObjectLockMode": "<p>The Object Lock mode that you want to apply to this object.</p>"
+      }
+    },
+    "ObjectLockRetainUntilDate": {
+      "base": null,
+      "refs": {
+        "CopyObjectRequest$ObjectLockRetainUntilDate": "<p>The date and time when you want the copied object's Object Lock to expire.</p>",
+        "CreateMultipartUploadRequest$ObjectLockRetainUntilDate": "<p>Specifies the date and time when you want the Object Lock to expire.</p>",
+        "GetObjectOutput$ObjectLockRetainUntilDate": "<p>The date and time when this object's Object Lock will expire.</p>",
+        "HeadObjectOutput$ObjectLockRetainUntilDate": "<p>The date and time when this object's Object Lock will expire.</p>",
+        "PutObjectRequest$ObjectLockRetainUntilDate": "<p>The date and time when you want this object's Object Lock to expire.</p>"
+      }
+    },
+    "ObjectLockRetention": {
+      "base": "<p>A Retention configuration for an object.</p>",
+      "refs": {
+        "GetObjectRetentionOutput$Retention": "<p>The container element for an object's retention settings.</p>",
+        "PutObjectRetentionRequest$Retention": "<p>The container element for the Object Retention configuration.</p>"
+      }
+    },
+    "ObjectLockRetentionMode": {
+      "base": null,
+      "refs": {
+        "DefaultRetention$Mode": "<p>The default Object Lock retention mode you want to apply to new objects placed in the specified bucket.</p>",
+        "ObjectLockRetention$Mode": "<p>Indicates the Retention mode for the specified object.</p>"
+      }
+    },
+    "ObjectLockRule": {
+      "base": "<p>The container element for an Object Lock rule.</p>",
+      "refs": {
+        "ObjectLockConfiguration$Rule": "<p>The Object Lock rule in place for the specified object.</p>"
+      }
+    },
+    "ObjectLockToken": {
+      "base": null,
+      "refs": {
+        "PutObjectLockConfigurationRequest$Token": "<p/>"
       }
     },
     "ObjectNotInActiveTierError": {
@@ -2311,8 +2459,10 @@
         "DeletedObject$VersionId": null,
         "Error$VersionId": null,
         "GetObjectAclRequest$VersionId": "<p>VersionId used to reference a specific version of the object.</p>",
+        "GetObjectLegalHoldRequest$VersionId": "<p>The version ID of the object whose Legal Hold status you want to retrieve.</p>",
         "GetObjectOutput$VersionId": "<p>Version of the object.</p>",
         "GetObjectRequest$VersionId": "<p>VersionId used to reference a specific version of the object.</p>",
+        "GetObjectRetentionRequest$VersionId": "<p>The version ID for the object whose retention settings you want to retrieve.</p>",
         "GetObjectTaggingOutput$VersionId": null,
         "GetObjectTaggingRequest$VersionId": null,
         "HeadObjectOutput$VersionId": "<p>Version of the object.</p>",
@@ -2320,7 +2470,9 @@
         "ObjectIdentifier$VersionId": "<p>VersionId for the specific version of the object to delete.</p>",
         "ObjectVersion$VersionId": "<p>Version ID of an object.</p>",
         "PutObjectAclRequest$VersionId": "<p>VersionId used to reference a specific version of the object.</p>",
+        "PutObjectLegalHoldRequest$VersionId": "<p>The version ID of the object that you want to place a Legal Hold on.</p>",
         "PutObjectOutput$VersionId": "<p>Version of the object.</p>",
+        "PutObjectRetentionRequest$VersionId": "<p>The version ID for the object that you want to apply this Object Retention configuration to.</p>",
         "PutObjectTaggingOutput$VersionId": null,
         "PutObjectTaggingRequest$VersionId": null,
         "RestoreObjectRequest$VersionId": null
@@ -2497,7 +2649,7 @@
       "base": null,
       "refs": {
         "GetPublicAccessBlockOutput$PublicAccessBlockConfiguration": "<p>The <code>PublicAccessBlock</code> configuration currently in effect for this Amazon S3 bucket.</p>",
-        "PutPublicAccessBlockRequest$PublicAccessBlockConfiguration": "<p>The <code>PublicAccessBlock</code> configuration that you want to apply to this Amazon S3 bucket. You can enable the configuration options in any combination. For more information about when &amp;S3; considers a bucket or object public, see For more information about when Amazon S3 considers a bucket or object public, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status\">The Meaning of \"Public\"</a> in the Amazon Simple Storage Service Developer Guide.</p>"
+        "PutPublicAccessBlockRequest$PublicAccessBlockConfiguration": "<p>The <code>PublicAccessBlock</code> configuration that you want to apply to this Amazon S3 bucket. You can enable the configuration options in any combination. For more information about when Amazon S3 considers a bucket or object public, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status\">The Meaning of \"Public\"</a> in the <i>Amazon Simple Storage Service Developer Guide</i>.</p>"
       }
     },
     "PutBucketAccelerateConfigurationRequest": {
@@ -2600,12 +2752,42 @@
       "refs": {
       }
     },
+    "PutObjectLegalHoldOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutObjectLegalHoldRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutObjectLockConfigurationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutObjectLockConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "PutObjectOutput": {
       "base": null,
       "refs": {
       }
     },
     "PutObjectRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutObjectRetentionOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutObjectRetentionRequest": {
       "base": null,
       "refs": {
       }
@@ -2787,7 +2969,10 @@
         "HeadObjectOutput$RequestCharged": null,
         "ListPartsOutput$RequestCharged": null,
         "PutObjectAclOutput$RequestCharged": null,
+        "PutObjectLegalHoldOutput$RequestCharged": null,
+        "PutObjectLockConfigurationOutput$RequestCharged": null,
         "PutObjectOutput$RequestCharged": null,
+        "PutObjectRetentionOutput$RequestCharged": null,
         "RestoreObjectOutput$RequestCharged": null,
         "UploadPartCopyOutput$RequestCharged": null,
         "UploadPartOutput$RequestCharged": null
@@ -2803,14 +2988,19 @@
         "DeleteObjectRequest$RequestPayer": null,
         "DeleteObjectsRequest$RequestPayer": null,
         "GetObjectAclRequest$RequestPayer": null,
+        "GetObjectLegalHoldRequest$RequestPayer": null,
         "GetObjectRequest$RequestPayer": null,
+        "GetObjectRetentionRequest$RequestPayer": null,
         "GetObjectTorrentRequest$RequestPayer": null,
         "HeadObjectRequest$RequestPayer": null,
         "ListObjectsRequest$RequestPayer": "<p>Confirms that the requester knows that she or he will be charged for the list objects request. Bucket owners need not specify this parameter in their requests.</p>",
         "ListObjectsV2Request$RequestPayer": "<p>Confirms that the requester knows that she or he will be charged for the list objects request in V2 style. Bucket owners need not specify this parameter in their requests.</p>",
         "ListPartsRequest$RequestPayer": null,
         "PutObjectAclRequest$RequestPayer": null,
+        "PutObjectLegalHoldRequest$RequestPayer": null,
+        "PutObjectLockConfigurationRequest$RequestPayer": null,
         "PutObjectRequest$RequestPayer": null,
+        "PutObjectRetentionRequest$RequestPayer": null,
         "RestoreObjectRequest$RequestPayer": null,
         "UploadPartCopyRequest$RequestPayer": null,
         "UploadPartRequest$RequestPayer": null
@@ -3401,6 +3591,12 @@
         "GetObjectOutput$WebsiteRedirectLocation": "<p>If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata.</p>",
         "HeadObjectOutput$WebsiteRedirectLocation": "<p>If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata.</p>",
         "PutObjectRequest$WebsiteRedirectLocation": "<p>If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata.</p>"
+      }
+    },
+    "Years": {
+      "base": null,
+      "refs": {
+        "DefaultRetention$Years": "<p>The number of years that you want to specify for the default retention period.</p>"
       }
     }
   }

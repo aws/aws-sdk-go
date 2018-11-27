@@ -49,6 +49,40 @@
         "shape" : "InternalServerErrorException"
       } ]
     },
+    "CreateConnectorDefinition" : {
+      "name" : "CreateConnectorDefinition",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/greengrass/definition/connectors",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "CreateConnectorDefinitionRequest"
+      },
+      "output" : {
+        "shape" : "CreateConnectorDefinitionResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      } ]
+    },
+    "CreateConnectorDefinitionVersion" : {
+      "name" : "CreateConnectorDefinitionVersion",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/greengrass/definition/connectors/{ConnectorDefinitionId}/versions",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "CreateConnectorDefinitionVersionRequest"
+      },
+      "output" : {
+        "shape" : "CreateConnectorDefinitionVersionResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      } ]
+    },
     "CreateCoreDefinition" : {
       "name" : "CreateCoreDefinition",
       "http" : {
@@ -342,6 +376,23 @@
         "shape" : "BadRequestException"
       } ]
     },
+    "DeleteConnectorDefinition" : {
+      "name" : "DeleteConnectorDefinition",
+      "http" : {
+        "method" : "DELETE",
+        "requestUri" : "/greengrass/definition/connectors/{ConnectorDefinitionId}",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "DeleteConnectorDefinitionRequest"
+      },
+      "output" : {
+        "shape" : "DeleteConnectorDefinitionResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      } ]
+    },
     "DeleteCoreDefinition" : {
       "name" : "DeleteCoreDefinition",
       "http" : {
@@ -550,6 +601,40 @@
         "shape" : "BadRequestException"
       }, {
         "shape" : "InternalServerErrorException"
+      } ]
+    },
+    "GetConnectorDefinition" : {
+      "name" : "GetConnectorDefinition",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/greengrass/definition/connectors/{ConnectorDefinitionId}",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "GetConnectorDefinitionRequest"
+      },
+      "output" : {
+        "shape" : "GetConnectorDefinitionResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      } ]
+    },
+    "GetConnectorDefinitionVersion" : {
+      "name" : "GetConnectorDefinitionVersion",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/greengrass/definition/connectors/{ConnectorDefinitionId}/versions/{ConnectorDefinitionVersionId}",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "GetConnectorDefinitionVersionRequest"
+      },
+      "output" : {
+        "shape" : "GetConnectorDefinitionVersionResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
       } ]
     },
     "GetCoreDefinition" : {
@@ -896,6 +981,38 @@
         "shape" : "BadRequestException"
       } ]
     },
+    "ListConnectorDefinitionVersions" : {
+      "name" : "ListConnectorDefinitionVersions",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/greengrass/definition/connectors/{ConnectorDefinitionId}/versions",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "ListConnectorDefinitionVersionsRequest"
+      },
+      "output" : {
+        "shape" : "ListConnectorDefinitionVersionsResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      } ]
+    },
+    "ListConnectorDefinitions" : {
+      "name" : "ListConnectorDefinitions",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/greengrass/definition/connectors",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "ListConnectorDefinitionsRequest"
+      },
+      "output" : {
+        "shape" : "ListConnectorDefinitionsResponse"
+      },
+      "errors" : [ ]
+    },
     "ListCoreDefinitionVersions" : {
       "name" : "ListCoreDefinitionVersions",
       "http" : {
@@ -1226,6 +1343,23 @@
         "shape" : "InternalServerErrorException"
       } ]
     },
+    "UpdateConnectorDefinition" : {
+      "name" : "UpdateConnectorDefinition",
+      "http" : {
+        "method" : "PUT",
+        "requestUri" : "/greengrass/definition/connectors/{ConnectorDefinitionId}",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "UpdateConnectorDefinitionRequest"
+      },
+      "output" : {
+        "shape" : "UpdateConnectorDefinitionResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      } ]
+    },
     "UpdateCoreDefinition" : {
       "name" : "UpdateCoreDefinition",
       "http" : {
@@ -1509,6 +1643,29 @@
         }
       }
     },
+    "Connector" : {
+      "type" : "structure",
+      "members" : {
+        "ConnectorArn" : {
+          "shape" : "__string"
+        },
+        "Id" : {
+          "shape" : "__string"
+        },
+        "Parameters" : {
+          "shape" : "__mapOf__string"
+        }
+      },
+      "required" : [ ]
+    },
+    "ConnectorDefinitionVersion" : {
+      "type" : "structure",
+      "members" : {
+        "Connectors" : {
+          "shape" : "__listOfConnector"
+        }
+      }
+    },
     "Core" : {
       "type" : "structure",
       "members" : {
@@ -1532,6 +1689,84 @@
       "members" : {
         "Cores" : {
           "shape" : "__listOfCore"
+        }
+      }
+    },
+    "CreateConnectorDefinitionRequest" : {
+      "type" : "structure",
+      "members" : {
+        "AmznClientToken" : {
+          "shape" : "__string",
+          "location" : "header",
+          "locationName" : "X-Amzn-Client-Token"
+        },
+        "InitialVersion" : {
+          "shape" : "ConnectorDefinitionVersion"
+        },
+        "Name" : {
+          "shape" : "__string"
+        }
+      }
+    },
+    "CreateConnectorDefinitionResponse" : {
+      "type" : "structure",
+      "members" : {
+        "Arn" : {
+          "shape" : "__string"
+        },
+        "CreationTimestamp" : {
+          "shape" : "__string"
+        },
+        "Id" : {
+          "shape" : "__string"
+        },
+        "LastUpdatedTimestamp" : {
+          "shape" : "__string"
+        },
+        "LatestVersion" : {
+          "shape" : "__string"
+        },
+        "LatestVersionArn" : {
+          "shape" : "__string"
+        },
+        "Name" : {
+          "shape" : "__string"
+        }
+      }
+    },
+    "CreateConnectorDefinitionVersionRequest" : {
+      "type" : "structure",
+      "members" : {
+        "AmznClientToken" : {
+          "shape" : "__string",
+          "location" : "header",
+          "locationName" : "X-Amzn-Client-Token"
+        },
+        "ConnectorDefinitionId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "ConnectorDefinitionId"
+        },
+        "Connectors" : {
+          "shape" : "__listOfConnector"
+        }
+      },
+      "required" : [ "ConnectorDefinitionId" ]
+    },
+    "CreateConnectorDefinitionVersionResponse" : {
+      "type" : "structure",
+      "members" : {
+        "Arn" : {
+          "shape" : "__string"
+        },
+        "CreationTimestamp" : {
+          "shape" : "__string"
+        },
+        "Id" : {
+          "shape" : "__string"
+        },
+        "Version" : {
+          "shape" : "__string"
         }
       }
     },
@@ -1777,6 +2012,9 @@
           "location" : "header",
           "locationName" : "X-Amzn-Client-Token"
         },
+        "DefaultConfig" : {
+          "shape" : "FunctionDefaultConfig"
+        },
         "FunctionDefinitionId" : {
           "shape" : "__string",
           "location" : "uri",
@@ -1878,6 +2116,9 @@
           "shape" : "__string",
           "location" : "header",
           "locationName" : "X-Amzn-Client-Token"
+        },
+        "ConnectorDefinitionVersionArn" : {
+          "shape" : "__string"
         },
         "CoreDefinitionVersionArn" : {
           "shape" : "__string"
@@ -2221,6 +2462,21 @@
         }
       }
     },
+    "DeleteConnectorDefinitionRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ConnectorDefinitionId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "ConnectorDefinitionId"
+        }
+      },
+      "required" : [ "ConnectorDefinitionId" ]
+    },
+    "DeleteConnectorDefinitionResponse" : {
+      "type" : "structure",
+      "members" : { }
+    },
     "DeleteCoreDefinitionRequest" : {
       "type" : "structure",
       "members" : {
@@ -2485,6 +2741,9 @@
         "AccessSysfs" : {
           "shape" : "__boolean"
         },
+        "Execution" : {
+          "shape" : "FunctionExecutionConfig"
+        },
         "ResourceAccessPolicies" : {
           "shape" : "__listOfResourceAccessPolicy"
         },
@@ -2493,11 +2752,56 @@
         }
       }
     },
+    "FunctionDefaultConfig" : {
+      "type" : "structure",
+      "members" : {
+        "Execution" : {
+          "shape" : "FunctionDefaultExecutionConfig"
+        }
+      }
+    },
+    "FunctionDefaultExecutionConfig" : {
+      "type" : "structure",
+      "members" : {
+        "IsolationMode" : {
+          "shape" : "FunctionIsolationMode"
+        }
+      }
+    },
     "FunctionDefinitionVersion" : {
       "type" : "structure",
       "members" : {
+        "DefaultConfig" : {
+          "shape" : "FunctionDefaultConfig"
+        },
         "Functions" : {
           "shape" : "__listOfFunction"
+        }
+      }
+    },
+    "FunctionExecutionConfig" : {
+      "type" : "structure",
+      "members" : {
+        "IsolationMode" : {
+          "shape" : "FunctionIsolationMode"
+        },
+        "RunAs" : {
+          "shape" : "FunctionRunAsConfig"
+        }
+      }
+    },
+    "FunctionIsolationMode" : {
+      "type" : "string",
+      "enum" : [ "GreengrassContainer", "NoContainer" ]
+    },
+    "FunctionRunAsConfig" : {
+      "type" : "structure",
+      "members" : {
+        "Gid" : {
+          "shape" : "__integer"
+        },
+        "Uid" : {
+          "shape" : "__integer"
         }
       }
     },
@@ -2585,6 +2889,87 @@
         "Message" : {
           "shape" : "__string",
           "locationName" : "message"
+        }
+      }
+    },
+    "GetConnectorDefinitionRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ConnectorDefinitionId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "ConnectorDefinitionId"
+        }
+      },
+      "required" : [ "ConnectorDefinitionId" ]
+    },
+    "GetConnectorDefinitionResponse" : {
+      "type" : "structure",
+      "members" : {
+        "Arn" : {
+          "shape" : "__string"
+        },
+        "CreationTimestamp" : {
+          "shape" : "__string"
+        },
+        "Id" : {
+          "shape" : "__string"
+        },
+        "LastUpdatedTimestamp" : {
+          "shape" : "__string"
+        },
+        "LatestVersion" : {
+          "shape" : "__string"
+        },
+        "LatestVersionArn" : {
+          "shape" : "__string"
+        },
+        "Name" : {
+          "shape" : "__string"
+        }
+      }
+    },
+    "GetConnectorDefinitionVersionRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ConnectorDefinitionId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "ConnectorDefinitionId"
+        },
+        "ConnectorDefinitionVersionId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "ConnectorDefinitionVersionId"
+        },
+        "NextToken" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "NextToken"
+        }
+      },
+      "required" : [ "ConnectorDefinitionId", "ConnectorDefinitionVersionId" ]
+    },
+    "GetConnectorDefinitionVersionResponse" : {
+      "type" : "structure",
+      "members" : {
+        "Arn" : {
+          "shape" : "__string"
+        },
+        "CreationTimestamp" : {
+          "shape" : "__string"
+        },
+        "Definition" : {
+          "shape" : "ConnectorDefinitionVersion"
+        },
+        "Id" : {
+          "shape" : "__string"
+        },
+        "NextToken" : {
+          "shape" : "__string"
+        },
+        "Version" : {
+          "shape" : "__string"
         }
       }
     },
@@ -3302,6 +3687,9 @@
     "GroupVersion" : {
       "type" : "structure",
       "members" : {
+        "ConnectorDefinitionVersionArn" : {
+          "shape" : "__string"
+        },
         "CoreDefinitionVersionArn" : {
           "shape" : "__string"
         },
@@ -3389,6 +3777,64 @@
       "members" : {
         "BulkDeployments" : {
           "shape" : "BulkDeployments"
+        },
+        "NextToken" : {
+          "shape" : "__string"
+        }
+      }
+    },
+    "ListConnectorDefinitionVersionsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ConnectorDefinitionId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "ConnectorDefinitionId"
+        },
+        "MaxResults" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "MaxResults"
+        },
+        "NextToken" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "NextToken"
+        }
+      },
+      "required" : [ "ConnectorDefinitionId" ]
+    },
+    "ListConnectorDefinitionVersionsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "NextToken" : {
+          "shape" : "__string"
+        },
+        "Versions" : {
+          "shape" : "__listOfVersionInformation"
+        }
+      }
+    },
+    "ListConnectorDefinitionsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "MaxResults" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "MaxResults"
+        },
+        "NextToken" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "NextToken"
+        }
+      }
+    },
+    "ListConnectorDefinitionsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "Definitions" : {
+          "shape" : "__listOfDefinitionInformation"
         },
         "NextToken" : {
           "shape" : "__string"
@@ -4015,6 +4461,9 @@
         },
         "SageMakerMachineLearningModelResourceData" : {
           "shape" : "SageMakerMachineLearningModelResourceData"
+        },
+        "SecretsManagerSecretResourceData" : {
+          "shape" : "SecretsManagerSecretResourceData"
         }
       }
     },
@@ -4048,6 +4497,17 @@
         },
         "SageMakerJobArn" : {
           "shape" : "__string"
+        }
+      }
+    },
+    "SecretsManagerSecretResourceData" : {
+      "type" : "structure",
+      "members" : {
+        "ARN" : {
+          "shape" : "__string"
+        },
+        "AdditionalStagingLabelsToDownload" : {
+          "shape" : "__listOf__string"
         }
       }
     },
@@ -4152,6 +4612,24 @@
           "shape" : "__string"
         }
       }
+    },
+    "UpdateConnectorDefinitionRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ConnectorDefinitionId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "ConnectorDefinitionId"
+        },
+        "Name" : {
+          "shape" : "__string"
+        }
+      },
+      "required" : [ "ConnectorDefinitionId" ]
+    },
+    "UpdateConnectorDefinitionResponse" : {
+      "type" : "structure",
+      "members" : { }
     },
     "UpdateCoreDefinitionRequest" : {
       "type" : "structure",
@@ -4353,6 +4831,12 @@
         "shape" : "ConnectivityInfo"
       }
     },
+    "__listOfConnector" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "Connector"
+      }
+    },
     "__listOfCore" : {
       "type" : "list",
       "member" : {
@@ -4417,6 +4901,12 @@
       "type" : "list",
       "member" : {
         "shape" : "VersionInformation"
+      }
+    },
+    "__listOf__string" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "__string"
       }
     },
     "__long" : {
