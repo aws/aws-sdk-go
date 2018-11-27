@@ -1,6 +1,6 @@
 // +build integration
 
-package s3control
+package s3control_test
 
 import (
 	"crypto/tls"

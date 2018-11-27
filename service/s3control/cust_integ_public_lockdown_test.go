@@ -1,6 +1,6 @@
 // +build integration
 
-package s3control
+package s3control_test
 
 import (
 	"testing"
@@ -10,7 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3control"
 )
 
-func TestPublicAccessBlock(t *testing.T) {
+func TestInteg_PublicAccessBlock(t *testing.T) {
 	_, err := svc.GetPublicAccessBlock(&s3control.GetPublicAccessBlockInput{
 		AccountId: aws.String(accountID),
 	})
