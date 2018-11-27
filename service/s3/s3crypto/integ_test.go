@@ -17,7 +17,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3/s3crypto"
 )
 
-func TestInteg_01_EncryptFixtures(t *testing.T) {
+func TestInteg_EncryptFixtures(t *testing.T) {
 	sess := integration.SessionWithDefaultRegion("us-west-2")
 
 	const bucket = "aws-s3-shared-tests"
@@ -66,7 +66,7 @@ func TestInteg_01_EncryptFixtures(t *testing.T) {
 	}
 }
 
-func TestInteg_02_DecryptFixtures(t *testing.T) {
+func TestInteg_DecryptFixtures(t *testing.T) {
 	sess := integration.SessionWithDefaultRegion("us-west-2")
 
 	const bucket = "aws-s3-shared-tests"

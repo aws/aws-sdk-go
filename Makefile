@@ -30,8 +30,6 @@ help:
 	@echo "  gen-test                to generate protocol tests"
 	@echo "  gen-services            to generate services"
 	@echo "  get-deps                to go get the SDK dependencies"
-	@echo "  get-deps-tests          to get the SDK's test dependencies"
-	@echo "  get-deps-verify         to get the SDK's verification dependencies"
 
 generate: cleanup-models gen-test gen-endpoints gen-services
 
@@ -74,14 +72,23 @@ ci-test-generate-validate:
 	echo "$$gitstatus"; \
 	if [ "$$gitstatus" != "" ] && [ "$$gitstatus" != "skipping validation" ]; then echo "$$gitstatus"; exit 1; fi
 
-integration: get-deps-integ
-	go test -count=1 -tags "integration" -v ./service/...
+integration: get-deps-integ sdk-integ client-integ smoke-tests
+
+sdk-integ:
+	@echo "Integration Testing core SDK"
+	go test -count=1 -tags "integration" -v -run TestInteg_ ./aws/... ./private/...
+
+client-integ:
+	@echo "Integration Testing SDK clients"
+	go test -count=1 -tags "integration" -v -run TestInteg_ ./service/...
+
+s3crypto-integ:
+	@echo "Integration Testing S3 Cyrpto utility"
+	go test -count=1 -tags "s3crypto_integ integration" -v -run TestInteg_ ./service/s3/s3crypto
 
 cleanup-integ-buckets:
+	@echo "Cleaning up SDK integraiton resources"
 	go run -tags "integration" ./awstesting/cmd/bucket_cleanup/main.go "aws-sdk-go-integration"
-
-smoke-tests:
-	go test -count=1 -tags "integration" -run TestInteg_ -v ./service/... | grep -v '?'
 
 performance: get-deps-integ
 	AWS_TESTING_LOG_RESULTS=${log-detailed} AWS_TESTING_REGION=$(region) AWS_TESTING_DB_TABLE=$(table) gucumber -go-tags "integration" ./awstesting/performance

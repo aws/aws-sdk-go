@@ -14,7 +14,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3"
 )
 
-func TestWriteToObject(t *testing.T) {
+func TestInteg_WriteToObject(t *testing.T) {
 	_, err := svc.PutObject(&s3.PutObjectInput{
 		Bucket: bucketName,
 		Key:    aws.String("key name"),
@@ -38,7 +38,7 @@ func TestWriteToObject(t *testing.T) {
 	}
 }
 
-func TestPresignedGetPut(t *testing.T) {
+func TestInteg_PresignedGetPut(t *testing.T) {
 	putreq, _ := svc.PutObjectRequest(&s3.PutObjectInput{
 		Bucket: bucketName,
 		Key:    aws.String("presigned-key"),

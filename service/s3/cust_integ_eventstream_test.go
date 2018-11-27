@@ -17,7 +17,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3"
 )
 
-func TestSelectObjectContent(t *testing.T) {
+func TestInteg_SelectObjectContent(t *testing.T) {
 	keyName := "selectObject.csv"
 	putTestFile(t, filepath.Join("testdata", "positive_select.csv"), keyName)
 
@@ -67,7 +67,7 @@ func TestSelectObjectContent(t *testing.T) {
 	}
 }
 
-func TestSelectObjectContent_Error(t *testing.T) {
+func TestInteg_SelectObjectContent_Error(t *testing.T) {
 	keyName := "negativeSelect.csv"
 
 	buf := make([]byte, 0, 1024*1024*6)
@@ -127,7 +127,7 @@ func TestSelectObjectContent_Error(t *testing.T) {
 	}
 }
 
-func TestSelectObjectContent_Stream(t *testing.T) {
+func TestInteg_SelectObjectContent_Stream(t *testing.T) {
 	keyName := "selectGopher.csv"
 
 	buf := `name,number
