@@ -167,6 +167,10 @@ func writeServiceFiles(g *generateInfo, pkgDir string) {
 	if g.API.HasEventStream {
 		Must(writeAPIEventStreamTestFile(g))
 	}
+
+	if g.API.PackageName() == "s3" {
+		Must(writeS3ManagerUploadInputFile(g))
+	}
 }
 
 // Must will panic if the error passed in is not nil.
@@ -278,5 +282,14 @@ func writeAPIEventStreamTestFile(g *generateInfo) error {
 		"// +build go1.6\n",
 		g.API.PackageName(),
 		g.API.APIEventStreamTestGoCode(),
+	)
+}
+
+func writeS3ManagerUploadInputFile(g *generateInfo) error {
+	return writeGoFile(filepath.Join(g.PackageDir, "s3manager", "upload_input.go"),
+		codeLayout,
+		"",
+		"s3manager",
+		api.S3ManagerUploadInputGoCode(g.API),
 	)
 }
