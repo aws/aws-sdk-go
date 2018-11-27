@@ -43,15 +43,19 @@ generate: cleanup-models gen-test gen-endpoints gen-services
 gen-test: gen-protocol-test gen-codegen-test
 
 gen-codegen-test: get-deps-codegen
+	@echo "Generating SDK API tests"
 	go generate ./private/model/api/codegentest/service
 
 gen-services: get-deps-codegen
+	@echo "Generating SDK clients"
 	go generate ./service
 
 gen-protocol-test: get-deps-codegen
+	@echo "Generating SDK protocol tests"
 	go generate ./private/protocol/...
 
 gen-endpoints: get-deps-codegen
+	@echo "Generating SDK endpoints"
 	go generate ./models/endpoints/
 
 cleanup-models: get-deps-codegen
@@ -63,45 +67,41 @@ cleanup-models: get-deps-codegen
 ###################
 unit: get-deps verify
 	@echo "go test SDK and vendor packages"
-	@go test -tags ${UNIT_TEST_TAGS} ${SDK_ALL_PKGS}
+	go test -tags ${UNIT_TEST_TAGS} ${SDK_ALL_PKGS}
 
 unit-with-race-cover: get-deps verify
 	@echo "go test SDK and vendor packages"
-	@go test -tags ${UNIT_TEST_TAGS} -race -cpu=1,2,4 ${SDK_ALL_PKGS}
+	go test -tags ${UNIT_TEST_TAGS} -race -cpu=1,2,4 ${SDK_ALL_PKGS}
 
 unit-old-go-race-cover: get-deps-tests
 	@echo "go test SDK only packages for old Go versions"
-	@go test -race -cpu=1,2,4 ${SDK_COMPA_PKGS}
+	go test -race -cpu=1,2,4 ${SDK_COMPA_PKGS}
 
 ci-test: generate unit-with-race-cover ci-test-generate-validate
 
 ci-test-generate-validate:
 	@echo "CI test validate no generated code changes"
-	@git add . -A
-	@gitstatus=`git diff --cached --ignore-space-change`; \
+	git add . -A
+	gitstatus=`git diff --cached --ignore-space-change`; \
 	echo "$$gitstatus"; \
 	if [ "$$gitstatus" != "" ] && [ "$$gitstatus" != "skipping validation" ]; then echo "$$gitstatus"; exit 1; fi
 
 #######################
 # Integration Testing #
 #######################
-integration: sdk-integ client-integ smoke-integ
+integration: core-integ client-integ
 
-sdk-integ:
-	@echo "Integration Testing core SDK"
-	go test -count=1 -tags "integration" -v -run TestInteg_ ./aws/... ./private/... ./internal/... ./awstesting/... 
+core-integ:
+	@echo "Integration Testing SDK core"
+	go test -count=1 -tags "integration" -v -run '^TestInteg_' ./aws/... ./private/... ./internal/... ./awstesting/... 
 
 client-integ:
 	@echo "Integration Testing SDK clients"
-	go test -count=1 -tags "integration" -v -run TestInteg_ ./service/...
-
-smoke-integ:
-	@echo "Integration Smoke Testing SDK clients"
-	go test -count=1 -tags "integration" -v -run TestSmoke_ ./service/...
+	go test -count=1 -tags "integration" -v -run '^TestInteg_' ./service/...
 
 s3crypto-integ:
 	@echo "Integration Testing S3 Cyrpto utility"
-	go test -count=1 -tags "s3crypto_integ integration" -v -run TestInteg_ ./service/s3/s3crypto
+	go test -count=1 -tags "s3crypto_integ integration" -v -run '^TestInteg_' ./service/s3/s3crypto
 
 cleanup-integ-buckets:
 	@echo "Cleaning up SDK integraiton resources"
@@ -110,7 +110,7 @@ cleanup-integ-buckets:
 ###################
 # Sandbox Testing #
 ###################
-sandbox-tests: sandbox-test-go15 sandbox-test-go15-novendorexp sandbox-test-go16 sandbox-test-go17 sandbox-test-go18 sandbox-test-go19 sandbox-test-gotip
+sandbox-tests: sandbox-test-go15 sandbox-test-go15-novendorexp sandbox-test-go16 sandbox-test-go17 sandbox-test-go18 sandbox-test-go19 sandbox-test-go110 sandbox-test-go111 sandbox-test-gotip
 
 sandbox-build-go15:
 	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.5 -t "aws-sdk-go-1.5" .
@@ -217,11 +217,11 @@ get-deps-verify:
 
 bench:
 	@echo "go bench SDK packages"
-	@go test -run NONE -bench . -benchmem -tags 'bench' ${SDK_ALL_PKGS}
+	go test -run NONE -bench . -benchmem -tags 'bench' ${SDK_ALL_PKGS}
 
 bench-protocol:
 	@echo "go bench SDK protocol marshallers"
-	@go test -run NONE -bench . -benchmem -tags 'bench' ./private/protocol/...
+	go test -run NONE -bench . -benchmem -tags 'bench' ./private/protocol/...
 
 #############
 # Utilities #
