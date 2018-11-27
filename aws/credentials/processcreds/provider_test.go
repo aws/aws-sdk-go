@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"os/exec"
 	"runtime"
 	"strings"
 	"testing"
@@ -305,13 +306,13 @@ func TestProcessProviderTimeout(t *testing.T) {
 	command := "/bin/sleep 2"
 	if runtime.GOOS == "windows" {
 		// "timeout" command does not work due to pipe redirection
-		command = "C:\\Windows\\system32\\ping -n 2 127.0.0.1>nul"
+		command = "ping -n 2 127.0.0.1>nul"
 	}
 
 	creds := processcreds.NewCredentialsTimeout(
 		command,
 		time.Duration(1)*time.Second)
-	if _, err := creds.Get(); err == nil || err.(awserr.Error).Code() != processcreds.ErrCodeProcessProviderExecution || err.(awserr.Error).Message() != processcreds.ErrMsgProcessProviderTimeout {
+	if _, err := creds.Get(); err == nil || err.(awserr.Error).Code() != processcreds.ErrCodeProcessProviderExecution || err.(awserr.Error).Message() != "credential process timed out" {
 		t.Errorf("expected %v, got %v", processcreds.ErrCodeProcessProviderExecution, err)
 	}
 
@@ -474,6 +475,30 @@ func TestProcessProviderForceExpire(t *testing.T) {
 
 }
 
+func TestProcessProviderAltConstruct(t *testing.T) {
+	oldEnv := preserveImportantStashEnv()
+	defer awstesting.PopEnv(oldEnv)
+
+	// constructing with exec.Cmd instead of string
+	myCommand := exec.Command(
+		fmt.Sprintf(
+			"%s %s",
+			getOSCat(),
+			strings.Join(
+				[]string{"testdata", "static.json"},
+				string(os.PathSeparator))))
+	creds := processcreds.NewCredentialsCommand(myCommand, func(opt *processcreds.ProcessProvider) {
+		opt.Timeout = time.Duration(1) * time.Second
+	})
+	_, err := creds.Get()
+	if err != nil {
+		t.Errorf("expected %v, got %v", "no error", err)
+	}
+	if creds.IsExpired() {
+		t.Errorf("expected %v, got %v", "static credentials/not expired", "expired")
+	}
+}
+
 func BenchmarkProcessProvider(b *testing.B) {
 	oldEnv := preserveImportantStashEnv()
 	defer awstesting.PopEnv(oldEnv)
@@ -500,18 +525,14 @@ func BenchmarkProcessProvider(b *testing.B) {
 }
 
 func preserveImportantStashEnv() []string {
-	extraEnv := make(map[string]string)
+	envsToKeep := []string{"PATH"}
+
 	if runtime.GOOS == "windows" {
-		key := "ComSpec"
-		if val, ok := os.LookupEnv(key); ok && len(val) > 0 {
-			extraEnv[key] = val
-		}
+		envsToKeep = append(envsToKeep, "ComSpec")
+		envsToKeep = append(envsToKeep, "SYSTEM32")
 	}
 
-	key := "PATH"
-	if val, ok := os.LookupEnv(key); ok && len(val) > 0 {
-		extraEnv[key] = val
-	}
+	extraEnv := getEnvs(envsToKeep)
 
 	oldEnv := awstesting.StashEnv() //clear env
 
@@ -520,6 +541,16 @@ func preserveImportantStashEnv() []string {
 	}
 
 	return oldEnv
+}
+
+func getEnvs(envs []string) map[string]string {
+	extraEnvs := make(map[string]string)
+	for _, env := range envs {
+		if val, ok := os.LookupEnv(env); ok && len(val) > 0 {
+			extraEnvs[env] = val
+		}
+	}
+	return extraEnvs
 }
 
 func getOSCat() string {
