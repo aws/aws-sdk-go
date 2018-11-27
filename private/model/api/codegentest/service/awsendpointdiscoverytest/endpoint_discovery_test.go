@@ -4,6 +4,7 @@ import (
 	"sync"
 	"sync/atomic"
 	"testing"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -47,6 +48,8 @@ func TestEndpointDiscovery(t *testing.T) {
 }
 
 func TestAsyncEndpointDiscovery(t *testing.T) {
+	t.Parallel()
+
 	svc := New(unit.Session, &aws.Config{
 		EnableEndpointDiscovery: aws.Bool(true),
 	})
@@ -54,20 +57,12 @@ func TestAsyncEndpointDiscovery(t *testing.T) {
 
 	var firstAsyncReq sync.WaitGroup
 	firstAsyncReq.Add(1)
-	svc.Handlers.Send.PushBack(func(r *request.Request) {
+	svc.Handlers.Build.PushBack(func(r *request.Request) {
 		if r.Operation.Name == opDescribeEndpoints {
 			firstAsyncReq.Wait()
 		}
 	})
 	svc.Handlers.Send.PushBack(mockSendDescEndpoint)
-
-	var descWg sync.WaitGroup
-	descWg.Add(1)
-	svc.Handlers.Complete.PushBack(func(r *request.Request) {
-		if r.Operation.Name == opDescribeEndpoints {
-			descWg.Done()
-		}
-	})
 
 	req, _ := svc.TestDiscoveryOptionalRequest(&TestDiscoveryOptionalInput{
 		Sdk: aws.String("sdk"),
@@ -78,12 +73,25 @@ func TestAsyncEndpointDiscovery(t *testing.T) {
 			t.Errorf("expected %q, but received %q", e, a)
 		}
 	})
+	req.Handlers.Complete.PushBack(func(r *request.Request) {
+		firstAsyncReq.Done()
+	})
 	if err := req.Send(); err != nil {
 		t.Fatal(err)
 	}
 
-	firstAsyncReq.Done()
-	descWg.Wait()
+	var cacheUpdated bool
+	for s := time.Now().Add(10 * time.Second); s.After(time.Now()); {
+		// Wait for the cache to be updated before making second request.
+		if svc.endpointCache.Has(req.Operation.Name) {
+			cacheUpdated = true
+			break
+		}
+		time.Sleep(10 * time.Millisecond)
+	}
+	if !cacheUpdated {
+		t.Fatalf("expect endpoint cache to be updated, was not")
+	}
 
 	req, _ = svc.TestDiscoveryOptionalRequest(&TestDiscoveryOptionalInput{
 		Sdk: aws.String("sdk"),
