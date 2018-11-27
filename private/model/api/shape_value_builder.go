@@ -154,7 +154,6 @@ func (b ShapeValueBuilder) BuildScalar(name, memName string, ref *ShapeRef, shap
 	default:
 		panic(fmt.Errorf("Unsupported scalar type: %v", reflect.TypeOf(v)))
 	}
-	return ""
 }
 
 // BuildComplex will build the shape's value for complex types such as structs,
@@ -174,8 +173,6 @@ func (b ShapeValueBuilder) BuildComplex(name, memName string, ref *ShapeRef, v m
 	default:
 		panic(fmt.Sprintf("Expected complex type but recieved %q", ref.Shape.Type))
 	}
-
-	return ""
 }
 
 // GoType returns the string of the shape's Go type identifier.
