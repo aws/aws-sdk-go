@@ -46,7 +46,7 @@ func loadAPI(modelPath, baseImport string) (*API, error) {
 	modelDir := filepath.Dir(modelPath)
 	err := attachModelFiles(modelDir,
 		modelLoader{modelFile, a.Attach, true},
-		modelLoader{"docs-2.json", a.AttachDocs, true},
+		modelLoader{"docs-2.json", a.AttachDocs, false},
 		modelLoader{"paginators-1.json", a.AttachPaginators, false},
 		modelLoader{"waiters-2.json", a.AttachWaiters, false},
 		modelLoader{"examples-1.json", a.AttachExamples, false},
