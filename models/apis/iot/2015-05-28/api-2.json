@@ -2747,6 +2747,7 @@
         "elasticsearch":{"shape":"ElasticsearchAction"},
         "salesforce":{"shape":"SalesforceAction"},
         "iotAnalytics":{"shape":"IotAnalyticsAction"},
+        "iotEvents":{"shape":"IotEventsAction"},
         "stepFunctions":{"shape":"StepFunctionsAction"}
       }
     },
@@ -5402,6 +5403,11 @@
       ]
     },
     "InlineDocument":{"type":"string"},
+    "InputName":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
     "InternalException":{
       "type":"structure",
       "members":{
@@ -5457,6 +5463,18 @@
       "members":{
         "channelArn":{"shape":"AwsArn"},
         "channelName":{"shape":"ChannelName"},
+        "roleArn":{"shape":"AwsArn"}
+      }
+    },
+    "IotEventsAction":{
+      "type":"structure",
+      "required":[
+        "inputName",
+        "roleArn"
+      ],
+      "members":{
+        "inputName":{"shape":"InputName"},
+        "messageId":{"shape":"MessageId"},
         "roleArn":{"shape":"AwsArn"}
       }
     },
@@ -6951,6 +6969,10 @@
         "RAW",
         "JSON"
       ]
+    },
+    "MessageId":{
+      "type":"string",
+      "max":128
     },
     "MetricValue":{
       "type":"structure",

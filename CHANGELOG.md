@@ -1,3 +1,31 @@
+Release v1.15.83 (2018-11-27)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Adds the following updates: 1. Transit Gateway helps easily scale connectivity across thousands of Amazon VPCs, AWS accounts, and on-premises networks. 2. Amazon EC2 A1 instance is a new Arm architecture based general purpose instance. 3. You can now launch the new Amazon EC2 compute optimized C5n instances that can utilize up to 100 Gbps of network bandwidth.
+* `service/globalaccelerator`: Adds new service
+* `service/greengrass`: Updates service API and documentation
+  * Support Greengrass Connectors and allow Lambda functions to run without Greengrass containers.
+* `service/iot`: Updates service API and documentation
+  * As part of this release, we are extending capability of AWS IoT Rules Engine to support IoT Events rule action. The IoT Events rule action lets you send messages from IoT sensors and applications to IoT Events for pattern recognition and event detection.
+* `service/iotanalytics`: Updates service API and documentation
+* `service/kms`: Updates service API and documentation
+  * AWS Key Management Service (KMS) now enables customers to create and manage dedicated, single-tenant key stores in addition to the default KMS key store. These are known as custom key stores and are deployed using AWS CloudHSM clusters. Keys that are created in a KMS custom key store can be used like any other customer master key in KMS.
+* `service/s3`: Updates service API and documentation
+  * Four new Amazon S3 Glacier features help you reduce your storage costs by making it even easier to build archival applications using the Amazon S3 Glacier storage class. S3 Object Lock enables customers to apply Write Once Read Many (WORM) protection to objects in S3 in order to prevent object deletion for a customer-defined retention period. S3 Inventory now supports fields for reporting on S3 Object Lock. "ObjectLockRetainUntilDate", "ObjectLockMode", and "ObjectLockLegalHoldStatus" are now available as valid optional fields.
+* `service/sms`: Updates service API, documentation, and paginators
+  * In this release, AWS Server Migration Service (SMS) has added multi-server migration support to simplify the application migration process. Customers can migrate all their application-specific servers together as a single unit as opposed to moving individual server one at a time. The new functionality includes - 1. Ability to group on-premises servers into applications and application tiers. 2. Auto-generated CloudFormation Template and Stacks for launching migrated servers into EC2. 3. Ability to run post-launch configuration scripts to configure servers and applications in EC2. In order for SMS to launch servers into your AWS account using CloudFormation Templates, we have also updated the ServerMigrationServiceRole IAM policy to include appropriate permissions. Refer to Server Migration Service documentation for more details.
+
+### SDK Enhancements
+* `service/s3/s3manager`: Generate Upload Manager's UploadInput structure ([#2296](https://github.com/aws/aws-sdk-go/pull/2296))
+  * Updates the SDK's code generation to also generate the S3 Upload Manager's UploadInput structure type based on the modeled S3 PutObjectInput. This ensures parity between the two types, and the S3 manager does not fall behind the capabilities of PutObject.
+
+### SDK Bugs
+* `private/model/api`: Fix model loading to not require docs model. ([#2303](https://github.com/aws/aws-sdk-go/pull/2303))
+  * Fixes the SDK's model loading to not require that the docs model be present. This model isn't explicitly required.
+* Fixup endpoint discovery unit test to be stable ([#2305](https://github.com/aws/aws-sdk-go/pull/2305))
+  * Fixes the SDK's endpoint discovery async unit test to be stable, and produce consistent unit test results.
 Release v1.15.82 (2018-11-26)
 ===
 

@@ -52,8 +52,8 @@ func (c *Greengrass) AssociateRoleToGroupRequest(input *AssociateRoleToGroupInpu
 
 // AssociateRoleToGroup API operation for AWS Greengrass.
 //
-// Associates a role with a group. Your AWS Greengrass core will use the role
-// to access AWS cloud services. The role's permissions should allow Greengrass
+// Associates a role with a group. Your Greengrass core will use the role to
+// access AWS cloud services. The role's permissions should allow Greengrass
 // core Lambda functions to perform actions against the cloud.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -136,10 +136,10 @@ func (c *Greengrass) AssociateServiceRoleToAccountRequest(input *AssociateServic
 
 // AssociateServiceRoleToAccount API operation for AWS Greengrass.
 //
-// Associates a role with your account. AWS Greengrass will use the role to
-// access your Lambda functions and AWS IoT resources. This is necessary for
-// deployments to succeed. The role must have at least minimum permissions in
-// the policy ''AWSGreengrassResourceAccessRolePolicy''.
+// Associates a role with your account. AWS IoT Greengrass will use the role
+// to access your Lambda functions and AWS IoT resources. This is necessary
+// for deployments to succeed. The role must have at least minimum permissions
+// in the policy ''AWSGreengrassResourceAccessRolePolicy''.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -172,6 +172,166 @@ func (c *Greengrass) AssociateServiceRoleToAccount(input *AssociateServiceRoleTo
 // for more information on using Contexts.
 func (c *Greengrass) AssociateServiceRoleToAccountWithContext(ctx aws.Context, input *AssociateServiceRoleToAccountInput, opts ...request.Option) (*AssociateServiceRoleToAccountOutput, error) {
 	req, out := c.AssociateServiceRoleToAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateConnectorDefinition = "CreateConnectorDefinition"
+
+// CreateConnectorDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateConnectorDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateConnectorDefinition for more information on using the CreateConnectorDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateConnectorDefinitionRequest method.
+//    req, resp := client.CreateConnectorDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateConnectorDefinition
+func (c *Greengrass) CreateConnectorDefinitionRequest(input *CreateConnectorDefinitionInput) (req *request.Request, output *CreateConnectorDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opCreateConnectorDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/greengrass/definition/connectors",
+	}
+
+	if input == nil {
+		input = &CreateConnectorDefinitionInput{}
+	}
+
+	output = &CreateConnectorDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateConnectorDefinition API operation for AWS Greengrass.
+//
+// Creates a connector definition. You may provide the initial version of the
+// connector definition now or use ''CreateConnectorDefinitionVersion'' at a
+// later time.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Greengrass's
+// API operation CreateConnectorDefinition for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   General error information.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateConnectorDefinition
+func (c *Greengrass) CreateConnectorDefinition(input *CreateConnectorDefinitionInput) (*CreateConnectorDefinitionOutput, error) {
+	req, out := c.CreateConnectorDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// CreateConnectorDefinitionWithContext is the same as CreateConnectorDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateConnectorDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Greengrass) CreateConnectorDefinitionWithContext(ctx aws.Context, input *CreateConnectorDefinitionInput, opts ...request.Option) (*CreateConnectorDefinitionOutput, error) {
+	req, out := c.CreateConnectorDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateConnectorDefinitionVersion = "CreateConnectorDefinitionVersion"
+
+// CreateConnectorDefinitionVersionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateConnectorDefinitionVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateConnectorDefinitionVersion for more information on using the CreateConnectorDefinitionVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateConnectorDefinitionVersionRequest method.
+//    req, resp := client.CreateConnectorDefinitionVersionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateConnectorDefinitionVersion
+func (c *Greengrass) CreateConnectorDefinitionVersionRequest(input *CreateConnectorDefinitionVersionInput) (req *request.Request, output *CreateConnectorDefinitionVersionOutput) {
+	op := &request.Operation{
+		Name:       opCreateConnectorDefinitionVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/greengrass/definition/connectors/{ConnectorDefinitionId}/versions",
+	}
+
+	if input == nil {
+		input = &CreateConnectorDefinitionVersionInput{}
+	}
+
+	output = &CreateConnectorDefinitionVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateConnectorDefinitionVersion API operation for AWS Greengrass.
+//
+// Creates a version of a connector definition which has already been defined.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Greengrass's
+// API operation CreateConnectorDefinitionVersion for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   General error information.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateConnectorDefinitionVersion
+func (c *Greengrass) CreateConnectorDefinitionVersion(input *CreateConnectorDefinitionVersionInput) (*CreateConnectorDefinitionVersionOutput, error) {
+	req, out := c.CreateConnectorDefinitionVersionRequest(input)
+	return out, req.Send()
+}
+
+// CreateConnectorDefinitionVersionWithContext is the same as CreateConnectorDefinitionVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateConnectorDefinitionVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Greengrass) CreateConnectorDefinitionVersionWithContext(ctx aws.Context, input *CreateConnectorDefinitionVersionInput, opts ...request.Option) (*CreateConnectorDefinitionVersionOutput, error) {
+	req, out := c.CreateConnectorDefinitionVersionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -222,8 +382,8 @@ func (c *Greengrass) CreateCoreDefinitionRequest(input *CreateCoreDefinitionInpu
 // CreateCoreDefinition API operation for AWS Greengrass.
 //
 // Creates a core definition. You may provide the initial version of the core
-// definition now or use ''CreateCoreDefinitionVersion'' at a later time. AWS
-// Greengrass groups must each contain exactly one AWS Greengrass core.
+// definition now or use ''CreateCoreDefinitionVersion'' at a later time. Greengrass
+// groups must each contain exactly one Greengrass core.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -302,8 +462,8 @@ func (c *Greengrass) CreateCoreDefinitionVersionRequest(input *CreateCoreDefinit
 
 // CreateCoreDefinitionVersion API operation for AWS Greengrass.
 //
-// Creates a version of a core definition that has already been defined. AWS
-// Greengrass groups must each contain exactly one AWS Greengrass core.
+// Creates a version of a core definition that has already been defined. Greengrass
+// groups must each contain exactly one Greengrass core.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -783,7 +943,9 @@ func (c *Greengrass) CreateGroupRequest(input *CreateGroupInput) (req *request.R
 // CreateGroup API operation for AWS Greengrass.
 //
 // Creates a group. You may provide the initial version of the group or use
-// ''CreateGroupVersion'' at a later time.
+// ''CreateGroupVersion'' at a later time. Tip: You can use the ''gg_group_setup''
+// package (https://github.com/awslabs/aws-greengrass-group-setup) as a library
+// or command-line application to create and deploy Greengrass groups.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1539,6 +1701,85 @@ func (c *Greengrass) CreateSubscriptionDefinitionVersion(input *CreateSubscripti
 // for more information on using Contexts.
 func (c *Greengrass) CreateSubscriptionDefinitionVersionWithContext(ctx aws.Context, input *CreateSubscriptionDefinitionVersionInput, opts ...request.Option) (*CreateSubscriptionDefinitionVersionOutput, error) {
 	req, out := c.CreateSubscriptionDefinitionVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteConnectorDefinition = "DeleteConnectorDefinition"
+
+// DeleteConnectorDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteConnectorDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteConnectorDefinition for more information on using the DeleteConnectorDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteConnectorDefinitionRequest method.
+//    req, resp := client.DeleteConnectorDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/DeleteConnectorDefinition
+func (c *Greengrass) DeleteConnectorDefinitionRequest(input *DeleteConnectorDefinitionInput) (req *request.Request, output *DeleteConnectorDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteConnectorDefinition,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/greengrass/definition/connectors/{ConnectorDefinitionId}",
+	}
+
+	if input == nil {
+		input = &DeleteConnectorDefinitionInput{}
+	}
+
+	output = &DeleteConnectorDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteConnectorDefinition API operation for AWS Greengrass.
+//
+// Deletes a connector definition.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Greengrass's
+// API operation DeleteConnectorDefinition for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   General error information.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/DeleteConnectorDefinition
+func (c *Greengrass) DeleteConnectorDefinition(input *DeleteConnectorDefinitionInput) (*DeleteConnectorDefinitionOutput, error) {
+	req, out := c.DeleteConnectorDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteConnectorDefinitionWithContext is the same as DeleteConnectorDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteConnectorDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Greengrass) DeleteConnectorDefinitionWithContext(ctx aws.Context, input *DeleteConnectorDefinitionInput, opts ...request.Option) (*DeleteConnectorDefinitionOutput, error) {
+	req, out := c.DeleteConnectorDefinitionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2497,6 +2738,167 @@ func (c *Greengrass) GetConnectivityInfo(input *GetConnectivityInfoInput) (*GetC
 // for more information on using Contexts.
 func (c *Greengrass) GetConnectivityInfoWithContext(ctx aws.Context, input *GetConnectivityInfoInput, opts ...request.Option) (*GetConnectivityInfoOutput, error) {
 	req, out := c.GetConnectivityInfoRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetConnectorDefinition = "GetConnectorDefinition"
+
+// GetConnectorDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the GetConnectorDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetConnectorDefinition for more information on using the GetConnectorDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetConnectorDefinitionRequest method.
+//    req, resp := client.GetConnectorDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetConnectorDefinition
+func (c *Greengrass) GetConnectorDefinitionRequest(input *GetConnectorDefinitionInput) (req *request.Request, output *GetConnectorDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opGetConnectorDefinition,
+		HTTPMethod: "GET",
+		HTTPPath:   "/greengrass/definition/connectors/{ConnectorDefinitionId}",
+	}
+
+	if input == nil {
+		input = &GetConnectorDefinitionInput{}
+	}
+
+	output = &GetConnectorDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetConnectorDefinition API operation for AWS Greengrass.
+//
+// Retrieves information about a connector definition.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Greengrass's
+// API operation GetConnectorDefinition for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   General error information.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetConnectorDefinition
+func (c *Greengrass) GetConnectorDefinition(input *GetConnectorDefinitionInput) (*GetConnectorDefinitionOutput, error) {
+	req, out := c.GetConnectorDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// GetConnectorDefinitionWithContext is the same as GetConnectorDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetConnectorDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Greengrass) GetConnectorDefinitionWithContext(ctx aws.Context, input *GetConnectorDefinitionInput, opts ...request.Option) (*GetConnectorDefinitionOutput, error) {
+	req, out := c.GetConnectorDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetConnectorDefinitionVersion = "GetConnectorDefinitionVersion"
+
+// GetConnectorDefinitionVersionRequest generates a "aws/request.Request" representing the
+// client's request for the GetConnectorDefinitionVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetConnectorDefinitionVersion for more information on using the GetConnectorDefinitionVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetConnectorDefinitionVersionRequest method.
+//    req, resp := client.GetConnectorDefinitionVersionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetConnectorDefinitionVersion
+func (c *Greengrass) GetConnectorDefinitionVersionRequest(input *GetConnectorDefinitionVersionInput) (req *request.Request, output *GetConnectorDefinitionVersionOutput) {
+	op := &request.Operation{
+		Name:       opGetConnectorDefinitionVersion,
+		HTTPMethod: "GET",
+		HTTPPath:   "/greengrass/definition/connectors/{ConnectorDefinitionId}/versions/{ConnectorDefinitionVersionId}",
+	}
+
+	if input == nil {
+		input = &GetConnectorDefinitionVersionInput{}
+	}
+
+	output = &GetConnectorDefinitionVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetConnectorDefinitionVersion API operation for AWS Greengrass.
+//
+// Retrieves information about a connector definition version, including the
+// connectors that the version contains. Connectors are prebuilt modules that
+// interact with local infrastructure, device protocols, AWS, and other cloud
+// services.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Greengrass's
+// API operation GetConnectorDefinitionVersion for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   General error information.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetConnectorDefinitionVersion
+func (c *Greengrass) GetConnectorDefinitionVersion(input *GetConnectorDefinitionVersionInput) (*GetConnectorDefinitionVersionOutput, error) {
+	req, out := c.GetConnectorDefinitionVersionRequest(input)
+	return out, req.Send()
+}
+
+// GetConnectorDefinitionVersionWithContext is the same as GetConnectorDefinitionVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetConnectorDefinitionVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Greengrass) GetConnectorDefinitionVersionWithContext(ctx aws.Context, input *GetConnectorDefinitionVersionInput, opts ...request.Option) (*GetConnectorDefinitionVersionOutput, error) {
+	req, out := c.GetConnectorDefinitionVersionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4093,6 +4495,161 @@ func (c *Greengrass) ListBulkDeploymentsWithContext(ctx aws.Context, input *List
 	return out, req.Send()
 }
 
+const opListConnectorDefinitionVersions = "ListConnectorDefinitionVersions"
+
+// ListConnectorDefinitionVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListConnectorDefinitionVersions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListConnectorDefinitionVersions for more information on using the ListConnectorDefinitionVersions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListConnectorDefinitionVersionsRequest method.
+//    req, resp := client.ListConnectorDefinitionVersionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListConnectorDefinitionVersions
+func (c *Greengrass) ListConnectorDefinitionVersionsRequest(input *ListConnectorDefinitionVersionsInput) (req *request.Request, output *ListConnectorDefinitionVersionsOutput) {
+	op := &request.Operation{
+		Name:       opListConnectorDefinitionVersions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/greengrass/definition/connectors/{ConnectorDefinitionId}/versions",
+	}
+
+	if input == nil {
+		input = &ListConnectorDefinitionVersionsInput{}
+	}
+
+	output = &ListConnectorDefinitionVersionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListConnectorDefinitionVersions API operation for AWS Greengrass.
+//
+// Lists the versions of a connector definition, which are containers for connectors.
+// Connectors run on the Greengrass core and contain built-in integration with
+// local infrastructure, device protocols, AWS, and other cloud services.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Greengrass's
+// API operation ListConnectorDefinitionVersions for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   General error information.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListConnectorDefinitionVersions
+func (c *Greengrass) ListConnectorDefinitionVersions(input *ListConnectorDefinitionVersionsInput) (*ListConnectorDefinitionVersionsOutput, error) {
+	req, out := c.ListConnectorDefinitionVersionsRequest(input)
+	return out, req.Send()
+}
+
+// ListConnectorDefinitionVersionsWithContext is the same as ListConnectorDefinitionVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListConnectorDefinitionVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Greengrass) ListConnectorDefinitionVersionsWithContext(ctx aws.Context, input *ListConnectorDefinitionVersionsInput, opts ...request.Option) (*ListConnectorDefinitionVersionsOutput, error) {
+	req, out := c.ListConnectorDefinitionVersionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListConnectorDefinitions = "ListConnectorDefinitions"
+
+// ListConnectorDefinitionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListConnectorDefinitions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListConnectorDefinitions for more information on using the ListConnectorDefinitions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListConnectorDefinitionsRequest method.
+//    req, resp := client.ListConnectorDefinitionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListConnectorDefinitions
+func (c *Greengrass) ListConnectorDefinitionsRequest(input *ListConnectorDefinitionsInput) (req *request.Request, output *ListConnectorDefinitionsOutput) {
+	op := &request.Operation{
+		Name:       opListConnectorDefinitions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/greengrass/definition/connectors",
+	}
+
+	if input == nil {
+		input = &ListConnectorDefinitionsInput{}
+	}
+
+	output = &ListConnectorDefinitionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListConnectorDefinitions API operation for AWS Greengrass.
+//
+// Retrieves a list of connector definitions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Greengrass's
+// API operation ListConnectorDefinitions for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListConnectorDefinitions
+func (c *Greengrass) ListConnectorDefinitions(input *ListConnectorDefinitionsInput) (*ListConnectorDefinitionsOutput, error) {
+	req, out := c.ListConnectorDefinitionsRequest(input)
+	return out, req.Send()
+}
+
+// ListConnectorDefinitionsWithContext is the same as ListConnectorDefinitions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListConnectorDefinitions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Greengrass) ListConnectorDefinitionsWithContext(ctx aws.Context, input *ListConnectorDefinitionsInput, opts ...request.Option) (*ListConnectorDefinitionsOutput, error) {
+	req, out := c.ListConnectorDefinitionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListCoreDefinitionVersions = "ListCoreDefinitionVersions"
 
 // ListCoreDefinitionVersionsRequest generates a "aws/request.Request" representing the
@@ -5654,6 +6211,85 @@ func (c *Greengrass) UpdateConnectivityInfoWithContext(ctx aws.Context, input *U
 	return out, req.Send()
 }
 
+const opUpdateConnectorDefinition = "UpdateConnectorDefinition"
+
+// UpdateConnectorDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateConnectorDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateConnectorDefinition for more information on using the UpdateConnectorDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateConnectorDefinitionRequest method.
+//    req, resp := client.UpdateConnectorDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateConnectorDefinition
+func (c *Greengrass) UpdateConnectorDefinitionRequest(input *UpdateConnectorDefinitionInput) (req *request.Request, output *UpdateConnectorDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateConnectorDefinition,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/greengrass/definition/connectors/{ConnectorDefinitionId}",
+	}
+
+	if input == nil {
+		input = &UpdateConnectorDefinitionInput{}
+	}
+
+	output = &UpdateConnectorDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateConnectorDefinition API operation for AWS Greengrass.
+//
+// Updates a connector definition.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Greengrass's
+// API operation UpdateConnectorDefinition for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   General error information.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateConnectorDefinition
+func (c *Greengrass) UpdateConnectorDefinition(input *UpdateConnectorDefinitionInput) (*UpdateConnectorDefinitionOutput, error) {
+	req, out := c.UpdateConnectorDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateConnectorDefinitionWithContext is the same as UpdateConnectorDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateConnectorDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Greengrass) UpdateConnectorDefinitionWithContext(ctx aws.Context, input *UpdateConnectorDefinitionInput, opts ...request.Option) (*UpdateConnectorDefinitionOutput, error) {
+	req, out := c.UpdateConnectorDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateCoreDefinition = "UpdateCoreDefinition"
 
 // UpdateCoreDefinitionRequest generates a "aws/request.Request" representing the
@@ -6404,7 +7040,8 @@ func (s *AssociateServiceRoleToAccountOutput) SetAssociatedAt(v string) *Associa
 	return s
 }
 
-// Information about a bulk deployment.
+// Information about a bulk deployment. You cannot start a new bulk deployment
+// while another one is still running or in a non-terminal state.
 type BulkDeployment struct {
 	_ struct{} `type:"structure"`
 
@@ -6460,7 +7097,10 @@ type BulkDeploymentMetrics struct {
 	// so far, or attempted.
 	RecordsProcessed *int64 `type:"integer"`
 
-	// The total number of retry attempts during the bulk deployment.
+	// The total number of deployment attempts that returned a retryable error.
+	// For example, a retry is triggered if the attempt to deploy a group returns
+	// a throttling error. ''StartBulkDeployment'' retries a group deployment up
+	// to five times.
 	RetryAttempts *int64 `type:"integer"`
 }
 
@@ -6631,6 +7271,78 @@ func (s *ConnectivityInfo) SetPortNumber(v int64) *ConnectivityInfo {
 	return s
 }
 
+// Information about a connector. Connectors run on the Greengrass core and
+// contain built-in integration with local infrastructure, device protocols,
+// AWS, and other cloud services.
+type Connector struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the connector.
+	ConnectorArn *string `type:"string"`
+
+	// A descriptive or arbitrary ID for the connector. This value must be unique
+	// within the connector definition version. Max length is 128 characters with
+	// pattern [a-zA-Z0-9:_-]+.
+	Id *string `type:"string"`
+
+	// The parameters or configuration that the connector uses.
+	Parameters map[string]*string `type:"map"`
+}
+
+// String returns the string representation
+func (s Connector) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Connector) GoString() string {
+	return s.String()
+}
+
+// SetConnectorArn sets the ConnectorArn field's value.
+func (s *Connector) SetConnectorArn(v string) *Connector {
+	s.ConnectorArn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Connector) SetId(v string) *Connector {
+	s.Id = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *Connector) SetParameters(v map[string]*string) *Connector {
+	s.Parameters = v
+	return s
+}
+
+// Information about the connector definition version, which is a container
+// for connectors.
+type ConnectorDefinitionVersion struct {
+	_ struct{} `type:"structure"`
+
+	// A list of references to connectors in this version, with their corresponding
+	// configuration settings.
+	Connectors []*Connector `type:"list"`
+}
+
+// String returns the string representation
+func (s ConnectorDefinitionVersion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConnectorDefinitionVersion) GoString() string {
+	return s.String()
+}
+
+// SetConnectors sets the Connectors field's value.
+func (s *ConnectorDefinitionVersion) SetConnectors(v []*Connector) *ConnectorDefinitionVersion {
+	s.Connectors = v
+	return s
+}
+
 // Information about a core.
 type Core struct {
 	_ struct{} `type:"structure"`
@@ -6639,7 +7351,7 @@ type Core struct {
 	CertificateArn *string `type:"string"`
 
 	// A descriptive or arbitrary ID for the core. This value must be unique within
-	// the core definition version. Max length is 128 characters with pattern ''[a‑zA‑Z0‑9:_‑]+''.
+	// the core definition version. Max length is 128 characters with pattern ''[a-zA-Z0-9:_-]+''.
 	Id *string `type:"string"`
 
 	// If true, the core's local shadow is automatically synced with the cloud.
@@ -6704,6 +7416,214 @@ func (s CoreDefinitionVersion) GoString() string {
 // SetCores sets the Cores field's value.
 func (s *CoreDefinitionVersion) SetCores(v []*Core) *CoreDefinitionVersion {
 	s.Cores = v
+	return s
+}
+
+type CreateConnectorDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	AmznClientToken *string `location:"header" locationName:"X-Amzn-Client-Token" type:"string"`
+
+	// Information about the connector definition version, which is a container
+	// for connectors.
+	InitialVersion *ConnectorDefinitionVersion `type:"structure"`
+
+	Name *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateConnectorDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateConnectorDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// SetAmznClientToken sets the AmznClientToken field's value.
+func (s *CreateConnectorDefinitionInput) SetAmznClientToken(v string) *CreateConnectorDefinitionInput {
+	s.AmznClientToken = &v
+	return s
+}
+
+// SetInitialVersion sets the InitialVersion field's value.
+func (s *CreateConnectorDefinitionInput) SetInitialVersion(v *ConnectorDefinitionVersion) *CreateConnectorDefinitionInput {
+	s.InitialVersion = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateConnectorDefinitionInput) SetName(v string) *CreateConnectorDefinitionInput {
+	s.Name = &v
+	return s
+}
+
+type CreateConnectorDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `type:"string"`
+
+	CreationTimestamp *string `type:"string"`
+
+	Id *string `type:"string"`
+
+	LastUpdatedTimestamp *string `type:"string"`
+
+	LatestVersion *string `type:"string"`
+
+	LatestVersionArn *string `type:"string"`
+
+	Name *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateConnectorDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateConnectorDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateConnectorDefinitionOutput) SetArn(v string) *CreateConnectorDefinitionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationTimestamp sets the CreationTimestamp field's value.
+func (s *CreateConnectorDefinitionOutput) SetCreationTimestamp(v string) *CreateConnectorDefinitionOutput {
+	s.CreationTimestamp = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateConnectorDefinitionOutput) SetId(v string) *CreateConnectorDefinitionOutput {
+	s.Id = &v
+	return s
+}
+
+// SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
+func (s *CreateConnectorDefinitionOutput) SetLastUpdatedTimestamp(v string) *CreateConnectorDefinitionOutput {
+	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// SetLatestVersion sets the LatestVersion field's value.
+func (s *CreateConnectorDefinitionOutput) SetLatestVersion(v string) *CreateConnectorDefinitionOutput {
+	s.LatestVersion = &v
+	return s
+}
+
+// SetLatestVersionArn sets the LatestVersionArn field's value.
+func (s *CreateConnectorDefinitionOutput) SetLatestVersionArn(v string) *CreateConnectorDefinitionOutput {
+	s.LatestVersionArn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateConnectorDefinitionOutput) SetName(v string) *CreateConnectorDefinitionOutput {
+	s.Name = &v
+	return s
+}
+
+type CreateConnectorDefinitionVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	AmznClientToken *string `location:"header" locationName:"X-Amzn-Client-Token" type:"string"`
+
+	// ConnectorDefinitionId is a required field
+	ConnectorDefinitionId *string `location:"uri" locationName:"ConnectorDefinitionId" type:"string" required:"true"`
+
+	Connectors []*Connector `type:"list"`
+}
+
+// String returns the string representation
+func (s CreateConnectorDefinitionVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateConnectorDefinitionVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateConnectorDefinitionVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateConnectorDefinitionVersionInput"}
+	if s.ConnectorDefinitionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectorDefinitionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAmznClientToken sets the AmznClientToken field's value.
+func (s *CreateConnectorDefinitionVersionInput) SetAmznClientToken(v string) *CreateConnectorDefinitionVersionInput {
+	s.AmznClientToken = &v
+	return s
+}
+
+// SetConnectorDefinitionId sets the ConnectorDefinitionId field's value.
+func (s *CreateConnectorDefinitionVersionInput) SetConnectorDefinitionId(v string) *CreateConnectorDefinitionVersionInput {
+	s.ConnectorDefinitionId = &v
+	return s
+}
+
+// SetConnectors sets the Connectors field's value.
+func (s *CreateConnectorDefinitionVersionInput) SetConnectors(v []*Connector) *CreateConnectorDefinitionVersionInput {
+	s.Connectors = v
+	return s
+}
+
+type CreateConnectorDefinitionVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `type:"string"`
+
+	CreationTimestamp *string `type:"string"`
+
+	Id *string `type:"string"`
+
+	Version *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateConnectorDefinitionVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateConnectorDefinitionVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateConnectorDefinitionVersionOutput) SetArn(v string) *CreateConnectorDefinitionVersionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationTimestamp sets the CreationTimestamp field's value.
+func (s *CreateConnectorDefinitionVersionOutput) SetCreationTimestamp(v string) *CreateConnectorDefinitionVersionOutput {
+	s.CreationTimestamp = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateConnectorDefinitionVersionOutput) SetId(v string) *CreateConnectorDefinitionVersionOutput {
+	s.Id = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *CreateConnectorDefinitionVersionOutput) SetVersion(v string) *CreateConnectorDefinitionVersionOutput {
+	s.Version = &v
 	return s
 }
 
@@ -7340,6 +8260,9 @@ type CreateFunctionDefinitionVersionInput struct {
 
 	AmznClientToken *string `location:"header" locationName:"X-Amzn-Client-Token" type:"string"`
 
+	// Default configuration that will apply to all Lambda functions in the group.
+	DefaultConfig *FunctionDefaultConfig `type:"structure"`
+
 	// FunctionDefinitionId is a required field
 	FunctionDefinitionId *string `location:"uri" locationName:"FunctionDefinitionId" type:"string" required:"true"`
 
@@ -7372,6 +8295,12 @@ func (s *CreateFunctionDefinitionVersionInput) Validate() error {
 // SetAmznClientToken sets the AmznClientToken field's value.
 func (s *CreateFunctionDefinitionVersionInput) SetAmznClientToken(v string) *CreateFunctionDefinitionVersionInput {
 	s.AmznClientToken = &v
+	return s
+}
+
+// SetDefaultConfig sets the DefaultConfig field's value.
+func (s *CreateFunctionDefinitionVersionInput) SetDefaultConfig(v *FunctionDefaultConfig) *CreateFunctionDefinitionVersionInput {
+	s.DefaultConfig = v
 	return s
 }
 
@@ -7614,6 +8543,8 @@ type CreateGroupVersionInput struct {
 
 	AmznClientToken *string `location:"header" locationName:"X-Amzn-Client-Token" type:"string"`
 
+	ConnectorDefinitionVersionArn *string `type:"string"`
+
 	CoreDefinitionVersionArn *string `type:"string"`
 
 	DeviceDefinitionVersionArn *string `type:"string"`
@@ -7656,6 +8587,12 @@ func (s *CreateGroupVersionInput) Validate() error {
 // SetAmznClientToken sets the AmznClientToken field's value.
 func (s *CreateGroupVersionInput) SetAmznClientToken(v string) *CreateGroupVersionInput {
 	s.AmznClientToken = &v
+	return s
+}
+
+// SetConnectorDefinitionVersionArn sets the ConnectorDefinitionVersionArn field's value.
+func (s *CreateGroupVersionInput) SetConnectorDefinitionVersionArn(v string) *CreateGroupVersionInput {
+	s.ConnectorDefinitionVersionArn = &v
 	return s
 }
 
@@ -8558,6 +9495,56 @@ func (s *DefinitionInformation) SetName(v string) *DefinitionInformation {
 	return s
 }
 
+type DeleteConnectorDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// ConnectorDefinitionId is a required field
+	ConnectorDefinitionId *string `location:"uri" locationName:"ConnectorDefinitionId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteConnectorDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteConnectorDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteConnectorDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteConnectorDefinitionInput"}
+	if s.ConnectorDefinitionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectorDefinitionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectorDefinitionId sets the ConnectorDefinitionId field's value.
+func (s *DeleteConnectorDefinitionInput) SetConnectorDefinitionId(v string) *DeleteConnectorDefinitionInput {
+	s.ConnectorDefinitionId = &v
+	return s
+}
+
+type DeleteConnectorDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteConnectorDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteConnectorDefinitionOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteCoreDefinitionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8977,7 +9964,7 @@ type Device struct {
 
 	// A descriptive or arbitrary ID for the device. This value must be unique within
 	// the device definition version. Max length is 128 characters with pattern
-	// ''[a‑zA‑Z0‑9:_‑]+''.
+	// ''[a-zA-Z0-9:_-]+''.
 	Id *string `type:"string"`
 
 	// If true, the device's local shadow will be automatically synced with the
@@ -9188,7 +10175,7 @@ type Function struct {
 
 	// A descriptive or arbitrary ID for the function. This value must be unique
 	// within the function definition version. Max length is 128 characters with
-	// pattern ''[a‑zA‑Z0‑9:_‑]+''.
+	// pattern ''[a-zA-Z0-9:_-]+''.
 	Id *string `type:"string"`
 }
 
@@ -9237,7 +10224,9 @@ type FunctionConfiguration struct {
 	// The name of the function executable.
 	Executable *string `type:"string"`
 
-	// The memory size, in KB, which the function requires.
+	// The memory size, in KB, which the function requires. This setting is not
+	// applicable and should be cleared when you run the Lambda function without
+	// containerization.
 	MemorySize *int64 `type:"integer"`
 
 	// True if the function is pinned. Pinned means the function is long-lived and
@@ -9245,7 +10234,8 @@ type FunctionConfiguration struct {
 	Pinned *bool `type:"boolean"`
 
 	// The allowed function execution time, after which Lambda should terminate
-	// the function. This timeout still applies to pinned lambdas for each request.
+	// the function. This timeout still applies to pinned Lambda functions for each
+	// request.
 	Timeout *int64 `type:"integer"`
 }
 
@@ -9307,10 +10297,17 @@ type FunctionConfigurationEnvironment struct {
 
 	// If true, the Lambda function is allowed to access the host's /sys folder.
 	// Use this when the Lambda function needs to read device information from /sys.
+	// This setting applies only when you run the Lambda function in a Greengrass
+	// container.
 	AccessSysfs *bool `type:"boolean"`
+
+	// Configuration related to executing the Lambda function
+	Execution *FunctionExecutionConfig `type:"structure"`
 
 	// A list of the resources, with their permissions, to which the Lambda function
 	// will be granted access. A Lambda function can have at most 10 resources.
+	// ResourceAccessPolicies apply only when you run the Lambda function in a Greengrass
+	// container.
 	ResourceAccessPolicies []*ResourceAccessPolicy `type:"list"`
 
 	// Environment variables for the Lambda function's configuration.
@@ -9333,6 +10330,12 @@ func (s *FunctionConfigurationEnvironment) SetAccessSysfs(v bool) *FunctionConfi
 	return s
 }
 
+// SetExecution sets the Execution field's value.
+func (s *FunctionConfigurationEnvironment) SetExecution(v *FunctionExecutionConfig) *FunctionConfigurationEnvironment {
+	s.Execution = v
+	return s
+}
+
 // SetResourceAccessPolicies sets the ResourceAccessPolicies field's value.
 func (s *FunctionConfigurationEnvironment) SetResourceAccessPolicies(v []*ResourceAccessPolicy) *FunctionConfigurationEnvironment {
 	s.ResourceAccessPolicies = v
@@ -9345,9 +10348,69 @@ func (s *FunctionConfigurationEnvironment) SetVariables(v map[string]*string) *F
 	return s
 }
 
+// Default configuration that will apply to all Lambda functions in the group.
+type FunctionDefaultConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration that defines the default containerization used for when running
+	// Lambda functions in the group. Individual Lambda functions can be override
+	// this setting.
+	Execution *FunctionDefaultExecutionConfig `type:"structure"`
+}
+
+// String returns the string representation
+func (s FunctionDefaultConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FunctionDefaultConfig) GoString() string {
+	return s.String()
+}
+
+// SetExecution sets the Execution field's value.
+func (s *FunctionDefaultConfig) SetExecution(v *FunctionDefaultExecutionConfig) *FunctionDefaultConfig {
+	s.Execution = v
+	return s
+}
+
+// Configuration that defines the default containerization used for when running
+// Lambda functions in the group. Individual Lambda functions can be override
+// this setting.
+type FunctionDefaultExecutionConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether the Lambda function runs in a Greengrass container (default)
+	// or without containerization. Unless your scenario requires that you run without
+	// containerization, we recommend that you run in a Greengrass container. Omit
+	// this value to run the Lambda function with the default containerization for
+	// the group.
+	IsolationMode *string `type:"string" enum:"FunctionIsolationMode"`
+}
+
+// String returns the string representation
+func (s FunctionDefaultExecutionConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FunctionDefaultExecutionConfig) GoString() string {
+	return s.String()
+}
+
+// SetIsolationMode sets the IsolationMode field's value.
+func (s *FunctionDefaultExecutionConfig) SetIsolationMode(v string) *FunctionDefaultExecutionConfig {
+	s.IsolationMode = &v
+	return s
+}
+
 // Information about a function definition version.
 type FunctionDefinitionVersion struct {
 	_ struct{} `type:"structure"`
+
+	// Default configuration that will apply to all Lambda functions in this function
+	// definition version
+	DefaultConfig *FunctionDefaultConfig `type:"structure"`
 
 	// A list of Lambda functions in this function definition version.
 	Functions []*Function `type:"list"`
@@ -9363,9 +10426,97 @@ func (s FunctionDefinitionVersion) GoString() string {
 	return s.String()
 }
 
+// SetDefaultConfig sets the DefaultConfig field's value.
+func (s *FunctionDefinitionVersion) SetDefaultConfig(v *FunctionDefaultConfig) *FunctionDefinitionVersion {
+	s.DefaultConfig = v
+	return s
+}
+
 // SetFunctions sets the Functions field's value.
 func (s *FunctionDefinitionVersion) SetFunctions(v []*Function) *FunctionDefinitionVersion {
 	s.Functions = v
+	return s
+}
+
+// Configuration information that specifies how the Lambda function runs.
+type FunctionExecutionConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether the Lambda function runs in a Greengrass container (default)
+	// or without containerization. Unless your scenario requires that you run without
+	// containerization, we recommend that you run in a Greengrass container. Omit
+	// this value to run the Lambda function with the default containerization for
+	// the group.
+	IsolationMode *string `type:"string" enum:"FunctionIsolationMode"`
+
+	// Specifies the user and/or group whose permissions are used when running the
+	// Lambda function. You can specify one or both values to override the default
+	// values (ggc_user/ggc_group). We recommend that you avoid running as root
+	// unless absolutely necessary to minimize the risk of unintended changes or
+	// malicious attacks. To run as root, you must set IsolationMode to NoContainer
+	// and you must update config.json in greengrass-root/config to set allowFunctionsToRunAsRoot
+	// to yes.
+	RunAs *FunctionRunAsConfig `type:"structure"`
+}
+
+// String returns the string representation
+func (s FunctionExecutionConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FunctionExecutionConfig) GoString() string {
+	return s.String()
+}
+
+// SetIsolationMode sets the IsolationMode field's value.
+func (s *FunctionExecutionConfig) SetIsolationMode(v string) *FunctionExecutionConfig {
+	s.IsolationMode = &v
+	return s
+}
+
+// SetRunAs sets the RunAs field's value.
+func (s *FunctionExecutionConfig) SetRunAs(v *FunctionRunAsConfig) *FunctionExecutionConfig {
+	s.RunAs = v
+	return s
+}
+
+// Specifies the user and/or group whose permissions are used when running the
+// Lambda function. You can specify one or both values to override the default
+// values (ggc_user/ggc_group). We recommend that you avoid running as root
+// unless absolutely necessary to minimize the risk of unintended changes or
+// malicious attacks. To run as root, you must set IsolationMode to NoContainer
+// and you must update config.json in greengrass-root/config to set allowFunctionsToRunAsRoot
+// to yes.
+type FunctionRunAsConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The Group ID whose permissions are used to run a Lambda function.
+	Gid *int64 `type:"integer"`
+
+	// The User ID whose permissions are used to run a Lambda function.
+	Uid *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s FunctionRunAsConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FunctionRunAsConfig) GoString() string {
+	return s.String()
+}
+
+// SetGid sets the Gid field's value.
+func (s *FunctionRunAsConfig) SetGid(v int64) *FunctionRunAsConfig {
+	s.Gid = &v
+	return s
+}
+
+// SetUid sets the Uid field's value.
+func (s *FunctionRunAsConfig) SetUid(v int64) *FunctionRunAsConfig {
+	s.Uid = &v
 	return s
 }
 
@@ -9599,6 +10750,239 @@ func (s *GetConnectivityInfoOutput) SetConnectivityInfo(v []*ConnectivityInfo) *
 // SetMessage sets the Message field's value.
 func (s *GetConnectivityInfoOutput) SetMessage(v string) *GetConnectivityInfoOutput {
 	s.Message = &v
+	return s
+}
+
+type GetConnectorDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// ConnectorDefinitionId is a required field
+	ConnectorDefinitionId *string `location:"uri" locationName:"ConnectorDefinitionId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetConnectorDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetConnectorDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetConnectorDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetConnectorDefinitionInput"}
+	if s.ConnectorDefinitionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectorDefinitionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectorDefinitionId sets the ConnectorDefinitionId field's value.
+func (s *GetConnectorDefinitionInput) SetConnectorDefinitionId(v string) *GetConnectorDefinitionInput {
+	s.ConnectorDefinitionId = &v
+	return s
+}
+
+type GetConnectorDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `type:"string"`
+
+	CreationTimestamp *string `type:"string"`
+
+	Id *string `type:"string"`
+
+	LastUpdatedTimestamp *string `type:"string"`
+
+	LatestVersion *string `type:"string"`
+
+	LatestVersionArn *string `type:"string"`
+
+	Name *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GetConnectorDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetConnectorDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetConnectorDefinitionOutput) SetArn(v string) *GetConnectorDefinitionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationTimestamp sets the CreationTimestamp field's value.
+func (s *GetConnectorDefinitionOutput) SetCreationTimestamp(v string) *GetConnectorDefinitionOutput {
+	s.CreationTimestamp = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetConnectorDefinitionOutput) SetId(v string) *GetConnectorDefinitionOutput {
+	s.Id = &v
+	return s
+}
+
+// SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
+func (s *GetConnectorDefinitionOutput) SetLastUpdatedTimestamp(v string) *GetConnectorDefinitionOutput {
+	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// SetLatestVersion sets the LatestVersion field's value.
+func (s *GetConnectorDefinitionOutput) SetLatestVersion(v string) *GetConnectorDefinitionOutput {
+	s.LatestVersion = &v
+	return s
+}
+
+// SetLatestVersionArn sets the LatestVersionArn field's value.
+func (s *GetConnectorDefinitionOutput) SetLatestVersionArn(v string) *GetConnectorDefinitionOutput {
+	s.LatestVersionArn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetConnectorDefinitionOutput) SetName(v string) *GetConnectorDefinitionOutput {
+	s.Name = &v
+	return s
+}
+
+type GetConnectorDefinitionVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// ConnectorDefinitionId is a required field
+	ConnectorDefinitionId *string `location:"uri" locationName:"ConnectorDefinitionId" type:"string" required:"true"`
+
+	// ConnectorDefinitionVersionId is a required field
+	ConnectorDefinitionVersionId *string `location:"uri" locationName:"ConnectorDefinitionVersionId" type:"string" required:"true"`
+
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s GetConnectorDefinitionVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetConnectorDefinitionVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetConnectorDefinitionVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetConnectorDefinitionVersionInput"}
+	if s.ConnectorDefinitionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectorDefinitionId"))
+	}
+	if s.ConnectorDefinitionVersionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectorDefinitionVersionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectorDefinitionId sets the ConnectorDefinitionId field's value.
+func (s *GetConnectorDefinitionVersionInput) SetConnectorDefinitionId(v string) *GetConnectorDefinitionVersionInput {
+	s.ConnectorDefinitionId = &v
+	return s
+}
+
+// SetConnectorDefinitionVersionId sets the ConnectorDefinitionVersionId field's value.
+func (s *GetConnectorDefinitionVersionInput) SetConnectorDefinitionVersionId(v string) *GetConnectorDefinitionVersionInput {
+	s.ConnectorDefinitionVersionId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetConnectorDefinitionVersionInput) SetNextToken(v string) *GetConnectorDefinitionVersionInput {
+	s.NextToken = &v
+	return s
+}
+
+// Information about a connector definition version.
+type GetConnectorDefinitionVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the connector definition version.
+	Arn *string `type:"string"`
+
+	// The time, in milliseconds since the epoch, when the connector definition
+	// version was created.
+	CreationTimestamp *string `type:"string"`
+
+	// Information about the connector definition version.
+	Definition *ConnectorDefinitionVersion `type:"structure"`
+
+	// The ID of the connector definition version.
+	Id *string `type:"string"`
+
+	// The token for the next set of results, or ''null'' if there are no additional
+	// results.
+	NextToken *string `type:"string"`
+
+	// The version of the connector definition version.
+	Version *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GetConnectorDefinitionVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetConnectorDefinitionVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetConnectorDefinitionVersionOutput) SetArn(v string) *GetConnectorDefinitionVersionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationTimestamp sets the CreationTimestamp field's value.
+func (s *GetConnectorDefinitionVersionOutput) SetCreationTimestamp(v string) *GetConnectorDefinitionVersionOutput {
+	s.CreationTimestamp = &v
+	return s
+}
+
+// SetDefinition sets the Definition field's value.
+func (s *GetConnectorDefinitionVersionOutput) SetDefinition(v *ConnectorDefinitionVersion) *GetConnectorDefinitionVersionOutput {
+	s.Definition = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetConnectorDefinitionVersionOutput) SetId(v string) *GetConnectorDefinitionVersionOutput {
+	s.Id = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetConnectorDefinitionVersionOutput) SetNextToken(v string) *GetConnectorDefinitionVersionOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *GetConnectorDefinitionVersionOutput) SetVersion(v string) *GetConnectorDefinitionVersionOutput {
+	s.Version = &v
 	return s
 }
 
@@ -11611,8 +12995,8 @@ func (s *GroupInformation) SetName(v string) *GroupInformation {
 type GroupOwnerSetting struct {
 	_ struct{} `type:"structure"`
 
-	// If true, GreenGrass automatically adds the specified Linux OS group owner
-	// of the resource to the Lambda process privileges. Thus the Lambda process
+	// If true, AWS IoT Greengrass automatically adds the specified Linux OS group
+	// owner of the resource to the Lambda process privileges. Thus the Lambda process
 	// will have the file access permissions of the added Linux group.
 	AutoAddGroupOwner *bool `type:"boolean"`
 
@@ -11647,6 +13031,9 @@ func (s *GroupOwnerSetting) SetGroupOwner(v string) *GroupOwnerSetting {
 type GroupVersion struct {
 	_ struct{} `type:"structure"`
 
+	// The ARN of the connector definition version for this group.
+	ConnectorDefinitionVersionArn *string `type:"string"`
+
 	// The ARN of the core definition version for this group.
 	CoreDefinitionVersionArn *string `type:"string"`
 
@@ -11659,7 +13046,7 @@ type GroupVersion struct {
 	// The ARN of the logger definition version for this group.
 	LoggerDefinitionVersionArn *string `type:"string"`
 
-	// The resource definition version ARN for this group.
+	// The ARN of the resource definition version for this group.
 	ResourceDefinitionVersionArn *string `type:"string"`
 
 	// The ARN of the subscription definition version for this group.
@@ -11674,6 +13061,12 @@ func (s GroupVersion) String() string {
 // GoString returns the string representation
 func (s GroupVersion) GoString() string {
 	return s.String()
+}
+
+// SetConnectorDefinitionVersionArn sets the ConnectorDefinitionVersionArn field's value.
+func (s *GroupVersion) SetConnectorDefinitionVersionArn(v string) *GroupVersion {
+	s.ConnectorDefinitionVersionArn = &v
+	return s
 }
 
 // SetCoreDefinitionVersionArn sets the CoreDefinitionVersionArn field's value.
@@ -11856,6 +13249,148 @@ func (s *ListBulkDeploymentsOutput) SetBulkDeployments(v []*BulkDeployment) *Lis
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListBulkDeploymentsOutput) SetNextToken(v string) *ListBulkDeploymentsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListConnectorDefinitionVersionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// ConnectorDefinitionId is a required field
+	ConnectorDefinitionId *string `location:"uri" locationName:"ConnectorDefinitionId" type:"string" required:"true"`
+
+	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
+
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListConnectorDefinitionVersionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListConnectorDefinitionVersionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListConnectorDefinitionVersionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListConnectorDefinitionVersionsInput"}
+	if s.ConnectorDefinitionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectorDefinitionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectorDefinitionId sets the ConnectorDefinitionId field's value.
+func (s *ListConnectorDefinitionVersionsInput) SetConnectorDefinitionId(v string) *ListConnectorDefinitionVersionsInput {
+	s.ConnectorDefinitionId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListConnectorDefinitionVersionsInput) SetMaxResults(v string) *ListConnectorDefinitionVersionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConnectorDefinitionVersionsInput) SetNextToken(v string) *ListConnectorDefinitionVersionsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListConnectorDefinitionVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	NextToken *string `type:"string"`
+
+	Versions []*VersionInformation `type:"list"`
+}
+
+// String returns the string representation
+func (s ListConnectorDefinitionVersionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListConnectorDefinitionVersionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConnectorDefinitionVersionsOutput) SetNextToken(v string) *ListConnectorDefinitionVersionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVersions sets the Versions field's value.
+func (s *ListConnectorDefinitionVersionsOutput) SetVersions(v []*VersionInformation) *ListConnectorDefinitionVersionsOutput {
+	s.Versions = v
+	return s
+}
+
+type ListConnectorDefinitionsInput struct {
+	_ struct{} `type:"structure"`
+
+	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
+
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListConnectorDefinitionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListConnectorDefinitionsInput) GoString() string {
+	return s.String()
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListConnectorDefinitionsInput) SetMaxResults(v string) *ListConnectorDefinitionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConnectorDefinitionsInput) SetNextToken(v string) *ListConnectorDefinitionsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListConnectorDefinitionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	Definitions []*DefinitionInformation `type:"list"`
+
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListConnectorDefinitionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListConnectorDefinitionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDefinitions sets the Definitions field's value.
+func (s *ListConnectorDefinitionsOutput) SetDefinitions(v []*DefinitionInformation) *ListConnectorDefinitionsOutput {
+	s.Definitions = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConnectorDefinitionsOutput) SetNextToken(v string) *ListConnectorDefinitionsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -13039,7 +14574,7 @@ func (s *LocalDeviceResourceData) SetSourcePath(v string) *LocalDeviceResourceDa
 type LocalVolumeResourceData struct {
 	_ struct{} `type:"structure"`
 
-	// The absolute local path of the resource inside the lambda environment.
+	// The absolute local path of the resource inside the Lambda environment.
 	DestinationPath *string `type:"string"`
 
 	// Allows you to configure additional group privileges for the Lambda process.
@@ -13047,7 +14582,7 @@ type LocalVolumeResourceData struct {
 	GroupOwnerSetting *GroupOwnerSetting `type:"structure"`
 
 	// The local absolute path of the volume resource on the host. The source path
-	// for a volume resource type cannot start with ''/proc'' or ''/sys''.
+	// for a volume resource type cannot start with ''/sys''.
 	SourcePath *string `type:"string"`
 }
 
@@ -13088,7 +14623,7 @@ type Logger struct {
 
 	// A descriptive or arbitrary ID for the logger. This value must be unique within
 	// the logger definition version. Max length is 128 characters with pattern
-	// ''[a‑zA‑Z0‑9:_‑]+''.
+	// ''[a-zA-Z0-9:_-]+''.
 	Id *string `type:"string"`
 
 	// The level of the logs.
@@ -13261,9 +14796,9 @@ type Resource struct {
 	// be unique within a Greengrass group.
 	Id *string `type:"string"`
 
-	// The descriptive resource name, which is displayed on the Greengrass console.
-	// Max length 128 characters with pattern ''[a-zA-Z0-9:_-]+''. This must be
-	// unique within a Greengrass group.
+	// The descriptive resource name, which is displayed on the AWS IoT Greengrass
+	// console. Max length 128 characters with pattern ''[a-zA-Z0-9:_-]+''. This
+	// must be unique within a Greengrass group.
 	Name *string `type:"string"`
 
 	// A container of data for all resource types.
@@ -13335,7 +14870,8 @@ func (s *ResourceAccessPolicy) SetResourceId(v string) *ResourceAccessPolicy {
 
 // A container for resource data. The container takes only one of the following
 // supported resource data types: ''LocalDeviceResourceData'', ''LocalVolumeResourceData'',
-// ''SageMakerMachineLearningModelResourceData'', ''S3MachineLearningModelResourceData''.
+// ''SageMakerMachineLearningModelResourceData'', ''S3MachineLearningModelResourceData'',
+// ''SecretsManagerSecretResourceData''.
 type ResourceDataContainer struct {
 	_ struct{} `type:"structure"`
 
@@ -13345,11 +14881,15 @@ type ResourceDataContainer struct {
 	// Attributes that define the local volume resource.
 	LocalVolumeResourceData *LocalVolumeResourceData `type:"structure"`
 
-	// Attributes that define an S3 machine learning resource.
+	// Attributes that define an Amazon S3 machine learning resource.
 	S3MachineLearningModelResourceData *S3MachineLearningModelResourceData `type:"structure"`
 
-	// Attributes that define an SageMaker machine learning resource.
+	// Attributes that define an Amazon SageMaker machine learning resource.
 	SageMakerMachineLearningModelResourceData *SageMakerMachineLearningModelResourceData `type:"structure"`
+
+	// Attributes that define a secret resource, which references a secret from
+	// AWS Secrets Manager.
+	SecretsManagerSecretResourceData *SecretsManagerSecretResourceData `type:"structure"`
 }
 
 // String returns the string representation
@@ -13386,6 +14926,12 @@ func (s *ResourceDataContainer) SetSageMakerMachineLearningModelResourceData(v *
 	return s
 }
 
+// SetSecretsManagerSecretResourceData sets the SecretsManagerSecretResourceData field's value.
+func (s *ResourceDataContainer) SetSecretsManagerSecretResourceData(v *SecretsManagerSecretResourceData) *ResourceDataContainer {
+	s.SecretsManagerSecretResourceData = v
+	return s
+}
+
 // Information about a resource definition version.
 type ResourceDefinitionVersion struct {
 	_ struct{} `type:"structure"`
@@ -13410,7 +14956,7 @@ func (s *ResourceDefinitionVersion) SetResources(v []*Resource) *ResourceDefinit
 	return s
 }
 
-// Attributes that define an S3 machine learning resource.
+// Attributes that define an Amazon S3 machine learning resource.
 type S3MachineLearningModelResourceData struct {
 	_ struct{} `type:"structure"`
 
@@ -13444,14 +14990,14 @@ func (s *S3MachineLearningModelResourceData) SetS3Uri(v string) *S3MachineLearni
 	return s
 }
 
-// Attributes that define an SageMaker machine learning resource.
+// Attributes that define an Amazon SageMaker machine learning resource.
 type SageMakerMachineLearningModelResourceData struct {
 	_ struct{} `type:"structure"`
 
 	// The absolute local path of the resource inside the Lambda environment.
 	DestinationPath *string `type:"string"`
 
-	// The ARN of the SageMaker training job that represents the source model.
+	// The ARN of the Amazon SageMaker training job that represents the source model.
 	SageMakerJobArn *string `type:"string"`
 }
 
@@ -13477,6 +15023,45 @@ func (s *SageMakerMachineLearningModelResourceData) SetSageMakerJobArn(v string)
 	return s
 }
 
+// Attributes that define a secret resource, which references a secret from
+// AWS Secrets Manager. AWS IoT Greengrass stores a local, encrypted copy of
+// the secret on the Greengrass core, where it can be securely accessed by connectors
+// and Lambda functions.
+type SecretsManagerSecretResourceData struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the Secrets Manager secret to make available on the core. The
+	// value of the secret's latest version (represented by the ''AWSCURRENT'' staging
+	// label) is included by default.
+	ARN *string `type:"string"`
+
+	// Optional. The staging labels whose values you want to make available on the
+	// core, in addition to ''AWSCURRENT''.
+	AdditionalStagingLabelsToDownload []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s SecretsManagerSecretResourceData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SecretsManagerSecretResourceData) GoString() string {
+	return s.String()
+}
+
+// SetARN sets the ARN field's value.
+func (s *SecretsManagerSecretResourceData) SetARN(v string) *SecretsManagerSecretResourceData {
+	s.ARN = &v
+	return s
+}
+
+// SetAdditionalStagingLabelsToDownload sets the AdditionalStagingLabelsToDownload field's value.
+func (s *SecretsManagerSecretResourceData) SetAdditionalStagingLabelsToDownload(v []*string) *SecretsManagerSecretResourceData {
+	s.AdditionalStagingLabelsToDownload = v
+	return s
+}
+
 // Information about a bulk deployment. You cannot start a new bulk deployment
 // while another one is still running or in a non-terminal state.
 type StartBulkDeploymentInput struct {
@@ -13494,8 +15079,8 @@ type StartBulkDeploymentInput struct {
 	// must have ''getObject'' permissions on this bucket to access the input file.
 	// The input file is a JSON-serialized, line delimited file with UTF-8 encoding
 	// that provides a list of group and version IDs and the deployment type. This
-	// file must be less than 100MB. Currently, Greengrass; supports only ''NewDeployment''
-	// deployment types.
+	// file must be less than 100 MB. Currently, AWS IoT Greengrass supports only
+	// ''NewDeployment'' deployment types.
 	InputFileUri *string `type:"string"`
 }
 
@@ -13615,18 +15200,18 @@ type Subscription struct {
 
 	// A descriptive or arbitrary ID for the subscription. This value must be unique
 	// within the subscription definition version. Max length is 128 characters
-	// with pattern ''[a‑zA‑Z0‑9:_‑]+''.
+	// with pattern ''[a-zA-Z0-9:_-]+''.
 	Id *string `type:"string"`
 
 	// The source of the subscription. Can be a thing ARN, a Lambda function ARN,
-	// 'cloud' (which represents the IoT cloud), or 'GGShadowService'.
+	// a connector ARN, 'cloud' (which represents the AWS IoT cloud), or 'GGShadowService'.
 	Source *string `type:"string"`
 
 	// The subject of the message.
 	Subject *string `type:"string"`
 
 	// Where the message is sent to. Can be a thing ARN, a Lambda function ARN,
-	// 'cloud' (which represents the IoT cloud), or 'GGShadowService'.
+	// a connector ARN, 'cloud' (which represents the AWS IoT cloud), or 'GGShadowService'.
 	Target *string `type:"string"`
 }
 
@@ -13764,6 +15349,64 @@ func (s *UpdateConnectivityInfoOutput) SetMessage(v string) *UpdateConnectivityI
 func (s *UpdateConnectivityInfoOutput) SetVersion(v string) *UpdateConnectivityInfoOutput {
 	s.Version = &v
 	return s
+}
+
+type UpdateConnectorDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// ConnectorDefinitionId is a required field
+	ConnectorDefinitionId *string `location:"uri" locationName:"ConnectorDefinitionId" type:"string" required:"true"`
+
+	Name *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateConnectorDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateConnectorDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateConnectorDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateConnectorDefinitionInput"}
+	if s.ConnectorDefinitionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectorDefinitionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectorDefinitionId sets the ConnectorDefinitionId field's value.
+func (s *UpdateConnectorDefinitionInput) SetConnectorDefinitionId(v string) *UpdateConnectorDefinitionInput {
+	s.ConnectorDefinitionId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateConnectorDefinitionInput) SetName(v string) *UpdateConnectorDefinitionInput {
+	s.Name = &v
+	return s
+}
+
+type UpdateConnectorDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateConnectorDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateConnectorDefinitionOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateCoreDefinitionInput struct {
@@ -14348,6 +15991,19 @@ const (
 
 	// EncodingTypeJson is a EncodingType enum value
 	EncodingTypeJson = "json"
+)
+
+// Specifies whether the Lambda function runs in a Greengrass container (default)
+// or without containerization. Unless your scenario requires that you run without
+// containerization, we recommend that you run in a Greengrass container. Omit
+// this value to run the Lambda function with the default containerization for
+// the group.
+const (
+	// FunctionIsolationModeGreengrassContainer is a FunctionIsolationMode enum value
+	FunctionIsolationModeGreengrassContainer = "GreengrassContainer"
+
+	// FunctionIsolationModeNoContainer is a FunctionIsolationMode enum value
+	FunctionIsolationModeNoContainer = "NoContainer"
 )
 
 const (
