@@ -9,14 +9,15 @@ LINTIGNOREPKGCOMMENT='service/[^/]+/doc_custom.go:.+package comment should be of
 UNIT_TEST_TAGS="example codegen awsinclude"
 
 # SDK's Core and client packages that are compatable with Go 1.5+.
-SDK_CORE_PKGS=./aws/... ./private/... ./internal/... ./models/...
+SDK_CORE_PKGS=./aws/... ./private/... ./internal/...
 SDK_CLIENT_PKGS=./service/...
 SDK_COMPA_PKGS=${SDK_CORE_PKGS} ${SDK_CLIENT_PKGS}
 
 # SDK additional packages that are used for development of the SDK.
 SDK_EXAMPLES_PKGS=./examples/...
 SDK_TESTING_PKGS=./awstesting/...
-SDK_ALL_PKGS=${SDK_COMPA_PKGS} ${SDK_TESTING_PKGS} ${SDK_EXAMPLES_PKGS}
+SDK_MODELS_PKGS=./models/...
+SDK_ALL_PKGS=${SDK_COMPA_PKGS} ${SDK_TESTING_PKGS} ${SDK_EXAMPLES_PKGS} ${SDK_MODELS_PKGS}
 
 all: generate unit
 
@@ -110,7 +111,7 @@ cleanup-integ-buckets:
 ###################
 # Sandbox Testing #
 ###################
-sandbox-tests: sandbox-test-go15 sandbox-test-go15-novendorexp sandbox-test-go16 sandbox-test-go17 sandbox-test-go18 sandbox-test-go19 sandbox-test-go110 sandbox-test-go111 sandbox-test-gotip
+sandbox-tests: sandbox-test-go15 sandbox-test-go16 sandbox-test-go17 sandbox-test-go18 sandbox-test-go19 sandbox-test-go110 sandbox-test-go111 sandbox-test-gotip
 
 sandbox-build-go15:
 	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.5 -t "aws-sdk-go-1.5" .
