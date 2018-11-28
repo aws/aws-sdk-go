@@ -917,6 +917,7 @@
         "networkConfiguration":{"shape":"NetworkConfiguration"},
         "healthCheckGracePeriodSeconds":{"shape":"BoxedInteger"},
         "schedulingStrategy":{"shape":"SchedulingStrategy"},
+        "deploymentController":{"shape":"DeploymentController"},
         "tags":{"shape":"Tags"},
         "enableECSManagedTags":{"shape":"Boolean"},
         "propagateTags":{"shape":"PropagateTags"}
@@ -1006,6 +1007,20 @@
         "maximumPercent":{"shape":"BoxedInteger"},
         "minimumHealthyPercent":{"shape":"BoxedInteger"}
       }
+    },
+    "DeploymentController":{
+      "type":"structure",
+      "required":["type"],
+      "members":{
+        "type":{"shape":"DeploymentControllerType"}
+      }
+    },
+    "DeploymentControllerType":{
+      "type":"string",
+      "enum":[
+        "ECS",
+        "CODE_DEPLOY"
+      ]
     },
     "Deployments":{
       "type":"list",
@@ -1749,6 +1764,17 @@
         "failures":{"shape":"Failures"}
       }
     },
+    "Scale":{
+      "type":"structure",
+      "members":{
+        "value":{"shape":"Double"},
+        "unit":{"shape":"ScaleUnit"}
+      }
+    },
+    "ScaleUnit":{
+      "type":"string",
+      "enum":["PERCENT"]
+    },
     "SchedulingStrategy":{
       "type":"string",
       "enum":[
@@ -1802,6 +1828,7 @@
         "platformVersion":{"shape":"String"},
         "taskDefinition":{"shape":"String"},
         "deploymentConfiguration":{"shape":"DeploymentConfiguration"},
+        "taskSets":{"shape":"TaskSets"},
         "deployments":{"shape":"Deployments"},
         "roleArn":{"shape":"String"},
         "events":{"shape":"ServiceEvents"},
@@ -1811,6 +1838,7 @@
         "networkConfiguration":{"shape":"NetworkConfiguration"},
         "healthCheckGracePeriodSeconds":{"shape":"BoxedInteger"},
         "schedulingStrategy":{"shape":"SchedulingStrategy"},
+        "deploymentController":{"shape":"DeploymentController"},
         "tags":{"shape":"Tags"},
         "createdBy":{"shape":"String"},
         "enableECSManagedTags":{"shape":"Boolean"},
@@ -1891,6 +1919,13 @@
       "enum":[
         "ASC",
         "DESC"
+      ]
+    },
+    "StabilityStatus":{
+      "type":"string",
+      "enum":[
+        "STEADY_STATE",
+        "STABILIZING"
       ]
     },
     "StartTaskRequest":{
@@ -2161,6 +2196,33 @@
         "taskRoleArn":{"shape":"String"},
         "executionRoleArn":{"shape":"String"}
       }
+    },
+    "TaskSet":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"String"},
+        "taskSetArn":{"shape":"String"},
+        "startedBy":{"shape":"String"},
+        "externalId":{"shape":"String"},
+        "status":{"shape":"String"},
+        "taskDefinition":{"shape":"String"},
+        "computedDesiredCount":{"shape":"Integer"},
+        "pendingCount":{"shape":"Integer"},
+        "runningCount":{"shape":"Integer"},
+        "createdAt":{"shape":"Timestamp"},
+        "updatedAt":{"shape":"Timestamp"},
+        "launchType":{"shape":"LaunchType"},
+        "platformVersion":{"shape":"String"},
+        "networkConfiguration":{"shape":"NetworkConfiguration"},
+        "loadBalancers":{"shape":"LoadBalancers"},
+        "scale":{"shape":"Scale"},
+        "stabilityStatus":{"shape":"StabilityStatus"},
+        "stabilityStatusAt":{"shape":"Timestamp"}
+      }
+    },
+    "TaskSets":{
+      "type":"list",
+      "member":{"shape":"TaskSet"}
     },
     "TaskStopCode":{
       "type":"string",
