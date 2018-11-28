@@ -222,7 +222,9 @@
         {"shape":"KMSKeyNotAccessibleFault"},
         {"shape":"DBClusterNotFoundFault"},
         {"shape":"DBInstanceNotFoundFault"},
-        {"shape":"DBSubnetGroupDoesNotCoverEnoughAZs"}
+        {"shape":"DBSubnetGroupDoesNotCoverEnoughAZs"},
+        {"shape":"GlobalClusterNotFoundFault"},
+        {"shape":"InvalidGlobalClusterStateFault"}
       ]
     },
     "CreateDBClusterEndpoint":{
@@ -436,6 +438,24 @@
         {"shape":"SourceNotFoundFault"}
       ]
     },
+    "CreateGlobalCluster":{
+      "name":"CreateGlobalCluster",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateGlobalClusterMessage"},
+      "output":{
+        "shape":"CreateGlobalClusterResult",
+        "resultWrapper":"CreateGlobalClusterResult"
+      },
+      "errors":[
+        {"shape":"GlobalClusterAlreadyExistsFault"},
+        {"shape":"GlobalClusterQuotaExceededFault"},
+        {"shape":"InvalidDBClusterStateFault"},
+        {"shape":"DBClusterNotFoundFault"}
+      ]
+    },
     "CreateOptionGroup":{
       "name":"CreateOptionGroup",
       "http":{
@@ -619,6 +639,22 @@
       "errors":[
         {"shape":"SubscriptionNotFoundFault"},
         {"shape":"InvalidEventSubscriptionStateFault"}
+      ]
+    },
+    "DeleteGlobalCluster":{
+      "name":"DeleteGlobalCluster",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteGlobalClusterMessage"},
+      "output":{
+        "shape":"DeleteGlobalClusterResult",
+        "resultWrapper":"DeleteGlobalClusterResult"
+      },
+      "errors":[
+        {"shape":"GlobalClusterNotFoundFault"},
+        {"shape":"InvalidGlobalClusterStateFault"}
       ]
     },
     "DeleteOptionGroup":{
@@ -975,6 +1011,21 @@
         "shape":"EventsMessage",
         "resultWrapper":"DescribeEventsResult"
       }
+    },
+    "DescribeGlobalClusters":{
+      "name":"DescribeGlobalClusters",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeGlobalClustersMessage"},
+      "output":{
+        "shape":"GlobalClustersMessage",
+        "resultWrapper":"DescribeGlobalClustersResult"
+      },
+      "errors":[
+        {"shape":"GlobalClusterNotFoundFault"}
+      ]
     },
     "DescribeOptionGroupOptions":{
       "name":"DescribeOptionGroupOptions",
@@ -1350,6 +1401,22 @@
         {"shape":"SubscriptionCategoryNotFoundFault"}
       ]
     },
+    "ModifyGlobalCluster":{
+      "name":"ModifyGlobalCluster",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyGlobalClusterMessage"},
+      "output":{
+        "shape":"ModifyGlobalClusterResult",
+        "resultWrapper":"ModifyGlobalClusterResult"
+      },
+      "errors":[
+        {"shape":"GlobalClusterNotFoundFault"},
+        {"shape":"InvalidGlobalClusterStateFault"}
+      ]
+    },
     "ModifyOptionGroup":{
       "name":"ModifyOptionGroup",
       "http":{
@@ -1429,6 +1496,23 @@
       "errors":[
         {"shape":"InvalidDBInstanceStateFault"},
         {"shape":"DBInstanceNotFoundFault"}
+      ]
+    },
+    "RemoveFromGlobalCluster":{
+      "name":"RemoveFromGlobalCluster",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RemoveFromGlobalClusterMessage"},
+      "output":{
+        "shape":"RemoveFromGlobalClusterResult",
+        "resultWrapper":"RemoveFromGlobalClusterResult"
+      },
+      "errors":[
+        {"shape":"GlobalClusterNotFoundFault"},
+        {"shape":"InvalidGlobalClusterStateFault"},
+        {"shape":"DBClusterNotFoundFault"}
       ]
     },
     "RemoveRoleFromDBCluster":{
@@ -2203,7 +2287,8 @@
         "EnableCloudwatchLogsExports":{"shape":"LogTypeList"},
         "EngineMode":{"shape":"String"},
         "ScalingConfiguration":{"shape":"ScalingConfiguration"},
-        "DeletionProtection":{"shape":"BooleanOptional"}
+        "DeletionProtection":{"shape":"BooleanOptional"},
+        "GlobalClusterIdentifier":{"shape":"String"}
       }
     },
     "CreateDBClusterParameterGroupMessage":{
@@ -2451,6 +2536,24 @@
         "EventSubscription":{"shape":"EventSubscription"}
       }
     },
+    "CreateGlobalClusterMessage":{
+      "type":"structure",
+      "members":{
+        "GlobalClusterIdentifier":{"shape":"String"},
+        "SourceDBClusterIdentifier":{"shape":"String"},
+        "Engine":{"shape":"String"},
+        "EngineVersion":{"shape":"String"},
+        "DeletionProtection":{"shape":"BooleanOptional"},
+        "DatabaseName":{"shape":"String"},
+        "StorageEncrypted":{"shape":"BooleanOptional"}
+      }
+    },
+    "CreateGlobalClusterResult":{
+      "type":"structure",
+      "members":{
+        "GlobalCluster":{"shape":"GlobalCluster"}
+      }
+    },
     "CreateOptionGroupMessage":{
       "type":"structure",
       "required":[
@@ -2519,7 +2622,8 @@
         "Capacity":{"shape":"IntegerOptional"},
         "EngineMode":{"shape":"String"},
         "ScalingConfigurationInfo":{"shape":"ScalingConfigurationInfo"},
-        "DeletionProtection":{"shape":"Boolean"}
+        "DeletionProtection":{"shape":"Boolean"},
+        "HttpEndpointEnabled":{"shape":"Boolean"}
       },
       "wrapper":true
     },
@@ -3601,6 +3705,19 @@
         "EventSubscription":{"shape":"EventSubscription"}
       }
     },
+    "DeleteGlobalClusterMessage":{
+      "type":"structure",
+      "required":["GlobalClusterIdentifier"],
+      "members":{
+        "GlobalClusterIdentifier":{"shape":"String"}
+      }
+    },
+    "DeleteGlobalClusterResult":{
+      "type":"structure",
+      "members":{
+        "GlobalCluster":{"shape":"GlobalCluster"}
+      }
+    },
     "DeleteOptionGroupMessage":{
       "type":"structure",
       "required":["OptionGroupName"],
@@ -3888,6 +4005,15 @@
         "EndTime":{"shape":"TStamp"},
         "Duration":{"shape":"IntegerOptional"},
         "EventCategories":{"shape":"EventCategoriesList"},
+        "Filters":{"shape":"FilterList"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
+      }
+    },
+    "DescribeGlobalClustersMessage":{
+      "type":"structure",
+      "members":{
+        "GlobalClusterIdentifier":{"shape":"String"},
         "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
         "Marker":{"shape":"String"}
@@ -4186,6 +4312,7 @@
     },
     "FailoverDBClusterMessage":{
       "type":"structure",
+      "required":["DBClusterIdentifier"],
       "members":{
         "DBClusterIdentifier":{"shape":"String"},
         "TargetDBInstanceIdentifier":{"shape":"String"}
@@ -4220,6 +4347,85 @@
       "member":{
         "shape":"String",
         "locationName":"Value"
+      }
+    },
+    "GlobalCluster":{
+      "type":"structure",
+      "members":{
+        "GlobalClusterIdentifier":{"shape":"String"},
+        "GlobalClusterResourceId":{"shape":"String"},
+        "GlobalClusterArn":{"shape":"String"},
+        "Status":{"shape":"String"},
+        "Engine":{"shape":"String"},
+        "EngineVersion":{"shape":"String"},
+        "DatabaseName":{"shape":"String"},
+        "StorageEncrypted":{"shape":"BooleanOptional"},
+        "DeletionProtection":{"shape":"BooleanOptional"},
+        "GlobalClusterMembers":{"shape":"GlobalClusterMemberList"}
+      },
+      "wrapper":true
+    },
+    "GlobalClusterAlreadyExistsFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"GlobalClusterAlreadyExistsFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "GlobalClusterList":{
+      "type":"list",
+      "member":{
+        "shape":"GlobalCluster",
+        "locationName":"GlobalClusterMember"
+      }
+    },
+    "GlobalClusterMember":{
+      "type":"structure",
+      "members":{
+        "DBClusterArn":{"shape":"String"},
+        "Readers":{"shape":"ReadersArnList"},
+        "IsWriter":{"shape":"Boolean"}
+      },
+      "wrapper":true
+    },
+    "GlobalClusterMemberList":{
+      "type":"list",
+      "member":{
+        "shape":"GlobalClusterMember",
+        "locationName":"GlobalClusterMember"
+      }
+    },
+    "GlobalClusterNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"GlobalClusterNotFoundFault",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "GlobalClusterQuotaExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"GlobalClusterQuotaExceededFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "GlobalClustersMessage":{
+      "type":"structure",
+      "members":{
+        "Marker":{"shape":"String"},
+        "GlobalClusters":{"shape":"GlobalClusterList"}
       }
     },
     "IPRange":{
@@ -4425,6 +4631,17 @@
       },
       "exception":true
     },
+    "InvalidGlobalClusterStateFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidGlobalClusterStateFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "InvalidOptionGroupStateFault":{
       "type":"structure",
       "members":{
@@ -4563,7 +4780,8 @@
         "CloudwatchLogsExportConfiguration":{"shape":"CloudwatchLogsExportConfiguration"},
         "EngineVersion":{"shape":"String"},
         "ScalingConfiguration":{"shape":"ScalingConfiguration"},
-        "DeletionProtection":{"shape":"BooleanOptional"}
+        "DeletionProtection":{"shape":"BooleanOptional"},
+        "EnableHttpEndpoint":{"shape":"BooleanOptional"}
       }
     },
     "ModifyDBClusterParameterGroupMessage":{
@@ -4732,6 +4950,20 @@
       "type":"structure",
       "members":{
         "EventSubscription":{"shape":"EventSubscription"}
+      }
+    },
+    "ModifyGlobalClusterMessage":{
+      "type":"structure",
+      "members":{
+        "GlobalClusterIdentifier":{"shape":"String"},
+        "NewGlobalClusterIdentifier":{"shape":"String"},
+        "DeletionProtection":{"shape":"BooleanOptional"}
+      }
+    },
+    "ModifyGlobalClusterResult":{
+      "type":"structure",
+      "members":{
+        "GlobalCluster":{"shape":"GlobalCluster"}
       }
     },
     "ModifyOptionGroupMessage":{
@@ -5220,6 +5452,10 @@
         "locationName":"ReadReplicaIdentifier"
       }
     },
+    "ReadersArnList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "RebootDBInstanceMessage":{
       "type":"structure",
       "required":["DBInstanceIdentifier"],
@@ -5247,6 +5483,19 @@
       "member":{
         "shape":"RecurringCharge",
         "locationName":"RecurringCharge"
+      }
+    },
+    "RemoveFromGlobalClusterMessage":{
+      "type":"structure",
+      "members":{
+        "GlobalClusterIdentifier":{"shape":"String"},
+        "DbClusterIdentifier":{"shape":"String"}
+      }
+    },
+    "RemoveFromGlobalClusterResult":{
+      "type":"structure",
+      "members":{
+        "GlobalCluster":{"shape":"GlobalCluster"}
       }
     },
     "RemoveRoleFromDBClusterMessage":{

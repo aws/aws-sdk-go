@@ -148,6 +148,10 @@ type RDSAPI interface {
 	CreateEventSubscriptionWithContext(aws.Context, *rds.CreateEventSubscriptionInput, ...request.Option) (*rds.CreateEventSubscriptionOutput, error)
 	CreateEventSubscriptionRequest(*rds.CreateEventSubscriptionInput) (*request.Request, *rds.CreateEventSubscriptionOutput)
 
+	CreateGlobalCluster(*rds.CreateGlobalClusterInput) (*rds.CreateGlobalClusterOutput, error)
+	CreateGlobalClusterWithContext(aws.Context, *rds.CreateGlobalClusterInput, ...request.Option) (*rds.CreateGlobalClusterOutput, error)
+	CreateGlobalClusterRequest(*rds.CreateGlobalClusterInput) (*request.Request, *rds.CreateGlobalClusterOutput)
+
 	CreateOptionGroup(*rds.CreateOptionGroupInput) (*rds.CreateOptionGroupOutput, error)
 	CreateOptionGroupWithContext(aws.Context, *rds.CreateOptionGroupInput, ...request.Option) (*rds.CreateOptionGroupOutput, error)
 	CreateOptionGroupRequest(*rds.CreateOptionGroupInput) (*request.Request, *rds.CreateOptionGroupOutput)
@@ -195,6 +199,10 @@ type RDSAPI interface {
 	DeleteEventSubscription(*rds.DeleteEventSubscriptionInput) (*rds.DeleteEventSubscriptionOutput, error)
 	DeleteEventSubscriptionWithContext(aws.Context, *rds.DeleteEventSubscriptionInput, ...request.Option) (*rds.DeleteEventSubscriptionOutput, error)
 	DeleteEventSubscriptionRequest(*rds.DeleteEventSubscriptionInput) (*request.Request, *rds.DeleteEventSubscriptionOutput)
+
+	DeleteGlobalCluster(*rds.DeleteGlobalClusterInput) (*rds.DeleteGlobalClusterOutput, error)
+	DeleteGlobalClusterWithContext(aws.Context, *rds.DeleteGlobalClusterInput, ...request.Option) (*rds.DeleteGlobalClusterOutput, error)
+	DeleteGlobalClusterRequest(*rds.DeleteGlobalClusterInput) (*request.Request, *rds.DeleteGlobalClusterOutput)
 
 	DeleteOptionGroup(*rds.DeleteOptionGroupInput) (*rds.DeleteOptionGroupOutput, error)
 	DeleteOptionGroupWithContext(aws.Context, *rds.DeleteOptionGroupInput, ...request.Option) (*rds.DeleteOptionGroupOutput, error)
@@ -335,6 +343,13 @@ type RDSAPI interface {
 	DescribeEventsPages(*rds.DescribeEventsInput, func(*rds.DescribeEventsOutput, bool) bool) error
 	DescribeEventsPagesWithContext(aws.Context, *rds.DescribeEventsInput, func(*rds.DescribeEventsOutput, bool) bool, ...request.Option) error
 
+	DescribeGlobalClusters(*rds.DescribeGlobalClustersInput) (*rds.DescribeGlobalClustersOutput, error)
+	DescribeGlobalClustersWithContext(aws.Context, *rds.DescribeGlobalClustersInput, ...request.Option) (*rds.DescribeGlobalClustersOutput, error)
+	DescribeGlobalClustersRequest(*rds.DescribeGlobalClustersInput) (*request.Request, *rds.DescribeGlobalClustersOutput)
+
+	DescribeGlobalClustersPages(*rds.DescribeGlobalClustersInput, func(*rds.DescribeGlobalClustersOutput, bool) bool) error
+	DescribeGlobalClustersPagesWithContext(aws.Context, *rds.DescribeGlobalClustersInput, func(*rds.DescribeGlobalClustersOutput, bool) bool, ...request.Option) error
+
 	DescribeOptionGroupOptions(*rds.DescribeOptionGroupOptionsInput) (*rds.DescribeOptionGroupOptionsOutput, error)
 	DescribeOptionGroupOptionsWithContext(aws.Context, *rds.DescribeOptionGroupOptionsInput, ...request.Option) (*rds.DescribeOptionGroupOptionsOutput, error)
 	DescribeOptionGroupOptionsRequest(*rds.DescribeOptionGroupOptionsInput) (*request.Request, *rds.DescribeOptionGroupOptionsOutput)
@@ -441,6 +456,10 @@ type RDSAPI interface {
 	ModifyEventSubscriptionWithContext(aws.Context, *rds.ModifyEventSubscriptionInput, ...request.Option) (*rds.ModifyEventSubscriptionOutput, error)
 	ModifyEventSubscriptionRequest(*rds.ModifyEventSubscriptionInput) (*request.Request, *rds.ModifyEventSubscriptionOutput)
 
+	ModifyGlobalCluster(*rds.ModifyGlobalClusterInput) (*rds.ModifyGlobalClusterOutput, error)
+	ModifyGlobalClusterWithContext(aws.Context, *rds.ModifyGlobalClusterInput, ...request.Option) (*rds.ModifyGlobalClusterOutput, error)
+	ModifyGlobalClusterRequest(*rds.ModifyGlobalClusterInput) (*request.Request, *rds.ModifyGlobalClusterOutput)
+
 	ModifyOptionGroup(*rds.ModifyOptionGroupInput) (*rds.ModifyOptionGroupOutput, error)
 	ModifyOptionGroupWithContext(aws.Context, *rds.ModifyOptionGroupInput, ...request.Option) (*rds.ModifyOptionGroupOutput, error)
 	ModifyOptionGroupRequest(*rds.ModifyOptionGroupInput) (*request.Request, *rds.ModifyOptionGroupOutput)
@@ -460,6 +479,10 @@ type RDSAPI interface {
 	RebootDBInstance(*rds.RebootDBInstanceInput) (*rds.RebootDBInstanceOutput, error)
 	RebootDBInstanceWithContext(aws.Context, *rds.RebootDBInstanceInput, ...request.Option) (*rds.RebootDBInstanceOutput, error)
 	RebootDBInstanceRequest(*rds.RebootDBInstanceInput) (*request.Request, *rds.RebootDBInstanceOutput)
+
+	RemoveFromGlobalCluster(*rds.RemoveFromGlobalClusterInput) (*rds.RemoveFromGlobalClusterOutput, error)
+	RemoveFromGlobalClusterWithContext(aws.Context, *rds.RemoveFromGlobalClusterInput, ...request.Option) (*rds.RemoveFromGlobalClusterOutput, error)
+	RemoveFromGlobalClusterRequest(*rds.RemoveFromGlobalClusterInput) (*request.Request, *rds.RemoveFromGlobalClusterOutput)
 
 	RemoveRoleFromDBCluster(*rds.RemoveRoleFromDBClusterInput) (*rds.RemoveRoleFromDBClusterOutput, error)
 	RemoveRoleFromDBClusterWithContext(aws.Context, *rds.RemoveRoleFromDBClusterInput, ...request.Option) (*rds.RemoveRoleFromDBClusterOutput, error)

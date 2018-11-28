@@ -24,6 +24,7 @@
     "CreateDBSnapshot": "<p>Creates a DBSnapshot. The source DBInstance must be in \"available\" state.</p>",
     "CreateDBSubnetGroup": "<p>Creates a new DB subnet group. DB subnet groups must contain at least one subnet in at least two AZs in the AWS Region.</p>",
     "CreateEventSubscription": "<p>Creates an RDS event notification subscription. This action requires a topic ARN (Amazon Resource Name) created by either the RDS console, the SNS console, or the SNS API. To obtain an ARN with SNS, you must create a topic in Amazon SNS and subscribe to the topic. The ARN is displayed in the SNS console.</p> <p>You can specify the type of source (SourceType) you want to be notified of, provide a list of RDS sources (SourceIds) that triggers the events, and provide a list of event categories (EventCategories) for events you want to be notified of. For example, you can specify SourceType = db-instance, SourceIds = mydbinstance1, mydbinstance2 and EventCategories = Availability, Backup.</p> <p>If you specify both the SourceType and SourceIds, such as SourceType = db-instance and SourceIdentifier = myDBInstance1, you are notified of all the db-instance events for the specified source. If you specify a SourceType but do not specify a SourceIdentifier, you receive notice of the events for that source type for all your RDS sources. If you do not specify either the SourceType nor the SourceIdentifier, you are notified of events generated from all RDS sources belonging to your customer account.</p>",
+    "CreateGlobalCluster": "<p> </p> <p> Creates an Aurora global database spread across multiple regions. The global database contains a single primary cluster with read-write capability, and a read-only secondary cluster that receives data from the primary cluster through high-speed replication performed by the Aurora storage subsystem. </p> <p> You can create a global database that is initially empty, and then add a primary cluster and a secondary cluster to it. Or you can specify an existing Aurora cluster during the create operation, and this cluster becomes the primary cluster of the global database. </p>",
     "CreateOptionGroup": "<p>Creates a new option group. You can create up to 20 option groups.</p>",
     "DeleteDBCluster": "<p>The DeleteDBCluster action deletes a previously provisioned DB cluster. When you delete a DB cluster, all automated backups for that DB cluster are deleted and can't be recovered. Manual DB cluster snapshots of the specified DB cluster are not deleted.</p> <p/> <p>For more information on Amazon Aurora, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html\"> What Is Amazon Aurora?</a> in the <i>Amazon Aurora User Guide.</i> </p>",
     "DeleteDBClusterEndpoint": "<p>Deletes a custom endpoint and removes it from an Amazon Aurora DB cluster.</p>",
@@ -36,6 +37,7 @@
     "DeleteDBSnapshot": "<p>Deletes a DB snapshot. If the snapshot is being copied, the copy operation is terminated.</p> <note> <p>The DB snapshot must be in the <code>available</code> state to be deleted.</p> </note>",
     "DeleteDBSubnetGroup": "<p>Deletes a DB subnet group.</p> <note> <p>The specified database subnet group must not be associated with any DB instances.</p> </note>",
     "DeleteEventSubscription": "<p>Deletes an RDS event notification subscription.</p>",
+    "DeleteGlobalCluster": "<p> Deletes a global database cluster. The primary and secondary clusters must already be detached or destroyed first. </p>",
     "DeleteOptionGroup": "<p>Deletes an existing option group.</p>",
     "DescribeAccountAttributes": "<p>Lists all of the attributes for a customer account. The attributes include Amazon RDS quotas for the account, such as the number of DB instances allowed. The description for a quota includes the quota name, current usage toward that quota, and the quota's maximum value.</p> <p>This command doesn't take any parameters.</p>",
     "DescribeCertificates": "<p>Lists the set of CA certificates provided by Amazon RDS for this AWS account.</p>",
@@ -61,6 +63,7 @@
     "DescribeEventCategories": "<p>Displays a list of categories for all event source types, or, if specified, for a specified source type. You can see a list of the event categories and source types in the <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.html\"> Events</a> topic in the <i>Amazon RDS User Guide.</i> </p>",
     "DescribeEventSubscriptions": "<p>Lists all the subscription descriptions for a customer account. The description for a subscription includes SubscriptionName, SNSTopicARN, CustomerID, SourceType, SourceID, CreationTime, and Status.</p> <p>If you specify a SubscriptionName, lists the description for that subscription.</p>",
     "DescribeEvents": "<p>Returns events related to DB instances, DB security groups, DB snapshots, and DB parameter groups for the past 14 days. Events specific to a particular DB instance, DB security group, database snapshot, or DB parameter group can be obtained by providing the name as a parameter. By default, the past hour of events are returned.</p>",
+    "DescribeGlobalClusters": "<p> Returns information about Aurora global database clusters. This API supports pagination. </p> <p> For more information on Amazon Aurora, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html\"> What Is Amazon Aurora?</a> in the <i>Amazon Aurora User Guide.</i> </p>",
     "DescribeOptionGroupOptions": "<p>Describes all available options.</p>",
     "DescribeOptionGroups": "<p>Describes the available option groups.</p>",
     "DescribeOrderableDBInstanceOptions": "<p>Returns a list of orderable DB instance options for the specified engine.</p>",
@@ -83,11 +86,13 @@
     "ModifyDBSnapshotAttribute": "<p>Adds an attribute and values to, or removes an attribute and values from, a manual DB snapshot.</p> <p>To share a manual DB snapshot with other AWS accounts, specify <code>restore</code> as the <code>AttributeName</code> and use the <code>ValuesToAdd</code> parameter to add a list of IDs of the AWS accounts that are authorized to restore the manual DB snapshot. Uses the value <code>all</code> to make the manual DB snapshot public, which means it can be copied or restored by all AWS accounts. Do not add the <code>all</code> value for any manual DB snapshots that contain private information that you don't want available to all AWS accounts. If the manual DB snapshot is encrypted, it can be shared, but only by specifying a list of authorized AWS account IDs for the <code>ValuesToAdd</code> parameter. You can't use <code>all</code> as a value for that parameter in this case.</p> <p>To view which AWS accounts have access to copy or restore a manual DB snapshot, or whether a manual DB snapshot public or private, use the <a>DescribeDBSnapshotAttributes</a> API action.</p>",
     "ModifyDBSubnetGroup": "<p>Modifies an existing DB subnet group. DB subnet groups must contain at least one subnet in at least two AZs in the AWS Region.</p>",
     "ModifyEventSubscription": "<p>Modifies an existing RDS event notification subscription. Note that you can't modify the source identifiers using this call; to change source identifiers for a subscription, use the <a>AddSourceIdentifierToSubscription</a> and <a>RemoveSourceIdentifierFromSubscription</a> calls.</p> <p>You can see a list of the event categories for a given SourceType in the <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.html\">Events</a> topic in the <i>Amazon RDS User Guide</i> or by using the <b>DescribeEventCategories</b> action.</p>",
+    "ModifyGlobalCluster": "<p> Modify a setting for an Amazon Aurora global cluster. You can change one or more database configuration parameters by specifying these parameters and the new values in the request. For more information on Amazon Aurora, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html\"> What Is Amazon Aurora?</a> in the <i>Amazon Aurora User Guide.</i> </p>",
     "ModifyOptionGroup": "<p>Modifies an existing option group.</p>",
     "PromoteReadReplica": "<p>Promotes a Read Replica DB instance to a standalone DB instance.</p> <note> <ul> <li> <p>Backup duration is a function of the amount of changes to the database since the previous backup. If you plan to promote a Read Replica to a standalone instance, we recommend that you enable backups and complete at least one backup prior to promotion. In addition, a Read Replica cannot be promoted to a standalone instance when it is in the <code>backing-up</code> status. If you have enabled backups on your Read Replica, configure the automated backup window so that daily backups do not interfere with Read Replica promotion.</p> </li> <li> <p>This command doesn't apply to Aurora MySQL and Aurora PostgreSQL.</p> </li> </ul> </note>",
     "PromoteReadReplicaDBCluster": "<p>Promotes a Read Replica DB cluster to a standalone DB cluster.</p>",
     "PurchaseReservedDBInstancesOffering": "<p>Purchases a reserved DB instance offering.</p>",
     "RebootDBInstance": "<p>You might need to reboot your DB instance, usually for maintenance reasons. For example, if you make certain modifications, or if you change the DB parameter group associated with the DB instance, you must reboot the instance for the changes to take effect. </p> <p>Rebooting a DB instance restarts the database engine service. Rebooting a DB instance results in a momentary outage, during which the DB instance status is set to rebooting. </p> <p>For more information about rebooting, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RebootInstance.html\">Rebooting a DB Instance</a> in the <i>Amazon RDS User Guide.</i> </p>",
+    "RemoveFromGlobalCluster": "<p> Detaches an Aurora secondary cluster from an Aurora global database cluster. The cluster becomes a standalone cluster with read-write capability instead of being read-only and receiving data from a primary cluster in a different region. </p>",
     "RemoveRoleFromDBCluster": "<p>Disassociates an Identity and Access Management (IAM) role from an Aurora DB cluster. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Integrating.Authorizing.html\">Authorizing Amazon Aurora MySQL to Access Other AWS Services on Your Behalf </a> in the <i>Amazon Aurora User Guide</i>.</p>",
     "RemoveSourceIdentifierFromSubscription": "<p>Removes a source identifier from an existing RDS event notification subscription.</p>",
     "RemoveTagsFromResource": "<p>Removes metadata tags from an Amazon RDS resource.</p> <p>For an overview on tagging an Amazon RDS resource, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Tagging.html\">Tagging Amazon RDS Resources</a> in the <i>Amazon RDS User Guide.</i> </p>",
@@ -248,6 +253,7 @@
         "DBCluster$StorageEncrypted": "<p>Specifies whether the DB cluster is encrypted.</p>",
         "DBCluster$IAMDatabaseAuthenticationEnabled": "<p>True if mapping of AWS Identity and Access Management (IAM) accounts to database accounts is enabled, and otherwise false.</p>",
         "DBCluster$DeletionProtection": "<p>Indicates if the DB cluster has deletion protection enabled. The database can't be deleted when this value is set to true. </p>",
+        "DBCluster$HttpEndpointEnabled": "<note> <p>HTTP endpoint functionality is in beta for Aurora Serverless and is subject to change.</p> </note> <p>Value that is <code>true</code> if the HTTP endpoint for an Aurora Serverless DB cluster is enabled and <code>false</code> otherwise.</p> <p>When enabled, the HTTP endpoint provides a connectionless web service API for running SQL queries on the Aurora Serverless DB cluster. You can also query your database from inside the RDS console with the query editor.</p> <p>For more information about Aurora Serverless, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html\">Using Amazon Aurora Serverless</a> in the <i>Amazon Aurora User Guide</i>.</p>",
         "DBClusterMember$IsClusterWriter": "<p>Value that is <code>true</code> if the cluster member is the primary instance for the DB cluster and <code>false</code> otherwise.</p>",
         "DBClusterSnapshot$StorageEncrypted": "<p>Specifies whether the DB cluster snapshot is encrypted.</p>",
         "DBClusterSnapshot$IAMDatabaseAuthenticationEnabled": "<p>True if mapping of AWS Identity and Access Management (IAM) accounts to database accounts is enabled, and otherwise false.</p>",
@@ -274,6 +280,7 @@
         "DescribeDBSnapshotsMessage$IncludePublic": "<p>True to include manual DB snapshots that are public and can be copied or restored by any AWS account, and otherwise false. The default is false.</p> <p>You can share a manual DB snapshot as public by using the <a>ModifyDBSnapshotAttribute</a> API.</p>",
         "DownloadDBLogFilePortionDetails$AdditionalDataPending": "<p>Boolean value that if true, indicates there is more data to be downloaded.</p>",
         "EventSubscription$Enabled": "<p>A Boolean value indicating if the subscription is enabled. True indicates the subscription is enabled.</p>",
+        "GlobalClusterMember$IsWriter": "<p> Specifies whether the Aurora cluster is the primary cluster (that is, has read-write capability) for the Aurora global database with which it is associated. </p>",
         "ModifyDBClusterMessage$ApplyImmediately": "<p>A value that specifies whether the modifications in this request and any pending modifications are asynchronously applied as soon as possible, regardless of the <code>PreferredMaintenanceWindow</code> setting for the DB cluster. If this parameter is set to <code>false</code>, changes to the DB cluster are applied during the next maintenance window.</p> <p>The <code>ApplyImmediately</code> parameter only affects the <code>EnableIAMDatabaseAuthentication</code>, <code>MasterUserPassword</code>, and <code>NewDBClusterIdentifier</code> values. If you set the <code>ApplyImmediately</code> parameter value to false, then changes to the <code>EnableIAMDatabaseAuthentication</code>, <code>MasterUserPassword</code>, and <code>NewDBClusterIdentifier</code> values are applied during the next maintenance window. All other changes are applied immediately, regardless of the value of the <code>ApplyImmediately</code> parameter.</p> <p>Default: <code>false</code> </p>",
         "ModifyDBInstanceMessage$ApplyImmediately": "<p>Specifies whether the modifications in this request and any pending modifications are asynchronously applied as soon as possible, regardless of the <code>PreferredMaintenanceWindow</code> setting for the DB instance. </p> <p> If this parameter is set to <code>false</code>, changes to the DB instance are applied during the next maintenance window. Some parameter changes can cause an outage and are applied on the next call to <a>RebootDBInstance</a>, or the next failure reboot. Review the table of parameters in <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.DBInstance.Modifying.html\">Modifying a DB Instance and Using the Apply Immediately Parameter</a> in the <i>Amazon RDS User Guide.</i> to see the impact that setting <code>ApplyImmediately</code> to <code>true</code> or <code>false</code> has for each modified parameter and to determine when the changes are applied. </p> <p>Default: <code>false</code> </p>",
         "ModifyDBInstanceMessage$AllowMajorVersionUpgrade": "<p>Indicates that major version upgrades are allowed. Changing this parameter doesn't result in an outage and the change is asynchronously applied as soon as possible.</p> <p>Constraints: This parameter must be set to true when specifying a value for the EngineVersion parameter that is a different major version than the DB instance's current version.</p>",
@@ -320,7 +327,7 @@
         "CreateDBClusterMessage$StorageEncrypted": "<p>Specifies whether the DB cluster is encrypted.</p>",
         "CreateDBClusterMessage$EnableIAMDatabaseAuthentication": "<p>True to enable mapping of AWS Identity and Access Management (IAM) accounts to database accounts, and otherwise false.</p> <p>Default: <code>false</code> </p>",
         "CreateDBClusterMessage$DeletionProtection": "<p>Indicates if the DB cluster should have deletion protection enabled. The database can't be deleted when this value is set to true. The default is false. </p>",
-        "CreateDBInstanceMessage$MultiAZ": "<p>Specifies if the DB instance is a Multi-AZ deployment. You can't set the AvailabilityZone parameter if the MultiAZ parameter is set to true.</p>",
+        "CreateDBInstanceMessage$MultiAZ": "<p>A value that specifies whether the DB instance is a Multi-AZ deployment. You can't set the AvailabilityZone parameter if the MultiAZ parameter is set to true.</p>",
         "CreateDBInstanceMessage$AutoMinorVersionUpgrade": "<p>Indicates that minor engine upgrades are applied automatically to the DB instance during the maintenance window.</p> <p>Default: <code>true</code> </p>",
         "CreateDBInstanceMessage$PubliclyAccessible": "<p>Specifies the accessibility options for the DB instance. A value of true specifies an Internet-facing instance with a publicly resolvable DNS name, which resolves to a public IP address. A value of false specifies an internal instance with a DNS name that resolves to a private IP address.</p> <p>Default: The default behavior varies depending on whether <code>DBSubnetGroupName</code> is specified.</p> <p>If <code>DBSubnetGroupName</code> is not specified, and <code>PubliclyAccessible</code> is not specified, the following applies:</p> <ul> <li> <p>If the default VPC in the target region doesn’t have an Internet gateway attached to it, the DB instance is private.</p> </li> <li> <p>If the default VPC in the target region has an Internet gateway attached to it, the DB instance is public.</p> </li> </ul> <p>If <code>DBSubnetGroupName</code> is specified, and <code>PubliclyAccessible</code> is not specified, the following applies:</p> <ul> <li> <p>If the subnets are part of a VPC that doesn’t have an Internet gateway attached to it, the DB instance is private.</p> </li> <li> <p>If the subnets are part of a VPC that has an Internet gateway attached to it, the DB instance is public.</p> </li> </ul>",
         "CreateDBInstanceMessage$StorageEncrypted": "<p>Specifies whether the DB instance is encrypted.</p> <p> <b>Amazon Aurora</b> </p> <p>Not applicable. The encryption for DB instances is managed by the DB cluster. For more information, see <a>CreateDBCluster</a>.</p> <p>Default: false</p>",
@@ -337,6 +344,8 @@
         "CreateDBInstanceReadReplicaMessage$UseDefaultProcessorFeatures": "<p>A value that specifies that the DB instance class of the DB instance uses its default processor features.</p>",
         "CreateDBInstanceReadReplicaMessage$DeletionProtection": "<p>Indicates if the DB instance should have deletion protection enabled. The database can't be deleted when this value is set to true. The default is false. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html\"> Deleting a DB Instance</a>. </p>",
         "CreateEventSubscriptionMessage$Enabled": "<p> A Boolean value; set to <b>true</b> to activate the subscription, set to <b>false</b> to create the subscription but not active it. </p>",
+        "CreateGlobalClusterMessage$DeletionProtection": "<p> The deletion protection setting for the new global database. The global database can't be deleted when this value is set to true. </p>",
+        "CreateGlobalClusterMessage$StorageEncrypted": "<p> The storage encryption setting for the new global database cluster. </p>",
         "DBInstance$PerformanceInsightsEnabled": "<p>True if Performance Insights is enabled for the DB instance, and otherwise false.</p>",
         "DeleteDBInstanceMessage$DeleteAutomatedBackups": "<p>A value that indicates whether to remove automated backups immediately after the DB instance is deleted. This parameter isn't case-sensitive. This parameter defaults to <code>true</code>.</p>",
         "DescribeDBEngineVersionsMessage$ListSupportedCharacterSets": "<p>If this parameter is specified and the requested engine supports the <code>CharacterSetName</code> parameter for <code>CreateDBInstance</code>, the response includes a list of supported character sets for each engine version. </p>",
@@ -344,8 +353,11 @@
         "DescribeOrderableDBInstanceOptionsMessage$Vpc": "<p>The VPC filter value. Specify this parameter to show only the available VPC or non-VPC offerings.</p>",
         "DescribeReservedDBInstancesMessage$MultiAZ": "<p>The Multi-AZ filter value. Specify this parameter to show only those reservations matching the specified Multi-AZ parameter.</p>",
         "DescribeReservedDBInstancesOfferingsMessage$MultiAZ": "<p>The Multi-AZ filter value. Specify this parameter to show only the available offerings matching the specified Multi-AZ parameter.</p>",
+        "GlobalCluster$StorageEncrypted": "<p> The storage encryption setting for the global database cluster. </p>",
+        "GlobalCluster$DeletionProtection": "<p> The deletion protection setting for the new global database cluster. </p>",
         "ModifyDBClusterMessage$EnableIAMDatabaseAuthentication": "<p>True to enable mapping of AWS Identity and Access Management (IAM) accounts to database accounts, and otherwise false.</p> <p>Default: <code>false</code> </p>",
         "ModifyDBClusterMessage$DeletionProtection": "<p>Indicates if the DB cluster has deletion protection enabled. The database can't be deleted when this value is set to true. </p>",
+        "ModifyDBClusterMessage$EnableHttpEndpoint": "<note> <p>HTTP endpoint functionality is in beta for Aurora Serverless and is subject to change.</p> </note> <p>A value that indicates whether to enable the HTTP endpoint for an Aurora Serverless DB cluster. By default, the HTTP endpoint is disabled.</p> <p>When enabled, the HTTP endpoint provides a connectionless web service API for running SQL queries on the Aurora Serverless DB cluster. You can also query your database from inside the RDS console with the query editor.</p> <p>For more information about Aurora Serverless, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html\">Using Amazon Aurora Serverless</a> in the <i>Amazon Aurora User Guide</i>.</p>",
         "ModifyDBInstanceMessage$MultiAZ": "<p>Specifies if the DB instance is a Multi-AZ deployment. Changing this parameter doesn't result in an outage and the change is applied during the next maintenance window unless the <code>ApplyImmediately</code> parameter is set to <code>true</code> for this request. </p>",
         "ModifyDBInstanceMessage$AutoMinorVersionUpgrade": "<p> Indicates that minor version upgrades are applied automatically to the DB instance during the maintenance window. Changing this parameter doesn't result in an outage except in the following case and the change is asynchronously applied as soon as possible. An outage will result if this parameter is set to <code>true</code> during the maintenance window, and a newer minor version is available, and RDS has enabled auto patching for that engine version. </p>",
         "ModifyDBInstanceMessage$CopyTagsToSnapshot": "<p>True to copy all tags from the DB instance to snapshots of the DB instance, and otherwise false. The default is false.</p>",
@@ -355,6 +367,7 @@
         "ModifyDBInstanceMessage$UseDefaultProcessorFeatures": "<p>A value that specifies that the DB instance class of the DB instance uses its default processor features.</p>",
         "ModifyDBInstanceMessage$DeletionProtection": "<p>Indicates if the DB instance has deletion protection enabled. The database can't be deleted when this value is set to true. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html\"> Deleting a DB Instance</a>. </p>",
         "ModifyEventSubscriptionMessage$Enabled": "<p> A Boolean value; set to <b>true</b> to activate the subscription. </p>",
+        "ModifyGlobalClusterMessage$DeletionProtection": "<p> Indicates if the global database cluster has deletion protection enabled. The global database cluster can't be deleted when this value is set to true. </p>",
         "OptionGroupOption$SupportsOptionVersionDowngrade": "<p>If true, you can change the option to an earlier version of the option. This only applies to options that have different versions available. </p>",
         "PendingModifiedValues$MultiAZ": "<p>Indicates that the Single-AZ DB instance is to change to a Multi-AZ deployment.</p>",
         "RebootDBInstanceMessage$ForceFailover": "<p> When <code>true</code>, the reboot is conducted through a MultiAZ failover. </p> <p>Constraint: You can't specify <code>true</code> if the instance is not configured for MultiAZ.</p>",
@@ -579,6 +592,16 @@
       }
     },
     "CreateEventSubscriptionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateGlobalClusterMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateGlobalClusterResult": {
       "base": null,
       "refs": {
       }
@@ -1236,6 +1259,16 @@
       "refs": {
       }
     },
+    "DeleteGlobalClusterMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteGlobalClusterResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteOptionGroupMessage": {
       "base": "<p/>",
       "refs": {
@@ -1395,6 +1428,11 @@
     },
     "DescribeEventsMessage": {
       "base": "<p/>",
+      "refs": {
+      }
+    },
+    "DescribeGlobalClustersMessage": {
+      "base": null,
       "refs": {
       }
     },
@@ -1647,6 +1685,7 @@
         "DescribeEventCategoriesMessage$Filters": "<p>This parameter is not currently supported.</p>",
         "DescribeEventSubscriptionsMessage$Filters": "<p>This parameter is not currently supported.</p>",
         "DescribeEventsMessage$Filters": "<p>This parameter is not currently supported.</p>",
+        "DescribeGlobalClustersMessage$Filters": "<p>A filter that specifies one or more global DB clusters to describe.</p> <p>Supported filters:</p> <ul> <li> <p> <code>db-cluster-id</code> - Accepts DB cluster identifiers and DB cluster Amazon Resource Names (ARNs). The results list will only include information about the DB clusters identified by these ARNs.</p> </li> </ul>",
         "DescribeOptionGroupOptionsMessage$Filters": "<p>This parameter is not currently supported.</p>",
         "DescribeOptionGroupsMessage$Filters": "<p>This parameter is not currently supported.</p>",
         "DescribeOrderableDBInstanceOptionsMessage$Filters": "<p>This parameter is not currently supported.</p>",
@@ -1661,6 +1700,54 @@
       "base": null,
       "refs": {
         "Filter$Values": "<p>One or more filter values. Filter values are case-sensitive.</p>"
+      }
+    },
+    "GlobalCluster": {
+      "base": "<p>A data type representing an Aurora global database.</p>",
+      "refs": {
+        "CreateGlobalClusterResult$GlobalCluster": null,
+        "DeleteGlobalClusterResult$GlobalCluster": null,
+        "GlobalClusterList$member": null,
+        "ModifyGlobalClusterResult$GlobalCluster": null,
+        "RemoveFromGlobalClusterResult$GlobalCluster": null
+      }
+    },
+    "GlobalClusterAlreadyExistsFault": {
+      "base": "<p/>",
+      "refs": {
+      }
+    },
+    "GlobalClusterList": {
+      "base": null,
+      "refs": {
+        "GlobalClustersMessage$GlobalClusters": "<p> The list of global clusters returned by this request. </p>"
+      }
+    },
+    "GlobalClusterMember": {
+      "base": "<p> A data structure with information about any primary and secondary clusters associated with an Aurora global database. </p>",
+      "refs": {
+        "GlobalClusterMemberList$member": null
+      }
+    },
+    "GlobalClusterMemberList": {
+      "base": null,
+      "refs": {
+        "GlobalCluster$GlobalClusterMembers": "<p> The list of cluster IDs for secondary clusters within the global database cluster. Currently limited to 1 item. </p>"
+      }
+    },
+    "GlobalClusterNotFoundFault": {
+      "base": "<p/>",
+      "refs": {
+      }
+    },
+    "GlobalClusterQuotaExceededFault": {
+      "base": "<p/>",
+      "refs": {
+      }
+    },
+    "GlobalClustersMessage": {
+      "base": null,
+      "refs": {
       }
     },
     "IPRange": {
@@ -1769,6 +1856,7 @@
         "DescribeEventSubscriptionsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeEventsMessage$Duration": "<p>The number of minutes to retrieve events for.</p> <p>Default: 60</p>",
         "DescribeEventsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
+        "DescribeGlobalClustersMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeOptionGroupOptionsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeOptionGroupsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeOrderableDBInstanceOptionsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
@@ -1885,6 +1973,11 @@
     },
     "InvalidEventSubscriptionStateFault": {
       "base": "<p>This error can occur if someone else is modifying a subscription. You should retry the action.</p>",
+      "refs": {
+      }
+    },
+    "InvalidGlobalClusterStateFault": {
+      "base": "<p/>",
       "refs": {
       }
     },
@@ -2071,6 +2164,16 @@
       }
     },
     "ModifyEventSubscriptionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyGlobalClusterMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyGlobalClusterResult": {
       "base": null,
       "refs": {
       }
@@ -2395,6 +2498,12 @@
         "DBCluster$ReadReplicaIdentifiers": "<p>Contains one or more identifiers of the Read Replicas associated with this DB cluster.</p>"
       }
     },
+    "ReadersArnList": {
+      "base": null,
+      "refs": {
+        "GlobalClusterMember$Readers": "<p> The Amazon Resource Name (ARN) for each read-only secondary cluster associated with the Aurora global database. </p>"
+      }
+    },
     "RebootDBInstanceMessage": {
       "base": "<p/>",
       "refs": {
@@ -2416,6 +2525,16 @@
       "refs": {
         "ReservedDBInstance$RecurringCharges": "<p>The recurring price charged to run this reserved DB instance.</p>",
         "ReservedDBInstancesOffering$RecurringCharges": "<p>The recurring price charged to run this reserved DB instance.</p>"
+      }
+    },
+    "RemoveFromGlobalClusterMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RemoveFromGlobalClusterResult": {
+      "base": null,
+      "refs": {
       }
     },
     "RemoveRoleFromDBClusterMessage": {
@@ -2783,7 +2902,8 @@
         "CreateDBClusterMessage$ReplicationSourceIdentifier": "<p>The Amazon Resource Name (ARN) of the source DB instance or DB cluster if this DB cluster is created as a Read Replica.</p>",
         "CreateDBClusterMessage$KmsKeyId": "<p>The AWS KMS key identifier for an encrypted DB cluster.</p> <p>The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption key. If you are creating a DB cluster with the same AWS account that owns the KMS encryption key used to encrypt the new DB cluster, then you can use the KMS key alias instead of the ARN for the KMS encryption key.</p> <p>If an encryption key is not specified in <code>KmsKeyId</code>:</p> <ul> <li> <p>If <code>ReplicationSourceIdentifier</code> identifies an encrypted source, then Amazon RDS will use the encryption key used to encrypt the source. Otherwise, Amazon RDS will use your default encryption key. </p> </li> <li> <p>If the <code>StorageEncrypted</code> parameter is true and <code>ReplicationSourceIdentifier</code> is not specified, then Amazon RDS will use your default encryption key.</p> </li> </ul> <p>AWS KMS creates the default encryption key for your AWS account. Your AWS account has a different default encryption key for each AWS Region.</p> <p>If you create a Read Replica of an encrypted DB cluster in another AWS Region, you must set <code>KmsKeyId</code> to a KMS key ID that is valid in the destination AWS Region. This key is used to encrypt the Read Replica in that AWS Region.</p>",
         "CreateDBClusterMessage$PreSignedUrl": "<p>A URL that contains a Signature Version 4 signed request for the <code>CreateDBCluster</code> action to be called in the source AWS Region where the DB cluster is replicated from. You only need to specify <code>PreSignedUrl</code> when you are performing cross-region replication from an encrypted DB cluster.</p> <p>The pre-signed URL must be a valid request for the <code>CreateDBCluster</code> API action that can be executed in the source AWS Region that contains the encrypted DB cluster to be copied.</p> <p>The pre-signed URL request must contain the following parameter values:</p> <ul> <li> <p> <code>KmsKeyId</code> - The AWS KMS key identifier for the key to use to encrypt the copy of the DB cluster in the destination AWS Region. This should refer to the same KMS key for both the <code>CreateDBCluster</code> action that is called in the destination AWS Region, and the action contained in the pre-signed URL.</p> </li> <li> <p> <code>DestinationRegion</code> - The name of the AWS Region that Aurora Read Replica will be created in.</p> </li> <li> <p> <code>ReplicationSourceIdentifier</code> - The DB cluster identifier for the encrypted DB cluster to be copied. This identifier must be in the Amazon Resource Name (ARN) format for the source AWS Region. For example, if you are copying an encrypted DB cluster from the us-west-2 AWS Region, then your <code>ReplicationSourceIdentifier</code> would look like Example: <code>arn:aws:rds:us-west-2:123456789012:cluster:aurora-cluster1</code>.</p> </li> </ul> <p>To learn how to generate a Signature Version 4 signed request, see <a href=\"http://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html\"> Authenticating Requests: Using Query Parameters (AWS Signature Version 4)</a> and <a href=\"http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\"> Signature Version 4 Signing Process</a>.</p>",
-        "CreateDBClusterMessage$EngineMode": "<p>The DB engine mode of the DB cluster, either <code>provisioned</code>, <code>serverless</code>, or <code>parallelquery</code>.</p>",
+        "CreateDBClusterMessage$EngineMode": "<p>The DB engine mode of the DB cluster, either <code>provisioned</code>, <code>serverless</code>, <code>parallelquery</code>, or <code>global</code>.</p>",
+        "CreateDBClusterMessage$GlobalClusterIdentifier": "<p> The global cluster ID of an Aurora cluster that becomes the primary cluster in the new global database cluster. </p>",
         "CreateDBClusterParameterGroupMessage$DBClusterParameterGroupName": "<p>The name of the DB cluster parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Must match the name of an existing DB cluster parameter group.</p> </li> </ul> <note> <p>This value is stored as a lowercase string.</p> </note>",
         "CreateDBClusterParameterGroupMessage$DBParameterGroupFamily": "<p>The DB cluster parameter group family name. A DB cluster parameter group can be associated with one and only one DB cluster parameter group family, and can be applied only to a DB cluster running a database engine and engine version compatible with that DB cluster parameter group family.</p> <p> <b>Aurora MySQL</b> </p> <p>Example: <code>aurora5.6</code>, <code>aurora-mysql5.7</code> </p> <p> <b>Aurora PostgreSQL</b> </p> <p>Example: <code>aurora-postgresql9.6</code> </p>",
         "CreateDBClusterParameterGroupMessage$Description": "<p>The description for the DB cluster parameter group.</p>",
@@ -2837,6 +2957,11 @@
         "CreateEventSubscriptionMessage$SubscriptionName": "<p>The name of the subscription.</p> <p>Constraints: The name must be less than 255 characters.</p>",
         "CreateEventSubscriptionMessage$SnsTopicArn": "<p>The Amazon Resource Name (ARN) of the SNS topic created for event notification. The ARN is created by Amazon SNS when you create a topic and subscribe to it.</p>",
         "CreateEventSubscriptionMessage$SourceType": "<p>The type of source that is generating the events. For example, if you want to be notified of events generated by a DB instance, you would set this parameter to db-instance. if this value is not specified, all events are returned.</p> <p>Valid values: <code>db-instance</code> | <code>db-cluster</code> | <code>db-parameter-group</code> | <code>db-security-group</code> | <code>db-snapshot</code> | <code>db-cluster-snapshot</code> </p>",
+        "CreateGlobalClusterMessage$GlobalClusterIdentifier": "<p>The cluster identifier of the new global database cluster.</p>",
+        "CreateGlobalClusterMessage$SourceDBClusterIdentifier": "<p> The Amazon Resource Name (ARN) to use as the primary cluster of the global database. This parameter is optional. </p>",
+        "CreateGlobalClusterMessage$Engine": "<p>Provides the name of the database engine to be used for this DB cluster.</p>",
+        "CreateGlobalClusterMessage$EngineVersion": "<p>The engine version of the Aurora global database.</p>",
+        "CreateGlobalClusterMessage$DatabaseName": "<p> The name for your database of up to 64 alpha-numeric characters. If you do not provide a name, Amazon Aurora will not create a database in the global database cluster you are creating. </p>",
         "CreateOptionGroupMessage$OptionGroupName": "<p>Specifies the name of the option group to be created.</p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 letters, numbers, or hyphens</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens</p> </li> </ul> <p>Example: <code>myoptiongroup</code> </p>",
         "CreateOptionGroupMessage$EngineName": "<p>Specifies the name of the engine that this option group should be associated with.</p>",
         "CreateOptionGroupMessage$MajorEngineVersion": "<p>Specifies the major version of the engine that this option group should be associated with.</p>",
@@ -3018,6 +3143,7 @@
         "DeleteDBSnapshotMessage$DBSnapshotIdentifier": "<p>The DB snapshot identifier.</p> <p>Constraints: Must be the name of an existing DB snapshot in the <code>available</code> state.</p>",
         "DeleteDBSubnetGroupMessage$DBSubnetGroupName": "<p>The name of the database subnet group to delete.</p> <note> <p>You can't delete the default subnet group.</p> </note> <p>Constraints:</p> <p>Constraints: Must match the name of an existing DBSubnetGroup. Must not be default.</p> <p>Example: <code>mySubnetgroup</code> </p>",
         "DeleteEventSubscriptionMessage$SubscriptionName": "<p>The name of the RDS event notification subscription you want to delete.</p>",
+        "DeleteGlobalClusterMessage$GlobalClusterIdentifier": "<p> The cluster identifier of the global database cluster being deleted. </p>",
         "DeleteOptionGroupMessage$OptionGroupName": "<p>The name of the option group to be deleted.</p> <note> <p>You can't delete default option groups.</p> </note>",
         "DescribeCertificatesMessage$CertificateIdentifier": "<p>The user-supplied certificate identifier. If this parameter is specified, information for only the identified certificate is returned. This parameter isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match an existing CertificateIdentifier.</p> </li> </ul>",
         "DescribeCertificatesMessage$Marker": "<p> An optional pagination token provided by a previous <a>DescribeCertificates</a> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
@@ -3077,6 +3203,8 @@
         "DescribeEventSubscriptionsMessage$Marker": "<p> An optional pagination token provided by a previous DescribeOrderableDBInstanceOptions request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code> . </p>",
         "DescribeEventsMessage$SourceIdentifier": "<p>The identifier of the event source for which events are returned. If not specified, then all sources are included in the response.</p> <p>Constraints:</p> <ul> <li> <p>If SourceIdentifier is supplied, SourceType must also be provided.</p> </li> <li> <p>If the source type is <code>DBInstance</code>, then a <code>DBInstanceIdentifier</code> must be supplied.</p> </li> <li> <p>If the source type is <code>DBSecurityGroup</code>, a <code>DBSecurityGroupName</code> must be supplied.</p> </li> <li> <p>If the source type is <code>DBParameterGroup</code>, a <code>DBParameterGroupName</code> must be supplied.</p> </li> <li> <p>If the source type is <code>DBSnapshot</code>, a <code>DBSnapshotIdentifier</code> must be supplied.</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens.</p> </li> </ul>",
         "DescribeEventsMessage$Marker": "<p> An optional pagination token provided by a previous DescribeEvents request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
+        "DescribeGlobalClustersMessage$GlobalClusterIdentifier": "<p> The user-supplied DB cluster identifier. If this parameter is specified, information from only the specific DB cluster is returned. This parameter isn't case-sensitive. </p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match an existing DBClusterIdentifier.</p> </li> </ul>",
+        "DescribeGlobalClustersMessage$Marker": "<p> An optional pagination token provided by a previous <a>DescribeGlobalClusters</a> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "DescribeOptionGroupOptionsMessage$EngineName": "<p>A required parameter. Options available for the given engine name are described.</p>",
         "DescribeOptionGroupOptionsMessage$MajorEngineVersion": "<p>If specified, filters the results to include only options for the specified major engine version.</p>",
         "DescribeOptionGroupOptionsMessage$Marker": "<p>An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
@@ -3143,6 +3271,15 @@
         "FailoverDBClusterMessage$TargetDBInstanceIdentifier": "<p>The name of the instance to promote to the primary instance.</p> <p>You must specify the instance identifier for an Aurora Replica in the DB cluster. For example, <code>mydbcluster-replica1</code>.</p>",
         "Filter$Name": "<p>The name of the filter. Filter names are case-sensitive.</p>",
         "FilterValueList$member": null,
+        "GlobalCluster$GlobalClusterIdentifier": "<p> Contains a user-supplied global database cluster identifier. This identifier is the unique key that identifies a global database cluster. </p>",
+        "GlobalCluster$GlobalClusterResourceId": "<p> The AWS Region-unique, immutable identifier for the global database cluster. This identifier is found in AWS CloudTrail log entries whenever the AWS KMS key for the DB cluster is accessed. </p>",
+        "GlobalCluster$GlobalClusterArn": "<p>The Amazon Resource Name (ARN) for the global database cluster.</p>",
+        "GlobalCluster$Status": "<p>Specifies the current state of this global database cluster.</p>",
+        "GlobalCluster$Engine": "<p> The Aurora database engine used by the global database cluster. </p>",
+        "GlobalCluster$EngineVersion": "<p>Indicates the database engine version.</p>",
+        "GlobalCluster$DatabaseName": "<p> The default database name within the new global database cluster. </p>",
+        "GlobalClusterMember$DBClusterArn": "<p> The Amazon Resource Name (ARN) for each Aurora cluster. </p>",
+        "GlobalClustersMessage$Marker": "<p> An optional pagination token provided by a previous <code>DescribeGlobalClusters</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "IPRange$Status": "<p>Specifies the status of the IP range. Status can be \"authorizing\", \"authorized\", \"revoking\", and \"revoked\".</p>",
         "IPRange$CIDRIP": "<p>Specifies the IP range.</p>",
         "KeyList$member": null,
@@ -3195,6 +3332,8 @@
         "ModifyEventSubscriptionMessage$SubscriptionName": "<p>The name of the RDS event notification subscription.</p>",
         "ModifyEventSubscriptionMessage$SnsTopicArn": "<p>The Amazon Resource Name (ARN) of the SNS topic created for event notification. The ARN is created by Amazon SNS when you create a topic and subscribe to it.</p>",
         "ModifyEventSubscriptionMessage$SourceType": "<p>The type of source that is generating the events. For example, if you want to be notified of events generated by a DB instance, you would set this parameter to db-instance. if this value is not specified, all events are returned.</p> <p>Valid values: db-instance | db-parameter-group | db-security-group | db-snapshot</p>",
+        "ModifyGlobalClusterMessage$GlobalClusterIdentifier": "<p> The DB cluster identifier for the global cluster being modified. This parameter is not case-sensitive. </p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing global database cluster.</p> </li> </ul>",
+        "ModifyGlobalClusterMessage$NewGlobalClusterIdentifier": "<p> The new cluster identifier for the global database cluster when modifying a global database cluster. This value is stored as a lowercase string. </p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 letters, numbers, or hyphens</p> </li> <li> <p>The first character must be a letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens</p> </li> </ul> <p>Example: <code>my-cluster2</code> </p>",
         "ModifyOptionGroupMessage$OptionGroupName": "<p>The name of the option group to be modified.</p> <p>Permanent options, such as the TDE option for Oracle Advanced Security TDE, can't be removed from an option group, and that option group can't be removed from a DB instance once it is associated with a DB instance</p>",
         "Option$OptionName": "<p>The name of the option.</p>",
         "Option$OptionDescription": "<p>The description of the option.</p>",
@@ -3268,8 +3407,11 @@
         "ReadReplicaDBClusterIdentifierList$member": null,
         "ReadReplicaDBInstanceIdentifierList$member": null,
         "ReadReplicaIdentifierList$member": null,
+        "ReadersArnList$member": null,
         "RebootDBInstanceMessage$DBInstanceIdentifier": "<p>The DB instance identifier. This parameter is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing DBInstance.</p> </li> </ul>",
         "RecurringCharge$RecurringChargeFrequency": "<p>The frequency of the recurring charge.</p>",
+        "RemoveFromGlobalClusterMessage$GlobalClusterIdentifier": "<p> The cluster identifier to detach from the Aurora global database cluster. </p>",
+        "RemoveFromGlobalClusterMessage$DbClusterIdentifier": "<p> The Amazon Resource Name (ARN) identifying the cluster that was detached from the Aurora global database cluster. </p>",
         "RemoveRoleFromDBClusterMessage$DBClusterIdentifier": "<p>The name of the DB cluster to disassociate the IAM role from.</p>",
         "RemoveRoleFromDBClusterMessage$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to disassociate from the Aurora DB cluster, for example <code>arn:aws:iam::123456789012:role/AuroraAccessRole</code>.</p>",
         "RemoveSourceIdentifierFromSubscriptionMessage$SubscriptionName": "<p>The name of the RDS event notification subscription you want to remove a source identifier from.</p>",
@@ -3590,7 +3732,7 @@
       "base": null,
       "refs": {
         "CreateDBClusterMessage$VpcSecurityGroupIds": "<p>A list of EC2 VPC security groups to associate with this DB cluster.</p>",
-        "CreateDBInstanceMessage$VpcSecurityGroupIds": "<p>A list of EC2 VPC security groups to associate with this DB instance.</p> <p> <b>Amazon Aurora</b> </p> <p>Not applicable. The associated list of EC2 VPC security groups is managed by the DB cluster. For more information, see <a>CreateDBCluster</a>.</p> <p>Default: The default EC2 VPC security group for the DB subnet group's VPC.</p>",
+        "CreateDBInstanceMessage$VpcSecurityGroupIds": "<p>A list of Amazon EC2 VPC security groups to associate with this DB instance.</p> <p> <b>Amazon Aurora</b> </p> <p>Not applicable. The associated list of EC2 VPC security groups is managed by the DB cluster. For more information, see <a>CreateDBCluster</a>.</p> <p>Default: The default EC2 VPC security group for the DB subnet group's VPC.</p>",
         "CreateDBInstanceReadReplicaMessage$VpcSecurityGroupIds": "<p> A list of EC2 VPC security groups to associate with the Read Replica. </p> <p> Default: The default EC2 VPC security group for the DB subnet group's VPC. </p>",
         "ModifyDBClusterMessage$VpcSecurityGroupIds": "<p>A list of VPC security groups that the DB cluster will belong to.</p>",
         "ModifyDBInstanceMessage$VpcSecurityGroupIds": "<p>A list of EC2 VPC security groups to authorize on this DB instance. This change is asynchronously applied as soon as possible.</p> <p> <b>Amazon Aurora</b> </p> <p>Not applicable. The associated list of EC2 VPC security groups is managed by the DB cluster. For more information, see <a>ModifyDBCluster</a>.</p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match existing VpcSecurityGroupIds.</p> </li> </ul>",
