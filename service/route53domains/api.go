@@ -2543,7 +2543,7 @@ type CheckDomainTransferabilityInput struct {
 	// If the registrar for the top-level domain (TLD) requires an authorization
 	// code to transfer the domain, the code that you got from the current registrar
 	// for the domain.
-	AuthCode *string `type:"string"`
+	AuthCode *string `type:"string" sensitive:"true"`
 
 	// The name of the domain that you want to transfer to Amazon Route 53.
 	//
@@ -2619,7 +2619,7 @@ func (s *CheckDomainTransferabilityOutput) SetTransferability(v *DomainTransfera
 
 // ContactDetail includes the following elements.
 type ContactDetail struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// First line of the contact's address.
 	AddressLine1 *string `type:"string"`
@@ -3436,7 +3436,7 @@ type GetDomainDetailOutput struct {
 	// Provides details about the domain administrative contact.
 	//
 	// AdminContact is a required field
-	AdminContact *ContactDetail `type:"structure" required:"true"`
+	AdminContact *ContactDetail `type:"structure" required:"true" sensitive:"true"`
 
 	// Specifies whether contact information is concealed from WHOIS queries. If
 	// the value is true, WHOIS ("who is") queries return contact information either
@@ -3472,7 +3472,7 @@ type GetDomainDetailOutput struct {
 	// Provides details about the domain registrant.
 	//
 	// RegistrantContact is a required field
-	RegistrantContact *ContactDetail `type:"structure" required:"true"`
+	RegistrantContact *ContactDetail `type:"structure" required:"true" sensitive:"true"`
 
 	// Specifies whether contact information is concealed from WHOIS queries. If
 	// the value is true, WHOIS ("who is") queries return contact information either
@@ -3517,7 +3517,7 @@ type GetDomainDetailOutput struct {
 	// Provides details about the domain technical contact.
 	//
 	// TechContact is a required field
-	TechContact *ContactDetail `type:"structure" required:"true"`
+	TechContact *ContactDetail `type:"structure" required:"true" sensitive:"true"`
 
 	// Specifies whether contact information is concealed from WHOIS queries. If
 	// the value is true, WHOIS ("who is") queries return contact information either
@@ -4231,7 +4231,7 @@ type RegisterDomainInput struct {
 	// Provides detailed contact information.
 	//
 	// AdminContact is a required field
-	AdminContact *ContactDetail `type:"structure" required:"true"`
+	AdminContact *ContactDetail `type:"structure" required:"true" sensitive:"true"`
 
 	// Indicates whether the domain will be automatically renewed (true) or not
 	// (false). Autorenewal only takes effect after the account is charged.
@@ -4293,12 +4293,12 @@ type RegisterDomainInput struct {
 	// Provides detailed contact information.
 	//
 	// RegistrantContact is a required field
-	RegistrantContact *ContactDetail `type:"structure" required:"true"`
+	RegistrantContact *ContactDetail `type:"structure" required:"true" sensitive:"true"`
 
 	// Provides detailed contact information.
 	//
 	// TechContact is a required field
-	TechContact *ContactDetail `type:"structure" required:"true"`
+	TechContact *ContactDetail `type:"structure" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -4654,7 +4654,7 @@ type RetrieveDomainAuthCodeOutput struct {
 	// The authorization code for the domain.
 	//
 	// AuthCode is a required field
-	AuthCode *string `type:"string" required:"true"`
+	AuthCode *string `type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -4721,11 +4721,11 @@ type TransferDomainInput struct {
 	// Provides detailed contact information.
 	//
 	// AdminContact is a required field
-	AdminContact *ContactDetail `type:"structure" required:"true"`
+	AdminContact *ContactDetail `type:"structure" required:"true" sensitive:"true"`
 
 	// The authorization code for the domain. You get this value from the current
 	// registrar.
-	AuthCode *string `type:"string"`
+	AuthCode *string `type:"string" sensitive:"true"`
 
 	// Indicates whether the domain will be automatically renewed (true) or not
 	// (false). Autorenewal only takes effect after the account is charged.
@@ -4788,12 +4788,12 @@ type TransferDomainInput struct {
 	// Provides detailed contact information.
 	//
 	// RegistrantContact is a required field
-	RegistrantContact *ContactDetail `type:"structure" required:"true"`
+	RegistrantContact *ContactDetail `type:"structure" required:"true" sensitive:"true"`
 
 	// Provides detailed contact information.
 	//
 	// TechContact is a required field
-	TechContact *ContactDetail `type:"structure" required:"true"`
+	TechContact *ContactDetail `type:"structure" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -4963,7 +4963,7 @@ type UpdateDomainContactInput struct {
 	_ struct{} `type:"structure"`
 
 	// Provides detailed contact information.
-	AdminContact *ContactDetail `type:"structure"`
+	AdminContact *ContactDetail `type:"structure" sensitive:"true"`
 
 	// The name of the domain that you want to update contact information for.
 	//
@@ -4971,10 +4971,10 @@ type UpdateDomainContactInput struct {
 	DomainName *string `type:"string" required:"true"`
 
 	// Provides detailed contact information.
-	RegistrantContact *ContactDetail `type:"structure"`
+	RegistrantContact *ContactDetail `type:"structure" sensitive:"true"`
 
 	// Provides detailed contact information.
-	TechContact *ContactDetail `type:"structure"`
+	TechContact *ContactDetail `type:"structure" sensitive:"true"`
 }
 
 // String returns the string representation

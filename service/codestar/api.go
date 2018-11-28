@@ -1948,7 +1948,7 @@ type CreateProjectInput struct {
 	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string"`
 
 	// The description of the project, if any.
-	Description *string `locationName:"description" type:"string"`
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The ID of the project to be created in AWS CodeStar.
 	//
@@ -1958,7 +1958,7 @@ type CreateProjectInput struct {
 	// The display name for the project to be created in AWS CodeStar.
 	//
 	// Name is a required field
-	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// A list of the Code objects submitted with the project request. If this parameter
 	// is specified, the request must also include the toolchain parameter.
@@ -2127,13 +2127,13 @@ type CreateUserProfileInput struct {
 	// CodeStar.
 	//
 	// DisplayName is a required field
-	DisplayName *string `locationName:"displayName" min:"1" type:"string" required:"true"`
+	DisplayName *string `locationName:"displayName" min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The email address that will be displayed as part of the user's profile in
 	// AWS CodeStar.
 	//
 	// EmailAddress is a required field
-	EmailAddress *string `locationName:"emailAddress" min:"3" type:"string" required:"true"`
+	EmailAddress *string `locationName:"emailAddress" min:"3" type:"string" required:"true" sensitive:"true"`
 
 	// The SSH public key associated with the user in AWS CodeStar. If a project
 	// owner allows the user remote access to project resources, this public key
@@ -2215,11 +2215,11 @@ type CreateUserProfileOutput struct {
 	CreatedTimestamp *time.Time `locationName:"createdTimestamp" type:"timestamp"`
 
 	// The name that is displayed as the friendly name for the user in AWS CodeStar.
-	DisplayName *string `locationName:"displayName" min:"1" type:"string"`
+	DisplayName *string `locationName:"displayName" min:"1" type:"string" sensitive:"true"`
 
 	// The email address that is displayed as part of the user's profile in AWS
 	// CodeStar.
-	EmailAddress *string `locationName:"emailAddress" min:"3" type:"string"`
+	EmailAddress *string `locationName:"emailAddress" min:"3" type:"string" sensitive:"true"`
 
 	// The date the user profile was last modified, in timestamp format.
 	LastModifiedTimestamp *time.Time `locationName:"lastModifiedTimestamp" type:"timestamp"`
@@ -2501,13 +2501,13 @@ type DescribeProjectOutput struct {
 	CreatedTimeStamp *time.Time `locationName:"createdTimeStamp" type:"timestamp"`
 
 	// The description of the project, if any.
-	Description *string `locationName:"description" type:"string"`
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The ID of the project.
 	Id *string `locationName:"id" min:"2" type:"string"`
 
 	// The display name for the project.
-	Name *string `locationName:"name" min:"1" type:"string"`
+	Name *string `locationName:"name" min:"1" type:"string" sensitive:"true"`
 
 	// The ID for the AWS CodeStar project template used to create the project.
 	ProjectTemplateId *string `locationName:"projectTemplateId" min:"1" type:"string"`
@@ -2643,10 +2643,10 @@ type DescribeUserProfileOutput struct {
 	// displays a maximum of two characters, so a display name with more than one
 	// space (for example "Mary Jane Major") would generate an initial icon using
 	// the first character and the first character after the space ("MJ", not "MM").
-	DisplayName *string `locationName:"displayName" min:"1" type:"string"`
+	DisplayName *string `locationName:"displayName" min:"1" type:"string" sensitive:"true"`
 
 	// The email address for the user. Optional.
-	EmailAddress *string `locationName:"emailAddress" min:"3" type:"string"`
+	EmailAddress *string `locationName:"emailAddress" min:"3" type:"string" sensitive:"true"`
 
 	// The date and time when the user profile was last modified, in timestamp format.
 	//
@@ -2819,7 +2819,7 @@ type GitHubCodeDestination struct {
 	// The GitHub user's personal access token for the GitHub repository.
 	//
 	// Token is a required field
-	Token *string `locationName:"token" min:"1" type:"string" required:"true"`
+	Token *string `locationName:"token" min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The type of GitHub repository to be created in AWS CodeStar. Valid values
 	// are User or Organization.
@@ -3845,7 +3845,7 @@ type UpdateProjectInput struct {
 	_ struct{} `type:"structure"`
 
 	// The description of the project, if any.
-	Description *string `locationName:"description" type:"string"`
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The ID of the project you want to update.
 	//
@@ -3853,7 +3853,7 @@ type UpdateProjectInput struct {
 	Id *string `locationName:"id" min:"2" type:"string" required:"true"`
 
 	// The name of the project you want to update.
-	Name *string `locationName:"name" min:"1" type:"string"`
+	Name *string `locationName:"name" min:"1" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -4046,11 +4046,11 @@ type UpdateUserProfileInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name that is displayed as the friendly name for the user in AWS CodeStar.
-	DisplayName *string `locationName:"displayName" min:"1" type:"string"`
+	DisplayName *string `locationName:"displayName" min:"1" type:"string" sensitive:"true"`
 
 	// The email address that is displayed as part of the user's profile in AWS
 	// CodeStar.
-	EmailAddress *string `locationName:"emailAddress" min:"3" type:"string"`
+	EmailAddress *string `locationName:"emailAddress" min:"3" type:"string" sensitive:"true"`
 
 	// The SSH public key associated with the user in AWS CodeStar. If a project
 	// owner allows the user remote access to project resources, this public key
@@ -4127,11 +4127,11 @@ type UpdateUserProfileOutput struct {
 	CreatedTimestamp *time.Time `locationName:"createdTimestamp" type:"timestamp"`
 
 	// The name that is displayed as the friendly name for the user in AWS CodeStar.
-	DisplayName *string `locationName:"displayName" min:"1" type:"string"`
+	DisplayName *string `locationName:"displayName" min:"1" type:"string" sensitive:"true"`
 
 	// The email address that is displayed as part of the user's profile in AWS
 	// CodeStar.
-	EmailAddress *string `locationName:"emailAddress" min:"3" type:"string"`
+	EmailAddress *string `locationName:"emailAddress" min:"3" type:"string" sensitive:"true"`
 
 	// The date the user profile was last modified, in timestamp format.
 	LastModifiedTimestamp *time.Time `locationName:"lastModifiedTimestamp" type:"timestamp"`
@@ -4206,10 +4206,10 @@ type UserProfileSummary struct {
 	// two characters, so a display name with more than one space (for example "Mary
 	// Jane Major") would generate an initial icon using the first character and
 	// the first character after the space ("MJ", not "MM").
-	DisplayName *string `locationName:"displayName" min:"1" type:"string"`
+	DisplayName *string `locationName:"displayName" min:"1" type:"string" sensitive:"true"`
 
 	// The email address associated with the user.
-	EmailAddress *string `locationName:"emailAddress" min:"3" type:"string"`
+	EmailAddress *string `locationName:"emailAddress" min:"3" type:"string" sensitive:"true"`
 
 	// The SSH public key associated with the user in AWS CodeStar. If a project
 	// owner allows the user remote access to project resources, this public key

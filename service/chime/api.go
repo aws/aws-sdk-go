@@ -2445,7 +2445,7 @@ type Invite struct {
 	_ struct{} `type:"structure"`
 
 	// The email address to which the invite is sent.
-	EmailAddress *string `type:"string"`
+	EmailAddress *string `type:"string" sensitive:"true"`
 
 	// The status of the invite email.
 	EmailStatus *string `type:"string" enum:"EmailStatus"`
@@ -2579,7 +2579,7 @@ type ListAccountsInput struct {
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 
 	// User email address with which to filter results.
-	UserEmail *string `location:"querystring" locationName:"user-email" type:"string"`
+	UserEmail *string `location:"querystring" locationName:"user-email" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -2679,7 +2679,7 @@ type ListUsersInput struct {
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 
 	// Optional. The user email address used to filter results. Maximum 1.
-	UserEmail *string `location:"querystring" locationName:"user-email" type:"string"`
+	UserEmail *string `location:"querystring" locationName:"user-email" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -3185,7 +3185,7 @@ type User struct {
 	AccountId *string `type:"string"`
 
 	// The display name of the user.
-	DisplayName *string `type:"string"`
+	DisplayName *string `type:"string" sensitive:"true"`
 
 	// Date and time when the user is invited to the Amazon Chime account, in ISO
 	// 8601 format.
@@ -3198,7 +3198,7 @@ type User struct {
 	PersonalPIN *string `type:"string"`
 
 	// The primary email address of the user.
-	PrimaryEmail *string `type:"string"`
+	PrimaryEmail *string `type:"string" sensitive:"true"`
 
 	// Date and time when the user is registered, in ISO 8601 format.
 	RegisteredOn *time.Time `type:"timestamp" timestampFormat:"iso8601"`

@@ -5416,10 +5416,10 @@ type CreateUserInput struct {
 	AuthenticationType *string `type:"string" required:"true" enum:"AuthenticationType"`
 
 	// The first name, or given name, of the user.
-	FirstName *string `type:"string"`
+	FirstName *string `type:"string" sensitive:"true"`
 
 	// The last name, or surname, of the user.
-	LastName *string `type:"string"`
+	LastName *string `type:"string" sensitive:"true"`
 
 	// The action to take for the welcome email that is sent to a user after the
 	// user is created in the user pool. If you specify SUPPRESS, no email is sent.
@@ -5434,7 +5434,7 @@ type CreateUserInput struct {
 	// The email address of the user.
 	//
 	// UserName is a required field
-	UserName *string `min:"1" type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -5871,7 +5871,7 @@ type DeleteUserInput struct {
 	// The email address of the user.
 	//
 	// UserName is a required field
-	UserName *string `min:"1" type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -6641,7 +6641,7 @@ type DescribeUserStackAssociationsInput struct {
 	StackName *string `min:"1" type:"string"`
 
 	// The email address of the user who is associated with the stack.
-	UserName *string `min:"1" type:"string"`
+	UserName *string `min:"1" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -6895,7 +6895,7 @@ type DisableUserInput struct {
 	// The email address of the user.
 	//
 	// UserName is a required field
-	UserName *string `min:"1" type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -7069,7 +7069,7 @@ type EnableUserInput struct {
 	// The email address of the user.
 	//
 	// UserName is a required field
-	UserName *string `min:"1" type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -8137,12 +8137,12 @@ type ServiceAccountCredentials struct {
 	// password on descendant computer objects for the organizational units specified.
 	//
 	// AccountName is a required field
-	AccountName *string `min:"1" type:"string" required:"true"`
+	AccountName *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The password for the account.
 	//
 	// AccountPassword is a required field
-	AccountPassword *string `min:"1" type:"string" required:"true"`
+	AccountPassword *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -9517,10 +9517,10 @@ type User struct {
 	Enabled *bool `type:"boolean"`
 
 	// The first name, or given name, of the user.
-	FirstName *string `type:"string"`
+	FirstName *string `type:"string" sensitive:"true"`
 
 	// The last name, or surname, of the user.
-	LastName *string `type:"string"`
+	LastName *string `type:"string" sensitive:"true"`
 
 	// The status of the user in the user pool. The status can be one of the following:
 	//
@@ -9536,7 +9536,7 @@ type User struct {
 	Status *string `min:"1" type:"string"`
 
 	// The email address of the user.
-	UserName *string `min:"1" type:"string"`
+	UserName *string `min:"1" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -9672,7 +9672,7 @@ type UserStackAssociation struct {
 	// The email address of the user who is associated with the stack.
 	//
 	// UserName is a required field
-	UserName *string `min:"1" type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
