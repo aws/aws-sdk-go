@@ -5510,6 +5510,7 @@
       ],
       "members":{
         "AvailabilityZone":{"shape":"String"},
+        "AvailabilityZoneId":{"shape":"String"},
         "CidrBlock":{"shape":"String"},
         "Ipv6CidrBlock":{"shape":"String"},
         "VpcId":{"shape":"String"},
@@ -9573,6 +9574,10 @@
           "shape":"String",
           "locationName":"dhcpOptionsId"
         },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
@@ -13269,6 +13274,10 @@
           "shape":"String",
           "locationName":"internetGatewayId"
         },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
@@ -15113,6 +15122,10 @@
         "VpcId":{
           "shape":"String",
           "locationName":"vpcId"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
         }
       }
     },
@@ -17875,6 +17888,10 @@
         "VpcId":{
           "shape":"String",
           "locationName":"vpcId"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
         }
       }
     },
@@ -19555,6 +19572,10 @@
           "shape":"String",
           "locationName":"availabilityZone"
         },
+        "AvailabilityZoneId":{
+          "shape":"String",
+          "locationName":"availabilityZoneId"
+        },
         "AvailableIpAddressCount":{
           "shape":"Integer",
           "locationName":"availableIpAddressCount"
@@ -19583,6 +19604,10 @@
           "shape":"String",
           "locationName":"vpcId"
         },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
         "AssignIpv6AddressOnCreation":{
           "shape":"Boolean",
           "locationName":"assignIpv6AddressOnCreation"
@@ -19594,6 +19619,10 @@
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
+        },
+        "SubnetArn":{
+          "shape":"String",
+          "locationName":"subnetArn"
         }
       }
     },
@@ -21177,6 +21206,10 @@
         "VpcId":{
           "shape":"String",
           "locationName":"vpcId"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
         },
         "InstanceTenancy":{
           "shape":"Tenancy",

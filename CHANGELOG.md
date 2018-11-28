@@ -1,3 +1,24 @@
+Release v1.15.84 (2018-11-28)
+===
+
+### Service Client Updates
+* `service/codedeploy`: Updates service API and documentation
+  * Support for Amazon ECS service deployment - AWS CodeDeploy now supports the deployment of Amazon ECS services. An Amazon ECS deployment uses an Elastic Load Balancer, two Amazon ECS target groups, and a listener to reroute production traffic from your Amazon ECS service's original task set to a new replacement task set. The original task set is terminated when the deployment is complete. Success of a deployment can be validated using Lambda functions that are referenced by the deployment. This provides the opportunity to rollback if necessary. You can use the new ECSService, ECSTarget, and ECSTaskSet data types in the updated SDK to create or retrieve an Amazon ECS deployment.
+* `service/comprehendmedical`: Adds new service
+* `service/ec2`: Updates service API and documentation
+  * With VPC sharing, you can now allow multiple accounts in the same AWS Organization to launch their application resources, like EC2 instances, RDS databases, and Redshift clusters into shared, centrally managed VPCs.
+* `service/ecs`: Updates service API and documentation
+  * This release of Amazon Elastic Container Service (Amazon ECS) introduces support for blue/green deployment feature. Customers can now update their ECS services in a blue/green deployment pattern via using AWS CodeDeploy.
+* `service/kinesisanalytics`: Updates service API and documentation
+  * Improvements to error messages, validations, and more to the Kinesis Data Analytics APIs.
+* `service/kinesisanalyticsv2`: Adds new service
+* `service/logs`: Updates service API and documentation
+  * Six new APIs added to support CloudWatch Logs Insights. The APIs are StartQuery, StopQuery, GetQueryResults, GetLogRecord, GetLogGroupFields, and DescribeQueries.
+* `service/mediaconnect`: Adds new service
+* `service/meteringmarketplace`: Updates service API, documentation, and paginators
+  * RegisterUsage operation added to AWS Marketplace Metering Service, allowing sellers to meter and entitle Docker container software use with AWS Marketplace. For details on integrating Docker containers with RegisterUsage see: https://docs.aws.amazon.com/marketplace/latest/userguide/entitlement-and-metering-for-paid-products.html
+* `service/translate`: Updates service API and documentation
+
 Release v1.15.83 (2018-11-27)
 ===
 
