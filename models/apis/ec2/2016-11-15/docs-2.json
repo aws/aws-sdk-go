@@ -304,7 +304,7 @@
     "RunScheduledInstances": "<p>Launches the specified Scheduled Instances.</p> <p>Before you can launch a Scheduled Instance, you must purchase it and obtain an identifier using <a>PurchaseScheduledInstances</a>.</p> <p>You must launch a Scheduled Instance during its scheduled time period. You can't stop or reboot a Scheduled Instance, but you can terminate it as needed. If you terminate a Scheduled Instance before the current scheduled time period ends, you can launch it again after a few minutes. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-scheduled-instances.html\">Scheduled Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "SearchTransitGatewayRoutes": "<p>Searches for routes in the specified transit gateway route table.</p>",
     "StartInstances": "<p>Starts an Amazon EBS-backed instance that you've previously stopped.</p> <p>Instances that use Amazon EBS volumes as their root devices can be quickly stopped and started. When an instance is stopped, the compute resources are released and you are not billed for instance usage. However, your root partition Amazon EBS volume remains and continues to persist your data, and you are charged for Amazon EBS volume usage. You can restart your instance at any time. Every time you start your Windows instance, Amazon EC2 charges you for a full instance hour. If you stop and restart your Windows instance, a new instance hour begins and Amazon EC2 charges you for another full instance hour even if you are still within the same 60-minute period when it was stopped. Every time you start your Linux instance, Amazon EC2 charges a one-minute minimum for instance usage, and thereafter charges per second for instance usage.</p> <p>Before stopping an instance, make sure it is in a state from which it can be restarted. Stopping an instance does not preserve data stored in RAM.</p> <p>Performing this operation on an instance that uses an instance store as its root device returns an error.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html\">Stopping Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
-    "StopInstances": "<p>Stops an Amazon EBS-backed instance.</p> <p>We don't charge usage for a stopped instance, or data transfer fees; however, your root partition Amazon EBS volume remains and continues to persist your data, and you are charged for Amazon EBS volume usage. Every time you start your Windows instance, Amazon EC2 charges you for a full instance hour. If you stop and restart your Windows instance, a new instance hour begins and Amazon EC2 charges you for another full instance hour even if you are still within the same 60-minute period when it was stopped. Every time you start your Linux instance, Amazon EC2 charges a one-minute minimum for instance usage, and thereafter charges per second for instance usage.</p> <p>You can't start or stop Spot Instances, and you can't stop instance store-backed instances.</p> <p>When you stop an instance, we shut it down. You can restart your instance at any time. Before stopping an instance, make sure it is in a state from which it can be restarted. Stopping an instance does not preserve data stored in RAM.</p> <p>Stopping an instance is different to rebooting or terminating it. For example, when you stop an instance, the root device and any other devices attached to the instance persist. When you terminate an instance, the root device and any other devices attached during the instance launch are automatically deleted. For more information about the differences between rebooting, stopping, and terminating instances, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html\">Instance Lifecycle</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>When you stop an instance, we attempt to shut it down forcibly after a short while. If your instance appears stuck in the stopping state after a period of time, there may be an issue with the underlying host computer. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesStopping.html\">Troubleshooting Stopping Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "StopInstances": "<p>Stops an Amazon EBS-backed instance.</p> <p>You can use the Stop action to hibernate an instance if the instance is <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#enabling-hibernation\">enabled for hibernation</a> and it meets the <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites\">hibernation prerequisites</a>. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html\">Hibernate Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>We don't charge usage for a stopped instance, or data transfer fees; however, your root partition Amazon EBS volume remains and continues to persist your data, and you are charged for Amazon EBS volume usage. Every time you start your Windows instance, Amazon EC2 charges you for a full instance hour. If you stop and restart your Windows instance, a new instance hour begins and Amazon EC2 charges you for another full instance hour even if you are still within the same 60-minute period when it was stopped. Every time you start your Linux instance, Amazon EC2 charges a one-minute minimum for instance usage, and thereafter charges per second for instance usage.</p> <p>You can't start, stop, or hibernate Spot Instances, and you can't stop or hibernate instance store-backed instances. For information about using hibernation for Spot Instances, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-interruptions.html#hibernate-spot-instances\">Hibernating Interrupted Spot Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>When you stop or hibernate an instance, we shut it down. You can restart your instance at any time. Before stopping or hibernating an instance, make sure it is in a state from which it can be restarted. Stopping an instance does not preserve data stored in RAM, but hibernating an instance does preserve data stored in RAM. If an instance cannot hibernate successfully, a normal shutdown occurs.</p> <p>Stopping and hibernating an instance is different to rebooting or terminating it. For example, when you stop or hibernate an instance, the root device and any other devices attached to the instance persist. When you terminate an instance, the root device and any other devices attached during the instance launch are automatically deleted. For more information about the differences between rebooting, stopping, hibernating, and terminating instances, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html\">Instance Lifecycle</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>When you stop an instance, we attempt to shut it down forcibly after a short while. If your instance appears stuck in the stopping state after a period of time, there may be an issue with the underlying host computer. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesStopping.html\">Troubleshooting Stopping Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "TerminateInstances": "<p>Shuts down one or more instances. This operation is idempotent; if you terminate an instance more than once, each call succeeds. </p> <p>If you specify multiple instances and the request fails (for example, because of a single incorrect instance ID), none of the instances are terminated.</p> <p>Terminated instances remain visible after termination (for approximately one hour).</p> <p>By default, Amazon EC2 deletes all EBS volumes that were attached when the instance launched. Volumes attached after instance launch continue running.</p> <p>You can stop, start, and terminate EBS-backed instances. You can only terminate instance store-backed instances. What happens to an instance differs if you stop it or terminate it. For example, when you stop an instance, the root device and any other devices attached to the instance persist. When you terminate an instance, any attached EBS volumes with the <code>DeleteOnTermination</code> block device mapping parameter set to <code>true</code> are automatically deleted. For more information about the differences between stopping and terminating instances, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html\">Instance Lifecycle</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>For more information about troubleshooting, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesShuttingDown.html\">Troubleshooting Terminating Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "UnassignIpv6Addresses": "<p>Unassigns one or more IPv6 addresses from a network interface.</p>",
     "UnassignPrivateIpAddresses": "<p>Unassigns one or more secondary private IP addresses from a network interface.</p>",
@@ -1056,6 +1056,8 @@
         "GetTransitGatewayAttachmentPropagationsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetTransitGatewayRouteTableAssociationsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetTransitGatewayRouteTablePropagationsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "HibernationOptions$Configured": "<p>If this parameter is set to <code>true</code>, your instance is enabled for hibernation; otherwise, it is not enabled for hibernation.</p>",
+        "HibernationOptionsRequest$Configured": "<p>If you set this parameter to <code>true</code>, your instance is enabled for hibernation.</p> <p>Default: <code>false</code> </p>",
         "IdFormat$UseLongIds": "<p>Indicates whether longer IDs (17-character IDs) are enabled for the resource.</p>",
         "Image$Public": "<p>Indicates whether the image has public launch permissions. The value is <code>true</code> if this image has public launch permissions or <code>false</code> if it has only implicit and explicit launch permissions.</p>",
         "Image$EnaSupport": "<p>Specifies whether enhanced networking with ENA is enabled.</p>",
@@ -1082,6 +1084,8 @@
         "LaunchTemplateEbsBlockDevice$DeleteOnTermination": "<p>Indicates whether the EBS volume is deleted on instance termination.</p>",
         "LaunchTemplateEbsBlockDeviceRequest$Encrypted": "<p>Indicates whether the EBS volume is encrypted. Encrypted volumes can only be attached to instances that support Amazon EBS encryption. If you are creating a volume from a snapshot, you can't specify an encryption value.</p>",
         "LaunchTemplateEbsBlockDeviceRequest$DeleteOnTermination": "<p>Indicates whether the EBS volume is deleted on instance termination.</p>",
+        "LaunchTemplateHibernationOptions$Configured": "<p>If this parameter is set to <code>true</code>, the instance is enabled for hibernation; otherwise, it is not enabled for hibernation.</p>",
+        "LaunchTemplateHibernationOptionsRequest$Configured": "<p>If you set this parameter to <code>true</code>, the instance is enabled for hibernation.</p> <p>Default: <code>false</code> </p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecification$AssociatePublicIpAddress": "<p>Indicates whether to associate a public IPv4 address with eth0 for a new network interface.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecification$DeleteOnTermination": "<p>Indicates whether the network interface is deleted when the instance is terminated.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$AssociatePublicIpAddress": "<p>Associates a public IPv4 address with eth0 for a new network interface.</p>",
@@ -1207,6 +1211,7 @@
         "SpotOptions$SingleInstanceType": "<p>Indicates that the fleet uses a single instance type to launch all Spot Instances in the fleet.</p>",
         "SpotOptionsRequest$SingleInstanceType": "<p>Indicates that the fleet uses a single instance type to launch all Spot Instances in the fleet.</p>",
         "StartInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "StopInstancesRequest$Hibernate": "<p>Hibernates the instance if the instance was enabled for hibernation at launch. If the instance cannot hibernate successfully, a normal shutdown occurs. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html\">Hibernate Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p> Default: <code>false</code> </p>",
         "StopInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "StopInstancesRequest$Force": "<p>Forces the instances to stop. The instances do not have an opportunity to flush file system caches or file system metadata. If you use this option, you must perform file system check and repair procedures. This option is not recommended for Windows instances.</p> <p>Default: <code>false</code> </p>",
         "Subnet$DefaultForAz": "<p>Indicates whether this is the default subnet for the Availability Zone.</p>",
@@ -1564,12 +1569,12 @@
       }
     },
     "ConfirmProductInstanceRequest": {
-      "base": "<p>Contains the parameters for ConfirmProductInstance.</p>",
+      "base": null,
       "refs": {
       }
     },
     "ConfirmProductInstanceResult": {
-      "base": "<p>Contains the output of ConfirmProductInstance.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -1882,7 +1887,7 @@
       }
     },
     "CreatePlacementGroupRequest": {
-      "base": "<p>Contains the parameters for CreatePlacementGroup.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -2177,6 +2182,7 @@
         "DescribeSpotPriceHistoryRequest$EndTime": "<p>The date and time, up to the current date, from which to stop retrieving the price history data, in UTC format (for example, <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z).</p>",
         "DescribeSpotPriceHistoryRequest$StartTime": "<p>The date and time, up to the past 90 days, from which to start retrieving the price history data, in UTC format (for example, <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z).</p>",
         "EbsInstanceBlockDevice$AttachTime": "<p>The time stamp when the attachment initiated.</p>",
+        "ElasticInferenceAcceleratorAssociation$ElasticInferenceAcceleratorAssociationTime": "<p> The time at which the elastic inference accelerator is associated with an instance. </p>",
         "FleetData$CreateTime": "<p>The creation date and time of the EC2 Fleet.</p>",
         "FleetData$ValidFrom": "<p>The start date and time of the request, in UTC format (for example, <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). The default is to start fulfilling the request immediately. </p>",
         "FleetData$ValidUntil": "<p>The end date and time of the request, in UTC format (for example, <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). At this point, no new instance requests are placed or able to fulfill the request. The default end date is 7 days from the current date. </p>",
@@ -2453,7 +2459,7 @@
       }
     },
     "DeletePlacementGroupRequest": {
-      "base": "<p>Contains the parameters for DeletePlacementGroup.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -2938,7 +2944,7 @@
       }
     },
     "DescribeInstanceAttributeRequest": {
-      "base": "<p>Contains the parameters for DescribeInstanceAttribute.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -2953,22 +2959,22 @@
       }
     },
     "DescribeInstanceStatusRequest": {
-      "base": "<p>Contains the parameters for DescribeInstanceStatus.</p>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeInstanceStatusResult": {
-      "base": "<p>Contains the output of DescribeInstanceStatus.</p>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeInstancesRequest": {
-      "base": "<p>Contains the parameters for DescribeInstances.</p>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeInstancesResult": {
-      "base": "<p>Contains the output of DescribeInstances.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -3073,12 +3079,12 @@
       }
     },
     "DescribePlacementGroupsRequest": {
-      "base": "<p>Contains the parameters for DescribePlacementGroups.</p>",
+      "base": null,
       "refs": {
       }
     },
     "DescribePlacementGroupsResult": {
-      "base": "<p>Contains the output of DescribePlacementGroups.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -3911,6 +3917,30 @@
         "ElasticGpuSet$member": null
       }
     },
+    "ElasticInferenceAccelerator": {
+      "base": "<p> Describes an elastic inference accelerator. </p>",
+      "refs": {
+        "ElasticInferenceAccelerators$member": null
+      }
+    },
+    "ElasticInferenceAcceleratorAssociation": {
+      "base": "<p> Describes the association between an instance and an elastic inference accelerator. </p>",
+      "refs": {
+        "ElasticInferenceAcceleratorAssociationList$member": null
+      }
+    },
+    "ElasticInferenceAcceleratorAssociationList": {
+      "base": null,
+      "refs": {
+        "Instance$ElasticInferenceAcceleratorAssociations": "<p> The elastic inference accelerator associated with the instance. </p>"
+      }
+    },
+    "ElasticInferenceAccelerators": {
+      "base": null,
+      "refs": {
+        "RunInstancesRequest$ElasticInferenceAccelerators": "<p> An elastic inference accelerator. </p>"
+      }
+    },
     "EnableTransitGatewayRouteTablePropagationRequest": {
       "base": null,
       "refs": {
@@ -4076,7 +4106,7 @@
         "DescribeImportSnapshotTasksRequest$Filters": "<p>One or more filters.</p>",
         "DescribeInstanceCreditSpecificationsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>instance-id</code> - The ID of the instance.</p> </li> </ul>",
         "DescribeInstanceStatusRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>availability-zone</code> - The Availability Zone of the instance.</p> </li> <li> <p> <code>event.code</code> - The code for the scheduled event (<code>instance-reboot</code> | <code>system-reboot</code> | <code>system-maintenance</code> | <code>instance-retirement</code> | <code>instance-stop</code>).</p> </li> <li> <p> <code>event.description</code> - A description of the event.</p> </li> <li> <p> <code>event.not-after</code> - The latest end time for the scheduled event (for example, <code>2014-09-15T17:15:20.000Z</code>).</p> </li> <li> <p> <code>event.not-before</code> - The earliest start time for the scheduled event (for example, <code>2014-09-15T17:15:20.000Z</code>).</p> </li> <li> <p> <code>instance-state-code</code> - The code for the instance state, as a 16-bit unsigned integer. The high byte is used for internal purposes and should be ignored. The low byte is set based on the state represented. The valid values are 0 (pending), 16 (running), 32 (shutting-down), 48 (terminated), 64 (stopping), and 80 (stopped).</p> </li> <li> <p> <code>instance-state-name</code> - The state of the instance (<code>pending</code> | <code>running</code> | <code>shutting-down</code> | <code>terminated</code> | <code>stopping</code> | <code>stopped</code>).</p> </li> <li> <p> <code>instance-status.reachability</code> - Filters on instance status where the name is <code>reachability</code> (<code>passed</code> | <code>failed</code> | <code>initializing</code> | <code>insufficient-data</code>).</p> </li> <li> <p> <code>instance-status.status</code> - The status of the instance (<code>ok</code> | <code>impaired</code> | <code>initializing</code> | <code>insufficient-data</code> | <code>not-applicable</code>).</p> </li> <li> <p> <code>system-status.reachability</code> - Filters on system status where the name is <code>reachability</code> (<code>passed</code> | <code>failed</code> | <code>initializing</code> | <code>insufficient-data</code>).</p> </li> <li> <p> <code>system-status.status</code> - The system status of the instance (<code>ok</code> | <code>impaired</code> | <code>initializing</code> | <code>insufficient-data</code> | <code>not-applicable</code>).</p> </li> </ul>",
-        "DescribeInstancesRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>affinity</code> - The affinity setting for an instance running on a Dedicated Host (<code>default</code> | <code>host</code>).</p> </li> <li> <p> <code>architecture</code> - The instance architecture (<code>i386</code> | <code>x86_64</code>).</p> </li> <li> <p> <code>availability-zone</code> - The Availability Zone of the instance.</p> </li> <li> <p> <code>block-device-mapping.attach-time</code> - The attach time for an EBS volume mapped to the instance, for example, <code>2010-09-15T17:15:20.000Z</code>.</p> </li> <li> <p> <code>block-device-mapping.delete-on-termination</code> - A Boolean that indicates whether the EBS volume is deleted on instance termination.</p> </li> <li> <p> <code>block-device-mapping.device-name</code> - The device name specified in the block device mapping (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p> </li> <li> <p> <code>block-device-mapping.status</code> - The status for the EBS volume (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p> </li> <li> <p> <code>block-device-mapping.volume-id</code> - The volume ID of the EBS volume.</p> </li> <li> <p> <code>client-token</code> - The idempotency token you provided when you launched the instance.</p> </li> <li> <p> <code>dns-name</code> - The public DNS name of the instance.</p> </li> <li> <p> <code>group-id</code> - The ID of the security group for the instance. EC2-Classic only.</p> </li> <li> <p> <code>group-name</code> - The name of the security group for the instance. EC2-Classic only.</p> </li> <li> <p> <code>host-id</code> - The ID of the Dedicated Host on which the instance is running, if applicable.</p> </li> <li> <p> <code>hypervisor</code> - The hypervisor type of the instance (<code>ovm</code> | <code>xen</code>).</p> </li> <li> <p> <code>iam-instance-profile.arn</code> - The instance profile associated with the instance. Specified as an ARN.</p> </li> <li> <p> <code>image-id</code> - The ID of the image used to launch the instance.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance.</p> </li> <li> <p> <code>instance-lifecycle</code> - Indicates whether this is a Spot Instance or a Scheduled Instance (<code>spot</code> | <code>scheduled</code>).</p> </li> <li> <p> <code>instance-state-code</code> - The state of the instance, as a 16-bit unsigned integer. The high byte is used for internal purposes and should be ignored. The low byte is set based on the state represented. The valid values are: 0 (pending), 16 (running), 32 (shutting-down), 48 (terminated), 64 (stopping), and 80 (stopped).</p> </li> <li> <p> <code>instance-state-name</code> - The state of the instance (<code>pending</code> | <code>running</code> | <code>shutting-down</code> | <code>terminated</code> | <code>stopping</code> | <code>stopped</code>).</p> </li> <li> <p> <code>instance-type</code> - The type of instance (for example, <code>t2.micro</code>).</p> </li> <li> <p> <code>instance.group-id</code> - The ID of the security group for the instance. </p> </li> <li> <p> <code>instance.group-name</code> - The name of the security group for the instance. </p> </li> <li> <p> <code>ip-address</code> - The public IPv4 address of the instance.</p> </li> <li> <p> <code>kernel-id</code> - The kernel ID.</p> </li> <li> <p> <code>key-name</code> - The name of the key pair used when the instance was launched.</p> </li> <li> <p> <code>launch-index</code> - When launching multiple instances, this is the index for the instance in the launch group (for example, 0, 1, 2, and so on). </p> </li> <li> <p> <code>launch-time</code> - The time when the instance was launched.</p> </li> <li> <p> <code>monitoring-state</code> - Indicates whether detailed monitoring is enabled (<code>disabled</code> | <code>enabled</code>).</p> </li> <li> <p> <code>network-interface.addresses.private-ip-address</code> - The private IPv4 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.addresses.primary</code> - Specifies whether the IPv4 address of the network interface is the primary private IPv4 address.</p> </li> <li> <p> <code>network-interface.addresses.association.public-ip</code> - The ID of the association of an Elastic IP address (IPv4) with a network interface.</p> </li> <li> <p> <code>network-interface.addresses.association.ip-owner-id</code> - The owner ID of the private IPv4 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.association.public-ip</code> - The address of the Elastic IP address (IPv4) bound to the network interface.</p> </li> <li> <p> <code>network-interface.association.ip-owner-id</code> - The owner of the Elastic IP address (IPv4) associated with the network interface.</p> </li> <li> <p> <code>network-interface.association.allocation-id</code> - The allocation ID returned when you allocated the Elastic IP address (IPv4) for your network interface.</p> </li> <li> <p> <code>network-interface.association.association-id</code> - The association ID returned when the network interface was associated with an IPv4 address.</p> </li> <li> <p> <code>network-interface.attachment.attachment-id</code> - The ID of the interface attachment.</p> </li> <li> <p> <code>network-interface.attachment.instance-id</code> - The ID of the instance to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.instance-owner-id</code> - The owner ID of the instance to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.device-index</code> - The device index to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.status</code> - The status of the attachment (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p> </li> <li> <p> <code>network-interface.attachment.attach-time</code> - The time that the network interface was attached to an instance.</p> </li> <li> <p> <code>network-interface.attachment.delete-on-termination</code> - Specifies whether the attachment is deleted when an instance is terminated.</p> </li> <li> <p> <code>network-interface.availability-zone</code> - The Availability Zone for the network interface.</p> </li> <li> <p> <code>network-interface.description</code> - The description of the network interface.</p> </li> <li> <p> <code>network-interface.group-id</code> - The ID of a security group associated with the network interface.</p> </li> <li> <p> <code>network-interface.group-name</code> - The name of a security group associated with the network interface.</p> </li> <li> <p> <code>network-interface.ipv6-addresses.ipv6-address</code> - The IPv6 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.mac-address</code> - The MAC address of the network interface.</p> </li> <li> <p> <code>network-interface.network-interface-id</code> - The ID of the network interface.</p> </li> <li> <p> <code>network-interface.owner-id</code> - The ID of the owner of the network interface.</p> </li> <li> <p> <code>network-interface.private-dns-name</code> - The private DNS name of the network interface.</p> </li> <li> <p> <code>network-interface.requester-id</code> - The requester ID for the network interface.</p> </li> <li> <p> <code>network-interface.requester-managed</code> - Indicates whether the network interface is being managed by AWS.</p> </li> <li> <p> <code>network-interface.status</code> - The status of the network interface (<code>available</code>) | <code>in-use</code>).</p> </li> <li> <p> <code>network-interface.source-dest-check</code> - Whether the network interface performs source/destination checking. A value of <code>true</code> means that checking is enabled, and <code>false</code> means that checking is disabled. The value must be <code>false</code> for the network interface to perform network address translation (NAT) in your VPC.</p> </li> <li> <p> <code>network-interface.subnet-id</code> - The ID of the subnet for the network interface.</p> </li> <li> <p> <code>network-interface.vpc-id</code> - The ID of the VPC for the network interface.</p> </li> <li> <p> <code>owner-id</code> - The AWS account ID of the instance owner.</p> </li> <li> <p> <code>placement-group-name</code> - The name of the placement group for the instance.</p> </li> <li> <p> <code>platform</code> - The platform. Use <code>windows</code> if you have Windows instances; otherwise, leave blank.</p> </li> <li> <p> <code>private-dns-name</code> - The private IPv4 DNS name of the instance.</p> </li> <li> <p> <code>private-ip-address</code> - The private IPv4 address of the instance.</p> </li> <li> <p> <code>product-code</code> - The product code associated with the AMI used to launch the instance.</p> </li> <li> <p> <code>product-code.type</code> - The type of product code (<code>devpay</code> | <code>marketplace</code>).</p> </li> <li> <p> <code>ramdisk-id</code> - The RAM disk ID.</p> </li> <li> <p> <code>reason</code> - The reason for the current state of the instance (for example, shows \"User Initiated [date]\" when you stop or terminate the instance). Similar to the state-reason-code filter.</p> </li> <li> <p> <code>requester-id</code> - The ID of the entity that launched the instance on your behalf (for example, AWS Management Console, Auto Scaling, and so on).</p> </li> <li> <p> <code>reservation-id</code> - The ID of the instance's reservation. A reservation ID is created any time you launch an instance. A reservation ID has a one-to-one relationship with an instance launch request, but can be associated with more than one instance if you launch multiple instances using the same launch request. For example, if you launch one instance, you get one reservation ID. If you launch ten instances using the same launch request, you also get one reservation ID.</p> </li> <li> <p> <code>root-device-name</code> - The device name of the root device volume (for example, <code>/dev/sda1</code>).</p> </li> <li> <p> <code>root-device-type</code> - The type of the root device volume (<code>ebs</code> | <code>instance-store</code>).</p> </li> <li> <p> <code>source-dest-check</code> - Indicates whether the instance performs source/destination checking. A value of <code>true</code> means that checking is enabled, and <code>false</code> means that checking is disabled. The value must be <code>false</code> for the instance to perform network address translation (NAT) in your VPC. </p> </li> <li> <p> <code>spot-instance-request-id</code> - The ID of the Spot Instance request.</p> </li> <li> <p> <code>state-reason-code</code> - The reason code for the state change.</p> </li> <li> <p> <code>state-reason-message</code> - A message that describes the state change.</p> </li> <li> <p> <code>subnet-id</code> - The ID of the subnet for the instance.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources that have a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>tenancy</code> - The tenancy of an instance (<code>dedicated</code> | <code>default</code> | <code>host</code>).</p> </li> <li> <p> <code>virtualization-type</code> - The virtualization type of the instance (<code>paravirtual</code> | <code>hvm</code>).</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC that the instance is running in.</p> </li> </ul>",
+        "DescribeInstancesRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>affinity</code> - The affinity setting for an instance running on a Dedicated Host (<code>default</code> | <code>host</code>).</p> </li> <li> <p> <code>architecture</code> - The instance architecture (<code>i386</code> | <code>x86_64</code>).</p> </li> <li> <p> <code>availability-zone</code> - The Availability Zone of the instance.</p> </li> <li> <p> <code>block-device-mapping.attach-time</code> - The attach time for an EBS volume mapped to the instance, for example, <code>2010-09-15T17:15:20.000Z</code>.</p> </li> <li> <p> <code>block-device-mapping.delete-on-termination</code> - A Boolean that indicates whether the EBS volume is deleted on instance termination.</p> </li> <li> <p> <code>block-device-mapping.device-name</code> - The device name specified in the block device mapping (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p> </li> <li> <p> <code>block-device-mapping.status</code> - The status for the EBS volume (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p> </li> <li> <p> <code>block-device-mapping.volume-id</code> - The volume ID of the EBS volume.</p> </li> <li> <p> <code>client-token</code> - The idempotency token you provided when you launched the instance.</p> </li> <li> <p> <code>dns-name</code> - The public DNS name of the instance.</p> </li> <li> <p> <code>group-id</code> - The ID of the security group for the instance. EC2-Classic only.</p> </li> <li> <p> <code>group-name</code> - The name of the security group for the instance. EC2-Classic only.</p> </li> <li> <p> <code>hibernation-options.configured</code> - A Boolean that indicates whether the instance is enabled for hibernation. A value of <code>true</code> means that the instance is enabled for hibernation. </p> </li> <li> <p> <code>host-id</code> - The ID of the Dedicated Host on which the instance is running, if applicable.</p> </li> <li> <p> <code>hypervisor</code> - The hypervisor type of the instance (<code>ovm</code> | <code>xen</code>).</p> </li> <li> <p> <code>iam-instance-profile.arn</code> - The instance profile associated with the instance. Specified as an ARN.</p> </li> <li> <p> <code>image-id</code> - The ID of the image used to launch the instance.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance.</p> </li> <li> <p> <code>instance-lifecycle</code> - Indicates whether this is a Spot Instance or a Scheduled Instance (<code>spot</code> | <code>scheduled</code>).</p> </li> <li> <p> <code>instance-state-code</code> - The state of the instance, as a 16-bit unsigned integer. The high byte is used for internal purposes and should be ignored. The low byte is set based on the state represented. The valid values are: 0 (pending), 16 (running), 32 (shutting-down), 48 (terminated), 64 (stopping), and 80 (stopped).</p> </li> <li> <p> <code>instance-state-name</code> - The state of the instance (<code>pending</code> | <code>running</code> | <code>shutting-down</code> | <code>terminated</code> | <code>stopping</code> | <code>stopped</code>).</p> </li> <li> <p> <code>instance-type</code> - The type of instance (for example, <code>t2.micro</code>).</p> </li> <li> <p> <code>instance.group-id</code> - The ID of the security group for the instance. </p> </li> <li> <p> <code>instance.group-name</code> - The name of the security group for the instance. </p> </li> <li> <p> <code>ip-address</code> - The public IPv4 address of the instance.</p> </li> <li> <p> <code>kernel-id</code> - The kernel ID.</p> </li> <li> <p> <code>key-name</code> - The name of the key pair used when the instance was launched.</p> </li> <li> <p> <code>launch-index</code> - When launching multiple instances, this is the index for the instance in the launch group (for example, 0, 1, 2, and so on). </p> </li> <li> <p> <code>launch-time</code> - The time when the instance was launched.</p> </li> <li> <p> <code>monitoring-state</code> - Indicates whether detailed monitoring is enabled (<code>disabled</code> | <code>enabled</code>).</p> </li> <li> <p> <code>network-interface.addresses.private-ip-address</code> - The private IPv4 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.addresses.primary</code> - Specifies whether the IPv4 address of the network interface is the primary private IPv4 address.</p> </li> <li> <p> <code>network-interface.addresses.association.public-ip</code> - The ID of the association of an Elastic IP address (IPv4) with a network interface.</p> </li> <li> <p> <code>network-interface.addresses.association.ip-owner-id</code> - The owner ID of the private IPv4 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.association.public-ip</code> - The address of the Elastic IP address (IPv4) bound to the network interface.</p> </li> <li> <p> <code>network-interface.association.ip-owner-id</code> - The owner of the Elastic IP address (IPv4) associated with the network interface.</p> </li> <li> <p> <code>network-interface.association.allocation-id</code> - The allocation ID returned when you allocated the Elastic IP address (IPv4) for your network interface.</p> </li> <li> <p> <code>network-interface.association.association-id</code> - The association ID returned when the network interface was associated with an IPv4 address.</p> </li> <li> <p> <code>network-interface.attachment.attachment-id</code> - The ID of the interface attachment.</p> </li> <li> <p> <code>network-interface.attachment.instance-id</code> - The ID of the instance to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.instance-owner-id</code> - The owner ID of the instance to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.device-index</code> - The device index to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.status</code> - The status of the attachment (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p> </li> <li> <p> <code>network-interface.attachment.attach-time</code> - The time that the network interface was attached to an instance.</p> </li> <li> <p> <code>network-interface.attachment.delete-on-termination</code> - Specifies whether the attachment is deleted when an instance is terminated.</p> </li> <li> <p> <code>network-interface.availability-zone</code> - The Availability Zone for the network interface.</p> </li> <li> <p> <code>network-interface.description</code> - The description of the network interface.</p> </li> <li> <p> <code>network-interface.group-id</code> - The ID of a security group associated with the network interface.</p> </li> <li> <p> <code>network-interface.group-name</code> - The name of a security group associated with the network interface.</p> </li> <li> <p> <code>network-interface.ipv6-addresses.ipv6-address</code> - The IPv6 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.mac-address</code> - The MAC address of the network interface.</p> </li> <li> <p> <code>network-interface.network-interface-id</code> - The ID of the network interface.</p> </li> <li> <p> <code>network-interface.owner-id</code> - The ID of the owner of the network interface.</p> </li> <li> <p> <code>network-interface.private-dns-name</code> - The private DNS name of the network interface.</p> </li> <li> <p> <code>network-interface.requester-id</code> - The requester ID for the network interface.</p> </li> <li> <p> <code>network-interface.requester-managed</code> - Indicates whether the network interface is being managed by AWS.</p> </li> <li> <p> <code>network-interface.status</code> - The status of the network interface (<code>available</code>) | <code>in-use</code>).</p> </li> <li> <p> <code>network-interface.source-dest-check</code> - Whether the network interface performs source/destination checking. A value of <code>true</code> means that checking is enabled, and <code>false</code> means that checking is disabled. The value must be <code>false</code> for the network interface to perform network address translation (NAT) in your VPC.</p> </li> <li> <p> <code>network-interface.subnet-id</code> - The ID of the subnet for the network interface.</p> </li> <li> <p> <code>network-interface.vpc-id</code> - The ID of the VPC for the network interface.</p> </li> <li> <p> <code>owner-id</code> - The AWS account ID of the instance owner.</p> </li> <li> <p> <code>placement-group-name</code> - The name of the placement group for the instance.</p> </li> <li> <p> <code>platform</code> - The platform. Use <code>windows</code> if you have Windows instances; otherwise, leave blank.</p> </li> <li> <p> <code>private-dns-name</code> - The private IPv4 DNS name of the instance.</p> </li> <li> <p> <code>private-ip-address</code> - The private IPv4 address of the instance.</p> </li> <li> <p> <code>product-code</code> - The product code associated with the AMI used to launch the instance.</p> </li> <li> <p> <code>product-code.type</code> - The type of product code (<code>devpay</code> | <code>marketplace</code>).</p> </li> <li> <p> <code>ramdisk-id</code> - The RAM disk ID.</p> </li> <li> <p> <code>reason</code> - The reason for the current state of the instance (for example, shows \"User Initiated [date]\" when you stop or terminate the instance). Similar to the state-reason-code filter.</p> </li> <li> <p> <code>requester-id</code> - The ID of the entity that launched the instance on your behalf (for example, AWS Management Console, Auto Scaling, and so on).</p> </li> <li> <p> <code>reservation-id</code> - The ID of the instance's reservation. A reservation ID is created any time you launch an instance. A reservation ID has a one-to-one relationship with an instance launch request, but can be associated with more than one instance if you launch multiple instances using the same launch request. For example, if you launch one instance, you get one reservation ID. If you launch ten instances using the same launch request, you also get one reservation ID.</p> </li> <li> <p> <code>root-device-name</code> - The device name of the root device volume (for example, <code>/dev/sda1</code>).</p> </li> <li> <p> <code>root-device-type</code> - The type of the root device volume (<code>ebs</code> | <code>instance-store</code>).</p> </li> <li> <p> <code>source-dest-check</code> - Indicates whether the instance performs source/destination checking. A value of <code>true</code> means that checking is enabled, and <code>false</code> means that checking is disabled. The value must be <code>false</code> for the instance to perform network address translation (NAT) in your VPC. </p> </li> <li> <p> <code>spot-instance-request-id</code> - The ID of the Spot Instance request.</p> </li> <li> <p> <code>state-reason-code</code> - The reason code for the state change.</p> </li> <li> <p> <code>state-reason-message</code> - A message that describes the state change.</p> </li> <li> <p> <code>subnet-id</code> - The ID of the subnet for the instance.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources that have a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>tenancy</code> - The tenancy of an instance (<code>dedicated</code> | <code>default</code> | <code>host</code>).</p> </li> <li> <p> <code>virtualization-type</code> - The virtualization type of the instance (<code>paravirtual</code> | <code>hvm</code>).</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC that the instance is running in.</p> </li> </ul>",
         "DescribeInternetGatewaysRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>attachment.state</code> - The current state of the attachment between the gateway and the VPC (<code>available</code>). Present only if a VPC is attached.</p> </li> <li> <p> <code>attachment.vpc-id</code> - The ID of an attached VPC.</p> </li> <li> <p> <code>internet-gateway-id</code> - The ID of the Internet gateway.</p> </li> <li> <p> <code>owner-id</code> - The ID of the AWS account that owns the internet gateway.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
         "DescribeKeyPairsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>fingerprint</code> - The fingerprint of the key pair.</p> </li> <li> <p> <code>key-name</code> - The name of the key pair.</p> </li> </ul>",
         "DescribeLaunchTemplateVersionsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>create-time</code> - The time the launch template version was created.</p> </li> <li> <p> <code>ebs-optimized</code> - A boolean that indicates whether the instance is optimized for Amazon EBS I/O.</p> </li> <li> <p> <code>iam-instance-profile</code> - The ARN of the IAM instance profile.</p> </li> <li> <p> <code>image-id</code> - The ID of the AMI.</p> </li> <li> <p> <code>instance-type</code> - The instance type.</p> </li> <li> <p> <code>is-default-version</code> - A boolean that indicates whether the launch template version is the default version.</p> </li> <li> <p> <code>kernel-id</code> - The kernel ID.</p> </li> <li> <p> <code>ram-disk-id</code> - The RAM disk ID.</p> </li> </ul>",
@@ -4349,22 +4379,22 @@
       }
     },
     "GetConsoleOutputRequest": {
-      "base": "<p>Contains the parameters for GetConsoleOutput.</p>",
+      "base": null,
       "refs": {
       }
     },
     "GetConsoleOutputResult": {
-      "base": "<p>Contains the output of GetConsoleOutput.</p>",
+      "base": null,
       "refs": {
       }
     },
     "GetConsoleScreenshotRequest": {
-      "base": "<p>Contains the parameters for the request.</p>",
+      "base": null,
       "refs": {
       }
     },
     "GetConsoleScreenshotResult": {
-      "base": "<p>Contains the output of the request.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -4389,12 +4419,12 @@
       }
     },
     "GetPasswordDataRequest": {
-      "base": "<p>Contains the parameters for GetPasswordData.</p>",
+      "base": null,
       "refs": {
       }
     },
     "GetPasswordDataResult": {
-      "base": "<p>Contains the output of GetPasswordData.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -4484,6 +4514,18 @@
       "refs": {
         "DescribeSecurityGroupsRequest$GroupNames": "<p>[EC2-Classic and default VPC only] One or more security group names. You can specify either the security group name or the security group ID. For security groups in a nondefault VPC, use the <code>group-name</code> filter to describe security groups by name.</p> <p>Default: Describes all your security groups.</p>",
         "ModifySnapshotAttributeRequest$GroupNames": "<p>The group to modify for the snapshot.</p>"
+      }
+    },
+    "HibernationOptions": {
+      "base": "<p>Indicates whether your instance is configured for hibernation. This parameter is valid only if the instance meets the <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites\">hibernation prerequisites</a>. Hibernation is currently supported only for Amazon Linux. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html\">Hibernate Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+      "refs": {
+        "Instance$HibernationOptions": "<p>Indicates whether the instance is enabled for hibernation.</p>"
+      }
+    },
+    "HibernationOptionsRequest": {
+      "base": "<p>Indicates whether your instance is configured for hibernation. This parameter is valid only if the instance meets the <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites\">hibernation prerequisites</a>. Hibernation is currently supported only for Amazon Linux. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html\">Hibernate Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+      "refs": {
+        "RunInstancesRequest$HibernationOptions": "<p>Indicates whether an instance is enabled for hibernation. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html\">Hibernate Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
       }
     },
     "HistoryRecord": {
@@ -5591,7 +5633,7 @@
     "LaunchTemplateCapacityReservationSpecificationRequest": {
       "base": "<p>Describes an instance's Capacity Reservation targeting option. You can specify only one option at a time. Use the <code>CapacityReservationPreference</code> parameter to configure the instance to run in On-Demand capacity or to run in any <code>open</code> Capacity Reservation that has matching attributes (instance type, platform, Availability Zone). Use the <code>CapacityReservationTarget</code> parameter to explicitly target a specific Capacity Reservation.</p>",
       "refs": {
-        "RequestLaunchTemplateData$CapacityReservationSpecification": "<p>Information about the Capacity Reservation targeting option.</p>"
+        "RequestLaunchTemplateData$CapacityReservationSpecification": "<p>The Capacity Reservation targeting option.</p>"
       }
     },
     "LaunchTemplateCapacityReservationSpecificationResponse": {
@@ -5636,10 +5678,46 @@
         "LaunchTemplateBlockDeviceMappingRequest$Ebs": "<p>Parameters used to automatically set up EBS volumes when the instance is launched.</p>"
       }
     },
+    "LaunchTemplateElasticInferenceAccelerator": {
+      "base": "<p> Describes an elastic inference accelerator. </p>",
+      "refs": {
+        "LaunchTemplateElasticInferenceAcceleratorList$member": null
+      }
+    },
+    "LaunchTemplateElasticInferenceAcceleratorList": {
+      "base": null,
+      "refs": {
+        "RequestLaunchTemplateData$ElasticInferenceAccelerators": "<p> The elastic inference accelerator for the instance. </p>"
+      }
+    },
+    "LaunchTemplateElasticInferenceAcceleratorResponse": {
+      "base": "<p> Describes an elastic inference accelerator. </p>",
+      "refs": {
+        "LaunchTemplateElasticInferenceAcceleratorResponseList$member": null
+      }
+    },
+    "LaunchTemplateElasticInferenceAcceleratorResponseList": {
+      "base": null,
+      "refs": {
+        "ResponseLaunchTemplateData$ElasticInferenceAccelerators": "<p> The elastic inference accelerator for the instance. </p>"
+      }
+    },
     "LaunchTemplateErrorCode": {
       "base": null,
       "refs": {
         "ResponseError$Code": "<p>The error code.</p>"
+      }
+    },
+    "LaunchTemplateHibernationOptions": {
+      "base": "<p>Indicates whether an instance is configured for hibernation.</p>",
+      "refs": {
+        "ResponseLaunchTemplateData$HibernationOptions": "<p>Indicates whether an instance is configured for hibernation. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html\">Hibernate Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
+      }
+    },
+    "LaunchTemplateHibernationOptionsRequest": {
+      "base": "<p>Indicates whether the instance is configured for hibernation. This parameter is valid only if the instance meets the <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites\">hibernation prerequisites</a>. Hibernation is currently supported only for Amazon Linux.</p>",
+      "refs": {
+        "RequestLaunchTemplateData$HibernationOptions": "<p>Indicates whether an instance is enabled for hibernation. This parameter is valid only if the instance meets the <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites\">hibernation prerequisites</a>. Hibernation is currently supported only for Amazon Linux. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html\">Hibernate Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
       }
     },
     "LaunchTemplateIamInstanceProfileSpecification": {
@@ -5690,6 +5768,30 @@
         "RequestLaunchTemplateData$NetworkInterfaces": "<p>One or more network interfaces.</p>"
       }
     },
+    "LaunchTemplateLicenseConfiguration": {
+      "base": "<p>Describes a license configuration.</p>",
+      "refs": {
+        "LaunchTemplateLicenseList$member": null
+      }
+    },
+    "LaunchTemplateLicenseConfigurationRequest": {
+      "base": "<p>Describes a license configuration.</p>",
+      "refs": {
+        "LaunchTemplateLicenseSpecificationListRequest$member": null
+      }
+    },
+    "LaunchTemplateLicenseList": {
+      "base": null,
+      "refs": {
+        "ResponseLaunchTemplateData$LicenseSpecifications": "<p>The license configurations.</p>"
+      }
+    },
+    "LaunchTemplateLicenseSpecificationListRequest": {
+      "base": null,
+      "refs": {
+        "RequestLaunchTemplateData$LicenseSpecifications": "<p>The license configurations.</p>"
+      }
+    },
     "LaunchTemplateName": {
       "base": null,
       "refs": {
@@ -5731,7 +5833,7 @@
       }
     },
     "LaunchTemplatePlacementRequest": {
-      "base": "<p>The placement for the instance.</p>",
+      "base": "<p>Describes the placement of an instance.</p>",
       "refs": {
         "RequestLaunchTemplateData$Placement": "<p>The placement for the instance.</p>"
       }
@@ -5807,6 +5909,30 @@
       "base": "<p>Describes the monitoring for the instance.</p>",
       "refs": {
         "RequestLaunchTemplateData$Monitoring": "<p>The monitoring for the instance.</p>"
+      }
+    },
+    "LicenseConfiguration": {
+      "base": "<p>Describes a license configuration.</p>",
+      "refs": {
+        "LicenseList$member": null
+      }
+    },
+    "LicenseConfigurationRequest": {
+      "base": "<p>Describes a license configuration.</p>",
+      "refs": {
+        "LicenseSpecificationListRequest$member": null
+      }
+    },
+    "LicenseList": {
+      "base": null,
+      "refs": {
+        "Instance$Licenses": "<p>The license configurations.</p>"
+      }
+    },
+    "LicenseSpecificationListRequest": {
+      "base": null,
+      "refs": {
+        "RunInstancesRequest$LicenseSpecifications": "<p>The license configurations.</p>"
       }
     },
     "ListingState": {
@@ -5966,7 +6092,7 @@
       }
     },
     "ModifyInstanceAttributeRequest": {
-      "base": "<p>Contains the parameters for ModifyInstanceAttribute.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -6142,12 +6268,12 @@
       }
     },
     "MonitorInstancesRequest": {
-      "base": "<p>Contains the parameters for MonitorInstances.</p>",
+      "base": null,
       "refs": {
       }
     },
     "MonitorInstancesResult": {
-      "base": "<p>Contains the output of MonitorInstances.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -6857,7 +6983,7 @@
       }
     },
     "RebootInstancesRequest": {
-      "base": "<p>Contains the parameters for RebootInstances.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -7010,7 +7136,7 @@
       }
     },
     "ReportInstanceStatusRequest": {
-      "base": "<p>Contains the parameters for ReportInstanceStatus.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -7260,7 +7386,7 @@
       }
     },
     "ResetInstanceAttributeRequest": {
-      "base": "<p>Contains the parameters for ResetInstanceAttribute.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -7417,7 +7543,7 @@
       }
     },
     "RunInstancesRequest": {
-      "base": "<p>Contains the parameters for RunInstances.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -7926,12 +8052,12 @@
       }
     },
     "StartInstancesRequest": {
-      "base": "<p>Contains the parameters for StartInstances.</p>",
+      "base": null,
       "refs": {
       }
     },
     "StartInstancesResult": {
-      "base": "<p>Contains the output of StartInstances.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -7969,12 +8095,12 @@
       }
     },
     "StopInstancesRequest": {
-      "base": "<p>Contains the parameters for StopInstances.</p>",
+      "base": null,
       "refs": {
       }
     },
     "StopInstancesResult": {
-      "base": "<p>Contains the output of StopInstances.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -8491,6 +8617,10 @@
         "ElasticGpus$AvailabilityZone": "<p>The Availability Zone in the which the Elastic Graphics accelerator resides.</p>",
         "ElasticGpus$ElasticGpuType": "<p>The type of Elastic Graphics accelerator.</p>",
         "ElasticGpus$InstanceId": "<p>The ID of the instance to which the Elastic Graphics accelerator is attached.</p>",
+        "ElasticInferenceAccelerator$Type": "<p> The type of elastic inference accelerator. The possible values are eia1.small, eia1.medium, and eia1.large. </p>",
+        "ElasticInferenceAcceleratorAssociation$ElasticInferenceAcceleratorArn": "<p> The Amazon Resource Name (ARN) of the elastic inference accelerator. </p>",
+        "ElasticInferenceAcceleratorAssociation$ElasticInferenceAcceleratorAssociationId": "<p> The ID of the association. </p>",
+        "ElasticInferenceAcceleratorAssociation$ElasticInferenceAcceleratorAssociationState": "<p> The state of the elastic inference accelerator. </p>",
         "EnableTransitGatewayRouteTablePropagationRequest$TransitGatewayRouteTableId": "<p>The ID of the propagation route table.</p>",
         "EnableTransitGatewayRouteTablePropagationRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
         "EnableVgwRoutePropagationRequest$GatewayId": "<p>The ID of the virtual private gateway.</p>",
@@ -8765,6 +8895,8 @@
         "LaunchTemplateEbsBlockDevice$SnapshotId": "<p>The ID of the snapshot.</p>",
         "LaunchTemplateEbsBlockDeviceRequest$KmsKeyId": "<p>The ARN of the AWS Key Management Service (AWS KMS) CMK used for encryption.</p>",
         "LaunchTemplateEbsBlockDeviceRequest$SnapshotId": "<p>The ID of the snapshot.</p>",
+        "LaunchTemplateElasticInferenceAccelerator$Type": "<p> The type of elastic inference accelerator. The possible values are eia1.medium, eia1.large, and eia1.xlarge. </p>",
+        "LaunchTemplateElasticInferenceAcceleratorResponse$Type": "<p> The type of elastic inference accelerator. The possible values are eia1.medium, eia1.large, and eia1.xlarge. </p>",
         "LaunchTemplateIamInstanceProfileSpecification$Arn": "<p>The Amazon Resource Name (ARN) of the instance profile.</p>",
         "LaunchTemplateIamInstanceProfileSpecification$Name": "<p>The name of the instance profile.</p>",
         "LaunchTemplateIamInstanceProfileSpecificationRequest$Arn": "<p>The Amazon Resource Name (ARN) of the instance profile.</p>",
@@ -8777,6 +8909,8 @@
         "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$PrivateIpAddress": "<p>The primary private IPv4 address of the network interface.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$SubnetId": "<p>The ID of the subnet for the network interface.</p>",
+        "LaunchTemplateLicenseConfiguration$LicenseConfigurationArn": "<p>The Amazon Resource Name (ARN) of the license configuration.</p>",
+        "LaunchTemplateLicenseConfigurationRequest$LicenseConfigurationArn": "<p>The Amazon Resource Name (ARN) of the license configuration.</p>",
         "LaunchTemplateOverrides$SpotPrice": "<p>The maximum price per unit hour that you are willing to pay for a Spot Instance.</p>",
         "LaunchTemplateOverrides$SubnetId": "<p>The ID of the subnet in which to launch the instances.</p>",
         "LaunchTemplateOverrides$AvailabilityZone": "<p>The Availability Zone in which to launch the instances.</p>",
@@ -8797,6 +8931,8 @@
         "LaunchTemplateSpotMarketOptionsRequest$MaxPrice": "<p>The maximum hourly price you're willing to pay for the Spot Instances.</p>",
         "LaunchTemplateVersion$LaunchTemplateId": "<p>The ID of the launch template.</p>",
         "LaunchTemplateVersion$CreatedBy": "<p>The principal that created the version.</p>",
+        "LicenseConfiguration$LicenseConfigurationArn": "<p>The Amazon Resource Name (ARN) of the license configuration.</p>",
+        "LicenseConfigurationRequest$LicenseConfigurationArn": "<p>The Amazon Resource Name (ARN) of the license configuration.</p>",
         "LoadPermission$UserId": "<p>The AWS account ID.</p>",
         "LoadPermissionRequest$UserId": "<p>The AWS account ID.</p>",
         "ModifyCapacityReservationRequest$CapacityReservationId": "<p>The ID of the Capacity Reservation.</p>",
@@ -9213,7 +9349,7 @@
         "StaleSecurityGroup$VpcId": "<p>The ID of the VPC for the security group.</p>",
         "StartInstancesRequest$AdditionalInfo": "<p>Reserved.</p>",
         "StateReason$Code": "<p>The reason code for the state change.</p>",
-        "StateReason$Message": "<p>The message for the state change.</p> <ul> <li> <p> <code>Server.InsufficientInstanceCapacity</code>: There was insufficient capacity available to satisfy the launch request.</p> </li> <li> <p> <code>Server.InternalError</code>: An internal error caused the instance to terminate during launch.</p> </li> <li> <p> <code>Server.ScheduledStop</code>: The instance was stopped due to a scheduled retirement.</p> </li> <li> <p> <code>Server.SpotInstanceShutdown</code>: The instance was stopped because the number of Spot requests with a maximum price equal to or higher than the Spot price exceeded available capacity or because of an increase in the Spot price.</p> </li> <li> <p> <code>Server.SpotInstanceTermination</code>: The instance was terminated because the number of Spot requests with a maximum price equal to or higher than the Spot price exceeded available capacity or because of an increase in the Spot price.</p> </li> <li> <p> <code>Client.InstanceInitiatedShutdown</code>: The instance was shut down using the <code>shutdown -h</code> command from the instance.</p> </li> <li> <p> <code>Client.InstanceTerminated</code>: The instance was terminated or rebooted during AMI creation.</p> </li> <li> <p> <code>Client.InternalError</code>: A client error caused the instance to terminate during launch.</p> </li> <li> <p> <code>Client.InvalidSnapshot.NotFound</code>: The specified snapshot was not found.</p> </li> <li> <p> <code>Client.UserInitiatedShutdown</code>: The instance was shut down using the Amazon EC2 API.</p> </li> <li> <p> <code>Client.VolumeLimitExceeded</code>: The limit on the number of EBS volumes or total storage was exceeded. Decrease usage or request an increase in your account limits.</p> </li> </ul>",
+        "StateReason$Message": "<p>The message for the state change.</p> <ul> <li> <p> <code>Server.InsufficientInstanceCapacity</code>: There was insufficient capacity available to satisfy the launch request.</p> </li> <li> <p> <code>Server.InternalError</code>: An internal error caused the instance to terminate during launch.</p> </li> <li> <p> <code>Server.ScheduledStop</code>: The instance was stopped due to a scheduled retirement.</p> </li> <li> <p> <code>Server.SpotInstanceShutdown</code>: The instance was stopped because the number of Spot requests with a maximum price equal to or higher than the Spot price exceeded available capacity or because of an increase in the Spot price.</p> </li> <li> <p> <code>Server.SpotInstanceTermination</code>: The instance was terminated because the number of Spot requests with a maximum price equal to or higher than the Spot price exceeded available capacity or because of an increase in the Spot price.</p> </li> <li> <p> <code>Client.InstanceInitiatedShutdown</code>: The instance was shut down using the <code>shutdown -h</code> command from the instance.</p> </li> <li> <p> <code>Client.InstanceTerminated</code>: The instance was terminated or rebooted during AMI creation.</p> </li> <li> <p> <code>Client.InternalError</code>: A client error caused the instance to terminate during launch.</p> </li> <li> <p> <code>Client.InvalidSnapshot.NotFound</code>: The specified snapshot was not found.</p> </li> <li> <p> <code>Client.UserInitiatedHibernate</code>: Hibernation was initiated on the instance.</p> </li> <li> <p> <code>Client.UserInitiatedShutdown</code>: The instance was shut down using the Amazon EC2 API.</p> </li> <li> <p> <code>Client.VolumeLimitExceeded</code>: The limit on the number of EBS volumes or total storage was exceeded. Decrease usage or request an increase in your account limits.</p> </li> </ul>",
         "StorageLocation$Bucket": "<p>The name of the S3 bucket.</p>",
         "StorageLocation$Key": "<p>The key.</p>",
         "Subnet$AvailabilityZone": "<p>The Availability Zone of the subnet.</p>",
@@ -9600,12 +9736,12 @@
       }
     },
     "TerminateInstancesRequest": {
-      "base": "<p>Contains the parameters for TerminateInstances.</p>",
+      "base": null,
       "refs": {
       }
     },
     "TerminateInstancesResult": {
-      "base": "<p>Contains the output of TerminateInstances.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -9886,12 +10022,12 @@
       }
     },
     "UnmonitorInstancesRequest": {
-      "base": "<p>Contains the parameters for UnmonitorInstances.</p>",
+      "base": null,
       "refs": {
       }
     },
     "UnmonitorInstancesResult": {
-      "base": "<p>Contains the output of UnmonitorInstances.</p>",
+      "base": null,
       "refs": {
       }
     },

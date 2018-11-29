@@ -120,6 +120,42 @@
         {"shape":"UnauthenticatedException"}
       ]
     },
+    "CopySnapshot":{
+      "name":"CopySnapshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CopySnapshotRequest"},
+      "output":{"shape":"CopySnapshotResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "CreateCloudFormationStack":{
+      "name":"CreateCloudFormationStack",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateCloudFormationStackRequest"},
+      "output":{"shape":"CreateCloudFormationStackResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
     "CreateDisk":{
       "name":"CreateDisk",
       "http":{
@@ -642,6 +678,24 @@
         {"shape":"UnauthenticatedException"}
       ]
     },
+    "ExportSnapshot":{
+      "name":"ExportSnapshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ExportSnapshotRequest"},
+      "output":{"shape":"ExportSnapshotResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
     "GetActiveNames":{
       "name":"GetActiveNames",
       "http":{
@@ -686,6 +740,24 @@
       },
       "input":{"shape":"GetBundlesRequest"},
       "output":{"shape":"GetBundlesResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "GetCloudFormationStackRecords":{
+      "name":"GetCloudFormationStackRecords",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetCloudFormationStackRecordsRequest"},
+      "output":{"shape":"GetCloudFormationStackRecordsResult"},
       "errors":[
         {"shape":"ServiceException"},
         {"shape":"InvalidInputException"},
@@ -794,6 +866,24 @@
       },
       "input":{"shape":"GetDomainsRequest"},
       "output":{"shape":"GetDomainsResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "GetExportSnapshotRecords":{
+      "name":"GetExportSnapshotRecords",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetExportSnapshotRecordsRequest"},
+      "output":{"shape":"GetExportSnapshotRecordsResult"},
       "errors":[
         {"shape":"ServiceException"},
         {"shape":"InvalidInputException"},
@@ -1596,6 +1686,24 @@
         {"shape":"UnauthenticatedException"}
       ]
     },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
     "UnpeerVpc":{
       "name":"UnpeerVpc",
       "http":{
@@ -1604,6 +1712,24 @@
       },
       "input":{"shape":"UnpeerVpcRequest"},
       "output":{"shape":"UnpeerVpcResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResult"},
       "errors":[
         {"shape":"ServiceException"},
         {"shape":"InvalidInputException"},
@@ -1880,6 +2006,71 @@
         "operation":{"shape":"Operation"}
       }
     },
+    "CloudFormationStackRecord":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"ResourceName"},
+        "arn":{"shape":"NonEmptyString"},
+        "createdAt":{"shape":"IsoDate"},
+        "location":{"shape":"ResourceLocation"},
+        "resourceType":{"shape":"ResourceType"},
+        "state":{"shape":"RecordState"},
+        "sourceInfo":{"shape":"CloudFormationStackRecordSourceInfoList"},
+        "destinationInfo":{"shape":"DestinationInfo"}
+      }
+    },
+    "CloudFormationStackRecordList":{
+      "type":"list",
+      "member":{"shape":"CloudFormationStackRecord"}
+    },
+    "CloudFormationStackRecordSourceInfo":{
+      "type":"structure",
+      "members":{
+        "resourceType":{"shape":"CloudFormationStackRecordSourceType"},
+        "name":{"shape":"NonEmptyString"},
+        "arn":{"shape":"NonEmptyString"}
+      }
+    },
+    "CloudFormationStackRecordSourceInfoList":{
+      "type":"list",
+      "member":{"shape":"CloudFormationStackRecordSourceInfo"}
+    },
+    "CloudFormationStackRecordSourceType":{
+      "type":"string",
+      "enum":["ExportSnapshotRecord"]
+    },
+    "CopySnapshotRequest":{
+      "type":"structure",
+      "required":[
+        "sourceSnapshotName",
+        "targetSnapshotName",
+        "sourceRegion"
+      ],
+      "members":{
+        "sourceSnapshotName":{"shape":"ResourceName"},
+        "targetSnapshotName":{"shape":"ResourceName"},
+        "sourceRegion":{"shape":"RegionName"}
+      }
+    },
+    "CopySnapshotResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
+    "CreateCloudFormationStackRequest":{
+      "type":"structure",
+      "required":["instances"],
+      "members":{
+        "instances":{"shape":"InstanceEntryList"}
+      }
+    },
+    "CreateCloudFormationStackResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
     "CreateDiskFromSnapshotRequest":{
       "type":"structure",
       "required":[
@@ -1892,7 +2083,8 @@
         "diskName":{"shape":"ResourceName"},
         "diskSnapshotName":{"shape":"ResourceName"},
         "availabilityZone":{"shape":"NonEmptyString"},
-        "sizeInGb":{"shape":"integer"}
+        "sizeInGb":{"shape":"integer"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateDiskFromSnapshotResult":{
@@ -1911,7 +2103,8 @@
       "members":{
         "diskName":{"shape":"ResourceName"},
         "availabilityZone":{"shape":"NonEmptyString"},
-        "sizeInGb":{"shape":"integer"}
+        "sizeInGb":{"shape":"integer"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateDiskResult":{
@@ -1928,7 +2121,8 @@
       ],
       "members":{
         "diskName":{"shape":"ResourceName"},
-        "diskSnapshotName":{"shape":"ResourceName"}
+        "diskSnapshotName":{"shape":"ResourceName"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateDiskSnapshotResult":{
@@ -1958,7 +2152,8 @@
       "type":"structure",
       "required":["domainName"],
       "members":{
-        "domainName":{"shape":"DomainName"}
+        "domainName":{"shape":"DomainName"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateDomainResult":{
@@ -1975,7 +2170,8 @@
       ],
       "members":{
         "instanceSnapshotName":{"shape":"ResourceName"},
-        "instanceName":{"shape":"ResourceName"}
+        "instanceName":{"shape":"ResourceName"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateInstanceSnapshotResult":{
@@ -1999,7 +2195,8 @@
         "instanceSnapshotName":{"shape":"ResourceName"},
         "bundleId":{"shape":"NonEmptyString"},
         "userData":{"shape":"string"},
-        "keyPairName":{"shape":"ResourceName"}
+        "keyPairName":{"shape":"ResourceName"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateInstancesFromSnapshotResult":{
@@ -2026,7 +2223,8 @@
         "blueprintId":{"shape":"NonEmptyString"},
         "bundleId":{"shape":"NonEmptyString"},
         "userData":{"shape":"string"},
-        "keyPairName":{"shape":"ResourceName"}
+        "keyPairName":{"shape":"ResourceName"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateInstancesResult":{
@@ -2039,7 +2237,8 @@
       "type":"structure",
       "required":["keyPairName"],
       "members":{
-        "keyPairName":{"shape":"ResourceName"}
+        "keyPairName":{"shape":"ResourceName"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateKeyPairResult":{
@@ -2063,7 +2262,8 @@
         "healthCheckPath":{"shape":"string"},
         "certificateName":{"shape":"ResourceName"},
         "certificateDomainName":{"shape":"DomainName"},
-        "certificateAlternativeNames":{"shape":"DomainNameList"}
+        "certificateAlternativeNames":{"shape":"DomainNameList"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateLoadBalancerResult":{
@@ -2083,7 +2283,8 @@
         "loadBalancerName":{"shape":"ResourceName"},
         "certificateName":{"shape":"ResourceName"},
         "certificateDomainName":{"shape":"DomainName"},
-        "certificateAlternativeNames":{"shape":"DomainNameList"}
+        "certificateAlternativeNames":{"shape":"DomainNameList"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateLoadBalancerTlsCertificateResult":{
@@ -2103,7 +2304,8 @@
         "relationalDatabaseBundleId":{"shape":"string"},
         "sourceRelationalDatabaseName":{"shape":"ResourceName"},
         "restoreTime":{"shape":"IsoDate"},
-        "useLatestRestorableTime":{"shape":"boolean"}
+        "useLatestRestorableTime":{"shape":"boolean"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateRelationalDatabaseFromSnapshotResult":{
@@ -2131,7 +2333,8 @@
         "masterUserPassword":{"shape":"SensitiveString"},
         "preferredBackupWindow":{"shape":"string"},
         "preferredMaintenanceWindow":{"shape":"string"},
-        "publiclyAccessible":{"shape":"boolean"}
+        "publiclyAccessible":{"shape":"boolean"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateRelationalDatabaseResult":{
@@ -2148,7 +2351,8 @@
       ],
       "members":{
         "relationalDatabaseName":{"shape":"ResourceName"},
-        "relationalDatabaseSnapshotName":{"shape":"ResourceName"}
+        "relationalDatabaseSnapshotName":{"shape":"ResourceName"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateRelationalDatabaseSnapshotResult":{
@@ -2311,6 +2515,13 @@
         "operations":{"shape":"OperationList"}
       }
     },
+    "DestinationInfo":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"NonEmptyString"},
+        "service":{"shape":"NonEmptyString"}
+      }
+    },
     "DetachDiskRequest":{
       "type":"structure",
       "required":["diskName"],
@@ -2363,6 +2574,7 @@
         "createdAt":{"shape":"IsoDate"},
         "location":{"shape":"ResourceLocation"},
         "resourceType":{"shape":"ResourceType"},
+        "tags":{"shape":"TagList"},
         "sizeInGb":{"shape":"integer"},
         "isSystemDisk":{"shape":"boolean"},
         "iops":{"shape":"integer"},
@@ -2379,6 +2591,19 @@
           "deprecated":true
         }
       }
+    },
+    "DiskInfo":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"string"},
+        "path":{"shape":"NonEmptyString"},
+        "sizeInGb":{"shape":"integer"},
+        "isSystemDisk":{"shape":"boolean"}
+      }
+    },
+    "DiskInfoList":{
+      "type":"list",
+      "member":{"shape":"DiskInfo"}
     },
     "DiskList":{
       "type":"list",
@@ -2404,11 +2629,18 @@
         "createdAt":{"shape":"IsoDate"},
         "location":{"shape":"ResourceLocation"},
         "resourceType":{"shape":"ResourceType"},
+        "tags":{"shape":"TagList"},
         "sizeInGb":{"shape":"integer"},
         "state":{"shape":"DiskSnapshotState"},
         "progress":{"shape":"string"},
         "fromDiskName":{"shape":"ResourceName"},
         "fromDiskArn":{"shape":"NonEmptyString"}
+      }
+    },
+    "DiskSnapshotInfo":{
+      "type":"structure",
+      "members":{
+        "sizeInGb":{"shape":"integer"}
       }
     },
     "DiskSnapshotList":{
@@ -2443,6 +2675,7 @@
         "createdAt":{"shape":"IsoDate"},
         "location":{"shape":"ResourceLocation"},
         "resourceType":{"shape":"ResourceType"},
+        "tags":{"shape":"TagList"},
         "domainEntries":{"shape":"DomainEntryList"}
       }
     },
@@ -2492,6 +2725,56 @@
         "privateKeyBase64":{"shape":"Base64"}
       }
     },
+    "ExportSnapshotRecord":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"ResourceName"},
+        "arn":{"shape":"NonEmptyString"},
+        "createdAt":{"shape":"IsoDate"},
+        "location":{"shape":"ResourceLocation"},
+        "resourceType":{"shape":"ResourceType"},
+        "state":{"shape":"RecordState"},
+        "sourceInfo":{"shape":"ExportSnapshotRecordSourceInfo"},
+        "destinationInfo":{"shape":"DestinationInfo"}
+      }
+    },
+    "ExportSnapshotRecordList":{
+      "type":"list",
+      "member":{"shape":"ExportSnapshotRecord"}
+    },
+    "ExportSnapshotRecordSourceInfo":{
+      "type":"structure",
+      "members":{
+        "resourceType":{"shape":"ExportSnapshotRecordSourceType"},
+        "createdAt":{"shape":"IsoDate"},
+        "name":{"shape":"NonEmptyString"},
+        "arn":{"shape":"NonEmptyString"},
+        "fromResourceName":{"shape":"NonEmptyString"},
+        "fromResourceArn":{"shape":"NonEmptyString"},
+        "instanceSnapshotInfo":{"shape":"InstanceSnapshotInfo"},
+        "diskSnapshotInfo":{"shape":"DiskSnapshotInfo"}
+      }
+    },
+    "ExportSnapshotRecordSourceType":{
+      "type":"string",
+      "enum":[
+        "InstanceSnapshot",
+        "DiskSnapshot"
+      ]
+    },
+    "ExportSnapshotRequest":{
+      "type":"structure",
+      "required":["sourceSnapshotName"],
+      "members":{
+        "sourceSnapshotName":{"shape":"ResourceName"}
+      }
+    },
+    "ExportSnapshotResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
     "GetActiveNamesRequest":{
       "type":"structure",
       "members":{
@@ -2530,6 +2813,19 @@
       "type":"structure",
       "members":{
         "bundles":{"shape":"BundleList"},
+        "nextPageToken":{"shape":"string"}
+      }
+    },
+    "GetCloudFormationStackRecordsRequest":{
+      "type":"structure",
+      "members":{
+        "pageToken":{"shape":"string"}
+      }
+    },
+    "GetCloudFormationStackRecordsResult":{
+      "type":"structure",
+      "members":{
+        "cloudFormationStackRecords":{"shape":"CloudFormationStackRecordList"},
         "nextPageToken":{"shape":"string"}
       }
     },
@@ -2608,6 +2904,19 @@
       "type":"structure",
       "members":{
         "domains":{"shape":"DomainList"},
+        "nextPageToken":{"shape":"string"}
+      }
+    },
+    "GetExportSnapshotRecordsRequest":{
+      "type":"structure",
+      "members":{
+        "pageToken":{"shape":"string"}
+      }
+    },
+    "GetExportSnapshotRecordsResult":{
+      "type":"structure",
+      "members":{
+        "exportSnapshotRecords":{"shape":"ExportSnapshotRecordList"},
         "nextPageToken":{"shape":"string"}
       }
     },
@@ -3122,6 +3431,7 @@
         "createdAt":{"shape":"IsoDate"},
         "location":{"shape":"ResourceLocation"},
         "resourceType":{"shape":"ResourceType"},
+        "tags":{"shape":"TagList"},
         "blueprintId":{"shape":"NonEmptyString"},
         "blueprintName":{"shape":"NonEmptyString"},
         "bundleId":{"shape":"NonEmptyString"},
@@ -3156,6 +3466,26 @@
         "ssh",
         "rdp"
       ]
+    },
+    "InstanceEntry":{
+      "type":"structure",
+      "required":[
+        "sourceName",
+        "instanceType",
+        "portInfoSource",
+        "availabilityZone"
+      ],
+      "members":{
+        "sourceName":{"shape":"ResourceName"},
+        "instanceType":{"shape":"NonEmptyString"},
+        "portInfoSource":{"shape":"PortInfoSourceType"},
+        "userData":{"shape":"string"},
+        "availabilityZone":{"shape":"string"}
+      }
+    },
+    "InstanceEntryList":{
+      "type":"list",
+      "member":{"shape":"InstanceEntry"}
     },
     "InstanceHardware":{
       "type":"structure",
@@ -3275,6 +3605,7 @@
         "createdAt":{"shape":"IsoDate"},
         "location":{"shape":"ResourceLocation"},
         "resourceType":{"shape":"ResourceType"},
+        "tags":{"shape":"TagList"},
         "state":{"shape":"InstanceSnapshotState"},
         "progress":{"shape":"string"},
         "fromAttachedDisks":{"shape":"DiskList"},
@@ -3283,6 +3614,14 @@
         "fromBlueprintId":{"shape":"string"},
         "fromBundleId":{"shape":"string"},
         "sizeInGb":{"shape":"integer"}
+      }
+    },
+    "InstanceSnapshotInfo":{
+      "type":"structure",
+      "members":{
+        "fromBundleId":{"shape":"NonEmptyString"},
+        "fromBlueprintId":{"shape":"NonEmptyString"},
+        "fromDiskInfo":{"shape":"DiskInfoList"}
       }
     },
     "InstanceSnapshotList":{
@@ -3343,6 +3682,7 @@
         "createdAt":{"shape":"IsoDate"},
         "location":{"shape":"ResourceLocation"},
         "resourceType":{"shape":"ResourceType"},
+        "tags":{"shape":"TagList"},
         "fingerprint":{"shape":"Base64"}
       }
     },
@@ -3359,6 +3699,7 @@
         "createdAt":{"shape":"IsoDate"},
         "location":{"shape":"ResourceLocation"},
         "resourceType":{"shape":"ResourceType"},
+        "tags":{"shape":"TagList"},
         "dnsName":{"shape":"NonEmptyString"},
         "state":{"shape":"LoadBalancerState"},
         "protocol":{"shape":"LoadBalancerProtocol"},
@@ -3430,6 +3771,7 @@
         "createdAt":{"shape":"IsoDate"},
         "location":{"shape":"ResourceLocation"},
         "resourceType":{"shape":"ResourceType"},
+        "tags":{"shape":"TagList"},
         "loadBalancerName":{"shape":"ResourceName"},
         "isAttached":{"shape":"boolean"},
         "status":{"shape":"LoadBalancerTlsCertificateStatus"},
@@ -3827,6 +4169,14 @@
       "type":"list",
       "member":{"shape":"PortInfo"}
     },
+    "PortInfoSourceType":{
+      "type":"string",
+      "enum":[
+        "DEFAULT",
+        "INSTANCE",
+        "NONE"
+      ]
+    },
     "PortList":{
       "type":"list",
       "member":{"shape":"Port"}
@@ -3881,6 +4231,14 @@
         "operations":{"shape":"OperationList"}
       }
     },
+    "RecordState":{
+      "type":"string",
+      "enum":[
+        "Started",
+        "Succeeded",
+        "Failed"
+      ]
+    },
     "Region":{
       "type":"structure",
       "members":{
@@ -3924,6 +4282,7 @@
         "createdAt":{"shape":"IsoDate"},
         "location":{"shape":"ResourceLocation"},
         "resourceType":{"shape":"ResourceType"},
+        "tags":{"shape":"TagList"},
         "relationalDatabaseBlueprintId":{"shape":"NonEmptyString"},
         "relationalDatabaseBundleId":{"shape":"NonEmptyString"},
         "masterDatabaseName":{"shape":"string"},
@@ -4058,6 +4417,7 @@
         "createdAt":{"shape":"IsoDate"},
         "location":{"shape":"ResourceLocation"},
         "resourceType":{"shape":"ResourceType"},
+        "tags":{"shape":"TagList"},
         "engine":{"shape":"NonEmptyString"},
         "engineVersion":{"shape":"NonEmptyString"},
         "sizeInGb":{"shape":"integer"},
@@ -4114,7 +4474,9 @@
         "Disk",
         "DiskSnapshot",
         "RelationalDatabase",
-        "RelationalDatabaseSnapshot"
+        "RelationalDatabaseSnapshot",
+        "ExportSnapshotRecord",
+        "CloudFormationStackRecord"
       ]
     },
     "SensitiveString":{
@@ -4213,6 +4575,40 @@
       "max":256,
       "min":1
     },
+    "Tag":{
+      "type":"structure",
+      "members":{
+        "key":{"shape":"TagKey"},
+        "value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{"type":"string"},
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"}
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"}
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceName",
+        "tags"
+      ],
+      "members":{
+        "resourceName":{"shape":"ResourceName"},
+        "tags":{"shape":"TagList"}
+      }
+    },
+    "TagResourceResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
+    "TagValue":{"type":"string"},
     "UnauthenticatedException":{
       "type":"structure",
       "members":{
@@ -4232,6 +4628,23 @@
       "type":"structure",
       "members":{
         "operation":{"shape":"Operation"}
+      }
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceName",
+        "tagKeys"
+      ],
+      "members":{
+        "resourceName":{"shape":"ResourceName"},
+        "tagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UntagResourceResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
       }
     },
     "UpdateDomainEntryRequest":{
