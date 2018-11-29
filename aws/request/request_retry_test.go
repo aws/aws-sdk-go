@@ -1,7 +1,6 @@
 package request
 
 import (
-	"errors"
 	"fmt"
 	"net"
 	"net/http"
@@ -9,11 +8,7 @@ import (
 	"net/url"
 	"testing"
 	"time"
-
-	"github.com/aws/aws-sdk-go/aws/awserr"
 )
-
-var ersrTimeout = awserr.New("foo", "bar", errors.New("net/http: request canceled Timeout"))
 
 func r(t *testing.T, url string) *http.Request {
 	r, err := http.NewRequest("GET", url, nil)
@@ -21,16 +16,6 @@ func r(t *testing.T, url string) *http.Request {
 		t.Fatalf("can't forge request: %v", err)
 	}
 	return r
-}
-
-type BrokenRoundTripper struct {
-	fn func(*http.Request)
-	rt http.RoundTripper
-}
-
-func (r *BrokenRoundTripper) RoundTrip(req *http.Request) (*http.Response, error) {
-	r.fn(req)
-	return r.rt.RoundTrip(req)
 }
 
 func Test_shouldRetryCancel_timeout(t *testing.T) {
