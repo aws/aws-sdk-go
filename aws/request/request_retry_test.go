@@ -35,9 +35,11 @@ func (r *BrokenRoundTripper) RoundTrip(req *http.Request) (*http.Response, error
 
 func Test_shouldRetryCancel_timeout(t *testing.T) {
 
+	tr := &http.Transport{}
+	defer tr.CloseIdleConnections()
 	cli := http.Client{
 		Timeout:   time.Nanosecond,
-		Transport: http.DefaultTransport,
+		Transport: tr,
 	}
 
 	resp, err := cli.Do(r(t, "https://179.179.179.179/no/such/host"))
