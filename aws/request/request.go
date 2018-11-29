@@ -582,13 +582,13 @@ func shouldRetryCancel(err error) bool {
 		// but since url.Error only wraps
 		// the error:
 		return shouldRetryCancel(err.Err)
+	case nil:
+		return true
 	default:
-		if err != nil {
-			switch err.Error() {
-			case "net/http: request canceled while waiting for connection":
-				// known 1.5 error case when an http request is cancelled
-				return false
-			}
+		switch err.Error() {
+		case "net/http: request canceled while waiting for connection":
+			// known 1.5 error case when an http request is cancelled
+			return false
 		}
 		// here we don't know the error;
 		// so we allow a retry.
