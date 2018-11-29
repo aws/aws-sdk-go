@@ -21,6 +21,7 @@
       "input":{"shape":"DeleteRuleRequest"},
       "errors":[
         {"shape":"ConcurrentModificationException"},
+        {"shape":"ManagedRuleException"},
         {"shape":"InternalException"}
       ]
     },
@@ -60,6 +61,7 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConcurrentModificationException"},
+        {"shape":"ManagedRuleException"},
         {"shape":"InternalException"}
       ]
     },
@@ -73,6 +75,7 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConcurrentModificationException"},
+        {"shape":"ManagedRuleException"},
         {"shape":"InternalException"}
       ]
     },
@@ -151,6 +154,7 @@
         {"shape":"InvalidEventPatternException"},
         {"shape":"LimitExceededException"},
         {"shape":"ConcurrentModificationException"},
+        {"shape":"ManagedRuleException"},
         {"shape":"InternalException"}
       ]
     },
@@ -166,6 +170,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConcurrentModificationException"},
         {"shape":"LimitExceededException"},
+        {"shape":"ManagedRuleException"},
         {"shape":"InternalException"}
       ]
     },
@@ -193,6 +198,7 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConcurrentModificationException"},
+        {"shape":"ManagedRuleException"},
         {"shape":"InternalException"}
       ]
     },
@@ -287,7 +293,8 @@
       "type":"structure",
       "required":["Name"],
       "members":{
-        "Name":{"shape":"RuleName"}
+        "Name":{"shape":"RuleName"},
+        "Force":{"shape":"Boolean"}
       }
     },
     "DescribeEventBusRequest":{
@@ -319,7 +326,8 @@
         "ScheduleExpression":{"shape":"ScheduleExpression"},
         "State":{"shape":"RuleState"},
         "Description":{"shape":"RuleDescription"},
-        "RoleArn":{"shape":"RoleArn"}
+        "RoleArn":{"shape":"RoleArn"},
+        "ManagedBy":{"shape":"ManagedBy"}
       }
     },
     "DisableRuleRequest":{
@@ -461,6 +469,17 @@
         "Targets":{"shape":"TargetList"},
         "NextToken":{"shape":"NextToken"}
       }
+    },
+    "ManagedBy":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "ManagedRuleException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
     },
     "MessageGroupId":{"type":"string"},
     "NetworkConfiguration":{
@@ -605,7 +624,8 @@
       ],
       "members":{
         "Rule":{"shape":"RuleName"},
-        "Ids":{"shape":"TargetIdList"}
+        "Ids":{"shape":"TargetIdList"},
+        "Force":{"shape":"Boolean"}
       }
     },
     "RemoveTargetsResponse":{
@@ -647,7 +667,8 @@
         "State":{"shape":"RuleState"},
         "Description":{"shape":"RuleDescription"},
         "ScheduleExpression":{"shape":"ScheduleExpression"},
-        "RoleArn":{"shape":"RoleArn"}
+        "RoleArn":{"shape":"RoleArn"},
+        "ManagedBy":{"shape":"ManagedBy"}
       }
     },
     "RuleArn":{

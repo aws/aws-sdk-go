@@ -1954,6 +1954,30 @@ func (s *AnnotationValue) SetStringValue(v string) *AnnotationValue {
 	return s
 }
 
+// A list of availability zones corresponding to the segments in a trace.
+type AvailabilityZoneDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a corresponding availability zone.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AvailabilityZoneDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AvailabilityZoneDetail) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AvailabilityZoneDetail) SetName(v string) *AvailabilityZoneDetail {
+	s.Name = &v
+	return s
+}
+
 type BackendConnectionErrors struct {
 	_ struct{} `type:"structure"`
 
@@ -2541,6 +2565,143 @@ func (s *EncryptionConfig) SetType(v string) *EncryptionConfig {
 	return s
 }
 
+// The root cause of a trace summary error.
+type ErrorRootCause struct {
+	_ struct{} `type:"structure"`
+
+	// A list of services corresponding to an error. A service identifies a segment
+	// and it contains a name, account ID, type, and inferred flag.
+	Services []*ErrorRootCauseService `type:"list"`
+}
+
+// String returns the string representation
+func (s ErrorRootCause) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ErrorRootCause) GoString() string {
+	return s.String()
+}
+
+// SetServices sets the Services field's value.
+func (s *ErrorRootCause) SetServices(v []*ErrorRootCauseService) *ErrorRootCause {
+	s.Services = v
+	return s
+}
+
+// A collection of segments and corresponding subsegments associated to a trace
+// summary error.
+type ErrorRootCauseEntity struct {
+	_ struct{} `type:"structure"`
+
+	// The types and messages of the exceptions.
+	Exceptions []*RootCauseException `type:"list"`
+
+	// The name of the entity.
+	Name *string `type:"string"`
+
+	// A flag that denotes a remote subsegment.
+	Remote *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s ErrorRootCauseEntity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ErrorRootCauseEntity) GoString() string {
+	return s.String()
+}
+
+// SetExceptions sets the Exceptions field's value.
+func (s *ErrorRootCauseEntity) SetExceptions(v []*RootCauseException) *ErrorRootCauseEntity {
+	s.Exceptions = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ErrorRootCauseEntity) SetName(v string) *ErrorRootCauseEntity {
+	s.Name = &v
+	return s
+}
+
+// SetRemote sets the Remote field's value.
+func (s *ErrorRootCauseEntity) SetRemote(v bool) *ErrorRootCauseEntity {
+	s.Remote = &v
+	return s
+}
+
+// A collection of fields identifying the services in a trace summary error.
+type ErrorRootCauseService struct {
+	_ struct{} `type:"structure"`
+
+	// The account ID associated to the service.
+	AccountId *string `type:"string"`
+
+	// The path of root cause entities found on the service.
+	EntityPath []*ErrorRootCauseEntity `type:"list"`
+
+	// A Boolean value indicating if the service is inferred from the trace.
+	Inferred *bool `type:"boolean"`
+
+	// The service name.
+	Name *string `type:"string"`
+
+	// A collection of associated service names.
+	Names []*string `type:"list"`
+
+	// The type associated to the service.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ErrorRootCauseService) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ErrorRootCauseService) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ErrorRootCauseService) SetAccountId(v string) *ErrorRootCauseService {
+	s.AccountId = &v
+	return s
+}
+
+// SetEntityPath sets the EntityPath field's value.
+func (s *ErrorRootCauseService) SetEntityPath(v []*ErrorRootCauseEntity) *ErrorRootCauseService {
+	s.EntityPath = v
+	return s
+}
+
+// SetInferred sets the Inferred field's value.
+func (s *ErrorRootCauseService) SetInferred(v bool) *ErrorRootCauseService {
+	s.Inferred = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ErrorRootCauseService) SetName(v string) *ErrorRootCauseService {
+	s.Name = &v
+	return s
+}
+
+// SetNames sets the Names field's value.
+func (s *ErrorRootCauseService) SetNames(v []*string) *ErrorRootCauseService {
+	s.Names = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ErrorRootCauseService) SetType(v string) *ErrorRootCauseService {
+	s.Type = &v
+	return s
+}
+
 // Information about requests that failed with a 4xx Client Error status code.
 type ErrorStatistics struct {
 	_ struct{} `type:"structure"`
@@ -2581,6 +2742,143 @@ func (s *ErrorStatistics) SetThrottleCount(v int64) *ErrorStatistics {
 // SetTotalCount sets the TotalCount field's value.
 func (s *ErrorStatistics) SetTotalCount(v int64) *ErrorStatistics {
 	s.TotalCount = &v
+	return s
+}
+
+// The root cause information for a trace summary fault.
+type FaultRootCause struct {
+	_ struct{} `type:"structure"`
+
+	// A list of corresponding services. A service identifies a segment and it contains
+	// a name, account ID, type, and inferred flag.
+	Services []*FaultRootCauseService `type:"list"`
+}
+
+// String returns the string representation
+func (s FaultRootCause) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FaultRootCause) GoString() string {
+	return s.String()
+}
+
+// SetServices sets the Services field's value.
+func (s *FaultRootCause) SetServices(v []*FaultRootCauseService) *FaultRootCause {
+	s.Services = v
+	return s
+}
+
+// A collection of segments and corresponding subsegments associated to a trace
+// summary fault error.
+type FaultRootCauseEntity struct {
+	_ struct{} `type:"structure"`
+
+	// The types and messages of the exceptions.
+	Exceptions []*RootCauseException `type:"list"`
+
+	// The name of the entity.
+	Name *string `type:"string"`
+
+	// A flag that denotes a remote subsegment.
+	Remote *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s FaultRootCauseEntity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FaultRootCauseEntity) GoString() string {
+	return s.String()
+}
+
+// SetExceptions sets the Exceptions field's value.
+func (s *FaultRootCauseEntity) SetExceptions(v []*RootCauseException) *FaultRootCauseEntity {
+	s.Exceptions = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *FaultRootCauseEntity) SetName(v string) *FaultRootCauseEntity {
+	s.Name = &v
+	return s
+}
+
+// SetRemote sets the Remote field's value.
+func (s *FaultRootCauseEntity) SetRemote(v bool) *FaultRootCauseEntity {
+	s.Remote = &v
+	return s
+}
+
+// A collection of fields identifying the services in a trace summary fault.
+type FaultRootCauseService struct {
+	_ struct{} `type:"structure"`
+
+	// The account ID associated to the service.
+	AccountId *string `type:"string"`
+
+	// The path of root cause entities found on the service.
+	EntityPath []*FaultRootCauseEntity `type:"list"`
+
+	// A Boolean value indicating if the service is inferred from the trace.
+	Inferred *bool `type:"boolean"`
+
+	// The service name.
+	Name *string `type:"string"`
+
+	// A collection of associated service names.
+	Names []*string `type:"list"`
+
+	// The type associated to the service.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s FaultRootCauseService) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FaultRootCauseService) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *FaultRootCauseService) SetAccountId(v string) *FaultRootCauseService {
+	s.AccountId = &v
+	return s
+}
+
+// SetEntityPath sets the EntityPath field's value.
+func (s *FaultRootCauseService) SetEntityPath(v []*FaultRootCauseEntity) *FaultRootCauseService {
+	s.EntityPath = v
+	return s
+}
+
+// SetInferred sets the Inferred field's value.
+func (s *FaultRootCauseService) SetInferred(v bool) *FaultRootCauseService {
+	s.Inferred = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *FaultRootCauseService) SetName(v string) *FaultRootCauseService {
+	s.Name = &v
+	return s
+}
+
+// SetNames sets the Names field's value.
+func (s *FaultRootCauseService) SetNames(v []*string) *FaultRootCauseService {
+	s.Names = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *FaultRootCauseService) SetType(v string) *FaultRootCauseService {
+	s.Type = &v
 	return s
 }
 
@@ -2999,7 +3297,7 @@ func (s *GetSamplingTargetsOutput) SetUnprocessedStatistics(v []*UnprocessedStat
 type GetServiceGraphInput struct {
 	_ struct{} `type:"structure"`
 
-	// The end of the time frame for which to generate a graph.
+	// The end of the timeframe for which to generate a graph.
 	//
 	// EndTime is a required field
 	EndTime *time.Time `type:"timestamp" required:"true"`
@@ -3084,7 +3382,7 @@ func (s *GetServiceGraphInput) SetStartTime(v time.Time) *GetServiceGraphInput {
 type GetServiceGraphOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A flag indicating whether or not the group's filter expression has been consistent,
+	// A flag indicating whether the group's filter expression has been consistent,
 	// or if the returned service graph may show traces from an older version of
 	// the group's filter expression.
 	ContainsOldGroupVersions *bool `type:"boolean"`
@@ -3537,6 +3835,30 @@ func (s *Http) SetUserAgent(v string) *Http {
 	return s
 }
 
+// A list of EC2 instance IDs corresponding to the segments in a trace.
+type InstanceIdDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of a corresponding EC2 instance.
+	Id *string `type:"string"`
+}
+
+// String returns the string representation
+func (s InstanceIdDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InstanceIdDetail) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *InstanceIdDetail) SetId(v string) *InstanceIdDetail {
+	s.Id = &v
+	return s
+}
+
 type PutEncryptionConfigInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3763,6 +4085,200 @@ func (s PutTraceSegmentsOutput) GoString() string {
 // SetUnprocessedTraceSegments sets the UnprocessedTraceSegments field's value.
 func (s *PutTraceSegmentsOutput) SetUnprocessedTraceSegments(v []*UnprocessedTraceSegment) *PutTraceSegmentsOutput {
 	s.UnprocessedTraceSegments = v
+	return s
+}
+
+// A list of resources ARNs corresponding to the segments in a trace.
+type ResourceARNDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of a corresponding resource.
+	ARN *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceARNDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceARNDetail) GoString() string {
+	return s.String()
+}
+
+// SetARN sets the ARN field's value.
+func (s *ResourceARNDetail) SetARN(v string) *ResourceARNDetail {
+	s.ARN = &v
+	return s
+}
+
+// The root cause information for a response time warning.
+type ResponseTimeRootCause struct {
+	_ struct{} `type:"structure"`
+
+	// A list of corresponding services. A service identifies a segment and contains
+	// a name, account ID, type, and inferred flag.
+	Services []*ResponseTimeRootCauseService `type:"list"`
+}
+
+// String returns the string representation
+func (s ResponseTimeRootCause) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResponseTimeRootCause) GoString() string {
+	return s.String()
+}
+
+// SetServices sets the Services field's value.
+func (s *ResponseTimeRootCause) SetServices(v []*ResponseTimeRootCauseService) *ResponseTimeRootCause {
+	s.Services = v
+	return s
+}
+
+// A collection of segments and corresponding subsegments associated to a response
+// time warning.
+type ResponseTimeRootCauseEntity struct {
+	_ struct{} `type:"structure"`
+
+	// The types and messages of the exceptions.
+	Coverage *float64 `type:"double"`
+
+	// The name of the entity.
+	Name *string `type:"string"`
+
+	// A flag that denotes a remote subsegment.
+	Remote *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s ResponseTimeRootCauseEntity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResponseTimeRootCauseEntity) GoString() string {
+	return s.String()
+}
+
+// SetCoverage sets the Coverage field's value.
+func (s *ResponseTimeRootCauseEntity) SetCoverage(v float64) *ResponseTimeRootCauseEntity {
+	s.Coverage = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ResponseTimeRootCauseEntity) SetName(v string) *ResponseTimeRootCauseEntity {
+	s.Name = &v
+	return s
+}
+
+// SetRemote sets the Remote field's value.
+func (s *ResponseTimeRootCauseEntity) SetRemote(v bool) *ResponseTimeRootCauseEntity {
+	s.Remote = &v
+	return s
+}
+
+// A collection of fields identifying the service in a response time warning.
+type ResponseTimeRootCauseService struct {
+	_ struct{} `type:"structure"`
+
+	// The account ID associated to the service.
+	AccountId *string `type:"string"`
+
+	// The path of root cause entities found on the service.
+	EntityPath []*ResponseTimeRootCauseEntity `type:"list"`
+
+	// A Boolean value indicating if the service is inferred from the trace.
+	Inferred *bool `type:"boolean"`
+
+	// The service name.
+	Name *string `type:"string"`
+
+	// A collection of associated service names.
+	Names []*string `type:"list"`
+
+	// The type associated to the service.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ResponseTimeRootCauseService) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResponseTimeRootCauseService) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ResponseTimeRootCauseService) SetAccountId(v string) *ResponseTimeRootCauseService {
+	s.AccountId = &v
+	return s
+}
+
+// SetEntityPath sets the EntityPath field's value.
+func (s *ResponseTimeRootCauseService) SetEntityPath(v []*ResponseTimeRootCauseEntity) *ResponseTimeRootCauseService {
+	s.EntityPath = v
+	return s
+}
+
+// SetInferred sets the Inferred field's value.
+func (s *ResponseTimeRootCauseService) SetInferred(v bool) *ResponseTimeRootCauseService {
+	s.Inferred = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ResponseTimeRootCauseService) SetName(v string) *ResponseTimeRootCauseService {
+	s.Name = &v
+	return s
+}
+
+// SetNames sets the Names field's value.
+func (s *ResponseTimeRootCauseService) SetNames(v []*string) *ResponseTimeRootCauseService {
+	s.Names = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ResponseTimeRootCauseService) SetType(v string) *ResponseTimeRootCauseService {
+	s.Type = &v
+	return s
+}
+
+// The exception associated with a root cause.
+type RootCauseException struct {
+	_ struct{} `type:"structure"`
+
+	// The message of the exception.
+	Message *string `type:"string"`
+
+	// The name of the exception.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation
+func (s RootCauseException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RootCauseException) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *RootCauseException) SetMessage(v string) *RootCauseException {
+	s.Message = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RootCauseException) SetName(v string) *RootCauseException {
+	s.Name = &v
 	return s
 }
 
@@ -4812,9 +5328,22 @@ type TraceSummary struct {
 	// Annotations from the trace's segment documents.
 	Annotations map[string][]*ValueWithServiceIds `type:"map"`
 
+	// A list of availability zones for any zone corresponding to the trace segments.
+	AvailabilityZones []*AvailabilityZoneDetail `type:"list"`
+
 	// The length of time in seconds between the start time of the root segment
 	// and the end time of the last segment that completed.
 	Duration *float64 `type:"double"`
+
+	// The root of a trace.
+	EntryPoint *ServiceId `type:"structure"`
+
+	// A collection of ErrorRootCause structures corresponding to the trace segments.
+	ErrorRootCauses []*ErrorRootCause `type:"list"`
+
+	// A collection of FaultRootCause structures corresponding to the the trace
+	// segments.
+	FaultRootCauses []*FaultRootCause `type:"list"`
 
 	// One or more of the segment documents has a 400 series error.
 	HasError *bool `type:"boolean"`
@@ -4832,14 +5361,27 @@ type TraceSummary struct {
 	// and subsegments.
 	Id *string `min:"1" type:"string"`
 
+	// A list of EC2 instance IDs for any instance corresponding to the trace segments.
+	InstanceIds []*InstanceIdDetail `type:"list"`
+
 	// One or more of the segment documents is in progress.
 	IsPartial *bool `type:"boolean"`
+
+	// A list of resource ARNs for any resource corresponding to the trace segments.
+	ResourceARNs []*ResourceARNDetail `type:"list"`
 
 	// The length of time in seconds between the start and end times of the root
 	// segment. If the service performs work asynchronously, the response time measures
 	// the time before the response is sent to the user, while the duration measures
 	// the amount of time before the last traced activity completes.
 	ResponseTime *float64 `type:"double"`
+
+	// A collection of ResponseTimeRootCause structures corresponding to the trace
+	// segments.
+	ResponseTimeRootCauses []*ResponseTimeRootCause `type:"list"`
+
+	// The revision number of a trace.
+	Revision *int64 `type:"integer"`
 
 	// Service IDs from the trace's segment documents.
 	ServiceIds []*ServiceId `type:"list"`
@@ -4864,9 +5406,33 @@ func (s *TraceSummary) SetAnnotations(v map[string][]*ValueWithServiceIds) *Trac
 	return s
 }
 
+// SetAvailabilityZones sets the AvailabilityZones field's value.
+func (s *TraceSummary) SetAvailabilityZones(v []*AvailabilityZoneDetail) *TraceSummary {
+	s.AvailabilityZones = v
+	return s
+}
+
 // SetDuration sets the Duration field's value.
 func (s *TraceSummary) SetDuration(v float64) *TraceSummary {
 	s.Duration = &v
+	return s
+}
+
+// SetEntryPoint sets the EntryPoint field's value.
+func (s *TraceSummary) SetEntryPoint(v *ServiceId) *TraceSummary {
+	s.EntryPoint = v
+	return s
+}
+
+// SetErrorRootCauses sets the ErrorRootCauses field's value.
+func (s *TraceSummary) SetErrorRootCauses(v []*ErrorRootCause) *TraceSummary {
+	s.ErrorRootCauses = v
+	return s
+}
+
+// SetFaultRootCauses sets the FaultRootCauses field's value.
+func (s *TraceSummary) SetFaultRootCauses(v []*FaultRootCause) *TraceSummary {
+	s.FaultRootCauses = v
 	return s
 }
 
@@ -4900,15 +5466,39 @@ func (s *TraceSummary) SetId(v string) *TraceSummary {
 	return s
 }
 
+// SetInstanceIds sets the InstanceIds field's value.
+func (s *TraceSummary) SetInstanceIds(v []*InstanceIdDetail) *TraceSummary {
+	s.InstanceIds = v
+	return s
+}
+
 // SetIsPartial sets the IsPartial field's value.
 func (s *TraceSummary) SetIsPartial(v bool) *TraceSummary {
 	s.IsPartial = &v
 	return s
 }
 
+// SetResourceARNs sets the ResourceARNs field's value.
+func (s *TraceSummary) SetResourceARNs(v []*ResourceARNDetail) *TraceSummary {
+	s.ResourceARNs = v
+	return s
+}
+
 // SetResponseTime sets the ResponseTime field's value.
 func (s *TraceSummary) SetResponseTime(v float64) *TraceSummary {
 	s.ResponseTime = &v
+	return s
+}
+
+// SetResponseTimeRootCauses sets the ResponseTimeRootCauses field's value.
+func (s *TraceSummary) SetResponseTimeRootCauses(v []*ResponseTimeRootCause) *TraceSummary {
+	s.ResponseTimeRootCauses = v
+	return s
+}
+
+// SetRevision sets the Revision field's value.
+func (s *TraceSummary) SetRevision(v int64) *TraceSummary {
+	s.Revision = &v
 	return s
 }
 
@@ -5048,7 +5638,7 @@ type UpdateGroupInput struct {
 	// The updated filter expression defining criteria by which to group traces.
 	FilterExpression *string `min:"1" type:"string"`
 
-	// The ARN that was generated upon create.
+	// The ARN that was generated upon creation.
 	GroupARN *string `min:"1" type:"string"`
 
 	// The case-sensitive name of the group.

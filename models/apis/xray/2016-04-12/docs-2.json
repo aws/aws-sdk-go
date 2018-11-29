@@ -78,6 +78,12 @@
         "AttributeMap$value": null
       }
     },
+    "AvailabilityZoneDetail": {
+      "base": "<p>A list of availability zones corresponding to the segments in a trace.</p>",
+      "refs": {
+        "TraceAvailabilityZones$member": null
+      }
+    },
     "BackendConnectionErrors": {
       "base": "<p/>",
       "refs": {
@@ -97,7 +103,7 @@
     "Boolean": {
       "base": null,
       "refs": {
-        "GetServiceGraphResult$ContainsOldGroupVersions": "<p>A flag indicating whether or not the group's filter expression has been consistent, or if the returned service graph may show traces from an older version of the group's filter expression.</p>"
+        "GetServiceGraphResult$ContainsOldGroupVersions": "<p>A flag indicating whether the group's filter expression has been consistent, or if the returned service graph may show traces from an older version of the group's filter expression.</p>"
       }
     },
     "BorrowCount": {
@@ -217,11 +223,83 @@
         "ThrottledException$Message": null
       }
     },
+    "ErrorRootCause": {
+      "base": "<p>The root cause of a trace summary error.</p>",
+      "refs": {
+        "ErrorRootCauses$member": null
+      }
+    },
+    "ErrorRootCauseEntity": {
+      "base": "<p>A collection of segments and corresponding subsegments associated to a trace summary error.</p>",
+      "refs": {
+        "ErrorRootCauseEntityPath$member": null
+      }
+    },
+    "ErrorRootCauseEntityPath": {
+      "base": null,
+      "refs": {
+        "ErrorRootCauseService$EntityPath": "<p>The path of root cause entities found on the service. </p>"
+      }
+    },
+    "ErrorRootCauseService": {
+      "base": "<p>A collection of fields identifying the services in a trace summary error.</p>",
+      "refs": {
+        "ErrorRootCauseServices$member": null
+      }
+    },
+    "ErrorRootCauseServices": {
+      "base": null,
+      "refs": {
+        "ErrorRootCause$Services": "<p>A list of services corresponding to an error. A service identifies a segment and it contains a name, account ID, type, and inferred flag.</p>"
+      }
+    },
+    "ErrorRootCauses": {
+      "base": null,
+      "refs": {
+        "TraceSummary$ErrorRootCauses": "<p>A collection of ErrorRootCause structures corresponding to the trace segments.</p>"
+      }
+    },
     "ErrorStatistics": {
       "base": "<p>Information about requests that failed with a 4xx Client Error status code.</p>",
       "refs": {
         "EdgeStatistics$ErrorStatistics": "<p>Information about requests that failed with a 4xx Client Error status code.</p>",
         "ServiceStatistics$ErrorStatistics": "<p>Information about requests that failed with a 4xx Client Error status code.</p>"
+      }
+    },
+    "FaultRootCause": {
+      "base": "<p>The root cause information for a trace summary fault.</p>",
+      "refs": {
+        "FaultRootCauses$member": null
+      }
+    },
+    "FaultRootCauseEntity": {
+      "base": "<p>A collection of segments and corresponding subsegments associated to a trace summary fault error.</p>",
+      "refs": {
+        "FaultRootCauseEntityPath$member": null
+      }
+    },
+    "FaultRootCauseEntityPath": {
+      "base": null,
+      "refs": {
+        "FaultRootCauseService$EntityPath": "<p>The path of root cause entities found on the service. </p>"
+      }
+    },
+    "FaultRootCauseService": {
+      "base": "<p>A collection of fields identifying the services in a trace summary fault.</p>",
+      "refs": {
+        "FaultRootCauseServices$member": null
+      }
+    },
+    "FaultRootCauseServices": {
+      "base": null,
+      "refs": {
+        "FaultRootCause$Services": "<p>A list of corresponding services. A service identifies a segment and it contains a name, account ID, type, and inferred flag.</p>"
+      }
+    },
+    "FaultRootCauses": {
+      "base": null,
+      "refs": {
+        "TraceSummary$FaultRootCauses": "<p>A collection of FaultRootCause structures corresponding to the the trace segments.</p>"
       }
     },
     "FaultStatistics": {
@@ -355,7 +433,7 @@
         "DeleteGroupRequest$GroupARN": "<p>The ARN of the group that was generated on creation.</p>",
         "GetGroupRequest$GroupARN": "<p>The ARN of the group that was generated on creation.</p>",
         "GetServiceGraphRequest$GroupARN": "<p>The ARN of a group to generate a graph based on.</p>",
-        "UpdateGroupRequest$GroupARN": "<p>The ARN that was generated upon create.</p>"
+        "UpdateGroupRequest$GroupARN": "<p>The ARN that was generated upon creation.</p>"
       }
     },
     "GroupName": {
@@ -420,13 +498,20 @@
         "TraceSummary$Http": "<p>Information about the HTTP request served by the trace.</p>"
       }
     },
+    "InstanceIdDetail": {
+      "base": "<p>A list of EC2 instance IDs corresponding to the segments in a trace. </p>",
+      "refs": {
+        "TraceInstanceIds$member": null
+      }
+    },
     "Integer": {
       "base": null,
       "refs": {
         "HistogramEntry$Count": "<p>The prevalence of the entry.</p>",
         "SamplingStatisticSummary$RequestCount": "<p>The number of requests that matched the rule.</p>",
         "SamplingStatisticSummary$BorrowCount": "<p>The number of requests recorded with borrowed reservoir quota.</p>",
-        "SamplingStatisticSummary$SampledCount": "<p>The number of requests recorded.</p>"
+        "SamplingStatisticSummary$SampledCount": "<p>The number of requests recorded.</p>",
+        "TraceSummary$Revision": "<p>The revision number of a trace.</p>"
       }
     },
     "InvalidRequestException": {
@@ -438,7 +523,13 @@
       "base": null,
       "refs": {
         "AnnotationValue$BooleanValue": "<p>Value for a Boolean annotation.</p>",
+        "ErrorRootCauseEntity$Remote": "<p>A flag that denotes a remote subsegment.</p>",
+        "ErrorRootCauseService$Inferred": "<p>A Boolean value indicating if the service is inferred from the trace.</p>",
+        "FaultRootCauseEntity$Remote": "<p>A flag that denotes a remote subsegment.</p>",
+        "FaultRootCauseService$Inferred": "<p>A Boolean value indicating if the service is inferred from the trace.</p>",
         "GetTraceSummariesRequest$Sampling": "<p>Set to <code>true</code> to get summaries for only a subset of available traces.</p>",
+        "ResponseTimeRootCauseEntity$Remote": "<p>A flag that denotes a remote subsegment.</p>",
+        "ResponseTimeRootCauseService$Inferred": "<p>A Boolean value indicating if the service is inferred from the trace.</p>",
         "Service$Root": "<p>Indicates that the service was the first service to process a request.</p>",
         "TraceSummary$HasFault": "<p>One or more of the segment documents has a 500 series error.</p>",
         "TraceSummary$HasError": "<p>One or more of the segment documents has a 400 series error.</p>",
@@ -451,6 +542,7 @@
       "refs": {
         "AnnotationValue$NumberValue": "<p>Value for a Number annotation.</p>",
         "EdgeStatistics$TotalResponseTime": "<p>The aggregate response time of completed requests.</p>",
+        "ResponseTimeRootCauseEntity$Coverage": "<p>The types and messages of the exceptions.</p>",
         "SamplingRuleUpdate$FixedRate": "<p>The percentage of matching requests to instrument, after the reservoir is exhausted.</p>",
         "ServiceStatistics$TotalResponseTime": "<p>The aggregate response time of completed requests.</p>",
         "Trace$Duration": "<p>The length of time in seconds between the start time of the root segment and the end time of the last segment that completed.</p>",
@@ -549,6 +641,61 @@
         "PutTelemetryRecordsRequest$ResourceARN": "<p/>",
         "SamplingRule$ResourceARN": "<p>Matches the ARN of the AWS resource on which the service runs.</p>",
         "SamplingRuleUpdate$ResourceARN": "<p>Matches the ARN of the AWS resource on which the service runs.</p>"
+      }
+    },
+    "ResourceARNDetail": {
+      "base": "<p>A list of resources ARNs corresponding to the segments in a trace.</p>",
+      "refs": {
+        "TraceResourceARNs$member": null
+      }
+    },
+    "ResponseTimeRootCause": {
+      "base": "<p>The root cause information for a response time warning.</p>",
+      "refs": {
+        "ResponseTimeRootCauses$member": null
+      }
+    },
+    "ResponseTimeRootCauseEntity": {
+      "base": "<p>A collection of segments and corresponding subsegments associated to a response time warning.</p>",
+      "refs": {
+        "ResponseTimeRootCauseEntityPath$member": null
+      }
+    },
+    "ResponseTimeRootCauseEntityPath": {
+      "base": null,
+      "refs": {
+        "ResponseTimeRootCauseService$EntityPath": "<p>The path of root cause entities found on the service. </p>"
+      }
+    },
+    "ResponseTimeRootCauseService": {
+      "base": "<p>A collection of fields identifying the service in a response time warning.</p>",
+      "refs": {
+        "ResponseTimeRootCauseServices$member": null
+      }
+    },
+    "ResponseTimeRootCauseServices": {
+      "base": null,
+      "refs": {
+        "ResponseTimeRootCause$Services": "<p>A list of corresponding services. A service identifies a segment and contains a name, account ID, type, and inferred flag.</p>"
+      }
+    },
+    "ResponseTimeRootCauses": {
+      "base": null,
+      "refs": {
+        "TraceSummary$ResponseTimeRootCauses": "<p>A collection of ResponseTimeRootCause structures corresponding to the trace segments.</p>"
+      }
+    },
+    "RootCauseException": {
+      "base": "<p>The exception associated with a root cause.</p>",
+      "refs": {
+        "RootCauseExceptions$member": null
+      }
+    },
+    "RootCauseExceptions": {
+      "base": null,
+      "refs": {
+        "ErrorRootCauseEntity$Exceptions": "<p>The types and messages of the exceptions.</p>",
+        "FaultRootCauseEntity$Exceptions": "<p>The types and messages of the exceptions.</p>"
       }
     },
     "RuleLimitExceededException": {
@@ -667,7 +814,8 @@
     "ServiceId": {
       "base": "<p/>",
       "refs": {
-        "ServiceIds$member": null
+        "ServiceIds$member": null,
+        "TraceSummary$EntryPoint": "<p>The root of a trace.</p>"
       }
     },
     "ServiceIds": {
@@ -695,6 +843,9 @@
     "ServiceNames": {
       "base": null,
       "refs": {
+        "ErrorRootCauseService$Names": "<p>A collection of associated service names.</p>",
+        "FaultRootCauseService$Names": "<p>A collection of associated service names.</p>",
+        "ResponseTimeRootCauseService$Names": "<p>A collection of associated service names.</p>",
         "Service$Names": "<p>A list of names for the service, including the canonical name.</p>",
         "ServiceId$Names": "<p/>"
       }
@@ -719,11 +870,20 @@
         "Alias$Type": "<p>The type of the alias.</p>",
         "AliasNames$member": null,
         "AnnotationValue$StringValue": "<p>Value for a String annotation.</p>",
+        "AvailabilityZoneDetail$Name": "<p>The name of a corresponding availability zone.</p>",
         "BatchGetTracesRequest$NextToken": "<p>Pagination token. Not used.</p>",
         "BatchGetTracesResult$NextToken": "<p>Pagination token. Not used.</p>",
         "DeleteSamplingRuleRequest$RuleName": "<p>The name of the sampling rule. Specify a rule by either name or ARN, but not both.</p>",
         "DeleteSamplingRuleRequest$RuleARN": "<p>The ARN of the sampling rule. Specify a rule by either name or ARN, but not both.</p>",
         "EncryptionConfig$KeyId": "<p>The ID of the customer master key (CMK) used for encryption, if applicable.</p>",
+        "ErrorRootCauseEntity$Name": "<p>The name of the entity.</p>",
+        "ErrorRootCauseService$Name": "<p>The service name.</p>",
+        "ErrorRootCauseService$Type": "<p>The type associated to the service.</p>",
+        "ErrorRootCauseService$AccountId": "<p>The account ID associated to the service.</p>",
+        "FaultRootCauseEntity$Name": "<p>The name of the entity.</p>",
+        "FaultRootCauseService$Name": "<p>The service name.</p>",
+        "FaultRootCauseService$Type": "<p>The type associated to the service.</p>",
+        "FaultRootCauseService$AccountId": "<p>The account ID associated to the service.</p>",
         "GetGroupsResult$NextToken": "<p>Pagination token. Not used.</p>",
         "GetSamplingRulesRequest$NextToken": "<p>Pagination token. Not used.</p>",
         "GetSamplingRulesResult$NextToken": "<p>Pagination token. Not used.</p>",
@@ -745,6 +905,14 @@
         "Http$HttpMethod": "<p>The request method.</p>",
         "Http$UserAgent": "<p>The request's user agent string.</p>",
         "Http$ClientIp": "<p>The IP address of the requestor.</p>",
+        "InstanceIdDetail$Id": "<p>The ID of a corresponding EC2 instance.</p>",
+        "ResourceARNDetail$ARN": "<p>The ARN of a corresponding resource.</p>",
+        "ResponseTimeRootCauseEntity$Name": "<p>The name of the entity.</p>",
+        "ResponseTimeRootCauseService$Name": "<p>The service name.</p>",
+        "ResponseTimeRootCauseService$Type": "<p>The type associated to the service.</p>",
+        "ResponseTimeRootCauseService$AccountId": "<p>The account ID associated to the service.</p>",
+        "RootCauseException$Name": "<p>The name of the exception.</p>",
+        "RootCauseException$Message": "<p>The message of the exception.</p>",
         "SamplingRule$RuleARN": "<p>The ARN of the sampling rule. Specify a rule by either name or ARN, but not both.</p>",
         "SamplingRuleUpdate$RuleARN": "<p>The ARN of the sampling rule. Specify a rule by either name or ARN, but not both.</p>",
         "SamplingStatisticSummary$RuleName": "<p>The name of the sampling rule.</p>",
@@ -790,7 +958,7 @@
         "Edge$EndTime": "<p>The end time of the last segment on the edge.</p>",
         "GetSamplingTargetsResult$LastRuleModification": "<p>The last time a user changed the sampling rule configuration. If the sampling rule configuration changed since the service last retrieved it, the service should call <a>GetSamplingRules</a> to get the latest version.</p>",
         "GetServiceGraphRequest$StartTime": "<p>The start of the time frame for which to generate a graph.</p>",
-        "GetServiceGraphRequest$EndTime": "<p>The end of the time frame for which to generate a graph.</p>",
+        "GetServiceGraphRequest$EndTime": "<p>The end of the timeframe for which to generate a graph.</p>",
         "GetServiceGraphResult$StartTime": "<p>The start of the time frame for which the graph was generated.</p>",
         "GetServiceGraphResult$EndTime": "<p>The end of the time frame for which the graph was generated.</p>",
         "GetTraceSummariesRequest$StartTime": "<p>The start of the time frame for which to retrieve traces.</p>",
@@ -812,6 +980,12 @@
         "TraceList$member": null
       }
     },
+    "TraceAvailabilityZones": {
+      "base": null,
+      "refs": {
+        "TraceSummary$AvailabilityZones": "<p>A list of availability zones for any zone corresponding to the trace segments.</p>"
+      }
+    },
     "TraceId": {
       "base": null,
       "refs": {
@@ -828,10 +1002,22 @@
         "GetTraceGraphRequest$TraceIds": "<p>Trace IDs of requests for which to generate a service graph.</p>"
       }
     },
+    "TraceInstanceIds": {
+      "base": null,
+      "refs": {
+        "TraceSummary$InstanceIds": "<p>A list of EC2 instance IDs for any instance corresponding to the trace segments.</p>"
+      }
+    },
     "TraceList": {
       "base": null,
       "refs": {
         "BatchGetTracesResult$Traces": "<p>Full traces for the specified requests.</p>"
+      }
+    },
+    "TraceResourceARNs": {
+      "base": null,
+      "refs": {
+        "TraceSummary$ResourceARNs": "<p>A list of resource ARNs for any resource corresponding to the trace segments.</p>"
       }
     },
     "TraceSegmentDocument": {

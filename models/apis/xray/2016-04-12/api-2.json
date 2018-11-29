@@ -306,6 +306,12 @@
       "max":32,
       "min":1
     },
+    "AvailabilityZoneDetail":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"}
+      }
+    },
     "BackendConnectionErrors":{
       "type":"structure",
       "members":{
@@ -453,6 +459,43 @@
       ]
     },
     "ErrorMessage":{"type":"string"},
+    "ErrorRootCause":{
+      "type":"structure",
+      "members":{
+        "Services":{"shape":"ErrorRootCauseServices"}
+      }
+    },
+    "ErrorRootCauseEntity":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"},
+        "Exceptions":{"shape":"RootCauseExceptions"},
+        "Remote":{"shape":"NullableBoolean"}
+      }
+    },
+    "ErrorRootCauseEntityPath":{
+      "type":"list",
+      "member":{"shape":"ErrorRootCauseEntity"}
+    },
+    "ErrorRootCauseService":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"},
+        "Names":{"shape":"ServiceNames"},
+        "Type":{"shape":"String"},
+        "AccountId":{"shape":"String"},
+        "EntityPath":{"shape":"ErrorRootCauseEntityPath"},
+        "Inferred":{"shape":"NullableBoolean"}
+      }
+    },
+    "ErrorRootCauseServices":{
+      "type":"list",
+      "member":{"shape":"ErrorRootCauseService"}
+    },
+    "ErrorRootCauses":{
+      "type":"list",
+      "member":{"shape":"ErrorRootCause"}
+    },
     "ErrorStatistics":{
       "type":"structure",
       "members":{
@@ -460,6 +503,43 @@
         "OtherCount":{"shape":"NullableLong"},
         "TotalCount":{"shape":"NullableLong"}
       }
+    },
+    "FaultRootCause":{
+      "type":"structure",
+      "members":{
+        "Services":{"shape":"FaultRootCauseServices"}
+      }
+    },
+    "FaultRootCauseEntity":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"},
+        "Exceptions":{"shape":"RootCauseExceptions"},
+        "Remote":{"shape":"NullableBoolean"}
+      }
+    },
+    "FaultRootCauseEntityPath":{
+      "type":"list",
+      "member":{"shape":"FaultRootCauseEntity"}
+    },
+    "FaultRootCauseService":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"},
+        "Names":{"shape":"ServiceNames"},
+        "Type":{"shape":"String"},
+        "AccountId":{"shape":"String"},
+        "EntityPath":{"shape":"FaultRootCauseEntityPath"},
+        "Inferred":{"shape":"NullableBoolean"}
+      }
+    },
+    "FaultRootCauseServices":{
+      "type":"list",
+      "member":{"shape":"FaultRootCauseService"}
+    },
+    "FaultRootCauses":{
+      "type":"list",
+      "member":{"shape":"FaultRootCause"}
     },
     "FaultStatistics":{
       "type":"structure",
@@ -686,6 +766,12 @@
         "ClientIp":{"shape":"String"}
       }
     },
+    "InstanceIdDetail":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"String"}
+      }
+    },
     "Integer":{"type":"integer"},
     "InvalidRequestException":{
       "type":"structure",
@@ -756,6 +842,60 @@
     "ResourceARN":{
       "type":"string",
       "max":500
+    },
+    "ResourceARNDetail":{
+      "type":"structure",
+      "members":{
+        "ARN":{"shape":"String"}
+      }
+    },
+    "ResponseTimeRootCause":{
+      "type":"structure",
+      "members":{
+        "Services":{"shape":"ResponseTimeRootCauseServices"}
+      }
+    },
+    "ResponseTimeRootCauseEntity":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"},
+        "Coverage":{"shape":"NullableDouble"},
+        "Remote":{"shape":"NullableBoolean"}
+      }
+    },
+    "ResponseTimeRootCauseEntityPath":{
+      "type":"list",
+      "member":{"shape":"ResponseTimeRootCauseEntity"}
+    },
+    "ResponseTimeRootCauseService":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"},
+        "Names":{"shape":"ServiceNames"},
+        "Type":{"shape":"String"},
+        "AccountId":{"shape":"String"},
+        "EntityPath":{"shape":"ResponseTimeRootCauseEntityPath"},
+        "Inferred":{"shape":"NullableBoolean"}
+      }
+    },
+    "ResponseTimeRootCauseServices":{
+      "type":"list",
+      "member":{"shape":"ResponseTimeRootCauseService"}
+    },
+    "ResponseTimeRootCauses":{
+      "type":"list",
+      "member":{"shape":"ResponseTimeRootCause"}
+    },
+    "RootCauseException":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"},
+        "Message":{"shape":"String"}
+      }
+    },
+    "RootCauseExceptions":{
+      "type":"list",
+      "member":{"shape":"RootCauseException"}
     },
     "RuleLimitExceededException":{
       "type":"structure",
@@ -990,6 +1130,10 @@
         "Segments":{"shape":"SegmentList"}
       }
     },
+    "TraceAvailabilityZones":{
+      "type":"list",
+      "member":{"shape":"AvailabilityZoneDetail"}
+    },
     "TraceId":{
       "type":"string",
       "max":35,
@@ -999,9 +1143,17 @@
       "type":"list",
       "member":{"shape":"TraceId"}
     },
+    "TraceInstanceIds":{
+      "type":"list",
+      "member":{"shape":"InstanceIdDetail"}
+    },
     "TraceList":{
       "type":"list",
       "member":{"shape":"Trace"}
+    },
+    "TraceResourceARNs":{
+      "type":"list",
+      "member":{"shape":"ResourceARNDetail"}
     },
     "TraceSegmentDocument":{"type":"string"},
     "TraceSegmentDocumentList":{
@@ -1021,7 +1173,15 @@
         "Http":{"shape":"Http"},
         "Annotations":{"shape":"Annotations"},
         "Users":{"shape":"TraceUsers"},
-        "ServiceIds":{"shape":"ServiceIds"}
+        "ServiceIds":{"shape":"ServiceIds"},
+        "ResourceARNs":{"shape":"TraceResourceARNs"},
+        "InstanceIds":{"shape":"TraceInstanceIds"},
+        "AvailabilityZones":{"shape":"TraceAvailabilityZones"},
+        "EntryPoint":{"shape":"ServiceId"},
+        "FaultRootCauses":{"shape":"FaultRootCauses"},
+        "ErrorRootCauses":{"shape":"ErrorRootCauses"},
+        "ResponseTimeRootCauses":{"shape":"ResponseTimeRootCauses"},
+        "Revision":{"shape":"Integer"}
       }
     },
     "TraceSummaryList":{
