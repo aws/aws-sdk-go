@@ -795,6 +795,12 @@ func resolveShapeValidations(s *Shape, ancestry ...*Shape) {
 			})
 		}
 
+		if !ref.CanBeEmpty() && !s.Validations.Has(ref, ShapeValidationMinVal) {
+			s.Validations = append(s.Validations, ShapeValidation{
+				Name: name, Ref: ref, Type: ShapeValidationMinVal,
+			})
+		}
+
 		switch ref.Shape.Type {
 		case "map", "list", "structure":
 			children = append(children, name)
