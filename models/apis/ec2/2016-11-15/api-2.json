@@ -10111,6 +10111,48 @@
         }
       }
     },
+    "ElasticInferenceAccelerator":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "Type":{"shape":"String"}
+      }
+    },
+    "ElasticInferenceAcceleratorAssociation":{
+      "type":"structure",
+      "members":{
+        "ElasticInferenceAcceleratorArn":{
+          "shape":"String",
+          "locationName":"elasticInferenceAcceleratorArn"
+        },
+        "ElasticInferenceAcceleratorAssociationId":{
+          "shape":"String",
+          "locationName":"elasticInferenceAcceleratorAssociationId"
+        },
+        "ElasticInferenceAcceleratorAssociationState":{
+          "shape":"String",
+          "locationName":"elasticInferenceAcceleratorAssociationState"
+        },
+        "ElasticInferenceAcceleratorAssociationTime":{
+          "shape":"DateTime",
+          "locationName":"elasticInferenceAcceleratorAssociationTime"
+        }
+      }
+    },
+    "ElasticInferenceAcceleratorAssociationList":{
+      "type":"list",
+      "member":{
+        "shape":"ElasticInferenceAcceleratorAssociation",
+        "locationName":"item"
+      }
+    },
+    "ElasticInferenceAccelerators":{
+      "type":"list",
+      "member":{
+        "shape":"ElasticInferenceAccelerator",
+        "locationName":"item"
+      }
+    },
     "EnableTransitGatewayRouteTablePropagationRequest":{
       "type":"structure",
       "required":[
@@ -11174,6 +11216,21 @@
       "member":{
         "shape":"String",
         "locationName":"GroupName"
+      }
+    },
+    "HibernationOptions":{
+      "type":"structure",
+      "members":{
+        "Configured":{
+          "shape":"Boolean",
+          "locationName":"configured"
+        }
+      }
+    },
+    "HibernationOptionsRequest":{
+      "type":"structure",
+      "members":{
+        "Configured":{"shape":"Boolean"}
       }
     },
     "HistoryRecord":{
@@ -12325,6 +12382,10 @@
           "shape":"ElasticGpuAssociationList",
           "locationName":"elasticGpuAssociationSet"
         },
+        "ElasticInferenceAcceleratorAssociations":{
+          "shape":"ElasticInferenceAcceleratorAssociationList",
+          "locationName":"elasticInferenceAcceleratorAssociationSet"
+        },
         "NetworkInterfaces":{
           "shape":"InstanceNetworkInterfaceList",
           "locationName":"networkInterfaceSet"
@@ -12376,6 +12437,14 @@
         "CapacityReservationSpecification":{
           "shape":"CapacityReservationSpecificationResponse",
           "locationName":"capacityReservationSpecification"
+        },
+        "HibernationOptions":{
+          "shape":"HibernationOptions",
+          "locationName":"hibernationOptions"
+        },
+        "Licenses":{
+          "shape":"LicenseList",
+          "locationName":"licenseSet"
         }
       }
     },
@@ -13767,6 +13836,36 @@
         "VolumeType":{"shape":"VolumeType"}
       }
     },
+    "LaunchTemplateElasticInferenceAccelerator":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "Type":{"shape":"String"}
+      }
+    },
+    "LaunchTemplateElasticInferenceAcceleratorList":{
+      "type":"list",
+      "member":{
+        "shape":"LaunchTemplateElasticInferenceAccelerator",
+        "locationName":"item"
+      }
+    },
+    "LaunchTemplateElasticInferenceAcceleratorResponse":{
+      "type":"structure",
+      "members":{
+        "Type":{
+          "shape":"String",
+          "locationName":"type"
+        }
+      }
+    },
+    "LaunchTemplateElasticInferenceAcceleratorResponseList":{
+      "type":"list",
+      "member":{
+        "shape":"LaunchTemplateElasticInferenceAcceleratorResponse",
+        "locationName":"item"
+      }
+    },
     "LaunchTemplateErrorCode":{
       "type":"string",
       "enum":[
@@ -13777,6 +13876,21 @@
         "launchTemplateVersionDoesNotExist",
         "unexpectedError"
       ]
+    },
+    "LaunchTemplateHibernationOptions":{
+      "type":"structure",
+      "members":{
+        "Configured":{
+          "shape":"Boolean",
+          "locationName":"configured"
+        }
+      }
+    },
+    "LaunchTemplateHibernationOptionsRequest":{
+      "type":"structure",
+      "members":{
+        "Configured":{"shape":"Boolean"}
+      }
     },
     "LaunchTemplateIamInstanceProfileSpecification":{
       "type":"structure",
@@ -13903,6 +14017,35 @@
       "member":{
         "shape":"LaunchTemplateInstanceNetworkInterfaceSpecificationRequest",
         "locationName":"InstanceNetworkInterfaceSpecification"
+      }
+    },
+    "LaunchTemplateLicenseConfiguration":{
+      "type":"structure",
+      "members":{
+        "LicenseConfigurationArn":{
+          "shape":"String",
+          "locationName":"licenseConfigurationArn"
+        }
+      }
+    },
+    "LaunchTemplateLicenseConfigurationRequest":{
+      "type":"structure",
+      "members":{
+        "LicenseConfigurationArn":{"shape":"String"}
+      }
+    },
+    "LaunchTemplateLicenseList":{
+      "type":"list",
+      "member":{
+        "shape":"LaunchTemplateLicenseConfiguration",
+        "locationName":"item"
+      }
+    },
+    "LaunchTemplateLicenseSpecificationListRequest":{
+      "type":"list",
+      "member":{
+        "shape":"LaunchTemplateLicenseConfigurationRequest",
+        "locationName":"item"
       }
     },
     "LaunchTemplateName":{
@@ -14138,6 +14281,35 @@
       "type":"structure",
       "members":{
         "Enabled":{"shape":"Boolean"}
+      }
+    },
+    "LicenseConfiguration":{
+      "type":"structure",
+      "members":{
+        "LicenseConfigurationArn":{
+          "shape":"String",
+          "locationName":"licenseConfigurationArn"
+        }
+      }
+    },
+    "LicenseConfigurationRequest":{
+      "type":"structure",
+      "members":{
+        "LicenseConfigurationArn":{"shape":"String"}
+      }
+    },
+    "LicenseList":{
+      "type":"list",
+      "member":{
+        "shape":"LicenseConfiguration",
+        "locationName":"item"
+      }
+    },
+    "LicenseSpecificationListRequest":{
+      "type":"list",
+      "member":{
+        "shape":"LicenseConfigurationRequest",
+        "locationName":"item"
       }
     },
     "ListingState":{
@@ -16822,6 +16994,10 @@
           "shape":"ElasticGpuSpecificationList",
           "locationName":"ElasticGpuSpecification"
         },
+        "ElasticInferenceAccelerators":{
+          "shape":"LaunchTemplateElasticInferenceAcceleratorList",
+          "locationName":"ElasticInferenceAccelerator"
+        },
         "SecurityGroupIds":{
           "shape":"SecurityGroupIdStringList",
           "locationName":"SecurityGroupId"
@@ -16833,7 +17009,12 @@
         "InstanceMarketOptions":{"shape":"LaunchTemplateInstanceMarketOptionsRequest"},
         "CreditSpecification":{"shape":"CreditSpecificationRequest"},
         "CpuOptions":{"shape":"LaunchTemplateCpuOptionsRequest"},
-        "CapacityReservationSpecification":{"shape":"LaunchTemplateCapacityReservationSpecificationRequest"}
+        "CapacityReservationSpecification":{"shape":"LaunchTemplateCapacityReservationSpecificationRequest"},
+        "HibernationOptions":{"shape":"LaunchTemplateHibernationOptionsRequest"},
+        "LicenseSpecifications":{
+          "shape":"LaunchTemplateLicenseSpecificationListRequest",
+          "locationName":"LicenseSpecification"
+        }
       }
     },
     "RequestSpotFleetRequest":{
@@ -17666,6 +17847,10 @@
           "shape":"ElasticGpuSpecificationResponseList",
           "locationName":"elasticGpuSpecificationSet"
         },
+        "ElasticInferenceAccelerators":{
+          "shape":"LaunchTemplateElasticInferenceAcceleratorResponseList",
+          "locationName":"elasticInferenceAcceleratorSet"
+        },
         "SecurityGroupIds":{
           "shape":"ValueStringList",
           "locationName":"securityGroupIdSet"
@@ -17689,6 +17874,14 @@
         "CapacityReservationSpecification":{
           "shape":"LaunchTemplateCapacityReservationSpecificationResponse",
           "locationName":"capacityReservationSpecification"
+        },
+        "HibernationOptions":{
+          "shape":"LaunchTemplateHibernationOptions",
+          "locationName":"hibernationOptions"
+        },
+        "LicenseSpecifications":{
+          "shape":"LaunchTemplateLicenseList",
+          "locationName":"licenseSet"
         }
       }
     },
@@ -18019,6 +18212,10 @@
           "locationName":"privateIpAddress"
         },
         "ElasticGpuSpecification":{"shape":"ElasticGpuSpecifications"},
+        "ElasticInferenceAccelerators":{
+          "shape":"ElasticInferenceAccelerators",
+          "locationName":"ElasticInferenceAccelerator"
+        },
         "TagSpecifications":{
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
@@ -18027,7 +18224,12 @@
         "InstanceMarketOptions":{"shape":"InstanceMarketOptionsRequest"},
         "CreditSpecification":{"shape":"CreditSpecificationRequest"},
         "CpuOptions":{"shape":"CpuOptionsRequest"},
-        "CapacityReservationSpecification":{"shape":"CapacityReservationSpecification"}
+        "CapacityReservationSpecification":{"shape":"CapacityReservationSpecification"},
+        "HibernationOptions":{"shape":"HibernationOptionsRequest"},
+        "LicenseSpecifications":{
+          "shape":"LicenseSpecificationListRequest",
+          "locationName":"LicenseSpecification"
+        }
       }
     },
     "RunScheduledInstancesRequest":{
@@ -19532,6 +19734,7 @@
           "shape":"InstanceIdStringList",
           "locationName":"InstanceId"
         },
+        "Hibernate":{"shape":"Boolean"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
