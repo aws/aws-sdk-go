@@ -18,6 +18,10 @@ func r(t *testing.T, url string) *http.Request {
 	return r
 }
 
+func Test_shouldRetryCancel_nil(t *testing.T) {
+	shouldRetryCancel(nil)
+}
+
 func Test_shouldRetryCancel_timeout(t *testing.T) {
 
 	tr := &http.Transport{}
