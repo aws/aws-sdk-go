@@ -1,3 +1,21 @@
+Release v1.15.87 (2018-11-29)
+===
+
+### Service Client Updates
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `service/events`: Updates service API and documentation
+  * Support for Managed Rules (rules that are created and maintained by the AWS services in your account) is added.
+* `service/kafka`: Adds new service
+* `service/lambda`: Updates service API and documentation
+  * AWS Lambda now supports Lambda Layers and Ruby as a runtime. Lambda Layers are a new type of artifact that contains arbitrary code and data, and may be referenced by zero, one, or more functions at the same time.  You can also now develop your AWS Lambda function code using the Ruby programming language.
+* `service/s3`: Updates service API and examples
+  * Fixed issue with ObjectLockRetainUntilDate in S3 PutObject
+* `service/serverlessrepo`: Updates service API, documentation, and paginators
+* `service/states`: Updates service API and documentation
+  * AWS Step Functions is now integrated with eight additional AWS services: Amazon ECS, AWS Fargate, Amazon DynamoDB, Amazon SNS, Amazon SQS, AWS Batch, AWS Glue, and Amazon SageMaker. To learn more, please see https://docs.aws.amazon.com/step-functions/index.html
+* `service/xray`: Updates service API and documentation
+  * GetTraceSummaries - Now provides additional information regarding your application traces such as Availability Zone, Instance ID, Resource ARN details, Revision, Entry Point, Root Cause Exceptions and Root Causes for Fault, Error and Response Time.
+
 Release v1.15.86 (2018-11-29)
 ===
 

@@ -4444,7 +4444,10 @@
         "COMPLIANCE"
       ]
     },
-    "ObjectLockRetainUntilDate":{"type":"timestamp"},
+    "ObjectLockRetainUntilDate":{
+      "type":"timestamp",
+      "timestampFormat":"iso8601"
+    },
     "ObjectLockRetention":{
       "type":"structure",
       "members":{

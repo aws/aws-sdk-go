@@ -92,6 +92,13 @@ type ServerlessApplicationRepositoryAPI interface {
 	GetCloudFormationTemplateWithContext(aws.Context, *serverlessapplicationrepository.GetCloudFormationTemplateInput, ...request.Option) (*serverlessapplicationrepository.GetCloudFormationTemplateOutput, error)
 	GetCloudFormationTemplateRequest(*serverlessapplicationrepository.GetCloudFormationTemplateInput) (*request.Request, *serverlessapplicationrepository.GetCloudFormationTemplateOutput)
 
+	ListApplicationDependencies(*serverlessapplicationrepository.ListApplicationDependenciesInput) (*serverlessapplicationrepository.ListApplicationDependenciesOutput, error)
+	ListApplicationDependenciesWithContext(aws.Context, *serverlessapplicationrepository.ListApplicationDependenciesInput, ...request.Option) (*serverlessapplicationrepository.ListApplicationDependenciesOutput, error)
+	ListApplicationDependenciesRequest(*serverlessapplicationrepository.ListApplicationDependenciesInput) (*request.Request, *serverlessapplicationrepository.ListApplicationDependenciesOutput)
+
+	ListApplicationDependenciesPages(*serverlessapplicationrepository.ListApplicationDependenciesInput, func(*serverlessapplicationrepository.ListApplicationDependenciesOutput, bool) bool) error
+	ListApplicationDependenciesPagesWithContext(aws.Context, *serverlessapplicationrepository.ListApplicationDependenciesInput, func(*serverlessapplicationrepository.ListApplicationDependenciesOutput, bool) bool, ...request.Option) error
+
 	ListApplicationVersions(*serverlessapplicationrepository.ListApplicationVersionsInput) (*serverlessapplicationrepository.ListApplicationVersionsOutput, error)
 	ListApplicationVersionsWithContext(aws.Context, *serverlessapplicationrepository.ListApplicationVersionsInput, ...request.Option) (*serverlessapplicationrepository.ListApplicationVersionsOutput, error)
 	ListApplicationVersionsRequest(*serverlessapplicationrepository.ListApplicationVersionsInput) (*request.Request, *serverlessapplicationrepository.ListApplicationVersionsOutput)
