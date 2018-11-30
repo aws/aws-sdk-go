@@ -436,9 +436,9 @@
     "BypassGovernanceRetention": {
       "base": null,
       "refs": {
-        "DeleteObjectRequest$BypassGovernanceRetention": "<p/>",
+        "DeleteObjectRequest$BypassGovernanceRetention": "<p>Indicates whether S3 Object Lock should bypass Governance-mode restrictions to process this operation.</p>",
         "DeleteObjectsRequest$BypassGovernanceRetention": "<p>Specifies whether you want to delete this object even if it has a Governance-type Object Lock in place. You must have sufficient permissions to perform this operation.</p>",
-        "PutObjectRetentionRequest$BypassGovernanceRetention": "<p/>"
+        "PutObjectRetentionRequest$BypassGovernanceRetention": "<p>Indicates whether this operation should bypass Governance-mode restrictions.j</p>"
       }
     },
     "BytesProcessed": {
@@ -649,10 +649,10 @@
         "PutBucketVersioningRequest$ContentMD5": null,
         "PutBucketWebsiteRequest$ContentMD5": null,
         "PutObjectAclRequest$ContentMD5": null,
-        "PutObjectLegalHoldRequest$ContentMD5": "<p>The MD5 signature for the configuration included in your request.</p>",
-        "PutObjectLockConfigurationRequest$ContentMD5": "<p>The MD5 signature for the configuration included in your request.</p>",
+        "PutObjectLegalHoldRequest$ContentMD5": "<p>The MD5 hash for the request body.</p>",
+        "PutObjectLockConfigurationRequest$ContentMD5": "<p>The MD5 hash for the request body.</p>",
         "PutObjectRequest$ContentMD5": "<p>The base64-encoded 128-bit MD5 digest of the part data.</p>",
-        "PutObjectRetentionRequest$ContentMD5": "<p>The MD5 signature for the configuration included in your request.</p>",
+        "PutObjectRetentionRequest$ContentMD5": "<p>The MD5 hash for the request body.</p>",
         "PutObjectTaggingRequest$ContentMD5": null,
         "PutPublicAccessBlockRequest$ContentMD5": "<p>The MD5 hash of the <code>PutPublicAccessBlock</code> request body. </p>",
         "UploadPartRequest$ContentMD5": "<p>The base64-encoded 128-bit MD5 digest of the part data.</p>"
@@ -807,7 +807,7 @@
       "base": null,
       "refs": {
         "LifecycleExpiration$Date": "<p>Indicates at what date the object is to be moved or deleted. Should be in GMT ISO 8601 Format.</p>",
-        "ObjectLockRetention$RetainUntilDate": "<p/>",
+        "ObjectLockRetention$RetainUntilDate": "<p>The date on which this Object Lock Retention will expire.</p>",
         "Transition$Date": "<p>Indicates at what date the object is to be moved or deleted. Should be in GMT ISO 8601 Format.</p>"
       }
     },
@@ -2356,7 +2356,7 @@
     "ObjectLockEnabled": {
       "base": null,
       "refs": {
-        "ObjectLockConfiguration$ObjectLockEnabled": "<p>Indicates whether this object has an Object Lock configuration enabled.</p>"
+        "ObjectLockConfiguration$ObjectLockEnabled": "<p>Indicates whether this bucket has an Object Lock configuration enabled.</p>"
       }
     },
     "ObjectLockEnabledForBucket": {
@@ -2377,7 +2377,7 @@
       "refs": {
         "CopyObjectRequest$ObjectLockLegalHoldStatus": "<p>Specifies whether you want to apply a Legal Hold to the copied object.</p>",
         "CreateMultipartUploadRequest$ObjectLockLegalHoldStatus": "<p>Specifies whether you want to apply a Legal Hold to the uploaded object.</p>",
-        "GetObjectOutput$ObjectLockLegalHoldStatus": "<p/>",
+        "GetObjectOutput$ObjectLockLegalHoldStatus": "<p>Indicates whether this object has an active legal hold. This field is only returned if you have permission to view an object's legal hold status.</p>",
         "HeadObjectOutput$ObjectLockLegalHoldStatus": "<p>The Legal Hold status for the specified object.</p>",
         "ObjectLockLegalHold$Status": "<p>Indicates whether the specified object has a Legal Hold in place.</p>",
         "PutObjectRequest$ObjectLockLegalHoldStatus": "<p>The Legal Hold status that you want to apply to the specified object.</p>"
@@ -2426,7 +2426,7 @@
     "ObjectLockToken": {
       "base": null,
       "refs": {
-        "PutObjectLockConfigurationRequest$Token": "<p/>"
+        "PutObjectLockConfigurationRequest$Token": null
       }
     },
     "ObjectNotInActiveTierError": {
