@@ -1,3 +1,10 @@
+Release v1.15.88 (2018-11-29)
+===
+
+### Service Client Updates
+* `service/s3`: Updates service documentation
+  * Fixed issue with Content-MD5 for S3 PutObjectLegalHold, PutObjectRetention and PutObjectLockConfiguration.
+
 Release v1.15.87 (2018-11-29)
 ===
 
