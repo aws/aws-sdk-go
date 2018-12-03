@@ -13755,6 +13755,9 @@ func (s *GetObjectTorrentInput) Validate() error {
 	if s.Bucket == nil {
 		invalidParams.Add(request.NewErrParamRequired("Bucket"))
 	}
+	if s.Bucket != nil && len(*s.Bucket) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 1))
+	}
 	if s.Key == nil {
 		invalidParams.Add(request.NewErrParamRequired("Key"))
 	}
@@ -14191,6 +14194,9 @@ func (s *HeadObjectInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "HeadObjectInput"}
 	if s.Bucket == nil {
 		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 1))
 	}
 	if s.Key == nil {
 		invalidParams.Add(request.NewErrParamRequired("Key"))
@@ -18551,6 +18557,9 @@ func (s *PutBucketAccelerateConfigurationInput) Validate() error {
 	if s.Bucket == nil {
 		invalidParams.Add(request.NewErrParamRequired("Bucket"))
 	}
+	if s.Bucket != nil && len(*s.Bucket) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -20680,6 +20689,9 @@ func (s *PutObjectLockConfigurationInput) Validate() error {
 	if s.Bucket == nil {
 		invalidParams.Add(request.NewErrParamRequired("Bucket"))
 	}
+	if s.Bucket != nil && len(*s.Bucket) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -20997,6 +21009,9 @@ func (s *PutObjectTaggingInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PutObjectTaggingInput"}
 	if s.Bucket == nil {
 		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 1))
 	}
 	if s.Key == nil {
 		invalidParams.Add(request.NewErrParamRequired("Key"))
@@ -23927,6 +23942,9 @@ func (s *UploadPartInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UploadPartInput"}
 	if s.Bucket == nil {
 		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 1))
 	}
 	if s.Key == nil {
 		invalidParams.Add(request.NewErrParamRequired("Key"))

@@ -3052,6 +3052,9 @@ func (s *DeleteDomainAssociationInput) Validate() error {
 	if s.DomainName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DomainName"))
 	}
+	if s.DomainName != nil && len(*s.DomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3144,6 +3147,9 @@ func (s *DeleteJobInput) Validate() error {
 	}
 	if s.JobId == nil {
 		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -3478,6 +3484,9 @@ func (s *GetDomainAssociationInput) Validate() error {
 	if s.DomainName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DomainName"))
 	}
+	if s.DomainName != nil && len(*s.DomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3570,6 +3579,9 @@ func (s *GetJobInput) Validate() error {
 	}
 	if s.JobId == nil {
 		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -4503,6 +4515,9 @@ func (s *StopJobInput) Validate() error {
 	if s.JobId == nil {
 		invalidParams.Add(request.NewErrParamRequired("JobId"))
 	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5057,6 +5072,9 @@ func (s *UpdateDomainAssociationInput) Validate() error {
 	}
 	if s.DomainName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
 	}
 	if s.SubDomainSettings == nil {
 		invalidParams.Add(request.NewErrParamRequired("SubDomainSettings"))

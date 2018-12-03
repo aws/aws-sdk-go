@@ -1581,6 +1581,9 @@ func (s *AddFlowOutputsInput) Validate() error {
 	if s.FlowArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("FlowArn"))
 	}
+	if s.FlowArn != nil && len(*s.FlowArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowArn", 1))
+	}
 	if s.Outputs == nil {
 		invalidParams.Add(request.NewErrParamRequired("Outputs"))
 	}
@@ -1930,6 +1933,9 @@ func (s *DeleteFlowInput) Validate() error {
 	if s.FlowArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("FlowArn"))
 	}
+	if s.FlowArn != nil && len(*s.FlowArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowArn", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -1998,6 +2004,9 @@ func (s *DescribeFlowInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeFlowInput"}
 	if s.FlowArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("FlowArn"))
+	}
+	if s.FlowArn != nil && len(*s.FlowArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowArn", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2415,6 +2424,9 @@ func (s *GrantFlowEntitlementsInput) Validate() error {
 	}
 	if s.FlowArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("FlowArn"))
+	}
+	if s.FlowArn != nil && len(*s.FlowArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowArn", 1))
 	}
 	if s.Entitlements != nil {
 		for i, v := range s.Entitlements {
@@ -2918,8 +2930,14 @@ func (s *RemoveFlowOutputInput) Validate() error {
 	if s.FlowArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("FlowArn"))
 	}
+	if s.FlowArn != nil && len(*s.FlowArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowArn", 1))
+	}
 	if s.OutputArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("OutputArn"))
+	}
+	if s.OutputArn != nil && len(*s.OutputArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutputArn", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -3000,8 +3018,14 @@ func (s *RevokeFlowEntitlementInput) Validate() error {
 	if s.EntitlementArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("EntitlementArn"))
 	}
+	if s.EntitlementArn != nil && len(*s.EntitlementArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntitlementArn", 1))
+	}
 	if s.FlowArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("FlowArn"))
+	}
+	if s.FlowArn != nil && len(*s.FlowArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowArn", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -3311,6 +3335,9 @@ func (s *StartFlowInput) Validate() error {
 	if s.FlowArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("FlowArn"))
 	}
+	if s.FlowArn != nil && len(*s.FlowArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowArn", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3379,6 +3406,9 @@ func (s *StopFlowInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StopFlowInput"}
 	if s.FlowArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("FlowArn"))
+	}
+	if s.FlowArn != nil && len(*s.FlowArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowArn", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -3585,8 +3615,14 @@ func (s *UpdateFlowEntitlementInput) Validate() error {
 	if s.EntitlementArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("EntitlementArn"))
 	}
+	if s.EntitlementArn != nil && len(*s.EntitlementArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntitlementArn", 1))
+	}
 	if s.FlowArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("FlowArn"))
+	}
+	if s.FlowArn != nil && len(*s.FlowArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowArn", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -3713,8 +3749,14 @@ func (s *UpdateFlowOutputInput) Validate() error {
 	if s.FlowArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("FlowArn"))
 	}
+	if s.FlowArn != nil && len(*s.FlowArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowArn", 1))
+	}
 	if s.OutputArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("OutputArn"))
+	}
+	if s.OutputArn != nil && len(*s.OutputArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutputArn", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -3877,8 +3919,14 @@ func (s *UpdateFlowSourceInput) Validate() error {
 	if s.FlowArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("FlowArn"))
 	}
+	if s.FlowArn != nil && len(*s.FlowArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowArn", 1))
+	}
 	if s.SourceArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("SourceArn"))
+	}
+	if s.SourceArn != nil && len(*s.SourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceArn", 1))
 	}
 
 	if invalidParams.Len() > 0 {

@@ -7559,6 +7559,9 @@ func (s *CreateConnectorDefinitionVersionInput) Validate() error {
 	if s.ConnectorDefinitionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConnectorDefinitionId"))
 	}
+	if s.ConnectorDefinitionId != nil && len(*s.ConnectorDefinitionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectorDefinitionId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9548,6 +9551,9 @@ func (s *DeleteConnectorDefinitionInput) Validate() error {
 	if s.ConnectorDefinitionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConnectorDefinitionId"))
 	}
+	if s.ConnectorDefinitionId != nil && len(*s.ConnectorDefinitionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectorDefinitionId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -10839,6 +10845,9 @@ func (s *GetConnectorDefinitionInput) Validate() error {
 	if s.ConnectorDefinitionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConnectorDefinitionId"))
 	}
+	if s.ConnectorDefinitionId != nil && len(*s.ConnectorDefinitionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectorDefinitionId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -10950,8 +10959,14 @@ func (s *GetConnectorDefinitionVersionInput) Validate() error {
 	if s.ConnectorDefinitionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConnectorDefinitionId"))
 	}
+	if s.ConnectorDefinitionId != nil && len(*s.ConnectorDefinitionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectorDefinitionId", 1))
+	}
 	if s.ConnectorDefinitionVersionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConnectorDefinitionVersionId"))
+	}
+	if s.ConnectorDefinitionVersionId != nil && len(*s.ConnectorDefinitionVersionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectorDefinitionVersionId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -13424,6 +13439,9 @@ func (s *ListConnectorDefinitionVersionsInput) Validate() error {
 	if s.ConnectorDefinitionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConnectorDefinitionId"))
 	}
+	if s.ConnectorDefinitionId != nil && len(*s.ConnectorDefinitionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectorDefinitionId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -15555,6 +15573,9 @@ func (s *UpdateConnectorDefinitionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateConnectorDefinitionInput"}
 	if s.ConnectorDefinitionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConnectorDefinitionId"))
+	}
+	if s.ConnectorDefinitionId != nil && len(*s.ConnectorDefinitionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectorDefinitionId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
