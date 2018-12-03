@@ -7,7 +7,7 @@
     "CreateJob": "Create a new transcoding job. For information about jobs and job settings, see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html",
     "CreateJobTemplate": "Create a new job template. For information about job templates see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html",
     "CreatePreset": "Create a new preset. For information about job templates see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html",
-    "CreateQueue": "Create a new transcoding queue. For information about job templates see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html",
+    "CreateQueue": "Create a new transcoding queue. For information about queues, see Working With Queues in the User Guide at https://docs.aws.amazon.com/mediaconvert/latest/ug/working-with-queues.html",
     "DeleteJobTemplate": "Permanently delete a job template you have created.",
     "DeletePreset": "Permanently delete a preset you have created.",
     "DeleteQueue": "Permanently delete a queue you have created.",
@@ -460,10 +460,10 @@
       }
     },
     "Commitment": {
-      "base": "The length of time that you commit to when you set up a pricing plan contract for a reserved queue.",
+      "base": "The length of the term of your reserved queue pricing plan commitment.",
       "refs": {
-        "ReservationPlan$Commitment": "The length of time that you commit to when you set up a pricing plan contract for a reserved queue.",
-        "ReservationPlanSettings$Commitment": "The length of time that you commit to when you set up a pricing plan contract for a reserved queue."
+        "ReservationPlan$Commitment": "The length of the term of your reserved queue pricing plan commitment.",
+        "ReservationPlanSettings$Commitment": "The length of the term of your reserved queue pricing plan commitment."
       }
     },
     "ConflictException": {
@@ -515,7 +515,7 @@
       }
     },
     "CreateQueueRequest": {
-      "base": "Send your create queue request with the name of the queue.",
+      "base": "Create an on-demand queue by sending a CreateQueue request with the name of the queue. Create a reserved queue by sending a CreateQueue request with the pricing plan set to RESERVED and with values specified for the settings under reservationPlanSettings. When you create a reserved queue, you enter into a 12-month commitment to purchase the RTS that you specify. You can't cancel this commitment.",
       "refs": {
       }
     },
@@ -605,7 +605,7 @@
       }
     },
     "DeleteQueueRequest": {
-      "base": "Delete a queue by sending a request with the queue name.",
+      "base": "Delete a queue by sending a request with the queue name. You can't delete a queue with an active pricing plan or one that has unprocessed jobs in it.",
       "refs": {
       }
     },
@@ -1521,7 +1521,7 @@
       }
     },
     "ListQueuesResponse": {
-      "base": "Successful list queues return a JSON array of queues. If you don't specify how they are ordered, you will receive them alphabetically by name.",
+      "base": "Successful list queues requests return a JSON array of queues. If you don't specify how they are ordered, you will receive them alphabetically by name.",
       "refs": {
       }
     },
@@ -1989,10 +1989,10 @@
       }
     },
     "PricingPlan": {
-      "base": "Specifies whether the pricing plan for the queue is On-demand or Reserved. The pricing plan for the queue determines whether you pay On-demand or Reserved pricing for the transcoding jobs that you run through the queue. For Reserved queue pricing, you must set up a contract. You can create a Reserved queue contract through the AWS Elemental MediaConvert console.",
+      "base": "Specifies whether the pricing plan for the queue is on-demand or reserved. For on-demand, you pay per minute, billed in increments of .01 minute. For reserved, you pay for the transcoding capacity of the entire queue, regardless of how much or how little you use it. Reserved pricing requires a 12-month commitment.",
       "refs": {
-        "CreateQueueRequest$PricingPlan": "Optional; default is on-demand. Specifies whether the pricing plan for the queue is on-demand or reserved. The pricing plan for the queue determines whether you pay on-demand or reserved pricing for the transcoding jobs you run through the queue. For reserved queue pricing, you must set up a contract. You can create a reserved queue contract through the AWS Elemental MediaConvert console.",
-        "Queue$PricingPlan": "Specifies whether the pricing plan for the queue is On-demand or Reserved. The pricing plan for the queue determines whether you pay On-demand or Reserved pricing for the transcoding jobs that you run through the queue. For Reserved queue pricing, you must set up a contract. You can create a Reserved queue contract through the AWS Elemental MediaConvert console."
+        "CreateQueueRequest$PricingPlan": "Specifies whether the pricing plan for the queue is on-demand or reserved. For on-demand, you pay per minute, billed in increments of .01 minute. For reserved, you pay for the transcoding capacity of the entire queue, regardless of how much or how little you use it. Reserved pricing requires a 12-month commitment. When you use the API to create a queue, the default is on-demand.",
+        "Queue$PricingPlan": "Specifies whether the pricing plan for the queue is on-demand or reserved. For on-demand, you pay per minute, billed in increments of .01 minute. For reserved, you pay for the transcoding capacity of the entire queue, regardless of how much or how little you use it. Reserved pricing requires a 12-month commitment."
       }
     },
     "ProresCodecProfile": {
@@ -2044,7 +2044,7 @@
       }
     },
     "Queue": {
-      "base": "You can use queues to manage the resources that are available to your AWS account for running multiple transcoding jobs at the same time. If you don't specify a queue, the service sends all jobs through the default queue. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/about-resource-allocation-and-job-prioritization.html.",
+      "base": "You can use queues to manage the resources that are available to your AWS account for running multiple transcoding jobs at the same time. If you don't specify a queue, the service sends all jobs through the default queue. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/working-with-queues.html.",
       "refs": {
         "CreateQueueResponse$Queue": null,
         "GetQueueResponse$Queue": null,
@@ -2080,10 +2080,10 @@
       }
     },
     "RenewalType": {
-      "base": "Specifies whether the pricing plan contract for your reserved queue automatically renews (AUTO_RENEW) or expires (EXPIRE) at the end of the contract period.",
+      "base": "Specifies whether the term of your reserved queue pricing plan is automatically extended (AUTO_RENEW) or expires (EXPIRE) at the end of the term.",
       "refs": {
-        "ReservationPlan$RenewalType": "Specifies whether the pricing plan contract for your reserved queue automatically renews (AUTO_RENEW) or expires (EXPIRE) at the end of the contract period.",
-        "ReservationPlanSettings$RenewalType": "Specifies whether the pricing plan contract for your reserved queue automatically renews (AUTO_RENEW) or expires (EXPIRE) at the end of the contract period."
+        "ReservationPlan$RenewalType": "Specifies whether the term of your reserved queue pricing plan is automatically extended (AUTO_RENEW) or expires (EXPIRE) at the end of the term.",
+        "ReservationPlanSettings$RenewalType": "Specifies whether the term of your reserved queue pricing plan is automatically extended (AUTO_RENEW) or expires (EXPIRE) at the end of the term. When your term is auto renewed, you extend your commitment by 12 months from the auto renew date. You can cancel this commitment."
       }
     },
     "ReservationPlan": {
@@ -2096,7 +2096,7 @@
       "base": "Details about the pricing plan for your reserved queue. Required for reserved queues and not applicable to on-demand queues.",
       "refs": {
         "CreateQueueRequest$ReservationPlanSettings": "Details about the pricing plan for your reserved queue. Required for reserved queues and not applicable to on-demand queues.",
-        "UpdateQueueRequest$ReservationPlanSettings": "Details about the pricing plan for your reserved queue. Required for reserved queues and not applicable to on-demand queues."
+        "UpdateQueueRequest$ReservationPlanSettings": "The new details of your pricing plan for your reserved queue. When you set up a new pricing plan to replace an expired one, you enter into another 12-month commitment. When you add capacity to your queue by increasing the number of RTS, you extend the term of your commitment to 12 months from when you add capacity. After you make these commitments, you can't cancel them."
       }
     },
     "ReservationPlanStatus": {
@@ -2238,7 +2238,7 @@
       "refs": {
         "JobTemplate$Type": "A job template can be of two types: system or custom. System or built-in job templates can't be modified or deleted by the user.",
         "Preset$Type": "A preset can be of two types: system or custom. System or built-in preset can't be modified or deleted by the user.",
-        "Queue$Type": "Specifies whether this queue is system or custom. System queues are built in. You can't modify or delete system queues. You can create and modify custom queues."
+        "Queue$Type": "Specifies whether this on-demand queue is system or custom. System queues are built in. You can't modify or delete system queues. You can create and modify custom queues."
       }
     },
     "UntagResourceRequest": {
@@ -2277,7 +2277,7 @@
       }
     },
     "UpdateQueueResponse": {
-      "base": "Successful update queue requests return the new queue information in JSON.",
+      "base": "Successful update queue requests return the new queue information in JSON format.",
       "refs": {
       }
     },
@@ -2383,8 +2383,8 @@
         "OutputDetail$DurationInMs": "Duration in milliseconds",
         "Queue$ProgressingJobsCount": "The estimated number of jobs with a PROGRESSING status.",
         "Queue$SubmittedJobsCount": "The estimated number of jobs with a SUBMITTED status.",
-        "ReservationPlan$ReservedSlots": "Specifies the number of reserved transcode slots (RTS) for this queue. The number of RTS determines how many jobs the queue can process in parallel; each RTS can process one job at a time. To increase this number, create a replacement contract through the AWS Elemental MediaConvert console.",
-        "ReservationPlanSettings$ReservedSlots": "Specifies the number of reserved transcode slots (RTS) for this queue. The number of RTS determines how many jobs the queue can process in parallel; each RTS can process one job at a time. To increase this number, create a replacement contract through the AWS Elemental MediaConvert console.",
+        "ReservationPlan$ReservedSlots": "Specifies the number of reserved transcode slots (RTS) for this queue. The number of RTS determines how many jobs the queue can process in parallel; each RTS can process one job at a time. When you increase this number, you extend your existing commitment with a new 12-month commitment for a larger number of RTS. The new commitment begins when you purchase the additional capacity. You can't decrease the number of RTS in your reserved queue.",
+        "ReservationPlanSettings$ReservedSlots": "Specifies the number of reserved transcode slots (RTS) for this queue. The number of RTS determines how many jobs the queue can process in parallel; each RTS can process one job at a time. You can't decrease the number of RTS in your reserved queue. You can increase the number of RTS by extending your existing commitment with a new 12-month commitment for the larger number. The new commitment begins when you purchase the additional capacity. You can't cancel your commitment or revert to your original commitment after you increase the capacity.",
         "VideoDetail$HeightInPx": "Height in pixels for the output",
         "VideoDetail$WidthInPx": "Width in pixels for the output"
       }
@@ -3150,7 +3150,7 @@
         "DashIsoGroupSettings$BaseUrl": "A partial URI prefix that will be put in the manifest (.mpd) file at the top level BaseURL element. Can be used if streams are delivered from a different URL than the manifest file.",
         "DeleteJobTemplateRequest$Name": "The name of the job template to be deleted.",
         "DeletePresetRequest$Name": "The name of the preset to be deleted.",
-        "DeleteQueueRequest$Name": "The name of the queue to be deleted.",
+        "DeleteQueueRequest$Name": "The name of the queue that you want to delete.",
         "DescribeEndpointsRequest$NextToken": "Use this string, provided with the response to a previous request, to request the next batch of endpoints.",
         "DescribeEndpointsResponse$NextToken": "Use this string to request the next batch of endpoints.",
         "DisassociateCertificateRequest$Arn": "The ARN of the ACM certificate that you want to disassociate from your MediaConvert resource.",
@@ -3419,10 +3419,10 @@
         "JobTemplate$LastUpdated": "The timestamp in epoch seconds when the Job template was last updated.",
         "Preset$CreatedAt": "The timestamp in epoch seconds for preset creation.",
         "Preset$LastUpdated": "The timestamp in epoch seconds when the preset was last updated.",
-        "Queue$CreatedAt": "The time stamp in epoch seconds for queue creation.",
-        "Queue$LastUpdated": "The time stamp in epoch seconds when the queue was last updated.",
-        "ReservationPlan$ExpiresAt": "The time stamp, in epoch seconds, for when the pricing plan for this reserved queue expires.",
-        "ReservationPlan$PurchasedAt": "The time stamp in epoch seconds when the reserved queue's reservation plan was created.",
+        "Queue$CreatedAt": "The timestamp in epoch seconds for when you created the queue.",
+        "Queue$LastUpdated": "The timestamp in epoch seconds for when you most recently updated the queue.",
+        "ReservationPlan$ExpiresAt": "The timestamp in epoch seconds for when the current pricing plan term for this reserved queue expires.",
+        "ReservationPlan$PurchasedAt": "The timestamp in epoch seconds for when you set up the current pricing plan for this reserved queue.",
         "Timing$FinishTime": "The time, in Unix epoch format, that the transcoding job finished",
         "Timing$StartTime": "The time, in Unix epoch format, that transcoding for the job began.",
         "Timing$SubmitTime": "The time, in Unix epoch format, that you submitted the job."

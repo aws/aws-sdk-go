@@ -1,3 +1,17 @@
+Release v1.15.89 (2018-12-03)
+===
+
+### Service Client Updates
+* `service/devicefarm`: Updates service API and documentation
+  * Customers can now schedule runs without a need to create a Device Pool. They also get realtime information on public device availability.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/mediaconvert`: Updates service documentation
+  * Documentation updates for mediaconvert
+* `service/servicecatalog`: Updates service documentation
+  * Documentation updates for servicecatalog
+* `service/storagegateway`: Updates service API and documentation
+  * API list-local-disks returns a list of the gateway's local disks. This release adds a field DiskAttributeList to these disks.
+
 Release v1.15.88 (2018-11-29)
 ===
 
