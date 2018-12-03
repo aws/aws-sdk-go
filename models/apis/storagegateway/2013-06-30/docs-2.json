@@ -625,22 +625,34 @@
       }
     },
     "Disk": {
-      "base": null,
+      "base": "<p>Represents a gateway's local disk.</p>",
       "refs": {
         "Disks$member": null
       }
     },
     "DiskAllocationType": {
-      "base": null,
+      "base": "<p>One of the <code>DiskAllocationType</code> enumeration values that identifies how a local disk is used. Valid values: \"UPLOAD_BUFFER\", \"CACHE_STORAGE\".</p>",
       "refs": {
         "Disk$DiskAllocationType": null
+      }
+    },
+    "DiskAttribute": {
+      "base": null,
+      "refs": {
+        "DiskAttributeList$member": null
+      }
+    },
+    "DiskAttributeList": {
+      "base": "<p>A list of values that represents attributes of a local disk.</p>",
+      "refs": {
+        "Disk$DiskAttributeList": null
       }
     },
     "DiskId": {
       "base": null,
       "refs": {
         "CreateStorediSCSIVolumeInput$DiskId": "<p>The unique identifier for the gateway local disk that is configured as a stored volume. Use <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/API_ListLocalDisks.html\">ListLocalDisks</a> to list disk IDs for a gateway.</p>",
-        "Disk$DiskId": null,
+        "Disk$DiskId": "<p>The unique device ID or other distinguishing data that identifies a local disk.</p>",
         "DiskIds$member": null,
         "StorediSCSIVolume$VolumeDiskId": "<p>The ID of the local disk that was specified in the <a>CreateStorediSCSIVolume</a> operation.</p>"
       }
@@ -1943,7 +1955,7 @@
         "DescribeUploadBufferOutput$UploadBufferAllocatedInBytes": null,
         "DescribeWorkingStorageOutput$WorkingStorageUsedInBytes": "<p>The total working storage in bytes in use by the gateway. If no working storage is configured for the gateway, this field returns 0.</p>",
         "DescribeWorkingStorageOutput$WorkingStorageAllocatedInBytes": "<p>The total working storage in bytes allocated for the gateway. If no working storage is configured for the gateway, this field returns 0.</p>",
-        "Disk$DiskSizeInBytes": null,
+        "Disk$DiskSizeInBytes": "<p>The local disk size in bytes.</p>",
         "StorediSCSIVolume$VolumeSizeInBytes": "<p>The size of the volume in bytes.</p>",
         "VolumeInfo$VolumeSizeInBytes": "<p>The size of the volume in bytes.</p> <p>Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens (-).</p>",
         "VolumeRecoveryPointInfo$VolumeSizeInBytes": null,
@@ -1955,10 +1967,10 @@
       "refs": {
         "CreateSnapshotFromVolumeRecoveryPointOutput$VolumeRecoveryPointTime": null,
         "DescribeGatewayInformationOutput$GatewayName": "<p>The name you configured for your gateway.</p>",
-        "Disk$DiskPath": null,
-        "Disk$DiskNode": null,
-        "Disk$DiskStatus": null,
-        "Disk$DiskAllocationResource": null,
+        "Disk$DiskPath": "<p>The path of a local disk in the gateway virtual machine (VM).</p>",
+        "Disk$DiskNode": "<p>The device node of a local disk as assigned by the virtualization environment.</p>",
+        "Disk$DiskStatus": "<p>A value that represents the status of a local disk.</p>",
+        "Disk$DiskAllocationResource": "<p>The iSCSI Qualified Name (IQN) that is defined for a disk. This field is not included in the response if the local disk is not defined as an iSCSI target. The format of this field is <i>targetIqn::LUNNumber::region-volumeId</i>. </p>",
         "GatewayInfo$GatewayName": "<p>The name of the gateway.</p>",
         "InternalServerError$message": "<p>A human-readable message describing the error that occurred.</p>",
         "InvalidGatewayRequestException$message": "<p>A human-readable message describing the error that occurred.</p>",

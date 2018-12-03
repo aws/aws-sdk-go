@@ -1740,13 +1740,25 @@
         "DiskStatus":{"shape":"string"},
         "DiskSizeInBytes":{"shape":"long"},
         "DiskAllocationType":{"shape":"DiskAllocationType"},
-        "DiskAllocationResource":{"shape":"string"}
+        "DiskAllocationResource":{"shape":"string"},
+        "DiskAttributeList":{"shape":"DiskAttributeList"}
       }
     },
     "DiskAllocationType":{
       "type":"string",
       "max":100,
       "min":3
+    },
+    "DiskAttribute":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "DiskAttributeList":{
+      "type":"list",
+      "member":{"shape":"DiskAttribute"},
+      "max":10,
+      "min":0
     },
     "DiskId":{
       "type":"string",
