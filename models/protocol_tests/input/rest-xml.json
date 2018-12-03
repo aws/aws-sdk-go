@@ -1754,6 +1754,9 @@
     "shapes": {
       "InputShape": {
         "type": "structure",
+        "required": [
+            "URIFooEnum"
+        ],
         "members": {
           "HeaderEnum": {
             "shape": "EnumType",
@@ -1824,14 +1827,15 @@
           },
           "http": {
             "method": "POST",
-            "requestUri": "/path"
+            "requestUri": "/Enum/{URIEnum}"
           },
           "name": "OperationName"
         },
         "params": {
+          "URIFooEnum": "bar"
         },
         "serialized": {
-          "uri": "/path",
+          "uri": "/Enum/bar",
           "headers": {}
         }
       }

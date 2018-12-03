@@ -5383,7 +5383,7 @@ func (c *InputService25ProtocolTest) InputService25TestCaseOperation2Request(inp
 	op := &request.Operation{
 		Name:       opInputService25TestCaseOperation2,
 		HTTPMethod: "POST",
-		HTTPPath:   "/path",
+		HTTPPath:   "/Enum/{URIEnum}",
 	}
 
 	if input == nil {
@@ -7008,7 +7008,9 @@ func TestInputService25ProtocolTestEnumCase1(t *testing.T) {
 
 func TestInputService25ProtocolTestEnumCase2(t *testing.T) {
 	svc := NewInputService25ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
-	input := &InputService25TestShapeInputService25TestCaseOperation2Input{}
+	input := &InputService25TestShapeInputService25TestCaseOperation2Input{
+		URIFooEnum: aws.String("bar"),
+	}
 	req, _ := svc.InputService25TestCaseOperation2Request(input)
 	r := req.HTTPRequest
 
@@ -7019,7 +7021,7 @@ func TestInputService25ProtocolTestEnumCase2(t *testing.T) {
 	}
 
 	// assert URL
-	awstesting.AssertURL(t, "https://test/path", r.URL.String())
+	awstesting.AssertURL(t, "https://test/Enum/bar", r.URL.String())
 
 	// assert headers
 
