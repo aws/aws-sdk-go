@@ -26094,7 +26094,7 @@ type KeyPair struct {
 	_ struct{} `type:"structure"`
 
 	// The private key.
-	PrivateKey *string `min:"1" type:"string"`
+	PrivateKey *string `min:"1" type:"string" sensitive:"true"`
 
 	// The public key.
 	PublicKey *string `min:"1" type:"string"`

@@ -960,7 +960,7 @@ type DeleteLexiconInput struct {
 	// The name of the lexicon to delete. Must be an existing lexicon in the region.
 	//
 	// Name is a required field
-	Name *string `location:"uri" locationName:"LexiconName" type:"string" required:"true"`
+	Name *string `location:"uri" locationName:"LexiconName" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -1093,7 +1093,7 @@ type GetLexiconInput struct {
 	// Name of the lexicon.
 	//
 	// Name is a required field
-	Name *string `location:"uri" locationName:"LexiconName" type:"string" required:"true"`
+	Name *string `location:"uri" locationName:"LexiconName" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -1234,7 +1234,7 @@ type Lexicon struct {
 	Content *string `type:"string"`
 
 	// Name of the lexicon.
-	Name *string `type:"string"`
+	Name *string `type:"string" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -1339,7 +1339,7 @@ type LexiconDescription struct {
 	Attributes *LexiconAttributes `type:"structure"`
 
 	// Name of the lexicon.
-	Name *string `type:"string"`
+	Name *string `type:"string" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -1524,7 +1524,7 @@ type PutLexiconInput struct {
 	// long.
 	//
 	// Name is a required field
-	Name *string `location:"uri" locationName:"LexiconName" type:"string" required:"true"`
+	Name *string `location:"uri" locationName:"LexiconName" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation

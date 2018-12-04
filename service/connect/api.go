@@ -2218,14 +2218,14 @@ type Credentials struct {
 	_ struct{} `type:"structure"`
 
 	// An access token generated for a federated user to access Amazon Connect
-	AccessToken *string `type:"string"`
+	AccessToken *string `type:"string" sensitive:"true"`
 
 	// A token generated with an expiration time for the session a user is logged
 	// in to Amazon Connect
 	AccessTokenExpiration *time.Time `type:"timestamp"`
 
 	// Renews a token generated for a user to access the Amazon Connect instance.
-	RefreshToken *string `type:"string"`
+	RefreshToken *string `type:"string" sensitive:"true"`
 
 	// Renews the expiration timer for a generated token.
 	RefreshTokenExpiration *time.Time `type:"timestamp"`

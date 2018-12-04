@@ -110,6 +110,9 @@ type Shape struct {
 	// Flags that the shape cannot be rename. Prevents the shape from being
 	// renamed further by the Input/Output.
 	AliasedShapeName bool
+
+	// Sensitive types should not be logged by SDK type loggers.
+	Sensitive bool `json:"sensitive"`
 }
 
 // CanBeEmpty returns if the shape value can sent request as an empty value.
@@ -512,6 +515,10 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 
 	if ref.Ignore {
 		tags = append(tags, ShapeTag{"ignore", "true"})
+	}
+
+	if ref.Shape.Sensitive {
+		tags = append(tags, ShapeTag{"sensitive", "true"})
 	}
 
 	return fmt.Sprintf("`%s`", tags)

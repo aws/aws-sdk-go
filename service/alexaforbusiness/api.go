@@ -10703,7 +10703,7 @@ type PutSkillAuthorizationInput struct {
 	// be populated in the AuthorizationResult map to establish the authorization.
 	//
 	// AuthorizationResult is a required field
-	AuthorizationResult map[string]*string `type:"map" required:"true"`
+	AuthorizationResult map[string]*string `type:"map" required:"true" sensitive:"true"`
 
 	// The room that the skill is authorized for.
 	RoomArn *string `type:"string"`

@@ -2947,7 +2947,7 @@ type EngineAttribute struct {
 	Name *string `type:"string"`
 
 	// The value of the engine attribute.
-	Value *string `type:"string"`
+	Value *string `type:"string" sensitive:"true"`
 }
 
 // String returns the string representation

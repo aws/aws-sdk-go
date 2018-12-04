@@ -3941,7 +3941,7 @@ type CreateUserInput struct {
 	// The password for the user to be created.
 	//
 	// Password is a required field
-	Password *string `type:"string" required:"true"`
+	Password *string `type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -6505,7 +6505,7 @@ type ResetPasswordInput struct {
 	// The new password for the user.
 	//
 	// Password is a required field
-	Password *string `type:"string" required:"true"`
+	Password *string `type:"string" required:"true" sensitive:"true"`
 
 	// The identifier of the user for whom the password is reset.
 	//

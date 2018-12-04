@@ -5281,7 +5281,7 @@ type Environment struct {
 	_ struct{} `type:"structure"`
 
 	// Environment variable key-value pairs.
-	Variables map[string]*string `type:"map"`
+	Variables map[string]*string `type:"map" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -5308,7 +5308,7 @@ type EnvironmentError struct {
 	ErrorCode *string `type:"string"`
 
 	// The error message.
-	Message *string `type:"string"`
+	Message *string `type:"string" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -5341,7 +5341,7 @@ type EnvironmentResponse struct {
 	Error *EnvironmentError `type:"structure"`
 
 	// Environment variable key-value pairs.
-	Variables map[string]*string `type:"map"`
+	Variables map[string]*string `type:"map" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -5473,7 +5473,7 @@ type FunctionCode struct {
 	// AWS SDK and AWS CLI clients handle the encoding for you.
 	//
 	// ZipFile is automatically base64 encoded/decoded by the SDK.
-	ZipFile []byte `type:"blob"`
+	ZipFile []byte `type:"blob" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -6572,7 +6572,7 @@ type InvokeInput struct {
 	LogType *string `location:"header" locationName:"X-Amz-Log-Type" type:"string" enum:"LogType"`
 
 	// JSON that you want to provide to your Lambda function as input.
-	Payload []byte `type:"blob"`
+	Payload []byte `type:"blob" sensitive:"true"`
 
 	// Specify a version or alias to invoke a published version of the function.
 	Qualifier *string `location:"querystring" locationName:"Qualifier" min:"1" type:"string"`
@@ -6671,7 +6671,7 @@ type InvokeOutput struct {
 	// In the event of a function error this field contains a message describing
 	// the error. For the Handled errors the Lambda function will report this message.
 	// For Unhandled errors AWS Lambda reports the message.
-	Payload []byte `type:"blob"`
+	Payload []byte `type:"blob" sensitive:"true"`
 
 	// The HTTP status code will be in the 200 range for successful request. For
 	// the RequestResponse invocation type this status code will be 200. For the
@@ -6771,7 +6771,7 @@ type LayerVersionContentInput struct {
 	// handle the encoding for you.
 	//
 	// ZipFile is automatically base64 encoded/decoded by the SDK.
-	ZipFile []byte `type:"blob"`
+	ZipFile []byte `type:"blob" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -8696,7 +8696,7 @@ type UpdateFunctionCodeInput struct {
 	// Permissions (http://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role.html).
 	//
 	// ZipFile is automatically base64 encoded/decoded by the SDK.
-	ZipFile []byte `type:"blob"`
+	ZipFile []byte `type:"blob" sensitive:"true"`
 }
 
 // String returns the string representation

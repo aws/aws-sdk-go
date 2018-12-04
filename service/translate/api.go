@@ -1026,7 +1026,7 @@ type TerminologyData struct {
 	// File is automatically base64 encoded/decoded by the SDK.
 	//
 	// File is a required field
-	File []byte `type:"blob" required:"true"`
+	File []byte `type:"blob" required:"true" sensitive:"true"`
 
 	// The data format of the custom terminology. Either CSV or TMX.
 	//

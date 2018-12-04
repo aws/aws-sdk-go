@@ -2486,7 +2486,7 @@ type GetDashboardEmbedUrlOutput struct {
 	// dashboard. This URL is valid for 5 minutes, and the resulting session is
 	// valid for 10 hours. The API provides the URL with an auth_code that enables
 	// a single-signon session.
-	EmbedUrl *string `type:"string"`
+	EmbedUrl *string `type:"string" sensitive:"true"`
 
 	// The AWS request ID for this operation.
 	RequestId *string `type:"string"`
