@@ -2404,6 +2404,9 @@ func (s *DeleteUserInput) Validate() error {
 	if s.UserId == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserId"))
 	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2470,6 +2473,9 @@ func (s *DescribeUserHierarchyGroupInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeUserHierarchyGroupInput"}
 	if s.HierarchyGroupId == nil {
 		invalidParams.Add(request.NewErrParamRequired("HierarchyGroupId"))
+	}
+	if s.HierarchyGroupId != nil && len(*s.HierarchyGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("HierarchyGroupId", 1))
 	}
 	if s.InstanceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
@@ -2626,6 +2632,9 @@ func (s *DescribeUserInput) Validate() error {
 	}
 	if s.UserId == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -4682,6 +4691,9 @@ func (s *UpdateUserHierarchyInput) Validate() error {
 	if s.UserId == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserId"))
 	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4768,6 +4780,9 @@ func (s *UpdateUserIdentityInfoInput) Validate() error {
 	}
 	if s.UserId == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
 	}
 	if s.IdentityInfo != nil {
 		if err := s.IdentityInfo.Validate(); err != nil {
@@ -4862,6 +4877,9 @@ func (s *UpdateUserPhoneConfigInput) Validate() error {
 	if s.UserId == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserId"))
 	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
 	if s.PhoneConfig != nil {
 		if err := s.PhoneConfig.Validate(); err != nil {
 			invalidParams.AddNested("PhoneConfig", err.(request.ErrInvalidParams))
@@ -4954,6 +4972,9 @@ func (s *UpdateUserRoutingProfileInput) Validate() error {
 	if s.UserId == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserId"))
 	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5043,6 +5064,9 @@ func (s *UpdateUserSecurityProfilesInput) Validate() error {
 	}
 	if s.UserId == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
 	}
 
 	if invalidParams.Len() > 0 {

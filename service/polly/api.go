@@ -979,6 +979,9 @@ func (s *DeleteLexiconInput) Validate() error {
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -1111,6 +1114,9 @@ func (s *GetLexiconInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetLexiconInput"}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -1545,6 +1551,9 @@ func (s *PutLexiconInput) Validate() error {
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
 
 	if invalidParams.Len() > 0 {

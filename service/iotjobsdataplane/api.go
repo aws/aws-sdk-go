@@ -428,6 +428,9 @@ func (s *DescribeJobExecutionInput) Validate() error {
 	if s.JobId == nil {
 		invalidParams.Add(request.NewErrParamRequired("JobId"))
 	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
 	if s.ThingName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ThingName"))
 	}

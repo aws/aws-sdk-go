@@ -2148,8 +2148,14 @@ func (s *CreateUserRequest) Validate() error {
 	if s.BrokerId == nil {
 		invalidParams.Add(request.NewErrParamRequired("BrokerId"))
 	}
+	if s.BrokerId != nil && len(*s.BrokerId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BrokerId", 1))
+	}
 	if s.Username == nil {
 		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2210,6 +2216,9 @@ func (s *DeleteBrokerInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeleteBrokerInput"}
 	if s.BrokerId == nil {
 		invalidParams.Add(request.NewErrParamRequired("BrokerId"))
+	}
+	if s.BrokerId != nil && len(*s.BrokerId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BrokerId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2272,8 +2281,14 @@ func (s *DeleteUserInput) Validate() error {
 	if s.BrokerId == nil {
 		invalidParams.Add(request.NewErrParamRequired("BrokerId"))
 	}
+	if s.BrokerId != nil && len(*s.BrokerId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BrokerId", 1))
+	}
 	if s.Username == nil {
 		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2330,6 +2345,9 @@ func (s *DescribeBrokerInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeBrokerInput"}
 	if s.BrokerId == nil {
 		invalidParams.Add(request.NewErrParamRequired("BrokerId"))
+	}
+	if s.BrokerId != nil && len(*s.BrokerId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BrokerId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2541,6 +2559,9 @@ func (s *DescribeConfigurationInput) Validate() error {
 	if s.ConfigurationId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConfigurationId"))
 	}
+	if s.ConfigurationId != nil && len(*s.ConfigurationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2660,8 +2681,14 @@ func (s *DescribeConfigurationRevisionInput) Validate() error {
 	if s.ConfigurationId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConfigurationId"))
 	}
+	if s.ConfigurationId != nil && len(*s.ConfigurationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationId", 1))
+	}
 	if s.ConfigurationRevision == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConfigurationRevision"))
+	}
+	if s.ConfigurationRevision != nil && len(*s.ConfigurationRevision) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationRevision", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2754,8 +2781,14 @@ func (s *DescribeUserInput) Validate() error {
 	if s.BrokerId == nil {
 		invalidParams.Add(request.NewErrParamRequired("BrokerId"))
 	}
+	if s.BrokerId != nil && len(*s.BrokerId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BrokerId", 1))
+	}
 	if s.Username == nil {
 		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2931,6 +2964,9 @@ func (s *ListConfigurationRevisionsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListConfigurationRevisionsInput"}
 	if s.ConfigurationId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConfigurationId"))
+	}
+	if s.ConfigurationId != nil && len(*s.ConfigurationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationId", 1))
 	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
@@ -3113,6 +3149,9 @@ func (s *ListUsersInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListUsersInput"}
 	if s.BrokerId == nil {
 		invalidParams.Add(request.NewErrParamRequired("BrokerId"))
+	}
+	if s.BrokerId != nil && len(*s.BrokerId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BrokerId", 1))
 	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
@@ -3342,6 +3381,9 @@ func (s *RebootBrokerInput) Validate() error {
 	if s.BrokerId == nil {
 		invalidParams.Add(request.NewErrParamRequired("BrokerId"))
 	}
+	if s.BrokerId != nil && len(*s.BrokerId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BrokerId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3444,6 +3486,9 @@ func (s *UpdateBrokerRequest) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateBrokerRequest"}
 	if s.BrokerId == nil {
 		invalidParams.Add(request.NewErrParamRequired("BrokerId"))
+	}
+	if s.BrokerId != nil && len(*s.BrokerId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BrokerId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -3564,6 +3609,9 @@ func (s *UpdateConfigurationRequest) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateConfigurationRequest"}
 	if s.ConfigurationId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConfigurationId"))
+	}
+	if s.ConfigurationId != nil && len(*s.ConfigurationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -3699,8 +3747,14 @@ func (s *UpdateUserRequest) Validate() error {
 	if s.BrokerId == nil {
 		invalidParams.Add(request.NewErrParamRequired("BrokerId"))
 	}
+	if s.BrokerId != nil && len(*s.BrokerId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BrokerId", 1))
+	}
 	if s.Username == nil {
 		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
 	}
 
 	if invalidParams.Len() > 0 {

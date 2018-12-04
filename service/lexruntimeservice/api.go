@@ -591,8 +591,14 @@ func (s *PostContentInput) Validate() error {
 	if s.BotAlias == nil {
 		invalidParams.Add(request.NewErrParamRequired("BotAlias"))
 	}
+	if s.BotAlias != nil && len(*s.BotAlias) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BotAlias", 1))
+	}
 	if s.BotName == nil {
 		invalidParams.Add(request.NewErrParamRequired("BotName"))
+	}
+	if s.BotName != nil && len(*s.BotName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BotName", 1))
 	}
 	if s.ContentType == nil {
 		invalidParams.Add(request.NewErrParamRequired("ContentType"))
@@ -929,8 +935,14 @@ func (s *PostTextInput) Validate() error {
 	if s.BotAlias == nil {
 		invalidParams.Add(request.NewErrParamRequired("BotAlias"))
 	}
+	if s.BotAlias != nil && len(*s.BotAlias) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BotAlias", 1))
+	}
 	if s.BotName == nil {
 		invalidParams.Add(request.NewErrParamRequired("BotName"))
+	}
+	if s.BotName != nil && len(*s.BotName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BotName", 1))
 	}
 	if s.InputText == nil {
 		invalidParams.Add(request.NewErrParamRequired("InputText"))

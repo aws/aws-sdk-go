@@ -569,6 +569,9 @@ func (s *PublishInput) Validate() error {
 	if s.Topic == nil {
 		invalidParams.Add(request.NewErrParamRequired("Topic"))
 	}
+	if s.Topic != nil && len(*s.Topic) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Topic", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams

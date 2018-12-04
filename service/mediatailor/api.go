@@ -403,6 +403,9 @@ func (s *DeletePlaybackConfigurationInput) Validate() error {
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -452,6 +455,9 @@ func (s *GetPlaybackConfigurationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetPlaybackConfigurationInput"}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
 
 	if invalidParams.Len() > 0 {

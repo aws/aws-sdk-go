@@ -1613,6 +1613,9 @@ func (s *CreateGroupInput) Validate() error {
 	if s.Namespace == nil {
 		invalidParams.Add(request.NewErrParamRequired("Namespace"))
 	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -1702,6 +1705,9 @@ func (s *CreateGroupMembershipInput) Validate() error {
 	}
 	if s.Namespace == nil {
 		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -1865,6 +1871,9 @@ func (s *DeleteGroupInput) Validate() error {
 	if s.Namespace == nil {
 		invalidParams.Add(request.NewErrParamRequired("Namespace"))
 	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -1948,6 +1957,9 @@ func (s *DeleteGroupMembershipInput) Validate() error {
 	}
 	if s.Namespace == nil {
 		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2086,6 +2098,9 @@ func (s *DeleteUserInput) Validate() error {
 	if s.Namespace == nil {
 		invalidParams.Add(request.NewErrParamRequired("Namespace"))
 	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
 	if s.UserName == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserName"))
 	}
@@ -2197,6 +2212,9 @@ func (s *DescribeGroupInput) Validate() error {
 	if s.Namespace == nil {
 		invalidParams.Add(request.NewErrParamRequired("Namespace"))
 	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2304,6 +2322,9 @@ func (s *DescribeUserInput) Validate() error {
 	}
 	if s.Namespace == nil {
 		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
 	}
 	if s.UserName == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserName"))
@@ -2429,6 +2450,9 @@ func (s *GetDashboardEmbedUrlInput) Validate() error {
 	}
 	if s.DashboardId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DashboardId"))
+	}
+	if s.DashboardId != nil && len(*s.DashboardId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DashboardId", 1))
 	}
 	if s.IdentityType == nil {
 		invalidParams.Add(request.NewErrParamRequired("IdentityType"))
@@ -2658,6 +2682,9 @@ func (s *ListGroupMembershipsInput) Validate() error {
 	if s.Namespace == nil {
 		invalidParams.Add(request.NewErrParamRequired("Namespace"))
 	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2791,6 +2818,9 @@ func (s *ListGroupsInput) Validate() error {
 	if s.Namespace == nil {
 		invalidParams.Add(request.NewErrParamRequired("Namespace"))
 	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2922,6 +2952,9 @@ func (s *ListUserGroupsInput) Validate() error {
 	}
 	if s.Namespace == nil {
 		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
 	}
 	if s.UserName == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserName"))
@@ -3061,6 +3094,9 @@ func (s *ListUsersInput) Validate() error {
 	}
 	if s.Namespace == nil {
 		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -3229,6 +3265,9 @@ func (s *RegisterUserInput) Validate() error {
 	if s.Namespace == nil {
 		invalidParams.Add(request.NewErrParamRequired("Namespace"))
 	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
 	if s.UserName != nil && len(*s.UserName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("UserName", 1))
 	}
@@ -3385,6 +3424,9 @@ func (s *UpdateGroupInput) Validate() error {
 	if s.Namespace == nil {
 		invalidParams.Add(request.NewErrParamRequired("Namespace"))
 	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3519,6 +3561,9 @@ func (s *UpdateUserInput) Validate() error {
 	}
 	if s.Namespace == nil {
 		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
 	}
 	if s.Role == nil {
 		invalidParams.Add(request.NewErrParamRequired("Role"))

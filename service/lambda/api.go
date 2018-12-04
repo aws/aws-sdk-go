@@ -5049,6 +5049,9 @@ func (s *DeleteEventSourceMappingInput) Validate() error {
 	if s.UUID == nil {
 		invalidParams.Add(request.NewErrParamRequired("UUID"))
 	}
+	if s.UUID != nil && len(*s.UUID) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UUID", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5900,6 +5903,9 @@ func (s *GetEventSourceMappingInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetEventSourceMappingInput"}
 	if s.UUID == nil {
 		invalidParams.Add(request.NewErrParamRequired("UUID"))
+	}
+	if s.UUID != nil && len(*s.UUID) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UUID", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7537,6 +7543,9 @@ func (s *ListTagsInput) Validate() error {
 	if s.Resource == nil {
 		invalidParams.Add(request.NewErrParamRequired("Resource"))
 	}
+	if s.Resource != nil && len(*s.Resource) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Resource", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8281,6 +8290,9 @@ func (s *TagResourceInput) Validate() error {
 	if s.Resource == nil {
 		invalidParams.Add(request.NewErrParamRequired("Resource"))
 	}
+	if s.Resource != nil && len(*s.Resource) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Resource", 1))
+	}
 	if s.Tags == nil {
 		invalidParams.Add(request.NewErrParamRequired("Tags"))
 	}
@@ -8398,6 +8410,9 @@ func (s *UntagResourceInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
 	if s.Resource == nil {
 		invalidParams.Add(request.NewErrParamRequired("Resource"))
+	}
+	if s.Resource != nil && len(*s.Resource) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Resource", 1))
 	}
 	if s.TagKeys == nil {
 		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
@@ -8608,6 +8623,9 @@ func (s *UpdateEventSourceMappingInput) Validate() error {
 	}
 	if s.UUID == nil {
 		invalidParams.Add(request.NewErrParamRequired("UUID"))
+	}
+	if s.UUID != nil && len(*s.UUID) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UUID", 1))
 	}
 
 	if invalidParams.Len() > 0 {

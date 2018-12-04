@@ -1915,6 +1915,9 @@ func (s *BatchSuspendUserInput) Validate() error {
 	if s.AccountId == nil {
 		invalidParams.Add(request.NewErrParamRequired("AccountId"))
 	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
 	if s.UserIdList == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserIdList"))
 	}
@@ -1992,6 +1995,9 @@ func (s *BatchUnsuspendUserInput) Validate() error {
 	if s.AccountId == nil {
 		invalidParams.Add(request.NewErrParamRequired("AccountId"))
 	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
 	if s.UserIdList == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserIdList"))
 	}
@@ -2068,6 +2074,9 @@ func (s *BatchUpdateUserInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "BatchUpdateUserInput"}
 	if s.AccountId == nil {
 		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
 	}
 	if s.UpdateUserRequestItems == nil {
 		invalidParams.Add(request.NewErrParamRequired("UpdateUserRequestItems"))
@@ -2215,6 +2224,9 @@ func (s *DeleteAccountInput) Validate() error {
 	if s.AccountId == nil {
 		invalidParams.Add(request.NewErrParamRequired("AccountId"))
 	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2266,6 +2278,9 @@ func (s *GetAccountInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetAccountInput"}
 	if s.AccountId == nil {
 		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2327,6 +2342,9 @@ func (s *GetAccountSettingsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetAccountSettingsInput"}
 	if s.AccountId == nil {
 		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2394,8 +2412,14 @@ func (s *GetUserInput) Validate() error {
 	if s.AccountId == nil {
 		invalidParams.Add(request.NewErrParamRequired("AccountId"))
 	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
 	if s.UserId == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2520,6 +2544,9 @@ func (s *InviteUsersInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "InviteUsersInput"}
 	if s.AccountId == nil {
 		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
 	}
 	if s.UserEmailList == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserEmailList"))
@@ -2698,6 +2725,9 @@ func (s *ListUsersInput) Validate() error {
 	if s.AccountId == nil {
 		invalidParams.Add(request.NewErrParamRequired("AccountId"))
 	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -2794,8 +2824,14 @@ func (s *LogoutUserInput) Validate() error {
 	if s.AccountId == nil {
 		invalidParams.Add(request.NewErrParamRequired("AccountId"))
 	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
 	if s.UserId == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2860,8 +2896,14 @@ func (s *ResetPersonalPINInput) Validate() error {
 	if s.AccountId == nil {
 		invalidParams.Add(request.NewErrParamRequired("AccountId"))
 	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
 	if s.UserId == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2932,6 +2974,9 @@ func (s *UpdateAccountInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateAccountInput"}
 	if s.AccountId == nil {
 		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
@@ -3008,6 +3053,9 @@ func (s *UpdateAccountSettingsInput) Validate() error {
 	if s.AccountId == nil {
 		invalidParams.Add(request.NewErrParamRequired("AccountId"))
 	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
 	if s.AccountSettings == nil {
 		invalidParams.Add(request.NewErrParamRequired("AccountSettings"))
 	}
@@ -3078,8 +3126,14 @@ func (s *UpdateUserInput) Validate() error {
 	if s.AccountId == nil {
 		invalidParams.Add(request.NewErrParamRequired("AccountId"))
 	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
 	if s.UserId == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
 	}
 
 	if invalidParams.Len() > 0 {

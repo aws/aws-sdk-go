@@ -894,6 +894,9 @@ func (s *ClaimDevicesByClaimCodeInput) Validate() error {
 	if s.ClaimCode == nil {
 		invalidParams.Add(request.NewErrParamRequired("ClaimCode"))
 	}
+	if s.ClaimCode != nil && len(*s.ClaimCode) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClaimCode", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -962,6 +965,9 @@ func (s *DescribeDeviceInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeDeviceInput"}
 	if s.DeviceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DeviceId"))
+	}
+	if s.DeviceId != nil && len(*s.DeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -1188,6 +1194,9 @@ func (s *FinalizeDeviceClaimInput) Validate() error {
 	if s.DeviceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DeviceId"))
 	}
+	if s.DeviceId != nil && len(*s.DeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -1245,6 +1254,9 @@ func (s *GetDeviceMethodsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetDeviceMethodsInput"}
 	if s.DeviceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DeviceId"))
+	}
+	if s.DeviceId != nil && len(*s.DeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -1304,6 +1316,9 @@ func (s *InitiateDeviceClaimInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "InitiateDeviceClaimInput"}
 	if s.DeviceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DeviceId"))
+	}
+	if s.DeviceId != nil && len(*s.DeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -1368,6 +1383,9 @@ func (s *InvokeDeviceMethodInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "InvokeDeviceMethodInput"}
 	if s.DeviceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DeviceId"))
+	}
+	if s.DeviceId != nil && len(*s.DeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -1449,6 +1467,9 @@ func (s *ListDeviceEventsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListDeviceEventsInput"}
 	if s.DeviceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DeviceId"))
+	}
+	if s.DeviceId != nil && len(*s.DeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceId", 1))
 	}
 	if s.FromTimeStamp == nil {
 		invalidParams.Add(request.NewErrParamRequired("FromTimeStamp"))
@@ -1632,6 +1653,9 @@ func (s *UnclaimDeviceInput) Validate() error {
 	if s.DeviceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DeviceId"))
 	}
+	if s.DeviceId != nil && len(*s.DeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -1692,6 +1716,9 @@ func (s *UpdateDeviceStateInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateDeviceStateInput"}
 	if s.DeviceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DeviceId"))
+	}
+	if s.DeviceId != nil && len(*s.DeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceId", 1))
 	}
 
 	if invalidParams.Len() > 0 {

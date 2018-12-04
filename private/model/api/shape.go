@@ -117,11 +117,13 @@ type Shape struct {
 
 // CanBeEmpty returns if the shape value can sent request as an empty value.
 // String, blob, list, and map are types must not be empty when the member is
-// decorated with HostLabel.
+// serialized to the uri path, or decorated with HostLabel.
 func (ref *ShapeRef) CanBeEmpty() bool {
 	switch ref.Shape.Type {
 	case "string":
-		return !ref.HostLabel
+		return !(ref.Location == "uri" || ref.HostLabel)
+	case "blob", "map", "list":
+		return !(ref.Location == "uri")
 	default:
 		return true
 	}
@@ -796,7 +798,7 @@ func (s *Shape) IsEnum() bool {
 }
 
 // IsRequired returns if member is a required field. Required fields are fields
-// marked as required, or hostLabels.
+// marked as required, hostLabels, or location of uri path.
 func (s *Shape) IsRequired(member string) bool {
 	ref, ok := s.MemberRefs[member]
 	if !ok {
@@ -805,7 +807,7 @@ func (s *Shape) IsRequired(member string) bool {
 			s.ShapeName, member,
 		))
 	}
-	if ref.HostLabel {
+	if ref.Location == "uri" || ref.HostLabel {
 		return true
 	}
 	for _, n := range s.Required {

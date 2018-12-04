@@ -2535,9 +2535,26 @@ func (c *InputService14ProtocolTest) InputService14TestCaseOperation1WithContext
 type InputService14TestShapeInputService14TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 
-	PipelineId *string `location:"uri" type:"string"`
+	// PipelineId is a required field
+	PipelineId *string `location:"uri" type:"string" required:"true"`
 
 	QueryDoc map[string]*string `location:"querystring" type:"map"`
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InputService14TestShapeInputService14TestCaseOperation1Input) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InputService14TestShapeInputService14TestCaseOperation1Input"}
+	if s.PipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineId"))
+	}
+	if s.PipelineId != nil && len(*s.PipelineId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetPipelineId sets the PipelineId field's value.
@@ -2690,9 +2707,26 @@ func (c *InputService15ProtocolTest) InputService15TestCaseOperation1WithContext
 type InputService15TestShapeInputService15TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 
-	PipelineId *string `location:"uri" type:"string"`
+	// PipelineId is a required field
+	PipelineId *string `location:"uri" type:"string" required:"true"`
 
 	QueryDoc map[string][]*string `location:"querystring" type:"map"`
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InputService15TestShapeInputService15TestCaseOperation1Input) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InputService15TestShapeInputService15TestCaseOperation1Input"}
+	if s.PipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineId"))
+	}
+	if s.PipelineId != nil && len(*s.PipelineId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetPipelineId sets the PipelineId field's value.
@@ -4059,9 +4093,33 @@ func (c *InputService21ProtocolTest) InputService21TestCaseOperation1WithContext
 type InputService21TestShapeInputService21TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 
-	Bucket *string `location:"uri" type:"string"`
+	// Bucket is a required field
+	Bucket *string `location:"uri" type:"string" required:"true"`
 
-	Key *string `location:"uri" type:"string"`
+	// Key is a required field
+	Key *string `location:"uri" type:"string" required:"true"`
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InputService21TestShapeInputService21TestCaseOperation1Input) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InputService21TestShapeInputService21TestCaseOperation1Input"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 1))
+	}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetBucket sets the Bucket field's value.
@@ -5325,7 +5383,7 @@ func (c *InputService25ProtocolTest) InputService25TestCaseOperation2Request(inp
 	op := &request.Operation{
 		Name:       opInputService25TestCaseOperation2,
 		HTTPMethod: "POST",
-		HTTPPath:   "/path",
+		HTTPPath:   "/Enum/{URIEnum}",
 	}
 
 	if input == nil {
@@ -5377,9 +5435,26 @@ type InputService25TestShapeInputService25TestCaseOperation1Input struct {
 
 	ListEnums []*string `type:"list"`
 
-	URIFooEnum *string `location:"uri" locationName:"URIEnum" type:"string" enum:"InputService25TestShapeEnumType"`
+	// URIFooEnum is a required field
+	URIFooEnum *string `location:"uri" locationName:"URIEnum" type:"string" required:"true" enum:"InputService25TestShapeEnumType"`
 
 	URIListEnums []*string `location:"querystring" locationName:"ListEnums" type:"list"`
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InputService25TestShapeInputService25TestCaseOperation1Input) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InputService25TestShapeInputService25TestCaseOperation1Input"}
+	if s.URIFooEnum == nil {
+		invalidParams.Add(request.NewErrParamRequired("URIFooEnum"))
+	}
+	if s.URIFooEnum != nil && len(*s.URIFooEnum) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("URIFooEnum", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetFooEnum sets the FooEnum field's value.
@@ -5425,9 +5500,26 @@ type InputService25TestShapeInputService25TestCaseOperation2Input struct {
 
 	ListEnums []*string `type:"list"`
 
-	URIFooEnum *string `location:"uri" locationName:"URIEnum" type:"string" enum:"InputService25TestShapeEnumType"`
+	// URIFooEnum is a required field
+	URIFooEnum *string `location:"uri" locationName:"URIEnum" type:"string" required:"true" enum:"InputService25TestShapeEnumType"`
 
 	URIListEnums []*string `location:"querystring" locationName:"ListEnums" type:"list"`
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InputService25TestShapeInputService25TestCaseOperation2Input) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InputService25TestShapeInputService25TestCaseOperation2Input"}
+	if s.URIFooEnum == nil {
+		invalidParams.Add(request.NewErrParamRequired("URIFooEnum"))
+	}
+	if s.URIFooEnum != nil && len(*s.URIFooEnum) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("URIFooEnum", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetFooEnum sets the FooEnum field's value.
@@ -6916,7 +7008,9 @@ func TestInputService25ProtocolTestEnumCase1(t *testing.T) {
 
 func TestInputService25ProtocolTestEnumCase2(t *testing.T) {
 	svc := NewInputService25ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
-	input := &InputService25TestShapeInputService25TestCaseOperation2Input{}
+	input := &InputService25TestShapeInputService25TestCaseOperation2Input{
+		URIFooEnum: aws.String("bar"),
+	}
 	req, _ := svc.InputService25TestCaseOperation2Request(input)
 	r := req.HTTPRequest
 
@@ -6927,7 +7021,7 @@ func TestInputService25ProtocolTestEnumCase2(t *testing.T) {
 	}
 
 	// assert URL
-	awstesting.AssertURL(t, "https://test/path", r.URL.String())
+	awstesting.AssertURL(t, "https://test/Enum/bar", r.URL.String())
 
 	// assert headers
 

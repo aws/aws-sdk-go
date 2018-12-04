@@ -6661,6 +6661,9 @@ func (s *GetBotInput) Validate() error {
 	if s.VersionOrAlias == nil {
 		invalidParams.Add(request.NewErrParamRequired("VersionOrAlias"))
 	}
+	if s.VersionOrAlias != nil && len(*s.VersionOrAlias) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VersionOrAlias", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7084,6 +7087,9 @@ func (s *GetBuiltinIntentInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetBuiltinIntentInput"}
 	if s.Signature == nil {
 		invalidParams.Add(request.NewErrParamRequired("Signature"))
+	}
+	if s.Signature != nil && len(*s.Signature) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Signature", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7544,6 +7550,9 @@ func (s *GetImportInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetImportInput"}
 	if s.ImportId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ImportId"))
+	}
+	if s.ImportId != nil && len(*s.ImportId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ImportId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
