@@ -1,3 +1,12 @@
+Release v1.15.90 (2018-12-04)
+===
+
+### Service Client Updates
+* `service/health`: Updates service API and documentation
+  * AWS Health API DescribeAffectedEntities operation now includes a field that returns the URL of the affected entity.
+* `service/s3`: Updates service API
+  * S3 Inventory reports can now be generated in Parquet format by setting the Destination Format to be 'Parquet'.
+
 Release v1.15.89 (2018-12-03)
 ===
 
