@@ -750,6 +750,8 @@ type AffectedEntity struct {
 	// Example: arn:aws:health:us-east-1:111222333444:entity/AVh5GGT7ul1arKr1sE1K
 	EntityArn *string `locationName:"entityArn" type:"string"`
 
+	EntityUrl *string `locationName:"entityUrl" type:"string"`
+
 	// The ID of the affected entity.
 	EntityValue *string `locationName:"entityValue" type:"string"`
 
@@ -787,6 +789,12 @@ func (s *AffectedEntity) SetAwsAccountId(v string) *AffectedEntity {
 // SetEntityArn sets the EntityArn field's value.
 func (s *AffectedEntity) SetEntityArn(v string) *AffectedEntity {
 	s.EntityArn = &v
+	return s
+}
+
+// SetEntityUrl sets the EntityUrl field's value.
+func (s *AffectedEntity) SetEntityUrl(v string) *AffectedEntity {
+	s.EntityUrl = &v
 	return s
 }
 
