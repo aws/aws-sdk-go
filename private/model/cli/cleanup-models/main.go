@@ -21,7 +21,8 @@ func main() {
 	_, excluded := api.TrimModelServiceVersions(modelPaths)
 
 	for _, exclude := range excluded {
-		fmt.Println("removing:", exclude)
-		os.Remove(exclude)
+		modelPath := filepath.Dir(exclude)
+		fmt.Println("removing:", modelPath)
+		os.RemoveAll(modelPath)
 	}
 }
