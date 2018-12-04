@@ -162,7 +162,6 @@ func (builder defaultExamplesBuilder) BuildScalar(name, memName string, ref *Sha
 	default:
 		panic(fmt.Errorf("Unsupported scalar type: %v", reflect.TypeOf(v)))
 	}
-	return ""
 }
 
 func (builder defaultExamplesBuilder) BuildComplex(name, memName string, ref *ShapeRef, v map[string]interface{}) string {
@@ -180,8 +179,6 @@ func (builder defaultExamplesBuilder) BuildComplex(name, memName string, ref *Sh
 	default:
 		panic(fmt.Sprintf("Expected complex type but recieved %q", ref.Shape.Type))
 	}
-
-	return ""
 }
 
 func (builder defaultExamplesBuilder) GoType(ref *ShapeRef, elem bool) string {

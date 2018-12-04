@@ -166,11 +166,11 @@ lint:
 	echo "$$lint"; \
 	if [ "$$lint" != "" ]; then exit 1; fi
 
-SDK_BASE_FOLDERS=$(shell ls -d */ | grep -v vendor | grep -v awsmigrate)
-GO_VET_CMD=go tool vet --all -shadow
+SDK_BASE_FOLDERS=$(shell go list ./... | grep -v vendor | grep -v awsmigrate)
 
 vet:
-	${GO_VET_CMD} ${SDK_BASE_FOLDERS}
+	@echo "go vet SDK packages"
+	@go vet -tags "example codegen integration" -all ${SDK_BASE_FOLDERS}
 
 get-deps: get-deps-tests get-deps-x-tests get-deps-codegen get-deps-verify
 
