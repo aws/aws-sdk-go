@@ -94,15 +94,15 @@ integration: core-integ client-integ
 
 core-integ:
 	@echo "Integration Testing SDK core"
-	go test -count=1 -tags "integration" -v -run '^TestInteg_' ./aws/... ./private/... ./internal/... ./awstesting/... 
+	AWS_REGION="" go test -count=1 -tags "integration" -v -run '^TestInteg_' ./aws/... ./private/... ./internal/... ./awstesting/...
 
 client-integ:
 	@echo "Integration Testing SDK clients"
-	go test -count=1 -tags "integration" -v -run '^TestInteg_' ./service/...
+	AWS_REGION="" go test -count=1 -tags "integration" -v -run '^TestInteg_' ./service/...
 
 s3crypto-integ:
 	@echo "Integration Testing S3 Cyrpto utility"
-	go test -count=1 -tags "s3crypto_integ integration" -v -run '^TestInteg_' ./service/s3/s3crypto
+	AWS_REGION="" go test -count=1 -tags "s3crypto_integ integration" -v -run '^TestInteg_' ./service/s3/s3crypto
 
 cleanup-integ-buckets:
 	@echo "Cleaning up SDK integraiton resources"
