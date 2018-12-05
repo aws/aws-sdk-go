@@ -362,6 +362,16 @@ type DashConfiguration struct {
 	// The URL that is used to initiate a playback session for devices that support
 	// DASH.
 	ManifestEndpointPrefix *string `type:"string"`
+
+	// The setting that controls whether MediaTailor includes the Location tag in
+	// DASH Manifests. MediaTailor populates the Location tag with the URL for manifest
+	// update requests, to be used by players that don't support sticky redirects.
+	// Disable this if you have CDN routing rules set up for accessing MediaTailor
+	// manifests and you are either using client-side reporting or your players
+	// support sticky HTTP redirects. Valid values are DISABLED and EMT_DEFAULT.
+	// The EMT_DEFAULT setting enables the inclusion of the tag and is the default
+	// value.
+	MpdLocation *string `type:"string"`
 }
 
 // String returns the string representation
@@ -377,6 +387,34 @@ func (s DashConfiguration) GoString() string {
 // SetManifestEndpointPrefix sets the ManifestEndpointPrefix field's value.
 func (s *DashConfiguration) SetManifestEndpointPrefix(v string) *DashConfiguration {
 	s.ManifestEndpointPrefix = &v
+	return s
+}
+
+// SetMpdLocation sets the MpdLocation field's value.
+func (s *DashConfiguration) SetMpdLocation(v string) *DashConfiguration {
+	s.MpdLocation = &v
+	return s
+}
+
+type DashConfigurationForPut struct {
+	_ struct{} `type:"structure"`
+
+	MpdLocation *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DashConfigurationForPut) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DashConfigurationForPut) GoString() string {
+	return s.String()
+}
+
+// SetMpdLocation sets the MpdLocation field's value.
+func (s *DashConfigurationForPut) SetMpdLocation(v string) *DashConfigurationForPut {
+	s.MpdLocation = &v
 	return s
 }
 
@@ -764,6 +802,8 @@ type PutPlaybackConfigurationInput struct {
 	// CloudFront, for content and ad segment management.
 	CdnConfiguration *CdnConfiguration `type:"structure"`
 
+	DashConfiguration *DashConfigurationForPut `type:"structure"`
+
 	// The identifier for the configuration.
 	Name *string `type:"string"`
 
@@ -804,6 +844,12 @@ func (s *PutPlaybackConfigurationInput) SetAdDecisionServerUrl(v string) *PutPla
 // SetCdnConfiguration sets the CdnConfiguration field's value.
 func (s *PutPlaybackConfigurationInput) SetCdnConfiguration(v *CdnConfiguration) *PutPlaybackConfigurationInput {
 	s.CdnConfiguration = v
+	return s
+}
+
+// SetDashConfiguration sets the DashConfiguration field's value.
+func (s *PutPlaybackConfigurationInput) SetDashConfiguration(v *DashConfigurationForPut) *PutPlaybackConfigurationInput {
+	s.DashConfiguration = v
 	return s
 }
 

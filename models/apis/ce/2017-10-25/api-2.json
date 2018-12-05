@@ -152,7 +152,9 @@
     "Coverage":{
       "type":"structure",
       "members":{
-        "CoverageHours":{"shape":"CoverageHours"}
+        "CoverageHours":{"shape":"CoverageHours"},
+        "CoverageNormalizedUnits":{"shape":"CoverageNormalizedUnits"},
+        "CoverageCost":{"shape":"CoverageCost"}
       }
     },
     "CoverageByTime":{
@@ -161,6 +163,12 @@
         "TimePeriod":{"shape":"DateInterval"},
         "Groups":{"shape":"ReservationCoverageGroups"},
         "Total":{"shape":"Coverage"}
+      }
+    },
+    "CoverageCost":{
+      "type":"structure",
+      "members":{
+        "OnDemandCost":{"shape":"OnDemandCost"}
       }
     },
     "CoverageHours":{
@@ -173,6 +181,16 @@
       }
     },
     "CoverageHoursPercentage":{"type":"string"},
+    "CoverageNormalizedUnits":{
+      "type":"structure",
+      "members":{
+        "OnDemandNormalizedUnits":{"shape":"OnDemandNormalizedUnits"},
+        "ReservedNormalizedUnits":{"shape":"ReservedNormalizedUnits"},
+        "TotalRunningNormalizedUnits":{"shape":"TotalRunningNormalizedUnits"},
+        "CoverageNormalizedUnitsPercentage":{"shape":"CoverageNormalizedUnitsPercentage"}
+      }
+    },
+    "CoverageNormalizedUnitsPercentage":{"type":"string"},
     "CoveragesByTime":{
       "type":"list",
       "member":{"shape":"CoverageByTime"}
@@ -389,6 +407,7 @@
         "GroupBy":{"shape":"GroupDefinitions"},
         "Granularity":{"shape":"Granularity"},
         "Filter":{"shape":"Expression"},
+        "Metrics":{"shape":"MetricNames"},
         "NextPageToken":{"shape":"NextPageToken"}
       }
     },
@@ -587,8 +606,10 @@
         "CONVERTIBLE"
       ]
     },
+    "OnDemandCost":{"type":"string"},
     "OnDemandCostOfRIHoursUsed":{"type":"string"},
     "OnDemandHours":{"type":"string"},
+    "OnDemandNormalizedUnits":{"type":"string"},
     "PageSize":{"type":"integer"},
     "PaymentOption":{
       "type":"string",
@@ -607,6 +628,7 @@
       "min":51
     },
     "PurchasedHours":{"type":"string"},
+    "PurchasedUnits":{"type":"string"},
     "RDSInstanceDetails":{
       "type":"structure",
       "members":{
@@ -642,9 +664,13 @@
       "type":"structure",
       "members":{
         "UtilizationPercentage":{"shape":"UtilizationPercentage"},
+        "UtilizationPercentageInUnits":{"shape":"UtilizationPercentageInUnits"},
         "PurchasedHours":{"shape":"PurchasedHours"},
+        "PurchasedUnits":{"shape":"PurchasedUnits"},
         "TotalActualHours":{"shape":"TotalActualHours"},
+        "TotalActualUnits":{"shape":"TotalActualUnits"},
         "UnusedHours":{"shape":"UnusedHours"},
+        "UnusedUnits":{"shape":"UnusedUnits"},
         "OnDemandCostOfRIHoursUsed":{"shape":"OnDemandCostOfRIHoursUsed"},
         "NetRISavings":{"shape":"NetRISavings"},
         "TotalPotentialRISavings":{"shape":"TotalPotentialRISavings"},
@@ -739,6 +765,7 @@
       "member":{"shape":"ReservationUtilizationGroup"}
     },
     "ReservedHours":{"type":"string"},
+    "ReservedNormalizedUnits":{"type":"string"},
     "ResultByTime":{
       "type":"structure",
       "members":{
@@ -779,10 +806,13 @@
       ]
     },
     "TotalActualHours":{"type":"string"},
+    "TotalActualUnits":{"type":"string"},
     "TotalAmortizedFee":{"type":"string"},
     "TotalPotentialRISavings":{"type":"string"},
     "TotalRunningHours":{"type":"string"},
+    "TotalRunningNormalizedUnits":{"type":"string"},
     "UnusedHours":{"type":"string"},
+    "UnusedUnits":{"type":"string"},
     "UtilizationByTime":{
       "type":"structure",
       "members":{
@@ -792,6 +822,7 @@
       }
     },
     "UtilizationPercentage":{"type":"string"},
+    "UtilizationPercentageInUnits":{"type":"string"},
     "UtilizationsByTime":{
       "type":"list",
       "member":{"shape":"UtilizationByTime"}
