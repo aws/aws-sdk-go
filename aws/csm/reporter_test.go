@@ -1,64 +1,213 @@
+// +build go1.7
+
 package csm_test
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 	"net/http/httptest"
-	"strings"
 	"testing"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/client/metadata"
 	"github.com/aws/aws-sdk-go/aws/csm"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/aws/signer/v4"
+	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
 func TestReportingMetrics(t *testing.T) {
+	sess := unit.Session.Copy(&aws.Config{
+		SleepDelay: func(time.Duration) {},
+	})
+	sess.Handlers.Validate.Clear()
+	sess.Handlers.Sign.Clear()
+	sess.Handlers.Send.Clear()
+
 	reporter := csm.Get()
 	if reporter == nil {
 		t.Errorf("expected non-nil reporter")
 	}
-
-	sess := session.New()
-	sess.Handlers.Clear()
 	reporter.InjectHandlers(&sess.Handlers)
 
-	md := metadata.ClientInfo{}
-	op := &request.Operation{}
-	r := request.New(*sess.Config, md, sess.Handlers, client.DefaultRetryer{NumMaxRetries: 0}, op, nil, nil)
-	sess.Handlers.Complete.Run(r)
+	cases := map[string]struct {
+		Request       *request.Request
+		ExpectMetrics []map[string]interface{}
+	}{
+		"successful request": {
+			Request: func() *request.Request {
+				md := metadata.ClientInfo{}
+				op := &request.Operation{Name: "OperationName"}
+				req := request.New(*sess.Config, md, sess.Handlers, client.DefaultRetryer{NumMaxRetries: 3}, op, nil, nil)
+				req.Handlers.Send.PushBack(func(r *request.Request) {
+					req.HTTPResponse = &http.Response{
+						StatusCode: 200,
+						Header:     http.Header{},
+					}
+				})
+				return req
+			}(),
+			ExpectMetrics: []map[string]interface{}{
+				{
+					"Type":           "ApiCallAttempt",
+					"HttpStatusCode": float64(200),
+				},
+				{
+					"Type": "ApiCall",
+				},
+			},
+		},
+		"failed request, no retry": {
+			Request: func() *request.Request {
+				md := metadata.ClientInfo{}
+				op := &request.Operation{Name: "OperationName"}
+				req := request.New(*sess.Config, md, sess.Handlers, client.DefaultRetryer{NumMaxRetries: 3}, op, nil, nil)
+				req.Handlers.Send.PushBack(func(r *request.Request) {
+					req.HTTPResponse = &http.Response{
+						StatusCode: 400,
+						Header:     http.Header{},
+					}
+					req.Retryable = aws.Bool(false)
+				})
 
-	foundAttempt := false
-	foundCall := false
+				return req
+			}(),
+			ExpectMetrics: []map[string]interface{}{
+				{
+					"Type":           "ApiCallAttempt",
+					"HttpStatusCode": float64(400),
+				},
+				{
+					"Type":         "ApiCall",
+					"AttemptCount": float64(1),
+				},
+			},
+		},
+		"failed request, with retry": {
+			Request: func() *request.Request {
+				md := metadata.ClientInfo{}
+				op := &request.Operation{Name: "OperationName"}
+				req := request.New(*sess.Config, md, sess.Handlers, client.DefaultRetryer{NumMaxRetries: 1}, op, nil, nil)
+				resps := []*http.Response{
+					{
+						StatusCode: 500,
+						Header:     http.Header{},
+					},
+					{
+						StatusCode: 500,
+						Header:     http.Header{},
+					},
+				}
+				req.Handlers.Send.PushBack(func(r *request.Request) {
+					req.HTTPResponse = resps[0]
+					resps = resps[1:]
+				})
 
-	expectedMetrics := 2
+				return req
+			}(),
+			ExpectMetrics: []map[string]interface{}{
+				{
+					"Type":           "ApiCallAttempt",
+					"HttpStatusCode": float64(500),
+				},
+				{
+					"Type":           "ApiCallAttempt",
+					"HttpStatusCode": float64(500),
+				},
+				{
+					"Type":         "ApiCall",
+					"AttemptCount": float64(2),
+				},
+			},
+		},
+		"success request, with retry": {
+			Request: func() *request.Request {
+				md := metadata.ClientInfo{}
+				op := &request.Operation{Name: "OperationName"}
+				req := request.New(*sess.Config, md, sess.Handlers, client.DefaultRetryer{NumMaxRetries: 3}, op, nil, nil)
+				resps := []*http.Response{
+					{
+						StatusCode: 500,
+						Header:     http.Header{},
+					},
+					{
+						StatusCode: 500,
+						Header:     http.Header{},
+					},
+					{
+						StatusCode: 200,
+						Header:     http.Header{},
+					},
+				}
+				req.Handlers.Send.PushBack(func(r *request.Request) {
+					req.HTTPResponse = resps[0]
+					resps = resps[1:]
+				})
 
-	for i := 0; i < expectedMetrics; i++ {
-		m := <-csm.MetricsCh
-		for k, v := range m {
-			switch k {
-			case "Type":
-				a := v.(string)
-				foundCall = foundCall || a == "ApiCall"
-				foundAttempt = foundAttempt || a == "ApiCallAttempt"
+				return req
+			}(),
+			ExpectMetrics: []map[string]interface{}{
+				{
+					"Type":           "ApiCallAttempt",
+					"HttpStatusCode": float64(500),
+				},
+				{
+					"Type":           "ApiCallAttempt",
+					"HttpStatusCode": float64(500),
+				},
+				{
+					"Type":           "ApiCallAttempt",
+					"HttpStatusCode": float64(200),
+				},
+				{
+					"Type":         "ApiCall",
+					"AttemptCount": float64(3),
+				},
+			},
+		},
+	}
 
-				if prefix := "ApiCall"; !strings.HasPrefix(a, prefix) {
-					t.Errorf("expected 'APICall' prefix, but received %q", a)
+	for name, c := range cases {
+		t.Run(name, func(t *testing.T) {
+			ctx, cancelFn := context.WithTimeout(context.Background(), time.Second)
+			defer cancelFn()
+
+			c.Request.Send()
+			for i := 0; i < len(c.ExpectMetrics); i++ {
+				select {
+				case m := <-csm.MetricsCh:
+					for ek, ev := range c.ExpectMetrics[i] {
+						if _, ok := m[ek]; !ok {
+							t.Errorf("expect %v metric member", ek)
+						}
+						if e, a := ev, m[ek]; e != a {
+							t.Errorf("expect %v:%v(%T), metric value, got %v(%T)", ek, e, e, a, a)
+						}
+					}
+				case <-ctx.Done():
+					t.Errorf("timeout waiting for metrics")
+					return
 				}
 			}
-		}
-	}
 
-	if !foundAttempt {
-		t.Errorf("expected attempt event to have occurred")
-	}
-
-	if !foundCall {
-		t.Errorf("expected call event to have occurred")
+			var extraMetrics []map[string]interface{}
+		Loop:
+			for {
+				select {
+				case m := <-csm.MetricsCh:
+					extraMetrics = append(extraMetrics, m)
+				default:
+					break Loop
+				}
+			}
+			if len(extraMetrics) != 0 {
+				t.Fatalf("unexpected metrics, %#v", extraMetrics)
+			}
+		})
 	}
 }
 
@@ -90,7 +239,7 @@ func BenchmarkWithCSM(b *testing.B) {
 		Endpoint: aws.String(server.URL),
 	}
 
-	sess := session.New(&cfg)
+	sess := unit.Session.Copy(&cfg)
 	r := csm.Get()
 
 	r.InjectHandlers(&sess.Handlers)
@@ -135,7 +284,7 @@ func BenchmarkWithCSMNoUDPConnection(b *testing.B) {
 		Endpoint: aws.String(server.URL),
 	}
 
-	sess := session.New(&cfg)
+	sess := unit.Session.Copy(&cfg)
 	r := csm.Get()
 	r.Pause()
 	r.InjectHandlers(&sess.Handlers)
@@ -180,7 +329,7 @@ func BenchmarkWithoutCSM(b *testing.B) {
 	cfg := aws.Config{
 		Endpoint: aws.String(server.URL),
 	}
-	sess := session.New(&cfg)
+	sess := unit.Session.Copy(&cfg)
 	c := sess.ClientConfig("id", &cfg)
 
 	svc := mockService{
