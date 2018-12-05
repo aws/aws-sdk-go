@@ -189,6 +189,38 @@ func TestProcessProviderFromSessionWithProfileCrd(t *testing.T) {
 
 }
 
+func TestProcessProviderFromSessionWithLongSessionToken(t *testing.T) {
+	oldEnv := preserveImportantStashEnv()
+	defer awstesting.PopEnv(oldEnv)
+
+	os.Setenv("AWS_PROFILE", "long_session_token")
+	if runtime.GOOS == "windows" {
+		os.Setenv("AWS_SHARED_CREDENTIALS_FILE", "testdata\\shconfig_win.ini")
+	} else {
+		os.Setenv("AWS_SHARED_CREDENTIALS_FILE", "testdata/shconfig.ini")
+	}
+
+	sess, err := session.NewSession(&aws.Config{
+		Region: aws.String("region")},
+	)
+
+	if err != nil {
+		t.Errorf("error getting session: %v", err)
+	}
+
+	creds, err := sess.Config.Credentials.Get()
+	if err != nil {
+		t.Errorf("error getting credentials: %v", err)
+	}
+
+	// Text string same length as session token returned by AWS for AssumeRoleWithWebIdentity
+	e := "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+	if a := creds.SessionToken; e != a {
+		t.Errorf("expected %v, got %v", e, a)
+	}
+
+}
+
 func TestProcessProviderNotFromCredProcCrd(t *testing.T) {
 	oldEnv := preserveImportantStashEnv()
 	defer awstesting.PopEnv(oldEnv)
