@@ -30,6 +30,7 @@ func TestReportingMetrics(t *testing.T) {
 	md := metadata.ClientInfo{}
 	op := &request.Operation{}
 	r := request.New(*sess.Config, md, sess.Handlers, client.DefaultRetryer{NumMaxRetries: 0}, op, nil, nil)
+	sess.Handlers.CompleteAttempt.Run(r)
 	sess.Handlers.Complete.Run(r)
 
 	foundAttempt := false
