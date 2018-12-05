@@ -95,6 +95,17 @@
       "members" : {
         "ManifestEndpointPrefix" : {
           "shape" : "__string"
+        },
+        "MpdLocation" : {
+          "shape" : "__string"
+        }
+      }
+    },
+    "DashConfigurationForPut" : {
+      "type" : "structure",
+      "members" : {
+        "MpdLocation" : {
+          "shape" : "__string"
         }
       }
     },
@@ -209,6 +220,9 @@
         },
         "CdnConfiguration" : {
           "shape" : "CdnConfiguration"
+        },
+        "DashConfiguration" : {
+          "shape" : "DashConfigurationForPut"
         },
         "Name" : {
           "shape" : "__string"
