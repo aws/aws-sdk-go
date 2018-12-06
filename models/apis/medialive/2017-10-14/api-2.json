@@ -2174,6 +2174,10 @@
           "shape": "__listOf__string",
           "locationName": "inputSecurityGroups"
         },
+        "MediaConnectFlows": {
+          "shape": "__listOfMediaConnectFlowRequest",
+          "locationName": "mediaConnectFlows"
+        },
         "Name": {
           "shape": "__string",
           "locationName": "name"
@@ -2182,6 +2186,10 @@
           "shape": "__string",
           "locationName": "requestId",
           "idempotencyToken": true
+        },
+        "RoleArn": {
+          "shape": "__string",
+          "locationName": "roleArn"
         },
         "Sources": {
           "shape": "__listOfInputSourceRequest",
@@ -2204,6 +2212,10 @@
           "shape": "__listOf__string",
           "locationName": "inputSecurityGroups"
         },
+        "MediaConnectFlows": {
+          "shape": "__listOfMediaConnectFlowRequest",
+          "locationName": "mediaConnectFlows"
+        },
         "Name": {
           "shape": "__string",
           "locationName": "name"
@@ -2212,6 +2224,10 @@
           "shape": "__string",
           "locationName": "requestId",
           "idempotencyToken": true
+        },
+        "RoleArn": {
+          "shape": "__string",
+          "locationName": "roleArn"
         },
         "Sources": {
           "shape": "__listOfInputSourceRequest",
@@ -2554,9 +2570,17 @@
           "shape": "__string",
           "locationName": "id"
         },
+        "MediaConnectFlows": {
+          "shape": "__listOfMediaConnectFlow",
+          "locationName": "mediaConnectFlows"
+        },
         "Name": {
           "shape": "__string",
           "locationName": "name"
+        },
+        "RoleArn": {
+          "shape": "__string",
+          "locationName": "roleArn"
         },
         "SecurityGroups": {
           "shape": "__listOf__string",
@@ -4236,9 +4260,17 @@
           "shape": "__string",
           "locationName": "id"
         },
+        "MediaConnectFlows": {
+          "shape": "__listOfMediaConnectFlow",
+          "locationName": "mediaConnectFlows"
+        },
         "Name": {
           "shape": "__string",
           "locationName": "name"
+        },
+        "RoleArn": {
+          "shape": "__string",
+          "locationName": "roleArn"
         },
         "SecurityGroups": {
           "shape": "__listOf__string",
@@ -4376,6 +4408,13 @@
       ]
     },
     "InputLossActionForMsSmoothOut": {
+      "type": "string",
+      "enum": [
+        "EMIT_OUTPUT",
+        "PAUSE_OUTPUT"
+      ]
+    },
+    "InputLossActionForRtmpOut": {
       "type": "string",
       "enum": [
         "EMIT_OUTPUT",
@@ -4617,7 +4656,8 @@
         "RTMP_PUSH",
         "RTMP_PULL",
         "URL_PULL",
-        "MP4_FILE"
+        "MP4_FILE",
+        "MEDIACONNECT"
       ]
     },
     "InputWhitelistRule": {
@@ -5390,6 +5430,24 @@
       "type": "integer",
       "min": 1,
       "max": 1000
+    },
+    "MediaConnectFlow": {
+      "type": "structure",
+      "members": {
+        "FlowArn": {
+          "shape": "__string",
+          "locationName": "flowArn"
+        }
+      }
+    },
+    "MediaConnectFlowRequest": {
+      "type": "structure",
+      "members": {
+        "FlowArn": {
+          "shape": "__string",
+          "locationName": "flowArn"
+        }
+      }
     },
     "Mp2CodingMode": {
       "type": "string",
@@ -7006,9 +7064,17 @@
           "shape": "__listOf__string",
           "locationName": "inputSecurityGroups"
         },
+        "MediaConnectFlows": {
+          "shape": "__listOfMediaConnectFlowRequest",
+          "locationName": "mediaConnectFlows"
+        },
         "Name": {
           "shape": "__string",
           "locationName": "name"
+        },
+        "RoleArn": {
+          "shape": "__string",
+          "locationName": "roleArn"
         },
         "Sources": {
           "shape": "__listOfInputSourceRequest",
@@ -7032,9 +7098,17 @@
           "shape": "__listOf__string",
           "locationName": "inputSecurityGroups"
         },
+        "MediaConnectFlows": {
+          "shape": "__listOfMediaConnectFlowRequest",
+          "locationName": "mediaConnectFlows"
+        },
         "Name": {
           "shape": "__string",
           "locationName": "name"
+        },
+        "RoleArn": {
+          "shape": "__string",
+          "locationName": "roleArn"
         },
         "Sources": {
           "shape": "__listOfInputSourceRequest",
@@ -7574,6 +7648,18 @@
       "type": "list",
       "member": {
         "shape": "InputWhitelistRuleCidr"
+      }
+    },
+    "__listOfMediaConnectFlow": {
+      "type": "list",
+      "member": {
+        "shape": "MediaConnectFlow"
+      }
+    },
+    "__listOfMediaConnectFlowRequest": {
+      "type": "list",
+      "member": {
+        "shape": "MediaConnectFlowRequest"
       }
     },
     "__listOfOffering": {

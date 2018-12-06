@@ -18,7 +18,6 @@
     "DescribeListeners": "<p>Describes the specified listeners or the listeners for the specified Application Load Balancer or Network Load Balancer. You must specify either a load balancer or one or more listeners.</p>",
     "DescribeLoadBalancerAttributes": "<p>Describes the attributes for the specified Application Load Balancer or Network Load Balancer.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html#load-balancer-attributes\">Load Balancer Attributes</a> in the <i>Application Load Balancers Guide</i> or <a href=\"http://docs.aws.amazon.com/elasticloadbalancing/latest/network/network-load-balancers.html#load-balancer-attributes\">Load Balancer Attributes</a> in the <i>Network Load Balancers Guide</i>.</p>",
     "DescribeLoadBalancers": "<p>Describes the specified load balancers or all of your load balancers.</p> <p>To describe the listeners for a load balancer, use <a>DescribeListeners</a>. To describe the attributes for a load balancer, use <a>DescribeLoadBalancerAttributes</a>.</p>",
-    "DescribeProvisionedCapacity": null,
     "DescribeRules": "<p>Describes the specified rules or the rules for the specified listener. You must specify either a listener or one or more rules.</p>",
     "DescribeSSLPolicies": "<p>Describes the specified policies or all policies used for SSL negotiation.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies\">Security Policies</a> in the <i>Application Load Balancers Guide</i>.</p>",
     "DescribeTags": "<p>Describes the tags for the specified resources. You can describe the tags for one or more Application Load Balancers, Network Load Balancers, and target groups.</p>",
@@ -27,7 +26,6 @@
     "DescribeTargetHealth": "<p>Describes the health of the specified targets or all of your targets.</p>",
     "ModifyListener": "<p>Modifies the specified properties of the specified listener.</p> <p>Any properties that you do not specify retain their current values. However, changing the protocol from HTTPS to HTTP removes the security policy and SSL certificate properties. If you change the protocol from HTTP to HTTPS, you must add the security policy and server certificate.</p>",
     "ModifyLoadBalancerAttributes": "<p>Modifies the specified attributes of the specified Application Load Balancer or Network Load Balancer.</p> <p>If any of the specified attributes can't be modified as requested, the call fails. Any existing attributes that you do not modify retain their current values.</p>",
-    "ModifyProvisionedCapacity": null,
     "ModifyRule": "<p>Modifies the specified rule.</p> <p>Any existing properties that you do not modify retain their current values.</p> <p>To modify the actions for the default rule, use <a>ModifyListener</a>.</p>",
     "ModifyTargetGroup": "<p>Modifies the health checks used when evaluating the health state of the targets in the specified target group.</p> <p>To monitor the health of the targets, use <a>DescribeTargetHealth</a>.</p>",
     "ModifyTargetGroupAttributes": "<p>Modifies the specified attributes of the specified target group.</p>",
@@ -245,12 +243,6 @@
         "AuthenticateOidcActionConfig$TokenEndpoint": "<p>The token endpoint of the IdP. This must be a full URL, including the HTTPS protocol, the domain, and the path.</p>"
       }
     },
-    "AuthenticateOidcActionUseExistingClientSecret": {
-      "base": null,
-      "refs": {
-        "AuthenticateOidcActionConfig$UseExistingClientSecret": null
-      }
-    },
     "AuthenticateOidcActionUserInfoEndpoint": {
       "base": null,
       "refs": {
@@ -392,12 +384,6 @@
         "LoadBalancer$DNSName": "<p>The public DNS name of the load balancer.</p>"
       }
     },
-    "DecreasesRemaining": {
-      "base": null,
-      "refs": {
-        "ProvisionedCapacity$DecreasesRemaining": null
-      }
-    },
     "Default": {
       "base": null,
       "refs": {
@@ -500,16 +486,6 @@
       }
     },
     "DescribeLoadBalancersOutput": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "DescribeProvisionedCapacityInput": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "DescribeProvisionedCapacityOutput": {
       "base": null,
       "refs": {
       }
@@ -673,55 +649,14 @@
       "refs": {
       }
     },
-    "HostHeaderConditionConfig": {
-      "base": null,
-      "refs": {
-        "RuleCondition$HostHeaderConfig": null
-      }
-    },
     "HttpCode": {
       "base": null,
       "refs": {
         "Matcher$HttpCode": "<p>The HTTP codes.</p> <p>For Application Load Balancers, you can specify values between 200 and 499, and the default value is 200. You can specify multiple values (for example, \"200,202\") or a range of values (for example, \"200-299\").</p> <p>For Network Load Balancers, this is 200–399.</p>"
       }
     },
-    "HttpHeaderConditionConfig": {
-      "base": null,
-      "refs": {
-        "RuleCondition$HttpHeaderConfig": null
-      }
-    },
-    "HttpHeaderConditionName": {
-      "base": null,
-      "refs": {
-        "HttpHeaderConditionConfig$HttpHeaderName": null
-      }
-    },
-    "HttpRequestMethodConditionConfig": {
-      "base": null,
-      "refs": {
-        "RuleCondition$HttpRequestMethodConfig": null
-      }
-    },
-    "HttpRequestMethodEnum": {
-      "base": null,
-      "refs": {
-        "HttpRequestMethodList$member": null
-      }
-    },
-    "HttpRequestMethodList": {
-      "base": null,
-      "refs": {
-        "HttpRequestMethodConditionConfig$Values": null
-      }
-    },
     "IncompatibleProtocolsException": {
       "base": "<p>The specified configuration is not valid with this protocol.</p>",
-      "refs": {
-      }
-    },
-    "InsufficientCapacityException": {
-      "base": null,
       "refs": {
       }
     },
@@ -776,19 +711,6 @@
         "Rule$IsDefault": "<p>Indicates whether this is the default rule.</p>"
       }
     },
-    "LBCapacityUnits": {
-      "base": null,
-      "refs": {
-        "ModifyProvisionedCapacityInput$MinimumLBCapacityUnits": null,
-        "ProvisionedCapacity$MinimumLBCapacityUnits": null
-      }
-    },
-    "LastModifiedTime": {
-      "base": null,
-      "refs": {
-        "ProvisionedCapacity$LastModifiedTime": null
-      }
-    },
     "Limit": {
       "base": "<p>Information about an Elastic Load Balancing resource limit for your AWS account.</p>",
       "refs": {
@@ -804,10 +726,6 @@
     "ListOfString": {
       "base": null,
       "refs": {
-        "HostHeaderConditionConfig$Values": null,
-        "HttpHeaderConditionConfig$Values": null,
-        "PathPatternConditionConfig$Values": null,
-        "QueryStringConditionConfig$Values": null,
         "RuleCondition$Values": "<p>The condition value.</p> <p>If the field name is <code>host-header</code>, you can specify a single host name (for example, my.example.com). A host name is case insensitive, can be up to 128 characters in length, and can contain any of the following characters. You can include up to three wildcard characters.</p> <ul> <li> <p>A-Z, a-z, 0-9</p> </li> <li> <p>- .</p> </li> <li> <p>* (matches 0 or more characters)</p> </li> <li> <p>? (matches exactly 1 character)</p> </li> </ul> <p>If the field name is <code>path-pattern</code>, you can specify a single path pattern (for example, /img/*). A path pattern is case-sensitive, can be up to 128 characters in length, and can contain any of the following characters. You can include up to three wildcard characters.</p> <ul> <li> <p>A-Z, a-z, 0-9</p> </li> <li> <p>_ - . $ / ~ \" ' @ : +</p> </li> <li> <p>&amp; (using &amp;amp;)</p> </li> <li> <p>* (matches 0 or more characters)</p> </li> <li> <p>? (matches exactly 1 character)</p> </li> </ul>"
       }
     },
@@ -875,13 +793,11 @@
         "DeleteLoadBalancerInput$LoadBalancerArn": "<p>The Amazon Resource Name (ARN) of the load balancer.</p>",
         "DescribeListenersInput$LoadBalancerArn": "<p>The Amazon Resource Name (ARN) of the load balancer.</p>",
         "DescribeLoadBalancerAttributesInput$LoadBalancerArn": "<p>The Amazon Resource Name (ARN) of the load balancer.</p>",
-        "DescribeProvisionedCapacityInput$LoadBalancerArn": null,
         "DescribeTargetGroupsInput$LoadBalancerArn": "<p>The Amazon Resource Name (ARN) of the load balancer.</p>",
         "Listener$LoadBalancerArn": "<p>The Amazon Resource Name (ARN) of the load balancer.</p>",
         "LoadBalancer$LoadBalancerArn": "<p>The Amazon Resource Name (ARN) of the load balancer.</p>",
         "LoadBalancerArns$member": null,
         "ModifyLoadBalancerAttributesInput$LoadBalancerArn": "<p>The Amazon Resource Name (ARN) of the load balancer.</p>",
-        "ModifyProvisionedCapacityInput$LoadBalancerArn": null,
         "SetIpAddressTypeInput$LoadBalancerArn": "<p>The Amazon Resource Name (ARN) of the load balancer.</p>",
         "SetSecurityGroupsInput$LoadBalancerArn": "<p>The Amazon Resource Name (ARN) of the load balancer.</p>",
         "SetSubnetsInput$LoadBalancerArn": "<p>The Amazon Resource Name (ARN) of the load balancer.</p>"
@@ -1005,16 +921,6 @@
         "Limit$Max": "<p>The maximum value of the limit.</p>"
       }
     },
-    "MinimumLBCapacityUnitsDecreaseThrottlingException": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "MinimumLBCapacityUnitsLimitExceededException": {
-      "base": null,
-      "refs": {
-      }
-    },
     "ModifyListenerInput": {
       "base": null,
       "refs": {
@@ -1031,16 +937,6 @@
       }
     },
     "ModifyLoadBalancerAttributesOutput": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "ModifyProvisionedCapacityInput": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "ModifyProvisionedCapacityOutput": {
       "base": null,
       "refs": {
       }
@@ -1106,12 +1002,6 @@
         "TargetGroup$HealthCheckPath": "<p>The destination for the health check request.</p>"
       }
     },
-    "PathPatternConditionConfig": {
-      "base": null,
-      "refs": {
-        "RuleCondition$PathPatternConfig": null
-      }
-    },
     "Port": {
       "base": null,
       "refs": {
@@ -1139,25 +1029,6 @@
         "ModifyTargetGroupInput$HealthCheckProtocol": "<p>The protocol the load balancer uses when performing health checks on targets. The TCP protocol is supported only if the protocol of the target group is TCP.</p> <p>If the protocol of the target group is TCP, you can't modify this setting.</p>",
         "TargetGroup$Protocol": "<p>The protocol to use for routing traffic to the targets.</p>",
         "TargetGroup$HealthCheckProtocol": "<p>The protocol to use to connect with the target.</p>"
-      }
-    },
-    "ProvisionedCapacity": {
-      "base": null,
-      "refs": {
-        "DescribeProvisionedCapacityOutput$ProvisionedCapacity": null,
-        "ModifyProvisionedCapacityOutput$ProvisionedCapacity": null
-      }
-    },
-    "ProvisionedCapacityStatus": {
-      "base": null,
-      "refs": {
-        "ProvisionedCapacity$Status": null
-      }
-    },
-    "QueryStringConditionConfig": {
-      "base": null,
-      "refs": {
-        "RuleCondition$QueryStringConfig": null
       }
     },
     "RedirectActionConfig": {
@@ -1425,13 +1296,6 @@
       "base": null,
       "refs": {
         "LoadBalancerState$Reason": "<p>A description of the state.</p>"
-      }
-    },
-    "StaticIp": {
-      "base": null,
-      "refs": {
-        "AvailabilityZone$StaticIp": null,
-        "SubnetMapping$StaticIp": null
       }
     },
     "String": {
@@ -1709,11 +1573,6 @@
     },
     "TooManyTargetsException": {
       "base": "<p>You've reached the limit on the number of targets.</p>",
-      "refs": {
-      }
-    },
-    "UnsupportedCertificateException": {
-      "base": null,
       "refs": {
       }
     },

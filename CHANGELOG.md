@@ -1,3 +1,15 @@
+Release v1.16.1 (2018-12-06)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * Support personal access tokens for GitHub source and app passwords for Bitbucket source
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `service/medialive`: Updates service API and documentation
+  * This release enables the AWS Elemental MediaConnect input type in AWS Elemental MediaLive. This can then be used to automatically create and manage AWS Elemental MediaConnect Flow Outputs when you create a channel using those inputs.
+* `service/rds`: Updates service documentation
+  * Documentation updates for Amazon RDS
+
 Release v1.16.0 (2018-12-05)
 ===
 
