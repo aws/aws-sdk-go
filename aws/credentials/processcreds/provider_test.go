@@ -318,6 +318,29 @@ func TestProcessProviderTimeout(t *testing.T) {
 
 }
 
+func TestProcessProviderWithLongSessionToken(t *testing.T) {
+	oldEnv := preserveImportantStashEnv()
+	defer awstesting.PopEnv(oldEnv)
+
+	creds := processcreds.NewCredentials(
+		fmt.Sprintf(
+			"%s %s",
+			getOSCat(),
+			strings.Join(
+				[]string{"testdata", "longsessiontoken.json"},
+				string(os.PathSeparator))))
+	v, err := creds.Get()
+	if err != nil {
+		t.Errorf("expected %v, got %v", "no error", err)
+	}
+
+	// Text string same length as session token returned by AWS for AssumeRoleWithWebIdentity
+	e := "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+	if a := v.SessionToken; e != a {
+		t.Errorf("expected %v, got %v", e, a)
+	}
+}
+
 type credentialTest struct {
 	Version         int
 	AccessKeyID     string `json:"AccessKeyId"`
