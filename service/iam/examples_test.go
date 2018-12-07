@@ -1016,6 +1016,37 @@ func ExampleIAM_DeleteVirtualMFADevice_shared00() {
 	fmt.Println(result)
 }
 
+// To generate a service last accessed data report for a policy
+//
+// The following operation generates a report for the policy: ExamplePolicy1
+func ExampleIAM_GenerateServiceLastAccessedDetails_shared00() {
+	svc := iam.New(session.New())
+	input := &iam.GenerateServiceLastAccessedDetailsInput{
+		Arn: aws.String("arn:aws:iam::123456789012:policy/ExamplePolicy1"),
+	}
+
+	result, err := svc.GenerateServiceLastAccessedDetails(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case iam.ErrCodeNoSuchEntityException:
+				fmt.Println(iam.ErrCodeNoSuchEntityException, aerr.Error())
+			case iam.ErrCodeInvalidInputException:
+				fmt.Println(iam.ErrCodeInvalidInputException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To see the current account password policy
 //
 // The following command displays details about the password policy for the current
@@ -1154,6 +1185,70 @@ func ExampleIAM_GetRole_shared00() {
 				fmt.Println(iam.ErrCodeNoSuchEntityException, aerr.Error())
 			case iam.ErrCodeServiceFailureException:
 				fmt.Println(iam.ErrCodeServiceFailureException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To get details from a previously-generated report
+//
+// The following operation gets details about the report with the job ID: examplef-1305-c245-eba4-71fe298bcda7
+func ExampleIAM_GetServiceLastAccessedDetails_shared00() {
+	svc := iam.New(session.New())
+	input := &iam.GetServiceLastAccessedDetailsInput{
+		JobId: aws.String("examplef-1305-c245-eba4-71fe298bcda7"),
+	}
+
+	result, err := svc.GetServiceLastAccessedDetails(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case iam.ErrCodeNoSuchEntityException:
+				fmt.Println(iam.ErrCodeNoSuchEntityException, aerr.Error())
+			case iam.ErrCodeInvalidInputException:
+				fmt.Println(iam.ErrCodeInvalidInputException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To get sntity details from a previously-generated report
+//
+// The following operation returns details about the entities that attempted to access
+// the IAM service.
+func ExampleIAM_GetServiceLastAccessedDetailsWithEntities_shared00() {
+	svc := iam.New(session.New())
+	input := &iam.GetServiceLastAccessedDetailsWithEntitiesInput{
+		JobId:            aws.String("examplef-1305-c245-eba4-71fe298bcda7"),
+		ServiceNamespace: aws.String("iam"),
+	}
+
+	result, err := svc.GetServiceLastAccessedDetailsWithEntities(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case iam.ErrCodeNoSuchEntityException:
+				fmt.Println(iam.ErrCodeNoSuchEntityException, aerr.Error())
+			case iam.ErrCodeInvalidInputException:
+				fmt.Println(iam.ErrCodeInvalidInputException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1333,6 +1428,42 @@ func ExampleIAM_ListGroupsForUser_shared00() {
 				fmt.Println(iam.ErrCodeNoSuchEntityException, aerr.Error())
 			case iam.ErrCodeServiceFailureException:
 				fmt.Println(iam.ErrCodeServiceFailureException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To list policies that allow access to a service
+//
+// The following operation lists policies that allow ExampleUser01 to access IAM or
+// EC2.
+func ExampleIAM_ListPoliciesGrantingServiceAccess_shared00() {
+	svc := iam.New(session.New())
+	input := &iam.ListPoliciesGrantingServiceAccessInput{
+		Arn: aws.String("arn:aws:iam::123456789012:user/ExampleUser01"),
+		ServiceNamespaces: []*string{
+			aws.String("iam"),
+			aws.String("ec2"),
+		},
+	}
+
+	result, err := svc.ListPoliciesGrantingServiceAccess(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case iam.ErrCodeNoSuchEntityException:
+				fmt.Println(iam.ErrCodeNoSuchEntityException, aerr.Error())
+			case iam.ErrCodeInvalidInputException:
+				fmt.Println(iam.ErrCodeInvalidInputException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

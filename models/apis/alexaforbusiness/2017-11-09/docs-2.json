@@ -8,6 +8,7 @@
     "AssociateSkillGroupWithRoom": "<p>Associates a skill group with a given room. This enables all skills in the associated skill group on all devices in the room.</p>",
     "AssociateSkillWithSkillGroup": "<p>Associates a skill with a skill group.</p>",
     "CreateAddressBook": "<p>Creates an address book with the specified details.</p>",
+    "CreateBusinessReportSchedule": "<p>Creates a recurring schedule for usage reports to deliver to the specified S3 location with a specified daily or weekly interval.</p>",
     "CreateConferenceProvider": "<p>Adds a new conference provider under the user's AWS account.</p>",
     "CreateContact": "<p>Creates a contact with the specified details.</p>",
     "CreateProfile": "<p>Creates a new room profile with the specified details.</p>",
@@ -15,6 +16,7 @@
     "CreateSkillGroup": "<p>Creates a skill group with a specified name and description.</p>",
     "CreateUser": "<p>Creates a user.</p>",
     "DeleteAddressBook": "<p>Deletes an address book by the address book ARN.</p>",
+    "DeleteBusinessReportSchedule": "<p>Deletes the recurring report delivery schedule with the specified schedule ARN.</p>",
     "DeleteConferenceProvider": "<p>Deletes a conference provider.</p>",
     "DeleteContact": "<p>Deletes a contact by the contact ARN.</p>",
     "DeleteDevice": "<p>Removes a device from Alexa For Business.</p>",
@@ -38,6 +40,7 @@
     "GetRoom": "<p>Gets room details by room ARN.</p>",
     "GetRoomSkillParameter": "<p>Gets room skill parameter details by room, skill, and parameter key ARN.</p>",
     "GetSkillGroup": "<p>Gets skill group details by skill group ARN.</p>",
+    "ListBusinessReportSchedules": "<p>Lists the details of the schedules that a user configured.</p>",
     "ListConferenceProviders": "<p>Lists conference providers under a specific AWS account.</p>",
     "ListDeviceEvents": "<p>Lists the device event history, including device connection status, for up to 30 days.</p>",
     "ListSkills": "<p>Lists all enabled skills in a specific skill group.</p>",
@@ -65,6 +68,7 @@
     "TagResource": "<p>Adds metadata tags to a specified resource.</p>",
     "UntagResource": "<p>Removes metadata tags from a specified resource.</p>",
     "UpdateAddressBook": "<p>Updates address book details by the address book ARN.</p>",
+    "UpdateBusinessReportSchedule": "<p>Updates the configuration of the report delivery schedule with the specified schedule ARN.</p>",
     "UpdateConferenceProvider": "<p>Updates an existing conference provider's settings.</p>",
     "UpdateContact": "<p>Updates the contact details by the contact ARN.</p>",
     "UpdateDevice": "<p>Updates the device name by device ARN.</p>",
@@ -169,11 +173,13 @@
         "AssociateSkillGroupWithRoomRequest$SkillGroupArn": "<p>The ARN of the skill group to associate with a room. Required.</p>",
         "AssociateSkillGroupWithRoomRequest$RoomArn": "<p>The ARN of the room with which to associate the skill group. Required.</p>",
         "AssociateSkillWithSkillGroupRequest$SkillGroupArn": "<p>The ARN of the skill group to associate the skill to. Required.</p>",
+        "BusinessReportSchedule$ScheduleArn": "<p>The ARN of the business report schedule.</p>",
         "ConferencePreference$DefaultConferenceProviderArn": "<p>The ARN of the default conference provider.</p>",
         "ConferenceProvider$Arn": "<p>The ARN of the newly created conference provider.</p>",
         "Contact$ContactArn": "<p>The ARN of the contact.</p>",
         "ContactData$ContactArn": "<p>The ARN of the contact.</p>",
         "CreateAddressBookResponse$AddressBookArn": "<p>The ARN of the newly created address book.</p>",
+        "CreateBusinessReportScheduleResponse$ScheduleArn": "<p>The ARN of the business report schedule.</p>",
         "CreateConferenceProviderResponse$ConferenceProviderArn": "<p>The ARN of the newly-created conference provider.</p>",
         "CreateContactResponse$ContactArn": "<p>The ARN of the newly created address book.</p>",
         "CreateProfileResponse$ProfileArn": "<p>The ARN of the newly created room profile in the response.</p>",
@@ -182,6 +188,7 @@
         "CreateSkillGroupResponse$SkillGroupArn": "<p>The ARN of the newly created skill group in the response.</p>",
         "CreateUserResponse$UserArn": "<p>The ARN of the newly created user in the response.</p>",
         "DeleteAddressBookRequest$AddressBookArn": "<p>The ARN of the address book to delete.</p>",
+        "DeleteBusinessReportScheduleRequest$ScheduleArn": "<p>The ARN of the business report schedule.</p>",
         "DeleteConferenceProviderRequest$ConferenceProviderArn": "<p>The ARN of the conference provider.</p>",
         "DeleteContactRequest$ContactArn": "<p>The ARN of the contact to delete.</p>",
         "DeleteDeviceRequest$DeviceArn": "<p>The ARN of the device for which to request details.</p>",
@@ -235,6 +242,7 @@
         "TagResourceRequest$Arn": "<p>The ARN of the resource to which to add metadata tags. Required. </p>",
         "UntagResourceRequest$Arn": "<p>The ARN of the resource from which to remove metadata tags. Required. </p>",
         "UpdateAddressBookRequest$AddressBookArn": "<p>The ARN of the room to update.</p>",
+        "UpdateBusinessReportScheduleRequest$ScheduleArn": "<p>The ARN of the business report schedule.</p>",
         "UpdateConferenceProviderRequest$ConferenceProviderArn": "<p>The ARN of the conference provider.</p>",
         "UpdateContactRequest$ContactArn": "<p>The ARN of the contact to update.</p>",
         "UpdateDeviceRequest$DeviceArn": "<p>The ARN of the device to update. Required.</p>",
@@ -318,6 +326,91 @@
         "SkillDetails$BulletPoints": "<p>The details about what the skill supports organized as bullet points.</p>"
       }
     },
+    "BusinessReport": {
+      "base": "<p>Usage report with specified parameters.</p>",
+      "refs": {
+        "BusinessReportSchedule$LastBusinessReport": "<p>The details of the last business report delivery for a specified time interval.</p>"
+      }
+    },
+    "BusinessReportContentRange": {
+      "base": "<p>The content range of the report.</p>",
+      "refs": {
+        "BusinessReportSchedule$ContentRange": "<p>The content range of the reports.</p>",
+        "CreateBusinessReportScheduleRequest$ContentRange": "<p>The content range of the reports.</p>"
+      }
+    },
+    "BusinessReportDownloadUrl": {
+      "base": null,
+      "refs": {
+        "BusinessReport$DownloadUrl": "<p>The download link where a user can download the report.</p>"
+      }
+    },
+    "BusinessReportFailureCode": {
+      "base": null,
+      "refs": {
+        "BusinessReport$FailureCode": "<p>The failure code.</p>"
+      }
+    },
+    "BusinessReportFormat": {
+      "base": null,
+      "refs": {
+        "BusinessReportSchedule$Format": "<p>The format of the generated report (individual CSV files or zipped files of individual files).</p>",
+        "CreateBusinessReportScheduleRequest$Format": "<p>The format of the generated report (individual CSV files or zipped files of individual files).</p>",
+        "UpdateBusinessReportScheduleRequest$Format": "<p>The format of the generated report (individual CSV files or zipped files of individual files).</p>"
+      }
+    },
+    "BusinessReportInterval": {
+      "base": null,
+      "refs": {
+        "BusinessReportContentRange$Interval": "<p>The interval of the content range.</p>"
+      }
+    },
+    "BusinessReportRecurrence": {
+      "base": "<p>The recurrence of the reports.</p>",
+      "refs": {
+        "BusinessReportSchedule$Recurrence": "<p>The recurrence of the reports.</p>",
+        "CreateBusinessReportScheduleRequest$Recurrence": "<p>The recurrence of the reports.</p>",
+        "UpdateBusinessReportScheduleRequest$Recurrence": "<p>The recurrence of the reports.</p>"
+      }
+    },
+    "BusinessReportS3Location": {
+      "base": "<p>The S3 location of the output reports.</p>",
+      "refs": {
+        "BusinessReport$S3Location": "<p>The S3 location of the output reports.</p>"
+      }
+    },
+    "BusinessReportS3Path": {
+      "base": null,
+      "refs": {
+        "BusinessReportS3Location$Path": "<p>The path of the business report.</p>"
+      }
+    },
+    "BusinessReportSchedule": {
+      "base": "<p>The schedule of the usage report.</p>",
+      "refs": {
+        "BusinessReportScheduleList$member": null
+      }
+    },
+    "BusinessReportScheduleList": {
+      "base": null,
+      "refs": {
+        "ListBusinessReportSchedulesResponse$BusinessReportSchedules": "<p>The schedule of the reports.</p>"
+      }
+    },
+    "BusinessReportScheduleName": {
+      "base": null,
+      "refs": {
+        "BusinessReportSchedule$ScheduleName": "<p>The name identifier of the schedule.</p>",
+        "CreateBusinessReportScheduleRequest$ScheduleName": "<p>The name identifier of the schedule.</p>",
+        "UpdateBusinessReportScheduleRequest$ScheduleName": "<p>The name identifier of the schedule.</p>"
+      }
+    },
+    "BusinessReportStatus": {
+      "base": null,
+      "refs": {
+        "BusinessReport$Status": "<p>The status of the report generation execution (RUNNING, SUCCEEDED, or FAILED).</p>"
+      }
+    },
     "Category": {
       "base": "<p>The skill store category that is shown. Alexa skills are assigned a specific skill category during creation, such as News, Social, and Sports.</p>",
       "refs": {
@@ -353,6 +446,7 @@
       "base": "User specified token that is used to support idempotency during Create Resource",
       "refs": {
         "CreateAddressBookRequest$ClientRequestToken": "<p>A unique, user-specified identifier for the request that ensures idempotency.</p>",
+        "CreateBusinessReportScheduleRequest$ClientRequestToken": "<p>The client request token.</p>",
         "CreateConferenceProviderRequest$ClientRequestToken": "<p>The request token of the client.</p>",
         "CreateContactRequest$ClientRequestToken": "<p>A unique, user-specified identifier for this request that ensures idempotency.</p>",
         "CreateProfileRequest$ClientRequestToken": "<p>The user-specified token that is used during the creation of a profile.</p>",
@@ -465,6 +559,16 @@
       "refs": {
       }
     },
+    "CreateBusinessReportScheduleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateBusinessReportScheduleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateConferenceProviderRequest": {
       "base": null,
       "refs": {
@@ -525,12 +629,37 @@
       "refs": {
       }
     },
+    "CustomerS3BucketName": {
+      "base": null,
+      "refs": {
+        "BusinessReportS3Location$BucketName": "<p>The S3 bucket name of the output reports.</p>",
+        "BusinessReportSchedule$S3BucketName": "<p>The S3 bucket name of the output reports.</p>",
+        "CreateBusinessReportScheduleRequest$S3BucketName": "<p>The S3 bucket name of the output reports.</p>",
+        "UpdateBusinessReportScheduleRequest$S3BucketName": "<p>The S3 location of the output reports.</p>"
+      }
+    },
+    "Date": {
+      "base": null,
+      "refs": {
+        "BusinessReportRecurrence$StartDate": "<p>The start date.</p>"
+      }
+    },
     "DeleteAddressBookRequest": {
       "base": null,
       "refs": {
       }
     },
     "DeleteAddressBookResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteBusinessReportScheduleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteBusinessReportScheduleResponse": {
       "base": null,
       "refs": {
       }
@@ -1071,6 +1200,16 @@
       "refs": {
       }
     },
+    "ListBusinessReportSchedulesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListBusinessReportSchedulesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListConferenceProvidersRequest": {
       "base": null,
       "refs": {
@@ -1151,6 +1290,7 @@
     "MaxResults": {
       "base": null,
       "refs": {
+        "ListBusinessReportSchedulesRequest$MaxResults": "<p>The maximum number of schedules listed in the call.</p>",
         "ListConferenceProvidersRequest$MaxResults": "<p>The maximum number of conference providers to be returned, per paginated calls.</p>",
         "ListDeviceEventsRequest$MaxResults": "<p>The maximum number of results to include in the response. The default value is 50. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved. </p>",
         "ListSkillsStoreCategoriesRequest$MaxResults": "<p>The maximum number of categories returned, per paginated calls.</p>",
@@ -1195,6 +1335,8 @@
     "NextToken": {
       "base": null,
       "refs": {
+        "ListBusinessReportSchedulesRequest$NextToken": "<p>The token used to list the remaining schedules from the previous API call.</p>",
+        "ListBusinessReportSchedulesResponse$NextToken": "<p>The token used to list the remaining schedules from the previous API call.</p>",
         "ListConferenceProvidersRequest$NextToken": "<p>The tokens used for pagination.</p>",
         "ListConferenceProvidersResponse$NextToken": "<p>The tokens used for pagination.</p>",
         "ListDeviceEventsRequest$NextToken": "<p>An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response only includes results beyond the token, up to the value specified by MaxResults. When the end of results is reached, the response has a value of null.</p>",
@@ -1242,18 +1384,18 @@
         "PSTNDialIn$OneClickPinDelay": "<p>The delay duration before Alexa enters the conference pin with dual-tone multi-frequency (DTMF). Each number on the dial pad corresponds to a DTMF tone, which is how we send data over the telephone network.</p>"
       }
     },
+    "OutboundPhoneNumber": {
+      "base": null,
+      "refs": {
+        "PSTNDialIn$PhoneNumber": "<p>The phone number to call to join the conference.</p>"
+      }
+    },
     "PSTNDialIn": {
       "base": "<p>The information for public switched telephone network (PSTN) conferencing.</p>",
       "refs": {
         "ConferenceProvider$PSTNDialIn": "<p>The information for PSTN conferencing.</p>",
         "CreateConferenceProviderRequest$PSTNDialIn": "<p>The information for PSTN conferencing.</p>",
         "UpdateConferenceProviderRequest$PSTNDialIn": "<p>The information for PSTN conferencing.</p>"
-      }
-    },
-    "PhoneNumber": {
-      "base": null,
-      "refs": {
-        "PSTNDialIn$PhoneNumber": "<p>The phone number to call to join the conference.</p>"
       }
     },
     "PrivacyPolicy": {
@@ -1480,6 +1622,14 @@
       "base": null,
       "refs": {
         "ResolveRoomResponse$RoomSkillParameters": "<p>Response to get the room profile request. Required.</p>"
+      }
+    },
+    "S3KeyPrefix": {
+      "base": null,
+      "refs": {
+        "BusinessReportSchedule$S3KeyPrefix": "<p>The S3 key where the report is delivered.</p>",
+        "CreateBusinessReportScheduleRequest$S3KeyPrefix": "<p>The S3 key where the report is delivered.</p>",
+        "UpdateBusinessReportScheduleRequest$S3KeyPrefix": "<p>The S3 key where the report is delivered.</p>"
       }
     },
     "SampleUtterances": {
@@ -1820,6 +1970,7 @@
     "Timestamp": {
       "base": null,
       "refs": {
+        "BusinessReport$DeliveryTime": "<p>The time of report delivery.</p>",
         "DeviceEvent$Timestamp": "<p>The time (in epoch) when the event occurred. </p>"
       }
     },
@@ -1865,6 +2016,16 @@
       }
     },
     "UpdateAddressBookResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateBusinessReportScheduleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateBusinessReportScheduleResponse": {
       "base": null,
       "refs": {
       }
