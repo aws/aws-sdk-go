@@ -14,6 +14,9 @@ import (
 	"unicode"
 )
 
+// SDKImportRoot is the root import path of the SDK.
+const SDKImportRoot = "github.com/aws/aws-sdk-go"
+
 // An API defines a service API's definition. and logic to serialize the definition.
 type API struct {
 	Metadata      Metadata
@@ -239,9 +242,7 @@ func (a *API) ShapeListErrors() []*Shape {
 
 // resetImports resets the import map to default values.
 func (a *API) resetImports() {
-	a.imports = map[string]bool{
-		"github.com/aws/aws-sdk-go/aws": true,
-	}
+	a.imports = map[string]bool{}
 }
 
 // importsGoCode returns the generated Go import code.
@@ -293,22 +294,28 @@ var tplAPI = template.Must(template.New("api").Parse(`
 {{ end }}
 `))
 
+// AddImport adds the import path to the generated file's import.
+func (a *API) AddImport(v string) error {
+	a.imports[v] = true
+	return nil
+}
+
+// AddSDKImport adds a SDK package import to the generated file's import.
+func (a *API) AddSDKImport(v ...string) error {
+	e := make([]string, 0, 5)
+	e = append(e, SDKImportRoot)
+	e = append(e, v...)
+
+	a.imports[path.Join(e...)] = true
+	return nil
+}
+
 // APIGoCode renders the API in Go code. Returning it as a string
 func (a *API) APIGoCode() string {
 	a.resetImports()
-	a.imports["github.com/aws/aws-sdk-go/aws/awsutil"] = true
-	a.imports["github.com/aws/aws-sdk-go/aws/request"] = true
-	if a.OperationHasOutputPlaceholder() {
-		a.imports["github.com/aws/aws-sdk-go/private/protocol/"+a.ProtocolPackage()] = true
-		a.imports["github.com/aws/aws-sdk-go/private/protocol"] = true
-	}
-
-	for _, op := range a.Operations {
-		if op.AuthType == "none" {
-			a.imports["github.com/aws/aws-sdk-go/aws/credentials"] = true
-			break
-		}
-	}
+	a.AddSDKImport("aws")
+	a.AddSDKImport("aws/awsutil")
+	a.AddSDKImport("aws/request")
 
 	var buf bytes.Buffer
 	err := tplAPI.Execute(&buf, a)
@@ -624,18 +631,19 @@ func (a *API) ServicePackageDoc() string {
 // ServiceGoCode renders service go code. Returning it as a string.
 func (a *API) ServiceGoCode() string {
 	a.resetImports()
-	a.imports["github.com/aws/aws-sdk-go/aws/client"] = true
-	a.imports["github.com/aws/aws-sdk-go/aws/client/metadata"] = true
-	a.imports["github.com/aws/aws-sdk-go/aws/request"] = true
+	a.AddSDKImport("aws")
+	a.AddSDKImport("aws/client")
+	a.AddSDKImport("aws/client/metadata")
+	a.AddSDKImport("aws/request")
 	if a.Metadata.SignatureVersion == "v2" {
-		a.imports["github.com/aws/aws-sdk-go/private/signer/v2"] = true
-		a.imports["github.com/aws/aws-sdk-go/aws/corehandlers"] = true
+		a.AddSDKImport("private/signer/v2")
+		a.AddSDKImport("aws/corehandlers")
 	} else {
-		a.imports["github.com/aws/aws-sdk-go/aws/signer/v4"] = true
+		a.AddSDKImport("aws/signer/v4")
 	}
-	a.imports["github.com/aws/aws-sdk-go/private/protocol/"+a.ProtocolPackage()] = true
+	a.AddSDKImport("private/protocol", a.ProtocolPackage())
 	if a.EndpointDiscoveryOp != nil {
-		a.imports["github.com/aws/aws-sdk-go/aws/crr"] = true
+		a.AddSDKImport("aws/crr")
 	}
 
 	var buf bytes.Buffer
@@ -664,8 +672,8 @@ func (a *API) ExampleGoCode() string {
 		"bytes",
 		"fmt",
 		"time",
-		"github.com/aws/aws-sdk-go/aws",
-		"github.com/aws/aws-sdk-go/aws/session",
+		SDKImportRoot+"/aws",
+		SDKImportRoot+"/aws/session",
 		a.ImportPath(),
 	)
 	for k := range imports {
@@ -741,11 +749,9 @@ var _ {{ .StructName }}API = (*{{ .PackageName }}.{{ .StructName }})(nil)
 // package than the service API's package.
 func (a *API) InterfaceGoCode() string {
 	a.resetImports()
-	a.imports = map[string]bool{
-		"github.com/aws/aws-sdk-go/aws":         true,
-		"github.com/aws/aws-sdk-go/aws/request": true,
-		a.ImportPath():                          true,
-	}
+	a.AddSDKImport("aws")
+	a.AddSDKImport("aws/request")
+	a.AddImport(a.ImportPath())
 
 	var buf bytes.Buffer
 	err := tplInterface.Execute(&buf, a)

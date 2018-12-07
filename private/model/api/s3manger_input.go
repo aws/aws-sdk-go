@@ -21,7 +21,6 @@ func S3ManagerUploadInputGoCode(a *API) string {
 	}
 
 	a.resetImports()
-	delete(a.imports, "github.com/aws/aws-sdk-go/aws")
 	a.imports["io"] = true
 	a.imports["time"] = true
 
