@@ -407,7 +407,9 @@ func loadCustomCABundle(s *Session, bundle io.Reader) error {
 		}
 	}
 	if t == nil {
-		t = &http.Transport{}
+		t = &http.Transport{
+			Proxy:  http.ProxyFromEnvironment,
+		}
 	}
 
 	p, err := loadCertPool(bundle)
