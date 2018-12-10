@@ -2148,7 +2148,8 @@
         "cacheClusterEnabled":{"shape":"NullableBoolean"},
         "cacheClusterSize":{"shape":"CacheClusterSize"},
         "variables":{"shape":"MapOfStringToString"},
-        "canarySettings":{"shape":"DeploymentCanarySettings"}
+        "canarySettings":{"shape":"DeploymentCanarySettings"},
+        "tracingEnabled":{"shape":"NullableBoolean"}
       }
     },
     "CreateDocumentationPartRequest":{
@@ -2290,6 +2291,7 @@
         "variables":{"shape":"MapOfStringToString"},
         "documentationVersion":{"shape":"String"},
         "canarySettings":{"shape":"CanarySettings"},
+        "tracingEnabled":{"shape":"Boolean"},
         "tags":{"shape":"MapOfStringToString"}
       }
     },
@@ -4154,11 +4156,6 @@
       "key":{"shape":"String"},
       "value":{"shape":"ThrottleSettings"}
     },
-    "MapOfHeaderValues":{
-      "type":"map",
-      "key":{"shape":"String"},
-      "value":{"shape":"String"}
-    },
     "MapOfIntegrationResponse":{
       "type":"map",
       "key":{"shape":"String"},
@@ -4665,6 +4662,8 @@
         "documentationVersion":{"shape":"String"},
         "accessLogSettings":{"shape":"AccessLogSettings"},
         "canarySettings":{"shape":"CanarySettings"},
+        "tracingEnabled":{"shape":"Boolean"},
+        "webAclArn":{"shape":"String"},
         "tags":{"shape":"MapOfStringToString"},
         "createdDate":{"shape":"Timestamp"},
         "lastUpdatedDate":{"shape":"Timestamp"}
@@ -4732,7 +4731,8 @@
           "location":"uri",
           "locationName":"authorizer_id"
         },
-        "headers":{"shape":"MapOfHeaderValues"},
+        "headers":{"shape":"MapOfStringToString"},
+        "multiValueHeaders":{"shape":"MapOfStringToList"},
         "pathWithQueryString":{"shape":"String"},
         "body":{"shape":"String"},
         "stageVariables":{"shape":"MapOfStringToString"},
@@ -4776,7 +4776,8 @@
         },
         "pathWithQueryString":{"shape":"String"},
         "body":{"shape":"String"},
-        "headers":{"shape":"MapOfHeaderValues"},
+        "headers":{"shape":"MapOfStringToString"},
+        "multiValueHeaders":{"shape":"MapOfStringToList"},
         "clientCertificateId":{"shape":"String"},
         "stageVariables":{"shape":"MapOfStringToString"}
       }
@@ -4786,7 +4787,8 @@
       "members":{
         "status":{"shape":"Integer"},
         "body":{"shape":"String"},
-        "headers":{"shape":"MapOfHeaderValues"},
+        "headers":{"shape":"MapOfStringToString"},
+        "multiValueHeaders":{"shape":"MapOfStringToList"},
         "log":{"shape":"String"},
         "latency":{"shape":"Long"}
       }

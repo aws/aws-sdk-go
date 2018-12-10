@@ -64,7 +64,7 @@ func NewKMSKeyGeneratorWithMatDesc(kmsClient kmsiface.KMSAPI, cmkID string, matd
 //	customKMSClient := kms.New(sess)
 //	decryptHandler := s3crypto.NewKMSWrapEntry(customKMSClient)
 //
-//	svc := s3crypto.NewDecryptionClient(sess, func(svc *s3crypto.DecryptionClient{
+//	svc := s3crypto.NewDecryptionClient(sess, func(svc *s3crypto.DecryptionClient) {
 //		svc.WrapRegistry[KMSWrap] = decryptHandler
 //	}))
 func NewKMSWrapEntry(kmsClient kmsiface.KMSAPI) WrapEntry {

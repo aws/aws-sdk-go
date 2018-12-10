@@ -1248,7 +1248,9 @@
         "SnapshotId":{"shape":"SnapshotId"},
         "PreserveExistingData":{"shape":"boolean"},
         "TargetName":{"shape":"TargetName"},
-        "NetworkInterfaceId":{"shape":"NetworkInterfaceId"}
+        "NetworkInterfaceId":{"shape":"NetworkInterfaceId"},
+        "KMSEncrypted":{"shape":"Boolean"},
+        "KMSKey":{"shape":"KMSKey"}
       }
     },
     "CreateStorediSCSIVolumeOutput":{
@@ -1738,13 +1740,25 @@
         "DiskStatus":{"shape":"string"},
         "DiskSizeInBytes":{"shape":"long"},
         "DiskAllocationType":{"shape":"DiskAllocationType"},
-        "DiskAllocationResource":{"shape":"string"}
+        "DiskAllocationResource":{"shape":"string"},
+        "DiskAttributeList":{"shape":"DiskAttributeList"}
       }
     },
     "DiskAllocationType":{
       "type":"string",
       "max":100,
       "min":3
+    },
+    "DiskAttribute":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "DiskAttributeList":{
+      "type":"list",
+      "member":{"shape":"DiskAttribute"},
+      "max":10,
+      "min":0
     },
     "DiskId":{
       "type":"string",
@@ -1897,6 +1911,17 @@
       "member":{"shape":"FileShareUser"},
       "max":100,
       "min":0
+    },
+    "Folder":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
+    "FolderList":{
+      "type":"list",
+      "member":{"shape":"Folder"},
+      "max":50,
+      "min":1
     },
     "GatewayARN":{
       "type":"string",
@@ -2282,13 +2307,16 @@
       "type":"structure",
       "required":["FileShareARN"],
       "members":{
-        "FileShareARN":{"shape":"FileShareARN"}
+        "FileShareARN":{"shape":"FileShareARN"},
+        "FolderList":{"shape":"FolderList"},
+        "Recursive":{"shape":"Boolean"}
       }
     },
     "RefreshCacheOutput":{
       "type":"structure",
       "members":{
-        "FileShareARN":{"shape":"FileShareARN"}
+        "FileShareARN":{"shape":"FileShareARN"},
+        "NotificationId":{"shape":"NotificationId"}
       }
     },
     "RegionId":{
@@ -2511,7 +2539,8 @@
         "PreservedExistingData":{"shape":"boolean"},
         "VolumeiSCSIAttributes":{"shape":"VolumeiSCSIAttributes"},
         "CreatedDate":{"shape":"CreatedDate"},
-        "VolumeUsedInBytes":{"shape":"VolumeUsedInBytes"}
+        "VolumeUsedInBytes":{"shape":"VolumeUsedInBytes"},
+        "KMSKey":{"shape":"KMSKey"}
       }
     },
     "StorediSCSIVolumes":{

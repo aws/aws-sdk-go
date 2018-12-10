@@ -551,6 +551,33 @@
         "shape" : "TooManyRequestsException"
       } ]
     },
+    "DeleteVoiceChannel" : {
+      "name" : "DeleteVoiceChannel",
+      "http" : {
+        "method" : "DELETE",
+        "requestUri" : "/v1/apps/{application-id}/channels/voice",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "DeleteVoiceChannelRequest"
+      },
+      "output" : {
+        "shape" : "DeleteVoiceChannelResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      }, {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "MethodNotAllowedException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
     "GetAdmChannel" : {
       "name" : "GetAdmChannel",
       "http" : {
@@ -1388,6 +1415,33 @@
         "shape" : "TooManyRequestsException"
       } ]
     },
+    "GetVoiceChannel" : {
+      "name" : "GetVoiceChannel",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/v1/apps/{application-id}/channels/voice",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "GetVoiceChannelRequest"
+      },
+      "output" : {
+        "shape" : "GetVoiceChannelResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      }, {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "MethodNotAllowedException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
     "PhoneNumberValidate" : {
       "name" : "PhoneNumberValidate",
       "http" : {
@@ -1427,6 +1481,33 @@
       },
       "output" : {
         "shape" : "PutEventStreamResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      }, {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "MethodNotAllowedException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
+    "PutEvents" : {
+      "name" : "PutEvents",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/v1/apps/{application-id}/events",
+        "responseCode" : 202
+      },
+      "input" : {
+        "shape" : "PutEventsRequest"
+      },
+      "output" : {
+        "shape" : "PutEventsResponse"
       },
       "errors" : [ {
         "shape" : "BadRequestException"
@@ -1886,6 +1967,33 @@
       },
       "output" : {
         "shape" : "UpdateSmsChannelResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      }, {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "MethodNotAllowedException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
+    "UpdateVoiceChannel" : {
+      "name" : "UpdateVoiceChannel",
+      "http" : {
+        "method" : "PUT",
+        "requestUri" : "/v1/apps/{application-id}/channels/voice",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "UpdateVoiceChannelRequest"
+      },
+      "output" : {
+        "shape" : "UpdateVoiceChannelResponse"
       },
       "errors" : [ {
         "shape" : "BadRequestException"
@@ -2360,6 +2468,9 @@
       "members" : {
         "Item" : {
           "shape" : "ListOfActivityResponse"
+        },
+        "NextToken" : {
+          "shape" : "__string"
         }
       },
       "required" : [ ]
@@ -2641,6 +2752,18 @@
       },
       "required" : [ ]
     },
+    "CampaignEventFilter" : {
+      "type" : "structure",
+      "members" : {
+        "Dimensions" : {
+          "shape" : "EventDimensions"
+        },
+        "FilterType" : {
+          "shape" : "FilterType"
+        }
+      },
+      "required" : [ ]
+    },
     "CampaignHook" : {
       "type" : "structure",
       "members" : {
@@ -2810,7 +2933,7 @@
     },
     "ChannelType" : {
       "type" : "string",
-      "enum" : [ "GCM", "APNS", "APNS_SANDBOX", "APNS_VOIP", "APNS_VOIP_SANDBOX", "ADM", "SMS", "EMAIL", "BAIDU", "CUSTOM" ]
+      "enum" : [ "GCM", "APNS", "APNS_SANDBOX", "APNS_VOIP", "APNS_VOIP_SANDBOX", "ADM", "SMS", "VOICE", "EMAIL", "BAIDU", "CUSTOM" ]
     },
     "ChannelsResponse" : {
       "type" : "structure",
@@ -3322,6 +3445,27 @@
       "required" : [ "EndpointsResponse" ],
       "payload" : "EndpointsResponse"
     },
+    "DeleteVoiceChannelRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ApplicationId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "application-id"
+        }
+      },
+      "required" : [ "ApplicationId" ]
+    },
+    "DeleteVoiceChannelResponse" : {
+      "type" : "structure",
+      "members" : {
+        "VoiceChannelResponse" : {
+          "shape" : "VoiceChannelResponse"
+        }
+      },
+      "required" : [ "VoiceChannelResponse" ],
+      "payload" : "VoiceChannelResponse"
+    },
     "DeliveryStatus" : {
       "type" : "string",
       "enum" : [ "SUCCESSFUL", "THROTTLED", "TEMPORARY_FAILURE", "PERMANENT_FAILURE", "UNKNOWN_FAILURE", "OPT_OUT", "DUPLICATE" ]
@@ -3348,11 +3492,17 @@
         "DefaultPushNotificationMessage" : {
           "shape" : "DefaultPushNotificationMessage"
         },
+        "EmailMessage" : {
+          "shape" : "EmailMessage"
+        },
         "GCMMessage" : {
           "shape" : "GCMMessage"
         },
         "SMSMessage" : {
           "shape" : "SMSMessage"
+        },
+        "VoiceMessage" : {
+          "shape" : "VoiceMessage"
         }
       },
       "required" : [ ]
@@ -3364,6 +3514,9 @@
     "EmailChannelRequest" : {
       "type" : "structure",
       "members" : {
+        "ConfigurationSet" : {
+          "shape" : "__string"
+        },
         "Enabled" : {
           "shape" : "__boolean"
         },
@@ -3383,6 +3536,9 @@
       "type" : "structure",
       "members" : {
         "ApplicationId" : {
+          "shape" : "__string"
+        },
+        "ConfigurationSet" : {
           "shape" : "__string"
         },
         "CreationDate" : {
@@ -3426,6 +3582,32 @@
         }
       },
       "required" : [ ]
+    },
+    "EmailMessage" : {
+      "type" : "structure",
+      "members" : {
+        "Body" : {
+          "shape" : "__string"
+        },
+        "FeedbackForwardingAddress" : {
+          "shape" : "__string"
+        },
+        "FromAddress" : {
+          "shape" : "__string"
+        },
+        "RawEmail" : {
+          "shape" : "RawEmail"
+        },
+        "ReplyToAddresses" : {
+          "shape" : "ListOf__string"
+        },
+        "SimpleEmail" : {
+          "shape" : "SimpleEmail"
+        },
+        "Substitutions" : {
+          "shape" : "MapOfListOf__string"
+        }
+      }
     },
     "EndpointBatchItem" : {
       "type" : "structure",
@@ -3503,6 +3685,17 @@
         },
         "Timezone" : {
           "shape" : "__string"
+        }
+      }
+    },
+    "EndpointItemResponse" : {
+      "type" : "structure",
+      "members" : {
+        "Message" : {
+          "shape" : "__string"
+        },
+        "StatusCode" : {
+          "shape" : "__integer"
         }
       }
     },
@@ -3681,6 +3874,55 @@
       },
       "required" : [ ]
     },
+    "Event" : {
+      "type" : "structure",
+      "members" : {
+        "Attributes" : {
+          "shape" : "MapOf__string"
+        },
+        "ClientSdkVersion" : {
+          "shape" : "__string"
+        },
+        "EventType" : {
+          "shape" : "__string"
+        },
+        "Metrics" : {
+          "shape" : "MapOf__double"
+        },
+        "Session" : {
+          "shape" : "Session"
+        },
+        "Timestamp" : {
+          "shape" : "__string"
+        }
+      },
+      "required" : [ ]
+    },
+    "EventDimensions" : {
+      "type" : "structure",
+      "members" : {
+        "Attributes" : {
+          "shape" : "MapOfAttributeDimension"
+        },
+        "EventType" : {
+          "shape" : "SetDimension"
+        },
+        "Metrics" : {
+          "shape" : "MapOfMetricDimension"
+        }
+      }
+    },
+    "EventItemResponse" : {
+      "type" : "structure",
+      "members" : {
+        "Message" : {
+          "shape" : "__string"
+        },
+        "StatusCode" : {
+          "shape" : "__integer"
+        }
+      }
+    },
     "EventStream" : {
       "type" : "structure",
       "members" : {
@@ -3704,6 +3946,35 @@
         }
       },
       "required" : [ ]
+    },
+    "EventsBatch" : {
+      "type" : "structure",
+      "members" : {
+        "Endpoint" : {
+          "shape" : "PublicEndpoint"
+        },
+        "Events" : {
+          "shape" : "MapOfEvent"
+        }
+      },
+      "required" : [ ]
+    },
+    "EventsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "BatchItem" : {
+          "shape" : "MapOfEventsBatch"
+        }
+      },
+      "required" : [ ]
+    },
+    "EventsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "Results" : {
+          "shape" : "MapOfItemResponse"
+        }
+      }
     },
     "ExportJobRequest" : {
       "type" : "structure",
@@ -3798,6 +4069,10 @@
       },
       "required" : [ ]
     },
+    "FilterType" : {
+      "type" : "string",
+      "enum" : [ "SYSTEM", "ENDPOINT" ]
+    },
     "ForbiddenException" : {
       "type" : "structure",
       "members" : {
@@ -3819,7 +4094,7 @@
     },
     "Frequency" : {
       "type" : "string",
-      "enum" : [ "ONCE", "HOURLY", "DAILY", "WEEKLY", "MONTHLY" ]
+      "enum" : [ "ONCE", "HOURLY", "DAILY", "WEEKLY", "MONTHLY", "EVENT" ]
     },
     "GCMChannelRequest" : {
       "type" : "structure",
@@ -4772,6 +5047,27 @@
       "required" : [ "EndpointsResponse" ],
       "payload" : "EndpointsResponse"
     },
+    "GetVoiceChannelRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ApplicationId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "application-id"
+        }
+      },
+      "required" : [ "ApplicationId" ]
+    },
+    "GetVoiceChannelResponse" : {
+      "type" : "structure",
+      "members" : {
+        "VoiceChannelResponse" : {
+          "shape" : "VoiceChannelResponse"
+        }
+      },
+      "required" : [ "VoiceChannelResponse" ],
+      "payload" : "VoiceChannelResponse"
+    },
     "ImportJobRequest" : {
       "type" : "structure",
       "members" : {
@@ -4908,6 +5204,17 @@
         "httpStatusCode" : 500
       }
     },
+    "ItemResponse" : {
+      "type" : "structure",
+      "members" : {
+        "EndpointItemResponse" : {
+          "shape" : "EndpointItemResponse"
+        },
+        "EventsItemResponse" : {
+          "shape" : "MapOfEventItemResponse"
+        }
+      }
+    },
     "JobStatus" : {
       "type" : "string",
       "enum" : [ "CREATED", "INITIALIZING", "PROCESSING", "COMPLETING", "COMPLETED", "FAILING", "FAILED" ]
@@ -5005,6 +5312,9 @@
         },
         "MessageConfiguration" : {
           "shape" : "DirectMessageConfiguration"
+        },
+        "TraceId" : {
+          "shape" : "__string"
         }
       },
       "required" : [ ]
@@ -5076,7 +5386,8 @@
         "Value" : {
           "shape" : "__double"
         }
-      }
+      },
+      "required" : [ ]
     },
     "Mode" : {
       "type" : "string",
@@ -5175,6 +5486,44 @@
       "required" : [ "NumberValidateResponse" ],
       "payload" : "NumberValidateResponse"
     },
+    "PublicEndpoint" : {
+      "type" : "structure",
+      "members" : {
+        "Address" : {
+          "shape" : "__string"
+        },
+        "Attributes" : {
+          "shape" : "MapOfListOf__string"
+        },
+        "ChannelType" : {
+          "shape" : "ChannelType"
+        },
+        "Demographic" : {
+          "shape" : "EndpointDemographic"
+        },
+        "EffectiveDate" : {
+          "shape" : "__string"
+        },
+        "EndpointStatus" : {
+          "shape" : "__string"
+        },
+        "Location" : {
+          "shape" : "EndpointLocation"
+        },
+        "Metrics" : {
+          "shape" : "MapOf__double"
+        },
+        "OptOut" : {
+          "shape" : "__string"
+        },
+        "RequestId" : {
+          "shape" : "__string"
+        },
+        "User" : {
+          "shape" : "EndpointUser"
+        }
+      }
+    },
     "PutEventStreamRequest" : {
       "type" : "structure",
       "members" : {
@@ -5200,6 +5549,31 @@
       "required" : [ "EventStream" ],
       "payload" : "EventStream"
     },
+    "PutEventsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ApplicationId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "application-id"
+        },
+        "EventsRequest" : {
+          "shape" : "EventsRequest"
+        }
+      },
+      "required" : [ "ApplicationId", "EventsRequest" ],
+      "payload" : "EventsRequest"
+    },
+    "PutEventsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "EventsResponse" : {
+          "shape" : "EventsResponse"
+        }
+      },
+      "required" : [ "EventsResponse" ],
+      "payload" : "EventsResponse"
+    },
     "QuietTime" : {
       "type" : "structure",
       "members" : {
@@ -5210,6 +5584,17 @@
           "shape" : "__string"
         }
       }
+    },
+    "RawEmail" : {
+      "type" : "structure",
+      "members" : {
+        "Data" : {
+          "shape" : "__blob"
+        }
+      }
+    },
+    "__blob" : {
+      "type" : "blob"
     },
     "RecencyDimension" : {
       "type" : "structure",
@@ -5348,6 +5733,9 @@
       "members" : {
         "EndTime" : {
           "shape" : "__string"
+        },
+        "EventFilter" : {
+          "shape" : "CampaignEventFilter"
         },
         "Frequency" : {
           "shape" : "Frequency"
@@ -5495,7 +5883,8 @@
         "Version" : {
           "shape" : "__integer"
         }
-      }
+      },
+      "required" : [ ]
     },
     "SegmentResponse" : {
       "type" : "structure",
@@ -5583,6 +5972,9 @@
         "MessageConfiguration" : {
           "shape" : "DirectMessageConfiguration"
         },
+        "TraceId" : {
+          "shape" : "__string"
+        },
         "Users" : {
           "shape" : "MapOfEndpointSendConfiguration"
         }
@@ -5629,6 +6021,24 @@
       "required" : [ "SendUsersMessageResponse" ],
       "payload" : "SendUsersMessageResponse"
     },
+    "Session" : {
+      "type" : "structure",
+      "members" : {
+        "Duration" : {
+          "shape" : "__integer"
+        },
+        "Id" : {
+          "shape" : "__string"
+        },
+        "StartTimestamp" : {
+          "shape" : "__string"
+        },
+        "StopTimestamp" : {
+          "shape" : "__string"
+        }
+      },
+      "required" : [ ]
+    },
     "SetDimension" : {
       "type" : "structure",
       "members" : {
@@ -5641,9 +6051,34 @@
       },
       "required" : [ ]
     },
+    "SimpleEmail" : {
+      "type" : "structure",
+      "members" : {
+        "HtmlPart" : {
+          "shape" : "SimpleEmailPart"
+        },
+        "Subject" : {
+          "shape" : "SimpleEmailPart"
+        },
+        "TextPart" : {
+          "shape" : "SimpleEmailPart"
+        }
+      }
+    },
+    "SimpleEmailPart" : {
+      "type" : "structure",
+      "members" : {
+        "Charset" : {
+          "shape" : "__string"
+        },
+        "Data" : {
+          "shape" : "__string"
+        }
+      }
+    },
     "SourceType" : {
       "type" : "string",
-      "enum" : [ "ALL", "ANY" ]
+      "enum" : [ "ALL", "ANY", "NONE" ]
     },
     "TooManyRequestsException" : {
       "type" : "structure",
@@ -6064,6 +6499,96 @@
       "required" : [ "SMSChannelResponse" ],
       "payload" : "SMSChannelResponse"
     },
+    "UpdateVoiceChannelRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ApplicationId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "application-id"
+        },
+        "VoiceChannelRequest" : {
+          "shape" : "VoiceChannelRequest"
+        }
+      },
+      "required" : [ "ApplicationId", "VoiceChannelRequest" ],
+      "payload" : "VoiceChannelRequest"
+    },
+    "UpdateVoiceChannelResponse" : {
+      "type" : "structure",
+      "members" : {
+        "VoiceChannelResponse" : {
+          "shape" : "VoiceChannelResponse"
+        }
+      },
+      "required" : [ "VoiceChannelResponse" ],
+      "payload" : "VoiceChannelResponse"
+    },
+    "VoiceChannelRequest" : {
+      "type" : "structure",
+      "members" : {
+        "Enabled" : {
+          "shape" : "__boolean"
+        }
+      },
+      "required" : [ ]
+    },
+    "VoiceChannelResponse" : {
+      "type" : "structure",
+      "members" : {
+        "ApplicationId" : {
+          "shape" : "__string"
+        },
+        "CreationDate" : {
+          "shape" : "__string"
+        },
+        "Enabled" : {
+          "shape" : "__boolean"
+        },
+        "HasCredential" : {
+          "shape" : "__boolean"
+        },
+        "Id" : {
+          "shape" : "__string"
+        },
+        "IsArchived" : {
+          "shape" : "__boolean"
+        },
+        "LastModifiedBy" : {
+          "shape" : "__string"
+        },
+        "LastModifiedDate" : {
+          "shape" : "__string"
+        },
+        "Platform" : {
+          "shape" : "__string"
+        },
+        "Version" : {
+          "shape" : "__integer"
+        }
+      },
+      "required" : [ ]
+    },
+    "VoiceMessage" : {
+      "type" : "structure",
+      "members" : {
+        "Body" : {
+          "shape" : "__string"
+        },
+        "LanguageCode" : {
+          "shape" : "__string"
+        },
+        "OriginationNumber" : {
+          "shape" : "__string"
+        },
+        "Substitutions" : {
+          "shape" : "MapOfListOf__string"
+        },
+        "VoiceId" : {
+          "shape" : "__string"
+        }
+      }
+    },
     "WriteApplicationSettingsRequest" : {
       "type" : "structure",
       "members" : {
@@ -6312,6 +6837,42 @@
       },
       "value" : {
         "shape" : "EndpointSendConfiguration"
+      }
+    },
+    "MapOfEvent" : {
+      "type" : "map",
+      "key" : {
+        "shape" : "__string"
+      },
+      "value" : {
+        "shape" : "Event"
+      }
+    },
+    "MapOfEventItemResponse" : {
+      "type" : "map",
+      "key" : {
+        "shape" : "__string"
+      },
+      "value" : {
+        "shape" : "EventItemResponse"
+      }
+    },
+    "MapOfEventsBatch" : {
+      "type" : "map",
+      "key" : {
+        "shape" : "__string"
+      },
+      "value" : {
+        "shape" : "EventsBatch"
+      }
+    },
+    "MapOfItemResponse" : {
+      "type" : "map",
+      "key" : {
+        "shape" : "__string"
+      },
+      "value" : {
+        "shape" : "ItemResponse"
       }
     },
     "MapOfMessageResult" : {

@@ -16,7 +16,7 @@ const opDeleteLexicon = "DeleteLexicon"
 // DeleteLexiconRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteLexicon operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -107,7 +107,7 @@ const opDescribeVoices = "DescribeVoices"
 // DescribeVoicesRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeVoices operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -206,7 +206,7 @@ const opGetLexicon = "GetLexicon"
 // GetLexiconRequest generates a "aws/request.Request" representing the
 // client's request for the GetLexicon operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -294,7 +294,7 @@ const opGetSpeechSynthesisTask = "GetSpeechSynthesisTask"
 // GetSpeechSynthesisTaskRequest generates a "aws/request.Request" representing the
 // client's request for the GetSpeechSynthesisTask operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -383,7 +383,7 @@ const opListLexicons = "ListLexicons"
 // ListLexiconsRequest generates a "aws/request.Request" representing the
 // client's request for the ListLexicons operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -467,7 +467,7 @@ const opListSpeechSynthesisTasks = "ListSpeechSynthesisTasks"
 // ListSpeechSynthesisTasksRequest generates a "aws/request.Request" representing the
 // client's request for the ListSpeechSynthesisTasks operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -608,7 +608,7 @@ const opPutLexicon = "PutLexicon"
 // PutLexiconRequest generates a "aws/request.Request" representing the
 // client's request for the PutLexicon operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -713,7 +713,7 @@ const opStartSpeechSynthesisTask = "StartSpeechSynthesisTask"
 // StartSpeechSynthesisTaskRequest generates a "aws/request.Request" representing the
 // client's request for the StartSpeechSynthesisTask operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -771,7 +771,7 @@ func (c *Polly) StartSpeechSynthesisTaskRequest(input *StartSpeechSynthesisTaskI
 //   * ErrCodeTextLengthExceededException "TextLengthExceededException"
 //   The value of the "Text" parameter is longer than the accepted limits. For
 //   the SynthesizeSpeech API, the limit for input text is a maximum of 6000 characters
-//   total, of which no more than 3000 can be billed characters. For the SetSpeechSynthesisTask
+//   total, of which no more than 3000 can be billed characters. For the StartSpeechSynthesisTask
 //   API, the maximum is 200,000 characters, of which no more than 100,000 can
 //   be billed characters. SSML tags are not counted as billed characters.
 //
@@ -812,6 +812,10 @@ func (c *Polly) StartSpeechSynthesisTaskRequest(input *StartSpeechSynthesisTaskI
 //   * ErrCodeSsmlMarksNotSupportedForTextTypeException "SsmlMarksNotSupportedForTextTypeException"
 //   SSML speech marks are not supported for plain text-type input.
 //
+//   * ErrCodeLanguageNotSupportedException "LanguageNotSupportedException"
+//   The language specified is not currently supported by Amazon Polly in this
+//   capacity.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/StartSpeechSynthesisTask
 func (c *Polly) StartSpeechSynthesisTask(input *StartSpeechSynthesisTaskInput) (*StartSpeechSynthesisTaskOutput, error) {
 	req, out := c.StartSpeechSynthesisTaskRequest(input)
@@ -839,7 +843,7 @@ const opSynthesizeSpeech = "SynthesizeSpeech"
 // SynthesizeSpeechRequest generates a "aws/request.Request" representing the
 // client's request for the SynthesizeSpeech operation. The "output" return
 // value will be populated with the request's response once the request completes
-// successfuly.
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -895,7 +899,7 @@ func (c *Polly) SynthesizeSpeechRequest(input *SynthesizeSpeechInput) (req *requ
 //   * ErrCodeTextLengthExceededException "TextLengthExceededException"
 //   The value of the "Text" parameter is longer than the accepted limits. For
 //   the SynthesizeSpeech API, the limit for input text is a maximum of 6000 characters
-//   total, of which no more than 3000 can be billed characters. For the SetSpeechSynthesisTask
+//   total, of which no more than 3000 can be billed characters. For the StartSpeechSynthesisTask
 //   API, the maximum is 200,000 characters, of which no more than 100,000 can
 //   be billed characters. SSML tags are not counted as billed characters.
 //
@@ -923,6 +927,10 @@ func (c *Polly) SynthesizeSpeechRequest(input *SynthesizeSpeechInput) (req *requ
 //
 //   * ErrCodeSsmlMarksNotSupportedForTextTypeException "SsmlMarksNotSupportedForTextTypeException"
 //   SSML speech marks are not supported for plain text-type input.
+//
+//   * ErrCodeLanguageNotSupportedException "LanguageNotSupportedException"
+//   The language specified is not currently supported by Amazon Polly in this
+//   capacity.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/SynthesizeSpeech
 func (c *Polly) SynthesizeSpeech(input *SynthesizeSpeechInput) (*SynthesizeSpeechOutput, error) {
@@ -952,7 +960,7 @@ type DeleteLexiconInput struct {
 	// The name of the lexicon to delete. Must be an existing lexicon in the region.
 	//
 	// Name is a required field
-	Name *string `location:"uri" locationName:"LexiconName" type:"string" required:"true"`
+	Name *string `location:"uri" locationName:"LexiconName" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -970,6 +978,9 @@ func (s *DeleteLexiconInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeleteLexiconInput"}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -1001,6 +1012,13 @@ func (s DeleteLexiconOutput) GoString() string {
 type DescribeVoicesInput struct {
 	_ struct{} `type:"structure"`
 
+	// Boolean value indicating whether to return any bilingual voices that use
+	// the specified language as an additional language. For instance, if you request
+	// all languages that use US English (es-US), and there is an Italian voice
+	// that speaks both Italian (it-IT) and US English, that voice will be included
+	// if you specify yes but not if you specify no.
+	IncludeAdditionalLanguageCodes *bool `location:"querystring" locationName:"IncludeAdditionalLanguageCodes" type:"boolean"`
+
 	// The language identification tag (ISO 639 code for the language name-ISO 3166
 	// country code) for filtering the list of voices returned. If you don't specify
 	// this optional parameter, all available voices are returned.
@@ -1019,6 +1037,12 @@ func (s DescribeVoicesInput) String() string {
 // GoString returns the string representation
 func (s DescribeVoicesInput) GoString() string {
 	return s.String()
+}
+
+// SetIncludeAdditionalLanguageCodes sets the IncludeAdditionalLanguageCodes field's value.
+func (s *DescribeVoicesInput) SetIncludeAdditionalLanguageCodes(v bool) *DescribeVoicesInput {
+	s.IncludeAdditionalLanguageCodes = &v
+	return s
 }
 
 // SetLanguageCode sets the LanguageCode field's value.
@@ -1072,7 +1096,7 @@ type GetLexiconInput struct {
 	// Name of the lexicon.
 	//
 	// Name is a required field
-	Name *string `location:"uri" locationName:"LexiconName" type:"string" required:"true"`
+	Name *string `location:"uri" locationName:"LexiconName" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -1090,6 +1114,9 @@ func (s *GetLexiconInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetLexiconInput"}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -1213,7 +1240,7 @@ type Lexicon struct {
 	Content *string `type:"string"`
 
 	// Name of the lexicon.
-	Name *string `type:"string"`
+	Name *string `type:"string" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -1318,7 +1345,7 @@ type LexiconDescription struct {
 	Attributes *LexiconAttributes `type:"structure"`
 
 	// Name of the lexicon.
-	Name *string `type:"string"`
+	Name *string `type:"string" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -1462,9 +1489,9 @@ type ListSpeechSynthesisTasksOutput struct {
 	// request. If present, this indicates where to continue the listing.
 	NextToken *string `type:"string"`
 
-	// SynthesisTask object that provides information from the specified task in
-	// the list request, including output format, creation time, task status, and
-	// so on.
+	// List of SynthesisTask objects that provides information from the specified
+	// task in the list request, including output format, creation time, task status,
+	// and so on.
 	SynthesisTasks []*SynthesisTask `type:"list"`
 }
 
@@ -1503,7 +1530,7 @@ type PutLexiconInput struct {
 	// long.
 	//
 	// Name is a required field
-	Name *string `location:"uri" locationName:"LexiconName" type:"string" required:"true"`
+	Name *string `location:"uri" locationName:"LexiconName" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -1524,6 +1551,9 @@ func (s *PutLexiconInput) Validate() error {
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -1561,6 +1591,17 @@ func (s PutLexiconOutput) GoString() string {
 type StartSpeechSynthesisTaskInput struct {
 	_ struct{} `type:"structure"`
 
+	// Optional language code for the Speech Synthesis request. This is only necessary
+	// if using a bilingual voice, such as Aditi, which can be used for either Indian
+	// English (en-IN) or Hindi (hi-IN).
+	//
+	// If a bilingual voice is used and no language code is specified, Amazon Polly
+	// will use the default language of the bilingual voice. The default language
+	// for any voice is the one returned by the DescribeVoices (https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html)
+	// operation for the LanguageCode parameter. For example, if no language code
+	// is specified, Aditi will use Indian English rather than Hindi.
+	LanguageCode *string `type:"string" enum:"LanguageCode"`
+
 	// List of one or more pronunciation lexicon names you want the service to apply
 	// during synthesis. Lexicons are applied only if the language of the lexicon
 	// is the same as the language of the voice.
@@ -1577,7 +1618,7 @@ type StartSpeechSynthesisTaskInput struct {
 	// OutputS3BucketName is a required field
 	OutputS3BucketName *string `type:"string" required:"true"`
 
-	// The Amazon S3 Key prefix for the output speech file.
+	// The Amazon S3 key prefix for the output speech file.
 	OutputS3KeyPrefix *string `type:"string"`
 
 	// The audio frequency specified in Hz.
@@ -1641,6 +1682,12 @@ func (s *StartSpeechSynthesisTaskInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *StartSpeechSynthesisTaskInput) SetLanguageCode(v string) *StartSpeechSynthesisTaskInput {
+	s.LanguageCode = &v
+	return s
 }
 
 // SetLexiconNames sets the LexiconNames field's value.
@@ -1734,6 +1781,17 @@ type SynthesisTask struct {
 	// Timestamp for the time the synthesis task was started.
 	CreationTime *time.Time `type:"timestamp"`
 
+	// Optional language code for a synthesis task. This is only necessary if using
+	// a bilingual voice, such as Aditi, which can be used for either Indian English
+	// (en-IN) or Hindi (hi-IN).
+	//
+	// If a bilingual voice is used and no language code is specified, Amazon Polly
+	// will use the default language of the bilingual voice. The default language
+	// for any voice is the one returned by the DescribeVoices (https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html)
+	// operation for the LanguageCode parameter. For example, if no language code
+	// is specified, Aditi will use Indian English rather than Hindi.
+	LanguageCode *string `type:"string" enum:"LanguageCode"`
+
 	// List of one or more pronunciation lexicon names you want the service to apply
 	// during synthesis. Lexicons are applied only if the language of the lexicon
 	// is the same as the language of the voice.
@@ -1795,6 +1853,12 @@ func (s SynthesisTask) GoString() string {
 // SetCreationTime sets the CreationTime field's value.
 func (s *SynthesisTask) SetCreationTime(v time.Time) *SynthesisTask {
 	s.CreationTime = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *SynthesisTask) SetLanguageCode(v string) *SynthesisTask {
+	s.LanguageCode = &v
 	return s
 }
 
@@ -1873,6 +1937,17 @@ func (s *SynthesisTask) SetVoiceId(v string) *SynthesisTask {
 type SynthesizeSpeechInput struct {
 	_ struct{} `type:"structure"`
 
+	// Optional language code for the Synthesize Speech request. This is only necessary
+	// if using a bilingual voice, such as Aditi, which can be used for either Indian
+	// English (en-IN) or Hindi (hi-IN).
+	//
+	// If a bilingual voice is used and no language code is specified, Amazon Polly
+	// will use the default language of the bilingual voice. The default language
+	// for any voice is the one returned by the DescribeVoices (https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html)
+	// operation for the LanguageCode parameter. For example, if no language code
+	// is specified, Aditi will use Indian English rather than Hindi.
+	LanguageCode *string `type:"string" enum:"LanguageCode"`
+
 	// List of one or more pronunciation lexicon names you want the service to apply
 	// during synthesis. Lexicons are applied only if the language of the lexicon
 	// is the same as the language of the voice. For information about storing lexicons,
@@ -1881,6 +1956,9 @@ type SynthesizeSpeechInput struct {
 
 	// The format in which the returned output will be encoded. For audio stream,
 	// this will be mp3, ogg_vorbis, or pcm. For speech marks, this will be json.
+	//
+	// When pcm is used, the content returned is audio/pcm in a signed 16-bit, 1
+	// channel (mono), little-endian format.
 	//
 	// OutputFormat is a required field
 	OutputFormat *string `type:"string" required:"true" enum:"OutputFormat"`
@@ -1941,6 +2019,12 @@ func (s *SynthesizeSpeechInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *SynthesizeSpeechInput) SetLanguageCode(v string) *SynthesizeSpeechInput {
+	s.LanguageCode = &v
+	return s
 }
 
 // SetLexiconNames sets the LexiconNames field's value.
@@ -2044,6 +2128,14 @@ func (s *SynthesizeSpeechOutput) SetRequestCharacters(v int64) *SynthesizeSpeech
 type Voice struct {
 	_ struct{} `type:"structure"`
 
+	// Additional codes for languages available for the specified voice in addition
+	// to its default language.
+	//
+	// For example, the default language for Aditi is Indian English (en-IN) because
+	// it was first used for that language. Since Aditi is bilingual and fluent
+	// in both Indian English and Hindi, this parameter would show the code hi-IN.
+	AdditionalLanguageCodes []*string `type:"list"`
+
 	// Gender of the voice.
 	Gender *string `type:"string" enum:"Gender"`
 
@@ -2070,6 +2162,12 @@ func (s Voice) String() string {
 // GoString returns the string representation
 func (s Voice) GoString() string {
 	return s.String()
+}
+
+// SetAdditionalLanguageCodes sets the AdditionalLanguageCodes field's value.
+func (s *Voice) SetAdditionalLanguageCodes(v []*string) *Voice {
+	s.AdditionalLanguageCodes = v
+	return s
 }
 
 // SetGender sets the Gender field's value.
@@ -2111,6 +2209,9 @@ const (
 )
 
 const (
+	// LanguageCodeCmnCn is a LanguageCode enum value
+	LanguageCodeCmnCn = "cmn-CN"
+
 	// LanguageCodeCyGb is a LanguageCode enum value
 	LanguageCodeCyGb = "cy-GB"
 
@@ -2138,6 +2239,9 @@ const (
 	// LanguageCodeEsEs is a LanguageCode enum value
 	LanguageCodeEsEs = "es-ES"
 
+	// LanguageCodeEsMx is a LanguageCode enum value
+	LanguageCodeEsMx = "es-MX"
+
 	// LanguageCodeEsUs is a LanguageCode enum value
 	LanguageCodeEsUs = "es-US"
 
@@ -2153,11 +2257,14 @@ const (
 	// LanguageCodeItIt is a LanguageCode enum value
 	LanguageCodeItIt = "it-IT"
 
-	// LanguageCodeKoKr is a LanguageCode enum value
-	LanguageCodeKoKr = "ko-KR"
-
 	// LanguageCodeJaJp is a LanguageCode enum value
 	LanguageCodeJaJp = "ja-JP"
+
+	// LanguageCodeHiIn is a LanguageCode enum value
+	LanguageCodeHiIn = "hi-IN"
+
+	// LanguageCodeKoKr is a LanguageCode enum value
+	LanguageCodeKoKr = "ko-KR"
 
 	// LanguageCodeNbNo is a LanguageCode enum value
 	LanguageCodeNbNo = "nb-NO"
@@ -2396,4 +2503,16 @@ const (
 
 	// VoiceIdAditi is a VoiceId enum value
 	VoiceIdAditi = "Aditi"
+
+	// VoiceIdZhiyu is a VoiceId enum value
+	VoiceIdZhiyu = "Zhiyu"
+
+	// VoiceIdBianca is a VoiceId enum value
+	VoiceIdBianca = "Bianca"
+
+	// VoiceIdLucia is a VoiceId enum value
+	VoiceIdLucia = "Lucia"
+
+	// VoiceIdMia is a VoiceId enum value
+	VoiceIdMia = "Mia"
 )

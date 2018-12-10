@@ -215,14 +215,14 @@ func (d Downloader) DownloadWithContext(ctx aws.Context, w io.WriterAt, input *s
 //
 //	objects := []s3manager.BatchDownloadObject {
 //		{
-//			Input: &s3.GetObjectInput {
+//			Object: &s3.GetObjectInput {
 //				Bucket: aws.String("bucket"),
 //				Key: aws.String("foo"),
 //			},
 //			Writer: fooFile,
 //		},
 //		{
-//			Input: &s3.GetObjectInput {
+//			Object: &s3.GetObjectInput {
 //				Bucket: aws.String("bucket"),
 //				Key: aws.String("bar"),
 //			},

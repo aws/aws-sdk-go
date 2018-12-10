@@ -32,11 +32,42 @@ type explicitPayload struct {
 	Second *nestedType `type:"structure" locationName:"Second"`
 }
 
+type useEmptyNested struct {
+	_ struct{} `type:"structure" locationName:"useEmptyNested"`
+
+	StrVal *string    `type:"string"`
+	Empty  *emptyType `type:"structure"`
+}
+
+type useIgnoreNested struct {
+	_      struct{}      `type:"structure" locationName:"useIgnoreNested"`
+	StrVal *string       `type:"string"`
+	Ignore *ignoreNested `type:"structure"`
+}
+
+type skipNonPayload struct {
+	_     struct{} `type:"structure" locationName:"skipNonPayload"`
+	Field *string  `type:"string" location:"header"`
+}
+type namedEmptyPayload struct {
+	_ struct{} `type:"structure" locationName:"namedEmptyPayload"`
+}
+
 type nestedType struct {
 	_ struct{} `type:"structure"`
 
 	IntVal *int64  `type:"integer"`
 	StrVal *string `type:"string"`
+}
+
+type emptyType struct {
+	_ struct{} `type:"structure"`
+}
+
+type ignoreNested struct {
+	_ struct{} `type:"structure"`
+
+	IgnoreMe *string `type:"string" ignore:"true"`
 }
 
 func TestBuildXML(t *testing.T) {
@@ -81,7 +112,7 @@ func TestBuildXML(t *testing.T) {
 			},
 			Expect: `<namedPayload><Second><IntVal>1111</IntVal><StrVal>second string</StrVal></Second><StrVal>string value</StrVal><Third><IntVal>2222</IntVal><StrVal>third string</StrVal></Third></namedPayload>`,
 		},
-		"empty nested type": {
+		"empty with fields nested type": {
 			Input: &namedImplicitPayload{
 				StrVal: aws.String("string value"),
 				Second: &nestedType{},
@@ -91,6 +122,36 @@ func TestBuildXML(t *testing.T) {
 				},
 			},
 			Expect: `<namedPayload><Second></Second><StrVal>string value</StrVal><Third><IntVal>2222</IntVal><StrVal>third string</StrVal></Third></namedPayload>`,
+		},
+		"empty no fields nested type": {
+			Input: &useEmptyNested{
+				StrVal: aws.String("string value"),
+				Empty:  &emptyType{},
+			},
+			Expect: `<useEmptyNested><Empty></Empty><StrVal>string value</StrVal></useEmptyNested>`,
+		},
+		"ignored nested field": {
+			Input: &useIgnoreNested{
+				StrVal: aws.String("string value"),
+				Ignore: &ignoreNested{
+					IgnoreMe: aws.String("abc123"),
+				},
+			},
+			Expect: `<useIgnoreNested><Ignore></Ignore><StrVal>string value</StrVal></useIgnoreNested>`,
+		},
+		"skip non payload root": {
+			Input: &skipNonPayload{
+				Field: aws.String("value"),
+			},
+			Expect: "",
+		},
+		"skip empty root": {
+			Input:  &emptyType{},
+			Expect: "",
+		},
+		"named empty payload": {
+			Input:  &namedEmptyPayload{},
+			Expect: "<namedEmptyPayload></namedEmptyPayload>",
 		},
 	}
 
