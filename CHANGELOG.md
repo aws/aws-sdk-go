@@ -1,3 +1,18 @@
+Release v1.16.3 (2018-12-11)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API and documentation
+* `service/ecs`: Updates service documentation
+  * Documentation updates for Amazon ECS.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/mediastore`: Updates service API and documentation
+  * This release adds Delete Object Lifecycling to AWS MediaStore Containers.
+
+### SDK Bugs
+* `private/model/api`: Fix SDK's unmarshaling of unmodeled response payload ([#2340](https://github.com/aws/aws-sdk-go/pull/2340))
+  * Fixes the SDK's unmarshaling of API operation response payloads for operations that are unmodeled. Prevents the SDK due to unexpected response payloads causing errors in the API protocol unmarshaler.
+  * Fixes [#2332](https://github.com/aws/aws-sdk-go/issues/2332)
 Release v1.16.2 (2018-12-07)
 ===
 

@@ -94,6 +94,20 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "GetContactAttributes":{
+      "name":"GetContactAttributes",
+      "http":{
+        "method":"GET",
+        "requestUri":"/contact/attributes/{InstanceId}/{InitialContactId}"
+      },
+      "input":{"shape":"GetContactAttributesRequest"},
+      "output":{"shape":"GetContactAttributesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "GetCurrentMetricData":{
       "name":"GetCurrentMetricData",
       "http":{
@@ -612,6 +626,31 @@
       "members":{
         "Queues":{"shape":"Queues"},
         "Channels":{"shape":"Channels"}
+      }
+    },
+    "GetContactAttributesRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "InitialContactId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "InitialContactId":{
+          "shape":"ContactId",
+          "location":"uri",
+          "locationName":"InitialContactId"
+        }
+      }
+    },
+    "GetContactAttributesResponse":{
+      "type":"structure",
+      "members":{
+        "Attributes":{"shape":"Attributes"}
       }
     },
     "GetCurrentMetricDataRequest":{

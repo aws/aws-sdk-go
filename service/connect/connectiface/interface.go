@@ -80,6 +80,10 @@ type ConnectAPI interface {
 	DescribeUserHierarchyStructureWithContext(aws.Context, *connect.DescribeUserHierarchyStructureInput, ...request.Option) (*connect.DescribeUserHierarchyStructureOutput, error)
 	DescribeUserHierarchyStructureRequest(*connect.DescribeUserHierarchyStructureInput) (*request.Request, *connect.DescribeUserHierarchyStructureOutput)
 
+	GetContactAttributes(*connect.GetContactAttributesInput) (*connect.GetContactAttributesOutput, error)
+	GetContactAttributesWithContext(aws.Context, *connect.GetContactAttributesInput, ...request.Option) (*connect.GetContactAttributesOutput, error)
+	GetContactAttributesRequest(*connect.GetContactAttributesInput) (*request.Request, *connect.GetContactAttributesOutput)
+
 	GetCurrentMetricData(*connect.GetCurrentMetricDataInput) (*connect.GetCurrentMetricDataOutput, error)
 	GetCurrentMetricDataWithContext(aws.Context, *connect.GetCurrentMetricDataInput, ...request.Option) (*connect.GetCurrentMetricDataOutput, error)
 	GetCurrentMetricDataRequest(*connect.GetCurrentMetricDataInput) (*request.Request, *connect.GetCurrentMetricDataOutput)
