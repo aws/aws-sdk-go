@@ -9,6 +9,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
 const opBatchSuspendUser = "BatchSuspendUser"
@@ -468,6 +470,7 @@ func (c *Chime) DeleteAccountRequest(input *DeleteAccountInput) (req *request.Re
 
 	output = &DeleteAccountOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1297,6 +1300,7 @@ func (c *Chime) LogoutUserRequest(input *LogoutUserInput) (req *request.Request,
 
 	output = &LogoutUserOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1594,6 +1598,7 @@ func (c *Chime) UpdateAccountSettingsRequest(input *UpdateAccountSettingsInput) 
 
 	output = &UpdateAccountSettingsOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 

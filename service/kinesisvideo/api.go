@@ -8,6 +8,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
 const opCreateStream = "CreateStream"
@@ -154,6 +156,7 @@ func (c *KinesisVideo) DeleteStreamRequest(input *DeleteStreamInput) (req *reque
 
 	output = &DeleteStreamOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -620,6 +623,7 @@ func (c *KinesisVideo) TagStreamRequest(input *TagStreamInput) (req *request.Req
 
 	output = &TagStreamOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -727,6 +731,7 @@ func (c *KinesisVideo) UntagStreamRequest(input *UntagStreamInput) (req *request
 
 	output = &UntagStreamOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -823,6 +828,7 @@ func (c *KinesisVideo) UpdateDataRetentionRequest(input *UpdateDataRetentionInpu
 
 	output = &UpdateDataRetentionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -940,6 +946,7 @@ func (c *KinesisVideo) UpdateStreamRequest(input *UpdateStreamInput) (req *reque
 
 	output = &UpdateStreamOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 

@@ -8,6 +8,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
 const opCreateContainer = "CreateContainer"
@@ -135,6 +137,7 @@ func (c *MediaStore) DeleteContainerRequest(input *DeleteContainerInput) (req *r
 
 	output = &DeleteContainerOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -222,6 +225,7 @@ func (c *MediaStore) DeleteContainerPolicyRequest(input *DeleteContainerPolicyIn
 
 	output = &DeleteContainerPolicyOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -310,6 +314,7 @@ func (c *MediaStore) DeleteCorsPolicyRequest(input *DeleteCorsPolicyInput) (req 
 
 	output = &DeleteCorsPolicyOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -761,6 +766,7 @@ func (c *MediaStore) PutContainerPolicyRequest(input *PutContainerPolicyInput) (
 
 	output = &PutContainerPolicyOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -853,6 +859,7 @@ func (c *MediaStore) PutCorsPolicyRequest(input *PutCorsPolicyInput) (req *reque
 
 	output = &PutCorsPolicyOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 

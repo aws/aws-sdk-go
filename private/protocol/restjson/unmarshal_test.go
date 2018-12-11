@@ -2264,8 +2264,7 @@ func (c *OutputService13ProtocolTest) OutputService13TestCaseOperation2Request(i
 
 	output = &OutputService13TestShapeOutputService13TestCaseOperation2Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2392,8 +2391,8 @@ func TestOutputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	req.HTTPResponse.Header.Set("X-Foo", "abc")
 
 	// unmarshal response
-	restjson.UnmarshalMeta(req)
-	restjson.Unmarshal(req)
+	req.Handlers.UnmarshalMeta.Run(req)
+	req.Handlers.Unmarshal.Run(req)
 	if req.Error != nil {
 		t.Errorf("expect not error, got %v", req.Error)
 	}
@@ -2448,8 +2447,8 @@ func TestOutputService2ProtocolTestBlobMembersCase1(t *testing.T) {
 	// set headers
 
 	// unmarshal response
-	restjson.UnmarshalMeta(req)
-	restjson.Unmarshal(req)
+	req.Handlers.UnmarshalMeta.Run(req)
+	req.Handlers.Unmarshal.Run(req)
 	if req.Error != nil {
 		t.Errorf("expect not error, got %v", req.Error)
 	}
@@ -2480,8 +2479,8 @@ func TestOutputService3ProtocolTestTimestampMembersCase1(t *testing.T) {
 	req.HTTPResponse.Header.Set("x-amz-timeformat", "2014-04-29T18:30:38Z")
 
 	// unmarshal response
-	restjson.UnmarshalMeta(req)
-	restjson.Unmarshal(req)
+	req.Handlers.UnmarshalMeta.Run(req)
+	req.Handlers.Unmarshal.Run(req)
 	if req.Error != nil {
 		t.Errorf("expect not error, got %v", req.Error)
 	}
@@ -2527,8 +2526,8 @@ func TestOutputService4ProtocolTestListsCase1(t *testing.T) {
 	// set headers
 
 	// unmarshal response
-	restjson.UnmarshalMeta(req)
-	restjson.Unmarshal(req)
+	req.Handlers.UnmarshalMeta.Run(req)
+	req.Handlers.Unmarshal.Run(req)
 	if req.Error != nil {
 		t.Errorf("expect not error, got %v", req.Error)
 	}
@@ -2556,8 +2555,8 @@ func TestOutputService5ProtocolTestListsWithStructureMemberCase1(t *testing.T) {
 	// set headers
 
 	// unmarshal response
-	restjson.UnmarshalMeta(req)
-	restjson.Unmarshal(req)
+	req.Handlers.UnmarshalMeta.Run(req)
+	req.Handlers.Unmarshal.Run(req)
 	if req.Error != nil {
 		t.Errorf("expect not error, got %v", req.Error)
 	}
@@ -2585,8 +2584,8 @@ func TestOutputService6ProtocolTestMapsCase1(t *testing.T) {
 	// set headers
 
 	// unmarshal response
-	restjson.UnmarshalMeta(req)
-	restjson.Unmarshal(req)
+	req.Handlers.UnmarshalMeta.Run(req)
+	req.Handlers.Unmarshal.Run(req)
 	if req.Error != nil {
 		t.Errorf("expect not error, got %v", req.Error)
 	}
@@ -2620,8 +2619,8 @@ func TestOutputService7ProtocolTestComplexMapValuesCase1(t *testing.T) {
 	// set headers
 
 	// unmarshal response
-	restjson.UnmarshalMeta(req)
-	restjson.Unmarshal(req)
+	req.Handlers.UnmarshalMeta.Run(req)
+	req.Handlers.Unmarshal.Run(req)
 	if req.Error != nil {
 		t.Errorf("expect not error, got %v", req.Error)
 	}
@@ -2649,8 +2648,8 @@ func TestOutputService8ProtocolTestIgnoresExtraDataCase1(t *testing.T) {
 	// set headers
 
 	// unmarshal response
-	restjson.UnmarshalMeta(req)
-	restjson.Unmarshal(req)
+	req.Handlers.UnmarshalMeta.Run(req)
+	req.Handlers.Unmarshal.Run(req)
 	if req.Error != nil {
 		t.Errorf("expect not error, got %v", req.Error)
 	}
@@ -2675,8 +2674,8 @@ func TestOutputService9ProtocolTestSupportsHeaderMapsCase1(t *testing.T) {
 	req.HTTPResponse.Header.Set("X-Foo", "bar")
 
 	// unmarshal response
-	restjson.UnmarshalMeta(req)
-	restjson.Unmarshal(req)
+	req.Handlers.UnmarshalMeta.Run(req)
+	req.Handlers.Unmarshal.Run(req)
 	if req.Error != nil {
 		t.Errorf("expect not error, got %v", req.Error)
 	}
@@ -2714,8 +2713,8 @@ func TestOutputService10ProtocolTestJSONPayloadCase1(t *testing.T) {
 	req.HTTPResponse.Header.Set("X-Foo", "baz")
 
 	// unmarshal response
-	restjson.UnmarshalMeta(req)
-	restjson.Unmarshal(req)
+	req.Handlers.UnmarshalMeta.Run(req)
+	req.Handlers.Unmarshal.Run(req)
 	if req.Error != nil {
 		t.Errorf("expect not error, got %v", req.Error)
 	}
@@ -2743,8 +2742,8 @@ func TestOutputService11ProtocolTestStreamingPayloadCase1(t *testing.T) {
 	// set headers
 
 	// unmarshal response
-	restjson.UnmarshalMeta(req)
-	restjson.Unmarshal(req)
+	req.Handlers.UnmarshalMeta.Run(req)
+	req.Handlers.Unmarshal.Run(req)
 	if req.Error != nil {
 		t.Errorf("expect not error, got %v", req.Error)
 	}
@@ -2770,8 +2769,8 @@ func TestOutputService12ProtocolTestJSONValueTraitCase1(t *testing.T) {
 	req.HTTPResponse.Header.Set("X-Amz-Foo", "eyJGb28iOiJCYXIifQ==")
 
 	// unmarshal response
-	restjson.UnmarshalMeta(req)
-	restjson.Unmarshal(req)
+	req.Handlers.UnmarshalMeta.Run(req)
+	req.Handlers.Unmarshal.Run(req)
 	if req.Error != nil {
 		t.Errorf("expect not error, got %v", req.Error)
 	}
@@ -2795,8 +2794,8 @@ func TestOutputService12ProtocolTestJSONValueTraitCase2(t *testing.T) {
 	// set headers
 
 	// unmarshal response
-	restjson.UnmarshalMeta(req)
-	restjson.Unmarshal(req)
+	req.Handlers.UnmarshalMeta.Run(req)
+	req.Handlers.Unmarshal.Run(req)
 	if req.Error != nil {
 		t.Errorf("expect not error, got %v", req.Error)
 	}
@@ -2820,8 +2819,8 @@ func TestOutputService13ProtocolTestEnumCase1(t *testing.T) {
 	req.HTTPResponse.Header.Set("x-amz-enum", "baz")
 
 	// unmarshal response
-	restjson.UnmarshalMeta(req)
-	restjson.Unmarshal(req)
+	req.Handlers.UnmarshalMeta.Run(req)
+	req.Handlers.Unmarshal.Run(req)
 	if req.Error != nil {
 		t.Errorf("expect not error, got %v", req.Error)
 	}
@@ -2855,8 +2854,8 @@ func TestOutputService13ProtocolTestEnumCase2(t *testing.T) {
 	// set headers
 
 	// unmarshal response
-	restjson.UnmarshalMeta(req)
-	restjson.Unmarshal(req)
+	req.Handlers.UnmarshalMeta.Run(req)
+	req.Handlers.Unmarshal.Run(req)
 	if req.Error != nil {
 		t.Errorf("expect not error, got %v", req.Error)
 	}

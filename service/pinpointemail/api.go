@@ -9,6 +9,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
 const opCreateConfigurationSet = "CreateConfigurationSet"
@@ -50,6 +52,7 @@ func (c *PinpointEmail) CreateConfigurationSetRequest(input *CreateConfiguration
 
 	output = &CreateConfigurationSetOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -145,6 +148,7 @@ func (c *PinpointEmail) CreateConfigurationSetEventDestinationRequest(input *Cre
 
 	output = &CreateConfigurationSetEventDestinationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -243,6 +247,7 @@ func (c *PinpointEmail) CreateDedicatedIpPoolRequest(input *CreateDedicatedIpPoo
 
 	output = &CreateDedicatedIpPoolOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -435,6 +440,7 @@ func (c *PinpointEmail) DeleteConfigurationSetRequest(input *DeleteConfiguration
 
 	output = &DeleteConfigurationSetOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -526,6 +532,7 @@ func (c *PinpointEmail) DeleteConfigurationSetEventDestinationRequest(input *Del
 
 	output = &DeleteConfigurationSetEventDestinationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -618,6 +625,7 @@ func (c *PinpointEmail) DeleteDedicatedIpPoolRequest(input *DeleteDedicatedIpPoo
 
 	output = &DeleteDedicatedIpPoolOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -703,6 +711,7 @@ func (c *PinpointEmail) DeleteEmailIdentityRequest(input *DeleteEmailIdentityInp
 
 	output = &DeleteEmailIdentityOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1799,6 +1808,7 @@ func (c *PinpointEmail) PutAccountDedicatedIpWarmupAttributesRequest(input *PutA
 
 	output = &PutAccountDedicatedIpWarmupAttributesOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1881,6 +1891,7 @@ func (c *PinpointEmail) PutAccountSendingAttributesRequest(input *PutAccountSend
 
 	output = &PutAccountSendingAttributesOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1963,6 +1974,7 @@ func (c *PinpointEmail) PutConfigurationSetDeliveryOptionsRequest(input *PutConf
 
 	output = &PutConfigurationSetDeliveryOptionsOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2050,6 +2062,7 @@ func (c *PinpointEmail) PutConfigurationSetReputationOptionsRequest(input *PutCo
 
 	output = &PutConfigurationSetReputationOptionsOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2136,6 +2149,7 @@ func (c *PinpointEmail) PutConfigurationSetSendingOptionsRequest(input *PutConfi
 
 	output = &PutConfigurationSetSendingOptionsOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2222,6 +2236,7 @@ func (c *PinpointEmail) PutConfigurationSetTrackingOptionsRequest(input *PutConf
 
 	output = &PutConfigurationSetTrackingOptionsOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2308,6 +2323,7 @@ func (c *PinpointEmail) PutDedicatedIpInPoolRequest(input *PutDedicatedIpInPoolI
 
 	output = &PutDedicatedIpInPoolOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2399,6 +2415,7 @@ func (c *PinpointEmail) PutDedicatedIpWarmupAttributesRequest(input *PutDedicate
 
 	output = &PutDedicatedIpWarmupAttributesOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2482,6 +2499,7 @@ func (c *PinpointEmail) PutEmailIdentityDkimAttributesRequest(input *PutEmailIde
 
 	output = &PutEmailIdentityDkimAttributesOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2567,6 +2585,7 @@ func (c *PinpointEmail) PutEmailIdentityFeedbackAttributesRequest(input *PutEmai
 
 	output = &PutEmailIdentityFeedbackAttributesOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2666,6 +2685,7 @@ func (c *PinpointEmail) PutEmailIdentityMailFromAttributesRequest(input *PutEmai
 
 	output = &PutEmailIdentityMailFromAttributesOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2864,6 +2884,7 @@ func (c *PinpointEmail) UpdateConfigurationSetEventDestinationRequest(input *Upd
 
 	output = &UpdateConfigurationSetEventDestinationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 

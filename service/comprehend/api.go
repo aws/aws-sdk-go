@@ -9,6 +9,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
 const opBatchDetectDominantLanguage = "BatchDetectDominantLanguage"
@@ -727,6 +729,7 @@ func (c *Comprehend) DeleteDocumentClassifierRequest(input *DeleteDocumentClassi
 
 	output = &DeleteDocumentClassifierOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -832,6 +835,7 @@ func (c *Comprehend) DeleteEntityRecognizerRequest(input *DeleteEntityRecognizer
 
 	output = &DeleteEntityRecognizerOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 

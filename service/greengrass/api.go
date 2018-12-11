@@ -6,6 +6,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
 const opAssociateRoleToGroup = "AssociateRoleToGroup"
@@ -1745,6 +1747,7 @@ func (c *Greengrass) DeleteConnectorDefinitionRequest(input *DeleteConnectorDefi
 
 	output = &DeleteConnectorDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1824,6 +1827,7 @@ func (c *Greengrass) DeleteCoreDefinitionRequest(input *DeleteCoreDefinitionInpu
 
 	output = &DeleteCoreDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1903,6 +1907,7 @@ func (c *Greengrass) DeleteDeviceDefinitionRequest(input *DeleteDeviceDefinition
 
 	output = &DeleteDeviceDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1982,6 +1987,7 @@ func (c *Greengrass) DeleteFunctionDefinitionRequest(input *DeleteFunctionDefini
 
 	output = &DeleteFunctionDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2061,6 +2067,7 @@ func (c *Greengrass) DeleteGroupRequest(input *DeleteGroupInput) (req *request.R
 
 	output = &DeleteGroupOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2140,6 +2147,7 @@ func (c *Greengrass) DeleteLoggerDefinitionRequest(input *DeleteLoggerDefinition
 
 	output = &DeleteLoggerDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2219,6 +2227,7 @@ func (c *Greengrass) DeleteResourceDefinitionRequest(input *DeleteResourceDefini
 
 	output = &DeleteResourceDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2298,6 +2307,7 @@ func (c *Greengrass) DeleteSubscriptionDefinitionRequest(input *DeleteSubscripti
 
 	output = &DeleteSubscriptionDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6084,6 +6094,7 @@ func (c *Greengrass) StopBulkDeploymentRequest(input *StopBulkDeploymentInput) (
 
 	output = &StopBulkDeploymentOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6250,6 +6261,7 @@ func (c *Greengrass) UpdateConnectorDefinitionRequest(input *UpdateConnectorDefi
 
 	output = &UpdateConnectorDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6329,6 +6341,7 @@ func (c *Greengrass) UpdateCoreDefinitionRequest(input *UpdateCoreDefinitionInpu
 
 	output = &UpdateCoreDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6408,6 +6421,7 @@ func (c *Greengrass) UpdateDeviceDefinitionRequest(input *UpdateDeviceDefinition
 
 	output = &UpdateDeviceDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6487,6 +6501,7 @@ func (c *Greengrass) UpdateFunctionDefinitionRequest(input *UpdateFunctionDefini
 
 	output = &UpdateFunctionDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6566,6 +6581,7 @@ func (c *Greengrass) UpdateGroupRequest(input *UpdateGroupInput) (req *request.R
 
 	output = &UpdateGroupOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6727,6 +6743,7 @@ func (c *Greengrass) UpdateLoggerDefinitionRequest(input *UpdateLoggerDefinition
 
 	output = &UpdateLoggerDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6806,6 +6823,7 @@ func (c *Greengrass) UpdateResourceDefinitionRequest(input *UpdateResourceDefini
 
 	output = &UpdateResourceDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6885,6 +6903,7 @@ func (c *Greengrass) UpdateSubscriptionDefinitionRequest(input *UpdateSubscripti
 
 	output = &UpdateSubscriptionDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 

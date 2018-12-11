@@ -9,6 +9,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
 const opAssociateCreatedArtifact = "AssociateCreatedArtifact"
@@ -50,6 +52,7 @@ func (c *MigrationHub) AssociateCreatedArtifactRequest(input *AssociateCreatedAr
 
 	output = &AssociateCreatedArtifactOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -166,6 +169,7 @@ func (c *MigrationHub) AssociateDiscoveredResourceRequest(input *AssociateDiscov
 
 	output = &AssociateDiscoveredResourceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -276,6 +280,7 @@ func (c *MigrationHub) CreateProgressUpdateStreamRequest(input *CreateProgressUp
 
 	output = &CreateProgressUpdateStreamOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -379,6 +384,7 @@ func (c *MigrationHub) DeleteProgressUpdateStreamRequest(input *DeleteProgressUp
 
 	output = &DeleteProgressUpdateStreamOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -702,6 +708,7 @@ func (c *MigrationHub) DisassociateCreatedArtifactRequest(input *DisassociateCre
 
 	output = &DisassociateCreatedArtifactOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -818,6 +825,7 @@ func (c *MigrationHub) DisassociateDiscoveredResourceRequest(input *Disassociate
 
 	output = &DisassociateDiscoveredResourceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -923,6 +931,7 @@ func (c *MigrationHub) ImportMigrationTaskRequest(input *ImportMigrationTaskInpu
 
 	output = &ImportMigrationTaskOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1433,6 +1442,7 @@ func (c *MigrationHub) NotifyApplicationStateRequest(input *NotifyApplicationSta
 
 	output = &NotifyApplicationStateOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1544,6 +1554,7 @@ func (c *MigrationHub) NotifyMigrationTaskStateRequest(input *NotifyMigrationTas
 
 	output = &NotifyMigrationTaskStateOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1657,6 +1668,7 @@ func (c *MigrationHub) PutResourceAttributesRequest(input *PutResourceAttributes
 
 	output = &PutResourceAttributesOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 

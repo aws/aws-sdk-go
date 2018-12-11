@@ -9,6 +9,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
 const opApproveSkill = "ApproveSkill"
@@ -50,6 +52,7 @@ func (c *AlexaForBusiness) ApproveSkillRequest(input *ApproveSkillInput) (req *r
 
 	output = &ApproveSkillOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -137,6 +140,7 @@ func (c *AlexaForBusiness) AssociateContactWithAddressBookRequest(input *Associa
 
 	output = &AssociateContactWithAddressBookOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -216,6 +220,7 @@ func (c *AlexaForBusiness) AssociateDeviceWithRoomRequest(input *AssociateDevice
 
 	output = &AssociateDeviceWithRoomOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -305,6 +310,7 @@ func (c *AlexaForBusiness) AssociateSkillGroupWithRoomRequest(input *AssociateSk
 
 	output = &AssociateSkillGroupWithRoomOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -385,6 +391,7 @@ func (c *AlexaForBusiness) AssociateSkillWithSkillGroupRequest(input *AssociateS
 
 	output = &AssociateSkillWithSkillGroupOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1127,6 +1134,7 @@ func (c *AlexaForBusiness) DeleteAddressBookRequest(input *DeleteAddressBookInpu
 
 	output = &DeleteAddressBookOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1209,6 +1217,7 @@ func (c *AlexaForBusiness) DeleteBusinessReportScheduleRequest(input *DeleteBusi
 
 	output = &DeleteBusinessReportScheduleOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1292,6 +1301,7 @@ func (c *AlexaForBusiness) DeleteConferenceProviderRequest(input *DeleteConferen
 
 	output = &DeleteConferenceProviderOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1371,6 +1381,7 @@ func (c *AlexaForBusiness) DeleteContactRequest(input *DeleteContactInput) (req 
 
 	output = &DeleteContactOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1453,6 +1464,7 @@ func (c *AlexaForBusiness) DeleteDeviceRequest(input *DeleteDeviceInput) (req *r
 
 	output = &DeleteDeviceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1538,6 +1550,7 @@ func (c *AlexaForBusiness) DeleteProfileRequest(input *DeleteProfileInput) (req 
 
 	output = &DeleteProfileOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1620,6 +1633,7 @@ func (c *AlexaForBusiness) DeleteRoomRequest(input *DeleteRoomInput) (req *reque
 
 	output = &DeleteRoomOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1702,6 +1716,7 @@ func (c *AlexaForBusiness) DeleteRoomSkillParameterRequest(input *DeleteRoomSkil
 
 	output = &DeleteRoomSkillParameterOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1781,6 +1796,7 @@ func (c *AlexaForBusiness) DeleteSkillAuthorizationRequest(input *DeleteSkillAut
 
 	output = &DeleteSkillAuthorizationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1863,6 +1879,7 @@ func (c *AlexaForBusiness) DeleteSkillGroupRequest(input *DeleteSkillGroupInput)
 
 	output = &DeleteSkillGroupOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1945,6 +1962,7 @@ func (c *AlexaForBusiness) DeleteUserRequest(input *DeleteUserInput) (req *reque
 
 	output = &DeleteUserOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2027,6 +2045,7 @@ func (c *AlexaForBusiness) DisassociateContactFromAddressBookRequest(input *Disa
 
 	output = &DisassociateContactFromAddressBookOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2101,6 +2120,7 @@ func (c *AlexaForBusiness) DisassociateDeviceFromRoomRequest(input *Disassociate
 
 	output = &DisassociateDeviceFromRoomOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2186,6 +2206,7 @@ func (c *AlexaForBusiness) DisassociateSkillFromSkillGroupRequest(input *Disasso
 
 	output = &DisassociateSkillFromSkillGroupOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2268,6 +2289,7 @@ func (c *AlexaForBusiness) DisassociateSkillGroupFromRoomRequest(input *Disassoc
 
 	output = &DisassociateSkillGroupFromRoomOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2348,6 +2370,7 @@ func (c *AlexaForBusiness) ForgetSmartHomeAppliancesRequest(input *ForgetSmartHo
 
 	output = &ForgetSmartHomeAppliancesOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4194,6 +4217,7 @@ func (c *AlexaForBusiness) PutConferencePreferenceRequest(input *PutConferencePr
 
 	output = &PutConferencePreferenceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4274,6 +4298,7 @@ func (c *AlexaForBusiness) PutRoomSkillParameterRequest(input *PutRoomSkillParam
 
 	output = &PutRoomSkillParameterOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4354,6 +4379,7 @@ func (c *AlexaForBusiness) PutSkillAuthorizationRequest(input *PutSkillAuthoriza
 
 	output = &PutSkillAuthorizationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4526,6 +4552,7 @@ func (c *AlexaForBusiness) RejectSkillRequest(input *RejectSkillInput) (req *req
 
 	output = &RejectSkillOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4691,6 +4718,7 @@ func (c *AlexaForBusiness) RevokeInvitationRequest(input *RevokeInvitationInput)
 
 	output = &RevokeInvitationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -5685,6 +5713,7 @@ func (c *AlexaForBusiness) SendInvitationRequest(input *SendInvitationInput) (re
 
 	output = &SendInvitationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -5771,6 +5800,7 @@ func (c *AlexaForBusiness) StartDeviceSyncRequest(input *StartDeviceSyncInput) (
 
 	output = &StartDeviceSyncOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -5852,6 +5882,7 @@ func (c *AlexaForBusiness) StartSmartHomeApplianceDiscoveryRequest(input *StartS
 
 	output = &StartSmartHomeApplianceDiscoveryOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -5932,6 +5963,7 @@ func (c *AlexaForBusiness) TagResourceRequest(input *TagResourceInput) (req *req
 
 	output = &TagResourceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6011,6 +6043,7 @@ func (c *AlexaForBusiness) UntagResourceRequest(input *UntagResourceInput) (req 
 
 	output = &UntagResourceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6090,6 +6123,7 @@ func (c *AlexaForBusiness) UpdateAddressBookRequest(input *UpdateAddressBookInpu
 
 	output = &UpdateAddressBookOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6175,6 +6209,7 @@ func (c *AlexaForBusiness) UpdateBusinessReportScheduleRequest(input *UpdateBusi
 
 	output = &UpdateBusinessReportScheduleOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6258,6 +6293,7 @@ func (c *AlexaForBusiness) UpdateConferenceProviderRequest(input *UpdateConferen
 
 	output = &UpdateConferenceProviderOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6337,6 +6373,7 @@ func (c *AlexaForBusiness) UpdateContactRequest(input *UpdateContactInput) (req 
 
 	output = &UpdateContactOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6419,6 +6456,7 @@ func (c *AlexaForBusiness) UpdateDeviceRequest(input *UpdateDeviceInput) (req *r
 
 	output = &UpdateDeviceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6505,6 +6543,7 @@ func (c *AlexaForBusiness) UpdateProfileRequest(input *UpdateProfileInput) (req 
 
 	output = &UpdateProfileOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6590,6 +6629,7 @@ func (c *AlexaForBusiness) UpdateRoomRequest(input *UpdateRoomInput) (req *reque
 
 	output = &UpdateRoomOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6672,6 +6712,7 @@ func (c *AlexaForBusiness) UpdateSkillGroupRequest(input *UpdateSkillGroupInput)
 
 	output = &UpdateSkillGroupOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 

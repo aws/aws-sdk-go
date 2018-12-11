@@ -8,6 +8,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
 const opCreateApp = "CreateApp"
@@ -248,6 +250,7 @@ func (c *SMS) DeleteAppRequest(input *DeleteAppInput) (req *request.Request, out
 
 	output = &DeleteAppOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -342,6 +345,7 @@ func (c *SMS) DeleteAppLaunchConfigurationRequest(input *DeleteAppLaunchConfigur
 
 	output = &DeleteAppLaunchConfigurationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -434,6 +438,7 @@ func (c *SMS) DeleteAppReplicationConfigurationRequest(input *DeleteAppReplicati
 
 	output = &DeleteAppReplicationConfigurationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -526,6 +531,7 @@ func (c *SMS) DeleteReplicationJobRequest(input *DeleteReplicationJobInput) (req
 
 	output = &DeleteReplicationJobOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -622,6 +628,7 @@ func (c *SMS) DeleteServerCatalogRequest(input *DeleteServerCatalogInput) (req *
 
 	output = &DeleteServerCatalogOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -711,6 +718,7 @@ func (c *SMS) DisassociateConnectorRequest(input *DisassociateConnectorInput) (r
 
 	output = &DisassociateConnectorOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1823,6 +1831,7 @@ func (c *SMS) ImportServerCatalogRequest(input *ImportServerCatalogInput) (req *
 
 	output = &ImportServerCatalogOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1919,6 +1928,7 @@ func (c *SMS) LaunchAppRequest(input *LaunchAppInput) (req *request.Request, out
 
 	output = &LaunchAppOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2103,6 +2113,7 @@ func (c *SMS) PutAppLaunchConfigurationRequest(input *PutAppLaunchConfigurationI
 
 	output = &PutAppLaunchConfigurationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2195,6 +2206,7 @@ func (c *SMS) PutAppReplicationConfigurationRequest(input *PutAppReplicationConf
 
 	output = &PutAppReplicationConfigurationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2287,6 +2299,7 @@ func (c *SMS) StartAppReplicationRequest(input *StartAppReplicationInput) (req *
 
 	output = &StartAppReplicationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2477,6 +2490,7 @@ func (c *SMS) StopAppReplicationRequest(input *StopAppReplicationInput) (req *re
 
 	output = &StopAppReplicationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2569,6 +2583,7 @@ func (c *SMS) TerminateAppRequest(input *TerminateAppInput) (req *request.Reques
 
 	output = &TerminateAppOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2753,6 +2768,7 @@ func (c *SMS) UpdateReplicationJobRequest(input *UpdateReplicationJobInput) (req
 
 	output = &UpdateReplicationJobOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 

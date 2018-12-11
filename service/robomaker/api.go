@@ -9,6 +9,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
 const opBatchDescribeSimulationJob = "BatchDescribeSimulationJob"
@@ -140,6 +142,7 @@ func (c *RoboMaker) CancelSimulationJobRequest(input *CancelSimulationJobInput) 
 
 	output = &CancelSimulationJobOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1005,6 +1008,7 @@ func (c *RoboMaker) DeleteFleetRequest(input *DeleteFleetInput) (req *request.Re
 
 	output = &DeleteFleetOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1092,6 +1096,7 @@ func (c *RoboMaker) DeleteRobotRequest(input *DeleteRobotInput) (req *request.Re
 
 	output = &DeleteRobotOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1179,6 +1184,7 @@ func (c *RoboMaker) DeleteRobotApplicationRequest(input *DeleteRobotApplicationI
 
 	output = &DeleteRobotApplicationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1266,6 +1272,7 @@ func (c *RoboMaker) DeleteSimulationApplicationRequest(input *DeleteSimulationAp
 
 	output = &DeleteSimulationApplicationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2615,6 +2622,7 @@ func (c *RoboMaker) RestartSimulationJobRequest(input *RestartSimulationJobInput
 
 	output = &RestartSimulationJobOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 

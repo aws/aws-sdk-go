@@ -141,8 +141,7 @@ func (c *InputService1ProtocolTest) InputService1TestCaseOperation1Request(input
 
 	output = &InputService1TestShapeInputService1TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -212,8 +211,7 @@ func (c *InputService1ProtocolTest) InputService1TestCaseOperation2Request(input
 
 	output = &InputService1TestShapeInputService1TestCaseOperation2Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -283,8 +281,7 @@ func (c *InputService1ProtocolTest) InputService1TestCaseOperation3Request(input
 
 	output = &InputService1TestShapeInputService1TestCaseOperation3Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -470,8 +467,7 @@ func (c *InputService2ProtocolTest) InputService2TestCaseOperation1Request(input
 
 	output = &InputService2TestShapeInputService2TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -641,8 +637,7 @@ func (c *InputService3ProtocolTest) InputService3TestCaseOperation1Request(input
 
 	output = &InputService3TestShapeInputService3TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -712,8 +707,7 @@ func (c *InputService3ProtocolTest) InputService3TestCaseOperation2Request(input
 
 	output = &InputService3TestShapeInputService3TestCaseOperation2Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -911,8 +905,7 @@ func (c *InputService4ProtocolTest) InputService4TestCaseOperation1Request(input
 
 	output = &InputService4TestShapeInputService4TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1086,8 +1079,7 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation1Request(input
 
 	output = &InputService5TestShapeInputService5TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1233,8 +1225,7 @@ func (c *InputService6ProtocolTest) InputService6TestCaseOperation1Request(input
 
 	output = &InputService6TestShapeInputService6TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1380,8 +1371,7 @@ func (c *InputService7ProtocolTest) InputService7TestCaseOperation1Request(input
 
 	output = &InputService7TestShapeInputService7TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1527,8 +1517,7 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation1Request(input
 
 	output = &InputService8TestShapeInputService8TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1674,8 +1663,7 @@ func (c *InputService9ProtocolTest) InputService9TestCaseOperation1Request(input
 
 	output = &InputService9TestShapeInputService9TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1833,8 +1821,7 @@ func (c *InputService10ProtocolTest) InputService10TestCaseOperation1Request(inp
 
 	output = &InputService10TestShapeInputService10TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1993,8 +1980,7 @@ func (c *InputService11ProtocolTest) InputService11TestCaseOperation1Request(inp
 
 	output = &InputService11TestShapeInputService11TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2204,8 +2190,7 @@ func (c *InputService12ProtocolTest) InputService12TestCaseOperation1Request(inp
 
 	output = &InputService12TestShapeInputService12TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2351,8 +2336,7 @@ func (c *InputService13ProtocolTest) InputService13TestCaseOperation1Request(inp
 
 	output = &InputService13TestShapeInputService13TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2498,8 +2482,7 @@ func (c *InputService14ProtocolTest) InputService14TestCaseOperation1Request(inp
 
 	output = &InputService14TestShapeInputService14TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2670,8 +2653,7 @@ func (c *InputService15ProtocolTest) InputService15TestCaseOperation1Request(inp
 
 	output = &InputService15TestShapeInputService15TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2842,8 +2824,7 @@ func (c *InputService16ProtocolTest) InputService16TestCaseOperation1Request(inp
 
 	output = &InputService16TestShapeInputService16TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2913,8 +2894,7 @@ func (c *InputService16ProtocolTest) InputService16TestCaseOperation2Request(inp
 
 	output = &InputService16TestShapeInputService16TestCaseOperation2Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3076,8 +3056,7 @@ func (c *InputService17ProtocolTest) InputService17TestCaseOperation1Request(inp
 
 	output = &InputService17TestShapeInputService17TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3223,8 +3202,7 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation1Request(inp
 
 	output = &InputService18TestShapeInputService18TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3294,8 +3272,7 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation2Request(inp
 
 	output = &InputService18TestShapeInputService18TestCaseOperation2Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3457,8 +3434,7 @@ func (c *InputService19ProtocolTest) InputService19TestCaseOperation1Request(inp
 
 	output = &InputService19TestShapeInputService19TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3528,8 +3504,7 @@ func (c *InputService19ProtocolTest) InputService19TestCaseOperation2Request(inp
 
 	output = &InputService19TestShapeInputService19TestCaseOperation2Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3599,8 +3574,7 @@ func (c *InputService19ProtocolTest) InputService19TestCaseOperation3Request(inp
 
 	output = &InputService19TestShapeInputService19TestCaseOperation3Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3670,8 +3644,7 @@ func (c *InputService19ProtocolTest) InputService19TestCaseOperation4Request(inp
 
 	output = &InputService19TestShapeInputService19TestCaseOperation4Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3877,8 +3850,7 @@ func (c *InputService20ProtocolTest) InputService20TestCaseOperation1Request(inp
 
 	output = &InputService20TestShapeInputService20TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4056,8 +4028,7 @@ func (c *InputService21ProtocolTest) InputService21TestCaseOperation1Request(inp
 
 	output = &InputService21TestShapeInputService21TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4235,8 +4206,7 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation1Request(inp
 
 	output = &InputService22TestShapeInputService22TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4306,8 +4276,7 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation2Request(inp
 
 	output = &InputService22TestShapeInputService22TestCaseOperation2Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4469,8 +4438,7 @@ func (c *InputService23ProtocolTest) InputService23TestCaseOperation1Request(inp
 
 	output = &InputService23TestShapeInputService23TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4540,8 +4508,7 @@ func (c *InputService23ProtocolTest) InputService23TestCaseOperation2Request(inp
 
 	output = &InputService23TestShapeInputService23TestCaseOperation2Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4611,8 +4578,7 @@ func (c *InputService23ProtocolTest) InputService23TestCaseOperation3Request(inp
 
 	output = &InputService23TestShapeInputService23TestCaseOperation3Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4682,8 +4648,7 @@ func (c *InputService23ProtocolTest) InputService23TestCaseOperation4Request(inp
 
 	output = &InputService23TestShapeInputService23TestCaseOperation4Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4753,8 +4718,7 @@ func (c *InputService23ProtocolTest) InputService23TestCaseOperation5Request(inp
 
 	output = &InputService23TestShapeInputService23TestCaseOperation5Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4824,8 +4788,7 @@ func (c *InputService23ProtocolTest) InputService23TestCaseOperation6Request(inp
 
 	output = &InputService23TestShapeInputService23TestCaseOperation6Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -5087,8 +5050,7 @@ func (c *InputService24ProtocolTest) InputService24TestCaseOperation1Request(inp
 
 	output = &InputService24TestShapeInputService24TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -5158,8 +5120,7 @@ func (c *InputService24ProtocolTest) InputService24TestCaseOperation2Request(inp
 
 	output = &InputService24TestShapeInputService24TestCaseOperation2Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -5321,8 +5282,7 @@ func (c *InputService25ProtocolTest) InputService25TestCaseOperation1Request(inp
 
 	output = &InputService25TestShapeInputService25TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -5392,8 +5352,7 @@ func (c *InputService25ProtocolTest) InputService25TestCaseOperation2Request(inp
 
 	output = &InputService25TestShapeInputService25TestCaseOperation2Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -5667,8 +5626,7 @@ func (c *InputService26ProtocolTest) InputService26TestCaseOperation1Request(inp
 
 	output = &InputService26TestShapeInputService26TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("data-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -5740,8 +5698,7 @@ func (c *InputService26ProtocolTest) InputService26TestCaseOperation2Request(inp
 
 	output = &InputService26TestShapeInputService26TestCaseOperation2Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("foo-{Name}.", input.hostLabels))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
