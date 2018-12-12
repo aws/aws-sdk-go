@@ -2502,7 +2502,8 @@
         "Strategy":{"shape":"HyperParameterTuningJobStrategyType"},
         "HyperParameterTuningJobObjective":{"shape":"HyperParameterTuningJobObjective"},
         "ResourceLimits":{"shape":"ResourceLimits"},
-        "ParameterRanges":{"shape":"ParameterRanges"}
+        "ParameterRanges":{"shape":"ParameterRanges"},
+        "TrainingJobEarlyStoppingType":{"shape":"TrainingJobEarlyStoppingType"}
       }
     },
     "HyperParameterTuningJobName":{
@@ -4597,6 +4598,13 @@
         "ResourceConfig":{"shape":"ResourceConfig"},
         "StoppingCondition":{"shape":"StoppingCondition"}
       }
+    },
+    "TrainingJobEarlyStoppingType":{
+      "type":"string",
+      "enum":[
+        "Off",
+        "Auto"
+      ]
     },
     "TrainingJobName":{
       "type":"string",
