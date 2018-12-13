@@ -61,6 +61,25 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "CreateDeliverabilityTestReport":{
+      "name":"CreateDeliverabilityTestReport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/email/deliverability-dashboard/test"
+      },
+      "input":{"shape":"CreateDeliverabilityTestReportRequest"},
+      "output":{"shape":"CreateDeliverabilityTestReportResponse"},
+      "errors":[
+        {"shape":"AccountSuspendedException"},
+        {"shape":"SendingPausedException"},
+        {"shape":"MessageRejected"},
+        {"shape":"MailFromDomainNotVerifiedException"},
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
     "CreateEmailIdentity":{
       "name":"CreateEmailIdentity",
       "http":{
@@ -144,6 +163,20 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "GetBlacklistReports":{
+      "name":"GetBlacklistReports",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v1/email/deliverability-dashboard/blacklist-report"
+      },
+      "input":{"shape":"GetBlacklistReportsRequest"},
+      "output":{"shape":"GetBlacklistReportsResponse"},
+      "errors":[
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
     "GetConfigurationSet":{
       "name":"GetConfigurationSet",
       "http":{
@@ -200,6 +233,48 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "GetDeliverabilityDashboardOptions":{
+      "name":"GetDeliverabilityDashboardOptions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v1/email/deliverability-dashboard"
+      },
+      "input":{"shape":"GetDeliverabilityDashboardOptionsRequest"},
+      "output":{"shape":"GetDeliverabilityDashboardOptionsResponse"},
+      "errors":[
+        {"shape":"TooManyRequestsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
+    "GetDeliverabilityTestReport":{
+      "name":"GetDeliverabilityTestReport",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v1/email/deliverability-dashboard/test-reports/{ReportId}"
+      },
+      "input":{"shape":"GetDeliverabilityTestReportRequest"},
+      "output":{"shape":"GetDeliverabilityTestReportResponse"},
+      "errors":[
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
+    "GetDomainStatisticsReport":{
+      "name":"GetDomainStatisticsReport",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v1/email/deliverability-dashboard/statistics-report/{Domain}"
+      },
+      "input":{"shape":"GetDomainStatisticsReportRequest"},
+      "output":{"shape":"GetDomainStatisticsReportResponse"},
+      "errors":[
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
     "GetEmailIdentity":{
       "name":"GetEmailIdentity",
       "http":{
@@ -237,6 +312,20 @@
       "output":{"shape":"ListDedicatedIpPoolsResponse"},
       "errors":[
         {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
+    "ListDeliverabilityTestReports":{
+      "name":"ListDeliverabilityTestReports",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v1/email/deliverability-dashboard/test-reports"
+      },
+      "input":{"shape":"ListDeliverabilityTestReportsRequest"},
+      "output":{"shape":"ListDeliverabilityTestReportsResponse"},
+      "errors":[
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotFoundException"},
         {"shape":"BadRequestException"}
       ]
     },
@@ -363,6 +452,22 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "PutDeliverabilityDashboardOption":{
+      "name":"PutDeliverabilityDashboardOption",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v1/email/deliverability-dashboard"
+      },
+      "input":{"shape":"PutDeliverabilityDashboardOptionRequest"},
+      "output":{"shape":"PutDeliverabilityDashboardOptionResponse"},
+      "errors":[
+        {"shape":"AlreadyExistsException"},
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
     "PutEmailIdentityDkimAttributes":{
       "name":"PutEmailIdentityDkimAttributes",
       "http":{
@@ -469,6 +574,29 @@
         "REJECT_MESSAGE"
       ]
     },
+    "BlacklistEntries":{
+      "type":"list",
+      "member":{"shape":"BlacklistEntry"}
+    },
+    "BlacklistEntry":{
+      "type":"structure",
+      "members":{
+        "RblName":{"shape":"RblName"},
+        "ListingTime":{"shape":"Timestamp"},
+        "Description":{"shape":"BlacklistingDescription"}
+      }
+    },
+    "BlacklistItemName":{"type":"string"},
+    "BlacklistItemNames":{
+      "type":"list",
+      "member":{"shape":"BlacklistItemName"}
+    },
+    "BlacklistReport":{
+      "type":"map",
+      "key":{"shape":"BlacklistItemName"},
+      "value":{"shape":"BlacklistEntries"}
+    },
+    "BlacklistingDescription":{"type":"string"},
     "Body":{
       "type":"structure",
       "members":{
@@ -563,6 +691,29 @@
       "members":{
       }
     },
+    "CreateDeliverabilityTestReportRequest":{
+      "type":"structure",
+      "required":[
+        "FromEmailAddress",
+        "Content"
+      ],
+      "members":{
+        "ReportName":{"shape":"ReportName"},
+        "FromEmailAddress":{"shape":"EmailAddress"},
+        "Content":{"shape":"EmailContent"}
+      }
+    },
+    "CreateDeliverabilityTestReportResponse":{
+      "type":"structure",
+      "required":[
+        "ReportId",
+        "DeliverabilityTestStatus"
+      ],
+      "members":{
+        "ReportId":{"shape":"ReportId"},
+        "DeliverabilityTestStatus":{"shape":"DeliverabilityTestStatus"}
+      }
+    },
     "CreateEmailIdentityRequest":{
       "type":"structure",
       "required":["EmailIdentity"],
@@ -579,6 +730,18 @@
       }
     },
     "CustomRedirectDomain":{"type":"string"},
+    "DailyVolume":{
+      "type":"structure",
+      "members":{
+        "StartDate":{"shape":"Timestamp"},
+        "VolumeStatistics":{"shape":"VolumeStatistics"},
+        "DomainIspPlacements":{"shape":"DomainIspPlacements"}
+      }
+    },
+    "DailyVolumes":{
+      "type":"list",
+      "member":{"shape":"DailyVolume"}
+    },
     "DedicatedIp":{
       "type":"structure",
       "required":[
@@ -670,6 +833,29 @@
       "members":{
       }
     },
+    "DeliverabilityTestReport":{
+      "type":"structure",
+      "members":{
+        "ReportId":{"shape":"ReportId"},
+        "ReportName":{"shape":"ReportName"},
+        "Subject":{"shape":"DeliverabilityTestSubject"},
+        "FromEmailAddress":{"shape":"EmailAddress"},
+        "CreateDate":{"shape":"Timestamp"},
+        "DeliverabilityTestStatus":{"shape":"DeliverabilityTestStatus"}
+      }
+    },
+    "DeliverabilityTestReports":{
+      "type":"list",
+      "member":{"shape":"DeliverabilityTestReport"}
+    },
+    "DeliverabilityTestStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "COMPLETED"
+      ]
+    },
+    "DeliverabilityTestSubject":{"type":"string"},
     "DeliveryOptions":{
       "type":"structure",
       "members":{
@@ -715,6 +901,20 @@
     "DnsTokenList":{
       "type":"list",
       "member":{"shape":"DnsToken"}
+    },
+    "DomainIspPlacement":{
+      "type":"structure",
+      "members":{
+        "IspName":{"shape":"IspName"},
+        "InboxRawCount":{"shape":"Volume"},
+        "SpamRawCount":{"shape":"Volume"},
+        "InboxPercentage":{"shape":"Percentage"},
+        "SpamPercentage":{"shape":"Percentage"}
+      }
+    },
+    "DomainIspPlacements":{
+      "type":"list",
+      "member":{"shape":"DomainIspPlacement"}
     },
     "EmailAddress":{"type":"string"},
     "EmailAddressList":{
@@ -794,6 +994,20 @@
         "ProductionAccessEnabled":{"shape":"Enabled"}
       }
     },
+    "GetBlacklistReportsRequest":{
+      "type":"structure",
+      "required":["BlacklistItemNames"],
+      "members":{
+        "BlacklistItemNames":{"shape":"BlacklistItemNames"}
+      }
+    },
+    "GetBlacklistReportsResponse":{
+      "type":"structure",
+      "required":["BlacklistReport"],
+      "members":{
+        "BlacklistReport":{"shape":"BlacklistReport"}
+      }
+    },
     "GetConfigurationSetEventDestinationsRequest":{
       "type":"structure",
       "required":["ConfigurationSetName"],
@@ -864,6 +1078,71 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "GetDeliverabilityDashboardOptionsRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetDeliverabilityDashboardOptionsResponse":{
+      "type":"structure",
+      "required":["DashboardEnabled"],
+      "members":{
+        "DashboardEnabled":{"shape":"Enabled"}
+      }
+    },
+    "GetDeliverabilityTestReportRequest":{
+      "type":"structure",
+      "required":["ReportId"],
+      "members":{
+        "ReportId":{
+          "shape":"ReportId",
+          "location":"uri",
+          "locationName":"ReportId"
+        }
+      }
+    },
+    "GetDeliverabilityTestReportResponse":{
+      "type":"structure",
+      "required":[
+        "DeliverabilityTestReport",
+        "OverallPlacement",
+        "IspPlacements"
+      ],
+      "members":{
+        "DeliverabilityTestReport":{"shape":"DeliverabilityTestReport"},
+        "OverallPlacement":{"shape":"PlacementStatistics"},
+        "IspPlacements":{"shape":"IspPlacements"},
+        "Message":{"shape":"MessageContent"}
+      }
+    },
+    "GetDomainStatisticsReportRequest":{
+      "type":"structure",
+      "required":[
+        "Domain",
+        "StartDate",
+        "EndDate"
+      ],
+      "members":{
+        "Domain":{
+          "shape":"Identity",
+          "location":"uri",
+          "locationName":"Domain"
+        },
+        "StartDate":{"shape":"Timestamp"},
+        "EndDate":{"shape":"Timestamp"}
+      }
+    },
+    "GetDomainStatisticsReportResponse":{
+      "type":"structure",
+      "required":[
+        "OverallVolume",
+        "DailyVolumes"
+      ],
+      "members":{
+        "OverallVolume":{"shape":"OverallVolume"},
+        "DailyVolumes":{"shape":"DailyVolumes"}
+      }
+    },
     "GetEmailIdentityRequest":{
       "type":"structure",
       "required":["EmailIdentity"],
@@ -907,6 +1186,18 @@
       ]
     },
     "Ip":{"type":"string"},
+    "IspName":{"type":"string"},
+    "IspPlacement":{
+      "type":"structure",
+      "members":{
+        "IspName":{"shape":"IspName"},
+        "PlacementStatistics":{"shape":"PlacementStatistics"}
+      }
+    },
+    "IspPlacements":{
+      "type":"list",
+      "member":{"shape":"IspPlacement"}
+    },
     "KinesisFirehoseDestination":{
       "type":"structure",
       "required":[
@@ -951,6 +1242,21 @@
       "type":"structure",
       "members":{
         "DedicatedIpPools":{"shape":"ListOfDedicatedIpPools"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListDeliverabilityTestReportsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "PageSize":{"shape":"MaxItems"}
+      }
+    },
+    "ListDeliverabilityTestReportsResponse":{
+      "type":"structure",
+      "required":["DeliverabilityTestReports"],
+      "members":{
+        "DeliverabilityTestReports":{"shape":"DeliverabilityTestReports"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -1016,6 +1322,7 @@
         "Body":{"shape":"Body"}
       }
     },
+    "MessageContent":{"type":"string"},
     "MessageData":{"type":"string"},
     "MessageRejected":{
       "type":"structure",
@@ -1050,11 +1357,30 @@
       "exception":true
     },
     "OutboundMessageId":{"type":"string"},
+    "OverallVolume":{
+      "type":"structure",
+      "members":{
+        "VolumeStatistics":{"shape":"VolumeStatistics"},
+        "ReadRatePercent":{"shape":"Percentage"},
+        "DomainIspPlacements":{"shape":"DomainIspPlacements"}
+      }
+    },
+    "Percentage":{"type":"double"},
     "Percentage100Wrapper":{"type":"integer"},
     "PinpointDestination":{
       "type":"structure",
       "members":{
         "ApplicationArn":{"shape":"AmazonResourceName"}
+      }
+    },
+    "PlacementStatistics":{
+      "type":"structure",
+      "members":{
+        "InboxPercentage":{"shape":"Percentage"},
+        "SpamPercentage":{"shape":"Percentage"},
+        "MissingPercentage":{"shape":"Percentage"},
+        "SpfPercentage":{"shape":"Percentage"},
+        "DkimPercentage":{"shape":"Percentage"}
       }
     },
     "PoolName":{"type":"string"},
@@ -1188,6 +1514,18 @@
       "members":{
       }
     },
+    "PutDeliverabilityDashboardOptionRequest":{
+      "type":"structure",
+      "required":["DashboardEnabled"],
+      "members":{
+        "DashboardEnabled":{"shape":"Enabled"}
+      }
+    },
+    "PutDeliverabilityDashboardOptionResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "PutEmailIdentityDkimAttributesRequest":{
       "type":"structure",
       "required":["EmailIdentity"],
@@ -1248,6 +1586,9 @@
       }
     },
     "RawMessageData":{"type":"blob"},
+    "RblName":{"type":"string"},
+    "ReportId":{"type":"string"},
+    "ReportName":{"type":"string"},
     "ReputationOptions":{
       "type":"structure",
       "members":{
@@ -1307,6 +1648,7 @@
         "TopicArn":{"shape":"AmazonResourceName"}
       }
     },
+    "Timestamp":{"type":"timestamp"},
     "TooManyRequestsException":{
       "type":"structure",
       "members":{
@@ -1345,6 +1687,16 @@
     "UpdateConfigurationSetEventDestinationResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "Volume":{"type":"long"},
+    "VolumeStatistics":{
+      "type":"structure",
+      "members":{
+        "InboxRawCount":{"shape":"Volume"},
+        "SpamRawCount":{"shape":"Volume"},
+        "ProjectedInbox":{"shape":"Volume"},
+        "ProjectedSpam":{"shape":"Volume"}
       }
     },
     "WarmupStatus":{
