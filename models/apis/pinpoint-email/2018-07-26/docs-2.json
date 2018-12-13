@@ -1,23 +1,29 @@
 {
   "version": "2.0",
-  "service": "<fullname>Amazon Pinpoint Email Service</fullname> <p> This document contains reference information for the <a href=\"https://aws.amazon.com/pinpoint\">Amazon Pinpoint</a> Email API, version 1.0. This document is best used in conjunction with the <a href=\"http://docs.aws.amazon.com/pinpoint/latest/developerguide/welcome.html\">Amazon Pinpoint Developer Guide</a>.</p> <p>The Amazon Pinpoint API is available in the US East (N. Virginia) Region at the following endpoint: <code>email.us-east-1.amazonaws.com</code> </p>",
+  "service": "<fullname>Amazon Pinpoint Email Service</fullname> <p> This document contains reference information for the <a href=\"https://aws.amazon.com/pinpoint\">Amazon Pinpoint</a> Email API, version 1.0. This document is best used in conjunction with the <a href=\"http://docs.aws.amazon.com/pinpoint/latest/developerguide/welcome.html\">Amazon Pinpoint Developer Guide</a>.</p> <p>The Amazon Pinpoint Email API is available in the US East (N. Virginia), US West (Oregon) and the EU (Ireland) Regions at the following endpoints:</p> <ul> <li> <p> <b>US East (N. Virginia)</b>: <code>email.us-east-1.amazonaws.com</code> </p> </li> <li> <p> <b>US West (Oregon)</b>: <code>email.us-west-2.amazonaws.com</code> </p> </li> <li> <p> <b>EU (Ireland)</b>: <code>email.eu-west-1.amazonaws.com</code> </p> </li> </ul>",
   "operations": {
     "CreateConfigurationSet": "<p>Create a configuration set. <i>Configuration sets</i> are groups of rules that you can apply to the emails you send using Amazon Pinpoint. You apply a configuration set to an email by including a reference to the configuration set in the headers of the email. When you apply a configuration set to an email, all of the rules in that configuration set are applied to the email. </p>",
     "CreateConfigurationSetEventDestination": "<p>Create an event destination. In Amazon Pinpoint, <i>events</i> include message sends, deliveries, opens, clicks, bounces, and complaints. <i>Event destinations</i> are places that you can send information about these events to. For example, you can send event data to Amazon SNS to receive notifications when you receive bounces or complaints, or you can use Amazon Kinesis Data Firehose to stream data to Amazon S3 for long-term storage.</p> <p>A single configuration set can include more than one event destination.</p>",
     "CreateDedicatedIpPool": "<p>Create a new pool of dedicated IP addresses. A pool can include one or more dedicated IP addresses that are associated with your Amazon Pinpoint account. You can associate a pool with a configuration set. When you send an email that uses that configuration set, Amazon Pinpoint sends it using only the IP addresses in the associated pool.</p>",
+    "CreateDeliverabilityTestReport": "<p>Create a new predictive inbox placement test. Predictive inbox placement tests can help you predict how your messages will be handled by various email providers around the world. When you perform a predictive inbox placement test, you provide a sample message that contains the content that you plan to send to your customers. Amazon Pinpoint then sends that message to special email addresses spread across several major email providers. After about 24 hours, the test is complete, and you can use the <code>GetDeliverabilityTestReport</code> operation to view the results of the test.</p>",
     "CreateEmailIdentity": "<p>Verifies an email identity for use with Amazon Pinpoint. In Amazon Pinpoint, an identity is an email address or domain that you use when you send email. Before you can use an identity to send email with Amazon Pinpoint, you first have to verify it. By verifying an address, you demonstrate that you're the owner of the address, and that you've given Amazon Pinpoint permission to send email from the address.</p> <p>When you verify an email address, Amazon Pinpoint sends an email to the address. Your email address is verified as soon as you follow the link in the verification email. </p> <p>When you verify a domain, this operation provides a set of DKIM tokens, which you can convert into CNAME tokens. You add these CNAME tokens to the DNS configuration for your domain. Your domain is verified when Amazon Pinpoint detects these records in the DNS configuration for your domain. It usually takes around 72 hours to complete the domain verification process.</p>",
     "DeleteConfigurationSet": "<p>Delete an existing configuration set.</p> <p>In Amazon Pinpoint, <i>configuration sets</i> are groups of rules that you can apply to the emails you send. You apply a configuration set to an email by including a reference to the configuration set in the headers of the email. When you apply a configuration set to an email, all of the rules in that configuration set are applied to the email.</p>",
     "DeleteConfigurationSetEventDestination": "<p>Delete an event destination.</p> <p>In Amazon Pinpoint, <i>events</i> include message sends, deliveries, opens, clicks, bounces, and complaints. <i>Event destinations</i> are places that you can send information about these events to. For example, you can send event data to Amazon SNS to receive notifications when you receive bounces or complaints, or you can use Amazon Kinesis Data Firehose to stream data to Amazon S3 for long-term storage.</p>",
     "DeleteDedicatedIpPool": "<p>Delete a dedicated IP pool.</p>",
     "DeleteEmailIdentity": "<p>Deletes an email identity that you previously verified for use with Amazon Pinpoint. An identity can be either an email address or a domain name.</p>",
     "GetAccount": "<p>Obtain information about the email-sending status and capabilities of your Amazon Pinpoint account in the current AWS Region.</p>",
+    "GetBlacklistReports": "<p>Retrieve a list of the blacklists that your dedicated IP addresses appear on.</p>",
     "GetConfigurationSet": "<p>Get information about an existing configuration set, including the dedicated IP pool that it's associated with, whether or not it's enabled for sending email, and more.</p> <p>In Amazon Pinpoint, <i>configuration sets</i> are groups of rules that you can apply to the emails you send. You apply a configuration set to an email by including a reference to the configuration set in the headers of the email. When you apply a configuration set to an email, all of the rules in that configuration set are applied to the email.</p>",
     "GetConfigurationSetEventDestinations": "<p>Retrieve a list of event destinations that are associated with a configuration set.</p> <p>In Amazon Pinpoint, <i>events</i> include message sends, deliveries, opens, clicks, bounces, and complaints. <i>Event destinations</i> are places that you can send information about these events to. For example, you can send event data to Amazon SNS to receive notifications when you receive bounces or complaints, or you can use Amazon Kinesis Data Firehose to stream data to Amazon S3 for long-term storage.</p>",
     "GetDedicatedIp": "<p>Get information about a dedicated IP address, including the name of the dedicated IP pool that it's associated with, as well information about the automatic warm-up process for the address.</p>",
     "GetDedicatedIps": "<p>List the dedicated IP addresses that are associated with your Amazon Pinpoint account.</p>",
+    "GetDeliverabilityDashboardOptions": "<p>Show the status of the Deliverability dashboard. When the Deliverability dashboard is enabled, you gain access to reputation metrics for the domains that you use to send email using Amazon Pinpoint. You also gain the ability to perform predictive inbox placement tests.</p> <p>When you use the Deliverability dashboard, you pay a monthly charge of USD$1,250.00, in addition to any other fees that you accrue by using Amazon Pinpoint. If you enable the Deliverability dashboard after the first day of a calendar month, AWS prorates the monthly charge based on how many days have elapsed in the current calendar month.</p>",
+    "GetDeliverabilityTestReport": "<p>Retrieve the results of a predictive inbox placement test.</p>",
+    "GetDomainStatisticsReport": "<p>Retrieve inbox placement and engagement rates for the domains that you use to send email.</p>",
     "GetEmailIdentity": "<p>Provides information about a specific identity associated with your Amazon Pinpoint account, including the identity's verification status, its DKIM authentication status, and its custom Mail-From settings.</p>",
     "ListConfigurationSets": "<p>List all of the configuration sets associated with your Amazon Pinpoint account in the current region.</p> <p>In Amazon Pinpoint, <i>configuration sets</i> are groups of rules that you can apply to the emails you send. You apply a configuration set to an email by including a reference to the configuration set in the headers of the email. When you apply a configuration set to an email, all of the rules in that configuration set are applied to the email.</p>",
     "ListDedicatedIpPools": "<p>List all of the dedicated IP pools that exist in your Amazon Pinpoint account in the current AWS Region.</p>",
+    "ListDeliverabilityTestReports": "<p>Show a list of the predictive inbox placement tests that you've performed, regardless of their statuses. For predictive inbox placement tests that are complete, you can use the <code>GetDeliverabilityTestReport</code> operation to view the results.</p>",
     "ListEmailIdentities": "<p>Returns a list of all of the email identities that are associated with your Amazon Pinpoint account. An identity can be either an email address or a domain. This operation returns identities that are verified as well as those that aren't.</p>",
     "PutAccountDedicatedIpWarmupAttributes": "<p>Enable or disable the automatic warm-up feature for dedicated IP addresses.</p>",
     "PutAccountSendingAttributes": "<p>Enable or disable the ability of your account to send email.</p>",
@@ -27,6 +33,7 @@
     "PutConfigurationSetTrackingOptions": "<p>Specify a custom domain to use for open and click tracking elements in email that you send using Amazon Pinpoint.</p>",
     "PutDedicatedIpInPool": "<p>Move a dedicated IP address to an existing dedicated IP pool.</p> <note> <p>The dedicated IP address that you specify must already exist, and must be associated with your Amazon Pinpoint account. </p> <p>The dedicated IP pool you specify must already exist. You can create a new pool by using the <code>CreateDedicatedIpPool</code> operation.</p> </note>",
     "PutDedicatedIpWarmupAttributes": "<p/>",
+    "PutDeliverabilityDashboardOption": "<p>Enable or disable the Deliverability dashboard. When you enable the Deliverability dashboard, you gain access to reputation metrics for the domains that you use to send email using Amazon Pinpoint. You also gain the ability to perform predictive inbox placement tests.</p> <p>When you use the Deliverability dashboard, you pay a monthly charge of USD$1,250.00, in addition to any other fees that you accrue by using Amazon Pinpoint. If you enable the Deliverability dashboard after the first day of a calendar month, we prorate the monthly charge based on how many days have elapsed in the current calendar month.</p>",
     "PutEmailIdentityDkimAttributes": "<p>Used to enable or disable DKIM authentication for an email identity.</p>",
     "PutEmailIdentityFeedbackAttributes": "<p>Used to enable or disable feedback forwarding for an identity. This setting determines what happens when an identity is used to send an email that results in a bounce or complaint event.</p> <p>When you enable feedback forwarding, Amazon Pinpoint sends you email notifications when bounce or complaint events occur. Amazon Pinpoint sends this notification to the address that you specified in the Return-Path header of the original email.</p> <p>When you disable feedback forwarding, Amazon Pinpoint sends notifications through other mechanisms, such as by notifying an Amazon SNS topic. You're required to have a method of tracking bounces and complaints. If you haven't set up another mechanism for receiving bounce or complaint notifications, Amazon Pinpoint sends an email notification when these events occur (even if this setting is disabled).</p>",
     "PutEmailIdentityMailFromAttributes": "<p>Used to enable or disable the custom Mail-From domain configuration for an email identity.</p>",
@@ -63,6 +70,43 @@
       "refs": {
         "MailFromAttributes$BehaviorOnMxFailure": "<p>The action that Amazon Pinpoint to takes if it can't read the required MX record for a custom MAIL FROM domain. When you set this value to <code>UseDefaultValue</code>, Amazon Pinpoint uses <i>amazonses.com</i> as the MAIL FROM domain. When you set this value to <code>RejectMessage</code>, Amazon Pinpoint returns a <code>MailFromDomainNotVerified</code> error, and doesn't attempt to deliver the email.</p> <p>These behaviors are taken when the custom MAIL FROM domain configuration is in the <code>Pending</code>, <code>Failed</code>, and <code>TemporaryFailure</code> states.</p>",
         "PutEmailIdentityMailFromAttributesRequest$BehaviorOnMxFailure": "<p>The action that you want Amazon Pinpoint to take if it can't read the required MX record when you send an email. When you set this value to <code>UseDefaultValue</code>, Amazon Pinpoint uses <i>amazonses.com</i> as the MAIL FROM domain. When you set this value to <code>RejectMessage</code>, Amazon Pinpoint returns a <code>MailFromDomainNotVerified</code> error, and doesn't attempt to deliver the email.</p> <p>These behaviors are taken when the custom MAIL FROM domain configuration is in the <code>Pending</code>, <code>Failed</code>, and <code>TemporaryFailure</code> states.</p>"
+      }
+    },
+    "BlacklistEntries": {
+      "base": null,
+      "refs": {
+        "BlacklistReport$value": null
+      }
+    },
+    "BlacklistEntry": {
+      "base": "<p>An object that contains information about a blacklisting event that impacts one of the dedicated IP addresses that is associated with your account.</p>",
+      "refs": {
+        "BlacklistEntries$member": null
+      }
+    },
+    "BlacklistItemName": {
+      "base": "<p>An IP address that you want to obtain blacklist information for.</p>",
+      "refs": {
+        "BlacklistItemNames$member": null,
+        "BlacklistReport$key": null
+      }
+    },
+    "BlacklistItemNames": {
+      "base": null,
+      "refs": {
+        "GetBlacklistReportsRequest$BlacklistItemNames": "<p>A list of IP addresses that you want to retrieve blacklist information about. You can only specify the dedicated IP addresses that you use to send email using Amazon Pinpoint or Amazon SES.</p>"
+      }
+    },
+    "BlacklistReport": {
+      "base": null,
+      "refs": {
+        "GetBlacklistReportsResponse$BlacklistReport": "<p>An object that contains information about a blacklist that one of your dedicated IP addresses appears on.</p>"
+      }
+    },
+    "BlacklistingDescription": {
+      "base": "<p>A description of the blacklisting event.</p>",
+      "refs": {
+        "BlacklistEntry$Description": "<p>Additional information about the blacklisting event, as provided by the blacklist maintainer.</p>"
       }
     },
     "Body": {
@@ -159,6 +203,16 @@
       "refs": {
       }
     },
+    "CreateDeliverabilityTestReportRequest": {
+      "base": "<p>A request to perform a predictive inbox placement test. Predictive inbox placement tests can help you predict how your messages will be handled by various email providers around the world. When you perform a predictive inbox placement test, you provide a sample message that contains the content that you plan to send to your customers. Amazon Pinpoint then sends that message to special email addresses spread across several major email providers. After about 24 hours, the test is complete, and you can use the <code>GetDeliverabilityTestReport</code> operation to view the results of the test.</p>",
+      "refs": {
+      }
+    },
+    "CreateDeliverabilityTestReportResponse": {
+      "base": "<p>Information about the predictive inbox placement test that you created.</p>",
+      "refs": {
+      }
+    },
     "CreateEmailIdentityRequest": {
       "base": "<p>A request to begin the verification process for an email identity (an email address or domain).</p>",
       "refs": {
@@ -174,6 +228,18 @@
       "refs": {
         "PutConfigurationSetTrackingOptionsRequest$CustomRedirectDomain": "<p>The domain that you want to use to track open and click events.</p>",
         "TrackingOptions$CustomRedirectDomain": "<p>The domain that you want to use for tracking open and click events.</p>"
+      }
+    },
+    "DailyVolume": {
+      "base": "<p>An object that contains information about the volume of email sent on each day of the analysis period.</p>",
+      "refs": {
+        "DailyVolumes$member": null
+      }
+    },
+    "DailyVolumes": {
+      "base": null,
+      "refs": {
+        "GetDomainStatisticsReportResponse$DailyVolumes": "<p>An object that contains deliverability metrics for the domain that you specified. This object contains data for each day, starting on the <code>StartDate</code> and ending on the <code>EndDate</code>.</p>"
       }
     },
     "DedicatedIp": {
@@ -235,6 +301,32 @@
       "refs": {
       }
     },
+    "DeliverabilityTestReport": {
+      "base": "<p>An object that contains metadata related to a predictive inbox placement test.</p>",
+      "refs": {
+        "DeliverabilityTestReports$member": null,
+        "GetDeliverabilityTestReportResponse$DeliverabilityTestReport": "<p>An object that contains the results of the predictive inbox placement test.</p>"
+      }
+    },
+    "DeliverabilityTestReports": {
+      "base": null,
+      "refs": {
+        "ListDeliverabilityTestReportsResponse$DeliverabilityTestReports": "<p>An object that contains a lists of predictive inbox placement tests that you've performed.</p>"
+      }
+    },
+    "DeliverabilityTestStatus": {
+      "base": "<p>The status of a predictive inbox placement test. If the status is <code>IN_PROGRESS</code>, then the predictive inbox placement test is currently running. Predictive inbox placement tests are usually complete within 24 hours of creating the test. If the status is <code>COMPLETE</code>, then the test is finished, and you can use the <code>GetDeliverabilityTestReport</code> operation to view the results of the test.</p>",
+      "refs": {
+        "CreateDeliverabilityTestReportResponse$DeliverabilityTestStatus": "<p>The status of the predictive inbox placement test. If the status is <code>IN_PROGRESS</code>, then the predictive inbox placement test is currently running. Predictive inbox placement tests are usually complete within 24 hours of creating the test. If the status is <code>COMPLETE</code>, then the test is finished, and you can use the <code>GetDeliverabilityTestReport</code> to view the results of the test.</p>",
+        "DeliverabilityTestReport$DeliverabilityTestStatus": "<p>The status of the predictive inbox placement test. If the status is <code>IN_PROGRESS</code>, then the predictive inbox placement test is currently running. Predictive inbox placement tests are usually complete within 24 hours of creating the test. If the status is <code>COMPLETE</code>, then the test is finished, and you can use the <code>GetDeliverabilityTestReport</code> to view the results of the test.</p>"
+      }
+    },
+    "DeliverabilityTestSubject": {
+      "base": "<p>The subject line for an email that you submitted in a predictive inbox placement test.</p>",
+      "refs": {
+        "DeliverabilityTestReport$Subject": "<p>The subject line for an email that you submitted in a predictive inbox placement test.</p>"
+      }
+    },
     "DeliveryOptions": {
       "base": "<p>Used to associate a configuration set with a dedicated IP pool.</p>",
       "refs": {
@@ -285,9 +377,24 @@
         "DkimAttributes$Tokens": "<p>A set of unique strings that you use to create a set of CNAME records that you add to the DNS configuration for your domain. When Amazon Pinpoint detects these records in the DNS configuration for your domain, the DKIM authentication process is complete. Amazon Pinpoint usually detects these records within about 72 hours of adding them to the DNS configuration for your domain.</p>"
       }
     },
+    "DomainIspPlacement": {
+      "base": "<p>An object that contains inbox placement data for email sent from one of your email domains to a specific email provider.</p>",
+      "refs": {
+        "DomainIspPlacements$member": null
+      }
+    },
+    "DomainIspPlacements": {
+      "base": null,
+      "refs": {
+        "DailyVolume$DomainIspPlacements": "<p>An object that contains inbox placement metrics for a specifid day in the analysis period, broken out by the recipient's email provider.</p>",
+        "OverallVolume$DomainIspPlacements": "<p>An object that contains inbox and junk mail placement metrics for individual email providers.</p>"
+      }
+    },
     "EmailAddress": {
       "base": null,
       "refs": {
+        "CreateDeliverabilityTestReportRequest$FromEmailAddress": "<p>The email address that the predictive inbox placement test email was sent from.</p>",
+        "DeliverabilityTestReport$FromEmailAddress": "<p>The sender address that you specified for the predictive inbox placement test.</p>",
         "EmailAddressList$member": null,
         "SendEmailRequest$FromEmailAddress": "<p>The email address that you want to use as the \"From\" address for the email. The address that you specify has to be verified. </p>",
         "SendEmailRequest$FeedbackForwardingEmailAddress": "<p>The address that Amazon Pinpoint should send bounce and complaint notifications to.</p>"
@@ -305,6 +412,7 @@
     "EmailContent": {
       "base": "<p>An object that defines the entire content of the email, including the message headers and the body content. You can create a simple email message, in which you specify the subject and the text and HTML versions of the message body. You can also create raw messages, in which you specify a complete MIME-formatted message. Raw messages can include attachments and custom headers.</p>",
       "refs": {
+        "CreateDeliverabilityTestReportRequest$Content": "<p>The HTML body of the message that you sent when you performed the predictive inbox placement test.</p>",
         "SendEmailRequest$Content": "<p>An object that contains the body of the message. You can send either a Simple message or a Raw message.</p>"
       }
     },
@@ -318,6 +426,7 @@
         "GetAccountResponse$SendingEnabled": "<p>Indicates whether or not email sending is enabled for your Amazon Pinpoint account in the current AWS Region.</p>",
         "GetAccountResponse$DedicatedIpAutoWarmupEnabled": "<p>Indicates whether or not the automatic warm-up feature is enabled for dedicated IP addresses that are associated with your account.</p>",
         "GetAccountResponse$ProductionAccessEnabled": "<p>Indicates whether or not your account has production access in the current AWS Region.</p> <p>If the value is <code>false</code>, then your account is in the <i>sandbox</i>. When your account is in the sandbox, you can only send email to verified identities. Additionally, the maximum number of emails you can send in a 24-hour period (your sending quota) is 200, and the maximum number of emails you can send per second (your maximum sending rate) is 1.</p> <p>If the value is <code>true</code>, then your account has production access. When your account has production access, you can send email to any address. The sending quota and maximum sending rate for your account vary based on your specific use case.</p>",
+        "GetDeliverabilityDashboardOptionsResponse$DashboardEnabled": "<p>Indicates whether the Deliverability dashboard is enabled. If the value is <code>true</code>, then the dashboard is enabled.</p>",
         "GetEmailIdentityResponse$FeedbackForwardingStatus": "<p>The feedback forwarding configuration for the identity.</p> <p>If the value is <code>true</code>, Amazon Pinpoint sends you email notifications when bounce or complaint events occur. Amazon Pinpoint sends this notification to the address that you specified in the Return-Path header of the original email.</p> <p>When you set this value to <code>false</code>, Amazon Pinpoint sends notifications through other mechanisms, such as by notifying an Amazon SNS topic or another event destination. You're required to have a method of tracking bounces and complaints. If you haven't set up another mechanism for receiving bounce or complaint notifications, Amazon Pinpoint sends an email notification when these events occur (even if this setting is disabled).</p>",
         "GetEmailIdentityResponse$VerifiedForSendingStatus": "<p>Specifies whether or not the identity is verified. In Amazon Pinpoint, you can only send email from verified email addresses or domains. For more information about verifying identities, see the <a href=\"http://docs.aws.amazon.com/pinpoint/latest/userguide/channels-email-manage-verify.html\">Amazon Pinpoint User Guide</a>.</p>",
         "IdentityInfo$SendingEnabled": "<p>Indicates whether or not you can send email from the identity.</p> <p>In Amazon Pinpoint, an identity is an email address or domain that you send email from. Before you can send email from an identity, you have to demostrate that you own the identity, and that you authorize Amazon Pinpoint to send email from that identity.</p>",
@@ -325,6 +434,7 @@
         "PutAccountSendingAttributesRequest$SendingEnabled": "<p>Enables or disables your account's ability to send email. Set to <code>true</code> to enable email sending, or set to <code>false</code> to disable email sending.</p> <note> <p>If AWS paused your account's ability to send email, you can't use this operation to resume your account's ability to send email.</p> </note>",
         "PutConfigurationSetReputationOptionsRequest$ReputationMetricsEnabled": "<p>If <code>true</code>, tracking of reputation metrics is enabled for the configuration set. If <code>false</code>, tracking of reputation metrics is disabled for the configuration set.</p>",
         "PutConfigurationSetSendingOptionsRequest$SendingEnabled": "<p>If <code>true</code>, email sending is enabled for the configuration set. If <code>false</code>, email sending is disabled for the configuration set.</p>",
+        "PutDeliverabilityDashboardOptionRequest$DashboardEnabled": "<p>Indicates whether the Deliverability dashboard is enabled. If the value is <code>true</code>, then the dashboard is enabled.</p>",
         "PutEmailIdentityDkimAttributesRequest$SigningEnabled": "<p>Sets the DKIM signing configuration for the identity.</p> <p>When you set this value <code>true</code>, then the messages that Amazon Pinpoint sends from the identity are DKIM-signed. When you set this value to <code>false</code>, then the messages that Amazon Pinpoint sends from the identity aren't DKIM-signed.</p>",
         "PutEmailIdentityFeedbackAttributesRequest$EmailForwardingEnabled": "<p>Sets the feedback forwarding configuration for the identity.</p> <p>If the value is <code>true</code>, Amazon Pinpoint sends you email notifications when bounce or complaint events occur. Amazon Pinpoint sends this notification to the address that you specified in the Return-Path header of the original email.</p> <p>When you set this value to <code>false</code>, Amazon Pinpoint sends notifications through other mechanisms, such as by notifying an Amazon SNS topic or another event destination. You're required to have a method of tracking bounces and complaints. If you haven't set up another mechanism for receiving bounce or complaint notifications, Amazon Pinpoint sends an email notification when these events occur (even if this setting is disabled).</p>",
         "ReputationOptions$ReputationMetricsEnabled": "<p>If <code>true</code>, tracking of reputation metrics is enabled for the configuration set. If <code>false</code>, tracking of reputation metrics is disabled for the configuration set.</p>",
@@ -388,6 +498,16 @@
       "refs": {
       }
     },
+    "GetBlacklistReportsRequest": {
+      "base": "<p>A request to retrieve a list of the blacklists that your dedicated IP addresses appear on.</p>",
+      "refs": {
+      }
+    },
+    "GetBlacklistReportsResponse": {
+      "base": "<p>An object that contains information about blacklist events.</p>",
+      "refs": {
+      }
+    },
     "GetConfigurationSetEventDestinationsRequest": {
       "base": "<p>A request to obtain information about the event destinations for a configuration set.</p>",
       "refs": {
@@ -428,6 +548,36 @@
       "refs": {
       }
     },
+    "GetDeliverabilityDashboardOptionsRequest": {
+      "base": "<p>A request to retrieve the status of the Deliverability dashboard for your account. When the Deliverability dashboard is enabled, you gain access to reputation metrics for the domains that you use to send email using Amazon Pinpoint. You also gain the ability to perform predictive inbox placement tests.</p> <p>When you use the Deliverability dashboard, you pay a monthly charge of USD$1,250.00, in addition to any other fees that you accrue by using Amazon Pinpoint. If you enable the Deliverability dashboard after the first day of a calendar month, AWS prorates the monthly charge based on how many days have elapsed in the current calendar month.</p>",
+      "refs": {
+      }
+    },
+    "GetDeliverabilityDashboardOptionsResponse": {
+      "base": "<p>An object that shows the status of the Deliverability dashboard for your Amazon Pinpoint account.</p>",
+      "refs": {
+      }
+    },
+    "GetDeliverabilityTestReportRequest": {
+      "base": "<p>A request to retrieve the results of a predictive inbox placement test.</p>",
+      "refs": {
+      }
+    },
+    "GetDeliverabilityTestReportResponse": {
+      "base": "<p>The results of the predictive inbox placement test.</p>",
+      "refs": {
+      }
+    },
+    "GetDomainStatisticsReportRequest": {
+      "base": "<p>A request to obtain deliverability metrics for a domain.</p>",
+      "refs": {
+      }
+    },
+    "GetDomainStatisticsReportResponse": {
+      "base": "<p>An object that includes statistics that are related to the domain that you specified.</p>",
+      "refs": {
+      }
+    },
     "GetEmailIdentityRequest": {
       "base": "<p>A request to return details about an email identity.</p>",
       "refs": {
@@ -443,6 +593,7 @@
       "refs": {
         "CreateEmailIdentityRequest$EmailIdentity": "<p>The email address or domain that you want to verify.</p>",
         "DeleteEmailIdentityRequest$EmailIdentity": "<p>The identity (that is, the email address or domain) that you want to delete from your Amazon Pinpoint account.</p>",
+        "GetDomainStatisticsReportRequest$Domain": "<p>The domain that you want to obtain deliverability metrics for.</p>",
         "GetEmailIdentityRequest$EmailIdentity": "<p>The email identity that you want to retrieve details for.</p>",
         "IdentityInfo$IdentityName": "<p>The address or domain of the identity.</p>",
         "PutEmailIdentityDkimAttributesRequest$EmailIdentity": "<p>The email identity that you want to change the DKIM settings for.</p>",
@@ -479,6 +630,25 @@
         "PutDedicatedIpWarmupAttributesRequest$Ip": "<p>The dedicated IP address that you want to update the warm-up attributes for.</p>"
       }
     },
+    "IspName": {
+      "base": "<p>The name of an email provider.</p>",
+      "refs": {
+        "DomainIspPlacement$IspName": "<p>The name of the email provider that the inbox placement data applies to.</p>",
+        "IspPlacement$IspName": "<p>The name of the email provider that the inbox placement data applies to.</p>"
+      }
+    },
+    "IspPlacement": {
+      "base": "<p>An object that describes how email sent during the predictive inbox placement test was handled by a certain email provider.</p>",
+      "refs": {
+        "IspPlacements$member": null
+      }
+    },
+    "IspPlacements": {
+      "base": null,
+      "refs": {
+        "GetDeliverabilityTestReportResponse$IspPlacements": "<p>An object that describes how the test email was handled by several email providers, including Gmail, Hotmail, Yahoo, AOL, and others.</p>"
+      }
+    },
     "KinesisFirehoseDestination": {
       "base": "<p>An object that defines an Amazon Kinesis Data Firehose destination for email events. You can use Amazon Kinesis Data Firehose to stream data to other services, such as Amazon S3 and Amazon Redshift.</p>",
       "refs": {
@@ -487,9 +657,9 @@
       }
     },
     "LastFreshStart": {
-      "base": "<p>The date and time when the reputation metrics were last given a fresh start. When your account is given a fresh start, your reputation metrics are calculated starting from the date of the fresh start.</p>",
+      "base": "<p>The date and time (in Unix time) when the reputation metrics were last given a fresh start. When your account is given a fresh start, your reputation metrics are calculated starting from the date of the fresh start.</p>",
       "refs": {
-        "ReputationOptions$LastFreshStart": "<p>The date and time when the reputation metrics were last given a fresh start. When your account is given a fresh start, your reputation metrics are calculated starting from the date of the fresh start.</p>"
+        "ReputationOptions$LastFreshStart": "<p>The date and time (in Unix time) when the reputation metrics were last given a fresh start. When your account is given a fresh start, your reputation metrics are calculated starting from the date of the fresh start.</p>"
       }
     },
     "LimitExceededException": {
@@ -514,6 +684,16 @@
     },
     "ListDedicatedIpPoolsResponse": {
       "base": "<p>A list of dedicated IP pools.</p>",
+      "refs": {
+      }
+    },
+    "ListDeliverabilityTestReportsRequest": {
+      "base": "<p>A request to list all of the predictive inbox placement tests that you've performed.</p>",
+      "refs": {
+      }
+    },
+    "ListDeliverabilityTestReportsResponse": {
+      "base": "<p>A list of the predictive inbox placement test reports that are available for your account, regardless of whether or not those tests are complete.</p>",
       "refs": {
       }
     },
@@ -569,6 +749,7 @@
         "GetDedicatedIpsRequest$PageSize": "<p>The number of results to show in a single call to <code>GetDedicatedIpsRequest</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p>",
         "ListConfigurationSetsRequest$PageSize": "<p>The number of results to show in a single call to <code>ListConfigurationSets</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p>",
         "ListDedicatedIpPoolsRequest$PageSize": "<p>The number of results to show in a single call to <code>ListDedicatedIpPools</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p>",
+        "ListDeliverabilityTestReportsRequest$PageSize": "<p>The number of results to show in a single call to <code>ListDeliverabilityTestReports</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p> <p>The value you specify has to be at least 0, and can be no more than 1000.</p>",
         "ListEmailIdentitiesRequest$PageSize": "<p>The number of results to show in a single call to <code>ListEmailIdentities</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p> <p>The value you specify has to be at least 0, and can be no more than 1000.</p>"
       }
     },
@@ -582,6 +763,12 @@
       "base": "<p>Represents the email message that you're sending. The <code>Message</code> object consists of a subject line and a message body.</p>",
       "refs": {
         "EmailContent$Simple": "<p>The simple email message. The message consists of a subject and a message body.</p>"
+      }
+    },
+    "MessageContent": {
+      "base": "<p>The body of an email message.</p>",
+      "refs": {
+        "GetDeliverabilityTestReportResponse$Message": "<p>An object that contains the message that you sent when you performed this predictive inbox placement test.</p>"
       }
     },
     "MessageData": {
@@ -628,6 +815,8 @@
         "ListConfigurationSetsResponse$NextToken": "<p>A token that indicates that there are additional configuration sets to list. To view additional configuration sets, issue another request to <code>ListConfigurationSets</code>, and pass this token in the <code>NextToken</code> parameter.</p>",
         "ListDedicatedIpPoolsRequest$NextToken": "<p>A token returned from a previous call to <code>ListDedicatedIpPools</code> to indicate the position in the list of dedicated IP pools.</p>",
         "ListDedicatedIpPoolsResponse$NextToken": "<p>A token that indicates that there are additional IP pools to list. To view additional IP pools, issue another request to <code>ListDedicatedIpPools</code>, passing this token in the <code>NextToken</code> parameter.</p>",
+        "ListDeliverabilityTestReportsRequest$NextToken": "<p>A token returned from a previous call to <code>ListDeliverabilityTestReports</code> to indicate the position in the list of predictive inbox placement tests.</p>",
+        "ListDeliverabilityTestReportsResponse$NextToken": "<p>A token that indicates that there are additional predictive inbox placement tests to list. To view additional predictive inbox placement tests, issue another request to <code>ListDeliverabilityTestReports</code>, and pass this token in the <code>NextToken</code> parameter.</p>",
         "ListEmailIdentitiesRequest$NextToken": "<p>A token returned from a previous call to <code>ListEmailIdentities</code> to indicate the position in the list of identities.</p>",
         "ListEmailIdentitiesResponse$NextToken": "<p>A token that indicates that there are additional configuration sets to list. To view additional configuration sets, issue another request to <code>ListEmailIdentities</code>, and pass this token in the <code>NextToken</code> parameter.</p>"
       }
@@ -643,6 +832,25 @@
         "SendEmailResponse$MessageId": "<p>A unique identifier for the message that is generated when Amazon Pinpoint accepts the message.</p> <note> <p>It is possible for Amazon Pinpoint to accept a message without sending it. This can happen when the message you're trying to send has an attachment doesn't pass a virus check, or when you send a templated email that contains invalid personalization content, for example.</p> </note>"
       }
     },
+    "OverallVolume": {
+      "base": "<p>An object that contains information about email that was sent from the selected domain.</p>",
+      "refs": {
+        "GetDomainStatisticsReportResponse$OverallVolume": "<p>An object that contains deliverability metrics for the domain that you specified. The data in this object is a summary of all of the data that was collected from the <code>StartDate</code> to the <code>EndDate</code>.</p>"
+      }
+    },
+    "Percentage": {
+      "base": "<p>An object that contains information about inbox placement percentages.</p>",
+      "refs": {
+        "DomainIspPlacement$InboxPercentage": "<p>The percentage of messages that were sent from the selected domain to the specified email provider that arrived in recipients' inboxes.</p>",
+        "DomainIspPlacement$SpamPercentage": "<p>The percentage of messages that were sent from the selected domain to the specified email provider that arrived in recipients' spam or junk mail folders.</p>",
+        "OverallVolume$ReadRatePercent": "<p>The percentage of emails that were sent from the domain that were read by their recipients.</p>",
+        "PlacementStatistics$InboxPercentage": "<p>The percentage of emails that arrived in recipients' inboxes during the predictive inbox placement test.</p>",
+        "PlacementStatistics$SpamPercentage": "<p>The percentage of emails that arrived in recipients' spam or junk mail folders during the predictive inbox placement test.</p>",
+        "PlacementStatistics$MissingPercentage": "<p>The percentage of emails that didn't arrive in recipients' inboxes at all during the predictive inbox placement test.</p>",
+        "PlacementStatistics$SpfPercentage": "<p>The percentage of emails that were authenticated by using Sender Policy Framework (SPF) during the predictive inbox placement test.</p>",
+        "PlacementStatistics$DkimPercentage": "<p>The percentage of emails that were authenticated by using DomainKeys Identified Mail (DKIM) during the predictive inbox placement test.</p>"
+      }
+    },
     "Percentage100Wrapper": {
       "base": null,
       "refs": {
@@ -655,6 +863,13 @@
       "refs": {
         "EventDestination$PinpointDestination": "<p>An object that defines a Amazon Pinpoint destination for email events. You can use Amazon Pinpoint events to create attributes in Amazon Pinpoint projects. You can use these attributes to create segments for your campaigns.</p>",
         "EventDestinationDefinition$PinpointDestination": "<p>An object that defines a Amazon Pinpoint destination for email events. You can use Amazon Pinpoint events to create attributes in Amazon Pinpoint projects. You can use these attributes to create segments for your campaigns.</p>"
+      }
+    },
+    "PlacementStatistics": {
+      "base": "<p>An object that contains inbox placement data for an email provider.</p>",
+      "refs": {
+        "GetDeliverabilityTestReportResponse$OverallPlacement": "<p>An object that specifies how many test messages that were sent during the predictive inbox placement test were delivered to recipients' inboxes, how many were sent to recipients' spam folders, and how many weren't delivered.</p>",
+        "IspPlacement$PlacementStatistics": "<p>An object that contains inbox placement metrics for a specific email provider.</p>"
       }
     },
     "PoolName": {
@@ -735,7 +950,7 @@
       }
     },
     "PutDedicatedIpInPoolResponse": {
-      "base": null,
+      "base": "<p>An HTTP 200 response if the request succeeds, or an error message if the request fails.</p>",
       "refs": {
       }
     },
@@ -746,6 +961,16 @@
     },
     "PutDedicatedIpWarmupAttributesResponse": {
       "base": "<p>An HTTP 200 response if the request succeeds, or an error message if the request fails.</p>",
+      "refs": {
+      }
+    },
+    "PutDeliverabilityDashboardOptionRequest": {
+      "base": "<p>A request to enable or disable the Deliverability dashboard. When you enable the Deliverability dashboard, you gain access to reputation metrics for the domains that you use to send email using Amazon Pinpoint. You also gain the ability to perform predictive inbox placement tests.</p> <p>When you use the Deliverability dashboard, you pay a monthly charge of USD$1,250.00, in addition to any other fees that you accrue by using Amazon Pinpoint. If you enable the Deliverability dashboard after the first day of a calendar month, we prorate the monthly charge based on how many days have elapsed in the current calendar month.</p>",
+      "refs": {
+      }
+    },
+    "PutDeliverabilityDashboardOptionResponse": {
+      "base": "<p>A response that indicates whether the Deliverability dashboard is enabled for your Amazon Pinpoint account.</p>",
       "refs": {
       }
     },
@@ -789,6 +1014,27 @@
       "base": "<p>The raw email message. The message has to meet the following criteria:</p> <ul> <li> <p>The message has to contain a header and a body, separated by one blank line.</p> </li> <li> <p>All of the required header fields must be present in the message.</p> </li> <li> <p>Each part of a multipart MIME message must be formatted properly.</p> </li> <li> <p>Attachments must be in a file format that Amazon Pinpoint supports. </p> </li> <li> <p>The entire message must be Base64 encoded.</p> </li> <li> <p>If any of the MIME parts in your message contain content that is outside of the 7-bit ASCII character range, you should encode that content to ensure that recipients' email clients render the message properly.</p> </li> <li> <p>The length of any single line of text in the message can't exceed 1,000 characters. This restriction is defined in <a href=\"https://tools.ietf.org/html/rfc5321\">RFC 5321</a>.</p> </li> </ul>",
       "refs": {
         "RawMessage$Data": "<p>The raw email message. The message has to meet the following criteria:</p> <ul> <li> <p>The message has to contain a header and a body, separated by one blank line.</p> </li> <li> <p>All of the required header fields must be present in the message.</p> </li> <li> <p>Each part of a multipart MIME message must be formatted properly.</p> </li> <li> <p>Attachments must be in a file format that Amazon Pinpoint supports. </p> </li> <li> <p>The entire message must be Base64 encoded.</p> </li> <li> <p>If any of the MIME parts in your message contain content that is outside of the 7-bit ASCII character range, you should encode that content to ensure that recipients' email clients render the message properly.</p> </li> <li> <p>The length of any single line of text in the message can't exceed 1,000 characters. This restriction is defined in <a href=\"https://tools.ietf.org/html/rfc5321\">RFC 5321</a>.</p> </li> </ul>"
+      }
+    },
+    "RblName": {
+      "base": "<p>The name of a blacklist that an IP address was found on.</p>",
+      "refs": {
+        "BlacklistEntry$RblName": "<p>The name of the blacklist that the IP address appears on.</p>"
+      }
+    },
+    "ReportId": {
+      "base": "<p>A unique string that identifies a Deliverability dashboard report.</p>",
+      "refs": {
+        "CreateDeliverabilityTestReportResponse$ReportId": "<p>A unique string that identifies the predictive inbox placement test.</p>",
+        "DeliverabilityTestReport$ReportId": "<p>A unique string that identifies the predictive inbox placement test.</p>",
+        "GetDeliverabilityTestReportRequest$ReportId": "<p>A unique string that identifies the predictive inbox placement test.</p>"
+      }
+    },
+    "ReportName": {
+      "base": "<p>A name that helps you identify a report generated by the Deliverability dashboard.</p>",
+      "refs": {
+        "CreateDeliverabilityTestReportRequest$ReportName": "<p>A unique name that helps you to identify the predictive inbox placement test when you retrieve the results.</p>",
+        "DeliverabilityTestReport$ReportName": "<p>A name that helps you identify a predictive inbox placement test report.</p>"
       }
     },
     "ReputationOptions": {
@@ -845,6 +1091,16 @@
         "EventDestinationDefinition$SnsDestination": "<p>An object that defines an Amazon SNS destination for email events. You can use Amazon SNS to send notification when certain email events occur.</p>"
       }
     },
+    "Timestamp": {
+      "base": null,
+      "refs": {
+        "BlacklistEntry$ListingTime": "<p>The time when the blacklisting event occurred, shown in Unix time format.</p>",
+        "DailyVolume$StartDate": "<p>The date that the DailyVolume metrics apply to, in Unix time.</p>",
+        "DeliverabilityTestReport$CreateDate": "<p>The date and time when the predictive inbox placement test was created, in Unix time format.</p>",
+        "GetDomainStatisticsReportRequest$StartDate": "<p>The first day (in Unix time) that you want to obtain domain deliverability metrics for.</p>",
+        "GetDomainStatisticsReportRequest$EndDate": "<p>The last day (in Unix time) that you want to obtain domain deliverability metrics for. The <code>EndDate</code> that you specify has to be less than or equal to 30 days after the <code>StartDate</code>.</p>"
+      }
+    },
     "TooManyRequestsException": {
       "base": "<p>Too many requests have been made to the operation.</p>",
       "refs": {
@@ -865,6 +1121,24 @@
     "UpdateConfigurationSetEventDestinationResponse": {
       "base": "<p>An HTTP 200 response if the request succeeds, or an error message if the request fails.</p>",
       "refs": {
+      }
+    },
+    "Volume": {
+      "base": "<p>An object that contains information about inbox placement volume.</p>",
+      "refs": {
+        "DomainIspPlacement$InboxRawCount": "<p>The total number of messages that were sent from the selected domain to the specified email provider that arrived in recipients' inboxes.</p>",
+        "DomainIspPlacement$SpamRawCount": "<p>The total number of messages that were sent from the selected domain to the specified email provider that arrived in recipients' spam or junk mail folders.</p>",
+        "VolumeStatistics$InboxRawCount": "<p>The total number of emails that arrived in recipients' inboxes.</p>",
+        "VolumeStatistics$SpamRawCount": "<p>The total number of emails that arrived in recipients' spam or junk mail folders.</p>",
+        "VolumeStatistics$ProjectedInbox": "<p>An estimate of the percentage of emails sent from the current domain that will arrive in recipients' inboxes.</p>",
+        "VolumeStatistics$ProjectedSpam": "<p>An estimate of the percentage of emails sent from the current domain that will arrive in recipients' spam or junk mail folders.</p>"
+      }
+    },
+    "VolumeStatistics": {
+      "base": "<p>An object that contains information about the amount of email that was delivered to recipients.</p>",
+      "refs": {
+        "DailyVolume$VolumeStatistics": "<p>An object that contains inbox placement metrics for a specific day in the analysis period.</p>",
+        "OverallVolume$VolumeStatistics": "<p>An object that contains information about the numbers of messages that arrived in recipients' inboxes and junk mail folders.</p>"
       }
     },
     "WarmupStatus": {

@@ -1,3 +1,12 @@
+Release v1.16.5 (2018-12-13)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/organizations`: Updates service documentation
+  * Documentation updates for AWS Organizations
+* `service/pinpoint-email`: Updates service API, documentation, and paginators
+
 Release v1.16.4 (2018-12-12)
 ===
 
