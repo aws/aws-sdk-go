@@ -4823,6 +4823,338 @@ func (s InternalFailureException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
+// The ciphertext references a key that doesn't exist or that you don't have
+// access to.
+type KMSAccessDeniedException struct {
+	_ struct{} `type:"structure"`
+
+	// A message that provides information about the error.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s KMSAccessDeniedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KMSAccessDeniedException) GoString() string {
+	return s.String()
+}
+
+// The KMSAccessDeniedException is and event in the SubscribeToShardEventStream group of events.
+func (s *KMSAccessDeniedException) eventSubscribeToShardEventStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the KMSAccessDeniedException value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *KMSAccessDeniedException) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Code returns the exception type name.
+func (s KMSAccessDeniedException) Code() string {
+	return "KMSAccessDeniedException"
+}
+
+// Message returns the exception's message.
+func (s KMSAccessDeniedException) Message() string {
+	return *s.Message_
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s KMSAccessDeniedException) OrigErr() error {
+	return nil
+}
+
+func (s KMSAccessDeniedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// The request was rejected because the specified customer master key (CMK)
+// isn't enabled.
+type KMSDisabledException struct {
+	_ struct{} `type:"structure"`
+
+	// A message that provides information about the error.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s KMSDisabledException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KMSDisabledException) GoString() string {
+	return s.String()
+}
+
+// The KMSDisabledException is and event in the SubscribeToShardEventStream group of events.
+func (s *KMSDisabledException) eventSubscribeToShardEventStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the KMSDisabledException value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *KMSDisabledException) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Code returns the exception type name.
+func (s KMSDisabledException) Code() string {
+	return "KMSDisabledException"
+}
+
+// Message returns the exception's message.
+func (s KMSDisabledException) Message() string {
+	return *s.Message_
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s KMSDisabledException) OrigErr() error {
+	return nil
+}
+
+func (s KMSDisabledException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// The request was rejected because the state of the specified resource isn't
+// valid for this request. For more information, see How Key State Affects Use
+// of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
+// in the AWS Key Management Service Developer Guide.
+type KMSInvalidStateException struct {
+	_ struct{} `type:"structure"`
+
+	// A message that provides information about the error.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s KMSInvalidStateException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KMSInvalidStateException) GoString() string {
+	return s.String()
+}
+
+// The KMSInvalidStateException is and event in the SubscribeToShardEventStream group of events.
+func (s *KMSInvalidStateException) eventSubscribeToShardEventStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the KMSInvalidStateException value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *KMSInvalidStateException) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Code returns the exception type name.
+func (s KMSInvalidStateException) Code() string {
+	return "KMSInvalidStateException"
+}
+
+// Message returns the exception's message.
+func (s KMSInvalidStateException) Message() string {
+	return *s.Message_
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s KMSInvalidStateException) OrigErr() error {
+	return nil
+}
+
+func (s KMSInvalidStateException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// The request was rejected because the specified entity or resource can't be
+// found.
+type KMSNotFoundException struct {
+	_ struct{} `type:"structure"`
+
+	// A message that provides information about the error.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s KMSNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KMSNotFoundException) GoString() string {
+	return s.String()
+}
+
+// The KMSNotFoundException is and event in the SubscribeToShardEventStream group of events.
+func (s *KMSNotFoundException) eventSubscribeToShardEventStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the KMSNotFoundException value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *KMSNotFoundException) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Code returns the exception type name.
+func (s KMSNotFoundException) Code() string {
+	return "KMSNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s KMSNotFoundException) Message() string {
+	return *s.Message_
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s KMSNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s KMSNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// The AWS access key ID needs a subscription for the service.
+type KMSOptInRequired struct {
+	_ struct{} `type:"structure"`
+
+	// A message that provides information about the error.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s KMSOptInRequired) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KMSOptInRequired) GoString() string {
+	return s.String()
+}
+
+// The KMSOptInRequired is and event in the SubscribeToShardEventStream group of events.
+func (s *KMSOptInRequired) eventSubscribeToShardEventStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the KMSOptInRequired value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *KMSOptInRequired) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Code returns the exception type name.
+func (s KMSOptInRequired) Code() string {
+	return "KMSOptInRequired"
+}
+
+// Message returns the exception's message.
+func (s KMSOptInRequired) Message() string {
+	return *s.Message_
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s KMSOptInRequired) OrigErr() error {
+	return nil
+}
+
+func (s KMSOptInRequired) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// The request was denied due to request throttling. For more information about
+// throttling, see Limits (http://docs.aws.amazon.com/kms/latest/developerguide/limits.html#requests-per-second)
+// in the AWS Key Management Service Developer Guide.
+type KMSThrottlingException struct {
+	_ struct{} `type:"structure"`
+
+	// A message that provides information about the error.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s KMSThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KMSThrottlingException) GoString() string {
+	return s.String()
+}
+
+// The KMSThrottlingException is and event in the SubscribeToShardEventStream group of events.
+func (s *KMSThrottlingException) eventSubscribeToShardEventStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the KMSThrottlingException value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *KMSThrottlingException) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Code returns the exception type name.
+func (s KMSThrottlingException) Code() string {
+	return "KMSThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s KMSThrottlingException) Message() string {
+	return *s.Message_
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s KMSThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s KMSThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
 type ListShardsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6079,6 +6411,116 @@ func (s RemoveTagsFromStreamOutput) String() string {
 // GoString returns the string representation
 func (s RemoveTagsFromStreamOutput) GoString() string {
 	return s.String()
+}
+
+// The resource is not available for this operation. For successful operation,
+// the resource must be in the ACTIVE state.
+type ResourceInUseException struct {
+	_ struct{} `type:"structure"`
+
+	// A message that provides information about the error.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceInUseException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceInUseException) GoString() string {
+	return s.String()
+}
+
+// The ResourceInUseException is and event in the SubscribeToShardEventStream group of events.
+func (s *ResourceInUseException) eventSubscribeToShardEventStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the ResourceInUseException value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *ResourceInUseException) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Code returns the exception type name.
+func (s ResourceInUseException) Code() string {
+	return "ResourceInUseException"
+}
+
+// Message returns the exception's message.
+func (s ResourceInUseException) Message() string {
+	return *s.Message_
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceInUseException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceInUseException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// The requested resource could not be found. The stream might not be specified
+// correctly.
+type ResourceNotFoundException struct {
+	_ struct{} `type:"structure"`
+
+	// A message that provides information about the error.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+// The ResourceNotFoundException is and event in the SubscribeToShardEventStream group of events.
+func (s *ResourceNotFoundException) eventSubscribeToShardEventStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the ResourceNotFoundException value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *ResourceNotFoundException) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	return *s.Message_
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // The range of possible sequence numbers for the shard.
