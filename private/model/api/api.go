@@ -789,7 +789,6 @@ func resolveShapeValidations(s *Shape, ancestry ...*Shape) {
 	children := []string{}
 	for _, name := range s.MemberNames() {
 		ref := s.MemberRefs[name]
-
 		if s.IsRequired(name) && !s.Validations.Has(ref, ShapeValidationRequired) {
 			s.Validations = append(s.Validations, ShapeValidation{
 				Name: name, Ref: ref, Type: ShapeValidationRequired,
