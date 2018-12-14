@@ -807,6 +807,9 @@ func (s *Shape) IsRequired(member string) bool {
 			s.ShapeName, member,
 		))
 	}
+	if ref.IdempotencyToken || ref.Shape.IdempotencyToken {
+		return false
+	}
 	if ref.Location == "uri" || ref.HostLabel {
 		return true
 	}
