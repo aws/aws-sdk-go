@@ -1,6 +1,6 @@
 // +build integration
 
-package kinesis
+package kinesis_test
 
 import (
 	crand "crypto/rand"
@@ -40,8 +40,8 @@ var (
 
 func init() {
 	flag.StringVar(
-		&mode, "mode", "test",
-		"Sets the mode to run in, (test,create,cleanup).",
+		&mode, "mode", "all",
+		"Sets the mode to run in, (test,create,cleanup,all).",
 	)
 	flag.BoolVar(
 		&skipTLSVerify, "skip-verify", false,
@@ -75,16 +75,17 @@ func init() {
 		&debugEventStream, "debug-eventstream", false,
 		"Enables debugging of the EventStream messages",
 	)
-	flag.Parse()
 }
 
 func TestMain(m *testing.M) {
+	flag.Parse()
+
 	svc = createClient()
 
 	startingTimestamp = time.Now().Add(-time.Minute)
 
 	switch mode {
-	case "create":
+	case "create", "all":
 		if err := createStream(streamName); err != nil {
 			panic(err)
 		}
@@ -93,14 +94,10 @@ func TestMain(m *testing.M) {
 		}
 		fmt.Println("Stream Ready:", streamName, consumerName)
 
-	case "cleanup":
-		if err := cleanupStreamConsumer(streamName, consumerName); err != nil {
-			panic(err)
+		if mode != "all" {
+			break
 		}
-		if err := cleanupStream(streamName); err != nil {
-			panic(err)
-		}
-
+		fallthrough
 	case "test":
 		records = createRecords(numRecords, recordSize)
 		if err := putRecords(streamName, records, svc); err != nil {
@@ -114,6 +111,18 @@ func TestMain(m *testing.M) {
 		}()
 
 		exitCode = m.Run()
+
+		if mode != "all" {
+			break
+		}
+		fallthrough
+	case "cleanup":
+		if err := cleanupStreamConsumer(streamName, consumerName); err != nil {
+			panic(err)
+		}
+		if err := cleanupStream(streamName); err != nil {
+			panic(err)
+		}
 	default:
 		fmt.Fprintf(os.Stderr, "unknown mode, %v", mode)
 		os.Exit(1)
@@ -145,22 +154,18 @@ func createClient() *kinesis.Kinesis {
 		panic("unknown h usage, " + hUsage)
 	}
 
-	logLevel := integration.Session.Config.LogLevel.Value()
-	if debugEventStream {
-		logLevel |= aws.LogDebugWithEventStreamBody
-	}
-
-	sess := integration.Session.Copy(&aws.Config{
+	sess := integration.SessionWithDefaultRegion("us-west-2")
+	cfg := &aws.Config{
 		HTTPClient: &http.Client{
 			Transport: ts,
 		},
-		LogLevel: &logLevel,
-	})
-	if len(endpoint) != 0 {
-		sess.Config.Endpoint = &endpoint
+	}
+	if debugEventStream {
+		cfg.LogLevel = aws.LogLevel(
+			sess.Config.LogLevel.Value() | aws.LogDebugWithEventStreamBody)
 	}
 
-	return kinesis.New(sess)
+	return kinesis.New(sess, cfg)
 }
 
 func createStream(name string) error {
@@ -229,12 +234,17 @@ func createStreamConsumer(streamName, consumerName string) error {
 			consumerName, err)
 	}
 
-	if err := svc.WaitUntilStreamConsumerExists(descParams); err != nil {
-		return fmt.Errorf("failed to wait stream consumer to exist %s, %v",
-			consumerName, err)
+	for i := 0; i < 10; i++ {
+		resp, err := svc.DescribeStreamConsumer(descParams)
+		if err != nil || aws.StringValue(resp.ConsumerDescription.ConsumerStatus) != kinesis.ConsumerStatusActive {
+			time.Sleep(time.Second * 30)
+			continue
+		}
+		return nil
 	}
 
-	return nil
+	return fmt.Errorf("failed to wait for consumer to exist, %v, %v",
+		*descParams.StreamARN, *descParams.ConsumerName)
 }
 
 func cleanupStreamConsumer(streamName, consumerName string) error {

@@ -1,10 +1,9 @@
 // +build integration
 
-package kinesis
+package kinesis_test
 
 import (
 	"context"
-	"fmt"
 	"sync"
 	"sync/atomic"
 	"testing"
@@ -14,7 +13,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/kinesis"
 )
 
-func TestKinesis_SubscribeToShard(t *testing.T) {
+func TestInteg_SubscribeToShard(t *testing.T) {
 	desc, err := svc.DescribeStream(&kinesis.DescribeStreamInput{
 		StreamName: &streamName,
 	})
@@ -43,10 +42,12 @@ func TestKinesis_SubscribeToShard(t *testing.T) {
 		go func(idx int, s *kinesis.Shard) {
 			defer wg.Done()
 			params := &kinesis.SubscribeToShardInput{
-				ConsumerARN:       cons.ConsumerDescription.ConsumerARN,
-				StartingPosition:  aws.String(kinesis.ShardIteratorTypeAtTimestamp),
-				ShardId:           s.ShardId,
-				StartingTimestamp: &startingTimestamp,
+				ConsumerARN: cons.ConsumerDescription.ConsumerARN,
+				StartingPosition: &kinesis.StartingPosition{
+					Type:      aws.String(kinesis.ShardIteratorTypeAtTimestamp),
+					Timestamp: &startingTimestamp,
+				},
+				ShardId: s.ShardId,
 			}
 
 			sub, err := svc.SubscribeToShardWithContext(ctx, params)
@@ -89,5 +90,5 @@ func TestKinesis_SubscribeToShard(t *testing.T) {
 		t.Errorf("expected to read %v records, got %v", e, a)
 	}
 
-	fmt.Println("Ignored", ignoredCount, "empty events, non-empty", goodCount)
+	t.Log("Ignored", ignoredCount, "empty events, non-empty", goodCount)
 }
