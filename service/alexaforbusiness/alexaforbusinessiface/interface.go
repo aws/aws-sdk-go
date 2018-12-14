@@ -80,6 +80,10 @@ type AlexaForBusinessAPI interface {
 	AssociateSkillWithSkillGroupWithContext(aws.Context, *alexaforbusiness.AssociateSkillWithSkillGroupInput, ...request.Option) (*alexaforbusiness.AssociateSkillWithSkillGroupOutput, error)
 	AssociateSkillWithSkillGroupRequest(*alexaforbusiness.AssociateSkillWithSkillGroupInput) (*request.Request, *alexaforbusiness.AssociateSkillWithSkillGroupOutput)
 
+	AssociateSkillWithUsers(*alexaforbusiness.AssociateSkillWithUsersInput) (*alexaforbusiness.AssociateSkillWithUsersOutput, error)
+	AssociateSkillWithUsersWithContext(aws.Context, *alexaforbusiness.AssociateSkillWithUsersInput, ...request.Option) (*alexaforbusiness.AssociateSkillWithUsersOutput, error)
+	AssociateSkillWithUsersRequest(*alexaforbusiness.AssociateSkillWithUsersInput) (*request.Request, *alexaforbusiness.AssociateSkillWithUsersOutput)
+
 	CreateAddressBook(*alexaforbusiness.CreateAddressBookInput) (*alexaforbusiness.CreateAddressBookOutput, error)
 	CreateAddressBookWithContext(aws.Context, *alexaforbusiness.CreateAddressBookInput, ...request.Option) (*alexaforbusiness.CreateAddressBookOutput, error)
 	CreateAddressBookRequest(*alexaforbusiness.CreateAddressBookInput) (*request.Request, *alexaforbusiness.CreateAddressBookOutput)
@@ -167,6 +171,10 @@ type AlexaForBusinessAPI interface {
 	DisassociateSkillFromSkillGroup(*alexaforbusiness.DisassociateSkillFromSkillGroupInput) (*alexaforbusiness.DisassociateSkillFromSkillGroupOutput, error)
 	DisassociateSkillFromSkillGroupWithContext(aws.Context, *alexaforbusiness.DisassociateSkillFromSkillGroupInput, ...request.Option) (*alexaforbusiness.DisassociateSkillFromSkillGroupOutput, error)
 	DisassociateSkillFromSkillGroupRequest(*alexaforbusiness.DisassociateSkillFromSkillGroupInput) (*request.Request, *alexaforbusiness.DisassociateSkillFromSkillGroupOutput)
+
+	DisassociateSkillFromUsers(*alexaforbusiness.DisassociateSkillFromUsersInput) (*alexaforbusiness.DisassociateSkillFromUsersOutput, error)
+	DisassociateSkillFromUsersWithContext(aws.Context, *alexaforbusiness.DisassociateSkillFromUsersInput, ...request.Option) (*alexaforbusiness.DisassociateSkillFromUsersOutput, error)
+	DisassociateSkillFromUsersRequest(*alexaforbusiness.DisassociateSkillFromUsersInput) (*request.Request, *alexaforbusiness.DisassociateSkillFromUsersOutput)
 
 	DisassociateSkillGroupFromRoom(*alexaforbusiness.DisassociateSkillGroupFromRoomInput) (*alexaforbusiness.DisassociateSkillGroupFromRoomOutput, error)
 	DisassociateSkillGroupFromRoomWithContext(aws.Context, *alexaforbusiness.DisassociateSkillGroupFromRoomInput, ...request.Option) (*alexaforbusiness.DisassociateSkillGroupFromRoomOutput, error)

@@ -1530,6 +1530,12 @@
       },
       "neptune" : {
         "endpoints" : {
+          "ap-southeast-1" : {
+            "credentialScope" : {
+              "region" : "ap-southeast-1"
+            },
+            "hostname" : "rds.ap-southeast-1.amazonaws.com"
+          },
           "eu-central-1" : {
             "credentialScope" : {
               "region" : "eu-central-1"
@@ -2148,7 +2154,7 @@
       "shield" : {
         "defaults" : {
           "protocols" : [ "https" ],
-          "sslCommonName" : "Shield.us-east-1.amazonaws.com"
+          "sslCommonName" : "shield.us-east-1.amazonaws.com"
         },
         "endpoints" : {
           "us-east-1" : { }
@@ -2297,6 +2303,8 @@
           "eu-north-1" : { },
           "eu-west-1" : { },
           "eu-west-2" : { },
+          "eu-west-3" : { },
+          "sa-east-1" : { },
           "us-east-1" : { },
           "us-east-2" : { },
           "us-west-1" : { },

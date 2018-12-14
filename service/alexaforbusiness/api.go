@@ -413,6 +413,9 @@ func (c *AlexaForBusiness) AssociateSkillWithSkillGroupRequest(input *AssociateS
 //   * ErrCodeNotFoundException "NotFoundException"
 //   The resource is not found.
 //
+//   * ErrCodeSkillNotLinkedException "SkillNotLinkedException"
+//   The skill must be linked to a third-party account.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateSkillWithSkillGroup
 func (c *AlexaForBusiness) AssociateSkillWithSkillGroup(input *AssociateSkillWithSkillGroupInput) (*AssociateSkillWithSkillGroupOutput, error) {
 	req, out := c.AssociateSkillWithSkillGroupRequest(input)
@@ -430,6 +433,86 @@ func (c *AlexaForBusiness) AssociateSkillWithSkillGroup(input *AssociateSkillWit
 // for more information on using Contexts.
 func (c *AlexaForBusiness) AssociateSkillWithSkillGroupWithContext(ctx aws.Context, input *AssociateSkillWithSkillGroupInput, opts ...request.Option) (*AssociateSkillWithSkillGroupOutput, error) {
 	req, out := c.AssociateSkillWithSkillGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opAssociateSkillWithUsers = "AssociateSkillWithUsers"
+
+// AssociateSkillWithUsersRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateSkillWithUsers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateSkillWithUsers for more information on using the AssociateSkillWithUsers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateSkillWithUsersRequest method.
+//    req, resp := client.AssociateSkillWithUsersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateSkillWithUsers
+func (c *AlexaForBusiness) AssociateSkillWithUsersRequest(input *AssociateSkillWithUsersInput) (req *request.Request, output *AssociateSkillWithUsersOutput) {
+	op := &request.Operation{
+		Name:       opAssociateSkillWithUsers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AssociateSkillWithUsersInput{}
+	}
+
+	output = &AssociateSkillWithUsersOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AssociateSkillWithUsers API operation for Alexa For Business.
+//
+// Makes a private skill available for enrolled users to enable on their devices.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Alexa For Business's
+// API operation AssociateSkillWithUsers for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   Concurrent modification of resources. HTTP Status Code: 400.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateSkillWithUsers
+func (c *AlexaForBusiness) AssociateSkillWithUsers(input *AssociateSkillWithUsersInput) (*AssociateSkillWithUsersOutput, error) {
+	req, out := c.AssociateSkillWithUsersRequest(input)
+	return out, req.Send()
+}
+
+// AssociateSkillWithUsersWithContext is the same as AssociateSkillWithUsers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateSkillWithUsers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AlexaForBusiness) AssociateSkillWithUsersWithContext(ctx aws.Context, input *AssociateSkillWithUsersInput, opts ...request.Option) (*AssociateSkillWithUsersOutput, error) {
+	req, out := c.AssociateSkillWithUsersRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2245,6 +2328,87 @@ func (c *AlexaForBusiness) DisassociateSkillFromSkillGroup(input *DisassociateSk
 // for more information on using Contexts.
 func (c *AlexaForBusiness) DisassociateSkillFromSkillGroupWithContext(ctx aws.Context, input *DisassociateSkillFromSkillGroupInput, opts ...request.Option) (*DisassociateSkillFromSkillGroupOutput, error) {
 	req, out := c.DisassociateSkillFromSkillGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDisassociateSkillFromUsers = "DisassociateSkillFromUsers"
+
+// DisassociateSkillFromUsersRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateSkillFromUsers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateSkillFromUsers for more information on using the DisassociateSkillFromUsers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateSkillFromUsersRequest method.
+//    req, resp := client.DisassociateSkillFromUsersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateSkillFromUsers
+func (c *AlexaForBusiness) DisassociateSkillFromUsersRequest(input *DisassociateSkillFromUsersInput) (req *request.Request, output *DisassociateSkillFromUsersOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateSkillFromUsers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DisassociateSkillFromUsersInput{}
+	}
+
+	output = &DisassociateSkillFromUsersOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateSkillFromUsers API operation for Alexa For Business.
+//
+// Makes a private skill unavailable for enrolled users and prevents them from
+// enabling it on their devices.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Alexa For Business's
+// API operation DisassociateSkillFromUsers for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   Concurrent modification of resources. HTTP Status Code: 400.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateSkillFromUsers
+func (c *AlexaForBusiness) DisassociateSkillFromUsers(input *DisassociateSkillFromUsersInput) (*DisassociateSkillFromUsersOutput, error) {
+	req, out := c.DisassociateSkillFromUsersRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateSkillFromUsersWithContext is the same as DisassociateSkillFromUsers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateSkillFromUsers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AlexaForBusiness) DisassociateSkillFromUsersWithContext(ctx aws.Context, input *DisassociateSkillFromUsersInput, opts ...request.Option) (*DisassociateSkillFromUsersOutput, error) {
+	req, out := c.DisassociateSkillFromUsersRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7114,6 +7278,67 @@ func (s AssociateSkillWithSkillGroupOutput) GoString() string {
 	return s.String()
 }
 
+type AssociateSkillWithUsersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the organization.
+	OrganizationArn *string `type:"string"`
+
+	// The private skill ID you want to make available to enrolled users.>
+	//
+	// SkillId is a required field
+	SkillId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AssociateSkillWithUsersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateSkillWithUsersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateSkillWithUsersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateSkillWithUsersInput"}
+	if s.SkillId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SkillId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOrganizationArn sets the OrganizationArn field's value.
+func (s *AssociateSkillWithUsersInput) SetOrganizationArn(v string) *AssociateSkillWithUsersInput {
+	s.OrganizationArn = &v
+	return s
+}
+
+// SetSkillId sets the SkillId field's value.
+func (s *AssociateSkillWithUsersInput) SetSkillId(v string) *AssociateSkillWithUsersInput {
+	s.SkillId = &v
+	return s
+}
+
+type AssociateSkillWithUsersOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s AssociateSkillWithUsersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateSkillWithUsersOutput) GoString() string {
+	return s.String()
+}
+
 // Usage report with specified parameters.
 type BusinessReport struct {
 	_ struct{} `type:"structure"`
@@ -9656,6 +9881,67 @@ func (s DisassociateSkillFromSkillGroupOutput) GoString() string {
 	return s.String()
 }
 
+type DisassociateSkillFromUsersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the organization.
+	OrganizationArn *string `type:"string"`
+
+	// The private skill ID you want to make unavailable for enrolled users.
+	//
+	// SkillId is a required field
+	SkillId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DisassociateSkillFromUsersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateSkillFromUsersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateSkillFromUsersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateSkillFromUsersInput"}
+	if s.SkillId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SkillId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOrganizationArn sets the OrganizationArn field's value.
+func (s *DisassociateSkillFromUsersInput) SetOrganizationArn(v string) *DisassociateSkillFromUsersInput {
+	s.OrganizationArn = &v
+	return s
+}
+
+// SetSkillId sets the SkillId field's value.
+func (s *DisassociateSkillFromUsersInput) SetSkillId(v string) *DisassociateSkillFromUsersInput {
+	s.SkillId = &v
+	return s
+}
+
+type DisassociateSkillFromUsersOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisassociateSkillFromUsersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateSkillFromUsersOutput) GoString() string {
+	return s.String()
+}
+
 type DisassociateSkillGroupFromRoomInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10640,16 +10926,15 @@ type ListSkillsInput struct {
 
 	// The maximum number of results to include in the response. If more results
 	// exist than the specified MaxResults value, a token is included in the response
-	// so that the remaining results can be retrieved. Required.
+	// so that the remaining results can be retrieved.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// An optional token returned from a prior request. Use this token for pagination
 	// of results from this action. If this parameter is specified, the response
 	// includes only results beyond the token, up to the value specified by MaxResults.
-	// Required.
 	NextToken *string `min:"1" type:"string"`
 
-	// The ARN of the skill group for which to list enabled skills. Required.
+	// The ARN of the skill group for which to list enabled skills.
 	SkillGroupArn *string `type:"string"`
 
 	// Whether the skill is publicly available or is a private skill.
