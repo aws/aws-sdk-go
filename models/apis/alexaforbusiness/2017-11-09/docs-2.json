@@ -1,12 +1,13 @@
 {
   "version": "2.0",
-  "service": "<p>Alexa for Business helps you use Alexa in your organization. Alexa for Business provides the tools you to manage Alexa devices, enroll your users, and assign skills, at scale. You can build your own context-aware voice skills using the Alexa Skills Kit and the Alexa for Business API operations. You can also make these available as private skills for your organization. Alexa for Business makes it efficient to voice-enable your products and services, thus providing context-aware voice experiences for your customers. In addition, Alexa for Business enables Alexa Voice Services (AVS) device manufacturers to centrally deploy and manage their devices in Alexa for Business as shared devices as a part of their existing management flow. </p>",
+  "service": "<p>Alexa for Business helps you use Alexa in your organization. Alexa for Business provides you with the tools to manage Alexa devices, enroll your users, and assign skills, at scale. You can build your own context-aware voice skills using the Alexa Skills Kit and the Alexa for Business API operations. You can also make these available as private skills for your organization. Alexa for Business makes it efficient to voice-enable your products and services, thus providing context-aware voice experiences for your customers. Device makers building with the Alexa Voice Service (AVS) can create fully integrated solutions, register their products with Alexa for Business, and manage them as shared devices in their organization. </p>",
   "operations": {
     "ApproveSkill": "<p>Associates a skill with the organization under the customer's AWS account. If a skill is private, the user implicitly accepts access to this skill during enablement.</p>",
     "AssociateContactWithAddressBook": "<p>Associates a contact with a given address book.</p>",
     "AssociateDeviceWithRoom": "<p>Associates a device with a given room. This applies all the settings from the room profile to the device, and all the skills in any skill groups added to that room. This operation requires the device to be online, or else a manual sync is required. </p>",
     "AssociateSkillGroupWithRoom": "<p>Associates a skill group with a given room. This enables all skills in the associated skill group on all devices in the room.</p>",
     "AssociateSkillWithSkillGroup": "<p>Associates a skill with a skill group.</p>",
+    "AssociateSkillWithUsers": "<p>Makes a private skill available for enrolled users to enable on their devices.</p>",
     "CreateAddressBook": "<p>Creates an address book with the specified details.</p>",
     "CreateBusinessReportSchedule": "<p>Creates a recurring schedule for usage reports to deliver to the specified S3 location with a specified daily or weekly interval.</p>",
     "CreateConferenceProvider": "<p>Adds a new conference provider under the user's AWS account.</p>",
@@ -29,6 +30,7 @@
     "DisassociateContactFromAddressBook": "<p>Disassociates a contact from a given address book.</p>",
     "DisassociateDeviceFromRoom": "<p>Disassociates a device from its current room. The device continues to be connected to the Wi-Fi network and is still registered to the account. The device settings and skills are removed from the room.</p>",
     "DisassociateSkillFromSkillGroup": "<p>Disassociates a skill from a skill group.</p>",
+    "DisassociateSkillFromUsers": "<p>Makes a private skill unavailable for enrolled users and prevents them from enabling it on their devices.</p>",
     "DisassociateSkillGroupFromRoom": "<p>Disassociates a skill group from a specified room. This disables all skills in the skill group on all devices in the room.</p>",
     "ForgetSmartHomeAppliances": "<p>Forgets smart home appliances associated to a room.</p>",
     "GetAddressBook": "<p>Gets address the book details by the address book ARN.</p>",
@@ -173,6 +175,7 @@
         "AssociateSkillGroupWithRoomRequest$SkillGroupArn": "<p>The ARN of the skill group to associate with a room. Required.</p>",
         "AssociateSkillGroupWithRoomRequest$RoomArn": "<p>The ARN of the room with which to associate the skill group. Required.</p>",
         "AssociateSkillWithSkillGroupRequest$SkillGroupArn": "<p>The ARN of the skill group to associate the skill to. Required.</p>",
+        "AssociateSkillWithUsersRequest$OrganizationArn": "<p>The ARN of the organization.</p>",
         "BusinessReportSchedule$ScheduleArn": "<p>The ARN of the business report schedule.</p>",
         "ConferencePreference$DefaultConferenceProviderArn": "<p>The ARN of the default conference provider.</p>",
         "ConferenceProvider$Arn": "<p>The ARN of the newly created conference provider.</p>",
@@ -206,6 +209,7 @@
         "DisassociateContactFromAddressBookRequest$AddressBookArn": "<p>The ARN of the address from which to disassociate the contact.</p>",
         "DisassociateDeviceFromRoomRequest$DeviceArn": "<p>The ARN of the device to disassociate from a room. Required.</p>",
         "DisassociateSkillFromSkillGroupRequest$SkillGroupArn": "<p>The unique identifier of a skill. Required.</p>",
+        "DisassociateSkillFromUsersRequest$OrganizationArn": "<p>The ARN of the organization.</p>",
         "DisassociateSkillGroupFromRoomRequest$SkillGroupArn": "<p>The ARN of the skill group to disassociate from a room. Required.</p>",
         "DisassociateSkillGroupFromRoomRequest$RoomArn": "<p>The ARN of the room from which the skill group is to be disassociated. Required.</p>",
         "ForgetSmartHomeAppliancesRequest$RoomArn": "<p>The room that the appliances are associated with.</p>",
@@ -218,7 +222,7 @@
         "GetRoomSkillParameterRequest$RoomArn": "<p>The ARN of the room from which to get the room skill parameter details. </p>",
         "GetSkillGroupRequest$SkillGroupArn": "<p>The ARN of the skill group for which to get details. Required.</p>",
         "ListDeviceEventsRequest$DeviceArn": "<p>The ARN of a device.</p>",
-        "ListSkillsRequest$SkillGroupArn": "<p>The ARN of the skill group for which to list enabled skills. Required.</p>",
+        "ListSkillsRequest$SkillGroupArn": "<p>The ARN of the skill group for which to list enabled skills.</p>",
         "ListSmartHomeAppliancesRequest$RoomArn": "<p>The room that the appliances are associated with.</p>",
         "ListTagsRequest$Arn": "<p>The ARN of the specified resource for which to list tags.</p>",
         "Profile$ProfileArn": "<p>The ARN of a room profile.</p>",
@@ -289,6 +293,16 @@
       }
     },
     "AssociateSkillWithSkillGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateSkillWithUsersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateSkillWithUsersResponse": {
       "base": null,
       "refs": {
       }
@@ -904,6 +918,16 @@
       "refs": {
       }
     },
+    "DisassociateSkillFromUsersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateSkillFromUsersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DisassociateSkillGroupFromRoomRequest": {
       "base": null,
       "refs": {
@@ -991,6 +1015,7 @@
         "NameInUseException$Message": null,
         "NotFoundException$Message": null,
         "ResourceInUseException$Message": null,
+        "SkillNotLinkedException$Message": null,
         "UnauthorizedException$Message": null
       }
     },
@@ -1341,7 +1366,7 @@
         "ListConferenceProvidersResponse$NextToken": "<p>The tokens used for pagination.</p>",
         "ListDeviceEventsRequest$NextToken": "<p>An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response only includes results beyond the token, up to the value specified by MaxResults. When the end of results is reached, the response has a value of null.</p>",
         "ListDeviceEventsResponse$NextToken": "<p>The token returned to indicate that there is more data available.</p>",
-        "ListSkillsRequest$NextToken": "<p>An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by <code>MaxResults</code>. Required.</p>",
+        "ListSkillsRequest$NextToken": "<p>An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by <code>MaxResults</code>.</p>",
         "ListSkillsResponse$NextToken": "<p>The token returned to indicate that there is more data available.</p>",
         "ListSkillsStoreCategoriesRequest$NextToken": "<p>The tokens used for pagination.</p>",
         "ListSkillsStoreCategoriesResponse$NextToken": "<p>The tokens used for pagination.</p>",
@@ -1771,9 +1796,11 @@
       "refs": {
         "ApproveSkillRequest$SkillId": "<p>The unique identifier of the skill.</p>",
         "AssociateSkillWithSkillGroupRequest$SkillId": "<p>The unique identifier of the skill.</p>",
+        "AssociateSkillWithUsersRequest$SkillId": "<p>The private skill ID you want to make available to enrolled users.&gt;</p>",
         "DeleteRoomSkillParameterRequest$SkillId": "<p>The ID of the skill from which to remove the room skill parameter details.</p>",
         "DeleteSkillAuthorizationRequest$SkillId": "<p>The unique identifier of a skill.</p>",
         "DisassociateSkillFromSkillGroupRequest$SkillId": "<p>The ARN of a skill group to associate to a skill.</p>",
+        "DisassociateSkillFromUsersRequest$SkillId": "<p> The private skill ID you want to make unavailable for enrolled users.</p>",
         "GetRoomSkillParameterRequest$SkillId": "<p>The ARN of the skill from which to get the room skill parameter details. Required.</p>",
         "PutRoomSkillParameterRequest$SkillId": "<p>The ARN of the skill associated with the room skill parameter. Required.</p>",
         "PutSkillAuthorizationRequest$SkillId": "<p>The unique identifier of a skill.</p>",
@@ -1786,7 +1813,7 @@
     "SkillListMaxResults": {
       "base": null,
       "refs": {
-        "ListSkillsRequest$MaxResults": "<p>The maximum number of results to include in the response. If more results exist than the specified <code>MaxResults</code> value, a token is included in the response so that the remaining results can be retrieved. Required.</p>",
+        "ListSkillsRequest$MaxResults": "<p>The maximum number of results to include in the response. If more results exist than the specified <code>MaxResults</code> value, a token is included in the response so that the remaining results can be retrieved.</p>",
         "ListSkillsStoreSkillsByCategoryRequest$MaxResults": "<p>The maximum number of skills returned per paginated calls.</p>"
       }
     },
@@ -1795,6 +1822,11 @@
       "refs": {
         "SkillSummary$SkillName": "<p>The name of the skill.</p>",
         "SkillsStoreSkill$SkillName": "<p>The name of the skill.</p>"
+      }
+    },
+    "SkillNotLinkedException": {
+      "base": "<p>The skill must be linked to a third-party account.</p>",
+      "refs": {
       }
     },
     "SkillStoreType": {

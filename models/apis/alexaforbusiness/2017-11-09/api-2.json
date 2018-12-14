@@ -74,7 +74,20 @@
       "output":{"shape":"AssociateSkillWithSkillGroupResponse"},
       "errors":[
         {"shape":"ConcurrentModificationException"},
-        {"shape":"NotFoundException"}
+        {"shape":"NotFoundException"},
+        {"shape":"SkillNotLinkedException"}
+      ]
+    },
+    "AssociateSkillWithUsers":{
+      "name":"AssociateSkillWithUsers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateSkillWithUsersRequest"},
+      "output":{"shape":"AssociateSkillWithUsersResponse"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "CreateAddressBook":{
@@ -357,6 +370,18 @@
       "errors":[
         {"shape":"ConcurrentModificationException"},
         {"shape":"NotFoundException"}
+      ]
+    },
+    "DisassociateSkillFromUsers":{
+      "name":"DisassociateSkillFromUsers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociateSkillFromUsersRequest"},
+      "output":{"shape":"DisassociateSkillFromUsersResponse"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "DisassociateSkillGroupFromRoom":{
@@ -1011,6 +1036,19 @@
       }
     },
     "AssociateSkillWithSkillGroupResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "AssociateSkillWithUsersRequest":{
+      "type":"structure",
+      "required":["SkillId"],
+      "members":{
+        "OrganizationArn":{"shape":"Arn"},
+        "SkillId":{"shape":"SkillId"}
+      }
+    },
+    "AssociateSkillWithUsersResponse":{
       "type":"structure",
       "members":{
       }
@@ -1716,6 +1754,19 @@
       }
     },
     "DisassociateSkillFromSkillGroupResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DisassociateSkillFromUsersRequest":{
+      "type":"structure",
+      "required":["SkillId"],
+      "members":{
+        "OrganizationArn":{"shape":"Arn"},
+        "SkillId":{"shape":"SkillId"}
+      }
+    },
+    "DisassociateSkillFromUsersResponse":{
       "type":"structure",
       "members":{
       }
@@ -2651,6 +2702,13 @@
       "max":100,
       "min":1,
       "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u0085\\u00A0-\\uD7FF\\uE000-\\uFFFD\\u10000-\\u10FFFF]*"
+    },
+    "SkillNotLinkedException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
     },
     "SkillStoreType":{"type":"string"},
     "SkillSummary":{
