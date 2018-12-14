@@ -3101,9 +3101,7 @@ type CreateDeploymentJobInput struct {
 
 	// Unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request.
-	//
-	// ClientRequestToken is a required field
-	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string" required:"true" idempotencyToken:"true"`
+	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The deployment application configuration.
 	//
@@ -3132,9 +3130,6 @@ func (s CreateDeploymentJobInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateDeploymentJobInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateDeploymentJobInput"}
-	if s.ClientRequestToken == nil {
-		invalidParams.Add(request.NewErrParamRequired("ClientRequestToken"))
-	}
 	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
 	}
@@ -7925,9 +7920,7 @@ type SyncDeploymentJobInput struct {
 
 	// Unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request.
-	//
-	// ClientRequestToken is a required field
-	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string" required:"true" idempotencyToken:"true"`
+	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The target fleet for the synchronization.
 	//
@@ -7948,9 +7941,6 @@ func (s SyncDeploymentJobInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *SyncDeploymentJobInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "SyncDeploymentJobInput"}
-	if s.ClientRequestToken == nil {
-		invalidParams.Add(request.NewErrParamRequired("ClientRequestToken"))
-	}
 	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
 	}

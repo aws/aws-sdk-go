@@ -2610,9 +2610,7 @@ type StartSigningJobInput struct {
 
 	// String that identifies the signing request. All calls after the first that
 	// use this token return the same response as the first call.
-	//
-	// ClientRequestToken is a required field
-	ClientRequestToken *string `locationName:"clientRequestToken" type:"string" required:"true" idempotencyToken:"true"`
+	ClientRequestToken *string `locationName:"clientRequestToken" type:"string" idempotencyToken:"true"`
 
 	// The S3 bucket in which to save your signed object. The destination contains
 	// the name of your bucket and an optional prefix.
@@ -2643,9 +2641,6 @@ func (s StartSigningJobInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartSigningJobInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartSigningJobInput"}
-	if s.ClientRequestToken == nil {
-		invalidParams.Add(request.NewErrParamRequired("ClientRequestToken"))
-	}
 	if s.Destination == nil {
 		invalidParams.Add(request.NewErrParamRequired("Destination"))
 	}
