@@ -1,3 +1,12 @@
+Release v1.16.7 (2018-12-17)
+===
+
+### Service Client Updates
+* `service/ecr`: Updates service API and documentation
+  * This release adds support for ECR repository tagging.
+* `service/quicksight`: Updates service API and documentation
+  * Amazon QuickSight's RegisterUser API now generates a user invitation URL when registering a user with the QuickSight identity type. This URL can then be used by the registered QuickSight user to complete the user registration process. This release also corrects some HTTP return status codes.
+
 Release v1.16.6 (2018-12-14)
 ===
 

@@ -572,7 +572,7 @@
         "Message":{"shape":"String"},
         "RequestId":{"shape":"String"}
       },
-      "error":{"httpStatusCode":407},
+      "error":{"httpStatusCode":403},
       "exception":true
     },
     "EmbeddingUrl":{
@@ -694,7 +694,7 @@
         "Message":{"shape":"String"},
         "RequestId":{"shape":"String"}
       },
-      "error":{"httpStatusCode":416},
+      "error":{"httpStatusCode":403},
       "exception":true
     },
     "InternalFailureException":{
@@ -939,7 +939,7 @@
         "Message":{"shape":"String"},
         "RequestId":{"shape":"String"}
       },
-      "error":{"httpStatusCode":412},
+      "error":{"httpStatusCode":404},
       "exception":true
     },
     "RegisterUserRequest":{
@@ -974,6 +974,7 @@
       "type":"structure",
       "members":{
         "User":{"shape":"User"},
+        "UserInvitationUrl":{"shape":"String"},
         "RequestId":{"shape":"String"},
         "Status":{
           "shape":"StatusCode",
@@ -1022,7 +1023,7 @@
         "Message":{"shape":"String"},
         "RequestId":{"shape":"String"}
       },
-      "error":{"httpStatusCode":418},
+      "error":{"httpStatusCode":400},
       "exception":true
     },
     "StatusCode":{"type":"integer"},
@@ -1042,7 +1043,7 @@
         "Message":{"shape":"String"},
         "RequestId":{"shape":"String"}
       },
-      "error":{"httpStatusCode":419},
+      "error":{"httpStatusCode":403},
       "exception":true
     },
     "UpdateGroupRequest":{
