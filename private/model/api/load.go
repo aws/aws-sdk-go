@@ -167,6 +167,11 @@ func (a *API) Setup() {
 	a.setMetadataEndpointsKey()
 	a.writeShapeNames()
 	a.resolveReferences()
+
+	if !a.NoRemoveUnusedShapes {
+		a.removeUnusedShapes()
+	}
+
 	a.fixStutterNames()
 	a.renameExportable()
 	a.applyShapeNameAliases()
