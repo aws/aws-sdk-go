@@ -6032,10 +6032,6 @@
     },
     "CreatePlacementGroupRequest":{
       "type":"structure",
-      "required":[
-        "GroupName",
-        "Strategy"
-      ],
       "members":{
         "DryRun":{
           "shape":"Boolean",
@@ -6048,7 +6044,8 @@
         "Strategy":{
           "shape":"PlacementStrategy",
           "locationName":"strategy"
-        }
+        },
+        "PartitionCount":{"shape":"Integer"}
       }
     },
     "CreateReservedInstancesListingRequest":{
@@ -15732,7 +15729,8 @@
         "Tenancy":{
           "shape":"HostTenancy",
           "locationName":"tenancy"
-        }
+        },
+        "PartitionNumber":{"shape":"Integer"}
       }
     },
     "ModifyInstancePlacementResult":{
@@ -16873,6 +16871,10 @@
           "shape":"String",
           "locationName":"groupName"
         },
+        "PartitionNumber":{
+          "shape":"Integer",
+          "locationName":"partitionNumber"
+        },
         "HostId":{
           "shape":"String",
           "locationName":"hostId"
@@ -16901,6 +16903,10 @@
         "Strategy":{
           "shape":"PlacementStrategy",
           "locationName":"strategy"
+        },
+        "PartitionCount":{
+          "shape":"Integer",
+          "locationName":"partitionCount"
         }
       }
     },
@@ -16937,7 +16943,8 @@
       "type":"string",
       "enum":[
         "cluster",
-        "spread"
+        "spread",
+        "partition"
       ]
     },
     "PlatformValues":{
