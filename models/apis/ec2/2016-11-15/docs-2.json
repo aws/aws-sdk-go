@@ -9,9 +9,11 @@
     "AdvertiseByoipCidr": "<p>Advertises an IPv4 address range that is provisioned for use with your AWS resources through bring your own IP addresses (BYOIP).</p> <p>You can perform this operation at most once every 10 seconds, even if you specify different address ranges each time.</p> <p>We recommend that you stop advertising the BYOIP CIDR from other locations when you advertise it from AWS. To minimize down time, you can configure your AWS resources to use an address from a BYOIP CIDR before it is advertised, and then simultaneously stop advertising it from the current location and start advertising it through AWS.</p> <p>It can take a few minutes before traffic to the specified addresses starts routing to AWS because of BGP propagation delays.</p> <p>To stop advertising the BYOIP CIDR, use <a>WithdrawByoipCidr</a>.</p>",
     "AllocateAddress": "<p>Allocates an Elastic IP address to your AWS account. After you allocate the Elastic IP address you can associate it with an instance or network interface. After you release an Elastic IP address, it is released to the IP address pool and can be allocated to a different AWS account.</p> <p>You can allocate an Elastic IP address from an address pool owned by AWS or from an address pool created from a public IPv4 address range that you have brought to AWS for use with your AWS resources using bring your own IP addresses (BYOIP). For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html\">Bring Your Own IP Addresses (BYOIP)</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>[EC2-VPC] If you release an Elastic IP address, you might be able to recover it. You cannot recover an Elastic IP address that you released after it is allocated to another AWS account. You cannot recover an Elastic IP address for EC2-Classic. To attempt to recover an Elastic IP address that you released, specify it in this operation.</p> <p>An Elastic IP address is for use either in the EC2-Classic platform or in a VPC. By default, you can allocate 5 Elastic IP addresses for EC2-Classic per region and 5 Elastic IP addresses for EC2-VPC per region.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "AllocateHosts": "<p>Allocates a Dedicated Host to your account. At a minimum, specify the instance size type, Availability Zone, and quantity of hosts to allocate.</p>",
+    "ApplySecurityGroupsToClientVpnTargetNetwork": "<p>Applies a security group to the association between the target network and the Client VPN endpoint. This action replaces the existing security groups with the specified security groups.</p>",
     "AssignIpv6Addresses": "<p>Assigns one or more IPv6 addresses to the specified network interface. You can specify one or more specific IPv6 addresses, or you can specify the number of IPv6 addresses to be automatically assigned from within the subnet's IPv6 CIDR block range. You can assign as many IPv6 addresses to a network interface as you can assign private IPv4 addresses, and the limit varies per instance type. For information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI\">IP Addresses Per Network Interface Per Instance Type</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "AssignPrivateIpAddresses": "<p>Assigns one or more secondary private IP addresses to the specified network interface.</p> <p>You can specify one or more specific secondary IP addresses, or you can specify the number of secondary IP addresses to be automatically assigned within the subnet's CIDR block range. The number of secondary IP addresses that you can assign to an instance varies by instance type. For information about instance types, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. For more information about Elastic IP addresses, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>When you move a secondary private IP address to another network interface, any Elastic IP address that is associated with the IP address is also moved.</p> <p>Remapping an IP address is an asynchronous operation. When you move an IP address from one network interface to another, check <code>network/interfaces/macs/mac/local-ipv4s</code> in the instance metadata to confirm that the remapping is complete.</p>",
     "AssociateAddress": "<p>Associates an Elastic IP address with an instance or a network interface. Before you can use an Elastic IP address, you must allocate it to your account.</p> <p>An Elastic IP address is for use in either the EC2-Classic platform or in a VPC. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>[EC2-Classic, VPC in an EC2-VPC-only account] If the Elastic IP address is already associated with a different instance, it is disassociated from that instance and associated with the specified instance. If you associate an Elastic IP address with an instance that has an existing Elastic IP address, the existing address is disassociated from the instance, but remains allocated to your account.</p> <p>[VPC in an EC2-Classic account] If you don't specify a private IP address, the Elastic IP address is associated with the primary IP address. If the Elastic IP address is already associated with a different instance or a network interface, you get an error unless you allow reassociation. You cannot associate an Elastic IP address with an instance or network interface that has an existing Elastic IP address.</p> <important> <p>This is an idempotent operation. If you perform the operation more than once, Amazon EC2 doesn't return an error, and you may be charged for each time the Elastic IP address is remapped to the same instance. For more information, see the <i>Elastic IP Addresses</i> section of <a href=\"http://aws.amazon.com/ec2/pricing/\">Amazon EC2 Pricing</a>.</p> </important>",
+    "AssociateClientVpnTargetNetwork": "<p>Associates a target network with a Client VPN endpoint. A target network is a subnet in a VPC. You can associate multiple subnets from the same VPC with a Client VPN endpoint. You can associate only one subnet in each Availability Zone. We recommend that you associate at least two subnets to provide Availability Zone redundancy.</p>",
     "AssociateDhcpOptions": "<p>Associates a set of DHCP options (that you've previously created) with the specified VPC, or associates no DHCP options with the VPC.</p> <p>After you associate the options with the VPC, any existing instances and all new instances that you launch in that VPC use the options. You don't need to restart or relaunch the instances. They automatically pick up the changes within a few hours, depending on how frequently the instance renews its DHCP lease. You can explicitly renew the lease using the operating system on the instance.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html\">DHCP Options Sets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "AssociateIamInstanceProfile": "<p>Associates an IAM instance profile with a running or stopped instance. You cannot associate more than one IAM instance profile with an instance.</p>",
     "AssociateRouteTable": "<p>Associates a subnet with a route table. The subnet and route table must be in the same VPC. This association causes traffic originating from the subnet to be routed according to the routes in the route table. The action returns an association ID, which you need in order to disassociate the route table from the subnet later. A route table can be associated with multiple subnets.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html\">Route Tables</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
@@ -23,6 +25,7 @@
     "AttachNetworkInterface": "<p>Attaches a network interface to an instance.</p>",
     "AttachVolume": "<p>Attaches an EBS volume to a running or stopped instance and exposes it to the instance with the specified device name.</p> <p>Encrypted EBS volumes may only be attached to instances that support Amazon EBS encryption. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>For a list of supported device names, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html\">Attaching an EBS Volume to an Instance</a>. Any device names that aren't reserved for instance store volumes can be used for EBS volumes. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html\">Amazon EC2 Instance Store</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>If a volume has an AWS Marketplace product code:</p> <ul> <li> <p>The volume can be attached only to a stopped instance.</p> </li> <li> <p>AWS Marketplace product codes are copied from the volume to the instance.</p> </li> <li> <p>You must be subscribed to the product.</p> </li> <li> <p>The instance type and operating system of the instance must support the product. For example, you can't detach a volume from a Windows instance and attach it to a Linux instance.</p> </li> </ul> <p>For more information about EBS volumes, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html\">Attaching Amazon EBS Volumes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "AttachVpnGateway": "<p>Attaches a virtual private gateway to a VPC. You can attach one virtual private gateway to one VPC at a time.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html\">AWS Managed VPN Connections</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
+    "AuthorizeClientVpnIngress": "<p>Adds an ingress authorization rule to a Client VPN endpoint. Ingress authorization rules act as firewall rules that grant access to networks. You must configure ingress authorization rules to enable clients to access resources in AWS or on-premises networks.</p>",
     "AuthorizeSecurityGroupEgress": "<p>[EC2-VPC only] Adds one or more egress rules to a security group for use with a VPC. Specifically, this action permits instances to send traffic to one or more destination IPv4 or IPv6 CIDR address ranges, or to one or more destination security groups for the same VPC. This action doesn't apply to security groups for use in EC2-Classic. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html\">Security Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud User Guide</i>. For more information about security group limits, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Appendix_Limits.html\">Amazon VPC Limits</a>.</p> <p>Each rule consists of the protocol (for example, TCP), plus either a CIDR range or a source group. For the TCP and UDP protocols, you must also specify the destination port or port range. For the ICMP protocol, you must also specify the ICMP type and code. You can use -1 for the type or code to mean all types or all codes. You can optionally specify a description for the rule.</p> <p>Rule changes are propagated to affected instances as quickly as possible. However, a small delay might occur.</p>",
     "AuthorizeSecurityGroupIngress": "<p>Adds one or more ingress rules to a security group.</p> <p>Rule changes are propagated to instances within the security group as quickly as possible. However, a small delay might occur.</p> <p>[EC2-Classic] This action gives one or more IPv4 CIDR address ranges permission to access a security group in your account, or gives one or more security groups (called the <i>source groups</i>) permission to access a security group for your account. A source group can be for your own AWS account, or another. You can have up to 100 rules per group.</p> <p>[EC2-VPC] This action gives one or more IPv4 or IPv6 CIDR address ranges permission to access a security group in your VPC, or gives one or more other security groups (called the <i>source groups</i>) permission to access a security group for your VPC. The security groups must all be for the same VPC or a peer VPC in a VPC peering connection. For more information about VPC security group limits, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Appendix_Limits.html\">Amazon VPC Limits</a>.</p> <p>You can optionally specify a description for the security group rule.</p>",
     "BundleInstance": "<p>Bundles an Amazon instance store-backed Windows instance.</p> <p>During bundling, only the root device volume (C:\\) is bundled. Data on other instance store volumes is not preserved.</p> <note> <p>This action is not applicable for Linux/Unix instances or Windows instances that are backed by Amazon EBS.</p> </note>",
@@ -39,6 +42,8 @@
     "CopyImage": "<p>Initiates the copy of an AMI from the specified source region to the current region. You specify the destination region by using its endpoint when making the request.</p> <p>Copies of encrypted backing snapshots for the AMI are encrypted. Copies of unencrypted backing snapshots remain unencrypted, unless you set <code>Encrypted</code> during the copy operation. You cannot create an unencrypted copy of an encrypted backing snapshot.</p> <p>For more information about the prerequisites and limits when copying an AMI, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html\">Copying an AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "CopySnapshot": "<p>Copies a point-in-time snapshot of an EBS volume and stores it in Amazon S3. You can copy the snapshot within the same region or from one region to another. You can use the snapshot to create EBS volumes or Amazon Machine Images (AMIs). The snapshot is copied to the regional endpoint that you send the HTTP request to.</p> <p>Copies of encrypted EBS snapshots remain encrypted. Copies of unencrypted snapshots remain unencrypted, unless the <code>Encrypted</code> flag is specified during the snapshot copy operation. By default, encrypted snapshot copies use the default AWS Key Management Service (AWS KMS) customer master key (CMK); however, you can specify a non-default CMK with the <code>KmsKeyId</code> parameter.</p> <p>To copy an encrypted snapshot that has been shared from another account, you must have permissions for the CMK used to encrypt the snapshot.</p> <p>Snapshots created by copying another snapshot have an arbitrary volume ID that should not be used for any purpose.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html\">Copying an Amazon EBS Snapshot</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "CreateCapacityReservation": "<p>Creates a new Capacity Reservation with the specified attributes.</p> <p>Capacity Reservations enable you to reserve capacity for your Amazon EC2 instances in a specific Availability Zone for any duration. This gives you the flexibility to selectively add capacity reservations and still get the Regional RI discounts for that usage. By creating Capacity Reservations, you ensure that you always have access to Amazon EC2 capacity when you need it, for as long as you need it. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-capacity-reservations.html\">Capacity Reservations</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Your request to create a Capacity Reservation could fail if Amazon EC2 does not have sufficient capacity to fulfill the request. If your request fails due to Amazon EC2 capacity constraints, either try again at a later time, try in a different Availability Zone, or request a smaller capacity reservation. If your application is flexible across instance types and sizes, try to create a Capacity Reservation with different instance attributes.</p> <p>Your request could also fail if the requested quantity exceeds your On-Demand Instance limit for the selected instance type. If your request fails due to limit constraints, increase your On-Demand Instance limit for the required instance type and try again. For more information about increasing your instance limits, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html\">Amazon EC2 Service Limits</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "CreateClientVpnEndpoint": "<p>Creates a Client VPN endpoint. A Client VPN endpoint is the resource you create and configure to enable and manage client VPN sessions. It is the destination endpoint at which all client VPN sessions are terminated.</p>",
+    "CreateClientVpnRoute": "<p>Adds a route to a network to a Client VPN endpoint. Each Client VPN endpoint has a route table that describes the available destination network routes. Each route in the route table specifies the path for traﬃc to speciﬁc resources or networks.</p>",
     "CreateCustomerGateway": "<p>Provides information to AWS about your VPN customer gateway device. The customer gateway is the appliance at your end of the VPN connection. (The device on the AWS side of the VPN connection is the virtual private gateway.) You must provide the Internet-routable IP address of the customer gateway's external interface. The IP address must be static and may be behind a device performing network address translation (NAT).</p> <p>For devices that use Border Gateway Protocol (BGP), you can also provide the device's BGP Autonomous System Number (ASN). You can use an existing ASN assigned to your network. If you don't have an ASN already, you can use a private ASN (in the 64512 - 65534 range).</p> <note> <p>Amazon EC2 supports all 2-byte ASN numbers in the range of 1 - 65534, with the exception of 7224, which is reserved in the <code>us-east-1</code> region, and 9059, which is reserved in the <code>eu-west-1</code> region.</p> </note> <p>For more information about VPN customer gateways, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html\">AWS Managed VPN Connections</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p> <important> <p>You cannot create more than one customer gateway with the same VPN type, IP address, and BGP ASN parameter values. If you run an identical request more than one time, the first request creates the customer gateway, and subsequent requests return information about the existing customer gateway. The subsequent requests do not create new customer gateway resources.</p> </important>",
     "CreateDefaultSubnet": "<p>Creates a default subnet with a size <code>/20</code> IPv4 CIDR block in the specified Availability Zone in your default VPC. You can have only one default subnet per Availability Zone. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/default-vpc.html#create-default-subnet\">Creating a Default Subnet</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "CreateDefaultVpc": "<p>Creates a default VPC with a size <code>/16</code> IPv4 CIDR block and a default subnet in each Availability Zone. For more information about the components of a default VPC, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/default-vpc.html\">Default VPC and Default Subnets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>. You cannot specify the components of the default VPC yourself.</p> <p>If you deleted your previous default VPC, you can create a default VPC. You cannot have more than one default VPC per Region.</p> <p>If your account supports EC2-Classic, you cannot use this action to create a default VPC in a Region that supports EC2-Classic. If you want a default VPC in a Region that supports EC2-Classic, see \"I really want a default VPC for my existing EC2 account. Is that possible?\" in the <a href=\"http://aws.amazon.com/vpc/faqs/#Default_VPCs\">Default VPCs FAQ</a>.</p>",
@@ -80,6 +85,8 @@
     "CreateVpnConnection": "<p>Creates a VPN connection between an existing virtual private gateway and a VPN customer gateway. The only supported connection type is <code>ipsec.1</code>.</p> <p>The response includes information that you need to give to your network administrator to configure your customer gateway.</p> <important> <p>We strongly recommend that you use HTTPS when calling this operation because the response contains sensitive cryptographic information for configuring your customer gateway.</p> </important> <p>If you decide to shut down your VPN connection for any reason and later create a new VPN connection, you must reconfigure your customer gateway with the new information returned from this call.</p> <p>This is an idempotent operation. If you perform the operation more than once, Amazon EC2 doesn't return an error.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html\">AWS Managed VPN Connections</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "CreateVpnConnectionRoute": "<p>Creates a static route associated with a VPN connection between an existing virtual private gateway and a VPN customer gateway. The static route allows traffic to be routed from the virtual private gateway to the VPN customer gateway.</p> <p>For more information about VPN connections, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html\">AWS Managed VPN Connections</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "CreateVpnGateway": "<p>Creates a virtual private gateway. A virtual private gateway is the endpoint on the VPC side of your VPN connection. You can create a virtual private gateway before creating the VPC itself.</p> <p>For more information about virtual private gateways, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html\">AWS Managed VPN Connections</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
+    "DeleteClientVpnEndpoint": "<p>Deletes the specified Client VPN endpoint. You must disassociate all target networks before you can delete a Client VPN endpoint.</p>",
+    "DeleteClientVpnRoute": "<p>Deletes a route from a Client VPN endpoint. You can only delete routes that you manually added using the <b>CreateClientVpnRoute</b> action. You cannot delete routes that were automatically added when associating a subnet. To remove routes that have been automatically added, disassociate the target subnet from the Client VPN endpoint.</p>",
     "DeleteCustomerGateway": "<p>Deletes the specified customer gateway. You must delete the VPN connection before you can delete the customer gateway.</p>",
     "DeleteDhcpOptions": "<p>Deletes the specified set of DHCP options. You must disassociate the set of DHCP options before you can delete it. You can disassociate the set of DHCP options by associating either a new set of options or the default set of options with the VPC.</p>",
     "DeleteEgressOnlyInternetGateway": "<p>Deletes an egress-only internet gateway.</p>",
@@ -126,6 +133,11 @@
     "DescribeByoipCidrs": "<p>Describes the IP address ranges that were specified in calls to <a>ProvisionByoipCidr</a>.</p> <p>To describe the address pools that were created when you provisioned the address ranges, use <a>DescribePublicIpv4Pools</a>.</p>",
     "DescribeCapacityReservations": "<p>Describes one or more of your Capacity Reservations. The results describe only the Capacity Reservations in the AWS Region that you're currently using.</p>",
     "DescribeClassicLinkInstances": "<p>Describes one or more of your linked EC2-Classic instances. This request only returns information about EC2-Classic instances linked to a VPC through ClassicLink. You cannot use this request to return information about other instances.</p>",
+    "DescribeClientVpnAuthorizationRules": "<p>Describes the authorization rules for a specified Client VPN endpoint.</p>",
+    "DescribeClientVpnConnections": "<p>Describes active client connections and connections that have been terminated within the last 60 minutes for the specified Client VPN endpoint.</p>",
+    "DescribeClientVpnEndpoints": "<p>Describes one or more Client VPN endpoints in the account.</p>",
+    "DescribeClientVpnRoutes": "<p>Describes the routes for the specified Client VPN endpoint.</p>",
+    "DescribeClientVpnTargetNetworks": "<p>Describes the target networks associated with the specified Client VPN endpoint.</p>",
     "DescribeConversionTasks": "<p>Describes one or more of your conversion tasks. For more information, see the <a href=\"http://docs.aws.amazon.com/vm-import/latest/userguide/\">VM Import/Export User Guide</a>.</p> <p>For information about the import manifest referenced by this API action, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html\">VM Import Manifest</a>.</p>",
     "DescribeCustomerGateways": "<p>Describes one or more of your VPN customer gateways.</p> <p>For more information about VPN customer gateways, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html\">AWS Managed VPN Connections</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "DescribeDhcpOptions": "<p>Describes one or more of your DHCP options sets.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html\">DHCP Options Sets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
@@ -218,6 +230,7 @@
     "DisableVpcClassicLink": "<p>Disables ClassicLink for a VPC. You cannot disable ClassicLink for a VPC that has EC2-Classic instances linked to it.</p>",
     "DisableVpcClassicLinkDnsSupport": "<p>Disables ClassicLink DNS support for a VPC. If disabled, DNS hostnames resolve to public IP addresses when addressed between a linked EC2-Classic instance and instances in the VPC to which it's linked. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html\">ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DisassociateAddress": "<p>Disassociates an Elastic IP address from the instance or network interface it's associated with.</p> <p>An Elastic IP address is for use in either the EC2-Classic platform or in a VPC. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>This is an idempotent operation. If you perform the operation more than once, Amazon EC2 doesn't return an error.</p>",
+    "DisassociateClientVpnTargetNetwork": "<p>Disassociates a target network from the specified Client VPN endpoint. When you disassociate the last target network from a Client VPN, the following happens:</p> <ul> <li> <p>The route that was automatically added for the VPC is deleted</p> </li> <li> <p>All active client connections are terminated</p> </li> <li> <p>New client connections are disallowed</p> </li> <li> <p>The Client VPN endpoint's status changes to <code>pending-associate</code> </p> </li> </ul>",
     "DisassociateIamInstanceProfile": "<p>Disassociates an IAM instance profile from a running or stopped instance.</p> <p>Use <a>DescribeIamInstanceProfileAssociations</a> to get the association ID.</p>",
     "DisassociateRouteTable": "<p>Disassociates a subnet from a route table.</p> <p>After you perform this action, the subnet no longer uses the routes in the route table. Instead, it uses the routes in the VPC's main route table. For more information about route tables, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html\">Route Tables</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "DisassociateSubnetCidrBlock": "<p>Disassociates a CIDR block from a subnet. Currently, you can disassociate an IPv6 CIDR block only. You must detach or delete all gateways and resources that are associated with the CIDR block before you can disassociate it. </p>",
@@ -228,6 +241,8 @@
     "EnableVolumeIO": "<p>Enables I/O operations for a volume that had I/O operations disabled because the data on the volume was potentially inconsistent.</p>",
     "EnableVpcClassicLink": "<p>Enables a VPC for ClassicLink. You can then link EC2-Classic instances to your ClassicLink-enabled VPC to allow communication over private IP addresses. You cannot enable your VPC for ClassicLink if any of your VPC route tables have existing routes for address ranges within the <code>10.0.0.0/8</code> IP address range, excluding local routes for VPCs in the <code>10.0.0.0/16</code> and <code>10.1.0.0/16</code> IP address ranges. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html\">ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "EnableVpcClassicLinkDnsSupport": "<p>Enables a VPC to support DNS hostname resolution for ClassicLink. If enabled, the DNS hostname of a linked EC2-Classic instance resolves to its private IP address when addressed from an instance in the VPC to which it's linked. Similarly, the DNS hostname of an instance in a VPC resolves to its private IP address when addressed from a linked EC2-Classic instance. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html\">ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "ExportClientVpnClientCertificateRevocationList": "<p>Downloads the client certificate revocation list for the specified Client VPN endpoint.</p>",
+    "ExportClientVpnClientConfiguration": "<p>Downloads the contents of the client configuration file for the specified Client VPN endpoint. The client configuration file includes the Client VPN endpoint and certificate information clients need to establish a connection with the Client VPN endpoint.</p>",
     "ExportTransitGatewayRoutes": "<p>Exports routes from the specified transit gateway route table to the specified S3 bucket. By default, all routes are exported. Alternatively, you can filter by CIDR range.</p>",
     "GetConsoleOutput": "<p>Gets the console output for the specified instance. For Linux instances, the instance console output displays the exact console output that would normally be displayed on a physical monitor attached to a computer. For Windows instances, the instance console output includes the last three system event log errors.</p> <p>By default, the console output returns buffered information that was posted shortly after an instance transition state (start, stop, reboot, or terminate). This information is available for at least one hour after the most recent post. Only the most recent 64 KB of console output is available.</p> <p>You can optionally retrieve the latest serial console output at any time during the instance lifecycle. This option is supported on instance types that use the Nitro hypervisor.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-console.html#instance-console-console-output\">Instance Console Output</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "GetConsoleScreenshot": "<p>Retrieve a JPG-format screenshot of a running instance to help with troubleshooting.</p> <p>The returned content is Base64-encoded.</p>",
@@ -238,12 +253,14 @@
     "GetTransitGatewayAttachmentPropagations": "<p>Lists the route tables to which the specified resource attachment propagates routes.</p>",
     "GetTransitGatewayRouteTableAssociations": "<p>Gets information about the associations for the specified transit gateway route table.</p>",
     "GetTransitGatewayRouteTablePropagations": "<p>Gets information about the route table propagations for the specified transit gateway route table.</p>",
+    "ImportClientVpnClientCertificateRevocationList": "<p>Uploads a client certificate revocation list to the specified Client VPN endpoint. Uploading a client certificate revocation list overwrites the existing client certificate revocation list.</p> <p>Uploading a client certificate revocation list resets existing client connections.</p>",
     "ImportImage": "<p>Import single or multi-volume disk images or EBS snapshots into an Amazon Machine Image (AMI). For more information, see <a href=\"http://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-image-import.html\">Importing a VM as an Image Using VM Import/Export</a> in the <i>VM Import/Export User Guide</i>.</p>",
     "ImportInstance": "<p>Creates an import instance task using metadata from the specified disk image. <code>ImportInstance</code> only supports single-volume VMs. To import multi-volume VMs, use <a>ImportImage</a>. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/ec2-cli-vmimport-export.html\">Importing a Virtual Machine Using the Amazon EC2 CLI</a>.</p> <p>For information about the import manifest referenced by this API action, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html\">VM Import Manifest</a>.</p>",
     "ImportKeyPair": "<p>Imports the public key from an RSA key pair that you created with a third-party tool. Compare this with <a>CreateKeyPair</a>, in which AWS creates the key pair and gives the keys to you (AWS keeps a copy of the public key). With ImportKeyPair, you create the key pair and give AWS just the public key. The private key is never transferred between you and AWS.</p> <p>For more information about key pairs, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html\">Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "ImportSnapshot": "<p>Imports a disk into an EBS snapshot.</p>",
     "ImportVolume": "<p>Creates an import volume task using metadata from the specified disk image.For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/importing-your-volumes-into-amazon-ebs.html\">Importing Disks to Amazon EBS</a>.</p> <p>For information about the import manifest referenced by this API action, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html\">VM Import Manifest</a>.</p>",
     "ModifyCapacityReservation": "<p>Modifies a Capacity Reservation's capacity and the conditions under which it is to be released. You cannot change a Capacity Reservation's instance type, EBS optimization, instance store settings, platform, Availability Zone, or instance eligibility. If you need to modify any of these attributes, we recommend that you cancel the Capacity Reservation, and then create a new one with the required attributes.</p>",
+    "ModifyClientVpnEndpoint": "<p>Modifies the specified Client VPN endpoint. You can only modify an endpoint's server certificate information, client connection logging information, DNS server, and description. Modifying the DNS server resets existing client connections.</p>",
     "ModifyFleet": "<p>Modifies the specified EC2 Fleet.</p> <p>While the EC2 Fleet is being modified, it is in the <code>modifying</code> state.</p>",
     "ModifyFpgaImageAttribute": "<p>Modifies the specified attribute of the specified Amazon FPGA Image (AFI).</p>",
     "ModifyHosts": "<p>Modify the auto-placement setting of a Dedicated Host. When auto-placement is enabled, any instances that you launch with a tenancy of <code>host</code> but without a specific host ID are placed onto any available Dedicated Host in your account that has auto-placement enabled. When auto-placement is disabled, you need to provide a host ID to have the instance launch onto a specific host. If no host ID is provided, the instance is launched onto a suitable host with auto-placement enabled.</p>",
@@ -298,6 +315,7 @@
     "ResetNetworkInterfaceAttribute": "<p>Resets a network interface attribute. You can specify only one attribute at a time.</p>",
     "ResetSnapshotAttribute": "<p>Resets permission settings for the specified snapshot.</p> <p>For more information about modifying snapshot permissions, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modifying-snapshot-permissions.html\">Sharing Snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "RestoreAddressToClassic": "<p>Restores an Elastic IP address that was previously moved to the EC2-VPC platform back to the EC2-Classic platform. You cannot move an Elastic IP address that was originally allocated for use in EC2-VPC. The Elastic IP address must not be associated with an instance or network interface.</p>",
+    "RevokeClientVpnIngress": "<p>Removes an ingress authorization rule from a Client VPN endpoint. </p>",
     "RevokeSecurityGroupEgress": "<p>[EC2-VPC only] Removes one or more egress rules from a security group for EC2-VPC. This action doesn't apply to security groups for use in EC2-Classic. To remove a rule, the values that you specify (for example, ports) must match the existing rule's values exactly.</p> <p>Each rule consists of the protocol and the IPv4 or IPv6 CIDR range or source security group. For the TCP and UDP protocols, you must also specify the destination port or range of ports. For the ICMP protocol, you must also specify the ICMP type and code. If the security group rule has a description, you do not have to specify the description to revoke the rule.</p> <p>Rule changes are propagated to instances within the security group as quickly as possible. However, a small delay might occur.</p>",
     "RevokeSecurityGroupIngress": "<p>Removes one or more ingress rules from a security group. To remove a rule, the values that you specify (for example, ports) must match the existing rule's values exactly.</p> <note> <p>[EC2-Classic security groups only] If the values you specify do not match the existing rule's values, no error is returned. Use <a>DescribeSecurityGroups</a> to verify that the rule has been removed.</p> </note> <p>Each rule consists of the protocol and the CIDR range or source security group. For the TCP and UDP protocols, you must also specify the destination port or range of ports. For the ICMP protocol, you must also specify the ICMP type and code. If the security group rule has a description, you do not have to specify the description to revoke the rule.</p> <p>Rule changes are propagated to instances within the security group as quickly as possible. However, a small delay might occur.</p>",
     "RunInstances": "<p>Launches the specified number of instances using an AMI for which you have permissions. </p> <p>You can specify a number of options, or leave the default options. The following rules apply:</p> <ul> <li> <p>[EC2-VPC] If you don't specify a subnet ID, we choose a default subnet from your default VPC for you. If you don't have a default VPC, you must specify a subnet ID in the request.</p> </li> <li> <p>[EC2-Classic] If don't specify an Availability Zone, we choose one for you.</p> </li> <li> <p>Some instance types must be launched into a VPC. If you do not have a default VPC, or if you do not specify a subnet ID, the request fails. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-vpc.html#vpc-only-instance-types\">Instance Types Available Only in a VPC</a>.</p> </li> <li> <p>[EC2-VPC] All instances have a network interface with a primary private IPv4 address. If you don't specify this address, we choose one from the IPv4 range of your subnet.</p> </li> <li> <p>Not all instance types support IPv6 addresses. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance Types</a>.</p> </li> <li> <p>If you don't specify a security group ID, we use the default security group. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html\">Security Groups</a>.</p> </li> <li> <p>If any of the AMIs have a product code attached for which the user has not subscribed, the request fails.</p> </li> </ul> <p>You can create a <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html\">launch template</a>, which is a resource that contains the parameters to launch an instance. When you launch an instance using <a>RunInstances</a>, you can specify the launch template instead of specifying the launch parameters.</p> <p>To ensure faster instance launches, break up large requests into smaller batches. For example, create five separate launch requests for 100 instances each instead of one launch request for 500 instances.</p> <p>An instance is ready for you to use when it's in the <code>running</code> state. You can check the state of your instance using <a>DescribeInstances</a>. You can tag instances and EBS volumes during launch, after launch, or both. For more information, see <a>CreateTags</a> and <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">Tagging Your Amazon EC2 Resources</a>.</p> <p>Linux instances have access to the public key of the key pair at boot. You can use this key to provide secure access to the instance. Amazon EC2 public images use this feature to provide secure access without passwords. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html\">Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>For troubleshooting, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_InstanceStraightToTerminated.html\">What To Do If An Instance Immediately Terminates</a>, and <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html\">Troubleshooting Connecting to Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
@@ -305,6 +323,7 @@
     "SearchTransitGatewayRoutes": "<p>Searches for routes in the specified transit gateway route table.</p>",
     "StartInstances": "<p>Starts an Amazon EBS-backed instance that you've previously stopped.</p> <p>Instances that use Amazon EBS volumes as their root devices can be quickly stopped and started. When an instance is stopped, the compute resources are released and you are not billed for instance usage. However, your root partition Amazon EBS volume remains and continues to persist your data, and you are charged for Amazon EBS volume usage. You can restart your instance at any time. Every time you start your Windows instance, Amazon EC2 charges you for a full instance hour. If you stop and restart your Windows instance, a new instance hour begins and Amazon EC2 charges you for another full instance hour even if you are still within the same 60-minute period when it was stopped. Every time you start your Linux instance, Amazon EC2 charges a one-minute minimum for instance usage, and thereafter charges per second for instance usage.</p> <p>Before stopping an instance, make sure it is in a state from which it can be restarted. Stopping an instance does not preserve data stored in RAM.</p> <p>Performing this operation on an instance that uses an instance store as its root device returns an error.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html\">Stopping Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "StopInstances": "<p>Stops an Amazon EBS-backed instance.</p> <p>You can use the Stop action to hibernate an instance if the instance is <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#enabling-hibernation\">enabled for hibernation</a> and it meets the <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites\">hibernation prerequisites</a>. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html\">Hibernate Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>We don't charge usage for a stopped instance, or data transfer fees; however, your root partition Amazon EBS volume remains and continues to persist your data, and you are charged for Amazon EBS volume usage. Every time you start your Windows instance, Amazon EC2 charges you for a full instance hour. If you stop and restart your Windows instance, a new instance hour begins and Amazon EC2 charges you for another full instance hour even if you are still within the same 60-minute period when it was stopped. Every time you start your Linux instance, Amazon EC2 charges a one-minute minimum for instance usage, and thereafter charges per second for instance usage.</p> <p>You can't start, stop, or hibernate Spot Instances, and you can't stop or hibernate instance store-backed instances. For information about using hibernation for Spot Instances, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-interruptions.html#hibernate-spot-instances\">Hibernating Interrupted Spot Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>When you stop or hibernate an instance, we shut it down. You can restart your instance at any time. Before stopping or hibernating an instance, make sure it is in a state from which it can be restarted. Stopping an instance does not preserve data stored in RAM, but hibernating an instance does preserve data stored in RAM. If an instance cannot hibernate successfully, a normal shutdown occurs.</p> <p>Stopping and hibernating an instance is different to rebooting or terminating it. For example, when you stop or hibernate an instance, the root device and any other devices attached to the instance persist. When you terminate an instance, the root device and any other devices attached during the instance launch are automatically deleted. For more information about the differences between rebooting, stopping, hibernating, and terminating instances, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html\">Instance Lifecycle</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>When you stop an instance, we attempt to shut it down forcibly after a short while. If your instance appears stuck in the stopping state after a period of time, there may be an issue with the underlying host computer. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesStopping.html\">Troubleshooting Stopping Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "TerminateClientVpnConnections": "<p>Terminates active Client VPN endpoint connections. This action can be used to terminate a specific client connection, or up to five connections established by a specific user.</p>",
     "TerminateInstances": "<p>Shuts down one or more instances. This operation is idempotent; if you terminate an instance more than once, each call succeeds. </p> <p>If you specify multiple instances and the request fails (for example, because of a single incorrect instance ID), none of the instances are terminated.</p> <p>Terminated instances remain visible after termination (for approximately one hour).</p> <p>By default, Amazon EC2 deletes all EBS volumes that were attached when the instance launched. Volumes attached after instance launch continue running.</p> <p>You can stop, start, and terminate EBS-backed instances. You can only terminate instance store-backed instances. What happens to an instance differs if you stop it or terminate it. For example, when you stop an instance, the root device and any other devices attached to the instance persist. When you terminate an instance, any attached EBS volumes with the <code>DeleteOnTermination</code> block device mapping parameter set to <code>true</code> are automatically deleted. For more information about the differences between stopping and terminating instances, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html\">Instance Lifecycle</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>For more information about troubleshooting, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesShuttingDown.html\">Troubleshooting Terminating Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "UnassignIpv6Addresses": "<p>Unassigns one or more IPv6 addresses from a network interface.</p>",
     "UnassignPrivateIpAddresses": "<p>Unassigns one or more secondary private IP addresses from a network interface.</p>",
@@ -487,6 +506,16 @@
         "DescribeVpcEndpointServicePermissionsResult$AllowedPrincipals": "<p>Information about one or more allowed principals.</p>"
       }
     },
+    "ApplySecurityGroupsToClientVpnTargetNetworkRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ApplySecurityGroupsToClientVpnTargetNetworkResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ArchitectureValues": {
       "base": null,
       "refs": {
@@ -517,6 +546,16 @@
       }
     },
     "AssociateAddressResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateClientVpnTargetNetworkRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateClientVpnTargetNetworkResult": {
       "base": null,
       "refs": {
       }
@@ -576,10 +615,42 @@
       "refs": {
       }
     },
+    "AssociatedNetworkType": {
+      "base": null,
+      "refs": {
+        "AssociatedTargetNetwork$NetworkType": "<p> <b>The target network type.</b> </p>"
+      }
+    },
+    "AssociatedTargetNetwork": {
+      "base": "<p>Describes a target network that is associated with a Client VPN endpoint. A target network is a subnet in a VPC.</p>",
+      "refs": {
+        "AssociatedTargetNetworkSet$member": null
+      }
+    },
+    "AssociatedTargetNetworkSet": {
+      "base": null,
+      "refs": {
+        "ClientVpnEndpoint$AssociatedTargetNetworks": "<p>Information about the associated target networks. A target network is a subnet in a VPC.</p>"
+      }
+    },
     "AssociationIdList": {
       "base": null,
       "refs": {
         "DescribeIamInstanceProfileAssociationsRequest$AssociationIds": "<p>One or more IAM instance profile associations.</p>"
+      }
+    },
+    "AssociationStatus": {
+      "base": "<p>Describes the state of a target network association.</p>",
+      "refs": {
+        "AssociateClientVpnTargetNetworkResult$Status": "<p>The current state of the target network association.</p>",
+        "DisassociateClientVpnTargetNetworkResult$Status": "<p>The current state of the target network association.</p>",
+        "TargetNetwork$Status": "<p>The current state of the target network association.</p>"
+      }
+    },
+    "AssociationStatusCode": {
+      "base": null,
+      "refs": {
+        "AssociationStatus$Code": "<p>The state of the target network association.</p>"
       }
     },
     "AttachClassicLinkVpcRequest": {
@@ -678,6 +749,28 @@
         "ModifyInstanceAttributeRequest$Ramdisk": "<p>Changes the instance's RAM disk to the specified value. We recommend that you use PV-GRUB instead of kernels and RAM disks. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html\">PV-GRUB</a>.</p>",
         "ModifyInstanceAttributeRequest$SriovNetSupport": "<p>Set to <code>simple</code> to enable enhanced networking with the Intel 82599 Virtual Function interface for the instance.</p> <p>There is no way to disable enhanced networking with the Intel 82599 Virtual Function interface at this time.</p> <p>This option is supported only for HVM instances. Specifying this option with a PV instance can make it unreachable.</p>",
         "ModifyNetworkInterfaceAttributeRequest$Description": "<p>A description for the network interface.</p>"
+      }
+    },
+    "AuthorizationRule": {
+      "base": "<p> <b>Information about an authorization rule.</b> </p>",
+      "refs": {
+        "AuthorizationRuleSet$member": null
+      }
+    },
+    "AuthorizationRuleSet": {
+      "base": null,
+      "refs": {
+        "DescribeClientVpnAuthorizationRulesResult$AuthorizationRules": "<p>Information about the authorization rules.</p>"
+      }
+    },
+    "AuthorizeClientVpnIngressRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AuthorizeClientVpnIngressResult": {
+      "base": null,
+      "refs": {
       }
     },
     "AuthorizeSecurityGroupEgressRequest": {
@@ -809,9 +902,11 @@
         "AcceptVpcPeeringConnectionRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AdvertiseByoipCidrRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AllocateAddressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "ApplySecurityGroupsToClientVpnTargetNetworkRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssignPrivateIpAddressesRequest$AllowReassignment": "<p>Indicates whether to allow an IP address that is already assigned to another network interface or instance to be reassigned to the specified network interface.</p>",
         "AssociateAddressRequest$AllowReassociation": "<p>[EC2-VPC] For a VPC in an EC2-Classic account, specify true to allow an Elastic IP address that is already associated with an instance or network interface to be reassociated with the specified instance or network interface. Otherwise, the operation fails. In a VPC in an EC2-VPC-only account, reassociation is automatic, therefore you can specify false to ensure the operation fails if the Elastic IP address is already associated with another resource.</p>",
         "AssociateAddressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "AssociateClientVpnTargetNetworkRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssociateDhcpOptionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssociateRouteTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssociateTransitGatewayRouteTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -823,6 +918,9 @@
         "AttachVolumeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AttachVpnGatewayRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AttributeBooleanValue$Value": "<p>The attribute value. The valid values are <code>true</code> or <code>false</code>.</p>",
+        "AuthorizationRule$AccessAll": "<p>Indicates whether the authorization rule grants access to all clients.</p>",
+        "AuthorizeClientVpnIngressRequest$AuthorizeAllGroups": "<p>Indicates whether to grant access to all clients. Use <code>true</code> to grant all clients who successfully establish a VPN connection access to the network.</p>",
+        "AuthorizeClientVpnIngressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AuthorizeSecurityGroupEgressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AuthorizeSecurityGroupIngressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "BundleInstanceRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -837,8 +935,11 @@
         "CapacityReservation$EbsOptimized": "<p>Indicates whether the Capacity Reservation supports EBS-optimized instances. This optimization provides dedicated throughput to Amazon EBS and an optimized configuration stack to provide optimal I/O performance. This optimization isn't available with all instance types. Additional usage charges apply when using an EBS- optimized instance.</p>",
         "CapacityReservation$EphemeralStorage": "<p>Indicates whether the Capacity Reservation supports instances with temporary, block-level storage.</p>",
         "ClassicLinkDnsSupport$ClassicLinkDnsSupported": "<p>Indicates whether ClassicLink DNS support is enabled for the VPC.</p>",
+        "ClientVpnEndpoint$SplitTunnel": "<p> <b>Indicates whether VPN split tunneling is supported.</b> </p>",
         "ConfirmProductInstanceRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ConfirmProductInstanceResult$Return": "<p>The return value of the request. Returns <code>true</code> if the specified product code is owned by the requester and associated with the specified instance.</p>",
+        "ConnectionLogOptions$Enabled": "<p>Indicates whether connection logging is enabled.</p>",
+        "ConnectionLogResponseOptions$Enabled": "<p>Indicates whether client connection logging is enabled for the Client VPN endpoint.</p>",
         "CopyFpgaImageRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CopyImageRequest$Encrypted": "<p>Specifies whether the destination snapshots of the copied image should be encrypted. You can encrypt a copy of an unencrypted snapshot, but you cannot create an unencrypted copy of an encrypted snapshot. The default CMK for EBS is used unless you specify a non-default AWS Key Management Service (AWS KMS) CMK using <code>KmsKeyId</code>. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "CopyImageRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -847,6 +948,8 @@
         "CreateCapacityReservationRequest$EbsOptimized": "<p>Indicates whether the Capacity Reservation supports EBS-optimized instances. This optimization provides dedicated throughput to Amazon EBS and an optimized configuration stack to provide optimal I/O performance. This optimization isn't available with all instance types. Additional usage charges apply when using an EBS- optimized instance.</p>",
         "CreateCapacityReservationRequest$EphemeralStorage": "<p>Indicates whether the Capacity Reservation supports instances with temporary, block-level storage.</p>",
         "CreateCapacityReservationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "CreateClientVpnEndpointRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "CreateClientVpnRouteRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateCustomerGatewayRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateDefaultSubnetRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateDefaultVpcRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -894,6 +997,8 @@
         "CreateVpcRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateVpnConnectionRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateVpnGatewayRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DeleteClientVpnEndpointRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DeleteClientVpnRouteRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteCustomerGatewayRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteDhcpOptionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteEgressOnlyInternetGatewayRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -946,6 +1051,11 @@
         "DescribeByoipCidrsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeCapacityReservationsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeClassicLinkInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DescribeClientVpnAuthorizationRulesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DescribeClientVpnConnectionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DescribeClientVpnEndpointsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DescribeClientVpnRoutesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DescribeClientVpnTargetNetworksRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeConversionTasksRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeCustomerGatewaysRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeDhcpOptionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1030,8 +1140,10 @@
         "DisableVpcClassicLinkRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisableVpcClassicLinkResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "DisassociateAddressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DisassociateClientVpnTargetNetworkRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisassociateRouteTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisassociateTransitGatewayRouteTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DnsServersOptionsModifyStructure$Enabled": "<p>Indicates whether DNS servers should be used. Specify <code>False</code> to delete the existing DNS servers.</p>",
         "EbsBlockDevice$DeleteOnTermination": "<p>Indicates whether the EBS volume is deleted on instance termination.</p>",
         "EbsBlockDevice$Encrypted": "<p>Indicates whether the EBS volume is encrypted. Encrypted volumes can only be attached to instances that support Amazon EBS encryption. </p> <p>If you are creating a volume from a snapshot, you cannot specify an encryption value. This is because only blank volumes can be encrypted on creation. If you are creating a snapshot from an existing EBS volume, you cannot specify an encryption value that differs from that of the EBS volume. We recommend that you omit the encryption value from the block device mappings when creating an image from an instance.</p>",
         "EbsInstanceBlockDevice$DeleteOnTermination": "<p>Indicates whether the volume is deleted on instance termination.</p>",
@@ -1041,6 +1153,8 @@
         "EnableVpcClassicLinkDnsSupportResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "EnableVpcClassicLinkRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "EnableVpcClassicLinkResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
+        "ExportClientVpnClientCertificateRevocationListRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "ExportClientVpnClientConfigurationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ExportTransitGatewayRoutesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "FleetData$TerminateInstancesWithExpiration": "<p>Indicates whether running instances should be terminated when the EC2 Fleet expires. </p>",
         "FleetData$ReplaceUnhealthyInstances": "<p>Indicates whether EC2 Fleet should replace unhealthy instances.</p>",
@@ -1061,6 +1175,8 @@
         "IdFormat$UseLongIds": "<p>Indicates whether longer IDs (17-character IDs) are enabled for the resource.</p>",
         "Image$Public": "<p>Indicates whether the image has public launch permissions. The value is <code>true</code> if this image has public launch permissions or <code>false</code> if it has only implicit and explicit launch permissions.</p>",
         "Image$EnaSupport": "<p>Specifies whether enhanced networking with ENA is enabled.</p>",
+        "ImportClientVpnClientCertificateRevocationListRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "ImportClientVpnClientCertificateRevocationListResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "ImportImageRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ImportImageRequest$Encrypted": "<p>Specifies whether the destination AMI of the imported image should be encrypted. The default CMK for EBS is used unless you specify a non-default AWS Key Management Service (AWS KMS) CMK using <code>KmsKeyId</code>. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "ImportImageResult$Encrypted": "<p>Indicates whether the AMI is encypted.</p>",
@@ -1095,6 +1211,8 @@
         "LaunchTemplatesMonitoringRequest$Enabled": "<p>Specify <code>true</code> to enable detailed monitoring. Otherwise, basic monitoring is enabled.</p>",
         "ModifyCapacityReservationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyCapacityReservationResult$Return": "<p>Information about the Capacity Reservation.</p>",
+        "ModifyClientVpnEndpointRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "ModifyClientVpnEndpointResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "ModifyFleetRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyFleetResult$Return": "<p>Is <code>true</code> if the request succeeds, and an error otherwise.</p>",
         "ModifyFpgaImageAttributeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1180,6 +1298,8 @@
         "ResponseLaunchTemplateData$EbsOptimized": "<p>Indicates whether the instance is optimized for Amazon EBS I/O. </p>",
         "ResponseLaunchTemplateData$DisableApiTermination": "<p>If set to <code>true</code>, indicates that the instance cannot be terminated using the Amazon EC2 console, command line tool, or API.</p>",
         "RestoreAddressToClassicRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "RevokeClientVpnIngressRequest$RevokeAllGroups": "<p>Indicates whether access should be revoked for all clients.</p>",
+        "RevokeClientVpnIngressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "RevokeSecurityGroupEgressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "RevokeSecurityGroupIngressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "RouteTableAssociation$Main": "<p>Indicates whether this is the main route table.</p>",
@@ -1217,6 +1337,7 @@
         "Subnet$DefaultForAz": "<p>Indicates whether this is the default subnet for the Availability Zone.</p>",
         "Subnet$MapPublicIpOnLaunch": "<p>Indicates whether instances launched in this subnet receive a public IPv4 address.</p>",
         "Subnet$AssignIpv6AddressOnCreation": "<p>Indicates whether a network interface created in this subnet (including a network interface created by <a>RunInstances</a>) receives an IPv6 address.</p>",
+        "TerminateClientVpnConnectionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "TerminateInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "TransitGatewayRouteTable$DefaultAssociationRouteTable": "<p>Indicates whether this is the default association route table for the transit gateway.</p>",
         "TransitGatewayRouteTable$DefaultPropagationRouteTable": "<p>Indicates whether this is the default propagation route table for the transit gateway.</p>",
@@ -1501,6 +1622,18 @@
         "CreateCapacityReservationRequest$Tenancy": "<p>Indicates the tenancy of the Capacity Reservation. A Capacity Reservation can have one of the following tenancy settings:</p> <ul> <li> <p> <code>default</code> - The Capacity Reservation is created on hardware that is shared with other AWS accounts.</p> </li> <li> <p> <code>dedicated</code> - The Capacity Reservation is created on single-tenant hardware that is dedicated to a single AWS account.</p> </li> </ul>"
       }
     },
+    "CertificateAuthentication": {
+      "base": "<p> <b>Information about the client certificate used for authentication.</b> </p>",
+      "refs": {
+        "ClientVpnAuthentication$MutualAuthentication": "<p>Information about the authentication certificates, if applicable.</p>"
+      }
+    },
+    "CertificateAuthenticationRequest": {
+      "base": "<p> <b>Information about the client certificate to be used for authentication.</b> </p>",
+      "refs": {
+        "ClientVpnAuthenticationRequest$MutualAuthentication": "<p>Information about the authentication certificates to be used, if applicable. You must provide this information if <b>Type</b> is <code>certificate-authentication</code>.</p>"
+      }
+    },
     "CidrAuthorizationContext": {
       "base": "<p>Provides authorization for Amazon to bring a specific IP address range to a specific AWS account using bring your own IP addresses (BYOIP).</p>",
       "refs": {
@@ -1561,11 +1694,147 @@
         "LoadBalancersConfig$ClassicLoadBalancersConfig": "<p>The Classic Load Balancers.</p>"
       }
     },
+    "ClientCertificateRevocationListStatus": {
+      "base": "<p>Describes the state of a client certificate revocation list.</p>",
+      "refs": {
+        "ExportClientVpnClientCertificateRevocationListResult$Status": "<p>The current state of the client certificate revocation list.</p>"
+      }
+    },
+    "ClientCertificateRevocationListStatusCode": {
+      "base": null,
+      "refs": {
+        "ClientCertificateRevocationListStatus$Code": "<p>The state of the client certificate revocation list.</p>"
+      }
+    },
     "ClientData": {
       "base": "<p>Describes the client-specific data.</p>",
       "refs": {
         "ImportImageRequest$ClientData": "<p>The client-specific data.</p>",
         "ImportSnapshotRequest$ClientData": "<p>The client-specific data.</p>"
+      }
+    },
+    "ClientVpnAuthentication": {
+      "base": "<p>Describes the authentication methods used by a Client VPN endpoint. Client VPN supports Active Directory and mutual authentication. For more information, see <a href=\"vpn/latest/clientvpn-admin/authentication-authrization.html#client-authentication\">Authentication</a> in the <i>AWS Client VPN Admin Guide</i>.</p>",
+      "refs": {
+        "ClientVpnAuthenticationList$member": null
+      }
+    },
+    "ClientVpnAuthenticationList": {
+      "base": null,
+      "refs": {
+        "ClientVpnEndpoint$AuthenticationOptions": "<p>Information about the authentication method used by the Client VPN endpoint.</p>"
+      }
+    },
+    "ClientVpnAuthenticationRequest": {
+      "base": "<p>Describes the authentication method to be used by a Client VPN endpoint. Client VPN supports Active Directory and mutual authentication. For more information, see <a href=\"vpn/latest/clientvpn-admin/authentication-authrization.html#client-authentication\">Athentication</a> in the <i>AWS Client VPN Admin Guide</i>.</p>",
+      "refs": {
+        "ClientVpnAuthenticationRequestList$member": null
+      }
+    },
+    "ClientVpnAuthenticationRequestList": {
+      "base": null,
+      "refs": {
+        "CreateClientVpnEndpointRequest$AuthenticationOptions": "<p>Information about the authentication method to be used to authenticate clients.</p>"
+      }
+    },
+    "ClientVpnAuthenticationType": {
+      "base": null,
+      "refs": {
+        "ClientVpnAuthentication$Type": "<p>The authentication type used.</p>",
+        "ClientVpnAuthenticationRequest$Type": "<p>The type of client authentication to be used. Specify <code>certificate-authentication</code> to use certificate-based authentication, or <code>directory-service-authentication</code> to use Active Directory authentication.</p>"
+      }
+    },
+    "ClientVpnAuthorizationRuleStatus": {
+      "base": "<p>Describes the state of an authorization rule.</p>",
+      "refs": {
+        "AuthorizationRule$Status": "<p>The current state of the authorization rule.</p>",
+        "AuthorizeClientVpnIngressResult$Status": "<p>The current state of the authorization rule.</p>",
+        "RevokeClientVpnIngressResult$Status": "<p>The current state of the authorization rule.</p>"
+      }
+    },
+    "ClientVpnAuthorizationRuleStatusCode": {
+      "base": null,
+      "refs": {
+        "ClientVpnAuthorizationRuleStatus$Code": "<p>The state of the authorization rule.</p>"
+      }
+    },
+    "ClientVpnConnection": {
+      "base": "<p>Describes a client connection.</p>",
+      "refs": {
+        "ClientVpnConnectionSet$member": null
+      }
+    },
+    "ClientVpnConnectionSet": {
+      "base": null,
+      "refs": {
+        "DescribeClientVpnConnectionsResult$Connections": "<p>Information about the active and terminated client connections.</p>"
+      }
+    },
+    "ClientVpnConnectionStatus": {
+      "base": "<p>Describes the status of a client connection.</p>",
+      "refs": {
+        "ClientVpnConnection$Status": "<p>The current state of the client connection.</p>",
+        "TerminateConnectionStatus$PreviousStatus": "<p>The state of the client connection.</p>",
+        "TerminateConnectionStatus$CurrentStatus": "<p>A message about the status of the client connection, if applicable.</p>"
+      }
+    },
+    "ClientVpnConnectionStatusCode": {
+      "base": null,
+      "refs": {
+        "ClientVpnConnectionStatus$Code": "<p>The state of the client connection.</p>"
+      }
+    },
+    "ClientVpnEndpoint": {
+      "base": "<p>Describes a Client VPN endpoint.</p>",
+      "refs": {
+        "EndpointSet$member": null
+      }
+    },
+    "ClientVpnEndpointStatus": {
+      "base": "<p>Describes the state of a Client VPN endpoint.</p>",
+      "refs": {
+        "ClientVpnEndpoint$Status": "<p>The current state of the Client VPN endpoint.</p>",
+        "CreateClientVpnEndpointResult$Status": "<p>The current state of the Client VPN endpoint.</p>",
+        "DeleteClientVpnEndpointResult$Status": "<p>The current state of the Client VPN endpoint.</p>"
+      }
+    },
+    "ClientVpnEndpointStatusCode": {
+      "base": null,
+      "refs": {
+        "ClientVpnEndpointStatus$Code": "<p>The state of the Client VPN endpoint. Possible states include:</p> <ul> <li> <p> <code>pending-associate</code> - The Client VPN endpoint has been created but no target networks have been associated. The Client VPN endpoint cannot accept connections.</p> </li> <li> <p> <code>available</code> - The Client VPN endpoint has been created and a target network has been associated. The Client VPN endpoint can accept connections.</p> </li> <li> <p> <code>deleting</code> - The Client VPN endpoint is being deleted. The Client VPN endpoint cannot accept connections.</p> </li> <li> <p> <code>deleted</code> - The Client VPN endpoint has been deleted. The Client VPN endpoint cannot accept connections.</p> </li> </ul>"
+      }
+    },
+    "ClientVpnRoute": {
+      "base": "<p> <b>Information about a Client VPN endpoint route.</b> </p>",
+      "refs": {
+        "ClientVpnRouteSet$member": null
+      }
+    },
+    "ClientVpnRouteSet": {
+      "base": null,
+      "refs": {
+        "DescribeClientVpnRoutesResult$Routes": "<p>Information about the Client VPN endpoint routes.</p>"
+      }
+    },
+    "ClientVpnRouteStatus": {
+      "base": "<p>Describes the state of a Client VPN endpoint route.</p>",
+      "refs": {
+        "ClientVpnRoute$Status": "<p>The current state of the route.</p>",
+        "CreateClientVpnRouteResult$Status": "<p>The current state of the route.</p>",
+        "DeleteClientVpnRouteResult$Status": "<p>The current state of the route.</p>"
+      }
+    },
+    "ClientVpnRouteStatusCode": {
+      "base": null,
+      "refs": {
+        "ClientVpnRouteStatus$Code": "<p>The state of the Client VPN endpoint route.</p>"
+      }
+    },
+    "ClientVpnSecurityGroupIdSet": {
+      "base": null,
+      "refs": {
+        "ApplySecurityGroupsToClientVpnTargetNetworkRequest$SecurityGroupIds": "<p>The IDs of the security groups to apply to the associated target network. Up to 5 security groups can be applied to an associated target network.</p>",
+        "ApplySecurityGroupsToClientVpnTargetNetworkResult$SecurityGroupIds": "<p>The IDs of the applied security groups.</p>"
       }
     },
     "ConfirmProductInstanceRequest": {
@@ -1576,6 +1845,19 @@
     "ConfirmProductInstanceResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "ConnectionLogOptions": {
+      "base": "<p>Describes the client connection logging options for the Client VPN endpoint.</p>",
+      "refs": {
+        "CreateClientVpnEndpointRequest$ConnectionLogOptions": "<p>Information about the client connection logging options.</p> <p>If you enable client connection logging, data about client connections is sent to a Cloudwatch Logs log stream. The following information is logged:</p> <ul> <li> <p>Client connection requests</p> </li> <li> <p>Client connection results (successful and unsuccessful)</p> </li> <li> <p>Reasons for unsuccessful client connection requests</p> </li> <li> <p>Client connection termination time</p> </li> </ul>",
+        "ModifyClientVpnEndpointRequest$ConnectionLogOptions": "<p>Information about the client connection logging options.</p> <p>If you enable client connection logging, data about client connections is sent to a Cloudwatch Logs log stream. The following information is logged:</p> <ul> <li> <p>Client connection requests</p> </li> <li> <p>Client connection results (successful and unsuccessful)</p> </li> <li> <p>Reasons for unsuccessful client connection requests</p> </li> <li> <p>Client connection termination time</p> </li> </ul>"
+      }
+    },
+    "ConnectionLogResponseOptions": {
+      "base": "<p>Information about the client connection logging options for a Client VPN endpoint.</p>",
+      "refs": {
+        "ClientVpnEndpoint$ConnectionLogOptions": "<p>Information about the client connection logging options for the Client VPN endpoint.</p>"
       }
     },
     "ConnectionNotification": {
@@ -1678,6 +1960,26 @@
       }
     },
     "CreateCapacityReservationResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateClientVpnEndpointRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateClientVpnEndpointResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateClientVpnRouteRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateClientVpnRouteResult": {
       "base": null,
       "refs": {
       }
@@ -2283,6 +2585,26 @@
         "TargetCapacitySpecificationRequest$DefaultTargetCapacityType": "<p>The default <code>TotalTargetCapacity</code>, which is either <code>Spot</code> or <code>On-Demand</code>.</p>"
       }
     },
+    "DeleteClientVpnEndpointRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteClientVpnEndpointResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteClientVpnRouteRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteClientVpnRouteResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteCustomerGatewayRequest": {
       "base": "<p>Contains the parameters for DeleteCustomerGateway.</p>",
       "refs": {
@@ -2694,6 +3016,56 @@
       }
     },
     "DescribeClassicLinkInstancesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeClientVpnAuthorizationRulesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeClientVpnAuthorizationRulesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeClientVpnConnectionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeClientVpnConnectionsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeClientVpnEndpointsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeClientVpnEndpointsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeClientVpnRoutesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeClientVpnRoutesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeClientVpnTargetNetworksRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeClientVpnTargetNetworksResult": {
       "base": null,
       "refs": {
       }
@@ -3612,6 +3984,18 @@
         "DescribeDhcpOptionsResult$DhcpOptions": "<p>Information about one or more DHCP options sets.</p>"
       }
     },
+    "DirectoryServiceAuthentication": {
+      "base": "<p>Describes an Active Directory.</p>",
+      "refs": {
+        "ClientVpnAuthentication$ActiveDirectory": "<p>Information about the Active Directory, if applicable.</p>"
+      }
+    },
+    "DirectoryServiceAuthenticationRequest": {
+      "base": "<p>Describes the Active Directory to be used for client authentication.</p>",
+      "refs": {
+        "ClientVpnAuthenticationRequest$ActiveDirectory": "<p>Information about the Active Directory to be used, if applicable. You must provide this information if <b>Type</b> is <code>directory-service-authentication</code>.</p>"
+      }
+    },
     "DisableTransitGatewayRouteTablePropagationRequest": {
       "base": null,
       "refs": {
@@ -3648,6 +4032,16 @@
       }
     },
     "DisassociateAddressRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateClientVpnTargetNetworkRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateClientVpnTargetNetworkResult": {
       "base": null,
       "refs": {
       }
@@ -3749,6 +4143,12 @@
       "base": null,
       "refs": {
         "VpcEndpoint$DnsEntries": "<p>(Interface endpoint) The DNS entries for the endpoint.</p>"
+      }
+    },
+    "DnsServersOptionsModifyStructure": {
+      "base": "<p>Information about the DNS server to be used.</p>",
+      "refs": {
+        "ModifyClientVpnEndpointRequest$DnsServers": "<p>Information about the DNS servers to be used by Client VPN connections. A Client VPN endpoint can have up to two DNS servers.</p>"
       }
     },
     "DnsSupportValue": {
@@ -3989,6 +4389,12 @@
         "ModifyCapacityReservationRequest$EndDateType": "<p>Indicates the way in which the Capacity Reservation ends. A Capacity Reservation can have one of the following end types:</p> <ul> <li> <p> <code>unlimited</code> - The Capacity Reservation remains active until you explicitly cancel it. Do not provide an <code>EndDate</code> value if <code>EndDateType</code> is <code>unlimited</code>.</p> </li> <li> <p> <code>limited</code> - The Capacity Reservation expires automatically at a specified date and time. You must provide an <code>EndDate</code> value if <code>EndDateType</code> is <code>limited</code>.</p> </li> </ul>"
       }
     },
+    "EndpointSet": {
+      "base": null,
+      "refs": {
+        "DescribeClientVpnEndpointsResult$ClientVpnEndpoints": "<p>Information about the Client VPN endpoints.</p>"
+      }
+    },
     "EventCode": {
       "base": null,
       "refs": {
@@ -4020,6 +4426,26 @@
       "base": null,
       "refs": {
         "DescribeImagesRequest$ExecutableUsers": "<p>Scopes the images by users with explicit launch permissions. Specify an AWS account ID, <code>self</code> (the sender of the request), or <code>all</code> (public AMIs).</p>"
+      }
+    },
+    "ExportClientVpnClientCertificateRevocationListRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ExportClientVpnClientCertificateRevocationListResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ExportClientVpnClientConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ExportClientVpnClientConfigurationResult": {
+      "base": null,
+      "refs": {
       }
     },
     "ExportEnvironment": {
@@ -4090,6 +4516,11 @@
         "DescribeBundleTasksRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>bundle-id</code> - The ID of the bundle task.</p> </li> <li> <p> <code>error-code</code> - If the task failed, the error code returned.</p> </li> <li> <p> <code>error-message</code> - If the task failed, the error message returned.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance.</p> </li> <li> <p> <code>progress</code> - The level of task completion, as a percentage (for example, 20%).</p> </li> <li> <p> <code>s3-bucket</code> - The Amazon S3 bucket to store the AMI.</p> </li> <li> <p> <code>s3-prefix</code> - The beginning of the AMI name.</p> </li> <li> <p> <code>start-time</code> - The time the task started (for example, 2013-09-15T17:15:20.000Z).</p> </li> <li> <p> <code>state</code> - The state of the task (<code>pending</code> | <code>waiting-for-shutdown</code> | <code>bundling</code> | <code>storing</code> | <code>cancelling</code> | <code>complete</code> | <code>failed</code>).</p> </li> <li> <p> <code>update-time</code> - The time of the most recent update for the task.</p> </li> </ul>",
         "DescribeCapacityReservationsRequest$Filters": "<p>One or more filters.</p>",
         "DescribeClassicLinkInstancesRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>group-id</code> - The ID of a VPC security group that's associated with the instance.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC to which the instance is linked.</p> <p> <code>vpc-id</code> - The ID of the VPC that the instance is linked to.</p> </li> </ul>",
+        "DescribeClientVpnAuthorizationRulesRequest$Filters": "<p>One or more filters. Filter names and values are case-sensitive.</p>",
+        "DescribeClientVpnConnectionsRequest$Filters": "<p>One or more filters. Filter names and values are case-sensitive.</p>",
+        "DescribeClientVpnEndpointsRequest$Filters": "<p>One or more filters. Filter names and values are case-sensitive.</p>",
+        "DescribeClientVpnRoutesRequest$Filters": "<p>One or more filters. Filter names and values are case-sensitive.</p>",
+        "DescribeClientVpnTargetNetworksRequest$Filters": "<p>One or more filters. Filter names and values are case-sensitive.</p>",
         "DescribeCustomerGatewaysRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>bgp-asn</code> - The customer gateway's Border Gateway Protocol (BGP) Autonomous System Number (ASN).</p> </li> <li> <p> <code>customer-gateway-id</code> - The ID of the customer gateway.</p> </li> <li> <p> <code>ip-address</code> - The IP address of the customer gateway's Internet-routable external interface.</p> </li> <li> <p> <code>state</code> - The state of the customer gateway (<code>pending</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code>).</p> </li> <li> <p> <code>type</code> - The type of customer gateway. Currently, the only supported type is <code>ipsec.1</code>.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
         "DescribeDhcpOptionsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>dhcp-options-id</code> - The ID of a DHCP options set.</p> </li> <li> <p> <code>key</code> - The key for one of the options (for example, <code>domain-name</code>).</p> </li> <li> <p> <code>value</code> - The value for one of the options.</p> </li> <li> <p> <code>owner-id</code> - The ID of the AWS account that owns the DHCP options set.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
         "DescribeElasticGpusRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>availability-zone</code> - The Availability Zone in which the Elastic Graphics accelerator resides.</p> </li> <li> <p> <code>elastic-gpu-health</code> - The status of the Elastic Graphics accelerator (<code>OK</code> | <code>IMPAIRED</code>).</p> </li> <li> <p> <code>elastic-gpu-state</code> - The state of the Elastic Graphics accelerator (<code>ATTACHED</code>).</p> </li> <li> <p> <code>elastic-gpu-type</code> - The type of Elastic Graphics accelerator; for example, <code>eg1.medium</code>.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance to which the Elastic Graphics accelerator is associated.</p> </li> </ul>",
@@ -4740,6 +5171,16 @@
         "Image$ImageType": "<p>The type of image.</p>"
       }
     },
+    "ImportClientVpnClientCertificateRevocationListRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ImportClientVpnClientCertificateRevocationListResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ImportImageRequest": {
       "base": "<p>Contains the parameters for ImportImage.</p>",
       "refs": {
@@ -5248,7 +5689,7 @@
         "CreateNetworkInterfaceRequest$Ipv6AddressCount": "<p>The number of IPv6 addresses to assign to a network interface. Amazon EC2 automatically selects the IPv6 addresses from the subnet range. You can't use this option if specifying specific IPv6 addresses. If your subnet has the <code>AssignIpv6AddressOnCreation</code> attribute set to <code>true</code>, you can specify <code>0</code> to override this setting.</p>",
         "CreateNetworkInterfaceRequest$SecondaryPrivateIpAddressCount": "<p>The number of secondary private IPv4 addresses to assign to a network interface. When you specify a number of secondary IPv4 addresses, Amazon EC2 selects these IP addresses within the subnet's IPv4 CIDR range. You can't specify this option and specify more than one private IP address using <code>privateIpAddresses</code>.</p> <p>The number of IP addresses you can assign to a network interface varies by instance type. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI\">IP Addresses Per ENI Per Instance Type</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
         "CreateReservedInstancesListingRequest$InstanceCount": "<p>The number of instances that are a part of a Reserved Instance account to be listed in the Reserved Instance Marketplace. This number should be less than or equal to the instance count associated with the Reserved Instance ID specified in this call.</p>",
-        "CreateVolumeRequest$Iops": "<p>The number of I/O operations per second (IOPS) to provision for the volume, with a maximum ratio of 50 IOPS/GiB. Range is 100 to 64,000IOPS for volumes in most regions. Maximum IOPS of 64,000 is guaranteed only on <a href=\"AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances\">Nitro-based instances</a>. Other instance families guarantee performance up to 32,000 IOPS. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html\">Amazon EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>This parameter is valid only for Provisioned IOPS SSD (io1) volumes.</p>",
+        "CreateVolumeRequest$Iops": "<p>The number of I/O operations per second (IOPS) to provision for the volume, with a maximum ratio of 50 IOPS/GiB. Range is 100 to 64,000 IOPS for volumes in most regions. Maximum IOPS of 64,000 is guaranteed only on <a href=\"AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances\">Nitro-based instances</a>. Other instance families guarantee performance up to 32,000 IOPS. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html\">Amazon EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>This parameter is valid only for Provisioned IOPS SSD (io1) volumes.</p>",
         "CreateVolumeRequest$Size": "<p>The size of the volume, in GiBs.</p> <p>Constraints: 1-16,384 for <code>gp2</code>, 4-16,384 for <code>io1</code>, 500-16,384 for <code>st1</code>, 500-16,384 for <code>sc1</code>, and 1-1,024 for <code>standard</code>. If you specify a snapshot, the volume size must be equal to or larger than the snapshot size.</p> <p>Default: If you're creating the volume from a snapshot and don't specify a volume size, the default is the snapshot size.</p>",
         "DeleteNetworkAclEntryRequest$RuleNumber": "<p>The rule number of the entry to delete.</p>",
         "DescribeCapacityReservationsRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the returned nextToken value.</p>",
@@ -5301,7 +5742,7 @@
         "DescribeVpcEndpointServicePermissionsRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results of the initial request can be seen by sending another request with the returned <code>NextToken</code> value. This value can be between 5 and 1000; if <code>MaxResults</code> is given a value larger than 1000, only 1000 results are returned.</p>",
         "DescribeVpcEndpointServicesRequest$MaxResults": "<p>The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results.</p> <p>Constraint: If the value is greater than 1000, we return only 1000 items.</p>",
         "DescribeVpcEndpointsRequest$MaxResults": "<p>The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results.</p> <p>Constraint: If the value is greater than 1000, we return only 1000 items.</p>",
-        "EbsBlockDevice$Iops": "<p>The number of I/O operations per second (IOPS) that the volume supports. For <code>io1</code>, this represents the number of IOPS that are provisioned for the volume. For <code>gp2</code>, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting. For more information about General Purpose SSD baseline performance, I/O credits, and bursting, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html\">Amazon EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Constraints: Range is 100-10,000 IOPS for <code>gp2</code> volumes and 100 to 64,000IOPS for <code>io1</code> volumes in most regions. Maximum <code>io1</code>IOPS of 64,000 is guaranteed only on <a href=\"AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances\">Nitro-based instances</a>. Other instance families guarantee performance up to 32,000 IOPS. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html\">Amazon EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Condition: This parameter is required for requests to create <code>io1</code> volumes; it is not used in requests to create <code>gp2</code>, <code>st1</code>, <code>sc1</code>, or <code>standard</code> volumes.</p>",
+        "EbsBlockDevice$Iops": "<p>The number of I/O operations per second (IOPS) that the volume supports. For <code>io1</code>, this represents the number of IOPS that are provisioned for the volume. For <code>gp2</code>, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting. For more information about General Purpose SSD baseline performance, I/O credits, and bursting, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html\">Amazon EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Constraints: Range is 100-16,000 IOPS for <code>gp2</code> volumes and 100 to 64,000IOPS for <code>io1</code> volumes in most Regions. Maximum <code>io1</code>IOPS of 64,000 is guaranteed only on <a href=\"AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances\">Nitro-based instances</a>. Other instance families guarantee performance up to 32,000 IOPS. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html\">Amazon EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Condition: This parameter is required for requests to create <code>io1</code> volumes; it is not used in requests to create <code>gp2</code>, <code>st1</code>, <code>sc1</code>, or <code>standard</code> volumes.</p>",
         "EbsBlockDevice$VolumeSize": "<p>The size of the volume, in GiB.</p> <p>Constraints: 1-16384 for General Purpose SSD (<code>gp2</code>), 4-16384 for Provisioned IOPS SSD (<code>io1</code>), 500-16384 for Throughput Optimized HDD (<code>st1</code>), 500-16384 for Cold HDD (<code>sc1</code>), and 1-1024 for Magnetic (<code>standard</code>) volumes. If you specify a snapshot, the volume size must be equal to or larger than the snapshot size.</p> <p>Default: If you're creating the volume from a snapshot and don't specify a volume size, the default is the snapshot size.</p>",
         "HostOffering$Duration": "<p>The duration of the offering (in seconds).</p>",
         "HostProperties$Cores": "<p>The number of cores on the Dedicated Host.</p>",
@@ -5409,7 +5850,7 @@
         "TargetConfigurationRequest$InstanceCount": "<p>The number of instances the Covertible Reserved Instance offering can be applied to. This parameter is reserved and cannot be specified in a request</p>",
         "VgwTelemetry$AcceptedRouteCount": "<p>The number of accepted routes.</p>",
         "Volume$Size": "<p>The size of the volume, in GiBs.</p>",
-        "Volume$Iops": "<p>The number of I/O operations per second (IOPS) that the volume supports. For Provisioned IOPS SSD volumes, this represents the number of IOPS that are provisioned for the volume. For General Purpose SSD volumes, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting. For more information about General Purpose SSD baseline performance, I/O credits, and bursting, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html\">Amazon EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Constraints: Range is 100-10,000 IOPS for <code>gp2</code> volumes and 100 to 64,000IOPS for <code>io1</code> volumes in most regions. Maximum <code>io1</code>IOPS of 64,000 is guaranteed only on <a href=\"AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances\">Nitro-based instances</a>. Other instance families guarantee performance up to 32,000 IOPS. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html\">Amazon EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Condition: This parameter is required for requests to create <code>io1</code> volumes; it is not used in requests to create <code>gp2</code>, <code>st1</code>, <code>sc1</code>, or <code>standard</code> volumes.</p>",
+        "Volume$Iops": "<p>The number of I/O operations per second (IOPS) that the volume supports. For Provisioned IOPS SSD volumes, this represents the number of IOPS that are provisioned for the volume. For General Purpose SSD volumes, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting. For more information about General Purpose SSD baseline performance, I/O credits, and bursting, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html\">Amazon EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Constraints: Range is 100-16,000 IOPS for <code>gp2</code> volumes and 100 to 64,000IOPS for <code>io1</code> volumes in most regions. Maximum <code>io1</code>IOPS of 64,000 is guaranteed only on <a href=\"AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances\">Nitro-based instances</a>. Other instance families guarantee performance up to 32,000 IOPS. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html\">Amazon EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Condition: This parameter is required for requests to create <code>io1</code> volumes; it is not used in requests to create <code>gp2</code>, <code>st1</code>, <code>sc1</code>, or <code>standard</code> volumes.</p>",
         "VolumeModification$TargetSize": "<p>The target size of the volume, in GiB.</p>",
         "VolumeModification$TargetIops": "<p>The target IOPS rate of the volume.</p>",
         "VolumeModification$OriginalSize": "<p>The original size of the volume.</p>",
@@ -6030,6 +6471,11 @@
       "base": null,
       "refs": {
         "DescribeByoipCidrsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
+        "DescribeClientVpnAuthorizationRulesRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the nextToken value.</p>",
+        "DescribeClientVpnConnectionsRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the nextToken value.</p>",
+        "DescribeClientVpnEndpointsRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the nextToken value.</p>",
+        "DescribeClientVpnRoutesRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the nextToken value.</p>",
+        "DescribeClientVpnTargetNetworksRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the nextToken value.</p>",
         "DescribeFpgaImagesRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "DescribeIamInstanceProfileAssociationsRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>",
         "DescribeStaleSecurityGroupsRequest$MaxResults": "<p>The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results.</p>",
@@ -6042,6 +6488,16 @@
       }
     },
     "ModifyCapacityReservationResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyClientVpnEndpointRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyClientVpnEndpointResult": {
       "base": null,
       "refs": {
       }
@@ -6515,6 +6971,16 @@
       "base": null,
       "refs": {
         "DescribeByoipCidrsRequest$NextToken": "<p>The token for the next page of results.</p>",
+        "DescribeClientVpnAuthorizationRulesRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
+        "DescribeClientVpnAuthorizationRulesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "DescribeClientVpnConnectionsRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
+        "DescribeClientVpnConnectionsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "DescribeClientVpnEndpointsRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
+        "DescribeClientVpnEndpointsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "DescribeClientVpnRoutesRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
+        "DescribeClientVpnRoutesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "DescribeClientVpnTargetNetworksRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
+        "DescribeClientVpnTargetNetworksResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeFpgaImagesRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
         "DescribeFpgaImagesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeIamInstanceProfileAssociationsRequest$NextToken": "<p>The token to request the next page of results.</p>",
@@ -7403,8 +7869,8 @@
     "ResourceIdList": {
       "base": null,
       "refs": {
-        "CreateTagsRequest$Resources": "<p>The IDs of one or more resources, separated by spaces.</p>",
-        "DeleteTagsRequest$Resources": "<p>The IDs of one or more resources, separated by spaces.</p>"
+        "CreateTagsRequest$Resources": "<p>The IDs of one or more resources, separated by spaces.</p> <p>Constraints: Up to 1000 resource IDs. We recommend breaking up this request into smaller batches.</p>",
+        "DeleteTagsRequest$Resources": "<p>The IDs of one or more resources, separated by spaces.</p> <p>Constraints: Up to 1000 resource IDs. We recommend breaking up this request into smaller batches.</p>"
       }
     },
     "ResourceList": {
@@ -7463,6 +7929,16 @@
       }
     },
     "RestoreAddressToClassicResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RevokeClientVpnIngressRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RevokeClientVpnIngressResult": {
       "base": null,
       "refs": {
       }
@@ -8149,6 +8625,8 @@
         "AllocateHostsRequest$InstanceType": "<p>Specify the instance type for which to configure your Dedicated Hosts. When you specify the instance type, that is the only instance type that you can launch onto that host.</p>",
         "AllocationIdList$member": null,
         "AllowedPrincipal$Principal": "<p>The Amazon Resource Name (ARN) of the principal.</p>",
+        "ApplySecurityGroupsToClientVpnTargetNetworkRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
+        "ApplySecurityGroupsToClientVpnTargetNetworkRequest$VpcId": "<p>The ID of the VPC in which the associated target network is located.</p>",
         "AssignIpv6AddressesRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "AssignIpv6AddressesResult$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "AssignPrivateIpAddressesRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
@@ -8158,6 +8636,9 @@
         "AssociateAddressRequest$NetworkInterfaceId": "<p>[EC2-VPC] The ID of the network interface. If the instance has more than one network interface, you must specify a network interface ID.</p>",
         "AssociateAddressRequest$PrivateIpAddress": "<p>[EC2-VPC] The primary or secondary private IP address to associate with the Elastic IP address. If no private IP address is specified, the Elastic IP address is associated with the primary private IP address.</p>",
         "AssociateAddressResult$AssociationId": "<p>[EC2-VPC] The ID that represents the association of the Elastic IP address with an instance.</p>",
+        "AssociateClientVpnTargetNetworkRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
+        "AssociateClientVpnTargetNetworkRequest$SubnetId": "<p>The ID of the subnet to associate with the Client VPN endpoint.</p>",
+        "AssociateClientVpnTargetNetworkResult$AssociationId": "<p>The unique ID of the target network association.</p>",
         "AssociateDhcpOptionsRequest$DhcpOptionsId": "<p>The ID of the DHCP options set, or <code>default</code> to associate no DHCP options with the VPC.</p>",
         "AssociateDhcpOptionsRequest$VpcId": "<p>The ID of the VPC.</p>",
         "AssociateIamInstanceProfileRequest$InstanceId": "<p>The ID of the instance.</p>",
@@ -8172,7 +8653,9 @@
         "AssociateVpcCidrBlockRequest$CidrBlock": "<p>An IPv4 CIDR block to associate with the VPC.</p>",
         "AssociateVpcCidrBlockRequest$VpcId": "<p>The ID of the VPC.</p>",
         "AssociateVpcCidrBlockResult$VpcId": "<p>The ID of the VPC.</p>",
+        "AssociatedTargetNetwork$NetworkId": "<p> <b>The ID of the subnet.</b> </p>",
         "AssociationIdList$member": null,
+        "AssociationStatus$Message": "<p>A message about the status of the target network association, if applicable.</p>",
         "AttachClassicLinkVpcRequest$InstanceId": "<p>The ID of an EC2-Classic instance to link to the ClassicLink-enabled VPC.</p>",
         "AttachClassicLinkVpcRequest$VpcId": "<p>The ID of a ClassicLink-enabled VPC.</p>",
         "AttachInternetGatewayRequest$InternetGatewayId": "<p>The ID of the internet gateway.</p>",
@@ -8186,6 +8669,14 @@
         "AttachVpnGatewayRequest$VpcId": "<p>The ID of the VPC.</p>",
         "AttachVpnGatewayRequest$VpnGatewayId": "<p>The ID of the virtual private gateway.</p>",
         "AttributeValue$Value": "<p>The attribute value. The value is case-sensitive.</p>",
+        "AuthorizationRule$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint with which the authorization rule is associated.</p>",
+        "AuthorizationRule$Description": "<p>A brief description of the authorization rule.</p>",
+        "AuthorizationRule$GroupId": "<p>The ID of the Active Directory group to which the authorization rule grants access.</p>",
+        "AuthorizationRule$DestinationCidr": "<p>The IPv4 address range, in CIDR notation, of the network to which the authorization rule applies.</p>",
+        "AuthorizeClientVpnIngressRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
+        "AuthorizeClientVpnIngressRequest$TargetNetworkCidr": "<p>The IPv4 address range, in CIDR notation, of the network for which access is being authorized.</p>",
+        "AuthorizeClientVpnIngressRequest$AccessGroupId": "<p>The ID of the Active Directory group to grant access.</p>",
+        "AuthorizeClientVpnIngressRequest$Description": "<p>A brief description of the authorization rule.</p>",
         "AuthorizeSecurityGroupEgressRequest$GroupId": "<p>The ID of the security group.</p>",
         "AuthorizeSecurityGroupEgressRequest$CidrIp": "<p>Not supported. Use a set of IP permissions to specify the CIDR.</p>",
         "AuthorizeSecurityGroupEgressRequest$IpProtocol": "<p>Not supported. Use a set of IP permissions to specify the protocol name or number.</p>",
@@ -8236,6 +8727,8 @@
         "CapacityReservationIdSet$member": null,
         "CapacityReservationTarget$CapacityReservationId": "<p>The ID of the Capacity Reservation.</p>",
         "CapacityReservationTargetResponse$CapacityReservationId": "<p>The ID of the Capacity Reservation.</p>",
+        "CertificateAuthentication$ClientRootCertificateChain": "<p> <b>The ARN of the client certificate. </b> </p>",
+        "CertificateAuthenticationRequest$ClientRootCertificateChainArn": "<p> <b>The ARN of the client certificate. The certificate must be signed by a certificate authority (CA) and it must be provisioned in AWS Certificate Manager (ACM).</b> </p>",
         "CidrAuthorizationContext$Message": "<p>The plain-text authorization message for the prefix and account.</p>",
         "CidrAuthorizationContext$Signature": "<p>The signed authorization message for the prefix and account.</p>",
         "CidrBlock$CidrBlock": "<p>The IPv4 CIDR block.</p>",
@@ -8243,10 +8736,45 @@
         "ClassicLinkInstance$InstanceId": "<p>The ID of the instance.</p>",
         "ClassicLinkInstance$VpcId": "<p>The ID of the VPC.</p>",
         "ClassicLoadBalancer$Name": "<p>The name of the load balancer.</p>",
+        "ClientCertificateRevocationListStatus$Message": "<p>A message about the status of the client certificate revocation list, if applicable.</p>",
         "ClientData$Comment": "<p>A user-defined comment about the disk upload.</p>",
+        "ClientVpnAuthorizationRuleStatus$Message": "<p>A message about the status of the authorization rule, if applicable.</p>",
+        "ClientVpnConnection$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint to which the client is connected.</p>",
+        "ClientVpnConnection$Timestamp": "<p> <b>The current date and time.</b> </p>",
+        "ClientVpnConnection$ConnectionId": "<p>The ID of the client connection.</p>",
+        "ClientVpnConnection$Username": "<p>The username of the client who established the client connection. This information is only provided if Active Directory client authentication is used.</p>",
+        "ClientVpnConnection$ConnectionEstablishedTime": "<p>The date and time the client connection was established.</p>",
+        "ClientVpnConnection$IngressBytes": "<p>The number of bytes sent by the client.</p>",
+        "ClientVpnConnection$EgressBytes": "<p>The number of bytes received by the client.</p>",
+        "ClientVpnConnection$IngressPackets": "<p>The number of packets sent by the client.</p>",
+        "ClientVpnConnection$EgressPackets": "<p>The number of packets received by the client.</p>",
+        "ClientVpnConnection$ClientIp": "<p>The IP address of the client.</p>",
+        "ClientVpnConnection$CommonName": "<p> <b>The common name associated with the client. This is either the name of the client certificate, or the Active Directory user name.</b> </p>",
+        "ClientVpnConnection$ConnectionEndTime": "<p>The date and time the client connection was terminated.</p>",
+        "ClientVpnConnectionStatus$Message": "<p>A message about the status of the client connection, if applicable.</p>",
+        "ClientVpnEndpoint$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
+        "ClientVpnEndpoint$Description": "<p>A brief description of the endpoint.</p>",
+        "ClientVpnEndpoint$CreationTime": "<p>The date and time the Client VPN endpoint was created.</p>",
+        "ClientVpnEndpoint$DeletionTime": "<p>The date and time the Client VPN endpoint was deleted, if applicable. Information about deleted Client VPN endpoints is retained for 24 hours, unless a new Client VPN is created with the same name.</p>",
+        "ClientVpnEndpoint$DnsName": "<p>The DNS name to be used by clients when establishing a connection.</p>",
+        "ClientVpnEndpoint$ClientCidrBlock": "<p>The IPv4 address range, in CIDR notation, from which client IP addresses are assigned.</p>",
+        "ClientVpnEndpoint$ServerCertificateArn": "<p>The ARN of the server certificate.</p>",
+        "ClientVpnEndpointStatus$Message": "<p>A message about the status of the Client VPN endpoint.</p>",
+        "ClientVpnRoute$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint with which the route is associated.</p>",
+        "ClientVpnRoute$DestinationCidr": "<p>The IPv4 address range, in CIDR notation, of the route destination.</p>",
+        "ClientVpnRoute$TargetSubnet": "<p>The ID of the subnet through which traffic is routed.</p>",
+        "ClientVpnRoute$Type": "<p> <b>The route type.</b> </p>",
+        "ClientVpnRoute$Origin": "<p>Indicates how the route was associated with the Client VPN endpoint. <code>associate</code> indicates that the route was automatically added when the target network was associated with the Client VPN endpoint. <code>add-route</code> indicates that the route was manually added using the <b>CreateClientVpnRoute</b> action.</p>",
+        "ClientVpnRoute$Description": "<p>A brief description of the route.</p>",
+        "ClientVpnRouteStatus$Message": "<p>A message about the status of the Client VPN endpoint route, if applicable.</p>",
+        "ClientVpnSecurityGroupIdSet$member": null,
         "ConfirmProductInstanceRequest$InstanceId": "<p>The ID of the instance.</p>",
         "ConfirmProductInstanceRequest$ProductCode": "<p>The product code. This must be a product code that you own.</p>",
         "ConfirmProductInstanceResult$OwnerId": "<p>The AWS account ID of the instance owner. This is only present if the product code is attached to the instance.</p>",
+        "ConnectionLogOptions$CloudwatchLogGroup": "<p>The name of the CloudWatch Logs log group.</p>",
+        "ConnectionLogOptions$CloudwatchLogStream": "<p>The name of the CloudWatch Logs log stream to which the connection data is published.</p>",
+        "ConnectionLogResponseOptions$CloudwatchLogGroup": "<p>The name of the Amazon CloudWatch Logs log group to which connection logging data is published.</p>",
+        "ConnectionLogResponseOptions$CloudwatchLogStream": "<p>The name of the Amazon CloudWatch Logs log stream to which connection logging data is published.</p>",
         "ConnectionNotification$ConnectionNotificationId": "<p>The ID of the notification.</p>",
         "ConnectionNotification$ServiceId": "<p>The ID of the endpoint service.</p>",
         "ConnectionNotification$VpcEndpointId": "<p>The ID of the VPC endpoint.</p>",
@@ -8278,6 +8806,16 @@
         "CreateCapacityReservationRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p> <p>Constraint: Maximum 64 ASCII characters.</p>",
         "CreateCapacityReservationRequest$InstanceType": "<p>The instance type for which to reserve capacity. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "CreateCapacityReservationRequest$AvailabilityZone": "<p>The Availability Zone in which to create the Capacity Reservation.</p>",
+        "CreateClientVpnEndpointRequest$ClientCidrBlock": "<p>The IPv4 address range, in CIDR notation, from which to assign client IP addresses. The address range cannot overlap with the local CIDR of the VPC in which the associated subnet is located, or the routes that you add manually. The address range cannot be changed after the Client VPN endpoint has been created. The CIDR block should be /22 or greater.</p>",
+        "CreateClientVpnEndpointRequest$ServerCertificateArn": "<p>The ARN of the server certificate. For more information, see the <a href=\"acm/latest/userguide/acm-overview.html\">AWS Certificate Manager User Guide</a> .</p>",
+        "CreateClientVpnEndpointRequest$Description": "<p>A brief description of the Client VPN endpoint.</p>",
+        "CreateClientVpnEndpointRequest$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html\"> How to Ensure Idempotency</a>.</p>",
+        "CreateClientVpnEndpointResult$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
+        "CreateClientVpnEndpointResult$DnsName": "<p>The DNS name to be used by clients when establishing their VPN session.</p>",
+        "CreateClientVpnRouteRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint to which to add the route.</p>",
+        "CreateClientVpnRouteRequest$DestinationCidrBlock": "<p>The IPv4 address range, in CIDR notation, of the route destination. For example:</p> <ul> <li> <p>To add a route for Internet access, enter <code>0.0.0.0/0</code> </p> </li> <li> <p>To add a route for a peered VPC, enter the peered VPC's IPv4 CIDR range</p> </li> <li> <p>To add a route for an on-premises network, enter the AWS Site-to-Site VPN connection's IPv4 CIDR range</p> </li> </ul> <p>Route address ranges cannot overlap with the CIDR range specified for client allocation.</p>",
+        "CreateClientVpnRouteRequest$TargetVpcSubnetId": "<p>The ID of the subnet through which you want to route traffic. The specified subnet must be an existing target network of the Client VPN endpoint.</p>",
+        "CreateClientVpnRouteRequest$Description": "<p>A brief description of the route.</p>",
         "CreateCustomerGatewayRequest$PublicIp": "<p>The Internet-routable IP address for the customer gateway's outside interface. The address must be static.</p>",
         "CreateDefaultSubnetRequest$AvailabilityZone": "<p>The Availability Zone in which to create the default subnet.</p>",
         "CreateEgressOnlyInternetGatewayRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
@@ -8392,6 +8930,10 @@
         "CustomerGateway$State": "<p>The current state of the customer gateway (<code>pending | available | deleting | deleted</code>).</p>",
         "CustomerGateway$Type": "<p>The type of VPN connection the customer gateway supports (<code>ipsec.1</code>).</p>",
         "CustomerGatewayIdStringList$member": null,
+        "DeleteClientVpnEndpointRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN to be deleted.</p>",
+        "DeleteClientVpnRouteRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint from which the route is to be deleted.</p>",
+        "DeleteClientVpnRouteRequest$TargetVpcSubnetId": "<p>The ID of the target subnet used by the route.</p>",
+        "DeleteClientVpnRouteRequest$DestinationCidrBlock": "<p>The IPv4 address range, in CIDR notation, of the route to be deleted.</p>",
         "DeleteCustomerGatewayRequest$CustomerGatewayId": "<p>The ID of the customer gateway.</p>",
         "DeleteDhcpOptionsRequest$DhcpOptionsId": "<p>The ID of the DHCP options set.</p>",
         "DeleteFleetError$Message": "<p>The description for the error code.</p>",
@@ -8438,6 +8980,10 @@
         "DescribeCapacityReservationsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeClassicLinkInstancesRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
         "DescribeClassicLinkInstancesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "DescribeClientVpnAuthorizationRulesRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
+        "DescribeClientVpnConnectionsRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
+        "DescribeClientVpnRoutesRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
+        "DescribeClientVpnTargetNetworksRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
         "DescribeEgressOnlyInternetGatewaysRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
         "DescribeEgressOnlyInternetGatewaysResult$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "DescribeElasticGpusRequest$NextToken": "<p>The token to request the next page of results.</p>",
@@ -8579,6 +9125,8 @@
         "DhcpOptions$DhcpOptionsId": "<p>The ID of the set of DHCP options.</p>",
         "DhcpOptions$OwnerId": "<p>The ID of the AWS account that owns the DHCP options set.</p>",
         "DhcpOptionsIdStringList$member": null,
+        "DirectoryServiceAuthentication$DirectoryId": "<p>The ID of the Active Directory used for authentication.</p>",
+        "DirectoryServiceAuthenticationRequest$DirectoryId": "<p>The ID of the Active Directory to be used for authentication.</p>",
         "DisableTransitGatewayRouteTablePropagationRequest$TransitGatewayRouteTableId": "<p>The ID of the propagation route table.</p>",
         "DisableTransitGatewayRouteTablePropagationRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
         "DisableVgwRoutePropagationRequest$GatewayId": "<p>The ID of the virtual private gateway.</p>",
@@ -8587,6 +9135,9 @@
         "DisableVpcClassicLinkRequest$VpcId": "<p>The ID of the VPC.</p>",
         "DisassociateAddressRequest$AssociationId": "<p>[EC2-VPC] The association ID. Required for EC2-VPC.</p>",
         "DisassociateAddressRequest$PublicIp": "<p>[EC2-Classic] The Elastic IP address. Required for EC2-Classic.</p>",
+        "DisassociateClientVpnTargetNetworkRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint from which to disassociate the target network.</p>",
+        "DisassociateClientVpnTargetNetworkRequest$AssociationId": "<p>The ID of the target network association.</p>",
+        "DisassociateClientVpnTargetNetworkResult$AssociationId": "<p>The ID of the target network association.</p>",
         "DisassociateIamInstanceProfileRequest$AssociationId": "<p>The ID of the IAM instance profile association.</p>",
         "DisassociateRouteTableRequest$AssociationId": "<p>The association ID representing the current association between the route table and subnet.</p>",
         "DisassociateSubnetCidrBlockRequest$AssociationId": "<p>The association ID for the CIDR block.</p>",
@@ -8632,6 +9183,10 @@
         "EventInformation$EventSubType": "<p>The event.</p> <p>The following are the <code>error</code> events:</p> <ul> <li> <p> <code>iamFleetRoleInvalid</code> - The Spot Fleet did not have the required permissions either to launch or terminate an instance.</p> </li> <li> <p> <code>launchSpecTemporarilyBlacklisted</code> - The configuration is not valid and several attempts to launch instances have failed. For more information, see the description of the event.</p> </li> <li> <p> <code>spotFleetRequestConfigurationInvalid</code> - The configuration is not valid. For more information, see the description of the event.</p> </li> <li> <p> <code>spotInstanceCountLimitExceeded</code> - You've reached the limit on the number of Spot Instances that you can launch.</p> </li> </ul> <p>The following are the <code>fleetRequestChange</code> events:</p> <ul> <li> <p> <code>active</code> - The Spot Fleet has been validated and Amazon EC2 is attempting to maintain the target number of running Spot Instances.</p> </li> <li> <p> <code>cancelled</code> - The Spot Fleet is canceled and has no running Spot Instances. The Spot Fleet will be deleted two days after its instances were terminated.</p> </li> <li> <p> <code>cancelled_running</code> - The Spot Fleet is canceled and does not launch additional Spot Instances. Existing Spot Instances continue to run until they are interrupted or terminated.</p> </li> <li> <p> <code>cancelled_terminating</code> - The Spot Fleet is canceled and its Spot Instances are terminating.</p> </li> <li> <p> <code>expired</code> - The Spot Fleet request has expired. A subsequent event indicates that the instances were terminated, if the request was created with <code>TerminateInstancesWithExpiration</code> set.</p> </li> <li> <p> <code>modify_in_progress</code> - A request to modify the Spot Fleet request was accepted and is in progress.</p> </li> <li> <p> <code>modify_successful</code> - The Spot Fleet request was modified.</p> </li> <li> <p> <code>price_update</code> - The price for a launch configuration was adjusted because it was too high. This change is permanent.</p> </li> <li> <p> <code>submitted</code> - The Spot Fleet request is being evaluated and Amazon EC2 is preparing to launch the target number of Spot Instances.</p> </li> </ul> <p>The following are the <code>instanceChange</code> events:</p> <ul> <li> <p> <code>launched</code> - A request was fulfilled and a new instance was launched.</p> </li> <li> <p> <code>terminated</code> - An instance was terminated by the user.</p> </li> </ul> <p>The following are the <code>Information</code> events:</p> <ul> <li> <p> <code>launchSpecUnusable</code> - The price in a launch specification is not valid because it is below the Spot price or the Spot price is above the On-Demand price.</p> </li> <li> <p> <code>fleetProgressHalted</code> - The price in every launch specification is not valid. A launch specification might become valid if the Spot price changes.</p> </li> </ul>",
         "EventInformation$InstanceId": "<p>The ID of the instance. This information is available only for <code>instanceChange</code> events.</p>",
         "ExecutableByStringList$member": null,
+        "ExportClientVpnClientCertificateRevocationListRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
+        "ExportClientVpnClientCertificateRevocationListResult$CertificateRevocationList": "<p>Information about the client certificate revocation list.</p>",
+        "ExportClientVpnClientConfigurationRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
+        "ExportClientVpnClientConfigurationResult$ClientConfiguration": "<p>the contents of the client configuration file.</p>",
         "ExportTask$Description": "<p>A description of the resource being exported.</p>",
         "ExportTask$ExportTaskId": "<p>The ID of the export task.</p>",
         "ExportTask$StatusMessage": "<p>The status message related to the export task.</p>",
@@ -8747,6 +9302,8 @@
         "ImageDiskContainer$SnapshotId": "<p>The ID of the EBS snapshot to be used for importing the snapshot.</p>",
         "ImageDiskContainer$Url": "<p>The URL to the Amazon S3-based disk image being imported. The URL can either be a https URL (https://..) or an Amazon S3 URL (s3://..)</p>",
         "ImageIdStringList$member": null,
+        "ImportClientVpnClientCertificateRevocationListRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint to which the client certificate revocation list applies.</p>",
+        "ImportClientVpnClientCertificateRevocationListRequest$CertificateRevocationList": "<p>The client certificate revocation list file. For more information, see <a href=\"vpn/latest/clientvpn-admin/cvpn-working-certificates.html#cvpn-working-certificates-generate\">Generate a Client Certificate Revocation List</a> in the <i>AWS Client VPN Admin Guide</i>.</p>",
         "ImportImageRequest$Architecture": "<p>The architecture of the virtual machine.</p> <p>Valid values: <code>i386</code> | <code>x86_64</code> </p>",
         "ImportImageRequest$ClientToken": "<p>The token to enable idempotency for VM import requests.</p>",
         "ImportImageRequest$Description": "<p>A description string for the import image task.</p>",
@@ -8936,6 +9493,9 @@
         "LoadPermission$UserId": "<p>The AWS account ID.</p>",
         "LoadPermissionRequest$UserId": "<p>The AWS account ID.</p>",
         "ModifyCapacityReservationRequest$CapacityReservationId": "<p>The ID of the Capacity Reservation.</p>",
+        "ModifyClientVpnEndpointRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint to modify.</p>",
+        "ModifyClientVpnEndpointRequest$ServerCertificateArn": "<p>The ARN of the server certificate to be used. The server certificate must be provisioned in AWS Certificate Manager (ACM).</p>",
+        "ModifyClientVpnEndpointRequest$Description": "<p>A brief description of the Client VPN endpoint.</p>",
         "ModifyFpgaImageAttributeRequest$FpgaImageId": "<p>The ID of the AFI.</p>",
         "ModifyFpgaImageAttributeRequest$Description": "<p>A description for the AFI.</p>",
         "ModifyFpgaImageAttributeRequest$Name": "<p>A name for the AFI.</p>",
@@ -9180,6 +9740,9 @@
         "RestorableByStringList$member": null,
         "RestoreAddressToClassicRequest$PublicIp": "<p>The Elastic IP address.</p>",
         "RestoreAddressToClassicResult$PublicIp": "<p>The Elastic IP address.</p>",
+        "RevokeClientVpnIngressRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint with which the authorization rule is associated.</p>",
+        "RevokeClientVpnIngressRequest$TargetNetworkCidr": "<p>The IPv4 address range, in CIDR notation, of the network for which access is being removed.</p>",
+        "RevokeClientVpnIngressRequest$AccessGroupId": "<p>The ID of the Active Directory group for which to revoke access. </p>",
         "RevokeSecurityGroupEgressRequest$GroupId": "<p>The ID of the security group.</p>",
         "RevokeSecurityGroupEgressRequest$CidrIp": "<p>Not supported. Use a set of IP permissions to specify the CIDR.</p>",
         "RevokeSecurityGroupEgressRequest$IpProtocol": "<p>Not supported. Use a set of IP permissions to specify the protocol name or number.</p>",
@@ -9372,6 +9935,16 @@
         "TargetConfiguration$OfferingId": "<p>The ID of the Convertible Reserved Instance offering.</p>",
         "TargetConfigurationRequest$OfferingId": "<p>The Convertible Reserved Instance offering ID.</p>",
         "TargetGroup$Arn": "<p>The Amazon Resource Name (ARN) of the target group.</p>",
+        "TargetNetwork$AssociationId": "<p>The ID of the association.</p>",
+        "TargetNetwork$VpcId": "<p>The ID of the VPC in which the target network (subnet) is located.</p>",
+        "TargetNetwork$TargetNetworkId": "<p>The ID of the subnet specified as the target network.</p>",
+        "TargetNetwork$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint with which the target network is associated.</p>",
+        "TerminateClientVpnConnectionsRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint to which the client is connected.</p>",
+        "TerminateClientVpnConnectionsRequest$ConnectionId": "<p>The ID of the client connection to be terminated.</p>",
+        "TerminateClientVpnConnectionsRequest$Username": "<p>The name of the user who initiated the connection. Use this option to terminate all active connections for the specified user. This option can only be used if the user has established up to five connections.</p>",
+        "TerminateClientVpnConnectionsResult$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
+        "TerminateClientVpnConnectionsResult$Username": "<p>The user who established the terminated client connections.</p>",
+        "TerminateConnectionStatus$ConnectionId": "<p>The ID of the client connection.</p>",
         "TransitGateway$TransitGatewayId": "<p>The ID of the transit gateway.</p>",
         "TransitGateway$TransitGatewayArn": "<p>The Amazon Resource Name (ARN) of the transit gateway.</p>",
         "TransitGateway$OwnerId": "<p>The ID of the AWS account ID that owns the transit gateway.</p>",
@@ -9703,6 +10276,18 @@
         "LoadBalancersConfig$TargetGroupsConfig": "<p>The target groups.</p>"
       }
     },
+    "TargetNetwork": {
+      "base": "<p>Describes a target network associated with a Client VPN endpoint.</p>",
+      "refs": {
+        "TargetNetworkSet$member": null
+      }
+    },
+    "TargetNetworkSet": {
+      "base": null,
+      "refs": {
+        "DescribeClientVpnTargetNetworksResult$ClientVpnTargetNetworks": "<p>Information about the associated target networks.</p>"
+      }
+    },
     "TargetReservationValue": {
       "base": "<p>The total value of the new Convertible Reserved Instances.</p>",
       "refs": {
@@ -9733,6 +10318,28 @@
         "ReservedInstancesOffering$InstanceTenancy": "<p>The tenancy of the instance.</p>",
         "SpotPlacement$Tenancy": "<p>The tenancy of the instance (if the instance is running in a VPC). An instance with a tenancy of <code>dedicated</code> runs on single-tenant hardware. The <code>host</code> tenancy is not supported for Spot Instances.</p>",
         "Vpc$InstanceTenancy": "<p>The allowed tenancy of instances launched into the VPC.</p>"
+      }
+    },
+    "TerminateClientVpnConnectionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TerminateClientVpnConnectionsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TerminateConnectionStatus": {
+      "base": "<p>Information about a terminated Client VPN endpoint client connection.</p>",
+      "refs": {
+        "TerminateConnectionStatusSet$member": null
+      }
+    },
+    "TerminateConnectionStatusSet": {
+      "base": null,
+      "refs": {
+        "TerminateClientVpnConnectionsResult$ConnectionStatuses": "<p>The current state of the client connections.</p>"
       }
     },
     "TerminateInstancesRequest": {
@@ -10000,6 +10607,13 @@
         "TransitGatewayVpcAttachment$Options": "<p>The VPC attachment options.</p>"
       }
     },
+    "TransportProtocol": {
+      "base": null,
+      "refs": {
+        "ClientVpnEndpoint$TransportProtocol": "<p> <b>The transport protocol used by the Client VPN endpoint.</b> </p>",
+        "CreateClientVpnEndpointRequest$TransportProtocol": "<p>The transport protocol to be used by the VPN session.</p> <p>Default value: <code>udp</code> </p>"
+      }
+    },
     "TunnelOptionsList": {
       "base": null,
       "refs": {
@@ -10167,6 +10781,7 @@
         "AcceptVpcEndpointConnectionsRequest$VpcEndpointIds": "<p>The IDs of one or more interface VPC endpoints.</p>",
         "CancelSpotFleetRequestsRequest$SpotFleetRequestIds": "<p>The IDs of the Spot Fleet requests.</p>",
         "ConnectionNotification$ConnectionEvents": "<p>The events for the notification. Valid values are <code>Accept</code>, <code>Connect</code>, <code>Delete</code>, and <code>Reject</code>.</p>",
+        "CreateClientVpnEndpointRequest$DnsServers": "<p>Information about the DNS servers to be used for DNS resolution. A Client VPN endpoint can have up to two DNS servers. If no DNS server is specified, the DNS address of the VPC that is to be associated with Client VPN endpoint is used as the DNS server.</p>",
         "CreateFlowLogsRequest$ResourceIds": "<p>One or more subnet, network interface, or VPC IDs.</p> <p>Constraints: Maximum of 1000 resources</p>",
         "CreateFlowLogsResult$FlowLogIds": "<p>The IDs of the flow logs.</p>",
         "CreateTransitGatewayVpcAttachmentRequest$SubnetIds": "<p>The IDs of one or more subnets. You can specify only one subnet per Availability Zone. You must specify at least one subnet, but we recommend that you specify two subnets for better availability. The transit gateway uses one IP address from each specified subnet.</p>",
@@ -10179,6 +10794,8 @@
         "DeleteVpcEndpointConnectionNotificationsRequest$ConnectionNotificationIds": "<p>One or more notification IDs.</p>",
         "DeleteVpcEndpointServiceConfigurationsRequest$ServiceIds": "<p>The IDs of one or more services.</p>",
         "DeleteVpcEndpointsRequest$VpcEndpointIds": "<p>One or more VPC endpoint IDs.</p>",
+        "DescribeClientVpnEndpointsRequest$ClientVpnEndpointIds": "<p>The ID of the Client VPN endpoint.</p>",
+        "DescribeClientVpnTargetNetworksRequest$AssociationIds": "<p>The IDs of the target network associations.</p>",
         "DescribeFlowLogsRequest$FlowLogIds": "<p>One or more flow log IDs.</p>",
         "DescribeInternetGatewaysRequest$InternetGatewayIds": "<p>One or more internet gateway IDs.</p> <p>Default: Describes all your internet gateways.</p>",
         "DescribeLaunchTemplatesRequest$LaunchTemplateIds": "<p>One or more launch template IDs.</p>",
@@ -10194,6 +10811,7 @@
         "DescribeVpcEndpointServicesResult$ServiceNames": "<p>A list of supported services.</p>",
         "DescribeVpcEndpointsRequest$VpcEndpointIds": "<p>One or more endpoint IDs.</p>",
         "DescribeVpcPeeringConnectionsRequest$VpcPeeringConnectionIds": "<p>One or more VPC peering connection IDs.</p> <p>Default: Describes all your VPC peering connections.</p>",
+        "DnsServersOptionsModifyStructure$CustomDnsServers": "<p>The IPv4 address range, in CIDR notation, of the DNS servers to be used. You can specify up to two DNS servers. Ensure that the DNS servers can be reached by the clients. The specified values overwrite the existing values.</p>",
         "Filter$Values": "<p>One or more filter values. Filter values are case-sensitive.</p>",
         "ModifyTransitGatewayVpcAttachmentRequest$AddSubnetIds": "<p>The IDs of one or more subnets to add. You can specify at most one subnet per Availability Zone.</p>",
         "ModifyTransitGatewayVpcAttachmentRequest$RemoveSubnetIds": "<p>The IDs of one or more subnets to remove.</p>",
@@ -10220,6 +10838,7 @@
         "ServiceConfiguration$BaseEndpointDnsNames": "<p>The DNS names for the service.</p>",
         "ServiceDetail$AvailabilityZones": "<p>The Availability Zones in which the service is available.</p>",
         "ServiceDetail$BaseEndpointDnsNames": "<p>The DNS names for the service.</p>",
+        "TargetNetwork$SecurityGroups": "<p>The IDs of the security groups applied to the target network association.</p>",
         "TransitGatewayVpcAttachment$SubnetIds": "<p>The IDs of the subnets.</p>",
         "VpcEndpoint$RouteTableIds": "<p>(Gateway endpoint) One or more route tables associated with the endpoint.</p>",
         "VpcEndpoint$SubnetIds": "<p>(Interface endpoint) One or more subnets in which the endpoint is located.</p>",
@@ -10652,6 +11271,12 @@
       "base": null,
       "refs": {
         "DescribeVpnGatewaysResult$VpnGateways": "<p>Information about one or more virtual private gateways.</p>"
+      }
+    },
+    "VpnProtocol": {
+      "base": null,
+      "refs": {
+        "ClientVpnEndpoint$VpnProtocol": "<p>The protocol used by the VPN session.</p>"
       }
     },
     "VpnState": {

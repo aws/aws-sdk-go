@@ -1,3 +1,16 @@
+Release v1.16.8 (2018-12-18)
+===
+
+### Service Client Updates
+* `service/apigatewaymanagementapi`: Adds new service
+* `service/apigatewayv2`: Adds new service
+  * This is the initial SDK release for the Amazon API Gateway v2 APIs. This SDK will allow you to manage and configure APIs in Amazon API Gateway; this first release provides the capabilities that allow you to programmatically setup and manage WebSocket APIs end to end.
+* `service/ec2`: Updates service API and documentation
+  * Client VPN, is a client-based VPN service. With Client VPN, you can securely access resources in AWS as well as access resources in on-premises from any location using OpenVPN based devices. With Client VPN, you can set network based firewall rules that can restrict access to networks based on Active Directory groups.
+* `service/elasticbeanstalk`: Updates service API and documentation
+  * This release adds a new resource that Elastic Beanstalk will soon support, EC2 launch template, to environment resource descriptions.
+* `service/globalaccelerator`: Updates service documentation
+
 Release v1.16.7 (2018-12-17)
 ===
 

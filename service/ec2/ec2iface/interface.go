@@ -88,6 +88,10 @@ type EC2API interface {
 	AllocateHostsWithContext(aws.Context, *ec2.AllocateHostsInput, ...request.Option) (*ec2.AllocateHostsOutput, error)
 	AllocateHostsRequest(*ec2.AllocateHostsInput) (*request.Request, *ec2.AllocateHostsOutput)
 
+	ApplySecurityGroupsToClientVpnTargetNetwork(*ec2.ApplySecurityGroupsToClientVpnTargetNetworkInput) (*ec2.ApplySecurityGroupsToClientVpnTargetNetworkOutput, error)
+	ApplySecurityGroupsToClientVpnTargetNetworkWithContext(aws.Context, *ec2.ApplySecurityGroupsToClientVpnTargetNetworkInput, ...request.Option) (*ec2.ApplySecurityGroupsToClientVpnTargetNetworkOutput, error)
+	ApplySecurityGroupsToClientVpnTargetNetworkRequest(*ec2.ApplySecurityGroupsToClientVpnTargetNetworkInput) (*request.Request, *ec2.ApplySecurityGroupsToClientVpnTargetNetworkOutput)
+
 	AssignIpv6Addresses(*ec2.AssignIpv6AddressesInput) (*ec2.AssignIpv6AddressesOutput, error)
 	AssignIpv6AddressesWithContext(aws.Context, *ec2.AssignIpv6AddressesInput, ...request.Option) (*ec2.AssignIpv6AddressesOutput, error)
 	AssignIpv6AddressesRequest(*ec2.AssignIpv6AddressesInput) (*request.Request, *ec2.AssignIpv6AddressesOutput)
@@ -99,6 +103,10 @@ type EC2API interface {
 	AssociateAddress(*ec2.AssociateAddressInput) (*ec2.AssociateAddressOutput, error)
 	AssociateAddressWithContext(aws.Context, *ec2.AssociateAddressInput, ...request.Option) (*ec2.AssociateAddressOutput, error)
 	AssociateAddressRequest(*ec2.AssociateAddressInput) (*request.Request, *ec2.AssociateAddressOutput)
+
+	AssociateClientVpnTargetNetwork(*ec2.AssociateClientVpnTargetNetworkInput) (*ec2.AssociateClientVpnTargetNetworkOutput, error)
+	AssociateClientVpnTargetNetworkWithContext(aws.Context, *ec2.AssociateClientVpnTargetNetworkInput, ...request.Option) (*ec2.AssociateClientVpnTargetNetworkOutput, error)
+	AssociateClientVpnTargetNetworkRequest(*ec2.AssociateClientVpnTargetNetworkInput) (*request.Request, *ec2.AssociateClientVpnTargetNetworkOutput)
 
 	AssociateDhcpOptions(*ec2.AssociateDhcpOptionsInput) (*ec2.AssociateDhcpOptionsOutput, error)
 	AssociateDhcpOptionsWithContext(aws.Context, *ec2.AssociateDhcpOptionsInput, ...request.Option) (*ec2.AssociateDhcpOptionsOutput, error)
@@ -143,6 +151,10 @@ type EC2API interface {
 	AttachVpnGateway(*ec2.AttachVpnGatewayInput) (*ec2.AttachVpnGatewayOutput, error)
 	AttachVpnGatewayWithContext(aws.Context, *ec2.AttachVpnGatewayInput, ...request.Option) (*ec2.AttachVpnGatewayOutput, error)
 	AttachVpnGatewayRequest(*ec2.AttachVpnGatewayInput) (*request.Request, *ec2.AttachVpnGatewayOutput)
+
+	AuthorizeClientVpnIngress(*ec2.AuthorizeClientVpnIngressInput) (*ec2.AuthorizeClientVpnIngressOutput, error)
+	AuthorizeClientVpnIngressWithContext(aws.Context, *ec2.AuthorizeClientVpnIngressInput, ...request.Option) (*ec2.AuthorizeClientVpnIngressOutput, error)
+	AuthorizeClientVpnIngressRequest(*ec2.AuthorizeClientVpnIngressInput) (*request.Request, *ec2.AuthorizeClientVpnIngressOutput)
 
 	AuthorizeSecurityGroupEgress(*ec2.AuthorizeSecurityGroupEgressInput) (*ec2.AuthorizeSecurityGroupEgressOutput, error)
 	AuthorizeSecurityGroupEgressWithContext(aws.Context, *ec2.AuthorizeSecurityGroupEgressInput, ...request.Option) (*ec2.AuthorizeSecurityGroupEgressOutput, error)
@@ -207,6 +219,14 @@ type EC2API interface {
 	CreateCapacityReservation(*ec2.CreateCapacityReservationInput) (*ec2.CreateCapacityReservationOutput, error)
 	CreateCapacityReservationWithContext(aws.Context, *ec2.CreateCapacityReservationInput, ...request.Option) (*ec2.CreateCapacityReservationOutput, error)
 	CreateCapacityReservationRequest(*ec2.CreateCapacityReservationInput) (*request.Request, *ec2.CreateCapacityReservationOutput)
+
+	CreateClientVpnEndpoint(*ec2.CreateClientVpnEndpointInput) (*ec2.CreateClientVpnEndpointOutput, error)
+	CreateClientVpnEndpointWithContext(aws.Context, *ec2.CreateClientVpnEndpointInput, ...request.Option) (*ec2.CreateClientVpnEndpointOutput, error)
+	CreateClientVpnEndpointRequest(*ec2.CreateClientVpnEndpointInput) (*request.Request, *ec2.CreateClientVpnEndpointOutput)
+
+	CreateClientVpnRoute(*ec2.CreateClientVpnRouteInput) (*ec2.CreateClientVpnRouteOutput, error)
+	CreateClientVpnRouteWithContext(aws.Context, *ec2.CreateClientVpnRouteInput, ...request.Option) (*ec2.CreateClientVpnRouteOutput, error)
+	CreateClientVpnRouteRequest(*ec2.CreateClientVpnRouteInput) (*request.Request, *ec2.CreateClientVpnRouteOutput)
 
 	CreateCustomerGateway(*ec2.CreateCustomerGatewayInput) (*ec2.CreateCustomerGatewayOutput, error)
 	CreateCustomerGatewayWithContext(aws.Context, *ec2.CreateCustomerGatewayInput, ...request.Option) (*ec2.CreateCustomerGatewayOutput, error)
@@ -371,6 +391,14 @@ type EC2API interface {
 	CreateVpnGateway(*ec2.CreateVpnGatewayInput) (*ec2.CreateVpnGatewayOutput, error)
 	CreateVpnGatewayWithContext(aws.Context, *ec2.CreateVpnGatewayInput, ...request.Option) (*ec2.CreateVpnGatewayOutput, error)
 	CreateVpnGatewayRequest(*ec2.CreateVpnGatewayInput) (*request.Request, *ec2.CreateVpnGatewayOutput)
+
+	DeleteClientVpnEndpoint(*ec2.DeleteClientVpnEndpointInput) (*ec2.DeleteClientVpnEndpointOutput, error)
+	DeleteClientVpnEndpointWithContext(aws.Context, *ec2.DeleteClientVpnEndpointInput, ...request.Option) (*ec2.DeleteClientVpnEndpointOutput, error)
+	DeleteClientVpnEndpointRequest(*ec2.DeleteClientVpnEndpointInput) (*request.Request, *ec2.DeleteClientVpnEndpointOutput)
+
+	DeleteClientVpnRoute(*ec2.DeleteClientVpnRouteInput) (*ec2.DeleteClientVpnRouteOutput, error)
+	DeleteClientVpnRouteWithContext(aws.Context, *ec2.DeleteClientVpnRouteInput, ...request.Option) (*ec2.DeleteClientVpnRouteOutput, error)
+	DeleteClientVpnRouteRequest(*ec2.DeleteClientVpnRouteInput) (*request.Request, *ec2.DeleteClientVpnRouteOutput)
 
 	DeleteCustomerGateway(*ec2.DeleteCustomerGatewayInput) (*ec2.DeleteCustomerGatewayOutput, error)
 	DeleteCustomerGatewayWithContext(aws.Context, *ec2.DeleteCustomerGatewayInput, ...request.Option) (*ec2.DeleteCustomerGatewayOutput, error)
@@ -555,6 +583,26 @@ type EC2API interface {
 	DescribeClassicLinkInstances(*ec2.DescribeClassicLinkInstancesInput) (*ec2.DescribeClassicLinkInstancesOutput, error)
 	DescribeClassicLinkInstancesWithContext(aws.Context, *ec2.DescribeClassicLinkInstancesInput, ...request.Option) (*ec2.DescribeClassicLinkInstancesOutput, error)
 	DescribeClassicLinkInstancesRequest(*ec2.DescribeClassicLinkInstancesInput) (*request.Request, *ec2.DescribeClassicLinkInstancesOutput)
+
+	DescribeClientVpnAuthorizationRules(*ec2.DescribeClientVpnAuthorizationRulesInput) (*ec2.DescribeClientVpnAuthorizationRulesOutput, error)
+	DescribeClientVpnAuthorizationRulesWithContext(aws.Context, *ec2.DescribeClientVpnAuthorizationRulesInput, ...request.Option) (*ec2.DescribeClientVpnAuthorizationRulesOutput, error)
+	DescribeClientVpnAuthorizationRulesRequest(*ec2.DescribeClientVpnAuthorizationRulesInput) (*request.Request, *ec2.DescribeClientVpnAuthorizationRulesOutput)
+
+	DescribeClientVpnConnections(*ec2.DescribeClientVpnConnectionsInput) (*ec2.DescribeClientVpnConnectionsOutput, error)
+	DescribeClientVpnConnectionsWithContext(aws.Context, *ec2.DescribeClientVpnConnectionsInput, ...request.Option) (*ec2.DescribeClientVpnConnectionsOutput, error)
+	DescribeClientVpnConnectionsRequest(*ec2.DescribeClientVpnConnectionsInput) (*request.Request, *ec2.DescribeClientVpnConnectionsOutput)
+
+	DescribeClientVpnEndpoints(*ec2.DescribeClientVpnEndpointsInput) (*ec2.DescribeClientVpnEndpointsOutput, error)
+	DescribeClientVpnEndpointsWithContext(aws.Context, *ec2.DescribeClientVpnEndpointsInput, ...request.Option) (*ec2.DescribeClientVpnEndpointsOutput, error)
+	DescribeClientVpnEndpointsRequest(*ec2.DescribeClientVpnEndpointsInput) (*request.Request, *ec2.DescribeClientVpnEndpointsOutput)
+
+	DescribeClientVpnRoutes(*ec2.DescribeClientVpnRoutesInput) (*ec2.DescribeClientVpnRoutesOutput, error)
+	DescribeClientVpnRoutesWithContext(aws.Context, *ec2.DescribeClientVpnRoutesInput, ...request.Option) (*ec2.DescribeClientVpnRoutesOutput, error)
+	DescribeClientVpnRoutesRequest(*ec2.DescribeClientVpnRoutesInput) (*request.Request, *ec2.DescribeClientVpnRoutesOutput)
+
+	DescribeClientVpnTargetNetworks(*ec2.DescribeClientVpnTargetNetworksInput) (*ec2.DescribeClientVpnTargetNetworksOutput, error)
+	DescribeClientVpnTargetNetworksWithContext(aws.Context, *ec2.DescribeClientVpnTargetNetworksInput, ...request.Option) (*ec2.DescribeClientVpnTargetNetworksOutput, error)
+	DescribeClientVpnTargetNetworksRequest(*ec2.DescribeClientVpnTargetNetworksInput) (*request.Request, *ec2.DescribeClientVpnTargetNetworksOutput)
 
 	DescribeConversionTasks(*ec2.DescribeConversionTasksInput) (*ec2.DescribeConversionTasksOutput, error)
 	DescribeConversionTasksWithContext(aws.Context, *ec2.DescribeConversionTasksInput, ...request.Option) (*ec2.DescribeConversionTasksOutput, error)
@@ -966,6 +1014,10 @@ type EC2API interface {
 	DisassociateAddressWithContext(aws.Context, *ec2.DisassociateAddressInput, ...request.Option) (*ec2.DisassociateAddressOutput, error)
 	DisassociateAddressRequest(*ec2.DisassociateAddressInput) (*request.Request, *ec2.DisassociateAddressOutput)
 
+	DisassociateClientVpnTargetNetwork(*ec2.DisassociateClientVpnTargetNetworkInput) (*ec2.DisassociateClientVpnTargetNetworkOutput, error)
+	DisassociateClientVpnTargetNetworkWithContext(aws.Context, *ec2.DisassociateClientVpnTargetNetworkInput, ...request.Option) (*ec2.DisassociateClientVpnTargetNetworkOutput, error)
+	DisassociateClientVpnTargetNetworkRequest(*ec2.DisassociateClientVpnTargetNetworkInput) (*request.Request, *ec2.DisassociateClientVpnTargetNetworkOutput)
+
 	DisassociateIamInstanceProfile(*ec2.DisassociateIamInstanceProfileInput) (*ec2.DisassociateIamInstanceProfileOutput, error)
 	DisassociateIamInstanceProfileWithContext(aws.Context, *ec2.DisassociateIamInstanceProfileInput, ...request.Option) (*ec2.DisassociateIamInstanceProfileOutput, error)
 	DisassociateIamInstanceProfileRequest(*ec2.DisassociateIamInstanceProfileInput) (*request.Request, *ec2.DisassociateIamInstanceProfileOutput)
@@ -1005,6 +1057,14 @@ type EC2API interface {
 	EnableVpcClassicLinkDnsSupport(*ec2.EnableVpcClassicLinkDnsSupportInput) (*ec2.EnableVpcClassicLinkDnsSupportOutput, error)
 	EnableVpcClassicLinkDnsSupportWithContext(aws.Context, *ec2.EnableVpcClassicLinkDnsSupportInput, ...request.Option) (*ec2.EnableVpcClassicLinkDnsSupportOutput, error)
 	EnableVpcClassicLinkDnsSupportRequest(*ec2.EnableVpcClassicLinkDnsSupportInput) (*request.Request, *ec2.EnableVpcClassicLinkDnsSupportOutput)
+
+	ExportClientVpnClientCertificateRevocationList(*ec2.ExportClientVpnClientCertificateRevocationListInput) (*ec2.ExportClientVpnClientCertificateRevocationListOutput, error)
+	ExportClientVpnClientCertificateRevocationListWithContext(aws.Context, *ec2.ExportClientVpnClientCertificateRevocationListInput, ...request.Option) (*ec2.ExportClientVpnClientCertificateRevocationListOutput, error)
+	ExportClientVpnClientCertificateRevocationListRequest(*ec2.ExportClientVpnClientCertificateRevocationListInput) (*request.Request, *ec2.ExportClientVpnClientCertificateRevocationListOutput)
+
+	ExportClientVpnClientConfiguration(*ec2.ExportClientVpnClientConfigurationInput) (*ec2.ExportClientVpnClientConfigurationOutput, error)
+	ExportClientVpnClientConfigurationWithContext(aws.Context, *ec2.ExportClientVpnClientConfigurationInput, ...request.Option) (*ec2.ExportClientVpnClientConfigurationOutput, error)
+	ExportClientVpnClientConfigurationRequest(*ec2.ExportClientVpnClientConfigurationInput) (*request.Request, *ec2.ExportClientVpnClientConfigurationOutput)
 
 	ExportTransitGatewayRoutes(*ec2.ExportTransitGatewayRoutesInput) (*ec2.ExportTransitGatewayRoutesOutput, error)
 	ExportTransitGatewayRoutesWithContext(aws.Context, *ec2.ExportTransitGatewayRoutesInput, ...request.Option) (*ec2.ExportTransitGatewayRoutesOutput, error)
@@ -1046,6 +1106,10 @@ type EC2API interface {
 	GetTransitGatewayRouteTablePropagationsWithContext(aws.Context, *ec2.GetTransitGatewayRouteTablePropagationsInput, ...request.Option) (*ec2.GetTransitGatewayRouteTablePropagationsOutput, error)
 	GetTransitGatewayRouteTablePropagationsRequest(*ec2.GetTransitGatewayRouteTablePropagationsInput) (*request.Request, *ec2.GetTransitGatewayRouteTablePropagationsOutput)
 
+	ImportClientVpnClientCertificateRevocationList(*ec2.ImportClientVpnClientCertificateRevocationListInput) (*ec2.ImportClientVpnClientCertificateRevocationListOutput, error)
+	ImportClientVpnClientCertificateRevocationListWithContext(aws.Context, *ec2.ImportClientVpnClientCertificateRevocationListInput, ...request.Option) (*ec2.ImportClientVpnClientCertificateRevocationListOutput, error)
+	ImportClientVpnClientCertificateRevocationListRequest(*ec2.ImportClientVpnClientCertificateRevocationListInput) (*request.Request, *ec2.ImportClientVpnClientCertificateRevocationListOutput)
+
 	ImportImage(*ec2.ImportImageInput) (*ec2.ImportImageOutput, error)
 	ImportImageWithContext(aws.Context, *ec2.ImportImageInput, ...request.Option) (*ec2.ImportImageOutput, error)
 	ImportImageRequest(*ec2.ImportImageInput) (*request.Request, *ec2.ImportImageOutput)
@@ -1069,6 +1133,10 @@ type EC2API interface {
 	ModifyCapacityReservation(*ec2.ModifyCapacityReservationInput) (*ec2.ModifyCapacityReservationOutput, error)
 	ModifyCapacityReservationWithContext(aws.Context, *ec2.ModifyCapacityReservationInput, ...request.Option) (*ec2.ModifyCapacityReservationOutput, error)
 	ModifyCapacityReservationRequest(*ec2.ModifyCapacityReservationInput) (*request.Request, *ec2.ModifyCapacityReservationOutput)
+
+	ModifyClientVpnEndpoint(*ec2.ModifyClientVpnEndpointInput) (*ec2.ModifyClientVpnEndpointOutput, error)
+	ModifyClientVpnEndpointWithContext(aws.Context, *ec2.ModifyClientVpnEndpointInput, ...request.Option) (*ec2.ModifyClientVpnEndpointOutput, error)
+	ModifyClientVpnEndpointRequest(*ec2.ModifyClientVpnEndpointInput) (*request.Request, *ec2.ModifyClientVpnEndpointOutput)
 
 	ModifyFleet(*ec2.ModifyFleetInput) (*ec2.ModifyFleetOutput, error)
 	ModifyFleetWithContext(aws.Context, *ec2.ModifyFleetInput, ...request.Option) (*ec2.ModifyFleetOutput, error)
@@ -1286,6 +1354,10 @@ type EC2API interface {
 	RestoreAddressToClassicWithContext(aws.Context, *ec2.RestoreAddressToClassicInput, ...request.Option) (*ec2.RestoreAddressToClassicOutput, error)
 	RestoreAddressToClassicRequest(*ec2.RestoreAddressToClassicInput) (*request.Request, *ec2.RestoreAddressToClassicOutput)
 
+	RevokeClientVpnIngress(*ec2.RevokeClientVpnIngressInput) (*ec2.RevokeClientVpnIngressOutput, error)
+	RevokeClientVpnIngressWithContext(aws.Context, *ec2.RevokeClientVpnIngressInput, ...request.Option) (*ec2.RevokeClientVpnIngressOutput, error)
+	RevokeClientVpnIngressRequest(*ec2.RevokeClientVpnIngressInput) (*request.Request, *ec2.RevokeClientVpnIngressOutput)
+
 	RevokeSecurityGroupEgress(*ec2.RevokeSecurityGroupEgressInput) (*ec2.RevokeSecurityGroupEgressOutput, error)
 	RevokeSecurityGroupEgressWithContext(aws.Context, *ec2.RevokeSecurityGroupEgressInput, ...request.Option) (*ec2.RevokeSecurityGroupEgressOutput, error)
 	RevokeSecurityGroupEgressRequest(*ec2.RevokeSecurityGroupEgressInput) (*request.Request, *ec2.RevokeSecurityGroupEgressOutput)
@@ -1313,6 +1385,10 @@ type EC2API interface {
 	StopInstances(*ec2.StopInstancesInput) (*ec2.StopInstancesOutput, error)
 	StopInstancesWithContext(aws.Context, *ec2.StopInstancesInput, ...request.Option) (*ec2.StopInstancesOutput, error)
 	StopInstancesRequest(*ec2.StopInstancesInput) (*request.Request, *ec2.StopInstancesOutput)
+
+	TerminateClientVpnConnections(*ec2.TerminateClientVpnConnectionsInput) (*ec2.TerminateClientVpnConnectionsOutput, error)
+	TerminateClientVpnConnectionsWithContext(aws.Context, *ec2.TerminateClientVpnConnectionsInput, ...request.Option) (*ec2.TerminateClientVpnConnectionsOutput, error)
+	TerminateClientVpnConnectionsRequest(*ec2.TerminateClientVpnConnectionsInput) (*request.Request, *ec2.TerminateClientVpnConnectionsOutput)
 
 	TerminateInstances(*ec2.TerminateInstancesInput) (*ec2.TerminateInstancesOutput, error)
 	TerminateInstancesWithContext(aws.Context, *ec2.TerminateInstancesInput, ...request.Option) (*ec2.TerminateInstancesOutput, error)
