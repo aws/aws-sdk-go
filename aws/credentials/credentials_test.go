@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/stretchr/testify/assert"
 )
 
 type stubProvider struct {
@@ -34,17 +33,27 @@ func TestCredentialsGet(t *testing.T) {
 	})
 
 	creds, err := c.Get()
-	assert.Nil(t, err, "Expected no error")
-	assert.Equal(t, "AKID", creds.AccessKeyID, "Expect access key ID to match")
-	assert.Equal(t, "SECRET", creds.SecretAccessKey, "Expect secret access key to match")
-	assert.Empty(t, creds.SessionToken, "Expect session token to be empty")
+	if err != nil {
+		t.Errorf("Expected no error, got %v", err)
+	}
+	if e, a := "AKID", creds.AccessKeyID; e != a {
+		t.Errorf("Expect access key ID to match, %v got %v", e, a)
+	}
+	if e, a := "SECRET", creds.SecretAccessKey; e != a {
+		t.Errorf("Expect secret access key to match, %v got %v", e, a)
+	}
+	if v := creds.SessionToken; len(v) != 0 {
+		t.Errorf("Expect session token to be empty, %v", v)
+	}
 }
 
 func TestCredentialsGetWithError(t *testing.T) {
 	c := NewCredentials(&stubProvider{err: awserr.New("provider error", "", nil), expired: true})
 
 	_, err := c.Get()
-	assert.Equal(t, "provider error", err.(awserr.Error).Code(), "Expected provider error")
+	if e, a := "provider error", err.(awserr.Error).Code(); e != a {
+		t.Errorf("Expected provider error, %v got %v", e, a)
+	}
 }
 
 func TestCredentialsExpire(t *testing.T) {
@@ -52,15 +61,23 @@ func TestCredentialsExpire(t *testing.T) {
 	c := NewCredentials(stub)
 
 	stub.expired = false
-	assert.True(t, c.IsExpired(), "Expected to start out expired")
+	if !c.IsExpired() {
+		t.Errorf("Expected to start out expired")
+	}
 	c.Expire()
-	assert.True(t, c.IsExpired(), "Expected to be expired")
+	if !c.IsExpired() {
+		t.Errorf("Expected to be expired")
+	}
 
 	c.forceRefresh = false
-	assert.False(t, c.IsExpired(), "Expected not to be expired")
+	if c.IsExpired() {
+		t.Errorf("Expected not to be expired")
+	}
 
 	stub.expired = true
-	assert.True(t, c.IsExpired(), "Expected to be expired")
+	if !c.IsExpired() {
+		t.Errorf("Expected to be expired")
+	}
 }
 
 type MockProvider struct {
@@ -77,8 +94,12 @@ func TestCredentialsGetWithProviderName(t *testing.T) {
 	c := NewCredentials(stub)
 
 	creds, err := c.Get()
-	assert.Nil(t, err, "Expected no error")
-	assert.Equal(t, creds.ProviderName, "stubProvider", "Expected provider name to match")
+	if err != nil {
+		t.Errorf("Expected no error, got %v", err)
+	}
+	if e, a := creds.ProviderName, "stubProvider"; e != a {
+		t.Errorf("Expected provider name to match, %v got %v", e, a)
+	}
 }
 
 func TestCredentialsIsExpired_Race(t *testing.T) {
