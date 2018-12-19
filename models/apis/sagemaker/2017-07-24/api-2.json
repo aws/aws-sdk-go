@@ -1156,6 +1156,7 @@
         "CompilationJobName":{"shape":"EntityName"},
         "CompilationJobArn":{"shape":"CompilationJobArn"},
         "CreationTime":{"shape":"CreationTime"},
+        "CompilationStartTime":{"shape":"Timestamp"},
         "CompilationEndTime":{"shape":"Timestamp"},
         "CompilationTargetDevice":{"shape":"TargetDevice"},
         "LastModifiedTime":{"shape":"LastModifiedTime"},
@@ -2367,7 +2368,7 @@
       "type":"structure",
       "required":["RepositoryUrl"],
       "members":{
-        "RepositoryUrl":{"shape":"Url"},
+        "RepositoryUrl":{"shape":"GitConfigUrl"},
         "Branch":{"shape":"Branch"},
         "SecretArn":{"shape":"SecretArn"}
       }
@@ -2377,6 +2378,10 @@
       "members":{
         "SecretArn":{"shape":"SecretArn"}
       }
+    },
+    "GitConfigUrl":{
+      "type":"string",
+      "pattern":"^https://([^/]+)/?(.*)$"
     },
     "HumanTaskConfig":{
       "type":"structure",
@@ -2973,7 +2978,9 @@
         "LastModifiedTimeAfter":{"shape":"LastModifiedTime"},
         "LastModifiedTimeBefore":{"shape":"LastModifiedTime"},
         "NameContains":{"shape":"NameContains"},
-        "StatusEquals":{"shape":"CompilationJobStatus"}
+        "StatusEquals":{"shape":"CompilationJobStatus"},
+        "SortBy":{"shape":"ListCompilationJobsSortBy"},
+        "SortOrder":{"shape":"SortOrder"}
       }
     },
     "ListCompilationJobsResponse":{
@@ -2983,6 +2990,14 @@
         "CompilationJobSummaries":{"shape":"CompilationJobSummaries"},
         "NextToken":{"shape":"NextToken"}
       }
+    },
+    "ListCompilationJobsSortBy":{
+      "type":"string",
+      "enum":[
+        "Name",
+        "CreationTime",
+        "Status"
+      ]
     },
     "ListEndpointConfigsInput":{
       "type":"structure",
@@ -4301,7 +4316,8 @@
       "enum":[
         "None",
         "Line",
-        "RecordIO"
+        "RecordIO",
+        "TFRecord"
       ]
     },
     "StartNotebookInstanceInput":{
