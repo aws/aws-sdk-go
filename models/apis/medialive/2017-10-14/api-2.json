@@ -3719,6 +3719,10 @@
           "shape": "H264SpatialAq",
           "locationName": "spatialAq"
         },
+        "SubgopLength": {
+          "shape": "H264SubGopLength",
+          "locationName": "subgopLength"
+        },
         "Syntax": {
           "shape": "H264Syntax",
           "locationName": "syntax"
@@ -3738,6 +3742,13 @@
       "enum": [
         "DISABLED",
         "ENABLED"
+      ]
+    },
+    "H264SubGopLength": {
+      "type": "string",
+      "enum": [
+        "DYNAMIC",
+        "FIXED"
       ]
     },
     "H264Syntax": {
@@ -4202,6 +4213,18 @@
         "TDRL"
       ]
     },
+    "HlsTimedMetadataScheduleActionSettings": {
+      "type": "structure",
+      "members": {
+        "Id3": {
+          "shape": "__string",
+          "locationName": "id3"
+        }
+      },
+      "required": [
+        "Id3"
+      ]
+    },
     "HlsTsFileMode": {
       "type": "string",
       "enum": [
@@ -4408,13 +4431,6 @@
       ]
     },
     "InputLossActionForMsSmoothOut": {
-      "type": "string",
-      "enum": [
-        "EMIT_OUTPUT",
-        "PAUSE_OUTPUT"
-      ]
-    },
-    "InputLossActionForRtmpOut": {
       "type": "string",
       "enum": [
         "EMIT_OUTPUT",
@@ -6194,6 +6210,10 @@
     "ScheduleActionSettings": {
       "type": "structure",
       "members": {
+        "HlsTimedMetadataSettings": {
+          "shape": "HlsTimedMetadataScheduleActionSettings",
+          "locationName": "hlsTimedMetadataSettings"
+        },
         "InputSwitchSettings": {
           "shape": "InputSwitchScheduleActionSettings",
           "locationName": "inputSwitchSettings"

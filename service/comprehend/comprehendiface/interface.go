@@ -234,6 +234,14 @@ type ComprehendAPI interface {
 	StopSentimentDetectionJob(*comprehend.StopSentimentDetectionJobInput) (*comprehend.StopSentimentDetectionJobOutput, error)
 	StopSentimentDetectionJobWithContext(aws.Context, *comprehend.StopSentimentDetectionJobInput, ...request.Option) (*comprehend.StopSentimentDetectionJobOutput, error)
 	StopSentimentDetectionJobRequest(*comprehend.StopSentimentDetectionJobInput) (*request.Request, *comprehend.StopSentimentDetectionJobOutput)
+
+	StopTrainingDocumentClassifier(*comprehend.StopTrainingDocumentClassifierInput) (*comprehend.StopTrainingDocumentClassifierOutput, error)
+	StopTrainingDocumentClassifierWithContext(aws.Context, *comprehend.StopTrainingDocumentClassifierInput, ...request.Option) (*comprehend.StopTrainingDocumentClassifierOutput, error)
+	StopTrainingDocumentClassifierRequest(*comprehend.StopTrainingDocumentClassifierInput) (*request.Request, *comprehend.StopTrainingDocumentClassifierOutput)
+
+	StopTrainingEntityRecognizer(*comprehend.StopTrainingEntityRecognizerInput) (*comprehend.StopTrainingEntityRecognizerOutput, error)
+	StopTrainingEntityRecognizerWithContext(aws.Context, *comprehend.StopTrainingEntityRecognizerInput, ...request.Option) (*comprehend.StopTrainingEntityRecognizerOutput, error)
+	StopTrainingEntityRecognizerRequest(*comprehend.StopTrainingEntityRecognizerInput) (*request.Request, *comprehend.StopTrainingEntityRecognizerOutput)
 }
 
 var _ ComprehendAPI = (*comprehend.Comprehend)(nil)
