@@ -1,3 +1,19 @@
+Release v1.16.10 (2018-12-20)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service API and documentation
+* `service/comprehend`: Updates service API and documentation
+* `service/firehose`: Updates service API and documentation
+  * Support for specifying customized s3 keys and supplying a separate prefix for failed-records
+* `service/medialive`: Updates service API and documentation
+  * This release provides support for ID3 tags and video quality setting for subgop_length.
+* `service/transcribe`: Updates service API and documentation
+
+### SDK Enhancements
+* `service/dynamodb/expression`: Clarify expression examples ([#2367](https://github.com/aws/aws-sdk-go/pull/2367))
+  * Clarifies the expression package's examples to distinguish the pkg expression from a expr value.
+
 Release v1.16.9 (2018-12-19)
 ===
 

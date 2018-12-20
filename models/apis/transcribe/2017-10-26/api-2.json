@@ -249,7 +249,8 @@
         "en-GB",
         "de-DE",
         "pt-BR",
-        "fr-FR"
+        "fr-FR",
+        "it-IT"
       ]
     },
     "LimitExceededException":{

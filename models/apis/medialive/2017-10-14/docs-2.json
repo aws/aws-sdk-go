@@ -846,6 +846,12 @@
         "H264Settings$SpatialAq": "If set to enabled, adjust quantization within each frame based on spatial variation of content complexity."
       }
     },
+    "H264SubGopLength": {
+      "base": null,
+      "refs": {
+        "H264Settings$SubgopLength": "If set to fixed, use gopNumBFrames B-frames per sub-GOP. If set to dynamic, optimize the number of B-frames used for each sub-GOP to improve visual quality."
+      }
+    },
     "H264Syntax": {
       "base": null,
       "refs": {
@@ -1005,7 +1011,7 @@
     "HlsSegmentationMode": {
       "base": null,
       "refs": {
-        "HlsGroupSettings$SegmentationMode": "When set to useInputSegmentation, the output segment or fragment points are set by the RAI markers from the input streams."
+        "HlsGroupSettings$SegmentationMode": "useInputSegmentation has been deprecated. The configured segment size is always used."
       }
     },
     "HlsSettings": {
@@ -1024,6 +1030,12 @@
       "base": null,
       "refs": {
         "HlsGroupSettings$TimedMetadataId3Frame": "Indicates ID3 frame that has the timecode."
+      }
+    },
+    "HlsTimedMetadataScheduleActionSettings": {
+      "base": "Settings for the action to emit HLS metadata",
+      "refs": {
+        "ScheduleActionSettings$HlsTimedMetadataSettings": "Settings to emit HLS metadata"
       }
     },
     "HlsTsFileMode": {
@@ -1876,7 +1888,7 @@
     "SmoothGroupSegmentationMode": {
       "base": null,
       "refs": {
-        "MsSmoothGroupSettings$SegmentationMode": "When set to useInputSegmentation, the output segment or fragment points are set by the RAI markers from the input streams."
+        "MsSmoothGroupSettings$SegmentationMode": "useInputSegmentation has been deprecated. The configured segment size is always used."
       }
     },
     "SmoothGroupSparseTrackType": {
@@ -2754,6 +2766,7 @@
         "HlsGroupSettings$KeyFormat": "The value specifies how the key is represented in the resource identified by the URI.  If parameter is absent, an implicit value of \"identity\" is used.  A reverse DNS string can also be given.",
         "HlsGroupSettings$KeyFormatVersions": "Either a single positive integer version value or a slash delimited list of version values (1/2/3).",
         "HlsOutputSettings$SegmentModifier": "String concatenated to end of segment filenames.",
+        "HlsTimedMetadataScheduleActionSettings$Id3": "Base64 string formatted according to the ID3 specification: http://id3.org/id3v2.4.0-structure",
         "Input$Arn": "The Unique ARN of the input (generated, immutable).",
         "Input$Id": "The generated ID of the input (unique for user account, immutable).",
         "Input$Name": "The user-assigned name (This is a mutable value).",

@@ -617,6 +617,36 @@
         {"shape":"JobNotFoundException"},
         {"shape":"InternalServerException"}
       ]
+    },
+    "StopTrainingDocumentClassifier":{
+      "name":"StopTrainingDocumentClassifier",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopTrainingDocumentClassifierRequest"},
+      "output":{"shape":"StopTrainingDocumentClassifierResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "StopTrainingEntityRecognizer":{
+      "name":"StopTrainingEntityRecognizer",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopTrainingEntityRecognizerRequest"},
+      "output":{"shape":"StopTrainingEntityRecognizerResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
     }
   },
   "shapes":{
@@ -1627,6 +1657,8 @@
         "SUBMITTED",
         "TRAINING",
         "DELETING",
+        "STOP_REQUESTED",
+        "STOPPED",
         "IN_ERROR",
         "TRAINED"
       ]
@@ -1966,6 +1998,30 @@
       "members":{
         "JobId":{"shape":"JobId"},
         "JobStatus":{"shape":"JobStatus"}
+      }
+    },
+    "StopTrainingDocumentClassifierRequest":{
+      "type":"structure",
+      "required":["DocumentClassifierArn"],
+      "members":{
+        "DocumentClassifierArn":{"shape":"DocumentClassifierArn"}
+      }
+    },
+    "StopTrainingDocumentClassifierResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "StopTrainingEntityRecognizerRequest":{
+      "type":"structure",
+      "required":["EntityRecognizerArn"],
+      "members":{
+        "EntityRecognizerArn":{"shape":"EntityRecognizerArn"}
+      }
+    },
+    "StopTrainingEntityRecognizerResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "String":{
