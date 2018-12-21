@@ -1,3 +1,15 @@
+Release v1.16.11 (2018-12-21)
+===
+
+### Service Client Updates
+* `service/acm-pca`: Updates service documentation, waiters, paginators, and examples
+* `service/dynamodb`: Updates service API and documentation
+  * Added provisionedThroughPut exception on the request level for transaction APIs.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/sms-voice`: Updates service API and documentation
+* `service/states`: Updates service API and documentation
+  * This release adds support for cost allocation tagging. You can now create, delete, and list tags for AWS Step Functions activity and state machine resources. For more information about tagging, see AWS Tagging Strategies.
+
 Release v1.16.10 (2018-12-20)
 ===
 

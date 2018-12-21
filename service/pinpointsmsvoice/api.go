@@ -653,7 +653,7 @@ func (s *CallInstructionsMessageType) SetText(v string) *CallInstructionsMessage
 	return s
 }
 
-// An object that contains information about a event destination that sends
+// An object that contains information about an event destination that sends
 // data to Amazon CloudWatch Logs.
 type CloudWatchLogsDestination struct {
 	_ struct{} `type:"structure"`
@@ -929,7 +929,7 @@ func (s DeleteConfigurationSetOutput) GoString() string {
 type EventDestination struct {
 	_ struct{} `type:"structure"`
 
-	// An object that contains information about a event destination that sends
+	// An object that contains information about an event destination that sends
 	// data to Amazon CloudWatch Logs.
 	CloudWatchLogsDestination *CloudWatchLogsDestination `type:"structure"`
 
@@ -938,7 +938,7 @@ type EventDestination struct {
 	// destination.
 	Enabled *bool `type:"boolean"`
 
-	// An object that contains information about a event destination that sends
+	// An object that contains information about an event destination that sends
 	// data to Amazon Kinesis Data Firehose.
 	KinesisFirehoseDestination *KinesisFirehoseDestination `type:"structure"`
 
@@ -948,6 +948,10 @@ type EventDestination struct {
 
 	// A name that identifies the event destination configuration.
 	Name *string `type:"string"`
+
+	// An object that contains information about an event destination that sends
+	// data to Amazon SNS.
+	SnsDestination *SnsDestination `type:"structure"`
 }
 
 // String returns the string representation
@@ -990,11 +994,17 @@ func (s *EventDestination) SetName(v string) *EventDestination {
 	return s
 }
 
+// SetSnsDestination sets the SnsDestination field's value.
+func (s *EventDestination) SetSnsDestination(v *SnsDestination) *EventDestination {
+	s.SnsDestination = v
+	return s
+}
+
 // An object that defines a single event destination.
 type EventDestinationDefinition struct {
 	_ struct{} `type:"structure"`
 
-	// An object that contains information about a event destination that sends
+	// An object that contains information about an event destination that sends
 	// data to Amazon CloudWatch Logs.
 	CloudWatchLogsDestination *CloudWatchLogsDestination `type:"structure"`
 
@@ -1003,13 +1013,17 @@ type EventDestinationDefinition struct {
 	// destination.
 	Enabled *bool `type:"boolean"`
 
-	// An object that contains information about a event destination that sends
+	// An object that contains information about an event destination that sends
 	// data to Amazon Kinesis Data Firehose.
 	KinesisFirehoseDestination *KinesisFirehoseDestination `type:"structure"`
 
 	// An array of EventDestination objects. Each EventDestination object includes
 	// ARNs and other information that define an event destination.
 	MatchingEventTypes []*string `type:"list"`
+
+	// An object that contains information about an event destination that sends
+	// data to Amazon SNS.
+	SnsDestination *SnsDestination `type:"structure"`
 }
 
 // String returns the string representation
@@ -1043,6 +1057,12 @@ func (s *EventDestinationDefinition) SetKinesisFirehoseDestination(v *KinesisFir
 // SetMatchingEventTypes sets the MatchingEventTypes field's value.
 func (s *EventDestinationDefinition) SetMatchingEventTypes(v []*string) *EventDestinationDefinition {
 	s.MatchingEventTypes = v
+	return s
+}
+
+// SetSnsDestination sets the SnsDestination field's value.
+func (s *EventDestinationDefinition) SetSnsDestination(v *SnsDestination) *EventDestinationDefinition {
+	s.SnsDestination = v
 	return s
 }
 
@@ -1110,7 +1130,7 @@ func (s *GetConfigurationSetEventDestinationsOutput) SetEventDestinations(v []*E
 	return s
 }
 
-// An object that contains information about a event destination that sends
+// An object that contains information about an event destination that sends
 // data to Amazon Kinesis Data Firehose.
 type KinesisFirehoseDestination struct {
 	_ struct{} `type:"structure"`
@@ -1157,6 +1177,8 @@ type PlainTextMessageType struct {
 	// The plain (not SSML-formatted) text to deliver to the recipient.
 	Text *string `type:"string"`
 
+	// The name of the voice that you want to use to deliver the message. For a
+	// complete list of supported voices, see the Amazon Polly Developer Guide.
 	VoiceId *string `type:"string"`
 }
 
@@ -1319,6 +1341,32 @@ func (s SendVoiceMessageOutput) GoString() string {
 // SetMessageId sets the MessageId field's value.
 func (s *SendVoiceMessageOutput) SetMessageId(v string) *SendVoiceMessageOutput {
 	s.MessageId = &v
+	return s
+}
+
+// An object that contains information about an event destination that sends
+// data to Amazon SNS.
+type SnsDestination struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Amazon SNS topic that you want to publish
+	// events to.
+	TopicArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SnsDestination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SnsDestination) GoString() string {
+	return s.String()
+}
+
+// SetTopicArn sets the TopicArn field's value.
+func (s *SnsDestination) SetTopicArn(v string) *SnsDestination {
+	s.TopicArn = &v
 	return s
 }
 
