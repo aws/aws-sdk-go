@@ -312,6 +312,9 @@
         },
         "Name" : {
           "shape" : "String"
+        },
+        "SnsDestination" : {
+          "shape" : "SnsDestination"
         }
       }
     },
@@ -329,6 +332,9 @@
         },
         "MatchingEventTypes" : {
           "shape" : "EventTypes"
+        },
+        "SnsDestination" : {
+          "shape" : "SnsDestination"
         }
       },
       "required" : [ ]
@@ -476,6 +482,15 @@
           "shape" : "String"
         }
       }
+    },
+    "SnsDestination" : {
+      "type" : "structure",
+      "members" : {
+        "TopicArn" : {
+          "shape" : "String"
+        }
+      },
+      "required" : [ ]
     },
     "String" : {
       "type" : "string"

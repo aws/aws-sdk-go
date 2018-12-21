@@ -25,7 +25,7 @@
       }
     },
     "CloudWatchLogsDestination" : {
-      "base" : "An object that contains information about a event destination that sends data to Amazon CloudWatch Logs.",
+      "base" : "An object that contains information about an event destination that sends data to Amazon CloudWatch Logs.",
       "refs" : {
         "EventDestination$CloudWatchLogsDestination" : null,
         "EventDestinationDefinition$CloudWatchLogsDestination" : null
@@ -96,7 +96,7 @@
       "refs" : { }
     },
     "KinesisFirehoseDestination" : {
-      "base" : "An object that contains information about a event destination that sends data to Amazon Kinesis Data Firehose.",
+      "base" : "An object that contains information about an event destination that sends data to Amazon Kinesis Data Firehose.",
       "refs" : {
         "EventDestination$KinesisFirehoseDestination" : null,
         "EventDestinationDefinition$KinesisFirehoseDestination" : null
@@ -133,6 +133,13 @@
       "base" : "An object that that contains the Message ID of a Voice message that was sent successfully.",
       "refs" : { }
     },
+    "SnsDestination" : {
+      "base" : "An object that contains information about an event destination that sends data to Amazon SNS.",
+      "refs" : {
+        "EventDestination$SnsDestination" : null,
+        "EventDestinationDefinition$SnsDestination" : null
+      }
+    },
     "String" : {
       "base" : null,
       "refs" : {
@@ -143,11 +150,12 @@
         "KinesisFirehoseDestination$DeliveryStreamArn" : "The Amazon Resource Name (ARN) of an IAM role that can write data to an Amazon Kinesis Data Firehose stream.",
         "KinesisFirehoseDestination$IamRoleArn" : "The Amazon Resource Name (ARN) of the Amazon Kinesis Data Firehose destination that you want to use in the event destination.",
         "PlainTextMessageType$LanguageCode" : "The language to use when delivering the message. For a complete list of supported languages, see the Amazon Polly Developer Guide.",
-        "PlainTextMessageType$VoiceId" : null,
+        "PlainTextMessageType$VoiceId" : "The name of the voice that you want to use to deliver the message. For a complete list of supported voices, see the Amazon Polly Developer Guide.",
         "SSMLMessageType$LanguageCode" : "The language to use when delivering the message. For a complete list of supported languages, see the Amazon Polly Developer Guide.",
         "SSMLMessageType$VoiceId" : "The name of the voice that you want to use to deliver the message. For a complete list of supported voices, see the Amazon Polly Developer Guide.",
         "SendVoiceMessageRequest$CallerId" : "The phone number that appears on recipients' devices when they receive the message.",
-        "SendVoiceMessageResponse$MessageId" : "A unique identifier for the voice message."
+        "SendVoiceMessageResponse$MessageId" : "A unique identifier for the voice message.",
+        "SnsDestination$TopicArn" : "The Amazon Resource Name (ARN) of the Amazon SNS topic that you want to publish events to."
       }
     },
     "UpdateConfigurationSetEventDestinationRequest" : {
