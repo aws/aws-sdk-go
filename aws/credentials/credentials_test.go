@@ -1,6 +1,7 @@
 package credentials
 
 import (
+	"math/rand"
 	"testing"
 	"time"
 
@@ -117,4 +118,37 @@ func TestCredentialsIsExpired_Race(t *testing.T) {
 	close(starter)
 
 	time.Sleep(10 * time.Second)
+}
+
+func TestCredentialsExpiresAt_NoExpirer(t *testing.T) {
+	stub := &stubProvider{}
+	c := NewCredentials(stub)
+
+	_, err := c.ExpiresAt()
+	if e, a := "ProviderNotExpirer", err.(awserr.Error).Code(); e != a {
+		t.Errorf("Expected provider error, %v got %v", e, a)
+	}
+}
+
+type stubProviderExpirer struct {
+	stubProvider
+	expiration time.Time
+}
+
+func (s *stubProviderExpirer) ExpiresAt() time.Time {
+	return s.expiration
+}
+
+func TestCredentialsExpiresAt_HasExpirer(t *testing.T) {
+	stub := &stubProviderExpirer{}
+	c := NewCredentials(stub)
+
+	stub.expiration = time.Unix(rand.Int63(), 0)
+	expiration, err := c.ExpiresAt()
+	if err != nil {
+		t.Errorf("Expected no error, got %v", err)
+	}
+	if stub.expiration != expiration {
+		t.Errorf("Expected matching expirotion, %v got %v", stub.expiration, expiration)
+	}
 }
