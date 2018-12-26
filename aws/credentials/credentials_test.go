@@ -143,12 +143,27 @@ func TestCredentialsExpiresAt_HasExpirer(t *testing.T) {
 	stub := &stubProviderExpirer{}
 	c := NewCredentials(stub)
 
+	// fetch initial credentials so that forceRefresh is set false
+	_, err := c.Get()
+	if err != nil {
+		t.Errorf("Unexpecte error: %v", err)
+	}
+
 	stub.expiration = time.Unix(rand.Int63(), 0)
 	expiration, err := c.ExpiresAt()
 	if err != nil {
 		t.Errorf("Expected no error, got %v", err)
 	}
 	if stub.expiration != expiration {
-		t.Errorf("Expected matching expirotion, %v got %v", stub.expiration, expiration)
+		t.Errorf("Expected matching expiration, %v got %v", stub.expiration, expiration)
+	}
+
+	c.Expire()
+	expiration, err = c.ExpiresAt()
+	if err != nil {
+		t.Errorf("Expected no error, got %v", err)
+	}
+	if !expiration.IsZero() {
+		t.Errorf("Expected distant past expiration, got %v", expiration)
 	}
 }

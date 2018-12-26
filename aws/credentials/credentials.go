@@ -51,7 +51,6 @@ package credentials
 import (
 	"fmt"
 	"github.com/aws/aws-sdk-go/aws/awserr"
-	"reflect"
 	"sync"
 	"time"
 )
@@ -276,11 +275,18 @@ func (c *Credentials) isExpired() bool {
 // the underlying Provider, if it supports that interface.  Otherwise, it returns
 // an error.
 func (c *Credentials) ExpiresAt() (time.Time, error) {
+	c.m.RLock()
+	defer c.m.RUnlock()
+
 	expirer, ok := c.provider.(Expirer)
 	if !ok {
 		return time.Time{}, awserr.New("ProviderNotExpirer",
-			fmt.Sprintf("provider %s does not support ExpiresAt()", reflect.TypeOf(c.provider)),
+			fmt.Sprintf("provider %s does not support ExpiresAt()", c.creds.ProviderName),
 			nil)
+	}
+	if c.forceRefresh {
+		// set expiration time to the distant past
+		return time.Time{}, nil
 	}
 	return expirer.ExpiresAt(), nil
 }
