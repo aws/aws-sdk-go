@@ -803,7 +803,7 @@ func (s *Shape) IsRequired(member string) bool {
 	ref, ok := s.MemberRefs[member]
 	if !ok {
 		panic(fmt.Sprintf(
-			"attemped to check required for unknown member, %s.%s",
+			"attempted to check required for unknown member, %s.%s",
 			s.ShapeName, member,
 		))
 	}
