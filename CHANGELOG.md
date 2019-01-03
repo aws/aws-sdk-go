@@ -1,3 +1,10 @@
+Release v1.16.12 (2019-01-03)
+===
+
+### Service Client Updates
+* `service/opsworkscm`: Updates service documentation
+  * Documentation updates for opsworkscm
+
 Release v1.16.11 (2018-12-21)
 ===
 
