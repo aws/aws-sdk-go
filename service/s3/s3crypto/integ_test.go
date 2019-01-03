@@ -176,7 +176,7 @@ func getEncryptFixtureBuilder(t *testing.T, kek, v1, v2, cek string,
 	case "aes_cbc":
 		builder = s3crypto.AESCBCContentCipherBuilder(handler, s3crypto.AESCBCPadder)
 	default:
-		t.Fatalf("unkonwn fixture CEK, %v", cek)
+		t.Fatalf("unknown fixture CEK, %v", cek)
 	}
 
 	return builder, masterKey

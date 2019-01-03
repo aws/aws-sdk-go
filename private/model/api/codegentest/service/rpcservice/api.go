@@ -282,7 +282,7 @@ type EmptyStreamEventStreamReader interface {
 	// HTTP this will also close the HTTP connection.
 	Close() error
 
-	// Returns any error that has occured while reading from the event stream.
+	// Returns any error that has occurred while reading from the event stream.
 	Err() error
 }
 
@@ -716,7 +716,7 @@ type GetEventStreamEventStreamReader interface {
 	// HTTP this will also close the HTTP connection.
 	Close() error
 
-	// Returns any error that has occured while reading from the event stream.
+	// Returns any error that has occurred while reading from the event stream.
 	Err() error
 }
 
