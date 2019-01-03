@@ -49,6 +49,9 @@ func TestInteg_01_DescribeStream(t *testing.T) {
 	if !ok {
 		t.Fatalf("expect awserr, was %T", err)
 	}
+	if len(aerr.Code()) == 0 {
+		t.Errorf("expect non-empty error code")
+	}
 	if v := aerr.Code(); v == request.ErrCodeSerialization {
 		t.Errorf("expect API error code got serialization failure")
 	}
