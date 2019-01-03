@@ -433,7 +433,8 @@ func (c *IoTAnalytics) CreateDatasetContentRequest(input *CreateDatasetContentIn
 
 // CreateDatasetContent API operation for AWS IoT Analytics.
 //
-// Creates the content of a data set by applying a SQL action.
+// Creates the content of a data set by applying a "queryAction" (a SQL query)
+// or a "containerAction" (executing a containerized application).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3556,6 +3557,27 @@ type BatchPutMessageInput struct {
 	// The list of messages to be sent. Each message has format: '{ "messageId":
 	// "string", "payload": "string"}'.
 	//
+	// Note that the field names of message payloads (data) that you send to AWS
+	// IoT Analytics:
+	//
+	//    * Must contain only alphanumeric characters and undescores (_); no other
+	//    special characters are allowed.
+	//
+	//    * Must begin with an alphabetic character or single underscore (_).
+	//
+	//    * Cannot contain hyphens (-).
+	//
+	//    * In regular expression terms: "^[A-Za-z_]([A-Za-z0-9]*|[A-Za-z0-9][A-Za-z0-9_]*)$".
+	//
+	//
+	//    * Cannot be greater than 255 characters.
+	//
+	//    * Are case-insensitive. (Fields named "foo" and "FOO" in the same payload
+	//    are considered duplicates.)
+	//
+	// For example, {"temp_01": 29} or {"_temp_01": 29} are valid, but {"temp-01":
+	// 29}, {"01_temp": 29} or {"__temp_01": 29} are invalid in message payloads.
+	//
 	// Messages is a required field
 	Messages []*Message `locationName:"messages" type:"list" required:"true"`
 }
@@ -4214,6 +4236,8 @@ type CreateDatasetInput struct {
 	// Actions is a required field
 	Actions []*DatasetAction `locationName:"actions" min:"1" type:"list" required:"true"`
 
+	// When data set contents are created they are delivered to destinations specified
+	// here.
 	ContentDeliveryRules []*DatasetContentDeliveryRule `locationName:"contentDeliveryRules" type:"list"`
 
 	// The name of the data set.
@@ -4649,6 +4673,8 @@ type Dataset struct {
 	// The ARN of the data set.
 	Arn *string `locationName:"arn" type:"string"`
 
+	// When data set contents are created they are delivered to destinations specified
+	// here.
 	ContentDeliveryRules []*DatasetContentDeliveryRule `locationName:"contentDeliveryRules" type:"list"`
 
 	// When the data set was created.
@@ -4735,7 +4761,8 @@ func (s *Dataset) SetTriggers(v []*DatasetTrigger) *Dataset {
 	return s
 }
 
-// A "DatasetAction" object specifying the query that creates the data set content.
+// A "DatasetAction" object that specifies how data set contents are automatically
+// created.
 type DatasetAction struct {
 	_ struct{} `type:"structure"`
 
@@ -4748,8 +4775,8 @@ type DatasetAction struct {
 	// container along with any needed support libraries.
 	ContainerAction *ContainerDatasetAction `locationName:"containerAction" type:"structure"`
 
-	// An "SqlQueryDatasetAction" object that contains the SQL query to modify the
-	// message.
+	// An "SqlQueryDatasetAction" object that uses an SQL query to automatically
+	// create data set contents.
 	QueryAction *SqlQueryDatasetAction `locationName:"queryAction" type:"structure"`
 }
 
@@ -4836,9 +4863,11 @@ func (s *DatasetActionSummary) SetActionType(v string) *DatasetActionSummary {
 	return s
 }
 
+// The destination to which data set contents are delivered.
 type DatasetContentDeliveryDestination struct {
 	_ struct{} `type:"structure"`
 
+	// Configuration information for delivery of data set contents to AWS IoT Events.
 	IotEventsDestinationConfiguration *IotEventsDestinationConfiguration `locationName:"iotEventsDestinationConfiguration" type:"structure"`
 }
 
@@ -4873,12 +4902,17 @@ func (s *DatasetContentDeliveryDestination) SetIotEventsDestinationConfiguration
 	return s
 }
 
+// When data set contents are created they are delivered to destination specified
+// here.
 type DatasetContentDeliveryRule struct {
 	_ struct{} `type:"structure"`
 
+	// The destination to which data set contents are delivered.
+	//
 	// Destination is a required field
 	Destination *DatasetContentDeliveryDestination `locationName:"destination" type:"structure" required:"true"`
 
+	// The name of the data set content delivery rules entry.
 	EntryName *string `locationName:"entryName" type:"string"`
 }
 
@@ -5007,13 +5041,12 @@ func (s *DatasetContentSummary) SetVersion(v string) *DatasetContentSummary {
 	return s
 }
 
-// The data set whose latest contents will be used as input to the notebook
-// or application.
+// The data set whose latest contents are used as input to the notebook or application.
 type DatasetContentVersionValue struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the data set whose latest contents will be used as input to the
-	// notebook or application.
+	// The name of the data set whose latest contents are used as input to the notebook
+	// or application.
 	//
 	// DatasetName is a required field
 	DatasetName *string `locationName:"datasetName" min:"1" type:"string" required:"true"`
@@ -5159,8 +5192,8 @@ func (s *DatasetSummary) SetTriggers(v []*DatasetTrigger) *DatasetSummary {
 type DatasetTrigger struct {
 	_ struct{} `type:"structure"`
 
-	// The data set whose content creation will trigger the creation of this data
-	// set's contents.
+	// The data set whose content creation triggers the creation of this data set's
+	// contents.
 	Dataset *TriggeringDataset `locationName:"dataset" type:"structure"`
 
 	// The "Schedule" when the trigger is initiated.
@@ -5702,18 +5735,20 @@ func (s DeletePipelineOutput) GoString() string {
 	return s.String()
 }
 
-// When you create data set contents using message data from a specified time
-// frame, some message data may still be "in flight" when processing begins,
-// and so will not arrive in time to be processed. Use this field to make allowances
-// for the "in flight" time of your message data, so that data not processed
-// from the previous time frame will be included with the next time frame. Without
-// this, missed message data would be excluded from processing during the next
-// time frame as well, because its timestamp places it within the previous time
-// frame.
+// Used to limit data to that which has arrived since the last execution of
+// the action.
 type DeltaTime struct {
 	_ struct{} `type:"structure"`
 
 	// The number of seconds of estimated "in flight" lag time of message data.
+	// When you create data set contents using message data from a specified time
+	// frame, some message data may still be "in flight" when processing begins,
+	// and so will not arrive in time to be processed. Use this field to make allowances
+	// for the "in flight" time of your message data, so that data not processed
+	// from a previous time frame will be included with the next time frame. Without
+	// this, missed message data would be excluded from processing during the next
+	// time frame as well, because its timestamp places it within the previous time
+	// frame.
 	//
 	// OffsetSeconds is a required field
 	OffsetSeconds *int64 `locationName:"offsetSeconds" type:"integer" required:"true"`
@@ -6510,12 +6545,18 @@ func (s *GetDatasetContentOutput) SetTimestamp(v time.Time) *GetDatasetContentOu
 	return s
 }
 
+// Configuration information for delivery of data set contents to AWS IoT Events.
 type IotEventsDestinationConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the AWS IoT Events input to which data set contents are delivered.
+	//
 	// InputName is a required field
 	InputName *string `locationName:"inputName" min:"1" type:"string" required:"true"`
 
+	// The ARN of the role which grants AWS IoT Analytics permission to deliver
+	// data set contents to an AWS IoT Events input.
+	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"20" type:"string" required:"true"`
 }
@@ -6748,6 +6789,16 @@ type ListDatasetContentsInput struct {
 
 	// The token for the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// A filter to limit results to those data set contents whose creation is scheduled
+	// before the given time. See the field triggers.schedule in the CreateDataset
+	// request. (timestamp)
+	ScheduledBefore *time.Time `location:"querystring" locationName:"scheduledBefore" type:"timestamp"`
+
+	// A filter to limit results to those data set contents whose creation is scheduled
+	// on or after the given time. See the field triggers.schedule in the CreateDataset
+	// request. (timestamp)
+	ScheduledOnOrAfter *time.Time `location:"querystring" locationName:"scheduledOnOrAfter" type:"timestamp"`
 }
 
 // String returns the string representation
@@ -6794,6 +6845,18 @@ func (s *ListDatasetContentsInput) SetMaxResults(v int64) *ListDatasetContentsIn
 // SetNextToken sets the NextToken field's value.
 func (s *ListDatasetContentsInput) SetNextToken(v string) *ListDatasetContentsInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetScheduledBefore sets the ScheduledBefore field's value.
+func (s *ListDatasetContentsInput) SetScheduledBefore(v time.Time) *ListDatasetContentsInput {
+	s.ScheduledBefore = &v
+	return s
+}
+
+// SetScheduledOnOrAfter sets the ScheduledOnOrAfter field's value.
+func (s *ListDatasetContentsInput) SetScheduledOnOrAfter(v time.Time) *ListDatasetContentsInput {
+	s.ScheduledOnOrAfter = &v
 	return s
 }
 
@@ -7209,7 +7272,7 @@ func (s *LoggingOptions) SetRoleArn(v string) *LoggingOptions {
 type MathActivity struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the attribute that will contain the result of the math operation.
+	// The name of the attribute that contains the result of the math operation.
 	//
 	// Attribute is a required field
 	Attribute *string `locationName:"attribute" min:"1" type:"string" required:"true"`
@@ -7355,8 +7418,7 @@ func (s *Message) SetPayload(v []byte) *Message {
 	return s
 }
 
-// The URI of the location where data set contents are stored, usually the URI
-// of a file in an S3 bucket.
+// The value of the variable as a structure that specifies an output file URI.
 type OutputFileUriValue struct {
 	_ struct{} `type:"structure"`
 
@@ -7746,14 +7808,7 @@ type QueryFilter struct {
 	_ struct{} `type:"structure"`
 
 	// Used to limit data to that which has arrived since the last execution of
-	// the action. When you create data set contents using message data from a specified
-	// time frame, some message data may still be "in flight" when processing begins,
-	// and so will not arrive in time to be processed. Use this field to make allowances
-	// for the "in flight" time of you message data, so that data not processed
-	// from a previous time frame will be included with the next time frame. Without
-	// this, missed message data would be excluded from processing during the next
-	// time frame as well, because its timestamp places it within the previous time
-	// frame.
+	// the action.
 	DeltaTime *DeltaTime `locationName:"deltaTime" type:"structure"`
 }
 
@@ -8500,7 +8555,7 @@ func (s *Tag) SetValue(v string) *Tag {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the resource whose tags will be modified.
+	// The ARN of the resource whose tags you want to modify.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"querystring" locationName:"resourceArn" min:"20" type:"string" required:"true"`
@@ -8579,13 +8634,13 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// Information about the data set whose content generation will trigger the
-// new data set content generation.
+// Information about the data set whose content generation triggers the new
+// data set content generation.
 type TriggeringDataset struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the data set whose content generation will trigger the new data
-	// set content generation.
+	// The name of the data set whose content generation triggers the new data set
+	// content generation.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
@@ -8626,12 +8681,12 @@ func (s *TriggeringDataset) SetName(v string) *TriggeringDataset {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the resource whose tags will be removed.
+	// The ARN of the resource whose tags you want to remove.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"querystring" locationName:"resourceArn" min:"20" type:"string" required:"true"`
 
-	// The keys of those tags which will be removed.
+	// The keys of those tags which you want to remove.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" min:"1" type:"list" required:"true"`
@@ -8772,6 +8827,8 @@ type UpdateDatasetInput struct {
 	// Actions is a required field
 	Actions []*DatasetAction `locationName:"actions" min:"1" type:"list" required:"true"`
 
+	// When data set contents are created they are delivered to destinations specified
+	// here.
 	ContentDeliveryRules []*DatasetContentDeliveryRule `locationName:"contentDeliveryRules" type:"list"`
 
 	// The name of the data set to update.
