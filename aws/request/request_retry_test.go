@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func r(t *testing.T, url string) *http.Request {
+func newRequest(t *testing.T, url string) *http.Request {
 	r, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		t.Fatalf("can't forge request: %v", err)
@@ -31,7 +31,7 @@ func Test_shouldRetryCancel_timeout(t *testing.T) {
 		Transport: tr,
 	}
 
-	resp, err := cli.Do(r(t, "https://179.179.179.179/no/such/host"))
+	resp, err := cli.Do(newRequest(t, "https://179.179.179.179/no/such/host"))
 	if resp != nil {
 		resp.Body.Close()
 	}
@@ -62,7 +62,7 @@ func Test_shouldRetryCancel_cancelled(t *testing.T) {
 	defer srvr.Close()
 	defer close(unblockc)
 
-	r := r(t, srvr.URL)
+	r := newRequest(t, srvr.URL)
 	ch := make(chan struct{})
 	r.Cancel = ch
 	close(ch) // request is cancelled before anything
