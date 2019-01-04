@@ -83,12 +83,9 @@ func Test_shouldRetryCancel_cancelled(t *testing.T) {
 }
 
 func debugerr(t *testing.T, err error) {
-	type temporaryError interface {
-		Temporary() bool
-	}
 
 	switch err := err.(type) {
-	case temporaryError:
+	case temporary:
 		t.Logf("%s is a temporary error: %t", err, err.Temporary())
 		return
 	case *url.Error:
