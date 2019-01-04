@@ -19,7 +19,9 @@ func newRequest(t *testing.T, url string) *http.Request {
 }
 
 func TestShouldRetryCancel_nil(t *testing.T) {
-	shouldRetryCancel(nil)
+	if shouldRetryCancel(nil) != true {
+		t.Error("shouldRetryCancel(nil) should return true")
+	}
 }
 
 func TestShouldRetryCancel_timeout(t *testing.T) {
