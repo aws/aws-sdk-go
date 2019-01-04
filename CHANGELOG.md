@@ -1,3 +1,12 @@
+Release v1.16.14 (2019-01-04)
+===
+
+### Service Client Updates
+* `service/devicefarm`: Updates service API and documentation
+  * "This release provides support for running Appium Node.js and Appium Ruby tests on AWS Device Farm.
+* `service/ecs`: Updates service documentation
+  * Documentation updates for Amazon ECS tagging feature.
+
 Release v1.16.13 (2019-01-03)
 ===
 
