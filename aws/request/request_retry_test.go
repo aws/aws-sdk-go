@@ -18,11 +18,11 @@ func newRequest(t *testing.T, url string) *http.Request {
 	return r
 }
 
-func Test_shouldRetryCancel_nil(t *testing.T) {
+func TestShouldRetryCancel_nil(t *testing.T) {
 	shouldRetryCancel(nil)
 }
 
-func Test_shouldRetryCancel_timeout(t *testing.T) {
+func TestShouldRetryCancel_timeout(t *testing.T) {
 
 	tr := &http.Transport{}
 	defer tr.CloseIdleConnections()
@@ -45,7 +45,7 @@ func Test_shouldRetryCancel_timeout(t *testing.T) {
 	}
 }
 
-func Test_shouldRetryCancel_cancelled(t *testing.T) {
+func TestShouldRetryCancel_cancelled(t *testing.T) {
 
 	tr := &http.Transport{}
 	defer tr.CloseIdleConnections()
