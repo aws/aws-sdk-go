@@ -82,14 +82,14 @@ func (rep *Reporter) sendAPICallAttemptMetric(r *request.Request) {
 
 	if r.Error != nil {
 		if awserr, ok := r.Error.(awserr.Error); ok {
-			setError(&m, awserr)
+			m.SetException(getMetricException(awserr))
 		}
 	}
 
 	rep.metricsCh.Push(m)
 }
 
-func setError(m *metric, err awserr.Error) {
+func getMetricException(err awserr.Error) metricException {
 	msg := err.Error()
 	code := err.Code()
 
@@ -97,11 +97,13 @@ func setError(m *metric, err awserr.Error) {
 	case "RequestError",
 		"SerializationError",
 		request.CanceledErrorCode:
-		m.SDKException = &code
-		m.SDKExceptionMessage = &msg
+		return sdkException{
+			requestException{exception: code, message: msg},
+		}
 	default:
-		m.AWSException = &code
-		m.AWSExceptionMessage = &msg
+		return awsException{
+			requestException{exception: code, message: msg},
+		}
 	}
 }
 
@@ -116,12 +118,23 @@ func (rep *Reporter) sendAPICallMetric(r *request.Request) {
 		API:                aws.String(r.Operation.Name),
 		Service:            aws.String(r.ClientInfo.ServiceID),
 		Timestamp:          (*metricTime)(&now),
+		UserAgent:          aws.String(r.HTTPRequest.Header.Get("User-Agent")),
 		Type:               aws.String("ApiCall"),
 		AttemptCount:       aws.Int(r.RetryCount + 1),
 		Region:             r.Config.Region,
 		Latency:            aws.Int(int(time.Now().Sub(r.Time) / time.Millisecond)),
 		XAmzRequestID:      aws.String(r.RequestID),
 		MaxRetriesExceeded: aws.Int(boolIntValue(r.RetryCount >= r.MaxRetries())),
+	}
+
+	if r.HTTPResponse != nil {
+		m.FinalHTTPStatusCode = aws.Int(r.HTTPResponse.StatusCode)
+	}
+
+	if r.Error != nil {
+		if awserr, ok := r.Error.(awserr.Error); ok {
+			m.SetFinalException(getMetricException(awserr))
+		}
 	}
 
 	// TODO: Probably want to figure something out for logging dropped
@@ -223,11 +236,15 @@ func (rep *Reporter) InjectHandlers(handlers *request.Handlers) {
 		return
 	}
 
-	apiCallHandler := request.NamedHandler{Name: APICallMetricHandlerName, Fn: rep.sendAPICallMetric}
-	apiCallAttemptHandler := request.NamedHandler{Name: APICallAttemptMetricHandlerName, Fn: rep.sendAPICallAttemptMetric}
+	handlers.Complete.PushFrontNamed(request.NamedHandler{
+		Name: APICallMetricHandlerName,
+		Fn:   rep.sendAPICallMetric,
+	})
 
-	handlers.Complete.PushFrontNamed(apiCallHandler)
-	handlers.CompleteAttempt.PushFrontNamed(apiCallAttemptHandler)
+	handlers.CompleteAttempt.PushFrontNamed(request.NamedHandler{
+		Name: APICallAttemptMetricHandlerName,
+		Fn:   rep.sendAPICallAttemptMetric,
+	})
 }
 
 // boolIntValue return 1 for true and 0 for false.
