@@ -7,4 +7,7 @@ import (
 	"syscall"
 )
 
-var stubConnectionResetErrorAccept = &net.OpError{Op: "accept", Err: syscall.ECONNRESET}
+var (
+	stubConnectionResetErrorAccept = &net.OpError{Op: "accept", Err: syscall.ECONNRESET}
+	stubConnectionResetErrorRead   = &net.OpError{Op: "read", Err: syscall.ECONNRESET}
+)

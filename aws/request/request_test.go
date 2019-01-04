@@ -612,10 +612,11 @@ func TestWithGetResponseHeaders(t *testing.T) {
 }
 
 type connResetCloser struct {
+	Err error
 }
 
 func (rc *connResetCloser) Read(b []byte) (int, error) {
-	return 0, stubConnectionResetErrorAccept
+	return 0, rc.Err
 }
 
 func (rc *connResetCloser) Close() error {
@@ -628,7 +629,9 @@ func TestSerializationErrConnectionReset_accept(t *testing.T) {
 	handlers.Send.PushBack(func(r *request.Request) {
 		count++
 		r.HTTPResponse = &http.Response{}
-		r.HTTPResponse.Body = &connResetCloser{}
+		r.HTTPResponse.Body = &connResetCloser{
+			Err: stubConnectionResetErrorAccept,
+		}
 	})
 
 	handlers.Sign.PushBackNamed(v4.SignRequestHandler)
