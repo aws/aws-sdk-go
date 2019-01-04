@@ -535,7 +535,7 @@ func TestIsSerializationErrorRetryable(t *testing.T) {
 			expected: false,
 		},
 		{
-			err:      awserr.New(request.ErrCodeSerialization, "foo error", stubConnectionResetError),
+			err:      awserr.New(request.ErrCodeSerialization, "foo error", stubConnectionResetErrorAccept),
 			expected: true,
 		},
 	}
@@ -615,14 +615,14 @@ type connResetCloser struct {
 }
 
 func (rc *connResetCloser) Read(b []byte) (int, error) {
-	return 0, stubConnectionResetError
+	return 0, stubConnectionResetErrorAccept
 }
 
 func (rc *connResetCloser) Close() error {
 	return nil
 }
 
-func TestSerializationErrConnectionReset(t *testing.T) {
+func TestSerializationErrConnectionReset_accept(t *testing.T) {
 	count := 0
 	handlers := request.Handlers{}
 	handlers.Send.PushBack(func(r *request.Request) {
@@ -668,7 +668,7 @@ func TestSerializationErrConnectionReset(t *testing.T) {
 		}{},
 	)
 
-	osErr := stubConnectionResetError
+	osErr := stubConnectionResetErrorAccept
 	req.ApplyOptions(request.WithResponseReadTimeout(time.Second))
 	err := req.Send()
 	if err == nil {
