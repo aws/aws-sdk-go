@@ -479,7 +479,7 @@ func (r *Request) Send() error {
 
 		if err := r.sendRequest(); err == nil {
 			return nil
-		} else if !shouldRetryCancel(r) {
+		} else if !shouldRetryCancel(r.Error) {
 			return err
 		} else {
 			r.Handlers.Retry.Run(r)
