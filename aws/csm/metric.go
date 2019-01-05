@@ -66,11 +66,13 @@ func (m *metric) TruncateFields() {
 
 	m.AWSException = truncateString(m.AWSException, 128)
 	m.AWSExceptionMessage = truncateString(m.AWSExceptionMessage, 512)
+
 	m.SDKException = truncateString(m.SDKException, 128)
 	m.SDKExceptionMessage = truncateString(m.SDKExceptionMessage, 512)
 
 	m.FinalAWSException = truncateString(m.FinalAWSException, 128)
 	m.FinalAWSExceptionMessage = truncateString(m.FinalAWSExceptionMessage, 512)
+
 	m.FinalSDKException = truncateString(m.FinalSDKException, 128)
 	m.FinalSDKExceptionMessage = truncateString(m.FinalSDKExceptionMessage, 512)
 }

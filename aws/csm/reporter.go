@@ -86,6 +86,7 @@ func (rep *Reporter) sendAPICallAttemptMetric(r *request.Request) {
 		}
 	}
 
+	m.TruncateFields()
 	rep.metricsCh.Push(m)
 }
 
@@ -136,6 +137,8 @@ func (rep *Reporter) sendAPICallMetric(r *request.Request) {
 			m.SetFinalException(getMetricException(awserr))
 		}
 	}
+
+	m.TruncateFields()
 
 	// TODO: Probably want to figure something out for logging dropped
 	// metrics
