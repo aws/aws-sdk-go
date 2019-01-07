@@ -7,10 +7,12 @@ import (
 	"fmt"
 	"net/http"
 	"net/http/httptest"
+	"sort"
 	"testing"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/client/metadata"
 	"github.com/aws/aws-sdk-go/aws/csm"
@@ -57,7 +59,8 @@ func TestReportingMetrics(t *testing.T) {
 					"HttpStatusCode": float64(200),
 				},
 				{
-					"Type": "ApiCall",
+					"Type":                "ApiCall",
+					"FinalHttpStatusCode": float64(200),
 				},
 			},
 		},
@@ -72,18 +75,24 @@ func TestReportingMetrics(t *testing.T) {
 						Header:     http.Header{},
 					}
 					req.Retryable = aws.Bool(false)
+					req.Error = awserr.New("Error", "Message", nil)
 				})
 
 				return req
 			}(),
 			ExpectMetrics: []map[string]interface{}{
 				{
-					"Type":           "ApiCallAttempt",
-					"HttpStatusCode": float64(400),
+					"Type":                "ApiCallAttempt",
+					"HttpStatusCode":      float64(400),
+					"AwsException":        "Error",
+					"AwsExceptionMessage": "Error: Message",
 				},
 				{
-					"Type":         "ApiCall",
-					"AttemptCount": float64(1),
+					"Type":                     "ApiCall",
+					"FinalHttpStatusCode":      float64(400),
+					"FinalAwsException":        "Error",
+					"FinalAwsExceptionMessage": "Error: Message",
+					"AttemptCount":             float64(1),
 				},
 			},
 		},
@@ -111,16 +120,23 @@ func TestReportingMetrics(t *testing.T) {
 			}(),
 			ExpectMetrics: []map[string]interface{}{
 				{
-					"Type":           "ApiCallAttempt",
-					"HttpStatusCode": float64(500),
+					"Type":                "ApiCallAttempt",
+					"HttpStatusCode":      float64(500),
+					"AwsException":        "UnknownError",
+					"AwsExceptionMessage": "UnknownError: unknown error",
 				},
 				{
-					"Type":           "ApiCallAttempt",
-					"HttpStatusCode": float64(500),
+					"Type":                "ApiCallAttempt",
+					"HttpStatusCode":      float64(500),
+					"AwsException":        "UnknownError",
+					"AwsExceptionMessage": "UnknownError: unknown error",
 				},
 				{
-					"Type":         "ApiCall",
-					"AttemptCount": float64(2),
+					"Type":                     "ApiCall",
+					"FinalHttpStatusCode":      float64(500),
+					"FinalAwsException":        "UnknownError",
+					"FinalAwsExceptionMessage": "UnknownError: unknown error",
+					"AttemptCount":             float64(2),
 				},
 			},
 		},
@@ -129,6 +145,11 @@ func TestReportingMetrics(t *testing.T) {
 				md := metadata.ClientInfo{}
 				op := &request.Operation{Name: "OperationName"}
 				req := request.New(*sess.Config, md, sess.Handlers, client.DefaultRetryer{NumMaxRetries: 3}, op, nil, nil)
+				errs := []error{
+					awserr.New("AWSError", "aws error", nil),
+					awserr.New("RequestError", "sdk error", nil),
+					nil,
+				}
 				resps := []*http.Response{
 					{
 						StatusCode: 500,
@@ -146,26 +167,41 @@ func TestReportingMetrics(t *testing.T) {
 				req.Handlers.Send.PushBack(func(r *request.Request) {
 					req.HTTPResponse = resps[0]
 					resps = resps[1:]
+					req.Error = errs[0]
+					errs = errs[1:]
 				})
 
 				return req
 			}(),
 			ExpectMetrics: []map[string]interface{}{
 				{
-					"Type":           "ApiCallAttempt",
-					"HttpStatusCode": float64(500),
+					"Type":                "ApiCallAttempt",
+					"AwsException":        "AWSError",
+					"AwsExceptionMessage": "AWSError: aws error",
+					"HttpStatusCode":      float64(500),
 				},
 				{
-					"Type":           "ApiCallAttempt",
-					"HttpStatusCode": float64(500),
+					"Type":                "ApiCallAttempt",
+					"SdkException":        "RequestError",
+					"SdkExceptionMessage": "RequestError: sdk error",
+					"HttpStatusCode":      float64(500),
 				},
 				{
-					"Type":           "ApiCallAttempt",
-					"HttpStatusCode": float64(200),
+					"Type":                "ApiCallAttempt",
+					"AwsException":        nil,
+					"AwsExceptionMessage": nil,
+					"SdkException":        nil,
+					"SdkExceptionMessage": nil,
+					"HttpStatusCode":      float64(200),
 				},
 				{
-					"Type":         "ApiCall",
-					"AttemptCount": float64(3),
+					"Type":                     "ApiCall",
+					"FinalHttpStatusCode":      float64(200),
+					"FinalAwsException":        nil,
+					"FinalAwsExceptionMessage": nil,
+					"FinalSdkException":        nil,
+					"FinalSdkExceptionMessage": nil,
+					"AttemptCount":             float64(3),
 				},
 			},
 		},
@@ -181,11 +217,18 @@ func TestReportingMetrics(t *testing.T) {
 				select {
 				case m := <-csm.MetricsCh:
 					for ek, ev := range c.ExpectMetrics[i] {
+						if ev == nil {
+							// must not be set
+							if _, ok := m[ek]; ok {
+								t.Errorf("%d, expect %v metric member, not to be set, %v", i, ek, m[ek])
+							}
+							continue
+						}
 						if _, ok := m[ek]; !ok {
-							t.Errorf("expect %v metric member", ek)
+							t.Errorf("%d, expect %v metric member, keys: %v", i, ek, keys(m))
 						}
 						if e, a := ev, m[ek]; e != a {
-							t.Errorf("expect %v:%v(%T), metric value, got %v(%T)", ek, e, e, a, a)
+							t.Errorf("%d, expect %v:%v(%T), metric value, got %v(%T)", i, ek, e, e, a, a)
 						}
 					}
 				case <-ctx.Done():
@@ -359,4 +402,13 @@ func BenchmarkWithoutCSM(b *testing.B) {
 		req := svc.Request(input{})
 		req.Send()
 	}
+}
+
+func keys(m map[string]interface{}) []string {
+	ks := make([]string, 0, len(m))
+	for k := range m {
+		ks = append(ks, k)
+	}
+	sort.Strings(ks)
+	return ks
 }
