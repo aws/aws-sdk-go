@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>AWS App Mesh is a service mesh based on the Envoy proxy that makes it easy to monitor and\n         control containerized microservices. App Mesh standardizes how your microservices\n         communicate, giving you end-to-end visibility and helping to ensure high-availability for\n         your applications.</p>\n         <p>App Mesh gives you consistent visibility and network traffic controls for every\n         microservice in an application. You can use App Mesh with Amazon ECS\n         (using the Amazon EC2 launch type), Amazon EKS, and Kubernetes on AWS.</p>\n         <note>\n            <p>App Mesh supports containerized microservice applications that use service discovery\n            naming for their components. To use App Mesh, you must have a containerized application\n            running on Amazon EC2 instances, hosted in either Amazon ECS, Amazon EKS, or Kubernetes on AWS. For\n            more information about service discovery on Amazon ECS, see <a href=\"http://docs.aws.amazon.com/AmazonECS/latest/developerguideservice-discovery.html\">Service Discovery</a> in the\n               <i>Amazon Elastic Container Service Developer Guide</i>. Kubernetes <code>kube-dns</code> is supported.\n            For more information, see <a href=\"https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/\">DNS\n               for Services and Pods</a> in the Kubernetes documentation.</p>\n         </note>",
+  "service": "<p>AWS App Mesh is a service mesh based on the Envoy proxy that makes it easy to monitor and\n         control containerized microservices. App Mesh standardizes how your microservices\n         communicate, giving you end-to-end visibility and helping to ensure high-availability for\n         your applications.</p>\n         <p>App Mesh gives you consistent visibility and network traffic controls for every\n         microservice in an application. You can use App Mesh with Amazon ECS\n         (using the Amazon EC2 launch type), Amazon EKS, and Kubernetes on AWS.</p>\n         <note>\n            <p>App Mesh supports containerized microservice applications that use service discovery\n            naming for their components. To use App Mesh, you must have a containerized application\n            running on Amazon EC2 instances, hosted in either Amazon ECS, Amazon EKS, or Kubernetes on AWS. For\n            more information about service discovery on Amazon ECS, see <a href=\"http://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html\">Service Discovery</a> in the\n               <i>Amazon Elastic Container Service Developer Guide</i>. Kubernetes <code>kube-dns</code> is supported.\n            For more information, see <a href=\"https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/\">DNS\n               for Services and Pods</a> in the Kubernetes documentation.</p>\n         </note>",
   "operations": {
     "CreateMesh": "<p>Creates a new service mesh. A service mesh is a logical boundary for network traffic\n         between the services that reside within it.</p>\n         <p>After you create your service mesh, you can create virtual nodes, virtual routers, and\n         routes to distribute traffic between the applications in your mesh.</p>",
     "CreateRoute": "<p>Creates a new route that is associated with a virtual router.</p>\n         <p>You can use the <code>prefix</code> parameter in your route specification for path-based\n         routing of requests. For example, if your virtual router service name is\n            <code>my-service.local</code>, and you want the route to match requests to\n            <code>my-service.local/metrics</code>, then your prefix should be\n         <code>/metrics</code>.</p>\n         <p>If your route matches a request, you can distribute traffic to one or more target\n         virtual nodes with relative weighting.</p>",
@@ -10,7 +10,7 @@
     "DeleteRoute": "<p>Deletes an existing route.</p>",
     "DeleteVirtualNode": "<p>Deletes an existing virtual node.</p>",
     "DeleteVirtualRouter": "<p>Deletes an existing virtual router.</p>\n         <p>You must delete any routes associated with the virtual router before you can delete the\n         router itself.</p>",
-    "DescribeMesh": "<p>Describes an existing cluster.</p>",
+    "DescribeMesh": "<p>Describes an existing service mesh.</p>",
     "DescribeRoute": "<p>Describes an existing route.</p>",
     "DescribeVirtualNode": "<p>Describes an existing virtual node.</p>",
     "DescribeVirtualRouter": "<p>Describes an existing virtual router.</p>",
@@ -210,25 +210,33 @@
         "DnsServiceDiscovery$serviceName": "<p>The DNS service name for your virtual node.</p>"
       }
     },
-    "DurationMillis": {
-      "base": null,
-      "refs": { }
-    },
     "ForbiddenException": {
       "base": "<p>You do not have permissions to perform this action.</p>",
       "refs": { }
     },
+    "HealthCheckIntervalMillis": {
+      "base": null,
+      "refs": { }
+    },
     "HealthCheckPolicy": {
-      "base": "<p>An object representing the health check policy for a virtual node's listener.</p>\n         <note>\n            <p>Listener health checks are not available during the App Mesh preview.</p>\n         </note>",
+      "base": "<p>An object representing the health check policy for a virtual node's listener.</p>",
       "refs": {
         "HealthCheckPolicy$healthyThreshold": "<p>The number of consecutive successful health checks that must occur before declaring\n         listener healthy.</p>",
         "HealthCheckPolicy$intervalMillis": "<p>The time period in milliseconds between each health check execution.</p>",
-        "HealthCheckPolicy$path": "<p>The destination path for the health check request.</p>",
-        "HealthCheckPolicy$port": "<p>The destination port for the health check request.</p>",
+        "HealthCheckPolicy$path": "<p>The destination path for the health check request. This is only required if the\n         specified protocol is HTTP; if the protocol is TCP, then this parameter is ignored.</p>",
+        "HealthCheckPolicy$port": "<p>The destination port for the health check request. This port must match the port defined\n         in the <a>PortMapping</a> for the listener.</p>",
         "HealthCheckPolicy$protocol": "<p>The protocol for the health check request.</p>",
         "HealthCheckPolicy$timeoutMillis": "<p>The amount of time to wait when receiving a response from the health check, in\n         milliseconds.</p>",
         "HealthCheckPolicy$unhealthyThreshold": "<p>The number of consecutive failed health checks that must occur before declaring a\n         virtual node unhealthy. </p>"
       }
+    },
+    "HealthCheckThreshold": {
+      "base": null,
+      "refs": { }
+    },
+    "HealthCheckTimeoutMillis": {
+      "base": null,
+      "refs": { }
     },
     "HttpRoute": {
       "base": "<p>An object representing the HTTP routing specification for a route.</p>",
@@ -336,7 +344,7 @@
     "Listener": {
       "base": "<p>An object representing a listener for a virtual node.</p>",
       "refs": {
-        "Listener$healthCheck": "<p>The health check information for the listener.</p>\n         <note>\n            <p>Listener health checks are not available during the App Mesh preview.</p>\n         </note>",
+        "Listener$healthCheck": "<p>The health check information for the listener.</p>",
         "Listener$portMapping": "<p>The port mapping information for the listener.</p>"
       }
     },
@@ -381,10 +389,6 @@
       "base": null,
       "refs": { }
     },
-    "NonNegativeInt": {
-      "base": null,
-      "refs": { }
-    },
     "NotFoundException": {
       "base": "<p>The specified resource does not exist. Check your request syntax and try again.</p>",
       "refs": { }
@@ -416,8 +420,8 @@
       "base": "<p>An object representing metadata for a resource.</p>",
       "refs": {
         "ResourceMetadata$arn": "<p>The full Amazon Resource Name (ARN) for the resource.</p>\n         <note>\n            <p>After you create a virtual node, set this value (either the full ARN or the\n            truncated resource name, for example, <code>mesh/default/virtualNode/simpleapp</code>,\n            as the <code>APPMESH_VIRTUAL_NODE_NAME</code> environment variable for your task group's\n            Envoy proxy container in your task definition or pod spec. This is then mapped to the\n               <code>node.id</code> and <code>node.cluster</code> Envoy parameters.</p>\n            <p>If you require your Envoy stats or tracing to use a different name, you can override\n            the <code>node.cluster</code> value that is set by\n               <code>APPMESH_VIRTUAL_NODE_NAME</code> with the\n               <code>APPMESH_VIRTUAL_NODE_CLUSTER</code> environment variable.</p>\n         </note>",
-        "ResourceMetadata$createdAt": "<p>The Unix epoch timestamp in seconds for when the cluster was created.</p>",
-        "ResourceMetadata$lastUpdatedAt": "<p>The Unix epoch timestamp in seconds for when the cluster was last updated.</p>",
+        "ResourceMetadata$createdAt": "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
+        "ResourceMetadata$lastUpdatedAt": "<p>The Unix epoch timestamp in seconds for when the resource was last updated.</p>",
         "ResourceMetadata$uid": "<p>The unique identifier for the resource.</p>",
         "ResourceMetadata$version": "<p>The version of the resource. Resources are created at version 1, and this version is\n         incremented each time they are updated.</p>"
       }
