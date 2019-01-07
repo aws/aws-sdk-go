@@ -663,6 +663,7 @@
         },
         "endpoints" : {
           "ap-southeast-2" : { },
+          "eu-central-1" : { },
           "eu-west-1" : { },
           "us-east-1" : { },
           "us-east-2" : { },
@@ -1654,6 +1655,7 @@
           }
         },
         "endpoints" : {
+          "eu-central-1" : { },
           "eu-west-1" : { },
           "us-east-1" : { },
           "us-west-2" : { }
@@ -3279,6 +3281,11 @@
       "logs" : {
         "endpoints" : {
           "us-gov-east-1" : { },
+          "us-gov-west-1" : { }
+        }
+      },
+      "mediaconvert" : {
+        "endpoints" : {
           "us-gov-west-1" : { }
         }
       },

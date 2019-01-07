@@ -1,3 +1,10 @@
+Release v1.16.15 (2019-01-07)
+===
+
+### Service Client Updates
+* `service/appmesh`: Updates service API and documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.16.14 (2019-01-04)
 ===
 

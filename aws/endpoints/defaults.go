@@ -769,6 +769,7 @@ var awsPartition = partition{
 			},
 			Endpoints: endpoints{
 				"ap-southeast-2": endpoint{},
+				"eu-central-1":   endpoint{},
 				"eu-west-1":      endpoint{},
 				"us-east-1":      endpoint{},
 				"us-east-2":      endpoint{},
@@ -1796,9 +1797,10 @@ var awsPartition = partition{
 				},
 			},
 			Endpoints: endpoints{
-				"eu-west-1": endpoint{},
-				"us-east-1": endpoint{},
-				"us-west-2": endpoint{},
+				"eu-central-1": endpoint{},
+				"eu-west-1":    endpoint{},
+				"us-east-1":    endpoint{},
+				"us-west-2":    endpoint{},
 			},
 		},
 		"polly": service{
@@ -3539,6 +3541,12 @@ var awsusgovPartition = partition{
 
 			Endpoints: endpoints{
 				"us-gov-east-1": endpoint{},
+				"us-gov-west-1": endpoint{},
+			},
+		},
+		"mediaconvert": service{
+
+			Endpoints: endpoints{
 				"us-gov-west-1": endpoint{},
 			},
 		},
