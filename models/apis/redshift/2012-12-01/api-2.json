@@ -1451,6 +1451,13 @@
         "locationName":"AccountWithRestoreAccess"
       }
     },
+    "AssociatedClusterList":{
+      "type":"list",
+      "member":{
+        "shape":"ClusterAssociatedToSchedule",
+        "locationName":"ClusterAssociatedToSchedule"
+      }
+    },
     "AttributeList":{
       "type":"list",
       "member":{
@@ -1704,6 +1711,13 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "ClusterAssociatedToSchedule":{
+      "type":"structure",
+      "members":{
+        "ClusterIdentifier":{"shape":"String"},
+        "ScheduleAssociationState":{"shape":"ScheduleState"}
+      }
     },
     "ClusterCredentials":{
       "type":"structure",
@@ -4431,7 +4445,9 @@
         "ScheduleIdentifier":{"shape":"String"},
         "ScheduleDescription":{"shape":"String"},
         "Tags":{"shape":"TagList"},
-        "NextInvocations":{"shape":"ScheduledSnapshotTimeList"}
+        "NextInvocations":{"shape":"ScheduledSnapshotTimeList"},
+        "AssociatedClusterCount":{"shape":"IntegerOptional"},
+        "AssociatedClusters":{"shape":"AssociatedClusterList"}
       }
     },
     "SnapshotScheduleAlreadyExistsFault":{

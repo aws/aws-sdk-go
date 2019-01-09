@@ -1,3 +1,13 @@
+Release v1.16.16 (2019-01-09)
+===
+
+### Service Client Updates
+* `service/docdb`: Adds new service
+  * Amazon DocumentDB (with MongoDB compatibility) is a fast, reliable, and fully-managed database service. Amazon DocumentDB makes it easy for developers to set up, run, and scale MongoDB-compatible databases in the cloud.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/redshift`: Updates service API and documentation
+  * DescribeSnapshotSchedules returns a list of snapshot schedules. With this release, this API will have a list of clusters and number of clusters associated with the schedule.
+
 Release v1.16.15 (2019-01-07)
 ===
 

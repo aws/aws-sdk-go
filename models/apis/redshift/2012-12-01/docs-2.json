@@ -123,6 +123,12 @@
         "Snapshot$AccountsWithRestoreAccess": "<p>A list of the AWS customer accounts authorized to restore the snapshot. Returns <code>null</code> if no accounts are authorized. Visible only to the snapshot owner. </p>"
       }
     },
+    "AssociatedClusterList": {
+      "base": null,
+      "refs": {
+        "SnapshotSchedule$AssociatedClusters": null
+      }
+    },
     "AttributeList": {
       "base": null,
       "refs": {
@@ -267,7 +273,7 @@
         "CreateClusterMessage$EnhancedVpcRouting": "<p>An option that specifies whether to create the cluster with enhanced VPC routing enabled. To create a cluster that uses enhanced VPC routing, the cluster must be in a VPC. For more information, see <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/enhanced-vpc-routing.html\">Enhanced VPC Routing</a> in the Amazon Redshift Cluster Management Guide.</p> <p>If this option is <code>true</code>, enhanced VPC routing is enabled. </p> <p>Default: false</p>",
         "CreateEventSubscriptionMessage$Enabled": "<p>A boolean value; set to <code>true</code> to activate the subscription, and set to <code>false</code> to create the subscription but not activate it. </p>",
         "CreateSnapshotScheduleMessage$DryRun": null,
-        "DescribeClusterSnapshotsMessage$ClusterExists": "<p>A value that indicates whether to return snapshots only for an existing cluster. Table-level restore can be performed only using a snapshot of an existing cluster, that is, a cluster that has not been deleted. </p> <ul> <li> <p>If <code>ClusterExists</code> is set to <code>true</code>, <code>ClusterIdentifier</code> is required.</p> </li> <li> <p>If <code>ClusterExists</code> is set to <code>false</code> and <code>ClusterIdentifier</code> is not specified, all snapshots associated with deleted clusters (orphaned snapshots) are returned. </p> </li> <li> <p>If <code>ClusterExists</code> is set to <code>false</code> and <code>ClusterIdentifier</code> is specified for a deleted cluster, snapshots associated with that cluster are returned.</p> </li> <li> <p>If <code>ClusterExists</code> is set to <code>false</code> and <code>ClusterIdentifier</code> is specified for an existing cluster, no snapshots are returned. </p> </li> </ul>",
+        "DescribeClusterSnapshotsMessage$ClusterExists": "<p>A value that indicates whether to return snapshots only for an existing cluster. Table-level restore can be performed only using a snapshot of an existing cluster, that is, a cluster that has not been deleted. If <code>ClusterExists</code> is set to <code>true</code>, <code>ClusterIdentifier</code> is required.</p>",
         "GetClusterCredentialsMessage$AutoCreate": "<p>Create a database user with the name specified for the user named in <code>DbUser</code> if one does not exist.</p>",
         "ModifyClusterMaintenanceMessage$DeferMaintenance": "<p>A boolean indicating whether to enable the deferred maintenance window. </p>",
         "ModifyClusterMessage$AllowVersionUpgrade": "<p>If <code>true</code>, major version upgrades will be applied automatically to the cluster during the maintenance window. </p> <p>Default: <code>false</code> </p>",
@@ -316,6 +322,12 @@
     "ClusterAlreadyExistsFault": {
       "base": "<p>The account already has a cluster with the given identifier.</p>",
       "refs": {
+      }
+    },
+    "ClusterAssociatedToSchedule": {
+      "base": null,
+      "refs": {
+        "AssociatedClusterList$member": null
       }
     },
     "ClusterCredentials": {
@@ -1328,7 +1340,8 @@
         "RestoreFromClusterSnapshotMessage$AutomatedSnapshotRetentionPeriod": "<p>The number of days that automated snapshots are retained. If the value is 0, automated snapshots are disabled. Even if automated snapshots are disabled, you can still create manual snapshots when you want with <a>CreateClusterSnapshot</a>. </p> <p>Default: The value selected for the cluster from which the snapshot was taken.</p> <p>Constraints: Must be a value from 0 to 35.</p>",
         "RestoreFromClusterSnapshotMessage$ManualSnapshotRetentionPeriod": null,
         "Snapshot$ManualSnapshotRetentionPeriod": "<p>The number of days that a manual snapshot is retained. If the value is -1, the manual snapshot is retained indefinitely. </p> <p>The value must be either -1 or an integer between 1 and 3,653.</p>",
-        "Snapshot$ManualSnapshotRemainingDays": "<p>The number of days until a manual snapshot will pass its retention period.</p>"
+        "Snapshot$ManualSnapshotRemainingDays": "<p>The number of days until a manual snapshot will pass its retention period.</p>",
+        "SnapshotSchedule$AssociatedClusterCount": null
       }
     },
     "InvalidClusterParameterGroupStateFault": {
@@ -1893,7 +1906,8 @@
     "ScheduleState": {
       "base": null,
       "refs": {
-        "Cluster$SnapshotScheduleState": "<p>The current state of the cluster snapshot schedule.</p>"
+        "Cluster$SnapshotScheduleState": "<p>The current state of the cluster snapshot schedule.</p>",
+        "ClusterAssociatedToSchedule$ScheduleAssociationState": null
       }
     },
     "ScheduledSnapshotTimeList": {
@@ -2106,6 +2120,7 @@
         "Cluster$MaintenanceTrackName": "<p>The name of the maintenance track for the cluster.</p>",
         "Cluster$ElasticResizeNumberOfNodeOptions": "<p>The number of nodes that you can resize the cluster to with the elastic resize method. </p>",
         "Cluster$SnapshotScheduleIdentifier": "<p>A unique identifier for the cluster snapshot schedule.</p>",
+        "ClusterAssociatedToSchedule$ClusterIdentifier": null,
         "ClusterCredentials$DbUser": "<p>A database user name that is authorized to log on to the database <code>DbName</code> using the password <code>DbPassword</code>. If the specified DbUser exists in the database, the new user name has the same database privileges as the the user named in DbUser. By default, the user is added to PUBLIC. If the <code>DbGroups</code> parameter is specifed, <code>DbUser</code> is added to the listed groups for any sessions created using these credentials.</p>",
         "ClusterDbRevision$ClusterIdentifier": "<p>The unique identifier of the cluster.</p>",
         "ClusterDbRevision$CurrentDatabaseRevision": "<p>A string representing the current cluster version.</p>",
