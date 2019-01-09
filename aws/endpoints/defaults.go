@@ -3267,7 +3267,12 @@ var awsusgovPartition = partition{
 			},
 		},
 		"application-autoscaling": service{
-
+			Defaults: endpoint{
+				Hostname: "autoscaling.{region}.amazonaws.com",
+				CredentialScope: credentialScope{
+					Service: "application-autoscaling",
+				},
+			},
 			Endpoints: endpoints{
 				"us-gov-east-1": endpoint{},
 				"us-gov-west-1": endpoint{},
