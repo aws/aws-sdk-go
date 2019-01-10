@@ -1520,7 +1520,8 @@
         "VpcConfig":{"shape":"VpcConfig"},
         "StoppingCondition":{"shape":"StoppingCondition"},
         "Tags":{"shape":"TagList"},
-        "EnableNetworkIsolation":{"shape":"Boolean"}
+        "EnableNetworkIsolation":{"shape":"Boolean"},
+        "EnableInterContainerTrafficEncryption":{"shape":"Boolean"}
       }
     },
     "CreateTrainingJobResponse":{
@@ -2073,7 +2074,8 @@
         "LastModifiedTime":{"shape":"Timestamp"},
         "SecondaryStatusTransitions":{"shape":"SecondaryStatusTransitions"},
         "FinalMetricDataList":{"shape":"FinalMetricDataList"},
-        "EnableNetworkIsolation":{"shape":"Boolean"}
+        "EnableNetworkIsolation":{"shape":"Boolean"},
+        "EnableInterContainerTrafficEncryption":{"shape":"Boolean"}
       }
     },
     "DescribeTransformJobRequest":{
@@ -2280,7 +2282,7 @@
       "type":"string",
       "max":63,
       "min":1,
-      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$"
     },
     "EnvironmentKey":{
       "type":"string",
@@ -2460,7 +2462,8 @@
         "OutputDataConfig":{"shape":"OutputDataConfig"},
         "ResourceConfig":{"shape":"ResourceConfig"},
         "StoppingCondition":{"shape":"StoppingCondition"},
-        "EnableNetworkIsolation":{"shape":"Boolean"}
+        "EnableNetworkIsolation":{"shape":"Boolean"},
+        "EnableInterContainerTrafficEncryption":{"shape":"Boolean"}
       }
     },
     "HyperParameterTrainingJobSummaries":{
@@ -2779,7 +2782,10 @@
         "Total":{"shape":"LabelCounter"}
       }
     },
-    "LabelingJobAlgorithmSpecificationArn":{"type":"string"},
+    "LabelingJobAlgorithmSpecificationArn":{
+      "type":"string",
+      "max":2048
+    },
     "LabelingJobAlgorithmsConfig":{
       "type":"structure",
       "required":["LabelingJobAlgorithmSpecificationArn"],
@@ -4429,7 +4435,7 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"^((?!aws:)[\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
     "TagKeyList":{
       "type":"list",

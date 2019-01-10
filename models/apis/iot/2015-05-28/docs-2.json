@@ -4586,6 +4586,7 @@
         "CloudwatchMetricAction$metricValue": "<p>The CloudWatch metric value.</p>",
         "CloudwatchMetricAction$metricUnit": "<p>The <a href=\"http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit\">metric unit</a> supported by CloudWatch.</p>",
         "CloudwatchMetricAction$metricTimestamp": "<p>An optional <a href=\"http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp\">Unix timestamp</a>.</p>",
+        "CreateTopicRuleRequest$tags": "<p>Metadata which can be used to manage the topic rule.</p> <note> <p>For URI Request parameters use format: ...key1=value1&amp;key2=value2...</p> <p>For the CLI command-line parameter use format: --tags \"key1=value1&amp;key2=value2...\"</p> <p>For the cli-input-json file use format: \"tags\": \"key1=value1&amp;key2=value2...\"</p> </note>",
         "StringMap$key": null,
         "StringMap$value": null
       }

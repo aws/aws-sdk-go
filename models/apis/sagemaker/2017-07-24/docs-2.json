@@ -4,7 +4,7 @@
   "operations": {
     "AddTags": "<p>Adds or overwrites one or more tags for the specified Amazon SageMaker resource. You can add tags to notebook instances, training jobs, hyperparameter tuning jobs, models, endpoint configurations, and endpoints.</p> <p>Each tag consists of a key and an optional value. Tag keys must be unique per resource. For more information about tags, see For more information, see <a href=\"https://aws.amazon.com/answers/account-management/aws-tagging-strategies/\">AWS Tagging Strategies</a>.</p> <note> <p>Tags that you add to a hyperparameter tuning job by calling this API are also added to any training jobs that the hyperparameter tuning job launches after you call this API, but not to training jobs that the hyperparameter tuning job launched before you called this API. To make sure that the tags associated with a hyperparameter tuning job are also added to all training jobs that the hyperparameter tuning job launches, add the tags when you first create the tuning job by specifying them in the <code>Tags</code> parameter of <a>CreateHyperParameterTuningJob</a> </p> </note>",
     "CreateAlgorithm": "<p>Create a machine learning algorithm that you can use in Amazon SageMaker and list in the AWS Marketplace.</p>",
-    "CreateCodeRepository": "<p>Create a git repository as a resource in your Amazon SageMaker account. You can associate the repository with notebook instances so that you can use git source control for the notebooks you create. The git repository is a resource in your Amazon SageMaker account, so it can be associated with more than one notebook instance, and it persists independently from the lifecycle of any notebook instances it is associated with.</p> <p>The repository can be hosted either in <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other git repository.</p>",
+    "CreateCodeRepository": "<p>Creates a Git repository as a resource in your Amazon SageMaker account. You can associate the repository with notebook instances so that you can use Git source control for the notebooks you create. The Git repository is a resource in your Amazon SageMaker account, so it can be associated with more than one notebook instance, and it persists independently from the lifecycle of any notebook instances it is associated with.</p> <p>The repository can be hosted either in <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other Git repository.</p>",
     "CreateCompilationJob": "<p>Starts a model compilation job. After the model has been compiled, Amazon SageMaker saves the resulting model artifacts to an Amazon Simple Storage Service (Amazon S3) bucket that you specify. </p> <p>If you choose to host your model using Amazon SageMaker hosting services, you can use the resulting model artifacts as part of the model. You can also use the artifacts with AWS IoT Greengrass. In that case, deploy them as an ML resource.</p> <p>In the request body, you provide the following:</p> <ul> <li> <p>A name for the compilation job</p> </li> <li> <p> Information about the input model artifacts </p> </li> <li> <p>The output location for the compiled model and the device (target) that the model runs on </p> </li> <li> <p> <code>The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker assumes to perform the model compilation job</code> </p> </li> </ul> <p>You can also provide a <code>Tag</code> to track the model compilation job's resource use and costs. The response body contains the <code>CompilationJobArn</code> for the compiled job.</p> <p>To stop a model compilation job, use <a>StopCompilationJob</a>. To get information about a particular model compilation job, use <a>DescribeCompilationJob</a>. To get information about multiple model compilation jobs, use <a>ListCompilationJobs</a>.</p>",
     "CreateEndpoint": "<p>Creates an endpoint using the endpoint configuration specified in the request. Amazon SageMaker uses the endpoint to provision resources and deploy models. You create the endpoint configuration with the <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpointConfig.html\">CreateEndpointConfig</a> API. </p> <note> <p> Use this API only for hosting models using Amazon SageMaker hosting services. </p> </note> <p>The endpoint name must be unique within an AWS Region in your AWS account. </p> <p>When it receives the request, Amazon SageMaker creates the endpoint, launches the resources (ML compute instances), and deploys the model(s) on them. </p> <p>When Amazon SageMaker receives the request, it sets the endpoint status to <code>Creating</code>. After it creates the endpoint, it sets the status to <code>InService</code>. Amazon SageMaker can then process incoming requests for inferences. To check the status of an endpoint, use the <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/API_DescribeEndpoint.html\">DescribeEndpoint</a> API.</p> <p>For an example, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/ex1.html\">Exercise 1: Using the K-Means Algorithm Provided by Amazon SageMaker</a>. </p> <p>If any of the models hosted at this endpoint get model data from an Amazon S3 location, Amazon SageMaker uses AWS Security Token Service to download model artifacts from the S3 path you provided. AWS STS is activated in your IAM user account by default. If you previously deactivated AWS STS for a region, you need to reactivate AWS STS for that region. For more information, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html\">Activating and Deactivating AWS STS i an AWS Region</a> in the <i>AWS Identity and Access Management User Guide</i>.</p>",
     "CreateEndpointConfig": "<p>Creates an endpoint configuration that Amazon SageMaker hosting services uses to deploy models. In the configuration, you identify one or more models, created using the <code>CreateModel</code> API, to deploy and the resources that you want Amazon SageMaker to provision. Then you call the <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpoint.html\">CreateEndpoint</a> API.</p> <note> <p> Use this API only if you want to use Amazon SageMaker hosting services to deploy models into production. </p> </note> <p>In the request, you define one or more <code>ProductionVariant</code>s, each of which identifies a model. Each <code>ProductionVariant</code> parameter also describes the resources that you want Amazon SageMaker to provision. This includes the number and type of ML compute instances to deploy. </p> <p>If you are hosting multiple models, you also assign a <code>VariantWeight</code> to specify how much traffic you want to allocate to each model. For example, suppose that you want to host two models, A and B, and you assign traffic weight 2 for model A and 1 for model B. Amazon SageMaker distributes two-thirds of the traffic to Model A, and one-third to model B. </p>",
@@ -19,7 +19,7 @@
     "CreateTransformJob": "<p>Starts a transform job. A transform job uses a trained model to get inferences on a dataset and saves these results to an Amazon S3 location that you specify.</p> <p>To perform batch transformations, you create a transform job and use the data that you have readily available.</p> <p>In the request body, you provide the following:</p> <ul> <li> <p> <code>TransformJobName</code> - Identifies the transform job. The name must be unique within an AWS Region in an AWS account.</p> </li> <li> <p> <code>ModelName</code> - Identifies the model to use. <code>ModelName</code> must be the name of an existing Amazon SageMaker model in the same AWS Region and AWS account. For information on creating a model, see <a>CreateModel</a>.</p> </li> <li> <p> <code>TransformInput</code> - Describes the dataset to be transformed and the Amazon S3 location where it is stored.</p> </li> <li> <p> <code>TransformOutput</code> - Identifies the Amazon S3 location where you want Amazon SageMaker to save the results from the transform job.</p> </li> <li> <p> <code>TransformResources</code> - Identifies the ML compute instances for the transform job.</p> </li> </ul> <p> For more information about how batch transformation works Amazon SageMaker, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html\">How It Works</a>. </p>",
     "CreateWorkteam": "<p>Creates a new work team for labeling your data. A work team is defined by one or more Amazon Cognito user pools. You must first create the user pools before you can create a work team.</p> <p>You cannot create more than 25 work teams in an account and region.</p>",
     "DeleteAlgorithm": "<p>Removes the specified algorithm from your account.</p>",
-    "DeleteCodeRepository": "<p>Deletes the specified git repository from your account.</p>",
+    "DeleteCodeRepository": "<p>Deletes the specified Git repository from your account.</p>",
     "DeleteEndpoint": "<p>Deletes an endpoint. Amazon SageMaker frees up all of the resources that were deployed when the endpoint was created. </p> <p>Amazon SageMaker retires any custom KMS key grants associated with the endpoint, meaning you don't need to use the <a href=\"http://docs.aws.amazon.com/kms/latest/APIReference/API_RevokeGrant.html\">RevokeGrant</a> API call.</p>",
     "DeleteEndpointConfig": "<p>Deletes an endpoint configuration. The <code>DeleteEndpointConfig</code> API deletes only the specified configuration. It does not delete endpoints created using the configuration. </p>",
     "DeleteModel": "<p>Deletes a model. The <code>DeleteModel</code> API deletes only the model entry that was created in Amazon SageMaker when you called the <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateModel.html\">CreateModel</a> API. It does not delete model artifacts, inference code, or the IAM role that you specified when creating the model. </p>",
@@ -29,7 +29,7 @@
     "DeleteTags": "<p>Deletes the specified tags from an Amazon SageMaker resource.</p> <p>To list a resource's tags, use the <code>ListTags</code> API. </p> <note> <p>When you call this API to delete tags from a hyperparameter tuning job, the deleted tags are not removed from training jobs that the hyperparameter tuning job launched before you called this API.</p> </note>",
     "DeleteWorkteam": "<p>Deletes an existing work team. This operation can't be undone.</p>",
     "DescribeAlgorithm": "<p>Returns a description of the specified algorithm that is in your account.</p>",
-    "DescribeCodeRepository": "<p>Gets details about the specified git repository.</p>",
+    "DescribeCodeRepository": "<p>Gets details about the specified Git repository.</p>",
     "DescribeCompilationJob": "<p>Returns information about a model compilation job.</p> <p>To create a model compilation job, use <a>CreateCompilationJob</a>. To get information about multiple model compilation jobs, use <a>ListCompilationJobs</a>.</p>",
     "DescribeEndpoint": "<p>Returns the description of an endpoint.</p>",
     "DescribeEndpointConfig": "<p>Returns the description of an endpoint configuration created using the <code>CreateEndpointConfig</code> API.</p>",
@@ -45,7 +45,7 @@
     "DescribeWorkteam": "<p>Gets information about a specific work team. You can see information such as the create date, the last updated date, membership information, and the work team's Amazon Resource Name (ARN).</p>",
     "GetSearchSuggestions": "<p>An auto-complete API for the search functionality in the Amazon SageMaker console. It returns suggestions of possible matches for the property name to use in <code>Search</code> queries. Provides suggestions for <code>HyperParameters</code>, <code>Tags</code>, and <code>Metrics</code>.</p>",
     "ListAlgorithms": "<p>Lists the machine learning algorithms that have been created.</p>",
-    "ListCodeRepositories": "<p>Gets a list of the git repositories in your account.</p>",
+    "ListCodeRepositories": "<p>Gets a list of the Git repositories in your account.</p>",
     "ListCompilationJobs": "<p>Lists model compilation jobs that satisfy various filters.</p> <p>To create a model compilation job, use <a>CreateCompilationJob</a>. To get information about a particular model compilation job you have created, use <a>DescribeCompilationJob</a>.</p>",
     "ListEndpointConfigs": "<p>Lists endpoint configurations.</p>",
     "ListEndpoints": "<p>Lists endpoints.</p>",
@@ -71,8 +71,8 @@
     "StopNotebookInstance": "<p>Terminates the ML compute instance. Before terminating the instance, Amazon SageMaker disconnects the ML storage volume from it. Amazon SageMaker preserves the ML storage volume. </p> <p>To access data on the ML storage volume for a notebook instance that has been terminated, call the <code>StartNotebookInstance</code> API. <code>StartNotebookInstance</code> launches another ML compute instance, configures it, and attaches the preserved ML storage volume so you can continue your work. </p>",
     "StopTrainingJob": "<p>Stops a training job. To stop a job, Amazon SageMaker sends the algorithm the <code>SIGTERM</code> signal, which delays job termination for 120 seconds. Algorithms might use this 120-second window to save the model artifacts, so the results of the training is not lost. </p> <p>Training algorithms provided by Amazon SageMaker save the intermediate results of a model training job. This intermediate data is a valid model artifact. You can use the model artifacts that are saved when Amazon SageMaker stops a training job to create a model. </p> <p>When it receives a <code>StopTrainingJob</code> request, Amazon SageMaker changes the status of the job to <code>Stopping</code>. After Amazon SageMaker stops the job, it sets the status to <code>Stopped</code>.</p>",
     "StopTransformJob": "<p>Stops a transform job.</p> <p>When Amazon SageMaker receives a <code>StopTransformJob</code> request, the status of the job changes to <code>Stopping</code>. After Amazon SageMaker stops the job, the status is set to <code>Stopped</code>. When you stop a transform job before it is completed, Amazon SageMaker doesn't store the job's output in Amazon S3.</p>",
-    "UpdateCodeRepository": "<p>Updates the specified git repository with the specified values.</p>",
-    "UpdateEndpoint": "<p> Deploys the new <code>EndpointConfig</code> specified in the request, switches to using newly created endpoint, and then deletes resources provisioned for the endpoint using the previous <code>EndpointConfig</code> (there is no availability loss). </p> <p>When Amazon SageMaker receives the request, it sets the endpoint status to <code>Updating</code>. After updating the endpoint, it sets the status to <code>InService</code>. To check the status of an endpoint, use the <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/API_DescribeEndpoint.html\">DescribeEndpoint</a> API. </p> <note> <p>You cannot update an endpoint with the current <code>EndpointConfig</code>. To update an endpoint, you must create a new <code>EndpointConfig</code>.</p> </note>",
+    "UpdateCodeRepository": "<p>Updates the specified Git repository with the specified values.</p>",
+    "UpdateEndpoint": "<p>Deploys the new <code>EndpointConfig</code> specified in the request, switches to using newly created endpoint, and then deletes resources provisioned for the endpoint using the previous <code>EndpointConfig</code> (there is no availability loss). </p> <p>When Amazon SageMaker receives the request, it sets the endpoint status to <code>Updating</code>. After updating the endpoint, it sets the status to <code>InService</code>. To check the status of an endpoint, use the <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/API_DescribeEndpoint.html\">DescribeEndpoint</a> API. </p> <note> <p>You cannot update an endpoint with the current <code>EndpointConfig</code>. To update an endpoint, you must create a new <code>EndpointConfig</code>.</p> </note>",
     "UpdateEndpointWeightsAndCapacities": "<p>Updates variant weight of one or more variants associated with an existing endpoint, or capacity of one variant associated with an existing endpoint. When it receives the request, Amazon SageMaker sets the endpoint status to <code>Updating</code>. After updating the endpoint, it sets the status to <code>InService</code>. To check the status of an endpoint, use the <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/API_DescribeEndpoint.html\">DescribeEndpoint</a> API. </p>",
     "UpdateNotebookInstance": "<p>Updates a notebook instance. NotebookInstance updates include upgrading or downgrading the ML compute instance used for your notebook instance to accommodate changes in your workload requirements. You can also update the VPC security groups.</p>",
     "UpdateNotebookInstanceLifecycleConfig": "<p>Updates a notebook instance lifecycle configuration created with the <a>CreateNotebookInstanceLifecycleConfig</a> API.</p>",
@@ -104,10 +104,10 @@
     "AdditionalCodeRepositoryNamesOrUrls": {
       "base": null,
       "refs": {
-        "CreateNotebookInstanceInput$AdditionalCodeRepositories": "<p>An array of up to 3 git repositories to associate with the notebook instance. These can be either the names of git repositories stored as resources in your account, or the URL of git repositories in <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other git repository. These repositories are cloned at the same level as the default repository of your notebook instance. For more information, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html\">Associating Git Repositories with Amazon SageMaker Notebook Instances</a>.</p>",
-        "DescribeNotebookInstanceOutput$AdditionalCodeRepositories": "<p>An array of up to 3 git repositories associated with the notebook instance. These can be either the names of git repositories stored as resources in your account, or the URL of git repositories in <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other git repository. These repositories are cloned at the same level as the default repository of your notebook instance. For more information, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html\">Associating Git Repositories with Amazon SageMaker Notebook Instances</a>.</p>",
-        "NotebookInstanceSummary$AdditionalCodeRepositories": "<p>An array of up to 3 git repositories associated with the notebook instance. These can be either the names of git repositories stored as resources in your account, or the URL of git repositories in <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other git repository. These repositories are cloned at the same level as the default repository of your notebook instance. For more information, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html\">Associating Git Repositories with Amazon SageMaker Notebook Instances</a>.</p>",
-        "UpdateNotebookInstanceInput$AdditionalCodeRepositories": "<p>An array of up to 3 git repositories to associate with the notebook instance. These can be either the names of git repositories stored as resources in your account, or the URL of git repositories in <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other git repository.. These repositories are cloned at the same level as the default repository of your notebook instance. For more information, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html\">Associating Git Repositories with Amazon SageMaker Notebook Instances</a>.</p>"
+        "CreateNotebookInstanceInput$AdditionalCodeRepositories": "<p>An array of up to three Git repositories to associate with the notebook instance. These can be either the names of Git repositories stored as resources in your account, or the URL of Git repositories in <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other Git repository. These repositories are cloned at the same level as the default repository of your notebook instance. For more information, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html\">Associating Git Repositories with Amazon SageMaker Notebook Instances</a>.</p>",
+        "DescribeNotebookInstanceOutput$AdditionalCodeRepositories": "<p>An array of up to three Git repositories associated with the notebook instance. These can be either the names of Git repositories stored as resources in your account, or the URL of Git repositories in <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other Git repository. These repositories are cloned at the same level as the default repository of your notebook instance. For more information, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html\">Associating Git Repositories with Amazon SageMaker Notebook Instances</a>.</p>",
+        "NotebookInstanceSummary$AdditionalCodeRepositories": "<p>An array of up to three Git repositories associated with the notebook instance. These can be either the names of Git repositories stored as resources in your account, or the URL of Git repositories in <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other Git repository. These repositories are cloned at the same level as the default repository of your notebook instance. For more information, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html\">Associating Git Repositories with Amazon SageMaker Notebook Instances</a>.</p>",
+        "UpdateNotebookInstanceInput$AdditionalCodeRepositories": "<p>An array of up to three Git repositories to associate with the notebook instance. These can be either the names of Git repositories stored as resources in your account, or the URL of Git repositories in <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other Git repository.. These repositories are cloned at the same level as the default repository of your notebook instance. For more information, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html\">Associating Git Repositories with Amazon SageMaker Notebook Instances</a>.</p>"
       }
     },
     "AlgorithmArn": {
@@ -216,7 +216,7 @@
     "AssemblyType": {
       "base": null,
       "refs": {
-        "TransformOutput$AssembleWith": "<p>Defines how to assemble the results of the transform job as a single S3 object. You should select a format that is most convenient to you. To concatenate the results in binary format, specify <code>None</code>. To add a newline character at the end of every transformed record, specify <code>Line</code>.</p>"
+        "TransformOutput$AssembleWith": "<p>Defines how to assemble the results of the transform job as a single S3 object. Choose a format that is most convenient to you. To concatenate the results in binary format, specify <code>None</code>. To add a newline character at the end of every transformed record, specify <code>Line</code>.</p>"
       }
     },
     "AttributeName": {
@@ -234,8 +234,8 @@
     "BatchStrategy": {
       "base": null,
       "refs": {
-        "CreateTransformJobRequest$BatchStrategy": "<p>Determines the number of records included in a single mini-batch. <code>SingleRecord</code> means only one record is used per mini-batch. <code>MultiRecord</code> means a mini-batch is set to contain as many records that can fit within the <code>MaxPayloadInMB</code> limit.</p> <p>Batch transform will automatically split your input data into whatever payload size is specified if you set <code>SplitType</code> to <code>Line</code> and <code>BatchStrategy</code> to <code>MultiRecord</code>. There's no need to split the dataset into smaller files or to use larger payload sizes unless the records in your dataset are very large.</p>",
-        "DescribeTransformJobResponse$BatchStrategy": "<p>SingleRecord means only one record was used per a batch. <code>MultiRecord</code> means batches contained as many records that could possibly fit within the <code>MaxPayloadInMB</code> limit.</p>",
+        "CreateTransformJobRequest$BatchStrategy": "<p>Determines the number of records to include in a mini-batch. If you want to include only one record in a mini-batch, specify <code>SingleRecord</code>.. If you want mini-batches to contain a maximum of the number of records specified in the <code>MaxPayloadInMB</code> parameter, specify <code>MultiRecord</code>.</p> <p> If you set <code>SplitType</code> to <code>Line</code> and <code>BatchStrategy</code> to <code>MultiRecord</code>, a batch transform automatically splits your input data into the specified payload size. There's no need to split the dataset into smaller files or to use larger payload sizes unless the records in your dataset are very large.</p>",
+        "DescribeTransformJobResponse$BatchStrategy": "<p> If you want to include only one record in a batch, specify <code>SingleRecord</code>.. If you want batches to contain a maximum of the number of records specified in the <code>MaxPayloadInMB</code> parameter, specify <code>MultiRecord</code>.S</p>",
         "TransformJobDefinition$BatchStrategy": "<p>A string that determines the number of records included in a single mini-batch.</p> <p> <code>SingleRecord</code> means only one record is used per mini-batch. <code>MultiRecord</code> means a mini-batch is set to contain as many records that can fit within the <code>MaxPayloadInMB</code> limit.</p>"
       }
     },
@@ -244,12 +244,15 @@
       "refs": {
         "ChannelSpecification$IsRequired": "<p>Indicates whether the channel is required by the algorithm.</p>",
         "CreateModelInput$EnableNetworkIsolation": "<p>Isolates the model container. No inbound or outbound network calls can be made to or from the model container.</p> <note> <p>The Semantic Segmentation built-in algorithm does not support network isolation.</p> </note>",
-        "CreateTrainingJobRequest$EnableNetworkIsolation": "<p>Isolates the training container. No inbound or outbound network calls can be made, except for calls between peers within a training cluster for distributed training. If network isolation is used for training jobs that are configured to use a VPC, Amazon SageMaker downloads and uploads customer data and model artifacts through the specifed VPC, but the training container does not have network access.</p> <note> <p>The Semantic Segmentation built-in algorithm does not support network isolation.</p> </note>",
+        "CreateTrainingJobRequest$EnableNetworkIsolation": "<p>Isolates the training container. No inbound or outbound network calls can be made, except for calls between peers within a training cluster for distributed training. If you enable network isolation for training jobs that are configured to use a VPC, Amazon SageMaker downloads and uploads customer data and model artifacts through the specified VPC, but the training container does not have network access.</p> <note> <p>The Semantic Segmentation built-in algorithm does not support network isolation.</p> </note>",
+        "CreateTrainingJobRequest$EnableInterContainerTrafficEncryption": "<p>To encrypt all communications between ML compute instances in distributed training, choose <code>True</code>,. Encryption provides greater security for distributed training, but training can take longer because of additional communications between ML compute instances.</p>",
         "DescribeModelOutput$EnableNetworkIsolation": "<p>If <code>True</code>, no inbound or outbound network calls can be made to or from the model container.</p> <note> <p>The Semantic Segmentation built-in algorithm does not support network isolation.</p> </note>",
-        "DescribeTrainingJobResponse$EnableNetworkIsolation": "<p>If <code>True</code>, inbound or outbound network calls can be made, except for calls between peers within a training cluster for distributed training. If network isolation is used for training jobs that are configured to use a VPC, Amazon SageMaker downloads and uploads customer data and model artifacts through the specifed VPC, but the training container does not have network access.</p> <note> <p>The Semantic Segmentation built-in algorithm does not support network isolation.</p> </note>",
+        "DescribeTrainingJobResponse$EnableNetworkIsolation": "<p>If you want to allow inbound or outbound network calls, except for calls between peers within a training cluster for distributed training, choose <code>True</code>. If you enable network isolation for training jobs that are configured to use a VPC, Amazon SageMaker downloads and uploads customer data and model artifacts through the specified VPC, but the training container does not have network access.</p> <note> <p>The Semantic Segmentation built-in algorithm does not support network isolation.</p> </note>",
+        "DescribeTrainingJobResponse$EnableInterContainerTrafficEncryption": "<p>To encrypt all communications between ML compute instances in distributed training, specify <code>True</code>. Encryption provides greater security for distributed training, but training take longer because of the additional communications between ML compute instances.</p>",
         "HyperParameterSpecification$IsTunable": "<p>Indicates whether this hyperparameter is tunable in a hyperparameter tuning job.</p>",
         "HyperParameterSpecification$IsRequired": "<p>Indicates whether this hyperparameter is required.</p>",
         "HyperParameterTrainingJobDefinition$EnableNetworkIsolation": "<p>Isolates the training container. No inbound or outbound network calls can be made, except for calls between peers within a training cluster for distributed training. If network isolation is used for training jobs that are configured to use a VPC, Amazon SageMaker downloads and uploads customer data and model artifacts through the specified VPC, but the training container does not have network access.</p> <note> <p>The Semantic Segmentation built-in algorithm does not support network isolation.</p> </note>",
+        "HyperParameterTrainingJobDefinition$EnableInterContainerTrafficEncryption": "<p>To encrypt all communications between ML compute instances in distributed training, specify <code>True</code>. Encryption provides greater security for distributed training, but training take longer because of the additional communications between ML compute instances.</p>",
         "TrainingJob$EnableNetworkIsolation": "<p>If the <code>TrainingJob</code> was created with network isolation, the value is set to <code>true</code>. If network isolation is enabled, nodes can't communicate beyond the VPC they run in.</p>",
         "TrainingSpecification$SupportsDistributedTraining": "<p>Indicates whether the algorithm supports distributed training. If set to false, buyers can’t request more than one instance during training.</p>"
       }
@@ -263,7 +266,7 @@
     "Branch": {
       "base": null,
       "refs": {
-        "GitConfig$Branch": "<p>The default beach for the git repository.</p>"
+        "GitConfig$Branch": "<p>The default branch for the Git repository.</p>"
       }
     },
     "CategoricalParameterRange": {
@@ -293,9 +296,9 @@
     "CertifyForMarketplace": {
       "base": null,
       "refs": {
-        "CreateAlgorithmInput$CertifyForMarketplace": "<p>Whether to certify the algorithm so that it can be listed in AWS Marektplace.</p>",
+        "CreateAlgorithmInput$CertifyForMarketplace": "<p>Whether to certify the algorithm so that it can be listed in AWS Marketplace.</p>",
         "CreateModelPackageInput$CertifyForMarketplace": "<p>Whether to certify the model package for listing on AWS Marketplace.</p>",
-        "DescribeAlgorithmOutput$CertifyForMarketplace": "<p>Whether the algorithm is certified to be listed in AWS Marektplace.</p>",
+        "DescribeAlgorithmOutput$CertifyForMarketplace": "<p>Whether the algorithm is certified to be listed in AWS Marketplace.</p>",
         "DescribeModelPackageOutput$CertifyForMarketplace": "<p>Whether the model package is certified for listing on AWS Marketplace.</p>"
       }
     },
@@ -327,33 +330,33 @@
     "CodeRepositoryArn": {
       "base": null,
       "refs": {
-        "CodeRepositorySummary$CodeRepositoryArn": "<p>The Amazon Resource Name (ARN) of the git repository.</p>",
+        "CodeRepositorySummary$CodeRepositoryArn": "<p>The Amazon Resource Name (ARN) of the Git repository.</p>",
         "CreateCodeRepositoryOutput$CodeRepositoryArn": "<p>The Amazon Resource Name (ARN) of the new repository.</p>",
-        "DescribeCodeRepositoryOutput$CodeRepositoryArn": "<p>The Amazon Resource Name (ARN) of the git repository.</p>",
-        "UpdateCodeRepositoryOutput$CodeRepositoryArn": "<p>The ARN of the git repository.</p>"
+        "DescribeCodeRepositoryOutput$CodeRepositoryArn": "<p>The Amazon Resource Name (ARN) of the Git repository.</p>",
+        "UpdateCodeRepositoryOutput$CodeRepositoryArn": "<p>The ARN of the Git repository.</p>"
       }
     },
     "CodeRepositoryContains": {
       "base": null,
       "refs": {
-        "ListNotebookInstancesInput$DefaultCodeRepositoryContains": "<p>A string in the name or URL of a git repository associated with this notebook instance. This filter returns only notebook instances associated with a git repository with a name that contains the specified string.</p>"
+        "ListNotebookInstancesInput$DefaultCodeRepositoryContains": "<p>A string in the name or URL of a Git repository associated with this notebook instance. This filter returns only notebook instances associated with a git repository with a name that contains the specified string.</p>"
       }
     },
     "CodeRepositoryNameContains": {
       "base": null,
       "refs": {
-        "ListCodeRepositoriesInput$NameContains": "<p>A string in the git repositories name. This filter returns only repositories whose name contains the specified string.</p>"
+        "ListCodeRepositoriesInput$NameContains": "<p>A string in the Git repositories name. This filter returns only repositories whose name contains the specified string.</p>"
       }
     },
     "CodeRepositoryNameOrUrl": {
       "base": null,
       "refs": {
         "AdditionalCodeRepositoryNamesOrUrls$member": null,
-        "CreateNotebookInstanceInput$DefaultCodeRepository": "<p>A git repository to associate with the notebook instance as its default code repository. This can be either the name of a git repository stored as a resource in your account, or the URL of a git repository in <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other git repository. When you open a notebook instance, it opens in the directory that contains this repository. For more information, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html\">Associating Git Repositories with Amazon SageMaker Notebook Instances</a>.</p>",
-        "DescribeNotebookInstanceOutput$DefaultCodeRepository": "<p>The git repository associated with the notebook instance as its default code repository. This can be either the name of a git repository stored as a resource in your account, or the URL of a git repository in <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other git repository. When you open a notebook instance, it opens in the directory that contains this repository. For more information, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html\">Associating Git Repositories with Amazon SageMaker Notebook Instances</a>.</p>",
-        "ListNotebookInstancesInput$AdditionalCodeRepositoryEquals": "<p>A filter that returns only notebook instances with associated with the specified git respository.</p>",
-        "NotebookInstanceSummary$DefaultCodeRepository": "<p>The git repository associated with the notebook instance as its default code repository. This can be either the name of a git repository stored as a resource in your account, or the URL of a git repository in <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other git repository. When you open a notebook instance, it opens in the directory that contains this repository. For more information, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html\">Associating Git Repositories with Amazon SageMaker Notebook Instances</a>.</p>",
-        "UpdateNotebookInstanceInput$DefaultCodeRepository": "<p>The git repository to associate with the notebook instance as its default code repository. This can be either the name of a git repository stored as a resource in your account, or the URL of a git repository in <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other git repository. When you open a notebook instance, it opens in the directory that contains this repository. For more information, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html\">Associating Git Repositories with Amazon SageMaker Notebook Instances</a>.</p>"
+        "CreateNotebookInstanceInput$DefaultCodeRepository": "<p>A Git repository to associate with the notebook instance as its default code repository. This can be either the name of a Git repository stored as a resource in your account, or the URL of a Git repository in <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other Git repository. When you open a notebook instance, it opens in the directory that contains this repository. For more information, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html\">Associating Git Repositories with Amazon SageMaker Notebook Instances</a>.</p>",
+        "DescribeNotebookInstanceOutput$DefaultCodeRepository": "<p>The Git repository associated with the notebook instance as its default code repository. This can be either the name of a Git repository stored as a resource in your account, or the URL of a Git repository in <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other Git repository. When you open a notebook instance, it opens in the directory that contains this repository. For more information, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html\">Associating Git Repositories with Amazon SageMaker Notebook Instances</a>.</p>",
+        "ListNotebookInstancesInput$AdditionalCodeRepositoryEquals": "<p>A filter that returns only notebook instances with associated with the specified git repository.</p>",
+        "NotebookInstanceSummary$DefaultCodeRepository": "<p>The Git repository associated with the notebook instance as its default code repository. This can be either the name of a Git repository stored as a resource in your account, or the URL of a Git repository in <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other Git repository. When you open a notebook instance, it opens in the directory that contains this repository. For more information, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html\">Associating Git Repositories with Amazon SageMaker Notebook Instances</a>.</p>",
+        "UpdateNotebookInstanceInput$DefaultCodeRepository": "<p>The Git repository to associate with the notebook instance as its default code repository. This can be either the name of a Git repository stored as a resource in your account, or the URL of a Git repository in <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other Git repository. When you open a notebook instance, it opens in the directory that contains this repository. For more information, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html\">Associating Git Repositories with Amazon SageMaker Notebook Instances</a>.</p>"
       }
     },
     "CodeRepositorySortBy": {
@@ -369,7 +372,7 @@
       }
     },
     "CodeRepositorySummary": {
-      "base": "<p>Specifies summary information about a git repository.</p>",
+      "base": "<p>Specifies summary information about a Git repository.</p>",
       "refs": {
         "CodeRepositorySummaryList$member": null
       }
@@ -377,7 +380,7 @@
     "CodeRepositorySummaryList": {
       "base": null,
       "refs": {
-        "ListCodeRepositoriesOutput$CodeRepositorySummaryList": "<p>Gets a list of summaries of the git repositories. Each summary specifies the following values for the repository: </p> <ul> <li> <p>Name</p> </li> <li> <p>Amazon Resource Name (ARN)</p> </li> <li> <p>Creation time</p> </li> <li> <p>Last modified time</p> </li> <li> <p>Configuration information, including the URL location of the repository and the ARN of the AWS Secrets Manager secret that contains the credentials used to access the repository.</p> </li> <li> <p/> </li> </ul>"
+        "ListCodeRepositoriesOutput$CodeRepositorySummaryList": "<p>Gets a list of summaries of the Git repositories. Each summary specifies the following values for the repository: </p> <ul> <li> <p>Name</p> </li> <li> <p>Amazon Resource Name (ARN)</p> </li> <li> <p>Creation time</p> </li> <li> <p>Last modified time</p> </li> <li> <p>Configuration information, including the URL location of the repository and the ARN of the AWS Secrets Manager secret that contains the credentials used to access the repository.</p> </li> </ul>"
       }
     },
     "CognitoClientId": {
@@ -437,7 +440,7 @@
       "refs": {
         "Channel$CompressionType": "<p>If training data is compressed, the compression type. The default value is <code>None</code>. <code>CompressionType</code> is used only in Pipe input mode. In File mode, leave this field unset or set it to None.</p>",
         "CompressionTypes$member": null,
-        "TransformInput$CompressionType": "<p>Compressing data helps save on storage space. If your transform data is compressed, specify the compression type. Amazon SageMaker automatically decompresses the data for the transform job accordingly. The default value is <code>None</code>.</p>"
+        "TransformInput$CompressionType": "<p>If your transform data is compressed, specify the compression type. Amazon SageMaker automatically decompresses the data for the transform job accordingly. The default value is <code>None</code>.</p>"
       }
     },
     "CompressionTypes": {
@@ -667,7 +670,7 @@
       "base": null,
       "refs": {
         "AlgorithmSummary$CreationTime": "<p>A timestamp that shows when the algorithm was created.</p>",
-        "CodeRepositorySummary$CreationTime": "<p>The date and time that the git repository was created.</p>",
+        "CodeRepositorySummary$CreationTime": "<p>The date and time that the Git repository was created.</p>",
         "CompilationJobSummary$CreationTime": "<p>The time when the model compilation job was created.</p>",
         "DescribeAlgorithmOutput$CreationTime": "<p>A timestamp specifying when the algorithm was created.</p>",
         "DescribeCodeRepositoryOutput$CreationTime": "<p>The date and time that the repository was created.</p>",
@@ -677,8 +680,8 @@
         "DescribeNotebookInstanceOutput$CreationTime": "<p>A timestamp. Use this parameter to return the time when the notebook instance was created</p>",
         "ListAlgorithmsInput$CreationTimeAfter": "<p>A filter that returns only algorithms created after the specified time (timestamp).</p>",
         "ListAlgorithmsInput$CreationTimeBefore": "<p>A filter that returns only algorithms created before the specified time (timestamp).</p>",
-        "ListCodeRepositoriesInput$CreationTimeAfter": "<p>A filter that returns only git repositories that were created after the specified time.</p>",
-        "ListCodeRepositoriesInput$CreationTimeBefore": "<p>A filter that returns only git repositories that were created before the specified time.</p>",
+        "ListCodeRepositoriesInput$CreationTimeAfter": "<p>A filter that returns only Git repositories that were created after the specified time.</p>",
+        "ListCodeRepositoriesInput$CreationTimeBefore": "<p>A filter that returns only Git repositories that were created before the specified time.</p>",
         "ListCompilationJobsRequest$CreationTimeAfter": "<p>A filter that returns the model compilation jobs that were created after a specified time. </p>",
         "ListCompilationJobsRequest$CreationTimeBefore": "<p>A filter that returns the model compilation jobs that were created before a specified time.</p>",
         "ListModelPackagesInput$CreationTimeAfter": "<p>A filter that returns only model packages created after the specified time (timestamp).</p>",
@@ -960,13 +963,13 @@
     "DisassociateAdditionalCodeRepositories": {
       "base": null,
       "refs": {
-        "UpdateNotebookInstanceInput$DisassociateAdditionalCodeRepositories": "<p>A list of names or URLs of the default git repositories to remove from this notebook instance.</p>"
+        "UpdateNotebookInstanceInput$DisassociateAdditionalCodeRepositories": "<p>A list of names or URLs of the default Git repositories to remove from this notebook instance.</p>"
       }
     },
     "DisassociateDefaultCodeRepository": {
       "base": null,
       "refs": {
-        "UpdateNotebookInstanceInput$DisassociateDefaultCodeRepository": "<p>The name or URL of the default git repository to remove from this notebook instance.</p>"
+        "UpdateNotebookInstanceInput$DisassociateDefaultCodeRepository": "<p>The name or URL of the default Git repository to remove from this notebook instance.</p>"
       }
     },
     "DisassociateNotebookInstanceAcceleratorTypes": {
@@ -1105,18 +1108,18 @@
         "AlgorithmStatusItem$Name": "<p>The name of the algorithm for which the overall status is being reported.</p>",
         "AlgorithmSummary$AlgorithmName": "<p>The name of the algorithm that is described by the summary.</p>",
         "AlgorithmValidationProfile$ProfileName": "<p>The name of the profile for the algorithm. The name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen).</p>",
-        "CodeRepositorySummary$CodeRepositoryName": "<p>The name of the git repository.</p>",
+        "CodeRepositorySummary$CodeRepositoryName": "<p>The name of the Git repository.</p>",
         "CompilationJobSummary$CompilationJobName": "<p>The name of the model compilation job that you want a summary for.</p>",
         "CreateAlgorithmInput$AlgorithmName": "<p>The name of the algorithm.</p>",
-        "CreateCodeRepositoryInput$CodeRepositoryName": "<p>The name of the git repository. The name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen).</p>",
+        "CreateCodeRepositoryInput$CodeRepositoryName": "<p>The name of the Git repository. The name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen).</p>",
         "CreateCompilationJobRequest$CompilationJobName": "<p>A name for the model compilation job. The name must be unique within the AWS Region and within your AWS account. </p>",
         "CreateModelPackageInput$ModelPackageName": "<p>The name of the model package. The name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen).</p>",
         "DeleteAlgorithmInput$AlgorithmName": "<p>The name of the algorithm to delete.</p>",
-        "DeleteCodeRepositoryInput$CodeRepositoryName": "<p>The name of the git repository to delete.</p>",
+        "DeleteCodeRepositoryInput$CodeRepositoryName": "<p>The name of the Git repository to delete.</p>",
         "DeleteModelPackageInput$ModelPackageName": "<p>The name of the model package. The name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen).</p>",
         "DescribeAlgorithmOutput$AlgorithmName": "<p>The name of the algorithm being described.</p>",
-        "DescribeCodeRepositoryInput$CodeRepositoryName": "<p>The name of the git repository to describe.</p>",
-        "DescribeCodeRepositoryOutput$CodeRepositoryName": "<p>The name of the git repository.</p>",
+        "DescribeCodeRepositoryInput$CodeRepositoryName": "<p>The name of the Git repository to describe.</p>",
+        "DescribeCodeRepositoryOutput$CodeRepositoryName": "<p>The name of the Git repository.</p>",
         "DescribeCompilationJobRequest$CompilationJobName": "<p>The name of the model compilation job that you want information about.</p>",
         "DescribeCompilationJobResponse$CompilationJobName": "<p>The name of the model compilation job.</p>",
         "DescribeModelPackageOutput$ModelPackageName": "<p>The name of the model package being described.</p>",
@@ -1124,7 +1127,7 @@
         "ModelPackageSummary$ModelPackageName": "<p>The name of the model package.</p>",
         "ModelPackageValidationProfile$ProfileName": "<p>The name of the profile for the model package.</p>",
         "StopCompilationJobRequest$CompilationJobName": "<p>The name of the model compilation job to stop.</p>",
-        "UpdateCodeRepositoryInput$CodeRepositoryName": "<p>The name of the git repository to update.</p>"
+        "UpdateCodeRepositoryInput$CodeRepositoryName": "<p>The name of the Git repository to update.</p>"
       }
     },
     "EnvironmentKey": {
@@ -1152,7 +1155,7 @@
         "DescribeEndpointOutput$FailureReason": "<p>If the status of the endpoint is <code>Failed</code>, the reason why it failed. </p>",
         "DescribeHyperParameterTuningJobResponse$FailureReason": "<p>If the tuning job failed, the reason it failed.</p>",
         "DescribeLabelingJobResponse$FailureReason": "<p>If the job failed, the reason that it failed. </p>",
-        "DescribeNotebookInstanceOutput$FailureReason": "<p>If status is failed, the reason it failed.</p>",
+        "DescribeNotebookInstanceOutput$FailureReason": "<p>If status is <code>Failed</code>, the reason it failed.</p>",
         "DescribeTrainingJobResponse$FailureReason": "<p>If the training job failed, the reason it failed. </p>",
         "DescribeTransformJobResponse$FailureReason": "<p>If the transform job failed, the reason that it failed.</p>",
         "HyperParameterTrainingJobSummary$FailureReason": "<p>The reason that the training job failed. </p>",
@@ -1219,15 +1222,15 @@
       }
     },
     "GitConfig": {
-      "base": "<p>Specifies configuration details for a git repository in your AWS account.</p>",
+      "base": "<p>Specifies configuration details for a Git repository in your AWS account.</p>",
       "refs": {
-        "CodeRepositorySummary$GitConfig": "<p>Configuration details for the git repository, including the URL where it is located and the ARN of the AWS Secrets Manager secret that contains the credentials used to access the repository.</p>",
+        "CodeRepositorySummary$GitConfig": "<p>Configuration details for the Git repository, including the URL where it is located and the ARN of the AWS Secrets Manager secret that contains the credentials used to access the repository.</p>",
         "CreateCodeRepositoryInput$GitConfig": "<p>Specifies details about the repository, including the URL where the repository is located, the default branch, and credentials to use to access the repository.</p>",
         "DescribeCodeRepositoryOutput$GitConfig": "<p>Configuration details about the repository, including the URL where the repository is located, the default branch, and the Amazon Resource Name (ARN) of the AWS Secrets Manager secret that contains the credentials used to access the repository.</p>"
       }
     },
     "GitConfigForUpdate": {
-      "base": "<p>Specifies configuration details for a git repository when the repository is updated.</p>",
+      "base": "<p>Specifies configuration details for a Git repository when the repository is updated.</p>",
       "refs": {
         "UpdateCodeRepositoryInput$GitConfig": "<p>The configuration of the git repository, including the URL and the Amazon Resource Name (ARN) of the AWS Secrets Manager secret that contains the credentials used to access the repository. The secret must have a staging label of <code>AWSCURRENT</code> and must be in the following format:</p> <p> <code>{\"username\": <i>UserName</i>, \"password\": <i>Password</i>}</code> </p>"
       }
@@ -1235,7 +1238,7 @@
     "GitConfigUrl": {
       "base": null,
       "refs": {
-        "GitConfig$RepositoryUrl": "<p>The URL where the git repository is located.</p>"
+        "GitConfig$RepositoryUrl": "<p>The URL where the Git repository is located.</p>"
       }
     },
     "HumanTaskConfig": {
@@ -1370,7 +1373,7 @@
     "HyperParameterTuningJobWarmStartConfig": {
       "base": "<p>Specifies the configuration for a hyperparameter tuning job that uses one or more previous hyperparameter tuning jobs as a starting point. The results of previous tuning jobs are used to inform which combinations of hyperparameters to search over in the new tuning job.</p> <p>All training jobs launched by the new hyperparameter tuning job are evaluated by using the objective metric, and the training job that performs the best is compared to the best training jobs from the parent tuning jobs. From these, the training job that performs the best as measured by the objective metric is returned as the overall best training job.</p> <note> <p>All training jobs launched by parent hyperparameter tuning jobs and the new hyperparameter tuning jobs count against the limit of training jobs for the tuning job.</p> </note>",
       "refs": {
-        "CreateHyperParameterTuningJobRequest$WarmStartConfig": "<p>Specifies configuration for starting the hyperparameter tuning job using one or more previous tuning jobs as a starting point. The results of previous tuning jobs are used to inform which combinations of hyperparameters to search over in the new tuning job.</p> <p>All training jobs launched by the new hyperparameter tuning job are evaluated by using the objective metric. If you specify <code>IDENTICAL_DATA_AND_ALGORITHM</code> as the <code>WarmStartType</code> for the warm start configuration, the training job that performs the best in the new tuning job is compared to the best training jobs from the parent tuning jobs. From these, the training job that performs the best as measured by the objective metric is returned as the overall best training job.</p> <note> <p>All training jobs launched by parent hyperparameter tuning jobs and the new hyperparameter tuning jobs count against the limit of training jobs for the tuning job.</p> </note>",
+        "CreateHyperParameterTuningJobRequest$WarmStartConfig": "<p>Specifies the configuration for starting the hyperparameter tuning job using one or more previous tuning jobs as a starting point. The results of previous tuning jobs are used to inform which combinations of hyperparameters to search over in the new tuning job.</p> <p>All training jobs launched by the new hyperparameter tuning job are evaluated by using the objective metric. If you specify <code>IDENTICAL_DATA_AND_ALGORITHM</code> as the <code>WarmStartType</code> value for the warm start configuration, the training job that performs the best in the new tuning job is compared to the best training jobs from the parent tuning jobs. From these, the training job that performs the best as measured by the objective metric is returned as the overall best training job.</p> <note> <p>All training jobs launched by parent hyperparameter tuning jobs and the new hyperparameter tuning jobs count against the limit of training jobs for the tuning job.</p> </note>",
         "DescribeHyperParameterTuningJobResponse$WarmStartConfig": "<p>The configuration for starting the hyperparameter parameter tuning job using one or more previous tuning jobs as a starting point. The results of previous tuning jobs are used to inform which combinations of hyperparameters to search over in the new tuning job.</p>"
       }
     },
@@ -1398,7 +1401,7 @@
         "DeployedImage$SpecifiedImage": "<p>The image path you specified when you created the model.</p>",
         "DeployedImage$ResolvedImage": "<p>The specific digest path of the image hosted in this <code>ProductionVariant</code>.</p>",
         "ModelPackageContainerDefinition$Image": "<p>The Amazon EC2 Container Registry (Amazon ECR) path where inference code is stored.</p> <p>If you are using your own custom algorithm instead of an algorithm provided by Amazon SageMaker, the inference code must meet Amazon SageMaker requirements. Amazon SageMaker supports both <code>registry/repository[:tag]</code> and <code>registry/repository[@digest]</code> image path formats. For more information, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html\">Using Your Own Algorithms with Amazon SageMaker</a>.</p>",
-        "TrainingSpecification$TrainingImage": "<p>The Amazon Amazon ECR registry path of the Docker image that contains the training algorithm.</p>"
+        "TrainingSpecification$TrainingImage": "<p>The Amazon ECR registry path of the Docker image that contains the training algorithm.</p>"
       }
     },
     "ImageDigest": {
@@ -1486,7 +1489,7 @@
         "CreateEndpointConfigInput$KmsKeyId": "<p>The Amazon Resource Name (ARN) of a AWS Key Management Service key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance that hosts the endpoint.</p>",
         "CreateNotebookInstanceInput$KmsKeyId": "<p> If you provide a AWS KMS key ID, Amazon SageMaker uses it to encrypt data at rest on the ML storage volume that is attached to your notebook instance. The KMS key you provide must be enabled. For information, see <a href=\"http://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html\">Enabling and Disabling Keys</a> in the <i>AWS Key Management Service Developer Guide</i>.</p>",
         "DescribeEndpointConfigOutput$KmsKeyId": "<p>AWS KMS key ID Amazon SageMaker uses to encrypt data when storing it on the ML storage volume attached to the instance.</p>",
-        "DescribeNotebookInstanceOutput$KmsKeyId": "<p> AWS KMS key ID Amazon SageMaker uses to encrypt data when storing it on the ML storage volume attached to the instance. </p>",
+        "DescribeNotebookInstanceOutput$KmsKeyId": "<p>The AWS KMS key ID Amazon SageMaker uses to encrypt data when storing it on the ML storage volume attached to the instance. </p>",
         "LabelingJobOutputConfig$KmsKeyId": "<p>The AWS Key Management Service ID of the key used to encrypt the output data, if any.</p>",
         "LabelingJobResourceConfig$VolumeKmsKeyId": "<p>The AWS Key Management Service key ID for the key used to encrypt the output data, if any.</p>",
         "OutputDataConfig$KmsKeyId": "<p>The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt the model artifacts at rest using Amazon S3 server-side encryption. The <code>KmsKeyId</code> can be any of the following formats: </p> <ul> <li> <p>// KMS Key ID</p> <p> <code>\"1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>// Amazon Resource Name (ARN) of a KMS Key</p> <p> <code>\"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>// KMS Key Alias</p> <p> <code>\"alias/ExampleAlias\"</code> </p> </li> <li> <p>// Amazon Resource Name (ARN) of a KMS Key Alias</p> <p> <code>\"arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias\"</code> </p> </li> </ul> <p>If you don't provide a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon S3 for your role's account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html\">KMS-Managed Encryption Keys</a> in the <i>Amazon Simple Storage Service Developer Guide.</i> </p> <p>The KMS key policy must grant permission to the IAM role that you specify in your <code>CreateTramsformJob</code> request. For more information, see <a href=\"http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html\">Using Key Policies in AWS KMS</a> in the <i>AWS Key Management Service Developer Guide</i>.</p>",
@@ -1660,7 +1663,7 @@
     "LastModifiedTime": {
       "base": null,
       "refs": {
-        "CodeRepositorySummary$LastModifiedTime": "<p>The date and time that the git repository was last modified.</p>",
+        "CodeRepositorySummary$LastModifiedTime": "<p>The date and time that the Git repository was last modified.</p>",
         "CompilationJobSummary$LastModifiedTime": "<p>The time when the model compilation job was last modified.</p>",
         "DescribeCodeRepositoryOutput$LastModifiedTime": "<p>The date and time that the repository was last changed.</p>",
         "DescribeCompilationJobResponse$LastModifiedTime": "<p>The time that the status of the model compilation job was last modified.</p>",
@@ -1889,7 +1892,7 @@
     "MaxConcurrentTransforms": {
       "base": null,
       "refs": {
-        "CreateTransformJobRequest$MaxConcurrentTransforms": "<p>The maximum number of parallel requests that can be sent to each instance in a transform job. This is good for algorithms that implement multiple workers on larger instances . The default value is <code>1</code>. To allow Amazon SageMaker to determine the appropriate number for <code>MaxConcurrentTransforms</code>, set the value to <code>0</code>.</p>",
+        "CreateTransformJobRequest$MaxConcurrentTransforms": "<p>The maximum number of parallel requests that can be sent to an algorithm container on an instance. This is good for algorithms that implement multiple workers on larger instances . The default value is <code>1</code>. To allow Amazon SageMaker to determine the appropriate number for <code>MaxConcurrentTransforms</code>, do not set the value in the API.</p>",
         "DescribeTransformJobResponse$MaxConcurrentTransforms": "<p>The maximum number of parallel requests on each instance node that can be launched in a transform job. The default value is 1.</p>",
         "TransformJobDefinition$MaxConcurrentTransforms": "<p>The maximum number of parallel requests that can be sent to each instance in a transform job. The default value is 1.</p>"
       }
@@ -1916,7 +1919,7 @@
       "base": null,
       "refs": {
         "CreateTransformJobRequest$MaxPayloadInMB": "<p>The maximum payload size allowed, in MB. A payload is the data portion of a record (without metadata). The value in <code>MaxPayloadInMB</code> must be greater or equal to the size of a single record. You can approximate the size of a record by dividing the size of your dataset by the number of records. Then multiply this value by the number of records you want in a mini-batch. We recommend to enter a slightly larger value than this to ensure the records fit within the maximum payload size. The default value is <code>6</code> MB. </p> <p>For cases where the payload might be arbitrarily large and is transmitted using HTTP chunked encoding, set the value to <code>0</code>. This feature only works in supported algorithms. Currently, Amazon SageMaker built-in algorithms do not support this feature.</p>",
-        "DescribeTransformJobResponse$MaxPayloadInMB": "<p>The maximum payload size , in MB used in the transform job.</p>",
+        "DescribeTransformJobResponse$MaxPayloadInMB": "<p>The maximum payload size, in MB, used in the transform job.</p>",
         "TransformJobDefinition$MaxPayloadInMB": "<p>The maximum payload size allowed, in MB. A payload is the data portion of a record (without metadata).</p>"
       }
     },
@@ -1930,7 +1933,7 @@
       "base": null,
       "refs": {
         "ListAlgorithmsInput$MaxResults": "<p>The maximum number of algorithms to return in the response.</p>",
-        "ListCodeRepositoriesInput$MaxResults": "<p>The maximum number of git repositories to return in the response.</p>",
+        "ListCodeRepositoriesInput$MaxResults": "<p>The maximum number of Git repositories to return in the response.</p>",
         "ListCompilationJobsRequest$MaxResults": "<p>The maximum number of model compilation jobs to return in the response.</p>",
         "ListEndpointConfigsInput$MaxResults": "<p>The maximum number of training jobs to return in the response.</p>",
         "ListEndpointsInput$MaxResults": "<p>The maximum number of endpoints to return in the response.</p>",
@@ -1952,7 +1955,7 @@
     "MaxRuntimeInSeconds": {
       "base": null,
       "refs": {
-        "StoppingCondition$MaxRuntimeInSeconds": "<p>The maximum length of time, in seconds, that the training job can run. If model training does not complete during this time, Amazon SageMaker ends the job. If value is not specified, default value is 1 day. Maximum value is 5 days.</p>"
+        "StoppingCondition$MaxRuntimeInSeconds": "<p>The maximum length of time, in seconds, that the training job can run. If model training does not complete during this time, Amazon SageMaker ends the job. If value is not specified, default value is 1 day. Maximum value is 28 days.</p>"
       }
     },
     "MemberDefinition": {
@@ -2161,7 +2164,7 @@
       }
     },
     "NestedFilters": {
-      "base": "<p>Defines a list of <code>NestedFilter</code> objects. To satisfy the conditions specified in the <code>NestedFilters</code> call, a resource must satisfy the conditions of all of the filters.</p> <p>For example, a <code>NestedFilters</code> could be defined using the training job's <code>InputDataConfig</code> property, this would be defined as a list of <code>Channel</code> objects. </p> <p>A <code>NestedFilters</code> object contains multiple filters. For example, to find all training jobs whose name contains <code>train</code> and that have <code>cat/data</code> in their <code>S3Uri</code> (specified in <code>InputDataConfig</code>), you need to create a <code>NestedFilters</code> object that specifies the <code>InputDataConfig</code> property with the following <code>Filter</code> objects:</p> <ul> <li> <p> <code>'{Name:\"InputDataConfig.ChannelName\", \"Operator\":\"EQUALS\", \"Value\":\"train\"}',</code> </p> </li> <li> <p> <code>'{Name:\"InputDataConfig.DataSource.S3DataSource.S3Uri\", \"Operator\":\"CONTAINS\", \"Value\":\"cat/data\"}'</code> </p> </li> </ul>",
+      "base": "<p>Defines a list of <code>NestedFilters</code> objects. To satisfy the conditions specified in the <code>NestedFilters</code> call, a resource must satisfy the conditions of all of the filters.</p> <p>For example, you could define a <code>NestedFilters</code> using the training job's <code>InputDataConfig</code> property to filter on <code>Channel</code> objects. </p> <p>A <code>NestedFilters</code> object contains multiple filters. For example, to find all training jobs whose name contains <code>train</code> and that have <code>cat/data</code> in their <code>S3Uri</code> (specified in <code>InputDataConfig</code>), you need to create a <code>NestedFilters</code> object that specifies the <code>InputDataConfig</code> property with the following <code>Filter</code> objects:</p> <ul> <li> <p> <code>'{Name:\"InputDataConfig.ChannelName\", \"Operator\":\"EQUALS\", \"Value\":\"train\"}',</code> </p> </li> <li> <p> <code>'{Name:\"InputDataConfig.DataSource.S3DataSource.S3Uri\", \"Operator\":\"CONTAINS\", \"Value\":\"cat/data\"}'</code> </p> </li> </ul>",
       "refs": {
         "NestedFiltersList$member": null
       }
@@ -2175,7 +2178,7 @@
     "NetworkInterfaceId": {
       "base": null,
       "refs": {
-        "DescribeNotebookInstanceOutput$NetworkInterfaceId": "<p> Network interface IDs that Amazon SageMaker created at the time of creating the instance. </p>"
+        "DescribeNotebookInstanceOutput$NetworkInterfaceId": "<p>The network interface IDs that Amazon SageMaker created at the time of creating the instance. </p>"
       }
     },
     "NextToken": {
@@ -2183,8 +2186,8 @@
       "refs": {
         "ListAlgorithmsInput$NextToken": "<p>If the response to a previous <code>ListAlgorithms</code> request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of algorithms, use the token in the next request.</p>",
         "ListAlgorithmsOutput$NextToken": "<p>If the response is truncated, Amazon SageMaker returns this token. To retrieve the next set of algorithms, use it in the subsequent request.</p>",
-        "ListCodeRepositoriesInput$NextToken": "<p>If the result of a <code>ListCodeRepositoriesOutput</code> request was truncated, the response includes a <code>NextToken</code>. To get the next set of git repositories, use the token in the next request.</p>",
-        "ListCodeRepositoriesOutput$NextToken": "<p>If the result of a <code>ListCodeRepositoriesOutput</code> request was truncated, the response includes a <code>NextToken</code>. To get the next set of git repositories, use the token in the next request.</p>",
+        "ListCodeRepositoriesInput$NextToken": "<p>If the result of a <code>ListCodeRepositoriesOutput</code> request was truncated, the response includes a <code>NextToken</code>. To get the next set of Git repositories, use the token in the next request.</p>",
+        "ListCodeRepositoriesOutput$NextToken": "<p>If the result of a <code>ListCodeRepositoriesOutput</code> request was truncated, the response includes a <code>NextToken</code>. To get the next set of Git repositories, use the token in the next request.</p>",
         "ListCompilationJobsRequest$NextToken": "<p>If the result of the previous <code>ListCompilationJobs</code> request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of model compilation jobs, use the token in the next request.</p>",
         "ListCompilationJobsResponse$NextToken": "<p>If the response is truncated, Amazon SageMaker returns this <code>NextToken</code>. To retrieve the next set of model compilation jobs, use this token in the next request.</p>",
         "ListHyperParameterTuningJobsRequest$NextToken": "<p>If the result of the previous <code>ListHyperParameterTuningJobs</code> request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of tuning jobs, use the token in the next request.</p>",
@@ -2197,7 +2200,7 @@
         "ListModelPackagesOutput$NextToken": "<p>If the response is truncated, Amazon SageMaker returns this token. To retrieve the next set of model packages, use it in the subsequent request.</p>",
         "ListNotebookInstanceLifecycleConfigsInput$NextToken": "<p>If the result of a <code>ListNotebookInstanceLifecycleConfigs</code> request was truncated, the response includes a <code>NextToken</code>. To get the next set of lifecycle configurations, use the token in the next request.</p>",
         "ListNotebookInstanceLifecycleConfigsOutput$NextToken": "<p>If the response is truncated, Amazon SageMaker returns this token. To get the next set of lifecycle configurations, use it in the next request. </p>",
-        "ListNotebookInstancesInput$NextToken": "<p> If the previous call to the <code>ListNotebookInstances</code> is truncated, the response includes a <code>NextToken</code>. You can use this token in your subsequent <code>ListNotebookInstances</code> request to fetch the next set of notebook instances. </p> <note> <p> You might specify a filter or a sort order in your request. When response is truncated, you must use the same values for the filer and sort order in the next request. </p> </note>",
+        "ListNotebookInstancesInput$NextToken": "<p> If the previous call to the <code>ListNotebookInstances</code> is truncated, the response includes a <code>NextToken</code>. You can use this token in your subsequent <code>ListNotebookInstances</code> request to fetch the next set of notebook instances. </p> <note> <p>You might specify a filter or a sort order in your request. When response is truncated, you must use the same values for the filer and sort order in the next request. </p> </note>",
         "ListNotebookInstancesOutput$NextToken": "<p>If the response to the previous <code>ListNotebookInstances</code> request was truncated, Amazon SageMaker returns this token. To retrieve the next set of notebook instances, use the token in the next request.</p>",
         "ListSubscribedWorkteamsRequest$NextToken": "<p>If the result of the previous <code>ListSubscribedWorkteams</code> request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of labeling jobs, use the token in the next request.</p>",
         "ListSubscribedWorkteamsResponse$NextToken": "<p>If the response is truncated, Amazon SageMaker returns this token. To retrieve the next set of work teams, use it in the subsequent request.</p>",
@@ -2224,7 +2227,7 @@
     "NotebookInstanceAcceleratorTypes": {
       "base": null,
       "refs": {
-        "CreateNotebookInstanceInput$AcceleratorTypes": "<p>A list of Elastic Inference (EI) instance types to associate with this notebook instance. Currently, only one instance type can be associated with a notebook intance. For more information, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/ei.html\">Using Elastic Inference in Amazon SageMaker</a>.</p>",
+        "CreateNotebookInstanceInput$AcceleratorTypes": "<p>A list of Elastic Inference (EI) instance types to associate with this notebook instance. Currently, only one instance type can be associated with a notebook instance. For more information, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/ei.html\">Using Elastic Inference in Amazon SageMaker</a>.</p>",
         "DescribeNotebookInstanceOutput$AcceleratorTypes": "<p>A list of the Elastic Inference (EI) instance types associated with this notebook instance. Currently only one EI instance type can be associated with a notebook instance. For more information, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/ei.html\">Using Elastic Inference in Amazon SageMaker</a>.</p>",
         "UpdateNotebookInstanceInput$AcceleratorTypes": "<p>A list of the Elastic Inference (EI) instance types to associate with this notebook instance. Currently only one EI instance type can be associated with a notebook instance. For more information, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/ei.html\">Using Elastic Inference in Amazon SageMaker</a>.</p>"
       }
@@ -2321,7 +2324,7 @@
         "CreatePresignedNotebookInstanceUrlInput$NotebookInstanceName": "<p>The name of the notebook instance.</p>",
         "DeleteNotebookInstanceInput$NotebookInstanceName": "<p>The name of the Amazon SageMaker notebook instance to delete.</p>",
         "DescribeNotebookInstanceInput$NotebookInstanceName": "<p>The name of the notebook instance that you want information about.</p>",
-        "DescribeNotebookInstanceOutput$NotebookInstanceName": "<p> Name of the Amazon SageMaker notebook instance. </p>",
+        "DescribeNotebookInstanceOutput$NotebookInstanceName": "<p>The name of the Amazon SageMaker notebook instance. </p>",
         "NotebookInstanceSummary$NotebookInstanceName": "<p>The name of the notebook instance that you want a summary for.</p>",
         "StartNotebookInstanceInput$NotebookInstanceName": "<p>The name of the notebook instance to start.</p>",
         "StopNotebookInstanceInput$NotebookInstanceName": "<p>The name of the notebook instance to terminate.</p>",
@@ -2720,7 +2723,7 @@
         "DescribeCompilationJobResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the model compilation job.</p>",
         "DescribeLabelingJobResponse$RoleArn": "<p>The Amazon Resource Name (ARN) that Amazon SageMaker assumes to perform tasks on your behalf during data labeling.</p>",
         "DescribeModelOutput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the model.</p>",
-        "DescribeNotebookInstanceOutput$RoleArn": "<p> Amazon Resource Name (ARN) of the IAM role associated with the instance. </p>",
+        "DescribeNotebookInstanceOutput$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role associated with the instance. </p>",
         "DescribeTrainingJobResponse$RoleArn": "<p>The AWS Identity and Access Management (IAM) role configured for the training job. </p>",
         "HyperParameterTrainingJobDefinition$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role associated with the training jobs that the tuning job launches.</p>",
         "ModelPackageValidationSpecification$ValidationRole": "<p>The IAM roles to be used for the validation of the model package.</p>",
@@ -2761,7 +2764,7 @@
         "OutputConfig$S3OutputLocation": "<p>Identifies the S3 path where you want Amazon SageMaker to store the model artifacts. For example, s3://bucket-name/key-name-prefix.</p>",
         "OutputDataConfig$S3OutputPath": "<p>Identifies the S3 path where you want Amazon SageMaker to store the model artifacts. For example, <code>s3://bucket-name/key-name-prefix</code>. </p>",
         "S3DataSource$S3Uri": "<p>Depending on the value specified for the <code>S3DataType</code>, identifies either a key name prefix or a manifest. For example: </p> <ul> <li> <p> A key name prefix might look like this: <code>s3://bucketname/exampleprefix</code>. </p> </li> <li> <p> A manifest might look like this: <code>s3://bucketname/example.manifest</code> </p> <p> The manifest is an S3 object which is a JSON file with the following format: </p> <p> <code>[</code> </p> <p> <code> {\"prefix\": \"s3://customer_bucket/some/prefix/\"},</code> </p> <p> <code> \"relative/path/to/custdata-1\",</code> </p> <p> <code> \"relative/path/custdata-2\",</code> </p> <p> <code> ...</code> </p> <p> <code> ]</code> </p> <p> The preceding JSON matches the following <code>s3Uris</code>: </p> <p> <code>s3://customer_bucket/some/prefix/relative/path/to/custdata-1</code> </p> <p> <code>s3://customer_bucket/some/prefix/relative/path/custdata-2</code> </p> <p> <code>...</code> </p> <p>The complete set of <code>s3uris</code> in this manifest is the input data for the channel for this datasource. The object that each <code>s3uris</code> points to must be readable by the IAM role that Amazon SageMaker uses to perform tasks on your behalf. </p> </li> </ul>",
-        "TransformOutput$S3OutputPath": "<p>The Amazon S3 path where you want Amazon SageMaker to store the results of the transform job. For example, <code>s3://bucket-name/key-name-prefix</code>.</p> <p>For every S3 object used as input for the transform job, the transformed data is stored in a corresponding subfolder in the location under the output prefix. For example, the input data <code>s3://bucket-name/input-name-prefix/dataset01/data.csv</code> will have the transformed data stored at <code>s3://bucket-name/key-name-prefix/dataset01/</code>, based on the original name, as a series of .part files (.part0001, part0002, etc).</p>",
+        "TransformOutput$S3OutputPath": "<p>The Amazon S3 path where you want Amazon SageMaker to store the results of the transform job. For example, <code>s3://bucket-name/key-name-prefix</code>.</p> <p>For every S3 object used as input for the transform job, the transformed data is stored in a corresponding subfolder in the location under the output prefix. For example, for the input data <code>s3://bucket-name/input-name-prefix/dataset01/data.csv</code> the transformed data is stored at <code>s3://bucket-name/key-name-prefix/dataset01/</code>. This is based on the original name, as a series of .part files (.part0001, part0002, etc.).</p>",
         "TransformS3DataSource$S3Uri": "<p>Depending on the value specified for the <code>S3DataType</code>, identifies either a key name prefix or a manifest. For example:</p> <ul> <li> <p> A key name prefix might look like this: <code>s3://bucketname/exampleprefix</code>. </p> </li> <li> <p> A manifest might look like this: <code>s3://bucketname/example.manifest</code> </p> <p> The manifest is an S3 object which is a JSON file with the following format: </p> <p> <code>[</code> </p> <p> <code> {\"prefix\": \"s3://customer_bucket/some/prefix/\"},</code> </p> <p> <code> \"relative/path/to/custdata-1\",</code> </p> <p> <code> \"relative/path/custdata-2\",</code> </p> <p> <code> ...</code> </p> <p> <code> ]</code> </p> <p> The preceding JSON matches the following <code>S3Uris</code>: </p> <p> <code>s3://customer_bucket/some/prefix/relative/path/to/custdata-1</code> </p> <p> <code>s3://customer_bucket/some/prefix/relative/path/custdata-1</code> </p> <p> <code>...</code> </p> <p> The complete set of <code>S3Uris</code> in this manifest constitutes the input data for the channel for this datasource. The object that each <code>S3Uris</code> points to must be readable by the IAM role that Amazon SageMaker uses to perform tasks on your behalf.</p> </li> </ul>",
         "UiConfig$UiTemplateS3Uri": "<p>The Amazon S3 bucket location of the UI template. For more information about the contents of a UI template, see <a href=\"http://docs.aws.amazon.com/sagemaker/latest/dg/sms-custom-templates-step2.html\"> Creating Your Custom Labeling Task Template</a>.</p>"
       }
@@ -2912,7 +2915,7 @@
     "SplitType": {
       "base": null,
       "refs": {
-        "TransformInput$SplitType": "<p>The method to use to split the transform job's data files into smaller batches. Splitting is necessary when the total size of each object is too large to fit in a single request. You can also use data splitting to improve performance by processing multiple concurrent mini-batches. The default value for <code>SplitType</code> is <code>None</code>, which indicates that input data files are not split, and request payloads contain the entire contents of an input object. Set the value of this parameter to <code>Line</code> to split records on a newline character boundary. <code>SplitType</code> also supports a number of record-oriented binary data formats.</p> <p>When splitting is enabled, the size of a mini-batch depends on the values of the <code>BatchStrategy</code> and <code>MaxPayloadInMB</code> parameters. When the value of <code>BatchStrategy</code> is <code>MultiRecord</code>, Amazon SageMaker sends the maximum number of records in each request, up to the <code>MaxPayloadInMB</code> limit. If the value of <code>BatchStrategy</code> is <code>SingleRecord</code>, Amazon SageMaker sends individual records in each request.</p> <note> <p>Some data formats represent a record as a binary payload wrapped with extra padding bytes. When splitting is applied to a binary data format, padding is removed if the value of <code>BatchStrategy</code> is set to <code>SingleRecord</code>. Padding is not removed if the value of <code>BatchStrategy</code> is set to <code>MultiRecord</code>.</p> </note> <p>For more information about the RecordIO data format, see <a href=\"http://mxnet.io/architecture/note_data_loading.html#data-format\">Data Format</a> in the MXNet documentation. For more information about the TFRecord fofmat, see <a href=\"https://www.tensorflow.org/guide/datasets#consuming_tfrecord_data\">Consuming TFRecord data</a> in the TensorFlow documentation.</p>"
+        "TransformInput$SplitType": "<p>The method to use to split the transform job's data into smaller batches. If you don't want to split the data, specify <code>None</code>. If you want to split records on a newline character boundary, specify <code>Line</code>. To split records according to the RecordIO format, specify <code>RecordIO</code>. The default value is <code>None</code>. </p> <p>Amazon SageMaker sends the maximum number of records per batch in each request up to the MaxPayloadInMB limit. For more information, see <a href=\"http://mxnet.io/architecture/note_data_loading.html#data-format\">RecordIO data format</a>.</p> <note> <p>For information about the <code>RecordIO</code> format, see <a href=\"http://mxnet.io/architecture/note_data_loading.html#data-format\">Data Format</a>.</p> </note>"
       }
     },
     "StartNotebookInstanceInput": {
@@ -3062,7 +3065,7 @@
         "CreateModelInput$Tags": "<p>An array of key-value pairs. For more information, see <a href=\"http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what\">Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User Guide</i>. </p>",
         "CreateNotebookInstanceInput$Tags": "<p>A list of tags to associate with the notebook instance. You can add tags later by using the <code>CreateTags</code> API.</p>",
         "CreateTrainingJobRequest$Tags": "<p>An array of key-value pairs. For more information, see <a href=\"http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what\">Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User Guide</i>. </p>",
-        "CreateTransformJobRequest$Tags": "<p>An array of key-value pairs. Adding tags is optional. For more information, see <a href=\"http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what\">Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User Guide</i>.</p>",
+        "CreateTransformJobRequest$Tags": "<p>(Optional) An array of key-value pairs. For more information, see <a href=\"http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what\">Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User Guide</i>.</p>",
         "CreateWorkteamRequest$Tags": "<p/>",
         "DescribeLabelingJobResponse$Tags": "<p>An array of key/value pairs. For more information, see <a href=\"http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what\">Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User Guide</i>.</p>",
         "ListTagsOutput$Tags": "<p>An array of <code>Tag</code> objects, each with a tag key and a value.</p>",
@@ -3168,21 +3171,21 @@
         "DescribeTrainingJobResponse$LastModifiedTime": "<p>A timestamp that indicates when the status of the training job was last modified.</p>",
         "DescribeTransformJobResponse$CreationTime": "<p>A timestamp that shows when the transform Job was created.</p>",
         "DescribeTransformJobResponse$TransformStartTime": "<p>Indicates when the transform job starts on ML instances. You are billed for the time interval between this time and the value of <code>TransformEndTime</code>.</p>",
-        "DescribeTransformJobResponse$TransformEndTime": "<p>Indicates when the transform job is <code>Completed</code>, <code>Stopped</code>, or <code>Failed</code>. You are billed for the time interval between this time and the value of <code>TransformStartTime</code>.</p>",
+        "DescribeTransformJobResponse$TransformEndTime": "<p>Indicates when the transform job has been completed, or has stopped or failed. You are billed for the time interval between this time and the value of <code>TransformStartTime</code>.</p>",
         "EndpointConfigSummary$CreationTime": "<p>A timestamp that shows when the endpoint configuration was created.</p>",
         "EndpointSummary$CreationTime": "<p>A timestamp that shows when the endpoint was created.</p>",
         "EndpointSummary$LastModifiedTime": "<p>A timestamp that shows when the endpoint was last modified.</p>",
         "HyperParameterTrainingJobSummary$CreationTime": "<p>The date and time that the training job was created.</p>",
         "HyperParameterTrainingJobSummary$TrainingStartTime": "<p>The date and time that the training job started.</p>",
-        "HyperParameterTrainingJobSummary$TrainingEndTime": "<p>The date and time that the training job ended.</p>",
+        "HyperParameterTrainingJobSummary$TrainingEndTime": "<p>Specifies the time when the training job ends on training instances. You are billed for the time interval between the value of <code>TrainingStartTime</code> and this time. For successful jobs and stopped jobs, this is the time after model artifacts are uploaded. For failed jobs, this is the time when Amazon SageMaker detects a job failure.</p>",
         "HyperParameterTuningJobSummary$CreationTime": "<p>The date and time that the tuning job was created.</p>",
         "HyperParameterTuningJobSummary$HyperParameterTuningEndTime": "<p>The date and time that the tuning job ended.</p>",
         "HyperParameterTuningJobSummary$LastModifiedTime": "<p>The date and time that the tuning job was modified.</p>",
         "LabelingJobForWorkteamSummary$CreationTime": "<p>The date and time that the labeling job was created.</p>",
         "LabelingJobSummary$CreationTime": "<p>The date and time that the job was created (timestamp).</p>",
         "LabelingJobSummary$LastModifiedTime": "<p>The date and time that the job was last modified (timestamp).</p>",
-        "ListCodeRepositoriesInput$LastModifiedTimeAfter": "<p>A filter that returns only git repositories that were last modified after the specified time.</p>",
-        "ListCodeRepositoriesInput$LastModifiedTimeBefore": "<p>A filter that returns only git repositories that were last modified before the specified time.</p>",
+        "ListCodeRepositoriesInput$LastModifiedTimeAfter": "<p>A filter that returns only Git repositories that were last modified after the specified time.</p>",
+        "ListCodeRepositoriesInput$LastModifiedTimeBefore": "<p>A filter that returns only Git repositories that were last modified before the specified time.</p>",
         "ListEndpointConfigsInput$CreationTimeBefore": "<p>A filter that returns only endpoint configurations created before the specified time (timestamp).</p>",
         "ListEndpointConfigsInput$CreationTimeAfter": "<p>A filter that returns only endpoint configurations created after the specified time (timestamp).</p>",
         "ListEndpointsInput$CreationTimeBefore": "<p>A filter that returns only endpoints that were created before the specified time (timestamp).</p>",
@@ -3352,7 +3355,7 @@
     "TransformDataSource": {
       "base": "<p>Describes the location of the channel data.</p>",
       "refs": {
-        "TransformInput$DataSource": "<p>Describes the location of the channel data, meaning the S3 location of the input data that the model can consume.</p>"
+        "TransformInput$DataSource": "<p>Describes the location of the channel data, which is, the S3 location of the input data that the model can consume.</p>"
       }
     },
     "TransformEnvironmentKey": {
@@ -3442,7 +3445,7 @@
       }
     },
     "TransformJobSummary": {
-      "base": "<p>Provides a summary of a transform job. Multiple TransformJobSummary objects are returned as a list after calling <a>ListTransformJobs</a>.</p>",
+      "base": "<p>Provides a summary of a transform job. Multiple <code>TransformJobSummary</code> objects are returned as a list after in response to a <a>ListTransformJobs</a> call.</p>",
       "refs": {
         "TransformJobSummaries$member": null
       }
@@ -3484,7 +3487,7 @@
     "UiTemplate": {
       "base": "<p>The Liquid template for the worker user interface.</p>",
       "refs": {
-        "RenderUiTemplateRequest$UiTemplate": "<p>A <code>Template</code>object containing the worker UI template to render.</p>"
+        "RenderUiTemplateRequest$UiTemplate": "<p>A <code>Template</code> object containing the worker UI template to render.</p>"
       }
     },
     "UpdateCodeRepositoryInput": {

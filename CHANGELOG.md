@@ -1,3 +1,17 @@
+Release v1.16.17 (2019-01-10)
+===
+
+### Service Client Updates
+* `service/codedeploy`: Updates service documentation
+  * Documentation updates for codedeploy
+* `service/ec2`: Updates service API and documentation
+  * EC2 Spot: a) CreateFleet support for Single AvailabilityZone requests and b) support for paginated DescribeSpotInstanceRequests.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/iot`: Updates service API and documentation
+  * This release adds tagging support for rules of AWS IoT Rules Engine. Tags enable you to categorize your rules in different ways, for example, by purpose, owner, or environment. For more information about tagging, see AWS Tagging Strategies (https://aws.amazon.com/answers/account-management/aws-tagging-strategies/). For technical documentation, look for the tagging operations in the AWS IoT Core API reference or User Guide (https://docs.aws.amazon.com/iot/latest/developerguide/tagging-iot.html).
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker Training Jobs now support Inter-Container traffic encryption.
+
 Release v1.16.16 (2019-01-09)
 ===
 
