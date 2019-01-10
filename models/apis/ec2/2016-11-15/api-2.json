@@ -9587,7 +9587,9 @@
         "SpotInstanceRequestIds":{
           "shape":"SpotInstanceRequestIdList",
           "locationName":"SpotInstanceRequestId"
-        }
+        },
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"Integer"}
       }
     },
     "DescribeSpotInstanceRequestsResult":{
@@ -9596,6 +9598,10 @@
         "SpotInstanceRequests":{
           "shape":"SpotInstanceRequestList",
           "locationName":"spotInstanceRequestSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
@@ -16782,6 +16788,10 @@
           "shape":"Boolean",
           "locationName":"singleInstanceType"
         },
+        "SingleAvailabilityZone":{
+          "shape":"Boolean",
+          "locationName":"singleAvailabilityZone"
+        },
         "MinTargetCapacity":{
           "shape":"Integer",
           "locationName":"minTargetCapacity"
@@ -16793,6 +16803,7 @@
       "members":{
         "AllocationStrategy":{"shape":"FleetOnDemandAllocationStrategy"},
         "SingleInstanceType":{"shape":"Boolean"},
+        "SingleAvailabilityZone":{"shape":"Boolean"},
         "MinTargetCapacity":{"shape":"Integer"}
       }
     },
@@ -20569,6 +20580,10 @@
           "shape":"Boolean",
           "locationName":"singleInstanceType"
         },
+        "SingleAvailabilityZone":{
+          "shape":"Boolean",
+          "locationName":"singleAvailabilityZone"
+        },
         "MinTargetCapacity":{
           "shape":"Integer",
           "locationName":"minTargetCapacity"
@@ -20582,6 +20597,7 @@
         "InstanceInterruptionBehavior":{"shape":"SpotInstanceInterruptionBehavior"},
         "InstancePoolsToUseCount":{"shape":"Integer"},
         "SingleInstanceType":{"shape":"Boolean"},
+        "SingleAvailabilityZone":{"shape":"Boolean"},
         "MinTargetCapacity":{"shape":"Integer"}
       }
     },

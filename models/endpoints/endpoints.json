@@ -195,6 +195,9 @@
         },
         "endpoints" : {
           "ap-northeast-1" : { },
+          "ap-southeast-1" : { },
+          "ap-southeast-2" : { },
+          "eu-central-1" : { },
           "eu-west-1" : { },
           "us-east-1" : { },
           "us-west-2" : { }
@@ -725,6 +728,20 @@
           "us-west-2" : { }
         }
       },
+      "datasync" : {
+        "endpoints" : {
+          "ap-northeast-1" : { },
+          "ap-northeast-2" : { },
+          "ap-southeast-1" : { },
+          "ap-southeast-2" : { },
+          "eu-central-1" : { },
+          "eu-west-1" : { },
+          "us-east-1" : { },
+          "us-east-2" : { },
+          "us-west-1" : { },
+          "us-west-2" : { }
+        }
+      },
       "dax" : {
         "endpoints" : {
           "ap-northeast-1" : { },
@@ -1141,10 +1158,6 @@
         }
       },
       "fsx" : {
-        "defaults" : {
-          "protocols" : [ "https" ],
-          "sslCommonName" : "fsx.us-west-2.amazonaws.com"
-        },
         "endpoints" : {
           "eu-west-1" : { },
           "us-east-1" : { },
@@ -1607,6 +1620,12 @@
               "region" : "ap-southeast-1"
             },
             "hostname" : "rds.ap-southeast-1.amazonaws.com"
+          },
+          "ap-southeast-2" : {
+            "credentialScope" : {
+              "region" : "ap-southeast-2"
+            },
+            "hostname" : "rds.ap-southeast-2.amazonaws.com"
           },
           "eu-central-1" : {
             "credentialScope" : {
