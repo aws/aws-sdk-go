@@ -1,3 +1,11 @@
+Release v1.16.18 (2019-01-11)
+===
+
+### Service Client Updates
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Documentation updates for Amazon EMR
+* `service/rds-data`: Updates service API, documentation, paginators, and examples
+
 Release v1.16.17 (2019-01-10)
 ===
 

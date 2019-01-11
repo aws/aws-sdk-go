@@ -46,17 +46,6 @@
       "type": "boolean",
       "box": true
     },
-    "SqlStatementResult": {
-      "type": "structure",
-      "members": {
-        "numberOfRecordsUpdated": {
-          "shape": "Long"
-        },
-        "resultFrame": {
-          "shape": "ResultFrame"
-        }
-      }
-    },
     "ForbiddenException": {
       "type": "structure",
       "members": {
@@ -118,6 +107,62 @@
         "shape": "ColumnMetadata"
       }
     },
+    "ResultFrame": {
+      "type": "structure",
+      "members": {
+        "records": {
+          "shape": "Records"
+        },
+        "resultSetMetadata": {
+          "shape": "ResultSetMetadata"
+        }
+      }
+    },
+    "Long": {
+      "type": "long",
+      "box": true
+    },
+    "Row": {
+      "type": "list",
+      "member": {
+        "shape": "Value"
+      }
+    },
+    "String": {
+      "type": "string"
+    },
+    "ArrayValues": {
+      "type": "list",
+      "member": {
+        "shape": "Value"
+      }
+    },
+    "Float": {
+      "type": "float",
+      "box": true
+    },
+    "ExecuteSqlResponse": {
+      "type": "structure",
+      "required": [
+        "sqlStatementResults"
+      ],
+      "members": {
+        "sqlStatementResults": {
+          "shape": "SqlStatementResults"
+        }
+      }
+    },
+    "SqlStatementResult": {
+      "type": "structure",
+      "members": {
+        "numberOfRecordsUpdated": {
+          "shape": "Long"
+        },
+        "resultFrame": {
+          "shape": "ResultFrame"
+        }
+      }
+    },
     "ResultSetMetadata": {
       "type": "structure",
       "members": {
@@ -135,17 +180,6 @@
         "shape": "Record"
       }
     },
-    "ResultFrame": {
-      "type": "structure",
-      "members": {
-        "records": {
-          "shape": "Records"
-        },
-        "resultSetMetadata": {
-          "shape": "ResultSetMetadata"
-        }
-      }
-    },
     "ExecuteSqlRequest": {
       "type": "structure",
       "required": [
@@ -155,25 +189,25 @@
       ],
       "members": {
         "awsSecretStoreArn": {
-          "shape": "String"
+          "shape": "Arn"
         },
         "database": {
-          "shape": "String"
+          "shape": "DbName"
         },
         "dbClusterOrInstanceArn": {
-          "shape": "String"
+          "shape": "Arn"
         },
         "schema": {
-          "shape": "String"
+          "shape": "DbName"
         },
         "sqlStatements": {
-          "shape": "String"
+          "shape": "SqlStatement"
         }
       }
     },
-    "Long": {
-      "type": "long",
-      "box": true
+    "Arn": {
+      "type": "string",
+      "max": 1024
     },
     "StructValue": {
       "type": "structure",
@@ -200,20 +234,9 @@
     "Blob": {
       "type": "blob"
     },
-    "Row": {
-      "type": "list",
-      "member": {
-        "shape": "Value"
-      }
-    },
-    "String": {
-      "type": "string"
-    },
-    "ArrayValues": {
-      "type": "list",
-      "member": {
-        "shape": "Value"
-      }
+    "SqlStatement": {
+      "type": "string",
+      "max": 65536
     },
     "Double": {
       "type": "double",
@@ -280,9 +303,9 @@
       "type": "integer",
       "box": true
     },
-    "Float": {
-      "type": "float",
-      "box": true
+    "DbName": {
+      "type": "string",
+      "max": 64
     },
     "Record": {
       "type": "structure",
@@ -300,17 +323,6 @@
         "code": "InternalServerErrorException",
         "httpStatusCode": 500,
         "fault": true
-      }
-    },
-    "ExecuteSqlResponse": {
-      "type": "structure",
-      "required": [
-        "sqlStatementResults"
-      ],
-      "members": {
-        "sqlStatementResults": {
-          "shape": "SqlStatementResults"
-        }
       }
     }
   }
