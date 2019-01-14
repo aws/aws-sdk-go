@@ -47,6 +47,8 @@ func TestEmptyStream_Read(t *testing.T) {
 		t.Fatalf("expect no error got, %v", err)
 	}
 	defer resp.EventStream.Close()
+	// Trim off response output type pseudo event so only event messages remain.
+	expectEvents = expectEvents[1:]
 
 	var i int
 	for event := range resp.EventStream.Events() {
