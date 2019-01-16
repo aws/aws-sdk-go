@@ -26,7 +26,7 @@ func TestSerializationErrConnectionReset_read(t *testing.T) {
 		count++
 		r.HTTPResponse = &http.Response{}
 		r.HTTPResponse.Body = &connResetCloser{
-			Err: stubConnectionResetErrorRead,
+			Err: errReadConnectionResetStub,
 		}
 	})
 
@@ -67,7 +67,7 @@ func TestSerializationErrConnectionReset_read(t *testing.T) {
 		}{},
 	)
 
-	osErr := stubConnectionResetErrorRead
+	osErr := errReadConnectionResetStub
 	req.ApplyOptions(request.WithResponseReadTimeout(time.Second))
 	err := req.Send()
 	if err == nil {

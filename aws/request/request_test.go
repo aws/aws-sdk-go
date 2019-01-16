@@ -535,7 +535,7 @@ func TestIsSerializationErrorRetryable(t *testing.T) {
 			expected: false,
 		},
 		{
-			err:      awserr.New(request.ErrCodeSerialization, "foo error", stubConnectionResetErrorAccept),
+			err:      awserr.New(request.ErrCodeSerialization, "foo error", errAcceptConnectionResetStub),
 			expected: true,
 		},
 	}
@@ -630,7 +630,7 @@ func TestSerializationErrConnectionReset_accept(t *testing.T) {
 		count++
 		r.HTTPResponse = &http.Response{}
 		r.HTTPResponse.Body = &connResetCloser{
-			Err: stubConnectionResetErrorAccept,
+			Err: errAcceptConnectionResetStub,
 		}
 	})
 
@@ -671,7 +671,7 @@ func TestSerializationErrConnectionReset_accept(t *testing.T) {
 		}{},
 	)
 
-	osErr := stubConnectionResetErrorAccept
+	osErr := errAcceptConnectionResetStub
 	req.ApplyOptions(request.WithResponseReadTimeout(time.Second))
 	err := req.Send()
 	if err == nil {
