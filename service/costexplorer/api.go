@@ -2088,8 +2088,6 @@ type GetReservationCoverageInput struct {
 	//
 	//    * REGION
 	//
-	//    * TAG
-	//
 	//    * TENANCY
 	GroupBy []*GroupDefinition `type:"list"`
 

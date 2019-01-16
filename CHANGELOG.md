@@ -1,3 +1,12 @@
+Release v1.16.20 (2019-01-16)
+===
+
+### Service Client Updates
+* `service/backup`: Adds new service
+* `service/ce`: Updates service documentation
+* `service/dynamodb`: Updates service API and documentation
+  * Amazon DynamoDB now integrates with AWS Backup, a centralized backup service that makes it easy for customers to configure and audit the AWS resources they want to backup, automate backup scheduling, set retention policies, and monitor all recent backup and restore activity. AWS Backup provides a fully managed, policy-based backup solution, simplifying your backup management, and helping you meet your business and regulatory backup compliance requirements. For more information, see the Amazon DynamoDB Developer Guide.
+
 Release v1.16.19 (2019-01-14)
 ===
 
