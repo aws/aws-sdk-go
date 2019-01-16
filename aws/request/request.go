@@ -573,14 +573,12 @@ func shouldRetryCancel(err error) bool {
 		}
 		return shouldRetryCancel(err.OrigErr())
 	case temporary:
-		// If the error is temporary, we want to
-		// allow continuation of the retry process.
+		// If the error is temporary, we want to allow continuation of the
+		// retry process
 		return err.Temporary()
 	case *url.Error:
-		// *url.Error only implements Temporary
-		// after golang 1.6
-		// but since url.Error only wraps
-		// the error:
+		// *url.Error only implements Temporary after golang 1.6 but since
+		// url.Error only wraps the error:
 		return shouldRetryCancel(err.Err)
 	case nil:
 		// `awserr.Error.OrigErr()` can be nil, meaning there was an error but
@@ -593,8 +591,7 @@ func shouldRetryCancel(err error) bool {
 			// known 1.5 error case when an http request is cancelled
 			return false
 		}
-		// here we don't know the error;
-		// so we allow a retry.
+		// here we don't know the error; so we allow a retry.
 		return true
 	}
 }
