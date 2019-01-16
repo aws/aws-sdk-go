@@ -840,7 +840,8 @@
       "type":"string",
       "enum":[
         "USER",
-        "SYSTEM"
+        "SYSTEM",
+        "AWS_BACKUP"
       ]
     },
     "BackupTypeFilter":{
@@ -848,6 +849,7 @@
       "enum":[
         "USER",
         "SYSTEM",
+        "AWS_BACKUP",
         "ALL"
       ]
     },
