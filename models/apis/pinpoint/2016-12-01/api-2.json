@@ -3877,6 +3877,15 @@
     "Event" : {
       "type" : "structure",
       "members" : {
+        "AppPackageName" : {
+          "shape" : "__string"
+        },
+        "AppTitle" : {
+          "shape" : "__string"
+        },
+        "AppVersionCode" : {
+          "shape" : "__string"
+        },
         "Attributes" : {
           "shape" : "MapOf__string"
         },
@@ -3888,6 +3897,9 @@
         },
         "Metrics" : {
           "shape" : "MapOf__double"
+        },
+        "SdkName" : {
+          "shape" : "__string"
         },
         "Session" : {
           "shape" : "Session"
