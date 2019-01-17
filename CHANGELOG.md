@@ -1,3 +1,21 @@
+Release v1.16.21 (2019-01-17)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/lambda`: Updates service documentation and examples
+  * Documentation updates for AWS Lambda
+* `service/lightsail`: Updates service API and documentation
+  * This release adds functionality to the CreateDiskSnapshot API that allows users to snapshot instance root volumes. It also adds various documentation updates.
+* `service/pinpoint`: Updates service API and documentation
+  * This release updates the PutEvents operation. AppPackageName, AppTitle, AppVersionCode, SdkName fields will now be accepted as a part of the event when submitting events.
+* `service/rekognition`: Updates service API and documentation
+  * GetLabelDetection now returns bounding box information for common objects and a hierarchical taxonomy of detected labels. The version of the model used for video label detection is also returned. DetectModerationLabels now returns the version of the model used for detecting unsafe content.
+
+### SDK Enhancements
+* `aws/request: Improve error handling in shouldRetryCancel ([#2298](https://github.com/aws/aws-sdk-go/pull/2298))
+  * Simplifies and improves SDK's detection of HTTP request errors that should be retried. Previously the SDK would incorrectly attempt to retry `EHOSTDOWN` connection errors. This change fixes this, by using the `Temporary` interface when available.
+
 Release v1.16.20 (2019-01-16)
 ===
 
