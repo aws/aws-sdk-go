@@ -1,3 +1,12 @@
+Release v1.16.22 (2019-01-18)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * Adjust EC2's available instance types.
+* `service/glue`: Updates service API and documentation
+  * AllocatedCapacity field is being deprecated and replaced with MaxCapacity field
+
 Release v1.16.21 (2019-01-17)
 ===
 
