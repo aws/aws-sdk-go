@@ -571,6 +571,12 @@ func shouldRetryCancel(err error) bool {
 		if err.Code() == CanceledErrorCode {
 			return false
 		}
+		if strings.Contains(err.Error(), "connection refused") {
+			// Refused connections should be retried as the service may not yet
+			// be running on the port. net.OpError considers refused
+			// connections as not temporary.
+			return true
+		}
 		return shouldRetryCancel(err.OrigErr())
 	case temporary:
 		// If the error is temporary, we want to allow continuation of the
