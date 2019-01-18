@@ -593,7 +593,8 @@ func shouldRetryCancel(err error) bool {
 		return true
 	default:
 		switch err.Error() {
-		case "net/http: request canceled while waiting for connection":
+		case "net/http: request canceled",
+			"net/http: request canceled while waiting for connection":
 			// known 1.5 error case when an http request is cancelled
 			return false
 		}
