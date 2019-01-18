@@ -48,26 +48,36 @@ func TestShouldRetryCancel_timeout(t *testing.T) {
 }
 
 func TestShouldRetryCancel_cancelled(t *testing.T) {
-
 	tr := &http.Transport{}
 	defer tr.CloseIdleConnections()
 	cli := http.Client{
 		Transport: tr,
 	}
 
-	unblockc := make(chan bool)
+	cancelWait := make(chan bool)
+	srvrWait := make(chan bool)
 	srvr := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
+		close(cancelWait) // Trigger the request cancel.
+		time.Sleep(100 * time.Millisecond)
+
 		fmt.Fprintf(w, "Hello")
 		w.(http.Flusher).Flush() // send headers and some body
-		<-unblockc               // block forever
+		<-srvrWait               // block forever
 	}))
 	defer srvr.Close()
-	defer close(unblockc)
+	defer close(srvrWait)
 
 	r := newRequest(t, srvr.URL)
 	ch := make(chan struct{})
 	r.Cancel = ch
-	close(ch) // request is cancelled before anything
+
+	// Ensure the request has started, and client has started to receive bytes.
+	// This ensures the test is stable and does not run into timing with the
+	// request being canceled, before or after the http request is made.
+	go func() {
+		<-cancelWait
+		close(ch) // request is cancelled before anything
+	}()
 
 	resp, err := cli.Do(r)
 	if resp != nil {
@@ -85,6 +95,7 @@ func TestShouldRetryCancel_cancelled(t *testing.T) {
 }
 
 func debugerr(t *testing.T, err error) {
+	t.Logf("Error, %v", err)
 
 	switch err := err.(type) {
 	case temporary:
