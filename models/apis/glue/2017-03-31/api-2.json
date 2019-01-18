@@ -2058,8 +2058,13 @@
         "DefaultArguments":{"shape":"GenericMap"},
         "Connections":{"shape":"ConnectionsList"},
         "MaxRetries":{"shape":"MaxRetries"},
-        "AllocatedCapacity":{"shape":"IntegerValue"},
+        "AllocatedCapacity":{
+          "shape":"IntegerValue",
+          "deprecated":true,
+          "deprecatedMessage":"This property is deprecated, use MaxCapacity instead."
+        },
         "Timeout":{"shape":"Timeout"},
+        "MaxCapacity":{"shape":"NullableDouble"},
         "NotificationProperty":{"shape":"NotificationProperty"},
         "SecurityConfiguration":{"shape":"NameString"}
       }
@@ -3214,8 +3219,13 @@
         "DefaultArguments":{"shape":"GenericMap"},
         "Connections":{"shape":"ConnectionsList"},
         "MaxRetries":{"shape":"MaxRetries"},
-        "AllocatedCapacity":{"shape":"IntegerValue"},
+        "AllocatedCapacity":{
+          "shape":"IntegerValue",
+          "deprecated":true,
+          "deprecatedMessage":"This property is deprecated, use MaxCapacity instead."
+        },
         "Timeout":{"shape":"Timeout"},
+        "MaxCapacity":{"shape":"NullableDouble"},
         "NotificationProperty":{"shape":"NotificationProperty"},
         "SecurityConfiguration":{"shape":"NameString"}
       }
@@ -3271,9 +3281,14 @@
         "Arguments":{"shape":"GenericMap"},
         "ErrorMessage":{"shape":"ErrorString"},
         "PredecessorRuns":{"shape":"PredecessorList"},
-        "AllocatedCapacity":{"shape":"IntegerValue"},
+        "AllocatedCapacity":{
+          "shape":"IntegerValue",
+          "deprecated":true,
+          "deprecatedMessage":"This property is deprecated, use MaxCapacity instead."
+        },
         "ExecutionTime":{"shape":"ExecutionTime"},
         "Timeout":{"shape":"Timeout"},
+        "MaxCapacity":{"shape":"NullableDouble"},
         "NotificationProperty":{"shape":"NotificationProperty"},
         "SecurityConfiguration":{"shape":"NameString"},
         "LogGroupName":{"shape":"GenericString"}
@@ -3306,8 +3321,13 @@
         "DefaultArguments":{"shape":"GenericMap"},
         "Connections":{"shape":"ConnectionsList"},
         "MaxRetries":{"shape":"MaxRetries"},
-        "AllocatedCapacity":{"shape":"IntegerValue"},
+        "AllocatedCapacity":{
+          "shape":"IntegerValue",
+          "deprecated":true,
+          "deprecatedMessage":"This property is deprecated, use MaxCapacity instead."
+        },
         "Timeout":{"shape":"Timeout"},
+        "MaxCapacity":{"shape":"NullableDouble"},
         "NotificationProperty":{"shape":"NotificationProperty"},
         "SecurityConfiguration":{"shape":"NameString"}
       }
@@ -3471,6 +3491,10 @@
       "type":"integer",
       "box":true,
       "min":1
+    },
+    "NullableDouble":{
+      "type":"double",
+      "box":true
     },
     "OperationTimeoutException":{
       "type":"structure",
@@ -3844,8 +3868,13 @@
         "JobName":{"shape":"NameString"},
         "JobRunId":{"shape":"IdString"},
         "Arguments":{"shape":"GenericMap"},
-        "AllocatedCapacity":{"shape":"IntegerValue"},
+        "AllocatedCapacity":{
+          "shape":"IntegerValue",
+          "deprecated":true,
+          "deprecatedMessage":"This property is deprecated, use MaxCapacity instead."
+        },
         "Timeout":{"shape":"Timeout"},
+        "MaxCapacity":{"shape":"NullableDouble"},
         "NotificationProperty":{"shape":"NotificationProperty"},
         "SecurityConfiguration":{"shape":"NameString"}
       }
