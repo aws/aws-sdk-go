@@ -520,7 +520,7 @@
       }
     },
     "AttachmentInformation": {
-      "base": "<p>An attribute of an attachment, such as the attachment name or size.</p>",
+      "base": "<p>An attribute of an attachment, such as the attachment name.</p>",
       "refs": {
         "AttachmentInformationList$member": null
       }
@@ -535,7 +535,7 @@
       "base": null,
       "refs": {
         "AttachmentContent$Name": "<p>The name of an attachment.</p>",
-        "AttachmentInformation$Name": null
+        "AttachmentInformation$Name": "<p>The name of the attachment.</p>"
       }
     },
     "AttachmentUrl": {
@@ -727,10 +727,19 @@
       "refs": {
       }
     },
+    "AutomationTargetParameterName": {
+      "base": null,
+      "refs": {
+        "AssociationDescription$AutomationTargetParameterName": "<p>Specify the target for the association. This target is required for associations that use an Automation document and target resources by using rate controls.</p>",
+        "CreateAssociationBatchRequestEntry$AutomationTargetParameterName": "<p>Specify the target for the association. This target is required for associations that use an Automation document and target resources by using rate controls.</p>",
+        "CreateAssociationRequest$AutomationTargetParameterName": "<p>Specify the target for the association. This target is required for associations that use an Automation document and target resources by using rate controls.</p>",
+        "UpdateAssociationRequest$AutomationTargetParameterName": "<p>Specify the target for the association. This target is required for associations that use an Automation document and target resources by using rate controls.</p>"
+      }
+    },
     "AutomationType": {
       "base": null,
       "refs": {
-        "AutomationExecutionMetadata$AutomationType": "<p>Use this filter with <a>DescribeAutomationExecution</a>. Specify either Local of CrossAccount. CrossAccount is an Automation that executes in multiple AWS Regions and accounts. For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-automation-multiple-accounts-and-regions.html\">Concurrently Executing Automations in Multiple AWS Regions and Accounts</a> in the <i>AWS Systems Manager User Guide</i>. </p>"
+        "AutomationExecutionMetadata$AutomationType": "<p>Use this filter with <a>DescribeAutomationExecutions</a>. Specify either Local or CrossAccount. CrossAccount is an Automation that executes in multiple AWS Regions and accounts. For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-automation-multiple-accounts-and-regions.html\">Concurrently Executing Automations in Multiple AWS Regions and Accounts</a> in the <i>AWS Systems Manager User Guide</i>. </p>"
       }
     },
     "BaselineDescription": {
@@ -4923,7 +4932,7 @@
     "PatchSourceConfiguration": {
       "base": null,
       "refs": {
-        "PatchSource$Configuration": "<p>The value of the yum repo configuration. For example:</p> <p> <code>cachedir=/var/cache/yum/$basesearch</code> </p> <p> <code>$releasever</code> </p> <p> <code>keepcache=0</code> </p> <p> <code>debuglevel=2</code> </p>"
+        "PatchSource$Configuration": "<p>The value of the yum repo configuration. For example:</p> <p> <code>[main]</code> </p> <p> <code>cachedir=/var/cache/yum/$basesearch$releasever</code> </p> <p> <code>keepcache=0</code> </p> <p> <code>debuglevel=2</code> </p>"
       }
     },
     "PatchSourceList": {

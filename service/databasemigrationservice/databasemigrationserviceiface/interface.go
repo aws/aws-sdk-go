@@ -299,8 +299,8 @@ type DatabaseMigrationServiceAPI interface {
 	WaitUntilReplicationTaskStopped(*databasemigrationservice.DescribeReplicationTasksInput) error
 	WaitUntilReplicationTaskStoppedWithContext(aws.Context, *databasemigrationservice.DescribeReplicationTasksInput, ...request.WaiterOption) error
 
-	WaitUntilTestConnectionSucceeds(*databasemigrationservice.TestConnectionInput) error
-	WaitUntilTestConnectionSucceedsWithContext(aws.Context, *databasemigrationservice.TestConnectionInput, ...request.WaiterOption) error
+	WaitUntilTestConnectionSucceeds(*databasemigrationservice.DescribeConnectionsInput) error
+	WaitUntilTestConnectionSucceedsWithContext(aws.Context, *databasemigrationservice.DescribeConnectionsInput, ...request.WaiterOption) error
 }
 
 var _ DatabaseMigrationServiceAPI = (*databasemigrationservice.DatabaseMigrationService)(nil)

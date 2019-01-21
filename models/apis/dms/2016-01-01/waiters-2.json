@@ -4,22 +4,22 @@
         "TestConnectionSucceeds":{
             "acceptors":[
                 {
-                    "argument":"Connection.Status",
+                    "argument":"Connections[].Status",
                     "expected":"successful",
-                    "matcher":"path",
+                    "matcher":"pathAll",
                     "state":"success"
                 },
                 {
-                    "argument":"Connection.Status",
+                    "argument":"Connections[].Status",
                     "expected":"failed",
-                    "matcher":"path",
+                    "matcher":"pathAny",
                     "state":"failure"
                 }
             ],
             "delay":5,
             "description":"Wait until testing connection succeeds.",
             "maxAttempts":60,
-            "operation":"TestConnection"
+            "operation":"DescribeConnections"
         },
         "EndpointDeleted":{
             "acceptors":[
