@@ -622,12 +622,11 @@ func TestDecodeAliasedUnixTime(t *testing.T) {
 }
 
 type UnmarshalHelperStruct struct {
-	name           string
 	input          *dynamodb.AttributeValue
 	actual, expect interface{}
 }
 
-func TestUnmarshalNilAsEmptyForNullInput(t *testing.T) {
+func TestUnmarshal_Structag_NilAsEmpty(t *testing.T) {
 	inputSliceNull := &dynamodb.AttributeValue{
 		M: map[string]*dynamodb.AttributeValue{
 			"BinarySet": {NULL: aws.Bool(true)},
@@ -641,46 +640,7 @@ func TestUnmarshalNilAsEmptyForNullInput(t *testing.T) {
 			"Values": {NULL: aws.Bool(true)},
 		},
 	}
-	tests := []UnmarshalHelperStruct{{
-		name:   "unmarshal nil slice as nil when nilasempty tag is not set",
-		input:  inputSliceNull,
-		actual: &testWithoutNilAsEmptyStruct{},
-		expect: &testWithoutNilAsEmptyStruct{
-			BinarySet: nil,
-			StringSet: nil,
-			NumberSet: nil,
-			OtherList: nil,
-		},
-	}, {
-		name:   "unmarshal nil slice as empty when nilasempty tag is set",
-		input:  inputSliceNull,
-		actual: &testNilAsEmptySliceStruct{},
-		expect: &testNilAsEmptySliceStruct{
-			BinarySet: [][]byte{},
-			StringSet: []*string{},
-			NumberSet: []int{},
-			OtherList: []string{},
-		},
-	}, {
-		name:   "unmarshal nil map as empty when nilasempty tag is not set",
-		input:  inputSliceEmpty,
-		actual: &testNilElemMapStruct{},
-		expect: &testNilElemMapStruct{
-			Values: nil,
-		},
-	}, {
-		name:   "unmarshal nil map as empty when nilasempty tag is set",
-		input:  inputSliceEmpty,
-		actual: &testNilAsEmptyElemMapStruct{},
-		expect: &testNilAsEmptyElemMapStruct{
-			Values: map[string]interface{}{},
-		},
-	},
-	}
-	tableTestUnmarshalAssertion(t, tests)
-}
 
-func TestUnmarshalNilAsEmptyForEmptyInput(t *testing.T) {
 	inputForMap := &dynamodb.AttributeValue{
 		M: map[string]*dynamodb.AttributeValue{
 			"Values": {M: map[string]*dynamodb.AttributeValue{}},
@@ -694,24 +654,57 @@ func TestUnmarshalNilAsEmptyForEmptyInput(t *testing.T) {
 			"OtherList": {L: []*dynamodb.AttributeValue{}},
 		},
 	}
-	tests := []UnmarshalHelperStruct{
-		{
-			name:   "unmarshal empty map as nil when nilasempty tag is not set",
+
+	cases := map[string]UnmarshalHelperStruct{
+		"unmarshal nil slice as nil when nilasempty tag is not set": {
+			input:  inputSliceNull,
+			actual: &testWithoutNilAsEmptyStruct{},
+			expect: &testWithoutNilAsEmptyStruct{
+				BinarySet: nil,
+				StringSet: nil,
+				NumberSet: nil,
+				OtherList: nil,
+			},
+		},
+		"unmarshal nil slice as empty when nilasempty tag is set": {
+			input:  inputSliceNull,
+			actual: &testNilAsEmptySliceStruct{},
+			expect: &testNilAsEmptySliceStruct{
+				BinarySet: [][]byte{},
+				StringSet: []*string{},
+				NumberSet: []int{},
+				OtherList: []string{},
+			},
+		},
+		"unmarshal nil map as empty when nilasempty tag is not set": {
+			input:  inputSliceEmpty,
+			actual: &testNilElemMapStruct{},
+			expect: &testNilElemMapStruct{
+				Values: nil,
+			},
+		},
+		"unmarshal nil map as empty when nilasempty tag is set": {
+			input:  inputSliceEmpty,
+			actual: &testNilAsEmptyElemMapStruct{},
+			expect: &testNilAsEmptyElemMapStruct{
+				Values: map[string]interface{}{},
+			},
+		},
+		"unmarshal empty map as nil when nilasempty tag is not set": {
 			input:  inputForMap,
 			actual: &testOmitEmptyElemMapStruct{},
 			expect: &testOmitEmptyElemMapStruct{
 				Values: nil,
 			},
 		},
-		{
-			name:   "unmarshal empty map as empty when nilasempty tag is set",
+		"unmarshal empty map as empty when nilasempty tag is set": {
 			input:  inputForMap,
 			actual: &testNilAsEmptyElemMapStruct{},
 			expect: &testNilAsEmptyElemMapStruct{
 				Values: map[string]interface{}{},
 			},
-		}, {
-			name:   "unmarshal empty slices as nil when nilasempty tag is not set",
+		},
+		"unmarshal empty slices as nil when nilasempty tag is not set": {
 			input:  inputForSlice,
 			actual: &testWithoutNilAsEmptyStruct{},
 			expect: &testWithoutNilAsEmptyStruct{
@@ -720,8 +713,8 @@ func TestUnmarshalNilAsEmptyForEmptyInput(t *testing.T) {
 				NumberSet: nil,
 				OtherList: nil,
 			},
-		}, {
-			name:   "unmarshal empty slices as empty when nilasempty tag is not set",
+		},
+		"unmarshal empty slices as empty when nilasempty tag is not set": {
 			input:  inputForSlice,
 			actual: &testNilAsEmptySliceStruct{},
 			expect: &testNilAsEmptySliceStruct{
@@ -732,17 +725,132 @@ func TestUnmarshalNilAsEmptyForEmptyInput(t *testing.T) {
 			},
 		},
 	}
-	tableTestUnmarshalAssertion(t, tests)
+
+	var opts MarshalOptions
+	tableTestUnmarshalAssertion(t, cases, opts)
 }
 
-func tableTestUnmarshalAssertion(t *testing.T, tests []UnmarshalHelperStruct) {
-	for _, tt := range tests {
-		err := Unmarshal(tt.input, tt.actual)
-		if err != nil {
-			t.Errorf("expect nil, got %v", err)
-		}
-		if e, a := tt.expect, tt.actual; !reflect.DeepEqual(e, a) {
-			t.Errorf("%s: expect %v, got %v", tt.name, e, a)
-		}
+func TestUnmarshal_DecodeOption_NilAsEmpty_NullInput(t *testing.T) {
+	inputSliceNull := &dynamodb.AttributeValue{
+		M: map[string]*dynamodb.AttributeValue{
+			"BinarySet": {NULL: aws.Bool(true)},
+			"StringSet": {NULL: aws.Bool(true)},
+			"NumberSet": {NULL: aws.Bool(true)},
+			"OtherList": {NULL: aws.Bool(true)},
+		},
+	}
+	inputSliceEmpty := &dynamodb.AttributeValue{
+		M: map[string]*dynamodb.AttributeValue{
+			"Values": {NULL: aws.Bool(true)},
+		},
+	}
+	inputForMap := &dynamodb.AttributeValue{
+		M: map[string]*dynamodb.AttributeValue{
+			"Values": {M: map[string]*dynamodb.AttributeValue{}},
+		},
+	}
+	inputForSlice := &dynamodb.AttributeValue{
+		M: map[string]*dynamodb.AttributeValue{
+			"BinarySet": {BS: [][]byte{}},
+			"StringSet": {SS: []*string{}},
+			"NumberSet": {NS: []*string{}},
+			"OtherList": {L: []*dynamodb.AttributeValue{}},
+		},
+	}
+
+	cases := map[string]UnmarshalHelperStruct{
+		"unmarshal nil slice as empty when nilasempty tag is not set": {
+			input:  inputSliceNull,
+			actual: &testWithoutNilAsEmptyStruct{},
+			expect: &testWithoutNilAsEmptyStruct{
+				BinarySet: [][]byte{},
+				StringSet: []*string{},
+				NumberSet: []int{},
+				OtherList: []string{},
+			},
+		},
+		"unmarshal nil slice as empty when nilasempty tag is set": {
+			input:  inputSliceNull,
+			actual: &testNilAsEmptySliceStruct{},
+			expect: &testNilAsEmptySliceStruct{
+				BinarySet: [][]byte{},
+				StringSet: []*string{},
+				NumberSet: []int{},
+				OtherList: []string{},
+			},
+		},
+		"unmarshal nil map as empty when nilasempty tag is not set": {
+			input:  inputSliceEmpty,
+			actual: &testNilElemMapStruct{},
+			expect: &testNilElemMapStruct{
+				Values: map[string]interface{}{},
+			},
+		},
+		"unmarshal nil map as empty when nilasempty tag is set": {
+			input:  inputSliceEmpty,
+			actual: &testNilAsEmptyElemMapStruct{},
+			expect: &testNilAsEmptyElemMapStruct{
+				Values: map[string]interface{}{},
+			},
+		},
+		"unmarshal empty slices as empty when nilasempty tag is not set": {
+			input:  inputForSlice,
+			actual: &testWithoutNilAsEmptyStruct{},
+			expect: &testWithoutNilAsEmptyStruct{
+				BinarySet: [][]byte{},
+				StringSet: []*string{},
+				NumberSet: []int{},
+				OtherList: []string{},
+			},
+		},
+		"unmarshal empty slices as empty when nilasempty tag is set": {
+			input:  inputForSlice,
+			actual: &testNilAsEmptySliceStruct{},
+			expect: &testNilAsEmptySliceStruct{
+				BinarySet: [][]byte{},
+				StringSet: []*string{},
+				NumberSet: []int{},
+				OtherList: []string{},
+			},
+		},
+		"unmarshal empty map as empty when nilasempty tag is not set": {
+			input:  inputForMap,
+			actual: &testOmitEmptyElemMapStruct{},
+			expect: &testOmitEmptyElemMapStruct{
+				Values: map[string]interface{}{},
+			},
+		},
+		"unmarshal empty map as empty when nilasempty tag is set": {
+			input:  inputForMap,
+			actual: &testNilAsEmptyElemMapStruct{},
+			expect: &testNilAsEmptyElemMapStruct{
+				Values: map[string]interface{}{},
+			},
+		},
+	}
+
+	opts := MarshalOptions{
+		NilAsEmpty: true,
+	}
+	tableTestUnmarshalAssertion(t, cases, opts)
+}
+
+func tableTestUnmarshalAssertion(t *testing.T, cases map[string]UnmarshalHelperStruct, opts MarshalOptions) {
+	t.Helper()
+
+	for name, c := range cases {
+		t.Run(name, func(t *testing.T) {
+			decoder := NewDecoder(func(d *Decoder) {
+				d.MarshalOptions = opts
+			})
+
+			err := decoder.Decode(c.input, c.actual)
+			if err != nil {
+				t.Errorf("expect no error, got %v", err)
+			}
+			if e, a := c.expect, c.actual; !reflect.DeepEqual(e, a) {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
 	}
 }

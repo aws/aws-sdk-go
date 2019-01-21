@@ -293,13 +293,11 @@ type testNilAsEmptySliceStruct struct {
 }
 
 type MarshalHelperStruct struct {
-	name           string
-	input          interface{}
-	actual, expect *dynamodb.AttributeValue
-	err            error
+	input  interface{}
+	expect *dynamodb.AttributeValue
 }
 
-func TestMarshalNilForEmptyOrNilInput(t *testing.T) {
+func TestMarshal_Structtag_NilAsEmpty_NilInput(t *testing.T) {
 	expectMapNull := &dynamodb.AttributeValue{
 		M: map[string]*dynamodb.AttributeValue{
 			"Values": {NULL: aws.Bool(true)},
@@ -313,9 +311,8 @@ func TestMarshalNilForEmptyOrNilInput(t *testing.T) {
 			"OtherList": {NULL: aws.Bool(true)},
 		},
 	}
-	tests := []MarshalHelperStruct{
-		{
-			name: "marshal empty slice as nil when nilasempty tag is not set",
+	cases := map[string]MarshalHelperStruct{
+		"marshal empty slice as nil when nilasempty tag is not set": {
 			input: testWithoutNilAsEmptyStruct{
 				BinarySet: [][]byte{},
 				StringSet: []*string{},
@@ -324,8 +321,7 @@ func TestMarshalNilForEmptyOrNilInput(t *testing.T) {
 			},
 			expect: expectSliceNull,
 		},
-		{
-			name: "marshal nil slice as nil when nilasempty tag is not set",
+		"marshal nil slice as nil when nilasempty tag is not set": {
 			input: testWithoutNilAsEmptyStruct{
 				BinarySet: nil,
 				StringSet: nil,
@@ -334,25 +330,25 @@ func TestMarshalNilForEmptyOrNilInput(t *testing.T) {
 			},
 			expect: expectSliceNull,
 		},
-		{
-			name: "marshal nil map as nil when nilasempty tag is not set",
+		"marshal nil map as nil when nilasempty tag is not set": {
 			input: testOmitEmptyElemMapStruct{
 				Values: nil,
 			},
 			expect: expectMapNull,
 		},
-		{
-			name: "marshal empty map as nil when nilasempty tag is not set",
+		"marshal empty map as nil when nilasempty tag is not set": {
 			input: testOmitEmptyElemMapStruct{
 				Values: map[string]interface{}{},
 			},
 			expect: expectMapNull,
 		},
 	}
-	tableTestMarshalAssertion(t, tests)
+
+	var opts MarshalOptions
+	tableTestMarshalAssertion(t, cases, opts)
 }
 
-func TestMarshalEmptyForEmptyOrNilInput(t *testing.T) {
+func TestMarshal_StructTag_NilAsEmpty_EmptyForEmptyOrNilInput(t *testing.T) {
 	inputEmptyForSlice := testNilAsEmptySliceStruct{
 		BinarySet: [][]byte{},
 		StringSet: []*string{},
@@ -374,24 +370,20 @@ func TestMarshalEmptyForEmptyOrNilInput(t *testing.T) {
 			"Values": {M: map[string]*dynamodb.AttributeValue{}},
 		},
 	}
-	tests := []MarshalHelperStruct{
-		{
-			name:   "marshal empty map as empty when nilasempty tag is set",
+	cases := map[string]MarshalHelperStruct{
+		"marshal empty map as empty when nilasempty tag is set": {
 			input:  inputEmptyForMap,
 			expect: expectedEmptyForMap,
 		},
-		{
-			name:   "marshal nil map as empty when nilasempty tag is set",
+		"marshal nil map as empty when nilasempty tag is set": {
 			input:  testNilAsEmptyElemMapStruct{Values: nil},
 			expect: expectedEmptyForMap,
 		},
-		{
-			name:   "marshal empty slice as empty when nilasempty tag is set",
+		"marshal empty slice as empty when nilasempty tag is set": {
 			input:  inputEmptyForSlice,
 			expect: expectedEmptyForSlice,
 		},
-		{
-			name: "marshal nil slice as empty when nilasempty tag is set",
+		"marshal nil slice as empty when nilasempty tag is set": {
 			input: testNilAsEmptySliceStruct{
 				BinarySet: nil,
 				StringSet: nil,
@@ -401,17 +393,27 @@ func TestMarshalEmptyForEmptyOrNilInput(t *testing.T) {
 			expect: expectedEmptyForSlice,
 		},
 	}
-	tableTestMarshalAssertion(t, tests)
+
+	var opts MarshalOptions
+	tableTestMarshalAssertion(t, cases, opts)
 }
 
-func tableTestMarshalAssertion(t *testing.T, tests []MarshalHelperStruct) {
-	for _, tt := range tests {
-		tt.actual, tt.err = Marshal(tt.input)
-		if tt.err != nil {
-			t.Errorf("expect nil, got %v", tt.err)
-		}
-		if e, a := tt.expect, tt.actual; !reflect.DeepEqual(e, a) {
-			t.Errorf("%s: expect %v, got %v", tt.name, e, a)
-		}
+func tableTestMarshalAssertion(t *testing.T, cases map[string]MarshalHelperStruct, opts MarshalOptions) {
+	t.Helper()
+
+	for name, c := range cases {
+		t.Run(name, func(t *testing.T) {
+			encoder := NewEncoder(func(e *Encoder) {
+				e.MarshalOptions = opts
+			})
+
+			actual, err := encoder.Encode(c.input)
+			if err != nil {
+				t.Errorf("expect no error, got %v", err)
+			}
+			if e, a := c.expect, actual; !reflect.DeepEqual(e, a) {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
 	}
 }

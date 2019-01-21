@@ -194,6 +194,12 @@ type MarshalOptions struct {
 	// Note that values provided with a custom TagKey must also be supported
 	// by the (un)marshalers in this package.
 	TagKey string
+
+	// Configures the marshaler to serialize zero length maps and slices as
+	// empty maps and arrays instead of the default nil value. Unmarshaled
+	// empty DynamoDB AttributeValue maps and arrays will be marshed as empty
+	// lists.
+	NilAsEmpty bool
 }
 
 // An Encoder provides marshaling Go value types to AttributeValues.
@@ -358,7 +364,7 @@ func (e *Encoder) encodeMap(av *dynamodb.AttributeValue, v reflect.Value, fieldT
 		av.M[keyName] = elem
 	}
 	if len(av.M) == 0 {
-		keepNilOrEmpty(av, reflect.Map, fieldTag.NilAsEmpty)
+		keepNilOrEmpty(av, reflect.Map, fieldTag.NilAsEmpty || e.NilAsEmpty)
 	}
 	return nil
 }
@@ -371,7 +377,7 @@ func (e *Encoder) encodeSlice(av *dynamodb.AttributeValue, v reflect.Value, fiel
 
 		b := slice.Bytes()
 		if len(b) == 0 {
-			keepNilOrEmpty(av, reflect.Slice, fieldTag.NilAsEmpty)
+			keepNilOrEmpty(av, reflect.Slice, fieldTag.NilAsEmpty || e.NilAsEmpty)
 			return nil
 		}
 		av.B = append([]byte{}, b...)
@@ -416,7 +422,7 @@ func (e *Encoder) encodeSlice(av *dynamodb.AttributeValue, v reflect.Value, fiel
 		if n, err := e.encodeList(v, fieldTag, elemFn); err != nil {
 			return err
 		} else if n == 0 {
-			keepNilOrEmpty(av, reflect.Slice, fieldTag.NilAsEmpty)
+			keepNilOrEmpty(av, reflect.Slice, fieldTag.NilAsEmpty || e.NilAsEmpty)
 		}
 	}
 
