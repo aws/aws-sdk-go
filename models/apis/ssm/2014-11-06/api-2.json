@@ -1773,6 +1773,7 @@
         "Status":{"shape":"AssociationStatus"},
         "Overview":{"shape":"AssociationOverview"},
         "DocumentVersion":{"shape":"DocumentVersion"},
+        "AutomationTargetParameterName":{"shape":"AutomationTargetParameterName"},
         "Parameters":{"shape":"Parameters"},
         "AssociationId":{"shape":"AssociationId"},
         "Targets":{"shape":"Targets"},
@@ -2304,6 +2305,11 @@
       },
       "exception":true
     },
+    "AutomationTargetParameterName":{
+      "type":"string",
+      "max":50,
+      "min":1
+    },
     "AutomationType":{
       "type":"string",
       "enum":[
@@ -2775,6 +2781,7 @@
         "Name":{"shape":"DocumentName"},
         "InstanceId":{"shape":"InstanceId"},
         "Parameters":{"shape":"Parameters"},
+        "AutomationTargetParameterName":{"shape":"AutomationTargetParameterName"},
         "DocumentVersion":{"shape":"DocumentVersion"},
         "Targets":{"shape":"Targets"},
         "ScheduleExpression":{"shape":"ScheduleExpression"},
@@ -2804,6 +2811,7 @@
         "ScheduleExpression":{"shape":"ScheduleExpression"},
         "OutputLocation":{"shape":"InstanceAssociationOutputLocation"},
         "AssociationName":{"shape":"AssociationName"},
+        "AutomationTargetParameterName":{"shape":"AutomationTargetParameterName"},
         "MaxErrors":{"shape":"MaxErrors"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"}
@@ -7865,6 +7873,7 @@
         "Targets":{"shape":"Targets"},
         "AssociationName":{"shape":"AssociationName"},
         "AssociationVersion":{"shape":"AssociationVersion"},
+        "AutomationTargetParameterName":{"shape":"AutomationTargetParameterName"},
         "MaxErrors":{"shape":"MaxErrors"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"}

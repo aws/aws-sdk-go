@@ -1,3 +1,17 @@
+Release v1.16.23 (2019-01-21)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API and documentation
+  * This API update includes support for tagging Stack, Fleet, and ImageBuilder resources at creation time.
+* `service/discovery`: Updates service API, documentation, and paginators
+  * The Application Discovery Service's import APIs allow you to import information about your on-premises servers and applications into ADS so that you can track the status of your migrations through the Migration Hub console.
+* `service/dms`: Updates service waiters
+  * Update for DMS TestConnectionSucceeds waiter
+* `service/fms`: Updates service API and documentation
+* `service/ssm`: Updates service API and documentation
+  * AWS Systems Manager State Manager now supports configuration management of all AWS resources through integration with Automation.
+
 Release v1.16.22 (2019-01-18)
 ===
 
