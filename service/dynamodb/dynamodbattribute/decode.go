@@ -163,7 +163,7 @@ func (d *Decoder) decode(av *dynamodb.AttributeValue, v reflect.Value, fieldTag 
 		if u != nil {
 			return u.UnmarshalDynamoDBAttributeValue(av)
 		}
-		return d.decodeNull(fieldTag.NilAsEmpty || d.NilAsEmpty, v)
+		return d.decodeNull(fieldTag.KeepEmpty || d.KeepEmpty, v)
 	}
 
 	u, v = indirect(v, false)
@@ -191,7 +191,7 @@ func (d *Decoder) decode(av *dynamodb.AttributeValue, v reflect.Value, fieldTag 
 	case len(av.SS) != 0:
 		return d.decodeStringSet(av.SS, v)
 	}
-	d.decodeEmpty(fieldTag.NilAsEmpty || d.NilAsEmpty, av, v)
+	d.decodeEmpty(fieldTag.KeepEmpty || d.KeepEmpty, av, v)
 	return nil
 }
 

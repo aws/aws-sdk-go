@@ -8,12 +8,12 @@ import (
 type tag struct {
 	Name                         string
 	Ignore                       bool
+	KeepEmpty                    bool
 	OmitEmpty                    bool
 	OmitEmptyElem                bool
 	AsString                     bool
 	AsBinSet, AsNumSet, AsStrSet bool
 	AsUnixTime                   bool
-	NilAsEmpty                   bool
 }
 
 func (t *tag) parseAVTag(structTag reflect.StructTag) {
@@ -64,8 +64,8 @@ func (t *tag) parseTagStr(tagStr string) {
 			t.AsStrSet = true
 		case "unixtime":
 			t.AsUnixTime = true
-		case "nilasempty":
-			t.NilAsEmpty = true
+		case "keepempty":
+			t.KeepEmpty = true
 		}
 	}
 }

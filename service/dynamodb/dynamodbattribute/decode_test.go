@@ -1,3 +1,5 @@
+// +build go1.9
+
 package dynamodbattribute
 
 import (
@@ -626,7 +628,7 @@ type UnmarshalHelperStruct struct {
 	actual, expect interface{}
 }
 
-func TestUnmarshal_Structag_NilAsEmpty(t *testing.T) {
+func TestUnmarshal_Structag_KeepEmpty(t *testing.T) {
 	inputSliceNull := &dynamodb.AttributeValue{
 		M: map[string]*dynamodb.AttributeValue{
 			"BinarySet": {NULL: aws.Bool(true)},
@@ -656,68 +658,68 @@ func TestUnmarshal_Structag_NilAsEmpty(t *testing.T) {
 	}
 
 	cases := map[string]UnmarshalHelperStruct{
-		"unmarshal nil slice as nil when nilasempty tag is not set": {
+		"unmarshal nil slice as nil when keepempty tag is not set": {
 			input:  inputSliceNull,
-			actual: &testWithoutNilAsEmptyStruct{},
-			expect: &testWithoutNilAsEmptyStruct{
+			actual: &testWithoutKeepEmptyStruct{},
+			expect: &testWithoutKeepEmptyStruct{
 				BinarySet: nil,
 				StringSet: nil,
 				NumberSet: nil,
 				OtherList: nil,
 			},
 		},
-		"unmarshal nil slice as empty when nilasempty tag is set": {
+		"unmarshal nil slice as empty when keepempty tag is set": {
 			input:  inputSliceNull,
-			actual: &testNilAsEmptySliceStruct{},
-			expect: &testNilAsEmptySliceStruct{
+			actual: &testKeepEmptySliceStruct{},
+			expect: &testKeepEmptySliceStruct{
 				BinarySet: [][]byte{},
 				StringSet: []*string{},
 				NumberSet: []int{},
 				OtherList: []string{},
 			},
 		},
-		"unmarshal nil map as empty when nilasempty tag is not set": {
+		"unmarshal nil map as empty when keepempty tag is not set": {
 			input:  inputSliceEmpty,
 			actual: &testNilElemMapStruct{},
 			expect: &testNilElemMapStruct{
 				Values: nil,
 			},
 		},
-		"unmarshal nil map as empty when nilasempty tag is set": {
+		"unmarshal nil map as empty when keepempty tag is set": {
 			input:  inputSliceEmpty,
-			actual: &testNilAsEmptyElemMapStruct{},
-			expect: &testNilAsEmptyElemMapStruct{
+			actual: &testKeepEmptyElemMapStruct{},
+			expect: &testKeepEmptyElemMapStruct{
 				Values: map[string]interface{}{},
 			},
 		},
-		"unmarshal empty map as nil when nilasempty tag is not set": {
+		"unmarshal empty map as nil when keepempty tag is not set": {
 			input:  inputForMap,
 			actual: &testOmitEmptyElemMapStruct{},
 			expect: &testOmitEmptyElemMapStruct{
 				Values: nil,
 			},
 		},
-		"unmarshal empty map as empty when nilasempty tag is set": {
+		"unmarshal empty map as empty when keepempty tag is set": {
 			input:  inputForMap,
-			actual: &testNilAsEmptyElemMapStruct{},
-			expect: &testNilAsEmptyElemMapStruct{
+			actual: &testKeepEmptyElemMapStruct{},
+			expect: &testKeepEmptyElemMapStruct{
 				Values: map[string]interface{}{},
 			},
 		},
-		"unmarshal empty slices as nil when nilasempty tag is not set": {
+		"unmarshal empty slices as nil when keepempty tag is not set": {
 			input:  inputForSlice,
-			actual: &testWithoutNilAsEmptyStruct{},
-			expect: &testWithoutNilAsEmptyStruct{
+			actual: &testWithoutKeepEmptyStruct{},
+			expect: &testWithoutKeepEmptyStruct{
 				BinarySet: nil,
 				StringSet: nil,
 				NumberSet: nil,
 				OtherList: nil,
 			},
 		},
-		"unmarshal empty slices as empty when nilasempty tag is not set": {
+		"unmarshal empty slices as empty when keepempty tag is not set": {
 			input:  inputForSlice,
-			actual: &testNilAsEmptySliceStruct{},
-			expect: &testNilAsEmptySliceStruct{
+			actual: &testKeepEmptySliceStruct{},
+			expect: &testKeepEmptySliceStruct{
 				BinarySet: [][]byte{},
 				StringSet: []*string{},
 				NumberSet: []int{},
@@ -730,7 +732,7 @@ func TestUnmarshal_Structag_NilAsEmpty(t *testing.T) {
 	tableTestUnmarshalAssertion(t, cases, opts)
 }
 
-func TestUnmarshal_DecodeOption_NilAsEmpty_NullInput(t *testing.T) {
+func TestUnmarshal_DecodeOption_KeepEmpty(t *testing.T) {
 	inputSliceNull := &dynamodb.AttributeValue{
 		M: map[string]*dynamodb.AttributeValue{
 			"BinarySet": {NULL: aws.Bool(true)},
@@ -759,78 +761,78 @@ func TestUnmarshal_DecodeOption_NilAsEmpty_NullInput(t *testing.T) {
 	}
 
 	cases := map[string]UnmarshalHelperStruct{
-		"unmarshal nil slice as empty when nilasempty tag is not set": {
+		"unmarshal nil slice as empty when keepempty tag is not set": {
 			input:  inputSliceNull,
-			actual: &testWithoutNilAsEmptyStruct{},
-			expect: &testWithoutNilAsEmptyStruct{
+			actual: &testWithoutKeepEmptyStruct{},
+			expect: &testWithoutKeepEmptyStruct{
 				BinarySet: [][]byte{},
 				StringSet: []*string{},
 				NumberSet: []int{},
 				OtherList: []string{},
 			},
 		},
-		"unmarshal nil slice as empty when nilasempty tag is set": {
+		"unmarshal nil slice as empty when keepempty tag is set": {
 			input:  inputSliceNull,
-			actual: &testNilAsEmptySliceStruct{},
-			expect: &testNilAsEmptySliceStruct{
+			actual: &testKeepEmptySliceStruct{},
+			expect: &testKeepEmptySliceStruct{
 				BinarySet: [][]byte{},
 				StringSet: []*string{},
 				NumberSet: []int{},
 				OtherList: []string{},
 			},
 		},
-		"unmarshal nil map as empty when nilasempty tag is not set": {
+		"unmarshal nil map as empty when keepempty tag is not set": {
 			input:  inputSliceEmpty,
 			actual: &testNilElemMapStruct{},
 			expect: &testNilElemMapStruct{
 				Values: map[string]interface{}{},
 			},
 		},
-		"unmarshal nil map as empty when nilasempty tag is set": {
+		"unmarshal nil map as empty when keepempty tag is set": {
 			input:  inputSliceEmpty,
-			actual: &testNilAsEmptyElemMapStruct{},
-			expect: &testNilAsEmptyElemMapStruct{
+			actual: &testKeepEmptyElemMapStruct{},
+			expect: &testKeepEmptyElemMapStruct{
 				Values: map[string]interface{}{},
 			},
 		},
-		"unmarshal empty slices as empty when nilasempty tag is not set": {
+		"unmarshal empty slices as empty when keepempty tag is not set": {
 			input:  inputForSlice,
-			actual: &testWithoutNilAsEmptyStruct{},
-			expect: &testWithoutNilAsEmptyStruct{
+			actual: &testWithoutKeepEmptyStruct{},
+			expect: &testWithoutKeepEmptyStruct{
 				BinarySet: [][]byte{},
 				StringSet: []*string{},
 				NumberSet: []int{},
 				OtherList: []string{},
 			},
 		},
-		"unmarshal empty slices as empty when nilasempty tag is set": {
+		"unmarshal empty slices as empty when keepempty tag is set": {
 			input:  inputForSlice,
-			actual: &testNilAsEmptySliceStruct{},
-			expect: &testNilAsEmptySliceStruct{
+			actual: &testKeepEmptySliceStruct{},
+			expect: &testKeepEmptySliceStruct{
 				BinarySet: [][]byte{},
 				StringSet: []*string{},
 				NumberSet: []int{},
 				OtherList: []string{},
 			},
 		},
-		"unmarshal empty map as empty when nilasempty tag is not set": {
+		"unmarshal empty map as empty when keepempty tag is not set": {
 			input:  inputForMap,
 			actual: &testOmitEmptyElemMapStruct{},
 			expect: &testOmitEmptyElemMapStruct{
 				Values: map[string]interface{}{},
 			},
 		},
-		"unmarshal empty map as empty when nilasempty tag is set": {
+		"unmarshal empty map as empty when keepempty tag is set": {
 			input:  inputForMap,
-			actual: &testNilAsEmptyElemMapStruct{},
-			expect: &testNilAsEmptyElemMapStruct{
+			actual: &testKeepEmptyElemMapStruct{},
+			expect: &testKeepEmptyElemMapStruct{
 				Values: map[string]interface{}{},
 			},
 		},
 	}
 
 	opts := MarshalOptions{
-		NilAsEmpty: true,
+		KeepEmpty: true,
 	}
 	tableTestUnmarshalAssertion(t, cases, opts)
 }

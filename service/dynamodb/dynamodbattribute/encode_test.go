@@ -1,3 +1,5 @@
+// +build go1.9
+
 package dynamodbattribute
 
 import (
@@ -90,8 +92,8 @@ type testOmitEmptyElemMapStruct struct {
 	Values map[string]interface{} `dynamodbav:",omitemptyelem"`
 }
 
-type testNilAsEmptyElemMapStruct struct {
-	Values map[string]interface{} `dynamodbav:",omitemptyelem,nilasempty"`
+type testKeepEmptyElemMapStruct struct {
+	Values map[string]interface{} `dynamodbav:",omitemptyelem,keepempty"`
 }
 
 type testNilElemMapStruct struct {
@@ -278,18 +280,18 @@ func TestEncodeAliasedUnixTime(t *testing.T) {
 	}
 }
 
-type testWithoutNilAsEmptyStruct struct {
+type testWithoutKeepEmptyStruct struct {
 	BinarySet [][]byte  `dynamodbav:",binaryset"`
 	StringSet []*string `dynamodbav:",stringset"`
 	NumberSet []int     `dynamodbav:",numberset"`
 	OtherList []string
 }
 
-type testNilAsEmptySliceStruct struct {
-	BinarySet [][]byte  `dynamodbav:",binaryset,nilasempty"`
-	StringSet []*string `dynamodbav:",stringset,nilasempty"`
-	NumberSet []int     `dynamodbav:",numberset,nilasempty"`
-	OtherList []string  `dynamodbav:",nilasempty"`
+type testKeepEmptySliceStruct struct {
+	BinarySet [][]byte  `dynamodbav:",binaryset,keepempty"`
+	StringSet []*string `dynamodbav:",stringset,keepempty"`
+	NumberSet []int     `dynamodbav:",numberset,keepempty"`
+	OtherList []string  `dynamodbav:",keepempty"`
 }
 
 type MarshalHelperStruct struct {
@@ -297,7 +299,7 @@ type MarshalHelperStruct struct {
 	expect *dynamodb.AttributeValue
 }
 
-func TestMarshal_Structtag_NilAsEmpty_NilInput(t *testing.T) {
+func TestMarshal_Structtag_KeepEmpty(t *testing.T) {
 	expectMapNull := &dynamodb.AttributeValue{
 		M: map[string]*dynamodb.AttributeValue{
 			"Values": {NULL: aws.Bool(true)},
@@ -311,52 +313,15 @@ func TestMarshal_Structtag_NilAsEmpty_NilInput(t *testing.T) {
 			"OtherList": {NULL: aws.Bool(true)},
 		},
 	}
-	cases := map[string]MarshalHelperStruct{
-		"marshal empty slice as nil when nilasempty tag is not set": {
-			input: testWithoutNilAsEmptyStruct{
-				BinarySet: [][]byte{},
-				StringSet: []*string{},
-				NumberSet: []int{},
-				OtherList: []string{},
-			},
-			expect: expectSliceNull,
-		},
-		"marshal nil slice as nil when nilasempty tag is not set": {
-			input: testWithoutNilAsEmptyStruct{
-				BinarySet: nil,
-				StringSet: nil,
-				NumberSet: nil,
-				OtherList: nil,
-			},
-			expect: expectSliceNull,
-		},
-		"marshal nil map as nil when nilasempty tag is not set": {
-			input: testOmitEmptyElemMapStruct{
-				Values: nil,
-			},
-			expect: expectMapNull,
-		},
-		"marshal empty map as nil when nilasempty tag is not set": {
-			input: testOmitEmptyElemMapStruct{
-				Values: map[string]interface{}{},
-			},
-			expect: expectMapNull,
-		},
-	}
-
-	var opts MarshalOptions
-	tableTestMarshalAssertion(t, cases, opts)
-}
-
-func TestMarshal_StructTag_NilAsEmpty_EmptyForEmptyOrNilInput(t *testing.T) {
-	inputEmptyForSlice := testNilAsEmptySliceStruct{
+	inputEmptyForSlice := testKeepEmptySliceStruct{
 		BinarySet: [][]byte{},
 		StringSet: []*string{},
 		NumberSet: []int{},
 		OtherList: []string{},
 	}
-	inputEmptyForMap := testNilAsEmptyElemMapStruct{Values: map[string]interface{}{}}
-
+	inputEmptyForMap := testKeepEmptyElemMapStruct{
+		Values: map[string]interface{}{},
+	}
 	expectedEmptyForSlice := &dynamodb.AttributeValue{
 		M: map[string]*dynamodb.AttributeValue{
 			"BinarySet": {BS: [][]byte{}},
@@ -370,21 +335,52 @@ func TestMarshal_StructTag_NilAsEmpty_EmptyForEmptyOrNilInput(t *testing.T) {
 			"Values": {M: map[string]*dynamodb.AttributeValue{}},
 		},
 	}
+
 	cases := map[string]MarshalHelperStruct{
-		"marshal empty map as empty when nilasempty tag is set": {
+		"marshal empty slice as nil when keepempty tag is not set": {
+			input: testWithoutKeepEmptyStruct{
+				BinarySet: [][]byte{},
+				StringSet: []*string{},
+				NumberSet: []int{},
+				OtherList: []string{},
+			},
+			expect: expectSliceNull,
+		},
+		"marshal nil slice as nil when keepempty tag is not set": {
+			input: testWithoutKeepEmptyStruct{
+				BinarySet: nil,
+				StringSet: nil,
+				NumberSet: nil,
+				OtherList: nil,
+			},
+			expect: expectSliceNull,
+		},
+		"marshal nil map as nil when keepempty tag is not set": {
+			input: testOmitEmptyElemMapStruct{
+				Values: nil,
+			},
+			expect: expectMapNull,
+		},
+		"marshal empty map as nil when keepempty tag is not set": {
+			input: testOmitEmptyElemMapStruct{
+				Values: map[string]interface{}{},
+			},
+			expect: expectMapNull,
+		},
+		"marshal empty map as empty when keepempty tag is set": {
 			input:  inputEmptyForMap,
 			expect: expectedEmptyForMap,
 		},
-		"marshal nil map as empty when nilasempty tag is set": {
-			input:  testNilAsEmptyElemMapStruct{Values: nil},
+		"marshal nil map as empty when keepempty tag is set": {
+			input:  testKeepEmptyElemMapStruct{Values: nil},
 			expect: expectedEmptyForMap,
 		},
-		"marshal empty slice as empty when nilasempty tag is set": {
+		"marshal empty slice as empty when keepempty tag is set": {
 			input:  inputEmptyForSlice,
 			expect: expectedEmptyForSlice,
 		},
-		"marshal nil slice as empty when nilasempty tag is set": {
-			input: testNilAsEmptySliceStruct{
+		"marshal nil slice as empty when keepempty tag is set": {
+			input: testKeepEmptySliceStruct{
 				BinarySet: nil,
 				StringSet: nil,
 				NumberSet: nil,
@@ -395,6 +391,103 @@ func TestMarshal_StructTag_NilAsEmpty_EmptyForEmptyOrNilInput(t *testing.T) {
 	}
 
 	var opts MarshalOptions
+	tableTestMarshalAssertion(t, cases, opts)
+}
+
+func SkipTestMarshal_EncodeOption_KeepEmpty(t *testing.T) {
+	expectMapNull := &dynamodb.AttributeValue{
+		M: map[string]*dynamodb.AttributeValue{
+			"Values": {NULL: aws.Bool(true)},
+		},
+	}
+	expectSliceNull := &dynamodb.AttributeValue{
+		M: map[string]*dynamodb.AttributeValue{
+			"BinarySet": {NULL: aws.Bool(true)},
+			"StringSet": {NULL: aws.Bool(true)},
+			"NumberSet": {NULL: aws.Bool(true)},
+			"OtherList": {NULL: aws.Bool(true)},
+		},
+	}
+	inputEmptyForSlice := testKeepEmptySliceStruct{
+		BinarySet: [][]byte{},
+		StringSet: []*string{},
+		NumberSet: []int{},
+		OtherList: []string{},
+	}
+	inputEmptyForMap := testKeepEmptyElemMapStruct{
+		Values: map[string]interface{}{},
+	}
+	expectedEmptyForSlice := &dynamodb.AttributeValue{
+		M: map[string]*dynamodb.AttributeValue{
+			"BinarySet": {BS: [][]byte{}},
+			"StringSet": {SS: []*string{}},
+			"NumberSet": {NS: []*string{}},
+			"OtherList": {L: []*dynamodb.AttributeValue{}},
+		},
+	}
+	expectedEmptyForMap := &dynamodb.AttributeValue{
+		M: map[string]*dynamodb.AttributeValue{
+			"Values": {M: map[string]*dynamodb.AttributeValue{}},
+		},
+	}
+
+	cases := map[string]MarshalHelperStruct{
+		"marshal empty slice as nil when keepempty tag is not set": {
+			input: testWithoutKeepEmptyStruct{
+				BinarySet: [][]byte{},
+				StringSet: []*string{},
+				NumberSet: []int{},
+				OtherList: []string{},
+			},
+			expect: expectSliceNull,
+		},
+		"marshal empty slice as empty when keepempty tag is set": {
+			input:  inputEmptyForSlice,
+			expect: expectedEmptyForSlice,
+		},
+		"marshal nil slice as nil when keepempty tag is not set": {
+			input: testWithoutKeepEmptyStruct{
+				BinarySet: [][]byte{},
+				StringSet: []*string{},
+				NumberSet: []int{},
+				OtherList: []string{},
+			},
+			expect: expectSliceNull,
+		},
+		"marshal nil slice as empty when keepempty tag is set": {
+			input: testKeepEmptySliceStruct{
+				BinarySet: nil,
+				StringSet: nil,
+				NumberSet: nil,
+				OtherList: nil,
+			},
+			expect: expectedEmptyForSlice,
+		},
+		"marshal nil map as nil when keepempty tag is not set": {
+			input: testOmitEmptyElemMapStruct{
+				Values: nil,
+			},
+			expect: expectMapNull,
+		},
+		"marshal empty map as nil when keepempty tag is not set": {
+			input: testOmitEmptyElemMapStruct{
+				Values: map[string]interface{}{},
+			},
+			expect: expectMapNull,
+		},
+		"marshal empty map as empty when keepempty tag is set": {
+			input:  inputEmptyForMap,
+			expect: expectedEmptyForMap,
+		},
+		"marshal nil map as empty when keepempty tag is set": {
+			input:  testKeepEmptyElemMapStruct{Values: nil},
+			expect: expectedEmptyForMap,
+		},
+	}
+
+	opts := MarshalOptions{
+		KeepEmpty: true,
+	}
 	tableTestMarshalAssertion(t, cases, opts)
 }
 

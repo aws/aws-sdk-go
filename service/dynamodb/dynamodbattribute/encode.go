@@ -122,6 +122,10 @@ type Marshaler interface {
 //		// January 1, 0001 UTC, and January 1, 0001 UTC.
 //		Field time.Time `dynamodbav:",unixtime"`
 //
+//		// Field will be marshaled as a empty list if Field's value is nil.
+//		// nilasempty is not compatiable with omitempty.
+//		Field []string `dynamodbav:",nilasempty"`
+//
 // The omitempty tag is only used during Marshaling and is ignored for
 // Unmarshal. Any zero value or a value when marshaled results in a
 // AttributeValue NULL will be added to AttributeValue Maps during struct
@@ -195,11 +199,10 @@ type MarshalOptions struct {
 	// by the (un)marshalers in this package.
 	TagKey string
 
-	// Configures the marshaler to serialize zero length maps and slices as
-	// empty maps and arrays instead of the default nil value. Unmarshaled
-	// empty DynamoDB AttributeValue maps and arrays will be marshed as empty
-	// lists.
-	NilAsEmpty bool
+	// Will cause all maps and slice members to be serialized as empty maps,
+	// lists, and sets. During unmarshaling empty/null/unset attribute values
+	// will be unmarshaled as empty maps and slices.
+	KeepEmpty bool
 }
 
 // An Encoder provides marshaling Go value types to AttributeValues.
@@ -363,8 +366,10 @@ func (e *Encoder) encodeMap(av *dynamodb.AttributeValue, v reflect.Value, fieldT
 
 		av.M[keyName] = elem
 	}
-	if len(av.M) == 0 {
-		keepNilOrEmpty(av, reflect.Map, fieldTag.NilAsEmpty || e.NilAsEmpty)
+
+	// If not persisting empty maps reset to the av to null
+	if len(av.M) == 0 && !e.shouldKeepEmpty(fieldTag.KeepEmpty) {
+		encodeNull(av)
 	}
 	return nil
 }
@@ -375,12 +380,13 @@ func (e *Encoder) encodeSlice(av *dynamodb.AttributeValue, v reflect.Value, fiel
 		slice := reflect.MakeSlice(byteSliceType, v.Len(), v.Len())
 		reflect.Copy(slice, v)
 
-		b := slice.Bytes()
-		if len(b) == 0 {
-			keepNilOrEmpty(av, reflect.Slice, fieldTag.NilAsEmpty || e.NilAsEmpty)
-			return nil
+		av.B = append([]byte{}, slice.Bytes()...)
+
+		// If not persisting empty slices reset to the av to null
+		if len(av.B) == 0 && !e.shouldKeepEmpty(fieldTag.KeepEmpty) {
+			encodeNull(av)
 		}
-		av.B = append([]byte{}, b...)
+
 	default:
 		var elemFn func(dynamodb.AttributeValue) error
 
@@ -421,8 +427,8 @@ func (e *Encoder) encodeSlice(av *dynamodb.AttributeValue, v reflect.Value, fiel
 
 		if n, err := e.encodeList(v, fieldTag, elemFn); err != nil {
 			return err
-		} else if n == 0 {
-			keepNilOrEmpty(av, reflect.Slice, fieldTag.NilAsEmpty || e.NilAsEmpty)
+		} else if n == 0 && !e.shouldKeepEmpty(fieldTag.KeepEmpty) {
+			encodeNull(av)
 		}
 	}
 
@@ -588,19 +594,8 @@ func tryMarshaler(av *dynamodb.AttributeValue, v reflect.Value) (bool, error) {
 	return false, nil
 }
 
-func keepNilOrEmpty(av *dynamodb.AttributeValue, kind reflect.Kind, nilAsEmpty bool) {
-	if !nilAsEmpty {
-		encodeNull(av)
-		return
-	}
-	switch kind {
-	case reflect.Map:
-		encodeEmptyMap(av)
-	case reflect.Slice:
-		return
-	default:
-		encodeNull(av)
-	}
+func (e *Encoder) shouldKeepEmpty(keepEmpty bool) bool {
+	return keepEmpty || e.KeepEmpty
 }
 
 func keepOrOmitEmpty(omitEmpty bool, av *dynamodb.AttributeValue, err error) (bool, error) {
