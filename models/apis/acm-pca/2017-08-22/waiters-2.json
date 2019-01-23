@@ -48,6 +48,12 @@
                     "matcher": "path",
                     "argument": "AuditReportStatus",
                     "expected": "SUCCESS"
+                },
+                {
+                    "state": "failure",
+                    "matcher": "path",
+                    "argument": "AuditReportStatus",
+                    "expected": "FAILED"
                 }
             ]
         }

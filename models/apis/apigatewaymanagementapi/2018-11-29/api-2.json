@@ -35,7 +35,7 @@
   "shapes" : {
     "Data" : {
       "type" : "blob",
-      "max" : "131072"
+      "max" : 131072
     },
     "ForbiddenException" : {
       "type" : "structure",
