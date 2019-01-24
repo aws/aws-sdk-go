@@ -199,6 +199,12 @@
       "refs": {
       }
     },
+    "CredentialProviderType": {
+      "base": null,
+      "refs": {
+        "RegistryCredential$credentialProvider": "<p> The service that created the credentials to access a private Docker registry. The valid value, SECRETS_MANAGER, is for AWS Secrets Manager. </p>"
+      }
+    },
     "DeleteProjectInput": {
       "base": null,
       "refs": {
@@ -296,6 +302,13 @@
       "refs": {
         "ProjectSource$gitCloneDepth": "<p>Information about the git clone depth for the build project.</p>",
         "StartBuildInput$gitCloneDepthOverride": "<p>The user-defined depth of history, with a minimum value of 0, that overrides, for this build only, any previous depth of history defined in the build project.</p>"
+      }
+    },
+    "ImagePullCredentialsType": {
+      "base": null,
+      "refs": {
+        "ProjectEnvironment$imagePullCredentialsType": "<p> The type of credentials AWS CodeBuild uses to pull images in your build. There are two valid values: </p> <ul> <li> <p> <code>CODEBUILD</code> specifies that AWS CodeBuild uses its own credentials. This requires that you modify your ECR repository policy to trust AWS CodeBuild's service principal. </p> </li> <li> <p> <code>SERVICE_ROLE</code> specifies that AWS CodeBuild uses your build project's service role. </p> </li> </ul> <p> When you use a cross-account or private registry image, you must use SERVICE_ROLE credentials. When you use an AWS CodeBuild curated image, you must use CODEBUILD credentials. </p>",
+        "StartBuildInput$imagePullCredentialsTypeOverride": "<p> The type of credentials AWS CodeBuild uses to pull images in your build. There are two valid values: </p> <ul> <li> <p> <code>CODEBUILD</code> specifies that AWS CodeBuild uses its own credentials. This requires that you modify your ECR repository policy to trust AWS CodeBuild's service principal.</p> </li> <li> <p> <code>SERVICE_ROLE</code> specifies that AWS CodeBuild uses your build project's service role. </p> </li> </ul> <p> When using a cross-account or private registry image, you must use SERVICE_ROLE credentials. When using an AWS CodeBuild curated image, you must use CODEBUILD credentials. </p>"
       }
     },
     "ImageVersions": {
@@ -446,8 +459,9 @@
         "NetworkInterface$networkInterfaceId": "<p>The ID of the network interface.</p>",
         "Project$serviceRole": "<p>The ARN of the AWS Identity and Access Management (IAM) role that enables AWS CodeBuild to interact with dependent AWS services on behalf of the AWS account.</p>",
         "Project$encryptionKey": "<p>The AWS Key Management Service (AWS KMS) customer master key (CMK) to be used for encrypting the build output artifacts.</p> <p>This is expressed either as the Amazon Resource Name (ARN) of the CMK or, if specified, the CMK's alias (using the format <code>alias/<i>alias-name</i> </code>).</p>",
-        "ProjectEnvironment$image": "<p>The ID of the Docker image to use for this build project.</p>",
+        "ProjectEnvironment$image": "<p>The image tag or image digest that identifies the Docker image to use for this build project. Use the following formats:</p> <ul> <li> <p>For an image tag: <code>registry/repository:tag</code>. For example, to specify an image with the tag \"latest,\" use <code>registry/repository:latest</code>.</p> </li> <li> <p>For an image digest: <code>registry/repository@digest</code>. For example, to specify an image with the digest \"sha256:cbbf2f9a99b47fc460d422812b6a5adff7dfee951d8fa2e4a98caa0382cfbdbf,\" use <code>registry/repository@sha256:cbbf2f9a99b47fc460d422812b6a5adff7dfee951d8fa2e4a98caa0382cfbdbf</code>.</p> </li> </ul>",
         "ProjectNames$member": null,
+        "RegistryCredential$credential": "<p> The Amazon Resource Name (ARN) or name of credentials created using AWS Secrets Manager. </p> <note> <p> The <code>credential</code> can use the name of the credentials only if they exist in your current region. </p> </note>",
         "SecurityGroupIds$member": null,
         "SourceCredentialsInfo$arn": "<p> The Amazon Resource Name (ARN) of the token. </p>",
         "StartBuildInput$projectName": "<p>The name of the AWS CodeBuild build project to start running a build.</p>",
@@ -608,6 +622,13 @@
       "base": null,
       "refs": {
         "BatchGetProjectsOutput$projects": "<p>Information about the requested build projects.</p>"
+      }
+    },
+    "RegistryCredential": {
+      "base": "<p> Information about credentials that provide access to a private Docker registry. When this is set: </p> <ul> <li> <p> <code>imagePullCredentialsType</code> must be set to <code>SERVICE_ROLE</code>. </p> </li> <li> <p> images cannot be curated or an Amazon ECR image.</p> </li> </ul> <p> For more information, see <a href=\"http://docs.aws.amazon.com/codebuild/latest/userguide/sample-private-registry.html\">Private Registry with AWS Secrets Manager Samle for AWS CodeBuild</a>. </p>",
+      "refs": {
+        "ProjectEnvironment$registryCredential": "<p> The credentials for access to a private registry.</p>",
+        "StartBuildInput$registryCredentialOverride": "<p> The credentials for access to a private registry. </p>"
       }
     },
     "ResourceAlreadyExistsException": {

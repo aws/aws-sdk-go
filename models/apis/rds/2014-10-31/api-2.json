@@ -26,6 +26,20 @@
         {"shape":"DBClusterRoleQuotaExceededFault"}
       ]
     },
+    "AddRoleToDBInstance":{
+      "name":"AddRoleToDBInstance",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AddRoleToDBInstanceMessage"},
+      "errors":[
+        {"shape":"DBInstanceNotFoundFault"},
+        {"shape":"DBInstanceRoleAlreadyExistsFault"},
+        {"shape":"InvalidDBInstanceStateFault"},
+        {"shape":"DBInstanceRoleQuotaExceededFault"}
+      ]
+    },
     "AddSourceIdentifierToSubscription":{
       "name":"AddSourceIdentifierToSubscription",
       "http":{
@@ -1528,6 +1542,19 @@
         {"shape":"InvalidDBClusterStateFault"}
       ]
     },
+    "RemoveRoleFromDBInstance":{
+      "name":"RemoveRoleFromDBInstance",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RemoveRoleFromDBInstanceMessage"},
+      "errors":[
+        {"shape":"DBInstanceNotFoundFault"},
+        {"shape":"DBInstanceRoleNotFoundFault"},
+        {"shape":"InvalidDBInstanceStateFault"}
+      ]
+    },
     "RemoveSourceIdentifierFromSubscription":{
       "name":"RemoveSourceIdentifierFromSubscription",
       "http":{
@@ -1908,6 +1935,19 @@
       "members":{
         "DBClusterIdentifier":{"shape":"String"},
         "RoleArn":{"shape":"String"}
+      }
+    },
+    "AddRoleToDBInstanceMessage":{
+      "type":"structure",
+      "required":[
+        "DBInstanceIdentifier",
+        "RoleArn",
+        "FeatureName"
+      ],
+      "members":{
+        "DBInstanceIdentifier":{"shape":"String"},
+        "RoleArn":{"shape":"String"},
+        "FeatureName":{"shape":"String"}
       }
     },
     "AddSourceIdentifierToSubscriptionMessage":{
@@ -3008,7 +3048,8 @@
         "ExportableLogTypes":{"shape":"LogTypeList"},
         "SupportsLogExportsToCloudwatchLogs":{"shape":"Boolean"},
         "SupportsReadReplica":{"shape":"Boolean"},
-        "SupportedEngineModes":{"shape":"EngineModeList"}
+        "SupportedEngineModes":{"shape":"EngineModeList"},
+        "SupportedFeatureNames":{"shape":"FeatureNameList"}
       }
     },
     "DBEngineVersionList":{
@@ -3083,6 +3124,7 @@
         "EnabledCloudwatchLogsExports":{"shape":"LogTypeList"},
         "ProcessorFeatures":{"shape":"ProcessorFeatureList"},
         "DeletionProtection":{"shape":"Boolean"},
+        "AssociatedRoles":{"shape":"DBInstanceRoles"},
         "ListenerEndpoint":{"shape":"Endpoint"}
       },
       "wrapper":true
@@ -3187,6 +3229,54 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "DBInstanceRole":{
+      "type":"structure",
+      "members":{
+        "RoleArn":{"shape":"String"},
+        "FeatureName":{"shape":"String"},
+        "Status":{"shape":"String"}
+      }
+    },
+    "DBInstanceRoleAlreadyExistsFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBInstanceRoleAlreadyExists",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DBInstanceRoleNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBInstanceRoleNotFound",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DBInstanceRoleQuotaExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBInstanceRoleQuotaExceeded",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DBInstanceRoles":{
+      "type":"list",
+      "member":{
+        "shape":"DBInstanceRole",
+        "locationName":"DBInstanceRole"
+      }
     },
     "DBInstanceStatusInfo":{
       "type":"structure",
@@ -4323,6 +4413,10 @@
       "members":{
         "DBCluster":{"shape":"DBCluster"}
       }
+    },
+    "FeatureNameList":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "Filter":{
       "type":"structure",
@@ -5507,6 +5601,19 @@
       "members":{
         "DBClusterIdentifier":{"shape":"String"},
         "RoleArn":{"shape":"String"}
+      }
+    },
+    "RemoveRoleFromDBInstanceMessage":{
+      "type":"structure",
+      "required":[
+        "DBInstanceIdentifier",
+        "RoleArn",
+        "FeatureName"
+      ],
+      "members":{
+        "DBInstanceIdentifier":{"shape":"String"},
+        "RoleArn":{"shape":"String"},
+        "FeatureName":{"shape":"String"}
       }
     },
     "RemoveSourceIdentifierFromSubscriptionMessage":{

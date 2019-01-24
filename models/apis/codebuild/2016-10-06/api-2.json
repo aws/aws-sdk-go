@@ -504,6 +504,10 @@
         "webhook":{"shape":"Webhook"}
       }
     },
+    "CredentialProviderType":{
+      "type":"string",
+      "enum":["SECRETS_MANAGER"]
+    },
     "DeleteProjectInput":{
       "type":"structure",
       "required":["name"],
@@ -608,6 +612,13 @@
     "GitCloneDepth":{
       "type":"integer",
       "min":0
+    },
+    "ImagePullCredentialsType":{
+      "type":"string",
+      "enum":[
+        "CODEBUILD",
+        "SERVICE_ROLE"
+      ]
     },
     "ImageVersions":{
       "type":"list",
@@ -880,7 +891,9 @@
         "computeType":{"shape":"ComputeType"},
         "environmentVariables":{"shape":"EnvironmentVariables"},
         "privilegedMode":{"shape":"WrapperBoolean"},
-        "certificate":{"shape":"String"}
+        "certificate":{"shape":"String"},
+        "registryCredential":{"shape":"RegistryCredential"},
+        "imagePullCredentialsType":{"shape":"ImagePullCredentialsType"}
       }
     },
     "ProjectName":{
@@ -943,6 +956,17 @@
     "Projects":{
       "type":"list",
       "member":{"shape":"Project"}
+    },
+    "RegistryCredential":{
+      "type":"structure",
+      "required":[
+        "credential",
+        "credentialProvider"
+      ],
+      "members":{
+        "credential":{"shape":"NonEmptyString"},
+        "credentialProvider":{"shape":"CredentialProviderType"}
+      }
     },
     "ResourceAlreadyExistsException":{
       "type":"structure",
@@ -1053,7 +1077,9 @@
         "timeoutInMinutesOverride":{"shape":"TimeOut"},
         "queuedTimeoutInMinutesOverride":{"shape":"TimeOut"},
         "idempotencyToken":{"shape":"String"},
-        "logsConfigOverride":{"shape":"LogsConfig"}
+        "logsConfigOverride":{"shape":"LogsConfig"},
+        "registryCredentialOverride":{"shape":"RegistryCredential"},
+        "imagePullCredentialsTypeOverride":{"shape":"ImagePullCredentialsType"}
       }
     },
     "StartBuildOutput":{

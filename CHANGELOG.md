@@ -1,3 +1,19 @@
+Release v1.16.25 (2019-01-24)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * This release adds support for cross-account ECR images and private registry authentication.
+* `service/ecr`: Updates service API
+  * Amazon ECR updated the default endpoint URL to support AWS Private Link.
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/logs`: Updates service documentation
+  * Documentation updates for CloudWatch Logs
+* `service/rds`: Updates service API and documentation
+  * The Amazon RDS API allows you to add or remove Identity and Access Management (IAM) role associated with a specific feature name with an RDS database instance. This helps with capabilities such as invoking Lambda functions from within a trigger in the database, load data from Amazon S3 and so on
+* `service/sms-voice`: Updates service API and documentation
+
 Release v1.16.24 (2019-01-23)
 ===
 

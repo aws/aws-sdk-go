@@ -133,6 +133,27 @@
         "shape" : "InternalServiceErrorException"
       } ]
     },
+    "ListConfigurationSets" : {
+      "name" : "ListConfigurationSets",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/v1/sms-voice/configuration-sets",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "ListConfigurationSetsRequest"
+      },
+      "output" : {
+        "shape" : "ListConfigurationSetsResponse"
+      },
+      "errors" : [ {
+        "shape" : "TooManyRequestsException"
+      }, {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "InternalServiceErrorException"
+      } ]
+    },
     "SendVoiceMessage" : {
       "name" : "SendVoiceMessage",
       "http" : {
@@ -181,24 +202,24 @@
   "shapes" : {
     "AlreadyExistsException" : {
       "type" : "structure",
-      "exception" : true,
       "members" : {
         "Message" : {
           "shape" : "String"
         }
       },
+      "exception" : true,
       "error" : {
         "httpStatusCode" : 409
       }
     },
     "BadRequestException" : {
       "type" : "structure",
-      "exception" : true,
       "members" : {
         "Message" : {
           "shape" : "String"
         }
       },
+      "exception" : true,
       "error" : {
         "httpStatusCode" : 400
       }
@@ -226,6 +247,12 @@
         }
       },
       "required" : [ ]
+    },
+    "ConfigurationSets" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "WordCharactersWithDelimiters"
+      }
     },
     "CreateConfigurationSetEventDestinationRequest" : {
       "type" : "structure",
@@ -400,27 +427,56 @@
     },
     "LimitExceededException" : {
       "type" : "structure",
-      "exception" : true,
       "members" : {
         "Message" : {
           "shape" : "String"
         }
       },
+      "exception" : true,
       "error" : {
         "httpStatusCode" : 412
       }
+    },
+    "ListConfigurationSetsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "NextToken" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "NextToken"
+        },
+        "PageSize" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "PageSize"
+        }
+      }
+    },
+    "ListConfigurationSetsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "ConfigurationSets" : {
+          "shape" : "ConfigurationSets"
+        },
+        "NextToken" : {
+          "shape" : "NextTokenString"
+        }
+      }
+    },
+    "NextTokenString" : {
+      "type" : "string"
     },
     "NonEmptyString" : {
       "type" : "string"
     },
     "NotFoundException" : {
       "type" : "structure",
-      "exception" : true,
       "members" : {
         "Message" : {
           "shape" : "String"
         }
       },
+      "exception" : true,
       "error" : {
         "httpStatusCode" : 404
       }
@@ -497,12 +553,12 @@
     },
     "TooManyRequestsException" : {
       "type" : "structure",
-      "exception" : true,
       "members" : {
         "Message" : {
           "shape" : "String"
         }
       },
+      "exception" : true,
       "error" : {
         "httpStatusCode" : 429
       }

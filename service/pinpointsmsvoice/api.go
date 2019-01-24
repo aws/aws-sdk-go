@@ -67,16 +67,21 @@ func (c *PinpointSMSVoice) CreateConfigurationSetRequest(input *CreateConfigurat
 //
 // Returned Error Codes:
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   You've issued too many requests to the resource. Wait a few minutes, and
+//   then try again.
 //
 //   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
+//   There are too many instances of the specified resource type.
 //
 //   * ErrCodeInternalServiceErrorException "InternalServiceErrorException"
 //   The API encountered an unexpected error and couldn't complete the request.
 //   You might be able to successfully issue the request again in the future.
 //
 //   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+//   The resource specified in your request already exists.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-2018-09-05/CreateConfigurationSet
 func (c *PinpointSMSVoice) CreateConfigurationSet(input *CreateConfigurationSetInput) (*CreateConfigurationSetOutput, error) {
@@ -156,18 +161,24 @@ func (c *PinpointSMSVoice) CreateConfigurationSetEventDestinationRequest(input *
 //
 // Returned Error Codes:
 //   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
 //
 //   * ErrCodeLimitExceededException "LimitExceededException"
+//   There are too many instances of the specified resource type.
 //
 //   * ErrCodeInternalServiceErrorException "InternalServiceErrorException"
 //   The API encountered an unexpected error and couldn't complete the request.
 //   You might be able to successfully issue the request again in the future.
 //
 //   * ErrCodeNotFoundException "NotFoundException"
+//   The resource you attempted to access doesn't exist.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   You've issued too many requests to the resource. Wait a few minutes, and
+//   then try again.
 //
 //   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+//   The resource specified in your request already exists.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-2018-09-05/CreateConfigurationSetEventDestination
 func (c *PinpointSMSVoice) CreateConfigurationSetEventDestination(input *CreateConfigurationSetEventDestinationInput) (*CreateConfigurationSetEventDestinationOutput, error) {
@@ -247,10 +258,14 @@ func (c *PinpointSMSVoice) DeleteConfigurationSetRequest(input *DeleteConfigurat
 //
 // Returned Error Codes:
 //   * ErrCodeNotFoundException "NotFoundException"
+//   The resource you attempted to access doesn't exist.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   You've issued too many requests to the resource. Wait a few minutes, and
+//   then try again.
 //
 //   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
 //
 //   * ErrCodeInternalServiceErrorException "InternalServiceErrorException"
 //   The API encountered an unexpected error and couldn't complete the request.
@@ -334,10 +349,14 @@ func (c *PinpointSMSVoice) DeleteConfigurationSetEventDestinationRequest(input *
 //
 // Returned Error Codes:
 //   * ErrCodeNotFoundException "NotFoundException"
+//   The resource you attempted to access doesn't exist.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   You've issued too many requests to the resource. Wait a few minutes, and
+//   then try again.
 //
 //   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
 //
 //   * ErrCodeInternalServiceErrorException "InternalServiceErrorException"
 //   The API encountered an unexpected error and couldn't complete the request.
@@ -422,10 +441,14 @@ func (c *PinpointSMSVoice) GetConfigurationSetEventDestinationsRequest(input *Ge
 //
 // Returned Error Codes:
 //   * ErrCodeNotFoundException "NotFoundException"
+//   The resource you attempted to access doesn't exist.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   You've issued too many requests to the resource. Wait a few minutes, and
+//   then try again.
 //
 //   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
 //
 //   * ErrCodeInternalServiceErrorException "InternalServiceErrorException"
 //   The API encountered an unexpected error and couldn't complete the request.
@@ -448,6 +471,94 @@ func (c *PinpointSMSVoice) GetConfigurationSetEventDestinations(input *GetConfig
 // for more information on using Contexts.
 func (c *PinpointSMSVoice) GetConfigurationSetEventDestinationsWithContext(ctx aws.Context, input *GetConfigurationSetEventDestinationsInput, opts ...request.Option) (*GetConfigurationSetEventDestinationsOutput, error) {
 	req, out := c.GetConfigurationSetEventDestinationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListConfigurationSets = "ListConfigurationSets"
+
+// ListConfigurationSetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListConfigurationSets operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListConfigurationSets for more information on using the ListConfigurationSets
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListConfigurationSetsRequest method.
+//    req, resp := client.ListConfigurationSetsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-2018-09-05/ListConfigurationSets
+func (c *PinpointSMSVoice) ListConfigurationSetsRequest(input *ListConfigurationSetsInput) (req *request.Request, output *ListConfigurationSetsOutput) {
+	op := &request.Operation{
+		Name:       opListConfigurationSets,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/sms-voice/configuration-sets",
+	}
+
+	if input == nil {
+		input = &ListConfigurationSetsInput{}
+	}
+
+	output = &ListConfigurationSetsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListConfigurationSets API operation for Amazon Pinpoint SMS and Voice Service.
+//
+// List all of the configuration sets associated with your Amazon Pinpoint account
+// in the current region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint SMS and Voice Service's
+// API operation ListConfigurationSets for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   You've issued too many requests to the resource. Wait a few minutes, and
+//   then try again.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
+//
+//   * ErrCodeInternalServiceErrorException "InternalServiceErrorException"
+//   The API encountered an unexpected error and couldn't complete the request.
+//   You might be able to successfully issue the request again in the future.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-2018-09-05/ListConfigurationSets
+func (c *PinpointSMSVoice) ListConfigurationSets(input *ListConfigurationSetsInput) (*ListConfigurationSetsOutput, error) {
+	req, out := c.ListConfigurationSetsRequest(input)
+	return out, req.Send()
+}
+
+// ListConfigurationSetsWithContext is the same as ListConfigurationSets with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListConfigurationSets for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointSMSVoice) ListConfigurationSetsWithContext(ctx aws.Context, input *ListConfigurationSetsInput, opts ...request.Option) (*ListConfigurationSetsOutput, error) {
+	req, out := c.ListConfigurationSetsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -508,8 +619,11 @@ func (c *PinpointSMSVoice) SendVoiceMessageRequest(input *SendVoiceMessageInput)
 //
 // Returned Error Codes:
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   You've issued too many requests to the resource. Wait a few minutes, and
+//   then try again.
 //
 //   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
 //
 //   * ErrCodeInternalServiceErrorException "InternalServiceErrorException"
 //   The API encountered an unexpected error and couldn't complete the request.
@@ -596,10 +710,14 @@ func (c *PinpointSMSVoice) UpdateConfigurationSetEventDestinationRequest(input *
 //
 // Returned Error Codes:
 //   * ErrCodeNotFoundException "NotFoundException"
+//   The resource you attempted to access doesn't exist.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   You've issued too many requests to the resource. Wait a few minutes, and
+//   then try again.
 //
 //   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
 //
 //   * ErrCodeInternalServiceErrorException "InternalServiceErrorException"
 //   The API encountered an unexpected error and couldn't complete the request.
@@ -1163,6 +1281,72 @@ func (s *KinesisFirehoseDestination) SetDeliveryStreamArn(v string) *KinesisFire
 // SetIamRoleArn sets the IamRoleArn field's value.
 func (s *KinesisFirehoseDestination) SetIamRoleArn(v string) *KinesisFirehoseDestination {
 	s.IamRoleArn = &v
+	return s
+}
+
+type ListConfigurationSetsInput struct {
+	_ struct{} `type:"structure"`
+
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+
+	PageSize *string `location:"querystring" locationName:"PageSize" type:"string"`
+}
+
+// String returns the string representation
+func (s ListConfigurationSetsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListConfigurationSetsInput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConfigurationSetsInput) SetNextToken(v string) *ListConfigurationSetsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPageSize sets the PageSize field's value.
+func (s *ListConfigurationSetsInput) SetPageSize(v string) *ListConfigurationSetsInput {
+	s.PageSize = &v
+	return s
+}
+
+// An object that contains information about the configuration sets for your
+// account in the current region.
+type ListConfigurationSetsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains a list of configuration sets for your account in
+	// the current region.
+	ConfigurationSets []*string `type:"list"`
+
+	// A token returned from a previous call to ListConfigurationSets to indicate
+	// the position in the list of configuration sets.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListConfigurationSetsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListConfigurationSetsOutput) GoString() string {
+	return s.String()
+}
+
+// SetConfigurationSets sets the ConfigurationSets field's value.
+func (s *ListConfigurationSetsOutput) SetConfigurationSets(v []*string) *ListConfigurationSetsOutput {
+	s.ConfigurationSets = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConfigurationSetsOutput) SetNextToken(v string) *ListConfigurationSetsOutput {
+	s.NextToken = &v
 	return s
 }
 

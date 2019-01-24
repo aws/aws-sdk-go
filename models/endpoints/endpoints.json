@@ -102,6 +102,106 @@
           "us-west-2" : { }
         }
       },
+      "api.ecr" : {
+        "endpoints" : {
+          "ap-northeast-1" : {
+            "credentialScope" : {
+              "region" : "ap-northeast-1"
+            },
+            "hostname" : "api.ecr.ap-northeast-1.amazonaws.com"
+          },
+          "ap-northeast-2" : {
+            "credentialScope" : {
+              "region" : "ap-northeast-2"
+            },
+            "hostname" : "api.ecr.ap-northeast-2.amazonaws.com"
+          },
+          "ap-south-1" : {
+            "credentialScope" : {
+              "region" : "ap-south-1"
+            },
+            "hostname" : "api.ecr.ap-south-1.amazonaws.com"
+          },
+          "ap-southeast-1" : {
+            "credentialScope" : {
+              "region" : "ap-southeast-1"
+            },
+            "hostname" : "api.ecr.ap-southeast-1.amazonaws.com"
+          },
+          "ap-southeast-2" : {
+            "credentialScope" : {
+              "region" : "ap-southeast-2"
+            },
+            "hostname" : "api.ecr.ap-southeast-2.amazonaws.com"
+          },
+          "ca-central-1" : {
+            "credentialScope" : {
+              "region" : "ca-central-1"
+            },
+            "hostname" : "api.ecr.ca-central-1.amazonaws.com"
+          },
+          "eu-central-1" : {
+            "credentialScope" : {
+              "region" : "eu-central-1"
+            },
+            "hostname" : "api.ecr.eu-central-1.amazonaws.com"
+          },
+          "eu-north-1" : {
+            "credentialScope" : {
+              "region" : "eu-north-1"
+            },
+            "hostname" : "api.ecr.eu-north-1.amazonaws.com"
+          },
+          "eu-west-1" : {
+            "credentialScope" : {
+              "region" : "eu-west-1"
+            },
+            "hostname" : "api.ecr.eu-west-1.amazonaws.com"
+          },
+          "eu-west-2" : {
+            "credentialScope" : {
+              "region" : "eu-west-2"
+            },
+            "hostname" : "api.ecr.eu-west-2.amazonaws.com"
+          },
+          "eu-west-3" : {
+            "credentialScope" : {
+              "region" : "eu-west-3"
+            },
+            "hostname" : "api.ecr.eu-west-3.amazonaws.com"
+          },
+          "sa-east-1" : {
+            "credentialScope" : {
+              "region" : "sa-east-1"
+            },
+            "hostname" : "api.ecr.sa-east-1.amazonaws.com"
+          },
+          "us-east-1" : {
+            "credentialScope" : {
+              "region" : "us-east-1"
+            },
+            "hostname" : "api.ecr.us-east-1.amazonaws.com"
+          },
+          "us-east-2" : {
+            "credentialScope" : {
+              "region" : "us-east-2"
+            },
+            "hostname" : "api.ecr.us-east-2.amazonaws.com"
+          },
+          "us-west-1" : {
+            "credentialScope" : {
+              "region" : "us-west-1"
+            },
+            "hostname" : "api.ecr.us-west-1.amazonaws.com"
+          },
+          "us-west-2" : {
+            "credentialScope" : {
+              "region" : "us-west-2"
+            },
+            "hostname" : "api.ecr.us-west-2.amazonaws.com"
+          }
+        }
+      },
       "api.mediatailor" : {
         "endpoints" : {
           "ap-northeast-1" : { },
@@ -2738,6 +2838,22 @@
       }
     },
     "services" : {
+      "api.ecr" : {
+        "endpoints" : {
+          "cn-north-1" : {
+            "credentialScope" : {
+              "region" : "cn-north-1"
+            },
+            "hostname" : "api.ecr.cn-north-1.amazonaws.com.cn"
+          },
+          "cn-northwest-1" : {
+            "credentialScope" : {
+              "region" : "cn-northwest-1"
+            },
+            "hostname" : "api.ecr.cn-northwest-1.amazonaws.com.cn"
+          }
+        }
+      },
       "apigateway" : {
         "endpoints" : {
           "cn-north-1" : { },
@@ -3116,6 +3232,22 @@
         "endpoints" : {
           "us-gov-east-1" : { },
           "us-gov-west-1" : { }
+        }
+      },
+      "api.ecr" : {
+        "endpoints" : {
+          "us-gov-east-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-east-1"
+            },
+            "hostname" : "api.ecr.us-gov-east-1.amazonaws.com"
+          },
+          "us-gov-west-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "api.ecr.us-gov-west-1.amazonaws.com"
+          }
         }
       },
       "api.sagemaker" : {
