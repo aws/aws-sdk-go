@@ -1647,7 +1647,8 @@
       "enum":[
         "HTTP",
         "HTTPS",
-        "TCP"
+        "TCP",
+        "TLS"
       ]
     },
     "RedirectActionConfig":{

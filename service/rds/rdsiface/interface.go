@@ -64,6 +64,10 @@ type RDSAPI interface {
 	AddRoleToDBClusterWithContext(aws.Context, *rds.AddRoleToDBClusterInput, ...request.Option) (*rds.AddRoleToDBClusterOutput, error)
 	AddRoleToDBClusterRequest(*rds.AddRoleToDBClusterInput) (*request.Request, *rds.AddRoleToDBClusterOutput)
 
+	AddRoleToDBInstance(*rds.AddRoleToDBInstanceInput) (*rds.AddRoleToDBInstanceOutput, error)
+	AddRoleToDBInstanceWithContext(aws.Context, *rds.AddRoleToDBInstanceInput, ...request.Option) (*rds.AddRoleToDBInstanceOutput, error)
+	AddRoleToDBInstanceRequest(*rds.AddRoleToDBInstanceInput) (*request.Request, *rds.AddRoleToDBInstanceOutput)
+
 	AddSourceIdentifierToSubscription(*rds.AddSourceIdentifierToSubscriptionInput) (*rds.AddSourceIdentifierToSubscriptionOutput, error)
 	AddSourceIdentifierToSubscriptionWithContext(aws.Context, *rds.AddSourceIdentifierToSubscriptionInput, ...request.Option) (*rds.AddSourceIdentifierToSubscriptionOutput, error)
 	AddSourceIdentifierToSubscriptionRequest(*rds.AddSourceIdentifierToSubscriptionInput) (*request.Request, *rds.AddSourceIdentifierToSubscriptionOutput)
@@ -487,6 +491,10 @@ type RDSAPI interface {
 	RemoveRoleFromDBCluster(*rds.RemoveRoleFromDBClusterInput) (*rds.RemoveRoleFromDBClusterOutput, error)
 	RemoveRoleFromDBClusterWithContext(aws.Context, *rds.RemoveRoleFromDBClusterInput, ...request.Option) (*rds.RemoveRoleFromDBClusterOutput, error)
 	RemoveRoleFromDBClusterRequest(*rds.RemoveRoleFromDBClusterInput) (*request.Request, *rds.RemoveRoleFromDBClusterOutput)
+
+	RemoveRoleFromDBInstance(*rds.RemoveRoleFromDBInstanceInput) (*rds.RemoveRoleFromDBInstanceOutput, error)
+	RemoveRoleFromDBInstanceWithContext(aws.Context, *rds.RemoveRoleFromDBInstanceInput, ...request.Option) (*rds.RemoveRoleFromDBInstanceOutput, error)
+	RemoveRoleFromDBInstanceRequest(*rds.RemoveRoleFromDBInstanceInput) (*request.Request, *rds.RemoveRoleFromDBInstanceOutput)
 
 	RemoveSourceIdentifierFromSubscription(*rds.RemoveSourceIdentifierFromSubscriptionInput) (*rds.RemoveSourceIdentifierFromSubscriptionOutput, error)
 	RemoveSourceIdentifierFromSubscriptionWithContext(aws.Context, *rds.RemoveSourceIdentifierFromSubscriptionInput, ...request.Option) (*rds.RemoveSourceIdentifierFromSubscriptionOutput, error)

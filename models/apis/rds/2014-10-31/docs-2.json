@@ -2,7 +2,8 @@
   "version": "2.0",
   "service": "<fullname>Amazon Relational Database Service</fullname> <p> </p> <p>Amazon Relational Database Service (Amazon RDS) is a web service that makes it easier to set up, operate, and scale a relational database in the cloud. It provides cost-efficient, resizable capacity for an industry-standard relational database and manages common database administration tasks, freeing up developers to focus on what makes their applications and businesses unique.</p> <p>Amazon RDS gives you access to the capabilities of a MySQL, MariaDB, PostgreSQL, Microsoft SQL Server, Oracle, or Amazon Aurora database server. These capabilities mean that the code, applications, and tools you already use today with your existing databases work with Amazon RDS without modification. Amazon RDS automatically backs up your database and maintains the database software that powers your DB instance. Amazon RDS is flexible: you can scale your DB instance's compute resources and storage capacity to meet your application's demand. As with all Amazon Web Services, there are no up-front investments, and you pay only for the resources you use.</p> <p>This interface reference for Amazon RDS contains documentation for a programming or command line interface you can use to manage Amazon RDS. Note that Amazon RDS is asynchronous, which means that some interfaces might require techniques such as polling or callback functions to determine when a command has been applied. In this reference, the parameter descriptions indicate whether a command is applied immediately, on the next instance reboot, or during the maintenance window. The reference structure is as follows, and we list following some related topics from the user guide.</p> <p> <b>Amazon RDS API Reference</b> </p> <ul> <li> <p>For the alphabetical list of API actions, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_Operations.html\">API Actions</a>.</p> </li> <li> <p>For the alphabetical list of data types, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_Types.html\">Data Types</a>.</p> </li> <li> <p>For a list of common query parameters, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/APIReference/CommonParameters.html\">Common Parameters</a>.</p> </li> <li> <p>For descriptions of the error codes, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/APIReference/CommonErrors.html\">Common Errors</a>.</p> </li> </ul> <p> <b>Amazon RDS User Guide</b> </p> <ul> <li> <p>For a summary of the Amazon RDS interfaces, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome.Interfaces\">Available RDS Interfaces</a>.</p> </li> <li> <p>For more information about how to use the Query API, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Using_the_Query_API.html\">Using the Query API</a>.</p> </li> </ul>",
   "operations": {
-    "AddRoleToDBCluster": "<p>Associates an Identity and Access Management (IAM) role from an Aurora DB cluster. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Integrating.Authorizing.html\">Authorizing Amazon Aurora MySQL to Access Other AWS Services on Your Behalf</a> in the <i>Amazon Aurora User Guide</i>.</p>",
+    "AddRoleToDBCluster": "<p>Associates an Identity and Access Management (IAM) role from an Amazon Aurora DB cluster. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Integrating.Authorizing.html\">Authorizing Amazon Aurora MySQL to Access Other AWS Services on Your Behalf</a> in the <i>Amazon Aurora User Guide</i>.</p>",
+    "AddRoleToDBInstance": "<p>Associates an AWS Identity and Access Management (IAM) role with a DB instance.</p>",
     "AddSourceIdentifierToSubscription": "<p>Adds a source identifier to an existing RDS event notification subscription.</p>",
     "AddTagsToResource": "<p>Adds metadata tags to an Amazon RDS resource. These tags can also be used with cost allocation reporting to track cost associated with Amazon RDS resources, or used in a Condition statement in an IAM policy for Amazon RDS.</p> <p>For an overview on tagging Amazon RDS resources, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Tagging.html\">Tagging Amazon RDS Resources</a>.</p>",
     "ApplyPendingMaintenanceAction": "<p>Applies a pending maintenance action to a resource (for example, to a DB instance).</p>",
@@ -93,7 +94,8 @@
     "PurchaseReservedDBInstancesOffering": "<p>Purchases a reserved DB instance offering.</p>",
     "RebootDBInstance": "<p>You might need to reboot your DB instance, usually for maintenance reasons. For example, if you make certain modifications, or if you change the DB parameter group associated with the DB instance, you must reboot the instance for the changes to take effect. </p> <p>Rebooting a DB instance restarts the database engine service. Rebooting a DB instance results in a momentary outage, during which the DB instance status is set to rebooting. </p> <p>For more information about rebooting, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RebootInstance.html\">Rebooting a DB Instance</a> in the <i>Amazon RDS User Guide.</i> </p>",
     "RemoveFromGlobalCluster": "<p> Detaches an Aurora secondary cluster from an Aurora global database cluster. The cluster becomes a standalone cluster with read-write capability instead of being read-only and receiving data from a primary cluster in a different region. </p>",
-    "RemoveRoleFromDBCluster": "<p>Disassociates an Identity and Access Management (IAM) role from an Aurora DB cluster. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Integrating.Authorizing.html\">Authorizing Amazon Aurora MySQL to Access Other AWS Services on Your Behalf </a> in the <i>Amazon Aurora User Guide</i>.</p>",
+    "RemoveRoleFromDBCluster": "<p>Disassociates an AWS Identity and Access Management (IAM) role from an Amazon Aurora DB cluster. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Integrating.Authorizing.html\">Authorizing Amazon Aurora MySQL to Access Other AWS Services on Your Behalf </a> in the <i>Amazon Aurora User Guide</i>.</p>",
+    "RemoveRoleFromDBInstance": "<p>Disassociates an AWS Identity and Access Management (IAM) role from a DB instance.</p>",
     "RemoveSourceIdentifierFromSubscription": "<p>Removes a source identifier from an existing RDS event notification subscription.</p>",
     "RemoveTagsFromResource": "<p>Removes metadata tags from an Amazon RDS resource.</p> <p>For an overview on tagging an Amazon RDS resource, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Tagging.html\">Tagging Amazon RDS Resources</a> in the <i>Amazon RDS User Guide.</i> </p>",
     "ResetDBClusterParameterGroup": "<p> Modifies the parameters of a DB cluster parameter group to the default value. To reset specific parameters submit a list of the following: <code>ParameterName</code> and <code>ApplyMethod</code>. To reset the entire DB cluster parameter group, specify the <code>DBClusterParameterGroupName</code> and <code>ResetAllParameters</code> parameters. </p> <p> When resetting the entire group, dynamic parameters are updated immediately and static parameters are set to <code>pending-reboot</code> to take effect on the next DB instance restart or <a>RebootDBInstance</a> request. You must call <a>RebootDBInstance</a> for every DB instance in your DB cluster that you want the updated static parameter to apply to.</p> <p>For more information on Amazon Aurora, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html\"> What Is Amazon Aurora?</a> in the <i>Amazon Aurora User Guide.</i> </p>",
@@ -129,6 +131,11 @@
       }
     },
     "AddRoleToDBClusterMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AddRoleToDBInstanceMessage": {
       "base": null,
       "refs": {
       }
@@ -242,7 +249,7 @@
       }
     },
     "BackupPolicyNotFoundFault": {
-      "base": null,
+      "base": "<p> The backup policy was not found. </p>",
       "refs": {
       }
     },
@@ -438,7 +445,7 @@
       "base": "<p>The configuration setting for the log types to be enabled for export to CloudWatch Logs for a specific DB instance or DB cluster.</p> <p>The <code>EnableLogTypes</code> and <code>DisableLogTypes</code> arrays determine which logs will be exported (or not exported) to CloudWatch Logs. The values within these arrays depend on the DB engine being used. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch\">Publishing Database Logs to Amazon CloudWatch Logs </a> in the <i>Amazon RDS User Guide</i>.</p>",
       "refs": {
         "ModifyDBClusterMessage$CloudwatchLogsExportConfiguration": "<p>The configuration setting for the log types to be enabled for export to CloudWatch Logs for a specific DB cluster.</p>",
-        "ModifyDBInstanceMessage$CloudwatchLogsExportConfiguration": "<p>The configuration setting for the log types to be enabled for export to CloudWatch Logs for a specific DB instance.</p>"
+        "ModifyDBInstanceMessage$CloudwatchLogsExportConfiguration": "<p>The configuration setting for the log types to be enabled for export to CloudWatch Logs for a specific DB instance.</p> <p>A change to the <code>CloudwatchLogsExportConfiguration</code> parameter is always applied to the DB instance immediately. Therefore, the <code>ApplyImmediately</code> parameter has no effect.</p>"
       }
     },
     "CopyDBClusterParameterGroupMessage": {
@@ -932,6 +939,33 @@
     "DBInstanceNotFoundFault": {
       "base": "<p> <i>DBInstanceIdentifier</i> doesn't refer to an existing DB instance. </p>",
       "refs": {
+      }
+    },
+    "DBInstanceRole": {
+      "base": "<p>Describes an AWS Identity and Access Management (IAM) role that is associated with a DB instance.</p>",
+      "refs": {
+        "DBInstanceRoles$member": null
+      }
+    },
+    "DBInstanceRoleAlreadyExistsFault": {
+      "base": "<p>The specified <i>RoleArn</i> or <i>FeatureName</i> value is already associated with the DB instance.</p>",
+      "refs": {
+      }
+    },
+    "DBInstanceRoleNotFoundFault": {
+      "base": "<p>The specified <i>RoleArn</i> value doesn't match the specifed feature for the DB instance.</p>",
+      "refs": {
+      }
+    },
+    "DBInstanceRoleQuotaExceededFault": {
+      "base": "<p>You can't associate any more AWS Identity and Access Management (IAM) roles with the DB instance because the quota has been reached.</p>",
+      "refs": {
+      }
+    },
+    "DBInstanceRoles": {
+      "base": null,
+      "refs": {
+        "DBInstance$AssociatedRoles": "<p> The AWS Identity and Access Management (IAM) roles associated with the DB instance. </p>"
       }
     },
     "DBInstanceStatusInfo": {
@@ -1653,6 +1687,12 @@
     "FailoverDBClusterResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "FeatureNameList": {
+      "base": null,
+      "refs": {
+        "DBEngineVersion$SupportedFeatureNames": "<p> A list of features supported by the DB engine. Supported feature names include the following. </p> <ul> <li> <p>s3Import</p> </li> </ul>"
       }
     },
     "Filter": {
@@ -2542,6 +2582,11 @@
       "refs": {
       }
     },
+    "RemoveRoleFromDBInstanceMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
     "RemoveSourceIdentifierFromSubscriptionMessage": {
       "base": "<p/>",
       "refs": {
@@ -2841,6 +2886,9 @@
         "AccountQuota$AccountQuotaName": "<p>The name of the Amazon RDS quota for this AWS account.</p>",
         "AddRoleToDBClusterMessage$DBClusterIdentifier": "<p>The name of the DB cluster to associate the IAM role with.</p>",
         "AddRoleToDBClusterMessage$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to associate with the Aurora DB cluster, for example <code>arn:aws:iam::123456789012:role/AuroraAccessRole</code>.</p>",
+        "AddRoleToDBInstanceMessage$DBInstanceIdentifier": "<p>The name of the DB instance to associate the IAM role with.</p>",
+        "AddRoleToDBInstanceMessage$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to associate with the DB instance, for example <code>arn:aws:iam::123456789012:role/AccessRole</code>. </p>",
+        "AddRoleToDBInstanceMessage$FeatureName": "<p>The name of the feature for the DB instance that the IAM role is to be associated with. For the list of supported feature names, see <a>DBEngineVersion</a>. </p>",
         "AddSourceIdentifierToSubscriptionMessage$SubscriptionName": "<p>The name of the RDS event notification subscription you want to add a source identifier to.</p>",
         "AddSourceIdentifierToSubscriptionMessage$SourceIdentifier": "<p>The identifier of the event source to be added.</p> <p>Constraints:</p> <ul> <li> <p>If the source type is a DB instance, then a <code>DBInstanceIdentifier</code> must be supplied.</p> </li> <li> <p>If the source type is a DB security group, a <code>DBSecurityGroupName</code> must be supplied.</p> </li> <li> <p>If the source type is a DB parameter group, a <code>DBParameterGroupName</code> must be supplied.</p> </li> <li> <p>If the source type is a DB snapshot, a <code>DBSnapshotIdentifier</code> must be supplied.</p> </li> </ul>",
         "AddTagsToResourceMessage$ResourceName": "<p>The Amazon RDS resource that the tags are added to. This value is an Amazon Resource Name (ARN). For information about creating an ARN, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing\"> Constructing an RDS Amazon Resource Name (ARN)</a>.</p>",
@@ -3081,6 +3129,9 @@
         "DBInstanceAutomatedBackup$Timezone": "<p>The time zone of the automated backup. In most cases, the <code>Timezone</code> element is empty. <code>Timezone</code> content appears only for Microsoft SQL Server DB instances that were created with a time zone specified.</p>",
         "DBInstanceAutomatedBackupMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code> . </p>",
         "DBInstanceMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code> . </p>",
+        "DBInstanceRole$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that is associated with the DB instance.</p>",
+        "DBInstanceRole$FeatureName": "<p>The name of the feature associated with the AWS Identity and Access Management (IAM) role. For the list of supported feature names, see <a>DBEngineVersion</a>. </p>",
+        "DBInstanceRole$Status": "<p>Describes the state of association between the IAM role and the DB instance. The Status property returns one of the following values:</p> <ul> <li> <p> <code>ACTIVE</code> - the IAM role ARN is associated with the DB instance and can be used to access other AWS services on your behalf.</p> </li> <li> <p> <code>PENDING</code> - the IAM role ARN is being associated with the DB instance.</p> </li> <li> <p> <code>INVALID</code> - the IAM role ARN is associated with the DB instance, but the DB instance is unable to assume the IAM role in order to access other AWS services on your behalf.</p> </li> </ul>",
         "DBInstanceStatusInfo$StatusType": "<p>This value is currently \"read replication.\"</p>",
         "DBInstanceStatusInfo$Status": "<p>Status of the DB instance. For a StatusType of read replica, the values can be replicating, replication stop point set, replication stop point reached, error, stopped, or terminated.</p>",
         "DBInstanceStatusInfo$Message": "<p>Details of the error if there is an error for the instance. If the instance is not in an error state, this value is blank.</p>",
@@ -3269,6 +3320,7 @@
         "EventsMessage$Marker": "<p> An optional pagination token provided by a previous Events request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code> . </p>",
         "FailoverDBClusterMessage$DBClusterIdentifier": "<p>A DB cluster identifier to force a failover for. This parameter is not case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing DBCluster.</p> </li> </ul>",
         "FailoverDBClusterMessage$TargetDBInstanceIdentifier": "<p>The name of the instance to promote to the primary instance.</p> <p>You must specify the instance identifier for an Aurora Replica in the DB cluster. For example, <code>mydbcluster-replica1</code>.</p>",
+        "FeatureNameList$member": null,
         "Filter$Name": "<p>The name of the filter. Filter names are case-sensitive.</p>",
         "FilterValueList$member": null,
         "GlobalCluster$GlobalClusterIdentifier": "<p> Contains a user-supplied global database cluster identifier. This identifier is the unique key that identifies a global database cluster. </p>",
@@ -3414,6 +3466,9 @@
         "RemoveFromGlobalClusterMessage$DbClusterIdentifier": "<p> The Amazon Resource Name (ARN) identifying the cluster that was detached from the Aurora global database cluster. </p>",
         "RemoveRoleFromDBClusterMessage$DBClusterIdentifier": "<p>The name of the DB cluster to disassociate the IAM role from.</p>",
         "RemoveRoleFromDBClusterMessage$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to disassociate from the Aurora DB cluster, for example <code>arn:aws:iam::123456789012:role/AuroraAccessRole</code>.</p>",
+        "RemoveRoleFromDBInstanceMessage$DBInstanceIdentifier": "<p>The name of the DB instance to disassociate the IAM role from.</p>",
+        "RemoveRoleFromDBInstanceMessage$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to disassociate from the DB instance, for example <code>arn:aws:iam::123456789012:role/AccessRole</code>.</p>",
+        "RemoveRoleFromDBInstanceMessage$FeatureName": "<p>The name of the feature for the DB instance that the IAM role is to be disassociated from. For the list of supported feature names, see <a>DBEngineVersion</a>. </p>",
         "RemoveSourceIdentifierFromSubscriptionMessage$SubscriptionName": "<p>The name of the RDS event notification subscription you want to remove a source identifier from.</p>",
         "RemoveSourceIdentifierFromSubscriptionMessage$SourceIdentifier": "<p> The source identifier to be removed from the subscription, such as the <b>DB instance identifier</b> for a DB instance or the name of a security group. </p>",
         "RemoveTagsFromResourceMessage$ResourceName": "<p>The Amazon RDS resource that the tags are removed from. This value is an Amazon Resource Name (ARN). For information about creating an ARN, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing\"> Constructing an ARN for Amazon RDS</a> in the <i>Amazon RDS User Guide.</i> </p>",
