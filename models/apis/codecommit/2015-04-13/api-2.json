@@ -717,6 +717,7 @@
         {"shape":"ParentCommitIdOutdatedException"},
         {"shape":"FileContentRequiredException"},
         {"shape":"FileContentSizeLimitExceededException"},
+        {"shape":"FolderContentSizeLimitExceededException"},
         {"shape":"PathRequiredException"},
         {"shape":"InvalidPathException"},
         {"shape":"BranchNameRequiredException"},
@@ -735,7 +736,8 @@
         {"shape":"EncryptionKeyUnavailableException"},
         {"shape":"SameFileContentException"},
         {"shape":"FileNameConflictsWithDirectoryNameException"},
-        {"shape":"DirectoryNameConflictsWithFileNameException"}
+        {"shape":"DirectoryNameConflictsWithFileNameException"},
+        {"shape":"FilePathConflictsWithSubmodulePathException"}
       ]
     },
     "PutRepositoryTriggers":{
@@ -1433,6 +1435,12 @@
       },
       "exception":true
     },
+    "FilePathConflictsWithSubmodulePathException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "FileTooLargeException":{
       "type":"structure",
       "members":{
@@ -1446,6 +1454,12 @@
         "absolutePath":{"shape":"Path"},
         "relativePath":{"shape":"Path"}
       }
+    },
+    "FolderContentSizeLimitExceededException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
     },
     "FolderDoesNotExistException":{
       "type":"structure",

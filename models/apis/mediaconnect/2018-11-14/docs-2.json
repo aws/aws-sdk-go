@@ -9,10 +9,13 @@
     "GrantFlowEntitlements" : "Grants entitlements to an existing flow.",
     "ListEntitlements" : "Displays a list of all entitlements that have been granted to this account. This request returns 20 results per page.",
     "ListFlows" : "Displays a list of flows that are associated with this account. This request returns a paginated result.",
+    "ListTagsForResource" : "Lists all tags associated with the resource.",
     "RemoveFlowOutput" : "Removes an output from an existing flow. This request can be made only on an output that does not have an entitlement associated with it. If the output has an entitlement, you must revoke the entitlement instead. When an entitlement is revoked from a flow, the service automatically removes the associated output.",
     "RevokeFlowEntitlement" : "Revokes an entitlement from a flow. Once an entitlement is revoked, the content becomes unavailable to the subscriber and the associated output is removed.",
     "StartFlow" : "Starts a flow.",
     "StopFlow" : "Stops a flow.",
+    "TagResource" : "Associates the specified tags to a resource. If the request does not mention an existing tag associated with the resource, that tag is not changed.",
+    "UntagResource" : "Deletes the specified tags from a resource.",
     "UpdateFlowEntitlement" : "You can change an entitlement's description, subscribers, and encryption. If you change the subscribers, the service will remove the outputs that are are used by the subscribers that are removed.",
     "UpdateFlowOutput" : "Updates an existing flow output.",
     "UpdateFlowSource" : "Updates the source of a flow."
@@ -133,6 +136,10 @@
       "base" : "The result of a successful ListFlows request. The response includes flow summaries and the NextToken to use in a subsequent ListFlows request.",
       "refs" : { }
     },
+    "ListTagsForResourceResponse" : {
+      "base" : "AWS Elemental MediaConnect listed the tags associated with the resource.",
+      "refs" : { }
+    },
     "ListedEntitlement" : {
       "base" : "An entitlement that has been granted to you from other AWS accounts.",
       "refs" : {
@@ -223,6 +230,10 @@
     },
     "StopFlowResponse" : {
       "base" : "The result of a successful StopFlow request.",
+      "refs" : { }
+    },
+    "TagResourceRequest" : {
+      "base" : "The tags to add to the resource. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.",
       "refs" : { }
     },
     "TooManyRequestsException" : {
@@ -337,6 +348,13 @@
         "GrantEntitlementRequest$Subscribers" : "The AWS account IDs that you want to share your content with. The receiving accounts (subscribers) will be allowed to create their own flows using your content as the source.",
         "Messages$Errors" : "A list of errors that might have been generated from processes on this flow.",
         "UpdateFlowEntitlementRequest$Subscribers" : "The AWS account IDs that you want to share your content with. The receiving accounts (subscribers) will be allowed to create their own flow using your content as the source."
+      }
+    },
+    "__mapOf__string" : {
+      "base" : null,
+      "refs" : {
+        "ListTagsForResourceResponse$Tags" : "A map from tag keys to values. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.",
+        "TagResourceRequest$Tags" : "A map from tag keys to values. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters."
       }
     },
     "__string" : {

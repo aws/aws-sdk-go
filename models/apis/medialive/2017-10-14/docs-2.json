@@ -721,6 +721,24 @@
       "refs": {
       }
     },
+    "FrameCaptureGroupSettings": {
+      "base": "Frame Capture Group Settings",
+      "refs": {
+        "OutputGroupSettings$FrameCaptureGroupSettings": null
+      }
+    },
+    "FrameCaptureOutputSettings": {
+      "base": "Frame Capture Output Settings",
+      "refs": {
+        "OutputSettings$FrameCaptureOutputSettings": null
+      }
+    },
+    "FrameCaptureSettings": {
+      "base": "Frame Capture Settings",
+      "refs": {
+        "VideoCodecSettings$FrameCaptureSettings": null
+      }
+    },
     "GatewayTimeoutException": {
       "base": null,
       "refs": {
@@ -1054,6 +1072,12 @@
       "base": null,
       "refs": {
         "HlsCdnSettings$HlsWebdavSettings": null
+      }
+    },
+    "IFrameOnlyPlaylistType": {
+      "base": "When set to \"standard\", an I-Frame only playlist will be written out for each video output in the output group. This I-Frame only playlist will contain byte range offsets pointing to the I-frame(s) in each segment.",
+      "refs": {
+        "HlsGroupSettings$IFrameOnlyPlaylists": "If enabled, writes out I-Frame only playlists in addition to media playlists."
       }
     },
     "Input": {
@@ -1557,7 +1581,8 @@
     "OutputLocationRef": {
       "base": "Reference to an OutputDestination ID defined in the channel",
       "refs": {
-        "ArchiveGroupSettings$Destination": "A directory and base filename where archive files should be written.  If the base filename portion of the URI is left blank, the base filename of the first input will be automatically inserted.",
+        "ArchiveGroupSettings$Destination": "A directory and base filename where archive files should be written.",
+        "FrameCaptureGroupSettings$Destination": "The destination for the frame capture files. Either the URI for an Amazon S3 bucket and object, plus a file name prefix (for example, s3ssl://sportsDelivery/highlights/20180820/curling_) or the URI for a MediaStore container, plus a file name prefix (for example, mediastoressl://sportsDelivery/20180820/curling_). The final file names consist of the prefix from the destination field (for example, \"curling_\") + name modifier + the counter (5 digits, starting from 00001) + extension (which is always .jpg).  For example, curlingLow.00001.jpg",
         "HlsGroupSettings$Destination": "A directory or HTTP destination for the HLS segments, manifest files, and encryption keys (if enabled).",
         "MsSmoothGroupSettings$Destination": "Smooth Streaming publish point on an IIS server. Elemental Live acts as a \"Push\" encoder to IIS.",
         "RtmpOutputSettings$Destination": "The RTMP endpoint excluding the stream name (eg. rtmp://host/appname). For connection to Akamai, a username and password must be supplied. URI fields accept format identifiers.",
@@ -2055,13 +2080,13 @@
     "VideoDescriptionRespondToAfd": {
       "base": null,
       "refs": {
-        "VideoDescription$RespondToAfd": "Indicates how to respond to the AFD values in the input stream. Setting to \"respond\" causes input video to be clipped, depending on AFD value, input display aspect ratio and output display aspect ratio."
+        "VideoDescription$RespondToAfd": "Indicates how to respond to the AFD values in the input stream. RESPOND causes input video to be clipped, depending on the AFD value, input display aspect ratio, and output display aspect ratio, and (except for FRAMECAPTURE codec) includes the values in the output. PASSTHROUGH (does not apply to FRAMECAPTURE codec) ignores the AFD values and includes the values in the output, so input video is not clipped. NONE ignores the AFD values and does not include the values through to the output, so input video is not clipped."
       }
     },
     "VideoDescriptionScalingBehavior": {
       "base": null,
       "refs": {
-        "VideoDescription$ScalingBehavior": "When set to \"stretchToOutput\", automatically configures the output position to stretch the video to the specified output resolution. This option will override any position value."
+        "VideoDescription$ScalingBehavior": "STRETCHTOOUTPUT configures the output position to stretch the video to the specified output resolution (height and width). This option will override any position value. DEFAULT may insert black boxes (pillar boxes or letter boxes) around the video to provide the specified output resolution."
       }
     },
     "VideoSelector": {
@@ -2154,14 +2179,12 @@
         "ChannelSummary$PipelinesRunningCount": "The number of currently healthy pipelines.",
         "DvbSubDestinationSettings$ShadowXOffset": "Specifies the horizontal offset of the shadow relative to the captions in pixels. A value of -2 would result in a shadow offset 2 pixels to the left.  All burn-in and DVB-Sub font settings must match.",
         "DvbSubDestinationSettings$ShadowYOffset": "Specifies the vertical offset of the shadow relative to the captions in pixels. A value of -2 would result in a shadow offset 2 pixels above the text.  All burn-in and DVB-Sub font settings must match.",
-        "H264Settings$FramerateDenominator": "Framerate denominator.",
-        "H264Settings$FramerateNumerator": "Framerate numerator - framerate is a fraction, e.g. 24000 / 1001 = 23.976 fps.",
         "H264Settings$ParNumerator": "Pixel Aspect Ratio numerator.",
         "Offering$Duration": "Lease duration, e.g. '12'",
         "Reservation$Count": "Number of reserved resources",
         "Reservation$Duration": "Lease duration, e.g. '12'",
-        "VideoDescription$Height": "Output video height (in pixels). Leave blank to use source video height. If left blank, width must also be unspecified.",
-        "VideoDescription$Width": "Output video width (in pixels). Leave out to use source video width.  If left out, height must also be left out. Display aspect ratio is always preserved by letterboxing or pillarboxing when necessary."
+        "VideoDescription$Height": "Output video height, in pixels. Must be an even number. For most codecs, you can leave this field and width blank in order to use the height and width (resolution) from the source. Note, however, that leaving blank is not recommended. For the Frame Capture codec, height and width are required.",
+        "VideoDescription$Width": "Output video width, in pixels. Must be an even number. For most codecs, you can leave this field and height blank in order to use the height and width (resolution) from the source. Note, however, that leaving blank is not recommended. For the Frame Capture codec, height and width are required."
       }
     },
     "__integerMin0": {
@@ -2218,7 +2241,7 @@
       "refs": {
         "H264Settings$BufFillPct": "Percentage of the buffer that should initially be filled (HRD buffer model).",
         "StaticImageActivateScheduleActionSettings$Opacity": "Opacity of image where 0 is transparent and 100 is fully opaque. Default is 100.",
-        "VideoDescription$Sharpness": "Changes the width of the anti-alias filter kernel used for scaling. Only applies if scaling is being performed and antiAlias is set to true. 0 is the softest setting, 100 the sharpest, and 50 recommended for most content."
+        "VideoDescription$Sharpness": "Changes the strength of the anti-alias filter used for scaling. 0 is the softest setting, 100 is the sharpest. A setting of 50 is recommended for most content."
       }
     },
     "__integerMin0Max1000": {
@@ -2363,6 +2386,8 @@
       "refs": {
         "ArchiveGroupSettings$RolloverInterval": "Number of seconds to write to archive file before closing and starting a new one.",
         "DvbSubSourceSettings$Pid": "When using DVB-Sub with Burn-In or SMPTE-TT, use this PID for the source content. Unused for DVB-Sub passthrough. All DVB-Sub content is passed through, regardless of selectors.",
+        "H264Settings$FramerateDenominator": "Framerate denominator.",
+        "H264Settings$FramerateNumerator": "Framerate numerator - framerate is a fraction, e.g. 24000 / 1001 = 23.976 fps.",
         "H264Settings$ParDenominator": "Pixel Aspect Ratio denominator.",
         "HlsGroupSettings$KeepSegments": "If mode is \"live\", the number of TS segments to retain in the destination directory. If mode is \"vod\", this parameter has no effect.",
         "HlsGroupSettings$SegmentLength": "Length of MPEG-2 Transport Stream segments to create (in seconds). Note that segments will end on the next keyframe after this number of seconds, so actual segment length may be longer.",
@@ -2423,6 +2448,12 @@
       "base": null,
       "refs": {
         "H264Settings$Slices": "Number of slices per picture. Must be less than or equal to the number of macroblock rows for progressive pictures, and less than or equal to half the number of macroblock rows for interlaced pictures.\nThis field is optional; when no value is specified the encoder will choose the number of slices based on encode resolution."
+      }
+    },
+    "__integerMin1Max3600": {
+      "base": null,
+      "refs": {
+        "FrameCaptureSettings$CaptureInterval": "The frequency, in seconds, for capturing frames for inclusion in the output.  For example, \"10\" means capture a frame every 10 seconds."
       }
     },
     "__integerMin1Max4": {
@@ -2758,6 +2789,7 @@
         "DvbSubDestinationSettings$FontSize": "When set to auto fontSize will scale depending on the size of the output.  Giving a positive integer will specify the exact font size in points.  All burn-in and DVB-Sub font settings must match.",
         "FixedModeScheduleActionStartSettings$Time": "Start time for the action to start in the channel. (Not the time for the action to be added to the schedule: actions are always added to the schedule immediately.) UTC format: yyyy-mm-ddThh:mm:ss.nnnZ. All the letters are digits (for example, mm might be 01) except for the two constants \"T\" for time and \"Z\" for \"UTC format\".",
         "FollowModeScheduleActionStartSettings$ReferenceActionName": "The action name of another action that this one refers to.",
+        "FrameCaptureOutputSettings$NameModifier": "Required if the output group contains more than one output. This modifier forms part of the output file name.",
         "GatewayTimeoutException$Message": null,
         "HlsAkamaiSettings$Salt": "Salt for authenticated Akamai.",
         "HlsAkamaiSettings$Token": "Token parameter for authenticated akamai. If not specified, _gda_ is used.",
