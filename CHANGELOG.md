@@ -1,3 +1,16 @@
+Release v1.16.26 (2019-01-25)
+===
+
+### Service Client Updates
+* `service/codecommit`: Updates service API and documentation
+  * The PutFile API will now throw new exception FilePathConflictsWithSubmodulePathException when a submodule exists at the input file path; PutFile API will also throw FolderContentSizeLimitExceededException when the total size of any folder on the path exceeds the limit as a result of the operation.
+* `service/devicefarm`: Updates service API and documentation
+  * Introduces a new rule in Device Pools - "Availability". Customers can now ensure they pick devices that are available (i.e., not being used by other customers).
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/mediaconnect`: Updates service API and documentation
+* `service/medialive`: Updates service API and documentation
+  * This release adds support for Frame Capture output groups and for I-frame only manifests (playlists) in HLS output groups.
+
 Release v1.16.25 (2019-01-24)
 ===
 

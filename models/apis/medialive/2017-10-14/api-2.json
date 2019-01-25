@@ -3402,6 +3402,39 @@
         "httpStatusCode": 403
       }
     },
+    "FrameCaptureGroupSettings": {
+      "type": "structure",
+      "members": {
+        "Destination": {
+          "shape": "OutputLocationRef",
+          "locationName": "destination"
+        }
+      },
+      "required": [
+        "Destination"
+      ]
+    },
+    "FrameCaptureOutputSettings": {
+      "type": "structure",
+      "members": {
+        "NameModifier": {
+          "shape": "__string",
+          "locationName": "nameModifier"
+        }
+      }
+    },
+    "FrameCaptureSettings": {
+      "type": "structure",
+      "members": {
+        "CaptureInterval": {
+          "shape": "__integerMin1Max3600",
+          "locationName": "captureInterval"
+        }
+      },
+      "required": [
+        "CaptureInterval"
+      ]
+    },
     "GatewayTimeoutException": {
       "type": "structure",
       "members": {
@@ -3628,11 +3661,11 @@
           "locationName": "framerateControl"
         },
         "FramerateDenominator": {
-          "shape": "__integer",
+          "shape": "__integerMin1",
           "locationName": "framerateDenominator"
         },
         "FramerateNumerator": {
-          "shape": "__integer",
+          "shape": "__integerMin1",
           "locationName": "framerateNumerator"
         },
         "GopBReference": {
@@ -3949,6 +3982,10 @@
           "shape": "HlsCdnSettings",
           "locationName": "hlsCdnSettings"
         },
+        "IFrameOnlyPlaylists": {
+          "shape": "IFrameOnlyPlaylistType",
+          "locationName": "iFrameOnlyPlaylists"
+        },
         "IndexNSegments": {
           "shape": "__integerMin3",
           "locationName": "indexNSegments"
@@ -4263,6 +4300,13 @@
           "locationName": "restartDelay"
         }
       }
+    },
+    "IFrameOnlyPlaylistType": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "STANDARD"
+      ]
     },
     "Input": {
       "type": "structure",
@@ -5766,6 +5810,10 @@
           "shape": "ArchiveGroupSettings",
           "locationName": "archiveGroupSettings"
         },
+        "FrameCaptureGroupSettings": {
+          "shape": "FrameCaptureGroupSettings",
+          "locationName": "frameCaptureGroupSettings"
+        },
         "HlsGroupSettings": {
           "shape": "HlsGroupSettings",
           "locationName": "hlsGroupSettings"
@@ -5799,6 +5847,10 @@
         "ArchiveOutputSettings": {
           "shape": "ArchiveOutputSettings",
           "locationName": "archiveOutputSettings"
+        },
+        "FrameCaptureOutputSettings": {
+          "shape": "FrameCaptureOutputSettings",
+          "locationName": "frameCaptureOutputSettings"
         },
         "HlsOutputSettings": {
           "shape": "HlsOutputSettings",
@@ -7208,6 +7260,10 @@
     "VideoCodecSettings": {
       "type": "structure",
       "members": {
+        "FrameCaptureSettings": {
+          "shape": "FrameCaptureSettings",
+          "locationName": "frameCaptureSettings"
+        },
         "H264Settings": {
           "shape": "H264Settings",
           "locationName": "h264Settings"
@@ -7492,6 +7548,11 @@
       "type": "integer",
       "min": 1,
       "max": 32
+    },
+    "__integerMin1Max3600": {
+      "type": "integer",
+      "min": 1,
+      "max": 3600
     },
     "__integerMin1Max4": {
       "type": "integer",

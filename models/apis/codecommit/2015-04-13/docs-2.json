@@ -571,6 +571,11 @@
       "refs": {
       }
     },
+    "FilePathConflictsWithSubmodulePathException": {
+      "base": "<p>The specified file path or folder has the same path as a submodule in this repository. Either provide a different name for the file, or save the file in a directory that does not conflict with the submodule path.</p>",
+      "refs": {
+      }
+    },
     "FileTooLargeException": {
       "base": "<p>The specified file exceeds the file size limit for AWS CodeCommit. For more information about limits in AWS CodeCommit, see <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/limits.html\">AWS CodeCommit User Guide</a>.</p>",
       "refs": {
@@ -580,6 +585,11 @@
       "base": "<p>Returns information about a folder in a repository.</p>",
       "refs": {
         "FolderList$member": null
+      }
+    },
+    "FolderContentSizeLimitExceededException": {
+      "base": "<p>The specified file is in a folder that exceeds the folder content size limit. Either save the file in a folder that has less content, or remove files or subfolders from the folder so it does not exceed the size limit. For more information about limits in AWS CodeCommit, see <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/limits.html\">AWS CodeCommit User Guide</a>.</p>",
+      "refs": {
       }
     },
     "FolderDoesNotExistException": {
