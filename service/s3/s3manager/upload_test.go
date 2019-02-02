@@ -272,7 +272,7 @@ func TestUploadFailIfPartSizeTooSmall(t *testing.T) {
 		t.Errorf("Expected %q, but received %q", "ConfigError", aerr.Code())
 	}
 
-	if strings.Contains("part size must be at least", aerr.Message()) {
+	if strings.Contains(aerr.Message(), "part size must be at least") {
 		t.Errorf("Expected string to contain %q, but received %q", "part size must be at least", aerr.Message())
 	}
 }
