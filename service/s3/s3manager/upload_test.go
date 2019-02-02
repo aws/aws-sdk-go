@@ -268,12 +268,12 @@ func TestUploadFailIfPartSizeTooSmall(t *testing.T) {
 	}
 
 	aerr := err.(awserr.Error)
-	if "ConfigError" != aerr.Code() {
-		t.Errorf("Expected %q, but received %q", "ConfigError", aerr.Code())
+	if e, a := "ConfigError", aerr.Code(); e != a {
+		t.Errorf("Expected %q, but received %q", e, a)
 	}
 
-	if strings.Contains("part size must be at least", aerr.Message()) {
-		t.Errorf("Expected string to contain %q, but received %q", "part size must be at least", aerr.Message())
+	if e, a := "part size must be at least", aerr.Message(); !strings.Contains(a, e) {
+		t.Errorf("expect %v to be in %v", e, a)
 	}
 }
 
