@@ -2597,7 +2597,7 @@ var awsPartition = partition{
 		},
 		"sqs": service{
 			Defaults: endpoint{
-				SSLCommonName: "{region}.queue.{dnsSuffix}",
+				SSLCommonName: "sqs.{region}.{dnsSuffix}",
 				Protocols:     []string{"http", "https"},
 			},
 			Endpoints: endpoints{
@@ -2742,13 +2742,7 @@ var awsPartition = partition{
 			},
 		},
 		"sts": service{
-			PartitionEndpoint: "aws-global",
-			Defaults: endpoint{
-				Hostname: "sts.amazonaws.com",
-				CredentialScope: credentialScope{
-					Region: "us-east-1",
-				},
-			},
+
 			Endpoints: endpoints{
 				"ap-northeast-1": endpoint{},
 				"ap-northeast-2": endpoint{
@@ -3344,7 +3338,7 @@ var awscnPartition = partition{
 		},
 		"sqs": service{
 			Defaults: endpoint{
-				SSLCommonName: "{region}.queue.{dnsSuffix}",
+				SSLCommonName: "sqs.{region}.{dnsSuffix}",
 				Protocols:     []string{"http", "https"},
 			},
 			Endpoints: endpoints{
@@ -3896,7 +3890,7 @@ var awsusgovPartition = partition{
 			Endpoints: endpoints{
 				"us-gov-east-1": endpoint{},
 				"us-gov-west-1": endpoint{
-					SSLCommonName: "{region}.queue.{dnsSuffix}",
+					SSLCommonName: "sqs.{region}.{dnsSuffix}",
 					Protocols:     []string{"http", "https"},
 				},
 			},
