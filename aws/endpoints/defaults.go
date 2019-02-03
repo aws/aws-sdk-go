@@ -2637,9 +2637,7 @@ var awsPartition = partition{
 					},
 				},
 				"sa-east-1": endpoint{},
-				"us-east-1": endpoint{
-					SSLCommonName: "queue.{dnsSuffix}",
-				},
+				"us-east-1": endpoint{},
 				"us-east-2": endpoint{},
 				"us-west-1": endpoint{},
 				"us-west-2": endpoint{},
