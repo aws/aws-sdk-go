@@ -4545,8 +4545,16 @@ type Container struct {
 	// The Amazon Resource Name (ARN) of the container.
 	ContainerArn *string `locationName:"containerArn" type:"string"`
 
+	// The number of CPU units set for the container. The value will be 0 if no
+	// value was specified in the container definition when the task definition
+	// was registered.
+	Cpu *string `locationName:"cpu" type:"string"`
+
 	// The exit code returned from the container.
 	ExitCode *int64 `locationName:"exitCode" type:"integer"`
+
+	// The IDs of each GPU assigned to the container.
+	GpuIds []*string `locationName:"gpuIds" type:"list"`
 
 	// The health status of the container. If health checks are not configured for
 	// this container in its task definition, then it reports the health status
@@ -4555,6 +4563,12 @@ type Container struct {
 
 	// The last known status of the container.
 	LastStatus *string `locationName:"lastStatus" type:"string"`
+
+	// The hard limit (in MiB) of memory set for the container.
+	Memory *string `locationName:"memory" type:"string"`
+
+	// The soft limit (in MiB) of memory set for the container.
+	MemoryReservation *string `locationName:"memoryReservation" type:"string"`
 
 	// The name of the container.
 	Name *string `locationName:"name" type:"string"`
@@ -4589,9 +4603,21 @@ func (s *Container) SetContainerArn(v string) *Container {
 	return s
 }
 
+// SetCpu sets the Cpu field's value.
+func (s *Container) SetCpu(v string) *Container {
+	s.Cpu = &v
+	return s
+}
+
 // SetExitCode sets the ExitCode field's value.
 func (s *Container) SetExitCode(v int64) *Container {
 	s.ExitCode = &v
+	return s
+}
+
+// SetGpuIds sets the GpuIds field's value.
+func (s *Container) SetGpuIds(v []*string) *Container {
+	s.GpuIds = v
 	return s
 }
 
@@ -4604,6 +4630,18 @@ func (s *Container) SetHealthStatus(v string) *Container {
 // SetLastStatus sets the LastStatus field's value.
 func (s *Container) SetLastStatus(v string) *Container {
 	s.LastStatus = &v
+	return s
+}
+
+// SetMemory sets the Memory field's value.
+func (s *Container) SetMemory(v string) *Container {
+	s.Memory = &v
+	return s
+}
+
+// SetMemoryReservation sets the MemoryReservation field's value.
+func (s *Container) SetMemoryReservation(v string) *Container {
+	s.MemoryReservation = &v
 	return s
 }
 
@@ -5034,6 +5072,10 @@ type ContainerDefinition struct {
 	// The private repository authentication credentials to use.
 	RepositoryCredentials *RepositoryCredentials `locationName:"repositoryCredentials" type:"structure"`
 
+	// The type and amount of a resource to assign to a container. The only supported
+	// resource is a GPU.
+	ResourceRequirements []*ResourceRequirement `locationName:"resourceRequirements" type:"list"`
+
 	// The secrets to pass to the container.
 	Secrets []*Secret `locationName:"secrets" type:"list"`
 
@@ -5125,6 +5167,16 @@ func (s *ContainerDefinition) Validate() error {
 	if s.RepositoryCredentials != nil {
 		if err := s.RepositoryCredentials.Validate(); err != nil {
 			invalidParams.AddNested("RepositoryCredentials", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ResourceRequirements != nil {
+		for i, v := range s.ResourceRequirements {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ResourceRequirements", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 	if s.Secrets != nil {
@@ -5313,6 +5365,12 @@ func (s *ContainerDefinition) SetReadonlyRootFilesystem(v bool) *ContainerDefini
 // SetRepositoryCredentials sets the RepositoryCredentials field's value.
 func (s *ContainerDefinition) SetRepositoryCredentials(v *RepositoryCredentials) *ContainerDefinition {
 	s.RepositoryCredentials = v
+	return s
+}
+
+// SetResourceRequirements sets the ResourceRequirements field's value.
+func (s *ContainerDefinition) SetResourceRequirements(v []*ResourceRequirement) *ContainerDefinition {
+	s.ResourceRequirements = v
 	return s
 }
 
@@ -5570,6 +5628,11 @@ type ContainerOverride struct {
 	// The name of the container that receives the override. This parameter is required
 	// if any override is specified.
 	Name *string `locationName:"name" type:"string"`
+
+	// The type and amount of a resource to assign to a container, instead of the
+	// default value from the task definition. The only supported resource is a
+	// GPU.
+	ResourceRequirements []*ResourceRequirement `locationName:"resourceRequirements" type:"list"`
 }
 
 // String returns the string representation
@@ -5580,6 +5643,26 @@ func (s ContainerOverride) String() string {
 // GoString returns the string representation
 func (s ContainerOverride) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContainerOverride) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContainerOverride"}
+	if s.ResourceRequirements != nil {
+		for i, v := range s.ResourceRequirements {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ResourceRequirements", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetCommand sets the Command field's value.
@@ -5615,6 +5698,12 @@ func (s *ContainerOverride) SetMemoryReservation(v int64) *ContainerOverride {
 // SetName sets the Name field's value.
 func (s *ContainerOverride) SetName(v string) *ContainerOverride {
 	s.Name = &v
+	return s
+}
+
+// SetResourceRequirements sets the ResourceRequirements field's value.
+func (s *ContainerOverride) SetResourceRequirements(v []*ResourceRequirement) *ContainerOverride {
+	s.ResourceRequirements = v
 	return s
 }
 
@@ -5870,9 +5959,10 @@ type CreateServiceInput struct {
 	PlatformVersion *string `locationName:"platformVersion" type:"string"`
 
 	// Specifies whether to propagate the tags from the task definition or the service
-	// to the tasks. If no value is specified, the tags are not propagated. Tags
-	// can only be propagated to the tasks within the service during service creation.
-	// To add tags to a task after service creation, use the TagResource API action.
+	// to the tasks in the service. If no value is specified, the tags are not propagated.
+	// Tags can only be propagated to the tasks within the service during service
+	// creation. To add tags to a task after service creation, use the TagResource
+	// API action.
 	PropagateTags *string `locationName:"propagateTags" type:"string" enum:"PropagateTags"`
 
 	// The name or full Amazon Resource Name (ARN) of the IAM role that allows Amazon
@@ -9400,6 +9490,63 @@ func (s *PlacementStrategy) SetType(v string) *PlacementStrategy {
 	return s
 }
 
+// The devices that are available on the container instance. The only supported
+// device type is a GPU.
+type PlatformDevice struct {
+	_ struct{} `type:"structure"`
+
+	// The ID for the GPU(s) on the container instance. The available GPU IDs can
+	// also be obtained on the container instance in the /var/lib/ecs/gpu/nvidia_gpu_info.json
+	// file.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The type of device that is available on the container instance. The only
+	// supported value is GPU.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"PlatformDeviceType"`
+}
+
+// String returns the string representation
+func (s PlatformDevice) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PlatformDevice) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PlatformDevice) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PlatformDevice"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *PlatformDevice) SetId(v string) *PlatformDevice {
+	s.Id = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *PlatformDevice) SetType(v string) *PlatformDevice {
+	s.Type = &v
+	return s
+}
+
 // Port mappings allow containers to access ports on the host container instance
 // to send or receive traffic. Port mappings are specified as part of the container
 // definition.
@@ -9691,6 +9838,10 @@ type RegisterContainerInstanceInput struct {
 	// curl http://169.254.169.254/latest/dynamic/instance-identity/signature/
 	InstanceIdentityDocumentSignature *string `locationName:"instanceIdentityDocumentSignature" type:"string"`
 
+	// The devices that are available on the container instance. The only supported
+	// device type is a GPU.
+	PlatformDevices []*PlatformDevice `locationName:"platformDevices" type:"list"`
+
 	// The metadata that you apply to the container instance to help you categorize
 	// and organize them. Each tag consists of a key and an optional value, both
 	// of which you define. Tag keys can have a maximum character length of 128
@@ -9725,6 +9876,16 @@ func (s *RegisterContainerInstanceInput) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Attributes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.PlatformDevices != nil {
+		for i, v := range s.PlatformDevices {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "PlatformDevices", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -9772,6 +9933,12 @@ func (s *RegisterContainerInstanceInput) SetInstanceIdentityDocument(v string) *
 // SetInstanceIdentityDocumentSignature sets the InstanceIdentityDocumentSignature field's value.
 func (s *RegisterContainerInstanceInput) SetInstanceIdentityDocumentSignature(v string) *RegisterContainerInstanceInput {
 	s.InstanceIdentityDocumentSignature = &v
+	return s
+}
+
+// SetPlatformDevices sets the PlatformDevices field's value.
+func (s *RegisterContainerInstanceInput) SetPlatformDevices(v []*PlatformDevice) *RegisterContainerInstanceInput {
+	s.PlatformDevices = v
 	return s
 }
 
@@ -10284,6 +10451,60 @@ func (s *Resource) SetType(v string) *Resource {
 	return s
 }
 
+// The type and amount of a resource to assign to a container. The only supported
+// resource is a GPU.
+type ResourceRequirement struct {
+	_ struct{} `type:"structure"`
+
+	// The type of resource a container desires. The only supported value is GPU.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"ResourceType"`
+
+	// The number of GPUs to assign to a container.
+	//
+	// Value is a required field
+	Value *string `locationName:"value" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ResourceRequirement) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceRequirement) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResourceRequirement) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResourceRequirement"}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetType sets the Type field's value.
+func (s *ResourceRequirement) SetType(v string) *ResourceRequirement {
+	s.Type = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *ResourceRequirement) SetValue(v string) *ResourceRequirement {
+	s.Value = &v
+	return s
+}
+
 type RunTaskInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10345,8 +10566,13 @@ type RunTaskInput struct {
 	// in the Amazon Elastic Container Service Developer Guide.
 	PlatformVersion *string `locationName:"platformVersion" type:"string"`
 
-	// Specifies whether to propagate the tags from the task definition or the service
-	// to the task. If no value is specified, the tags are not propagated.
+	// Specifies whether to propagate the tags from the task definition to the task.
+	// If no value is specified, the tags are not propagated. Tags can only be propagated
+	// to the task during task creation. To add tags to a task after task creation,
+	// use the TagResource API action.
+	//
+	// An error will be received if you specify the SERVICE option when running
+	// a task.
 	PropagateTags *string `locationName:"propagateTags" type:"string" enum:"PropagateTags"`
 
 	// An optional tag specified when a task is started. For example, if you automatically
@@ -10392,6 +10618,11 @@ func (s *RunTaskInput) Validate() error {
 	if s.NetworkConfiguration != nil {
 		if err := s.NetworkConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("NetworkConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Overrides != nil {
+		if err := s.Overrides.Validate(); err != nil {
+			invalidParams.AddNested("Overrides", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Tags != nil {
@@ -11182,6 +11413,11 @@ func (s *StartTaskInput) Validate() error {
 	if s.NetworkConfiguration != nil {
 		if err := s.NetworkConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("NetworkConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Overrides != nil {
+		if err := s.Overrides.Validate(); err != nil {
+			invalidParams.AddNested("Overrides", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Tags != nil {
@@ -12537,6 +12773,26 @@ func (s TaskOverride) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TaskOverride) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TaskOverride"}
+	if s.ContainerOverrides != nil {
+		for i, v := range s.ContainerOverrides {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ContainerOverrides", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetContainerOverrides sets the ContainerOverrides field's value.
 func (s *TaskOverride) SetContainerOverrides(v []*ContainerOverride) *TaskOverride {
 	s.ContainerOverrides = v
@@ -13641,11 +13897,21 @@ const (
 )
 
 const (
+	// PlatformDeviceTypeGpu is a PlatformDeviceType enum value
+	PlatformDeviceTypeGpu = "GPU"
+)
+
+const (
 	// PropagateTagsTaskDefinition is a PropagateTags enum value
 	PropagateTagsTaskDefinition = "TASK_DEFINITION"
 
 	// PropagateTagsService is a PropagateTags enum value
 	PropagateTagsService = "SERVICE"
+)
+
+const (
+	// ResourceTypeGpu is a ResourceType enum value
+	ResourceTypeGpu = "GPU"
 )
 
 const (
