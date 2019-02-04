@@ -594,6 +594,7 @@
         {"shape":"TipOfSourceReferenceIsDifferentException"},
         {"shape":"ReferenceDoesNotExistException"},
         {"shape":"InvalidCommitIdException"},
+        {"shape":"RepositoryNotAssociatedWithPullRequestException"},
         {"shape":"RepositoryNameRequiredException"},
         {"shape":"InvalidRepositoryNameException"},
         {"shape":"RepositoryDoesNotExistException"},

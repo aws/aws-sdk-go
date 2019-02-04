@@ -1,3 +1,15 @@
+Release v1.16.27 (2019-02-04)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service documentation
+* `service/codecommit`: Updates service API
+  * This release supports a more graceful handling of the error case when a repository is not associated with a pull request ID in a merge request in AWS CodeCommit.
+* `service/ecs`: Updates service API and documentation
+  * This release of Amazon Elastic Container Service (Amazon ECS) introduces support for GPU workloads by enabling you to create clusters with GPU-enabled container instances.
+* `service/workspaces`: Updates service API
+  * This release sets ClientProperties as a required parameter.
+
 Release v1.16.26 (2019-01-25)
 ===
 
