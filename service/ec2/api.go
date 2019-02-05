@@ -1864,8 +1864,8 @@ func (c *EC2) AttachVpnGatewayRequest(input *AttachVpnGatewayInput) (req *reques
 // Attaches a virtual private gateway to a VPC. You can attach one virtual private
 // gateway to one VPC at a time.
 //
-// For more information, see AWS Managed VPN Connections (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html)
-// in the Amazon Virtual Private Cloud User Guide.
+// For more information, see AWS Site-to-Site VPN (http://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html)
+// in the AWS Site-to-Site VPN User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3500,9 +3500,8 @@ func (c *EC2) CreateCustomerGatewayRequest(input *CreateCustomerGatewayInput) (r
 // the exception of 7224, which is reserved in the us-east-1 region, and 9059,
 // which is reserved in the eu-west-1 region.
 //
-// For more information about VPN customer gateways, see AWS Managed VPN Connections
-// (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html) in the
-// Amazon Virtual Private Cloud User Guide.
+// For more information, see AWS Site-to-Site VPN (http://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html)
+// in the AWS Site-to-Site VPN User Guide.
 //
 // You cannot create more than one customer gateway with the same VPN type,
 // IP address, and BGP ASN parameter values. If you run an identical request
@@ -6753,8 +6752,8 @@ func (c *EC2) CreateVpnConnectionRequest(input *CreateVpnConnectionInput) (req *
 // This is an idempotent operation. If you perform the operation more than once,
 // Amazon EC2 doesn't return an error.
 //
-// For more information, see AWS Managed VPN Connections (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html)
-// in the Amazon Virtual Private Cloud User Guide.
+// For more information, see AWS Site-to-Site VPN (http://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html)
+// in the AWS Site-to-Site VPN User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6834,9 +6833,8 @@ func (c *EC2) CreateVpnConnectionRouteRequest(input *CreateVpnConnectionRouteInp
 // traffic to be routed from the virtual private gateway to the VPN customer
 // gateway.
 //
-// For more information about VPN connections, see AWS Managed VPN Connections
-// (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html) in the
-// Amazon Virtual Private Cloud User Guide.
+// For more information, see AWS Site-to-Site VPN (http://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html)
+// in the AWS Site-to-Site VPN User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6914,9 +6912,8 @@ func (c *EC2) CreateVpnGatewayRequest(input *CreateVpnGatewayInput) (req *reques
 // on the VPC side of your VPN connection. You can create a virtual private
 // gateway before creating the VPC itself.
 //
-// For more information about virtual private gateways, see AWS Managed VPN
-// Connections (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html)
-// in the Amazon Virtual Private Cloud User Guide.
+// For more information, see AWS Site-to-Site VPN (http://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html)
+// in the AWS Site-to-Site VPN User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11176,9 +11173,8 @@ func (c *EC2) DescribeCustomerGatewaysRequest(input *DescribeCustomerGatewaysInp
 //
 // Describes one or more of your VPN customer gateways.
 //
-// For more information about VPN customer gateways, see AWS Managed VPN Connections
-// (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html) in the
-// Amazon Virtual Private Cloud User Guide.
+// For more information, see AWS Site-to-Site VPN (http://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html)
+// in the AWS Site-to-Site VPN User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -18204,9 +18200,8 @@ func (c *EC2) DescribeVpnConnectionsRequest(input *DescribeVpnConnectionsInput) 
 //
 // Describes one or more of your VPN connections.
 //
-// For more information about VPN connections, see AWS Managed VPN Connections
-// (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html) in the
-// Amazon Virtual Private Cloud User Guide.
+// For more information, see AWS Site-to-Site VPN (http://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html)
+// in the AWS Site-to-Site VPN User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -18282,9 +18277,8 @@ func (c *EC2) DescribeVpnGatewaysRequest(input *DescribeVpnGatewaysInput) (req *
 //
 // Describes one or more of your virtual private gateways.
 //
-// For more information about virtual private gateways, see AWS Managed VPN
-// Connections (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html)
-// in the Amazon Virtual Private Cloud User Guide.
+// For more information, see AWS Site-to-Site VPN (http://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html)
+// in the AWS Site-to-Site VPN User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -27891,7 +27885,8 @@ func (s *Address) SetTags(v []*Tag) *Address {
 type AdvertiseByoipCidrInput struct {
 	_ struct{} `type:"structure"`
 
-	// The IPv4 address range, in CIDR notation.
+	// The IPv4 address range, in CIDR notation. This must be the exact range that
+	// you provisioned. You can't advertise only a portion of the provisioned range.
 	//
 	// Cidr is a required field
 	Cidr *string `type:"string" required:"true"`
@@ -30166,8 +30161,8 @@ type AuthorizeSecurityGroupIngressInput struct {
 	// be in the same VPC.
 	SourceSecurityGroupName *string `type:"string"`
 
-	// [EC2-Classic] The AWS account ID for the source security group, if the source
-	// security group is in a different account. You can't specify this parameter
+	// [nondefault VPC] The AWS account ID for the source security group, if the
+	// source security group is in a different account. You can't specify this parameter
 	// in combination with the following parameters: the CIDR IP address range,
 	// the IP protocol, the start of the port range, and the end of the port range.
 	// Creates rules that grant full ICMP, UDP, and TCP access. To create a rule
@@ -31683,11 +31678,14 @@ func (s *CapacityReservation) SetTotalInstanceCount(v int64) *CapacityReservatio
 }
 
 // Describes an instance's Capacity Reservation targeting option. You can specify
-// only one option at a time. Use the CapacityReservationPreference parameter
-// to configure the instance to run as an On-Demand Instance or to run in any
-// open Capacity Reservation that has matching attributes (instance type, platform,
-// Availability Zone). Use the CapacityReservationTarget parameter to explicitly
-// target a specific Capacity Reservation.
+// only one parameter at a time. If you specify CapacityReservationPreference
+// and CapacityReservationTarget, the request fails.
+//
+// Use the CapacityReservationPreference parameter to configure the instance
+// to run as an On-Demand Instance or to run in any open Capacity Reservation
+// that has matching attributes (instance type, platform, Availability Zone).
+// Use the CapacityReservationTarget parameter to explicitly target a specific
+// Capacity Reservation.
 type CapacityReservationSpecification struct {
 	_ struct{} `type:"structure"`
 
@@ -37833,9 +37831,13 @@ type CreateVolumeInput struct {
 	//
 	// Default: If you're creating the volume from a snapshot and don't specify
 	// a volume size, the default is the snapshot size.
+	//
+	// At least one of Size or SnapshotId are required.
 	Size *int64 `type:"integer"`
 
 	// The snapshot from which to create the volume.
+	//
+	// At least one of Size or SnapshotId are required.
 	SnapshotId *string `type:"string"`
 
 	// The tags to apply to the volume during creation.
@@ -42215,7 +42217,7 @@ type DescribeAddressesInput struct {
 	//    the tag value.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
-	// [EC2-Classic] One or more Elastic IP addresses.
+	// One or more Elastic IP addresses.
 	//
 	// Default: Describes all your Elastic IP addresses.
 	PublicIps []*string `locationName:"PublicIp" locationNameList:"PublicIp" type:"list"`
@@ -50963,26 +50965,27 @@ type DescribeTransitGatewayAttachmentsInput struct {
 
 	// One or more filters. The possible values are:
 	//
-	//    * association.transit-gateway-route-table-id - The ID of the route table
-	//    for the transit gateway.
-	//
 	//    * association.state - The state of the association (associating | associated
 	//    | disassociating).
 	//
+	//    * association.transit-gateway-route-table-id - The ID of the route table
+	//    for the transit gateway.
+	//
 	//    * resource-id - The ID of the resource.
 	//
-	//    * resource-owner - The ID of the AWS account that owns the resource.
+	//    * resource-owner-id - The ID of the AWS account that owns the resource.
 	//
 	//    * resource-type - The resource type (vpc | vpn).
 	//
-	//    * state - The state of the attachment (pendingAcceptance | pending | available
-	//    | modifying | deleting | deleted | failed | rejected).
+	//    * state - The state of the attachment (available | deleted | deleting
+	//    | failed | modifying | pendingAcceptance | pending | rollingBack | rejected
+	//    | rejecting).
 	//
 	//    * transit-gateway-attachment-id - The ID of the attachment.
 	//
 	//    * transit-gateway-id - The ID of the transit gateway.
 	//
-	//    * transit-gateway-owner - The ID of the AWS account that owns the transit
+	//    * transit-gateway-owner-id - The ID of the AWS account that owns the transit
 	//    gateway.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
@@ -51100,8 +51103,9 @@ type DescribeTransitGatewayRouteTablesInput struct {
 	//    * default-propagation-route-table - Indicates whether this is the default
 	//    propagation route table for the transit gateway (true | false).
 	//
-	//    * state - The state of the attachment (pendingAcceptance | pending | available
-	//    | modifying | deleting | deleted | failed | rejected).
+	//    * state - The state of the attachment (available | deleted | deleting
+	//    | failed | modifying | pendingAcceptance | pending | rollingBack | rejected
+	//    | rejecting).
 	//
 	//    * transit-gateway-id - The ID of the transit gateway.
 	//
@@ -51217,8 +51221,9 @@ type DescribeTransitGatewayVpcAttachmentsInput struct {
 
 	// One or more filters. The possible values are:
 	//
-	//    * state - The state of the attachment (pendingAcceptance | pending | available
-	//    | modifying | deleting | deleted | failed | rejected).
+	//    * state - The state of the attachment (available | deleted | deleting
+	//    | failed | modifying | pendingAcceptance | pending | rollingBack | rejected
+	//    | rejecting).
 	//
 	//    * transit-gateway-attachment-id - The ID of the attachment.
 	//
@@ -51335,8 +51340,6 @@ type DescribeTransitGatewaysInput struct {
 
 	// One or more filters. The possible values are:
 	//
-	//    * owner-id - The ID of the AWS account that owns the transit gateway.
-	//
 	//    * options.propagation-default-route-table-id - The ID of the default propagation
 	//    route table.
 	//
@@ -51363,13 +51366,13 @@ type DescribeTransitGatewaysInput struct {
 	//    * options.vpn-ecmp-support - Indicates whether Equal Cost Multipath Protocol
 	//    support is enabled (enable | disable).
 	//
-	//    * state - The state of the attachment (pendingAcceptance | pending | available
-	//    | modifying | deleting | deleted | failed | rejected).
+	//    * owner-id - The ID of the AWS account that owns the transit gateway.
+	//
+	//    * state - The state of the attachment (available | deleted | deleting
+	//    | failed | modifying | pendingAcceptance | pending | rollingBack | rejected
+	//    | rejecting).
 	//
 	//    * transit-gateway-id - The ID of the transit gateway.
-	//
-	//    * transit-gateway-state - The state of the transit gateway (pending |
-	//    available | deleting | deleted).
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The maximum number of results to return with a single call. To retrieve the
@@ -52949,6 +52952,15 @@ type DescribeVpcPeeringConnectionsInput struct {
 	//    * vpc-peering-connection-id - The ID of the VPC peering connection.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
+	// The maximum number of results to return for this request. The request returns
+	// a token that you can specify in a subsequent call to get the next set of
+	// results.
+	MaxResults *int64 `min:"5" type:"integer"`
+
+	// The token to request the next page of results. (You received this token from
+	// a prior call.)
+	NextToken *string `type:"string"`
+
 	// One or more VPC peering connection IDs.
 	//
 	// Default: Describes all your VPC peering connections.
@@ -52965,6 +52977,19 @@ func (s DescribeVpcPeeringConnectionsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeVpcPeeringConnectionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeVpcPeeringConnectionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 5 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetDryRun sets the DryRun field's value.
 func (s *DescribeVpcPeeringConnectionsInput) SetDryRun(v bool) *DescribeVpcPeeringConnectionsInput {
 	s.DryRun = &v
@@ -52977,6 +53002,18 @@ func (s *DescribeVpcPeeringConnectionsInput) SetFilters(v []*Filter) *DescribeVp
 	return s
 }
 
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeVpcPeeringConnectionsInput) SetMaxResults(v int64) *DescribeVpcPeeringConnectionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeVpcPeeringConnectionsInput) SetNextToken(v string) *DescribeVpcPeeringConnectionsInput {
+	s.NextToken = &v
+	return s
+}
+
 // SetVpcPeeringConnectionIds sets the VpcPeeringConnectionIds field's value.
 func (s *DescribeVpcPeeringConnectionsInput) SetVpcPeeringConnectionIds(v []*string) *DescribeVpcPeeringConnectionsInput {
 	s.VpcPeeringConnectionIds = v
@@ -52985,6 +53022,10 @@ func (s *DescribeVpcPeeringConnectionsInput) SetVpcPeeringConnectionIds(v []*str
 
 type DescribeVpcPeeringConnectionsOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// Information about the VPC peering connections.
 	VpcPeeringConnections []*VpcPeeringConnection `locationName:"vpcPeeringConnectionSet" locationNameList:"item" type:"list"`
@@ -52998,6 +53039,12 @@ func (s DescribeVpcPeeringConnectionsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeVpcPeeringConnectionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeVpcPeeringConnectionsOutput) SetNextToken(v string) *DescribeVpcPeeringConnectionsOutput {
+	s.NextToken = &v
+	return s
 }
 
 // SetVpcPeeringConnections sets the VpcPeeringConnections field's value.
@@ -56265,16 +56312,31 @@ type ExportTransitGatewayRoutesInput struct {
 
 	// One or more filters. The possible values are:
 	//
-	//    * transit-gateway-route-destination-cidr-block - The CIDR range.
-	//
-	//    * transit-gateway-route-state - The state of the route (active | blackhole).
-	//
-	//    * transit-gateway-route-transit-gateway-attachment-id - The ID of the
+	//    * attachment.transit-gateway-attachment-id- The id of the transit gateway
 	//    attachment.
 	//
-	//    * transit-gateway-route-type - The route type (static | propagated).
+	//    * attachment.resource-id - The resource id of the transit gateway attachment.
 	//
-	//    * transit-gateway-route-vpn-connection-id - The ID of the VPN connection.
+	//    * route-search.exact-match - The exact match of the specified filter.
+	//
+	//    * route-search.longest-prefix-match - The longest prefix that matches
+	//    the route.
+	//
+	//    * route-search.subnet-of-match - The routes with a subnet that match the
+	//    specified CIDR filter.
+	//
+	//    * route-search.supernet-of-match - The routes with a CIDR that encompass
+	//    the CIDR filter. For example, if you have 10.0.1.0/29 and 10.0.1.0/31
+	//    routes in your route table and you specify supernet-of-match as 10.0.1.0/30,
+	//    then the result returns 10.0.1.0/29.
+	//
+	//    * state - The state of the attachment (available | deleted | deleting
+	//    | failed | modifying | pendingAcceptance | pending | rollingBack | rejected
+	//    | rejecting).
+	//
+	//    * transit-gateway-route-destination-cidr-block - The CIDR range.
+	//
+	//    * type - The type of roue (active | blackhole).
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The name of the S3 bucket.
@@ -72189,7 +72251,10 @@ type RequestLaunchTemplateData struct {
 	// cannot be changed using this action.
 	BlockDeviceMappings []*LaunchTemplateBlockDeviceMappingRequest `locationName:"BlockDeviceMapping" locationNameList:"BlockDeviceMapping" type:"list"`
 
-	// The Capacity Reservation targeting option.
+	// The Capacity Reservation targeting option. If you do not specify this parameter,
+	// the instance's Capacity Reservation preference defaults to open, which enables
+	// it to run in any open Capacity Reservation that has matching attributes (instance
+	// type, platform, Availability Zone).
 	CapacityReservationSpecification *LaunchTemplateCapacityReservationSpecificationRequest `type:"structure"`
 
 	// The CPU options for the instance. For more information, see Optimizing CPU
@@ -73332,6 +73397,8 @@ type ReservedInstancesConfiguration struct {
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
 
 	// The number of modified Reserved Instances.
+	//
+	// This is a required field for a request.
 	InstanceCount *int64 `locationName:"instanceCount" type:"integer"`
 
 	// The instance type for the modified Reserved Instances.
@@ -75225,7 +75292,10 @@ type RunInstancesInput struct {
 	// its encryption status is used for the volume encryption status.
 	BlockDeviceMappings []*BlockDeviceMapping `locationName:"BlockDeviceMapping" locationNameList:"BlockDeviceMapping" type:"list"`
 
-	// Information about the Capacity Reservation targeting option.
+	// Information about the Capacity Reservation targeting option. If you do not
+	// specify this parameter, the instance's Capacity Reservation preference defaults
+	// to open, which enables it to run in any open Capacity Reservation that has
+	// matching attributes (instance type, platform, Availability Zone).
 	CapacityReservationSpecification *CapacityReservationSpecification `type:"structure"`
 
 	// Unique, case-sensitive identifier you provide to ensure the idempotency of
@@ -76929,14 +76999,31 @@ type SearchTransitGatewayRoutesInput struct {
 
 	// One or more filters. The possible values are:
 	//
-	//    * transit-gateway-route-destination-cidr-block - The CIDR range.
-	//
-	//    * transit-gateway-route-state - The state of the route (active | blackhole).
-	//
-	//    * transit-gateway-route-transit-gateway-attachment-id - The ID of the
+	//    * attachment.transit-gateway-attachment-id- The id of the transit gateway
 	//    attachment.
 	//
-	//    * transit-gateway-route-type - The route type (static | propagated).
+	//    * attachment.resource-id - The resource id of the transit gateway attachment.
+	//
+	//    * attachment.resource-type - The attachment resource type (vpc | vpn).
+	//
+	//    * route-search.exact-match - The exact match of the specified filter.
+	//
+	//    * route-search.longest-prefix-match - The longest prefix that matches
+	//    the route.
+	//
+	//    * route-search.subnet-of-match - The routes with a subnet that match the
+	//    specified CIDR filter.
+	//
+	//    * route-search.supernet-of-match - The routes with a CIDR that encompass
+	//    the CIDR filter. For example, if you have 10.0.1.0/29 and 10.0.1.0/31
+	//    routes in your route table and you specify supernet-of-match as 10.0.1.0/30,
+	//    then the result returns 10.0.1.0/29.
+	//
+	//    * state - The state of the attachment (available | deleted | deleting
+	//    | failed | modifying | pendingAcceptance | pending | rollingBack | rejected
+	//    | rejecting).
+	//
+	//    * type - The type of roue (active | blackhole).
 	//
 	// Filters is a required field
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list" required:"true"`
@@ -83697,9 +83784,7 @@ type VpnConnection struct {
 	_ struct{} `type:"structure"`
 
 	// The category of the VPN connection. A value of VPN indicates an AWS VPN connection.
-	// A value of VPN-Classic indicates an AWS Classic VPN connection. For more
-	// information, see AWS Managed VPN Categories (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html#vpn-categories)
-	// in the Amazon Virtual Private Cloud User Guide.
+	// A value of VPN-Classic indicates an AWS Classic VPN connection.
 	Category *string `locationName:"category" type:"string"`
 
 	// The configuration information for the VPN connection's customer gateway (in

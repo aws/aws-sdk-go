@@ -1,3 +1,14 @@
+Release v1.16.28 (2019-02-05)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * ec2.DescribeVpcPeeringConnections pagination support
+* `service/servicecatalog`: Updates service documentation
+  * Service Catalog Documentation Update for ProvisionedProductDetail
+* `service/shield`: Updates service API and documentation
+  * The DescribeProtection request now accepts resource ARN as valid parameter.
+
 Release v1.16.27 (2019-02-04)
 ===
 

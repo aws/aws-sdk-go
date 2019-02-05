@@ -10231,6 +10231,11 @@
         }
       }
     },
+    "DescribeVpcPeeringConnectionsMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
     "DescribeVpcPeeringConnectionsRequest":{
       "type":"structure",
       "members":{
@@ -10245,7 +10250,9 @@
         "VpcPeeringConnectionIds":{
           "shape":"ValueStringList",
           "locationName":"VpcPeeringConnectionId"
-        }
+        },
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"DescribeVpcPeeringConnectionsMaxResults"}
       }
     },
     "DescribeVpcPeeringConnectionsResult":{
@@ -10254,6 +10261,10 @@
         "VpcPeeringConnections":{
           "shape":"VpcPeeringConnectionList",
           "locationName":"vpcPeeringConnectionSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
