@@ -35,9 +35,10 @@
     "ArchivePath": {
       "base": null,
       "refs": {
-        "CreateFileSystemLustreConfiguration$ImportPath": "<p>(Optional) The path to the Amazon S3 bucket (and optional prefix) that you're using as the data repository for your FSx for Lustre file system, for example <code>s3://import-bucket/optional-prefix</code>. If you specify a prefix after the Amazon S3 bucket name, only object keys with that prefix are loaded into the file system.</p>",
+        "CreateFileSystemLustreConfiguration$ImportPath": "<p>(Optional) The path to the Amazon S3 bucket (including the optional prefix) that you're using as the data repository for your Amazon FSx for Lustre file system. The root of your FSx for Lustre file system will be mapped to the root of the Amazon S3 bucket you select. An example is <code>s3://import-bucket/optional-prefix</code>. If you specify a prefix after the Amazon S3 bucket name, only object keys with that prefix are loaded into the file system.</p>",
+        "CreateFileSystemLustreConfiguration$ExportPath": "<p>(Optional) The path in Amazon S3 where the root of your Amazon FSx file system is exported. The path must use the same Amazon S3 bucket as specified in ImportPath. You can provide an optional prefix to which new and changed data is to be exported from your Amazon FSx for Lustre file system. If an <code>ExportPath</code> value is not provided, Amazon FSx sets a default export path, <code>s3://import-bucket/FSxLustre[creation-timestamp]</code>. The timestamp is in UTC format, for example <code>s3://import-bucket/FSxLustre20181105T222312Z</code>.</p> <p>The Amazon S3 export bucket must be the same as the import bucket specified by <code>ImportPath</code>. If you only specify a bucket name, such as <code>s3://import-bucket</code>, you get a 1:1 mapping of file system objects to S3 bucket objects. This mapping means that the input data in S3 is overwritten on export. If you provide a custom prefix in the export path, such as <code>s3://import-bucket/[custom-optional-prefix]</code>, Amazon FSx exports the contents of your file system to that export prefix in the Amazon S3 bucket.</p>",
         "DataRepositoryConfiguration$ImportPath": "<p>The import path to the Amazon S3 bucket (and optional prefix) that you're using as the data repository for your FSx for Lustre file system, for example <code>s3://import-bucket/optional-prefix</code>. If a prefix is specified after the Amazon S3 bucket name, only object keys with that prefix are loaded into the file system.</p>",
-        "DataRepositoryConfiguration$ExportPath": "<p>The Amazon S3 commit path to use for storing new and changed Lustre file system files as part of the archive operation from the file system to Amazon S3. The value is <code>s3://import-bucket/FSxLustre[creationtimestamp]</code>. The timestamp is presented in UTC format, for example <code>s3://import-bucket/FSxLustre20181105T222312Z</code>. Files are archived to a different prefix in the Amazon S3 bucket, preventing input data from being overwritten.</p>"
+        "DataRepositoryConfiguration$ExportPath": "<p>The export path to the Amazon S3 bucket (and prefix) that you are using to store new and changed Lustre file system files in S3.</p>"
       }
     },
     "AutomaticBackupRetentionDays": {
@@ -271,6 +272,7 @@
         "FileSystemNotFound$Message": null,
         "IncompatibleParameterError$Message": null,
         "InternalServerError$Message": null,
+        "InvalidExportPath$Message": null,
         "InvalidImportPath$Message": null,
         "InvalidNetworkSettings$Message": null,
         "MissingFileSystemConfiguration$Message": null,
@@ -399,6 +401,11 @@
       "refs": {
       }
     },
+    "InvalidExportPath": {
+      "base": "<p>The path provided for data repository export isn't valid.</p>",
+      "refs": {
+      }
+    },
     "InvalidImportPath": {
       "base": "<p>The path provided for data repository import isn't valid.</p>",
       "refs": {
@@ -410,7 +417,7 @@
       }
     },
     "KmsKeyId": {
-      "base": "<p>The ID of your AWS Key Management Service (AWS KMS) key. This ID is used to encrypt the data in your file system at rest. For more information, see <a href=\"http://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html\">Encrypt</a> in the <i>AWS Key Management Service API Reference</i>.</p>",
+      "base": "<p>The ID of your AWS Key Management Service (AWS KMS) key. This ID is used to encrypt the data in your file system at rest. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html\">Encrypt</a> in the <i>AWS Key Management Service API Reference</i>.</p>",
       "refs": {
         "Backup$KmsKeyId": "<p>The ID of the AWS Key Management Service (AWS KMS) key used to encrypt this backup's data.</p>",
         "CreateFileSystemRequest$KmsKeyId": null,
@@ -461,7 +468,7 @@
       }
     },
     "NetworkInterfaceId": {
-      "base": "<p>An elastic network interface ID. An elastic network interface is a logical networking component in a virtual private cloud (VPC) that represents a virtual network card. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html\">Elastic Network Interfaces</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p>",
+      "base": "<p>An elastic network interface ID. An elastic network interface is a logical networking component in a virtual private cloud (VPC) that represents a virtual network card. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html\">Elastic Network Interfaces</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p>",
       "refs": {
         "NetworkInterfaceIds$member": null
       }
@@ -469,7 +476,7 @@
     "NetworkInterfaceIds": {
       "base": "<p>A list of network interface IDs.</p>",
       "refs": {
-        "FileSystem$NetworkInterfaceIds": "<p>The IDs of the elastic network interface from which a specific file system is accessible. The elastic network interface is automatically created in the same VPC that the Amazon FSx file system was created in. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html\">Elastic Network Interfaces</a> in the <i>Amazon EC2 User Guide.</i> </p> <p>For an Amazon FSx for Windows File Server file system, you can have one network interface Id. For an Amazon FSx for Lustre file system, you can have more than one.</p>"
+        "FileSystem$NetworkInterfaceIds": "<p>The IDs of the elastic network interface from which a specific file system is accessible. The elastic network interface is automatically created in the same VPC that the Amazon FSx file system was created in. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html\">Elastic Network Interfaces</a> in the <i>Amazon EC2 User Guide.</i> </p> <p>For an Amazon FSx for Windows File Server file system, you can have one network interface Id. For an Amazon FSx for Lustre file system, you can have more than one.</p>"
       }
     },
     "NextToken": {
@@ -501,7 +508,7 @@
       }
     },
     "ResourceARN": {
-      "base": "<p>The Amazon Resource Name (ARN) for a given resource. ARNs uniquely identify AWS resources. We require an ARN when you need to specify a resource unambiguously across all of AWS. For more information, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and AWS Service Namespaces</a> in the <i>AWS General Reference</i>.</p>",
+      "base": "<p>The Amazon Resource Name (ARN) for a given resource. ARNs uniquely identify AWS resources. We require an ARN when you need to specify a resource unambiguously across all of AWS. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and AWS Service Namespaces</a> in the <i>AWS General Reference</i>.</p>",
       "refs": {
         "Backup$ResourceARN": "<p>The Amazon Resource Name (ARN) for the backup resource.</p>",
         "FileSystem$ResourceARN": "<p>The resource ARN of the file system.</p>",
@@ -524,7 +531,7 @@
       }
     },
     "SecurityGroupId": {
-      "base": "<p>The ID of your Amazon EC2 security group. This ID is used to control network access to the endpoint that Amazon FSx creates on your behalf in each subnet. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html\">Amazon EC2 Security Groups for Linux Instances</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+      "base": "<p>The ID of your Amazon EC2 security group. This ID is used to control network access to the endpoint that Amazon FSx creates on your behalf in each subnet. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html\">Amazon EC2 Security Groups for Linux Instances</a> in the <i>Amazon EC2 User Guide</i>.</p>",
       "refs": {
         "InvalidNetworkSettings$InvalidSecurityGroupId": null,
         "SecurityGroupIds$member": null
@@ -556,7 +563,7 @@
       }
     },
     "SubnetId": {
-      "base": "<p>The ID for a subnet. A <i>subnet</i> is a range of IP addresses in your virtual private cloud (VPC). For more information, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html\">VPC and Subnets</a> in the <i>Amazon VPC User Guide.</i> </p>",
+      "base": "<p>The ID for a subnet. A <i>subnet</i> is a range of IP addresses in your virtual private cloud (VPC). For more information, see <a href=\"https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html\">VPC and Subnets</a> in the <i>Amazon VPC User Guide.</i> </p>",
       "refs": {
         "InvalidNetworkSettings$InvalidSubnetId": null,
         "SubnetIds$member": null
@@ -614,7 +621,7 @@
         "CreateFileSystemRequest$Tags": "<p>The tags to be applied to the file system at file system creation. The key value of the <code>Name</code> tag appears in the console as the file system name.</p>",
         "DeleteFileSystemWindowsConfiguration$FinalBackupTags": "<p>A set of tags for your final backup.</p>",
         "DeleteFileSystemWindowsResponse$FinalBackupTags": "<p>The set of tags applied to the final backup.</p>",
-        "FileSystem$Tags": "<p>The tags to associate with the file system. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">Tagging Your Amazon EC2 Resources</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+        "FileSystem$Tags": "<p>The tags to associate with the file system. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">Tagging Your Amazon EC2 Resources</a> in the <i>Amazon EC2 User Guide</i>.</p>",
         "ListTagsForResourceResponse$Tags": "<p>A list of tags on the resource.</p>",
         "TagResourceRequest$Tags": "<p>A list of tags for the resource. If a tag with a given key already exists, the value is replaced by the one specified in this parameter.</p>"
       }
@@ -652,7 +659,7 @@
       }
     },
     "VpcId": {
-      "base": "<p>The ID of your virtual private cloud (VPC). For more information, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html\">VPC and Subnets</a> in the <i>Amazon VPC User Guide</i>.</p>",
+      "base": "<p>The ID of your virtual private cloud (VPC). For more information, see <a href=\"https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html\">VPC and Subnets</a> in the <i>Amazon VPC User Guide</i>.</p>",
       "refs": {
         "FileSystem$VpcId": "<p>The ID of the primary VPC for the file system.</p>"
       }

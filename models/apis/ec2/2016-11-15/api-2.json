@@ -4550,7 +4550,10 @@
         "Windows with SQL Server",
         "Windows with SQL Server Enterprise",
         "Windows with SQL Server Standard",
-        "Windows with SQL Server Web"
+        "Windows with SQL Server Web",
+        "Linux with SQL Server Standard",
+        "Linux with SQL Server Web",
+        "Linux with SQL Server Enterprise"
       ]
     },
     "CapacityReservationPreference":{

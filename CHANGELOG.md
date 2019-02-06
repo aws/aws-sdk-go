@@ -1,3 +1,11 @@
+Release v1.16.29 (2019-02-06)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Add Linux with SQL Server Standard, Linux with SQL Server Web, and Linux with SQL Server Enterprise to the list of allowed instance platforms for On-Demand Capacity Reservations.
+* `service/fsx`: Updates service API and documentation
+
 Release v1.16.28 (2019-02-05)
 ===
 
