@@ -755,6 +755,7 @@
         "InstanceCount":{"shape":"IntegerClass"},
         "DedicatedMasterEnabled":{"shape":"Boolean"},
         "ZoneAwarenessEnabled":{"shape":"Boolean"},
+        "ZoneAwarenessConfig":{"shape":"ZoneAwarenessConfig"},
         "DedicatedMasterType":{"shape":"ESPartitionInstanceType"},
         "DedicatedMasterCount":{"shape":"IntegerClass"}
       }
@@ -1515,6 +1516,12 @@
         "gp2",
         "io1"
       ]
+    },
+    "ZoneAwarenessConfig":{
+      "type":"structure",
+      "members":{
+        "AvailabilityZoneCount":{"shape":"IntegerClass"}
+      }
     }
   }
 }

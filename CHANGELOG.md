@@ -1,3 +1,15 @@
+Release v1.16.30 (2019-02-07)
+===
+
+### Service Client Updates
+* `service/es`: Updates service API and documentation
+  * Feature: Support for three Availability Zone deployments
+* `service/gamelift`: Updates service API and documentation
+  * This release delivers a new API action for deleting unused matchmaking rule sets. More details are available at https://aws.amazon.com/releasenotes/?tag=releasenotes%23keywords%23amazon-gamelift.
+* `service/medialive`: Updates service API and documentation
+  * This release adds tagging of channels, inputs, and input security groups.
+* `service/robomaker`: Updates service API and documentation
+
 Release v1.16.29 (2019-02-06)
 ===
 

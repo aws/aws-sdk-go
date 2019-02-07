@@ -160,6 +160,31 @@
         }
       ]
     },
+    "CreateTags": {
+      "name": "CreateTags",
+      "http": {
+        "method": "POST",
+        "requestUri": "/prod/tags/{resource-arn}",
+        "responseCode": 204
+      },
+      "input": {
+        "shape": "CreateTagsRequest"
+      },
+      "errors": [
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        }
+      ]
+    },
     "DeleteChannel": {
       "name": "DeleteChannel",
       "http": {
@@ -314,6 +339,31 @@
         },
         {
           "shape": "ConflictException"
+        }
+      ]
+    },
+    "DeleteTags": {
+      "name": "DeleteTags",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/prod/tags/{resource-arn}",
+        "responseCode": 204
+      },
+      "input": {
+        "shape": "DeleteTagsRequest"
+      },
+      "errors": [
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
         }
       ]
     },
@@ -706,6 +756,34 @@
         },
         {
           "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "ListTagsForResource": {
+      "name": "ListTagsForResource",
+      "http": {
+        "method": "GET",
+        "requestUri": "/prod/tags/{resource-arn}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListTagsForResourceRequest"
+      },
+      "output": {
+        "shape": "ListTagsForResourceResponse"
+      },
+      "errors": [
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
         }
       ]
     },
@@ -1958,6 +2036,10 @@
         "State": {
           "shape": "ChannelState",
           "locationName": "state"
+        },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
         }
       }
     },
@@ -2099,6 +2181,10 @@
         "RoleArn": {
           "shape": "__string",
           "locationName": "roleArn"
+        },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
         }
       }
     },
@@ -2142,6 +2228,10 @@
         "RoleArn": {
           "shape": "__string",
           "locationName": "roleArn"
+        },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
         }
       }
     },
@@ -2195,6 +2285,10 @@
           "shape": "__listOfInputSourceRequest",
           "locationName": "sources"
         },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
+        },
         "Type": {
           "shape": "InputType",
           "locationName": "type"
@@ -2233,6 +2327,10 @@
           "shape": "__listOfInputSourceRequest",
           "locationName": "sources"
         },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
+        },
         "Type": {
           "shape": "InputType",
           "locationName": "type"
@@ -2260,6 +2358,10 @@
     "CreateInputSecurityGroupRequest": {
       "type": "structure",
       "members": {
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
+        },
         "WhitelistRules": {
           "shape": "__listOfInputWhitelistRuleCidr",
           "locationName": "whitelistRules"
@@ -2283,6 +2385,23 @@
           "locationName": "securityGroup"
         }
       }
+    },
+    "CreateTagsRequest": {
+      "type": "structure",
+      "members": {
+        "ResourceArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "resource-arn"
+        },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
+        }
+      },
+      "required": [
+        "ResourceArn"
+      ]
     },
     "DeleteChannelRequest": {
       "type": "structure",
@@ -2347,6 +2466,10 @@
         "State": {
           "shape": "ChannelState",
           "locationName": "state"
+        },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
         }
       }
     },
@@ -2472,6 +2595,25 @@
         }
       }
     },
+    "DeleteTagsRequest": {
+      "type": "structure",
+      "members": {
+        "ResourceArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "resource-arn"
+        },
+        "TagKeys": {
+          "shape": "__listOf__string",
+          "location": "querystring",
+          "locationName": "tagKeys"
+        }
+      },
+      "required": [
+        "TagKeys",
+        "ResourceArn"
+      ]
+    },
     "DescribeChannelRequest": {
       "type": "structure",
       "members": {
@@ -2535,6 +2677,10 @@
         "State": {
           "shape": "ChannelState",
           "locationName": "state"
+        },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
         }
       }
     },
@@ -2594,6 +2740,10 @@
           "shape": "InputState",
           "locationName": "state"
         },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
+        },
         "Type": {
           "shape": "InputType",
           "locationName": "type"
@@ -2631,6 +2781,10 @@
         "State": {
           "shape": "InputSecurityGroupState",
           "locationName": "state"
+        },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
         },
         "WhitelistRules": {
           "shape": "__listOfInputWhitelistRule",
@@ -4351,6 +4505,10 @@
           "shape": "InputState",
           "locationName": "state"
         },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
+        },
         "Type": {
           "shape": "InputType",
           "locationName": "type"
@@ -4563,6 +4721,10 @@
           "shape": "InputSecurityGroupState",
           "locationName": "state"
         },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
+        },
         "WhitelistRules": {
           "shape": "__listOfInputWhitelistRule",
           "locationName": "whitelistRules"
@@ -4581,6 +4743,10 @@
     "InputSecurityGroupWhitelistRequest": {
       "type": "structure",
       "members": {
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
+        },
         "WhitelistRules": {
           "shape": "__listOfInputWhitelistRuleCidr",
           "locationName": "whitelistRules"
@@ -5064,6 +5230,28 @@
         "Reservations": {
           "shape": "__listOfReservation",
           "locationName": "reservations"
+        }
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "type": "structure",
+      "members": {
+        "ResourceArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "resource-arn"
+        }
+      },
+      "required": [
+        "ResourceArn"
+      ]
+    },
+    "ListTagsForResourceResponse": {
+      "type": "structure",
+      "members": {
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
         }
       }
     },
@@ -6744,6 +6932,10 @@
         "State": {
           "shape": "ChannelState",
           "locationName": "state"
+        },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
         }
       }
     },
@@ -6887,6 +7079,28 @@
         "State": {
           "shape": "ChannelState",
           "locationName": "state"
+        },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
+        }
+      }
+    },
+    "Tags": {
+      "type": "map",
+      "key": {
+        "shape": "__string"
+      },
+      "value": {
+        "shape": "__string"
+      }
+    },
+    "TagsModel": {
+      "type": "structure",
+      "members": {
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
         }
       }
     },
@@ -7216,6 +7430,10 @@
           "shape": "__string",
           "location": "uri",
           "locationName": "inputSecurityGroupId"
+        },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
         },
         "WhitelistRules": {
           "shape": "__listOfInputWhitelistRuleCidr",

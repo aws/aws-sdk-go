@@ -6,10 +6,12 @@
     "CreateChannel": "Creates a new channel",
     "CreateInput": "Create an input",
     "CreateInputSecurityGroup": "Creates a Input Security Group",
+    "CreateTags": "Create tags for a resource",
     "DeleteChannel": "Starts deletion of channel. The associated outputs are also deleted.",
     "DeleteInput": "Deletes the input end point",
     "DeleteInputSecurityGroup": "Deletes an Input Security Group",
     "DeleteReservation": "Delete an expired reservation.",
+    "DeleteTags": "Removes tags for a resource",
     "DescribeChannel": "Gets details about a channel",
     "DescribeInput": "Produces details about an input",
     "DescribeInputSecurityGroup": "Produces a summary of an Input Security Group",
@@ -21,6 +23,7 @@
     "ListInputs": "Produces list of inputs that have been created",
     "ListOfferings": "List offerings available for purchase.",
     "ListReservations": "List purchased reservations.",
+    "ListTagsForResource": "Produces list of tags that have been created for a resource",
     "PurchaseOffering": "Purchase an offering and create a reservation.",
     "StartChannel": "Starts an existing channel",
     "StopChannel": "Stops a running channel",
@@ -1964,6 +1967,23 @@
         "KeyProviderSettings$StaticKeySettings": null
       }
     },
+    "Tags": {
+      "base": null,
+      "refs": {
+        "Channel$Tags": "A collection of key-value pairs.",
+        "CreateChannel$Tags": "A collection of key-value pairs.",
+        "CreateInput$Tags": "A collection of key-value pairs.",
+        "Input$Tags": "A collection of key-value pairs.",
+        "InputSecurityGroup$Tags": "A collection of key-value pairs.",
+        "InputSecurityGroupWhitelistRequest$Tags": "A collection of key-value pairs.",
+        "TagsModel$Tags": null
+      }
+    },
+    "TagsModel": {
+      "base": null,
+      "refs": {
+      }
+    },
     "TeletextDestinationSettings": {
       "base": null,
       "refs": {
@@ -2888,6 +2908,7 @@
         "ScheduleDescribeResultModel$NextToken": "The next token; for use in pagination.",
         "Scte35SegmentationDescriptor$SegmentationUpid": "Corresponds to SCTE-35 segmentation_upid. Enter a string containing the hexadecimal representation of the characters that make up the SCTE-35 segmentation_upid value. Must contain an even number of hex characters. Do not include spaces between each hex pair. For example, the ASCII \"ADS Information\" becomes hex \"41445320496e666f726d6174696f6e.",
         "StandardHlsSettings$AudioRenditionSets": "List all the audio groups that are used with the video output stream. Input all the audio GROUP-IDs that are associated to the video, separate by ','.",
+        "Tags$member": null,
         "TeletextSourceSettings$PageNumber": "Specifies the teletext page number within the data stream from which to extract captions. Range of 0x100 (256) to 0x8FF (2303). Unused for passthrough. Should be specified as a hexadecimal string with no \"0x\" prefix.",
         "UpdateChannel$Name": "The name of the channel.",
         "UpdateChannel$RoleArn": "An optional Amazon Resource Name (ARN) of the role to assume when running the Channel. If you do not specify this on an update call but the role was previously set that role will be removed.",

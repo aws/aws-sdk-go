@@ -168,6 +168,10 @@ type RoboMakerAPI interface {
 	ListSimulationJobsWithContext(aws.Context, *robomaker.ListSimulationJobsInput, ...request.Option) (*robomaker.ListSimulationJobsOutput, error)
 	ListSimulationJobsRequest(*robomaker.ListSimulationJobsInput) (*request.Request, *robomaker.ListSimulationJobsOutput)
 
+	ListTagsForResource(*robomaker.ListTagsForResourceInput) (*robomaker.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *robomaker.ListTagsForResourceInput, ...request.Option) (*robomaker.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*robomaker.ListTagsForResourceInput) (*request.Request, *robomaker.ListTagsForResourceOutput)
+
 	RegisterRobot(*robomaker.RegisterRobotInput) (*robomaker.RegisterRobotOutput, error)
 	RegisterRobotWithContext(aws.Context, *robomaker.RegisterRobotInput, ...request.Option) (*robomaker.RegisterRobotOutput, error)
 	RegisterRobotRequest(*robomaker.RegisterRobotInput) (*request.Request, *robomaker.RegisterRobotOutput)
@@ -179,6 +183,14 @@ type RoboMakerAPI interface {
 	SyncDeploymentJob(*robomaker.SyncDeploymentJobInput) (*robomaker.SyncDeploymentJobOutput, error)
 	SyncDeploymentJobWithContext(aws.Context, *robomaker.SyncDeploymentJobInput, ...request.Option) (*robomaker.SyncDeploymentJobOutput, error)
 	SyncDeploymentJobRequest(*robomaker.SyncDeploymentJobInput) (*request.Request, *robomaker.SyncDeploymentJobOutput)
+
+	TagResource(*robomaker.TagResourceInput) (*robomaker.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *robomaker.TagResourceInput, ...request.Option) (*robomaker.TagResourceOutput, error)
+	TagResourceRequest(*robomaker.TagResourceInput) (*request.Request, *robomaker.TagResourceOutput)
+
+	UntagResource(*robomaker.UntagResourceInput) (*robomaker.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *robomaker.UntagResourceInput, ...request.Option) (*robomaker.UntagResourceOutput, error)
+	UntagResourceRequest(*robomaker.UntagResourceInput) (*request.Request, *robomaker.UntagResourceOutput)
 
 	UpdateRobotApplication(*robomaker.UpdateRobotApplicationInput) (*robomaker.UpdateRobotApplicationOutput, error)
 	UpdateRobotApplicationWithContext(aws.Context, *robomaker.UpdateRobotApplicationInput, ...request.Option) (*robomaker.UpdateRobotApplicationOutput, error)
