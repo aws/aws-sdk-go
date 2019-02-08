@@ -469,7 +469,9 @@ response.
   	}
   	// Ensure the context is canceled to prevent leaking.
   	// See context package for more information, https://golang.org/pkg/context/
-  	defer cancelFn()
+	if cancelFn {
+  		defer cancelFn()
+	}
 
   	// Uploads the object to S3. The Context will interrupt the request if the
   	// timeout expires.
