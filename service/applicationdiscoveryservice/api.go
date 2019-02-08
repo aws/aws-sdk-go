@@ -2215,12 +2215,12 @@ func (c *ApplicationDiscoveryService) StartImportTaskRequest(input *StartImportT
 // the AWS SDKs to import the records from your file.
 //
 // For more information, including step-by-step procedures, see Migration Hub
-// Import (http://docs.aws.amazon.com/application-discovery/latest/userguide/discovery-import.html)
+// Import (https://docs.aws.amazon.com/application-discovery/latest/userguide/discovery-import.html)
 // in the AWS Application Discovery Service User Guide.
 //
 // There are limits to the number of import tasks you can create (and delete)
 // in an AWS account. For more information, see AWS Application Discovery Service
-// Limits (http://docs.aws.amazon.com/application-discovery/latest/userguide/ads_service_limits.html)
+// Limits (https://docs.aws.amazon.com/application-discovery/latest/userguide/ads_service_limits.html)
 // in the AWS Application Discovery Service User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3059,6 +3059,10 @@ type ContinuousExportDescription struct {
 	//    try again. For more information, see Bucket Restrictions and Limitations
 	//    (http://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html)
 	//    in the Amazon Simple Storage Service Developer Guide.
+	//
+	//    * S3_NOT_SIGNED_UP - Your account is not signed up for the Amazon S3 service.
+	//    You must sign up before you can use Amazon S3. You can sign up at the
+	//    following URL: https://aws.amazon.com/s3 (https://aws.amazon.com/s3).
 	StatusDetail *string `locationName:"statusDetail" min:"1" type:"string"`
 
 	// The timestamp that represents when this continuous export was stopped.
