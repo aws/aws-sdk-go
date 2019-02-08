@@ -174,6 +174,10 @@ type ECSAPI interface {
 	PutAccountSettingWithContext(aws.Context, *ecs.PutAccountSettingInput, ...request.Option) (*ecs.PutAccountSettingOutput, error)
 	PutAccountSettingRequest(*ecs.PutAccountSettingInput) (*request.Request, *ecs.PutAccountSettingOutput)
 
+	PutAccountSettingDefault(*ecs.PutAccountSettingDefaultInput) (*ecs.PutAccountSettingDefaultOutput, error)
+	PutAccountSettingDefaultWithContext(aws.Context, *ecs.PutAccountSettingDefaultInput, ...request.Option) (*ecs.PutAccountSettingDefaultOutput, error)
+	PutAccountSettingDefaultRequest(*ecs.PutAccountSettingDefaultInput) (*request.Request, *ecs.PutAccountSettingDefaultOutput)
+
 	PutAttributes(*ecs.PutAttributesInput) (*ecs.PutAttributesOutput, error)
 	PutAttributesWithContext(aws.Context, *ecs.PutAttributesInput, ...request.Option) (*ecs.PutAttributesOutput, error)
 	PutAttributesRequest(*ecs.PutAttributesInput) (*request.Request, *ecs.PutAttributesOutput)

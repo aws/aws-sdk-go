@@ -367,6 +367,20 @@
         {"shape":"InvalidParameterException"}
       ]
     },
+    "PutAccountSettingDefault":{
+      "name":"PutAccountSettingDefault",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutAccountSettingDefaultRequest"},
+      "output":{"shape":"PutAccountSettingDefaultResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ClientException"},
+        {"shape":"InvalidParameterException"}
+      ]
+    },
     "PutAttributes":{
       "name":"PutAttributes",
       "http":{
@@ -1653,6 +1667,23 @@
         "TASK_DEFINITION",
         "SERVICE"
       ]
+    },
+    "PutAccountSettingDefaultRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "value"
+      ],
+      "members":{
+        "name":{"shape":"SettingName"},
+        "value":{"shape":"String"}
+      }
+    },
+    "PutAccountSettingDefaultResponse":{
+      "type":"structure",
+      "members":{
+        "setting":{"shape":"Setting"}
+      }
     },
     "PutAccountSettingRequest":{
       "type":"structure",

@@ -1,3 +1,13 @@
+Release v1.16.31 (2019-02-08)
+===
+
+### Service Client Updates
+* `service/discovery`: Updates service documentation
+  * Documentation updates for the AWS Application Discovery Service.
+* `service/dlm`: Updates service API and documentation
+* `service/ecs`: Updates service API, documentation, and examples
+  * Amazon ECS introduces the PutAccountSettingDefault API, an API that allows a user to set the default ARN/ID format opt-in status for all the roles and users in the account. Previously, setting the account's default opt-in status required the use of the root user with the PutAccountSetting API.
+
 Release v1.16.30 (2019-02-07)
 ===
 
