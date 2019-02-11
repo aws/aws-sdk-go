@@ -726,6 +726,10 @@
           "locationName": "encryption", 
           "shape": "DashEncryption"
         }, 
+        "ManifestLayout": {
+          "locationName": "manifestLayout", 
+          "shape": "ManifestLayout"
+        }, 
         "ManifestWindowSeconds": {
           "locationName": "manifestWindowSeconds", 
           "shape": "__integer"
@@ -749,6 +753,10 @@
         "SegmentDurationSeconds": {
           "locationName": "segmentDurationSeconds", 
           "shape": "__integer"
+        }, 
+        "SegmentTemplateFormat": {
+          "locationName": "segmentTemplateFormat", 
+          "shape": "SegmentTemplateFormat"
         }, 
         "StreamSelection": {
           "locationName": "streamSelection", 
@@ -1168,6 +1176,13 @@
       }, 
       "type": "structure"
     }, 
+    "ManifestLayout": {
+      "enum": [
+        "FULL", 
+        "COMPACT"
+      ], 
+      "type": "string"
+    }, 
     "MaxResults": {
       "max": 1000, 
       "min": 1, 
@@ -1473,6 +1488,13 @@
         }
       }, 
       "type": "structure"
+    }, 
+    "SegmentTemplateFormat": {
+      "enum": [
+        "NUMBER_WITH_TIMELINE", 
+        "TIME_WITH_TIMELINE"
+      ], 
+      "type": "string"
     }, 
     "ServiceUnavailableException": {
       "error": {

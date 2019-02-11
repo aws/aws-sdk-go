@@ -1,3 +1,14 @@
+Release v1.16.32 (2019-02-11)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API and documentation
+  * This update enables customers to find the start time, max expiration time, and connection status associated with AppStream streaming session.
+* `service/codebuild`: Updates service API and documentation
+  * Add customized webhook filter support
+* `service/mediapackage`: Updates service API and documentation
+  * Adds optional configuration for DASH to compact the manifest by combining duplicate SegmentTemplate tags. Adds optional configuration for DASH SegmentTemplate format to refer to segments by "Number" (default) or by "Time".
+
 Release v1.16.31 (2019-02-08)
 ===
 

@@ -120,6 +120,12 @@
         "__listOfIngestEndpoint$member" : null
       }
     },
+    "ManifestLayout" : {
+      "base" : null,
+      "refs" : {
+        "DashPackage$ManifestLayout" : "Determines the position of some tags in the Media Presentation Description (MPD).  When set to FULL, elements like SegmentTemplate and ContentProtection are included in each Representation.  When set to COMPACT, duplicate elements are combined and presented at the AdaptationSet level."
+      }
+    },
     "MssEncryption" : {
       "base" : "A Microsoft Smooth Streaming (MSS) encryption configuration.",
       "refs" : {
@@ -164,6 +170,12 @@
       "base" : null,
       "refs" : {
         "DashPackage$Profile" : "The Dynamic Adaptive Streaming over HTTP (DASH) profile type.  When set to \"HBBTV_1_5\", HbbTV 1.5 compliant output is enabled."
+      }
+    },
+    "SegmentTemplateFormat" : {
+      "base" : null,
+      "refs" : {
+        "DashPackage$SegmentTemplateFormat" : "Determines the type of SegmentTimeline included in the Media Presentation Description (MPD).  When set to NUMBER_WITH_TIMELINE, a full timeline is presented in each SegmentTemplate, with $Number$ media URLs.  When set to TIME_WITH_TIMELINE, a full timeline is presented in each SegmentTemplate, with $Time$ media URLs."
       }
     },
     "SpekeKeyProvider" : {

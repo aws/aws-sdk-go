@@ -3,7 +3,7 @@
 // Package appstream provides the client and types for making API
 // requests to Amazon AppStream.
 //
-// This is the Amazon AppStream 2.0 API Reference. It provides descriptions
+// This is the Amazon AppStream 2.0 API Reference. This reference provides descriptions
 // and syntax for each of the actions and data types in AppStream 2.0. AppStream
 // 2.0 is a fully managed application streaming service. You centrally manage
 // your desktop applications on AppStream 2.0 and securely deliver them to any
