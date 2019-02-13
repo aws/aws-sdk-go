@@ -1,3 +1,14 @@
+Release v1.16.34 (2019-02-13)
+===
+
+### Service Client Updates
+* `service/elasticfilesystem`: Updates service API and documentation
+  * Customers can now use the EFS Infrequent Access (IA) storage class to more cost-effectively store larger amounts of data in their file systems. EFS IA is cost-optimized storage for files that are not accessed every day. You can create a new file system and enable Lifecycle Management to automatically move files that have not been accessed for 30 days from the Standard storage class to the IA storage class.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/mediatailor`: Updates service API and documentation
+* `service/rekognition`: Updates service API and documentation
+  * GetContentModeration now returns the version of the moderation detection model used to detect unsafe content.
+
 Release v1.16.33 (2019-02-12)
 ===
 

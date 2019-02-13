@@ -54,6 +54,23 @@
       },
       "errors" : [ ]
     },
+    "ListTagsForResource" : {
+      "name" : "ListTagsForResource",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/tags/{ResourceArn}",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "ListTagsForResourceRequest"
+      },
+      "output" : {
+        "shape" : "ListTagsForResourceResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      } ]
+    },
     "PutPlaybackConfiguration" : {
       "name" : "PutPlaybackConfiguration",
       "http" : {
@@ -68,9 +85,44 @@
         "shape" : "PutPlaybackConfigurationResponse"
       },
       "errors" : [ ]
+    },
+    "TagResource" : {
+      "name" : "TagResource",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/tags/{ResourceArn}",
+        "responseCode" : 204
+      },
+      "input" : {
+        "shape" : "TagResourceRequest"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      } ]
+    },
+    "UntagResource" : {
+      "name" : "UntagResource",
+      "http" : {
+        "method" : "DELETE",
+        "requestUri" : "/tags/{ResourceArn}",
+        "responseCode" : 204
+      },
+      "input" : {
+        "shape" : "UntagResourceRequest"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      } ]
     }
   },
   "shapes" : {
+    "BadRequestException" : {
+      "type" : "structure",
+      "exception" : true,
+      "error" : {
+        "httpStatusCode" : 400
+      }
+    },
     "CdnConfiguration" : {
       "type" : "structure",
       "members" : {
@@ -149,6 +201,9 @@
         "Name" : {
           "shape" : "__string"
         },
+        "PlaybackConfigurationArn" : {
+          "shape" : "__string"
+        },
         "PlaybackEndpointPrefix" : {
           "shape" : "__string"
         },
@@ -157,6 +212,10 @@
         },
         "SlateAdUrl" : {
           "shape" : "__string"
+        },
+        "Tags" : {
+          "shape" : "__mapOf__string",
+          "locationName" : "tags"
         },
         "TranscodeProfileName" : {
           "shape" : "__string"
@@ -175,10 +234,32 @@
         "CdnConfiguration" : {
           "shape" : "CdnConfiguration"
         },
+        "DashConfiguration" : {
+          "shape" : "DashConfiguration"
+        },
+        "HlsConfiguration" : {
+          "shape" : "HlsConfiguration"
+        },
         "Name" : {
           "shape" : "__string"
         },
+        "PlaybackConfigurationArn" : {
+          "shape" : "__string"
+        },
+        "PlaybackEndpointPrefix" : {
+          "shape" : "__string"
+        },
+        "SessionInitializationEndpointPrefix" : {
+          "shape" : "__string"
+        },
         "SlateAdUrl" : {
+          "shape" : "__string"
+        },
+        "Tags" : {
+          "shape" : "__mapOf__string",
+          "locationName" : "tags"
+        },
+        "TranscodeProfileName" : {
           "shape" : "__string"
         },
         "VideoContentSourceUrl" : {
@@ -212,6 +293,26 @@
         }
       }
     },
+    "ListTagsForResourceRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ResourceArn" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "ResourceArn"
+        }
+      },
+      "required" : [ "ResourceArn" ]
+    },
+    "ListTagsForResourceResponse" : {
+      "type" : "structure",
+      "members" : {
+        "Tags" : {
+          "shape" : "__mapOf__string",
+          "locationName" : "tags"
+        }
+      }
+    },
     "PutPlaybackConfigurationRequest" : {
       "type" : "structure",
       "members" : {
@@ -229,6 +330,10 @@
         },
         "SlateAdUrl" : {
           "shape" : "__string"
+        },
+        "Tags" : {
+          "shape" : "__mapOf__string",
+          "locationName" : "tags"
         },
         "TranscodeProfileName" : {
           "shape" : "__string"
@@ -256,6 +361,9 @@
         "Name" : {
           "shape" : "__string"
         },
+        "PlaybackConfigurationArn" : {
+          "shape" : "__string"
+        },
         "PlaybackEndpointPrefix" : {
           "shape" : "__string"
         },
@@ -265,6 +373,10 @@
         "SlateAdUrl" : {
           "shape" : "__string"
         },
+        "Tags" : {
+          "shape" : "__mapOf__string",
+          "locationName" : "tags"
+        },
         "TranscodeProfileName" : {
           "shape" : "__string"
         },
@@ -272,6 +384,47 @@
           "shape" : "__string"
         }
       }
+    },
+    "TagResourceRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ResourceArn" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "ResourceArn"
+        },
+        "Tags" : {
+          "shape" : "__mapOf__string",
+          "locationName" : "tags"
+        }
+      },
+      "required" : [ "ResourceArn", "Tags" ]
+    },
+    "TagsModel" : {
+      "type" : "structure",
+      "members" : {
+        "Tags" : {
+          "shape" : "__mapOf__string",
+          "locationName" : "tags"
+        }
+      },
+      "required" : [ "Tags" ]
+    },
+    "UntagResourceRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ResourceArn" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "ResourceArn"
+        },
+        "TagKeys" : {
+          "shape" : "__listOf__string",
+          "location" : "querystring",
+          "locationName" : "tagKeys"
+        }
+      },
+      "required" : [ "ResourceArn", "TagKeys" ]
     },
     "__boolean" : {
       "type" : "boolean"
@@ -288,8 +441,23 @@
         "shape" : "PlaybackConfiguration"
       }
     },
+    "__listOf__string" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "__string"
+      }
+    },
     "__long" : {
       "type" : "long"
+    },
+    "__mapOf__string" : {
+      "type" : "map",
+      "key" : {
+        "shape" : "__string"
+      },
+      "value" : {
+        "shape" : "__string"
+      }
     },
     "__string" : {
       "type" : "string"
