@@ -1231,7 +1231,8 @@
         "StatusMessage":{"shape":"StatusMessage"},
         "VideoMetadata":{"shape":"VideoMetadata"},
         "ModerationLabels":{"shape":"ContentModerationDetections"},
-        "NextToken":{"shape":"PaginationToken"}
+        "NextToken":{"shape":"PaginationToken"},
+        "ModerationModelVersion":{"shape":"String"}
       }
     },
     "GetFaceDetectionRequest":{

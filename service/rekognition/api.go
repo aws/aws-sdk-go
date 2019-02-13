@@ -2728,7 +2728,7 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 //    * A confidence value, Confidence, which indicates the confidence that
 //    the bounding box contains a face.
 //
-//    * A face ID, faceId, assigned by the service for each face that's detected
+//    * A face ID, FaceId, assigned by the service for each face that's detected
 //    and stored.
 //
 //    * An image ID, ImageId, assigned by the service for the input image.
@@ -4921,12 +4921,20 @@ type CompareFacesInput struct {
 	// CLI to call Amazon Rekognition operations, passing base64-encoded image bytes
 	// is not supported.
 	//
+	// If you are using an AWS SDK to call Amazon Rekognition, you might not need
+	// to base64-encode image bytes passed using the Bytes field. For more information,
+	// see Images in the Amazon Rekognition developer guide.
+	//
 	// SourceImage is a required field
 	SourceImage *Image `type:"structure" required:"true"`
 
 	// The target image as base64-encoded bytes or an S3 object. If you use the
 	// AWS CLI to call Amazon Rekognition operations, passing base64-encoded image
 	// bytes is not supported.
+	//
+	// If you are using an AWS SDK to call Amazon Rekognition, you might not need
+	// to base64-encode image bytes passed using the Bytes field. For more information,
+	// see Images in the Amazon Rekognition developer guide.
 	//
 	// TargetImage is a required field
 	TargetImage *Image `type:"structure" required:"true"`
@@ -5919,6 +5927,10 @@ type DetectFacesInput struct {
 	// CLI to call Amazon Rekognition operations, passing base64-encoded image bytes
 	// is not supported.
 	//
+	// If you are using an AWS SDK to call Amazon Rekognition, you might not need
+	// to base64-encode image bytes passed using the Bytes field. For more information,
+	// see Images in the Amazon Rekognition developer guide.
+	//
 	// Image is a required field
 	Image *Image `type:"structure" required:"true"`
 }
@@ -6011,8 +6023,12 @@ type DetectLabelsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The input image as base64-encoded bytes or an S3 object. If you use the AWS
-	// CLI to call Amazon Rekognition operations, passing base64-encoded image bytes
-	// is not supported.
+	// CLI to call Amazon Rekognition operations, passing image bytes is not supported.
+	// Images stored in an S3 Bucket do not need to be base64-encoded.
+	//
+	// If you are using an AWS SDK to call Amazon Rekognition, you might not need
+	// to base64-encode image bytes passed using the Bytes field. For more information,
+	// see Images in the Amazon Rekognition developer guide.
 	//
 	// Image is a required field
 	Image *Image `type:"structure" required:"true"`
@@ -6135,6 +6151,10 @@ type DetectModerationLabelsInput struct {
 	// CLI to call Amazon Rekognition operations, passing base64-encoded image bytes
 	// is not supported.
 	//
+	// If you are using an AWS SDK to call Amazon Rekognition, you might not need
+	// to base64-encode image bytes passed using the Bytes field. For more information,
+	// see Images in the Amazon Rekognition developer guide.
+	//
 	// Image is a required field
 	Image *Image `type:"structure" required:"true"`
 
@@ -6226,6 +6246,10 @@ type DetectTextInput struct {
 
 	// The input image as base64-encoded bytes or an Amazon S3 object. If you use
 	// the AWS CLI to call Amazon Rekognition operations, you can't pass image bytes.
+	//
+	// If you are using an AWS SDK to call Amazon Rekognition, you might not need
+	// to base64-encode image bytes passed using the Bytes field. For more information,
+	// see Images in the Amazon Rekognition developer guide.
 	//
 	// Image is a required field
 	Image *Image `type:"structure" required:"true"`
@@ -7156,6 +7180,10 @@ type GetContentModerationOutput struct {
 	// The detected moderation labels and the time(s) they were detected.
 	ModerationLabels []*ContentModerationDetection `type:"list"`
 
+	// Version number of the moderation detection model that was used to detect
+	// unsafe content.
+	ModerationModelVersion *string `type:"string"`
+
 	// If the response is truncated, Amazon Rekognition Video returns this token
 	// that you can use in the subsequent request to retrieve the next set of moderation
 	// labels.
@@ -7188,6 +7216,12 @@ func (s *GetContentModerationOutput) SetJobStatus(v string) *GetContentModeratio
 // SetModerationLabels sets the ModerationLabels field's value.
 func (s *GetContentModerationOutput) SetModerationLabels(v []*ContentModerationDetection) *GetContentModerationOutput {
 	s.ModerationLabels = v
+	return s
+}
+
+// SetModerationModelVersion sets the ModerationModelVersion field's value.
+func (s *GetContentModerationOutput) SetModerationModelVersion(v string) *GetContentModerationOutput {
+	s.ModerationModelVersion = &v
 	return s
 }
 
@@ -7920,6 +7954,10 @@ type IndexFacesInput struct {
 	// The input image as base64-encoded bytes or an S3 object. If you use the AWS
 	// CLI to call Amazon Rekognition operations, passing base64-encoded image bytes
 	// isn't supported.
+	//
+	// If you are using an AWS SDK to call Amazon Rekognition, you might not need
+	// to base64-encode image bytes passed using the Bytes field. For more information,
+	// see Images in the Amazon Rekognition developer guide.
 	//
 	// Image is a required field
 	Image *Image `type:"structure" required:"true"`
@@ -9016,6 +9054,10 @@ type RecognizeCelebritiesInput struct {
 	// CLI to call Amazon Rekognition operations, passing base64-encoded image bytes
 	// is not supported.
 	//
+	// If you are using an AWS SDK to call Amazon Rekognition, you might not need
+	// to base64-encode image bytes passed using the Bytes field. For more information,
+	// see Images in the Amazon Rekognition developer guide.
+	//
 	// Image is a required field
 	Image *Image `type:"structure" required:"true"`
 }
@@ -9190,6 +9232,10 @@ type SearchFacesByImageInput struct {
 	// The input image as base64-encoded bytes or an S3 object. If you use the AWS
 	// CLI to call Amazon Rekognition operations, passing base64-encoded image bytes
 	// is not supported.
+	//
+	// If you are using an AWS SDK to call Amazon Rekognition, you might not need
+	// to base64-encode image bytes passed using the Bytes field. For more information,
+	// see Images in the Amazon Rekognition developer guide.
 	//
 	// Image is a required field
 	Image *Image `type:"structure" required:"true"`
