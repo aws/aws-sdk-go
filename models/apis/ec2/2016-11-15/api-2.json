@@ -4950,6 +4950,10 @@
           "shape":"String",
           "locationName":"clientCidrBlock"
         },
+        "DnsServers":{
+          "shape":"ValueStringList",
+          "locationName":"dnsServer"
+        },
         "SplitTunnel":{
           "shape":"Boolean",
           "locationName":"splitTunnel"
@@ -4964,6 +4968,8 @@
         },
         "AssociatedTargetNetworks":{
           "shape":"AssociatedTargetNetworkSet",
+          "deprecated":true,
+          "deprecatedMessage":"This property is deprecated. To view the target networks associated with a Client VPN endpoint, call DescribeClientVpnTargetNetworks and inspect the clientVpnTargetNetworks response element.",
           "locationName":"associatedTargetNetwork"
         },
         "ServerCertificateArn":{
@@ -4977,6 +4983,10 @@
         "ConnectionLogOptions":{
           "shape":"ConnectionLogResponseOptions",
           "locationName":"connectionLogOptions"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },
@@ -5396,6 +5406,10 @@
         "ClientToken":{
           "shape":"String",
           "idempotencyToken":true
+        },
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
         }
       }
     },
@@ -14311,6 +14325,7 @@
         "m5.4xlarge",
         "m5.12xlarge",
         "m5.24xlarge",
+        "m5.metal",
         "m5a.large",
         "m5a.xlarge",
         "m5a.2xlarge",
@@ -14323,6 +14338,7 @@
         "m5d.4xlarge",
         "m5d.12xlarge",
         "m5d.24xlarge",
+        "m5d.metal",
         "h1.2xlarge",
         "h1.4xlarge",
         "h1.8xlarge",
@@ -14333,6 +14349,7 @@
         "z1d.3xlarge",
         "z1d.6xlarge",
         "z1d.12xlarge",
+        "z1d.metal",
         "u-6tb1.metal",
         "u-9tb1.metal",
         "u-12tb1.metal",
@@ -18782,6 +18799,7 @@
     "ResourceType":{
       "type":"string",
       "enum":[
+        "client-vpn-endpoint",
         "customer-gateway",
         "dedicated-host",
         "dhcp-options",
