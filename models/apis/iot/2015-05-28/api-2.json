@@ -3878,7 +3878,8 @@
           "shape":"ScheduledAuditName",
           "location":"uri",
           "locationName":"scheduledAuditName"
-        }
+        },
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateScheduledAuditResponse":{

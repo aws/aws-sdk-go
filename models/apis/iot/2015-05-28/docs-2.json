@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<fullname>AWS IoT</fullname> <p>AWS IoT provides secure, bi-directional communication between Internet-connected devices (such as sensors, actuators, embedded devices, or smart appliances) and the AWS cloud. You can discover your custom IoT-Data endpoint to communicate with, configure rules for data processing and integration with other services, organize resources associated with each device (Registry), configure logging, and create and manage policies and credentials to authenticate devices.</p> <p>For more information about how AWS IoT works, see the <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/aws-iot-how-it-works.html\">Developer Guide</a>.</p> <p>For information about how to use the credentials provider for AWS IoT, see <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/authorizing-direct-aws.html\">Authorizing Direct Calls to AWS Services</a>.</p>",
+  "service": "<fullname>AWS IoT</fullname> <p>AWS IoT provides secure, bi-directional communication between Internet-connected devices (such as sensors, actuators, embedded devices, or smart appliances) and the AWS cloud. You can discover your custom IoT-Data endpoint to communicate with, configure rules for data processing and integration with other services, organize resources associated with each device (Registry), configure logging, and create and manage policies and credentials to authenticate devices.</p> <p>For more information about how AWS IoT works, see the <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/aws-iot-how-it-works.html\">Developer Guide</a>.</p> <p>For information about how to use the credentials provider for AWS IoT, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/authorizing-direct-aws.html\">Authorizing Direct Calls to AWS Services</a>.</p>",
   "operations": {
     "AcceptCertificateTransfer": "<p>Accepts a pending certificate transfer. The default state of the certificate is INACTIVE.</p> <p>To check for pending certificate transfers, call <a>ListCertificates</a> to enumerate your certificates.</p>",
     "AddThingToBillingGroup": "<p>Adds a thing to a billing group.</p>",
@@ -28,8 +28,8 @@
     "CreateScheduledAudit": "<p>Creates a scheduled audit that is run at a specified time interval.</p>",
     "CreateSecurityProfile": "<p>Creates a Device Defender security profile.</p>",
     "CreateStream": "<p>Creates a stream for delivering one or more large files in chunks over MQTT. A stream transports data bytes in chunks or blocks packaged as MQTT messages from a source like S3. You can have one or more files associated with a stream. The total size of a file associated with the stream cannot exceed more than 2 MB. The stream will be created with version 0. If a stream is created with the same streamID as a stream that existed and was deleted within last 90 days, we will resurrect that old stream by incrementing the version by 1.</p>",
-    "CreateThing": "<p>Creates a thing record in the registry.</p> <note> <p>This is a control plane operation. See <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note>",
-    "CreateThingGroup": "<p>Create a thing group.</p> <note> <p>This is a control plane operation. See <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note>",
+    "CreateThing": "<p>Creates a thing record in the registry.</p> <note> <p>This is a control plane operation. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note>",
+    "CreateThingGroup": "<p>Create a thing group.</p> <note> <p>This is a control plane operation. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note>",
     "CreateThingType": "<p>Creates a new thing type.</p>",
     "CreateTopicRule": "<p>Creates a rule. Creating rules is an administrator-level action. Any user who has permission to create rules will be able to access data processed by the rule.</p>",
     "DeleteAccountAuditConfiguration": "<p>Restores the default settings for Device Defender audits for this account. Any configuration data you entered is deleted and all audit checks are reset to disabled. </p>",
@@ -108,7 +108,7 @@
     "ListPolicies": "<p>Lists your policies.</p>",
     "ListPolicyPrincipals": "<p>Lists the principals associated with the specified policy.</p> <p> <b>Note:</b> This API is deprecated. Please use <a>ListTargetsForPolicy</a> instead.</p>",
     "ListPolicyVersions": "<p>Lists the versions of the specified policy and identifies the default version.</p>",
-    "ListPrincipalPolicies": "<p>Lists the policies attached to the specified principal. If you use an Cognito identity, the ID must be in <a href=\"http://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetCredentialsForIdentity.html#API_GetCredentialsForIdentity_RequestSyntax\">AmazonCognito Identity format</a>.</p> <p> <b>Note:</b> This API is deprecated. Please use <a>ListAttachedPolicies</a> instead.</p>",
+    "ListPrincipalPolicies": "<p>Lists the policies attached to the specified principal. If you use an Cognito identity, the ID must be in <a href=\"https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetCredentialsForIdentity.html#API_GetCredentialsForIdentity_RequestSyntax\">AmazonCognito Identity format</a>.</p> <p> <b>Note:</b> This API is deprecated. Please use <a>ListAttachedPolicies</a> instead.</p>",
     "ListPrincipalThings": "<p>Lists the things associated with the specified principal.</p>",
     "ListRoleAliases": "<p>Lists the role aliases registered in your account.</p>",
     "ListScheduledAudits": "<p>Lists all of your scheduled audits.</p>",
@@ -889,7 +889,7 @@
     "CannedAccessControlList": {
       "base": null,
       "refs": {
-        "S3Action$cannedAcl": "<p>The Amazon S3 canned ACL that controls access to the object identified by the object key. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl\">S3 canned ACLs</a>.</p>"
+        "S3Action$cannedAcl": "<p>The Amazon S3 canned ACL that controls access to the object identified by the object key. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl\">S3 canned ACLs</a>.</p>"
       }
     },
     "Certificate": {
@@ -1115,7 +1115,7 @@
     "ComparisonOperator": {
       "base": null,
       "refs": {
-        "BehaviorCriteria$comparisonOperator": "<p>The operator that relates the thing measured (<code>metric</code>) to the criteria (<code>value</code>).</p>"
+        "BehaviorCriteria$comparisonOperator": "<p>The operator that relates the thing measured (<code>metric</code>) to the criteria (containing a <code>value</code>.</p>"
       }
     },
     "CompliantChecksCount": {
@@ -1368,18 +1368,18 @@
         "GetPolicyResponse$lastModifiedDate": "<p>The date the policy was last modified.</p>",
         "GetPolicyVersionResponse$creationDate": "<p>The date the policy version was created.</p>",
         "GetPolicyVersionResponse$lastModifiedDate": "<p>The date the policy version was last modified.</p>",
-        "Job$createdAt": "<p>The time, in milliseconds since the epoch, when the job was created.</p>",
-        "Job$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the job was last updated.</p>",
-        "Job$completedAt": "<p>The time, in milliseconds since the epoch, when the job was completed.</p>",
-        "JobExecution$queuedAt": "<p>The time, in milliseconds since the epoch, when the job execution was queued.</p>",
-        "JobExecution$startedAt": "<p>The time, in milliseconds since the epoch, when the job execution started.</p>",
-        "JobExecution$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the job execution was last updated.</p>",
-        "JobExecutionSummary$queuedAt": "<p>The time, in milliseconds since the epoch, when the job execution was queued.</p>",
-        "JobExecutionSummary$startedAt": "<p>The time, in milliseconds since the epoch, when the job execution started.</p>",
-        "JobExecutionSummary$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the job execution was last updated.</p>",
-        "JobSummary$createdAt": "<p>The time, in milliseconds since the epoch, when the job was created.</p>",
-        "JobSummary$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the job was last updated.</p>",
-        "JobSummary$completedAt": "<p>The time, in milliseconds since the epoch, when the job completed.</p>",
+        "Job$createdAt": "<p>The time, in seconds since the epoch, when the job was created.</p>",
+        "Job$lastUpdatedAt": "<p>The time, in seconds since the epoch, when the job was last updated.</p>",
+        "Job$completedAt": "<p>The time, in seconds since the epoch, when the job was completed.</p>",
+        "JobExecution$queuedAt": "<p>The time, in seconds since the epoch, when the job execution was queued.</p>",
+        "JobExecution$startedAt": "<p>The time, in seconds since the epoch, when the job execution started.</p>",
+        "JobExecution$lastUpdatedAt": "<p>The time, in seconds since the epoch, when the job execution was last updated.</p>",
+        "JobExecutionSummary$queuedAt": "<p>The time, in seconds since the epoch, when the job execution was queued.</p>",
+        "JobExecutionSummary$startedAt": "<p>The time, in seconds since the epoch, when the job execution started.</p>",
+        "JobExecutionSummary$lastUpdatedAt": "<p>The time, in seconds since the epoch, when the job execution was last updated.</p>",
+        "JobSummary$createdAt": "<p>The time, in seconds since the epoch, when the job was created.</p>",
+        "JobSummary$lastUpdatedAt": "<p>The time, in seconds since the epoch, when the job was last updated.</p>",
+        "JobSummary$completedAt": "<p>The time, in seconds since the epoch, when the job completed.</p>",
         "OTAUpdateInfo$creationDate": "<p>The date when the OTA update was created.</p>",
         "OTAUpdateInfo$lastModifiedDate": "<p>The date when the OTA update was last updated.</p>",
         "OTAUpdateSummary$creationDate": "<p>The date when the OTA update was created.</p>",
@@ -1910,7 +1910,7 @@
     "DurationSeconds": {
       "base": null,
       "refs": {
-        "BehaviorCriteria$durationSeconds": "<p>Use this to specify the period of time over which the behavior is evaluated, for those criteria which have a time dimension (for example, <code>NUM_MESSAGES_SENT</code>).</p>"
+        "BehaviorCriteria$durationSeconds": "<p>Use this to specify the time duration over which the behavior is evaluated, for those criteria which have a time dimension (for example, <code>NUM_MESSAGES_SENT</code>). </p>"
       }
     },
     "DynamicGroupStatus": {
@@ -3198,7 +3198,7 @@
     "MessageFormat": {
       "base": null,
       "refs": {
-        "SnsAction$messageFormat": "<p>(Optional) The message format of the message to publish. Accepted values are \"JSON\" and \"RAW\". The default value of the attribute is \"RAW\". SNS uses this setting to determine if the payload should be parsed and relevant platform-specific bits of the payload should be extracted. To read more about SNS message formats, see <a href=\"http://docs.aws.amazon.com/sns/latest/dg/json-formats.html\">http://docs.aws.amazon.com/sns/latest/dg/json-formats.html</a> refer to their official documentation.</p>"
+        "SnsAction$messageFormat": "<p>(Optional) The message format of the message to publish. Accepted values are \"JSON\" and \"RAW\". The default value of the attribute is \"RAW\". SNS uses this setting to determine if the payload should be parsed and relevant platform-specific bits of the payload should be extracted. To read more about SNS message formats, see <a href=\"https://docs.aws.amazon.com/sns/latest/dg/json-formats.html\">https://docs.aws.amazon.com/sns/latest/dg/json-formats.html</a> refer to their official documentation.</p>"
       }
     },
     "MessageId": {
@@ -3460,7 +3460,7 @@
     "Parameters": {
       "base": null,
       "refs": {
-        "RegisterThingRequest$parameters": "<p>The parameters for provisioning a thing. See <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html\">Programmatic Provisioning</a> for more information.</p>"
+        "RegisterThingRequest$parameters": "<p>The parameters for provisioning a thing. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html\">Programmatic Provisioning</a> for more information.</p>"
       }
     },
     "PartitionKey": {
@@ -3720,7 +3720,7 @@
     "QueryString": {
       "base": null,
       "refs": {
-        "CreateDynamicThingGroupRequest$queryString": "<p>The dynamic thing group search query string.</p> <p>See <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html\">Query Syntax</a> for information about query string syntax.</p>",
+        "CreateDynamicThingGroupRequest$queryString": "<p>The dynamic thing group search query string.</p> <p>See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html\">Query Syntax</a> for information about query string syntax.</p>",
         "CreateDynamicThingGroupResponse$queryString": "<p>The dynamic thing group search query string.</p>",
         "DescribeThingGroupResponse$queryString": "<p>The dynamic thing group search query string.</p>",
         "SearchIndexRequest$queryString": "<p>The search query string.</p>",
@@ -4153,7 +4153,7 @@
       "base": null,
       "refs": {
         "TopicRule$sql": "<p>The SQL statement used to query the topic. When using a SQL query with multiple lines, be sure to escape the newline characters.</p>",
-        "TopicRulePayload$sql": "<p>The SQL statement used to query the topic. For more information, see <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/iot-rules.html#aws-iot-sql-reference\">AWS IoT SQL Reference</a> in the <i>AWS IoT Developer Guide</i>.</p>"
+        "TopicRulePayload$sql": "<p>The SQL statement used to query the topic. For more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/iot-rules.html#aws-iot-sql-reference\">AWS IoT SQL Reference</a> in the <i>AWS IoT Developer Guide</i>.</p>"
       }
     },
     "SalesforceAction": {
@@ -4584,8 +4584,8 @@
         "CloudwatchMetricAction$metricNamespace": "<p>The CloudWatch metric namespace name.</p>",
         "CloudwatchMetricAction$metricName": "<p>The CloudWatch metric name.</p>",
         "CloudwatchMetricAction$metricValue": "<p>The CloudWatch metric value.</p>",
-        "CloudwatchMetricAction$metricUnit": "<p>The <a href=\"http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit\">metric unit</a> supported by CloudWatch.</p>",
-        "CloudwatchMetricAction$metricTimestamp": "<p>An optional <a href=\"http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp\">Unix timestamp</a>.</p>",
+        "CloudwatchMetricAction$metricUnit": "<p>The <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit\">metric unit</a> supported by CloudWatch.</p>",
+        "CloudwatchMetricAction$metricTimestamp": "<p>An optional <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp\">Unix timestamp</a>.</p>",
         "CreateTopicRuleRequest$tags": "<p>Metadata which can be used to manage the topic rule.</p> <note> <p>For URI Request parameters use format: ...key1=value1&amp;key2=value2...</p> <p>For the CLI command-line parameter use format: --tags \"key1=value1&amp;key2=value2...\"</p> <p>For the cli-input-json file use format: \"tags\": \"key1=value1&amp;key2=value2...\"</p> </note>",
         "StringMap$key": null,
         "StringMap$value": null
@@ -4636,6 +4636,7 @@
         "CreateBillingGroupRequest$tags": "<p>Metadata which can be used to manage the billing group.</p>",
         "CreateDynamicThingGroupRequest$tags": "<p>Metadata which can be used to manage the dynamic thing group.</p>",
         "CreateJobRequest$tags": "<p>Metadata which can be used to manage the job.</p>",
+        "CreateScheduledAuditRequest$tags": "<p>Metadata which can be used to manage the scheduled audit.</p>",
         "CreateSecurityProfileRequest$tags": "<p>Metadata which can be used to manage the security profile.</p>",
         "CreateThingGroupRequest$tags": "<p>Metadata which can be used to manage the thing group.</p>",
         "CreateThingTypeRequest$tags": "<p>Metadata which can be used to manage the thing type.</p>",
@@ -4726,7 +4727,7 @@
       "base": null,
       "refs": {
         "DescribeThingRegistrationTaskResponse$templateBody": "<p>The task's template.</p>",
-        "RegisterThingRequest$templateBody": "<p>The provisioning template. See <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html\">Programmatic Provisioning</a> for more information.</p>",
+        "RegisterThingRequest$templateBody": "<p>The provisioning template. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html\">Programmatic Provisioning</a> for more information.</p>",
         "RegistrationConfig$templateBody": "<p>The template body.</p>",
         "StartThingRegistrationTaskRequest$templateBody": "<p>The provisioning template.</p>"
       }

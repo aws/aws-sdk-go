@@ -59,7 +59,7 @@ func (c *Chime) BatchSuspendUserRequest(input *BatchSuspendUserInput) (req *requ
 //
 // Suspends up to 50 users from a Team or EnterpriseLWA Amazon Chime account.
 // For more information about different account types, see Managing Your Amazon
-// Chime Accounts (http://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html)
+// Chime Accounts (https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html)
 // in the Amazon Chime Administration Guide.
 //
 // Users suspended from a Team account are dissociated from the account, but
@@ -172,7 +172,7 @@ func (c *Chime) BatchUnsuspendUserRequest(input *BatchUnsuspendUserInput) (req *
 // Removes the suspension from up to 50 previously suspended users for the specified
 // Amazon Chime EnterpriseLWA account. Only users on EnterpriseLWA accounts
 // can be unsuspended using this action. For more information about different
-// account types, see Managing Your Amazon Chime Accounts (http://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html)
+// account types, see Managing Your Amazon Chime Accounts (https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html)
 // in the Amazon Chime Administration Guide.
 //
 // Previously suspended users who are unsuspended using this action are returned
@@ -376,7 +376,7 @@ func (c *Chime) CreateAccountRequest(input *CreateAccountInput) (req *request.Re
 //
 // Creates an Amazon Chime account under the administrator's AWS account. Only
 // Team account types are currently supported for this action. For more information
-// about different account types, see Managing Your Amazon Chime Accounts (http://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html)
+// about different account types, see Managing Your Amazon Chime Accounts (https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html)
 // in the Amazon Chime Administration Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -691,7 +691,7 @@ func (c *Chime) GetAccountSettingsRequest(input *GetAccountSettingsInput) (req *
 //
 // Retrieves account settings for the specified Amazon Chime account ID, such
 // as remote control and dial out settings. For more information about these
-// settings, see Use the Policies Page (http://docs.aws.amazon.com/chime/latest/ag/policies.html)
+// settings, see Use the Policies Page (https://docs.aws.amazon.com/chime/latest/ag/policies.html)
 // in the Amazon Chime Administration Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1606,7 +1606,7 @@ func (c *Chime) UpdateAccountSettingsRequest(input *UpdateAccountSettingsInput) 
 //
 // Updates the settings for the specified Amazon Chime account. You can update
 // settings for remote control of shared screens, or for the dial-out option.
-// For more information about these settings, see Use the Policies Page (http://docs.aws.amazon.com/chime/latest/ag/policies.html)
+// For more information about these settings, see Use the Policies Page (https://docs.aws.amazon.com/chime/latest/ag/policies.html)
 // in the Amazon Chime Administration Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1775,7 +1775,7 @@ type Account struct {
 	AccountId *string `type:"string" required:"true"`
 
 	// The Amazon Chime account type. For more information about different account
-	// types, see Managing Your Amazon Chime Accounts (http://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html)
+	// types, see Managing Your Amazon Chime Accounts (https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html)
 	// in the Amazon Chime Administration Guide.
 	AccountType *string `type:"string" enum:"AccountType"`
 
@@ -1854,7 +1854,7 @@ func (s *Account) SetSupportedLicenses(v []*string) *Account {
 // Settings related to the Amazon Chime account. This includes settings that
 // start or stop remote control of shared screens, or start or stop the dial-out
 // option in the Amazon Chime web application. For more information about these
-// settings, see Use the Policies Page (http://docs.aws.amazon.com/chime/latest/ag/policies.html)
+// settings, see Use the Policies Page (https://docs.aws.amazon.com/chime/latest/ag/policies.html)
 // in the Amazon Chime Administration Guide.
 type AccountSettings struct {
 	_ struct{} `type:"structure"`
@@ -1864,7 +1864,7 @@ type AccountSettings struct {
 
 	// Setting that allows meeting participants to choose the Call me at a phone
 	// number option. For more information, see Join a Meeting without the Amazon
-	// Chime App (http://docs.aws.amazon.com/chime/latest/ug/chime-join-meeting.html).
+	// Chime App (https://docs.aws.amazon.com/chime/latest/ug/chime-join-meeting.html).
 	EnableDialOut *bool `type:"boolean"`
 }
 
