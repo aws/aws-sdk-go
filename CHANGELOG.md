@@ -1,3 +1,14 @@
+Release v1.16.36 (2019-02-15)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API and documentation
+* `service/chime`: Updates service documentation
+  * Documentation updates for Amazon Chime
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/iot`: Updates service API and documentation
+  * In this release, IoT Device Defender introduces support for tagging Scheduled Audit resources.
+
 Release v1.16.35 (2019-02-14)
 ===
 

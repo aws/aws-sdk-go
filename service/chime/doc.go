@@ -21,14 +21,14 @@
 //
 // Using the AWS CLIUse your access keys with the AWS CLI to make API calls.
 // For information about setting up the AWS CLI, see Installing the AWS Command
-// Line Interface (http://docs.aws.amazon.com/cli/latest/userguide/installing.html)
+// Line Interface (https://docs.aws.amazon.com/cli/latest/userguide/installing.html)
 // in the AWS Command Line Interface User Guide. For a list of available Amazon
-// Chime commands, see the Amazon Chime commands (http://docs.aws.amazon.com/cli/latest/reference/chime/index.html)
+// Chime commands, see the Amazon Chime commands (https://docs.aws.amazon.com/cli/latest/reference/chime/index.html)
 // in the AWS CLI Command Reference.
 //
 // Using REST APIIf you use REST to make API calls, you must authenticate your
 // request by providing a signature. Amazon Chime supports signature version
-// 4. For more information, see Signature Version 4 Signing Process (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html)
+// 4. For more information, see Signature Version 4 Signing Process (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html)
 // in the Amazon Web Services General Reference.
 //
 // When making REST API calls, use the service name chime and REST endpoint
@@ -36,8 +36,8 @@
 //
 // Administrative permissions are controlled using AWS Identity and Access Management
 // (IAM). For more information, see Control Access to the Amazon Chime Console
-// (http://docs.aws.amazon.com/chime/latest/ag/control-access.html) in the Amazon
-// Chime Administration Guide.
+// (https://docs.aws.amazon.com/chime/latest/ag/control-access.html) in the
+// Amazon Chime Administration Guide.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01 for more information on this service.
 //
