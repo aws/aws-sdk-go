@@ -25,7 +25,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/defaults"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/aws/signer/v4"
+	v4 "github.com/aws/aws-sdk-go/aws/signer/v4"
 	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
@@ -288,7 +288,7 @@ func TestMakeAddtoUserAgentHandler(t *testing.T) {
 	r.HTTPRequest.Header.Set("User-Agent", "foo/bar")
 	fn(r)
 
-	if e, a := "foo/bar name/version (extra1; extra2)", r.HTTPRequest.Header.Get("User-Agent"); e != a {
+	if e, a := "foo/bar name/version (extra1; extra2)", r.HTTPRequest.Header.Get("User-Agent"); !strings.HasPrefix(a, e) {
 		t.Errorf("expect %q user agent, got %q", e, a)
 	}
 }
@@ -299,14 +299,13 @@ func TestMakeAddtoUserAgentFreeFormHandler(t *testing.T) {
 	r.HTTPRequest.Header.Set("User-Agent", "foo/bar")
 	fn(r)
 
-	if e, a := "foo/bar name/version (extra1; extra2)", r.HTTPRequest.Header.Get("User-Agent"); e != a {
+	if e, a := "foo/bar name/version (extra1; extra2)", r.HTTPRequest.Header.Get("User-Agent"); !strings.HasPrefix(a, e) {
 		t.Errorf("expect %q user agent, got %q", e, a)
 	}
 }
 
 func TestRequestUserAgent(t *testing.T) {
 	s := awstesting.NewClient(&aws.Config{Region: aws.String("us-east-1")})
-	//	s.Handlers.Validate.Clear()
 
 	req := s.NewRequest(&request.Operation{Name: "Operation"}, nil, &testData{})
 	req.HTTPRequest.Header.Set("User-Agent", "foo/bar")
@@ -316,7 +315,7 @@ func TestRequestUserAgent(t *testing.T) {
 
 	expectUA := fmt.Sprintf("foo/bar %s/%s (%s; %s; %s)",
 		aws.SDKName, aws.SDKVersion, runtime.Version(), runtime.GOOS, runtime.GOARCH)
-	if e, a := expectUA, req.HTTPRequest.Header.Get("User-Agent"); e != a {
+	if e, a := expectUA, req.HTTPRequest.Header.Get("User-Agent"); !strings.HasPrefix(a, e) {
 		t.Errorf("expect %q user agent, got %q", e, a)
 	}
 }
