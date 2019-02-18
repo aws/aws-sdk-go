@@ -1515,7 +1515,7 @@
           "FooEnum": "foo",
           "QueryFooEnum": "bar",
           "ListEnums": ["foo", "", "bar"],
-          "QueryListEnums": ["0", "", "1"]
+          "QueryListEnums": ["0", "1", ""]
         },
         "serialized": {
           "uri": "/path?Enum=bar&List=0&List=1&List=",
@@ -1603,7 +1603,7 @@
             "shape": "MemberRefInputShape"
           },
           "http": {
-            "method": "GET",
+            "method": "POST",
             "requestUri": "/path"
           },
           "endpoint":{

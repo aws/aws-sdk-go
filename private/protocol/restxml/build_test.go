@@ -5688,7 +5688,7 @@ const opInputService26TestCaseOperation2 = "MemberRefOp"
 func (c *InputService26ProtocolTest) InputService26TestCaseOperation2Request(input *InputService26TestShapeInputService26TestCaseOperation2Input) (req *request.Request, output *InputService26TestShapeInputService26TestCaseOperation2Output) {
 	op := &request.Operation{
 		Name:       opInputService26TestCaseOperation2,
-		HTTPMethod: "GET",
+		HTTPMethod: "POST",
 		HTTPPath:   "/path",
 	}
 
@@ -6222,13 +6222,13 @@ func TestInputService11ProtocolTestTimestampShapesCase1(t *testing.T) {
 
 	// assert headers
 	if e, a := "Sun, 25 Jan 2015 08:00:00 GMT", r.Header.Get("x-amz-timearg"); e != a {
-		t.Errorf("expect %v to be %v", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 	if e, a := "1422172800", r.Header.Get("x-amz-timecustom-header"); e != a {
-		t.Errorf("expect %v to be %v", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 	if e, a := "1422172800", r.Header.Get("x-amz-timeformat-header"); e != a {
-		t.Errorf("expect %v to be %v", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 
 }
@@ -6255,10 +6255,10 @@ func TestInputService12ProtocolTestHeaderMapsCase1(t *testing.T) {
 
 	// assert headers
 	if e, a := "b", r.Header.Get("x-foo-a"); e != a {
-		t.Errorf("expect %v to be %v", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 	if e, a := "d", r.Header.Get("x-foo-c"); e != a {
-		t.Errorf("expect %v to be %v", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 
 }
@@ -6958,7 +6958,7 @@ func TestInputService25ProtocolTestEnumCase1(t *testing.T) {
 
 	// assert headers
 	if e, a := "baz", r.Header.Get("x-amz-enum"); e != a {
-		t.Errorf("expect %v to be %v", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 
 }

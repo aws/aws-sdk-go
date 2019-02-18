@@ -5089,7 +5089,7 @@ const opInputService23TestCaseOperation2 = "MemberRefOp"
 func (c *InputService23ProtocolTest) InputService23TestCaseOperation2Request(input *InputService23TestShapeInputService23TestCaseOperation2Input) (req *request.Request, output *InputService23TestShapeInputService23TestCaseOperation2Output) {
 	op := &request.Operation{
 		Name:       opInputService23TestCaseOperation2,
-		HTTPMethod: "GET",
+		HTTPMethod: "POST",
 		HTTPPath:   "/path",
 	}
 
@@ -5465,7 +5465,7 @@ func TestInputService10ProtocolTestURIParameterQuerystringParamsHeadersAndJSONBo
 
 	// assert headers
 	if e, a := "12345", r.Header.Get("x-amz-checksum"); e != a {
-		t.Errorf("expect %v to be %v", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 
 }
@@ -5500,7 +5500,7 @@ func TestInputService11ProtocolTestStreamingPayloadCase1(t *testing.T) {
 
 	// assert headers
 	if e, a := "foo", r.Header.Get("x-amz-sha256-tree-hash"); e != a {
-		t.Errorf("expect %v to be %v", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 
 }
@@ -5917,13 +5917,13 @@ func TestInputService17ProtocolTestTimestampValuesCase1(t *testing.T) {
 
 	// assert headers
 	if e, a := "Sun, 25 Jan 2015 08:00:00 GMT", r.Header.Get("x-amz-timearg"); e != a {
-		t.Errorf("expect %v to be %v", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 	if e, a := "1422172800", r.Header.Get("x-amz-timecustom-header"); e != a {
-		t.Errorf("expect %v to be %v", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 	if e, a := "1422172800", r.Header.Get("x-amz-timeformat-header"); e != a {
-		t.Errorf("expect %v to be %v", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 
 }
@@ -6076,7 +6076,7 @@ func TestInputService21ProtocolTestJSONValueTraitCase1(t *testing.T) {
 
 	// assert headers
 	if e, a := "eyJGb28iOiJCYXIifQ==", r.Header.Get("X-Amz-Foo"); e != a {
-		t.Errorf("expect %v to be %v", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 
 }
@@ -6151,8 +6151,8 @@ func TestInputService22ProtocolTestEnumCase1(t *testing.T) {
 		QueryFooEnum: aws.String("bar"),
 		QueryListEnums: []*string{
 			aws.String("0"),
-			aws.String(""),
 			aws.String("1"),
+			aws.String(""),
 		},
 	}
 	req, _ := svc.InputService22TestCaseOperation1Request(input)
@@ -6176,7 +6176,7 @@ func TestInputService22ProtocolTestEnumCase1(t *testing.T) {
 
 	// assert headers
 	if e, a := "baz", r.Header.Get("x-amz-enum"); e != a {
-		t.Errorf("expect %v to be %v", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 
 }

@@ -1903,7 +1903,7 @@
             "locationName": "MemberRefOpRequest"
           },
           "http": {
-            "method": "GET",
+            "method": "POST",
             "requestUri": "/path"
           },
           "endpoint":{
