@@ -1547,6 +1547,9 @@
       "base": null,
       "refs": {
         "AddTagsToResourceRequest$Tags": "<p>The tags to be assigned to the directory.</p>",
+        "ConnectDirectoryRequest$Tags": "<p>The tags to be assigned to AD Connector.</p>",
+        "CreateDirectoryRequest$Tags": "<p>The tags to be assigned to the Simple AD directory.</p>",
+        "CreateMicrosoftADRequest$Tags": "<p>The tags to be assigned to the AWS Managed Microsoft AD directory.</p>",
         "ListTagsForResourceResult$Tags": "<p>List of tags returned by the ListTagsForResource operation.</p>"
       }
     },

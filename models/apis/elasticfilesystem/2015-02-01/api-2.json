@@ -262,7 +262,8 @@
         "Encrypted":{"shape":"Encrypted"},
         "KmsKeyId":{"shape":"KmsKeyId"},
         "ThroughputMode":{"shape":"ThroughputMode"},
-        "ProvisionedThroughputInMibps":{"shape":"ProvisionedThroughputInMibps"}
+        "ProvisionedThroughputInMibps":{"shape":"ProvisionedThroughputInMibps"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "CreateMountTargetRequest":{
@@ -500,7 +501,8 @@
         "LifeCycleState",
         "NumberOfMountTargets",
         "SizeInBytes",
-        "PerformanceMode"
+        "PerformanceMode",
+        "Tags"
       ],
       "members":{
         "OwnerId":{"shape":"AwsAccountId"},
@@ -515,7 +517,8 @@
         "Encrypted":{"shape":"Encrypted"},
         "KmsKeyId":{"shape":"KmsKeyId"},
         "ThroughputMode":{"shape":"ThroughputMode"},
-        "ProvisionedThroughputInMibps":{"shape":"ProvisionedThroughputInMibps"}
+        "ProvisionedThroughputInMibps":{"shape":"ProvisionedThroughputInMibps"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "FileSystemDescriptions":{

@@ -991,7 +991,8 @@
         "Password":{"shape":"ConnectPassword"},
         "Description":{"shape":"Description"},
         "Size":{"shape":"DirectorySize"},
-        "ConnectSettings":{"shape":"DirectoryConnectSettings"}
+        "ConnectSettings":{"shape":"DirectoryConnectSettings"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "ConnectDirectoryResult":{
@@ -1077,7 +1078,8 @@
         "Password":{"shape":"Password"},
         "Description":{"shape":"Description"},
         "Size":{"shape":"DirectorySize"},
-        "VpcSettings":{"shape":"DirectoryVpcSettings"}
+        "VpcSettings":{"shape":"DirectoryVpcSettings"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "CreateDirectoryResult":{
@@ -1115,7 +1117,8 @@
         "Password":{"shape":"Password"},
         "Description":{"shape":"Description"},
         "VpcSettings":{"shape":"DirectoryVpcSettings"},
-        "Edition":{"shape":"DirectoryEdition"}
+        "Edition":{"shape":"DirectoryEdition"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "CreateMicrosoftADResult":{

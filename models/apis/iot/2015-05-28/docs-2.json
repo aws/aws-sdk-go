@@ -9,7 +9,7 @@
     "AttachPolicy": "<p>Attaches a policy to the specified target.</p>",
     "AttachPrincipalPolicy": "<p>Attaches the specified policy to the specified principal (certificate or other credential).</p> <p> <b>Note:</b> This API is deprecated. Please use <a>AttachPolicy</a> instead.</p>",
     "AttachSecurityProfile": "<p>Associates a Device Defender security profile with a thing group or with this account. Each thing group or account can have up to five security profiles associated with it.</p>",
-    "AttachThingPrincipal": "<p>Attaches the specified principal to the specified thing.</p>",
+    "AttachThingPrincipal": "<p>Attaches the specified principal to the specified thing. A principal can be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities or federated identities.</p>",
     "CancelAuditTask": "<p>Cancels an audit that is in progress. The audit can be either scheduled or on-demand. If the audit is not in progress, an \"InvalidRequestException\" occurs.</p>",
     "CancelCertificateTransfer": "<p>Cancels a pending transfer for the specified certificate.</p> <p> <b>Note</b> Only the transfer source account can use this operation to cancel a transfer. (Transfer destinations can use <a>RejectCertificateTransfer</a> instead.) After transfer, AWS IoT returns the certificate to the source account in the INACTIVE state. After the destination account has accepted the transfer, the transfer cannot be cancelled.</p> <p>After a certificate transfer is cancelled, the status of the certificate changes from PENDING_TRANSFER to INACTIVE.</p>",
     "CancelJob": "<p>Cancels a job.</p>",
@@ -77,7 +77,7 @@
     "DetachPolicy": "<p>Detaches a policy from the specified target.</p>",
     "DetachPrincipalPolicy": "<p>Removes the specified policy from the specified certificate.</p> <p> <b>Note:</b> This API is deprecated. Please use <a>DetachPolicy</a> instead.</p>",
     "DetachSecurityProfile": "<p>Disassociates a Device Defender security profile from a thing group or from this account.</p>",
-    "DetachThingPrincipal": "<p>Detaches the specified principal from the specified thing.</p> <note> <p>This call is asynchronous. It might take several seconds for the detachment to propagate.</p> </note>",
+    "DetachThingPrincipal": "<p>Detaches the specified principal from the specified thing. A principal can be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities or federated identities.</p> <note> <p>This call is asynchronous. It might take several seconds for the detachment to propagate.</p> </note>",
     "DisableTopicRule": "<p>Disables the rule.</p>",
     "EnableTopicRule": "<p>Enables the rule.</p>",
     "GetEffectivePolicies": "<p>Gets a list of the policies that have an effect on the authorization behavior of the specified device when it connects to the AWS IoT device gateway.</p>",
@@ -109,7 +109,7 @@
     "ListPolicyPrincipals": "<p>Lists the principals associated with the specified policy.</p> <p> <b>Note:</b> This API is deprecated. Please use <a>ListTargetsForPolicy</a> instead.</p>",
     "ListPolicyVersions": "<p>Lists the versions of the specified policy and identifies the default version.</p>",
     "ListPrincipalPolicies": "<p>Lists the policies attached to the specified principal. If you use an Cognito identity, the ID must be in <a href=\"https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetCredentialsForIdentity.html#API_GetCredentialsForIdentity_RequestSyntax\">AmazonCognito Identity format</a>.</p> <p> <b>Note:</b> This API is deprecated. Please use <a>ListAttachedPolicies</a> instead.</p>",
-    "ListPrincipalThings": "<p>Lists the things associated with the specified principal.</p>",
+    "ListPrincipalThings": "<p>Lists the things associated with the specified principal. A principal can be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities or federated identities. </p>",
     "ListRoleAliases": "<p>Lists the role aliases registered in your account.</p>",
     "ListScheduledAudits": "<p>Lists all of your scheduled audits.</p>",
     "ListSecurityProfiles": "<p>Lists the Device Defender security profiles you have created. You can use filters to list only those security profiles associated with a thing group or only those associated with your account.</p>",
@@ -120,7 +120,7 @@
     "ListTargetsForSecurityProfile": "<p>Lists the targets (thing groups) associated with a given Device Defender security profile.</p>",
     "ListThingGroups": "<p>List the thing groups in your account.</p>",
     "ListThingGroupsForThing": "<p>List the thing groups to which the specified thing belongs.</p>",
-    "ListThingPrincipals": "<p>Lists the principals associated with the specified thing.</p>",
+    "ListThingPrincipals": "<p>Lists the principals associated with the specified thing. A principal can be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities or federated identities.</p>",
     "ListThingRegistrationTaskReports": "<p>Information about the thing registration tasks.</p>",
     "ListThingRegistrationTasks": "<p>List bulk thing provisioning tasks.</p>",
     "ListThingTypes": "<p>Lists the existing thing types.</p>",
@@ -258,6 +258,15 @@
     "AddThingToThingGroupResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "AdditionalMetricsToRetainList": {
+      "base": null,
+      "refs": {
+        "CreateSecurityProfileRequest$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's <code>behaviors</code> but it is also retained for any metric specified here.</p>",
+        "DescribeSecurityProfileResponse$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's <code>behaviors</code> but it is also retained for any metric specified here.</p>",
+        "UpdateSecurityProfileRequest$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's <code>behaviors</code> but it is also retained for any metric specified here.</p>",
+        "UpdateSecurityProfileResponse$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the security profile's <code>behaviors</code> but it is also retained for any metric specified here.</p>"
       }
     },
     "AdditionalParameterMap": {
@@ -727,6 +736,7 @@
     "BehaviorMetric": {
       "base": null,
       "refs": {
+        "AdditionalMetricsToRetainList$member": null,
         "Behavior$metric": "<p>What is measured by the behavior.</p>"
       }
     },
@@ -1115,7 +1125,7 @@
     "ComparisonOperator": {
       "base": null,
       "refs": {
-        "BehaviorCriteria$comparisonOperator": "<p>The operator that relates the thing measured (<code>metric</code>) to the criteria (containing a <code>value</code>.</p>"
+        "BehaviorCriteria$comparisonOperator": "<p>The operator that relates the thing measured (<code>metric</code>) to the criteria (containing a <code>value</code> or <code>statisticalThreshold</code>).</p>"
       }
     },
     "CompliantChecksCount": {
@@ -1139,6 +1149,18 @@
       "base": null,
       "refs": {
         "ThingConnectivity$timestamp": "<p>The epoch time (in milliseconds) when the thing last connected or disconnected. Note that if the thing has been disconnected for more than a few weeks, the time value can be missing.</p>"
+      }
+    },
+    "ConsecutiveDatapointsToAlarm": {
+      "base": null,
+      "refs": {
+        "BehaviorCriteria$consecutiveDatapointsToAlarm": "<p>If a device is in violation of the behavior for the specified number of consecutive datapoints, an alarm occurs. If not specified, the default is 1.</p>"
+      }
+    },
+    "ConsecutiveDatapointsToClear": {
+      "base": null,
+      "refs": {
+        "BehaviorCriteria$consecutiveDatapointsToClear": "<p>If an alarm has occurred and the offending device is no longer in violation of the behavior for the specified number of consecutive datapoints, the alarm is cleared. If not specified, the default is 1.</p>"
       }
     },
     "Count": {
@@ -1423,6 +1445,18 @@
       "refs": {
       }
     },
+    "DeleteAdditionalMetricsToRetain": {
+      "base": null,
+      "refs": {
+        "UpdateSecurityProfileRequest$deleteAdditionalMetricsToRetain": "<p>If true, delete all <code>additionalMetricsToRetain</code> defined for this security profile. If any <code>additionalMetricsToRetain</code> are defined in the current invocation an exception occurs.</p>"
+      }
+    },
+    "DeleteAlertTargets": {
+      "base": null,
+      "refs": {
+        "UpdateSecurityProfileRequest$deleteAlertTargets": "<p>If true, delete all <code>alertTargets</code> defined for this security profile. If any <code>alertTargets</code> are defined in the current invocation an exception occurs.</p>"
+      }
+    },
     "DeleteAuthorizerRequest": {
       "base": null,
       "refs": {
@@ -1431,6 +1465,12 @@
     "DeleteAuthorizerResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "DeleteBehaviors": {
+      "base": null,
+      "refs": {
+        "UpdateSecurityProfileRequest$deleteBehaviors": "<p>If true, delete all <code>behaviors</code> defined for this security profile. If any <code>behaviors</code> are defined in the current invocation an exception occurs.</p>"
       }
     },
     "DeleteBillingGroupRequest": {
@@ -1910,7 +1950,7 @@
     "DurationSeconds": {
       "base": null,
       "refs": {
-        "BehaviorCriteria$durationSeconds": "<p>Use this to specify the time duration over which the behavior is evaluated, for those criteria which have a time dimension (for example, <code>NUM_MESSAGES_SENT</code>). </p>"
+        "BehaviorCriteria$durationSeconds": "<p>Use this to specify the time duration over which the behavior is evaluated, for those criteria which have a time dimension (for example, <code>NUM_MESSAGES_SENT</code>). For a <code>statisticalThreshhold</code> metric comparison, measurements from all devices are accumulated over this time duration before being used to calculate percentiles, and later, measurements from an individual device are also accumulated over this time duration before being given a percentile rank.</p>"
       }
     },
     "DynamicGroupStatus": {
@@ -2029,6 +2069,12 @@
         "AuditCheckDetails$message": "<p>The message associated with any error encountered when performing this check during this audit.</p>",
         "DescribeThingRegistrationTaskResponse$message": "<p>The message.</p>",
         "ValidationError$errorMessage": "<p>The description of an error found in the behaviors.</p>"
+      }
+    },
+    "EvaluationStatistic": {
+      "base": null,
+      "refs": {
+        "StatisticalThreshold$statistic": "<p>The percentile which resolves to a threshold value by which compliance with a behavior is determined. Metrics are collected over the specified period (<code>durationSeconds</code>) from all reporting devices in your account and statistical ranks are calculated. Then, the measurements from a device are collected over the same period. If the accumulated measurements from the device fall above or below (<code>comparisonOperator</code>) the value associated with the percentile specified, then the device is considered to be in compliance with the behavior, otherwise a violation occurs.</p>"
       }
     },
     "EventConfigurations": {
@@ -4466,6 +4512,12 @@
       "base": null,
       "refs": {
         "CloudwatchAlarmAction$stateValue": "<p>The value of the alarm state. Acceptable values are: OK, ALARM, INSUFFICIENT_DATA.</p>"
+      }
+    },
+    "StatisticalThreshold": {
+      "base": "<p>A statistical ranking (percentile) which indicates a threshold value by which a behavior is determined to be in compliance or in violation of the behavior.</p>",
+      "refs": {
+        "BehaviorCriteria$statisticalThreshold": "<p>A statistical ranking (percentile) which indicates a threshold value by which a behavior is determined to be in compliance or in violation of the behavior.</p>"
       }
     },
     "Status": {
