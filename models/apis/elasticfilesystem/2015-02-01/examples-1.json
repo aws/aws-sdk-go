@@ -5,7 +5,13 @@
       {
         "input": {
           "CreationToken": "tokenstring",
-          "PerformanceMode": "generalPurpose"
+          "PerformanceMode": "generalPurpose",
+          "Tags": [
+            {
+              "Key": "Name",
+              "Value": "MyFileSystem"
+            }
+          ]
         },
         "output": {
           "CreationTime": "1481841524.0",
@@ -17,7 +23,13 @@
           "PerformanceMode": "generalPurpose",
           "SizeInBytes": {
             "Value": 0
-          }
+          },
+          "Tags": [
+            {
+              "Key": "Name",
+              "Value": "MyFileSystem"
+            }
+          ]
         },
         "comments": {
           "input": {
@@ -130,7 +142,13 @@
               "PerformanceMode": "generalPurpose",
               "SizeInBytes": {
                 "Value": 6144
-              }
+              },
+              "Tags": [
+                {
+                  "Key": "Name",
+                  "Value": "MyFileSystem"
+                }
+              ]
             }
           ]
         },
