@@ -744,7 +744,8 @@
       "type":"string",
       "enum":[
         "up",
-        "down"
+        "down",
+        "unknown"
       ]
     },
     "Bandwidth":{"type":"string"},
@@ -827,7 +828,8 @@
         "down",
         "deleting",
         "deleted",
-        "rejected"
+        "rejected",
+        "unknown"
       ]
     },
     "Connections":{
@@ -1316,7 +1318,8 @@
         "available",
         "down",
         "deleting",
-        "deleted"
+        "deleted",
+        "unknown"
       ]
     },
     "Interconnects":{
@@ -1360,7 +1363,8 @@
         "available",
         "down",
         "deleting",
-        "deleted"
+        "deleted",
+        "unknown"
       ]
     },
     "Lags":{
@@ -1675,7 +1679,8 @@
         "down",
         "deleting",
         "deleted",
-        "rejected"
+        "rejected",
+        "unknown"
       ]
     },
     "VirtualInterfaceType":{"type":"string"},

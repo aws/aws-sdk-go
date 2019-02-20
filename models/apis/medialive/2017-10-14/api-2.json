@@ -2334,6 +2334,10 @@
         "Type": {
           "shape": "InputType",
           "locationName": "type"
+        },
+        "Vpc": {
+          "shape": "InputVpcRequest",
+          "locationName": "vpc"
         }
       }
     },
@@ -4585,6 +4589,10 @@
         "Url": {
           "shape": "__string",
           "locationName": "url"
+        },
+        "Vpc": {
+          "shape": "InputDestinationVpc",
+          "locationName": "vpc"
         }
       }
     },
@@ -4594,6 +4602,19 @@
         "StreamName": {
           "shape": "__string",
           "locationName": "streamName"
+        }
+      }
+    },
+    "InputDestinationVpc": {
+      "type": "structure",
+      "members": {
+        "AvailabilityZone": {
+          "shape": "__string",
+          "locationName": "availabilityZone"
+        },
+        "NetworkInterfaceId": {
+          "shape": "__string",
+          "locationName": "networkInterfaceId"
         }
       }
     },
@@ -4884,6 +4905,22 @@
         "URL_PULL",
         "MP4_FILE",
         "MEDIACONNECT"
+      ]
+    },
+    "InputVpcRequest": {
+      "type": "structure",
+      "members": {
+        "SecurityGroupIds": {
+          "shape": "__listOf__string",
+          "locationName": "securityGroupIds"
+        },
+        "SubnetIds": {
+          "shape": "__listOf__string",
+          "locationName": "subnetIds"
+        }
+      },
+      "required": [
+        "SubnetIds"
       ]
     },
     "InputWhitelistRule": {
