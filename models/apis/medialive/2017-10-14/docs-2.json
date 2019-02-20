@@ -1133,6 +1133,12 @@
         "__listOfInputDestinationRequest$member": null
       }
     },
+    "InputDestinationVpc": {
+      "base": "The properties for a VPC type input destination.",
+      "refs": {
+        "InputDestination$Vpc": null
+      }
+    },
     "InputFilter": {
       "base": null,
       "refs": {
@@ -1270,6 +1276,12 @@
       "refs": {
         "CreateInput$Type": null,
         "Input$Type": null
+      }
+    },
+    "InputVpcRequest": {
+      "base": "Settings for a private VPC Input.\nWhen this property is specified, the input destination addresses will be created in a VPC rather than with public Internet addresses.\nThis property requires setting the roleArn property on Input creation.\nNot compatible with the inputSecurityGroups property.\n",
+      "refs": {
+        "CreateInput$Vpc": null
       }
     },
     "InputWhitelistRule": {
@@ -2764,8 +2776,10 @@
         "BatchScheduleActionDeleteRequest$ActionNames": "A list of schedule actions to delete.",
         "CreateInput$InputSecurityGroups": "A list of security groups referenced by IDs to attach to the input.",
         "Input$AttachedChannels": "A list of channel IDs that that input is attached to (currently an input can only be attached to one channel).",
-        "Input$SecurityGroups": "A list of IDs for all the security groups attached to the input.",
+        "Input$SecurityGroups": "A list of IDs for all the Input Security Groups attached to the input.",
         "InputSecurityGroup$Inputs": "The list of inputs currently using this Input Security Group.",
+        "InputVpcRequest$SecurityGroupIds": "A list of up to 5 EC2 VPC security group IDs to attach to the Input VPC network interfaces.\nRequires subnetIds. If none are specified then the VPC default security group will be used.\n",
+        "InputVpcRequest$SubnetIds": "A list of 2 VPC subnet IDs from the same VPC.\nSubnet IDs must be mapped to two unique availability zones (AZ).\n",
         "Output$AudioDescriptionNames": "The names of the AudioDescriptions used as audio sources for this output.",
         "Output$CaptionDescriptionNames": "The names of the CaptionDescriptions used as caption sources for this output.",
         "UpdateInput$InputSecurityGroups": "A list of security groups referenced by IDs to attach to the input."
@@ -2829,6 +2843,8 @@
         "InputDestination$Port": "The port number for the input.",
         "InputDestination$Url": "This represents the endpoint that the customer stream will be\npushed to.\n",
         "InputDestinationRequest$StreamName": "A unique name for the location the RTMP stream is being pushed\nto.\n",
+        "InputDestinationVpc$AvailabilityZone": "The availability zone of the Input destination.\n",
+        "InputDestinationVpc$NetworkInterfaceId": "The network interface ID of the Input destination in the VPC.\n",
         "InputLocation$PasswordParam": "key used to extract the password from EC2 Parameter store",
         "InputLocation$Uri": "Uniform Resource Identifier - This should be a path to a file accessible to the Live system (eg. a http:// URI) depending on the output type. For example, a RTMP destination should have a uri simliar to: \"rtmp://fmsserver/live\".",
         "InputLocation$Username": "Username if credentials are required to access a file or publishing point.  This can be either a plaintext username, or a reference to an AWS parameter store name from which the username can be retrieved.  AWS Parameter store format: \"ssm://<parameter name>\"",

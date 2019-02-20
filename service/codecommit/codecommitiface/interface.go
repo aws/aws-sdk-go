@@ -68,6 +68,10 @@ type CodeCommitAPI interface {
 	CreateBranchWithContext(aws.Context, *codecommit.CreateBranchInput, ...request.Option) (*codecommit.CreateBranchOutput, error)
 	CreateBranchRequest(*codecommit.CreateBranchInput) (*request.Request, *codecommit.CreateBranchOutput)
 
+	CreateCommit(*codecommit.CreateCommitInput) (*codecommit.CreateCommitOutput, error)
+	CreateCommitWithContext(aws.Context, *codecommit.CreateCommitInput, ...request.Option) (*codecommit.CreateCommitOutput, error)
+	CreateCommitRequest(*codecommit.CreateCommitInput) (*request.Request, *codecommit.CreateCommitOutput)
+
 	CreatePullRequest(*codecommit.CreatePullRequestInput) (*codecommit.CreatePullRequestOutput, error)
 	CreatePullRequestWithContext(aws.Context, *codecommit.CreatePullRequestInput, ...request.Option) (*codecommit.CreatePullRequestOutput, error)
 	CreatePullRequestRequest(*codecommit.CreatePullRequestInput) (*request.Request, *codecommit.CreatePullRequestOutput)
