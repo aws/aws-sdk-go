@@ -1060,8 +1060,6 @@ type CreateStreamInput struct {
 	// you choose to specify the MediaType, see Naming Requirements (https://tools.ietf.org/html/rfc6838#section-4.2)
 	// for guidelines.
 	//
-	// Example valid values include "video/h264" and "video/h264,audio/aac".
-	//
 	// This parameter is optional; the default value is null (or empty in JSON).
 	MediaType *string `min:"1" type:"string"`
 

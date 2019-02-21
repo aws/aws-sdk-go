@@ -432,11 +432,20 @@
       "type":"list",
       "member":{"shape":"BuildNotDeleted"}
     },
+    "CacheMode":{
+      "type":"string",
+      "enum":[
+        "LOCAL_DOCKER_LAYER_CACHE",
+        "LOCAL_SOURCE_CACHE",
+        "LOCAL_CUSTOM_CACHE"
+      ]
+    },
     "CacheType":{
       "type":"string",
       "enum":[
         "NO_CACHE",
-        "S3"
+        "S3",
+        "LOCAL"
       ]
     },
     "CloudWatchLogsConfig":{
@@ -879,8 +888,13 @@
       "required":["type"],
       "members":{
         "type":{"shape":"CacheType"},
-        "location":{"shape":"String"}
+        "location":{"shape":"String"},
+        "modes":{"shape":"ProjectCacheModes"}
       }
+    },
+    "ProjectCacheModes":{
+      "type":"list",
+      "member":{"shape":"CacheMode"}
     },
     "ProjectDescription":{
       "type":"string",
@@ -1180,8 +1194,8 @@
       "members":{
         "projectName":{"shape":"ProjectName"},
         "branchFilter":{"shape":"String"},
-        "filterGroups":{"shape":"FilterGroups"},
-        "rotateSecret":{"shape":"Boolean"}
+        "rotateSecret":{"shape":"Boolean"},
+        "filterGroups":{"shape":"FilterGroups"}
       }
     },
     "UpdateWebhookOutput":{
