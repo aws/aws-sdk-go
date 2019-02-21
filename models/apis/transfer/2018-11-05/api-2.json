@@ -585,7 +585,7 @@
     "Message":{"type":"string"},
     "NextToken":{
       "type":"string",
-      "max":256,
+      "max":6144,
       "min":1
     },
     "NullableRole":{

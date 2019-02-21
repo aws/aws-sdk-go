@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": null,
+  "service": "<p>AWS Transfer for SFTP is a fully managed service that enables the transfer of files directly into and out of Amazon S3 using the Secure File Transfer Protocol (SFTP)—also known as Secure Shell (SSH) File Transfer Protocol. AWS helps you seamlessly migrate your file transfer workflows to AWS Transfer for SFTP—by integrating with existing authentication systems, and providing DNS routing with Amazon Route 53—so nothing changes for your customers and partners, or their applications. With your data in S3, you can use it with AWS services for processing, analytics, machine learning, and archiving. Getting started with AWS Transfer for SFTP (AWS SFTP) is easy; there is no infrastructure to buy and setup. </p>",
   "operations": {
     "CreateServer": "<p>Instantiates an autoscaling virtual server based on Secure File Transfer Protocol (SFTP) in AWS. The call returns the <code>ServerId</code> property assigned by the service to the newly created server. Reference this <code>ServerId</code> property when you make updates to your server, or work with users.</p> <p>The response returns the <code>ServerId</code> value for the newly created server.</p>",
     "CreateUser": "<p>Adds a user and associate them with an existing Secure File Transfer Protocol (SFTP) server. Using parameters for <code>CreateUser</code>, you can specify the user name, set the home directory, store the user's public key, and assign the user's AWS Identity and Access Management (IAM) role. You can also optionally add a scope-down policy, and assign metadata with tags that can be used to group and search for users.</p> <p>The response returns the <code>UserName</code> and <code>ServerId</code> values of the new user for that server.</p>",
@@ -120,7 +120,7 @@
     "IdentityProviderDetails": {
       "base": "<p>Returns information related to the type of user authentication that is in use for a server's users. A server can only have one method of authentication.</p>",
       "refs": {
-        "CreateServerRequest$IdentityProviderDetails": "<p> An array containing all of the information required to call a customer-supplied authentication API. This parameter is not required when the <code>IdentityProviderType</code> value of server that is created uses the <code>SERVICE_MANAGED</code> authentication method.</p>",
+        "CreateServerRequest$IdentityProviderDetails": "<p>An array containing all of the information required to call a customer-supplied authentication API. This parameter is not required when the <code>IdentityProviderType</code> value of server that is created uses the <code>SERVICE_MANAGED</code> authentication method.</p>",
         "DescribedServer$IdentityProviderDetails": "<p>Specifies information to call a customer-supplied authentication API. This field is not populated when the <code>IdentityProviderType</code> of the server is <code>SERVICE_MANAGED</code>&gt;.</p>",
         "UpdateServerRequest$IdentityProviderDetails": "<p>This response parameter is an array containing all of the information required to call a customer's authentication API method.</p>"
       }
@@ -216,7 +216,7 @@
       "base": null,
       "refs": {
         "ListServersRequest$MaxResults": "<p>Specifies the number of servers to return as a response to the <code>ListServers</code> query.</p>",
-        "ListTagsForResourceRequest$MaxResults": null,
+        "ListTagsForResourceRequest$MaxResults": "<p>Specifies the number of tags to return as a response to the <code>ListTagsForResource</code> request.</p>",
         "ListUsersRequest$MaxResults": "<p>Specifies the number of users to return as a response to the <code>ListUsers</code> request.</p>"
       }
     },
@@ -236,9 +236,9 @@
       "refs": {
         "ListServersRequest$NextToken": "<p>When additional results are obtained from the ListServers command, a <code>NextToken</code> parameter is returned in the output. You can then pass the <code>NextToken</code> parameter in a subsequent command to continue listing additional servers.</p>",
         "ListServersResponse$NextToken": "<p>When you can get additional results from the <code>ListServers</code> operation, a <code>NextToken</code> parameter is returned in the output. In a following command, you can pass in the <code>NextToken</code> parameter to continue listing additional servers.</p>",
-        "ListTagsForResourceRequest$NextToken": null,
-        "ListTagsForResourceResponse$NextToken": null,
-        "ListUsersRequest$NextToken": "<p>When you can get additional results from the <code>ListUsers</code>ListUsers call, a <code>NextToken</code> parameter is returned in the output. You can then pass in a subsequent command the <code>NextToken</code> parameter to continue listing additional users.</p>",
+        "ListTagsForResourceRequest$NextToken": "<p>When you request additional results from the <code>ListTagsForResource</code> call, a <code>NextToken</code> parameter is returned in the input. You can then pass in a subsequent command the <code>NextToken</code> parameter to continue listing additional tags.</p>",
+        "ListTagsForResourceResponse$NextToken": "<p>When you can get additional results from the <code>ListTagsForResource</code> call, a <code>NextToken</code> parameter is returned in the output. You can then pass in a subsequent command the <code>NextToken</code> parameter to continue listing additional tags.</p>",
+        "ListUsersRequest$NextToken": "<p>When you can get additional results from the <code>ListUsers</code> call, a <code>NextToken</code> parameter is returned in the output. You can then pass in a subsequent command the <code>NextToken</code> parameter to continue listing additional users.</p>",
         "ListUsersResponse$NextToken": "<p>When you can get additional results from the <code>ListUsers</code> call, a <code>NextToken</code> parameter is returned in the output. You can then pass in a subsequent command the <code>NextToken</code> parameter to continue listing additional users.</p>"
       }
     },

@@ -1,3 +1,22 @@
+Release v1.17.3 (2019-02-21)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * Add support for CodeBuild local caching feature
+* `service/kinesis-video-archived-media`: Updates service API and documentation
+* `service/kinesis-video-media`: Updates service documentation
+* `service/kinesisvideo`: Updates service documentation
+  * Documentation updates for Kinesis Video Streams
+* `service/monitoring`: Updates service documentation
+  * Documentation updates for monitoring
+* `service/organizations`: Updates service documentation
+  * Documentation updates for organizations
+* `service/transfer`: Updates service API and documentation
+  * Bug fix: increased the max length allowed for request parameter NextToken when paginating List operations
+* `service/workdocs`: Updates service documentation
+  * Documentation updates for workdocs
+
 Release v1.17.2 (2019-02-20)
 ===
 
