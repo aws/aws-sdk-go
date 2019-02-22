@@ -171,6 +171,20 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceInput"},
+      "output":{"shape":"ListTagsForResourceOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "ListWorkGroups":{
       "name":"ListWorkGroups",
       "http":{
@@ -213,6 +227,34 @@
       ],
       "idempotent":true
     },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceInput"},
+      "output":{"shape":"TagResourceOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceInput"},
+      "output":{"shape":"UntagResourceOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "UpdateWorkGroup":{
       "name":"UpdateWorkGroup",
       "http":{
@@ -228,6 +270,11 @@
     }
   },
   "shapes":{
+    "AmazonResourceName":{
+      "type":"string",
+      "max":1011,
+      "min":1
+    },
     "BatchGetNamedQueryInput":{
       "type":"structure",
       "required":["NamedQueryIds"],
@@ -324,7 +371,8 @@
       "members":{
         "Name":{"shape":"WorkGroupName"},
         "Configuration":{"shape":"WorkGroupConfiguration"},
-        "Description":{"shape":"WorkGroupDescriptionString"}
+        "Description":{"shape":"WorkGroupDescriptionString"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateWorkGroupOutput":{
@@ -507,6 +555,22 @@
         "NextToken":{"shape":"Token"}
       }
     },
+    "ListTagsForResourceInput":{
+      "type":"structure",
+      "required":["ResourceARN"],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "NextToken":{"shape":"Token"},
+        "MaxResults":{"shape":"MaxTagsCount"}
+      }
+    },
+    "ListTagsForResourceOutput":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagList"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
     "ListWorkGroupsInput":{
       "type":"structure",
       "members":{
@@ -539,6 +603,11 @@
       "box":true,
       "max":1000,
       "min":0
+    },
+    "MaxTagsCount":{
+      "type":"integer",
+      "box":true,
+      "min":75
     },
     "MaxWorkGroupsCount":{
       "type":"integer",
@@ -639,6 +708,14 @@
       "max":262144,
       "min":1
     },
+    "ResourceNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"},
+        "ResourceName":{"shape":"AmazonResourceName"}
+      },
+      "exception":true
+    },
     "ResultConfiguration":{
       "type":"structure",
       "members":{
@@ -722,6 +799,47 @@
       }
     },
     "String":{"type":"string"},
+    "Tag":{
+      "type":"structure",
+      "members":{
+        "Key":{"shape":"TagKey"},
+        "Value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"}
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"}
+    },
+    "TagResourceInput":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "Tags"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "TagResourceOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
     "ThrottleReason":{
       "type":"string",
       "enum":["CONCURRENT_QUERY_LIMIT_EXCEEDED"]
@@ -762,6 +880,22 @@
     "UnprocessedQueryExecutionIdList":{
       "type":"list",
       "member":{"shape":"UnprocessedQueryExecutionId"}
+    },
+    "UntagResourceInput":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "TagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UntagResourceOutput":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateWorkGroupInput":{
       "type":"structure",

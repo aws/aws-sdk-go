@@ -11,15 +11,27 @@
     "GetNamedQuery": "<p>Returns information about a single query. Requires that you have access to the workgroup in which the query was saved.</p>",
     "GetQueryExecution": "<p>Returns information about a single execution of a query if you have access to the workgroup in which the query ran. Each time a query executes, information about the query execution is saved with a unique ID.</p>",
     "GetQueryResults": "<p>Returns the results of a single query execution specified by <code>QueryExecutionId</code> if you have access to the workgroup in which the query ran. This request does not execute the query but returns results. Use <a>StartQueryExecution</a> to run a query.</p>",
-    "GetWorkGroup": "<p>Returns information about the workgroup with the speficied name.</p>",
+    "GetWorkGroup": "<p>Returns information about the workgroup with the specified name.</p>",
     "ListNamedQueries": "<p>Provides a list of available query IDs only for queries saved in the specified workgroup. Requires that you have access to the workgroup.</p> <p>For code samples using the AWS SDK for Java, see <a href=\"http://docs.aws.amazon.com/athena/latest/ug/code-samples.html\">Examples and Code Samples</a> in the <i>Amazon Athena User Guide</i>.</p>",
     "ListQueryExecutions": "<p>Provides a list of available query execution IDs for the queries in the specified workgroup. Requires you to have access to the workgroup in which the queries ran.</p> <p>For code samples using the AWS SDK for Java, see <a href=\"http://docs.aws.amazon.com/athena/latest/ug/code-samples.html\">Examples and Code Samples</a> in the <i>Amazon Athena User Guide</i>.</p>",
+    "ListTagsForResource": "<p>Lists the tags associated with this workgroup.</p>",
     "ListWorkGroups": "<p>Lists available workgroups for the account.</p>",
     "StartQueryExecution": "<p>Runs the SQL query statements contained in the <code>Query</code>. Requires you to have access to the workgroup in which the query ran.</p> <p>For code samples using the AWS SDK for Java, see <a href=\"http://docs.aws.amazon.com/athena/latest/ug/code-samples.html\">Examples and Code Samples</a> in the <i>Amazon Athena User Guide</i>.</p>",
     "StopQueryExecution": "<p>Stops a query execution. Requires you to have access to the workgroup in which the query ran.</p> <p>For code samples using the AWS SDK for Java, see <a href=\"http://docs.aws.amazon.com/athena/latest/ug/code-samples.html\">Examples and Code Samples</a> in the <i>Amazon Athena User Guide</i>.</p>",
+    "TagResource": "<p>Adds one or more tags to the resource, such as a workgroup. A tag is a label that you assign to an AWS Athena resource (a workgroup). Each tag consists of a key and an optional value, both of which you define. Tags enable you to categorize resources (workgroups) in Athena, for example, by purpose, owner, or environment. Use a consistent set of tag keys to make it easier to search and filter workgroups in your account. For best practices, see <a href=\"https://aws.amazon.com/answers/account-management/aws-tagging-strategies/\">AWS Tagging Strategies</a>. The key length is from 1 (minimum) to 128 (maximum) Unicode characters in UTF-8. The tag value length is from 0 (minimum) to 256 (maximum) Unicode characters in UTF-8. You can use letters and numbers representable in UTF-8, and the following characters: + - = . _ : / @. Tag keys and values are case-sensitive. Tag keys must be unique per resource. If you specify more than one, separate them by commas.</p>",
+    "UntagResource": "<p>Removes one or more tags from the workgroup resource. Takes as an input a list of TagKey Strings separated by commas, and removes their tags at the same time.</p>",
     "UpdateWorkGroup": "<p>Updates the workgroup with the specified name. The workgroup's name cannot be changed.</p>"
   },
   "shapes": {
+    "AmazonResourceName": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceInput$ResourceARN": "<p>Lists the tags for the workgroup resource with the specified ARN.</p>",
+        "ResourceNotFoundException$ResourceName": null,
+        "TagResourceInput$ResourceARN": "<p>Requests that one or more tags are added to the resource (such as a workgroup) for the specified ARN.</p>",
+        "UntagResourceInput$ResourceARN": "<p>Removes one or more tags from the workgroup resource for the specified ARN.</p>"
+      }
+    },
     "BatchGetNamedQueryInput": {
       "base": null,
       "refs": {
@@ -180,6 +192,7 @@
       "refs": {
         "InternalServerException$Message": null,
         "InvalidRequestException$Message": null,
+        "ResourceNotFoundException$Message": null,
         "TooManyRequestsException$Message": null,
         "UnprocessedNamedQueryId$ErrorMessage": "<p>The error message returned when the processing request for the named query failed, if applicable.</p>",
         "UnprocessedQueryExecutionId$ErrorMessage": "<p>The error message returned when the query execution failed to process, if applicable.</p>"
@@ -269,6 +282,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListWorkGroupsInput": {
       "base": null,
       "refs": {
@@ -303,6 +326,12 @@
       "base": null,
       "refs": {
         "GetQueryResultsInput$MaxResults": "<p>The maximum number of results (rows) to return in this request.</p>"
+      }
+    },
+    "MaxTagsCount": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceInput$MaxResults": "<p>The maximum number of results to be returned per request that lists the tags for the workgroup resource.</p>"
       }
     },
     "MaxWorkGroupsCount": {
@@ -415,6 +444,11 @@
         "StartQueryExecutionInput$QueryString": "<p>The SQL query statements to be executed.</p>"
       }
     },
+    "ResourceNotFoundException": {
+      "base": "<p>A resource, such as a workgroup, was not found.</p>",
+      "refs": {
+      }
+    },
     "ResultConfiguration": {
       "base": "<p>The location in Amazon S3 where query results are stored and the encryption option, if any, used for query results. These are known as \"client-side settings\". If workgroup settings override client-side settings, then the query uses the location for the query results and the encryption configuration that are specified for the workgroup.</p>",
       "refs": {
@@ -494,6 +528,49 @@
         "ResultConfigurationUpdates$OutputLocation": "<p>The location in Amazon S3 where your query results are stored, such as <code>s3://path/to/query/bucket/</code>. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/querying.html\">Queries and Query Result Files.</a> If workgroup settings override client-side settings, then the query uses the location for the query results and the encryption configuration that are specified for the workgroup. The \"workgroup settings override\" is specified in EnforceWorkGroupConfiguration (true/false) in the WorkGroupConfiguration. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.</p>"
       }
     },
+    "Tag": {
+      "base": "<p>A tag that you can add to a resource. A tag is a label that you assign to an AWS Athena resource (a workgroup). Each tag consists of a key and an optional value, both of which you define. Tags enable you to categorize workgroups in Athena, for example, by purpose, owner, or environment. Use a consistent set of tag keys to make it easier to search and filter workgroups in your account. The maximum tag key length is 128 Unicode characters in UTF-8. The maximum tag value length is 256 Unicode characters in UTF-8. You can use letters and numbers representable in UTF-8, and the following characters: + - = . _ : / @. Tag keys and values are case-sensitive. Tag keys must be unique per resource. </p>",
+      "refs": {
+        "TagList$member": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "Tag$Key": "<p>A tag key. The tag key length is from 1 to 128 Unicode characters in UTF-8. You can use letters and numbers representable in UTF-8, and the following characters: + - = . _ : / @. Tag keys are case-sensitive and must be unique per resource. </p>",
+        "TagKeyList$member": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceInput$TagKeys": "<p>Removes the tags associated with one or more tag keys from the workgroup resource.</p>"
+      }
+    },
+    "TagList": {
+      "base": null,
+      "refs": {
+        "CreateWorkGroupInput$Tags": "<p>One or more tags, separated by commas, that you want to attach to the workgroup as you create it.</p>",
+        "ListTagsForResourceOutput$Tags": "<p>The list of tags associated with this workgroup.</p>",
+        "TagResourceInput$Tags": "<p>One or more tags, separated by commas, to be added to the resource, such as a workgroup.</p>"
+      }
+    },
+    "TagResourceInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tag$Value": "<p>A tag value. The tag value length is from 0 to 256 Unicode characters in UTF-8. You can use letters and numbers representable in UTF-8, and the following characters: + - = . _ : / @. Tag values are case-sensitive. </p>"
+      }
+    },
     "ThrottleReason": {
       "base": "<p>The reason for the query throttling, for example, when it exceeds the concurrent query limit.</p>",
       "refs": {
@@ -509,6 +586,8 @@
         "ListNamedQueriesOutput$NextToken": "<p>A token to be used by the next request if this request is truncated.</p>",
         "ListQueryExecutionsInput$NextToken": "<p>The token that specifies where to start pagination if a previous request was truncated.</p>",
         "ListQueryExecutionsOutput$NextToken": "<p>A token to be used by the next request if this request is truncated.</p>",
+        "ListTagsForResourceInput$NextToken": "<p>The token for the next set of results, or null if there are no additional results for this request, where the request lists the tags for the workgroup resource with the specified ARN.</p>",
+        "ListTagsForResourceOutput$NextToken": "<p>A token to be used by the next request if this request is truncated.</p>",
         "ListWorkGroupsInput$NextToken": "<p>A token to be used by the next request if this request is truncated.</p>",
         "ListWorkGroupsOutput$NextToken": "<p>A token to be used by the next request if this request is truncated.</p>"
       }
@@ -540,6 +619,16 @@
       "base": null,
       "refs": {
         "BatchGetQueryExecutionOutput$UnprocessedQueryExecutionIds": "<p>Information about the query executions that failed to run.</p>"
+      }
+    },
+    "UntagResourceInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateWorkGroupInput": {

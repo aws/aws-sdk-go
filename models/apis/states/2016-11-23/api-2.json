@@ -23,7 +23,8 @@
       "output":{"shape":"CreateActivityOutput"},
       "errors":[
         {"shape":"ActivityLimitExceeded"},
-        {"shape":"InvalidName"}
+        {"shape":"InvalidName"},
+        {"shape":"TooManyTags"}
       ],
       "idempotent":true
     },
@@ -41,7 +42,8 @@
         {"shape":"InvalidName"},
         {"shape":"StateMachineAlreadyExists"},
         {"shape":"StateMachineDeleting"},
-        {"shape":"StateMachineLimitExceeded"}
+        {"shape":"StateMachineLimitExceeded"},
+        {"shape":"TooManyTags"}
       ],
       "idempotent":true
     },
@@ -423,7 +425,8 @@
       "type":"structure",
       "required":["name"],
       "members":{
-        "name":{"shape":"Name"}
+        "name":{"shape":"Name"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateActivityOutput":{
@@ -447,7 +450,8 @@
       "members":{
         "name":{"shape":"Name"},
         "definition":{"shape":"Definition"},
-        "roleArn":{"shape":"Arn"}
+        "roleArn":{"shape":"Arn"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateStateMachineOutput":{
@@ -688,7 +692,7 @@
       "type":"structure",
       "members":{
         "taskToken":{"shape":"TaskToken"},
-        "input":{"shape":"SensitiveData"}
+        "input":{"shape":"SensitiveDataJobInput"}
       }
     },
     "GetExecutionHistoryInput":{
@@ -1039,6 +1043,11 @@
     "SensitiveData":{
       "type":"string",
       "max":32768,
+      "sensitive":true
+    },
+    "SensitiveDataJobInput":{
+      "type":"string",
+      "max":65536,
       "sensitive":true
     },
     "SensitiveError":{
