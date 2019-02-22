@@ -88,6 +88,48 @@
         {"shape":"OperationTimeoutException"}
       ]
     },
+    "BatchGetCrawlers":{
+      "name":"BatchGetCrawlers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetCrawlersRequest"},
+      "output":{"shape":"BatchGetCrawlersResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"}
+      ]
+    },
+    "BatchGetDevEndpoints":{
+      "name":"BatchGetDevEndpoints",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetDevEndpointsRequest"},
+      "output":{"shape":"BatchGetDevEndpointsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InvalidInputException"}
+      ]
+    },
+    "BatchGetJobs":{
+      "name":"BatchGetJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetJobsRequest"},
+      "output":{"shape":"BatchGetJobsResponse"},
+      "errors":[
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InvalidInputException"}
+      ]
+    },
     "BatchGetPartition":{
       "name":"BatchGetPartition",
       "http":{
@@ -102,6 +144,20 @@
         {"shape":"OperationTimeoutException"},
         {"shape":"InternalServiceException"},
         {"shape":"GlueEncryptionException"}
+      ]
+    },
+    "BatchGetTriggers":{
+      "name":"BatchGetTriggers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetTriggersRequest"},
+      "output":{"shape":"BatchGetTriggersResponse"},
+      "errors":[
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InvalidInputException"}
       ]
     },
     "BatchStopJobRun":{
@@ -934,6 +990,21 @@
         {"shape":"GlueEncryptionException"}
       ]
     },
+    "GetTags":{
+      "name":"GetTags",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetTagsRequest"},
+      "output":{"shape":"GetTagsResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"EntityNotFoundException"}
+      ]
+    },
     "GetTrigger":{
       "name":"GetTrigger",
       "http":{
@@ -1005,6 +1076,63 @@
       "input":{"shape":"ImportCatalogToGlueRequest"},
       "output":{"shape":"ImportCatalogToGlueResponse"},
       "errors":[
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"}
+      ]
+    },
+    "ListCrawlers":{
+      "name":"ListCrawlers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListCrawlersRequest"},
+      "output":{"shape":"ListCrawlersResponse"},
+      "errors":[
+        {"shape":"OperationTimeoutException"}
+      ]
+    },
+    "ListDevEndpoints":{
+      "name":"ListDevEndpoints",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListDevEndpointsRequest"},
+      "output":{"shape":"ListDevEndpointsResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"}
+      ]
+    },
+    "ListJobs":{
+      "name":"ListJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListJobsRequest"},
+      "output":{"shape":"ListJobsResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"}
+      ]
+    },
+    "ListTriggers":{
+      "name":"ListTriggers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTriggersRequest"},
+      "output":{"shape":"ListTriggersResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"}
       ]
@@ -1162,6 +1290,36 @@
         {"shape":"EntityNotFoundException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"ConcurrentModificationException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"EntityNotFoundException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"EntityNotFoundException"}
       ]
     },
     "UpdateClassifier":{
@@ -1483,6 +1641,48 @@
         "Errors":{"shape":"TableVersionErrors"}
       }
     },
+    "BatchGetCrawlersRequest":{
+      "type":"structure",
+      "required":["CrawlerNames"],
+      "members":{
+        "CrawlerNames":{"shape":"CrawlerNameList"}
+      }
+    },
+    "BatchGetCrawlersResponse":{
+      "type":"structure",
+      "members":{
+        "Crawlers":{"shape":"CrawlerList"},
+        "CrawlersNotFound":{"shape":"CrawlerNameList"}
+      }
+    },
+    "BatchGetDevEndpointsRequest":{
+      "type":"structure",
+      "required":["DevEndpointNames"],
+      "members":{
+        "DevEndpointNames":{"shape":"DevEndpointNames"}
+      }
+    },
+    "BatchGetDevEndpointsResponse":{
+      "type":"structure",
+      "members":{
+        "DevEndpoints":{"shape":"DevEndpointList"},
+        "DevEndpointsNotFound":{"shape":"DevEndpointNames"}
+      }
+    },
+    "BatchGetJobsRequest":{
+      "type":"structure",
+      "required":["JobNames"],
+      "members":{
+        "JobNames":{"shape":"JobNameList"}
+      }
+    },
+    "BatchGetJobsResponse":{
+      "type":"structure",
+      "members":{
+        "Jobs":{"shape":"JobList"},
+        "JobsNotFound":{"shape":"JobNameList"}
+      }
+    },
     "BatchGetPartitionRequest":{
       "type":"structure",
       "required":[
@@ -1509,6 +1709,20 @@
       "member":{"shape":"PartitionValueList"},
       "max":1000,
       "min":0
+    },
+    "BatchGetTriggersRequest":{
+      "type":"structure",
+      "required":["TriggerNames"],
+      "members":{
+        "TriggerNames":{"shape":"TriggerNameList"}
+      }
+    },
+    "BatchGetTriggersResponse":{
+      "type":"structure",
+      "members":{
+        "Triggers":{"shape":"TriggerList"},
+        "TriggersNotFound":{"shape":"TriggerNameList"}
+      }
     },
     "BatchStopJobRunError":{
       "type":"structure",
@@ -1967,7 +2181,8 @@
         "TablePrefix":{"shape":"TablePrefix"},
         "SchemaChangePolicy":{"shape":"SchemaChangePolicy"},
         "Configuration":{"shape":"CrawlerConfiguration"},
-        "CrawlerSecurityConfiguration":{"shape":"CrawlerSecurityConfiguration"}
+        "CrawlerSecurityConfiguration":{"shape":"CrawlerSecurityConfiguration"},
+        "Tags":{"shape":"TagsMap"}
       }
     },
     "CreateCrawlerResponse":{
@@ -2004,7 +2219,8 @@
         "NumberOfNodes":{"shape":"IntegerValue"},
         "ExtraPythonLibsS3Path":{"shape":"GenericString"},
         "ExtraJarsS3Path":{"shape":"GenericString"},
-        "SecurityConfiguration":{"shape":"NameString"}
+        "SecurityConfiguration":{"shape":"NameString"},
+        "Tags":{"shape":"TagsMap"}
       }
     },
     "CreateDevEndpointResponse":{
@@ -2066,7 +2282,8 @@
         "Timeout":{"shape":"Timeout"},
         "MaxCapacity":{"shape":"NullableDouble"},
         "NotificationProperty":{"shape":"NotificationProperty"},
-        "SecurityConfiguration":{"shape":"NameString"}
+        "SecurityConfiguration":{"shape":"NameString"},
+        "Tags":{"shape":"TagsMap"}
       }
     },
     "CreateJobResponse":{
@@ -2169,7 +2386,8 @@
         "Predicate":{"shape":"Predicate"},
         "Actions":{"shape":"ActionList"},
         "Description":{"shape":"DescriptionString"},
-        "StartOnCreation":{"shape":"BooleanValue"}
+        "StartOnCreation":{"shape":"BooleanValue"},
+        "Tags":{"shape":"TagsMap"}
       }
     },
     "CreateTriggerResponse":{
@@ -2500,6 +2718,16 @@
     "DevEndpointList":{
       "type":"list",
       "member":{"shape":"DevEndpoint"}
+    },
+    "DevEndpointNameList":{
+      "type":"list",
+      "member":{"shape":"NameString"}
+    },
+    "DevEndpointNames":{
+      "type":"list",
+      "member":{"shape":"GenericString"},
+      "max":25,
+      "min":1
     },
     "DynamoDBTarget":{
       "type":"structure",
@@ -3044,6 +3272,19 @@
         "NextToken":{"shape":"Token"}
       }
     },
+    "GetTagsRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"GlueResourceArn"}
+      }
+    },
+    "GetTagsResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagsMap"}
+      }
+    },
     "GetTriggerRequest":{
       "type":"structure",
       "required":["Name"],
@@ -3117,6 +3358,12 @@
         "Message":{"shape":"MessageString"}
       },
       "exception":true
+    },
+    "GlueResourceArn":{
+      "type":"string",
+      "max":10240,
+      "min":1,
+      "pattern":"arn:aws:glue:.*"
     },
     "GrokClassifier":{
       "type":"structure",
@@ -3266,6 +3513,10 @@
       "member":{"shape":"Job"}
     },
     "JobName":{"type":"string"},
+    "JobNameList":{
+      "type":"list",
+      "member":{"shape":"NameString"}
+    },
     "JobRun":{
       "type":"structure",
       "members":{
@@ -3383,6 +3634,67 @@
         "CANCELLED",
         "FAILED"
       ]
+    },
+    "ListCrawlersRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"PageSize"},
+        "NextToken":{"shape":"Token"},
+        "Tags":{"shape":"TagsMap"}
+      }
+    },
+    "ListCrawlersResponse":{
+      "type":"structure",
+      "members":{
+        "CrawlerNames":{"shape":"CrawlerNameList"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListDevEndpointsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"GenericString"},
+        "MaxResults":{"shape":"PageSize"},
+        "Tags":{"shape":"TagsMap"}
+      }
+    },
+    "ListDevEndpointsResponse":{
+      "type":"structure",
+      "members":{
+        "DevEndpointNames":{"shape":"DevEndpointNameList"},
+        "NextToken":{"shape":"GenericString"}
+      }
+    },
+    "ListJobsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"GenericString"},
+        "MaxResults":{"shape":"PageSize"},
+        "Tags":{"shape":"TagsMap"}
+      }
+    },
+    "ListJobsResponse":{
+      "type":"structure",
+      "members":{
+        "JobNames":{"shape":"JobNameList"},
+        "NextToken":{"shape":"GenericString"}
+      }
+    },
+    "ListTriggersRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"GenericString"},
+        "DependentJobName":{"shape":"NameString"},
+        "MaxResults":{"shape":"PageSize"},
+        "Tags":{"shape":"TagsMap"}
+      }
+    },
+    "ListTriggersResponse":{
+      "type":"structure",
+      "members":{
+        "TriggerNames":{"shape":"TriggerNameList"},
+        "NextToken":{"shape":"GenericString"}
+      }
     },
     "Location":{
       "type":"structure",
@@ -4040,6 +4352,45 @@
       "type":"list",
       "member":{"shape":"TableVersionError"}
     },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeysList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":50,
+      "min":0
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "TagsToAdd"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"GlueResourceArn"},
+        "TagsToAdd":{"shape":"TagsMap"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
+    "TagsMap":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"},
+      "max":50,
+      "min":0
+    },
     "Timeout":{
       "type":"integer",
       "box":true,
@@ -4069,6 +4420,10 @@
     "TriggerList":{
       "type":"list",
       "member":{"shape":"Trigger"}
+    },
+    "TriggerNameList":{
+      "type":"list",
+      "member":{"shape":"NameString"}
     },
     "TriggerState":{
       "type":"string",
@@ -4106,6 +4461,22 @@
       "max":1024,
       "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "TagsToRemove"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"GlueResourceArn"},
+        "TagsToRemove":{"shape":"TagKeysList"}
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateBehavior":{
       "type":"string",

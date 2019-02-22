@@ -117,6 +117,10 @@ type AthenaAPI interface {
 	ListQueryExecutionsPages(*athena.ListQueryExecutionsInput, func(*athena.ListQueryExecutionsOutput, bool) bool) error
 	ListQueryExecutionsPagesWithContext(aws.Context, *athena.ListQueryExecutionsInput, func(*athena.ListQueryExecutionsOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*athena.ListTagsForResourceInput) (*athena.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *athena.ListTagsForResourceInput, ...request.Option) (*athena.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*athena.ListTagsForResourceInput) (*request.Request, *athena.ListTagsForResourceOutput)
+
 	ListWorkGroups(*athena.ListWorkGroupsInput) (*athena.ListWorkGroupsOutput, error)
 	ListWorkGroupsWithContext(aws.Context, *athena.ListWorkGroupsInput, ...request.Option) (*athena.ListWorkGroupsOutput, error)
 	ListWorkGroupsRequest(*athena.ListWorkGroupsInput) (*request.Request, *athena.ListWorkGroupsOutput)
@@ -131,6 +135,14 @@ type AthenaAPI interface {
 	StopQueryExecution(*athena.StopQueryExecutionInput) (*athena.StopQueryExecutionOutput, error)
 	StopQueryExecutionWithContext(aws.Context, *athena.StopQueryExecutionInput, ...request.Option) (*athena.StopQueryExecutionOutput, error)
 	StopQueryExecutionRequest(*athena.StopQueryExecutionInput) (*request.Request, *athena.StopQueryExecutionOutput)
+
+	TagResource(*athena.TagResourceInput) (*athena.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *athena.TagResourceInput, ...request.Option) (*athena.TagResourceOutput, error)
+	TagResourceRequest(*athena.TagResourceInput) (*request.Request, *athena.TagResourceOutput)
+
+	UntagResource(*athena.UntagResourceInput) (*athena.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *athena.UntagResourceInput, ...request.Option) (*athena.UntagResourceOutput, error)
+	UntagResourceRequest(*athena.UntagResourceInput) (*request.Request, *athena.UntagResourceOutput)
 
 	UpdateWorkGroup(*athena.UpdateWorkGroupInput) (*athena.UpdateWorkGroupOutput, error)
 	UpdateWorkGroupWithContext(aws.Context, *athena.UpdateWorkGroupInput, ...request.Option) (*athena.UpdateWorkGroupOutput, error)

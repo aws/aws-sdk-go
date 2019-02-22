@@ -1,3 +1,16 @@
+Release v1.17.4 (2019-02-22)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API and documentation
+  * This release adds tagging support for Workgroups to Amazon Athena. Use these APIs to add, remove, or list tags on Workgroups, and leverage the tags for various authorization and billing scenarios.
+* `service/cloud9`: Updates service API and documentation
+  * Adding EnvironmentLifecycle to the Environment data type.
+* `service/glue`: Updates service API, documentation, and paginators
+  * AWS Glue adds support for assigning AWS resource tags to jobs, triggers, development endpoints, and crawlers. Each tag consists of a key and an optional value, both of which you define. With this capacity, customers can use tags in AWS Glue to easily organize and identify your resources, create cost allocation reports, and control access to resources.
+* `service/states`: Updates service API and documentation
+  * This release adds support for tag-on-create. You can now add tags when you create AWS Step Functions activity and state machine resources. For more information about tagging, see AWS Tagging Strategies.
+
 Release v1.17.3 (2019-02-21)
 ===
 
