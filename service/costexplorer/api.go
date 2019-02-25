@@ -2091,6 +2091,9 @@ type GetReservationCoverageInput struct {
 	//    * TENANCY
 	GroupBy []*GroupDefinition `type:"list"`
 
+	// The measurement that you want your reservation coverage reported in.
+	//
+	// Valid values are Hour, Unit, and Cost. You can use multiple values in a request.
 	Metrics []*string `type:"list"`
 
 	// The token to retrieve the next set of results. AWS provides the token when
@@ -3260,6 +3263,7 @@ func (s *ReservationPurchaseRecommendation) SetTermInYears(v string) *Reservatio
 type ReservationPurchaseRecommendationDetail struct {
 	_ struct{} `type:"structure"`
 
+	// The account that this RI recommendation is for.
 	AccountId *string `type:"string"`
 
 	// The average number of normalized units that you used in an hour during the

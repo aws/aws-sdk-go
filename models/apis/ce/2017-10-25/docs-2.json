@@ -278,7 +278,7 @@
         "RedshiftInstanceDetails$Family": "<p>The instance family of the recommended reservation.</p>",
         "RedshiftInstanceDetails$NodeType": "<p>The type of node that AWS recommends.</p>",
         "RedshiftInstanceDetails$Region": "<p>The AWS Region of the recommended reservation.</p>",
-        "ReservationPurchaseRecommendationDetail$AccountId": null,
+        "ReservationPurchaseRecommendationDetail$AccountId": "<p>The account that this RI recommendation is for.</p>",
         "ReservationPurchaseRecommendationDetail$RecommendedNumberOfInstancesToPurchase": "<p>The number of instances that AWS recommends that you purchase.</p>",
         "ReservationPurchaseRecommendationDetail$RecommendedNormalizedUnitsToPurchase": "<p>The number of normalized units that AWS recommends that you purchase.</p>",
         "ReservationPurchaseRecommendationDetail$MinimumNumberOfInstancesUsedPerHour": "<p>The minimum number of instances that you used in an hour during the historical period. AWS uses this to calculate your recommended reservation purchases.</p>",
@@ -479,7 +479,7 @@
       "base": null,
       "refs": {
         "GetCostAndUsageRequest$Metrics": "<p>Which metrics are returned in the query. For more information about blended and unblended rates, see <a href=\"https://aws.amazon.com/premiumsupport/knowledge-center/blended-rates-intro/\">Why does the \"blended\" annotation appear on some line items in my bill?</a>. </p> <p>Valid values are <code>AmortizedCost</code>, <code>BlendedCost</code>, <code>NetAmortizedCost</code>, <code>NetUnblendedCost</code>, <code>NormalizedUsageAmount</code>, <code>UnblendedCost</code>, and <code>UsageQuantity</code>. </p> <note> <p>If you return the <code>UsageQuantity</code> metric, the service aggregates all usage numbers without taking into account the units. For example, if you aggregate <code>usageQuantity</code> across all of Amazon EC2, the results aren't meaningful because Amazon EC2 compute hours and data transfer are measured in different units (for example, hours vs. GB). To get more meaningful <code>UsageQuantity</code> metrics, filter by <code>UsageType</code> or <code>UsageTypeGroups</code>. </p> </note> <p> <code>Metrics</code> is required for <code>GetCostAndUsage</code> requests.</p>",
-        "GetReservationCoverageRequest$Metrics": null
+        "GetReservationCoverageRequest$Metrics": "<p>The measurement that you want your reservation coverage reported in.</p> <p>Valid values are <code>Hour</code>, <code>Unit</code>, and <code>Cost</code>. You can use multiple values in a request.</p>"
       }
     },
     "MetricUnit": {
