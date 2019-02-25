@@ -1595,7 +1595,7 @@
         "OnDemandPercentageAboveBaseCapacity":{"shape":"OnDemandPercentageAboveBaseCapacity"},
         "SpotAllocationStrategy":{"shape":"XmlString"},
         "SpotInstancePools":{"shape":"SpotInstancePools"},
-        "SpotMaxPrice":{"shape":"SpotPrice"}
+        "SpotMaxPrice":{"shape":"MixedInstanceSpotPrice"}
       }
     },
     "InvalidNextToken":{
@@ -1875,6 +1875,11 @@
     "MinAdjustmentStep":{
       "type":"integer",
       "deprecated":true
+    },
+    "MixedInstanceSpotPrice":{
+      "type":"string",
+      "max":255,
+      "min":0
     },
     "MixedInstancesPolicy":{
       "type":"structure",

@@ -111,6 +111,14 @@ type MediaStoreAPI interface {
 	PutLifecyclePolicy(*mediastore.PutLifecyclePolicyInput) (*mediastore.PutLifecyclePolicyOutput, error)
 	PutLifecyclePolicyWithContext(aws.Context, *mediastore.PutLifecyclePolicyInput, ...request.Option) (*mediastore.PutLifecyclePolicyOutput, error)
 	PutLifecyclePolicyRequest(*mediastore.PutLifecyclePolicyInput) (*request.Request, *mediastore.PutLifecyclePolicyOutput)
+
+	StartAccessLogging(*mediastore.StartAccessLoggingInput) (*mediastore.StartAccessLoggingOutput, error)
+	StartAccessLoggingWithContext(aws.Context, *mediastore.StartAccessLoggingInput, ...request.Option) (*mediastore.StartAccessLoggingOutput, error)
+	StartAccessLoggingRequest(*mediastore.StartAccessLoggingInput) (*request.Request, *mediastore.StartAccessLoggingOutput)
+
+	StopAccessLogging(*mediastore.StopAccessLoggingInput) (*mediastore.StopAccessLoggingOutput, error)
+	StopAccessLoggingWithContext(aws.Context, *mediastore.StopAccessLoggingInput, ...request.Option) (*mediastore.StopAccessLoggingOutput, error)
+	StopAccessLoggingRequest(*mediastore.StopAccessLoggingInput) (*request.Request, *mediastore.StopAccessLoggingOutput)
 }
 
 var _ MediaStoreAPI = (*mediastore.MediaStore)(nil)

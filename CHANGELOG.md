@@ -1,3 +1,14 @@
+Release v1.17.5 (2019-02-25)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * Added support for passing an empty SpotMaxPrice parameter to remove a value previously set when updating an Amazon EC2 Auto Scaling group.
+* `service/ce`: Updates service documentation
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `service/mediastore`: Updates service API and documentation
+  * This release adds support for access logging, which provides detailed records for the requests that are made to objects in a container.
+
 Release v1.17.4 (2019-02-22)
 ===
 
