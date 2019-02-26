@@ -1,3 +1,22 @@
+Release v1.17.6 (2019-02-26)
+===
+
+### Service Client Updates
+* `service/cur`: Updates service API, documentation, and examples
+  * Adding support for Athena and new report preferences to the Cost and Usage Report API.
+* `service/discovery`: Updates service documentation
+  * Documentation updates for discovery
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added several features including support for: auto-rotation or user-specified rotation of 0, 90, 180, or 270 degrees; multiple output groups with DRM; ESAM XML documents to specify ad insertion points; Offline Apple HLS FairPlay content protection.
+* `service/opsworkscm`: Updates service documentation
+  * Documentation updates for opsworkscm
+* `service/organizations`: Updates service documentation
+  * Documentation updates for AWS Organizations
+* `service/pinpoint`: Updates service API and documentation
+  * This release adds support for the Amazon Resource Groups Tagging API to Amazon Pinpoint, which means that you can now add and manage tags for Amazon Pinpoint projects (apps), campaigns, and segments. A tag is a label that you optionally define and associate with Amazon Pinpoint resource. Tags can help you categorize and manage these types of resources in different ways, such as by purpose, owner, environment, or other criteria. For example, you can use tags to apply policies or automation, or to identify resources that are subject to certain compliance requirements. A project, campaign, or segment can have as many as 50 tags. For more information about using and managing tags in Amazon Pinpoint, see the Amazon Pinpoint Developer Guide at https://docs.aws.amazon.com/pinpoint/latest/developerguide/welcome.html. For more information about the Amazon Resource Group Tagging API, see the Amazon Resource Group Tagging API Reference at https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/Welcome.html.
+* `service/resource-groups`: Updates service documentation
+
 Release v1.17.5 (2019-02-25)
 ===
 

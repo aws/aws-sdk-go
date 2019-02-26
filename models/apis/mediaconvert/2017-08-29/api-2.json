@@ -2014,6 +2014,10 @@
           "shape": "JobSettings",
           "locationName": "settings"
         },
+        "StatusUpdateIntervalInSecs": {
+          "shape": "__integerMin10Max600",
+          "locationName": "statusUpdateIntervalInSecs"
+        },
         "UserMetadata": {
           "shape": "__mapOf__string",
           "locationName": "userMetadata"
@@ -2059,6 +2063,10 @@
         "Settings": {
           "shape": "JobTemplateSettings",
           "locationName": "settings"
+        },
+        "StatusUpdateIntervalInSecs": {
+          "shape": "__integerMin10Max600",
+          "locationName": "statusUpdateIntervalInSecs"
         },
         "Tags": {
           "shape": "__mapOf__string",
@@ -2812,6 +2820,41 @@
         "Url": {
           "shape": "__string",
           "locationName": "url"
+        }
+      }
+    },
+    "EsamManifestConfirmConditionNotification": {
+      "type": "structure",
+      "members": {
+        "MccXml": {
+          "shape": "__stringPatternSNManifestConfirmConditionNotificationNS",
+          "locationName": "mccXml"
+        }
+      }
+    },
+    "EsamSettings": {
+      "type": "structure",
+      "members": {
+        "ManifestConfirmConditionNotification": {
+          "shape": "EsamManifestConfirmConditionNotification",
+          "locationName": "manifestConfirmConditionNotification"
+        },
+        "ResponseSignalPreroll": {
+          "shape": "__integerMin0Max30000",
+          "locationName": "responseSignalPreroll"
+        },
+        "SignalProcessingNotification": {
+          "shape": "EsamSignalProcessingNotification",
+          "locationName": "signalProcessingNotification"
+        }
+      }
+    },
+    "EsamSignalProcessingNotification": {
+      "type": "structure",
+      "members": {
+        "SccXml": {
+          "shape": "__stringPatternSNSignalProcessingNotificationNS",
+          "locationName": "sccXml"
         }
       }
     },
@@ -3872,6 +3915,10 @@
           "shape": "HlsInitializationVectorInManifest",
           "locationName": "initializationVectorInManifest"
         },
+        "OfflineEncrypted": {
+          "shape": "HlsOfflineEncrypted",
+          "locationName": "offlineEncrypted"
+        },
         "SpekeKeyProvider": {
           "shape": "SpekeKeyProvider",
           "locationName": "spekeKeyProvider"
@@ -4023,6 +4070,13 @@
       "enum": [
         "FLOATING_POINT",
         "INTEGER"
+      ]
+    },
+    "HlsOfflineEncrypted": {
+      "type": "string",
+      "enum": [
+        "ENABLED",
+        "DISABLED"
       ]
     },
     "HlsOutputSelection": {
@@ -4240,6 +4294,16 @@
         "USE_PSI"
       ]
     },
+    "InputRotate": {
+      "type": "string",
+      "enum": [
+        "DEGREE_0",
+        "DEGREES_90",
+        "DEGREES_180",
+        "DEGREES_270",
+        "AUTO"
+      ]
+    },
     "InputTemplate": {
       "type": "structure",
       "members": {
@@ -4422,6 +4486,10 @@
           "shape": "JobStatus",
           "locationName": "status"
         },
+        "StatusUpdateIntervalInSecs": {
+          "shape": "__integerMin10Max600",
+          "locationName": "statusUpdateIntervalInSecs"
+        },
         "Timing": {
           "shape": "Timing",
           "locationName": "timing"
@@ -4446,6 +4514,10 @@
         "AvailBlanking": {
           "shape": "AvailBlanking",
           "locationName": "availBlanking"
+        },
+        "Esam": {
+          "shape": "EsamSettings",
+          "locationName": "esam"
         },
         "Inputs": {
           "shape": "__listOfInput",
@@ -4522,6 +4594,10 @@
           "shape": "JobTemplateSettings",
           "locationName": "settings"
         },
+        "StatusUpdateIntervalInSecs": {
+          "shape": "__integerMin10Max600",
+          "locationName": "statusUpdateIntervalInSecs"
+        },
         "Type": {
           "shape": "Type",
           "locationName": "type"
@@ -4550,6 +4626,10 @@
         "AvailBlanking": {
           "shape": "AvailBlanking",
           "locationName": "availBlanking"
+        },
+        "Esam": {
+          "shape": "EsamSettings",
+          "locationName": "esam"
         },
         "Inputs": {
           "shape": "__listOfInputTemplate",
@@ -5025,6 +5105,15 @@
         "CBR"
       ]
     },
+    "M2tsScte35Esam": {
+      "type": "structure",
+      "members": {
+        "Scte35EsamPid": {
+          "shape": "__integerMin32Max8182",
+          "locationName": "scte35EsamPid"
+        }
+      }
+    },
     "M2tsScte35Source": {
       "type": "string",
       "enum": [
@@ -5160,6 +5249,10 @@
         "RateMode": {
           "shape": "M2tsRateMode",
           "locationName": "rateMode"
+        },
+        "Scte35Esam": {
+          "shape": "M2tsScte35Esam",
+          "locationName": "scte35Esam"
         },
         "Scte35Pid": {
           "shape": "__integerMin32Max8182",
@@ -6686,6 +6779,10 @@
         "Settings": {
           "shape": "JobTemplateSettings",
           "locationName": "settings"
+        },
+        "StatusUpdateIntervalInSecs": {
+          "shape": "__integerMin10Max600",
+          "locationName": "statusUpdateIntervalInSecs"
         }
       },
       "required": [
@@ -6933,6 +7030,10 @@
         "ProgramNumber": {
           "shape": "__integerMinNegative2147483648Max2147483647",
           "locationName": "programNumber"
+        },
+        "Rotate": {
+          "shape": "InputRotate",
+          "locationName": "rotate"
         }
       }
     },
@@ -7060,6 +7161,11 @@
       "min": 0,
       "max": 30
     },
+    "__integerMin0Max30000": {
+      "type": "integer",
+      "min": 0,
+      "max": 30000
+    },
     "__integerMin0Max3600": {
       "type": "integer",
       "min": 0,
@@ -7139,6 +7245,11 @@
       "type": "integer",
       "min": 10,
       "max": 48
+    },
+    "__integerMin10Max600": {
+      "type": "long",
+      "min": 10,
+      "max": 600
     },
     "__integerMin16Max24": {
       "type": "integer",
@@ -7674,6 +7785,14 @@
     "__stringPatternS3MM2VVMMPPEEGGAAVVIIMMPP4FFLLVVMMPPTTMMPPGGMM4VVTTRRPPFF4VVMM2TTSSTTSS264HH264MMKKVVMMOOVVMMTTSSMM2TTWWMMVVAASSFFVVOOBB3GGPP3GGPPPPMMXXFFDDIIVVXXXXVVIIDDRRAAWWDDVVGGXXFFMM1VV3GG2VVMMFFMM3UU8LLCCHHGGXXFFMMPPEEGG2MMXXFFMMPPEEGG2MMXXFFHHDDWWAAVVYY4MMXXMMLL": {
       "type": "string",
       "pattern": "^(s3:\\/\\/)([^\\/]+\\/)+([^\\/\\.]+|(([^\\/]*)\\.([mM]2[vV]|[mM][pP][eE][gG]|[aA][vV][iI]|[mM][pP]4|[fF][lL][vV]|[mM][pP][tT]|[mM][pP][gG]|[mM]4[vV]|[tT][rR][pP]|[fF]4[vV]|[mM]2[tT][sS]|[tT][sS]|264|[hH]264|[mM][kK][vV]|[mM][oO][vV]|[mM][tT][sS]|[mM]2[tT]|[wW][mM][vV]|[aA][sS][fF]|[vV][oO][bB]|3[gG][pP]|3[gG][pP][pP]|[mM][xX][fF]|[dD][iI][vV][xX]|[xX][vV][iI][dD]|[rR][aA][wW]|[dD][vV]|[gG][xX][fF]|[mM]1[vV]|3[gG]2|[vV][mM][fF]|[mM]3[uU]8|[lL][cC][hH]|[gG][xX][fF]_[mM][pP][eE][gG]2|[mM][xX][fF]_[mM][pP][eE][gG]2|[mM][xX][fF][hH][dD]|[wW][aA][vV]|[yY]4[mM]|[xX][mM][lL])))$"
+    },
+    "__stringPatternSNManifestConfirmConditionNotificationNS": {
+      "type": "string",
+      "pattern": "^\\s*<(.|\\n)*ManifestConfirmConditionNotification(.|\\n)*>\\s*$"
+    },
+    "__stringPatternSNSignalProcessingNotificationNS": {
+      "type": "string",
+      "pattern": "^\\s*<(.|\\n)*SignalProcessingNotification(.|\\n)*>\\s*$"
     },
     "__stringPatternWS": {
       "type": "string",
