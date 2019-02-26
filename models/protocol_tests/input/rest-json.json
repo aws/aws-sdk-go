@@ -1515,7 +1515,7 @@
           "FooEnum": "foo",
           "QueryFooEnum": "bar",
           "ListEnums": ["foo", "", "bar"],
-          "QueryListEnums": ["0", "", "1"]
+          "QueryListEnums": ["0", "1", ""]
         },
         "serialized": {
           "uri": "/path?Enum=bar&List=0&List=1&List=",
@@ -1603,7 +1603,7 @@
             "shape": "MemberRefInputShape"
           },
           "http": {
-            "method": "GET",
+            "method": "POST",
             "requestUri": "/path"
           },
           "endpoint":{
@@ -1617,6 +1617,77 @@
           "uri": "/path",
           "body": "{\"Name\": \"myname\"}",
           "host": "foo-myname.service.region.amazonaws.com"
+        }
+      }
+    ]
+  },
+  {
+    "description": "Header whitespace",
+    "metadata": {
+      "protocol": "rest-json",
+      "apiVersion": "2014-01-01"
+    },
+    "shapes": {
+      "InputShape": {
+        "type": "structure",
+        "members": {
+          "Header1": {
+            "shape": "StringType",
+            "location": "header"
+          },
+          "HeaderMap": {
+            "shape": "StringMap",
+            "location": "headers",
+            "locationName": "header-map-"
+          }
+        }
+      },
+      "StringType": {
+        "type": "string"
+      },
+      "StringMap": {
+        "type": "map",
+        "key": {
+          "shape": "StringType"
+        },
+        "value": {
+          "shape": "StringType"
+        }
+      }
+    },
+    "cases": [
+      {
+        "given": {
+          "http": {
+            "method": "GET",
+            "requestUri": "/"
+          },
+          "input": {
+            "shape": "InputShape"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+          "Header1": "   headerValue",
+          "HeaderMap": {
+              "leading-space": "   value",
+              "with-space": "   value   ",
+              "leading-tab": "    value",
+              "   key-leading-space": "value",
+              "   key-with-space   ": "value"
+          }
+        },
+        "serialized": {
+          "body": "",
+          "uri": "/",
+          "headers": {
+              "header1": "headerValue",
+              "header-map-leading-space": "value",
+              "header-map-with-space": "value",
+              "header-map-leading-tab": "value",
+              "header-map-key-leading-space": "value",
+              "header-map-key-with-space": "value"
+          }
         }
       }
     ]

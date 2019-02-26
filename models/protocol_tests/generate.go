@@ -181,7 +181,7 @@ func Test{{ .OpName }}(t *testing.T) {
 	// assert headers
 	{{ range $k, $v := .TestCase.InputTest.Headers -}}
 		if e, a := "{{ $v }}", r.Header.Get("{{ $k }}"); e != a {
-			t.Errorf("expect %v to be %v", e, a)
+			t.Errorf("expect %v, got %v", e, a)
 		}
 	{{ end }}
 }
