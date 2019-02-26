@@ -272,6 +272,10 @@ type PinpointAPI interface {
 	GetVoiceChannelWithContext(aws.Context, *pinpoint.GetVoiceChannelInput, ...request.Option) (*pinpoint.GetVoiceChannelOutput, error)
 	GetVoiceChannelRequest(*pinpoint.GetVoiceChannelInput) (*request.Request, *pinpoint.GetVoiceChannelOutput)
 
+	ListTagsForResource(*pinpoint.ListTagsForResourceInput) (*pinpoint.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *pinpoint.ListTagsForResourceInput, ...request.Option) (*pinpoint.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*pinpoint.ListTagsForResourceInput) (*request.Request, *pinpoint.ListTagsForResourceOutput)
+
 	PhoneNumberValidate(*pinpoint.PhoneNumberValidateInput) (*pinpoint.PhoneNumberValidateOutput, error)
 	PhoneNumberValidateWithContext(aws.Context, *pinpoint.PhoneNumberValidateInput, ...request.Option) (*pinpoint.PhoneNumberValidateOutput, error)
 	PhoneNumberValidateRequest(*pinpoint.PhoneNumberValidateInput) (*request.Request, *pinpoint.PhoneNumberValidateOutput)
@@ -295,6 +299,14 @@ type PinpointAPI interface {
 	SendUsersMessages(*pinpoint.SendUsersMessagesInput) (*pinpoint.SendUsersMessagesOutput, error)
 	SendUsersMessagesWithContext(aws.Context, *pinpoint.SendUsersMessagesInput, ...request.Option) (*pinpoint.SendUsersMessagesOutput, error)
 	SendUsersMessagesRequest(*pinpoint.SendUsersMessagesInput) (*request.Request, *pinpoint.SendUsersMessagesOutput)
+
+	TagResource(*pinpoint.TagResourceInput) (*pinpoint.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *pinpoint.TagResourceInput, ...request.Option) (*pinpoint.TagResourceOutput, error)
+	TagResourceRequest(*pinpoint.TagResourceInput) (*request.Request, *pinpoint.TagResourceOutput)
+
+	UntagResource(*pinpoint.UntagResourceInput) (*pinpoint.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *pinpoint.UntagResourceInput, ...request.Option) (*pinpoint.UntagResourceOutput, error)
+	UntagResourceRequest(*pinpoint.UntagResourceInput) (*request.Request, *pinpoint.UntagResourceOutput)
 
 	UpdateAdmChannel(*pinpoint.UpdateAdmChannelInput) (*pinpoint.UpdateAdmChannelOutput, error)
 	UpdateAdmChannelWithContext(aws.Context, *pinpoint.UpdateAdmChannelInput, ...request.Option) (*pinpoint.UpdateAdmChannelOutput, error)

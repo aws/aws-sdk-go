@@ -3,7 +3,7 @@
   "service": "AWS Elemental MediaConvert",
   "operations": {
     "AssociateCertificate": "Associates an AWS Certificate Manager (ACM) Amazon Resource Name (ARN) with AWS Elemental MediaConvert.",
-    "CancelJob": "Permanently remove a job from a queue. Once you have canceled a job, you can't start it again. You can't delete a running job.",
+    "CancelJob": "Permanently cancel a job. Once you have canceled a job, you can't start it again.",
     "CreateJob": "Create a new transcoding job. For information about jobs and job settings, see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html",
     "CreateJobTemplate": "Create a new job template. For information about job templates see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html",
     "CreatePreset": "Create a new preset. For information about job templates see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html",
@@ -148,9 +148,9 @@
       }
     },
     "AntiAlias": {
-      "base": "Enable Anti-alias (AntiAlias) to enhance sharp edges in video output when your input resolution is much larger than your output resolution. Default is enabled.",
+      "base": "You no longer need to specify the anti-alias filter. It's now automatically applied to all outputs. This property is deprecated.",
       "refs": {
-        "VideoDescription$AntiAlias": null
+        "VideoDescription$AntiAlias": "You no longer need to specify the anti-alias filter. It's now automatically applied to all outputs. This property is deprecated."
       }
     },
     "AssociateCertificateRequest": {
@@ -842,6 +842,25 @@
         "__listOfEndpoint$member": null
       }
     },
+    "EsamManifestConfirmConditionNotification": {
+      "base": "ESAM ManifestConfirmConditionNotification defined by OC-SP-ESAM-API-I03-131025.",
+      "refs": {
+        "EsamSettings$ManifestConfirmConditionNotification": "Specifies an ESAM ManifestConfirmConditionNotification XML as per OC-SP-ESAM-API-I03-131025. The transcoder uses the manifest conditioning instructions that you provide in the setting MCC XML (mccXml)."
+      }
+    },
+    "EsamSettings": {
+      "base": "Settings for Event Signaling And Messaging (ESAM). If you don't do ad insertion, you can ignore these settings.",
+      "refs": {
+        "JobSettings$Esam": "Settings for Event Signaling And Messaging (ESAM).",
+        "JobTemplateSettings$Esam": "Settings for Event Signaling And Messaging (ESAM)."
+      }
+    },
+    "EsamSignalProcessingNotification": {
+      "base": "ESAM SignalProcessingNotification data defined by OC-SP-ESAM-API-I03-131025.",
+      "refs": {
+        "EsamSettings$SignalProcessingNotification": "Specifies an ESAM SignalProcessingNotification XML as per OC-SP-ESAM-API-I03-131025. The transcoder uses the signal processing instructions that you provide in the setting SCC XML (sccXml)."
+      }
+    },
     "ExceptionBody": {
       "base": null,
       "refs": {
@@ -1236,9 +1255,9 @@
       }
     },
     "H265WriteMp4PackagingType": {
-      "base": "If HVC1, output that is H.265 will be marked as HVC1 and adhere to the ISO-IECJTC1-SC29_N13798_Text_ISOIEC_FDIS_14496-15_3rd_E spec which states that parameter set NAL units will be stored in the sample headers but not in the samples directly. If HEV1, then H.265 will be marked as HEV1 and parameter set NAL units will be written into the samples.",
+      "base": "Use this setting only for outputs encoded with H.265 that are in CMAF or DASH output groups. If you include writeMp4PackagingType in your JSON job specification for other outputs, your video might not work properly with downstream systems and video players. If the location of parameter set NAL units don't matter in your workflow, ignore this setting. The service defaults to marking your output as HEV1. Choose HVC1 to mark your output as HVC1. This makes your output compliant with this specification: ISO IECJTC1 SC29 N13798 Text ISO/IEC FDIS 14496-15 3rd Edition. For these outputs, the service stores parameter set NAL units in the sample headers but not in the samples directly. Keep the default HEV1 to mark your output as HEV1. For these outputs, the service writes parameter set NAL units directly into the samples.",
       "refs": {
-        "H265Settings$WriteMp4PackagingType": null
+        "H265Settings$WriteMp4PackagingType": "Use this setting only for outputs encoded with H.265 that are in CMAF or DASH output groups. If you include writeMp4PackagingType in your JSON job specification for other outputs, your video might not work properly with downstream systems and video players. If the location of parameter set NAL units don't matter in your workflow, ignore this setting. The service defaults to marking your output as HEV1. Choose HVC1 to mark your output as HVC1. This makes your output compliant with this specification: ISO IECJTC1 SC29 N13798 Text ISO/IEC FDIS 14496-15 3rd Edition. For these outputs, the service stores parameter set NAL units in the sample headers but not in the samples directly. Keep the default HEV1 to mark your output as HEV1. For these outputs, the service writes parameter set NAL units directly into the samples."
       }
     },
     "Hdr10Metadata": {
@@ -1338,6 +1357,12 @@
         "HlsGroupSettings$ManifestDurationFormat": null
       }
     },
+    "HlsOfflineEncrypted": {
+      "base": "Enable this setting to insert the EXT-X-SESSION-KEY element into the master playlist. This allows for offline Apple HLS FairPlay content protection.",
+      "refs": {
+        "HlsEncryptionSettings$OfflineEncrypted": null
+      }
+    },
     "HlsOutputSelection": {
       "base": "Indicates whether the .m3u8 manifest file should be generated for this HLS output group.",
       "refs": {
@@ -1432,6 +1457,12 @@
       "refs": {
         "Input$PsiControl": null,
         "InputTemplate$PsiControl": null
+      }
+    },
+    "InputRotate": {
+      "base": "Use Rotate (InputRotate) to specify how the service rotates your video. You can choose automatic rotation or specify a rotation. You can specify a clockwise rotation of 0, 90, 180, or 270 degrees. If your input video container is .mov or .mp4 and your input has rotation metadata, you can choose Automatic to have the service rotate your video according to the rotation specified in the metadata. The rotation must be within one degree of 90, 180, or 270 degrees. If the rotation metadata specifies any other rotation, the service will default to no rotation. By default, the service does no rotation, even if your input video has rotation metadata. The service doesn't pass through rotation metadata.",
+      "refs": {
+        "VideoSelector$Rotate": null
       }
     },
     "InputTemplate": {
@@ -1595,9 +1626,9 @@
       }
     },
     "M2tsForceTsVideoEbpOrder": {
-      "base": "Keep the default value (DEFAULT) unless you know that your audio EBP markers are incorrectly appearing before your video EBP markers. Set this value to Force (FORCE) to correct this problem.",
+      "base": "Keep the default value (DEFAULT) unless you know that your audio EBP markers are incorrectly appearing before your video EBP markers. To correct this problem, set this value to Force (FORCE).",
       "refs": {
-        "M2tsSettings$ForceTsVideoEbpOrder": null
+        "M2tsSettings$ForceTsVideoEbpOrder": "Keep the default value (DEFAULT) unless you know that your audio EBP markers are incorrectly appearing before your video EBP markers. To correct this problem, set this value to Force (FORCE)."
       }
     },
     "M2tsNielsenId3": {
@@ -1616,6 +1647,12 @@
       "base": "When set to CBR, inserts null packets into transport stream to fill specified bitrate. When set to VBR, the bitrate setting acts as the maximum bitrate, but the output will not be padded up to that bitrate.",
       "refs": {
         "M2tsSettings$RateMode": null
+      }
+    },
+    "M2tsScte35Esam": {
+      "base": "Settings for SCTE-35 signals from ESAM. Include this in your job settings to put SCTE-35 markers in your HLS and transport stream outputs at the insertion points that you specify in an ESAM XML document. Provide the document in the setting SCC XML (sccXml).",
+      "refs": {
+        "M2tsSettings$Scte35Esam": "Include this in your job settings to put SCTE-35 markers in your HLS and transport stream outputs at the insertion points that you specify in an ESAM XML document. Provide the document in the setting SCC XML (sccXml)."
       }
     },
     "M2tsScte35Source": {
@@ -1637,7 +1674,7 @@
       }
     },
     "M2tsSettings": {
-      "base": "Settings for M2TS Container.",
+      "base": "MPEG-2 TS container settings. These apply to outputs in a File output group when the output's container (ContainerType) is MPEG-2 Transport Stream (M2TS). In these assets, data is organized by the program map table (PMT). Each transport stream program contains subsets of data, including audio, video, and metadata. Each of these subsets of data has a numerical label called a packet identifier (PID). Each transport stream program corresponds to one MediaConvert output. The PMT lists the types of data in a program along with their PID. Downstream systems and players use the program map table to look up the PID for each type of data it accesses and then uses the PIDs to locate specific data within the asset.",
       "refs": {
         "ContainerSettings$M2tsSettings": null
       }
@@ -2383,9 +2420,9 @@
       "refs": {
         "H264Settings$GopSize": "GOP Length (keyframe interval) in frames or seconds. Must be greater than zero.",
         "H265Settings$GopSize": "GOP Length (keyframe interval) in frames or seconds. Must be greater than zero.",
-        "M2tsSettings$FragmentTime": "The length in seconds of each fragment. Only used with EBP markers.",
+        "M2tsSettings$FragmentTime": "The length, in seconds, of each fragment. Only used with EBP markers.",
         "M2tsSettings$NullPacketBitrate": "Value in bits per second of extra null packets to insert into the transport stream. This can be used if a downstream encryption system requires periodic null packets.",
-        "M2tsSettings$SegmentationTime": "The length in seconds of each segment. Required unless markers is set to _none_.",
+        "M2tsSettings$SegmentationTime": "Specify the length, in seconds, of each segment. Required unless markers is set to _none_.",
         "Mpeg2Settings$GopSize": "GOP Length (keyframe interval) in frames or seconds. Must be greater than zero."
       }
     },
@@ -2444,14 +2481,14 @@
         "H265Settings$HrdBufferInitialFillPercentage": "Percentage of the buffer that should initially be filled (HRD buffer model).",
         "InsertableImage$Opacity": "Use Opacity (Opacity) to specify how much of the underlying video shows through the inserted image. 0 is transparent and 100 is fully opaque. Default is 50.",
         "Mpeg2Settings$HrdBufferInitialFillPercentage": "Percentage of the buffer that should initially be filled (HRD buffer model).",
-        "VideoDescription$Sharpness": "Use Sharpness (Sharpness)setting to specify the strength of anti-aliasing. This setting changes the width of the anti-alias filter kernel used for scaling. Sharpness only applies if your output resolution is different from your input resolution, and if you set Anti-alias (AntiAlias) to ENABLED. 0 is the softest setting, 100 the sharpest, and 50 recommended for most content."
+        "VideoDescription$Sharpness": "Use Sharpness (Sharpness) setting to specify the strength of anti-aliasing. This setting changes the width of the anti-alias filter kernel used for scaling. Sharpness only applies if your output resolution is different from your input resolution. 0 is the softest setting, 100 the sharpest, and 50 recommended for most content."
       }
     },
     "__integerMin0Max1000": {
       "base": null,
       "refs": {
         "M2tsSettings$PatInterval": "The number of milliseconds between instances of this table in the output transport stream.",
-        "M2tsSettings$PmtInterval": "The number of milliseconds between instances of this table in the output transport stream.",
+        "M2tsSettings$PmtInterval": "Specify the number of milliseconds between instances of the program map table (PMT) in the output transport stream.",
         "M3u8Settings$PatInterval": "The number of milliseconds between instances of this table in the output transport stream.",
         "M3u8Settings$PmtInterval": "The number of milliseconds between instances of this table in the output transport stream."
       }
@@ -2515,7 +2552,7 @@
         "InsertableImage$ImageY": "Specify the distance, in pixels, between the overlaid image and the top edge of the video frame. Required for any image overlay that you specify.",
         "InsertableImage$Width": "Specify the width of the inserted image in pixels. If you specify a value that's larger than the video resolution width, the service will crop your overlaid image to fit. To use the native width of the image, keep this setting blank.",
         "M2tsSettings$AudioFramesPerPes": "The number of audio frames to insert for each PES packet.",
-        "M2tsSettings$Bitrate": "The output bitrate of the transport stream in bits per second. Setting to 0 lets the muxer automatically determine the appropriate bitrate. Other common values are 3750000, 7500000, and 15000000.",
+        "M2tsSettings$Bitrate": "Specify the output bitrate of the transport stream in bits per second. Setting to 0 lets the muxer automatically determine the appropriate bitrate. Other common values are 3750000, 7500000, and 15000000.",
         "M3u8Settings$AudioFramesPerPes": "The number of audio frames to insert for each PES packet.",
         "MotionImageInsertionOffset$ImageX": "Set the distance, in pixels, between the overlay and the left edge of the video frame.",
         "MotionImageInsertionOffset$ImageY": "Set the distance, in pixels, between the overlay and the top edge of the video frame.",
@@ -2551,6 +2588,12 @@
         "Mpeg2Settings$MinIInterval": "Enforces separation between repeated (cadence) I-frames and I-frames inserted by Scene Change Detection. If a scene change I-frame is within I-interval frames of a cadence I-frame, the GOP is shrunk and/or stretched to the scene change I-frame. GOP stretch requires enabling lookahead as well as setting I-interval. The normal cadence resumes for the next GOP. This setting is only used when Scene Change Detect is enabled. Note: Maximum GOP stretch = GOP size + Min-I-interval - 1"
       }
     },
+    "__integerMin0Max30000": {
+      "base": null,
+      "refs": {
+        "EsamSettings$ResponseSignalPreroll": "Specifies the stream distance, in milliseconds, between the SCTE 35 messages that the transcoder places and the splice points that they refer to. If the time between the start of the asset and the SCTE-35 message is less than this value, then the transcoder places the SCTE-35 marker at the beginning of the stream."
+      }
+    },
     "__integerMin0Max3600": {
       "base": null,
       "refs": {
@@ -2566,7 +2609,7 @@
     "__integerMin0Max500": {
       "base": null,
       "refs": {
-        "M2tsSettings$MaxPcrInterval": "Maximum time in milliseconds between Program Clock References (PCRs) inserted into the transport stream."
+        "M2tsSettings$MaxPcrInterval": "Specify the maximum time, in milliseconds, between Program Clock References (PCRs) inserted into the transport stream."
       }
     },
     "__integerMin0Max50000": {
@@ -2588,8 +2631,8 @@
         "DvbNitSettings$NetworkId": "The numeric value placed in the Network Information Table (NIT).",
         "Hdr10Metadata$MaxContentLightLevel": "Maximum light level among all samples in the coded video sequence, in units of candelas per square meter.",
         "Hdr10Metadata$MaxFrameAverageLightLevel": "Maximum average light level of any frame in the coded video sequence, in units of candelas per square meter.",
-        "M2tsSettings$ProgramNumber": "The value of the program number field in the Program Map Table.",
-        "M2tsSettings$TransportStreamId": "The value of the transport stream ID field in the Program Map Table.",
+        "M2tsSettings$ProgramNumber": "Use Program number (programNumber) to specify the program number used in the program map table (PMT) for this output. Default is 1. Program numbers and program map tables are parts of MPEG-2 transport stream containers, used for organizing data.",
+        "M2tsSettings$TransportStreamId": "Specify the ID for the transport stream itself in the program map table for this output. Transport stream IDs and program map tables are parts of MPEG-2 transport stream containers, used for organizing data.",
         "M3u8Settings$ProgramNumber": "The value of the program number field in the Program Map Table.",
         "M3u8Settings$TransportStreamId": "The value of the transport stream ID field in the Program Map Table."
       }
@@ -2665,6 +2708,16 @@
       "base": null,
       "refs": {
         "TimecodeBurnin$FontSize": "Use Font Size (FontSize) to set the font size of any burned-in timecode. Valid values are 10, 16, 32, 48."
+      }
+    },
+    "__integerMin10Max600": {
+      "base": null,
+      "refs": {
+        "CreateJobRequest$StatusUpdateIntervalInSecs": "Specify how often MediaConvert sends STATUS_UPDATE events to Amazon CloudWatch Events. Set the interval, in seconds, between status updates. MediaConvert sends an update at this interval from the time the service begins processing your job to the time it completes the transcode or encounters an error.",
+        "CreateJobTemplateRequest$StatusUpdateIntervalInSecs": "Specify how often MediaConvert sends STATUS_UPDATE events to Amazon CloudWatch Events. Set the interval, in seconds, between status updates. MediaConvert sends an update at this interval from the time the service begins processing your job to the time it completes the transcode or encounters an error.",
+        "Job$StatusUpdateIntervalInSecs": "Specify how often MediaConvert sends STATUS_UPDATE events to Amazon CloudWatch Events. Set the interval, in seconds, between status updates. MediaConvert sends an update at this interval from the time the service begins processing your job to the time it completes the transcode or encounters an error.",
+        "JobTemplate$StatusUpdateIntervalInSecs": "Specify how often MediaConvert sends STATUS_UPDATE events to Amazon CloudWatch Events. Set the interval, in seconds, between status updates. MediaConvert sends an update at this interval from the time the service begins processing your job to the time it completes the transcode or encounters an error.",
+        "UpdateJobTemplateRequest$StatusUpdateIntervalInSecs": "Specify how often MediaConvert sends STATUS_UPDATE events to Amazon CloudWatch Events. Set the interval, in seconds, between status updates. MediaConvert sends an update at this interval from the time the service begins processing your job to the time it completes the transcode or encounters an error."
       }
     },
     "__integerMin16Max24": {
@@ -2794,7 +2847,7 @@
       "base": null,
       "refs": {
         "AncillarySourceSettings$SourceAncillaryChannelNumber": "Specifies the 608 channel number in the ancillary data track from which to extract captions. Unused for passthrough.",
-        "EmbeddedDestinationSettings$Destination608ChannelNumber": "Ignore this setting unless your input captions are SCC format and your output container is MXF. With this combination of input captions format and output container, you can optionally use this setting to replace the input channel number with the track number that you specify. If you don't specify an output track number, the system uses the input channel number for the output channel number. This setting applies to each output individually. Channels must be unique and may only be combined in the following combinations: (1+3, 2+4, 1+4, 2+3).",
+        "EmbeddedDestinationSettings$Destination608ChannelNumber": "Ignore this setting unless your input captions are SCC format and your output container is MXF. With this combination of input captions format and output container, you can optionally use this setting to replace the input channel number with the track number that you specify. Specify a different number for each output captions track. If you don't specify an output track number, the system uses the input channel number for the output channel number. This setting applies to each output individually. You can optionally combine two captions channels in your output. The two output channel numbers can be one of the following pairs: 1,3; 2,4; 1,4; or 2,3.",
         "EmbeddedSourceSettings$Source608ChannelNumber": "Specifies the 608/708 channel number within the video track from which to extract captions. Unused for passthrough."
       }
     },
@@ -2864,13 +2917,14 @@
     "__integerMin32Max8182": {
       "base": null,
       "refs": {
-        "M2tsSettings$DvbTeletextPid": "Packet Identifier (PID) for input source DVB Teletext data to this output.",
-        "M2tsSettings$PcrPid": "Packet Identifier (PID) of the Program Clock Reference (PCR) in the transport stream. When no value is given, the encoder will assign the same value as the Video PID.",
-        "M2tsSettings$PmtPid": "Packet Identifier (PID) for the Program Map Table (PMT) in the transport stream.",
-        "M2tsSettings$PrivateMetadataPid": "Packet Identifier (PID) of the private metadata stream in the transport stream.",
-        "M2tsSettings$Scte35Pid": "Packet Identifier (PID) of the SCTE-35 stream in the transport stream.",
-        "M2tsSettings$TimedMetadataPid": "Packet Identifier (PID) of the timed metadata stream in the transport stream.",
-        "M2tsSettings$VideoPid": "Packet Identifier (PID) of the elementary video stream in the transport stream.",
+        "M2tsScte35Esam$Scte35EsamPid": "Packet Identifier (PID) of the SCTE-35 stream in the transport stream generated by ESAM.",
+        "M2tsSettings$DvbTeletextPid": "Specify the packet identifier (PID) for DVB teletext data you include in this output. Default is 499.",
+        "M2tsSettings$PcrPid": "Specify the packet identifier (PID) for the program clock reference (PCR) in this output. If you do not specify a value, the service will use the value for Video PID (VideoPid).",
+        "M2tsSettings$PmtPid": "Specify the packet identifier (PID) for the program map table (PMT) itself. Default is 480.",
+        "M2tsSettings$PrivateMetadataPid": "Specify the packet identifier (PID) of the private metadata stream. Default is 503.",
+        "M2tsSettings$Scte35Pid": "Specify the packet identifier (PID) of the SCTE-35 stream in the transport stream.",
+        "M2tsSettings$TimedMetadataPid": "Specify the packet identifier (PID) for timed metadata in this output. Default is 502.",
+        "M2tsSettings$VideoPid": "Specify the packet identifier (PID) of the elementary video stream in the transport stream.",
         "M3u8Settings$PcrPid": "Packet Identifier (PID) of the Program Clock Reference (PCR) in the transport stream. When no value is given, the encoder will assign the same value as the Video PID.",
         "M3u8Settings$PmtPid": "Packet Identifier (PID) for the Program Map Table (PMT) in the transport stream.",
         "M3u8Settings$PrivateMetadataPid": "Packet Identifier (PID) of the private metadata stream in the transport stream.",
@@ -3106,8 +3160,8 @@
     "__listOf__integerMin32Max8182": {
       "base": null,
       "refs": {
-        "M2tsSettings$AudioPids": "Packet Identifier (PID) of the elementary audio stream(s) in the transport stream. Multiple values are accepted, and can be entered in ranges and/or by comma separation.",
-        "M2tsSettings$DvbSubPids": "Packet Identifier (PID) for input source DVB Subtitle data to this output. Multiple values are accepted, and can be entered in ranges and/or by comma separation.",
+        "M2tsSettings$AudioPids": "Specify the packet identifiers (PIDs) for any elementary audio streams you include in this output. Specify multiple PIDs as a JSON array. Default is the range 482-492.",
+        "M2tsSettings$DvbSubPids": "Specify the packet identifiers (PIDs) for DVB subtitle data included in this output. Specify multiple PIDs as a JSON array. Default is the range 460-479.",
         "M3u8Settings$AudioPids": "Packet Identifier (PID) of the elementary audio stream(s) in the transport stream. Multiple values are accepted, and can be entered in ranges and/or by comma separation."
       }
     },
@@ -3458,6 +3512,18 @@
       "base": null,
       "refs": {
         "Input$FileInput": "Specify the source file for your transcoding job. You can use multiple inputs in a single job. The service concatenates these inputs, in the order that you specify them in the job, to create the outputs. If your input format is IMF, specify your input by providing the path to your CPL. For example, \"s3://bucket/vf/cpl.xml\". If the CPL is in an incomplete IMP, make sure to use *Supplemental IMPs* (SupplementalImps) to specify any supplemental IMPs that contain assets referenced by the CPL."
+      }
+    },
+    "__stringPatternSNManifestConfirmConditionNotificationNS": {
+      "base": null,
+      "refs": {
+        "EsamManifestConfirmConditionNotification$MccXml": "Provide your ESAM ManifestConfirmConditionNotification XML document inside your JSON job settings. Form the XML document as per OC-SP-ESAM-API-I03-131025. The transcoder will use the Manifest Conditioning instructions in the message that you supply."
+      }
+    },
+    "__stringPatternSNSignalProcessingNotificationNS": {
+      "base": null,
+      "refs": {
+        "EsamSignalProcessingNotification$SccXml": "Provide your ESAM SignalProcessingNotification XML document inside your JSON job settings. Form the XML document as per OC-SP-ESAM-API-I03-131025. The transcoder will use the signal processing instructions in the message that you supply. Provide your ESAM SignalProcessingNotification XML document inside your JSON job settings. If you want the service to place SCTE-35 markers at the insertion points you specify in the XML document, you must also enable SCTE-35 ESAM (scte35Esam). Note that you can either specify an ESAM XML document or enable SCTE-35 passthrough. You can't do both."
       }
     },
     "__stringPatternWS": {
