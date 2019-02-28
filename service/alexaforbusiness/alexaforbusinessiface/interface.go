@@ -204,6 +204,10 @@ type AlexaForBusinessAPI interface {
 	GetDeviceWithContext(aws.Context, *alexaforbusiness.GetDeviceInput, ...request.Option) (*alexaforbusiness.GetDeviceOutput, error)
 	GetDeviceRequest(*alexaforbusiness.GetDeviceInput) (*request.Request, *alexaforbusiness.GetDeviceOutput)
 
+	GetInvitationConfiguration(*alexaforbusiness.GetInvitationConfigurationInput) (*alexaforbusiness.GetInvitationConfigurationOutput, error)
+	GetInvitationConfigurationWithContext(aws.Context, *alexaforbusiness.GetInvitationConfigurationInput, ...request.Option) (*alexaforbusiness.GetInvitationConfigurationOutput, error)
+	GetInvitationConfigurationRequest(*alexaforbusiness.GetInvitationConfigurationInput) (*request.Request, *alexaforbusiness.GetInvitationConfigurationOutput)
+
 	GetProfile(*alexaforbusiness.GetProfileInput) (*alexaforbusiness.GetProfileOutput, error)
 	GetProfileWithContext(aws.Context, *alexaforbusiness.GetProfileInput, ...request.Option) (*alexaforbusiness.GetProfileOutput, error)
 	GetProfileRequest(*alexaforbusiness.GetProfileInput) (*request.Request, *alexaforbusiness.GetProfileOutput)
@@ -279,6 +283,10 @@ type AlexaForBusinessAPI interface {
 	PutConferencePreference(*alexaforbusiness.PutConferencePreferenceInput) (*alexaforbusiness.PutConferencePreferenceOutput, error)
 	PutConferencePreferenceWithContext(aws.Context, *alexaforbusiness.PutConferencePreferenceInput, ...request.Option) (*alexaforbusiness.PutConferencePreferenceOutput, error)
 	PutConferencePreferenceRequest(*alexaforbusiness.PutConferencePreferenceInput) (*request.Request, *alexaforbusiness.PutConferencePreferenceOutput)
+
+	PutInvitationConfiguration(*alexaforbusiness.PutInvitationConfigurationInput) (*alexaforbusiness.PutInvitationConfigurationOutput, error)
+	PutInvitationConfigurationWithContext(aws.Context, *alexaforbusiness.PutInvitationConfigurationInput, ...request.Option) (*alexaforbusiness.PutInvitationConfigurationOutput, error)
+	PutInvitationConfigurationRequest(*alexaforbusiness.PutInvitationConfigurationInput) (*request.Request, *alexaforbusiness.PutInvitationConfigurationOutput)
 
 	PutRoomSkillParameter(*alexaforbusiness.PutRoomSkillParameterInput) (*alexaforbusiness.PutRoomSkillParameterOutput, error)
 	PutRoomSkillParameterWithContext(aws.Context, *alexaforbusiness.PutRoomSkillParameterInput, ...request.Option) (*alexaforbusiness.PutRoomSkillParameterOutput, error)

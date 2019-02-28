@@ -77,7 +77,7 @@ func (c *AlexaForBusiness) ApproveSkillRequest(input *ApproveSkillInput) (req *r
 //   The resource is not found.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ApproveSkill
 func (c *AlexaForBusiness) ApproveSkill(input *ApproveSkillInput) (*ApproveSkillOutput, error) {
@@ -243,7 +243,7 @@ func (c *AlexaForBusiness) AssociateDeviceWithRoomRequest(input *AssociateDevice
 //   You are performing an action that would put you beyond your account's limits.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 //   * ErrCodeDeviceNotRegisteredException "DeviceNotRegisteredException"
 //   The request failed because this device is no longer registered and therefore
@@ -328,7 +328,7 @@ func (c *AlexaForBusiness) AssociateSkillGroupWithRoomRequest(input *AssociateSk
 //
 // Returned Error Codes:
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateSkillGroupWithRoom
 func (c *AlexaForBusiness) AssociateSkillGroupWithRoom(input *AssociateSkillGroupWithRoomInput) (*AssociateSkillGroupWithRoomOutput, error) {
@@ -408,7 +408,7 @@ func (c *AlexaForBusiness) AssociateSkillWithSkillGroupRequest(input *AssociateS
 //
 // Returned Error Codes:
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 //   * ErrCodeNotFoundException "NotFoundException"
 //   The resource is not found.
@@ -494,7 +494,10 @@ func (c *AlexaForBusiness) AssociateSkillWithUsersRequest(input *AssociateSkillW
 //
 // Returned Error Codes:
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateSkillWithUsers
 func (c *AlexaForBusiness) AssociateSkillWithUsers(input *AssociateSkillWithUsersInput) (*AssociateSkillWithUsersOutput, error) {
@@ -902,7 +905,7 @@ func (c *AlexaForBusiness) CreateProfileRequest(input *CreateProfileInput) (req 
 //   The resource being created already exists.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateProfile
 func (c *AlexaForBusiness) CreateProfile(input *CreateProfileInput) (*CreateProfileOutput, error) {
@@ -1069,7 +1072,7 @@ func (c *AlexaForBusiness) CreateSkillGroupRequest(input *CreateSkillGroupInput)
 //   You are performing an action that would put you beyond your account's limits.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateSkillGroup
 func (c *AlexaForBusiness) CreateSkillGroup(input *CreateSkillGroupInput) (*CreateSkillGroupOutput, error) {
@@ -1154,7 +1157,7 @@ func (c *AlexaForBusiness) CreateUserRequest(input *CreateUserInput) (req *reque
 //   You are performing an action that would put you beyond your account's limits.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateUser
 func (c *AlexaForBusiness) CreateUser(input *CreateUserInput) (*CreateUserOutput, error) {
@@ -1237,7 +1240,7 @@ func (c *AlexaForBusiness) DeleteAddressBookRequest(input *DeleteAddressBookInpu
 //   The resource is not found.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteAddressBook
 func (c *AlexaForBusiness) DeleteAddressBook(input *DeleteAddressBookInput) (*DeleteAddressBookOutput, error) {
@@ -1321,7 +1324,7 @@ func (c *AlexaForBusiness) DeleteBusinessReportScheduleRequest(input *DeleteBusi
 //   The resource is not found.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteBusinessReportSchedule
 func (c *AlexaForBusiness) DeleteBusinessReportSchedule(input *DeleteBusinessReportScheduleInput) (*DeleteBusinessReportScheduleOutput, error) {
@@ -1484,7 +1487,7 @@ func (c *AlexaForBusiness) DeleteContactRequest(input *DeleteContactInput) (req 
 //   The resource is not found.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteContact
 func (c *AlexaForBusiness) DeleteContact(input *DeleteContactInput) (*DeleteContactOutput, error) {
@@ -1567,7 +1570,7 @@ func (c *AlexaForBusiness) DeleteDeviceRequest(input *DeleteDeviceInput) (req *r
 //   The resource is not found.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 //   * ErrCodeInvalidCertificateAuthorityException "InvalidCertificateAuthorityException"
 //   The Certificate Authority can't issue or revoke a certificate.
@@ -1653,7 +1656,7 @@ func (c *AlexaForBusiness) DeleteProfileRequest(input *DeleteProfileInput) (req 
 //   The resource is not found.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteProfile
 func (c *AlexaForBusiness) DeleteProfile(input *DeleteProfileInput) (*DeleteProfileOutput, error) {
@@ -1736,7 +1739,7 @@ func (c *AlexaForBusiness) DeleteRoomRequest(input *DeleteRoomInput) (req *reque
 //   The resource is not found.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoom
 func (c *AlexaForBusiness) DeleteRoom(input *DeleteRoomInput) (*DeleteRoomOutput, error) {
@@ -1816,7 +1819,7 @@ func (c *AlexaForBusiness) DeleteRoomSkillParameterRequest(input *DeleteRoomSkil
 //
 // Returned Error Codes:
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoomSkillParameter
 func (c *AlexaForBusiness) DeleteRoomSkillParameter(input *DeleteRoomSkillParameterInput) (*DeleteRoomSkillParameterOutput, error) {
@@ -1899,7 +1902,7 @@ func (c *AlexaForBusiness) DeleteSkillAuthorizationRequest(input *DeleteSkillAut
 //   The resource is not found.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteSkillAuthorization
 func (c *AlexaForBusiness) DeleteSkillAuthorization(input *DeleteSkillAuthorizationInput) (*DeleteSkillAuthorizationOutput, error) {
@@ -1982,7 +1985,7 @@ func (c *AlexaForBusiness) DeleteSkillGroupRequest(input *DeleteSkillGroupInput)
 //   The resource is not found.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteSkillGroup
 func (c *AlexaForBusiness) DeleteSkillGroup(input *DeleteSkillGroupInput) (*DeleteSkillGroupOutput, error) {
@@ -2065,7 +2068,7 @@ func (c *AlexaForBusiness) DeleteUserRequest(input *DeleteUserInput) (req *reque
 //   The resource is not found.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteUser
 func (c *AlexaForBusiness) DeleteUser(input *DeleteUserInput) (*DeleteUserOutput, error) {
@@ -2222,7 +2225,7 @@ func (c *AlexaForBusiness) DisassociateDeviceFromRoomRequest(input *Disassociate
 //
 // Returned Error Codes:
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 //   * ErrCodeDeviceNotRegisteredException "DeviceNotRegisteredException"
 //   The request failed because this device is no longer registered and therefore
@@ -2306,7 +2309,7 @@ func (c *AlexaForBusiness) DisassociateSkillFromSkillGroupRequest(input *Disasso
 //
 // Returned Error Codes:
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 //   * ErrCodeNotFoundException "NotFoundException"
 //   The resource is not found.
@@ -2390,7 +2393,10 @@ func (c *AlexaForBusiness) DisassociateSkillFromUsersRequest(input *Disassociate
 //
 // Returned Error Codes:
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateSkillFromUsers
 func (c *AlexaForBusiness) DisassociateSkillFromUsers(input *DisassociateSkillFromUsersInput) (*DisassociateSkillFromUsersOutput, error) {
@@ -2471,7 +2477,7 @@ func (c *AlexaForBusiness) DisassociateSkillGroupFromRoomRequest(input *Disassoc
 //
 // Returned Error Codes:
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateSkillGroupFromRoom
 func (c *AlexaForBusiness) DisassociateSkillGroupFromRoom(input *DisassociateSkillGroupFromRoomInput) (*DisassociateSkillGroupFromRoomOutput, error) {
@@ -2965,6 +2971,86 @@ func (c *AlexaForBusiness) GetDevice(input *GetDeviceInput) (*GetDeviceOutput, e
 // for more information on using Contexts.
 func (c *AlexaForBusiness) GetDeviceWithContext(ctx aws.Context, input *GetDeviceInput, opts ...request.Option) (*GetDeviceOutput, error) {
 	req, out := c.GetDeviceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetInvitationConfiguration = "GetInvitationConfiguration"
+
+// GetInvitationConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetInvitationConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetInvitationConfiguration for more information on using the GetInvitationConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetInvitationConfigurationRequest method.
+//    req, resp := client.GetInvitationConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetInvitationConfiguration
+func (c *AlexaForBusiness) GetInvitationConfigurationRequest(input *GetInvitationConfigurationInput) (req *request.Request, output *GetInvitationConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetInvitationConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetInvitationConfigurationInput{}
+	}
+
+	output = &GetInvitationConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetInvitationConfiguration API operation for Alexa For Business.
+//
+// Retrieves the configured values for the user enrollment invitation email
+// template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Alexa For Business's
+// API operation GetInvitationConfiguration for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetInvitationConfiguration
+func (c *AlexaForBusiness) GetInvitationConfiguration(input *GetInvitationConfigurationInput) (*GetInvitationConfigurationOutput, error) {
+	req, out := c.GetInvitationConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetInvitationConfigurationWithContext is the same as GetInvitationConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetInvitationConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AlexaForBusiness) GetInvitationConfigurationWithContext(ctx aws.Context, input *GetInvitationConfigurationInput, opts ...request.Option) (*GetInvitationConfigurationOutput, error) {
+	req, out := c.GetInvitationConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4423,6 +4509,90 @@ func (c *AlexaForBusiness) PutConferencePreferenceWithContext(ctx aws.Context, i
 	return out, req.Send()
 }
 
+const opPutInvitationConfiguration = "PutInvitationConfiguration"
+
+// PutInvitationConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the PutInvitationConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutInvitationConfiguration for more information on using the PutInvitationConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutInvitationConfigurationRequest method.
+//    req, resp := client.PutInvitationConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/PutInvitationConfiguration
+func (c *AlexaForBusiness) PutInvitationConfigurationRequest(input *PutInvitationConfigurationInput) (req *request.Request, output *PutInvitationConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opPutInvitationConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutInvitationConfigurationInput{}
+	}
+
+	output = &PutInvitationConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutInvitationConfiguration API operation for Alexa For Business.
+//
+// Configures the email template for the user enrollment invitation with the
+// specified attributes.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Alexa For Business's
+// API operation PutInvitationConfiguration for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource is not found.
+//
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   There is a concurrent modification of resources.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/PutInvitationConfiguration
+func (c *AlexaForBusiness) PutInvitationConfiguration(input *PutInvitationConfigurationInput) (*PutInvitationConfigurationOutput, error) {
+	req, out := c.PutInvitationConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// PutInvitationConfigurationWithContext is the same as PutInvitationConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutInvitationConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AlexaForBusiness) PutInvitationConfigurationWithContext(ctx aws.Context, input *PutInvitationConfigurationInput, opts ...request.Option) (*PutInvitationConfigurationOutput, error) {
+	req, out := c.PutInvitationConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutRoomSkillParameter = "PutRoomSkillParameter"
 
 // PutRoomSkillParameterRequest generates a "aws/request.Request" representing the
@@ -4480,7 +4650,7 @@ func (c *AlexaForBusiness) PutRoomSkillParameterRequest(input *PutRoomSkillParam
 //
 // Returned Error Codes:
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/PutRoomSkillParameter
 func (c *AlexaForBusiness) PutRoomSkillParameter(input *PutRoomSkillParameterInput) (*PutRoomSkillParameterOutput, error) {
@@ -4567,7 +4737,7 @@ func (c *AlexaForBusiness) PutSkillAuthorizationRequest(input *PutSkillAuthoriza
 //   API call.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/PutSkillAuthorization
 func (c *AlexaForBusiness) PutSkillAuthorization(input *PutSkillAuthorizationInput) (*PutSkillAuthorizationOutput, error) {
@@ -4650,7 +4820,7 @@ func (c *AlexaForBusiness) RegisterAVSDeviceRequest(input *RegisterAVSDeviceInpu
 //   You are performing an action that would put you beyond your account's limits.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 //   * ErrCodeInvalidDeviceException "InvalidDeviceException"
 //   The device is in an invalid state.
@@ -4736,7 +4906,7 @@ func (c *AlexaForBusiness) RejectSkillRequest(input *RejectSkillInput) (req *req
 //
 // Returned Error Codes:
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 //   * ErrCodeNotFoundException "NotFoundException"
 //   The resource is not found.
@@ -4902,7 +5072,7 @@ func (c *AlexaForBusiness) RevokeInvitationRequest(input *RevokeInvitationInput)
 //   The resource is not found.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/RevokeInvitation
 func (c *AlexaForBusiness) RevokeInvitation(input *RevokeInvitationInput) (*RevokeInvitationOutput, error) {
@@ -5901,7 +6071,7 @@ func (c *AlexaForBusiness) SendInvitationRequest(input *SendInvitationInput) (re
 //   The attempt to update a user is invalid due to the user's current status.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SendInvitation
 func (c *AlexaForBusiness) SendInvitation(input *SendInvitationInput) (*SendInvitationOutput, error) {
@@ -6310,7 +6480,7 @@ func (c *AlexaForBusiness) UpdateAddressBookRequest(input *UpdateAddressBookInpu
 //   The name sent in the request is already in use.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateAddressBook
 func (c *AlexaForBusiness) UpdateAddressBook(input *UpdateAddressBookInput) (*UpdateAddressBookOutput, error) {
@@ -6394,7 +6564,7 @@ func (c *AlexaForBusiness) UpdateBusinessReportScheduleRequest(input *UpdateBusi
 //   The resource is not found.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateBusinessReportSchedule
 func (c *AlexaForBusiness) UpdateBusinessReportSchedule(input *UpdateBusinessReportScheduleInput) (*UpdateBusinessReportScheduleOutput, error) {
@@ -6557,7 +6727,7 @@ func (c *AlexaForBusiness) UpdateContactRequest(input *UpdateContactInput) (req 
 //   The resource is not found.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateContact
 func (c *AlexaForBusiness) UpdateContact(input *UpdateContactInput) (*UpdateContactOutput, error) {
@@ -6640,7 +6810,7 @@ func (c *AlexaForBusiness) UpdateDeviceRequest(input *UpdateDeviceInput) (req *r
 //   The resource is not found.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 //   * ErrCodeDeviceNotRegisteredException "DeviceNotRegisteredException"
 //   The request failed because this device is no longer registered and therefore
@@ -6730,7 +6900,7 @@ func (c *AlexaForBusiness) UpdateProfileRequest(input *UpdateProfileInput) (req 
 //   The name sent in the request is already in use.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateProfile
 func (c *AlexaForBusiness) UpdateProfile(input *UpdateProfileInput) (*UpdateProfileOutput, error) {
@@ -6899,7 +7069,7 @@ func (c *AlexaForBusiness) UpdateSkillGroupRequest(input *UpdateSkillGroupInput)
 //   The name sent in the request is already in use.
 //
 //   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
-//   Concurrent modification of resources. HTTP Status Code: 400.
+//   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateSkillGroup
 func (c *AlexaForBusiness) UpdateSkillGroup(input *UpdateSkillGroupInput) (*UpdateSkillGroupOutput, error) {
@@ -7281,10 +7451,7 @@ func (s AssociateSkillWithSkillGroupOutput) GoString() string {
 type AssociateSkillWithUsersInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the organization.
-	OrganizationArn *string `type:"string"`
-
-	// The private skill ID you want to make available to enrolled users.>
+	// The private skill ID you want to make available to enrolled users.
 	//
 	// SkillId is a required field
 	SkillId *string `type:"string" required:"true"`
@@ -7311,12 +7478,6 @@ func (s *AssociateSkillWithUsersInput) Validate() error {
 		return invalidParams
 	}
 	return nil
-}
-
-// SetOrganizationArn sets the OrganizationArn field's value.
-func (s *AssociateSkillWithUsersInput) SetOrganizationArn(v string) *AssociateSkillWithUsersInput {
-	s.OrganizationArn = &v
-	return s
 }
 
 // SetSkillId sets the SkillId field's value.
@@ -7924,10 +8085,12 @@ type CreateBusinessReportScheduleInput struct {
 	// Format is a required field
 	Format *string `type:"string" required:"true" enum:"BusinessReportFormat"`
 
-	// The recurrence of the reports.
+	// The recurrence of the reports. If this isn't specified, the report will only
+	// be delivered one time when the API is called.
 	Recurrence *BusinessReportRecurrence `type:"structure"`
 
-	// The S3 bucket name of the output reports.
+	// The S3 bucket name of the output reports. If this isn't specified, the report
+	// can be retrieved from a download link by calling ListBusinessReportSchedule.
 	S3BucketName *string `type:"string"`
 
 	// The S3 key where the report is delivered.
@@ -9884,9 +10047,6 @@ func (s DisassociateSkillFromSkillGroupOutput) GoString() string {
 type DisassociateSkillFromUsersInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the organization.
-	OrganizationArn *string `type:"string"`
-
 	// The private skill ID you want to make unavailable for enrolled users.
 	//
 	// SkillId is a required field
@@ -9914,12 +10074,6 @@ func (s *DisassociateSkillFromUsersInput) Validate() error {
 		return invalidParams
 	}
 	return nil
-}
-
-// SetOrganizationArn sets the OrganizationArn field's value.
-func (s *DisassociateSkillFromUsersInput) SetOrganizationArn(v string) *DisassociateSkillFromUsersInput {
-	s.OrganizationArn = &v
-	return s
 }
 
 // SetSkillId sets the SkillId field's value.
@@ -10360,6 +10514,63 @@ func (s GetDeviceOutput) GoString() string {
 // SetDevice sets the Device field's value.
 func (s *GetDeviceOutput) SetDevice(v *Device) *GetDeviceOutput {
 	s.Device = v
+	return s
+}
+
+type GetInvitationConfigurationInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetInvitationConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetInvitationConfigurationInput) GoString() string {
+	return s.String()
+}
+
+type GetInvitationConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The email ID of the organization or individual contact that the enrolled
+	// user can use.
+	ContactEmail *string `min:"1" type:"string"`
+
+	// The name of the organization sending the enrollment invite to a user.
+	OrganizationName *string `min:"1" type:"string"`
+
+	// The list of private skill IDs that you want to recommend to the user to enable
+	// in the invitation.
+	PrivateSkillIds []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s GetInvitationConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetInvitationConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetContactEmail sets the ContactEmail field's value.
+func (s *GetInvitationConfigurationOutput) SetContactEmail(v string) *GetInvitationConfigurationOutput {
+	s.ContactEmail = &v
+	return s
+}
+
+// SetOrganizationName sets the OrganizationName field's value.
+func (s *GetInvitationConfigurationOutput) SetOrganizationName(v string) *GetInvitationConfigurationOutput {
+	s.OrganizationName = &v
+	return s
+}
+
+// SetPrivateSkillIds sets the PrivateSkillIds field's value.
+func (s *GetInvitationConfigurationOutput) SetPrivateSkillIds(v []*string) *GetInvitationConfigurationOutput {
+	s.PrivateSkillIds = v
 	return s
 }
 
@@ -10926,15 +11137,16 @@ type ListSkillsInput struct {
 
 	// The maximum number of results to include in the response. If more results
 	// exist than the specified MaxResults value, a token is included in the response
-	// so that the remaining results can be retrieved.
+	// so that the remaining results can be retrieved. Required.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// An optional token returned from a prior request. Use this token for pagination
 	// of results from this action. If this parameter is specified, the response
 	// includes only results beyond the token, up to the value specified by MaxResults.
+	// Required.
 	NextToken *string `min:"1" type:"string"`
 
-	// The ARN of the skill group for which to list enabled skills.
+	// The ARN of the skill group for which to list enabled skills. Required.
 	SkillGroupArn *string `type:"string"`
 
 	// Whether the skill is publicly available or is a private skill.
@@ -11795,6 +12007,84 @@ func (s PutConferencePreferenceOutput) String() string {
 
 // GoString returns the string representation
 func (s PutConferencePreferenceOutput) GoString() string {
+	return s.String()
+}
+
+type PutInvitationConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The email ID of the organization or individual contact that the enrolled
+	// user can use.
+	ContactEmail *string `min:"1" type:"string"`
+
+	// The name of the organization sending the enrollment invite to a user.
+	//
+	// OrganizationName is a required field
+	OrganizationName *string `min:"1" type:"string" required:"true"`
+
+	// The list of private skill IDs that you want to recommend to the user to enable
+	// in the invitation.
+	PrivateSkillIds []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s PutInvitationConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutInvitationConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutInvitationConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutInvitationConfigurationInput"}
+	if s.ContactEmail != nil && len(*s.ContactEmail) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactEmail", 1))
+	}
+	if s.OrganizationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationName"))
+	}
+	if s.OrganizationName != nil && len(*s.OrganizationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactEmail sets the ContactEmail field's value.
+func (s *PutInvitationConfigurationInput) SetContactEmail(v string) *PutInvitationConfigurationInput {
+	s.ContactEmail = &v
+	return s
+}
+
+// SetOrganizationName sets the OrganizationName field's value.
+func (s *PutInvitationConfigurationInput) SetOrganizationName(v string) *PutInvitationConfigurationInput {
+	s.OrganizationName = &v
+	return s
+}
+
+// SetPrivateSkillIds sets the PrivateSkillIds field's value.
+func (s *PutInvitationConfigurationInput) SetPrivateSkillIds(v []*string) *PutInvitationConfigurationInput {
+	s.PrivateSkillIds = v
+	return s
+}
+
+type PutInvitationConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutInvitationConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutInvitationConfigurationOutput) GoString() string {
 	return s.String()
 }
 

@@ -1243,6 +1243,19 @@
       },
       "required" : [ "Stage", "ApiId" ]
     },
+    "ApiMappings" : {
+      "type" : "structure",
+      "members" : {
+        "Items" : {
+          "shape" : "__listOfApiMapping",
+          "locationName" : "items"
+        },
+        "NextToken" : {
+          "shape" : "NextToken",
+          "locationName" : "nextToken"
+        }
+      }
+    },
     "Apis" : {
       "type" : "structure",
       "members" : {
@@ -1820,7 +1833,8 @@
           "shape" : "IntegerWithLengthBetween50And29000",
           "locationName" : "timeoutInMillis"
         }
-      }
+      },
+      "required" : [ "IntegrationType" ]
     },
     "CreateIntegrationRequest" : {
       "type" : "structure",
@@ -1883,7 +1897,7 @@
           "locationName" : "timeoutInMillis"
         }
       },
-      "required" : [ "ApiId" ]
+      "required" : [ "ApiId", "IntegrationType" ]
     },
     "CreateIntegrationResult" : {
       "type" : "structure",
@@ -2061,7 +2075,7 @@
           "locationName" : "schema"
         }
       },
-      "required" : [ "Name" ]
+      "required" : [ "Schema", "Name" ]
     },
     "CreateModelRequest" : {
       "type" : "structure",
@@ -2088,7 +2102,7 @@
           "locationName" : "schema"
         }
       },
-      "required" : [ "ApiId", "Name" ]
+      "required" : [ "ApiId", "Schema", "Name" ]
     },
     "CreateModelResponse" : {
       "type" : "structure",
@@ -2481,11 +2495,6 @@
     "DeleteApiMappingRequest" : {
       "type" : "structure",
       "members" : {
-        "ApiId" : {
-          "shape" : "__string",
-          "location" : "querystring",
-          "locationName" : "apiId"
-        },
         "ApiMappingId" : {
           "shape" : "__string",
           "location" : "uri",
@@ -2497,7 +2506,7 @@
           "locationName" : "domainName"
         }
       },
-      "required" : [ "ApiMappingId", "ApiId", "DomainName" ]
+      "required" : [ "ApiMappingId", "DomainName" ]
     },
     "DeleteApiRequest" : {
       "type" : "structure",
@@ -2774,11 +2783,6 @@
     "GetApiMappingRequest" : {
       "type" : "structure",
       "members" : {
-        "ApiId" : {
-          "shape" : "__string",
-          "location" : "querystring",
-          "locationName" : "apiId"
-        },
         "ApiMappingId" : {
           "shape" : "__string",
           "location" : "uri",
@@ -2790,7 +2794,7 @@
           "locationName" : "domainName"
         }
       },
-      "required" : [ "ApiMappingId", "ApiId", "DomainName" ]
+      "required" : [ "ApiMappingId", "DomainName" ]
     },
     "GetApiMappingResponse" : {
       "type" : "structure",
@@ -2837,21 +2841,13 @@
     "GetApiMappingsResponse" : {
       "type" : "structure",
       "members" : {
-        "ApiId" : {
-          "shape" : "Id",
-          "locationName" : "apiId"
+        "Items" : {
+          "shape" : "__listOfApiMapping",
+          "locationName" : "items"
         },
-        "ApiMappingId" : {
-          "shape" : "Id",
-          "locationName" : "apiMappingId"
-        },
-        "ApiMappingKey" : {
-          "shape" : "SelectionKey",
-          "locationName" : "apiMappingKey"
-        },
-        "Stage" : {
-          "shape" : "StringWithLengthBetween1And128",
-          "locationName" : "stage"
+        "NextToken" : {
+          "shape" : "NextToken",
+          "locationName" : "nextToken"
         }
       }
     },
@@ -5441,6 +5437,12 @@
       "type" : "list",
       "member" : {
         "shape" : "Api"
+      }
+    },
+    "__listOfApiMapping" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "ApiMapping"
       }
     },
     "__listOfAuthorizer" : {
