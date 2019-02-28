@@ -38,6 +38,7 @@
     "GetConferenceProvider": "<p>Gets details about a specific conference provider.</p>",
     "GetContact": "<p>Gets the contact details by the contact ARN.</p>",
     "GetDevice": "<p>Gets the details of a device by device ARN.</p>",
+    "GetInvitationConfiguration": "<p>Retrieves the configured values for the user enrollment invitation email template.</p>",
     "GetProfile": "<p>Gets the details of a room profile by profile ARN.</p>",
     "GetRoom": "<p>Gets room details by room ARN.</p>",
     "GetRoomSkillParameter": "<p>Gets room skill parameter details by room, skill, and parameter key ARN.</p>",
@@ -51,6 +52,7 @@
     "ListSmartHomeAppliances": "<p>Lists all of the smart home appliances associated with a room.</p>",
     "ListTags": "<p>Lists all tags for the specified resource.</p>",
     "PutConferencePreference": "<p>Sets the conference preferences on a specific conference provider at the account level.</p>",
+    "PutInvitationConfiguration": "<p>Configures the email template for the user enrollment invitation with the specified attributes.</p>",
     "PutRoomSkillParameter": "<p>Updates room skill parameter details by room, skill, and parameter key ID. Not all skills have a room skill parameter.</p>",
     "PutSkillAuthorization": "<p>Links a user's account to a third-party skill provider. If this API operation is called by an assumed IAM role, the skill being linked must be a private skill. Also, the skill must be owned by the AWS account that assumed the IAM role.</p>",
     "RegisterAVSDevice": "<p>Registers an Alexa-enabled device built by an Original Equipment Manufacturer (OEM) using Alexa Voice Service (AVS).</p>",
@@ -175,7 +177,6 @@
         "AssociateSkillGroupWithRoomRequest$SkillGroupArn": "<p>The ARN of the skill group to associate with a room. Required.</p>",
         "AssociateSkillGroupWithRoomRequest$RoomArn": "<p>The ARN of the room with which to associate the skill group. Required.</p>",
         "AssociateSkillWithSkillGroupRequest$SkillGroupArn": "<p>The ARN of the skill group to associate the skill to. Required.</p>",
-        "AssociateSkillWithUsersRequest$OrganizationArn": "<p>The ARN of the organization.</p>",
         "BusinessReportSchedule$ScheduleArn": "<p>The ARN of the business report schedule.</p>",
         "ConferencePreference$DefaultConferenceProviderArn": "<p>The ARN of the default conference provider.</p>",
         "ConferenceProvider$Arn": "<p>The ARN of the newly created conference provider.</p>",
@@ -209,7 +210,6 @@
         "DisassociateContactFromAddressBookRequest$AddressBookArn": "<p>The ARN of the address from which to disassociate the contact.</p>",
         "DisassociateDeviceFromRoomRequest$DeviceArn": "<p>The ARN of the device to disassociate from a room. Required.</p>",
         "DisassociateSkillFromSkillGroupRequest$SkillGroupArn": "<p>The unique identifier of a skill. Required.</p>",
-        "DisassociateSkillFromUsersRequest$OrganizationArn": "<p>The ARN of the organization.</p>",
         "DisassociateSkillGroupFromRoomRequest$SkillGroupArn": "<p>The ARN of the skill group to disassociate from a room. Required.</p>",
         "DisassociateSkillGroupFromRoomRequest$RoomArn": "<p>The ARN of the room from which the skill group is to be disassociated. Required.</p>",
         "ForgetSmartHomeAppliancesRequest$RoomArn": "<p>The room that the appliances are associated with.</p>",
@@ -222,7 +222,7 @@
         "GetRoomSkillParameterRequest$RoomArn": "<p>The ARN of the room from which to get the room skill parameter details. </p>",
         "GetSkillGroupRequest$SkillGroupArn": "<p>The ARN of the skill group for which to get details. Required.</p>",
         "ListDeviceEventsRequest$DeviceArn": "<p>The ARN of a device.</p>",
-        "ListSkillsRequest$SkillGroupArn": "<p>The ARN of the skill group for which to list enabled skills.</p>",
+        "ListSkillsRequest$SkillGroupArn": "<p>The ARN of the skill group for which to list enabled skills. Required.</p>",
         "ListSmartHomeAppliancesRequest$RoomArn": "<p>The room that the appliances are associated with.</p>",
         "ListTagsRequest$Arn": "<p>The ARN of the specified resource for which to list tags.</p>",
         "Profile$ProfileArn": "<p>The ARN of a room profile.</p>",
@@ -383,7 +383,7 @@
       "base": "<p>The recurrence of the reports.</p>",
       "refs": {
         "BusinessReportSchedule$Recurrence": "<p>The recurrence of the reports.</p>",
-        "CreateBusinessReportScheduleRequest$Recurrence": "<p>The recurrence of the reports.</p>",
+        "CreateBusinessReportScheduleRequest$Recurrence": "<p>The recurrence of the reports. If this isn't specified, the report will only be delivered one time when the API is called. </p>",
         "UpdateBusinessReportScheduleRequest$Recurrence": "<p>The recurrence of the reports.</p>"
       }
     },
@@ -457,7 +457,7 @@
       }
     },
     "ClientRequestToken": {
-      "base": "User specified token that is used to support idempotency during Create Resource",
+      "base": null,
       "refs": {
         "CreateAddressBookRequest$ClientRequestToken": "<p>A unique, user-specified identifier for the request that ensures idempotency.</p>",
         "CreateBusinessReportScheduleRequest$ClientRequestToken": "<p>The client request token.</p>",
@@ -477,7 +477,7 @@
       }
     },
     "ConcurrentModificationException": {
-      "base": "Concurrent modification of resources. HTTP Status Code: 400.",
+      "base": "<p>There is a concurrent modification of resources.</p>",
       "refs": {
       }
     },
@@ -648,7 +648,7 @@
       "refs": {
         "BusinessReportS3Location$BucketName": "<p>The S3 bucket name of the output reports.</p>",
         "BusinessReportSchedule$S3BucketName": "<p>The S3 bucket name of the output reports.</p>",
-        "CreateBusinessReportScheduleRequest$S3BucketName": "<p>The S3 bucket name of the output reports.</p>",
+        "CreateBusinessReportScheduleRequest$S3BucketName": "<p>The S3 bucket name of the output reports. If this isn't specified, the report can be retrieved from a download link by calling ListBusinessReportSchedule. </p>",
         "UpdateBusinessReportScheduleRequest$S3BucketName": "<p>The S3 location of the output reports.</p>"
       }
     },
@@ -961,6 +961,8 @@
       "refs": {
         "CreateUserRequest$Email": "<p>The email address for the user.</p>",
         "DeveloperInfo$Email": "<p>The email of the developer.</p>",
+        "GetInvitationConfigurationResponse$ContactEmail": "<p>The email ID of the organization or individual contact that the enrolled user can use. </p>",
+        "PutInvitationConfigurationRequest$ContactEmail": "<p>The email ID of the organization or individual contact that the enrolled user can use. </p>",
         "UserData$Email": "<p>The email of a user.</p>"
       }
     },
@@ -1135,6 +1137,16 @@
       }
     },
     "GetDeviceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetInvitationConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetInvitationConfigurationResponse": {
       "base": null,
       "refs": {
       }
@@ -1366,7 +1378,7 @@
         "ListConferenceProvidersResponse$NextToken": "<p>The tokens used for pagination.</p>",
         "ListDeviceEventsRequest$NextToken": "<p>An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response only includes results beyond the token, up to the value specified by MaxResults. When the end of results is reached, the response has a value of null.</p>",
         "ListDeviceEventsResponse$NextToken": "<p>The token returned to indicate that there is more data available.</p>",
-        "ListSkillsRequest$NextToken": "<p>An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by <code>MaxResults</code>.</p>",
+        "ListSkillsRequest$NextToken": "<p>An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by <code>MaxResults</code>. Required.</p>",
         "ListSkillsResponse$NextToken": "<p>The token returned to indicate that there is more data available.</p>",
         "ListSkillsStoreCategoriesRequest$NextToken": "<p>The tokens used for pagination.</p>",
         "ListSkillsStoreCategoriesResponse$NextToken": "<p>The tokens used for pagination.</p>",
@@ -1407,6 +1419,13 @@
       "base": null,
       "refs": {
         "PSTNDialIn$OneClickPinDelay": "<p>The delay duration before Alexa enters the conference pin with dual-tone multi-frequency (DTMF). Each number on the dial pad corresponds to a DTMF tone, which is how we send data over the telephone network.</p>"
+      }
+    },
+    "OrganizationName": {
+      "base": null,
+      "refs": {
+        "GetInvitationConfigurationResponse$OrganizationName": "<p>The name of the organization sending the enrollment invite to a user.</p>",
+        "PutInvitationConfigurationRequest$OrganizationName": "<p>The name of the organization sending the enrollment invite to a user.</p>"
       }
     },
     "OutboundPhoneNumber": {
@@ -1484,6 +1503,16 @@
       }
     },
     "PutConferencePreferenceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutInvitationConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutInvitationConfigurationResponse": {
       "base": null,
       "refs": {
       }
@@ -1749,6 +1778,13 @@
         "SkillsStoreSkill$ShortDescription": "<p>Short description about the skill.</p>"
       }
     },
+    "ShortSkillIdList": {
+      "base": null,
+      "refs": {
+        "GetInvitationConfigurationResponse$PrivateSkillIds": "<p>The list of private skill IDs that you want to recommend to the user to enable in the invitation.</p>",
+        "PutInvitationConfigurationRequest$PrivateSkillIds": "<p>The list of private skill IDs that you want to recommend to the user to enable in the invitation.</p>"
+      }
+    },
     "SkillDetails": {
       "base": "<p>Granular information about the skill.</p>",
       "refs": {
@@ -1796,7 +1832,7 @@
       "refs": {
         "ApproveSkillRequest$SkillId": "<p>The unique identifier of the skill.</p>",
         "AssociateSkillWithSkillGroupRequest$SkillId": "<p>The unique identifier of the skill.</p>",
-        "AssociateSkillWithUsersRequest$SkillId": "<p>The private skill ID you want to make available to enrolled users.&gt;</p>",
+        "AssociateSkillWithUsersRequest$SkillId": "<p>The private skill ID you want to make available to enrolled users.</p>",
         "DeleteRoomSkillParameterRequest$SkillId": "<p>The ID of the skill from which to remove the room skill parameter details.</p>",
         "DeleteSkillAuthorizationRequest$SkillId": "<p>The unique identifier of a skill.</p>",
         "DisassociateSkillFromSkillGroupRequest$SkillId": "<p>The ARN of a skill group to associate to a skill.</p>",
@@ -1806,6 +1842,7 @@
         "PutSkillAuthorizationRequest$SkillId": "<p>The unique identifier of a skill.</p>",
         "RejectSkillRequest$SkillId": "<p>The unique identifier of the skill.</p>",
         "ResolveRoomRequest$SkillId": "<p>The ARN of the skill that was requested. Required.</p>",
+        "ShortSkillIdList$member": null,
         "SkillSummary$SkillId": "<p>The ARN of the skill summary.</p>",
         "SkillsStoreSkill$SkillId": "<p>The ARN of the skill.</p>"
       }
@@ -1813,7 +1850,7 @@
     "SkillListMaxResults": {
       "base": null,
       "refs": {
-        "ListSkillsRequest$MaxResults": "<p>The maximum number of results to include in the response. If more results exist than the specified <code>MaxResults</code> value, a token is included in the response so that the remaining results can be retrieved.</p>",
+        "ListSkillsRequest$MaxResults": "<p>The maximum number of results to include in the response. If more results exist than the specified <code>MaxResults</code> value, a token is included in the response so that the remaining results can be retrieved. Required.</p>",
         "ListSkillsStoreSkillsByCategoryRequest$MaxResults": "<p>The maximum number of skills returned per paginated calls.</p>"
       }
     },

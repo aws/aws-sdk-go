@@ -1,3 +1,12 @@
+Release v1.17.8 (2019-02-28)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API and documentation
+* `service/apigatewayv2`: Updates service API and documentation
+* `service/application-autoscaling`: Updates service documentation
+* `service/ssm`: Updates service API and documentation
+
 Release v1.17.7 (2019-02-28)
 ===
 

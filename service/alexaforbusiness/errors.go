@@ -13,7 +13,7 @@ const (
 	// ErrCodeConcurrentModificationException for service response error code
 	// "ConcurrentModificationException".
 	//
-	// Concurrent modification of resources. HTTP Status Code: 400.
+	// There is a concurrent modification of resources.
 	ErrCodeConcurrentModificationException = "ConcurrentModificationException"
 
 	// ErrCodeDeviceNotRegisteredException for service response error code

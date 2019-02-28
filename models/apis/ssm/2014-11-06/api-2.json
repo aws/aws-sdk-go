@@ -1735,7 +1735,7 @@
     "Association":{
       "type":"structure",
       "members":{
-        "Name":{"shape":"DocumentName"},
+        "Name":{"shape":"DocumentARN"},
         "InstanceId":{"shape":"InstanceId"},
         "AssociationId":{"shape":"AssociationId"},
         "AssociationVersion":{"shape":"AssociationVersion"},
@@ -1766,7 +1766,7 @@
     "AssociationDescription":{
       "type":"structure",
       "members":{
-        "Name":{"shape":"DocumentName"},
+        "Name":{"shape":"DocumentARN"},
         "InstanceId":{"shape":"InstanceId"},
         "AssociationVersion":{"shape":"AssociationVersion"},
         "Date":{"shape":"DateTime"},
@@ -2022,7 +2022,7 @@
         "AssociationId":{"shape":"AssociationId"},
         "AssociationVersion":{"shape":"AssociationVersion"},
         "CreatedDate":{"shape":"DateTime"},
-        "Name":{"shape":"DocumentName"},
+        "Name":{"shape":"DocumentARN"},
         "DocumentVersion":{"shape":"DocumentVersion"},
         "Parameters":{"shape":"Parameters"},
         "Targets":{"shape":"Targets"},
@@ -2780,7 +2780,7 @@
       "type":"structure",
       "required":["Name"],
       "members":{
-        "Name":{"shape":"DocumentName"},
+        "Name":{"shape":"DocumentARN"},
         "InstanceId":{"shape":"InstanceId"},
         "Parameters":{"shape":"Parameters"},
         "AutomationTargetParameterName":{"shape":"AutomationTargetParameterName"},
@@ -2805,7 +2805,7 @@
       "type":"structure",
       "required":["Name"],
       "members":{
-        "Name":{"shape":"DocumentName"},
+        "Name":{"shape":"DocumentARN"},
         "DocumentVersion":{"shape":"DocumentVersion"},
         "InstanceId":{"shape":"InstanceId"},
         "Parameters":{"shape":"Parameters"},
@@ -2958,7 +2958,7 @@
     "DeleteAssociationRequest":{
       "type":"structure",
       "members":{
-        "Name":{"shape":"DocumentName"},
+        "Name":{"shape":"DocumentARN"},
         "InstanceId":{"shape":"InstanceId"},
         "AssociationId":{"shape":"AssociationId"}
       }
@@ -3220,7 +3220,7 @@
     "DescribeAssociationRequest":{
       "type":"structure",
       "members":{
-        "Name":{"shape":"DocumentName"},
+        "Name":{"shape":"DocumentARN"},
         "InstanceId":{"shape":"InstanceId"},
         "AssociationId":{"shape":"AssociationId"},
         "AssociationVersion":{"shape":"AssociationVersion"}
@@ -4609,7 +4609,7 @@
       "type":"structure",
       "members":{
         "AssociationId":{"shape":"AssociationId"},
-        "Name":{"shape":"DocumentName"},
+        "Name":{"shape":"DocumentARN"},
         "DocumentVersion":{"shape":"DocumentVersion"},
         "AssociationVersion":{"shape":"AssociationVersion"},
         "InstanceId":{"shape":"InstanceId"},
@@ -7876,7 +7876,7 @@
         "DocumentVersion":{"shape":"DocumentVersion"},
         "ScheduleExpression":{"shape":"ScheduleExpression"},
         "OutputLocation":{"shape":"InstanceAssociationOutputLocation"},
-        "Name":{"shape":"DocumentName"},
+        "Name":{"shape":"DocumentARN"},
         "Targets":{"shape":"Targets"},
         "AssociationName":{"shape":"AssociationName"},
         "AssociationVersion":{"shape":"AssociationVersion"},
@@ -7900,7 +7900,7 @@
         "AssociationStatus"
       ],
       "members":{
-        "Name":{"shape":"DocumentName"},
+        "Name":{"shape":"DocumentARN"},
         "InstanceId":{"shape":"InstanceId"},
         "AssociationStatus":{"shape":"AssociationStatus"}
       }

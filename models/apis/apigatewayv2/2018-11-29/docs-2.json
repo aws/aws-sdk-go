@@ -76,6 +76,12 @@
     },
     "ApiMapping" : {
       "base" : "<p>Represents an API mapping.</p>",
+      "refs" : {
+        "__listOfApiMapping$member" : null
+      }
+    },
+    "ApiMappings" : {
+      "base" : "<p>Represents a collection of ApiMappings resources.</p>",
       "refs" : { }
     },
     "Apis" : {
@@ -86,30 +92,30 @@
       "base" : "<p>Represents an Amazon Resource Name (ARN).</p>",
       "refs" : {
         "AccessLogSettings$DestinationArn" : "<p>The ARN of the CloudWatch Logs log group to receive access logs.</p>",
-        "Authorizer$AuthorizerCredentialsArn" : "<p>Specifies the required credentials as an IAM role for API Gateway to invoke the authorizer. To specify an IAM role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To use resource-based permissions on the Lambda function, specify null.</p>",
-        "CreateAuthorizerInput$AuthorizerCredentialsArn" : "<p>Specifies the required credentials as an IAM role for API Gateway to invoke the authorizer. To specify an IAM role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To use resource-based permissions on the Lambda function, specify null.</p>",
-        "CreateIntegrationInput$CredentialsArn" : "<p>Specifies the credentials required for the integration, if any. For AWS integrations, three options are available. To specify an IAM Role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To require that the caller's identity be passed through from the request, specify the string arn:aws:iam::*:user/*. To use resource-based permissions on supported AWS services, specify null.</p>",
-        "DomainNameConfiguration$CertificateArn" : "<p>An AWS-managed certificate that will be used by the edge-optimized endpoint for this domain name. AWS Certificate Manager is the only supported source.</p>",
-        "Integration$CredentialsArn" : "<p>Specifies the credentials required for the integration, if any. For AWS integrations, three options are available. To specify an IAM Role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To require that the caller's identity be passed through from the request, specify the string arn:aws:iam::*:user/*. To use resource-based permissions on supported AWS services, specify null.</p>",
+        "Authorizer$AuthorizerCredentialsArn" : "<p>Specifies the required credentials as an IAM role for API Gateway to invoke the\n authorizer. To specify an IAM role for API Gateway to assume, use the role's Amazon\n Resource Name (ARN). To use resource-based permissions on the Lambda function,\n specify null.</p>",
+        "CreateAuthorizerInput$AuthorizerCredentialsArn" : "<p>Specifies the required credentials as an IAM role for API Gateway to invoke the\n authorizer. To specify an IAM role for API Gateway to assume, use the role's Amazon\n Resource Name (ARN). To use resource-based permissions on the Lambda function,\n specify null.</p>",
+        "CreateIntegrationInput$CredentialsArn" : "<p>Specifies the credentials required for the integration, if any. For AWS\n integrations, three options are available. To specify an IAM Role for API Gateway to\n assume, use the role's Amazon Resource Name (ARN). To require that the caller's\n identity be passed through from the request, specify the string\n arn:aws:iam::*:user/*. To use resource-based permissions on supported\n AWS services, specify null.</p>",
+        "DomainNameConfiguration$CertificateArn" : "<p>An AWS-managed certificate that will be used by the edge-optimized endpoint for\n this domain name. AWS Certificate Manager is the only supported source.</p>",
+        "Integration$CredentialsArn" : "<p>Specifies the credentials required for the integration, if any. For AWS\n integrations, three options are available. To specify an IAM Role for API Gateway to\n assume, use the role's Amazon Resource Name (ARN). To require that the caller's\n identity be passed through from the request, specify the string\n arn:aws:iam::*:user/*. To use resource-based permissions on supported\n AWS services, specify null.</p>",
         "ProviderArnList$member" : null,
-        "UpdateAuthorizerInput$AuthorizerCredentialsArn" : "<p>Specifies the required credentials as an IAM role for API Gateway to invoke the authorizer. To specify an IAM role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To use resource-based permissions on the Lambda function, specify null.</p>",
-        "UpdateIntegrationInput$CredentialsArn" : "<p>Specifies the credentials required for the integration, if any. For AWS integrations, three options are available. To specify an IAM Role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To require that the caller's identity be passed through from the request, specify the string arn:aws:iam::*:user/*. To use resource-based permissions on supported AWS services, specify null.</p>"
+        "UpdateAuthorizerInput$AuthorizerCredentialsArn" : "<p>Specifies the required credentials as an IAM role for API Gateway to invoke the\n authorizer. To specify an IAM role for API Gateway to assume, use the role's Amazon\n Resource Name (ARN). To use resource-based permissions on the Lambda function,\n specify null.</p>",
+        "UpdateIntegrationInput$CredentialsArn" : "<p>Specifies the credentials required for the integration, if any. For AWS\n integrations, three options are available. To specify an IAM Role for API Gateway to\n assume, use the role's Amazon Resource Name (ARN). To require that the caller's\n identity be passed through from the request, specify the string\n arn:aws:iam::*:user/*. To use resource-based permissions on supported\n AWS services, specify null.</p>"
       }
     },
     "AuthorizationScopes" : {
-      "base" : "<p>A list of authorization scopes configured on a route. The scopes are used with a COGNITO_USER_POOLS authorizer to authorize the method invocation. The authorization works by matching the route scopes against the scopes parsed from the access token in the incoming request. The method invocation is authorized if any route scope matches a claimed scope in the access token. Otherwise, the invocation is not authorized. When the route scope is configured, the client must provide an access token instead of an identity token for authorization purposes.</p>",
+      "base" : "<p>A list of authorization scopes configured on a route. The scopes are used with a\n COGNITO_USER_POOLS authorizer to authorize the method invocation. The authorization\n works by matching the route scopes against the scopes parsed from the access token in\n the incoming request. The method invocation is authorized if any route scope matches\n a claimed scope in the access token. Otherwise, the invocation is not authorized.\n When the route scope is configured, the client must provide an access token instead\n of an identity token for authorization purposes.</p>",
       "refs" : {
-        "CreateRouteInput$AuthorizationScopes" : "<p>The authorization scopes supported by this route.</p>",
-        "Route$AuthorizationScopes" : "<p>The authorization scopes supported by this route. </p>",
-        "UpdateRouteInput$AuthorizationScopes" : "<p>The authorization scopes supported by this route.</p>"
+        "CreateRouteInput$AuthorizationScopes" : "<p>The authorization scopes supported by this\n route.</p>",
+        "Route$AuthorizationScopes" : "<p>A list of authorization scopes configured on a route. The scopes are used with a\n COGNITO_USER_POOLS authorizer to authorize the method invocation. The authorization\n works by matching the route scopes against the scopes parsed from the access token in\n the incoming request. The method invocation is authorized if any route scope matches\n a claimed scope in the access token. Otherwise, the invocation is not authorized.\n When the route scope is configured, the client must provide an access token instead\n of an identity token for authorization purposes.</p>",
+        "UpdateRouteInput$AuthorizationScopes" : "<p>The authorization scopes supported by this\n route.</p>"
       }
     },
     "AuthorizationType" : {
-      "base" : "<p>The authorization type. Valid values are NONE for open access, AWS_IAM for using AWS IAM permissions, and CUSTOM for using a Lambda authorizer.</p>",
+      "base" : "<p>The authorization type. Valid values are NONE for open access,\n AWS_IAM for using AWS IAM permissions, and CUSTOM for\n using a Lambda authorizer.</p>",
       "refs" : {
-        "CreateRouteInput$AuthorizationType" : "<p>The authorization type for the route. Valid values are NONE for open access, AWS_IAM for using AWS IAM permissions.</p>",
-        "Route$AuthorizationType" : "<p>The authorization type for the route. Valid values are NONE for open access, AWS_IAM for using AWS IAM permissions.</p>",
-        "UpdateRouteInput$AuthorizationType" : "<p>The authorization type for the route. Valid values are NONE for open access, AWS_IAM for using AWS IAM permissions.</p>"
+        "CreateRouteInput$AuthorizationType" : "<p>The authorization type for the route. Valid values are NONE for open\n access, AWS_IAM for using AWS IAM permissions, and CUSTOM\n for using a Lambda\n authorizer.</p>",
+        "Route$AuthorizationType" : "<p>The authorization type for the route. Valid values are NONE for open\n access, AWS_IAM for using AWS IAM permissions, and CUSTOM\n for using a Lambda\n authorizer</p>",
+        "UpdateRouteInput$AuthorizationType" : "<p>The authorization type for the route. Valid values are NONE for open\n access, AWS_IAM for using AWS IAM permissions, and CUSTOM\n for using a Lambda\n authorizer.</p>"
       }
     },
     "Authorizer" : {
@@ -119,11 +125,11 @@
       }
     },
     "AuthorizerType" : {
-      "base" : "<p>The authorizer type. Currently the only valid value is REQUEST, for a Lambda function using incoming request parameters.</p>",
+      "base" : "<p>The authorizer type. Currently the only valid value is REQUEST, for a\n Lambda function using incoming request parameters.</p>",
       "refs" : {
-        "Authorizer$AuthorizerType" : "<p>The authorizer type. Currently the only valid value is REQUEST, for a Lambda function using incoming request parameters.</p>",
-        "CreateAuthorizerInput$AuthorizerType" : "<p>The authorizer type. Currently the only valid value is REQUEST, for a Lambda function using incoming request parameters.</p>",
-        "UpdateAuthorizerInput$AuthorizerType" : "<p>The authorizer type. Currently the only valid value is REQUEST, for a Lambda function using incoming request parameters.</p>"
+        "Authorizer$AuthorizerType" : "<p>The authorizer type. Currently the only valid value is REQUEST, for a\n Lambda function using incoming request parameters.</p>",
+        "CreateAuthorizerInput$AuthorizerType" : "<p>The authorizer type. Currently the only valid value is REQUEST, for a\n Lambda function using incoming request parameters.</p>",
+        "UpdateAuthorizerInput$AuthorizerType" : "<p>The authorizer type. Currently the only valid value is REQUEST, for a\n Lambda function using incoming request parameters.</p>"
       }
     },
     "Authorizers" : {
@@ -131,30 +137,30 @@
       "refs" : { }
     },
     "BadRequestException" : {
-      "base" : "<p>The request is not valid, for example, the input is incomplete or incorrect. See the accompanying error message for details.</p>",
+      "base" : "<p>The request is not valid, for example, the input is incomplete or incorrect. See\n the accompanying error message for details.</p>",
       "refs" : { }
     },
     "ConflictException" : {
-      "base" : "<p>The requested operation would cause a conflict with the current state of a service resource associated with the request. Resolve the conflict before retrying this request. See the accompanying error message for details.</p>",
+      "base" : "<p>The requested operation would cause a conflict with the current state of a service\n resource associated with the request. Resolve the conflict before retrying this\n request. See the accompanying error message for details.</p>",
       "refs" : { }
     },
     "ConnectionType" : {
       "base" : "<p>Represents a connection type.</p>",
       "refs" : {
-        "CreateIntegrationInput$ConnectionType" : "<p>The type of the network connection to the integration endpoint. The valid value is INTERNET for connections through the public routable internet or VPC_LINK for private connections between API Gateway and a network load balancer in a VPC. The default value is INTERNET.</p>",
-        "Integration$ConnectionType" : "<p>The type of the network connection to the integration endpoint. The valid value is INTERNET for connections through the public routable internet or VPC_LINK for private connections between API Gateway and a network load balancer in a VPC. The default value is INTERNET.</p>",
-        "UpdateIntegrationInput$ConnectionType" : "<p>The type of the network connection to the integration endpoint. The valid value is INTERNET for connections through the public routable internet or VPC_LINK for private connections between API Gateway and a network load balancer in a VPC. The default value is INTERNET.</p>"
+        "CreateIntegrationInput$ConnectionType" : "<p>The type of the network connection to the integration endpoint. Currently the only\n valid value is INTERNET, for connections through the public routable\n internet.</p>",
+        "Integration$ConnectionType" : "<p>The type of the network connection to the integration endpoint. Currently the only\n valid value is INTERNET, for connections through the public routable\n internet.</p>",
+        "UpdateIntegrationInput$ConnectionType" : "<p>The type of the network connection to the integration endpoint. Currently the only\n valid value is INTERNET, for connections through the public routable\n internet.</p>"
       }
     },
     "ContentHandlingStrategy" : {
       "base" : "<p>Specifies how to handle response payload content type conversions.</p>",
       "refs" : {
-        "CreateIntegrationInput$ContentHandlingStrategy" : "<p>Specifies how to handle response payload content type conversions. Supported values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:</p><p> CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded string to the corresponding binary blob.</p><p> CONVERT_TO_TEXT: Converts a response payload from a binary blob to a Base64-encoded string.</p><p>If this property is not defined, the response payload will be passed through from the integration response to the route response or method response without modification.</p>",
-        "CreateIntegrationResponseInput$ContentHandlingStrategy" : "<p>Specifies how to handle response payload content type conversions. Supported values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:</p><p> CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded string to the corresponding binary blob.</p><p> CONVERT_TO_TEXT: Converts a response payload from a binary blob to a Base64-encoded string.</p><p>If this property is not defined, the response payload will be passed through from the integration response to the route response or method response without modification.</p>",
-        "Integration$ContentHandlingStrategy" : "<p>Specifies how to handle response payload content type conversions. Supported values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:</p><p> CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded string to the corresponding binary blob.</p><p> CONVERT_TO_TEXT: Converts a response payload from a binary blob to a Base64-encoded string.</p><p>If this property is not defined, the response payload will be passed through from the integration response to the route response or method response without modification.</p>",
-        "IntegrationResponse$ContentHandlingStrategy" : "<p>Specifies how to handle response payload content type conversions. Supported values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:</p><p> CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded string to the corresponding binary blob.</p><p> CONVERT_TO_TEXT: Converts a response payload from a binary blob to a Base64-encoded string.</p><p>If this property is not defined, the response payload will be passed through from the integration response to the route response or method response without modification.</p>",
-        "UpdateIntegrationInput$ContentHandlingStrategy" : "<p>Specifies how to handle response payload content type conversions. Supported values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:</p><p> CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded string to the corresponding binary blob.</p><p> CONVERT_TO_TEXT: Converts a response payload from a binary blob to a Base64-encoded string.</p><p>If this property is not defined, the response payload will be passed through from the integration response to the route response or method response without modification.</p>",
-        "UpdateIntegrationResponseInput$ContentHandlingStrategy" : "<p>Specifies how to handle response payload content type conversions. Supported values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:</p><p> CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded string to the corresponding binary blob.</p><p> CONVERT_TO_TEXT: Converts a response payload from a binary blob to a Base64-encoded string.</p><p>If this property is not defined, the response payload will be passed through from the integration response to the route response or method response without modification.</p>"
+        "CreateIntegrationInput$ContentHandlingStrategy" : "<p>Specifies how to handle response payload content type conversions. Supported\n values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the\n following behaviors:</p><p>\n CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded\n string to the corresponding binary blob.</p><p>\n CONVERT_TO_TEXT: Converts a response payload from a binary blob to a\n Base64-encoded string.</p><p>If this property is not defined, the response payload will be passed through from\n the integration response to the route response or method response without\n modification.</p>",
+        "CreateIntegrationResponseInput$ContentHandlingStrategy" : "<p>Specifies how to handle response payload content type conversions. Supported\n values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the\n following behaviors:</p><p>\n CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded\n string to the corresponding binary blob.</p><p>\n CONVERT_TO_TEXT: Converts a response payload from a binary blob to a\n Base64-encoded string.</p><p>If this property is not defined, the response payload will be passed through from\n the integration response to the route response or method response without\n modification.</p>",
+        "Integration$ContentHandlingStrategy" : "<p>Specifies how to handle response payload content type conversions. Supported\n values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the\n following behaviors:</p><p>\n CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded\n string to the corresponding binary blob.</p><p>\n CONVERT_TO_TEXT: Converts a response payload from a binary blob to a\n Base64-encoded string.</p><p>If this property is not defined, the response payload will be passed through from\n the integration response to the route response or method response without\n modification.</p>",
+        "IntegrationResponse$ContentHandlingStrategy" : "<p>Specifies how to handle response payload content type conversions. Supported\n values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the\n following behaviors:</p><p>\n CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded\n string to the corresponding binary blob.</p><p>\n CONVERT_TO_TEXT: Converts a response payload from a binary blob to a\n Base64-encoded string.</p><p>If this property is not defined, the response payload will be passed through from\n the integration response to the route response or method response without\n modification.</p>",
+        "UpdateIntegrationInput$ContentHandlingStrategy" : "<p>Specifies how to handle response payload content type conversions. Supported\n values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the\n following behaviors:</p><p>\n CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded\n string to the corresponding binary blob.</p><p>\n CONVERT_TO_TEXT: Converts a response payload from a binary blob to a\n Base64-encoded string.</p><p>If this property is not defined, the response payload will be passed through from\n the integration response to the route response or method response without\n modification.</p>",
+        "UpdateIntegrationResponseInput$ContentHandlingStrategy" : "<p>Specifies how to handle response payload content type conversions. Supported\n values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the\n following behaviors:</p><p>\n CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded\n string to the corresponding binary blob.</p><p>\n CONVERT_TO_TEXT: Converts a response payload from a binary blob to a\n Base64-encoded string.</p><p>If this property is not defined, the response payload will be passed through from\n the integration response to the route response or method response without\n modification.</p>"
       }
     },
     "CreateApiInput" : {
@@ -162,27 +168,27 @@
       "refs" : { }
     },
     "CreateApiMappingInput" : {
-      "base" : "<p>Represents the input parameters for a CreateApiMapping request.</p>",
+      "base" : "<p>Represents the input parameters for a CreateApiMapping\n request.</p>",
       "refs" : { }
     },
     "CreateAuthorizerInput" : {
-      "base" : "<p>Represents the input parameters for a CreateAuthorizer request.</p>",
+      "base" : "<p>Represents the input parameters for a CreateAuthorizer\n request.</p>",
       "refs" : { }
     },
     "CreateDeploymentInput" : {
-      "base" : "<p>Represents the input parameters for a CreateDeployment request.</p>",
+      "base" : "<p>Represents the input parameters for a CreateDeployment\n request.</p>",
       "refs" : { }
     },
     "CreateDomainNameInput" : {
-      "base" : "<p>Represents the input parameters for a CreateDomainName request.</p>",
+      "base" : "<p>Represents the input parameters for a CreateDomainName\n request.</p>",
       "refs" : { }
     },
     "CreateIntegrationInput" : {
-      "base" : "<p>Represents the input parameters for a CreateIntegration request.</p>",
+      "base" : "<p>Represents the input parameters for a CreateIntegration\n request.</p>",
       "refs" : { }
     },
     "CreateIntegrationResponseInput" : {
-      "base" : "<p>Represents the input parameters for a CreateIntegrationResponse request.</p>",
+      "base" : "<p>Represents the input parameters for a CreateIntegrationResponse\n request.</p>",
       "refs" : { }
     },
     "CreateModelInput" : {
@@ -194,7 +200,7 @@
       "refs" : { }
     },
     "CreateRouteResponseInput" : {
-      "base" : "<p>Represents the input parameters for an CreateRouteResponse request.</p>",
+      "base" : "<p>Represents the input parameters for an CreateRouteResponse\n request.</p>",
       "refs" : { }
     },
     "CreateStageInput" : {
@@ -202,7 +208,7 @@
       "refs" : { }
     },
     "Deployment" : {
-      "base" : "<p>An immutable representation of an API that can be called by users. A Deployment must be associated with a Stage for it to be callable over the internet.</p>",
+      "base" : "<p>An immutable representation of an API that can be called by users. A\n Deployment must be associated with a Stage for it to be\n callable over the internet.</p>",
       "refs" : {
         "__listOfDeployment$member" : null
       }
@@ -210,11 +216,11 @@
     "DeploymentStatus" : {
       "base" : "<p>Represents a deployment status.</p>",
       "refs" : {
-        "Deployment$DeploymentStatus" : "<p>The status of the deployment: PENDING, FAILED, or SUCCEEDED.</p>"
+        "Deployment$DeploymentStatus" : "<p>The status of the deployment: PENDING, FAILED, or\n SUCCEEDED.</p>"
       }
     },
     "Deployments" : {
-      "base" : "<p>A collection resource that contains zero or more references to your existing deployments, and links that guide you on how to interact with your collection. The collection offers a paginated view of the contained deployments.</p>",
+      "base" : "<p>A collection resource that contains zero or more references to your existing\n deployments, and links that guide you on how to interact with your collection. The\n collection offers a paginated view of the contained deployments.</p>",
       "refs" : { }
     },
     "DomainName" : {
@@ -248,53 +254,53 @@
       }
     },
     "Id" : {
-      "base" : "<p>An API Gateway-generated, unique identifier.</p>",
+      "base" : "<p>The identifier.</p>",
       "refs" : {
         "Api$ApiId" : "<p>The API ID.</p>",
         "ApiMapping$ApiId" : "<p>The API identifier.</p>",
         "ApiMapping$ApiMappingId" : "<p>The API mapping identifier.</p>",
         "Authorizer$AuthorizerId" : "<p>The authorizer identifier.</p>",
         "CreateApiMappingInput$ApiId" : "<p>The API identifier.</p>",
-        "CreateRouteInput$AuthorizerId" : "<p>The identifier of the Authorizer resource to be associated with this route.</p>",
+        "CreateRouteInput$AuthorizerId" : "<p>The identifier of the Authorizer resource to be associated with this\n route, if the authorizationType is CUSTOM\n . The authorizer identifier is generated by API Gateway\n when you created the authorizer.</p>",
         "CreateStageInput$ClientCertificateId" : "<p>The identifier of a client certificate for a Stage.</p>",
         "CreateStageInput$DeploymentId" : "<p>The deployment identifier of the API stage.</p>",
         "Deployment$DeploymentId" : "<p>The identifier for the deployment.</p>",
         "Integration$IntegrationId" : "<p>Represents the identifier of an integration.</p>",
         "IntegrationResponse$IntegrationResponseId" : "<p>The integration response ID.</p>",
         "Model$ModelId" : "<p>The model identifier.</p>",
-        "Route$AuthorizerId" : "<p>The identifier of the Authorizer resource to be associated with this route.</p>",
+        "Route$AuthorizerId" : "<p>The identifier of the Authorizer resource to be associated with this\n route, if the authorizationType is CUSTOM\n . The authorizer identifier is generated by API Gateway\n when you created the authorizer.</p>",
         "Route$RouteId" : "<p>The route ID.</p>",
         "RouteResponse$RouteResponseId" : "<p>Represents the identifier of a route response.</p>",
         "Stage$ClientCertificateId" : "<p>The identifier of a client certificate for a Stage.</p>",
-        "Stage$DeploymentId" : "<p>The identifier of the Deployment that the Stage is associated with.</p>",
+        "Stage$DeploymentId" : "<p>The identifier of the Deployment that the Stage is\n associated with.</p>",
         "UpdateApiMappingInput$ApiId" : "<p>The API identifier.</p>",
-        "UpdateRouteInput$AuthorizerId" : "<p>The identifier of the Authorizer resource to be associated with this route.</p>",
+        "UpdateRouteInput$AuthorizerId" : "<p>The identifier of the Authorizer resource to be associated with this\n route, if the authorizationType is CUSTOM\n . The authorizer identifier is generated by API Gateway\n when you created the authorizer.</p>",
         "UpdateStageInput$ClientCertificateId" : "<p>The identifier of a client certificate for a Stage.</p>",
         "UpdateStageInput$DeploymentId" : "<p>The deployment identifier for the API stage.</p>"
       }
     },
     "IdentitySourceList" : {
-      "base" : "<p>The identity source for which authorization is requested.</p><p>For the REQUEST authorizer, this is required when authorization caching is enabled. The value is a comma-separated string of one or more mapping expressions of the specified request parameters. For example, if an Auth header, a Name query string parameter are defined as identity sources, this value is $method.request.header.Auth, $method.request.querystring.Name. These parameters will be used to derive the authorization caching key and to perform runtime validation of the REQUEST authorizer by verifying all of the identity-related request parameters are present, not null and non-empty. Only when this is true does the authorizer invoke the authorizer Lambda function, otherwise, it returns a 401 Unauthorized response without calling the Lambda function. The valid value is a string of comma-separated mapping expressions of the specified request parameters. When the authorization caching is not enabled, this property is optional.</p>",
+      "base" : "<p>The identity source for which authorization is requested. For the REQUEST\n authorizer, this is required when authorization caching is enabled. The value is a\n comma-separated string of one or more mapping expressions of the specified request\n parameters. For example, if an Auth header, a Name query string parameter are defined\n as identity sources, this value is $method.request.header.Auth,\n $method.request.querystring.Name. These parameters will be used to derive\n the authorization caching key and to perform runtime validation of the REQUEST\n authorizer by verifying all of the identity-related request parameters are present,\n not null and non-empty. Only when this is true does the authorizer invoke the\n authorizer Lambda function, otherwise, it returns a 401 Unauthorized\n response without calling the Lambda function. The valid value is a string of\n comma-separated mapping expressions of the specified request parameters. When the\n authorization caching is not enabled, this property is optional.</p>",
       "refs" : {
-        "Authorizer$IdentitySource" : "<p>The identity source for which authorization is requested.</p><p>For the REQUEST authorizer, this is required when authorization caching is enabled. The value is a comma-separated string of one or more mapping expressions of the specified request parameters. For example, if an Auth header and a Name query string parameters are defined as identity sources, this value is method.request.header.Auth, method.request.querystring.Name. These parameters will be used to derive the authorization caching key and to perform runtime validation of the REQUEST authorizer by verifying all of the identity-related request parameters are present, not null, and non-empty. Only when this is true does the authorizer invoke the authorizer Lambda function, otherwise, it returns a 401 Unauthorized response without calling the Lambda function. The valid value is a string of comma-separated mapping expressions of the specified request parameters. When the authorization caching is not enabled, this property is optional.</p>",
-        "CreateAuthorizerInput$IdentitySource" : "<p>The identity source for which authorization is requested.</p><p>For the REQUEST authorizer, this is required when authorization caching is enabled. The value is a comma-separated string of one or more mapping expressions of the specified request parameters. For example, if an Auth header and a Name query string parameters are defined as identity sources, this value is method.request.header.Auth, method.request.querystring.Name. These parameters will be used to derive the authorization caching key and to perform runtime validation of the REQUEST authorizer by verifying all of the identity-related request parameters are present, not null, and non-empty. Only when this is true does the authorizer invoke the authorizer Lambda function, otherwise, it returns a 401 Unauthorized response without calling the Lambda function. The valid value is a string of comma-separated mapping expressions of the specified request parameters. When the authorization caching is not enabled, this property is optional.</p>",
-        "UpdateAuthorizerInput$IdentitySource" : "<p>The identity source for which authorization is requested.</p><p>For the REQUEST authorizer, this is required when authorization caching is enabled. The value is a comma-separated string of one or more mapping expressions of the specified request parameters. For example, if an Auth header, a Name query string parameter are defined as identity sources, this value is $method.request.header.Auth, $method.request.querystring.Name. These parameters will be used to derive the authorization caching key and to perform runtime validation of the REQUEST authorizer by verifying all of the identity-related request parameters are present, not null and non-empty. Only when this is true does the authorizer invoke the authorizer Lambda function, otherwise, it returns a 401 Unauthorized response without calling the Lambda function. The valid value is a string of comma-separated mapping expressions of the specified request parameters. When the authorization caching is not enabled, this property is optional.</p>"
+        "Authorizer$IdentitySource" : "<p>The identity source for which authorization is requested.</p><p>For the REQUEST authorizer, this is required when authorization\n caching is enabled. The value is a comma-separated string of one or more mapping\n expressions of the specified request parameters. For example, if an Auth\n header and a Name query string parameters are defined as identity\n sources, this value is method.request.header.Auth,\n method.request.querystring.Name. These parameters will be used to\n derive the authorization caching key and to perform runtime validation of the\n REQUEST authorizer by verifying all of the identity-related request\n parameters are present, not null, and non-empty. Only when this is true does the\n authorizer invoke the authorizer Lambda function, otherwise, it returns a 401\n Unauthorized response without calling the Lambda function. The valid value\n is a string of comma-separated mapping expressions of the specified request\n parameters. When the authorization caching is not enabled, this property is\n optional.</p>",
+        "CreateAuthorizerInput$IdentitySource" : "<p>The identity source for which authorization is requested.</p><p>For the REQUEST authorizer, this is required when authorization\n caching is enabled. The value is a comma-separated string of one or more mapping\n expressions of the specified request parameters. For example, if an Auth\n header and a Name query string parameters are defined as identity\n sources, this value is method.request.header.Auth,\n method.request.querystring.Name. These parameters will be used to\n derive the authorization caching key and to perform runtime validation of the\n REQUEST authorizer by verifying all of the identity-related request\n parameters are present, not null, and non-empty. Only when this is true does the\n authorizer invoke the authorizer Lambda function, otherwise, it returns a 401\n Unauthorized response without calling the Lambda function. The valid value\n is a string of comma-separated mapping expressions of the specified request\n parameters. When the authorization caching is not enabled, this property is\n optional.</p>",
+        "UpdateAuthorizerInput$IdentitySource" : "<p>The identity source for which authorization is requested.</p><p>For the REQUEST authorizer, this is required when authorization\n caching is enabled. The value is a comma-separated string of one or more mapping\n expressions of the specified request parameters. For example, if an Auth header, a\n Name query string parameter are defined as identity sources, this value is\n $method.request.header.Auth, $method.request.querystring.Name. These\n parameters will be used to derive the authorization caching key and to perform\n runtime validation of the REQUEST authorizer by verifying all of the\n identity-related request parameters are present, not null and non-empty. Only when\n this is true does the authorizer invoke the authorizer Lambda function, otherwise, it\n returns a 401 Unauthorized response without calling the Lambda function.\n The valid value is a string of comma-separated mapping expressions of the specified\n request parameters. When the authorization caching is not enabled, this property is\n optional.</p>"
       }
     },
     "IntegerWithLengthBetween0And3600" : {
       "base" : "<p>An integer with a value between [0-3600].</p>",
       "refs" : {
-        "Authorizer$AuthorizerResultTtlInSeconds" : "<p>The time to live (TTL), in seconds, of cached authorizer results. If it equals 0, authorization caching is disabled. If it is greater than 0, API Gateway will cache authorizer responses. If this field is not set, the default value is 300. The maximum value is 3600, or 1 hour.</p>",
-        "CreateAuthorizerInput$AuthorizerResultTtlInSeconds" : "<p>The time to live (TTL), in seconds, of cached authorizer results. If it equals 0, authorization caching is disabled. If it is greater than 0, API Gateway will cache authorizer responses. If this field is not set, the default value is 300. The maximum value is 3600, or 1 hour.</p>",
-        "UpdateAuthorizerInput$AuthorizerResultTtlInSeconds" : "<p>The time to live (TTL), in seconds, of cached authorizer results. If it is zero, authorization caching is disabled. If it is greater than zero, API Gateway will cache authorizer responses. If this field is not set, the default value is 300. The maximum value is 3600, or 1 hour.</p>"
+        "Authorizer$AuthorizerResultTtlInSeconds" : "<p>The time to live (TTL), in seconds, of cached authorizer results. If it equals 0,\n authorization caching is disabled. If it is greater than 0, API Gateway will cache\n authorizer responses. If this field is not set, the default value is 300. The maximum\n value is 3600, or 1 hour.</p>",
+        "CreateAuthorizerInput$AuthorizerResultTtlInSeconds" : "<p>The time to live (TTL), in seconds, of cached authorizer results. If it equals 0,\n authorization caching is disabled. If it is greater than 0, API Gateway will cache\n authorizer responses. If this field is not set, the default value is 300. The maximum\n value is 3600, or 1 hour.</p>",
+        "UpdateAuthorizerInput$AuthorizerResultTtlInSeconds" : "<p>The time to live (TTL), in seconds, of cached authorizer results. If it is zero,\n authorization caching is disabled. If it is greater than zero, API Gateway will cache\n authorizer responses. If this field is not set, the default value is 300. The maximum\n value is 3600, or 1 hour.</p>"
       }
     },
     "IntegerWithLengthBetween50And29000" : {
       "base" : "<p>An integer with a value between [50-29000].</p>",
       "refs" : {
-        "CreateIntegrationInput$TimeoutInMillis" : "<p>Custom timeout between 50 and 29,000 milliseconds. The default value is 29,000 milliseconds or 29 seconds.</p>",
-        "Integration$TimeoutInMillis" : "<p>Custom timeout between 50 and 29,000 milliseconds. The default value is 29,000 milliseconds or 29 seconds.</p>",
-        "UpdateIntegrationInput$TimeoutInMillis" : "<p>Custom timeout between 50 and 29,000 milliseconds. The default value is 29,000 milliseconds or 29 seconds.</p>"
+        "CreateIntegrationInput$TimeoutInMillis" : "<p>Custom timeout between 50 and 29,000 milliseconds. The default value is 29,000\n milliseconds or 29 seconds.</p>",
+        "Integration$TimeoutInMillis" : "<p>Custom timeout between 50 and 29,000 milliseconds. The default value is 29,000\n milliseconds or 29 seconds.</p>",
+        "UpdateIntegrationInput$TimeoutInMillis" : "<p>Custom timeout between 50 and 29,000 milliseconds. The default value is 29,000\n milliseconds or 29 seconds.</p>"
       }
     },
     "Integration" : {
@@ -304,14 +310,14 @@
       }
     },
     "IntegrationParameters" : {
-      "base" : "<p>A key-value map specifying response parameters that are passed to the method response from the backend. The key is a method response header parameter name and the mapped value is an integration response header value, a static value enclosed within a pair of single quotes, or a JSON expression from the integration response body. The mapping key must match the pattern of method.response.header.{name}, where name is a valid and unique header name. The mapped non-static value must match the pattern of integration.response.header.{name} or integration.response.body.{JSON-expression}, where name is a valid and unique response header name and JSON-expression is a valid JSON expression without the $ prefix.</p>",
+      "base" : "<p>A key-value map specifying response parameters that are passed to the method\n response from the backend. The key is a method response header parameter name and the\n mapped value is an integration response header value, a static value enclosed within\n a pair of single quotes, or a JSON expression from the integration response body. The\n mapping key must match the pattern of method.response.header.{name}, where name is a\n valid and unique header name. The mapped non-static value must match the pattern of\n integration.response.header.{name} or integration.response.body.{JSON-expression},\n where name is a valid and unique response header name and JSON-expression is a valid\n JSON expression without the $ prefix.</p>",
       "refs" : {
-        "CreateIntegrationInput$RequestParameters" : "<p>A key-value map specifying request parameters that are passed from the method request to the backend. The key is an integration request parameter name and the associated value is a method request parameter value or static value that must be enclosed within single quotes and pre-encoded as required by the backend. The method request parameter value must match the pattern of method.request.{location}.{name} , where  {location}  is querystring, path, or header; and  {name}  must be a valid and unique method request parameter name.</p>",
-        "CreateIntegrationResponseInput$ResponseParameters" : "<p>A key-value map specifying response parameters that are passed to the method response from the backend. The key is a method response header parameter name and the mapped value is an integration response header value, a static value enclosed within a pair of single quotes, or a JSON expression from the integration response body. The mapping key must match the pattern of method.response.header.{name}, where {name} is a valid and unique header name. The mapped non-static value must match the pattern of integration.response.header.{name} or integration.response.body.{JSON-expression}, where {name} is a valid and unique response header name and {JSON-expression} is a valid JSON expression without the $ prefix.</p>",
-        "Integration$RequestParameters" : "<p>A key-value map specifying request parameters that are passed from the method request to the backend. The key is an integration request parameter name and the associated value is a method request parameter value or static value that must be enclosed within single quotes and pre-encoded as required by the backend. The method request parameter value must match the pattern of method.request.{location}.{name} , where  {location}  is querystring, path, or header; and  {name}  must be a valid and unique method request parameter name.</p>",
-        "IntegrationResponse$ResponseParameters" : "<p>A key-value map specifying response parameters that are passed to the method response from the backend. The key is a method response header parameter name and the mapped value is an integration response header value, a static value enclosed within a pair of single quotes, or a JSON expression from the integration response body. The mapping key must match the pattern of method.response.header.{name}, where name is a valid and unique header name. The mapped non-static value must match the pattern of integration.response.header.{name} or integration.response.body.{JSON-expression}, where name is a valid and unique response header name and JSON-expression is a valid JSON expression without the $ prefix.</p>",
-        "UpdateIntegrationInput$RequestParameters" : "<p>A key-value map specifying request parameters that are passed from the method request to the backend. The key is an integration request parameter name and the associated value is a method request parameter value or static value that must be enclosed within single quotes and pre-encoded as required by the backend. The method request parameter value must match the pattern of method.request.{location}.{name} , where  {location}  is querystring, path, or header; and  {name}  must be a valid and unique method request parameter name.</p>",
-        "UpdateIntegrationResponseInput$ResponseParameters" : "<p>A key-value map specifying response parameters that are passed to the method response from the backend. The key is a method response header parameter name and the mapped value is an integration response header value, a static value enclosed within a pair of single quotes, or a JSON expression from the integration response body. The mapping key must match the pattern of method.response.header.{name} , where name is a valid and unique header name. The mapped non-static value must match the pattern of integration.response.header.{name}  or integration.response.body.{JSON-expression} , where  {name}  is a valid and unique response header name and  {JSON-expression}  is a valid JSON expression without the $ prefix.</p>"
+        "CreateIntegrationInput$RequestParameters" : "<p>A key-value map specifying request parameters that are passed from the method\n request to the backend. The key is an integration request parameter name and the\n associated value is a method request parameter value or static value that must be\n enclosed within single quotes and pre-encoded as required by the backend. The method\n request parameter value must match the pattern of\n method.request.{location}.{name}\n , where \n {location}\n  is querystring, path, or header; and \n {name}\n  must be a valid and unique method request parameter name.</p>",
+        "CreateIntegrationResponseInput$ResponseParameters" : "<p>A key-value map specifying response parameters that are passed to the method\n response from the backend. The key is a method response header parameter name and the\n mapped value is an integration response header value, a static value enclosed within\n a pair of single quotes, or a JSON expression from the integration response body. The\n mapping key must match the pattern of method.response.header.{name},\n where {name} is a valid and unique header name. The mapped non-static\n value must match the pattern of integration.response.header.{name} or\n integration.response.body.{JSON-expression}, where\n {name} is a valid and unique response header name and\n {JSON-expression} is a valid JSON expression without the $\n prefix.</p>",
+        "Integration$RequestParameters" : "<p>A key-value map specifying request parameters that are passed from the method\n request to the backend. The key is an integration request parameter name and the\n associated value is a method request parameter value or static value that must be\n enclosed within single quotes and pre-encoded as required by the backend. The method\n request parameter value must match the pattern of\n method.request.{location}.{name}\n , where \n {location}\n  is querystring, path, or header; and \n {name}\n  must be a valid and unique method request parameter name.</p>",
+        "IntegrationResponse$ResponseParameters" : "<p>A key-value map specifying response parameters that are passed to the method\n response from the backend. The key is a method response header parameter name and the\n mapped value is an integration response header value, a static value enclosed within\n a pair of single quotes, or a JSON expression from the integration response body. The\n mapping key must match the pattern of method.response.header.{name}, where name is a\n valid and unique header name. The mapped non-static value must match the pattern of\n integration.response.header.{name} or integration.response.body.{JSON-expression},\n where name is a valid and unique response header name and JSON-expression is a valid\n JSON expression without the $ prefix.</p>",
+        "UpdateIntegrationInput$RequestParameters" : "<p>A key-value map specifying request parameters that are passed from the method\n request to the backend. The key is an integration request parameter name and the\n associated value is a method request parameter value or static value that must be\n enclosed within single quotes and pre-encoded as required by the backend. The method\n request parameter value must match the pattern of\n method.request.{location}.{name}\n , where \n {location}\n  is querystring, path, or header; and \n {name}\n  must be a valid and unique method request parameter name.</p>",
+        "UpdateIntegrationResponseInput$ResponseParameters" : "<p>A key-value map specifying response parameters that are passed to the method\n response from the backend. The key is a method response header parameter name and the\n mapped value is an integration response header value, a static value enclosed within\n a pair of single quotes, or a JSON expression from the integration response body. The\n mapping key must match the pattern of\n method.response.header.{name}\n , where name is a valid and unique header name. The mapped non-static value\n must match the pattern of\n integration.response.header.{name}\n  or\n integration.response.body.{JSON-expression}\n , where \n {name}\n  is a valid and unique response header name and \n {JSON-expression}\n  is a valid JSON expression without the $ prefix.</p>"
       }
     },
     "IntegrationResponse" : {
@@ -327,9 +333,9 @@
     "IntegrationType" : {
       "base" : "<p>Represents an API method integration type.</p>",
       "refs" : {
-        "CreateIntegrationInput$IntegrationType" : "<p>The integration type of an integration. One of the following:</p><p> AWS: for integrating the route or method request with an AWS service action, including the Lambda function-invoking action. With the Lambda function-invoking action, this is referred to as the Lambda custom integration. With any other AWS service action, this is known as AWS integration.</p><p> AWS_PROXY: for integrating the route or method request with the Lambda function-invoking action with the client request passed through as-is. This integration is also referred to as Lambda proxy integration.</p><p> HTTP: for integrating the route or method request with an HTTP endpoint, including a private HTTP endpoint within a VPC. This integration is also referred to as the HTTP custom integration.</p><p> HTTP_PROXY: for integrating route or method request with an HTTP endpoint, including a private HTTP endpoint within a VPC, with the client request passed through as-is. This is also referred to as HTTP proxy integration.</p><p> MOCK: for integrating the route or method request with API Gateway as a \"loopback\" endpoint without invoking any backend.</p>",
-        "Integration$IntegrationType" : "<p>The integration type of an integration. One of the following:</p><p> AWS: for integrating the route or method request with an AWS service action, including the Lambda function-invoking action. With the Lambda function-invoking action, this is referred to as the Lambda custom integration. With any other AWS service action, this is known as AWS integration.</p><p> AWS_PROXY: for integrating the route or method request with the Lambda function-invoking action with the client request passed through as-is. This integration is also referred to as Lambda proxy integration.</p><p> HTTP: for integrating the route or method request with an HTTP endpoint, including a private HTTP endpoint within a VPC. This integration is also referred to as the HTTP custom integration.</p><p> HTTP_PROXY: for integrating route or method request with an HTTP endpoint, including a private HTTP endpoint within a VPC, with the client request passed through as-is. This is also referred to as HTTP proxy integration.</p><p> MOCK: for integrating the route or method request with API Gateway as a \"loopback\" endpoint without invoking any backend.</p>",
-        "UpdateIntegrationInput$IntegrationType" : "<p>The integration type of an integration. One of the following:</p><p> AWS: for integrating the route or method request with an AWS service action, including the Lambda function-invoking action. With the Lambda function-invoking action, this is referred to as the Lambda custom integration. With any other AWS service action, this is known as AWS integration.</p><p> AWS_PROXY: for integrating the route or method request with the Lambda function-invoking action with the client request passed through as-is. This integration is also referred to as Lambda proxy integration.</p><p> HTTP: for integrating the route or method request with an HTTP endpoint, including a private HTTP endpoint within a VPC. This integration is also referred to as the HTTP custom integration.</p><p> HTTP_PROXY: for integrating route or method request with an HTTP endpoint, including a private HTTP endpoint within a VPC, with the client request passed through as-is. This is also referred to as HTTP proxy integration.</p><p> MOCK: for integrating the route or method request with API Gateway as a \"loopback\" endpoint without invoking any backend.</p>"
+        "CreateIntegrationInput$IntegrationType" : "<p>The integration type of an integration. One of the following:</p><p>\n AWS: for integrating the route or method request with an AWS service\n action, including the Lambda function-invoking action. With the Lambda\n function-invoking action, this is referred to as the Lambda custom integration. With\n any other AWS service action, this is known as AWS integration.</p><p>\n AWS_PROXY: for integrating the route or method request with the Lambda\n function-invoking action with the client request passed through as-is. This\n integration is also referred to as Lambda proxy integration.</p><p>\n HTTP: for integrating the route or method request with an HTTP\n endpoint. This\n integration is also referred to as HTTP custom integration.</p><p>\n HTTP_PROXY: for integrating route or method request with an HTTP\n endpoint, with the client\n request passed through as-is. This is also referred to as HTTP proxy\n integration.</p><p>\n MOCK: for integrating the route or method request with API Gateway as a\n \"loopback\" endpoint without invoking any backend.</p>",
+        "Integration$IntegrationType" : "<p>The integration type of an integration. One of the following:</p><p>\n AWS: for integrating the route or method request with an AWS service\n action, including the Lambda function-invoking action. With the Lambda\n function-invoking action, this is referred to as the Lambda custom integration. With\n any other AWS service action, this is known as AWS integration.</p><p>\n AWS_PROXY: for integrating the route or method request with the Lambda\n function-invoking action with the client request passed through as-is. This\n integration is also referred to as Lambda proxy integration.</p><p>\n HTTP: for integrating the route or method request with an HTTP\n endpoint. This\n integration is also referred to as the HTTP custom integration.</p><p>\n HTTP_PROXY: for integrating route or method request with an HTTP\n endpoint, with the client\n request passed through as-is. This is also referred to as HTTP proxy\n integration.</p><p>\n MOCK: for integrating the route or method request with API Gateway as a\n \"loopback\" endpoint without invoking any backend.</p>",
+        "UpdateIntegrationInput$IntegrationType" : "<p>The integration type of an integration. One of the following:</p><p>\n AWS: for integrating the route or method request with an AWS service\n action, including the Lambda function-invoking action. With the Lambda\n function-invoking action, this is referred to as the Lambda custom integration. With\n any other AWS service action, this is known as AWS integration.</p><p>\n AWS_PROXY: for integrating the route or method request with the Lambda\n function-invoking action with the client request passed through as-is. This\n integration is also referred to as Lambda proxy integration.</p><p>\n HTTP: for integrating the route or method request with an HTTP\n endpoint. This\n integration is also referred to as the HTTP custom integration.</p><p>\n HTTP_PROXY: for integrating route or method request with an HTTP\n endpoint, with the client\n request passed through as-is. This is also referred to as HTTP proxy\n integration.</p><p>\n MOCK: for integrating the route or method request with API Gateway as a\n \"loopback\" endpoint without invoking any backend.</p>"
       }
     },
     "Integrations" : {
@@ -343,40 +349,41 @@
     "LoggingLevel" : {
       "base" : "<p>The logging level.</p>",
       "refs" : {
-        "RouteSettings$LoggingLevel" : "<p>Specifies the logging level for this route: DEBUG, INFO, or WARN. This property affects the log entries pushed to Amazon CloudWatch Logs.</p>"
+        "RouteSettings$LoggingLevel" : "<p>Specifies the logging level for this route: DEBUG, INFO,\n or WARN. This property affects the log entries pushed to Amazon\n CloudWatch Logs.</p>"
       }
     },
     "Model" : {
-      "base" : "<p>Represents a data model for an API. See <a href=\"https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html\">Create Models and Mapping Templates for Request and Response Mappings</a>.</p>",
+      "base" : "<p>Represents a data model for an API. See <a href=\"https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html\">Create Models and Mapping Templates for Request and Response\n Mappings</a>.</p>",
       "refs" : {
         "__listOfModel$member" : null
       }
     },
     "Models" : {
-      "base" : "<p>Represents a collection of data models. See <a href=\"https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html\">Create Models and Mapping Templates for Request and Response Mappings</a>.</p>",
+      "base" : "<p>Represents a collection of data models. See <a href=\"https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html\">Create Models and Mapping Templates for Request and Response\n Mappings</a>.</p>",
       "refs" : { }
     },
     "NextToken" : {
-      "base" : "<p>The next page of elements from this collection. Not valid for the last element of the collection.</p>",
+      "base" : "<p>The next page of elements from this collection. Not valid for the last element of\n the collection.</p>",
       "refs" : {
-        "Apis$NextToken" : "<p>The next page of elements from this collection. Not valid for the last element of the collection.</p>",
-        "Authorizers$NextToken" : "<p>The next page of elements from this collection. Not valid for the last element of the collection.</p>",
-        "Deployments$NextToken" : "<p>The next page of elements from this collection. Not valid for the last element of the collection.</p>",
-        "DomainNames$NextToken" : "<p>The next page of elements from this collection. Not valid for the last element of the collection.</p>",
-        "IntegrationResponses$NextToken" : "<p>The next page of elements from this collection. Not valid for the last element of the collection.</p>",
-        "Integrations$NextToken" : "<p>The next page of elements from this collection. Not valid for the last element of the collection.</p>",
-        "Models$NextToken" : "<p>The next page of elements from this collection. Not valid for the last element of the collection.</p>",
-        "RouteResponses$NextToken" : "<p>The next page of elements from this collection. Not valid for the last element of the collection.</p>",
-        "Routes$NextToken" : "<p>The next page of elements from this collection. Not valid for the last element of the collection.</p>",
-        "Stages$NextToken" : "<p>The next page of elements from this collection. Not valid for the last element of the collection.</p>"
+        "ApiMappings$NextToken" : "<p>The next page of elements from this collection. Not valid for the last element of\n the collection.</p>",
+        "Apis$NextToken" : "<p>The next page of elements from this collection. Not valid for the last element of\n the collection.</p>",
+        "Authorizers$NextToken" : "<p>The next page of elements from this collection. Not valid for the last element of\n the collection.</p>",
+        "Deployments$NextToken" : "<p>The next page of elements from this collection. Not valid for the last element of\n the collection.</p>",
+        "DomainNames$NextToken" : "<p>The next page of elements from this collection. Not valid for the last element of\n the collection.</p>",
+        "IntegrationResponses$NextToken" : "<p>The next page of elements from this collection. Not valid for the last element of\n the collection.</p>",
+        "Integrations$NextToken" : "<p>The next page of elements from this collection. Not valid for the last element of\n the collection.</p>",
+        "Models$NextToken" : "<p>The next page of elements from this collection. Not valid for the last element of\n the collection.</p>",
+        "RouteResponses$NextToken" : "<p>The next page of elements from this collection. Not valid for the last element of\n the collection.</p>",
+        "Routes$NextToken" : "<p>The next page of elements from this collection. Not valid for the last element of\n the collection.</p>",
+        "Stages$NextToken" : "<p>The next page of elements from this collection. Not valid for the last element of\n the collection.</p>"
       }
     },
     "NotFoundException" : {
-      "base" : "<p>The resource specified in the request was not found. See the message field for more information.</p>",
+      "base" : "<p>The resource specified in the request was not found. See the message\n field for more information.</p>",
       "refs" : { }
     },
     "ParameterConstraints" : {
-      "base" : "<p>Validation constraints imposed on parameters of a request (path, query string, headers).</p>",
+      "base" : "<p>Validation constraints imposed on parameters of a request (path, query string,\n headers).</p>",
       "refs" : {
         "RouteParameters$member" : null
       }
@@ -384,24 +391,24 @@
     "PassthroughBehavior" : {
       "base" : "<p>Represents passthrough behavior for an integration response.</p>",
       "refs" : {
-        "CreateIntegrationInput$PassthroughBehavior" : "<p>Specifies the pass-through behavior for incoming requests based on the Content-Type header in the request, and the available mapping templates specified as the requestTemplates property on the Integration resource. There are three valid values: WHEN_NO_MATCH, WHEN_NO_TEMPLATES, and NEVER.</p><p> WHEN_NO_MATCH passes the request body for unmapped content types through to the integration backend without transformation.</p><p> NEVER rejects unmapped content types with an HTTP 415 Unsupported Media Type response.</p><p> WHEN_NO_TEMPLATES allows pass-through when the integration has no content types mapped to templates. However, if there is at least one content type defined, unmapped content types will be rejected with the same HTTP 415 Unsupported Media Type response.</p>",
-        "Integration$PassthroughBehavior" : "<p>Specifies the pass-through behavior for incoming requests based on the Content-Type header in the request, and the available mapping templates specified as the requestTemplates property on the Integration resource. There are three valid values: WHEN_NO_MATCH, WHEN_NO_TEMPLATES, and NEVER.</p><p> WHEN_NO_MATCH passes the request body for unmapped content types through to the integration backend without transformation.</p><p> NEVER rejects unmapped content types with an HTTP 415 Unsupported Media Type response.</p><p> WHEN_NO_TEMPLATES allows pass-through when the integration has no content types mapped to templates. However, if there is at least one content type defined, unmapped content types will be rejected with the same HTTP 415 Unsupported Media Type response.</p>",
-        "UpdateIntegrationInput$PassthroughBehavior" : "<p>Specifies the pass-through behavior for incoming requests based on the Content-Type header in the request, and the available mapping templates specified as the requestTemplates property on the Integration resource. There are three valid values: WHEN_NO_MATCH, WHEN_NO_TEMPLATES, and NEVER.</p><p> WHEN_NO_MATCH passes the request body for unmapped content types through to the integration backend without transformation.</p><p> NEVER rejects unmapped content types with an HTTP 415 Unsupported Media Type response.</p><p> WHEN_NO_TEMPLATES allows pass-through when the integration has no content types mapped to templates. However, if there is at least one content type defined, unmapped content types will be rejected with the same HTTP 415 Unsupported Media Type response.</p>"
+        "CreateIntegrationInput$PassthroughBehavior" : "<p>Specifies the pass-through behavior for incoming requests based on the\n Content-Type header in the request, and the available mapping\n templates specified as the requestTemplates property on the\n Integration resource. There are three valid values:\n WHEN_NO_MATCH, WHEN_NO_TEMPLATES, and\n NEVER.</p><p>\n WHEN_NO_MATCH passes the request body for unmapped content types through\n to the integration backend without transformation.</p><p>\n NEVER rejects unmapped content types with an HTTP 415 Unsupported\n Media Type response.</p><p>\n WHEN_NO_TEMPLATES allows pass-through when the integration has no\n content types mapped to templates. However, if there is at least one content type\n defined, unmapped content types will be rejected with the same HTTP 415\n Unsupported Media Type response.</p>",
+        "Integration$PassthroughBehavior" : "<p>Specifies the pass-through behavior for incoming requests based on the\n Content-Type header in the request, and the available mapping\n templates specified as the requestTemplates property on the\n Integration resource. There are three valid values:\n WHEN_NO_MATCH, WHEN_NO_TEMPLATES, and\n NEVER.</p><p>\n WHEN_NO_MATCH passes the request body for unmapped content types through\n to the integration backend without transformation.</p><p>\n NEVER rejects unmapped content types with an HTTP 415 Unsupported\n Media Type response.</p><p>\n WHEN_NO_TEMPLATES allows pass-through when the integration has no\n content types mapped to templates. However, if there is at least one content type\n defined, unmapped content types will be rejected with the same HTTP 415\n Unsupported Media Type response.</p>",
+        "UpdateIntegrationInput$PassthroughBehavior" : "<p>Specifies the pass-through behavior for incoming requests based on the\n Content-Type header in the request, and the available mapping\n templates specified as the requestTemplates property on the\n Integration resource. There are three valid values:\n WHEN_NO_MATCH, WHEN_NO_TEMPLATES, and\n NEVER.</p><p>\n WHEN_NO_MATCH passes the request body for unmapped content types through\n to the integration backend without transformation.</p><p>\n NEVER rejects unmapped content types with an HTTP 415 Unsupported\n Media Type response.</p><p>\n WHEN_NO_TEMPLATES allows pass-through when the integration has no\n content types mapped to templates. However, if there is at least one content type\n defined, unmapped content types will be rejected with the same HTTP 415\n Unsupported Media Type response.</p>"
       }
     },
     "ProtocolType" : {
       "base" : "",
       "refs" : {
-        "Api$ProtocolType" : "<p>The API protocol: HTTP or WEBSOCKET.</p>",
-        "CreateApiInput$ProtocolType" : "<p>The API protocol: HTTP or WEBSOCKET.</p>"
+        "Api$ProtocolType" : "<p>The API protocol: Currently only WEBSOCKET is supported.</p>",
+        "CreateApiInput$ProtocolType" : "<p>The API protocol: Currently only WEBSOCKET is supported.</p>"
       }
     },
     "ProviderArnList" : {
       "base" : "<p>For REQUEST authorizer, this is not defined.</p>",
       "refs" : {
-        "Authorizer$ProviderArns" : "<p>For REQUEST authorizer, this is not defined.</p>",
-        "CreateAuthorizerInput$ProviderArns" : "<p>For REQUEST authorizer, this is not defined.</p>",
-        "UpdateAuthorizerInput$ProviderArns" : "<p>For REQUEST authorizer, this is not defined.</p>"
+        "Authorizer$ProviderArns" : "<p>For\n REQUEST authorizer, this is not\n defined.</p>",
+        "CreateAuthorizerInput$ProviderArns" : "<p>For\n REQUEST authorizer, this is not\n defined.</p>",
+        "UpdateAuthorizerInput$ProviderArns" : "<p>For\n REQUEST authorizer, this is not\n defined.</p>"
       }
     },
     "Route" : {
@@ -464,7 +471,7 @@
       "refs" : { }
     },
     "SelectionExpression" : {
-      "base" : "<p>An expression used to extract information at runtime. See <a href=\"https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html\">Selection Expressions</a> for more information.</p>",
+      "base" : "<p>An expression used to extract information at runtime. See <a href=\"https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-apikey-selection-expressions\">Selection Expressions</a> for more information.</p>",
       "refs" : {
         "Api$ApiKeySelectionExpression" : "<p>An API key selection expression. See <a href=\"https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-apikey-selection-expressions\">API Key Selection Expressions</a>.</p>",
         "Api$RouteSelectionExpression" : "<p>The route selection expression for the API.</p>",
@@ -476,7 +483,7 @@
         "CreateRouteInput$RouteResponseSelectionExpression" : "<p>The route response selection expression for the route.</p>",
         "CreateRouteResponseInput$ModelSelectionExpression" : "<p>The model selection expression for the route response.</p>",
         "DomainName$ApiMappingSelectionExpression" : "<p>The API mapping selection expression.</p>",
-        "Integration$IntegrationResponseSelectionExpression" : "",
+        "Integration$IntegrationResponseSelectionExpression" : "<p>The integration response selection expression for the integration. See <a href=\"https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-integration-response-selection-expressions\">Integration Response Selection Expressions</a>.</p>",
         "Integration$TemplateSelectionExpression" : "<p>The template selection expression for the integration.</p>",
         "IntegrationResponse$TemplateSelectionExpression" : "<p>The template selection expressions for the integration response.</p>",
         "Route$ModelSelectionExpression" : "<p>The model selection expression for the route.</p>",
@@ -492,7 +499,7 @@
       }
     },
     "SelectionKey" : {
-      "base" : "<p>After evaulating a selection expression, the result is compared against one or more selection keys to find a matching key. See <a href=\"https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html\">Selection Expressions</a> for a list of expressions and each expression's associated selection key type.</p>",
+      "base" : "<p>After evaulating a selection expression, the result is compared against one or\n more selection keys to find a matching key. See <a href=\"https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-apikey-selection-expressions\">Selection Expressions</a> for a list of expressions and each expression's\n associated selection key type.</p>",
       "refs" : {
         "ApiMapping$ApiMappingKey" : "<p>The API mapping key.</p>",
         "CreateApiMappingInput$ApiMappingKey" : "",
@@ -517,22 +524,22 @@
     "StageVariablesMap" : {
       "base" : "<p>The stage variable map.</p>",
       "refs" : {
-        "CreateStageInput$StageVariables" : "<p>A map that defines the stage variables for a Stage. Variable names can have alphanumeric and underscore characters, and the values must match [A-Za-z0-9-._~:/?#&=,]+.</p>",
-        "Stage$StageVariables" : "<p>A map that defines the stage variables for a stage resource. Variable names can have alphanumeric and underscore characters, and the values must match [A-Za-z0-9-._~:/?#&=,]+.</p>",
-        "UpdateStageInput$StageVariables" : "<p>A map that defines the stage variables for a Stage. Variable names can have alphanumeric and underscore characters, and the values must match [A-Za-z0-9-._~:/?#&=,]+.</p>"
+        "CreateStageInput$StageVariables" : "<p>A map that defines the stage variables for a Stage. Variable names\n can have alphanumeric and underscore characters, and the values must match\n [A-Za-z0-9-._~:/?#&=,]+.</p>",
+        "Stage$StageVariables" : "<p>A map that defines the stage variables for a stage resource. Variable names can\n have alphanumeric and underscore characters, and the values must match\n [A-Za-z0-9-._~:/?#&=,]+.</p>",
+        "UpdateStageInput$StageVariables" : "<p>A map that defines the stage variables for a Stage. Variable names\n can have alphanumeric and underscore characters, and the values must match\n [A-Za-z0-9-._~:/?#&=,]+.</p>"
       }
     },
     "Stages" : {
-      "base" : "<p>A collection of Stage resources that are associated with the ApiKey resource.</p>",
+      "base" : "<p>A collection of Stage resources that are associated with the ApiKey\n resource.</p>",
       "refs" : { }
     },
     "StringWithLengthBetween0And1024" : {
       "base" : "<p>A string with a length between [0-1024].</p>",
       "refs" : {
         "Api$Description" : "<p>The description of the API.</p>",
-        "Authorizer$IdentityValidationExpression" : "<p>The validation expression does not apply to the REQUEST authorizer.</p>",
+        "Authorizer$IdentityValidationExpression" : "<p>The\n validation expression does not apply to the REQUEST authorizer.</p>",
         "CreateApiInput$Description" : "<p>The description of the API.</p>",
-        "CreateAuthorizerInput$IdentityValidationExpression" : "<p>The validation expression does not apply to the REQUEST authorizer.</p>",
+        "CreateAuthorizerInput$IdentityValidationExpression" : "<p>The\n validation expression does not apply to the REQUEST authorizer.</p>",
         "CreateDeploymentInput$Description" : "<p>The description for the deployment resource.</p>",
         "CreateIntegrationInput$Description" : "<p>The description of the integration.</p>",
         "CreateModelInput$Description" : "<p>The description of the model.</p>",
@@ -542,7 +549,7 @@
         "Model$Description" : "<p>The description of the model.</p>",
         "Stage$Description" : "<p>The description of the stage.</p>",
         "UpdateApiInput$Description" : "<p>The description of the API.</p>",
-        "UpdateAuthorizerInput$IdentityValidationExpression" : "<p>The validation expression does not apply to the REQUEST authorizer.</p>",
+        "UpdateAuthorizerInput$IdentityValidationExpression" : "<p>The\n validation expression does not apply to the REQUEST authorizer.</p>",
         "UpdateDeploymentInput$Description" : "<p>The description for the deployment resource.</p>",
         "UpdateIntegrationInput$Description" : "<p>The description of the integration</p>",
         "UpdateModelInput$Description" : "<p>The description of the model.</p>",
@@ -558,19 +565,19 @@
     "StringWithLengthBetween0And32K" : {
       "base" : "<p>A string with a length between [0-32768].</p>",
       "refs" : {
-        "CreateModelInput$Schema" : "<p>The schema for the model. For application/json models, this should be JSON schema draft 4 model.</p>",
-        "Model$Schema" : "<p>The schema for the model. For application/json models, this should be JSON schema draft 4 model.</p>",
+        "CreateModelInput$Schema" : "<p>The schema for the model. For application/json models, this should be JSON schema\n draft 4 model.</p>",
+        "Model$Schema" : "<p>The schema for the model. For application/json models, this should be JSON schema\n draft 4 model.</p>",
         "TemplateMap$member" : null,
-        "UpdateModelInput$Schema" : "<p>The schema for the model. For application/json models, this should be JSON schema draft 4 model.</p>"
+        "UpdateModelInput$Schema" : "<p>The schema for the model. For application/json models, this should be JSON schema\n draft 4 model.</p>"
       }
     },
     "StringWithLengthBetween1And1024" : {
       "base" : "<p>A string with a length between [1-1024].</p>",
       "refs" : {
-        "AccessLogSettings$Format" : "<p>A single line format of the access logs of data, as specified by selected $context variables. The format must include at least $context.requestId.</p>",
-        "CreateIntegrationInput$ConnectionId" : "<p>The identifier of the VpcLink used for the integration when the connectionType is VPC_LINK; otherwise undefined.</p>",
-        "Integration$ConnectionId" : "<p>The identifier of the VpcLink used for the integration when the connectionType is VPC_LINK; otherwise undefined.</p>",
-        "UpdateIntegrationInput$ConnectionId" : "<p>The identifier of the VpcLink used for the integration when the connectionType is VPC_LINK; otherwise undefined.</p>"
+        "AccessLogSettings$Format" : "<p>A single line format of the access logs of data, as specified by selected $context\n variables. The format must include at least $context.requestId.</p>",
+        "CreateIntegrationInput$ConnectionId" : "<p>The connection ID.</p>",
+        "Integration$ConnectionId" : "<p>The connection ID.</p>",
+        "UpdateIntegrationInput$ConnectionId" : "<p>The connection ID.</p>"
       }
     },
     "StringWithLengthBetween1And128" : {
@@ -582,11 +589,11 @@
         "CreateApiInput$Name" : "<p>The name of the API.</p>",
         "CreateApiMappingInput$Stage" : "<p>The API stage.</p>",
         "CreateAuthorizerInput$Name" : "<p>The name of the authorizer.</p>",
-        "CreateDeploymentInput$StageName" : "<p>The name of the Stage resource for the Deployment resource to create.</p>",
+        "CreateDeploymentInput$StageName" : "<p>The name of the Stage resource for the Deployment\n resource to create.</p>",
         "CreateModelInput$Name" : "<p>The name of the model. Must be alphanumeric.</p>",
         "CreateRouteInput$Target" : "<p>The target for the route.</p>",
         "CreateStageInput$StageName" : "<p>The name of the stage.</p>",
-        "DomainNameConfiguration$CertificateName" : "<p>The user-friendly name of the certificate that will be used by the edge-optimized endpoint for this domain name.</p>",
+        "DomainNameConfiguration$CertificateName" : "<p>The user-friendly name of the certificate that will be used by the edge-optimized\n endpoint for this domain name.</p>",
         "Model$Name" : "<p>The name of the model. Must be alphanumeric.</p>",
         "Route$Target" : "<p>The target for the route.</p>",
         "RouteModels$member" : null,
@@ -634,14 +641,14 @@
       "refs" : { }
     },
     "TemplateMap" : {
-      "base" : "<p>A mapping of identifier keys to templates. The value is an actual template script. The key is typically a SelectionKey which is chosen based on evaluating a selection expression.</p>",
+      "base" : "<p>A mapping of identifier keys to templates. The value is an actual template script.\n The key is typically a SelectionKey which is chosen based on evaluating\n a selection expression.</p>",
       "refs" : {
-        "CreateIntegrationInput$RequestTemplates" : "<p>Represents a map of Velocity templates that are applied on the request payload based on the value of the Content-Type header sent by the client. The content type value is the key in this map, and the template (as a String) is the value.</p>",
-        "CreateIntegrationResponseInput$ResponseTemplates" : "<p>The collection of response templates for the integration response as a string-to-string map of key-value pairs. Response templates are represented as a key/value map, with a content-type as the key and a template as the value.</p>",
-        "Integration$RequestTemplates" : "<p>Represents a map of Velocity templates that are applied on the request payload based on the value of the Content-Type header sent by the client. The content type value is the key in this map, and the template (as a String) is the value.</p>",
-        "IntegrationResponse$ResponseTemplates" : "<p>The collection of response templates for the integration response as a string-to-string map of key-value pairs. Response templates are represented as a key/value map, with a content-type as the key and a template as the value.</p>",
-        "UpdateIntegrationInput$RequestTemplates" : "<p>Represents a map of Velocity templates that are applied on the request payload based on the value of the Content-Type header sent by the client. The content type value is the key in this map, and the template (as a String) is the value.</p>",
-        "UpdateIntegrationResponseInput$ResponseTemplates" : "<p>The collection of response templates for the integration response as a string-to-string map of key-value pairs. Response templates are represented as a key/value map, with a content-type as the key and a template as the value.</p>"
+        "CreateIntegrationInput$RequestTemplates" : "<p>Represents a map of Velocity templates that are applied on the request payload\n based on the value of the Content-Type header sent by the client. The content type\n value is the key in this map, and the template (as a String) is the value.</p>",
+        "CreateIntegrationResponseInput$ResponseTemplates" : "<p>The collection of response templates for the integration response as a\n string-to-string map of key-value pairs. Response templates are represented as a\n key/value map, with a content-type as the key and a template as the value.</p>",
+        "Integration$RequestTemplates" : "<p>Represents a map of Velocity templates that are applied on the request payload\n based on the value of the Content-Type header sent by the client. The content type\n value is the key in this map, and the template (as a String) is the value.</p>",
+        "IntegrationResponse$ResponseTemplates" : "<p>The collection of response templates for the integration response as a\n string-to-string map of key-value pairs. Response templates are represented as a\n key/value map, with a content-type as the key and a template as the value.</p>",
+        "UpdateIntegrationInput$RequestTemplates" : "<p>Represents a map of Velocity templates that are applied on the request payload\n based on the value of the Content-Type header sent by the client. The content type\n value is the key in this map, and the template (as a String) is the value.</p>",
+        "UpdateIntegrationResponseInput$ResponseTemplates" : "<p>The collection of response templates for the integration response as a\n string-to-string map of key-value pairs. Response templates are represented as a\n key/value map, with a content-type as the key and a template as the value.</p>"
       }
     },
     "TooManyRequestsException" : {
@@ -653,7 +660,7 @@
       "refs" : { }
     },
     "UpdateApiMappingInput" : {
-      "base" : "<p>Represents the input parameters for an UpdateApiMapping request.</p>",
+      "base" : "<p>Represents the input parameters for an UpdateApiMapping\n request.</p>",
       "refs" : { }
     },
     "UpdateAuthorizerInput" : {
@@ -661,19 +668,19 @@
       "refs" : { }
     },
     "UpdateDeploymentInput" : {
-      "base" : "<p>Represents the input parameters for an UpdateDeployment request.</p>",
+      "base" : "<p>Represents the input parameters for an UpdateDeployment\n request.</p>",
       "refs" : { }
     },
     "UpdateDomainNameInput" : {
-      "base" : "<p>Represents the input parameters for an UpdateDomainName request.</p>",
+      "base" : "<p>Represents the input parameters for an UpdateDomainName\n request.</p>",
       "refs" : { }
     },
     "UpdateIntegrationInput" : {
-      "base" : "<p>Represents the input parameters for an UpdateIntegration request.</p>",
+      "base" : "<p>Represents the input parameters for an UpdateIntegration\n request.</p>",
       "refs" : { }
     },
     "UpdateIntegrationResponseInput" : {
-      "base" : "<p>Represents the input parameters for an UpdateIntegrationResponse request.</p>",
+      "base" : "<p>Represents the input parameters for an UpdateIntegrationResponse\n request.</p>",
       "refs" : { }
     },
     "UpdateModelInput" : {
@@ -685,7 +692,7 @@
       "refs" : { }
     },
     "UpdateRouteResponseInput" : {
-      "base" : "<p>Represents the input parameters for an UpdateRouteResponse request.</p>",
+      "base" : "<p>Represents the input parameters for an UpdateRouteResponse\n request.</p>",
       "refs" : { }
     },
     "UpdateStageInput" : {
@@ -695,12 +702,12 @@
     "UriWithLengthBetween1And2048" : {
       "base" : "<p>A string representation of a URI with a length between [1-2048].</p>",
       "refs" : {
-        "Authorizer$AuthorizerUri" : "<p>The authorizer's Uniform Resource Identifier (URI). ForREQUEST authorizers, this must be a well-formed Lambda function URI, for example, arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:{account_id}:function:{lambda_function_name}/invocations. In general, the URI has this form: arn:aws:apigateway:{region}:lambda:path/{service_api} , where {region} is the same as the region hosting the Lambda function, path indicates that the remaining substring in the URI should be treated as the path to the resource, including the initial /. For Lambda functions, this is usually of the form /2015-03-31/functions/[FunctionARN]/invocations.</p>",
-        "CreateAuthorizerInput$AuthorizerUri" : "<p>The authorizer's Uniform Resource Identifier (URI). For REQUEST authorizers, this must be a well-formed Lambda function URI, for example, arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:{account_id}:function:{lambda_function_name}/invocations. In general, the URI has this form: arn:aws:apigateway:{region}:lambda:path/{service_api} , where {region} is the same as the region hosting the Lambda function, path indicates that the remaining substring in the URI should be treated as the path to the resource, including the initial /. For Lambda functions, this is usually of the form /2015-03-31/functions/[FunctionARN]/invocations.</p>",
-        "CreateIntegrationInput$IntegrationUri" : "<p>Specifies the Uniform Resource Identifier (URI) of the integration endpoint.</p><p>For HTTP or HTTP_PROXY integrations, the URI must be a fully formed, encoded HTTP(S) URL according to the <a href=\"https://en.wikipedia.org/wiki/Uniform_Resource_Identifier\">RFC-3986 specification</a>, for either standard integration, where connectionType is not VPC_LINK, or private integration, where connectionType is VPC_LINK. For a private HTTP integration, the URI is not used for routing.</p><p>For AWS or AWS_PROXY integrations, the URI is of the form arn:aws:apigateway:{region}:{subdomain.service|service}:path|action/{service_api}. Here, {Region} is the API Gateway region (e.g., us-east-1); {service} is the name of the integrated AWS service (e.g., s3); and {subdomain} is a designated subdomain supported by certain AWS service for fast host-name lookup. action can be used for an AWS service action-based API, using an Action={name}&{p1}={v1}&p2={v2}... query string. The ensuing {service_api} refers to a supported action {name} plus any required input parameters. Alternatively, path can be used for an AWS service path-based API. The ensuing service_api refers to the path to an AWS service resource, including the region of the integrated AWS service, if applicable. For example, for integration with the S3 API of GetObject, the URI can be either arn:aws:apigateway:us-west-2:s3:action/GetObject&Bucket={bucket}&Key={key} or arn:aws:apigateway:us-west-2:s3:path/{bucket}/{key}</p>",
-        "Integration$IntegrationUri" : "<p>Specifies the Uniform Resource Identifier (URI) of the integration endpoint.</p><p>For HTTP or HTTP_PROXY integrations, the URI must be a fully formed, encoded HTTP(S) URL according to the <a href=\"https://en.wikipedia.org/wiki/Uniform_Resource_Identifier\">RFC-3986 specification</a>, for either standard integration, where connectionType is not VPC_LINK, or private integration, where connectionType is VPC_LINK. For a private HTTP integration, the URI is not used for routing.</p><p>For AWS or AWS_PROXY integrations, the URI is of the form arn:aws:apigateway:{region}:{subdomain.service|service}:path|action/{service_api}. Here, {Region} is the API Gateway region (e.g., us-east-1); {service} is the name of the integrated AWS service (e.g., s3); and {subdomain} is a designated subdomain supported by certain AWS service for fast host-name lookup. action can be used for an AWS service action-based API, using an Action={name}&{p1}={v1}&p2={v2}... query string. The ensuing {service_api} refers to a supported action {name} plus any required input parameters. Alternatively, path can be used for an AWS service path-based API. The ensuing service_api refers to the path to an AWS service resource, including the region of the integrated AWS service, if applicable. For example, for integration with the S3 API of GetObject, the URI can be either arn:aws:apigateway:us-west-2:s3:action/GetObject&Bucket={bucket}&Key={key} or arn:aws:apigateway:us-west-2:s3:path/{bucket}/{key}</p>",
-        "UpdateAuthorizerInput$AuthorizerUri" : "<p>The authorizer's Uniform Resource Identifier (URI). For REQUEST authorizers, this must be a well-formed Lambda function URI, for example, arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:{account_id}:function:{lambda_function_name}/invocations. In general, the URI has this form: arn:aws:apigateway:{region}:lambda:path/{service_api} , where {region} is the same as the region hosting the Lambda function, path indicates that the remaining substring in the URI should be treated as the path to the resource, including the initial /. For Lambda functions, this is usually of the form /2015-03-31/functions/[FunctionARN]/invocations.</p>",
-        "UpdateIntegrationInput$IntegrationUri" : "<p>Specifies the Uniform Resource Identifier (URI) of the integration endpoint.</p><p>For HTTP or HTTP_PROXY integrations, the URI must be a fully formed, encoded HTTP(S) URL according to the <a href=\"https://en.wikipedia.org/wiki/Uniform_Resource_Identifier\">RFC-3986 specification</a>, for either standard integration, where connectionType is not VPC_LINK, or private integration, where connectionType is VPC_LINK. For a private HTTP integration, the URI is not used for routing.</p><p>For AWS or AWS_PROXY integrations, the URI is of the form arn:aws:apigateway:{region}:{subdomain.service|service}:path|action/{service_api}. Here, {Region} is the API Gateway region (e.g., us-east-1); {service} is the name of the integrated AWS service (e.g., s3); and {subdomain} is a designated subdomain supported by certain AWS service for fast host-name lookup. action can be used for an AWS service action-based API, using an Action={name}&{p1}={v1}&p2={v2}... query string. The ensuing {service_api} refers to a supported action {name} plus any required input parameters. Alternatively, path can be used for an AWS service path-based API. The ensuing service_api refers to the path to an AWS service resource, including the region of the integrated AWS service, if applicable. For example, for integration with the S3 API of GetObject, the URI can be either arn:aws:apigateway:us-west-2:s3:action/GetObject&Bucket={bucket}&Key={key} or arn:aws:apigateway:us-west-2:s3:path/{bucket}/{key}</p>"
+        "Authorizer$AuthorizerUri" : "<p>The authorizer's Uniform Resource Identifier (URI).\n ForREQUEST authorizers, this must be a\n well-formed Lambda function URI, for example,\n arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:{account_id}:function:{lambda_function_name}/invocations.\n In general, the URI has this form:\n arn:aws:apigateway:{region}:lambda:path/{service_api}\n , where {region} is the same as the region hosting the Lambda\n function, path indicates that the remaining substring in the URI should be treated as\n the path to the resource, including the initial /. For Lambda functions,\n this is usually of the form\n /2015-03-31/functions/[FunctionARN]/invocations.</p>",
+        "CreateAuthorizerInput$AuthorizerUri" : "<p>The authorizer's Uniform Resource Identifier (URI). For\n REQUEST authorizers, this must be a\n well-formed Lambda function URI, for example,\n arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:{account_id}:function:{lambda_function_name}/invocations.\n In general, the URI has this form:\n arn:aws:apigateway:{region}:lambda:path/{service_api}\n , where {region} is the same as the region hosting the Lambda\n function, path indicates that the remaining substring in the URI should be treated as\n the path to the resource, including the initial /. For Lambda functions,\n this is usually of the form\n /2015-03-31/functions/[FunctionARN]/invocations.</p>",
+        "CreateIntegrationInput$IntegrationUri" : "<p>For a Lambda proxy integration, this is the URI of the Lambda function.</p>",
+        "Integration$IntegrationUri" : "<p>For a Lambda proxy integration, this is the URI of the Lambda function.</p>",
+        "UpdateAuthorizerInput$AuthorizerUri" : "<p>The authorizer's Uniform Resource Identifier (URI). For\n REQUEST authorizers, this must be a\n well-formed Lambda function URI, for example,\n arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:{account_id}:function:{lambda_function_name}/invocations.\n In general, the URI has this form:\n arn:aws:apigateway:{region}:lambda:path/{service_api}\n , where {region} is the same as the region hosting the Lambda\n function, path indicates that the remaining substring in the URI should be treated as\n the path to the resource, including the initial /. For Lambda functions,\n this is usually of the form\n /2015-03-31/functions/[FunctionARN]/invocations.</p>",
+        "UpdateIntegrationInput$IntegrationUri" : "<p>For a Lambda proxy integration, this is the URI of the Lambda function.</p>"
       }
     },
     "__boolean" : {
@@ -711,7 +718,7 @@
         "CreateRouteInput$ApiKeyRequired" : "<p>Specifies whether an API key is required for the route.</p>",
         "ParameterConstraints$Required" : "<p>Whether or not the parameter is required.</p>",
         "Route$ApiKeyRequired" : "<p>Specifies whether an API key is required for this route.</p>",
-        "RouteSettings$DataTraceEnabled" : "<p>Specifies whether (true) or not (false) data trace logging is enabled for this route. This property affects the log entries pushed to Amazon CloudWatch Logs.</p>",
+        "RouteSettings$DataTraceEnabled" : "<p>Specifies whether (true) or not (false) data trace\n logging is enabled for this route. This property affects the log entries pushed to\n Amazon CloudWatch Logs.</p>",
         "RouteSettings$DetailedMetricsEnabled" : "<p>Specifies whether detailed metrics are enabled.</p>",
         "UpdateApiInput$DisableSchemaValidation" : "<p>Avoid validating models when creating a deployment.</p>",
         "UpdateRouteInput$ApiKeyRequired" : "<p>Specifies whether an API key is required for the route.</p>"
@@ -733,6 +740,12 @@
       "base" : null,
       "refs" : {
         "Apis$Items" : "<p>The elements from this collection.</p>"
+      }
+    },
+    "__listOfApiMapping" : {
+      "base" : null,
+      "refs" : {
+        "ApiMappings$Items" : "<p>The elements from this collection.</p>"
       }
     },
     "__listOfAuthorizer" : {
@@ -792,18 +805,18 @@
     "__listOf__string" : {
       "base" : null,
       "refs" : {
-        "Api$Warnings" : "<p>The warning messages reported when failonwarnings is turned on during API import.</p>"
+        "Api$Warnings" : "<p>The warning messages reported when failonwarnings is turned on during\n API import.</p>"
       }
     },
     "__string" : {
       "base" : null,
       "refs" : {
-        "Api$ApiEndpoint" : "<p>The URI of the API, of the form {api-id}.execute-api.{region}.amazonaws.com. The stage name is typically appended to this URI to form a complete path to a deployed API stage.</p>",
+        "Api$ApiEndpoint" : "<p>The URI of the API, of the form {api-id}.execute-api.{region}.amazonaws.com. The\n stage name is typically appended to this URI to form a complete path to a deployed\n API stage.</p>",
         "BadRequestException$Message" : "<p>Describes the error encountered.</p>",
         "ConflictException$Message" : "<p>Describes the error encountered.</p>",
         "Deployment$DeploymentStatusMessage" : "<p>May contain additional feedback on the status of an API deployment.</p>",
         "DomainNameConfiguration$ApiGatewayDomainName" : "<p>A domain name for the WebSocket API.</p>",
-        "DomainNameConfiguration$HostedZoneId" : "<p>The Amazon Route 53 Hosted Zone ID of the endpoint. See <a href=\"docs.aws.amazon.com/general/latest/gr/rande.html#apigateway_region\">AWS Regions and Endpoints for API Gateway</a>.</p>",
+        "DomainNameConfiguration$HostedZoneId" : "<p>The Amazon Route 53 Hosted Zone ID of the endpoint.</p>",
         "IdentitySourceList$member" : null,
         "LimitExceededException$LimitType" : "<p>The limit type.</p>",
         "LimitExceededException$Message" : "<p>Describes the error encountered.</p>",
@@ -818,7 +831,7 @@
       "refs" : {
         "Api$CreatedDate" : "<p>The timestamp when the API was created.</p>",
         "Deployment$CreatedDate" : "<p>The date and time when the Deployment resource was created.</p>",
-        "DomainNameConfiguration$CertificateUploadDate" : "<p>The timestamp when the certificate that was used by edge-optimized endpoint for this domain name was uploaded.</p>",
+        "DomainNameConfiguration$CertificateUploadDate" : "<p>The timestamp when the certificate that was used by edge-optimized endpoint for\n this domain name was uploaded.</p>",
         "Stage$CreatedDate" : "<p>The timestamp when the stage was created.</p>",
         "Stage$LastUpdatedDate" : "<p>The timestamp when the stage was last updated.</p>"
       }

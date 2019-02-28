@@ -999,8 +999,8 @@ func (c *SSM) CreateResourceDataSyncRequest(input *CreateResourceDataSyncInput) 
 // By default, data is not encrypted in Amazon S3. We strongly recommend that
 // you enable encryption in Amazon S3 to ensure secure data storage. We also
 // recommend that you secure access to the Amazon S3 bucket by creating a restrictive
-// bucket policy. To view an example of a restrictive Amazon S3 bucket policy
-// for Resource Data Sync, see Create a Resource Data Sync for Inventory (http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-inventory-datasync-create.html)
+// bucket policy. For more information, see Configuring Resource Data Sync for
+// Inventory (http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-inventory-datasync.html)
 // in the AWS Systems Manager User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -14405,7 +14405,24 @@ type CreateAssociationBatchRequestEntry struct {
 	// set MaxConcurrency to 1 so that executions proceed one at a time.
 	MaxErrors *string `min:"1" type:"string"`
 
-	// The name of the configuration document.
+	// The name of the SSM document that contains the configuration information
+	// for the instance. You can specify Command, Policy, or Automation documents.
+	//
+	// You can specify AWS-predefined documents, documents you created, or a document
+	// that is shared with you from another account.
+	//
+	// For SSM documents that are shared with you from other AWS accounts, you must
+	// specify the complete SSM document ARN, in the following format:
+	//
+	// arn:aws:ssm:region:account-id:document/document-name
+	//
+	// For example:
+	//
+	// arn:aws:ssm:us-east-2:12345678912:document/My-Shared-Document
+	//
+	// For AWS-predefined documents and SSM documents you created in your account,
+	// you only need to specify the document name. For example, AWS-ApplyPatchBaseline
+	// or My-Document.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -14591,7 +14608,24 @@ type CreateAssociationInput struct {
 	// set MaxConcurrency to 1 so that executions proceed one at a time.
 	MaxErrors *string `min:"1" type:"string"`
 
-	// The name of the Systems Manager document.
+	// The name of the SSM document that contains the configuration information
+	// for the instance. You can specify Command, Policy, or Automation documents.
+	//
+	// You can specify AWS-predefined documents, documents you created, or a document
+	// that is shared with you from another account.
+	//
+	// For SSM documents that are shared with you from other AWS accounts, you must
+	// specify the complete SSM document ARN, in the following format:
+	//
+	// arn:partition:ssm:region:account-id:document/document-name
+	//
+	// For example:
+	//
+	// arn:aws:ssm:us-east-2:12345678912:document/My-Shared-Document
+	//
+	// For AWS-predefined documents and SSM documents you created in your account,
+	// you only need to specify the document name. For example, AWS-ApplyPatchBaseline
+	// or My-Document.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -15190,7 +15224,7 @@ type CreatePatchBaselineInput struct {
 	// A description of the patch baseline.
 	Description *string `min:"1" type:"string"`
 
-	// A set of global filters used to exclude patches from the baseline.
+	// A set of global filters used to include patches in the baseline.
 	GlobalFilters *PatchFilterGroup `type:"structure"`
 
 	// The name of the patch baseline.
@@ -28676,6 +28710,10 @@ func (s *PatchComplianceData) SetTitle(v string) *PatchComplianceData {
 //
 //    * CentOS7.4
 //
+//    * CentOS7.5
+//
+//    * CentOS7.6
+//
 //    * *
 //
 // Use a wildcard character (*) to target all supported operating system versions.
@@ -32637,7 +32675,24 @@ type UpdateAssociationInput struct {
 	// set MaxConcurrency to 1 so that executions proceed one at a time.
 	MaxErrors *string `min:"1" type:"string"`
 
-	// The name of the association document.
+	// The name of the SSM document that contains the configuration information
+	// for the instance. You can specify Command, Policy, or Automation documents.
+	//
+	// You can specify AWS-predefined documents, documents you created, or a document
+	// that is shared with you from another account.
+	//
+	// For SSM documents that are shared with you from other AWS accounts, you must
+	// specify the complete SSM document ARN, in the following format:
+	//
+	// arn:aws:ssm:region:account-id:document/document-name
+	//
+	// For example:
+	//
+	// arn:aws:ssm:us-east-2:12345678912:document/My-Shared-Document
+	//
+	// For AWS-predefined documents and SSM documents you created in your account,
+	// you only need to specify the document name. For example, AWS-ApplyPatchBaseline
+	// or My-Document.
 	Name *string `type:"string"`
 
 	// An Amazon S3 bucket where you want to store the results of this request.
@@ -34066,7 +34121,7 @@ type UpdatePatchBaselineInput struct {
 	// A description of the patch baseline.
 	Description *string `min:"1" type:"string"`
 
-	// A set of global filters used to exclude patches from the baseline.
+	// A set of global filters used to include patches in the baseline.
 	GlobalFilters *PatchFilterGroup `type:"structure"`
 
 	// The name of the patch baseline.
