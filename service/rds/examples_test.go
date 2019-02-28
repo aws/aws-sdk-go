@@ -1289,7 +1289,7 @@ func ExampleRDS_DescribeDBClusterParameters_shared00() {
 	svc := rds.New(session.New())
 	input := &rds.DescribeDBClusterParametersInput{
 		DBClusterParameterGroupName: aws.String("mydbclusterparametergroup"),
-		Source: aws.String("system"),
+		Source:                      aws.String("system"),
 	}
 
 	result, err := svc.DescribeDBClusterParameters(input)
