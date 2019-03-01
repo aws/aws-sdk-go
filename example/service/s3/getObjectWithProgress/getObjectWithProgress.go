@@ -31,12 +31,11 @@ type progressWriter struct {
 }
 
 func (pw *progressWriter) WriteAt(p []byte, off int64) (int, error) {
-
 	atomic.AddInt64(&pw.written, int64(len(p)))
 
-	percentageDownloaded := int(float32(pw.written*100) / float32(pw.size))
+	percentageDownloaded := float32(pw.written*100) / float32(pw.size)
 
-	log.Printf("File size:%d downloaded:%d percentage:%d%% \n", pw.size, pw.written, percentageDownloaded)
+	fmt.Printf("File size:%d downloaded:%d percentage:%.2f%%\r", pw.size, pw.written, percentageDownloaded)
 
 	return pw.writer.WriteAt(p, off)
 }
@@ -61,7 +60,6 @@ func getFileSize(svc *s3.S3, bucket string, prefix string) (filesize int64, erro
 	}
 
 	resp, err := svc.HeadObject(params)
-
 	if err != nil {
 		return 0, err
 	}
@@ -77,7 +75,7 @@ func parseFilename(keyString string) (filename string) {
 
 func main() {
 	if len(os.Args) < 2 {
-		log.Println("USAGE ERROR: AWS_REGION=us-east-1 go run getObjWithProgress.go example-s3-bucket fooapp/foo.zip")
+		log.Println("USAGE ERROR: AWS_REGION=us-east-1 go run getObjWithProgress.go bucket-name object-key")
 		return
 	}
 
@@ -87,38 +85,30 @@ func main() {
 	filename := parseFilename(key)
 
 	sess, err := session.NewSession()
-
 	if err != nil {
 		panic(err)
 	}
 
 	s3Client := s3.New(sess)
-
 	downloader := s3manager.NewDownloader(sess)
-
 	size, err := getFileSize(s3Client, bucket, key)
-
 	if err != nil {
 		panic(err)
 	}
 
-	log.Printf("File size is: %s", byteCountDecimal(size))
-
+	log.Println("Starting download, size:", byteCountDecimal(size))
 	cwd, err := os.Getwd()
 	if err != nil {
 		panic(err)
 	}
 
 	temp, err := ioutil.TempFile(cwd, "getObjWithProgress-tmp-")
-
-	tempfileName := temp.Name()
-
 	if err != nil {
 		panic(err)
 	}
+	tempfileName := temp.Name()
 
 	writer := &progressWriter{writer: temp, size: size, written: 0}
-
 	params := &s3.GetObjectInput{
 		Bucket: aws.String(bucket),
 		Key:    aws.String(key),
@@ -138,5 +128,6 @@ func main() {
 		panic(err)
 	}
 
-	log.Printf("File downloaded! Avaliable at: %s", filename)
+	fmt.Println()
+	log.Println("File downloaded! Avaliable at:", filename)
 }
