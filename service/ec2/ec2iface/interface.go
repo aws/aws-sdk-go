@@ -1174,6 +1174,10 @@ type EC2API interface {
 	ModifyInstanceCreditSpecificationWithContext(aws.Context, *ec2.ModifyInstanceCreditSpecificationInput, ...request.Option) (*ec2.ModifyInstanceCreditSpecificationOutput, error)
 	ModifyInstanceCreditSpecificationRequest(*ec2.ModifyInstanceCreditSpecificationInput) (*request.Request, *ec2.ModifyInstanceCreditSpecificationOutput)
 
+	ModifyInstanceEventStartTime(*ec2.ModifyInstanceEventStartTimeInput) (*ec2.ModifyInstanceEventStartTimeOutput, error)
+	ModifyInstanceEventStartTimeWithContext(aws.Context, *ec2.ModifyInstanceEventStartTimeInput, ...request.Option) (*ec2.ModifyInstanceEventStartTimeOutput, error)
+	ModifyInstanceEventStartTimeRequest(*ec2.ModifyInstanceEventStartTimeInput) (*request.Request, *ec2.ModifyInstanceEventStartTimeOutput)
+
 	ModifyInstancePlacement(*ec2.ModifyInstancePlacementInput) (*ec2.ModifyInstancePlacementOutput, error)
 	ModifyInstancePlacementWithContext(aws.Context, *ec2.ModifyInstancePlacementInput, ...request.Option) (*ec2.ModifyInstancePlacementOutput, error)
 	ModifyInstancePlacementRequest(*ec2.ModifyInstancePlacementInput) (*request.Request, *ec2.ModifyInstancePlacementOutput)

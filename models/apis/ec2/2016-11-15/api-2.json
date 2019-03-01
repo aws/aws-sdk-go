@@ -2380,6 +2380,15 @@
       "input":{"shape":"ModifyInstanceCreditSpecificationRequest"},
       "output":{"shape":"ModifyInstanceCreditSpecificationResult"}
     },
+    "ModifyInstanceEventStartTime":{
+      "name":"ModifyInstanceEventStartTime",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyInstanceEventStartTimeRequest"},
+      "output":{"shape":"ModifyInstanceEventStartTimeResult"}
+    },
     "ModifyInstancePlacement":{
       "name":"ModifyInstancePlacement",
       "http":{
@@ -8537,6 +8546,11 @@
         }
       }
     },
+    "DescribeInstanceCreditSpecificationsMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
     "DescribeInstanceCreditSpecificationsRequest":{
       "type":"structure",
       "members":{
@@ -8549,7 +8563,7 @@
           "shape":"InstanceIdStringList",
           "locationName":"InstanceId"
         },
-        "MaxResults":{"shape":"Integer"},
+        "MaxResults":{"shape":"DescribeInstanceCreditSpecificationsMaxResults"},
         "NextToken":{"shape":"String"}
       }
     },
@@ -13691,6 +13705,7 @@
         "CpuCredits":{"shape":"String"}
       }
     },
+    "InstanceEventId":{"type":"string"},
     "InstanceExportDetails":{
       "type":"structure",
       "members":{
@@ -14133,6 +14148,10 @@
     "InstanceStatusEvent":{
       "type":"structure",
       "members":{
+        "InstanceEventId":{
+          "shape":"InstanceEventId",
+          "locationName":"instanceEventId"
+        },
         "Code":{
           "shape":"EventCode",
           "locationName":"code"
@@ -14148,6 +14167,10 @@
         "NotBefore":{
           "shape":"DateTime",
           "locationName":"notBefore"
+        },
+        "NotBeforeDeadline":{
+          "shape":"DateTime",
+          "locationName":"notBeforeDeadline"
         }
       }
     },
@@ -15739,6 +15762,29 @@
         "UnsuccessfulInstanceCreditSpecifications":{
           "shape":"UnsuccessfulInstanceCreditSpecificationSet",
           "locationName":"unsuccessfulInstanceCreditSpecificationSet"
+        }
+      }
+    },
+    "ModifyInstanceEventStartTimeRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "InstanceEventId",
+        "NotBefore"
+      ],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "InstanceId":{"shape":"String"},
+        "InstanceEventId":{"shape":"String"},
+        "NotBefore":{"shape":"DateTime"}
+      }
+    },
+    "ModifyInstanceEventStartTimeResult":{
+      "type":"structure",
+      "members":{
+        "Event":{
+          "shape":"InstanceStatusEvent",
+          "locationName":"event"
         }
       }
     },
