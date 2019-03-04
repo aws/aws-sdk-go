@@ -74,6 +74,7 @@
     "GetParametersByPath": "<p>Retrieve parameters in a specific hierarchy. For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-working.html\">Working with Systems Manager Parameters</a> in the <i>AWS Systems Manager User Guide</i>. </p> <p>Request results are returned on a best-effort basis. If you specify <code>MaxResults</code> in the request, the response includes information up to the limit specified. The number of items returned, however, can be between zero and the value of <code>MaxResults</code>. If the service reaches an internal limit while processing the results, it stops the operation and returns the matching values up to that point and a <code>NextToken</code>. You can specify the <code>NextToken</code> in a subsequent call to get the next set of results.</p> <note> <p>This API action doesn't support filtering by tags. </p> </note>",
     "GetPatchBaseline": "<p>Retrieves information about a patch baseline.</p>",
     "GetPatchBaselineForPatchGroup": "<p>Retrieves the patch baseline that should be used for the specified patch group.</p>",
+    "GetServiceSetting": "<p> <code>ServiceSetting</code> is an account-level setting for an AWS service. This setting defines how a user interacts with or uses a service or a feature of a service. For example, if an AWS service charges money to the account based on feature or service usage, then the AWS service team might create a default setting of \"false\". This means the user can't use this feature unless they change the setting to \"true\" and intentionally opt in for a paid feature.</p> <p>Services map a <code>SettingId</code> object to a setting value. AWS services teams define the default value for a <code>SettingId</code>. You can't create a new <code>SettingId</code>, but you can overwrite the default value if you have the <code>ssm:UpdateServiceSetting</code> permission for the setting. Use the <a>UpdateServiceSetting</a> API action to change the default setting. Or use the <a>ResetServiceSetting</a> to change the value back to the original value defined by the AWS service team.</p> <p>Query the current service setting for the account. </p>",
     "LabelParameterVersion": "<p>A parameter label is a user-defined alias to help you manage different versions of a parameter. When you modify a parameter, Systems Manager automatically saves a new version and increments the version number by one. A label can help you remember the purpose of a parameter when there are multiple versions. </p> <p>Parameter labels have the following requirements and restrictions.</p> <ul> <li> <p>A version of a parameter can have a maximum of 10 labels.</p> </li> <li> <p>You can't attach the same label to different versions of the same parameter. For example, if version 1 has the label Production, then you can't attach Production to version 2.</p> </li> <li> <p>You can move a label from one version of a parameter to another.</p> </li> <li> <p>You can't create a label when you create a new parameter. You must attach a label to a specific version of a parameter.</p> </li> <li> <p>You can't delete a parameter label. If you no longer want to use a parameter label, then you must move it to a different version of a parameter.</p> </li> <li> <p>A label can have a maximum of 100 characters.</p> </li> <li> <p>Labels can contain letters (case sensitive), numbers, periods (.), hyphens (-), or underscores (_).</p> </li> <li> <p>Labels can't begin with a number, \"aws,\" or \"ssm\" (not case sensitive). If a label fails to meet these requirements, then the label is not associated with a parameter and the system displays it in the list of InvalidLabels.</p> </li> </ul>",
     "ListAssociationVersions": "<p>Retrieves all versions of an association for a specific association ID.</p>",
     "ListAssociations": "<p>Lists the associations for the specified Systems Manager document or instance.</p>",
@@ -96,6 +97,7 @@
     "RegisterTargetWithMaintenanceWindow": "<p>Registers a target with a Maintenance Window.</p>",
     "RegisterTaskWithMaintenanceWindow": "<p>Adds a new task to a Maintenance Window.</p>",
     "RemoveTagsFromResource": "<p>Removes all tags from the specified resource.</p>",
+    "ResetServiceSetting": "<p> <code>ServiceSetting</code> is an account-level setting for an AWS service. This setting defines how a user interacts with or uses a service or a feature of a service. For example, if an AWS service charges money to the account based on feature or service usage, then the AWS service team might create a default setting of \"false\". This means the user can't use this feature unless they change the setting to \"true\" and intentionally opt in for a paid feature.</p> <p>Services map a <code>SettingId</code> object to a setting value. AWS services teams define the default value for a <code>SettingId</code>. You can't create a new <code>SettingId</code>, but you can overwrite the default value if you have the <code>ssm:UpdateServiceSetting</code> permission for the setting. Use the <a>GetServiceSetting</a> API action to view the current value. Use the <a>UpdateServiceSetting</a> API action to change the default setting. </p> <p>Reset the service setting for the account to the default value as provisioned by the AWS service team. </p>",
     "ResumeSession": "<p>Reconnects a session to an instance after it has been disconnected. Connections can be resumed for disconnected sessions, but not terminated sessions.</p> <note> <p>This command is primarily for use by client machines to automatically reconnect during intermittent network issues. It is not intended for any other use.</p> </note>",
     "SendAutomationSignal": "<p>Sends a signal to an Automation execution to change the current behavior or status of the execution. </p>",
     "SendCommand": "<p>Executes commands on one or more managed instances.</p>",
@@ -112,7 +114,8 @@
     "UpdateMaintenanceWindowTarget": "<p>Modifies the target of an existing Maintenance Window. You can't change the target type, but you can change the following:</p> <p>The target from being an ID target to a Tag target, or a Tag target to an ID target.</p> <p>IDs for an ID target.</p> <p>Tags for a Tag target.</p> <p>Owner.</p> <p>Name.</p> <p>Description.</p> <p>If a parameter is null, then the corresponding field is not modified.</p>",
     "UpdateMaintenanceWindowTask": "<p>Modifies a task assigned to a Maintenance Window. You can't change the task type, but you can change the following values:</p> <ul> <li> <p>TaskARN. For example, you can change a RUN_COMMAND task from AWS-RunPowerShellScript to AWS-RunShellScript.</p> </li> <li> <p>ServiceRoleArn</p> </li> <li> <p>TaskInvocationParameters</p> </li> <li> <p>Priority</p> </li> <li> <p>MaxConcurrency</p> </li> <li> <p>MaxErrors</p> </li> </ul> <p>If a parameter is null, then the corresponding field is not modified. Also, if you set Replace to true, then all fields required by the <a>RegisterTaskWithMaintenanceWindow</a> action are required for this request. Optional fields that aren't specified are set to null.</p>",
     "UpdateManagedInstanceRole": "<p>Assigns or changes an Amazon Identity and Access Management (IAM) role to the managed instance.</p>",
-    "UpdatePatchBaseline": "<p>Modifies an existing patch baseline. Fields not specified in the request are left unchanged.</p> <note> <p>For information about valid key and value pairs in <code>PatchFilters</code> for each supported operating system type, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/APIReference/API_PatchFilter.html\">PatchFilter</a>.</p> </note>"
+    "UpdatePatchBaseline": "<p>Modifies an existing patch baseline. Fields not specified in the request are left unchanged.</p> <note> <p>For information about valid key and value pairs in <code>PatchFilters</code> for each supported operating system type, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/APIReference/API_PatchFilter.html\">PatchFilter</a>.</p> </note>",
+    "UpdateServiceSetting": "<p> <code>ServiceSetting</code> is an account-level setting for an AWS service. This setting defines how a user interacts with or uses a service or a feature of a service. For example, if an AWS service charges money to the account based on feature or service usage, then the AWS service team might create a default setting of \"false\". This means the user can't use this feature unless they change the setting to \"true\" and intentionally opt in for a paid feature.</p> <p>Services map a <code>SettingId</code> object to a setting value. AWS services teams define the default value for a <code>SettingId</code>. You can't create a new <code>SettingId</code>, but you can overwrite the default value if you have the <code>ssm:UpdateServiceSetting</code> permission for the setting. Use the <a>GetServiceSetting</a> API action to view the current value. Or, use the <a>ResetServiceSetting</a> to change the value back to the original value defined by the AWS service team.</p> <p>Update the service setting for the account. </p>"
   },
   "shapes": {
     "Account": {
@@ -1369,6 +1372,7 @@
         "Patch$ReleaseDate": "<p>The date the patch was released.</p>",
         "PatchComplianceData$InstalledTime": "<p>The date/time the patch was installed on the instance. Note that not all operating systems provide this level of information.</p>",
         "PatchStatus$ApprovalDate": "<p>The date the patch was approved (or will be approved if the status is PENDING_APPROVAL).</p>",
+        "ServiceSetting$LastModifiedDate": "<p>The last time the service setting was modified.</p>",
         "Session$StartDate": "<p>The date and time, in ISO-8601 Extended format, when the session began.</p>",
         "Session$EndDate": "<p>The date and time, in ISO-8601 Extended format, when the session was terminated.</p>",
         "StepExecution$ExecutionStartTime": "<p>If a step has begun execution, this contains the time the step started. If the step is in Pending status, this field is not populated.</p>",
@@ -2479,6 +2483,16 @@
     },
     "GetPatchBaselineResult": {
       "base": null,
+      "refs": {
+      }
+    },
+    "GetServiceSettingRequest": {
+      "base": "<p>The request body of the GetServiceSetting API action.</p>",
+      "refs": {
+      }
+    },
+    "GetServiceSettingResult": {
+      "base": "<p>The query result body of the GetServiceSetting API action.</p>",
       "refs": {
       }
     },
@@ -5131,6 +5145,16 @@
       "refs": {
       }
     },
+    "ResetServiceSettingRequest": {
+      "base": "<p>The request body of the ResetServiceSetting API action.</p>",
+      "refs": {
+      }
+    },
+    "ResetServiceSettingResult": {
+      "base": "<p>The result body of the ResetServiceSetting API action.</p>",
+      "refs": {
+      }
+    },
     "ResolvedTargets": {
       "base": "<p>Information about targets that resolved during the Automation execution.</p>",
       "refs": {
@@ -5408,6 +5432,34 @@
         "SendCommandRequest$ServiceRoleArn": "<p>The IAM role that Systems Manager uses to send notifications. </p>",
         "UpdateMaintenanceWindowTaskRequest$ServiceRoleArn": "<p>The IAM service role ARN to modify. The system assumes this role during task execution.</p> <p>If you do not specify a service role ARN, Systems Manager will use your account's service-linked role for Systems Manager by default. If no service-linked role for Systems Manager exists in your account, it will be created when you run <code>RegisterTaskWithMaintenanceWindow</code> without specifying a service role ARN.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/using-service-linked-roles.html#slr-permissions\">Service-Linked Role Permissions for Systems Manager</a> and <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-maintenance-permissions.html#maintenance-window-tasks-service-role\">Should I Use a Service-Linked Role or a Custom Service Role to Run Maintenance Window Tasks? </a> in the <i>AWS Systems Manager User Guide</i>.</p>",
         "UpdateMaintenanceWindowTaskResult$ServiceRoleArn": "<p>The updated service role ARN value.</p>"
+      }
+    },
+    "ServiceSetting": {
+      "base": "<p>The service setting data structure.</p> <p> <code>ServiceSetting</code> is an account-level setting for an AWS service. This setting defines how a user interacts with or uses a service or a feature of a service. For example, if an AWS service charges money to the account based on feature or service usage, then the AWS service team might create a default setting of \"false\". This means the user can't use this feature unless they change the setting to \"true\" and intentionally opt in for a paid feature.</p> <p>Services map a <code>SettingId</code> object to a setting value. AWS services teams define the default value for a <code>SettingId</code>. You can't create a new <code>SettingId</code>, but you can overwrite the default value if you have the <code>ssm:UpdateServiceSetting</code> permission for the setting. Use the <a>UpdateServiceSetting</a> API action to change the default setting. Or, use the <a>ResetServiceSetting</a> to change the value back to the original value defined by the AWS service team.</p>",
+      "refs": {
+        "GetServiceSettingResult$ServiceSetting": "<p>The query result of the current service setting.</p>",
+        "ResetServiceSettingResult$ServiceSetting": "<p>The current, effective service setting after calling the ResetServiceSetting API action.</p>"
+      }
+    },
+    "ServiceSettingId": {
+      "base": null,
+      "refs": {
+        "GetServiceSettingRequest$SettingId": "<p>The ID of the service setting to get.</p>",
+        "ResetServiceSettingRequest$SettingId": "<p>The ID of the service setting to reset.</p>",
+        "ServiceSetting$SettingId": "<p>The ID of the service setting.</p>",
+        "UpdateServiceSettingRequest$SettingId": "<p>The ID of the service setting to update.</p>"
+      }
+    },
+    "ServiceSettingNotFound": {
+      "base": "<p>The specified service setting was not found. Either the service name or the setting has not been provisioned by the AWS service team.</p>",
+      "refs": {
+      }
+    },
+    "ServiceSettingValue": {
+      "base": null,
+      "refs": {
+        "ServiceSetting$SettingValue": "<p>The value of the service setting.</p>",
+        "UpdateServiceSettingRequest$SettingValue": "<p>The new value to specify for the service setting.</p>"
       }
     },
     "Session": {
@@ -5815,6 +5867,10 @@
         "ResourceDataSyncInvalidConfigurationException$Message": null,
         "ResourceInUseException$Message": null,
         "ResourceLimitExceededException$Message": null,
+        "ServiceSetting$LastModifiedUser": "<p>The ARN of the last modified user. This field is populated only if the setting value was overwritten.</p>",
+        "ServiceSetting$ARN": "<p>The ARN of the service setting.</p>",
+        "ServiceSetting$Status": "<p>The status of the service setting. The value can be Default, Customized or PendingUpdate.</p> <ul> <li> <p>Default: The current setting uses a default value provisioned by the AWS service team.</p> </li> <li> <p>Customized: The current setting use a custom value specified by the customer.</p> </li> <li> <p>PendingUpdate: The current setting uses a default or custom value, but a setting change request is pending approval.</p> </li> </ul>",
+        "ServiceSettingNotFound$Message": null,
         "StepExecution$StepName": "<p>The name of this execution step.</p>",
         "StepExecution$OnFailure": "<p>The action to take if the step fails. The default value is Abort.</p>",
         "StepExecution$ResponseCode": "<p>The response code returned by the execution of the step.</p>",
@@ -6174,6 +6230,16 @@
     },
     "UpdatePatchBaselineResult": {
       "base": null,
+      "refs": {
+      }
+    },
+    "UpdateServiceSettingRequest": {
+      "base": "<p>The request body of the UpdateServiceSetting API action.</p>",
+      "refs": {
+      }
+    },
+    "UpdateServiceSettingResult": {
+      "base": "<p>The result body of the UpdateServiceSetting API action.</p>",
       "refs": {
       }
     },

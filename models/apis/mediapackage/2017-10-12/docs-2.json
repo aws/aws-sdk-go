@@ -10,8 +10,11 @@
     "DescribeOriginEndpoint" : "Gets details about an existing OriginEndpoint.",
     "ListChannels" : "Returns a collection of Channels.",
     "ListOriginEndpoints" : "Returns a collection of OriginEndpoint records.",
+    "ListTagsForResource" : null,
     "RotateChannelCredentials" : "Changes the Channel's first IngestEndpoint's username and password. WARNING - This API is deprecated. Please use RotateIngestEndpointCredentials instead",
     "RotateIngestEndpointCredentials" : "Rotate the IngestEndpoint's username and password, as specified by the IngestEndpoint's id.",
+    "TagResource" : null,
+    "UntagResource" : null,
     "UpdateChannel" : "Updates an existing Channel.",
     "UpdateOriginEndpoint" : "Updates an existing OriginEndpoint."
   },
@@ -203,6 +206,19 @@
         "MssPackage$StreamSelection" : null
       }
     },
+    "Tags" : {
+      "base" : "A collection of tags associated with a resource",
+      "refs" : {
+        "Channel$Tags" : null,
+        "ChannelCreateParameters$Tags" : null,
+        "OriginEndpoint$Tags" : null,
+        "OriginEndpointCreateParameters$Tags" : null
+      }
+    },
+    "TagsModel" : {
+      "base" : null,
+      "refs" : { }
+    },
     "__PeriodTriggersElement" : {
       "base" : null,
       "refs" : {
@@ -296,6 +312,12 @@
         "SpekeKeyProvider$SystemIds" : "The system IDs to include in key requests."
       }
     },
+    "__mapOf__string" : {
+      "base" : null,
+      "refs" : {
+        "TagsModel$Tags" : null
+      }
+    },
     "__string" : {
       "base" : null,
       "refs" : {
@@ -335,7 +357,9 @@
         "SpekeKeyProvider$ResourceId" : "The resource ID to include in key requests.",
         "SpekeKeyProvider$RoleArn" : "An Amazon Resource Name (ARN) of an IAM role that AWS Elemental\nMediaPackage will assume when accessing the key provider service.\n",
         "SpekeKeyProvider$Url" : "The URL of the external key provider service.",
-        "__listOf__string$member" : null
+        "Tags$member" : null,
+        "__listOf__string$member" : null,
+        "__mapOf__string$member" : null
       }
     }
   }
