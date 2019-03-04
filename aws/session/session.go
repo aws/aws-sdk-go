@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
@@ -363,6 +364,18 @@ func newSession(opts Options, envCfg envConfig, cfgs ...*aws.Config) (*Session, 
 			// to load via the envConfig.EnableSharedConfig (AWS_SDK_LOAD_CONFIG).
 			cfgFiles = cfgFiles[1:]
 		}
+	}
+
+	// if both access key ID and secret access keys are in envCfg, remove credentials files
+	if envCfg.Creds.AccessKeyID != "" && envCfg.Creds.SecretAccessKey != "" {
+		i := 0
+		for _, file := range cfgFiles {
+			if !strings.HasSuffix(file, "credentials") {
+				cfgFiles[i] = file
+				i++
+			}
+		}
+		cfgFiles = cfgFiles[:i]
 	}
 
 	// Load additional config from file(s)
