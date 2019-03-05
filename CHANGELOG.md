@@ -1,3 +1,15 @@
+Release v1.17.11 (2019-03-05)
+===
+
+### Service Client Updates
+* `service/codedeploy`: Updates service documentation
+  * Documentation updates for codedeploy
+* `service/medialive`: Updates service API and documentation
+  * This release adds support for pausing and unpausing one or both pipelines at scheduled times.
+* `service/storagegateway`: Updates service API and documentation
+  * ActivateGateway, CreateNFSFileShare and CreateSMBFileShare APIs support a new parameter: Tags (to be attached to the created resource). Output for DescribeNFSFileShare, DescribeSMBFileShare and DescribeGatewayInformation APIs now also list the Tags associated with the resource. Minimum length of a KMSKey is now 7 characters.
+* `service/textract`: Adds new service
+
 Release v1.17.10 (2019-03-04)
 ===
 
