@@ -954,7 +954,8 @@
         "GatewayRegion":{"shape":"RegionId"},
         "GatewayType":{"shape":"GatewayType"},
         "TapeDriveType":{"shape":"TapeDriveType"},
-        "MediumChangerType":{"shape":"MediumChangerType"}
+        "MediumChangerType":{"shape":"MediumChangerType"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "ActivateGatewayOutput":{
@@ -1206,7 +1207,8 @@
         "Squash":{"shape":"Squash"},
         "ReadOnly":{"shape":"Boolean"},
         "GuessMIMETypeEnabled":{"shape":"Boolean"},
-        "RequesterPays":{"shape":"Boolean"}
+        "RequesterPays":{"shape":"Boolean"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "CreateNFSFileShareOutput":{
@@ -1237,7 +1239,8 @@
         "RequesterPays":{"shape":"Boolean"},
         "ValidUserList":{"shape":"FileShareUserList"},
         "InvalidUserList":{"shape":"FileShareUserList"},
-        "Authentication":{"shape":"Authentication"}
+        "Authentication":{"shape":"Authentication"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "CreateSMBFileShareOutput":{
@@ -1559,7 +1562,8 @@
         "GatewayNetworkInterfaces":{"shape":"GatewayNetworkInterfaces"},
         "GatewayType":{"shape":"GatewayType"},
         "NextUpdateAvailabilityDate":{"shape":"NextUpdateAvailabilityDate"},
-        "LastSoftwareUpdate":{"shape":"LastSoftwareUpdate"}
+        "LastSoftwareUpdate":{"shape":"LastSoftwareUpdate"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "DescribeMaintenanceStartTimeInput":{
@@ -2121,7 +2125,7 @@
     "KMSKey":{
       "type":"string",
       "max":2048,
-      "min":20
+      "min":7
     },
     "LastSoftwareUpdate":{
       "type":"string",
@@ -2302,7 +2306,8 @@
         "Squash":{"shape":"Squash"},
         "ReadOnly":{"shape":"Boolean"},
         "GuessMIMETypeEnabled":{"shape":"Boolean"},
-        "RequesterPays":{"shape":"Boolean"}
+        "RequesterPays":{"shape":"Boolean"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "NFSFileShareInfoList":{
@@ -2502,7 +2507,8 @@
         "RequesterPays":{"shape":"Boolean"},
         "ValidUserList":{"shape":"FileShareUserList"},
         "InvalidUserList":{"shape":"FileShareUserList"},
-        "Authentication":{"shape":"Authentication"}
+        "Authentication":{"shape":"Authentication"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "SMBFileShareInfoList":{
