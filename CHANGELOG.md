@@ -1,3 +1,14 @@
+Release v1.17.12 (2019-03-06)
+===
+
+### Service Client Updates
+* `service/directconnect`: Updates service API and documentation
+  * Exposed a new available port speeds field in the DescribeLocation api call.
+* `service/ec2`: Updates service API, documentation, and paginators
+  * This release adds pagination support for ec2.DescribeVpcs, ec2.DescribeInternetGateways and ec2.DescribeNetworkAcls APIs
+* `service/elasticfilesystem`: Updates service examples
+  * Documentation updates for elasticfilesystem adding new examples for EFS Lifecycle Management feature.
+
 Release v1.17.11 (2019-03-05)
 ===
 
