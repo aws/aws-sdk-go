@@ -8654,6 +8654,11 @@
         }
       }
     },
+    "DescribeInternetGatewaysMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
     "DescribeInternetGatewaysRequest":{
       "type":"structure",
       "members":{
@@ -8668,7 +8673,9 @@
         "InternetGatewayIds":{
           "shape":"ValueStringList",
           "locationName":"internetGatewayId"
-        }
+        },
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"DescribeInternetGatewaysMaxResults"}
       }
     },
     "DescribeInternetGatewaysResult":{
@@ -8677,6 +8684,10 @@
         "InternetGateways":{
           "shape":"InternetGatewayList",
           "locationName":"internetGatewaySet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
@@ -8835,6 +8846,11 @@
         }
       }
     },
+    "DescribeNetworkAclsMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
     "DescribeNetworkAclsRequest":{
       "type":"structure",
       "members":{
@@ -8849,7 +8865,9 @@
         "NetworkAclIds":{
           "shape":"ValueStringList",
           "locationName":"NetworkAclId"
-        }
+        },
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"DescribeNetworkAclsMaxResults"}
       }
     },
     "DescribeNetworkAclsResult":{
@@ -8858,6 +8876,10 @@
         "NetworkAcls":{
           "shape":"NetworkAclList",
           "locationName":"networkAclSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
@@ -10299,6 +10321,11 @@
         }
       }
     },
+    "DescribeVpcsMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
     "DescribeVpcsRequest":{
       "type":"structure",
       "members":{
@@ -10313,7 +10340,9 @@
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
-        }
+        },
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"DescribeVpcsMaxResults"}
       }
     },
     "DescribeVpcsResult":{
@@ -10322,6 +10351,10 @@
         "Vpcs":{
           "shape":"VpcList",
           "locationName":"vpcSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },

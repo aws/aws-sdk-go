@@ -121,6 +121,12 @@
       "refs": {
       }
     },
+    "AvailablePortSpeeds": {
+      "base": null,
+      "refs": {
+        "Location$availablePortSpeeds": "<p>The available port speeds for the location.</p>"
+      }
+    },
     "AwsDevice": {
       "base": null,
       "refs": {
@@ -249,7 +255,7 @@
         "AllocateHostedConnectionRequest$connectionId": "<p>The ID of the interconnect or LAG.</p>",
         "AllocatePrivateVirtualInterfaceRequest$connectionId": "<p>The ID of the connection on which the private virtual interface is provisioned.</p>",
         "AllocatePublicVirtualInterfaceRequest$connectionId": "<p>The ID of the connection on which the public virtual interface is provisioned.</p>",
-        "AssociateConnectionWithLagRequest$connectionId": "<p>The ID of the connection. For example, dxcon-abc123.</p>",
+        "AssociateConnectionWithLagRequest$connectionId": "<p>The ID of the connection.</p>",
         "AssociateHostedConnectionRequest$connectionId": "<p>The ID of the hosted connection.</p>",
         "AssociateHostedConnectionRequest$parentConnectionId": "<p>The ID of the interconnect or the LAG.</p>",
         "AssociateVirtualInterfaceRequest$connectionId": "<p>The ID of the LAG or connection.</p>",
@@ -264,7 +270,7 @@
         "DescribeHostedConnectionsRequest$connectionId": "<p>The ID of the interconnect or LAG.</p>",
         "DescribeLoaRequest$connectionId": "<p>The ID of a connection, LAG, or interconnect.</p>",
         "DescribeVirtualInterfacesRequest$connectionId": "<p>The ID of the connection.</p>",
-        "DisassociateConnectionFromLagRequest$connectionId": "<p>The ID of the connection. For example, dxcon-abc123.</p>",
+        "DisassociateConnectionFromLagRequest$connectionId": "<p>The ID of the connection.</p>",
         "VirtualInterface$connectionId": "<p>The ID of the connection.</p>"
       }
     },
@@ -654,7 +660,7 @@
     "InterconnectId": {
       "base": null,
       "refs": {
-        "AllocateConnectionOnInterconnectRequest$interconnectId": "<p>The ID of the interconnect on which the connection will be provisioned. For example, dxcon-456abc78.</p>",
+        "AllocateConnectionOnInterconnectRequest$interconnectId": "<p>The ID of the interconnect on which the connection will be provisioned.</p>",
         "DeleteInterconnectRequest$interconnectId": "<p>The ID of the interconnect.</p>",
         "DescribeConnectionsOnInterconnectRequest$interconnectId": "<p>The ID of the interconnect.</p>",
         "DescribeInterconnectLoaRequest$interconnectId": "<p>The ID of the interconnect.</p>",
@@ -705,13 +711,13 @@
     "LagId": {
       "base": null,
       "refs": {
-        "AssociateConnectionWithLagRequest$lagId": "<p>The ID of the LAG with which to associate the connection. For example, dxlag-abc123.</p>",
+        "AssociateConnectionWithLagRequest$lagId": "<p>The ID of the LAG with which to associate the connection.</p>",
         "Connection$lagId": "<p>The ID of the LAG.</p>",
         "CreateConnectionRequest$lagId": "<p>The ID of the LAG.</p>",
         "CreateInterconnectRequest$lagId": "<p>The ID of the LAG.</p>",
         "DeleteLagRequest$lagId": "<p>The ID of the LAG.</p>",
         "DescribeLagsRequest$lagId": "<p>The ID of the LAG.</p>",
-        "DisassociateConnectionFromLagRequest$lagId": "<p>The ID of the LAG. For example, dxlag-abc123.</p>",
+        "DisassociateConnectionFromLagRequest$lagId": "<p>The ID of the LAG.</p>",
         "Interconnect$lagId": "<p>The ID of the LAG.</p>",
         "Lag$lagId": "<p>The ID of the LAG.</p>",
         "UpdateLagRequest$lagId": "<p>The ID of the LAG.</p>"
@@ -892,6 +898,12 @@
       "base": null,
       "refs": {
         "Connection$partnerName": "<p>The name of the AWS Direct Connect service provider associated with the connection.</p>"
+      }
+    },
+    "PortSpeed": {
+      "base": null,
+      "refs": {
+        "AvailablePortSpeeds$member": null
       }
     },
     "ProviderName": {

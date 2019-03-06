@@ -705,6 +705,10 @@
         "connectionId":{"shape":"ConnectionId"}
       }
     },
+    "AvailablePortSpeeds":{
+      "type":"list",
+      "member":{"shape":"PortSpeed"}
+    },
     "AwsDevice":{
       "type":"string",
       "deprecated":true
@@ -1391,7 +1395,8 @@
       "members":{
         "locationCode":{"shape":"LocationCode"},
         "locationName":{"shape":"LocationName"},
-        "region":{"shape":"Region"}
+        "region":{"shape":"Region"},
+        "availablePortSpeeds":{"shape":"AvailablePortSpeeds"}
       }
     },
     "LocationCode":{"type":"string"},
@@ -1499,6 +1504,7 @@
     "OwnerAccount":{"type":"string"},
     "PaginationToken":{"type":"string"},
     "PartnerName":{"type":"string"},
+    "PortSpeed":{"type":"string"},
     "ProviderName":{"type":"string"},
     "Region":{"type":"string"},
     "ResourceArn":{"type":"string"},
