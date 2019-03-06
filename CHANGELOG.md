@@ -2187,10 +2187,10 @@ Release v1.13.55 (2018-05-24)
   * This release adds CloudWatch Logs integration capabilities to RDS Aurora MySQL clusters
 * `service/secretsmanager`: Updates service documentation
   * Documentation updates for secretsmanager
-  
+
 ### SDK Bugs
 * `service/cloudwatchlogs`: Fix pagination with cloudwatchlogs ([#1945](https://github.com/aws/aws-sdk-go/pull/1945))
-  * Fixes the SDK's behavior with CloudWatchLogs APIs which return duplicate `NextToken` values to signal end of pagination. 
+  * Fixes the SDK's behavior with CloudWatchLogs APIs which return duplicate `NextToken` values to signal end of pagination.
   * Fixes [#1908](https://github.com/aws/aws-sdk-go/pull/1908)
 
 Release v1.13.54 (2018-05-22)
@@ -2857,7 +2857,7 @@ Release v1.12.72 (2018-02-07)
 * `private/model/api`: Add validation to ensure there is no duplication of services in models/apis ([#1758](https://github.com/aws/aws-sdk-go/pull/1758))
     * Prevents the SDK from mistakenly generating code a single service multiple times with different model versions.
 * `example/service/ec2/instancesbyRegion`: Fix typos in example ([#1762](https://github.com/aws/aws-sdk-go/pull/1762))
-* `private/model/api`: removing SDK API reference crosslinks from input/output shapes. (#1765) 
+* `private/model/api`: removing SDK API reference crosslinks from input/output shapes. (#1765)
 
 ### SDK Bugs
 * `aws/session`: Fix bug in session.New not supporting AWS_SDK_LOAD_CONFIG ([#1770](https://github.com/aws/aws-sdk-go/pull/1770))
@@ -4254,7 +4254,7 @@ Release v1.9.00 (2017-06-19)
 ### SDK Features
 * `service/s3/s3manager`: Adds batch operations to s3manager [#1333](https://github.com/aws/aws-sdk-go/pull/1333)
   * Allows for batch upload, download, and delete of objects. Also adds the interface pattern to allow for easy traversal of objects. E.G `DownloadWithIterator`, `UploadWithIterator`, and `BatchDelete`. `BatchDelete` also contains a utility iterator using the `ListObjects` API to easily delete a list of objects.
-  
+
 Release v1.8.44 (2017-06-16)
 ===
 
@@ -4489,7 +4489,7 @@ Release v1.8.23 (2017-05-15)
 
 ### SDK Enhancements
 * `aws/session`: SDK should be able to load multiple custom shared config files. [#1258](https://github.com/aws/aws-sdk-go/issues/1258)
-  * This change adds a `SharedConfigFiles` field to the `session.Options` type that allows you to specify the files, and their order, the SDK will use for loading shared configuration and credentials from when the `Session` is created. Use the `NewSessionWithOptions` Session constructor to specify these options. You'll also most likely want to enable support for the shared configuration file's additional attributes by setting `session.Option`'s `SharedConfigState` to `session.SharedConfigEnabled`. 
+  * This change adds a `SharedConfigFiles` field to the `session.Options` type that allows you to specify the files, and their order, the SDK will use for loading shared configuration and credentials from when the `Session` is created. Use the `NewSessionWithOptions` Session constructor to specify these options. You'll also most likely want to enable support for the shared configuration file's additional attributes by setting `session.Option`'s `SharedConfigState` to `session.SharedConfigEnabled`.
 
 Release v1.8.22 (2017-05-11)
 ===
@@ -4796,7 +4796,7 @@ SDK Features
 SDK Enhancements
 ---
 * `aws/signer/v4`: Adds support for unsigned payload signer config (#1130)
-  * Adds configuration option to the v4.Signer to specify the request's body should not be signed. This will only correclty function on services that support unsigned payload. e.g. S3, Glacier. 
+  * Adds configuration option to the v4.Signer to specify the request's body should not be signed. This will only correclty function on services that support unsigned payload. e.g. S3, Glacier.
 
 SDK Bug Fixes
 ---
@@ -5356,7 +5356,7 @@ Service Client Updates
 SDK Bug Fixes
 ---
 * `private/protocol/xml/xmlutil`: Fixes xml marshaler to unmarshal properly
-into tagged fields 
+into tagged fields
 [#916](https://github.com/aws/aws-sdk-go/issues/916)
 
 Release v1.5.9 (2016-11-22)
@@ -5445,7 +5445,7 @@ Service Client Updates
 SDK Feature Updates
 ---
 * `private/model/api`: Add generated setters for API parameters (#918)
-  * Adds setters to the SDK's API parameter types, and are a convenience method that reduce the need to use `aws.String` and like utility. 
+  * Adds setters to the SDK's API parameter types, and are a convenience method that reduce the need to use `aws.String` and like utility.
 
 Release v1.4.22 (2016-10-25)
 ===
@@ -5525,7 +5525,7 @@ Service Model Updates
 * `service/ecr`: Update Amazon EC2 Container Registry service model
   * DescribeImages is a new api used to expose image metadata which today includes image size and image creation timestamp.
 * `service/elasticache`: Update Amazon ElastiCache service model
-  * Elasticache is launching a new major engine release of Redis, 3.2 (providing stability updates and new command sets over 2.8), as well as ElasticSupport for enabling Redis Cluster in 3.2, which provides support for multiple node groups to horizontally scale data, as well as superior engine failover capabilities 
+  * Elasticache is launching a new major engine release of Redis, 3.2 (providing stability updates and new command sets over 2.8), as well as ElasticSupport for enabling Redis Cluster in 3.2, which provides support for multiple node groups to horizontally scale data, as well as superior engine failover capabilities
 
 SDK Bug Fixes
 ---

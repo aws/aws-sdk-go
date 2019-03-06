@@ -42,7 +42,7 @@ type Event struct {
 func (esAPI *EventStreamAPI) ShapeDoc() string {
 	tmpl := template.Must(template.New("eventStreamShapeDoc").Parse(`
 {{- $.Name }} provides handling of EventStreams for
-the {{ $.Operation.ExportedName }} API. 
+the {{ $.Operation.ExportedName }} API.
 {{- if $.Inbound }}
 
 Use this type to receive {{ $.Inbound.Name }} events. The events
@@ -57,7 +57,7 @@ The events that can be received are:
 
 {{- if $.Outbound }}
 
-Use this type to send {{ $.Outbound.Name }} events. The events 
+Use this type to send {{ $.Outbound.Name }} events. The events
 can be sent with the Send method.
 
 The events that can be sent are:
@@ -308,7 +308,7 @@ type {{ $.ShapeName }} struct {
 //
 // Close must be called when done using the EventStream API. Not calling Close
 // may result in resource leaks.
-func (es *{{ $.ShapeName }}) Close() (err error) { 
+func (es *{{ $.ShapeName }}) Close() (err error) {
 	{{- if $.EventStreamAPI.Inbound }}
 		es.Reader.Close()
 	{{ end -}}
@@ -321,7 +321,7 @@ func (es *{{ $.ShapeName }}) Close() (err error) {
 
 // Err returns any error that occurred while reading EventStream Events from
 // the service API's response. Returns nil if there were no errors.
-func (es *{{ $.ShapeName }}) Err() error { 
+func (es *{{ $.ShapeName }}) Err() error {
 	{{- if $.EventStreamAPI.Outbound }}
 		if err := es.Writer.Err(); err != nil {
 			return err
@@ -340,7 +340,7 @@ func (es *{{ $.ShapeName }}) Err() error {
 }
 
 {{ if $.EventStreamAPI.Inbound }}
-	// Events returns a channel to read EventStream Events from the 
+	// Events returns a channel to read EventStream Events from the
 	// {{ $.EventStreamAPI.Operation.ExportedName }} API.
 	//
 	// These events are:
@@ -1170,7 +1170,7 @@ func (c *loopReader) Read(p []byte) (int, error) {
 	{{- $payloadMemName := $.parentShape.PayloadRefName }}
 	{{- if HasNonBlobPayloadMembers $.parentShape }}
 		Payload: eventstreamtest.MarshalEventPayload(payloadMarshaler, expectEvents[{{ $.idx }}]),
-	{{- else if $payloadMemName }} 
+	{{- else if $payloadMemName }}
 		{{- $shapeType := (index $.parentShape.MemberRefs $payloadMemName).Shape.Type }}
 		{{- if eq $shapeType "blob" }}
 			Payload: expectEvents[{{ $.idx }}].({{ $.parentShape.GoType }}).{{ $payloadMemName }},
