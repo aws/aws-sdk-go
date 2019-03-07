@@ -23,6 +23,12 @@
       "limit_key": "limit",
       "output_token": "nextToken",
       "result_key": "virtualRouters"
+    },
+    "ListVirtualServices": {
+      "input_token": "nextToken",
+      "limit_key": "limit",
+      "output_token": "nextToken",
+      "result_key": "virtualServices"
     }
   }
 }

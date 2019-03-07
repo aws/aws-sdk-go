@@ -210,10 +210,10 @@
       }
     },
     "DeploymentType" : {
-      "base" : "The type of deployment.",
+      "base" : "The type of deployment. When used for ''CreateDeployment'', only ''NewDeployment'' and ''Redeployment'' are valid.",
       "refs" : {
         "BulkDeploymentResult$DeploymentType" : "The type of the deployment.",
-        "CreateDeploymentRequest$DeploymentType" : "The type of deployment. When used in ''CreateDeployment'', only ''NewDeployment'' and ''Redeployment'' are valid.",
+        "CreateDeploymentRequest$DeploymentType" : "The type of deployment. When used for ''CreateDeployment'', only ''NewDeployment'' and ''Redeployment'' are valid.",
         "Deployment$DeploymentType" : "The type of the deployment.",
         "GetDeploymentStatusResponse$DeploymentType" : "The type of the deployment."
       }
@@ -288,13 +288,13 @@
       }
     },
     "FunctionDefaultConfig" : {
-      "base" : "Default configuration that will apply to all Lambda functions in the group.",
+      "base" : "The default configuration that applies to all Lambda functions in the group. Individual Lambda functions can override these settings.",
       "refs" : {
-        "FunctionDefinitionVersion$DefaultConfig" : "Default configuration that will apply to all Lambda functions in this function definition version"
+        "FunctionDefinitionVersion$DefaultConfig" : "The default configuration that applies to all Lambda functions in this function definition version. Individual Lambda functions can override these settings."
       }
     },
     "FunctionDefaultExecutionConfig" : {
-      "base" : "Configuration that defines the default containerization used for when running Lambda functions in the group. Individual Lambda functions can be override this setting.",
+      "base" : "Configuration information that specifies how a Lambda function runs. ",
       "refs" : {
         "FunctionDefaultConfig$Execution" : null
       }
@@ -306,7 +306,7 @@
       }
     },
     "FunctionExecutionConfig" : {
-      "base" : "Configuration information that specifies how the Lambda function runs. ",
+      "base" : "Configuration information that specifies how a Lambda function runs. ",
       "refs" : {
         "FunctionConfigurationEnvironment$Execution" : "Configuration related to executing the Lambda function"
       }
@@ -314,12 +314,11 @@
     "FunctionIsolationMode" : {
       "base" : "Specifies whether the Lambda function runs in a Greengrass container (default) or without containerization. Unless your scenario requires that you run without containerization, we recommend that you run in a Greengrass container. Omit this value to run the Lambda function with the default containerization for the group.",
       "refs" : {
-        "FunctionDefaultExecutionConfig$IsolationMode" : null,
         "FunctionExecutionConfig$IsolationMode" : null
       }
     },
     "FunctionRunAsConfig" : {
-      "base" : "Specifies the user and/or group whose permissions are used when running the Lambda function. You can specify one or both values to override the default values (ggc_user/ggc_group). We recommend that you avoid running as root unless absolutely necessary to minimize the risk of unintended changes or malicious attacks. To run as root, you must set IsolationMode to NoContainer and you must update config.json in greengrass-root/config to set allowFunctionsToRunAsRoot to yes.",
+      "base" : "Specifies the user and group whose permissions are used when running the Lambda function. You can specify one or both values to override the default values. We recommend that you avoid running as root unless absolutely necessary to minimize the risk of unintended changes or malicious attacks. To run as root, you must set ''IsolationMode'' to ''NoContainer'' and update config.json in ''greengrass-root/config'' to set ''allowFunctionsToRunAsRoot'' to ''yes''.",
       "refs" : {
         "FunctionExecutionConfig$RunAs" : null
       }
@@ -637,8 +636,8 @@
         "ConnectivityInfo$PortNumber" : "The port of the Greengrass core. Usually 8883.",
         "FunctionConfiguration$MemorySize" : "The memory size, in KB, which the function requires. This setting is not applicable and should be cleared when you run the Lambda function without containerization.",
         "FunctionConfiguration$Timeout" : "The allowed function execution time, after which Lambda should terminate the function. This timeout still applies to pinned Lambda functions for each request.",
-        "FunctionRunAsConfig$Gid" : "The Group ID whose permissions are used to run a Lambda function.",
-        "FunctionRunAsConfig$Uid" : "The User ID whose permissions are used to run a Lambda function.",
+        "FunctionRunAsConfig$Gid" : "The group ID whose permissions are used to run a Lambda function.",
+        "FunctionRunAsConfig$Uid" : "The user ID whose permissions are used to run a Lambda function.",
         "Logger$Space" : "The amount of file space, in KB, to use if the local file system is used for logging purposes."
       }
     },
@@ -747,7 +746,7 @@
         "BulkDeploymentResult$CreatedAt" : "The time, in ISO format, when the deployment was created.",
         "BulkDeploymentResult$DeploymentArn" : "The ARN of the group deployment.",
         "BulkDeploymentResult$DeploymentId" : "The ID of the group deployment.",
-        "BulkDeploymentResult$DeploymentStatus" : "The current status of the group deployment: ''Pending'', ''InProgress'', ''Success'', or ''Failure''.",
+        "BulkDeploymentResult$DeploymentStatus" : "The current status of the group deployment: ''InProgress'', ''Building'', ''Success'', or ''Failure''.",
         "BulkDeploymentResult$ErrorMessage" : "The error message for a failed deployment",
         "BulkDeploymentResult$GroupArn" : "The ARN of the Greengrass group.",
         "ConnectivityInfo$HostAddress" : "The endpoint for the Greengrass core. Can be an IP address or DNS.",
@@ -803,7 +802,7 @@
         "GetCoreDefinitionVersionResponse$Id" : "The ID of the core definition version.",
         "GetCoreDefinitionVersionResponse$NextToken" : "The token for the next set of results, or ''null'' if there are no additional results.",
         "GetCoreDefinitionVersionResponse$Version" : "The version of the core definition version.",
-        "GetDeploymentStatusResponse$DeploymentStatus" : "The status of the deployment: ''Pending'', ''InProgress'', ''Success'', or ''Failure''.",
+        "GetDeploymentStatusResponse$DeploymentStatus" : "The status of the deployment: ''InProgress'', ''Building'', ''Success'', or ''Failure''.",
         "GetDeploymentStatusResponse$ErrorMessage" : "Error message",
         "GetDeploymentStatusResponse$UpdatedAt" : "The time, in milliseconds since the epoch, when the deployment status was updated.",
         "GetDeviceDefinitionVersionResponse$Arn" : "The ARN of the device definition version.",
@@ -884,7 +883,7 @@
         "StartBulkDeploymentResponse$BulkDeploymentId" : "The ID of the bulk deployment.",
         "Subscription$Id" : "A descriptive or arbitrary ID for the subscription. This value must be unique within the subscription definition version. Max length is 128 characters with pattern ''[a-zA-Z0-9:_-]+''.",
         "Subscription$Source" : "The source of the subscription. Can be a thing ARN, a Lambda function ARN, a connector ARN, 'cloud' (which represents the AWS IoT cloud), or 'GGShadowService'.",
-        "Subscription$Subject" : "The subject of the message.",
+        "Subscription$Subject" : "The MQTT topic used to route the message.",
         "Subscription$Target" : "Where the message is sent to. Can be a thing ARN, a Lambda function ARN, a connector ARN, 'cloud' (which represents the AWS IoT cloud), or 'GGShadowService'.",
         "UpdateConnectivityInfoResponse$Message" : "A message about the connectivity info update request.",
         "UpdateConnectivityInfoResponse$Version" : "The new version of the connectivity info.",

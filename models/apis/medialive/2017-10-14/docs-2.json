@@ -1026,7 +1026,7 @@
     "HlsRedundantManifest": {
       "base": null,
       "refs": {
-        "HlsGroupSettings$RedundantManifest": "When set to \"enabled\", includes the media playlists from both pipelines in the master manifest (.m3u8) file."
+        "HlsGroupSettings$RedundantManifest": "ENABLED: The master manifest (.m3u8 file) for each pipeline includes information about both pipelines: first its own media files, then the media files of the other pipeline. This feature allows playout device that support stale manifest detection to switch from one manifest to the other, when the current manifest seems to be stale. There are still two destinations and two master manifests, but both master manifests reference the media files from both pipelines.\n\nDISABLED: The master manifest (.m3u8 file) for each pipeline includes information about its own pipeline only.\n\nFor an HLS output group with MediaPackage as the destination, the DISABLED behavior is always followed. MediaPackage regenerates the manifests it serves to players so a redundant manifest from MediaLive is irrelevant."
       }
     },
     "HlsSegmentationMode": {
@@ -1502,6 +1502,24 @@
         "__listOfMediaConnectFlowRequest$member": null
       }
     },
+    "MediaPackageGroupSettings": {
+      "base": "Media Package Group Settings",
+      "refs": {
+        "OutputGroupSettings$MediaPackageGroupSettings": null
+      }
+    },
+    "MediaPackageOutputDestinationSettings": {
+      "base": "Media Package Output Destination Settings",
+      "refs": {
+        "__listOfMediaPackageOutputDestinationSettings$member": null
+      }
+    },
+    "MediaPackageOutputSettings": {
+      "base": "Media Package Output Settings",
+      "refs": {
+        "OutputSettings$MediaPackageOutputSettings": null
+      }
+    },
     "Mp2CodingMode": {
       "base": null,
       "refs": {
@@ -1599,6 +1617,7 @@
         "ArchiveGroupSettings$Destination": "A directory and base filename where archive files should be written.",
         "FrameCaptureGroupSettings$Destination": "The destination for the frame capture files. Either the URI for an Amazon S3 bucket and object, plus a file name prefix (for example, s3ssl://sportsDelivery/highlights/20180820/curling_) or the URI for a MediaStore container, plus a file name prefix (for example, mediastoressl://sportsDelivery/20180820/curling_). The final file names consist of the prefix from the destination field (for example, \"curling_\") + name modifier + the counter (5 digits, starting from 00001) + extension (which is always .jpg).  For example, curlingLow.00001.jpg",
         "HlsGroupSettings$Destination": "A directory or HTTP destination for the HLS segments, manifest files, and encryption keys (if enabled).",
+        "MediaPackageGroupSettings$Destination": "MediaPackage channel destination.",
         "MsSmoothGroupSettings$Destination": "Smooth Streaming publish point on an IIS server. Elemental Live acts as a \"Push\" encoder to IIS.",
         "RtmpOutputSettings$Destination": "The RTMP endpoint excluding the stream name (eg. rtmp://host/appname). For connection to Akamai, a username and password must be supplied. URI fields accept format identifiers.",
         "UdpOutputSettings$Destination": "Destination address and port number for RTP or UDP packets. Can be unicast or multicast RTP or UDP (eg. rtp://239.10.10.10:5001 or udp://10.100.100.100:5002)."
@@ -2723,6 +2742,12 @@
         "UpdateInput$MediaConnectFlows": "A list of the MediaConnect Flow ARNs that you want to use as the source of the input. You can specify as few as one\nFlow and presently, as many as two. The only requirement is when you have more than one is that each Flow is in a\nseparate Availability Zone as this ensures your EML input is redundant to AZ issues.\n"
       }
     },
+    "__listOfMediaPackageOutputDestinationSettings": {
+      "base": null,
+      "refs": {
+        "OutputDestination$MediaPackageSettings": "Destination settings for a MediaPackage output; one destination for both encoders."
+      }
+    },
     "__listOfOffering": {
       "base": null,
       "refs": {
@@ -2747,7 +2772,7 @@
     "__listOfOutputDestinationSettings": {
       "base": null,
       "refs": {
-        "OutputDestination$Settings": "Destination settings for output; one for each redundant encoder."
+        "OutputDestination$Settings": "Destination settings for a standard output; one destination for each redundant encoder."
       }
     },
     "__listOfOutputGroup": {
@@ -2973,7 +2998,8 @@
         "AudioSelector$Name": "The name of this AudioSelector. AudioDescriptions will use this name to uniquely identify this Selector.  Selector names should be unique per input.",
         "CaptionLanguageMapping$LanguageDescription": "Textual description of language",
         "CaptionSelector$Name": "Name identifier for a caption selector.  This name is used to associate this caption selector with one or more caption descriptions.  Names must be unique within an event.",
-        "HlsOutputSettings$NameModifier": "String concatenated to the end of the destination filename. Accepts \\\"Format Identifiers\\\":#formatIdentifierParameters."
+        "HlsOutputSettings$NameModifier": "String concatenated to the end of the destination filename. Accepts \\\"Format Identifiers\\\":#formatIdentifierParameters.",
+        "MediaPackageOutputDestinationSettings$ChannelId": "ID of the channel in MediaPackage that is the destination for this output group. You do not need to specify the individual inputs in MediaPackage; MediaLive will handle the connection of the two MediaLive pipelines to the two MediaPackage inputs. The MediaPackage channel and MediaLive channel must be in the same region."
       }
     },
     "__stringMin1Max255": {
