@@ -2765,6 +2765,9 @@
       "members" : {
         "IsolationMode" : {
           "shape" : "FunctionIsolationMode"
+        },
+        "RunAs" : {
+          "shape" : "FunctionRunAsConfig"
         }
       }
     },

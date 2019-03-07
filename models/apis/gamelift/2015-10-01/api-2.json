@@ -1226,7 +1226,8 @@
         "MetricGroups":{"shape":"MetricGroupList"},
         "PeerVpcAwsAccountId":{"shape":"NonZeroAndMaxString"},
         "PeerVpcId":{"shape":"NonZeroAndMaxString"},
-        "FleetType":{"shape":"FleetType"}
+        "FleetType":{"shape":"FleetType"},
+        "InstanceRoleArn":{"shape":"NonEmptyString"}
       }
     },
     "CreateFleetOutput":{
@@ -1966,7 +1967,8 @@
         "OperatingSystem":{"shape":"OperatingSystem"},
         "ResourceCreationLimitPolicy":{"shape":"ResourceCreationLimitPolicy"},
         "MetricGroups":{"shape":"MetricGroupList"},
-        "StoppedActions":{"shape":"FleetActionList"}
+        "StoppedActions":{"shape":"FleetActionList"},
+        "InstanceRoleArn":{"shape":"NonEmptyString"}
       }
     },
     "FleetAttributesList":{

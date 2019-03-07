@@ -785,6 +785,15 @@
         "gpuIds":{"shape":"GpuIds"}
       }
     },
+    "ContainerCondition":{
+      "type":"string",
+      "enum":[
+        "START",
+        "COMPLETE",
+        "SUCCESS",
+        "HEALTHY"
+      ]
+    },
     "ContainerDefinition":{
       "type":"structure",
       "members":{
@@ -804,6 +813,9 @@
         "volumesFrom":{"shape":"VolumeFromList"},
         "linuxParameters":{"shape":"LinuxParameters"},
         "secrets":{"shape":"SecretList"},
+        "dependsOn":{"shape":"ContainerDependencies"},
+        "startTimeout":{"shape":"BoxedInteger"},
+        "stopTimeout":{"shape":"BoxedInteger"},
         "hostname":{"shape":"String"},
         "user":{"shape":"String"},
         "workingDirectory":{"shape":"String"},
@@ -827,6 +839,21 @@
     "ContainerDefinitions":{
       "type":"list",
       "member":{"shape":"ContainerDefinition"}
+    },
+    "ContainerDependencies":{
+      "type":"list",
+      "member":{"shape":"ContainerDependency"}
+    },
+    "ContainerDependency":{
+      "type":"structure",
+      "required":[
+        "containerName",
+        "condition"
+      ],
+      "members":{
+        "containerName":{"shape":"String"},
+        "condition":{"shape":"ContainerCondition"}
+      }
     },
     "ContainerInstance":{
       "type":"structure",
@@ -1668,6 +1695,23 @@
         "SERVICE"
       ]
     },
+    "ProxyConfiguration":{
+      "type":"structure",
+      "required":["containerName"],
+      "members":{
+        "type":{"shape":"ProxyConfigurationType"},
+        "containerName":{"shape":"String"},
+        "properties":{"shape":"ProxyConfigurationProperties"}
+      }
+    },
+    "ProxyConfigurationProperties":{
+      "type":"list",
+      "member":{"shape":"KeyValuePair"}
+    },
+    "ProxyConfigurationType":{
+      "type":"string",
+      "enum":["APPMESH"]
+    },
     "PutAccountSettingDefaultRequest":{
       "type":"structure",
       "required":[
@@ -1756,7 +1800,8 @@
         "memory":{"shape":"String"},
         "tags":{"shape":"Tags"},
         "pidMode":{"shape":"PidMode"},
-        "ipcMode":{"shape":"IpcMode"}
+        "ipcMode":{"shape":"IpcMode"},
+        "proxyConfiguration":{"shape":"ProxyConfiguration"}
       }
     },
     "RegisterTaskDefinitionResponse":{
@@ -2220,7 +2265,8 @@
         "cpu":{"shape":"String"},
         "memory":{"shape":"String"},
         "pidMode":{"shape":"PidMode"},
-        "ipcMode":{"shape":"IpcMode"}
+        "ipcMode":{"shape":"IpcMode"},
+        "proxyConfiguration":{"shape":"ProxyConfiguration"}
       }
     },
     "TaskDefinitionFamilyStatus":{
