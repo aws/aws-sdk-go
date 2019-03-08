@@ -43,38 +43,38 @@ generate: cleanup-models gen-test gen-endpoints gen-services
 
 gen-test: gen-protocol-test gen-codegen-test
 
-gen-codegen-test: get-deps-codegen
+gen-codegen-test:
 	@echo "Generating SDK API tests"
 	go generate ./private/model/api/codegentest/service
 
-gen-services: get-deps-codegen
+gen-services:
 	@echo "Generating SDK clients"
 	go generate ./service
 
-gen-protocol-test: get-deps-codegen
+gen-protocol-test:
 	@echo "Generating SDK protocol tests"
 	go generate ./private/protocol/...
 
-gen-endpoints: get-deps-codegen
+gen-endpoints:
 	@echo "Generating SDK endpoints"
 	go generate ./models/endpoints/
 
-cleanup-models: get-deps-codegen
+cleanup-models:
 	@echo "Cleaning up stale model versions"
 	go run -tags codegen ./private/model/cli/cleanup-models/* "./models/apis/*/*/api-2.json"
 
 ###################
 # Unit/CI Testing #
 ###################
-unit: get-deps verify
+unit: verify
 	@echo "go test SDK and vendor packages"
 	go test -tags ${UNIT_TEST_TAGS} ${SDK_ALL_PKGS}
 
-unit-with-race-cover: get-deps verify
+unit-with-race-cover: verify
 	@echo "go test SDK and vendor packages"
 	go test -tags ${UNIT_TEST_TAGS} -race -cpu=1,2,4 ${SDK_ALL_PKGS}
 
-unit-old-go-race-cover: get-deps-tests
+unit-old-go-race-cover:
 	@echo "go test SDK only packages for old Go versions"
 	go test -race -cpu=1,2,4 ${SDK_COMPA_PKGS}
 
@@ -183,7 +183,7 @@ update-aws-golang-tip:
 ##################
 # Linting/Verify #
 ##################
-verify: get-deps-verify lint vet
+verify: lint vet
 
 lint:
 	@echo "go lint SDK and vendor packages"
