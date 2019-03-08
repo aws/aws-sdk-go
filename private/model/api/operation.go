@@ -154,7 +154,7 @@ const op{{ .ExportedName }} = "{{ .Name }}"
 //        fmt.Println(resp)
 //    }
 {{ $crosslinkURL := GetCrosslinkURL $.API.BaseCrosslinkURL $.API.Metadata.UID $.ExportedName -}}
-{{ if ne $crosslinkURL "" -}} 
+{{ if ne $crosslinkURL "" -}}
 //
 // See also, {{ $crosslinkURL }}
 {{ end -}}
@@ -166,7 +166,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	{{ if (or .Deprecated (or .InputRef.Deprecated .OutputRef.Deprecated)) }}if c.Client.Config.Logger != nil {
 		c.Client.Config.Logger.Log("This operation, {{ .ExportedName }}, has been deprecated")
 	}
-	op := &request.Operation{ {{ else }} op := &request.Operation{ {{ end }}	
+	op := &request.Operation{ {{ else }} op := &request.Operation{ {{ end }}
 		Name:       op{{ .ExportedName }},
 		{{ if ne .HTTP.Method "" }}HTTPMethod: "{{ .HTTP.Method }}",
 		{{ end }}HTTPPath: {{ if ne .HTTP.RequestURI "" }}"{{ .HTTP.RequestURI }}"{{ else }}"/"{{ end }},
@@ -262,7 +262,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 {{ end -}}
 {{ end -}}
 {{ $crosslinkURL := GetCrosslinkURL $.API.BaseCrosslinkURL $.API.Metadata.UID $.ExportedName -}}
-{{ if ne $crosslinkURL "" -}} 
+{{ if ne $crosslinkURL "" -}}
 // See also, {{ $crosslinkURL }}
 {{ end -}}
 {{- if .Deprecated }}//

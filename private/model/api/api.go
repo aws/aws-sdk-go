@@ -414,7 +414,7 @@ var tplServiceDoc = template.Must(template.New("service docs").Funcs(template.Fu
 //
 // See the SDK's documentation for more information on how to use the SDK.
 // https://docs.aws.amazon.com/sdk-for-go/api/
-// 
+//
 // See aws.Config documentation for more information on configuring SDK clients.
 // https://docs.aws.amazon.com/sdk-for-go/api/aws/#Config
 //
@@ -730,7 +730,7 @@ var tplInterface = template.Must(template.New("interface").Parse(`
 //
 // It is important to note that this interface will have breaking changes
 // when the service model is updated and adds new API operations, paginators,
-// and waiters. Its suggested to use the pattern above for testing, or using 
+// and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type {{ .StructName }}API interface {
     {{ range $_, $o := .OperationList }}
