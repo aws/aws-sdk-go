@@ -1,3 +1,14 @@
+Release v1.17.14 (2019-03-08)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * CodeBuild also now supports Git Submodules.  CodeBuild now supports opting out of Encryption for S3 Build Logs.  By default these logs are encrypted.
+* `service/s3`: Updates service documentation and examples
+  * Documentation updates for s3
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker notebook instances now support enabling or disabling root access for notebook users. SageMaker Neo now supports rk3399 and rk3288 as compilation target devices.
+
 Release v1.17.13 (2019-03-07)
 ===
 

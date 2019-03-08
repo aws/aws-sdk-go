@@ -631,6 +631,13 @@
       "type":"integer",
       "min":0
     },
+    "GitSubmodulesConfig":{
+      "type":"structure",
+      "required":["fetchSubmodules"],
+      "members":{
+        "fetchSubmodules":{"shape":"WrapperBoolean"}
+      }
+    },
     "ImagePullCredentialsType":{
       "type":"string",
       "enum":[
@@ -684,7 +691,7 @@
       "type":"string",
       "max":127,
       "min":1,
-      "pattern":"^([\\\\p{L}\\\\p{Z}\\\\p{N}_.:/=@+\\\\-]*)$"
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=@+\\-]*)$"
     },
     "LanguageType":{
       "type":"string",
@@ -952,6 +959,7 @@
         "type":{"shape":"SourceType"},
         "location":{"shape":"String"},
         "gitCloneDepth":{"shape":"GitCloneDepth"},
+        "gitSubmodulesConfig":{"shape":"GitSubmodulesConfig"},
         "buildspec":{"shape":"String"},
         "auth":{"shape":"SourceAuth"},
         "reportBuildStatus":{"shape":"WrapperBoolean"},
@@ -1008,7 +1016,8 @@
       "required":["status"],
       "members":{
         "status":{"shape":"LogsConfigStatusType"},
-        "location":{"shape":"String"}
+        "location":{"shape":"String"},
+        "encryptionDisabled":{"shape":"WrapperBoolean"}
       }
     },
     "SecurityGroupIds":{
@@ -1087,6 +1096,7 @@
         "sourceLocationOverride":{"shape":"String"},
         "sourceAuthOverride":{"shape":"SourceAuth"},
         "gitCloneDepthOverride":{"shape":"GitCloneDepth"},
+        "gitSubmodulesConfigOverride":{"shape":"GitSubmodulesConfig"},
         "buildspecOverride":{"shape":"String"},
         "insecureSslOverride":{"shape":"WrapperBoolean"},
         "reportBuildStatusOverride":{"shape":"WrapperBoolean"},
@@ -1208,7 +1218,7 @@
       "type":"string",
       "max":255,
       "min":1,
-      "pattern":"^([\\\\p{L}\\\\p{Z}\\\\p{N}_.:/=@+\\\\-]*)$"
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=@+\\-]*)$"
     },
     "VpcConfig":{
       "type":"structure",
