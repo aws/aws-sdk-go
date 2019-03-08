@@ -58,7 +58,7 @@ func (a *API) resolveReferences() {
 		// Resolve references for errors also
 		for i := range o.ErrorRefs {
 			resolver.resolveReference(&o.ErrorRefs[i])
-			o.ErrorRefs[i].Shape.IsError = true
+			o.ErrorRefs[i].Shape.Exception = true
 			o.ErrorRefs[i].Shape.ErrorInfo.Type = o.ErrorRefs[i].Shape.ShapeName
 		}
 	}
@@ -375,24 +375,6 @@ func (a *API) setMetadataEndpointsKey() {
 		a.Metadata.EndpointsID = v
 	} else {
 		a.Metadata.EndpointsID = a.Metadata.EndpointPrefix
-	}
-}
-
-// Suppress event stream must be run before setup event stream
-func (a *API) suppressHTTP2EventStreams() {
-	if a.Metadata.ProtocolSettings.HTTP2 != "eventstream" {
-		return
-	}
-
-	for name, op := range a.Operations {
-		outbound := hasEventStream(op.InputRef.Shape)
-		inbound := hasEventStream(op.OutputRef.Shape)
-
-		if !(outbound || inbound) {
-			continue
-		}
-
-		a.removeOperation(name)
 	}
 }
 

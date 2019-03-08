@@ -903,13 +903,15 @@ func (c *loopReader) Read(p []byte) (int, error) {
 		}
 		defer resp.EventStream.Close()
 
-		{{- if and (eq $.Operation.API.Metadata.Protocol "json") (HasNonEventStreamMember $.Operation.OutputRef.Shape) }}
-			expectResp := expectEvents[0].(*{{ $.Operation.OutputRef.Shape.ShapeName }})
-			{{- range $name, $ref := $.Operation.OutputRef.Shape.MemberRefs }}
-				{{- if not $ref.Shape.IsEventStream }}
-					if e, a := expectResp.{{ $name }}, resp.{{ $name }}; !reflect.DeepEqual(e,a) {
-						t.Errorf("expect %v, got %v", e, a)
-					}
+		{{- if eq $.Operation.API.Metadata.Protocol "json" }}
+			{{- if HasNonEventStreamMember $.Operation.OutputRef.Shape }}
+				expectResp := expectEvents[0].(*{{ $.Operation.OutputRef.Shape.ShapeName }})
+				{{- range $name, $ref := $.Operation.OutputRef.Shape.MemberRefs }}
+					{{- if not $ref.Shape.IsEventStream }}
+						if e, a := expectResp.{{ $name }}, resp.{{ $name }}; !reflect.DeepEqual(e,a) {
+							t.Errorf("expect %v, got %v", e, a)
+						}
+					{{- end }}
 				{{- end }}
 			{{- end }}
 			// Trim off response output type pseudo event so only event messages remain.
