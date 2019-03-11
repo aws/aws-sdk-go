@@ -1756,13 +1756,13 @@ func (c *Rekognition) GetContentModerationRequest(input *GetContentModerationInp
 // analysis started by StartContentModeration.
 //
 // Content moderation analysis of a video is an asynchronous operation. You
-// start analysis by calling StartContentModeration. which returns a job identifier
+// start analysis by calling StartContentModeration which returns a job identifier
 // (JobId). When analysis finishes, Amazon Rekognition Video publishes a completion
 // status to the Amazon Simple Notification Service topic registered in the
 // initial call to StartContentModeration. To get the results of the content
 // moderation analysis, first check that the status value published to the Amazon
-// SNS topic is SUCCEEDED. If so, call GetCelebrityDetection and pass the job
-// identifier (JobId) from the initial call to StartCelebrityDetection.
+// SNS topic is SUCCEEDED. If so, call GetContentModeration and pass the job
+// identifier (JobId) from the initial call to StartContentModeration.
 //
 // For more information, see Working with Stored Videos in the Amazon Rekognition
 // Devlopers Guide.

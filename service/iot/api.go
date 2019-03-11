@@ -2530,7 +2530,10 @@ func (c *IoT) CreateThingRequest(input *CreateThingInput) (req *request.Request,
 
 // CreateThing API operation for AWS IoT.
 //
-// Creates a thing record in the registry.
+// Creates a thing record in the registry. If this call is made multiple times
+// using the same thing name and configuration, the call will succeed. If this
+// call is made with the same thing name but different configuration a ResourceAlreadyExistsException
+// is thrown.
 //
 // This is a control plane operation. See Authorization (https://docs.aws.amazon.com/iot/latest/developerguide/authorization.html)
 // for information about authorizing control plane actions.
@@ -31193,7 +31196,7 @@ type RegisterCertificateInput struct {
 	// CertificatePem is a required field
 	CertificatePem *string `locationName:"certificatePem" min:"1" type:"string" required:"true"`
 
-	// A boolean value that specifies if the CA certificate is set to active.
+	// A boolean value that specifies if the certificate is set to active.
 	//
 	// Deprecated: SetAsActive has been deprecated
 	SetAsActive *bool `location:"querystring" locationName:"setAsActive" deprecated:"true" type:"boolean"`
