@@ -2220,7 +2220,8 @@
         "ExtraPythonLibsS3Path":{"shape":"GenericString"},
         "ExtraJarsS3Path":{"shape":"GenericString"},
         "SecurityConfiguration":{"shape":"NameString"},
-        "Tags":{"shape":"TagsMap"}
+        "Tags":{"shape":"TagsMap"},
+        "Arguments":{"shape":"MapValue"}
       }
     },
     "CreateDevEndpointResponse":{
@@ -2240,7 +2241,8 @@
         "ExtraJarsS3Path":{"shape":"GenericString"},
         "FailureReason":{"shape":"GenericString"},
         "SecurityConfiguration":{"shape":"NameString"},
-        "CreatedTimestamp":{"shape":"TimestampValue"}
+        "CreatedTimestamp":{"shape":"TimestampValue"},
+        "Arguments":{"shape":"MapValue"}
       }
     },
     "CreateGrokClassifierRequest":{
@@ -2705,7 +2707,8 @@
         "LastModifiedTimestamp":{"shape":"TimestampValue"},
         "PublicKey":{"shape":"GenericString"},
         "PublicKeys":{"shape":"PublicKeysList"},
-        "SecurityConfiguration":{"shape":"NameString"}
+        "SecurityConfiguration":{"shape":"NameString"},
+        "Arguments":{"shape":"MapValue"}
       }
     },
     "DevEndpointCustomLibraries":{
@@ -3737,6 +3740,13 @@
       "type":"string",
       "enum":["EQUALS"]
     },
+    "MapValue":{
+      "type":"map",
+      "key":{"shape":"GenericString"},
+      "value":{"shape":"GenericString"},
+      "max":100,
+      "min":0
+    },
     "MappingEntry":{
       "type":"structure",
       "members":{
@@ -4576,7 +4586,9 @@
         "AddPublicKeys":{"shape":"PublicKeysList"},
         "DeletePublicKeys":{"shape":"PublicKeysList"},
         "CustomLibraries":{"shape":"DevEndpointCustomLibraries"},
-        "UpdateEtlLibraries":{"shape":"BooleanValue"}
+        "UpdateEtlLibraries":{"shape":"BooleanValue"},
+        "DeleteArguments":{"shape":"StringList"},
+        "AddArguments":{"shape":"MapValue"}
       }
     },
     "UpdateDevEndpointResponse":{

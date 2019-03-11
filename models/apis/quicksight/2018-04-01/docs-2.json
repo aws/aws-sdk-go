@@ -7,6 +7,7 @@
     "DeleteGroup": "<p>Removes a user group from Amazon QuickSight. </p> <p>The permissions resource is <code>arn:aws:quicksight:us-east-1:<i>&lt;aws-account-id&gt;</i>:group/default/<i>&lt;group-name&gt;</i> </code>.</p> <p> <b>CLI Sample:</b> </p> <p> <code>aws quicksight delete-group -\\-aws-account-id=111122223333 -\\-namespace=default -\\-group-name=Sales-Management </code> </p>",
     "DeleteGroupMembership": "<p>Removes a user from a group so that the user is no longer a member of the group.</p> <p>The permissions resource is <code>arn:aws:quicksight:us-east-1:<i>&lt;aws-account-id&gt;</i>:group/default/<i>&lt;group-name&gt;</i> </code>.</p> <p>The condition resource is the user name.</p> <p>The condition key is <code>quicksight:UserName</code>.</p> <p> <b>CLI Sample:</b> </p> <p> <code>aws quicksight delete-group-membership --aws-account-id=111122223333 --namespace=default --group-name=Sales-Management --member-name=Charlie </code> </p>",
     "DeleteUser": "<p>Deletes the Amazon QuickSight user that is associated with the identity of the AWS Identity and Access Management (IAM) user or role that's making the call. The IAM user isn't deleted as a result of this call. </p> <p>The permission resource is <code>arn:aws:quicksight:us-east-1:<i>&lt;aws-account-id&gt;</i>:user/default/<i>&lt;user-name&gt; </i> </code>.</p> <p> <b>CLI Sample:</b> </p> <p> <code>aws quicksight delete-user --aws-account-id=111122223333 --namespace=default --user-name=Pat </code> </p>",
+    "DeleteUserByPrincipalId": "<p>Deletes a user after locating the user by its principal ID.</p>",
     "DescribeGroup": "<p>Returns an Amazon QuickSight group's description and Amazon Resource Name (ARN). </p> <p>The permissions resource is <code>arn:aws:quicksight:us-east-1:<i>&lt;relevant-aws-account-id&gt;</i>:group/default/<i>&lt;group-name&gt;</i> </code>.</p> <p>The response is the group object. </p> <p> <b>CLI Sample:</b> </p> <p> <code>aws quicksight describe-group -\\-aws-account-id=11112222333 -\\-namespace=default -\\-group-name=Sales </code> </p>",
     "DescribeUser": "<p>Returns information about a user, given the user name. </p> <p>The permission resource is <code>arn:aws:quicksight:us-east-1:<i>&lt;aws-account-id&gt;</i>:user/default/<i>&lt;user-name&gt;</i> </code>. </p> <p>The response is a user object that contains the user's Amazon Resource Name (ARN), AWS Identity and Access Management (IAM) role, and email address. </p> <p> <b>CLI Sample:</b> </p> <p> <code>aws quicksight describe-user --aws-account-id=111122223333 --namespace=default --user-name=Pat </code> </p>",
     "GetDashboardEmbedUrl": "<p>Generates a server-side embeddable URL and authorization code. Before this can work properly, first you need to configure the dashboards and user permissions. For more information, see <a href=\"https://docs.aws.amazon.com/en_us/quicksight/latest/user/embedding.html\"> Embedding Amazon QuickSight Dashboards</a>.</p> <p>Currently, you can use <code>GetDashboardEmbedURL</code> only from the server, not from the user’s browser.</p> <p> <b>CLI Sample:</b> </p> <p>Assume the role with permissions enabled for actions: <code>quickSight:RegisterUser</code> and <code>quicksight:GetDashboardEmbedURL</code>. You can use assume-role, assume-role-with-web-identity, or assume-role-with-saml. </p> <p> <code>aws sts assume-role --role-arn \"arn:aws:iam::111122223333:role/embedding_quicksight_dashboard_role\" --role-session-name embeddingsession</code> </p> <p>If the user does not exist in QuickSight, register the user:</p> <p> <code>aws quicksight register-user --aws-account-id 111122223333 --namespace default --identity-type IAM --iam-arn \"arn:aws:iam::111122223333:role/embedding_quicksight_dashboard_role\" --user-role READER --session-name \"embeddingsession\" --email user123@example.com --region us-east-1</code> </p> <p>Get the URL for the embedded dashboard</p> <p> <code>aws quicksight get-dashboard-embed-url --aws-account-id 111122223333 --dashboard-id 1a1ac2b2-3fc3-4b44-5e5d-c6db6778df89 --identity-type IAM</code> </p>",
@@ -39,6 +40,7 @@
         "CreateGroupRequest$AwsAccountId": "<p>The ID for the AWS account that the group is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.</p>",
         "DeleteGroupMembershipRequest$AwsAccountId": "<p>The ID for the AWS account that the group is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.</p>",
         "DeleteGroupRequest$AwsAccountId": "<p>The ID for the AWS account that the group is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.</p>",
+        "DeleteUserByPrincipalIdRequest$AwsAccountId": "<p>The ID for the AWS account that the user is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.</p>",
         "DeleteUserRequest$AwsAccountId": "<p>The ID for the AWS account that the user is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.</p>",
         "DescribeGroupRequest$AwsAccountId": "<p>The ID for the AWS account that the group is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.</p>",
         "DescribeUserRequest$AwsAccountId": "<p>The ID for the AWS account that the user is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.</p>",
@@ -94,6 +96,16 @@
       }
     },
     "DeleteGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteUserByPrincipalIdRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteUserByPrincipalIdResponse": {
       "base": null,
       "refs": {
       }
@@ -305,6 +317,7 @@
         "CreateGroupRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
         "DeleteGroupMembershipRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
         "DeleteGroupRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
+        "DeleteUserByPrincipalIdRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
         "DeleteUserRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
         "DescribeGroupRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
         "DescribeUserRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
@@ -352,6 +365,12 @@
       "refs": {
       }
     },
+    "RoleSessionName": {
+      "base": null,
+      "refs": {
+        "RegisterUserRequest$SessionName": "<p>The name of the session with the assumed IAM role. By using this parameter, you can register multiple users with the same IAM role, provided that each has a different session name. For more information on assuming IAM roles, see <a href=\"https://docs.aws.amazon.com/cli/latest/reference/sts/assume-role.html\"> <code>assume-role</code> </a> in the <i>AWS CLI Reference.</i> </p>"
+      }
+    },
     "SessionLifetimeInMinutes": {
       "base": null,
       "refs": {
@@ -370,6 +389,7 @@
         "CreateGroupResponse$Status": "<p>The http status of the request.</p>",
         "DeleteGroupMembershipResponse$Status": "<p>The http status of the request.</p>",
         "DeleteGroupResponse$Status": "<p>The http status of the request.</p>",
+        "DeleteUserByPrincipalIdResponse$Status": "<p>The http status of the request.</p>",
         "DeleteUserResponse$Status": "<p>The http status of the request.</p>",
         "DescribeGroupResponse$Status": "<p>The http status of the request.</p>",
         "DescribeUserResponse$Status": "<p>The http status of the request.</p>",
@@ -392,6 +412,8 @@
         "CreateGroupResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "DeleteGroupMembershipResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "DeleteGroupResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
+        "DeleteUserByPrincipalIdRequest$PrincipalId": "<p>The principal ID of the user.</p>",
+        "DeleteUserByPrincipalIdResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "DeleteUserResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "DescribeGroupResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "DescribeUserResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
@@ -399,6 +421,7 @@
         "DomainNotWhitelistedException$RequestId": "<p>The AWS request ID for this request.</p>",
         "GetDashboardEmbedUrlRequest$DashboardId": "<p>The ID for the dashboard, also added to IAM policy</p>",
         "GetDashboardEmbedUrlResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
+        "Group$PrincipalId": "<p>The principal ID of the group.</p>",
         "IdentityTypeNotSupportedException$Message": null,
         "IdentityTypeNotSupportedException$RequestId": "<p>The AWS request ID for this request.</p>",
         "InternalFailureException$Message": null,
@@ -427,7 +450,6 @@
         "QuickSightUserNotFoundException$RequestId": "<p>The AWS request ID for this request.</p>",
         "RegisterUserRequest$Email": "<p>The email address of the user that you want to register.</p>",
         "RegisterUserRequest$IamArn": "<p>The ARN of the IAM user or role that you are registering with Amazon QuickSight. </p>",
-        "RegisterUserRequest$SessionName": "<p>The name of the session with the assumed IAM role. By using this parameter, you can register multiple users with the same IAM role, provided that each has a different session name. For more information on assuming IAM roles, see <a href=\"https://docs.aws.amazon.com/cli/latest/reference/sts/assume-role.html\"> <code>assume-role</code> </a> in the <i>AWS CLI Reference.</i> </p>",
         "RegisterUserResponse$UserInvitationUrl": "<p>The URL the user visits to complete registration and provide a password. This is returned only for users with an identity type of <code>QUICKSIGHT</code>.</p>",
         "RegisterUserResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "ResourceExistsException$Message": null,
@@ -445,7 +467,8 @@
         "UpdateGroupResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "UpdateUserRequest$Email": "<p>The email address of the user that you want to update.</p>",
         "UpdateUserResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
-        "User$Email": "<p>The user's email address.</p>"
+        "User$Email": "<p>The user's email address.</p>",
+        "User$PrincipalId": "<p>The principal ID of the user.</p>"
       }
     },
     "ThrottlingException": {

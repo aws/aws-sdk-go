@@ -1,3 +1,24 @@
+Release v1.18.0 (2019-03-11)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API
+* `service/elasticbeanstalk`: Updates service API and documentation
+  * Elastic Beanstalk added support for tagging, and tag-based access control, of all Elastic Beanstalk resources.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/glue`: Updates service API and documentation
+  * CreateDevEndpoint and UpdateDevEndpoint now support Arguments to configure the DevEndpoint.
+* `service/iot`: Updates service documentation
+  * Documentation updates for iot
+* `service/quicksight`: Updates service API and documentation
+  * Amazon QuickSight user and group operation results now include group principal IDs and user principal IDs. This release also adds "DeleteUserByPrincipalId", which deletes users given their principal ID. The update also improves role session name validation.
+* `service/rekognition`: Updates service documentation
+  * Documentation updates for Amazon Rekognition
+
+### SDK Features
+* `service/kinesis`: Enable support for SubscribeToStream API operation ([#2402](https://github.com/aws/aws-sdk-go/pull/2402))
+  * Adds support for Kinesis's SubscribeToStream API operation. The API operation response type, `SubscribeToStreamOutput` member, EventStream has a method `Events` which returns a channel to read Kinesis record events from.
+
 Release v1.17.14 (2019-03-08)
 ===
 

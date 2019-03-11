@@ -1271,6 +1271,8 @@
         "ListJobsResponse$NextToken": "<p>A continuation token, if the returned list does not contain the last metric available.</p>",
         "ListTriggersRequest$NextToken": "<p>A continuation token, if this is a continuation request.</p>",
         "ListTriggersResponse$NextToken": "<p>A continuation token, if the returned list does not contain the last metric available.</p>",
+        "MapValue$key": null,
+        "MapValue$value": null,
         "PublicKeysList$member": null,
         "StringList$member": null,
         "Trigger$Schedule": "<p>A <code>cron</code> expression used to specify the schedule (see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html\">Time-Based Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15 UTC, you would specify: <code>cron(15 12 * * ? *)</code>.</p>",
@@ -1965,6 +1967,15 @@
       "base": null,
       "refs": {
         "Condition$LogicalOperator": "<p>A logical operator.</p>"
+      }
+    },
+    "MapValue": {
+      "base": null,
+      "refs": {
+        "CreateDevEndpointRequest$Arguments": "<p>A map of arguments used to configure the DevEndpoint.</p>",
+        "CreateDevEndpointResponse$Arguments": "<p>The map of arguments used to configure this DevEndpoint.</p>",
+        "DevEndpoint$Arguments": "<p>A map of arguments used to configure the DevEndpoint.</p> <p>Note that currently, we only support \"--enable-glue-datacatalog\": \"\" as a valid argument.</p>",
+        "UpdateDevEndpointRequest$AddArguments": "<p>The map of arguments to add the map of arguments used to configure the DevEndpoint.</p>"
       }
     },
     "MappingEntry": {
@@ -2744,7 +2755,8 @@
         "ConnectionsList$Connections": "<p>A list of connections used by the job.</p>",
         "CreateDevEndpointRequest$SecurityGroupIds": "<p>Security group IDs for the security groups to be used by the new DevEndpoint.</p>",
         "CreateDevEndpointResponse$SecurityGroupIds": "<p>The security groups assigned to the new DevEndpoint.</p>",
-        "DevEndpoint$SecurityGroupIds": "<p>A list of security group identifiers used in this DevEndpoint.</p>"
+        "DevEndpoint$SecurityGroupIds": "<p>A list of security group identifiers used in this DevEndpoint.</p>",
+        "UpdateDevEndpointRequest$DeleteArguments": "<p>The list of argument keys to be deleted from the map of arguments used to configure the DevEndpoint.</p>"
       }
     },
     "Table": {
