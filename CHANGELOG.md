@@ -1,3 +1,9 @@
+Release v1.18.1 (2019-03-12)
+===
+
+### Service Client Updates
+* `service/serverlessrepo`: Updates service API and documentation
+
 Release v1.18.0 (2019-03-11)
 ===
 
