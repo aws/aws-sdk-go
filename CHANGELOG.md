@@ -1,3 +1,11 @@
+Release v1.18.2 (2019-03-13)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API, documentation, and paginators
+* `service/logs`: Updates service documentation
+  * Documentation updates for logs
+
 Release v1.18.1 (2019-03-12)
 ===
 

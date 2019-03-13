@@ -120,6 +120,18 @@
         {"shape":"InvalidParameterValueException"}
       ]
     },
+    "DeleteRemediationConfiguration":{
+      "name":"DeleteRemediationConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteRemediationConfigurationRequest"},
+      "output":{"shape":"DeleteRemediationConfigurationResponse"},
+      "errors":[
+        {"shape":"NoSuchRemediationConfigurationException"}
+      ]
+    },
     "DeleteRetentionConfiguration":{
       "name":"DeleteRetentionConfiguration",
       "http":{
@@ -319,6 +331,27 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"InvalidNextTokenException"},
         {"shape":"InvalidLimitException"}
+      ]
+    },
+    "DescribeRemediationConfigurations":{
+      "name":"DescribeRemediationConfigurations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeRemediationConfigurationsRequest"},
+      "output":{"shape":"DescribeRemediationConfigurationsResponse"}
+    },
+    "DescribeRemediationExecutionStatus":{
+      "name":"DescribeRemediationExecutionStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeRemediationExecutionStatusRequest"},
+      "output":{"shape":"DescribeRemediationExecutionStatusResponse"},
+      "errors":[
+        {"shape":"NoSuchRemediationConfigurationException"}
       ]
     },
     "DescribeRetentionConfigurations":{
@@ -591,6 +624,19 @@
         {"shape":"NoSuchConfigRuleException"}
       ]
     },
+    "PutRemediationConfigurations":{
+      "name":"PutRemediationConfigurations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutRemediationConfigurationsRequest"},
+      "output":{"shape":"PutRemediationConfigurationsResponse"},
+      "errors":[
+        {"shape":"InsufficientPermissionsException"},
+        {"shape":"InvalidParameterValueException"}
+      ]
+    },
     "PutRetentionConfiguration":{
       "name":"PutRetentionConfiguration",
       "http":{
@@ -629,6 +675,19 @@
       "errors":[
         {"shape":"NoSuchConfigurationRecorderException"},
         {"shape":"NoAvailableDeliveryChannelException"}
+      ]
+    },
+    "StartRemediationExecution":{
+      "name":"StartRemediationExecution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartRemediationExecutionRequest"},
+      "output":{"shape":"StartRemediationExecutionResponse"},
+      "errors":[
+        {"shape":"InsufficientPermissionsException"},
+        {"shape":"NoSuchRemediationConfigurationException"}
       ]
     },
     "StopConfigurationRecorder":{
@@ -1213,6 +1272,19 @@
         "RequesterAwsRegion":{"shape":"AwsRegion"}
       }
     },
+    "DeleteRemediationConfigurationRequest":{
+      "type":"structure",
+      "required":["ConfigRuleName"],
+      "members":{
+        "ConfigRuleName":{"shape":"StringWithCharLimit64"},
+        "ResourceType":{"shape":"String"}
+      }
+    },
+    "DeleteRemediationConfigurationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteRetentionConfigurationRequest":{
       "type":"structure",
       "required":["RetentionConfigurationName"],
@@ -1463,6 +1535,36 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "DescribeRemediationConfigurationsRequest":{
+      "type":"structure",
+      "required":["ConfigRuleNames"],
+      "members":{
+        "ConfigRuleNames":{"shape":"ConfigRuleNames"}
+      }
+    },
+    "DescribeRemediationConfigurationsResponse":{
+      "type":"structure",
+      "members":{
+        "RemediationConfigurations":{"shape":"RemediationConfigurations"}
+      }
+    },
+    "DescribeRemediationExecutionStatusRequest":{
+      "type":"structure",
+      "required":["ConfigRuleName"],
+      "members":{
+        "ConfigRuleName":{"shape":"StringWithCharLimit64"},
+        "ResourceKeys":{"shape":"ResourceKeys"},
+        "Limit":{"shape":"Limit"},
+        "NextToken":{"shape":"StringWithCharLimit256"}
+      }
+    },
+    "DescribeRemediationExecutionStatusResponse":{
+      "type":"structure",
+      "members":{
+        "RemediationExecutionStatuses":{"shape":"RemediationExecutionStatuses"},
+        "NextToken":{"shape":"StringWithCharLimit256"}
+      }
+    },
     "DescribeRetentionConfigurationsRequest":{
       "type":"structure",
       "members":{
@@ -1542,6 +1644,17 @@
     "EventSource":{
       "type":"string",
       "enum":["aws.config"]
+    },
+    "FailedRemediationBatch":{
+      "type":"structure",
+      "members":{
+        "FailureMessage":{"shape":"String"},
+        "FailedItems":{"shape":"RemediationConfigurations"}
+      }
+    },
+    "FailedRemediationBatches":{
+      "type":"list",
+      "member":{"shape":"FailedRemediationBatch"}
     },
     "GetAggregateComplianceDetailsByConfigRuleRequest":{
       "type":"structure",
@@ -1977,6 +2090,12 @@
       },
       "exception":true
     },
+    "NoSuchRemediationConfigurationException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "NoSuchRetentionConfigurationException":{
       "type":"structure",
       "members":{
@@ -2097,6 +2216,19 @@
         "FailedEvaluations":{"shape":"Evaluations"}
       }
     },
+    "PutRemediationConfigurationsRequest":{
+      "type":"structure",
+      "required":["RemediationConfigurations"],
+      "members":{
+        "RemediationConfigurations":{"shape":"RemediationConfigurations"}
+      }
+    },
+    "PutRemediationConfigurationsResponse":{
+      "type":"structure",
+      "members":{
+        "FailedBatches":{"shape":"FailedRemediationBatches"}
+      }
+    },
     "PutRetentionConfigurationRequest":{
       "type":"structure",
       "required":["RetentionPeriodInDays"],
@@ -2156,6 +2288,91 @@
       "member":{"shape":"Relationship"}
     },
     "RelationshipName":{"type":"string"},
+    "RemediationConfiguration":{
+      "type":"structure",
+      "required":[
+        "ConfigRuleName",
+        "TargetType",
+        "TargetId"
+      ],
+      "members":{
+        "ConfigRuleName":{"shape":"StringWithCharLimit64"},
+        "TargetType":{"shape":"RemediationTargetType"},
+        "TargetId":{"shape":"StringWithCharLimit256"},
+        "TargetVersion":{"shape":"String"},
+        "Parameters":{"shape":"RemediationParameters"},
+        "ResourceType":{"shape":"String"}
+      }
+    },
+    "RemediationConfigurations":{
+      "type":"list",
+      "member":{"shape":"RemediationConfiguration"},
+      "max":25,
+      "min":0
+    },
+    "RemediationExecutionState":{
+      "type":"string",
+      "enum":[
+        "QUEUED",
+        "IN_PROGRESS",
+        "SUCCEEDED",
+        "FAILED"
+      ]
+    },
+    "RemediationExecutionStatus":{
+      "type":"structure",
+      "members":{
+        "ResourceKey":{"shape":"ResourceKey"},
+        "State":{"shape":"RemediationExecutionState"},
+        "StepDetails":{"shape":"RemediationExecutionSteps"},
+        "InvocationTime":{"shape":"Date"},
+        "LastUpdatedTime":{"shape":"Date"}
+      }
+    },
+    "RemediationExecutionStatuses":{
+      "type":"list",
+      "member":{"shape":"RemediationExecutionStatus"}
+    },
+    "RemediationExecutionStep":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"},
+        "State":{"shape":"RemediationExecutionStepState"},
+        "ErrorMessage":{"shape":"String"},
+        "StartTime":{"shape":"Date"},
+        "StopTime":{"shape":"Date"}
+      }
+    },
+    "RemediationExecutionStepState":{
+      "type":"string",
+      "enum":[
+        "SUCCEEDED",
+        "PENDING",
+        "FAILED"
+      ]
+    },
+    "RemediationExecutionSteps":{
+      "type":"list",
+      "member":{"shape":"RemediationExecutionStep"}
+    },
+    "RemediationParameterValue":{
+      "type":"structure",
+      "members":{
+        "ResourceValue":{"shape":"ResourceValue"},
+        "StaticValue":{"shape":"StaticValue"}
+      }
+    },
+    "RemediationParameters":{
+      "type":"map",
+      "key":{"shape":"StringWithCharLimit256"},
+      "value":{"shape":"RemediationParameterValue"},
+      "max":25,
+      "min":0
+    },
+    "RemediationTargetType":{
+      "type":"string",
+      "enum":["SSM_DOCUMENT"]
+    },
     "ResourceCount":{
       "type":"structure",
       "members":{
@@ -2331,6 +2548,16 @@
       "max":20,
       "min":0
     },
+    "ResourceValue":{
+      "type":"structure",
+      "members":{
+        "Value":{"shape":"ResourceValueType"}
+      }
+    },
+    "ResourceValueType":{
+      "type":"string",
+      "enum":["RESOURCE_ID"]
+    },
     "RetentionConfiguration":{
       "type":"structure",
       "required":[
@@ -2419,6 +2646,36 @@
       "required":["ConfigurationRecorderName"],
       "members":{
         "ConfigurationRecorderName":{"shape":"RecorderName"}
+      }
+    },
+    "StartRemediationExecutionRequest":{
+      "type":"structure",
+      "required":[
+        "ConfigRuleName",
+        "ResourceKeys"
+      ],
+      "members":{
+        "ConfigRuleName":{"shape":"StringWithCharLimit64"},
+        "ResourceKeys":{"shape":"ResourceKeys"}
+      }
+    },
+    "StartRemediationExecutionResponse":{
+      "type":"structure",
+      "members":{
+        "FailureMessage":{"shape":"String"},
+        "FailedItems":{"shape":"ResourceKeys"}
+      }
+    },
+    "StaticParameterValues":{
+      "type":"list",
+      "member":{"shape":"StringWithCharLimit256"},
+      "max":25,
+      "min":0
+    },
+    "StaticValue":{
+      "type":"structure",
+      "members":{
+        "Values":{"shape":"StaticParameterValues"}
       }
     },
     "StopConfigurationRecorderRequest":{
