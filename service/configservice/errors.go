@@ -193,6 +193,12 @@ const (
 	// You have specified a delivery channel that does not exist.
 	ErrCodeNoSuchDeliveryChannelException = "NoSuchDeliveryChannelException"
 
+	// ErrCodeNoSuchRemediationConfigurationException for service response error code
+	// "NoSuchRemediationConfigurationException".
+	//
+	// You have specified AWS config rule without a remediation configuration.
+	ErrCodeNoSuchRemediationConfigurationException = "NoSuchRemediationConfigurationException"
+
 	// ErrCodeNoSuchRetentionConfigurationException for service response error code
 	// "NoSuchRetentionConfigurationException".
 	//

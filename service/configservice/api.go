@@ -794,6 +794,86 @@ func (c *ConfigService) DeletePendingAggregationRequestWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
+const opDeleteRemediationConfiguration = "DeleteRemediationConfiguration"
+
+// DeleteRemediationConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteRemediationConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteRemediationConfiguration for more information on using the DeleteRemediationConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteRemediationConfigurationRequest method.
+//    req, resp := client.DeleteRemediationConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DeleteRemediationConfiguration
+func (c *ConfigService) DeleteRemediationConfigurationRequest(input *DeleteRemediationConfigurationInput) (req *request.Request, output *DeleteRemediationConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteRemediationConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteRemediationConfigurationInput{}
+	}
+
+	output = &DeleteRemediationConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteRemediationConfiguration API operation for AWS Config.
+//
+// Deletes the remediation configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation DeleteRemediationConfiguration for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNoSuchRemediationConfigurationException "NoSuchRemediationConfigurationException"
+//   You have specified AWS config rule without a remediation configuration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DeleteRemediationConfiguration
+func (c *ConfigService) DeleteRemediationConfiguration(input *DeleteRemediationConfigurationInput) (*DeleteRemediationConfigurationOutput, error) {
+	req, out := c.DeleteRemediationConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteRemediationConfigurationWithContext is the same as DeleteRemediationConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteRemediationConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DeleteRemediationConfigurationWithContext(ctx aws.Context, input *DeleteRemediationConfigurationInput, opts ...request.Option) (*DeleteRemediationConfigurationOutput, error) {
+	req, out := c.DeleteRemediationConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteRetentionConfiguration = "DeleteRetentionConfiguration"
 
 // DeleteRetentionConfigurationRequest generates a "aws/request.Request" representing the
@@ -1593,9 +1673,9 @@ func (c *ConfigService) DescribeConfigurationAggregatorSourcesStatusRequest(inpu
 // DescribeConfigurationAggregatorSourcesStatus API operation for AWS Config.
 //
 // Returns status information for sources within an aggregator. The status includes
-// information about the last time AWS Config aggregated data from source accounts
-// or AWS Config failed to aggregate data from source accounts with the related
-// error code or message.
+// information about the last time AWS Config verified authorization between
+// the source account and an aggregator account. In case of a failure, the status
+// contains the related error code or message.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2152,6 +2232,218 @@ func (c *ConfigService) DescribePendingAggregationRequestsWithContext(ctx aws.Co
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opDescribeRemediationConfigurations = "DescribeRemediationConfigurations"
+
+// DescribeRemediationConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeRemediationConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeRemediationConfigurations for more information on using the DescribeRemediationConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeRemediationConfigurationsRequest method.
+//    req, resp := client.DescribeRemediationConfigurationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeRemediationConfigurations
+func (c *ConfigService) DescribeRemediationConfigurationsRequest(input *DescribeRemediationConfigurationsInput) (req *request.Request, output *DescribeRemediationConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeRemediationConfigurations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeRemediationConfigurationsInput{}
+	}
+
+	output = &DescribeRemediationConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeRemediationConfigurations API operation for AWS Config.
+//
+// Returns the details of one or more remediation configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation DescribeRemediationConfigurations for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeRemediationConfigurations
+func (c *ConfigService) DescribeRemediationConfigurations(input *DescribeRemediationConfigurationsInput) (*DescribeRemediationConfigurationsOutput, error) {
+	req, out := c.DescribeRemediationConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeRemediationConfigurationsWithContext is the same as DescribeRemediationConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeRemediationConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DescribeRemediationConfigurationsWithContext(ctx aws.Context, input *DescribeRemediationConfigurationsInput, opts ...request.Option) (*DescribeRemediationConfigurationsOutput, error) {
+	req, out := c.DescribeRemediationConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeRemediationExecutionStatus = "DescribeRemediationExecutionStatus"
+
+// DescribeRemediationExecutionStatusRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeRemediationExecutionStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeRemediationExecutionStatus for more information on using the DescribeRemediationExecutionStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeRemediationExecutionStatusRequest method.
+//    req, resp := client.DescribeRemediationExecutionStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeRemediationExecutionStatus
+func (c *ConfigService) DescribeRemediationExecutionStatusRequest(input *DescribeRemediationExecutionStatusInput) (req *request.Request, output *DescribeRemediationExecutionStatusOutput) {
+	op := &request.Operation{
+		Name:       opDescribeRemediationExecutionStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeRemediationExecutionStatusInput{}
+	}
+
+	output = &DescribeRemediationExecutionStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeRemediationExecutionStatus API operation for AWS Config.
+//
+// Provides a detailed view of a Remediation Execution for a set of resources
+// including state, timestamps for when steps for the remediation execution
+// happen, and any error messages for steps that have failed. When you specify
+// the limit and the next token, you receive a paginated response.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation DescribeRemediationExecutionStatus for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNoSuchRemediationConfigurationException "NoSuchRemediationConfigurationException"
+//   You have specified AWS config rule without a remediation configuration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeRemediationExecutionStatus
+func (c *ConfigService) DescribeRemediationExecutionStatus(input *DescribeRemediationExecutionStatusInput) (*DescribeRemediationExecutionStatusOutput, error) {
+	req, out := c.DescribeRemediationExecutionStatusRequest(input)
+	return out, req.Send()
+}
+
+// DescribeRemediationExecutionStatusWithContext is the same as DescribeRemediationExecutionStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeRemediationExecutionStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DescribeRemediationExecutionStatusWithContext(ctx aws.Context, input *DescribeRemediationExecutionStatusInput, opts ...request.Option) (*DescribeRemediationExecutionStatusOutput, error) {
+	req, out := c.DescribeRemediationExecutionStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeRemediationExecutionStatusPages iterates over the pages of a DescribeRemediationExecutionStatus operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeRemediationExecutionStatus method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeRemediationExecutionStatus operation.
+//    pageNum := 0
+//    err := client.DescribeRemediationExecutionStatusPages(params,
+//        func(page *DescribeRemediationExecutionStatusOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) DescribeRemediationExecutionStatusPages(input *DescribeRemediationExecutionStatusInput, fn func(*DescribeRemediationExecutionStatusOutput, bool) bool) error {
+	return c.DescribeRemediationExecutionStatusPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeRemediationExecutionStatusPagesWithContext same as DescribeRemediationExecutionStatusPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DescribeRemediationExecutionStatusPagesWithContext(ctx aws.Context, input *DescribeRemediationExecutionStatusInput, fn func(*DescribeRemediationExecutionStatusOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeRemediationExecutionStatusInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeRemediationExecutionStatusRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*DescribeRemediationExecutionStatusOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opDescribeRetentionConfigurations = "DescribeRetentionConfigurations"
@@ -3578,7 +3870,7 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 //
 // If you are adding an AWS managed Config rule, specify the rule's identifier
 // for the SourceIdentifier key. To reference AWS managed Config rule identifiers,
-// see About AWS Managed Config Rules (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html).
+// see About AWS Managed Config Rules (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html).
 //
 // For any new rule that you add, specify the ConfigRuleName in the ConfigRule
 // object. Do not specify the ConfigRuleArn or the ConfigRuleId. These values
@@ -3588,14 +3880,14 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 // rule by ConfigRuleName, ConfigRuleId, or ConfigRuleArn in the ConfigRule
 // data type that you use in this request.
 //
-// The maximum number of rules that AWS Config supports is 50.
+// The maximum number of rules that AWS Config supports is 150.
 //
 // For information about requesting a rule limit increase, see AWS Config Limits
 // (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_config)
 // in the AWS General Reference Guide.
 //
 // For more information about developing and using AWS Config rules, see Evaluating
-// AWS Resource Configurations with AWS Config (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
+// AWS Resource Configurations with AWS Config (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
 // in the AWS Config Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4065,6 +4357,99 @@ func (c *ConfigService) PutEvaluationsWithContext(ctx aws.Context, input *PutEva
 	return out, req.Send()
 }
 
+const opPutRemediationConfigurations = "PutRemediationConfigurations"
+
+// PutRemediationConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the PutRemediationConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutRemediationConfigurations for more information on using the PutRemediationConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutRemediationConfigurationsRequest method.
+//    req, resp := client.PutRemediationConfigurationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutRemediationConfigurations
+func (c *ConfigService) PutRemediationConfigurationsRequest(input *PutRemediationConfigurationsInput) (req *request.Request, output *PutRemediationConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opPutRemediationConfigurations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutRemediationConfigurationsInput{}
+	}
+
+	output = &PutRemediationConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutRemediationConfigurations API operation for AWS Config.
+//
+// Adds or updates the remediation configuration with a specific AWS Config
+// rule with the selected target or action. The API creates the RemediationConfiguration
+// object for the AWS Config rule. AWS Config rule must already exist for you
+// to add a remeduation configuration. The target (SSM document) must exist
+// and have permissions to use the target.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation PutRemediationConfigurations for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInsufficientPermissionsException "InsufficientPermissionsException"
+//   Indicates one of the following errors:
+//
+//      * The rule cannot be created because the IAM role assigned to AWS Config
+//      lacks permissions to perform the config:Put* action.
+//
+//      * The AWS Lambda function cannot be invoked. Check the function ARN, and
+//      check the function's permissions.
+//
+//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   One or more of the specified parameters are invalid. Verify that your parameters
+//   are valid and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutRemediationConfigurations
+func (c *ConfigService) PutRemediationConfigurations(input *PutRemediationConfigurationsInput) (*PutRemediationConfigurationsOutput, error) {
+	req, out := c.PutRemediationConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// PutRemediationConfigurationsWithContext is the same as PutRemediationConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutRemediationConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) PutRemediationConfigurationsWithContext(ctx aws.Context, input *PutRemediationConfigurationsInput, opts ...request.Option) (*PutRemediationConfigurationsOutput, error) {
+	req, out := c.PutRemediationConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutRetentionConfiguration = "PutRetentionConfiguration"
 
 // PutRetentionConfigurationRequest generates a "aws/request.Request" representing the
@@ -4364,6 +4749,100 @@ func (c *ConfigService) StartConfigurationRecorder(input *StartConfigurationReco
 // for more information on using Contexts.
 func (c *ConfigService) StartConfigurationRecorderWithContext(ctx aws.Context, input *StartConfigurationRecorderInput, opts ...request.Option) (*StartConfigurationRecorderOutput, error) {
 	req, out := c.StartConfigurationRecorderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartRemediationExecution = "StartRemediationExecution"
+
+// StartRemediationExecutionRequest generates a "aws/request.Request" representing the
+// client's request for the StartRemediationExecution operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartRemediationExecution for more information on using the StartRemediationExecution
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartRemediationExecutionRequest method.
+//    req, resp := client.StartRemediationExecutionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/StartRemediationExecution
+func (c *ConfigService) StartRemediationExecutionRequest(input *StartRemediationExecutionInput) (req *request.Request, output *StartRemediationExecutionOutput) {
+	op := &request.Operation{
+		Name:       opStartRemediationExecution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartRemediationExecutionInput{}
+	}
+
+	output = &StartRemediationExecutionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartRemediationExecution API operation for AWS Config.
+//
+// Runs an on-demand remediation for the specified AWS Config rules against
+// the last known remediation configuration. It runs an execution against the
+// current state of your resources. Remediation execution is asynchronous.
+//
+// You can specify up to 100 resource keys per request. An existing StartRemediationExecution
+// call for the specified resource keys must complete before you can call the
+// API again.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation StartRemediationExecution for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInsufficientPermissionsException "InsufficientPermissionsException"
+//   Indicates one of the following errors:
+//
+//      * The rule cannot be created because the IAM role assigned to AWS Config
+//      lacks permissions to perform the config:Put* action.
+//
+//      * The AWS Lambda function cannot be invoked. Check the function ARN, and
+//      check the function's permissions.
+//
+//   * ErrCodeNoSuchRemediationConfigurationException "NoSuchRemediationConfigurationException"
+//   You have specified AWS config rule without a remediation configuration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/StartRemediationExecution
+func (c *ConfigService) StartRemediationExecution(input *StartRemediationExecutionInput) (*StartRemediationExecutionOutput, error) {
+	req, out := c.StartRemediationExecutionRequest(input)
+	return out, req.Send()
+}
+
+// StartRemediationExecutionWithContext is the same as StartRemediationExecution with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartRemediationExecution for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) StartRemediationExecutionWithContext(ctx aws.Context, input *StartRemediationExecutionInput, opts ...request.Option) (*StartRemediationExecutionOutput, error) {
+	req, out := c.StartRemediationExecutionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5583,7 +6062,7 @@ func (s *ConfigExportDeliveryInfo) SetNextDeliveryTime(v time.Time) *ConfigExpor
 // snapshot. For more information, see ConfigSnapshotDeliveryProperties.
 //
 // For more information about developing and using AWS Config rules, see Evaluating
-// AWS Resource Configurations with AWS Config (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
+// AWS Resource Configurations with AWS Config (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
 // in the AWS Config Developer Guide.
 type ConfigRule struct {
 	_ struct{} `type:"structure"`
@@ -6080,7 +6559,7 @@ type ConfigStreamDeliveryInfo struct {
 
 	// Status of the last attempted delivery.
 	//
-	// Note Providing an SNS topic on a DeliveryChannel (http://docs.aws.amazon.com/config/latest/APIReference/API_DeliveryChannel.html)
+	// Note Providing an SNS topic on a DeliveryChannel (https://docs.aws.amazon.com/config/latest/APIReference/API_DeliveryChannel.html)
 	// for AWS Config is optional. If the SNS delivery is turned off, the last status
 	// will be Not_Applicable.
 	LastStatus *string `locationName:"lastStatus" type:"string" enum:"DeliveryStatus"`
@@ -6232,7 +6711,7 @@ type ConfigurationItem struct {
 	//
 	// A populated field indicates that the current configuration was initiated
 	// by the events recorded in the CloudTrail log. For more information about
-	// CloudTrail, see What Is AWS CloudTrail (http://docs.aws.amazon.com/awscloudtrail/latest/userguide/what_is_cloud_trail_top_level.html).
+	// CloudTrail, see What Is AWS CloudTrail (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/what_is_cloud_trail_top_level.html).
 	//
 	// An empty field indicates that the current configuration was not initiated
 	// by any event.
@@ -6950,6 +7429,71 @@ func (s DeletePendingAggregationRequestOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteRemediationConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the AWS Config rule for which you want to delete remediation
+	// configuration for.
+	//
+	// ConfigRuleName is a required field
+	ConfigRuleName *string `min:"1" type:"string" required:"true"`
+
+	// The type of a resource.
+	ResourceType *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteRemediationConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRemediationConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteRemediationConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteRemediationConfigurationInput"}
+	if s.ConfigRuleName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigRuleName"))
+	}
+	if s.ConfigRuleName != nil && len(*s.ConfigRuleName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigRuleName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigRuleName sets the ConfigRuleName field's value.
+func (s *DeleteRemediationConfigurationInput) SetConfigRuleName(v string) *DeleteRemediationConfigurationInput {
+	s.ConfigRuleName = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *DeleteRemediationConfigurationInput) SetResourceType(v string) *DeleteRemediationConfigurationInput {
+	s.ResourceType = &v
+	return s
+}
+
+type DeleteRemediationConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteRemediationConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRemediationConfigurationOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteRetentionConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7092,7 +7636,7 @@ type DeliveryChannel struct {
 	//
 	// If you specify a bucket that belongs to another AWS account, that bucket
 	// must have policies that grant access permissions to AWS Config. For more
-	// information, see Permissions for the Amazon S3 Bucket (http://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-policy.html)
+	// information, see Permissions for the Amazon S3 Bucket (https://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-policy.html)
 	// in the AWS Config Developer Guide.
 	S3BucketName *string `locationName:"s3BucketName" type:"string"`
 
@@ -7104,7 +7648,7 @@ type DeliveryChannel struct {
 	//
 	// If you choose a topic from another account, the topic must have policies
 	// that grant access permissions to AWS Config. For more information, see Permissions
-	// for the Amazon SNS Topic (http://docs.aws.amazon.com/config/latest/developerguide/sns-topic-policy.html)
+	// for the Amazon SNS Topic (https://docs.aws.amazon.com/config/latest/developerguide/sns-topic-policy.html)
 	// in the AWS Config Developer Guide.
 	SnsTopicARN *string `locationName:"snsTopicARN" type:"string"`
 }
@@ -7399,7 +7943,7 @@ type DescribeComplianceByConfigRuleInput struct {
 
 	// Filters the results by compliance.
 	//
-	// The allowed values are COMPLIANT, NON_COMPLIANT, and INSUFFICIENT_DATA.
+	// The allowed values are COMPLIANT and NON_COMPLIANT.
 	ComplianceTypes []*string `type:"list"`
 
 	// Specify one or more AWS Config rule names to filter the results by rule.
@@ -7476,7 +8020,7 @@ type DescribeComplianceByResourceInput struct {
 
 	// Filters the results by compliance.
 	//
-	// The allowed values are COMPLIANT and NON_COMPLIANT.
+	// The allowed values are COMPLIANT, NON_COMPLIANT, and INSUFFICIENT_DATA.
 	ComplianceTypes []*string `type:"list"`
 
 	// The maximum number of evaluation results returned on each page. The default
@@ -8189,6 +8733,187 @@ func (s *DescribePendingAggregationRequestsOutput) SetPendingAggregationRequests
 	return s
 }
 
+type DescribeRemediationConfigurationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of AWS Config rule names of remediation configurations for which you
+	// want details.
+	//
+	// ConfigRuleNames is a required field
+	ConfigRuleNames []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeRemediationConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeRemediationConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeRemediationConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeRemediationConfigurationsInput"}
+	if s.ConfigRuleNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigRuleNames"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigRuleNames sets the ConfigRuleNames field's value.
+func (s *DescribeRemediationConfigurationsInput) SetConfigRuleNames(v []*string) *DescribeRemediationConfigurationsInput {
+	s.ConfigRuleNames = v
+	return s
+}
+
+type DescribeRemediationConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns a remediation configuration object.
+	RemediationConfigurations []*RemediationConfiguration `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeRemediationConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeRemediationConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetRemediationConfigurations sets the RemediationConfigurations field's value.
+func (s *DescribeRemediationConfigurationsOutput) SetRemediationConfigurations(v []*RemediationConfiguration) *DescribeRemediationConfigurationsOutput {
+	s.RemediationConfigurations = v
+	return s
+}
+
+type DescribeRemediationExecutionStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of config rule names.
+	//
+	// ConfigRuleName is a required field
+	ConfigRuleName *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of RemediationExecutionStatuses returned on each page.
+	// The default is maximum. If you specify 0, AWS Config uses the default.
+	Limit *int64 `type:"integer"`
+
+	// The nextToken string returned on a previous page that you use to get the
+	// next page of results in a paginated response.
+	NextToken *string `min:"1" type:"string"`
+
+	// A list of resource keys object.
+	ResourceKeys []*ResourceKey `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeRemediationExecutionStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeRemediationExecutionStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeRemediationExecutionStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeRemediationExecutionStatusInput"}
+	if s.ConfigRuleName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigRuleName"))
+	}
+	if s.ConfigRuleName != nil && len(*s.ConfigRuleName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigRuleName", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.ResourceKeys != nil && len(s.ResourceKeys) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceKeys", 1))
+	}
+	if s.ResourceKeys != nil {
+		for i, v := range s.ResourceKeys {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ResourceKeys", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigRuleName sets the ConfigRuleName field's value.
+func (s *DescribeRemediationExecutionStatusInput) SetConfigRuleName(v string) *DescribeRemediationExecutionStatusInput {
+	s.ConfigRuleName = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *DescribeRemediationExecutionStatusInput) SetLimit(v int64) *DescribeRemediationExecutionStatusInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeRemediationExecutionStatusInput) SetNextToken(v string) *DescribeRemediationExecutionStatusInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceKeys sets the ResourceKeys field's value.
+func (s *DescribeRemediationExecutionStatusInput) SetResourceKeys(v []*ResourceKey) *DescribeRemediationExecutionStatusInput {
+	s.ResourceKeys = v
+	return s
+}
+
+type DescribeRemediationExecutionStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The nextToken string returned on a previous page that you use to get the
+	// next page of results in a paginated response.
+	NextToken *string `min:"1" type:"string"`
+
+	// Returns a list of remediation execution statuses object.
+	RemediationExecutionStatuses []*RemediationExecutionStatus `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeRemediationExecutionStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeRemediationExecutionStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeRemediationExecutionStatusOutput) SetNextToken(v string) *DescribeRemediationExecutionStatusOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRemediationExecutionStatuses sets the RemediationExecutionStatuses field's value.
+func (s *DescribeRemediationExecutionStatusOutput) SetRemediationExecutionStatuses(v []*RemediationExecutionStatus) *DescribeRemediationExecutionStatusOutput {
+	s.RemediationExecutionStatuses = v
+	return s
+}
+
 type DescribeRetentionConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8529,6 +9254,39 @@ func (s *EvaluationResultQualifier) SetResourceId(v string) *EvaluationResultQua
 // SetResourceType sets the ResourceType field's value.
 func (s *EvaluationResultQualifier) SetResourceType(v string) *EvaluationResultQualifier {
 	s.ResourceType = &v
+	return s
+}
+
+// List of each of the failed remediation with specific reasons.
+type FailedRemediationBatch struct {
+	_ struct{} `type:"structure"`
+
+	// Returns remediation configurations of the failed items.
+	FailedItems []*RemediationConfiguration `type:"list"`
+
+	// Returns a failure message. For example, the resource is compliant.
+	FailureMessage *string `type:"string"`
+}
+
+// String returns the string representation
+func (s FailedRemediationBatch) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FailedRemediationBatch) GoString() string {
+	return s.String()
+}
+
+// SetFailedItems sets the FailedItems field's value.
+func (s *FailedRemediationBatch) SetFailedItems(v []*RemediationConfiguration) *FailedRemediationBatch {
+	s.FailedItems = v
+	return s
+}
+
+// SetFailureMessage sets the FailureMessage field's value.
+func (s *FailedRemediationBatch) SetFailureMessage(v string) *FailedRemediationBatch {
+	s.FailureMessage = &v
 	return s
 }
 
@@ -10428,6 +11186,77 @@ func (s *PutEvaluationsOutput) SetFailedEvaluations(v []*Evaluation) *PutEvaluat
 	return s
 }
 
+type PutRemediationConfigurationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of remediation configuration objects.
+	//
+	// RemediationConfigurations is a required field
+	RemediationConfigurations []*RemediationConfiguration `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s PutRemediationConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutRemediationConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutRemediationConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutRemediationConfigurationsInput"}
+	if s.RemediationConfigurations == nil {
+		invalidParams.Add(request.NewErrParamRequired("RemediationConfigurations"))
+	}
+	if s.RemediationConfigurations != nil {
+		for i, v := range s.RemediationConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RemediationConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRemediationConfigurations sets the RemediationConfigurations field's value.
+func (s *PutRemediationConfigurationsInput) SetRemediationConfigurations(v []*RemediationConfiguration) *PutRemediationConfigurationsInput {
+	s.RemediationConfigurations = v
+	return s
+}
+
+type PutRemediationConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns a list of failed remediation batch objects.
+	FailedBatches []*FailedRemediationBatch `type:"list"`
+}
+
+// String returns the string representation
+func (s PutRemediationConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutRemediationConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetFailedBatches sets the FailedBatches field's value.
+func (s *PutRemediationConfigurationsOutput) SetFailedBatches(v []*FailedRemediationBatch) *PutRemediationConfigurationsOutput {
+	s.FailedBatches = v
+	return s
+}
+
 type PutRetentionConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10521,9 +11350,9 @@ func (s *PutRetentionConfigurationOutput) SetRetentionConfiguration(v *Retention
 // If you don't want AWS Config to record all resources, you can specify which
 // types of resources it will record with the resourceTypes parameter.
 //
-// For a list of supported resource types, see Supported Resource Types (http://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources).
+// For a list of supported resource types, see Supported Resource Types (https://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources).
 //
-// For more information, see Selecting Which Resources AWS Config Records (http://docs.aws.amazon.com/config/latest/developerguide/select-resources.html).
+// For more information, see Selecting Which Resources AWS Config Records (https://docs.aws.amazon.com/config/latest/developerguide/select-resources.html).
 type RecordingGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -10562,7 +11391,7 @@ type RecordingGroup struct {
 	// add that type to your recording group.
 	//
 	// For a list of valid resourceTypes values, see the resourceType Value column
-	// in Supported AWS Resource Types (http://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources).
+	// in Supported AWS Resource Types (https://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources).
 	ResourceTypes []*string `locationName:"resourceTypes" type:"list"`
 }
 
@@ -10642,6 +11471,264 @@ func (s *Relationship) SetResourceName(v string) *Relationship {
 // SetResourceType sets the ResourceType field's value.
 func (s *Relationship) SetResourceType(v string) *Relationship {
 	s.ResourceType = &v
+	return s
+}
+
+// An object that represents the details about the remediation configuration
+// that includes the remediation action, parameters, and data to execute the
+// action.
+type RemediationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the AWS Config rule.
+	//
+	// ConfigRuleName is a required field
+	ConfigRuleName *string `min:"1" type:"string" required:"true"`
+
+	// An object of the RemediationParameterValue.
+	Parameters map[string]*RemediationParameterValue `type:"map"`
+
+	// The type of a resource.
+	ResourceType *string `type:"string"`
+
+	// Public ID is document.
+	//
+	// TargetId is a required field
+	TargetId *string `min:"1" type:"string" required:"true"`
+
+	// The type of the target. Target executes remediation. For example, SSM document.
+	//
+	// TargetType is a required field
+	TargetType *string `type:"string" required:"true" enum:"RemediationTargetType"`
+
+	// Version of the target. For example, version of the SSM document.
+	TargetVersion *string `type:"string"`
+}
+
+// String returns the string representation
+func (s RemediationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemediationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemediationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemediationConfiguration"}
+	if s.ConfigRuleName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigRuleName"))
+	}
+	if s.ConfigRuleName != nil && len(*s.ConfigRuleName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigRuleName", 1))
+	}
+	if s.TargetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetId"))
+	}
+	if s.TargetId != nil && len(*s.TargetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetId", 1))
+	}
+	if s.TargetType == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigRuleName sets the ConfigRuleName field's value.
+func (s *RemediationConfiguration) SetConfigRuleName(v string) *RemediationConfiguration {
+	s.ConfigRuleName = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *RemediationConfiguration) SetParameters(v map[string]*RemediationParameterValue) *RemediationConfiguration {
+	s.Parameters = v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *RemediationConfiguration) SetResourceType(v string) *RemediationConfiguration {
+	s.ResourceType = &v
+	return s
+}
+
+// SetTargetId sets the TargetId field's value.
+func (s *RemediationConfiguration) SetTargetId(v string) *RemediationConfiguration {
+	s.TargetId = &v
+	return s
+}
+
+// SetTargetType sets the TargetType field's value.
+func (s *RemediationConfiguration) SetTargetType(v string) *RemediationConfiguration {
+	s.TargetType = &v
+	return s
+}
+
+// SetTargetVersion sets the TargetVersion field's value.
+func (s *RemediationConfiguration) SetTargetVersion(v string) *RemediationConfiguration {
+	s.TargetVersion = &v
+	return s
+}
+
+// Provides details of the current status of the invoked remediation action
+// for that resource.
+type RemediationExecutionStatus struct {
+	_ struct{} `type:"structure"`
+
+	// Start time when the remediation was executed.
+	InvocationTime *time.Time `type:"timestamp"`
+
+	// The time when the remediation execution was last updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// The details that identify a resource within AWS Config, including the resource
+	// type and resource ID.
+	ResourceKey *ResourceKey `type:"structure"`
+
+	// ENUM of the values.
+	State *string `type:"string" enum:"RemediationExecutionState"`
+
+	// Details of every step.
+	StepDetails []*RemediationExecutionStep `type:"list"`
+}
+
+// String returns the string representation
+func (s RemediationExecutionStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemediationExecutionStatus) GoString() string {
+	return s.String()
+}
+
+// SetInvocationTime sets the InvocationTime field's value.
+func (s *RemediationExecutionStatus) SetInvocationTime(v time.Time) *RemediationExecutionStatus {
+	s.InvocationTime = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *RemediationExecutionStatus) SetLastUpdatedTime(v time.Time) *RemediationExecutionStatus {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetResourceKey sets the ResourceKey field's value.
+func (s *RemediationExecutionStatus) SetResourceKey(v *ResourceKey) *RemediationExecutionStatus {
+	s.ResourceKey = v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *RemediationExecutionStatus) SetState(v string) *RemediationExecutionStatus {
+	s.State = &v
+	return s
+}
+
+// SetStepDetails sets the StepDetails field's value.
+func (s *RemediationExecutionStatus) SetStepDetails(v []*RemediationExecutionStep) *RemediationExecutionStatus {
+	s.StepDetails = v
+	return s
+}
+
+// Name of the step from the SSM document.
+type RemediationExecutionStep struct {
+	_ struct{} `type:"structure"`
+
+	// An error message if the step was interupted during execution.
+	ErrorMessage *string `type:"string"`
+
+	// The details of the step.
+	Name *string `type:"string"`
+
+	// The time when the step started.
+	StartTime *time.Time `type:"timestamp"`
+
+	// The valid status of the step.
+	State *string `type:"string" enum:"RemediationExecutionStepState"`
+
+	// The time when the step stopped.
+	StopTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s RemediationExecutionStep) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemediationExecutionStep) GoString() string {
+	return s.String()
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *RemediationExecutionStep) SetErrorMessage(v string) *RemediationExecutionStep {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RemediationExecutionStep) SetName(v string) *RemediationExecutionStep {
+	s.Name = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *RemediationExecutionStep) SetStartTime(v time.Time) *RemediationExecutionStep {
+	s.StartTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *RemediationExecutionStep) SetState(v string) *RemediationExecutionStep {
+	s.State = &v
+	return s
+}
+
+// SetStopTime sets the StopTime field's value.
+func (s *RemediationExecutionStep) SetStopTime(v time.Time) *RemediationExecutionStep {
+	s.StopTime = &v
+	return s
+}
+
+// The value is either a dynamic (resource) value or a static value. You must
+// select either a dynamic value or a static value.
+type RemediationParameterValue struct {
+	_ struct{} `type:"structure"`
+
+	// The value is dynamic and changes at run-time.
+	ResourceValue *ResourceValue `type:"structure"`
+
+	// The value is static and does not change at run-time.
+	StaticValue *StaticValue `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemediationParameterValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemediationParameterValue) GoString() string {
+	return s.String()
+}
+
+// SetResourceValue sets the ResourceValue field's value.
+func (s *RemediationParameterValue) SetResourceValue(v *ResourceValue) *RemediationParameterValue {
+	s.ResourceValue = v
+	return s
+}
+
+// SetStaticValue sets the StaticValue field's value.
+func (s *RemediationParameterValue) SetStaticValue(v *StaticValue) *RemediationParameterValue {
+	s.StaticValue = v
 	return s
 }
 
@@ -10910,6 +11997,30 @@ func (s *ResourceKey) SetResourceType(v string) *ResourceKey {
 	return s
 }
 
+// The dynamic value of the resource.
+type ResourceValue struct {
+	_ struct{} `type:"structure"`
+
+	// The value is a resource ID.
+	Value *string `type:"string" enum:"ResourceValueType"`
+}
+
+// String returns the string representation
+func (s ResourceValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceValue) GoString() string {
+	return s.String()
+}
+
+// SetValue sets the Value field's value.
+func (s *ResourceValue) SetValue(v string) *ResourceValue {
+	s.Value = &v
+	return s
+}
+
 // An object with the name of the retention configuration and the retention
 // period in days. The object stores the configuration for data retention in
 // AWS Config.
@@ -11049,7 +12160,7 @@ type Source struct {
 
 	// For AWS Config managed rules, a predefined identifier from a list. For example,
 	// IAM_PASSWORD_POLICY is a managed rule. To reference a managed rule, see Using
-	// AWS Managed Config Rules (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html).
+	// AWS Managed Config Rules (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html).
 	//
 	// For custom rules, the identifier is the Amazon Resource Name (ARN) of the
 	// rule's AWS Lambda function, such as arn:aws:lambda:us-east-2:123456789012:function:custom_rule_name.
@@ -11290,6 +12401,132 @@ func (s StartConfigurationRecorderOutput) GoString() string {
 	return s.String()
 }
 
+type StartRemediationExecutionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of names of AWS Config rules that you want to run remediation execution
+	// for.
+	//
+	// ConfigRuleName is a required field
+	ConfigRuleName *string `min:"1" type:"string" required:"true"`
+
+	// A list of resource key object.
+	//
+	// ResourceKeys is a required field
+	ResourceKeys []*ResourceKey `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s StartRemediationExecutionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartRemediationExecutionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartRemediationExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartRemediationExecutionInput"}
+	if s.ConfigRuleName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigRuleName"))
+	}
+	if s.ConfigRuleName != nil && len(*s.ConfigRuleName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigRuleName", 1))
+	}
+	if s.ResourceKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceKeys"))
+	}
+	if s.ResourceKeys != nil && len(s.ResourceKeys) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceKeys", 1))
+	}
+	if s.ResourceKeys != nil {
+		for i, v := range s.ResourceKeys {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ResourceKeys", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigRuleName sets the ConfigRuleName field's value.
+func (s *StartRemediationExecutionInput) SetConfigRuleName(v string) *StartRemediationExecutionInput {
+	s.ConfigRuleName = &v
+	return s
+}
+
+// SetResourceKeys sets the ResourceKeys field's value.
+func (s *StartRemediationExecutionInput) SetResourceKeys(v []*ResourceKey) *StartRemediationExecutionInput {
+	s.ResourceKeys = v
+	return s
+}
+
+type StartRemediationExecutionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// For resources that have failed to start execuition the API returns a resource
+	// key object.
+	FailedItems []*ResourceKey `min:"1" type:"list"`
+
+	// Returns a failure message. For example, the resource is compliant.
+	FailureMessage *string `type:"string"`
+}
+
+// String returns the string representation
+func (s StartRemediationExecutionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartRemediationExecutionOutput) GoString() string {
+	return s.String()
+}
+
+// SetFailedItems sets the FailedItems field's value.
+func (s *StartRemediationExecutionOutput) SetFailedItems(v []*ResourceKey) *StartRemediationExecutionOutput {
+	s.FailedItems = v
+	return s
+}
+
+// SetFailureMessage sets the FailureMessage field's value.
+func (s *StartRemediationExecutionOutput) SetFailureMessage(v string) *StartRemediationExecutionOutput {
+	s.FailureMessage = &v
+	return s
+}
+
+// The static value of the resource.
+type StaticValue struct {
+	_ struct{} `type:"structure"`
+
+	// A list of values. For example, the ARN of the assumed role.
+	Values []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s StaticValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StaticValue) GoString() string {
+	return s.String()
+}
+
+// SetValues sets the Values field's value.
+func (s *StaticValue) SetValues(v []*string) *StaticValue {
+	s.Values = v
+	return s
+}
+
 // The input for the StopConfigurationRecorder action.
 type StopConfigurationRecorderInput struct {
 	_ struct{} `type:"structure"`
@@ -11491,6 +12728,36 @@ const (
 
 	// RecorderStatusFailure is a RecorderStatus enum value
 	RecorderStatusFailure = "Failure"
+)
+
+const (
+	// RemediationExecutionStateQueued is a RemediationExecutionState enum value
+	RemediationExecutionStateQueued = "QUEUED"
+
+	// RemediationExecutionStateInProgress is a RemediationExecutionState enum value
+	RemediationExecutionStateInProgress = "IN_PROGRESS"
+
+	// RemediationExecutionStateSucceeded is a RemediationExecutionState enum value
+	RemediationExecutionStateSucceeded = "SUCCEEDED"
+
+	// RemediationExecutionStateFailed is a RemediationExecutionState enum value
+	RemediationExecutionStateFailed = "FAILED"
+)
+
+const (
+	// RemediationExecutionStepStateSucceeded is a RemediationExecutionStepState enum value
+	RemediationExecutionStepStateSucceeded = "SUCCEEDED"
+
+	// RemediationExecutionStepStatePending is a RemediationExecutionStepState enum value
+	RemediationExecutionStepStatePending = "PENDING"
+
+	// RemediationExecutionStepStateFailed is a RemediationExecutionStepState enum value
+	RemediationExecutionStepStateFailed = "FAILED"
+)
+
+const (
+	// RemediationTargetTypeSsmDocument is a RemediationTargetType enum value
+	RemediationTargetTypeSsmDocument = "SSM_DOCUMENT"
 )
 
 const (
@@ -11696,4 +12963,9 @@ const (
 
 	// ResourceTypeAwsCodePipelinePipeline is a ResourceType enum value
 	ResourceTypeAwsCodePipelinePipeline = "AWS::CodePipeline::Pipeline"
+)
+
+const (
+	// ResourceValueTypeResourceId is a ResourceValueType enum value
+	ResourceValueTypeResourceId = "RESOURCE_ID"
 )
