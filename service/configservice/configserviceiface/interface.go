@@ -226,6 +226,10 @@ type ConfigServiceAPI interface {
 	ListDiscoveredResourcesWithContext(aws.Context, *configservice.ListDiscoveredResourcesInput, ...request.Option) (*configservice.ListDiscoveredResourcesOutput, error)
 	ListDiscoveredResourcesRequest(*configservice.ListDiscoveredResourcesInput) (*request.Request, *configservice.ListDiscoveredResourcesOutput)
 
+	ListTagsForResource(*configservice.ListTagsForResourceInput) (*configservice.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *configservice.ListTagsForResourceInput, ...request.Option) (*configservice.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*configservice.ListTagsForResourceInput) (*request.Request, *configservice.ListTagsForResourceOutput)
+
 	PutAggregationAuthorization(*configservice.PutAggregationAuthorizationInput) (*configservice.PutAggregationAuthorizationOutput, error)
 	PutAggregationAuthorizationWithContext(aws.Context, *configservice.PutAggregationAuthorizationInput, ...request.Option) (*configservice.PutAggregationAuthorizationOutput, error)
 	PutAggregationAuthorizationRequest(*configservice.PutAggregationAuthorizationInput) (*request.Request, *configservice.PutAggregationAuthorizationOutput)
@@ -273,6 +277,14 @@ type ConfigServiceAPI interface {
 	StopConfigurationRecorder(*configservice.StopConfigurationRecorderInput) (*configservice.StopConfigurationRecorderOutput, error)
 	StopConfigurationRecorderWithContext(aws.Context, *configservice.StopConfigurationRecorderInput, ...request.Option) (*configservice.StopConfigurationRecorderOutput, error)
 	StopConfigurationRecorderRequest(*configservice.StopConfigurationRecorderInput) (*request.Request, *configservice.StopConfigurationRecorderOutput)
+
+	TagResource(*configservice.TagResourceInput) (*configservice.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *configservice.TagResourceInput, ...request.Option) (*configservice.TagResourceOutput, error)
+	TagResourceRequest(*configservice.TagResourceInput) (*request.Request, *configservice.TagResourceOutput)
+
+	UntagResource(*configservice.UntagResourceInput) (*configservice.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *configservice.UntagResourceInput, ...request.Option) (*configservice.UntagResourceOutput, error)
+	UntagResourceRequest(*configservice.UntagResourceInput) (*request.Request, *configservice.UntagResourceOutput)
 }
 
 var _ ConfigServiceAPI = (*configservice.ConfigService)(nil)

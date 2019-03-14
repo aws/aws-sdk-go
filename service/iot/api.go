@@ -2530,10 +2530,7 @@ func (c *IoT) CreateThingRequest(input *CreateThingInput) (req *request.Request,
 
 // CreateThing API operation for AWS IoT.
 //
-// Creates a thing record in the registry. If this call is made multiple times
-// using the same thing name and configuration, the call will succeed. If this
-// call is made with the same thing name but different configuration a ResourceAlreadyExistsException
-// is thrown.
+// Creates a thing record in the registry.
 //
 // This is a control plane operation. See Authorization (https://docs.aws.amazon.com/iot/latest/developerguide/authorization.html)
 // for information about authorizing control plane actions.
@@ -18938,6 +18935,9 @@ type CreateOTAUpdateInput struct {
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"20" type:"string" required:"true"`
 
+	// Metadata which can be used to manage updates.
+	Tags []*Tag `locationName:"tags" type:"list"`
+
 	// Specifies whether the update will continue to run (CONTINUOUS), or will be
 	// complete after all the things specified as targets have completed the update
 	// (SNAPSHOT). If continuous, the update may also be run on a thing when a change
@@ -19044,6 +19044,12 @@ func (s *CreateOTAUpdateInput) SetOtaUpdateId(v string) *CreateOTAUpdateInput {
 // SetRoleArn sets the RoleArn field's value.
 func (s *CreateOTAUpdateInput) SetRoleArn(v string) *CreateOTAUpdateInput {
 	s.RoleArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateOTAUpdateInput) SetTags(v []*Tag) *CreateOTAUpdateInput {
+	s.Tags = v
 	return s
 }
 
@@ -19740,6 +19746,9 @@ type CreateStreamInput struct {
 	//
 	// StreamId is a required field
 	StreamId *string `location:"uri" locationName:"streamId" min:"1" type:"string" required:"true"`
+
+	// Metadata which can be used to manage streams.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation
@@ -19811,6 +19820,12 @@ func (s *CreateStreamInput) SetRoleArn(v string) *CreateStreamInput {
 // SetStreamId sets the StreamId field's value.
 func (s *CreateStreamInput) SetStreamId(v string) *CreateStreamInput {
 	s.StreamId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateStreamInput) SetTags(v []*Tag) *CreateStreamInput {
+	s.Tags = v
 	return s
 }
 
@@ -31196,7 +31211,7 @@ type RegisterCertificateInput struct {
 	// CertificatePem is a required field
 	CertificatePem *string `locationName:"certificatePem" min:"1" type:"string" required:"true"`
 
-	// A boolean value that specifies if the certificate is set to active.
+	// A boolean value that specifies if the CA certificate is set to active.
 	//
 	// Deprecated: SetAsActive has been deprecated
 	SetAsActive *bool `location:"querystring" locationName:"setAsActive" deprecated:"true" type:"boolean"`

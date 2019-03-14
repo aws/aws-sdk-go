@@ -28,7 +28,7 @@
     "CreateScheduledAudit": "<p>Creates a scheduled audit that is run at a specified time interval.</p>",
     "CreateSecurityProfile": "<p>Creates a Device Defender security profile.</p>",
     "CreateStream": "<p>Creates a stream for delivering one or more large files in chunks over MQTT. A stream transports data bytes in chunks or blocks packaged as MQTT messages from a source like S3. You can have one or more files associated with a stream. The total size of a file associated with the stream cannot exceed more than 2 MB. The stream will be created with version 0. If a stream is created with the same streamID as a stream that existed and was deleted within last 90 days, we will resurrect that old stream by incrementing the version by 1.</p>",
-    "CreateThing": "<p>Creates a thing record in the registry. If this call is made multiple times using the same thing name and configuration, the call will succeed. If this call is made with the same thing name but different configuration a <code>ResourceAlreadyExistsException</code> is thrown.</p> <note> <p>This is a control plane operation. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note>",
+    "CreateThing": "<p>Creates a thing record in the registry.</p> <note> <p>This is a control plane operation. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note>",
     "CreateThingGroup": "<p>Create a thing group.</p> <note> <p>This is a control plane operation. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note>",
     "CreateThingType": "<p>Creates a new thing type.</p>",
     "CreateTopicRule": "<p>Creates a rule. Creating rules is an administrator-level action. Any user who has permission to create rules will be able to access data processed by the rule.</p>",
@@ -4378,7 +4378,7 @@
     "SetAsActiveFlag": {
       "base": null,
       "refs": {
-        "RegisterCertificateRequest$setAsActive": "<p>A boolean value that specifies if the certificate is set to active.</p>"
+        "RegisterCertificateRequest$setAsActive": "<p>A boolean value that specifies if the CA certificate is set to active.</p>"
       }
     },
     "SetAsDefault": {
@@ -4688,8 +4688,10 @@
         "CreateBillingGroupRequest$tags": "<p>Metadata which can be used to manage the billing group.</p>",
         "CreateDynamicThingGroupRequest$tags": "<p>Metadata which can be used to manage the dynamic thing group.</p>",
         "CreateJobRequest$tags": "<p>Metadata which can be used to manage the job.</p>",
+        "CreateOTAUpdateRequest$tags": "<p>Metadata which can be used to manage updates.</p>",
         "CreateScheduledAuditRequest$tags": "<p>Metadata which can be used to manage the scheduled audit.</p>",
         "CreateSecurityProfileRequest$tags": "<p>Metadata which can be used to manage the security profile.</p>",
+        "CreateStreamRequest$tags": "<p>Metadata which can be used to manage streams.</p>",
         "CreateThingGroupRequest$tags": "<p>Metadata which can be used to manage the thing group.</p>",
         "CreateThingTypeRequest$tags": "<p>Metadata which can be used to manage the thing type.</p>",
         "ListTagsForResourceResponse$tags": "<p>The list of tags assigned to the resource.</p>",

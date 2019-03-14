@@ -3790,7 +3790,8 @@
         "awsJobExecutionsRolloutConfig":{"shape":"AwsJobExecutionsRolloutConfig"},
         "files":{"shape":"OTAUpdateFiles"},
         "roleArn":{"shape":"RoleArn"},
-        "additionalParameters":{"shape":"AdditionalParameterMap"}
+        "additionalParameters":{"shape":"AdditionalParameterMap"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateOTAUpdateResponse":{
@@ -3943,7 +3944,8 @@
         },
         "description":{"shape":"StreamDescription"},
         "files":{"shape":"StreamFiles"},
-        "roleArn":{"shape":"RoleArn"}
+        "roleArn":{"shape":"RoleArn"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateStreamResponse":{

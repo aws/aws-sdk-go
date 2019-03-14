@@ -47,6 +47,22 @@
       ],
       "idempotent":true
     },
+    "CreatePermission":{
+      "name":"CreatePermission",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreatePermissionRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidArnException"},
+        {"shape":"PermissionAlreadyExistsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidStateException"},
+        {"shape":"RequestFailedException"}
+      ]
+    },
     "DeleteCertificateAuthority":{
       "name":"DeleteCertificateAuthority",
       "http":{
@@ -59,6 +75,20 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidArnException"},
         {"shape":"InvalidStateException"}
+      ]
+    },
+    "DeletePermission":{
+      "name":"DeletePermission",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeletePermissionRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidArnException"},
+        {"shape":"InvalidStateException"},
+        {"shape":"RequestFailedException"}
       ]
     },
     "DescribeCertificateAuthority":{
@@ -182,6 +212,22 @@
         {"shape":"InvalidNextTokenException"}
       ]
     },
+    "ListPermissions":{
+      "name":"ListPermissions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListPermissionsRequest"},
+      "output":{"shape":"ListPermissionsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidArnException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidStateException"},
+        {"shape":"RequestFailedException"}
+      ]
+    },
     "ListTags":{
       "name":"ListTags",
       "http":{
@@ -291,6 +337,26 @@
         "Pseudonym":{"shape":"String128"},
         "GenerationQualifier":{"shape":"String3"}
       }
+    },
+    "AccountId":{
+      "type":"string",
+      "max":12,
+      "min":12,
+      "pattern":"[0-9]+"
+    },
+    "ActionList":{
+      "type":"list",
+      "member":{"shape":"ActionType"},
+      "max":3,
+      "min":1
+    },
+    "ActionType":{
+      "type":"string",
+      "enum":[
+        "IssueCertificate",
+        "GetCertificate",
+        "ListPermissions"
+      ]
     },
     "Arn":{
       "type":"string",
@@ -440,6 +506,20 @@
         "CertificateAuthorityArn":{"shape":"Arn"}
       }
     },
+    "CreatePermissionRequest":{
+      "type":"structure",
+      "required":[
+        "CertificateAuthorityArn",
+        "Principal",
+        "Actions"
+      ],
+      "members":{
+        "CertificateAuthorityArn":{"shape":"Arn"},
+        "Principal":{"shape":"Principal"},
+        "SourceAccount":{"shape":"AccountId"},
+        "Actions":{"shape":"ActionList"}
+      }
+    },
     "CrlConfiguration":{
       "type":"structure",
       "required":["Enabled"],
@@ -468,6 +548,18 @@
       "members":{
         "CertificateAuthorityArn":{"shape":"Arn"},
         "PermanentDeletionTimeInDays":{"shape":"PermanentDeletionTimeInDays"}
+      }
+    },
+    "DeletePermissionRequest":{
+      "type":"structure",
+      "required":[
+        "CertificateAuthorityArn",
+        "Principal"
+      ],
+      "members":{
+        "CertificateAuthorityArn":{"shape":"Arn"},
+        "Principal":{"shape":"Principal"},
+        "SourceAccount":{"shape":"AccountId"}
       }
     },
     "DescribeCertificateAuthorityAuditReportRequest":{
@@ -680,6 +772,22 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListPermissionsRequest":{
+      "type":"structure",
+      "required":["CertificateAuthorityArn"],
+      "members":{
+        "CertificateAuthorityArn":{"shape":"Arn"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListPermissionsResponse":{
+      "type":"structure",
+      "members":{
+        "Permissions":{"shape":"PermissionList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListTagsRequest":{
       "type":"structure",
       "required":["CertificateAuthorityArn"],
@@ -725,9 +833,38 @@
       "max":30,
       "min":7
     },
+    "Permission":{
+      "type":"structure",
+      "members":{
+        "CertificateAuthorityArn":{"shape":"Arn"},
+        "CreatedAt":{"shape":"TStamp"},
+        "Principal":{"shape":"String"},
+        "SourceAccount":{"shape":"String"},
+        "Actions":{"shape":"ActionList"},
+        "Policy":{"shape":"String"}
+      }
+    },
+    "PermissionAlreadyExistsException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "PermissionList":{
+      "type":"list",
+      "member":{"shape":"Permission"},
+      "min":0
+    },
     "PositiveLong":{
       "type":"long",
       "min":1
+    },
+    "Principal":{
+      "type":"string",
+      "max":128,
+      "min":0,
+      "pattern":"^[^*]+$"
     },
     "RequestAlreadyProcessedException":{
       "type":"structure",

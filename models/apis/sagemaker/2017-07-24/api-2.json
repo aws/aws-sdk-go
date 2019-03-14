@@ -1229,7 +1229,8 @@
       "members":{
         "Name":{"shape":"ParameterKey"},
         "MinValue":{"shape":"ParameterValue"},
-        "MaxValue":{"shape":"ParameterValue"}
+        "MaxValue":{"shape":"ParameterValue"},
+        "ScalingType":{"shape":"HyperParameterScalingType"}
       }
     },
     "ContinuousParameterRangeSpecification":{
@@ -2434,6 +2435,15 @@
         "MetricDefinitions":{"shape":"MetricDefinitionList"}
       }
     },
+    "HyperParameterScalingType":{
+      "type":"string",
+      "enum":[
+        "Auto",
+        "Linear",
+        "Logarithmic",
+        "ReverseLogarithmic"
+      ]
+    },
     "HyperParameterSpecification":{
       "type":"structure",
       "required":[
@@ -2574,7 +2584,10 @@
     },
     "HyperParameterTuningJobStrategyType":{
       "type":"string",
-      "enum":["Bayesian"]
+      "enum":[
+        "Bayesian",
+        "Random"
+      ]
     },
     "HyperParameterTuningJobSummaries":{
       "type":"list",
@@ -2733,7 +2746,8 @@
       "members":{
         "Name":{"shape":"ParameterKey"},
         "MinValue":{"shape":"ParameterValue"},
-        "MaxValue":{"shape":"ParameterValue"}
+        "MaxValue":{"shape":"ParameterValue"},
+        "ScalingType":{"shape":"HyperParameterScalingType"}
       }
     },
     "IntegerParameterRangeSpecification":{
