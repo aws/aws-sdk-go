@@ -850,7 +850,7 @@ func (c *ConfigService) DeleteRemediationConfigurationRequest(input *DeleteRemed
 //
 // Returned Error Codes:
 //   * ErrCodeNoSuchRemediationConfigurationException "NoSuchRemediationConfigurationException"
-//   You have specified AWS config rule without a remediation configuration.
+//   You specified an AWS Config rule without a remediation configuration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DeleteRemediationConfiguration
 func (c *ConfigService) DeleteRemediationConfiguration(input *DeleteRemediationConfigurationInput) (*DeleteRemediationConfigurationOutput, error) {
@@ -2278,7 +2278,7 @@ func (c *ConfigService) DescribeRemediationConfigurationsRequest(input *Describe
 
 // DescribeRemediationConfigurations API operation for AWS Config.
 //
-// Returns the details of one or more remediation configuration.
+// Returns the details of one or more remediation configurations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2360,7 +2360,7 @@ func (c *ConfigService) DescribeRemediationExecutionStatusRequest(input *Describ
 //
 // Provides a detailed view of a Remediation Execution for a set of resources
 // including state, timestamps for when steps for the remediation execution
-// happen, and any error messages for steps that have failed. When you specify
+// occur, and any error messages for steps that have failed. When you specify
 // the limit and the next token, you receive a paginated response.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2372,7 +2372,7 @@ func (c *ConfigService) DescribeRemediationExecutionStatusRequest(input *Describ
 //
 // Returned Error Codes:
 //   * ErrCodeNoSuchRemediationConfigurationException "NoSuchRemediationConfigurationException"
-//   You have specified AWS config rule without a remediation configuration.
+//   You specified an AWS Config rule without a remediation configuration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeRemediationExecutionStatus
 func (c *ConfigService) DescribeRemediationExecutionStatus(input *DescribeRemediationExecutionStatusInput) (*DescribeRemediationExecutionStatusOutput, error) {
@@ -3727,6 +3727,95 @@ func (c *ConfigService) ListDiscoveredResourcesWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/ListTagsForResource
+func (c *ConfigService) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for AWS Config.
+//
+// List the tags for AWS Config resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   You have specified a resource that does not exist.
+//
+//   * ErrCodeValidationException "ValidationException"
+//   The requested action is not valid.
+//
+//   * ErrCodeInvalidLimitException "InvalidLimitException"
+//   The specified limit is outside the allowable range.
+//
+//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   The specified next token is invalid. Specify the nextToken string that was
+//   returned in the previous response to get the next page of results.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/ListTagsForResource
+func (c *ConfigService) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutAggregationAuthorization = "PutAggregationAuthorization"
 
 // PutAggregationAuthorizationRequest generates a "aws/request.Request" representing the
@@ -4403,8 +4492,8 @@ func (c *ConfigService) PutRemediationConfigurationsRequest(input *PutRemediatio
 //
 // Adds or updates the remediation configuration with a specific AWS Config
 // rule with the selected target or action. The API creates the RemediationConfiguration
-// object for the AWS Config rule. AWS Config rule must already exist for you
-// to add a remeduation configuration. The target (SSM document) must exist
+// object for the AWS Config rule. The AWS Config rule must already exist for
+// you to add a remediation configuration. The target (SSM document) must exist
 // and have permissions to use the target.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4824,7 +4913,7 @@ func (c *ConfigService) StartRemediationExecutionRequest(input *StartRemediation
 //      check the function's permissions.
 //
 //   * ErrCodeNoSuchRemediationConfigurationException "NoSuchRemediationConfigurationException"
-//   You have specified AWS config rule without a remediation configuration.
+//   You specified an AWS Config rule without a remediation configuration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/StartRemediationExecution
 func (c *ConfigService) StartRemediationExecution(input *StartRemediationExecutionInput) (*StartRemediationExecutionOutput, error) {
@@ -4924,6 +5013,179 @@ func (c *ConfigService) StopConfigurationRecorder(input *StopConfigurationRecord
 // for more information on using Contexts.
 func (c *ConfigService) StopConfigurationRecorderWithContext(ctx aws.Context, input *StopConfigurationRecorderInput, opts ...request.Option) (*StopConfigurationRecorderOutput, error) {
 	req, out := c.StopConfigurationRecorderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TagResourceRequest method.
+//    req, resp := client.TagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/TagResource
+func (c *ConfigService) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for AWS Config.
+//
+// Associates the specified tags to a resource with the specified resourceArn.
+// If existing tags on a resource are not specified in the request parameters,
+// they are not changed. When a resource is deleted, the tags associated with
+// that resource are deleted as well.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeValidationException "ValidationException"
+//   The requested action is not valid.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   You have specified a resource that does not exist.
+//
+//   * ErrCodeTooManyTagsException "TooManyTagsException"
+//   You have reached the limit of the number of tags you can use. You have more
+//   than 50 tags.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/TagResource
+func (c *ConfigService) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UntagResourceRequest method.
+//    req, resp := client.UntagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/UntagResource
+func (c *ConfigService) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for AWS Config.
+//
+// Deletes specified tags from a resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeValidationException "ValidationException"
+//   The requested action is not valid.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   You have specified a resource that does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/UntagResource
+func (c *ConfigService) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6679,7 +6941,7 @@ type ConfigurationItem struct {
 	// The 12-digit AWS account ID associated with the resource.
 	AccountId *string `locationName:"accountId" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the resource.
+	// accoun
 	Arn *string `locationName:"arn" type:"string"`
 
 	// The Availability Zone associated with the resource.
@@ -7433,7 +7695,7 @@ type DeleteRemediationConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the AWS Config rule for which you want to delete remediation
-	// configuration for.
+	// configuration.
 	//
 	// ConfigRuleName is a required field
 	ConfigRuleName *string `min:"1" type:"string" required:"true"`
@@ -8798,7 +9060,7 @@ func (s *DescribeRemediationConfigurationsOutput) SetRemediationConfigurations(v
 type DescribeRemediationExecutionStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of config rule names.
+	// A list of AWS Config rule names.
 	//
 	// ConfigRuleName is a required field
 	ConfigRuleName *string `min:"1" type:"string" required:"true"`
@@ -8811,7 +9073,8 @@ type DescribeRemediationExecutionStatusInput struct {
 	// next page of results in a paginated response.
 	NextToken *string `min:"1" type:"string"`
 
-	// A list of resource keys object.
+	// A list of resource keys to be processed with the current request. Each element
+	// in the list consists of the resource type and resource ID.
 	ResourceKeys []*ResourceKey `min:"1" type:"list"`
 }
 
@@ -8888,7 +9151,7 @@ type DescribeRemediationExecutionStatusOutput struct {
 	// next page of results in a paginated response.
 	NextToken *string `min:"1" type:"string"`
 
-	// Returns a list of remediation execution statuses object.
+	// Returns a list of remediation execution statuses objects.
 	RemediationExecutionStatuses []*RemediationExecutionStatus `type:"list"`
 }
 
@@ -9257,14 +9520,14 @@ func (s *EvaluationResultQualifier) SetResourceType(v string) *EvaluationResultQ
 	return s
 }
 
-// List of each of the failed remediation with specific reasons.
+// List of each of the failed remediations with specific reasons.
 type FailedRemediationBatch struct {
 	_ struct{} `type:"structure"`
 
 	// Returns remediation configurations of the failed items.
 	FailedItems []*RemediationConfiguration `type:"list"`
 
-	// Returns a failure message. For example, the resource is compliant.
+	// Returns a failure message. For example, the resource is already compliant.
 	FailureMessage *string `type:"string"`
 }
 
@@ -10642,6 +10905,103 @@ func (s *ListDiscoveredResourcesOutput) SetResourceIdentifiers(v []*ResourceIden
 	return s
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of tags returned on each page. The limit maximum is 50.
+	// You cannot specify a number greater than 50. If you specify 0, AWS Config
+	// uses the default.
+	Limit *int64 `type:"integer"`
+
+	// The nextToken string returned on a previous page that you use to get the
+	// next page of results in a paginated response.
+	NextToken *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) that identifies the resource for which to
+	// list the tags. Currently, the supported resources are ConfigRule, ConfigurationAggregator
+	// and AggregatorAuthorization.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListTagsForResourceInput) SetLimit(v int64) *ListTagsForResourceInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTagsForResourceInput) SetNextToken(v string) *ListTagsForResourceInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The nextToken string returned on a previous page that you use to get the
+	// next page of results in a paginated response.
+	NextToken *string `type:"string"`
+
+	// The tags for the resource.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTagsForResourceOutput) SetNextToken(v string) *ListTagsForResourceOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
 // This object contains regions to setup the aggregator and an IAM role to retrieve
 // organization details.
 type OrganizationAggregationSource struct {
@@ -11491,7 +11851,7 @@ type RemediationConfiguration struct {
 	// The type of a resource.
 	ResourceType *string `type:"string"`
 
-	// Public ID is document.
+	// Target ID is the name of the public document.
 	//
 	// TargetId is a required field
 	TargetId *string `min:"1" type:"string" required:"true"`
@@ -11642,7 +12002,7 @@ func (s *RemediationExecutionStatus) SetStepDetails(v []*RemediationExecutionSte
 type RemediationExecutionStep struct {
 	_ struct{} `type:"structure"`
 
-	// An error message if the step was interupted during execution.
+	// An error message if the step was interrupted during execution.
 	ErrorMessage *string `type:"string"`
 
 	// The details of the step.
@@ -12410,7 +12770,8 @@ type StartRemediationExecutionInput struct {
 	// ConfigRuleName is a required field
 	ConfigRuleName *string `min:"1" type:"string" required:"true"`
 
-	// A list of resource key object.
+	// A list of resource keys to be processed with the current request. Each element
+	// in the list consists of the resource type and resource ID.
 	//
 	// ResourceKeys is a required field
 	ResourceKeys []*ResourceKey `min:"1" type:"list" required:"true"`
@@ -12473,11 +12834,11 @@ func (s *StartRemediationExecutionInput) SetResourceKeys(v []*ResourceKey) *Star
 type StartRemediationExecutionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// For resources that have failed to start execuition the API returns a resource
+	// For resources that have failed to start execution, the API returns a resource
 	// key object.
 	FailedItems []*ResourceKey `min:"1" type:"list"`
 
-	// Returns a failure message. For example, the resource is compliant.
+	// Returns a failure message. For example, the resource is already compliant.
 	FailureMessage *string `type:"string"`
 }
 
@@ -12581,6 +12942,215 @@ func (s StopConfigurationRecorderOutput) String() string {
 
 // GoString returns the string representation
 func (s StopConfigurationRecorderOutput) GoString() string {
+	return s.String()
+}
+
+// The tags for the resource. The metadata that you apply to a resource to help
+// you categorize and organize them. Each tag consists of a key and an optional
+// value, both of which you define. Tag keys can have a maximum character length
+// of 128 characters, and tag values can have a maximum length of 256 characters.
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// One part of a key-value pair that make up a tag. A key is a general label
+	// that acts like a category for more specific tag values.
+	Key *string `min:"1" type:"string"`
+
+	// The optional part of a key-value pair that make up a tag. A value acts as
+	// a descriptor within a tag category (key).
+	Value *string `type:"string"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
+}
+
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) that identifies the resource for which to
+	// list the tags. Currently, the supported resources are ConfigRule, ConfigurationAggregator
+	// and AggregatorAuthorization.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"1" type:"string" required:"true"`
+
+	// An array of tag object.
+	//
+	// Tags is a required field
+	Tags []*Tag `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) that identifies the resource for which to
+	// list the tags. Currently, the supported resources are ConfigRule, ConfigurationAggregator
+	// and AggregatorAuthorization.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"1" type:"string" required:"true"`
+
+	// The keys of the tags to be removed.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+	if s.TagKeys != nil && len(s.TagKeys) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKeys", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 

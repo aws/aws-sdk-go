@@ -601,7 +601,8 @@
       "type":"structure",
       "members":{
         "MetricDataResults":{"shape":"MetricDataResults"},
-        "NextToken":{"shape":"NextToken"}
+        "NextToken":{"shape":"NextToken"},
+        "Messages":{"shape":"MetricDataResultMessages"}
       }
     },
     "GetMetricStatisticsInput":{

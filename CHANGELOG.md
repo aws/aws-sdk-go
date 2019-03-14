@@ -1,3 +1,20 @@
+Release v1.18.3 (2019-03-14)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service API and documentation
+  * AWS Certificate Manager has added a new API action, RenewCertificate. RenewCertificate causes ACM to force the renewal of any private certificate which has been exported.
+* `service/acm-pca`: Updates service API, documentation, and paginators
+* `service/config`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * This release adds tagging support for Dedicated Host Reservations.
+* `service/iot`: Updates service API and documentation
+  * In this release, AWS IoT introduces support for tagging OTA Update and Stream resources. For more information about tagging, see the AWS IoT Developer Guide.
+* `service/monitoring`: Updates service API, documentation, and paginators
+  * New Messages parameter for the output of GetMetricData, to support new metric search functionality.
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Automatic Model Tuning now supports random search and hyperparameter scaling.
+
 Release v1.18.2 (2019-03-13)
 ===
 

@@ -8375,6 +8375,30 @@ type ContinuousParameterRange struct {
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
+
+	// The scale that hyperparameter tuning uses to search the hyperparameter range.
+	// For information about choosing a hyperparameter scale, see Hyperparameter
+	// Range Scaling (http://docs.aws.amazon.com//sagemaker/latest/dg/automatic-model-tuning-define-ranges.html#scaling-type).
+	// One of the following values:
+	//
+	// AutoAmazon SageMaker hyperparameter tuning chooses the best scale for the
+	// hyperparameter.
+	//
+	// LinearHyperparameter tuning searches the values in the hyperparameter range
+	// by using a linear scale.
+	//
+	// LogarithmicHyperparemeter tuning searches the values in the hyperparameter
+	// range by using a logarithmic scale.
+	//
+	// Logarithmic scaling works only for ranges that have only values greater than
+	// 0.
+	//
+	// ReverseLogarithmicHyperparemeter tuning searches the values in the hyperparameter
+	// range by using a reverse logarithmic scale.
+	//
+	// Reverse logarithmic scaling works only for ranges that are entirely within
+	// the range 0<=x<1.0.
+	ScalingType *string `type:"string" enum:"HyperParameterScalingType"`
 }
 
 // String returns the string representation
@@ -8421,6 +8445,12 @@ func (s *ContinuousParameterRange) SetMinValue(v string) *ContinuousParameterRan
 // SetName sets the Name field's value.
 func (s *ContinuousParameterRange) SetName(v string) *ContinuousParameterRange {
 	s.Name = &v
+	return s
+}
+
+// SetScalingType sets the ScalingType field's value.
+func (s *ContinuousParameterRange) SetScalingType(v string) *ContinuousParameterRange {
+	s.ScalingType = &v
 	return s
 }
 
@@ -15671,8 +15701,11 @@ type HyperParameterTuningJobConfig struct {
 	// ResourceLimits is a required field
 	ResourceLimits *ResourceLimits `type:"structure" required:"true"`
 
-	// Specifies the search strategy for hyperparameters. Currently, the only valid
-	// value is Bayesian.
+	// Specifies how hyperparameter tuning chooses the combinations of hyperparameter
+	// values to use for the training job it launches. To use the Bayesian search
+	// stategy, set this to Bayesian. To randomly search, set it to Random. For
+	// information about search strategies, see How Hyperparameter Tuning Works
+	// (http://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-how-it-works.html).
 	//
 	// Strategy is a required field
 	Strategy *string `type:"string" required:"true" enum:"HyperParameterTuningJobStrategyType"`
@@ -16321,6 +16354,24 @@ type IntegerParameterRange struct {
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
+
+	// The scale that hyperparameter tuning uses to search the hyperparameter range.
+	// For information about choosing a hyperparameter scale, see Hyperparameter
+	// Range Scaling (http://docs.aws.amazon.com//sagemaker/latest/dg/automatic-model-tuning-define-ranges.html#scaling-type).
+	// One of the following values:
+	//
+	// AutoAmazon SageMaker hyperparameter tuning chooses the best scale for the
+	// hyperparameter.
+	//
+	// LinearHyperparameter tuning searches the values in the hyperparameter range
+	// by using a linear scale.
+	//
+	// LogarithmicHyperparemeter tuning searches the values in the hyperparameter
+	// range by using a logarithmic scale.
+	//
+	// Logarithmic scaling works only for ranges that have only values greater than
+	// 0.
+	ScalingType *string `type:"string" enum:"HyperParameterScalingType"`
 }
 
 // String returns the string representation
@@ -16367,6 +16418,12 @@ func (s *IntegerParameterRange) SetMinValue(v string) *IntegerParameterRange {
 // SetName sets the Name field's value.
 func (s *IntegerParameterRange) SetName(v string) *IntegerParameterRange {
 	s.Name = &v
+	return s
+}
+
+// SetScalingType sets the ScalingType field's value.
+func (s *IntegerParameterRange) SetScalingType(v string) *IntegerParameterRange {
+	s.ScalingType = &v
 	return s
 }
 
@@ -25561,6 +25618,20 @@ const (
 )
 
 const (
+	// HyperParameterScalingTypeAuto is a HyperParameterScalingType enum value
+	HyperParameterScalingTypeAuto = "Auto"
+
+	// HyperParameterScalingTypeLinear is a HyperParameterScalingType enum value
+	HyperParameterScalingTypeLinear = "Linear"
+
+	// HyperParameterScalingTypeLogarithmic is a HyperParameterScalingType enum value
+	HyperParameterScalingTypeLogarithmic = "Logarithmic"
+
+	// HyperParameterScalingTypeReverseLogarithmic is a HyperParameterScalingType enum value
+	HyperParameterScalingTypeReverseLogarithmic = "ReverseLogarithmic"
+)
+
+const (
 	// HyperParameterTuningJobObjectiveTypeMaximize is a HyperParameterTuningJobObjectiveType enum value
 	HyperParameterTuningJobObjectiveTypeMaximize = "Maximize"
 
@@ -25601,6 +25672,9 @@ const (
 const (
 	// HyperParameterTuningJobStrategyTypeBayesian is a HyperParameterTuningJobStrategyType enum value
 	HyperParameterTuningJobStrategyTypeBayesian = "Bayesian"
+
+	// HyperParameterTuningJobStrategyTypeRandom is a HyperParameterTuningJobStrategyType enum value
+	HyperParameterTuningJobStrategyTypeRandom = "Random"
 )
 
 const (

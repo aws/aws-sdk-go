@@ -8283,7 +8283,7 @@
       "members":{
         "Filter":{"shape":"FilterList"},
         "MaxDuration":{"shape":"Integer"},
-        "MaxResults":{"shape":"Integer"},
+        "MaxResults":{"shape":"DescribeHostReservationsMaxResults"},
         "MinDuration":{"shape":"Integer"},
         "NextToken":{"shape":"String"},
         "OfferingId":{"shape":"String"}
@@ -8301,6 +8301,11 @@
           "locationName":"offeringSet"
         }
       }
+    },
+    "DescribeHostReservationsMaxResults":{
+      "type":"integer",
+      "max":500,
+      "min":5
     },
     "DescribeHostReservationsRequest":{
       "type":"structure",
@@ -12547,6 +12552,10 @@
         "UpfrontPrice":{
           "shape":"String",
           "locationName":"upfrontPrice"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },
@@ -18885,6 +18894,7 @@
         "elastic-ip",
         "fleet",
         "fpga-image",
+        "host-reservation",
         "image",
         "instance",
         "internet-gateway",
