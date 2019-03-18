@@ -1160,6 +1160,7 @@
         "FleetData$TerminateInstancesWithExpiration": "<p>Indicates whether running instances should be terminated when the EC2 Fleet expires. </p>",
         "FleetData$ReplaceUnhealthyInstances": "<p>Indicates whether EC2 Fleet should replace unhealthy instances.</p>",
         "FpgaImage$Public": "<p>Indicates whether the AFI is public.</p>",
+        "FpgaImage$DataRetentionSupport": "<p>Indicates whether data retention support is enabled for the AFI.</p>",
         "GetConsoleOutputRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetConsoleOutputRequest$Latest": "<p>When enabled, retrieves the latest console output for the instance.</p> <p>Default: disabled (<code>false</code>)</p>",
         "GetConsoleScreenshotRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
