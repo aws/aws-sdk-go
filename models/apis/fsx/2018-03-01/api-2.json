@@ -43,6 +43,7 @@
         {"shape":"ActiveDirectoryError"},
         {"shape":"IncompatibleParameterError"},
         {"shape":"InvalidImportPath"},
+        {"shape":"InvalidExportPath"},
         {"shape":"InvalidNetworkSettings"},
         {"shape":"ServiceLimitExceeded"},
         {"shape":"InternalServerError"},
@@ -78,6 +79,7 @@
       "output":{"shape":"DeleteBackupResponse"},
       "errors":[
         {"shape":"BadRequest"},
+        {"shape":"BackupInProgress"},
         {"shape":"BackupNotFound"},
         {"shape":"BackupRestoring"},
         {"shape":"IncompatibleParameterError"},
@@ -376,6 +378,7 @@
       "members":{
         "WeeklyMaintenanceStartTime":{"shape":"WeeklyTime"},
         "ImportPath":{"shape":"ArchivePath"},
+        "ExportPath":{"shape":"ArchivePath"},
         "ImportedFileChunkSize":{"shape":"Megabytes"}
       }
     },
@@ -660,6 +663,13 @@
       "exception":true,
       "fault":true
     },
+    "InvalidExportPath":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "InvalidImportPath":{
       "type":"structure",
       "members":{
@@ -816,7 +826,7 @@
     },
     "StorageCapacity":{
       "type":"integer",
-      "min":300
+      "min":1
     },
     "SubnetId":{
       "type":"string",
@@ -839,8 +849,7 @@
     "TagKey":{
       "type":"string",
       "max":128,
-      "min":1,
-      "pattern":"^(^(?!aws:).[\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+      "min":1
     },
     "TagKeys":{
       "type":"list",
@@ -867,8 +876,7 @@
     "TagValue":{
       "type":"string",
       "max":256,
-      "min":0,
-      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+      "min":0
     },
     "Tags":{
       "type":"list",

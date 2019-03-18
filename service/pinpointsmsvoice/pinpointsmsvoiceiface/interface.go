@@ -80,6 +80,10 @@ type PinpointSMSVoiceAPI interface {
 	GetConfigurationSetEventDestinationsWithContext(aws.Context, *pinpointsmsvoice.GetConfigurationSetEventDestinationsInput, ...request.Option) (*pinpointsmsvoice.GetConfigurationSetEventDestinationsOutput, error)
 	GetConfigurationSetEventDestinationsRequest(*pinpointsmsvoice.GetConfigurationSetEventDestinationsInput) (*request.Request, *pinpointsmsvoice.GetConfigurationSetEventDestinationsOutput)
 
+	ListConfigurationSets(*pinpointsmsvoice.ListConfigurationSetsInput) (*pinpointsmsvoice.ListConfigurationSetsOutput, error)
+	ListConfigurationSetsWithContext(aws.Context, *pinpointsmsvoice.ListConfigurationSetsInput, ...request.Option) (*pinpointsmsvoice.ListConfigurationSetsOutput, error)
+	ListConfigurationSetsRequest(*pinpointsmsvoice.ListConfigurationSetsInput) (*request.Request, *pinpointsmsvoice.ListConfigurationSetsOutput)
+
 	SendVoiceMessage(*pinpointsmsvoice.SendVoiceMessageInput) (*pinpointsmsvoice.SendVoiceMessageOutput, error)
 	SendVoiceMessageWithContext(aws.Context, *pinpointsmsvoice.SendVoiceMessageInput, ...request.Option) (*pinpointsmsvoice.SendVoiceMessageOutput, error)
 	SendVoiceMessageRequest(*pinpointsmsvoice.SendVoiceMessageInput) (*request.Request, *pinpointsmsvoice.SendVoiceMessageOutput)

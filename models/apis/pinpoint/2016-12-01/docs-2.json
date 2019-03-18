@@ -55,12 +55,15 @@
     "GetSmsChannel" : "Get an SMS channel.",
     "GetUserEndpoints" : "Returns information about the endpoints that are associated with a User ID.",
     "GetVoiceChannel" : "Get a Voice Channel",
+    "ListTagsForResource" : "Get list of all tags for a given resource arn",
     "PhoneNumberValidate" : "Returns information about the specified phone number.",
     "PutEventStream" : "Use to create or update the event stream for an app.",
     "PutEvents" : "Use to record events for endpoints. This method creates events and creates or updates the endpoints that those events are associated with.",
     "RemoveAttributes" : "Used to remove the attributes for an app",
     "SendMessages" : "Used to send a direct message.",
     "SendUsersMessages" : "Used to send a message to a list of users.",
+    "TagResource" : "Adds tags to a resource.",
+    "UntagResource" : "Remove tags from a resource.",
     "UpdateAdmChannel" : "Update an ADM channel.",
     "UpdateApnsChannel" : "Use to update the APNs channel for an app.",
     "UpdateApnsSandboxChannel" : "Update an APNS sandbox channel.",
@@ -800,6 +803,10 @@
         "SegmentGroup$SourceType" : "Specify how to handle multiple source segments. For example, if you specify three source segments, should the resulting segment be based on any or all of the segments? Acceptable values: ANY or ALL."
       }
     },
+    "TagsModel" : {
+      "base" : null,
+      "refs" : { }
+    },
     "TooManyRequestsException" : {
       "base" : "Simple message object.",
       "refs" : { }
@@ -1206,13 +1213,20 @@
         "ADMMessage$Data" : "The data payload used for a silent push. This payload is added to the notifications' data.pinpoint.jsonBody' object",
         "APNSMessage$Data" : "The data payload used for a silent push. This payload is added to the notifications' data.pinpoint.jsonBody' object",
         "AddressConfiguration$Context" : "A map of custom attributes to attributes to be attached to the message for this address. This payload is added to the push notification's 'data.pinpoint' object or added to the email/sms delivery receipt event attributes.",
+        "ApplicationResponse$tags" : "The Tags for the application.",
         "BaiduMessage$Data" : "The data payload used for a silent push. This payload is added to the notifications' data.pinpoint.jsonBody' object",
+        "CampaignResponse$tags" : "The Tags for the campaign.",
+        "CreateApplicationRequest$tags" : "The Tags for the app.",
         "DefaultPushNotificationMessage$Data" : "The data payload used for a silent push. This payload is added to the notifications' data.pinpoint.jsonBody' object",
         "EndpointSendConfiguration$Context" : "A map of custom attributes to attributes to be attached to the message for this address. This payload is added to the push notification's 'data.pinpoint' object or added to the email/sms delivery receipt event attributes.",
         "Event$Attributes" : "Custom attributes that are associated with the event you're adding or updating.",
         "GCMMessage$Data" : "The data payload used for a silent push. This payload is added to the notifications' data.pinpoint.jsonBody' object",
         "MessageRequest$Context" : "A map of custom attributes to attributes to be attached to the message. This payload is added to the push notification's 'data.pinpoint' object or added to the email/sms delivery receipt event attributes.",
-        "SendUsersMessageRequest$Context" : "A map of custom attribute-value pairs. Amazon Pinpoint adds these attributes to the data.pinpoint object in the body of the push notification payload. Amazon Pinpoint also provides these attributes in the events that it generates for users-messages deliveries."
+        "SegmentResponse$tags" : "The Tags for the segment.",
+        "SendUsersMessageRequest$Context" : "A map of custom attribute-value pairs. Amazon Pinpoint adds these attributes to the data.pinpoint object in the body of the push notification payload. Amazon Pinpoint also provides these attributes in the events that it generates for users-messages deliveries.",
+        "TagsModel$tags" : null,
+        "WriteCampaignRequest$tags" : "The Tags for the campaign.",
+        "WriteSegmentRequest$tags" : "The Tags for the segments."
       }
     },
     "__string" : {
@@ -1318,6 +1332,7 @@
         "AddressConfiguration$BodyOverride" : "Body override. If specified will override default body.",
         "AddressConfiguration$RawContent" : "The Raw JSON formatted string to be used as the payload. This value overrides the message.",
         "AddressConfiguration$TitleOverride" : "Title override. If specified will override default title if applicable.",
+        "ApplicationResponse$Arn" : "The arn for the application.",
         "ApplicationResponse$Id" : "The unique application ID.",
         "ApplicationResponse$Name" : "The display name of the application.",
         "ApplicationSettingsResource$ApplicationId" : "The unique ID for the application.",
@@ -1350,6 +1365,7 @@
         "CampaignHook$LambdaFunctionName" : "Lambda function name or arn to be called for delivery",
         "CampaignHook$WebUrl" : "Web URL to call for hook. If the URL has authentication specified it will be added as authentication to the request",
         "CampaignResponse$ApplicationId" : "The ID of the application to which the campaign applies.",
+        "CampaignResponse$Arn" : "The arn for the campaign.",
         "CampaignResponse$CreationDate" : "The date the campaign was created in ISO 8601 format.",
         "CampaignResponse$Description" : "A description of the campaign.",
         "CampaignResponse$Id" : "The unique campaign ID.",
@@ -1429,8 +1445,12 @@
         "EndpointSendConfiguration$RawContent" : "The Raw JSON formatted string to be used as the payload. This value overrides the message.",
         "EndpointSendConfiguration$TitleOverride" : "Title override. If specified will override default title if applicable.",
         "EndpointUser$UserId" : "The unique ID of the user.",
+        "Event$AppPackageName" : "The package name associated with the app that's recording the event.",
+        "Event$AppTitle" : "The title of the app that's recording the event.",
+        "Event$AppVersionCode" : "The version number of the app that's recording the event.",
         "Event$ClientSdkVersion" : "The version of the SDK that's running on the client device.",
         "Event$EventType" : "The name of the custom event that you're recording.",
+        "Event$SdkName" : "The name of the SDK that's being used to record the event.",
         "Event$Timestamp" : "The date and time when the event occurred, in ISO 8601 format.",
         "EventItemResponse$Message" : "A custom message that is associated with the processing of an event.",
         "EventStream$ApplicationId" : "The ID of the application from which events should be published.",
@@ -1550,6 +1570,7 @@
         "SegmentImportResource$S3Url" : "The URL of the S3 bucket that the segment was imported from.",
         "SegmentReference$Id" : "A unique identifier for the segment.",
         "SegmentResponse$ApplicationId" : "The ID of the application that the segment applies to.",
+        "SegmentResponse$Arn" : "The arn for the segment.",
         "SegmentResponse$CreationDate" : "The date and time when the segment was created.",
         "SegmentResponse$Id" : "The unique segment ID.",
         "SegmentResponse$LastModifiedDate" : "The date and time when the segment was last modified.",

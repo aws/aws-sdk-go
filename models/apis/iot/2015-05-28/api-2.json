@@ -2811,6 +2811,10 @@
       "members":{
       }
     },
+    "AdditionalMetricsToRetainList":{
+      "type":"list",
+      "member":{"shape":"BehaviorMetric"}
+    },
     "AdditionalParameterMap":{
       "type":"map",
       "key":{"shape":"AttributeKey"},
@@ -3218,7 +3222,10 @@
       "members":{
         "comparisonOperator":{"shape":"ComparisonOperator"},
         "value":{"shape":"MetricValue"},
-        "durationSeconds":{"shape":"DurationSeconds"}
+        "durationSeconds":{"shape":"DurationSeconds"},
+        "consecutiveDatapointsToAlarm":{"shape":"ConsecutiveDatapointsToAlarm"},
+        "consecutiveDatapointsToClear":{"shape":"ConsecutiveDatapointsToClear"},
+        "statisticalThreshold":{"shape":"StatisticalThreshold"}
       }
     },
     "BehaviorMetric":{"type":"string"},
@@ -3603,6 +3610,16 @@
       "exception":true
     },
     "ConnectivityTimestamp":{"type":"long"},
+    "ConsecutiveDatapointsToAlarm":{
+      "type":"integer",
+      "max":10,
+      "min":1
+    },
+    "ConsecutiveDatapointsToClear":{
+      "type":"integer",
+      "max":10,
+      "min":1
+    },
     "Count":{"type":"integer"},
     "CreateAuthorizerRequest":{
       "type":"structure",
@@ -3773,7 +3790,8 @@
         "awsJobExecutionsRolloutConfig":{"shape":"AwsJobExecutionsRolloutConfig"},
         "files":{"shape":"OTAUpdateFiles"},
         "roleArn":{"shape":"RoleArn"},
-        "additionalParameters":{"shape":"AdditionalParameterMap"}
+        "additionalParameters":{"shape":"AdditionalParameterMap"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateOTAUpdateResponse":{
@@ -3874,6 +3892,7 @@
         "dayOfMonth":{"shape":"DayOfMonth"},
         "dayOfWeek":{"shape":"DayOfWeek"},
         "targetCheckNames":{"shape":"TargetAuditCheckNames"},
+        "tags":{"shape":"TagList"},
         "scheduledAuditName":{
           "shape":"ScheduledAuditName",
           "location":"uri",
@@ -3889,10 +3908,7 @@
     },
     "CreateSecurityProfileRequest":{
       "type":"structure",
-      "required":[
-        "securityProfileName",
-        "behaviors"
-      ],
+      "required":["securityProfileName"],
       "members":{
         "securityProfileName":{
           "shape":"SecurityProfileName",
@@ -3902,6 +3918,7 @@
         "securityProfileDescription":{"shape":"SecurityProfileDescription"},
         "behaviors":{"shape":"Behaviors"},
         "alertTargets":{"shape":"AlertTargets"},
+        "additionalMetricsToRetain":{"shape":"AdditionalMetricsToRetainList"},
         "tags":{"shape":"TagList"}
       }
     },
@@ -3927,7 +3944,8 @@
         },
         "description":{"shape":"StreamDescription"},
         "files":{"shape":"StreamFiles"},
-        "roleArn":{"shape":"RoleArn"}
+        "roleArn":{"shape":"RoleArn"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateStreamResponse":{
@@ -4016,7 +4034,12 @@
           "location":"uri",
           "locationName":"ruleName"
         },
-        "topicRulePayload":{"shape":"TopicRulePayload"}
+        "topicRulePayload":{"shape":"TopicRulePayload"},
+        "tags":{
+          "shape":"String",
+          "location":"header",
+          "locationName":"x-amz-tagging"
+        }
       },
       "payload":"topicRulePayload"
     },
@@ -4072,6 +4095,8 @@
       "members":{
       }
     },
+    "DeleteAdditionalMetricsToRetain":{"type":"boolean"},
+    "DeleteAlertTargets":{"type":"boolean"},
     "DeleteAuthorizerRequest":{
       "type":"structure",
       "required":["authorizerName"],
@@ -4088,6 +4113,7 @@
       "members":{
       }
     },
+    "DeleteBehaviors":{"type":"boolean"},
     "DeleteBillingGroupRequest":{
       "type":"structure",
       "required":["billingGroupName"],
@@ -4741,6 +4767,7 @@
         "securityProfileDescription":{"shape":"SecurityProfileDescription"},
         "behaviors":{"shape":"Behaviors"},
         "alertTargets":{"shape":"AlertTargets"},
+        "additionalMetricsToRetain":{"shape":"AdditionalMetricsToRetainList"},
         "version":{"shape":"Version"},
         "creationDate":{"shape":"Timestamp"},
         "lastModifiedDate":{"shape":"Timestamp"}
@@ -5012,6 +5039,10 @@
     },
     "DynamoDBv2Action":{
       "type":"structure",
+      "required":[
+        "roleArn",
+        "putItem"
+      ],
       "members":{
         "roleArn":{"shape":"AwsArn"},
         "putItem":{"shape":"PutItemInput"}
@@ -5086,6 +5117,10 @@
     "ErrorMessage":{
       "type":"string",
       "max":2048
+    },
+    "EvaluationStatistic":{
+      "type":"string",
+      "pattern":"(p0|p0\\.1|p0\\.01|p1|p10|p50|p90|p99|p99\\.9|p99\\.99|p100)"
     },
     "EventConfigurations":{
       "type":"map",
@@ -7882,6 +7917,12 @@
     "StateMachineName":{"type":"string"},
     "StateReason":{"type":"string"},
     "StateValue":{"type":"string"},
+    "StatisticalThreshold":{
+      "type":"structure",
+      "members":{
+        "statistic":{"shape":"EvaluationStatistic"}
+      }
+    },
     "Status":{
       "type":"string",
       "enum":[
@@ -8675,6 +8716,10 @@
         "securityProfileDescription":{"shape":"SecurityProfileDescription"},
         "behaviors":{"shape":"Behaviors"},
         "alertTargets":{"shape":"AlertTargets"},
+        "additionalMetricsToRetain":{"shape":"AdditionalMetricsToRetainList"},
+        "deleteBehaviors":{"shape":"DeleteBehaviors"},
+        "deleteAlertTargets":{"shape":"DeleteAlertTargets"},
+        "deleteAdditionalMetricsToRetain":{"shape":"DeleteAdditionalMetricsToRetain"},
         "expectedVersion":{
           "shape":"OptionalVersion",
           "location":"querystring",
@@ -8690,6 +8735,7 @@
         "securityProfileDescription":{"shape":"SecurityProfileDescription"},
         "behaviors":{"shape":"Behaviors"},
         "alertTargets":{"shape":"AlertTargets"},
+        "additionalMetricsToRetain":{"shape":"AdditionalMetricsToRetainList"},
         "version":{"shape":"Version"},
         "creationDate":{"shape":"Timestamp"},
         "lastModifiedDate":{"shape":"Timestamp"}

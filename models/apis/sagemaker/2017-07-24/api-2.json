@@ -774,7 +774,8 @@
   "shapes":{
     "Accept":{
       "type":"string",
-      "max":256
+      "max":256,
+      "pattern":".*"
     },
     "AccountId":{
       "type":"string",
@@ -810,7 +811,8 @@
     },
     "AlgorithmImage":{
       "type":"string",
-      "max":255
+      "max":255,
+      "pattern":".*"
     },
     "AlgorithmSortBy":{
       "type":"string",
@@ -934,7 +936,8 @@
     "AttributeName":{
       "type":"string",
       "max":256,
-      "min":1
+      "min":1,
+      "pattern":".+"
     },
     "AttributeNames":{
       "type":"list",
@@ -959,7 +962,8 @@
     "Branch":{
       "type":"string",
       "max":1024,
-      "min":1
+      "min":1,
+      "pattern":"[^ ~^:?*\\[]+"
     },
     "CategoricalParameterRange":{
       "type":"structure",
@@ -1156,6 +1160,7 @@
         "CompilationJobName":{"shape":"EntityName"},
         "CompilationJobArn":{"shape":"CompilationJobArn"},
         "CreationTime":{"shape":"CreationTime"},
+        "CompilationStartTime":{"shape":"Timestamp"},
         "CompilationEndTime":{"shape":"Timestamp"},
         "CompilationTargetDevice":{"shape":"TargetDevice"},
         "LastModifiedTime":{"shape":"LastModifiedTime"},
@@ -1207,7 +1212,8 @@
     },
     "ContentType":{
       "type":"string",
-      "max":256
+      "max":256,
+      "pattern":".*"
     },
     "ContentTypes":{
       "type":"list",
@@ -1223,7 +1229,8 @@
       "members":{
         "Name":{"shape":"ParameterKey"},
         "MinValue":{"shape":"ParameterValue"},
-        "MaxValue":{"shape":"ParameterValue"}
+        "MaxValue":{"shape":"ParameterValue"},
+        "ScalingType":{"shape":"HyperParameterScalingType"}
       }
     },
     "ContinuousParameterRangeSpecification":{
@@ -1460,7 +1467,8 @@
         "VolumeSizeInGB":{"shape":"NotebookInstanceVolumeSizeInGB"},
         "AcceleratorTypes":{"shape":"NotebookInstanceAcceleratorTypes"},
         "DefaultCodeRepository":{"shape":"CodeRepositoryNameOrUrl"},
-        "AdditionalCodeRepositories":{"shape":"AdditionalCodeRepositoryNamesOrUrls"}
+        "AdditionalCodeRepositories":{"shape":"AdditionalCodeRepositoryNamesOrUrls"},
+        "RootAccess":{"shape":"RootAccess"}
       }
     },
     "CreateNotebookInstanceLifecycleConfigInput":{
@@ -1519,7 +1527,8 @@
         "VpcConfig":{"shape":"VpcConfig"},
         "StoppingCondition":{"shape":"StoppingCondition"},
         "Tags":{"shape":"TagList"},
-        "EnableNetworkIsolation":{"shape":"Boolean"}
+        "EnableNetworkIsolation":{"shape":"Boolean"},
+        "EnableInterContainerTrafficEncryption":{"shape":"Boolean"}
       }
     },
     "CreateTrainingJobResponse":{
@@ -1582,7 +1591,8 @@
     "DataInputConfig":{
       "type":"string",
       "max":1024,
-      "min":1
+      "min":1,
+      "pattern":"[\\S\\s]+"
     },
     "DataSource":{
       "type":"structure",
@@ -2012,7 +2022,8 @@
         "VolumeSizeInGB":{"shape":"NotebookInstanceVolumeSizeInGB"},
         "AcceleratorTypes":{"shape":"NotebookInstanceAcceleratorTypes"},
         "DefaultCodeRepository":{"shape":"CodeRepositoryNameOrUrl"},
-        "AdditionalCodeRepositories":{"shape":"AdditionalCodeRepositoryNamesOrUrls"}
+        "AdditionalCodeRepositories":{"shape":"AdditionalCodeRepositoryNamesOrUrls"},
+        "RootAccess":{"shape":"RootAccess"}
       }
     },
     "DescribeSubscribedWorkteamRequest":{
@@ -2072,7 +2083,8 @@
         "LastModifiedTime":{"shape":"Timestamp"},
         "SecondaryStatusTransitions":{"shape":"SecondaryStatusTransitions"},
         "FinalMetricDataList":{"shape":"FinalMetricDataList"},
-        "EnableNetworkIsolation":{"shape":"Boolean"}
+        "EnableNetworkIsolation":{"shape":"Boolean"},
+        "EnableInterContainerTrafficEncryption":{"shape":"Boolean"}
       }
     },
     "DescribeTransformJobRequest":{
@@ -2177,12 +2189,14 @@
     "EndpointArn":{
       "type":"string",
       "max":2048,
-      "min":20
+      "min":20,
+      "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:endpoint/.*"
     },
     "EndpointConfigArn":{
       "type":"string",
       "max":2048,
-      "min":20
+      "min":20,
+      "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:endpoint-config/.*"
     },
     "EndpointConfigName":{
       "type":"string",
@@ -2279,7 +2293,7 @@
       "type":"string",
       "max":63,
       "min":1,
-      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$"
     },
     "EnvironmentKey":{
       "type":"string",
@@ -2294,7 +2308,8 @@
     },
     "EnvironmentValue":{
       "type":"string",
-      "max":1024
+      "max":1024,
+      "pattern":"[\\S\\s]*"
     },
     "FailureReason":{
       "type":"string",
@@ -2318,7 +2333,8 @@
     "FilterValue":{
       "type":"string",
       "max":1024,
-      "min":1
+      "min":1,
+      "pattern":".+"
     },
     "FinalHyperParameterTuningJobObjectiveMetric":{
       "type":"structure",
@@ -2367,7 +2383,7 @@
       "type":"structure",
       "required":["RepositoryUrl"],
       "members":{
-        "RepositoryUrl":{"shape":"Url"},
+        "RepositoryUrl":{"shape":"GitConfigUrl"},
         "Branch":{"shape":"Branch"},
         "SecretArn":{"shape":"SecretArn"}
       }
@@ -2377,6 +2393,10 @@
       "members":{
         "SecretArn":{"shape":"SecretArn"}
       }
+    },
+    "GitConfigUrl":{
+      "type":"string",
+      "pattern":"^https://([^/]+)/?(.*)$"
     },
     "HumanTaskConfig":{
       "type":"structure",
@@ -2414,6 +2434,15 @@
         "AlgorithmName":{"shape":"ArnOrName"},
         "MetricDefinitions":{"shape":"MetricDefinitionList"}
       }
+    },
+    "HyperParameterScalingType":{
+      "type":"string",
+      "enum":[
+        "Auto",
+        "Linear",
+        "Logarithmic",
+        "ReverseLogarithmic"
+      ]
     },
     "HyperParameterSpecification":{
       "type":"structure",
@@ -2455,7 +2484,8 @@
         "OutputDataConfig":{"shape":"OutputDataConfig"},
         "ResourceConfig":{"shape":"ResourceConfig"},
         "StoppingCondition":{"shape":"StoppingCondition"},
-        "EnableNetworkIsolation":{"shape":"Boolean"}
+        "EnableNetworkIsolation":{"shape":"Boolean"},
+        "EnableInterContainerTrafficEncryption":{"shape":"Boolean"}
       }
     },
     "HyperParameterTrainingJobSummaries":{
@@ -2502,7 +2532,8 @@
         "Strategy":{"shape":"HyperParameterTuningJobStrategyType"},
         "HyperParameterTuningJobObjective":{"shape":"HyperParameterTuningJobObjective"},
         "ResourceLimits":{"shape":"ResourceLimits"},
-        "ParameterRanges":{"shape":"ParameterRanges"}
+        "ParameterRanges":{"shape":"ParameterRanges"},
+        "TrainingJobEarlyStoppingType":{"shape":"TrainingJobEarlyStoppingType"}
       }
     },
     "HyperParameterTuningJobName":{
@@ -2553,7 +2584,10 @@
     },
     "HyperParameterTuningJobStrategyType":{
       "type":"string",
-      "enum":["Bayesian"]
+      "enum":[
+        "Bayesian",
+        "Random"
+      ]
     },
     "HyperParameterTuningJobSummaries":{
       "type":"list",
@@ -2712,7 +2746,8 @@
       "members":{
         "Name":{"shape":"ParameterKey"},
         "MinValue":{"shape":"ParameterValue"},
-        "MaxValue":{"shape":"ParameterValue"}
+        "MaxValue":{"shape":"ParameterValue"},
+        "ScalingType":{"shape":"HyperParameterScalingType"}
       }
     },
     "IntegerParameterRangeSpecification":{
@@ -2734,16 +2769,19 @@
     },
     "JobReferenceCode":{
       "type":"string",
-      "min":1
+      "min":1,
+      "pattern":".+"
     },
     "JobReferenceCodeContains":{
       "type":"string",
       "max":255,
-      "min":1
+      "min":1,
+      "pattern":".+"
     },
     "KmsKeyId":{
       "type":"string",
-      "max":2048
+      "max":2048,
+      "pattern":".*"
     },
     "LabelAttributeName":{
       "type":"string",
@@ -2773,7 +2811,11 @@
         "Total":{"shape":"LabelCounter"}
       }
     },
-    "LabelingJobAlgorithmSpecificationArn":{"type":"string"},
+    "LabelingJobAlgorithmSpecificationArn":{
+      "type":"string",
+      "max":2048,
+      "pattern":"arn:.*"
+    },
     "LabelingJobAlgorithmsConfig":{
       "type":"structure",
       "required":["LabelingJobAlgorithmSpecificationArn"],
@@ -2972,7 +3014,9 @@
         "LastModifiedTimeAfter":{"shape":"LastModifiedTime"},
         "LastModifiedTimeBefore":{"shape":"LastModifiedTime"},
         "NameContains":{"shape":"NameContains"},
-        "StatusEquals":{"shape":"CompilationJobStatus"}
+        "StatusEquals":{"shape":"CompilationJobStatus"},
+        "SortBy":{"shape":"ListCompilationJobsSortBy"},
+        "SortOrder":{"shape":"SortOrder"}
       }
     },
     "ListCompilationJobsResponse":{
@@ -2982,6 +3026,14 @@
         "CompilationJobSummaries":{"shape":"CompilationJobSummaries"},
         "NextToken":{"shape":"NextToken"}
       }
+    },
+    "ListCompilationJobsSortBy":{
+      "type":"string",
+      "enum":[
+        "Name",
+        "CreationTime",
+        "Status"
+      ]
     },
     "ListEndpointConfigsInput":{
       "type":"structure",
@@ -3404,7 +3456,8 @@
     "MetricName":{
       "type":"string",
       "max":255,
-      "min":1
+      "min":1,
+      "pattern":".+"
     },
     "MetricRegex":{
       "type":"string",
@@ -3415,7 +3468,8 @@
     "ModelArn":{
       "type":"string",
       "max":2048,
-      "min":20
+      "min":20,
+      "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:model/.*"
     },
     "ModelArtifacts":{
       "type":"structure",
@@ -3595,7 +3649,8 @@
     "NetworkInterfaceId":{"type":"string"},
     "NextToken":{
       "type":"string",
-      "max":8192
+      "max":8192,
+      "pattern":".*"
     },
     "NotebookInstanceAcceleratorType":{
       "type":"string",
@@ -3620,7 +3675,8 @@
     "NotebookInstanceLifecycleConfigContent":{
       "type":"string",
       "max":16384,
-      "min":1
+      "min":1,
+      "pattern":"[\\S\\s]+"
     },
     "NotebookInstanceLifecycleConfigList":{
       "type":"list",
@@ -3806,15 +3862,18 @@
     },
     "PaginationToken":{
       "type":"string",
-      "max":8192
+      "max":8192,
+      "pattern":".*"
     },
     "ParameterKey":{
       "type":"string",
-      "max":256
+      "max":256,
+      "pattern":".*"
     },
     "ParameterName":{
       "type":"string",
-      "max":256
+      "max":256,
+      "pattern":"[\\p{L}\\p{M}\\p{Z}\\p{S}\\p{N}\\p{P}]*"
     },
     "ParameterRange":{
       "type":"structure",
@@ -3843,7 +3902,8 @@
     },
     "ParameterValue":{
       "type":"string",
-      "max":256
+      "max":256,
+      "pattern":".*"
     },
     "ParameterValues":{
       "type":"list",
@@ -3863,7 +3923,11 @@
       "max":5,
       "min":1
     },
-    "ProductId":{"type":"string"},
+    "ProductId":{
+      "type":"string",
+      "max":256,
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$"
+    },
     "ProductListings":{
       "type":"list",
       "member":{"shape":"String"}
@@ -3955,7 +4019,8 @@
     "PropertyNameHint":{
       "type":"string",
       "max":100,
-      "min":0
+      "min":0,
+      "pattern":".*"
     },
     "PropertyNameQuery":{
       "type":"structure",
@@ -4039,7 +4104,8 @@
     },
     "ResourceArn":{
       "type":"string",
-      "max":256
+      "max":256,
+      "pattern":"arn:.*"
     },
     "ResourceConfig":{
       "type":"structure",
@@ -4090,7 +4156,8 @@
     "ResourcePropertyName":{
       "type":"string",
       "max":255,
-      "min":1
+      "min":1,
+      "pattern":".+"
     },
     "ResourceType":{
       "type":"string",
@@ -4098,7 +4165,8 @@
     },
     "ResponseMIMEType":{
       "type":"string",
-      "max":1024
+      "max":1024,
+      "pattern":"^[-\\w]+\\/.+$"
     },
     "ResponseMIMETypes":{
       "type":"list",
@@ -4109,6 +4177,13 @@
       "max":2048,
       "min":20,
       "pattern":"^arn:aws[a-z\\-]*:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$"
+    },
+    "RootAccess":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
     },
     "S3DataDistribution":{
       "type":"string",
@@ -4239,7 +4314,8 @@
     },
     "SecurityGroupId":{
       "type":"string",
-      "max":32
+      "max":32,
+      "pattern":"[-0-9a-zA-Z]+"
     },
     "SecurityGroupIds":{
       "type":"list",
@@ -4300,7 +4376,8 @@
       "enum":[
         "None",
         "Line",
-        "RecordIO"
+        "RecordIO",
+        "TFRecord"
       ]
     },
     "StartNotebookInstanceInput":{
@@ -4363,11 +4440,13 @@
     "String200":{
       "type":"string",
       "max":200,
-      "min":1
+      "min":1,
+      "pattern":".+"
     },
     "SubnetId":{
       "type":"string",
-      "max":32
+      "max":32,
+      "pattern":"[-0-9a-zA-Z]+"
     },
     "Subnets":{
       "type":"list",
@@ -4412,7 +4491,7 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"^((?!aws:)[\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
     "TagKeyList":{
       "type":"list",
@@ -4444,12 +4523,14 @@
         "jetson_tx1",
         "jetson_tx2",
         "rasp3b",
-        "deeplens"
+        "deeplens",
+        "rk3399",
+        "rk3288"
       ]
     },
     "TaskAvailabilityLifetimeInSeconds":{
       "type":"integer",
-      "max":345600,
+      "max":864000,
       "min":1
     },
     "TaskCount":{
@@ -4459,12 +4540,14 @@
     "TaskDescription":{
       "type":"string",
       "max":255,
-      "min":1
+      "min":1,
+      "pattern":".+"
     },
     "TaskInput":{
       "type":"string",
       "max":128000,
-      "min":2
+      "min":2,
+      "pattern":"[\\S\\s]+"
     },
     "TaskKeyword":{
       "type":"string",
@@ -4492,7 +4575,8 @@
     "TemplateContent":{
       "type":"string",
       "max":128000,
-      "min":1
+      "min":1,
+      "pattern":"[\\S\\s]+"
     },
     "TenthFractionsOfACent":{
       "type":"integer",
@@ -4572,6 +4656,7 @@
         "SecondaryStatusTransitions":{"shape":"SecondaryStatusTransitions"},
         "FinalMetricDataList":{"shape":"FinalMetricDataList"},
         "EnableNetworkIsolation":{"shape":"Boolean"},
+        "EnableInterContainerTrafficEncryption":{"shape":"Boolean"},
         "Tags":{"shape":"TagList"}
       }
     },
@@ -4597,6 +4682,13 @@
         "ResourceConfig":{"shape":"ResourceConfig"},
         "StoppingCondition":{"shape":"StoppingCondition"}
       }
+    },
+    "TrainingJobEarlyStoppingType":{
+      "type":"string",
+      "enum":[
+        "Off",
+        "Auto"
+      ]
     },
     "TrainingJobName":{
       "type":"string",
@@ -4696,7 +4788,8 @@
     },
     "TransformEnvironmentValue":{
       "type":"string",
-      "max":10240
+      "max":10240,
+      "pattern":"[\\S\\s]*"
     },
     "TransformInput":{
       "type":"structure",
@@ -4929,7 +5022,8 @@
         "AcceleratorTypes":{"shape":"NotebookInstanceAcceleratorTypes"},
         "DisassociateAcceleratorTypes":{"shape":"DisassociateNotebookInstanceAcceleratorTypes"},
         "DisassociateDefaultCodeRepository":{"shape":"DisassociateDefaultCodeRepository"},
-        "DisassociateAdditionalCodeRepositories":{"shape":"DisassociateAdditionalCodeRepositories"}
+        "DisassociateAdditionalCodeRepositories":{"shape":"DisassociateAdditionalCodeRepositories"},
+        "RootAccess":{"shape":"RootAccess"}
       }
     },
     "UpdateNotebookInstanceLifecycleConfigInput":{

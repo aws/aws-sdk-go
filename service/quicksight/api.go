@@ -58,6 +58,11 @@ func (c *QuickSight) CreateGroupRequest(input *CreateGroupInput) (req *request.R
 //
 // The response is a group object.
 //
+// CLI Sample:
+//
+// aws quicksight create-group --aws-account-id=111122223333 --namespace=default
+// --group-name="Sales-Management" --description="Sales Management - Forecasting"
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -67,7 +72,10 @@ func (c *QuickSight) CreateGroupRequest(input *CreateGroupInput) (req *request.R
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   You don't have access to this.
+//   You don't have access to this. The provided credentials couldn't be validated.
+//   You might not be authorized to carry out the request. Ensure that your account
+//   is authorized to use the Amazon QuickSight service, that your policies have
+//   the correct permissions, and that you are using the correct access keys.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
 //   One or more parameters don't have a valid value.
@@ -76,7 +84,7 @@ func (c *QuickSight) CreateGroupRequest(input *CreateGroupInput) (req *request.R
 //   The resource specified doesn't exist.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   One or more resources couldn't be found.
+//   One or more resources can't be found.
 //
 //   * ErrCodeThrottlingException "ThrottlingException"
 //   Access is throttled.
@@ -169,6 +177,11 @@ func (c *QuickSight) CreateGroupMembershipRequest(input *CreateGroupMembershipIn
 //
 // The response is the group member object.
 //
+// CLI Sample:
+//
+// aws quicksight create-group-membership --aws-account-id=111122223333 --namespace=default
+// --group-name=Sales --member-name=Pat
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -178,13 +191,16 @@ func (c *QuickSight) CreateGroupMembershipRequest(input *CreateGroupMembershipIn
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   You don't have access to this.
+//   You don't have access to this. The provided credentials couldn't be validated.
+//   You might not be authorized to carry out the request. Ensure that your account
+//   is authorized to use the Amazon QuickSight service, that your policies have
+//   the correct permissions, and that you are using the correct access keys.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
 //   One or more parameters don't have a valid value.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   One or more resources couldn't be found.
+//   One or more resources can't be found.
 //
 //   * ErrCodeThrottlingException "ThrottlingException"
 //   Access is throttled.
@@ -268,6 +284,11 @@ func (c *QuickSight) DeleteGroupRequest(input *DeleteGroupInput) (req *request.R
 //
 // The permissions resource is arn:aws:quicksight:us-east-1:<aws-account-id>:group/default/<group-name>.
 //
+// CLI Sample:
+//
+// aws quicksight delete-group -\-aws-account-id=111122223333 -\-namespace=default
+// -\-group-name=Sales-Management
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -277,13 +298,16 @@ func (c *QuickSight) DeleteGroupRequest(input *DeleteGroupInput) (req *request.R
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   You don't have access to this.
+//   You don't have access to this. The provided credentials couldn't be validated.
+//   You might not be authorized to carry out the request. Ensure that your account
+//   is authorized to use the Amazon QuickSight service, that your policies have
+//   the correct permissions, and that you are using the correct access keys.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
 //   One or more parameters don't have a valid value.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   One or more resources couldn't be found.
+//   One or more resources can't be found.
 //
 //   * ErrCodeThrottlingException "ThrottlingException"
 //   Access is throttled.
@@ -372,6 +396,11 @@ func (c *QuickSight) DeleteGroupMembershipRequest(input *DeleteGroupMembershipIn
 //
 // The condition key is quicksight:UserName.
 //
+// CLI Sample:
+//
+// aws quicksight delete-group-membership --aws-account-id=111122223333 --namespace=default
+// --group-name=Sales-Management --member-name=Charlie
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -381,13 +410,16 @@ func (c *QuickSight) DeleteGroupMembershipRequest(input *DeleteGroupMembershipIn
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   You don't have access to this.
+//   You don't have access to this. The provided credentials couldn't be validated.
+//   You might not be authorized to carry out the request. Ensure that your account
+//   is authorized to use the Amazon QuickSight service, that your policies have
+//   the correct permissions, and that you are using the correct access keys.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
 //   One or more parameters don't have a valid value.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   One or more resources couldn't be found.
+//   One or more resources can't be found.
 //
 //   * ErrCodeThrottlingException "ThrottlingException"
 //   Access is throttled.
@@ -474,6 +506,11 @@ func (c *QuickSight) DeleteUserRequest(input *DeleteUserInput) (req *request.Req
 // The permission resource is arn:aws:quicksight:us-east-1:<aws-account-id>:user/default/<user-name>
 // .
 //
+// CLI Sample:
+//
+// aws quicksight delete-user --aws-account-id=111122223333 --namespace=default
+// --user-name=Pat
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -483,13 +520,16 @@ func (c *QuickSight) DeleteUserRequest(input *DeleteUserInput) (req *request.Req
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   You don't have access to this.
+//   You don't have access to this. The provided credentials couldn't be validated.
+//   You might not be authorized to carry out the request. Ensure that your account
+//   is authorized to use the Amazon QuickSight service, that your policies have
+//   the correct permissions, and that you are using the correct access keys.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
 //   One or more parameters don't have a valid value.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   One or more resources couldn't be found.
+//   One or more resources can't be found.
 //
 //   * ErrCodeThrottlingException "ThrottlingException"
 //   Access is throttled.
@@ -517,6 +557,103 @@ func (c *QuickSight) DeleteUser(input *DeleteUserInput) (*DeleteUserOutput, erro
 // for more information on using Contexts.
 func (c *QuickSight) DeleteUserWithContext(ctx aws.Context, input *DeleteUserInput, opts ...request.Option) (*DeleteUserOutput, error) {
 	req, out := c.DeleteUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteUserByPrincipalId = "DeleteUserByPrincipalId"
+
+// DeleteUserByPrincipalIdRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteUserByPrincipalId operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteUserByPrincipalId for more information on using the DeleteUserByPrincipalId
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteUserByPrincipalIdRequest method.
+//    req, resp := client.DeleteUserByPrincipalIdRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteUserByPrincipalId
+func (c *QuickSight) DeleteUserByPrincipalIdRequest(input *DeleteUserByPrincipalIdInput) (req *request.Request, output *DeleteUserByPrincipalIdOutput) {
+	op := &request.Operation{
+		Name:       opDeleteUserByPrincipalId,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/accounts/{AwsAccountId}/namespaces/{Namespace}/user-principals/{PrincipalId}",
+	}
+
+	if input == nil {
+		input = &DeleteUserByPrincipalIdInput{}
+	}
+
+	output = &DeleteUserByPrincipalIdOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteUserByPrincipalId API operation for Amazon QuickSight.
+//
+// Deletes a user after locating the user by its principal ID.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DeleteUserByPrincipalId for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   You don't have access to this. The provided credentials couldn't be validated.
+//   You might not be authorized to carry out the request. Ensure that your account
+//   is authorized to use the Amazon QuickSight service, that your policies have
+//   the correct permissions, and that you are using the correct access keys.
+//
+//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   One or more parameters don't have a valid value.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   One or more resources can't be found.
+//
+//   * ErrCodeThrottlingException "ThrottlingException"
+//   Access is throttled.
+//
+//   * ErrCodeInternalFailureException "InternalFailureException"
+//   An internal failure occurred.
+//
+//   * ErrCodeResourceUnavailableException "ResourceUnavailableException"
+//   This resource is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteUserByPrincipalId
+func (c *QuickSight) DeleteUserByPrincipalId(input *DeleteUserByPrincipalIdInput) (*DeleteUserByPrincipalIdOutput, error) {
+	req, out := c.DeleteUserByPrincipalIdRequest(input)
+	return out, req.Send()
+}
+
+// DeleteUserByPrincipalIdWithContext is the same as DeleteUserByPrincipalId with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteUserByPrincipalId for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DeleteUserByPrincipalIdWithContext(ctx aws.Context, input *DeleteUserByPrincipalIdInput, opts ...request.Option) (*DeleteUserByPrincipalIdOutput, error) {
+	req, out := c.DeleteUserByPrincipalIdRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -573,6 +710,11 @@ func (c *QuickSight) DescribeGroupRequest(input *DescribeGroupInput) (req *reque
 //
 // The response is the group object.
 //
+// CLI Sample:
+//
+// aws quicksight describe-group -\-aws-account-id=11112222333 -\-namespace=default
+// -\-group-name=Sales
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -582,13 +724,16 @@ func (c *QuickSight) DescribeGroupRequest(input *DescribeGroupInput) (req *reque
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   You don't have access to this.
+//   You don't have access to this. The provided credentials couldn't be validated.
+//   You might not be authorized to carry out the request. Ensure that your account
+//   is authorized to use the Amazon QuickSight service, that your policies have
+//   the correct permissions, and that you are using the correct access keys.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
 //   One or more parameters don't have a valid value.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   One or more resources couldn't be found.
+//   One or more resources can't be found.
 //
 //   * ErrCodeThrottlingException "ThrottlingException"
 //   Access is throttled.
@@ -675,6 +820,11 @@ func (c *QuickSight) DescribeUserRequest(input *DescribeUserInput) (req *request
 // The response is a user object that contains the user's Amazon Resource Name
 // (ARN), AWS Identity and Access Management (IAM) role, and email address.
 //
+// CLI Sample:
+//
+// aws quicksight describe-user --aws-account-id=111122223333 --namespace=default
+// --user-name=Pat
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -684,13 +834,16 @@ func (c *QuickSight) DescribeUserRequest(input *DescribeUserInput) (req *request
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   You don't have access to this.
+//   You don't have access to this. The provided credentials couldn't be validated.
+//   You might not be authorized to carry out the request. Ensure that your account
+//   is authorized to use the Amazon QuickSight service, that your policies have
+//   the correct permissions, and that you are using the correct access keys.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
 //   One or more parameters don't have a valid value.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   One or more resources couldn't be found.
+//   One or more resources can't be found.
 //
 //   * ErrCodeThrottlingException "ThrottlingException"
 //   Access is throttled.
@@ -767,8 +920,33 @@ func (c *QuickSight) GetDashboardEmbedUrlRequest(input *GetDashboardEmbedUrlInpu
 
 // GetDashboardEmbedUrl API operation for Amazon QuickSight.
 //
-// Generates an embedded URL and authorization code. Before this can work properly,
-// you need to configure the dashboards and user permissions first.
+// Generates a server-side embeddable URL and authorization code. Before this
+// can work properly, first you need to configure the dashboards and user permissions.
+// For more information, see  Embedding Amazon QuickSight Dashboards (https://docs.aws.amazon.com/en_us/quicksight/latest/user/embedding.html).
+//
+// Currently, you can use GetDashboardEmbedURL only from the server, not from
+// the user’s browser.
+//
+// CLI Sample:
+//
+// Assume the role with permissions enabled for actions: quickSight:RegisterUser
+// and quicksight:GetDashboardEmbedURL. You can use assume-role, assume-role-with-web-identity,
+// or assume-role-with-saml.
+//
+// aws sts assume-role --role-arn "arn:aws:iam::111122223333:role/embedding_quicksight_dashboard_role"
+// --role-session-name embeddingsession
+//
+// If the user does not exist in QuickSight, register the user:
+//
+// aws quicksight register-user --aws-account-id 111122223333 --namespace default
+// --identity-type IAM --iam-arn "arn:aws:iam::111122223333:role/embedding_quicksight_dashboard_role"
+// --user-role READER --session-name "embeddingsession" --email user123@example.com
+// --region us-east-1
+//
+// Get the URL for the embedded dashboard
+//
+// aws quicksight get-dashboard-embed-url --aws-account-id 111122223333 --dashboard-id
+// 1a1ac2b2-3fc3-4b44-5e5d-c6db6778df89 --identity-type IAM
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -779,7 +957,10 @@ func (c *QuickSight) GetDashboardEmbedUrlRequest(input *GetDashboardEmbedUrlInpu
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   You don't have access to this.
+//   You don't have access to this. The provided credentials couldn't be validated.
+//   You might not be authorized to carry out the request. Ensure that your account
+//   is authorized to use the Amazon QuickSight service, that your policies have
+//   the correct permissions, and that you are using the correct access keys.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
 //   One or more parameters don't have a valid value.
@@ -788,7 +969,7 @@ func (c *QuickSight) GetDashboardEmbedUrlRequest(input *GetDashboardEmbedUrlInpu
 //   The resource specified doesn't exist.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   One or more resources couldn't be found.
+//   One or more resources can't be found.
 //
 //   * ErrCodeThrottlingException "ThrottlingException"
 //   Access is throttled.
@@ -801,23 +982,23 @@ func (c *QuickSight) GetDashboardEmbedUrlRequest(input *GetDashboardEmbedUrlInpu
 //   must be added to the approved list by an Amazon QuickSight admin.
 //
 //   * ErrCodeUserNotFoundException "QuickSightUserNotFoundException"
-//   The user is not found. This could happen in any operation that requires finding
-//   a user based on the provided user name, such as DeleteUser, DescribeUser,
+//   The user is not found. This error can happen in any operation that requires
+//   finding a user based on a provided user name, such as DeleteUser, DescribeUser,
 //   and so on.
 //
 //   * ErrCodeIdentityTypeNotSupportedException "IdentityTypeNotSupportedException"
-//   The identity type specified is not supported. Supported identity types include:
+//   The identity type specified is not supported. Supported identity types include
 //   IAM and QUICKSIGHT.
 //
 //   * ErrCodeSessionLifetimeInMinutesInvalidException "SessionLifetimeInMinutesInvalidException"
-//   The number of minutes specified for the lifetime of a session is invalid.
-//   The session lifetime must be between 15 and 600 minutes.
+//   The number of minutes specified for the lifetime of a session is not valid.
+//   The session lifetime must be from 15 to 600 minutes.
 //
 //   * ErrCodeUnsupportedUserEditionException "UnsupportedUserEditionException"
-//   Indicates that you are calling an operation on an Amazon QuickSight subscription
-//   where the edition does not include support for that operation. Amazon QuickSight
-//   currently has Standard Edition and Enterprise Edition. Not every operation
-//   and capability is available in every edition.
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
 //
 //   * ErrCodeInternalFailureException "InternalFailureException"
 //   An internal failure occurred.
@@ -897,6 +1078,10 @@ func (c *QuickSight) ListGroupMembershipsRequest(input *ListGroupMembershipsInpu
 //
 // The response is a list of group member objects.
 //
+// CLI Sample:
+//
+// aws quicksight list-group-memberships -\-aws-account-id=111122223333 -\-namespace=default
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -906,13 +1091,16 @@ func (c *QuickSight) ListGroupMembershipsRequest(input *ListGroupMembershipsInpu
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   You don't have access to this.
+//   You don't have access to this. The provided credentials couldn't be validated.
+//   You might not be authorized to carry out the request. Ensure that your account
+//   is authorized to use the Amazon QuickSight service, that your policies have
+//   the correct permissions, and that you are using the correct access keys.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
 //   One or more parameters don't have a valid value.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   One or more resources couldn't be found.
+//   One or more resources can't be found.
 //
 //   * ErrCodeThrottlingException "ThrottlingException"
 //   Access is throttled.
@@ -1001,6 +1189,10 @@ func (c *QuickSight) ListGroupsRequest(input *ListGroupsInput) (req *request.Req
 //
 // The response is a list of group objects.
 //
+// CLI Sample:
+//
+// aws quicksight list-groups -\-aws-account-id=111122223333 -\-namespace=default
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1010,13 +1202,16 @@ func (c *QuickSight) ListGroupsRequest(input *ListGroupsInput) (req *request.Req
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   You don't have access to this.
+//   You don't have access to this. The provided credentials couldn't be validated.
+//   You might not be authorized to carry out the request. Ensure that your account
+//   is authorized to use the Amazon QuickSight service, that your policies have
+//   the correct permissions, and that you are using the correct access keys.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
 //   One or more parameters don't have a valid value.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   One or more resources couldn't be found.
+//   One or more resources can't be found.
 //
 //   * ErrCodeThrottlingException "ThrottlingException"
 //   Access is throttled.
@@ -1099,7 +1294,17 @@ func (c *QuickSight) ListUserGroupsRequest(input *ListUserGroupsInput) (req *req
 
 // ListUserGroups API operation for Amazon QuickSight.
 //
-// Lists the Amazon QuickSight groups that a user is part of.
+// Lists the Amazon QuickSight groups that an Amazon QuickSight user is a member
+// of.
+//
+// The permission resource is arn:aws:quicksight:us-east-1:<aws-account-id>:user/default/<user-name>.
+//
+// The response is a one or more group objects.
+//
+// CLI Sample:
+//
+// aws quicksight list-user-groups -\-user-name=Pat -\-aws-account-id=111122223333
+// -\-namespace=default -\-region=us-east-1
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1110,13 +1315,16 @@ func (c *QuickSight) ListUserGroupsRequest(input *ListUserGroupsInput) (req *req
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   You don't have access to this.
+//   You don't have access to this. The provided credentials couldn't be validated.
+//   You might not be authorized to carry out the request. Ensure that your account
+//   is authorized to use the Amazon QuickSight service, that your policies have
+//   the correct permissions, and that you are using the correct access keys.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
 //   One or more parameters don't have a valid value.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   One or more resources couldn't be found.
+//   One or more resources can't be found.
 //
 //   * ErrCodeThrottlingException "ThrottlingException"
 //   Access is throttled.
@@ -1200,6 +1408,10 @@ func (c *QuickSight) ListUsersRequest(input *ListUsersInput) (req *request.Reque
 // The response is a list of user objects, containing each user's Amazon Resource
 // Name (ARN), AWS Identity and Access Management (IAM) role, and email address.
 //
+// CLI Sample:
+//
+// aws quicksight list-users --aws-account-id=111122223333 --namespace=default
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1209,13 +1421,16 @@ func (c *QuickSight) ListUsersRequest(input *ListUsersInput) (req *request.Reque
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   You don't have access to this.
+//   You don't have access to this. The provided credentials couldn't be validated.
+//   You might not be authorized to carry out the request. Ensure that your account
+//   is authorized to use the Amazon QuickSight service, that your policies have
+//   the correct permissions, and that you are using the correct access keys.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
 //   One or more parameters don't have a valid value.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   One or more resources couldn't be found.
+//   One or more resources can't be found.
 //
 //   * ErrCodeThrottlingException "ThrottlingException"
 //   Access is throttled.
@@ -1306,6 +1521,11 @@ func (c *QuickSight) RegisterUserRequest(input *RegisterUserInput) (req *request
 //
 // The condition keys are quicksight:IamArn and quicksight:SessionName.
 //
+// CLI Sample:
+//
+// aws quicksight register-user -\-aws-account-id=111122223333 -\-namespace=default
+// -\-email=pat@example.com -\-identity-type=IAM -\-user-role=AUTHOR -\-iam-arn=arn:aws:iam::111122223333:user/Pat
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1315,13 +1535,16 @@ func (c *QuickSight) RegisterUserRequest(input *RegisterUserInput) (req *request
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   You don't have access to this.
+//   You don't have access to this. The provided credentials couldn't be validated.
+//   You might not be authorized to carry out the request. Ensure that your account
+//   is authorized to use the Amazon QuickSight service, that your policies have
+//   the correct permissions, and that you are using the correct access keys.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
 //   One or more parameters don't have a valid value.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   One or more resources couldn't be found.
+//   One or more resources can't be found.
 //
 //   * ErrCodeThrottlingException "ThrottlingException"
 //   Access is throttled.
@@ -1413,6 +1636,11 @@ func (c *QuickSight) UpdateGroupRequest(input *UpdateGroupInput) (req *request.R
 //
 // The response is a group object.
 //
+// CLI Sample:
+//
+// aws quicksight update-group --aws-account-id=111122223333 --namespace=default
+// --group-name=Sales --description="Sales BI Dashboards"
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1422,13 +1650,16 @@ func (c *QuickSight) UpdateGroupRequest(input *UpdateGroupInput) (req *request.R
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   You don't have access to this.
+//   You don't have access to this. The provided credentials couldn't be validated.
+//   You might not be authorized to carry out the request. Ensure that your account
+//   is authorized to use the Amazon QuickSight service, that your policies have
+//   the correct permissions, and that you are using the correct access keys.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
 //   One or more parameters don't have a valid value.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   One or more resources couldn't be found.
+//   One or more resources can't be found.
 //
 //   * ErrCodeThrottlingException "ThrottlingException"
 //   Access is throttled.
@@ -1510,6 +1741,17 @@ func (c *QuickSight) UpdateUserRequest(input *UpdateUserInput) (req *request.Req
 //
 // Updates an Amazon QuickSight user.
 //
+// The permission resource is arn:aws:quicksight:us-east-1:<aws-account-id>:user/default/<user-name>.
+//
+// The response is a user object that contains the user's Amazon QuickSight
+// user name, email address, active or inactive status in Amazon QuickSight,
+// Amazon QuickSight role, and Amazon Resource Name (ARN).
+//
+// CLI Sample:
+//
+// aws quicksight update-user --user-name=Pat --role=ADMIN --email=new_address@amazon.com
+// --aws-account-id=111122223333 --namespace=default --region=us-east-1
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1519,13 +1761,16 @@ func (c *QuickSight) UpdateUserRequest(input *UpdateUserInput) (req *request.Req
 //
 // Returned Error Codes:
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-//   You don't have access to this.
+//   You don't have access to this. The provided credentials couldn't be validated.
+//   You might not be authorized to carry out the request. Ensure that your account
+//   is authorized to use the Amazon QuickSight service, that your policies have
+//   the correct permissions, and that you are using the correct access keys.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
 //   One or more parameters don't have a valid value.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   One or more resources couldn't be found.
+//   One or more resources can't be found.
 //
 //   * ErrCodeThrottlingException "ThrottlingException"
 //   Access is throttled.
@@ -2056,6 +2301,114 @@ func (s *DeleteGroupOutput) SetStatus(v int64) *DeleteGroupOutput {
 	return s
 }
 
+type DeleteUserByPrincipalIdInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID for the AWS account that the user is in. Currently, you use the ID
+	// for the AWS account that contains your Amazon QuickSight account.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The namespace. Currently, you should set this to default.
+	//
+	// Namespace is a required field
+	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
+
+	// The principal ID of the user.
+	//
+	// PrincipalId is a required field
+	PrincipalId *string `location:"uri" locationName:"PrincipalId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteUserByPrincipalIdInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteUserByPrincipalIdInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteUserByPrincipalIdInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteUserByPrincipalIdInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.Namespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+	if s.PrincipalId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrincipalId"))
+	}
+	if s.PrincipalId != nil && len(*s.PrincipalId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PrincipalId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DeleteUserByPrincipalIdInput) SetAwsAccountId(v string) *DeleteUserByPrincipalIdInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *DeleteUserByPrincipalIdInput) SetNamespace(v string) *DeleteUserByPrincipalIdInput {
+	s.Namespace = &v
+	return s
+}
+
+// SetPrincipalId sets the PrincipalId field's value.
+func (s *DeleteUserByPrincipalIdInput) SetPrincipalId(v string) *DeleteUserByPrincipalIdInput {
+	s.PrincipalId = &v
+	return s
+}
+
+type DeleteUserByPrincipalIdOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The http status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s DeleteUserByPrincipalIdOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteUserByPrincipalIdOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DeleteUserByPrincipalIdOutput) SetRequestId(v string) *DeleteUserByPrincipalIdOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteUserByPrincipalIdOutput) SetStatus(v int64) *DeleteUserByPrincipalIdOutput {
+	s.Status = &v
+	return s
+}
+
 type DeleteUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2411,7 +2764,7 @@ type GetDashboardEmbedUrlInput struct {
 	// DashboardId is a required field
 	DashboardId *string `location:"uri" locationName:"DashboardId" type:"string" required:"true"`
 
-	// The authentication method the user uses to sign in (IAM or QUICKSIGHT).
+	// The authentication method the user uses to sign in (IAM only).
 	//
 	// IdentityType is a required field
 	IdentityType *string `location:"querystring" locationName:"creds-type" type:"string" required:"true" enum:"IdentityType"`
@@ -2506,10 +2859,10 @@ func (s *GetDashboardEmbedUrlInput) SetUndoRedoDisabled(v bool) *GetDashboardEmb
 type GetDashboardEmbedUrlOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Call the GetDashboardEmbedUrl API to get the URL that you can embed in your
-	// dashboard. This URL is valid for 5 minutes, and the resulting session is
-	// valid for 10 hours. The API provides the URL with an auth_code that enables
-	// a single-signon session.
+	// URL that you can put into your server-side webpage to embed your dashboard.
+	// This URL is valid for 5 minutes, and the resulting session is valid for 10
+	// hours. The API provides the URL with an auth_code that enables a single-signon
+	// session.
 	EmbedUrl *string `type:"string" sensitive:"true"`
 
 	// The AWS request ID for this operation.
@@ -2561,6 +2914,9 @@ type Group struct {
 
 	// The name of the group.
 	GroupName *string `min:"1" type:"string"`
+
+	// The principal ID of the group.
+	PrincipalId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -2588,6 +2944,12 @@ func (s *Group) SetDescription(v string) *Group {
 // SetGroupName sets the GroupName field's value.
 func (s *Group) SetGroupName(v string) *Group {
 	s.GroupName = &v
+	return s
+}
+
+// SetPrincipalId sets the PrincipalId field's value.
+func (s *Group) SetPrincipalId(v string) *Group {
+	s.PrincipalId = &v
 	return s
 }
 
@@ -2905,8 +3267,8 @@ func (s *ListGroupsOutput) SetStatus(v int64) *ListGroupsOutput {
 type ListUserGroupsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Account ID that the user is in. Currently, use the AWS Account ID
-	// which contains your Amazon QuickSight account.
+	// The AWS Account ID that the user is in. Currently, you use the ID for the
+	// AWS account that contains your Amazon QuickSight account.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -2922,7 +3284,7 @@ type ListUserGroupsInput struct {
 	// A pagination token that can be used in a subsequent request.
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 
-	// The name of the user that you want to list groups for.
+	// The Amazon QuickSight user name that you want to list group memberships for.
 	//
 	// UserName is a required field
 	UserName *string `location:"uri" locationName:"UserName" min:"1" type:"string" required:"true"`
@@ -3011,7 +3373,7 @@ type ListUserGroupsOutput struct {
 	// The AWS request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The http status of the request.
+	// The HTTP status of the request.
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
@@ -3217,7 +3579,7 @@ type RegisterUserInput struct {
 	// has a different session name. For more information on assuming IAM roles,
 	// see assume-role (https://docs.aws.amazon.com/cli/latest/reference/sts/assume-role.html)
 	// in the AWS CLI Reference.
-	SessionName *string `type:"string"`
+	SessionName *string `min:"2" type:"string"`
 
 	// The Amazon QuickSight user name that you want to create for the user you
 	// are registering.
@@ -3267,6 +3629,9 @@ func (s *RegisterUserInput) Validate() error {
 	}
 	if s.Namespace != nil && len(*s.Namespace) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+	if s.SessionName != nil && len(*s.SessionName) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionName", 2))
 	}
 	if s.UserName != nil && len(*s.UserName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("UserName", 1))
@@ -3340,6 +3705,10 @@ type RegisterUserOutput struct {
 
 	// The user name.
 	User *User `type:"structure"`
+
+	// The URL the user visits to complete registration and provide a password.
+	// This is returned only for users with an identity type of QUICKSIGHT.
+	UserInvitationUrl *string `type:"string"`
 }
 
 // String returns the string representation
@@ -3367,6 +3736,12 @@ func (s *RegisterUserOutput) SetStatus(v int64) *RegisterUserOutput {
 // SetUser sets the User field's value.
 func (s *RegisterUserOutput) SetUser(v *User) *RegisterUserOutput {
 	s.User = v
+	return s
+}
+
+// SetUserInvitationUrl sets the UserInvitationUrl field's value.
+func (s *RegisterUserOutput) SetUserInvitationUrl(v string) *RegisterUserOutput {
+	s.UserInvitationUrl = &v
 	return s
 }
 
@@ -3671,6 +4046,9 @@ type User struct {
 	// The type of identity authentication used by the user.
 	IdentityType *string `type:"string" enum:"IdentityType"`
 
+	// The principal ID of the user.
+	PrincipalId *string `type:"string"`
+
 	// The Amazon QuickSight role for the user.
 	Role *string `type:"string" enum:"UserRole"`
 
@@ -3709,6 +4087,12 @@ func (s *User) SetEmail(v string) *User {
 // SetIdentityType sets the IdentityType field's value.
 func (s *User) SetIdentityType(v string) *User {
 	s.IdentityType = &v
+	return s
+}
+
+// SetPrincipalId sets the PrincipalId field's value.
+func (s *User) SetPrincipalId(v string) *User {
+	s.PrincipalId = &v
 	return s
 }
 

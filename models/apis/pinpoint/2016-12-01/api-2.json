@@ -1442,6 +1442,21 @@
         "shape" : "TooManyRequestsException"
       } ]
     },
+    "ListTagsForResource" : {
+      "name" : "ListTagsForResource",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/v1/tags/{resource-arn}",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "ListTagsForResourceRequest"
+      },
+      "output" : {
+        "shape" : "ListTagsForResourceResponse"
+      },
+      "errors" : [ ]
+    },
     "PhoneNumberValidate" : {
       "name" : "PhoneNumberValidate",
       "http" : {
@@ -1603,6 +1618,30 @@
       }, {
         "shape" : "TooManyRequestsException"
       } ]
+    },
+    "TagResource" : {
+      "name" : "TagResource",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/v1/tags/{resource-arn}",
+        "responseCode" : 204
+      },
+      "input" : {
+        "shape" : "TagResourceRequest"
+      },
+      "errors" : [ ]
+    },
+    "UntagResource" : {
+      "name" : "UntagResource",
+      "http" : {
+        "method" : "DELETE",
+        "requestUri" : "/v1/tags/{resource-arn}",
+        "responseCode" : 204
+      },
+      "input" : {
+        "shape" : "UntagResourceRequest"
+      },
+      "errors" : [ ]
     },
     "UpdateAdmChannel" : {
       "name" : "UpdateAdmChannel",
@@ -2546,11 +2585,18 @@
     "ApplicationResponse" : {
       "type" : "structure",
       "members" : {
+        "Arn" : {
+          "shape" : "__string"
+        },
         "Id" : {
           "shape" : "__string"
         },
         "Name" : {
           "shape" : "__string"
+        },
+        "tags": {
+          "shape" : "MapOf__string",
+          "locationName" : "tags"
         }
       },
       "required" : [ ]
@@ -2804,6 +2850,9 @@
         "ApplicationId" : {
           "shape" : "__string"
         },
+        "Arn" : {
+          "shape" : "__string"
+        },
         "CreationDate" : {
           "shape" : "__string"
         },
@@ -2848,6 +2897,10 @@
         },
         "State" : {
           "shape" : "CampaignState"
+        },
+        "tags": {
+          "shape" : "MapOf__string",
+          "locationName" : "tags"
         },
         "TreatmentDescription" : {
           "shape" : "__string"
@@ -2969,6 +3022,10 @@
       "members" : {
         "Name" : {
           "shape" : "__string"
+        },
+        "tags": {
+          "shape" : "MapOf__string",
+          "locationName" : "tags"
         }
       },
       "required" : [ ]
@@ -3877,6 +3934,15 @@
     "Event" : {
       "type" : "structure",
       "members" : {
+        "AppPackageName" : {
+          "shape" : "__string"
+        },
+        "AppTitle" : {
+          "shape" : "__string"
+        },
+        "AppVersionCode" : {
+          "shape" : "__string"
+        },
         "Attributes" : {
           "shape" : "MapOf__string"
         },
@@ -3888,6 +3954,9 @@
         },
         "Metrics" : {
           "shape" : "MapOf__double"
+        },
+        "SdkName" : {
+          "shape" : "__string"
         },
         "Session" : {
           "shape" : "Session"
@@ -5219,6 +5288,27 @@
       "type" : "string",
       "enum" : [ "CREATED", "INITIALIZING", "PROCESSING", "COMPLETING", "COMPLETED", "FAILING", "FAILED" ]
     },
+    "ListTagsForResourceRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ResourceArn" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "resource-arn"
+        }
+      },
+      "required" : [ "ResourceArn" ]
+    },
+    "ListTagsForResourceResponse" : {
+      "type" : "structure",
+      "members" : {
+        "TagsModel" : {
+          "shape" : "TagsModel"
+        }
+      },
+      "required" : [ "TagsModel" ],
+      "payload" : "TagsModel"
+    },
     "Message" : {
       "type" : "structure",
       "members" : {
@@ -5892,6 +5982,9 @@
         "ApplicationId" : {
           "shape" : "__string"
         },
+        "Arn" : {
+          "shape" : "__string"
+        },
         "CreationDate" : {
           "shape" : "__string"
         },
@@ -5915,6 +6008,10 @@
         },
         "SegmentType" : {
           "shape" : "SegmentType"
+        },
+        "tags": {
+          "shape" : "MapOf__string",
+          "locationName" : "tags"
         },
         "Version" : {
           "shape" : "__integer"
@@ -6080,6 +6177,31 @@
       "type" : "string",
       "enum" : [ "ALL", "ANY", "NONE" ]
     },
+    "TagResourceRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ResourceArn" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "resource-arn"
+        },
+        "TagsModel" : {
+          "shape" : "TagsModel"
+        }
+      },
+      "required" : [ "ResourceArn", "TagsModel" ],
+      "payload" : "TagsModel"
+    },
+    "TagsModel" : {
+      "type" : "structure",
+      "members" : {
+        "tags": {
+          "shape" : "MapOf__string",
+          "locationName" : "tags"
+        }
+      },
+      "required" : [ "tags" ]
+    },
     "TooManyRequestsException" : {
       "type" : "structure",
       "members" : {
@@ -6125,6 +6247,22 @@
     "Type" : {
       "type" : "string",
       "enum" : [ "ALL", "ANY", "NONE" ]
+    },
+    "UntagResourceRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ResourceArn" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "resource-arn"
+        },
+        "TagKeys" : {
+          "shape" : "ListOf__string",
+          "location" : "querystring",
+          "locationName" : "tagKeys"
+        }
+      },
+      "required" : [ "TagKeys", "ResourceArn" ]
     },
     "UpdateAdmChannelRequest" : {
       "type" : "structure",
@@ -6642,6 +6780,10 @@
         "SegmentVersion" : {
           "shape" : "__integer"
         },
+        "tags": {
+          "shape" : "MapOf__string",
+          "locationName" : "tags"
+        },
         "TreatmentDescription" : {
           "shape" : "__string"
         },
@@ -6673,6 +6815,10 @@
         },
         "SegmentGroups" : {
           "shape" : "SegmentGroupList"
+        },
+        "tags": {
+          "shape" : "MapOf__string",
+          "locationName" : "tags"
         }
       },
       "required" : [ ]

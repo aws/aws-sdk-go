@@ -3,7 +3,7 @@
   "service": "AWS Elemental MediaConvert",
   "operations": {
     "AssociateCertificate": "Associates an AWS Certificate Manager (ACM) Amazon Resource Name (ARN) with AWS Elemental MediaConvert.",
-    "CancelJob": "Permanently remove a job from a queue. Once you have canceled a job, you can't start it again. You can't delete a running job.",
+    "CancelJob": "Permanently cancel a job. Once you have canceled a job, you can't start it again.",
     "CreateJob": "Create a new transcoding job. For information about jobs and job settings, see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html",
     "CreateJobTemplate": "Create a new job template. For information about job templates see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html",
     "CreatePreset": "Create a new preset. For information about job templates see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html",
@@ -113,8 +113,24 @@
         "AudioCodecSettings$Ac3Settings": null
       }
     },
+    "AccelerationMode": {
+      "base": "Acceleration configuration for the job.",
+      "refs": {
+        "AccelerationSettings$Mode": "Acceleration configuration for the job."
+      }
+    },
+    "AccelerationSettings": {
+      "base": "Acceleration settings for job execution.",
+      "refs": {
+        "CreateJobRequest$AccelerationSettings": "This is a beta feature. If you are interested in using this feature, please contact AWS customer support.",
+        "CreateJobTemplateRequest$AccelerationSettings": "This is a beta feature. If you are interested in using this feature please contact AWS customer support.",
+        "Job$AccelerationSettings": "Acceleration settings for job execution.",
+        "JobTemplate$AccelerationSettings": "Acceleration settings for job execution.",
+        "UpdateJobTemplateRequest$AccelerationSettings": "This is a beta feature. If you are interested in using this feature, please contact AWS customer support."
+      }
+    },
     "AfdSignaling": {
-      "base": "This setting only applies to H.264, H.265, and MPEG2 outputs. Use Insert AFD signaling  (AfdSignaling) to specify whether the service includes AFD values in the output video data  and what those values are. * Choose None to remove all AFD values from this output. * Choose Fixed to ignore input AFD values and instead encode the value specified in the job. * Choose Auto to calculate output AFD values based on the input AFD scaler data.",
+      "base": "This setting only applies to H.264, H.265, and MPEG2 outputs. Use Insert AFD signaling (AfdSignaling) to specify whether the service includes AFD values in the output video data and what those values are. * Choose None to remove all AFD values from this output. * Choose Fixed to ignore input AFD values and instead encode the value specified in the job. * Choose Auto to calculate output AFD values based on the input AFD scaler data.",
       "refs": {
         "VideoDescription$AfdSignaling": null
       }
@@ -132,9 +148,9 @@
       }
     },
     "AntiAlias": {
-      "base": "Enable Anti-alias (AntiAlias) to enhance sharp edges in video output when your input resolution is much larger than your output resolution. Default is enabled.",
+      "base": "You no longer need to specify the anti-alias filter. It's now automatically applied to all outputs. This property is deprecated.",
       "refs": {
-        "VideoDescription$AntiAlias": null
+        "VideoDescription$AntiAlias": "You no longer need to specify the anti-alias filter. It's now automatically applied to all outputs. This property is deprecated."
       }
     },
     "AssociateCertificateRequest": {
@@ -322,7 +338,7 @@
       }
     },
     "CaptionDestinationType": {
-      "base": "Type of Caption output, including Burn-In, Embedded (with or without SCTE20), SCC, SMI, SRT, TTML, WebVTT, DVB-Sub, Teletext.",
+      "base": "Specify the format for this set of captions on this output. The default format is embedded without SCTE-20. Other options are embedded with SCTE-20, burn-in, DVB-sub, SCC, SRT, teletext, TTML, and web-VTT. If you are using SCTE-20, choose SCTE-20 plus embedded (SCTE20_PLUS_EMBEDDED) to create an output that complies with the SCTE-43 spec. To create a non-compliant output where the embedded captions come first, choose Embedded plus SCTE-20 (EMBEDDED_PLUS_SCTE20).",
       "refs": {
         "CaptionDestinationSettings$DestinationType": null
       }
@@ -808,6 +824,12 @@
         "EmbeddedSourceSettings$Convert608To708": null
       }
     },
+    "EmbeddedDestinationSettings": {
+      "base": "Settings specific to embedded/ancillary caption outputs, including 608/708 Channel destination number.",
+      "refs": {
+        "CaptionDestinationSettings$EmbeddedDestinationSettings": null
+      }
+    },
     "EmbeddedSourceSettings": {
       "base": "Settings for embedded captions Source",
       "refs": {
@@ -818,6 +840,25 @@
       "base": "Describes an account-specific API endpoint.",
       "refs": {
         "__listOfEndpoint$member": null
+      }
+    },
+    "EsamManifestConfirmConditionNotification": {
+      "base": "ESAM ManifestConfirmConditionNotification defined by OC-SP-ESAM-API-I03-131025.",
+      "refs": {
+        "EsamSettings$ManifestConfirmConditionNotification": "Specifies an ESAM ManifestConfirmConditionNotification XML as per OC-SP-ESAM-API-I03-131025. The transcoder uses the manifest conditioning instructions that you provide in the setting MCC XML (mccXml)."
+      }
+    },
+    "EsamSettings": {
+      "base": "Settings for Event Signaling And Messaging (ESAM). If you don't do ad insertion, you can ignore these settings.",
+      "refs": {
+        "JobSettings$Esam": "Settings for Event Signaling And Messaging (ESAM).",
+        "JobTemplateSettings$Esam": "Settings for Event Signaling And Messaging (ESAM)."
+      }
+    },
+    "EsamSignalProcessingNotification": {
+      "base": "ESAM SignalProcessingNotification data defined by OC-SP-ESAM-API-I03-131025.",
+      "refs": {
+        "EsamSettings$SignalProcessingNotification": "Specifies an ESAM SignalProcessingNotification XML as per OC-SP-ESAM-API-I03-131025. The transcoder uses the signal processing instructions that you provide in the setting SCC XML (sccXml)."
       }
     },
     "ExceptionBody": {
@@ -853,6 +894,13 @@
       "base": "Settings for File-based Captions in Source",
       "refs": {
         "CaptionSourceSettings$FileSourceSettings": null
+      }
+    },
+    "FontScript": {
+      "base": "Provide the font script, using an ISO 15924 script code, if the LanguageCode is not sufficient for determining the script type. Where LanguageCode or CustomLanguageCode is sufficient, use \"AUTOMATIC\" or leave unset.",
+      "refs": {
+        "BurninDestinationSettings$FontScript": "Provide the font script, using an ISO 15924 script code, if the LanguageCode is not sufficient for determining the script type. Where LanguageCode or CustomLanguageCode is sufficient, use \"AUTOMATIC\" or leave unset. This is used to help determine the appropriate font for rendering burn-in captions.",
+        "DvbSubDestinationSettings$FontScript": "Provide the font script, using an ISO 15924 script code, if the LanguageCode is not sufficient for determining the script type. Where LanguageCode or CustomLanguageCode is sufficient, use \"AUTOMATIC\" or leave unset. This is used to help determine the appropriate font for rendering DVB-Sub captions."
       }
     },
     "ForbiddenException": {
@@ -913,7 +961,7 @@
       }
     },
     "H264CodecLevel": {
-      "base": "H.264 Level.",
+      "base": "Specify an H.264 level that is consistent with your output video settings. If you aren't sure what level to specify, choose Auto (AUTO).",
       "refs": {
         "H264Settings$CodecLevel": null
       }
@@ -949,13 +997,13 @@
       }
     },
     "H264FramerateControl": {
-      "base": "If you are using the console, use the Framerate setting to specify the framerate for this output. If you want to keep the same framerate as the input video, choose Follow source. If you want to do framerate conversion, choose a framerate from the dropdown list or choose Custom. The framerates shown in the dropdown list are decimal approximations of fractions. If you choose Custom, specify your framerate as a fraction. If you are creating your transcoding job specification as a JSON file without the console, use FramerateControl to specify which value the service uses for the framerate for this output. Choose INITIALIZE_FROM_SOURCE if you want the service to use the framerate from the input. Choose SPECIFIED if you want the service to use the framerate you specify in the settings FramerateNumerator and FramerateDenominator.",
+      "base": "If you are using the console, use the Framerate setting to specify the frame rate for this output. If you want to keep the same frame rate as the input video, choose Follow source. If you want to do frame rate conversion, choose a frame rate from the dropdown list or choose Custom. The framerates shown in the dropdown list are decimal approximations of fractions. If you choose Custom, specify your frame rate as a fraction. If you are creating your transcoding job specification as a JSON file without the console, use FramerateControl to specify which value the service uses for the frame rate for this output. Choose INITIALIZE_FROM_SOURCE if you want the service to use the frame rate from the input. Choose SPECIFIED if you want the service to use the frame rate you specify in the settings FramerateNumerator and FramerateDenominator.",
       "refs": {
         "H264Settings$FramerateControl": null
       }
     },
     "H264FramerateConversionAlgorithm": {
-      "base": "When set to INTERPOLATE, produces smoother motion during framerate conversion.",
+      "base": "When set to INTERPOLATE, produces smoother motion during frame rate conversion.",
       "refs": {
         "H264Settings$FramerateConversionAlgorithm": null
       }
@@ -1093,13 +1141,13 @@
       }
     },
     "H265FramerateControl": {
-      "base": "If you are using the console, use the Framerate setting to specify the framerate for this output. If you want to keep the same framerate as the input video, choose Follow source. If you want to do framerate conversion, choose a framerate from the dropdown list or choose Custom. The framerates shown in the dropdown list are decimal approximations of fractions. If you choose Custom, specify your framerate as a fraction. If you are creating your transcoding job sepecification as a JSON file without the console, use FramerateControl to specify which value the service uses for the framerate for this output. Choose INITIALIZE_FROM_SOURCE if you want the service to use the framerate from the input. Choose SPECIFIED if you want the service to use the framerate you specify in the settings FramerateNumerator and FramerateDenominator.",
+      "base": "If you are using the console, use the Framerate setting to specify the frame rate for this output. If you want to keep the same frame rate as the input video, choose Follow source. If you want to do frame rate conversion, choose a frame rate from the dropdown list or choose Custom. The framerates shown in the dropdown list are decimal approximations of fractions. If you choose Custom, specify your frame rate as a fraction. If you are creating your transcoding job sepecification as a JSON file without the console, use FramerateControl to specify which value the service uses for the frame rate for this output. Choose INITIALIZE_FROM_SOURCE if you want the service to use the frame rate from the input. Choose SPECIFIED if you want the service to use the frame rate you specify in the settings FramerateNumerator and FramerateDenominator.",
       "refs": {
         "H265Settings$FramerateControl": null
       }
     },
     "H265FramerateConversionAlgorithm": {
-      "base": "When set to INTERPOLATE, produces smoother motion during framerate conversion.",
+      "base": "When set to INTERPOLATE, produces smoother motion during frame rate conversion.",
       "refs": {
         "H265Settings$FramerateConversionAlgorithm": null
       }
@@ -1207,15 +1255,15 @@
       }
     },
     "H265WriteMp4PackagingType": {
-      "base": "If HVC1, output that is H.265 will be marked as HVC1 and adhere to the ISO-IECJTC1-SC29_N13798_Text_ISOIEC_FDIS_14496-15_3rd_E spec which states that parameter set NAL units will be stored in the sample headers but not in the samples directly. If HEV1, then H.265 will be marked as HEV1 and parameter set NAL units will be written into the samples.",
+      "base": "Use this setting only for outputs encoded with H.265 that are in CMAF or DASH output groups. If you include writeMp4PackagingType in your JSON job specification for other outputs, your video might not work properly with downstream systems and video players. If the location of parameter set NAL units don't matter in your workflow, ignore this setting. The service defaults to marking your output as HEV1. Choose HVC1 to mark your output as HVC1. This makes your output compliant with this specification: ISO IECJTC1 SC29 N13798 Text ISO/IEC FDIS 14496-15 3rd Edition. For these outputs, the service stores parameter set NAL units in the sample headers but not in the samples directly. Keep the default HEV1 to mark your output as HEV1. For these outputs, the service writes parameter set NAL units directly into the samples.",
       "refs": {
-        "H265Settings$WriteMp4PackagingType": null
+        "H265Settings$WriteMp4PackagingType": "Use this setting only for outputs encoded with H.265 that are in CMAF or DASH output groups. If you include writeMp4PackagingType in your JSON job specification for other outputs, your video might not work properly with downstream systems and video players. If the location of parameter set NAL units don't matter in your workflow, ignore this setting. The service defaults to marking your output as HEV1. Choose HVC1 to mark your output as HVC1. This makes your output compliant with this specification: ISO IECJTC1 SC29 N13798 Text ISO/IEC FDIS 14496-15 3rd Edition. For these outputs, the service stores parameter set NAL units in the sample headers but not in the samples directly. Keep the default HEV1 to mark your output as HEV1. For these outputs, the service writes parameter set NAL units directly into the samples."
       }
     },
     "Hdr10Metadata": {
-      "base": "Use the HDR master display (Hdr10Metadata) settings to correct HDR metadata or to provide missing metadata. These values vary depending on the input video and must be provided by a color grader. Range is 0 to 50,000, each increment represents 0.00002 in CIE1931 color coordinate. Note that these settings are not color correction. Note that if you are creating HDR outputs inside of an HLS CMAF package, to comply with the Apple specification, you must use the HVC1 for H.265 setting.",
+      "base": "Use the \"HDR master display information\" (Hdr10Metadata) settings to correct HDR metadata or to provide missing metadata. These values vary depending on the input video and must be provided by a color grader. Range is 0 to 50,000; each increment represents 0.00002 in CIE1931 color coordinate. Note that these settings are not color correction. Note that if you are creating HDR outputs inside of an HLS CMAF package, to comply with the Apple specification, you must use the following settings. Set \"MP4 packaging type\" (writeMp4PackagingType) to HVC1 (HVC1). Set \"Profile\" (H265Settings > codecProfile) to Main10/High (MAIN10_HIGH). Set \"Level\" (H265Settings > codecLevel) to 5 (LEVEL_5).",
       "refs": {
-        "ColorCorrector$Hdr10Metadata": null,
+        "ColorCorrector$Hdr10Metadata": "Use the HDR master display (Hdr10Metadata) settings to correct HDR metadata or to provide missing metadata. Note that these settings are not color correction.",
         "VideoSelector$Hdr10Metadata": null
       }
     },
@@ -1309,6 +1357,12 @@
         "HlsGroupSettings$ManifestDurationFormat": null
       }
     },
+    "HlsOfflineEncrypted": {
+      "base": "Enable this setting to insert the EXT-X-SESSION-KEY element into the master playlist. This allows for offline Apple HLS FairPlay content protection.",
+      "refs": {
+        "HlsEncryptionSettings$OfflineEncrypted": null
+      }
+    },
     "HlsOutputSelection": {
       "base": "Indicates whether the .m3u8 manifest file should be generated for this HLS output group.",
       "refs": {
@@ -1352,10 +1406,10 @@
       }
     },
     "ImageInserter": {
-      "base": "Enable the Image inserter (ImageInserter) feature to include a graphic overlay on your video. Enable or disable this feature for each input or output individually. This setting is disabled by default.",
+      "base": "Enable the image inserter feature to include a graphic overlay on your video. Enable or disable this feature for each input or output individually. This setting is disabled by default.",
       "refs": {
-        "Input$ImageInserter": "Enable the Image inserter (ImageInserter) feature to include a graphic overlay on your video. Enable or disable this feature for each input individually. This setting is disabled by default.",
-        "InputTemplate$ImageInserter": "Enable the Image inserter (ImageInserter) feature to include a graphic overlay on your video. Enable or disable this feature for each input individually. This setting is disabled by default.",
+        "Input$ImageInserter": "Enable the image inserter feature to include a graphic overlay on your video. Enable or disable this feature for each input individually. This setting is disabled by default.",
+        "InputTemplate$ImageInserter": "Enable the image inserter feature to include a graphic overlay on your video. Enable or disable this feature for each input individually. This setting is disabled by default.",
         "VideoPreprocessor$ImageInserter": "Enable the Image inserter (ImageInserter) feature to include a graphic overlay on your video. Enable or disable this feature for each output individually. This setting is disabled by default."
       }
     },
@@ -1381,7 +1435,7 @@
     "InputDecryptionSettings": {
       "base": "Specify the decryption settings used to decrypt encrypted input",
       "refs": {
-        "Input$DecryptionSettings": "If the input file is encrypted, decryption settings to decrypt the media file"
+        "Input$DecryptionSettings": "Settings for decrypting any input files that are encrypted."
       }
     },
     "InputDenoiseFilter": {
@@ -1405,6 +1459,12 @@
         "InputTemplate$PsiControl": null
       }
     },
+    "InputRotate": {
+      "base": "Use Rotate (InputRotate) to specify how the service rotates your video. You can choose automatic rotation or specify a rotation. You can specify a clockwise rotation of 0, 90, 180, or 270 degrees. If your input video container is .mov or .mp4 and your input has rotation metadata, you can choose Automatic to have the service rotate your video according to the rotation specified in the metadata. The rotation must be within one degree of 90, 180, or 270 degrees. If the rotation metadata specifies any other rotation, the service will default to no rotation. By default, the service does no rotation, even if your input video has rotation metadata. The service doesn't pass through rotation metadata.",
+      "refs": {
+        "VideoSelector$Rotate": null
+      }
+    },
     "InputTemplate": {
       "base": "Specified video input in a template.",
       "refs": {
@@ -1419,7 +1479,7 @@
       }
     },
     "InsertableImage": {
-      "base": "Settings that specify how your overlay appears.",
+      "base": "Settings that specify how your still graphic overlay appears.",
       "refs": {
         "__listOfInsertableImage$member": null
       }
@@ -1479,8 +1539,8 @@
       "refs": {
         "AudioDescription$LanguageCode": "Indicates the language of the audio output track. The ISO 639 language specified in the 'Language Code' drop down will be used when 'Follow Input Language Code' is not selected or when 'Follow Input Language Code' is selected but there is no ISO 639 language code specified by the input.",
         "AudioSelector$LanguageCode": "Selects a specific language code from within an audio source.",
-        "CaptionDescription$LanguageCode": "Indicates the language of the caption output track.",
-        "CaptionDescriptionPreset$LanguageCode": "Indicates the language of the caption output track.",
+        "CaptionDescription$LanguageCode": "Specify the language of this captions output track. For most captions output formats, the encoder puts this language information in the output captions metadata. If your output captions format is DVB-Sub or Burn in, the encoder uses this language information to choose the font language for rendering the captions text.",
+        "CaptionDescriptionPreset$LanguageCode": "Specify the language of this captions output track. For most captions output formats, the encoder puts this language information in the output captions metadata. If your output captions format is DVB-Sub or Burn in, the encoder uses this language information to choose the font language for rendering the captions text.",
         "CaptionSelector$LanguageCode": "The specific language to extract from source. If input is SCTE-27, complete this field and/or PID to select the caption language to extract. If input is DVB-Sub and output is Burn-in or SMPTE-TT, complete this field and/or PID to select the caption language to extract. If input is DVB-Sub that is being passed through, omit this field (and PID field); there is no way to extract a specific language with pass-through captions.",
         "HlsCaptionLanguageMapping$LanguageCode": null
       }
@@ -1565,6 +1625,12 @@
         "M2tsSettings$EsRateInPes": null
       }
     },
+    "M2tsForceTsVideoEbpOrder": {
+      "base": "Keep the default value (DEFAULT) unless you know that your audio EBP markers are incorrectly appearing before your video EBP markers. To correct this problem, set this value to Force (FORCE).",
+      "refs": {
+        "M2tsSettings$ForceTsVideoEbpOrder": "Keep the default value (DEFAULT) unless you know that your audio EBP markers are incorrectly appearing before your video EBP markers. To correct this problem, set this value to Force (FORCE)."
+      }
+    },
     "M2tsNielsenId3": {
       "base": "If INSERT, Nielsen inaudible tones for media tracking will be detected in the input audio and an equivalent ID3 tag will be inserted in the output.",
       "refs": {
@@ -1581,6 +1647,12 @@
       "base": "When set to CBR, inserts null packets into transport stream to fill specified bitrate. When set to VBR, the bitrate setting acts as the maximum bitrate, but the output will not be padded up to that bitrate.",
       "refs": {
         "M2tsSettings$RateMode": null
+      }
+    },
+    "M2tsScte35Esam": {
+      "base": "Settings for SCTE-35 signals from ESAM. Include this in your job settings to put SCTE-35 markers in your HLS and transport stream outputs at the insertion points that you specify in an ESAM XML document. Provide the document in the setting SCC XML (sccXml).",
+      "refs": {
+        "M2tsSettings$Scte35Esam": "Include this in your job settings to put SCTE-35 markers in your HLS and transport stream outputs at the insertion points that you specify in an ESAM XML document. Provide the document in the setting SCC XML (sccXml)."
       }
     },
     "M2tsScte35Source": {
@@ -1602,7 +1674,7 @@
       }
     },
     "M2tsSettings": {
-      "base": "Settings for M2TS Container.",
+      "base": "MPEG-2 TS container settings. These apply to outputs in a File output group when the output's container (ContainerType) is MPEG-2 Transport Stream (M2TS). In these assets, data is organized by the program map table (PMT). Each transport stream program contains subsets of data, including audio, video, and metadata. Each of these subsets of data has a numerical label called a packet identifier (PID). Each transport stream program corresponds to one MediaConvert output. The PMT lists the types of data in a program along with their PID. Downstream systems and players use the program map table to look up the PID for each type of data it accesses and then uses the PIDs to locate specific data within the asset.",
       "refs": {
         "ContainerSettings$M2tsSettings": null
       }
@@ -1639,9 +1711,9 @@
       }
     },
     "MotionImageInsertionFramerate": {
-      "base": "For motion overlays that don't have a built-in framerate, specify the framerate of the overlay in frames per second, as a fraction. For example, specify 24 fps as 24/1. The overlay framerate doesn't need to match the framerate of the underlying video.",
+      "base": "For motion overlays that don't have a built-in frame rate, specify the frame rate of the overlay in frames per second, as a fraction. For example, specify 24 fps as 24/1. The overlay frame rate doesn't need to match the frame rate of the underlying video.",
       "refs": {
-        "MotionImageInserter$Framerate": "If your motion graphic asset is a .mov file, keep this setting unspecified. If your motion graphic asset is a series of .png files, specify the framerate of the overlay in frames per second, as a fraction. For example, specify 24 fps as 24/1. Make sure that the number of images in your series matches the framerate and your intended overlay duration. For example, if you want a 30-second overlay at 30 fps, you should have 900 .png images. This overlay framerate doesn't need to match the framerate of the underlying video."
+        "MotionImageInserter$Framerate": "If your motion graphic asset is a .mov file, keep this setting unspecified. If your motion graphic asset is a series of .png files, specify the frame rate of the overlay in frames per second, as a fraction. For example, specify 24 fps as 24/1. Make sure that the number of images in your series matches the frame rate and your intended overlay duration. For example, if you want a 30-second overlay at 30 fps, you should have 900 .png images. This overlay frame rate doesn't need to match the frame rate of the underlying video."
       }
     },
     "MotionImageInsertionMode": {
@@ -1687,7 +1759,7 @@
       }
     },
     "MovReference": {
-      "base": "A value of 'external' creates separate media files and the wrapper file (.mov) contains references to these media files. A value of 'self_contained' creates only a wrapper (.mov) file and this file contains all of the media.",
+      "base": "Always keep the default value (SELF_CONTAINED) for this setting.",
       "refs": {
         "MovSettings$Reference": null
       }
@@ -1753,13 +1825,13 @@
       }
     },
     "Mpeg2FramerateControl": {
-      "base": "If you are using the console, use the Framerate setting to specify the framerate for this output. If you want to keep the same framerate as the input video, choose Follow source. If you want to do framerate conversion, choose a framerate from the dropdown list or choose Custom. The framerates shown in the dropdown list are decimal approximations of fractions. If you choose Custom, specify your framerate as a fraction. If you are creating your transcoding job sepecification as a JSON file without the console, use FramerateControl to specify which value the service uses for the framerate for this output. Choose INITIALIZE_FROM_SOURCE if you want the service to use the framerate from the input. Choose SPECIFIED if you want the service to use the framerate you specify in the settings FramerateNumerator and FramerateDenominator.",
+      "base": "If you are using the console, use the Framerate setting to specify the frame rate for this output. If you want to keep the same frame rate as the input video, choose Follow source. If you want to do frame rate conversion, choose a frame rate from the dropdown list or choose Custom. The framerates shown in the dropdown list are decimal approximations of fractions. If you choose Custom, specify your frame rate as a fraction. If you are creating your transcoding job sepecification as a JSON file without the console, use FramerateControl to specify which value the service uses for the frame rate for this output. Choose INITIALIZE_FROM_SOURCE if you want the service to use the frame rate from the input. Choose SPECIFIED if you want the service to use the frame rate you specify in the settings FramerateNumerator and FramerateDenominator.",
       "refs": {
         "Mpeg2Settings$FramerateControl": null
       }
     },
     "Mpeg2FramerateConversionAlgorithm": {
-      "base": "When set to INTERPOLATE, produces smoother motion during framerate conversion.",
+      "base": "When set to INTERPOLATE, produces smoother motion during frame rate conversion.",
       "refs": {
         "Mpeg2Settings$FramerateConversionAlgorithm": null
       }
@@ -2002,13 +2074,13 @@
       }
     },
     "ProresFramerateControl": {
-      "base": "If you are using the console, use the Framerate setting to specify the framerate for this output. If you want to keep the same framerate as the input video, choose Follow source. If you want to do framerate conversion, choose a framerate from the dropdown list or choose Custom. The framerates shown in the dropdown list are decimal approximations of fractions. If you choose Custom, specify your framerate as a fraction. If you are creating your transcoding job sepecification as a JSON file without the console, use FramerateControl to specify which value the service uses for the framerate for this output. Choose INITIALIZE_FROM_SOURCE if you want the service to use the framerate from the input. Choose SPECIFIED if you want the service to use the framerate you specify in the settings FramerateNumerator and FramerateDenominator.",
+      "base": "If you are using the console, use the Framerate setting to specify the frame rate for this output. If you want to keep the same frame rate as the input video, choose Follow source. If you want to do frame rate conversion, choose a frame rate from the dropdown list or choose Custom. The framerates shown in the dropdown list are decimal approximations of fractions. If you choose Custom, specify your frame rate as a fraction. If you are creating your transcoding job sepecification as a JSON file without the console, use FramerateControl to specify which value the service uses for the frame rate for this output. Choose INITIALIZE_FROM_SOURCE if you want the service to use the frame rate from the input. Choose SPECIFIED if you want the service to use the frame rate you specify in the settings FramerateNumerator and FramerateDenominator.",
       "refs": {
         "ProresSettings$FramerateControl": null
       }
     },
     "ProresFramerateConversionAlgorithm": {
-      "base": "When set to INTERPOLATE, produces smoother motion during framerate conversion.",
+      "base": "When set to INTERPOLATE, produces smoother motion during frame rate conversion.",
       "refs": {
         "ProresSettings$FramerateConversionAlgorithm": null
       }
@@ -2068,7 +2140,7 @@
     "Rectangle": {
       "base": "Use Rectangle to identify a specific area of the video frame.",
       "refs": {
-        "VideoDescription$Crop": "Applies only if your input aspect ratio is different from your output aspect ratio. Use Input cropping rectangle (Crop) to specify the  video area the service will include in the output. This will crop the input source, causing video pixels to be removed on encode. Do not use this setting if you have enabled Stretch to output (stretchToOutput) in your output settings.",
+        "VideoDescription$Crop": "Applies only if your input aspect ratio is different from your output aspect ratio. Use Input cropping rectangle (Crop) to specify the  video area the service will include in the output. This will crop the input source, causing video pixels to be removed on encode. If you crop your input frame size to smaller than your output frame size, make sure to specify the behavior you want in your output setting \"Scaling behavior\".",
         "VideoDescription$Position": "Use Position (Position) to point to a rectangle object to define your position. This setting overrides any other aspect ratio."
       }
     },
@@ -2118,13 +2190,13 @@
       }
     },
     "ScalingBehavior": {
-      "base": "Applies only if your input aspect ratio is different from your output aspect ratio. Enable Stretch to output (StretchToOutput) to have the service stretch your video image to fit. Leave this setting disabled to allow the service to letterbox your video instead. This setting overrides any positioning value you specify elsewhere in the job.",
+      "base": "Applies only if your input aspect ratio is different from your output aspect ratio. Choose \"Stretch to output\" to have the service stretch your video image to fit. Keep the setting \"Default\" to allow the service to letterbox your video instead. This setting overrides any positioning value you specify elsewhere in the job.",
       "refs": {
         "VideoDescription$ScalingBehavior": null
       }
     },
     "SccDestinationFramerate": {
-      "base": "Set Framerate (SccDestinationFramerate) to make sure that the captions and the video are synchronized in the output. Specify a framerate that matches the framerate of the associated video. If the video framerate is 29.97, choose 29.97 dropframe (FRAMERATE_29_97_DROPFRAME) only if the video has video_insertion=true and drop_frame_timecode=true; otherwise, choose 29.97 non-dropframe (FRAMERATE_29_97_NON_DROPFRAME).",
+      "base": "Set Framerate (SccDestinationFramerate) to make sure that the captions and the video are synchronized in the output. Specify a frame rate that matches the frame rate of the associated video. If the video frame rate is 29.97, choose 29.97 dropframe (FRAMERATE_29_97_DROPFRAME) only if the video has video_insertion=true and drop_frame_timecode=true; otherwise, choose 29.97 non-dropframe (FRAMERATE_29_97_NON_DROPFRAME).",
       "refs": {
         "SccDestinationSettings$Framerate": null
       }
@@ -2219,6 +2291,12 @@
     "TooManyRequestsException": {
       "base": null,
       "refs": {
+      }
+    },
+    "TrackSourceSettings": {
+      "base": "Settings specific to caption sources that are specfied by track number. Sources include IMSC in IMF.",
+      "refs": {
+        "CaptionSourceSettings$TrackSourceSettings": null
       }
     },
     "TtmlDestinationSettings": {
@@ -2320,7 +2398,7 @@
       }
     },
     "VideoTimecodeInsertion": {
-      "base": "Applies only to H.264, H.265, MPEG2, and ProRes outputs. Only enable Timecode insertion when the input framerate is identical to the output framerate. To include timecodes in this output, set Timecode insertion (VideoTimecodeInsertion) to PIC_TIMING_SEI. To leave them out, set it to DISABLED. Default is DISABLED. When the service inserts timecodes in an output, by default, it uses any embedded timecodes from the input. If none are present, the service will set the timecode for the first output frame to zero. To change this default behavior, adjust the settings under Timecode configuration (TimecodeConfig). In the console, these settings are located under Job > Job settings > Timecode configuration. Note - Timecode source under input settings (InputTimecodeSource) does not affect the timecodes that are inserted in the output. Source under Job settings > Timecode configuration (TimecodeSource) does.",
+      "base": "Applies only to H.264, H.265, MPEG2, and ProRes outputs. Only enable Timecode insertion when the input frame rate is identical to the output frame rate. To include timecodes in this output, set Timecode insertion (VideoTimecodeInsertion) to PIC_TIMING_SEI. To leave them out, set it to DISABLED. Default is DISABLED. When the service inserts timecodes in an output, by default, it uses any embedded timecodes from the input. If none are present, the service will set the timecode for the first output frame to zero. To change this default behavior, adjust the settings under Timecode configuration (TimecodeConfig). In the console, these settings are located under Job > Job settings > Timecode configuration. Note - Timecode source under input settings (InputTimecodeSource) does not affect the timecodes that are inserted in the output. Source under Job settings > Timecode configuration (TimecodeSource) does.",
       "refs": {
         "VideoDescription$TimecodeInsertion": null
       }
@@ -2342,9 +2420,9 @@
       "refs": {
         "H264Settings$GopSize": "GOP Length (keyframe interval) in frames or seconds. Must be greater than zero.",
         "H265Settings$GopSize": "GOP Length (keyframe interval) in frames or seconds. Must be greater than zero.",
-        "M2tsSettings$FragmentTime": "The length in seconds of each fragment. Only used with EBP markers.",
+        "M2tsSettings$FragmentTime": "The length, in seconds, of each fragment. Only used with EBP markers.",
         "M2tsSettings$NullPacketBitrate": "Value in bits per second of extra null packets to insert into the transport stream. This can be used if a downstream encryption system requires periodic null packets.",
-        "M2tsSettings$SegmentationTime": "The length in seconds of each segment. Required unless markers is set to _none_.",
+        "M2tsSettings$SegmentationTime": "Specify the length, in seconds, of each segment. Required unless markers is set to _none_.",
         "Mpeg2Settings$GopSize": "GOP Length (keyframe interval) in frames or seconds. Must be greater than zero."
       }
     },
@@ -2403,14 +2481,14 @@
         "H265Settings$HrdBufferInitialFillPercentage": "Percentage of the buffer that should initially be filled (HRD buffer model).",
         "InsertableImage$Opacity": "Use Opacity (Opacity) to specify how much of the underlying video shows through the inserted image. 0 is transparent and 100 is fully opaque. Default is 50.",
         "Mpeg2Settings$HrdBufferInitialFillPercentage": "Percentage of the buffer that should initially be filled (HRD buffer model).",
-        "VideoDescription$Sharpness": "Use Sharpness (Sharpness)setting to specify the strength of anti-aliasing. This setting changes the width of the anti-alias filter kernel used for scaling. Sharpness only applies if your output resolution is different from your input resolution, and if you set Anti-alias (AntiAlias) to ENABLED. 0 is the softest setting, 100 the sharpest, and 50 recommended for most content."
+        "VideoDescription$Sharpness": "Use Sharpness (Sharpness) setting to specify the strength of anti-aliasing. This setting changes the width of the anti-alias filter kernel used for scaling. Sharpness only applies if your output resolution is different from your input resolution. 0 is the softest setting, 100 the sharpest, and 50 recommended for most content."
       }
     },
     "__integerMin0Max1000": {
       "base": null,
       "refs": {
         "M2tsSettings$PatInterval": "The number of milliseconds between instances of this table in the output transport stream.",
-        "M2tsSettings$PmtInterval": "The number of milliseconds between instances of this table in the output transport stream.",
+        "M2tsSettings$PmtInterval": "Specify the number of milliseconds between instances of the program map table (PMT) in the output transport stream.",
         "M3u8Settings$PatInterval": "The number of milliseconds between instances of this table in the output transport stream.",
         "M3u8Settings$PmtInterval": "The number of milliseconds between instances of this table in the output transport stream."
       }
@@ -2466,15 +2544,15 @@
         "Hdr10Metadata$MaxLuminance": "Nominal maximum mastering display luminance in units of of 0.0001 candelas per square meter.",
         "Hdr10Metadata$MinLuminance": "Nominal minimum mastering display luminance in units of of 0.0001 candelas per square meter",
         "HlsGroupSettings$MinSegmentLength": "When set, Minimum Segment Size is enforced by looking ahead and back within the specified range for a nearby avail and extending the segment size if needed.",
-        "InsertableImage$Duration": "Set the time, in milliseconds, for the image to remain on the output video.",
-        "InsertableImage$FadeIn": "Set the length of time, in milliseconds, between the Start time that you specify for the image insertion and the time that the image appears at full opacity. Full opacity is the level that you specify for the opacity setting. If you don't specify a value for Fade-in, the image will appear abruptly at the overlay start time.",
+        "InsertableImage$Duration": "Specify the time, in milliseconds, for the image to remain on the output video. This duration includes fade-in time but not fade-out time.",
+        "InsertableImage$FadeIn": "Specify the length of time, in milliseconds, between the Start time that you specify for the image insertion and the time that the image appears at full opacity. Full opacity is the level that you specify for the opacity setting. If you don't specify a value for Fade-in, the image will appear abruptly at the overlay start time.",
         "InsertableImage$FadeOut": "Specify the length of time, in milliseconds, between the end of the time that you have specified for the image overlay Duration and when the overlaid image has faded to total transparency. If you don't specify a value for Fade-out, the image will disappear abruptly at the end of the inserted image duration.",
         "InsertableImage$Height": "Specify the height of the inserted image in pixels. If you specify a value that's larger than the video resolution height, the service will crop your overlaid image to fit. To use the native height of the image, keep this setting blank.",
-        "InsertableImage$ImageX": "Use Left (ImageX) to set the distance, in pixels, between the inserted image and the left edge of the video frame. Required for any image overlay that you specify.",
-        "InsertableImage$ImageY": "Use Top (ImageY) to set the distance, in pixels, between the overlaid image and the top edge of the video frame. Required for any image overlay that you specify.",
+        "InsertableImage$ImageX": "Specify the distance, in pixels, between the inserted image and the left edge of the video frame. Required for any image overlay that you specify.",
+        "InsertableImage$ImageY": "Specify the distance, in pixels, between the overlaid image and the top edge of the video frame. Required for any image overlay that you specify.",
         "InsertableImage$Width": "Specify the width of the inserted image in pixels. If you specify a value that's larger than the video resolution width, the service will crop your overlaid image to fit. To use the native width of the image, keep this setting blank.",
         "M2tsSettings$AudioFramesPerPes": "The number of audio frames to insert for each PES packet.",
-        "M2tsSettings$Bitrate": "The output bitrate of the transport stream in bits per second. Setting to 0 lets the muxer automatically determine the appropriate bitrate. Other common values are 3750000, 7500000, and 15000000.",
+        "M2tsSettings$Bitrate": "Specify the output bitrate of the transport stream in bits per second. Setting to 0 lets the muxer automatically determine the appropriate bitrate. Other common values are 3750000, 7500000, and 15000000.",
         "M3u8Settings$AudioFramesPerPes": "The number of audio frames to insert for each PES packet.",
         "MotionImageInsertionOffset$ImageX": "Set the distance, in pixels, between the overlay and the left edge of the video frame.",
         "MotionImageInsertionOffset$ImageY": "Set the distance, in pixels, between the overlay and the top edge of the video frame.",
@@ -2510,6 +2588,12 @@
         "Mpeg2Settings$MinIInterval": "Enforces separation between repeated (cadence) I-frames and I-frames inserted by Scene Change Detection. If a scene change I-frame is within I-interval frames of a cadence I-frame, the GOP is shrunk and/or stretched to the scene change I-frame. GOP stretch requires enabling lookahead as well as setting I-interval. The normal cadence resumes for the next GOP. This setting is only used when Scene Change Detect is enabled. Note: Maximum GOP stretch = GOP size + Min-I-interval - 1"
       }
     },
+    "__integerMin0Max30000": {
+      "base": null,
+      "refs": {
+        "EsamSettings$ResponseSignalPreroll": "Specifies the stream distance, in milliseconds, between the SCTE 35 messages that the transcoder places and the splice points that they refer to. If the time between the start of the asset and the SCTE-35 message is less than this value, then the transcoder places the SCTE-35 marker at the beginning of the stream."
+      }
+    },
     "__integerMin0Max3600": {
       "base": null,
       "refs": {
@@ -2525,7 +2609,7 @@
     "__integerMin0Max500": {
       "base": null,
       "refs": {
-        "M2tsSettings$MaxPcrInterval": "Maximum time in milliseconds between Program Clock References (PCRs) inserted into the transport stream."
+        "M2tsSettings$MaxPcrInterval": "Specify the maximum time, in milliseconds, between Program Clock References (PCRs) inserted into the transport stream."
       }
     },
     "__integerMin0Max50000": {
@@ -2547,8 +2631,8 @@
         "DvbNitSettings$NetworkId": "The numeric value placed in the Network Information Table (NIT).",
         "Hdr10Metadata$MaxContentLightLevel": "Maximum light level among all samples in the coded video sequence, in units of candelas per square meter.",
         "Hdr10Metadata$MaxFrameAverageLightLevel": "Maximum average light level of any frame in the coded video sequence, in units of candelas per square meter.",
-        "M2tsSettings$ProgramNumber": "The value of the program number field in the Program Map Table.",
-        "M2tsSettings$TransportStreamId": "The value of the transport stream ID field in the Program Map Table.",
+        "M2tsSettings$ProgramNumber": "Use Program number (programNumber) to specify the program number used in the program map table (PMT) for this output. Default is 1. Program numbers and program map tables are parts of MPEG-2 transport stream containers, used for organizing data.",
+        "M2tsSettings$TransportStreamId": "Specify the ID for the transport stream itself in the program map table for this output. Transport stream IDs and program map tables are parts of MPEG-2 transport stream containers, used for organizing data.",
         "M3u8Settings$ProgramNumber": "The value of the program number field in the Program Map Table.",
         "M3u8Settings$TransportStreamId": "The value of the transport stream ID field in the Program Map Table."
       }
@@ -2626,6 +2710,16 @@
         "TimecodeBurnin$FontSize": "Use Font Size (FontSize) to set the font size of any burned-in timecode. Valid values are 10, 16, 32, 48."
       }
     },
+    "__integerMin10Max600": {
+      "base": null,
+      "refs": {
+        "CreateJobRequest$StatusUpdateIntervalInSecs": "Specify how often MediaConvert sends STATUS_UPDATE events to Amazon CloudWatch Events. Set the interval, in seconds, between status updates. MediaConvert sends an update at this interval from the time the service begins processing your job to the time it completes the transcode or encounters an error.",
+        "CreateJobTemplateRequest$StatusUpdateIntervalInSecs": "Specify how often MediaConvert sends STATUS_UPDATE events to Amazon CloudWatch Events. Set the interval, in seconds, between status updates. MediaConvert sends an update at this interval from the time the service begins processing your job to the time it completes the transcode or encounters an error.",
+        "Job$StatusUpdateIntervalInSecs": "Specify how often MediaConvert sends STATUS_UPDATE events to Amazon CloudWatch Events. Set the interval, in seconds, between status updates. MediaConvert sends an update at this interval from the time the service begins processing your job to the time it completes the transcode or encounters an error.",
+        "JobTemplate$StatusUpdateIntervalInSecs": "Specify how often MediaConvert sends STATUS_UPDATE events to Amazon CloudWatch Events. Set the interval, in seconds, between status updates. MediaConvert sends an update at this interval from the time the service begins processing your job to the time it completes the transcode or encounters an error.",
+        "UpdateJobTemplateRequest$StatusUpdateIntervalInSecs": "Specify how often MediaConvert sends STATUS_UPDATE events to Amazon CloudWatch Events. Set the interval, in seconds, between status updates. MediaConvert sends an update at this interval from the time the service begins processing your job to the time it completes the transcode or encounters an error."
+      }
+    },
     "__integerMin16Max24": {
       "base": null,
       "refs": {
@@ -2664,7 +2758,7 @@
     "__integerMin1Max1001": {
       "base": null,
       "refs": {
-        "Mpeg2Settings$FramerateDenominator": "Framerate denominator."
+        "Mpeg2Settings$FramerateDenominator": "Frame rate denominator."
       }
     },
     "__integerMin1Max16": {
@@ -2676,7 +2770,7 @@
     "__integerMin1Max17895697": {
       "base": null,
       "refs": {
-        "MotionImageInsertionFramerate$FramerateDenominator": "The bottom of the fraction that expresses your overlay framerate. For example, if your framerate is 24 fps, set this value to 1."
+        "MotionImageInsertionFramerate$FramerateDenominator": "The bottom of the fraction that expresses your overlay frame rate. For example, if your frame rate is 24 fps, set this value to 1."
       }
     },
     "__integerMin1Max2": {
@@ -2698,7 +2792,7 @@
     "__integerMin1Max2147483640": {
       "base": null,
       "refs": {
-        "MotionImageInsertionFramerate$FramerateNumerator": "The top of the fraction that expresses your overlay framerate. For example, if your framerate is 24 fps, set this value to 24."
+        "MotionImageInsertionFramerate$FramerateNumerator": "The top of the fraction that expresses your overlay frame rate. For example, if your frame rate is 24 fps, set this value to 24."
       }
     },
     "__integerMin1Max2147483647": {
@@ -2711,12 +2805,12 @@
         "DvbSubSourceSettings$Pid": "When using DVB-Sub with Burn-In or SMPTE-TT, use this PID for the source content. Unused for DVB-Sub passthrough. All DVB-Sub content is passed through, regardless of selectors.",
         "FrameCaptureSettings$FramerateDenominator": "Frame capture will encode the first frame of the output stream, then one frame every framerateDenominator/framerateNumerator seconds. For example, settings of framerateNumerator = 1 and framerateDenominator = 3 (a rate of 1/3 frame per second) will capture the first frame, then 1 frame every 3s. Files will be named as filename.n.jpg where n is the 0-based sequence number of each Capture.",
         "FrameCaptureSettings$FramerateNumerator": "Frame capture will encode the first frame of the output stream, then one frame every framerateDenominator/framerateNumerator seconds. For example, settings of framerateNumerator = 1 and framerateDenominator = 3 (a rate of 1/3 frame per second) will capture the first frame, then 1 frame every 3s. Files will be named as filename.NNNNNNN.jpg where N is the 0-based frame sequence number zero padded to 7 decimal places.",
-        "H264Settings$FramerateDenominator": "When you use the API for transcode jobs that use framerate conversion, specify the framerate as a fraction. For example,  24000 / 1001 = 23.976 fps. Use FramerateDenominator to specify the denominator of this fraction. In this example, use 1001 for the value of FramerateDenominator. When you use the console for transcode jobs that use framerate conversion, provide the value as a decimal number for Framerate. In this example, specify 23.976.",
-        "H264Settings$FramerateNumerator": "Framerate numerator - framerate is a fraction, e.g. 24000 / 1001 = 23.976 fps.",
+        "H264Settings$FramerateDenominator": "When you use the API for transcode jobs that use frame rate conversion, specify the frame rate as a fraction. For example,  24000 / 1001 = 23.976 fps. Use FramerateDenominator to specify the denominator of this fraction. In this example, use 1001 for the value of FramerateDenominator. When you use the console for transcode jobs that use frame rate conversion, provide the value as a decimal number for Framerate. In this example, specify 23.976.",
+        "H264Settings$FramerateNumerator": "Frame rate numerator - frame rate is a fraction, e.g. 24000 / 1001 = 23.976 fps.",
         "H264Settings$ParDenominator": "Pixel Aspect Ratio denominator.",
         "H264Settings$ParNumerator": "Pixel Aspect Ratio numerator.",
-        "H265Settings$FramerateDenominator": "Framerate denominator.",
-        "H265Settings$FramerateNumerator": "Framerate numerator - framerate is a fraction, e.g. 24000 / 1001 = 23.976 fps.",
+        "H265Settings$FramerateDenominator": "Frame rate denominator.",
+        "H265Settings$FramerateNumerator": "Frame rate numerator - frame rate is a fraction, e.g. 24000 / 1001 = 23.976 fps.",
         "H265Settings$ParDenominator": "Pixel Aspect Ratio denominator.",
         "H265Settings$ParNumerator": "Pixel Aspect Ratio numerator.",
         "HlsGroupSettings$SegmentLength": "Length of MPEG-2 Transport Stream segments to create (in seconds). Note that segments will end on the next keyframe after this number of seconds, so actual segment length may be longer.",
@@ -2725,11 +2819,12 @@
         "InputTemplate$ProgramNumber": "Use Program (programNumber) to select a specific program from within a multi-program transport stream. Note that Quad 4K is not currently supported. Default is the first program within the transport stream. If the program you specify doesn't exist, the transcoding service will use this default.",
         "Mpeg2Settings$ParDenominator": "Pixel Aspect Ratio denominator.",
         "Mpeg2Settings$ParNumerator": "Pixel Aspect Ratio numerator.",
-        "MsSmoothGroupSettings$FragmentLength": "Use Fragment length (FragmentLength) to specify the mp4 fragment sizes in seconds. Fragment length must be compatible with GOP size and framerate.",
-        "ProresSettings$FramerateDenominator": "Framerate denominator.",
-        "ProresSettings$FramerateNumerator": "When you use the API for transcode jobs that use framerate conversion, specify the framerate as a fraction. For example,  24000 / 1001 = 23.976 fps. Use FramerateNumerator to specify the numerator of this fraction. In this example, use 24000 for the value of FramerateNumerator.",
+        "MsSmoothGroupSettings$FragmentLength": "Use Fragment length (FragmentLength) to specify the mp4 fragment sizes in seconds. Fragment length must be compatible with GOP size and frame rate.",
+        "ProresSettings$FramerateDenominator": "Frame rate denominator.",
+        "ProresSettings$FramerateNumerator": "When you use the API for transcode jobs that use frame rate conversion, specify the frame rate as a fraction. For example,  24000 / 1001 = 23.976 fps. Use FramerateNumerator to specify the numerator of this fraction. In this example, use 24000 for the value of FramerateNumerator.",
         "ProresSettings$ParDenominator": "Pixel Aspect Ratio denominator.",
         "ProresSettings$ParNumerator": "Pixel Aspect Ratio numerator.",
+        "TrackSourceSettings$TrackNumber": "Use this setting to select a single captions track from a source. Track numbers correspond to the order in the captions source file. For IMF sources, track numbering is based on the order that the captions appear in the CPL. For example, use 1 to select the captions asset that is listed first in the CPL. To include more than one captions track in your job outputs, create multiple input captions selectors. Specify one track per selector.",
         "VideoSelector$Pid": "Use PID (Pid) to select specific video data from an input file. Specify this value as an integer; the system automatically converts it to the hexidecimal value. For example, 257 selects PID 0x101. A PID, or packet identifier, is an identifier for a set of data in an MPEG-2 transport stream container.",
         "__listOf__integerMin1Max2147483647$member": null
       }
@@ -2752,6 +2847,7 @@
       "base": null,
       "refs": {
         "AncillarySourceSettings$SourceAncillaryChannelNumber": "Specifies the 608 channel number in the ancillary data track from which to extract captions. Unused for passthrough.",
+        "EmbeddedDestinationSettings$Destination608ChannelNumber": "Ignore this setting unless your input captions are SCC format and your output container is MXF. With this combination of input captions format and output container, you can optionally use this setting to replace the input channel number with the track number that you specify. Specify a different number for each output captions track. If you don't specify an output track number, the system uses the input channel number for the output channel number. This setting applies to each output individually. You can optionally combine two captions channels in your output. The two output channel numbers can be one of the following pairs: 1,3; 2,4; 1,4; or 2,3.",
         "EmbeddedSourceSettings$Source608ChannelNumber": "Specifies the 608/708 channel number within the video track from which to extract captions. Unused for passthrough."
       }
     },
@@ -2772,7 +2868,7 @@
     "__integerMin24Max60000": {
       "base": null,
       "refs": {
-        "Mpeg2Settings$FramerateNumerator": "Framerate numerator - framerate is a fraction, e.g. 24000 / 1001 = 23.976 fps."
+        "Mpeg2Settings$FramerateNumerator": "Frame rate numerator - frame rate is a fraction, e.g. 24000 / 1001 = 23.976 fps."
       }
     },
     "__integerMin25Max10000": {
@@ -2821,13 +2917,14 @@
     "__integerMin32Max8182": {
       "base": null,
       "refs": {
-        "M2tsSettings$DvbTeletextPid": "Packet Identifier (PID) for input source DVB Teletext data to this output.",
-        "M2tsSettings$PcrPid": "Packet Identifier (PID) of the Program Clock Reference (PCR) in the transport stream. When no value is given, the encoder will assign the same value as the Video PID.",
-        "M2tsSettings$PmtPid": "Packet Identifier (PID) for the Program Map Table (PMT) in the transport stream.",
-        "M2tsSettings$PrivateMetadataPid": "Packet Identifier (PID) of the private metadata stream in the transport stream.",
-        "M2tsSettings$Scte35Pid": "Packet Identifier (PID) of the SCTE-35 stream in the transport stream.",
-        "M2tsSettings$TimedMetadataPid": "Packet Identifier (PID) of the timed metadata stream in the transport stream.",
-        "M2tsSettings$VideoPid": "Packet Identifier (PID) of the elementary video stream in the transport stream.",
+        "M2tsScte35Esam$Scte35EsamPid": "Packet Identifier (PID) of the SCTE-35 stream in the transport stream generated by ESAM.",
+        "M2tsSettings$DvbTeletextPid": "Specify the packet identifier (PID) for DVB teletext data you include in this output. Default is 499.",
+        "M2tsSettings$PcrPid": "Specify the packet identifier (PID) for the program clock reference (PCR) in this output. If you do not specify a value, the service will use the value for Video PID (VideoPid).",
+        "M2tsSettings$PmtPid": "Specify the packet identifier (PID) for the program map table (PMT) itself. Default is 480.",
+        "M2tsSettings$PrivateMetadataPid": "Specify the packet identifier (PID) of the private metadata stream. Default is 503.",
+        "M2tsSettings$Scte35Pid": "Specify the packet identifier (PID) of the SCTE-35 stream in the transport stream.",
+        "M2tsSettings$TimedMetadataPid": "Specify the packet identifier (PID) for timed metadata in this output. Default is 502.",
+        "M2tsSettings$VideoPid": "Specify the packet identifier (PID) of the elementary video stream in the transport stream.",
         "M3u8Settings$PcrPid": "Packet Identifier (PID) of the Program Clock Reference (PCR) in the transport stream. When no value is given, the encoder will assign the same value as the Video PID.",
         "M3u8Settings$PmtPid": "Packet Identifier (PID) for the Program Map Table (PMT) in the transport stream.",
         "M3u8Settings$PrivateMetadataPid": "Packet Identifier (PID) of the private metadata stream in the transport stream.",
@@ -2847,7 +2944,7 @@
     "__integerMin6000Max1024000": {
       "base": null,
       "refs": {
-        "AacSettings$Bitrate": "Average bitrate in bits/second. Defaults and valid values depend on rate control mode and profile."
+        "AacSettings$Bitrate": "Average bitrate in bits/second. The set of valid values for this setting is: 6000, 8000, 10000, 12000, 14000, 16000, 20000, 24000, 28000, 32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000, 192000, 224000, 256000, 288000, 320000, 384000, 448000, 512000, 576000, 640000, 768000, 896000, 1024000. The value you set is also constrained by the values you choose for Profile (codecProfile), Bitrate control mode (codingMode), and Sample rate (sampleRate). Default values depend on Bitrate control mode and Profile."
       }
     },
     "__integerMin64000Max640000": {
@@ -3063,8 +3160,8 @@
     "__listOf__integerMin32Max8182": {
       "base": null,
       "refs": {
-        "M2tsSettings$AudioPids": "Packet Identifier (PID) of the elementary audio stream(s) in the transport stream. Multiple values are accepted, and can be entered in ranges and/or by comma separation.",
-        "M2tsSettings$DvbSubPids": "Packet Identifier (PID) for input source DVB Subtitle data to this output. Multiple values are accepted, and can be entered in ranges and/or by comma separation.",
+        "M2tsSettings$AudioPids": "Specify the packet identifiers (PIDs) for any elementary audio streams you include in this output. Specify multiple PIDs as a JSON array. Default is the range 482-492.",
+        "M2tsSettings$DvbSubPids": "Specify the packet identifiers (PIDs) for DVB subtitle data included in this output. Specify multiple PIDs as a JSON array. Default is the range 460-479.",
         "M3u8Settings$AudioPids": "Packet Identifier (PID) of the elementary audio stream(s) in the transport stream. Multiple values are accepted, and can be entered in ranges and/or by comma separation."
       }
     },
@@ -3090,6 +3187,12 @@
       "base": null,
       "refs": {
         "SpekeKeyProvider$SystemIds": "Relates to SPEKE implementation. DRM system identifiers. DASH output groups support a max of two system ids. Other group types support one system id."
+      }
+    },
+    "__listOf__stringPatternS3ASSETMAPXml": {
+      "base": null,
+      "refs": {
+        "Input$SupplementalImps": "Provide a list of any necessary supplemental IMPs. You need supplemental IMPs if the CPL that you're using for your input is in an incomplete IMP. Specify either the supplemental IMP directories with a trailing slash or the ASSETMAP.xml files. For example [\"s3://bucket/ov/\", \"s3://bucket/vf2/ASSETMAP.xml\"]. You don't need to specify the IMP that contains your input CPL, because the service automatically detects it."
       }
     },
     "__mapOfAudioSelector": {
@@ -3253,7 +3356,7 @@
     "__stringMin14PatternS3BmpBMPPngPNGTgaTGA": {
       "base": null,
       "refs": {
-        "InsertableImage$ImageInserterInput": "Use Image location (imageInserterInput) to specify the Amazon S3 location of the image to be inserted into the output. Use a PNG or TGA file that fits inside the video frame."
+        "InsertableImage$ImageInserterInput": "Specify the Amazon S3 location of the image that you want to overlay on the video. Use a PNG or TGA file."
       }
     },
     "__stringMin14PatternS3SccSCCTtmlTTMLDfxpDFXPStlSTLSrtSRTSmiSMI": {
@@ -3301,8 +3404,8 @@
       "refs": {
         "AudioDescription$CustomLanguageCode": "Specify the language for this audio output track, using the ISO 639-2 or ISO 639-3 three-letter language code. The language specified will be used when 'Follow Input Language Code' is not selected or when 'Follow Input Language Code' is selected but there is no ISO 639 language code specified by the input.",
         "AudioSelector$CustomLanguageCode": "Selects a specific language code from within an audio source, using the ISO 639-2 or ISO 639-3 three-letter language code",
-        "CaptionDescription$CustomLanguageCode": "Indicates the language of the caption output track, using the ISO 639-2 or ISO 639-3 three-letter language code",
-        "CaptionDescriptionPreset$CustomLanguageCode": "Indicates the language of the caption output track, using the ISO 639-2 or ISO 639-3 three-letter language code",
+        "CaptionDescription$CustomLanguageCode": "Indicates the language of the caption output track, using the ISO 639-2 or ISO 639-3 three-letter language code. For most captions output formats, the encoder puts this language information in the output captions metadata. If your output captions format is DVB-Sub or Burn in, the encoder uses this language information to choose the font language for rendering the captions text.",
+        "CaptionDescriptionPreset$CustomLanguageCode": "Indicates the language of the caption output track, using the ISO 639-2 or ISO 639-3 three-letter language code. For most captions output formats, the encoder puts this language information in the output captions metadata. If your output captions format is DVB-Sub or Burn in, the encoder uses this language information to choose the font language for rendering the captions text.",
         "CaptionSelector$CustomLanguageCode": "The specific language to extract from source, using the ISO 639-2 or ISO 639-3 three-letter language code. If input is SCTE-27, complete this field and/or PID to select the caption language to extract. If input is DVB-Sub and output is Burn-in or SMPTE-TT, complete this field and/or PID to select the caption language to extract. If input is DVB-Sub that is being passed through, omit this field (and PID field); there is no way to extract a specific language with pass-through captions.",
         "HlsCaptionLanguageMapping$CustomLanguageCode": "Specify the language for this caption channel, using the ISO 639-2 or ISO 639-3 three-letter language code"
       }
@@ -3325,14 +3428,14 @@
         "Id3Insertion$Timecode": "Provide a Timecode (TimeCode) in HH:MM:SS:FF or HH:MM:SS;FF format.",
         "InputClipping$EndTimecode": "Set End timecode (EndTimecode) to the end of the portion of the input you are clipping. The frame corresponding to the End timecode value is included in the clip. Start timecode or End timecode may be left blank, but not both. Use the format HH:MM:SS:FF or HH:MM:SS;FF, where HH is the hour, MM is the minute, SS is the second, and FF is the frame number. When choosing this value, take into account your setting for timecode source under input settings (InputTimecodeSource). For example, if you have embedded timecodes that start at 01:00:00:00 and you want your clip to end six minutes into the video, use 01:06:00:00.",
         "InputClipping$StartTimecode": "Set Start timecode (StartTimecode) to the beginning of the portion of the input you are clipping. The frame corresponding to the Start timecode value is included in the clip. Start timecode or End timecode may be left blank, but not both. Use the format HH:MM:SS:FF or HH:MM:SS;FF, where HH is the hour, MM is the minute, SS is the second, and FF is the frame number. When choosing this value, take into account your setting for Input timecode source. For example, if you have embedded timecodes that start at 01:00:00:00 and you want your clip to begin five minutes into the video, use 01:05:00:00.",
-        "TimecodeConfig$Anchor": "If you use an editing platform that relies on an anchor timecode, use Anchor Timecode (Anchor) to specify a timecode that will match the input video frame to the output video frame. Use 24-hour format with frame number, (HH:MM:SS:FF) or (HH:MM:SS;FF). This setting ignores framerate conversion. System behavior for Anchor Timecode varies depending on your setting for Source (TimecodeSource). * If Source (TimecodeSource) is set to Specified Start (SPECIFIEDSTART), the first input frame is the specified value in Start Timecode (Start). Anchor Timecode (Anchor) and Start Timecode (Start) are used calculate output timecode. * If Source (TimecodeSource) is set to Start at 0 (ZEROBASED)  the  first frame is 00:00:00:00. * If Source (TimecodeSource) is set to Embedded (EMBEDDED), the  first frame is the timecode value on the first input frame of the input.",
+        "TimecodeConfig$Anchor": "If you use an editing platform that relies on an anchor timecode, use Anchor Timecode (Anchor) to specify a timecode that will match the input video frame to the output video frame. Use 24-hour format with frame number, (HH:MM:SS:FF) or (HH:MM:SS;FF). This setting ignores frame rate conversion. System behavior for Anchor Timecode varies depending on your setting for Source (TimecodeSource). * If Source (TimecodeSource) is set to Specified Start (SPECIFIEDSTART), the first input frame is the specified value in Start Timecode (Start). Anchor Timecode (Anchor) and Start Timecode (Start) are used calculate output timecode. * If Source (TimecodeSource) is set to Start at 0 (ZEROBASED)  the  first frame is 00:00:00:00. * If Source (TimecodeSource) is set to Embedded (EMBEDDED), the  first frame is the timecode value on the first input frame of the input.",
         "TimecodeConfig$Start": "Only use when you set Source (TimecodeSource) to Specified start (SPECIFIEDSTART). Use Start timecode (Start) to specify the timecode for the initial frame. Use 24-hour format with frame number, (HH:MM:SS:FF) or (HH:MM:SS;FF)."
       }
     },
     "__stringPattern01D20305D205D": {
       "base": null,
       "refs": {
-        "InsertableImage$StartTime": "Use Start time (StartTime) to specify the video timecode when the image is inserted in the output. This must be in timecode (HH:MM:SS:FF or HH:MM:SS;FF) format."
+        "InsertableImage$StartTime": "Specify the timecode of the frame that you want the overlay to first appear on. This must be in timecode (HH:MM:SS:FF or HH:MM:SS;FF) format. Remember to take into account your timecode source settings."
       }
     },
     "__stringPattern0940191020191209301": {
@@ -3359,7 +3462,7 @@
         "StaticKeyProvider$StaticKeyValue": "Relates to DRM implementation. Use a 32-character hexidecimal string to specify Key Value (StaticKeyValue)."
       }
     },
-    "__stringPatternArnAwsAcm": {
+    "__stringPatternArnAwsUsGovAcm": {
       "base": null,
       "refs": {
         "SpekeKeyProvider$CertificateArn": "Optional AWS Certificate Manager ARN for a certificate to send to the keyprovider. The certificate holds a key used by the keyprovider to encrypt the keys in its response."
@@ -3393,16 +3496,34 @@
         "MsSmoothGroupSettings$Destination": "Use Destination (Destination) to specify the S3 output location and the output filename base. Destination accepts format identifiers. If you do not specify the base filename in the URI, the service will use the filename of the input file. If your job has multiple inputs, the service uses the filename of the first input file."
       }
     },
-    "__stringPatternS3MM2VVMMPPEEGGAAVVIIMMPP4FFLLVVMMPPTTMMPPGGMM4VVTTRRPPFF4VVMM2TTSSTTSS264HH264MMKKVVMMOOVVMMTTSSMM2TTWWMMVVAASSFFVVOOBB3GGPP3GGPPPPMMXXFFDDIIVVXXXXVVIIDDRRAAWWDDVVGGXXFFMM1VV3GG2VVMMFFMM3UU8LLCCHHGGXXFFMMPPEEGG2MMXXFFMMPPEEGG2MMXXFFHHDDWWAAVVYY4MM": {
+    "__stringPatternS3ASSETMAPXml": {
       "base": null,
       "refs": {
-        "Input$FileInput": "Use Input (fileInput) to define the source file used in the transcode job. There can be multiple inputs in a job. These inputs are concantenated, in the order they are specified in the job, to create the output."
+        "__listOf__stringPatternS3ASSETMAPXml$member": null
       }
     },
     "__stringPatternS3MM2VVMMPPEEGGAAVVIIMMPP4FFLLVVMMPPTTMMPPGGMM4VVTTRRPPFF4VVMM2TTSSTTSS264HH264MMKKVVMMOOVVMMTTSSMM2TTWWMMVVAASSFFVVOOBB3GGPP3GGPPPPMMXXFFDDIIVVXXXXVVIIDDRRAAWWDDVVGGXXFFMM1VV3GG2VVMMFFMM3UU8LLCCHHGGXXFFMMPPEEGG2MMXXFFMMPPEEGG2MMXXFFHHDDWWAAVVYY4MMAAAACCAAIIFFFFMMPP2AACC3EECC3DDTTSSEE": {
       "base": null,
       "refs": {
         "AudioSelector$ExternalAudioFileInput": "Specifies audio data from an external file source."
+      }
+    },
+    "__stringPatternS3MM2VVMMPPEEGGAAVVIIMMPP4FFLLVVMMPPTTMMPPGGMM4VVTTRRPPFF4VVMM2TTSSTTSS264HH264MMKKVVMMOOVVMMTTSSMM2TTWWMMVVAASSFFVVOOBB3GGPP3GGPPPPMMXXFFDDIIVVXXXXVVIIDDRRAAWWDDVVGGXXFFMM1VV3GG2VVMMFFMM3UU8LLCCHHGGXXFFMMPPEEGG2MMXXFFMMPPEEGG2MMXXFFHHDDWWAAVVYY4MMXXMMLL": {
+      "base": null,
+      "refs": {
+        "Input$FileInput": "Specify the source file for your transcoding job. You can use multiple inputs in a single job. The service concatenates these inputs, in the order that you specify them in the job, to create the outputs. If your input format is IMF, specify your input by providing the path to your CPL. For example, \"s3://bucket/vf/cpl.xml\". If the CPL is in an incomplete IMP, make sure to use *Supplemental IMPs* (SupplementalImps) to specify any supplemental IMPs that contain assets referenced by the CPL."
+      }
+    },
+    "__stringPatternSNManifestConfirmConditionNotificationNS": {
+      "base": null,
+      "refs": {
+        "EsamManifestConfirmConditionNotification$MccXml": "Provide your ESAM ManifestConfirmConditionNotification XML document inside your JSON job settings. Form the XML document as per OC-SP-ESAM-API-I03-131025. The transcoder will use the Manifest Conditioning instructions in the message that you supply."
+      }
+    },
+    "__stringPatternSNSignalProcessingNotificationNS": {
+      "base": null,
+      "refs": {
+        "EsamSignalProcessingNotification$SccXml": "Provide your ESAM SignalProcessingNotification XML document inside your JSON job settings. Form the XML document as per OC-SP-ESAM-API-I03-131025. The transcoder will use the signal processing instructions in the message that you supply. Provide your ESAM SignalProcessingNotification XML document inside your JSON job settings. If you want the service to place SCTE-35 markers at the insertion points you specify in the XML document, you must also enable SCTE-35 ESAM (scte35Esam). Note that you can either specify an ESAM XML document or enable SCTE-35 passthrough. You can't do both."
       }
     },
     "__stringPatternWS": {

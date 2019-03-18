@@ -23,7 +23,8 @@
       "output":{"shape":"CreateActivityOutput"},
       "errors":[
         {"shape":"ActivityLimitExceeded"},
-        {"shape":"InvalidName"}
+        {"shape":"InvalidName"},
+        {"shape":"TooManyTags"}
       ],
       "idempotent":true
     },
@@ -41,7 +42,8 @@
         {"shape":"InvalidName"},
         {"shape":"StateMachineAlreadyExists"},
         {"shape":"StateMachineDeleting"},
-        {"shape":"StateMachineLimitExceeded"}
+        {"shape":"StateMachineLimitExceeded"},
+        {"shape":"TooManyTags"}
       ],
       "idempotent":true
     },
@@ -187,6 +189,19 @@
         {"shape":"InvalidToken"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceInput"},
+      "output":{"shape":"ListTagsForResourceOutput"},
+      "errors":[
+        {"shape":"InvalidArn"},
+        {"shape":"ResourceNotFound"}
+      ]
+    },
     "SendTaskFailure":{
       "name":"SendTaskFailure",
       "http":{
@@ -260,6 +275,33 @@
       "errors":[
         {"shape":"ExecutionDoesNotExist"},
         {"shape":"InvalidArn"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceInput"},
+      "output":{"shape":"TagResourceOutput"},
+      "errors":[
+        {"shape":"InvalidArn"},
+        {"shape":"ResourceNotFound"},
+        {"shape":"TooManyTags"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceInput"},
+      "output":{"shape":"UntagResourceOutput"},
+      "errors":[
+        {"shape":"InvalidArn"},
+        {"shape":"ResourceNotFound"}
       ]
     },
     "UpdateStateMachine":{
@@ -383,7 +425,8 @@
       "type":"structure",
       "required":["name"],
       "members":{
-        "name":{"shape":"Name"}
+        "name":{"shape":"Name"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateActivityOutput":{
@@ -407,7 +450,8 @@
       "members":{
         "name":{"shape":"Name"},
         "definition":{"shape":"Definition"},
-        "roleArn":{"shape":"Arn"}
+        "roleArn":{"shape":"Arn"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateStateMachineOutput":{
@@ -648,7 +692,7 @@
       "type":"structure",
       "members":{
         "taskToken":{"shape":"TaskToken"},
-        "input":{"shape":"SensitiveData"}
+        "input":{"shape":"SensitiveDataJobInput"}
       }
     },
     "GetExecutionHistoryInput":{
@@ -904,6 +948,19 @@
         "nextToken":{"shape":"PageToken"}
       }
     },
+    "ListTagsForResourceInput":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{"shape":"Arn"}
+      }
+    },
+    "ListTagsForResourceOutput":{
+      "type":"structure",
+      "members":{
+        "tags":{"shape":"TagList"}
+      }
+    },
     "MissingRequiredParameter":{
       "type":"structure",
       "members":{
@@ -925,6 +982,14 @@
       "type":"string",
       "max":1024,
       "min":1
+    },
+    "ResourceNotFound":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"},
+        "resourceName":{"shape":"Arn"}
+      },
+      "exception":true
     },
     "ReverseOrder":{"type":"boolean"},
     "SendTaskFailureInput":{
@@ -978,6 +1043,11 @@
     "SensitiveData":{
       "type":"string",
       "max":32768,
+      "sensitive":true
+    },
+    "SensitiveDataJobInput":{
+      "type":"string",
+      "max":65536,
       "sensitive":true
     },
     "SensitiveError":{
@@ -1089,6 +1159,47 @@
       "members":{
         "stopDate":{"shape":"Timestamp"}
       }
+    },
+    "Tag":{
+      "type":"structure",
+      "members":{
+        "key":{"shape":"TagKey"},
+        "value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"}
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"}
+    },
+    "TagResourceInput":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tags"
+      ],
+      "members":{
+        "resourceArn":{"shape":"Arn"},
+        "tags":{"shape":"TagList"}
+      }
+    },
+    "TagResourceOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
     },
     "TaskDoesNotExist":{
       "type":"structure",
@@ -1217,6 +1328,30 @@
     },
     "TimeoutInSeconds":{"type":"long"},
     "Timestamp":{"type":"timestamp"},
+    "TooManyTags":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"},
+        "resourceName":{"shape":"Arn"}
+      },
+      "exception":true
+    },
+    "UntagResourceInput":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tagKeys"
+      ],
+      "members":{
+        "resourceArn":{"shape":"Arn"},
+        "tagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UntagResourceOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateStateMachineInput":{
       "type":"structure",
       "required":["stateMachineArn"],

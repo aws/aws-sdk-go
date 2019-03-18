@@ -991,7 +991,8 @@
     "DetectModerationLabelsResponse":{
       "type":"structure",
       "members":{
-        "ModerationLabels":{"shape":"ModerationLabels"}
+        "ModerationLabels":{"shape":"ModerationLabels"},
+        "ModerationModelVersion":{"shape":"String"}
       }
     },
     "DetectTextRequest":{
@@ -1230,7 +1231,8 @@
         "StatusMessage":{"shape":"StatusMessage"},
         "VideoMetadata":{"shape":"VideoMetadata"},
         "ModerationLabels":{"shape":"ContentModerationDetections"},
-        "NextToken":{"shape":"PaginationToken"}
+        "NextToken":{"shape":"PaginationToken"},
+        "ModerationModelVersion":{"shape":"String"}
       }
     },
     "GetFaceDetectionRequest":{
@@ -1289,7 +1291,8 @@
         "StatusMessage":{"shape":"StatusMessage"},
         "VideoMetadata":{"shape":"VideoMetadata"},
         "NextToken":{"shape":"PaginationToken"},
-        "Labels":{"shape":"LabelDetections"}
+        "Labels":{"shape":"LabelDetections"},
+        "LabelModelVersion":{"shape":"String"}
       }
     },
     "GetPersonTrackingRequest":{

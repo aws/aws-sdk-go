@@ -26,6 +26,20 @@
         {"shape":"DBClusterRoleQuotaExceededFault"}
       ]
     },
+    "AddRoleToDBInstance":{
+      "name":"AddRoleToDBInstance",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AddRoleToDBInstanceMessage"},
+      "errors":[
+        {"shape":"DBInstanceNotFoundFault"},
+        {"shape":"DBInstanceRoleAlreadyExistsFault"},
+        {"shape":"InvalidDBInstanceStateFault"},
+        {"shape":"DBInstanceRoleQuotaExceededFault"}
+      ]
+    },
     "AddSourceIdentifierToSubscription":{
       "name":"AddSourceIdentifierToSubscription",
       "http":{
@@ -1528,6 +1542,19 @@
         {"shape":"InvalidDBClusterStateFault"}
       ]
     },
+    "RemoveRoleFromDBInstance":{
+      "name":"RemoveRoleFromDBInstance",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RemoveRoleFromDBInstanceMessage"},
+      "errors":[
+        {"shape":"DBInstanceNotFoundFault"},
+        {"shape":"DBInstanceRoleNotFoundFault"},
+        {"shape":"InvalidDBInstanceStateFault"}
+      ]
+    },
     "RemoveSourceIdentifierFromSubscription":{
       "name":"RemoveSourceIdentifierFromSubscription",
       "http":{
@@ -1910,6 +1937,19 @@
         "RoleArn":{"shape":"String"}
       }
     },
+    "AddRoleToDBInstanceMessage":{
+      "type":"structure",
+      "required":[
+        "DBInstanceIdentifier",
+        "RoleArn",
+        "FeatureName"
+      ],
+      "members":{
+        "DBInstanceIdentifier":{"shape":"String"},
+        "RoleArn":{"shape":"String"},
+        "FeatureName":{"shape":"String"}
+      }
+    },
     "AddSourceIdentifierToSubscriptionMessage":{
       "type":"structure",
       "required":[
@@ -2288,7 +2328,8 @@
         "EngineMode":{"shape":"String"},
         "ScalingConfiguration":{"shape":"ScalingConfiguration"},
         "DeletionProtection":{"shape":"BooleanOptional"},
-        "GlobalClusterIdentifier":{"shape":"String"}
+        "GlobalClusterIdentifier":{"shape":"String"},
+        "CopyTagsToSnapshot":{"shape":"BooleanOptional"}
       }
     },
     "CreateDBClusterParameterGroupMessage":{
@@ -2623,7 +2664,8 @@
         "EngineMode":{"shape":"String"},
         "ScalingConfigurationInfo":{"shape":"ScalingConfigurationInfo"},
         "DeletionProtection":{"shape":"Boolean"},
-        "HttpEndpointEnabled":{"shape":"Boolean"}
+        "HttpEndpointEnabled":{"shape":"Boolean"},
+        "CopyTagsToSnapshot":{"shape":"Boolean"}
       },
       "wrapper":true
     },
@@ -3008,7 +3050,8 @@
         "ExportableLogTypes":{"shape":"LogTypeList"},
         "SupportsLogExportsToCloudwatchLogs":{"shape":"Boolean"},
         "SupportsReadReplica":{"shape":"Boolean"},
-        "SupportedEngineModes":{"shape":"EngineModeList"}
+        "SupportedEngineModes":{"shape":"EngineModeList"},
+        "SupportedFeatureNames":{"shape":"FeatureNameList"}
       }
     },
     "DBEngineVersionList":{
@@ -3083,6 +3126,7 @@
         "EnabledCloudwatchLogsExports":{"shape":"LogTypeList"},
         "ProcessorFeatures":{"shape":"ProcessorFeatureList"},
         "DeletionProtection":{"shape":"Boolean"},
+        "AssociatedRoles":{"shape":"DBInstanceRoles"},
         "ListenerEndpoint":{"shape":"Endpoint"}
       },
       "wrapper":true
@@ -3187,6 +3231,54 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "DBInstanceRole":{
+      "type":"structure",
+      "members":{
+        "RoleArn":{"shape":"String"},
+        "FeatureName":{"shape":"String"},
+        "Status":{"shape":"String"}
+      }
+    },
+    "DBInstanceRoleAlreadyExistsFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBInstanceRoleAlreadyExists",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DBInstanceRoleNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBInstanceRoleNotFound",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DBInstanceRoleQuotaExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBInstanceRoleQuotaExceeded",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DBInstanceRoles":{
+      "type":"list",
+      "member":{
+        "shape":"DBInstanceRole",
+        "locationName":"DBInstanceRole"
+      }
     },
     "DBInstanceStatusInfo":{
       "type":"structure",
@@ -4324,6 +4416,10 @@
         "DBCluster":{"shape":"DBCluster"}
       }
     },
+    "FeatureNameList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "Filter":{
       "type":"structure",
       "required":[
@@ -4781,7 +4877,8 @@
         "EngineVersion":{"shape":"String"},
         "ScalingConfiguration":{"shape":"ScalingConfiguration"},
         "DeletionProtection":{"shape":"BooleanOptional"},
-        "EnableHttpEndpoint":{"shape":"BooleanOptional"}
+        "EnableHttpEndpoint":{"shape":"BooleanOptional"},
+        "CopyTagsToSnapshot":{"shape":"BooleanOptional"}
       }
     },
     "ModifyDBClusterParameterGroupMessage":{
@@ -5509,6 +5606,19 @@
         "RoleArn":{"shape":"String"}
       }
     },
+    "RemoveRoleFromDBInstanceMessage":{
+      "type":"structure",
+      "required":[
+        "DBInstanceIdentifier",
+        "RoleArn",
+        "FeatureName"
+      ],
+      "members":{
+        "DBInstanceIdentifier":{"shape":"String"},
+        "RoleArn":{"shape":"String"},
+        "FeatureName":{"shape":"String"}
+      }
+    },
     "RemoveSourceIdentifierFromSubscriptionMessage":{
       "type":"structure",
       "required":[
@@ -5723,7 +5833,8 @@
         "S3IngestionRoleArn":{"shape":"String"},
         "BacktrackWindow":{"shape":"LongOptional"},
         "EnableCloudwatchLogsExports":{"shape":"LogTypeList"},
-        "DeletionProtection":{"shape":"BooleanOptional"}
+        "DeletionProtection":{"shape":"BooleanOptional"},
+        "CopyTagsToSnapshot":{"shape":"BooleanOptional"}
       }
     },
     "RestoreDBClusterFromS3Result":{
@@ -5758,7 +5869,8 @@
         "EngineMode":{"shape":"String"},
         "ScalingConfiguration":{"shape":"ScalingConfiguration"},
         "DBClusterParameterGroupName":{"shape":"String"},
-        "DeletionProtection":{"shape":"BooleanOptional"}
+        "DeletionProtection":{"shape":"BooleanOptional"},
+        "CopyTagsToSnapshot":{"shape":"BooleanOptional"}
       }
     },
     "RestoreDBClusterFromSnapshotResult":{
@@ -5789,7 +5901,8 @@
         "BacktrackWindow":{"shape":"LongOptional"},
         "EnableCloudwatchLogsExports":{"shape":"LogTypeList"},
         "DBClusterParameterGroupName":{"shape":"String"},
-        "DeletionProtection":{"shape":"BooleanOptional"}
+        "DeletionProtection":{"shape":"BooleanOptional"},
+        "CopyTagsToSnapshot":{"shape":"BooleanOptional"}
       }
     },
     "RestoreDBClusterToPointInTimeResult":{

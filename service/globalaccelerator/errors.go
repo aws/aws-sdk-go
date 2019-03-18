@@ -19,13 +19,17 @@ const (
 	// ErrCodeAssociatedEndpointGroupFoundException for service response error code
 	// "AssociatedEndpointGroupFoundException".
 	//
-	// The endpoint group that you specified doesn't exist.
+	// The listener that you specified has an endpoint group associated with it.
+	// You must remove all dependent resources from a listener before you can delete
+	// it.
 	ErrCodeAssociatedEndpointGroupFoundException = "AssociatedEndpointGroupFoundException"
 
 	// ErrCodeAssociatedListenerFoundException for service response error code
 	// "AssociatedListenerFoundException".
 	//
-	// The listener that you specified doesn't exist.
+	// The accelerator that you specified has a listener associated with it. You
+	// must remove all dependent resources from an accelerator before you can delete
+	// it.
 	ErrCodeAssociatedListenerFoundException = "AssociatedListenerFoundException"
 
 	// ErrCodeEndpointGroupAlreadyExistsException for service response error code

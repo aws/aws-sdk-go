@@ -6,6 +6,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
 const opAssociateRoleToGroup = "AssociateRoleToGroup"
@@ -1745,6 +1747,7 @@ func (c *Greengrass) DeleteConnectorDefinitionRequest(input *DeleteConnectorDefi
 
 	output = &DeleteConnectorDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1824,6 +1827,7 @@ func (c *Greengrass) DeleteCoreDefinitionRequest(input *DeleteCoreDefinitionInpu
 
 	output = &DeleteCoreDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1903,6 +1907,7 @@ func (c *Greengrass) DeleteDeviceDefinitionRequest(input *DeleteDeviceDefinition
 
 	output = &DeleteDeviceDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1982,6 +1987,7 @@ func (c *Greengrass) DeleteFunctionDefinitionRequest(input *DeleteFunctionDefini
 
 	output = &DeleteFunctionDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2061,6 +2067,7 @@ func (c *Greengrass) DeleteGroupRequest(input *DeleteGroupInput) (req *request.R
 
 	output = &DeleteGroupOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2140,6 +2147,7 @@ func (c *Greengrass) DeleteLoggerDefinitionRequest(input *DeleteLoggerDefinition
 
 	output = &DeleteLoggerDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2219,6 +2227,7 @@ func (c *Greengrass) DeleteResourceDefinitionRequest(input *DeleteResourceDefini
 
 	output = &DeleteResourceDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2298,6 +2307,7 @@ func (c *Greengrass) DeleteSubscriptionDefinitionRequest(input *DeleteSubscripti
 
 	output = &DeleteSubscriptionDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6084,6 +6094,7 @@ func (c *Greengrass) StopBulkDeploymentRequest(input *StopBulkDeploymentInput) (
 
 	output = &StopBulkDeploymentOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6250,6 +6261,7 @@ func (c *Greengrass) UpdateConnectorDefinitionRequest(input *UpdateConnectorDefi
 
 	output = &UpdateConnectorDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6329,6 +6341,7 @@ func (c *Greengrass) UpdateCoreDefinitionRequest(input *UpdateCoreDefinitionInpu
 
 	output = &UpdateCoreDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6408,6 +6421,7 @@ func (c *Greengrass) UpdateDeviceDefinitionRequest(input *UpdateDeviceDefinition
 
 	output = &UpdateDeviceDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6487,6 +6501,7 @@ func (c *Greengrass) UpdateFunctionDefinitionRequest(input *UpdateFunctionDefini
 
 	output = &UpdateFunctionDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6566,6 +6581,7 @@ func (c *Greengrass) UpdateGroupRequest(input *UpdateGroupInput) (req *request.R
 
 	output = &UpdateGroupOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6727,6 +6743,7 @@ func (c *Greengrass) UpdateLoggerDefinitionRequest(input *UpdateLoggerDefinition
 
 	output = &UpdateLoggerDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6806,6 +6823,7 @@ func (c *Greengrass) UpdateResourceDefinitionRequest(input *UpdateResourceDefini
 
 	output = &UpdateResourceDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6885,6 +6903,7 @@ func (c *Greengrass) UpdateSubscriptionDefinitionRequest(input *UpdateSubscripti
 
 	output = &UpdateSubscriptionDefinitionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -7148,7 +7167,7 @@ type BulkDeploymentResult struct {
 	// The ID of the group deployment.
 	DeploymentId *string `type:"string"`
 
-	// The current status of the group deployment: ''Pending'', ''InProgress'',
+	// The current status of the group deployment: ''InProgress'', ''Building'',
 	// ''Success'', or ''Failure''.
 	DeploymentStatus *string `type:"string"`
 
@@ -7852,7 +7871,7 @@ type CreateDeploymentInput struct {
 	// The ID of the deployment if you wish to redeploy a previous deployment.
 	DeploymentId *string `type:"string"`
 
-	// The type of deployment. When used in ''CreateDeployment'', only ''NewDeployment''
+	// The type of deployment. When used for ''CreateDeployment'', only ''NewDeployment''
 	// and ''Redeployment'' are valid.
 	DeploymentType *string `type:"string" enum:"DeploymentType"`
 
@@ -8275,7 +8294,8 @@ type CreateFunctionDefinitionVersionInput struct {
 
 	AmznClientToken *string `location:"header" locationName:"X-Amzn-Client-Token" type:"string"`
 
-	// Default configuration that will apply to all Lambda functions in the group.
+	// The default configuration that applies to all Lambda functions in the group.
+	// Individual Lambda functions can override these settings.
 	DefaultConfig *FunctionDefaultConfig `type:"structure"`
 
 	// FunctionDefinitionId is a required field
@@ -10408,13 +10428,12 @@ func (s *FunctionConfigurationEnvironment) SetVariables(v map[string]*string) *F
 	return s
 }
 
-// Default configuration that will apply to all Lambda functions in the group.
+// The default configuration that applies to all Lambda functions in the group.
+// Individual Lambda functions can override these settings.
 type FunctionDefaultConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Configuration that defines the default containerization used for when running
-	// Lambda functions in the group. Individual Lambda functions can be override
-	// this setting.
+	// Configuration information that specifies how a Lambda function runs.
 	Execution *FunctionDefaultExecutionConfig `type:"structure"`
 }
 
@@ -10434,9 +10453,7 @@ func (s *FunctionDefaultConfig) SetExecution(v *FunctionDefaultExecutionConfig) 
 	return s
 }
 
-// Configuration that defines the default containerization used for when running
-// Lambda functions in the group. Individual Lambda functions can be override
-// this setting.
+// Configuration information that specifies how a Lambda function runs.
 type FunctionDefaultExecutionConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -10446,6 +10463,14 @@ type FunctionDefaultExecutionConfig struct {
 	// this value to run the Lambda function with the default containerization for
 	// the group.
 	IsolationMode *string `type:"string" enum:"FunctionIsolationMode"`
+
+	// Specifies the user and group whose permissions are used when running the
+	// Lambda function. You can specify one or both values to override the default
+	// values. We recommend that you avoid running as root unless absolutely necessary
+	// to minimize the risk of unintended changes or malicious attacks. To run as
+	// root, you must set ''IsolationMode'' to ''NoContainer'' and update config.json
+	// in ''greengrass-root/config'' to set ''allowFunctionsToRunAsRoot'' to ''yes''.
+	RunAs *FunctionRunAsConfig `type:"structure"`
 }
 
 // String returns the string representation
@@ -10464,12 +10489,18 @@ func (s *FunctionDefaultExecutionConfig) SetIsolationMode(v string) *FunctionDef
 	return s
 }
 
+// SetRunAs sets the RunAs field's value.
+func (s *FunctionDefaultExecutionConfig) SetRunAs(v *FunctionRunAsConfig) *FunctionDefaultExecutionConfig {
+	s.RunAs = v
+	return s
+}
+
 // Information about a function definition version.
 type FunctionDefinitionVersion struct {
 	_ struct{} `type:"structure"`
 
-	// Default configuration that will apply to all Lambda functions in this function
-	// definition version
+	// The default configuration that applies to all Lambda functions in this function
+	// definition version. Individual Lambda functions can override these settings.
 	DefaultConfig *FunctionDefaultConfig `type:"structure"`
 
 	// A list of Lambda functions in this function definition version.
@@ -10498,7 +10529,7 @@ func (s *FunctionDefinitionVersion) SetFunctions(v []*Function) *FunctionDefinit
 	return s
 }
 
-// Configuration information that specifies how the Lambda function runs.
+// Configuration information that specifies how a Lambda function runs.
 type FunctionExecutionConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -10509,13 +10540,12 @@ type FunctionExecutionConfig struct {
 	// the group.
 	IsolationMode *string `type:"string" enum:"FunctionIsolationMode"`
 
-	// Specifies the user and/or group whose permissions are used when running the
+	// Specifies the user and group whose permissions are used when running the
 	// Lambda function. You can specify one or both values to override the default
-	// values (ggc_user/ggc_group). We recommend that you avoid running as root
-	// unless absolutely necessary to minimize the risk of unintended changes or
-	// malicious attacks. To run as root, you must set IsolationMode to NoContainer
-	// and you must update config.json in greengrass-root/config to set allowFunctionsToRunAsRoot
-	// to yes.
+	// values. We recommend that you avoid running as root unless absolutely necessary
+	// to minimize the risk of unintended changes or malicious attacks. To run as
+	// root, you must set ''IsolationMode'' to ''NoContainer'' and update config.json
+	// in ''greengrass-root/config'' to set ''allowFunctionsToRunAsRoot'' to ''yes''.
 	RunAs *FunctionRunAsConfig `type:"structure"`
 }
 
@@ -10541,20 +10571,19 @@ func (s *FunctionExecutionConfig) SetRunAs(v *FunctionRunAsConfig) *FunctionExec
 	return s
 }
 
-// Specifies the user and/or group whose permissions are used when running the
+// Specifies the user and group whose permissions are used when running the
 // Lambda function. You can specify one or both values to override the default
-// values (ggc_user/ggc_group). We recommend that you avoid running as root
-// unless absolutely necessary to minimize the risk of unintended changes or
-// malicious attacks. To run as root, you must set IsolationMode to NoContainer
-// and you must update config.json in greengrass-root/config to set allowFunctionsToRunAsRoot
-// to yes.
+// values. We recommend that you avoid running as root unless absolutely necessary
+// to minimize the risk of unintended changes or malicious attacks. To run as
+// root, you must set ''IsolationMode'' to ''NoContainer'' and update config.json
+// in ''greengrass-root/config'' to set ''allowFunctionsToRunAsRoot'' to ''yes''.
 type FunctionRunAsConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The Group ID whose permissions are used to run a Lambda function.
+	// The group ID whose permissions are used to run a Lambda function.
 	Gid *int64 `type:"integer"`
 
-	// The User ID whose permissions are used to run a Lambda function.
+	// The user ID whose permissions are used to run a Lambda function.
 	Uid *int64 `type:"integer"`
 }
 
@@ -11355,8 +11384,8 @@ func (s *GetDeploymentStatusInput) SetGroupId(v string) *GetDeploymentStatusInpu
 type GetDeploymentStatusOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The status of the deployment: ''Pending'', ''InProgress'', ''Success'', or
-	// ''Failure''.
+	// The status of the deployment: ''InProgress'', ''Building'', ''Success'',
+	// or ''Failure''.
 	DeploymentStatus *string `type:"string"`
 
 	// The type of the deployment.
@@ -15402,7 +15431,7 @@ type Subscription struct {
 	// a connector ARN, 'cloud' (which represents the AWS IoT cloud), or 'GGShadowService'.
 	Source *string `type:"string"`
 
-	// The subject of the message.
+	// The MQTT topic used to route the message.
 	Subject *string `type:"string"`
 
 	// Where the message is sent to. Can be a thing ARN, a Lambda function ARN,
@@ -16195,7 +16224,8 @@ const (
 	BulkDeploymentStatusFailed = "Failed"
 )
 
-// The type of deployment.
+// The type of deployment. When used for ''CreateDeployment'', only ''NewDeployment''
+// and ''Redeployment'' are valid.
 const (
 	// DeploymentTypeNewDeployment is a DeploymentType enum value
 	DeploymentTypeNewDeployment = "NewDeployment"

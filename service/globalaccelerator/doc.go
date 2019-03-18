@@ -6,7 +6,7 @@
 // This is the AWS Global Accelerator API Reference. This guide is for developers
 // who need detailed information about AWS Global Accelerator API actions, data
 // types, and errors. For more information about Global Accelerator features,
-// see the AWS Global Accelerator Developer Guide (https://docs.awa.amazon.com/global-accelerator/latest/dg/Welcome.html).
+// see the AWS Global Accelerator Developer Guide (https://docs.aws.amazon.com/global-accelerator/latest/dg/Welcome.html).
 //
 // AWS Global Accelerator is a network layer service in which you create accelerators
 // to improve availability and performance for internet applications used by
@@ -30,10 +30,10 @@
 //
 // Static IP addressAWS Global Accelerator provides you with a set of static
 // IP addresses which are anycast from the AWS edge network and serve as the
-// single fixed points of contact for your clients. If you already have Elastic
-// Load Balancing or Elastic IP address resources set up for your applications,
-// you can easily add those to Global Accelerator to allow the resources to
-// be accessed by a Global Accelerator static IP address.
+// single fixed entry points for your clients. If you already have Elastic Load
+// Balancing or Elastic IP address resources set up for your applications, you
+// can easily add those to Global Accelerator to allow the resources to be accessed
+// by a Global Accelerator static IP address.
 //
 // AcceleratorAn accelerator directs traffic to optimal endpoints over the AWS
 // global network to improve availability and performance for your internet
@@ -66,10 +66,10 @@
 // EndpointAn endpoint is an Elastic IP address, Network Load Balancer, or Application
 // Load Balancer. Traffic is routed to endpoints based on several factors, including
 // the geo-proximity to the user, the health of the endpoint, and the configuration
-// options that you choose, such as endpoint weights. You can configure weights
-// for each endpoint, which are numbers that you can use to specify the proportion
-// of traffic to route to each one. This can be useful, for example, to do performance
-// testing within a Region.
+// options that you choose, such as endpoint weights. For each endpoint, you
+// can configure weights, which are numbers that you can use to specify the
+// proportion of traffic to route to each one. This can be useful, for example,
+// to do performance testing within a Region.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08 for more information on this service.
 //

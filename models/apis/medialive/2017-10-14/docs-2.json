@@ -6,10 +6,12 @@
     "CreateChannel": "Creates a new channel",
     "CreateInput": "Create an input",
     "CreateInputSecurityGroup": "Creates a Input Security Group",
+    "CreateTags": "Create tags for a resource",
     "DeleteChannel": "Starts deletion of channel. The associated outputs are also deleted.",
     "DeleteInput": "Deletes the input end point",
     "DeleteInputSecurityGroup": "Deletes an Input Security Group",
     "DeleteReservation": "Delete an expired reservation.",
+    "DeleteTags": "Removes tags for a resource",
     "DescribeChannel": "Gets details about a channel",
     "DescribeInput": "Produces details about an input",
     "DescribeInputSecurityGroup": "Produces a summary of an Input Security Group",
@@ -21,6 +23,7 @@
     "ListInputs": "Produces list of inputs that have been created",
     "ListOfferings": "List offerings available for purchase.",
     "ListReservations": "List purchased reservations.",
+    "ListTagsForResource": "Produces list of tags that have been created for a resource",
     "PurchaseOffering": "Purchase an offering and create a reservation.",
     "StartChannel": "Starts an existing channel",
     "StopChannel": "Stops a running channel",
@@ -721,6 +724,24 @@
       "refs": {
       }
     },
+    "FrameCaptureGroupSettings": {
+      "base": "Frame Capture Group Settings",
+      "refs": {
+        "OutputGroupSettings$FrameCaptureGroupSettings": null
+      }
+    },
+    "FrameCaptureOutputSettings": {
+      "base": "Frame Capture Output Settings",
+      "refs": {
+        "OutputSettings$FrameCaptureOutputSettings": null
+      }
+    },
+    "FrameCaptureSettings": {
+      "base": "Frame Capture Settings",
+      "refs": {
+        "VideoCodecSettings$FrameCaptureSettings": null
+      }
+    },
     "GatewayTimeoutException": {
       "base": null,
       "refs": {
@@ -844,6 +865,12 @@
       "base": null,
       "refs": {
         "H264Settings$SpatialAq": "If set to enabled, adjust quantization within each frame based on spatial variation of content complexity."
+      }
+    },
+    "H264SubGopLength": {
+      "base": null,
+      "refs": {
+        "H264Settings$SubgopLength": "If set to fixed, use gopNumBFrames B-frames per sub-GOP. If set to dynamic, optimize the number of B-frames used for each sub-GOP to improve visual quality."
       }
     },
     "H264Syntax": {
@@ -981,7 +1008,7 @@
     "HlsOutputSelection": {
       "base": null,
       "refs": {
-        "HlsGroupSettings$OutputSelection": "Generates the .m3u8 playlist file for this HLS output group. The segmentsOnly option will output segments without the .m3u8 file."
+        "HlsGroupSettings$OutputSelection": "MANIFESTSANDSEGMENTS: Generates manifests (master manifest, if applicable, and media manifests) for this output group.\n\nSEGMENTSONLY: Does not generate any manifests for this output group."
       }
     },
     "HlsOutputSettings": {
@@ -999,13 +1026,13 @@
     "HlsRedundantManifest": {
       "base": null,
       "refs": {
-        "HlsGroupSettings$RedundantManifest": "When set to \"enabled\", includes the media playlists from both pipelines in the master manifest (.m3u8) file."
+        "HlsGroupSettings$RedundantManifest": "ENABLED: The master manifest (.m3u8 file) for each pipeline includes information about both pipelines: first its own media files, then the media files of the other pipeline. This feature allows playout device that support stale manifest detection to switch from one manifest to the other, when the current manifest seems to be stale. There are still two destinations and two master manifests, but both master manifests reference the media files from both pipelines.\n\nDISABLED: The master manifest (.m3u8 file) for each pipeline includes information about its own pipeline only.\n\nFor an HLS output group with MediaPackage as the destination, the DISABLED behavior is always followed. MediaPackage regenerates the manifests it serves to players so a redundant manifest from MediaLive is irrelevant."
       }
     },
     "HlsSegmentationMode": {
       "base": null,
       "refs": {
-        "HlsGroupSettings$SegmentationMode": "When set to useInputSegmentation, the output segment or fragment points are set by the RAI markers from the input streams."
+        "HlsGroupSettings$SegmentationMode": "useInputSegmentation has been deprecated. The configured segment size is always used."
       }
     },
     "HlsSettings": {
@@ -1026,10 +1053,16 @@
         "HlsGroupSettings$TimedMetadataId3Frame": "Indicates ID3 frame that has the timecode."
       }
     },
+    "HlsTimedMetadataScheduleActionSettings": {
+      "base": "Settings for the action to emit HLS metadata",
+      "refs": {
+        "ScheduleActionSettings$HlsTimedMetadataSettings": "Action to insert HLS metadata"
+      }
+    },
     "HlsTsFileMode": {
       "base": null,
       "refs": {
-        "HlsGroupSettings$TsFileMode": "When set to \"singleFile\", emits the program as a single media resource (.ts) file, and uses #EXT-X-BYTERANGE tags to index segment for playback. Playback of VOD mode content during event is not guaranteed due to HTTP server caching."
+        "HlsGroupSettings$TsFileMode": "SEGMENTEDFILES: Emit the program as segments - multiple .ts media files.\n\nSINGLEFILE: Applies only if Mode field is VOD. Emit the program as a single .ts media file. The media manifest includes #EXT-X-BYTERANGE tags to index segments for playback. A typical use for this value is when sending the output to AWS Elemental MediaConvert, which can accept only a single media file. Playback while the channel is running is not guaranteed due to HTTP server caching."
       }
     },
     "HlsWebdavHttpTransferMode": {
@@ -1042,6 +1075,12 @@
       "base": null,
       "refs": {
         "HlsCdnSettings$HlsWebdavSettings": null
+      }
+    },
+    "IFrameOnlyPlaylistType": {
+      "base": "When set to \"standard\", an I-Frame only playlist will be written out for each video output in the output group. This I-Frame only playlist will contain byte range offsets pointing to the I-frame(s) in each segment.",
+      "refs": {
+        "HlsGroupSettings$IFrameOnlyPlaylists": "DISABLED: Do not create an I-frame-only manifest, but do create the master and media manifests (according to the Output Selection field).\n\nSTANDARD: Create an I-frame-only manifest for each output that contains video, as well as the other manifests (according to the Output Selection field). The I-frame manifest contains a #EXT-X-I-FRAMES-ONLY tag to indicate it is I-frame only, and one or more #EXT-X-BYTERANGE entries identifying the I-frame position. For example, #EXT-X-BYTERANGE:160364@1461888\""
       }
     },
     "Input": {
@@ -1092,6 +1131,12 @@
       "base": "Endpoint settings for a PUSH type input.",
       "refs": {
         "__listOfInputDestinationRequest$member": null
+      }
+    },
+    "InputDestinationVpc": {
+      "base": "The properties for a VPC type input destination.",
+      "refs": {
+        "InputDestination$Vpc": null
       }
     },
     "InputFilter": {
@@ -1223,7 +1268,7 @@
     "InputSwitchScheduleActionSettings": {
       "base": "Settings for the action to switch an input.",
       "refs": {
-        "ScheduleActionSettings$InputSwitchSettings": "Settings to switch an input"
+        "ScheduleActionSettings$InputSwitchSettings": "Action to switch the input"
       }
     },
     "InputType": {
@@ -1231,6 +1276,12 @@
       "refs": {
         "CreateInput$Type": null,
         "Input$Type": null
+      }
+    },
+    "InputVpcRequest": {
+      "base": "Settings for a private VPC Input.\nWhen this property is specified, the input destination addresses will be created in a VPC rather than with public Internet addresses.\nThis property requires setting the roleArn property on Input creation.\nNot compatible with the inputSecurityGroups property.\n",
+      "refs": {
+        "CreateInput$Vpc": null
       }
     },
     "InputWhitelistRule": {
@@ -1451,6 +1502,24 @@
         "__listOfMediaConnectFlowRequest$member": null
       }
     },
+    "MediaPackageGroupSettings": {
+      "base": "Media Package Group Settings",
+      "refs": {
+        "OutputGroupSettings$MediaPackageGroupSettings": null
+      }
+    },
+    "MediaPackageOutputDestinationSettings": {
+      "base": "Media Package Output Destination Settings",
+      "refs": {
+        "__listOfMediaPackageOutputDestinationSettings$member": null
+      }
+    },
+    "MediaPackageOutputSettings": {
+      "base": "Media Package Output Settings",
+      "refs": {
+        "OutputSettings$MediaPackageOutputSettings": null
+      }
+    },
     "Mp2CodingMode": {
       "base": null,
       "refs": {
@@ -1545,8 +1614,10 @@
     "OutputLocationRef": {
       "base": "Reference to an OutputDestination ID defined in the channel",
       "refs": {
-        "ArchiveGroupSettings$Destination": "A directory and base filename where archive files should be written.  If the base filename portion of the URI is left blank, the base filename of the first input will be automatically inserted.",
+        "ArchiveGroupSettings$Destination": "A directory and base filename where archive files should be written.",
+        "FrameCaptureGroupSettings$Destination": "The destination for the frame capture files. Either the URI for an Amazon S3 bucket and object, plus a file name prefix (for example, s3ssl://sportsDelivery/highlights/20180820/curling_) or the URI for a MediaStore container, plus a file name prefix (for example, mediastoressl://sportsDelivery/20180820/curling_). The final file names consist of the prefix from the destination field (for example, \"curling_\") + name modifier + the counter (5 digits, starting from 00001) + extension (which is always .jpg).  For example, curlingLow.00001.jpg",
         "HlsGroupSettings$Destination": "A directory or HTTP destination for the HLS segments, manifest files, and encryption keys (if enabled).",
+        "MediaPackageGroupSettings$Destination": "MediaPackage channel destination.",
         "MsSmoothGroupSettings$Destination": "Smooth Streaming publish point on an IIS server. Elemental Live acts as a \"Push\" encoder to IIS.",
         "RtmpOutputSettings$Destination": "The RTMP endpoint excluding the stream name (eg. rtmp://host/appname). For connection to Akamai, a username and password must be supplied. URI fields accept format identifiers.",
         "UdpOutputSettings$Destination": "Destination address and port number for RTP or UDP packets. Can be unicast or multicast RTP or UDP (eg. rtp://239.10.10.10:5001 or udp://10.100.100.100:5002)."
@@ -1562,6 +1633,24 @@
       "base": null,
       "refs": {
         "AudioCodecSettings$PassThroughSettings": null
+      }
+    },
+    "PauseStateScheduleActionSettings": {
+      "base": "Settings for the action to set pause state of a channel.",
+      "refs": {
+        "ScheduleActionSettings$PauseStateSettings": "Action to pause or unpause one or both channel pipelines"
+      }
+    },
+    "PipelineId": {
+      "base": "Pipeline ID",
+      "refs": {
+        "PipelinePauseStateSettings$PipelineId": "Pipeline ID to pause (\"PIPELINE_0\" or \"PIPELINE_1\")."
+      }
+    },
+    "PipelinePauseStateSettings": {
+      "base": "Settings for pausing a pipeline.",
+      "refs": {
+        "__listOfPipelinePauseStateSettings$member": null
       }
     },
     "PurchaseOffering": {
@@ -1792,7 +1881,7 @@
     "Scte35ReturnToNetworkScheduleActionSettings": {
       "base": "Settings for a SCTE-35 return_to_network message.",
       "refs": {
-        "ScheduleActionSettings$Scte35ReturnToNetworkSettings": "Settings for SCTE-35 return_to_network message"
+        "ScheduleActionSettings$Scte35ReturnToNetworkSettings": "Action to insert SCTE-35 return_to_network message"
       }
     },
     "Scte35SegmentationCancelIndicator": {
@@ -1822,7 +1911,7 @@
     "Scte35SpliceInsertScheduleActionSettings": {
       "base": "Settings for a SCTE-35 splice_insert message.",
       "refs": {
-        "ScheduleActionSettings$Scte35SpliceInsertSettings": "Settings for SCTE-35 splice_insert message"
+        "ScheduleActionSettings$Scte35SpliceInsertSettings": "Action to insert SCTE-35 splice_insert message"
       }
     },
     "Scte35SpliceInsertWebDeliveryAllowedBehavior": {
@@ -1840,7 +1929,7 @@
     "Scte35TimeSignalScheduleActionSettings": {
       "base": "Settings for a SCTE-35 time_signal.",
       "refs": {
-        "ScheduleActionSettings$Scte35TimeSignalSettings": "Settings for SCTE-35 time_signal message"
+        "ScheduleActionSettings$Scte35TimeSignalSettings": "Action to insert SCTE-35 time_signal message"
       }
     },
     "Scte35WebDeliveryAllowedFlag": {
@@ -1876,7 +1965,7 @@
     "SmoothGroupSegmentationMode": {
       "base": null,
       "refs": {
-        "MsSmoothGroupSettings$SegmentationMode": "When set to useInputSegmentation, the output segment or fragment points are set by the RAI markers from the input streams."
+        "MsSmoothGroupSettings$SegmentationMode": "useInputSegmentation has been deprecated. The configured segment size is always used."
       }
     },
     "SmoothGroupSparseTrackType": {
@@ -1912,19 +2001,37 @@
     "StaticImageActivateScheduleActionSettings": {
       "base": "Settings for the action to activate a static image.",
       "refs": {
-        "ScheduleActionSettings$StaticImageActivateSettings": "Settings to activate a static image overlay"
+        "ScheduleActionSettings$StaticImageActivateSettings": "Action to activate a static image overlay"
       }
     },
     "StaticImageDeactivateScheduleActionSettings": {
       "base": "Settings for the action to deactivate the image in a specific layer.",
       "refs": {
-        "ScheduleActionSettings$StaticImageDeactivateSettings": "Settings to deactivate a static image overlay"
+        "ScheduleActionSettings$StaticImageDeactivateSettings": "Action to deactivate a static image overlay"
       }
     },
     "StaticKeySettings": {
       "base": null,
       "refs": {
         "KeyProviderSettings$StaticKeySettings": null
+      }
+    },
+    "Tags": {
+      "base": null,
+      "refs": {
+        "Channel$Tags": "A collection of key-value pairs.",
+        "ChannelSummary$Tags": "A collection of key-value pairs.",
+        "CreateChannel$Tags": "A collection of key-value pairs.",
+        "CreateInput$Tags": "A collection of key-value pairs.",
+        "Input$Tags": "A collection of key-value pairs.",
+        "InputSecurityGroup$Tags": "A collection of key-value pairs.",
+        "InputSecurityGroupWhitelistRequest$Tags": "A collection of key-value pairs.",
+        "TagsModel$Tags": null
+      }
+    },
+    "TagsModel": {
+      "base": null,
+      "refs": {
       }
     },
     "TeletextDestinationSettings": {
@@ -2043,13 +2150,13 @@
     "VideoDescriptionRespondToAfd": {
       "base": null,
       "refs": {
-        "VideoDescription$RespondToAfd": "Indicates how to respond to the AFD values in the input stream. Setting to \"respond\" causes input video to be clipped, depending on AFD value, input display aspect ratio and output display aspect ratio."
+        "VideoDescription$RespondToAfd": "Indicates how to respond to the AFD values in the input stream. RESPOND causes input video to be clipped, depending on the AFD value, input display aspect ratio, and output display aspect ratio, and (except for FRAMECAPTURE codec) includes the values in the output. PASSTHROUGH (does not apply to FRAMECAPTURE codec) ignores the AFD values and includes the values in the output, so input video is not clipped. NONE ignores the AFD values and does not include the values through to the output, so input video is not clipped."
       }
     },
     "VideoDescriptionScalingBehavior": {
       "base": null,
       "refs": {
-        "VideoDescription$ScalingBehavior": "When set to \"stretchToOutput\", automatically configures the output position to stretch the video to the specified output resolution. This option will override any position value."
+        "VideoDescription$ScalingBehavior": "STRETCHTOOUTPUT configures the output position to stretch the video to the specified output resolution (height and width). This option will override any position value. DEFAULT may insert black boxes (pillar boxes or letter boxes) around the video to provide the specified output resolution."
       }
     },
     "VideoSelector": {
@@ -2142,14 +2249,12 @@
         "ChannelSummary$PipelinesRunningCount": "The number of currently healthy pipelines.",
         "DvbSubDestinationSettings$ShadowXOffset": "Specifies the horizontal offset of the shadow relative to the captions in pixels. A value of -2 would result in a shadow offset 2 pixels to the left.  All burn-in and DVB-Sub font settings must match.",
         "DvbSubDestinationSettings$ShadowYOffset": "Specifies the vertical offset of the shadow relative to the captions in pixels. A value of -2 would result in a shadow offset 2 pixels above the text.  All burn-in and DVB-Sub font settings must match.",
-        "H264Settings$FramerateDenominator": "Framerate denominator.",
-        "H264Settings$FramerateNumerator": "Framerate numerator - framerate is a fraction, e.g. 24000 / 1001 = 23.976 fps.",
         "H264Settings$ParNumerator": "Pixel Aspect Ratio numerator.",
         "Offering$Duration": "Lease duration, e.g. '12'",
         "Reservation$Count": "Number of reserved resources",
         "Reservation$Duration": "Lease duration, e.g. '12'",
-        "VideoDescription$Height": "Output video height (in pixels). Leave blank to use source video height. If left blank, width must also be unspecified.",
-        "VideoDescription$Width": "Output video width (in pixels). Leave out to use source video width.  If left out, height must also be left out. Display aspect ratio is always preserved by letterboxing or pillarboxing when necessary."
+        "VideoDescription$Height": "Output video height, in pixels. Must be an even number. For most codecs, you can leave this field and width blank in order to use the height and width (resolution) from the source. Note, however, that leaving blank is not recommended. For the Frame Capture codec, height and width are required.",
+        "VideoDescription$Width": "Output video width, in pixels. Must be an even number. For most codecs, you can leave this field and height blank in order to use the height and width (resolution) from the source. Note, however, that leaving blank is not recommended. For the Frame Capture codec, height and width are required."
       }
     },
     "__integerMin0": {
@@ -2206,7 +2311,7 @@
       "refs": {
         "H264Settings$BufFillPct": "Percentage of the buffer that should initially be filled (HRD buffer model).",
         "StaticImageActivateScheduleActionSettings$Opacity": "Opacity of image where 0 is transparent and 100 is fully opaque. Default is 100.",
-        "VideoDescription$Sharpness": "Changes the width of the anti-alias filter kernel used for scaling. Only applies if scaling is being performed and antiAlias is set to true. 0 is the softest setting, 100 the sharpest, and 50 recommended for most content."
+        "VideoDescription$Sharpness": "Changes the strength of the anti-alias filter used for scaling. 0 is the softest setting, 100 is the sharpest. A setting of 50 is recommended for most content."
       }
     },
     "__integerMin0Max1000": {
@@ -2351,8 +2456,10 @@
       "refs": {
         "ArchiveGroupSettings$RolloverInterval": "Number of seconds to write to archive file before closing and starting a new one.",
         "DvbSubSourceSettings$Pid": "When using DVB-Sub with Burn-In or SMPTE-TT, use this PID for the source content. Unused for DVB-Sub passthrough. All DVB-Sub content is passed through, regardless of selectors.",
+        "H264Settings$FramerateDenominator": "Framerate denominator.",
+        "H264Settings$FramerateNumerator": "Framerate numerator - framerate is a fraction, e.g. 24000 / 1001 = 23.976 fps.",
         "H264Settings$ParDenominator": "Pixel Aspect Ratio denominator.",
-        "HlsGroupSettings$KeepSegments": "If mode is \"live\", the number of TS segments to retain in the destination directory. If mode is \"vod\", this parameter has no effect.",
+        "HlsGroupSettings$KeepSegments": "Applies only if Mode field is LIVE. Specifies the number of media segments (.ts files) to retain in the destination directory.",
         "HlsGroupSettings$SegmentLength": "Length of MPEG-2 Transport Stream segments to create (in seconds). Note that segments will end on the next keyframe after this number of seconds, so actual segment length may be longer.",
         "HlsGroupSettings$SegmentsPerSubdirectory": "Number of segments to write to a subdirectory before starting a new one. directoryStructure must be subdirectoryPerStream for this setting to have an effect.",
         "MsSmoothGroupSettings$FragmentLength": "Length of mp4 fragments to generate (in seconds). Fragment length must be compatible with GOP size and framerate.",
@@ -2413,6 +2520,12 @@
         "H264Settings$Slices": "Number of slices per picture. Must be less than or equal to the number of macroblock rows for progressive pictures, and less than or equal to half the number of macroblock rows for interlaced pictures.\nThis field is optional; when no value is specified the encoder will choose the number of slices based on encode resolution."
       }
     },
+    "__integerMin1Max3600": {
+      "base": null,
+      "refs": {
+        "FrameCaptureSettings$CaptureInterval": "The frequency, in seconds, for capturing frames for inclusion in the output.  For example, \"10\" means capture a frame every 10 seconds."
+      }
+    },
     "__integerMin1Max4": {
       "base": null,
       "refs": {
@@ -2455,7 +2568,7 @@
     "__integerMin3": {
       "base": null,
       "refs": {
-        "HlsGroupSettings$IndexNSegments": "If mode is \"live\", the number of segments to retain in the manifest (.m3u8) file. This number must be less than or equal to keepSegments. If mode is \"vod\", this parameter has no effect."
+        "HlsGroupSettings$IndexNSegments": "Applies only if Mode field is LIVE. Specifies the maximum number of segments in the media manifest file. After this maximum, older segments are removed from the media manifest. This number must be less than or equal to the Keep Segments field."
       }
     },
     "__integerMin30": {
@@ -2629,6 +2742,12 @@
         "UpdateInput$MediaConnectFlows": "A list of the MediaConnect Flow ARNs that you want to use as the source of the input. You can specify as few as one\nFlow and presently, as many as two. The only requirement is when you have more than one is that each Flow is in a\nseparate Availability Zone as this ensures your EML input is redundant to AZ issues.\n"
       }
     },
+    "__listOfMediaPackageOutputDestinationSettings": {
+      "base": null,
+      "refs": {
+        "OutputDestination$MediaPackageSettings": "Destination settings for a MediaPackage output; one destination for both encoders."
+      }
+    },
     "__listOfOffering": {
       "base": null,
       "refs": {
@@ -2653,13 +2772,19 @@
     "__listOfOutputDestinationSettings": {
       "base": null,
       "refs": {
-        "OutputDestination$Settings": "Destination settings for output; one for each redundant encoder."
+        "OutputDestination$Settings": "Destination settings for a standard output; one destination for each redundant encoder."
       }
     },
     "__listOfOutputGroup": {
       "base": null,
       "refs": {
         "EncoderSettings$OutputGroups": null
+      }
+    },
+    "__listOfPipelinePauseStateSettings": {
+      "base": null,
+      "refs": {
+        "PauseStateScheduleActionSettings$Pipelines": null
       }
     },
     "__listOfReservation": {
@@ -2701,8 +2826,10 @@
         "BatchScheduleActionDeleteRequest$ActionNames": "A list of schedule actions to delete.",
         "CreateInput$InputSecurityGroups": "A list of security groups referenced by IDs to attach to the input.",
         "Input$AttachedChannels": "A list of channel IDs that that input is attached to (currently an input can only be attached to one channel).",
-        "Input$SecurityGroups": "A list of IDs for all the security groups attached to the input.",
+        "Input$SecurityGroups": "A list of IDs for all the Input Security Groups attached to the input.",
         "InputSecurityGroup$Inputs": "The list of inputs currently using this Input Security Group.",
+        "InputVpcRequest$SecurityGroupIds": "A list of up to 5 EC2 VPC security group IDs to attach to the Input VPC network interfaces.\nRequires subnetIds. If none are specified then the VPC default security group will be used.\n",
+        "InputVpcRequest$SubnetIds": "A list of 2 VPC subnet IDs from the same VPC.\nSubnet IDs must be mapped to two unique availability zones (AZ).\n",
         "Output$AudioDescriptionNames": "The names of the AudioDescriptions used as audio sources for this output.",
         "Output$CaptionDescriptionNames": "The names of the CaptionDescriptions used as caption sources for this output.",
         "UpdateInput$InputSecurityGroups": "A list of security groups referenced by IDs to attach to the input."
@@ -2746,6 +2873,7 @@
         "DvbSubDestinationSettings$FontSize": "When set to auto fontSize will scale depending on the size of the output.  Giving a positive integer will specify the exact font size in points.  All burn-in and DVB-Sub font settings must match.",
         "FixedModeScheduleActionStartSettings$Time": "Start time for the action to start in the channel. (Not the time for the action to be added to the schedule: actions are always added to the schedule immediately.) UTC format: yyyy-mm-ddThh:mm:ss.nnnZ. All the letters are digits (for example, mm might be 01) except for the two constants \"T\" for time and \"Z\" for \"UTC format\".",
         "FollowModeScheduleActionStartSettings$ReferenceActionName": "The action name of another action that this one refers to.",
+        "FrameCaptureOutputSettings$NameModifier": "Required if the output group contains more than one output. This modifier forms part of the output file name.",
         "GatewayTimeoutException$Message": null,
         "HlsAkamaiSettings$Salt": "Salt for authenticated Akamai.",
         "HlsAkamaiSettings$Token": "Token parameter for authenticated akamai. If not specified, _gda_ is used.",
@@ -2754,6 +2882,7 @@
         "HlsGroupSettings$KeyFormat": "The value specifies how the key is represented in the resource identified by the URI.  If parameter is absent, an implicit value of \"identity\" is used.  A reverse DNS string can also be given.",
         "HlsGroupSettings$KeyFormatVersions": "Either a single positive integer version value or a slash delimited list of version values (1/2/3).",
         "HlsOutputSettings$SegmentModifier": "String concatenated to end of segment filenames.",
+        "HlsTimedMetadataScheduleActionSettings$Id3": "Base64 string formatted according to the ID3 specification: http://id3.org/id3v2.4.0-structure",
         "Input$Arn": "The Unique ARN of the input (generated, immutable).",
         "Input$Id": "The generated ID of the input (unique for user account, immutable).",
         "Input$Name": "The user-assigned name (This is a mutable value).",
@@ -2764,6 +2893,8 @@
         "InputDestination$Port": "The port number for the input.",
         "InputDestination$Url": "This represents the endpoint that the customer stream will be\npushed to.\n",
         "InputDestinationRequest$StreamName": "A unique name for the location the RTMP stream is being pushed\nto.\n",
+        "InputDestinationVpc$AvailabilityZone": "The availability zone of the Input destination.\n",
+        "InputDestinationVpc$NetworkInterfaceId": "The network interface ID of the Input destination in the VPC.\n",
         "InputLocation$PasswordParam": "key used to extract the password from EC2 Parameter store",
         "InputLocation$Uri": "Uniform Resource Identifier - This should be a path to a file accessible to the Live system (eg. a http:// URI) depending on the output type. For example, a RTMP destination should have a uri simliar to: \"rtmp://fmsserver/live\".",
         "InputLocation$Username": "Username if credentials are required to access a file or publishing point.  This can be either a plaintext username, or a reference to an AWS parameter store name from which the username can be retrieved.  AWS Parameter store format: \"ssm://<parameter name>\"",
@@ -2843,6 +2974,7 @@
         "ScheduleDescribeResultModel$NextToken": "The next token; for use in pagination.",
         "Scte35SegmentationDescriptor$SegmentationUpid": "Corresponds to SCTE-35 segmentation_upid. Enter a string containing the hexadecimal representation of the characters that make up the SCTE-35 segmentation_upid value. Must contain an even number of hex characters. Do not include spaces between each hex pair. For example, the ASCII \"ADS Information\" becomes hex \"41445320496e666f726d6174696f6e.",
         "StandardHlsSettings$AudioRenditionSets": "List all the audio groups that are used with the video output stream. Input all the audio GROUP-IDs that are associated to the video, separate by ','.",
+        "Tags$member": null,
         "TeletextSourceSettings$PageNumber": "Specifies the teletext page number within the data stream from which to extract captions. Range of 0x100 (256) to 0x8FF (2303). Unused for passthrough. Should be specified as a hexadecimal string with no \"0x\" prefix.",
         "UpdateChannel$Name": "The name of the channel.",
         "UpdateChannel$RoleArn": "An optional Amazon Resource Name (ARN) of the role to assume when running the Channel. If you do not specify this on an update call but the role was previously set that role will be removed.",
@@ -2866,7 +2998,8 @@
         "AudioSelector$Name": "The name of this AudioSelector. AudioDescriptions will use this name to uniquely identify this Selector.  Selector names should be unique per input.",
         "CaptionLanguageMapping$LanguageDescription": "Textual description of language",
         "CaptionSelector$Name": "Name identifier for a caption selector.  This name is used to associate this caption selector with one or more caption descriptions.  Names must be unique within an event.",
-        "HlsOutputSettings$NameModifier": "String concatenated to the end of the destination filename. Accepts \\\"Format Identifiers\\\":#formatIdentifierParameters."
+        "HlsOutputSettings$NameModifier": "String concatenated to the end of the destination filename. Accepts \\\"Format Identifiers\\\":#formatIdentifierParameters.",
+        "MediaPackageOutputDestinationSettings$ChannelId": "ID of the channel in MediaPackage that is the destination for this output group. You do not need to specify the individual inputs in MediaPackage; MediaLive will handle the connection of the two MediaLive pipelines to the two MediaPackage inputs. The MediaPackage channel and MediaLive channel must be in the same region."
       }
     },
     "__stringMin1Max255": {

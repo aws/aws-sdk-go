@@ -56,15 +56,15 @@ func (a *API) APISmokeTestsGoCode() string {
 	w := bytes.NewBuffer(nil)
 
 	a.resetImports()
-	a.imports["context"] = true
-	a.imports["testing"] = true
-	a.imports["time"] = true
-	a.imports["github.com/aws/aws-sdk-go/aws"] = true
-	a.imports["github.com/aws/aws-sdk-go/aws/request"] = true
-	a.imports["github.com/aws/aws-sdk-go/aws/awserr"] = true
-	a.imports["github.com/aws/aws-sdk-go/aws/request"] = true
-	a.imports["github.com/aws/aws-sdk-go/awstesting/integration"] = true
-	a.imports[a.ImportPath()] = true
+	a.AddImport("context")
+	a.AddImport("testing")
+	a.AddImport("time")
+	a.AddSDKImport("aws")
+	a.AddSDKImport("aws/request")
+	a.AddSDKImport("aws/awserr")
+	a.AddSDKImport("aws/request")
+	a.AddSDKImport("awstesting/integration")
+	a.AddImport(a.ImportPath())
 
 	smokeTests := struct {
 		API *API
@@ -105,6 +105,9 @@ var smokeTestTmpl = template.Must(template.New(`smokeTestTmpl`).Parse(`
 			aerr, ok := err.(awserr.RequestFailure)
 			if !ok {
 				t.Fatalf("expect awserr, was %T", err)
+			}
+			if len(aerr.Code()) == 0 {
+				t.Errorf("expect non-empty error code")
 			}
 			if v := aerr.Code(); v == request.ErrCodeSerialization {
 				t.Errorf("expect API error code got serialization failure")

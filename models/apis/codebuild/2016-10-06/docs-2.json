@@ -6,7 +6,7 @@
     "BatchGetBuilds": "<p>Gets information about builds.</p>",
     "BatchGetProjects": "<p>Gets information about build projects.</p>",
     "CreateProject": "<p>Creates a build project.</p>",
-    "CreateWebhook": "<p>For an existing AWS CodeBuild build project that has its source code stored in a GitHub or Bitbucket repository, enables AWS CodeBuild to start rebuilding the source code every time a code change is pushed to the repository.</p> <important> <p>If you enable webhooks for an AWS CodeBuild project, and the project is used as a build step in AWS CodePipeline, then two identical builds are created for each commit. One build is triggered through webhooks, and one through AWS CodePipeline. Because billing is on a per-build basis, you are billed for both builds. Therefore, if you are using AWS CodePipeline, we recommend that you disable webhooks in AWS CodeBuild. In the AWS CodeBuild console, clear the Webhook box. For more information, see step 5 in <a href=\"http://docs.aws.amazon.com/codebuild/latest/userguide/change-project.html#change-project-console\">Change a Build Project's Settings</a>.</p> </important>",
+    "CreateWebhook": "<p>For an existing AWS CodeBuild build project that has its source code stored in a GitHub or Bitbucket repository, enables AWS CodeBuild to start rebuilding the source code every time a code change is pushed to the repository.</p> <important> <p>If you enable webhooks for an AWS CodeBuild project, and the project is used as a build step in AWS CodePipeline, then two identical builds are created for each commit. One build is triggered through webhooks, and one through AWS CodePipeline. Because billing is on a per-build basis, you are billed for both builds. Therefore, if you are using AWS CodePipeline, we recommend that you disable webhooks in AWS CodeBuild. In the AWS CodeBuild console, clear the Webhook box. For more information, see step 5 in <a href=\"https://docs.aws.amazon.com/codebuild/latest/userguide/change-project.html#change-project-console\">Change a Build Project's Settings</a>.</p> </important>",
     "DeleteProject": "<p>Deletes a build project.</p>",
     "DeleteSourceCredentials": "<p> Deletes a set of GitHub, GitHub Enterprise, or Bitbucket source credentials. </p>",
     "DeleteWebhook": "<p>For an existing AWS CodeBuild build project that has its source code stored in a GitHub or Bitbucket repository, stops AWS CodeBuild from rebuilding the source code every time a code change is pushed to the repository.</p>",
@@ -159,10 +159,16 @@
         "BatchDeleteBuildsOutput$buildsNotDeleted": "<p>Information about any builds that could not be successfully deleted.</p>"
       }
     },
+    "CacheMode": {
+      "base": null,
+      "refs": {
+        "ProjectCacheModes$member": null
+      }
+    },
     "CacheType": {
       "base": null,
       "refs": {
-        "ProjectCache$type": "<p>The type of cache used by the build project. Valid values include:</p> <ul> <li> <p> <code>NO_CACHE</code>: The build project does not use any cache.</p> </li> <li> <p> <code>S3</code>: The build project reads and writes from and to S3.</p> </li> </ul>"
+        "ProjectCache$type": "<p>The type of cache used by the build project. Valid values include:</p> <ul> <li> <p> <code>NO_CACHE</code>: The build project does not use any cache.</p> </li> <li> <p> <code>S3</code>: The build project reads and writes from and to S3.</p> </li> <li> <p> <code>LOCAL</code>: The build project stores a cache locally on a build host that is only available to that build host.</p> </li> </ul>"
       }
     },
     "CloudWatchLogsConfig": {
@@ -197,6 +203,12 @@
     "CreateWebhookOutput": {
       "base": null,
       "refs": {
+      }
+    },
+    "CredentialProviderType": {
+      "base": null,
+      "refs": {
+        "RegistryCredential$credentialProvider": "<p> The service that created the credentials to access a private Docker registry. The valid value, SECRETS_MANAGER, is for AWS Secrets Manager. </p>"
       }
     },
     "DeleteProjectInput": {
@@ -291,11 +303,39 @@
         "StartBuildInput$environmentVariablesOverride": "<p>A set of environment variables that overrides, for this build only, the latest ones already defined in the build project.</p>"
       }
     },
+    "FilterGroup": {
+      "base": null,
+      "refs": {
+        "FilterGroups$member": null
+      }
+    },
+    "FilterGroups": {
+      "base": null,
+      "refs": {
+        "CreateWebhookInput$filterGroups": "<p> An array of arrays of <code>WebhookFilter</code> objects used to determine which webhooks are triggered. At least one <code>WebhookFilter</code> in the array must specify <code>EVENT</code> as its <code>type</code>. </p> <p> For a build to be triggered, at least one filter group in the <code>filterGroups</code> array must pass. For a filter group to pass, each of its filters must pass. </p>",
+        "UpdateWebhookInput$filterGroups": "<p> An array of arrays of <code>WebhookFilter</code> objects used to determine if a webhook event can trigger a build. A filter group must pcontain at least one <code>EVENT</code> <code>WebhookFilter</code>. </p>",
+        "Webhook$filterGroups": "<p> An array of arrays of <code>WebhookFilter</code> objects used to determine which webhooks are triggered. At least one <code>WebhookFilter</code> in the array must specify <code>EVENT</code> as its <code>type</code>. </p> <p> For a build to be triggered, at least one filter group in the <code>filterGroups</code> array must pass. For a filter group to pass, each of its filters must pass. </p>"
+      }
+    },
     "GitCloneDepth": {
       "base": null,
       "refs": {
-        "ProjectSource$gitCloneDepth": "<p>Information about the git clone depth for the build project.</p>",
+        "ProjectSource$gitCloneDepth": "<p>Information about the Git clone depth for the build project.</p>",
         "StartBuildInput$gitCloneDepthOverride": "<p>The user-defined depth of history, with a minimum value of 0, that overrides, for this build only, any previous depth of history defined in the build project.</p>"
+      }
+    },
+    "GitSubmodulesConfig": {
+      "base": "<p> Information about the Git submodules configuration for an AWS CodeBuild build project. </p>",
+      "refs": {
+        "ProjectSource$gitSubmodulesConfig": "<p> Information about the Git submodules configuration for the build project. </p>",
+        "StartBuildInput$gitSubmodulesConfigOverride": "<p> Information about the Git submodules configuration for this build of an AWS CodeBuild build project. </p>"
+      }
+    },
+    "ImagePullCredentialsType": {
+      "base": null,
+      "refs": {
+        "ProjectEnvironment$imagePullCredentialsType": "<p> The type of credentials AWS CodeBuild uses to pull images in your build. There are two valid values: </p> <ul> <li> <p> <code>CODEBUILD</code> specifies that AWS CodeBuild uses its own credentials. This requires that you modify your ECR repository policy to trust AWS CodeBuild's service principal. </p> </li> <li> <p> <code>SERVICE_ROLE</code> specifies that AWS CodeBuild uses your build project's service role. </p> </li> </ul> <p> When you use a cross-account or private registry image, you must use SERVICE_ROLE credentials. When you use an AWS CodeBuild curated image, you must use CODEBUILD credentials. </p>",
+        "StartBuildInput$imagePullCredentialsTypeOverride": "<p> The type of credentials AWS CodeBuild uses to pull images in your build. There are two valid values: </p> <ul> <li> <p> <code>CODEBUILD</code> specifies that AWS CodeBuild uses its own credentials. This requires that you modify your ECR repository policy to trust AWS CodeBuild's service principal.</p> </li> <li> <p> <code>SERVICE_ROLE</code> specifies that AWS CodeBuild uses your build project's service role. </p> </li> </ul> <p> When using a cross-account or private registry image, you must use SERVICE_ROLE credentials. When using an AWS CodeBuild curated image, you must use CODEBUILD credentials. </p>"
       }
     },
     "ImageVersions": {
@@ -428,11 +468,11 @@
         "Build$resolvedSourceVersion": "<p> An identifier for the version of this build's source code. </p> <ul> <li> <p> For AWS CodeCommit, GitHub, GitHub Enterprise, and BitBucket, the commit ID. </p> </li> <li> <p> For AWS CodePipeline, the source revision provided by AWS CodePipeline. </p> </li> <li> <p> For Amazon Simple Storage Service (Amazon S3), this does not apply. </p> </li> </ul>",
         "Build$projectName": "<p>The name of the AWS CodeBuild project.</p>",
         "Build$serviceRole": "<p>The name of a service role used for this build.</p>",
-        "Build$encryptionKey": "<p>The AWS Key Management Service (AWS KMS) customer master key (CMK) to be used for encrypting the build output artifacts.</p> <p>This is expressed either as the Amazon Resource Name (ARN) of the CMK or, if specified, the CMK's alias (using the format <code>alias/<i>alias-name</i> </code>).</p>",
+        "Build$encryptionKey": "<p>The AWS Key Management Service (AWS KMS) customer master key (CMK) to be used for encrypting the build output artifacts.</p> <note> <p> You can use a cross-account KMS key to encrypt the build output artifacts if your service role has permission to that key. </p> </note> <p>You can specify either the Amazon Resource Name (ARN) of the CMK or, if available, the CMK's alias (using the format <code>alias/<i>alias-name</i> </code>).</p>",
         "BuildIds$member": null,
         "BuildNotDeleted$id": "<p>The ID of the build that could not be successfully deleted.</p>",
         "CreateProjectInput$serviceRole": "<p>The ARN of the AWS Identity and Access Management (IAM) role that enables AWS CodeBuild to interact with dependent AWS services on behalf of the AWS account.</p>",
-        "CreateProjectInput$encryptionKey": "<p>The AWS Key Management Service (AWS KMS) customer master key (CMK) to be used for encrypting the build output artifacts.</p> <p>You can specify either the Amazon Resource Name (ARN) of the CMK or, if available, the CMK's alias (using the format <code>alias/<i>alias-name</i> </code>).</p>",
+        "CreateProjectInput$encryptionKey": "<p>The AWS Key Management Service (AWS KMS) customer master key (CMK) to be used for encrypting the build output artifacts.</p> <note> <p> You can use a cross-account KMS key to encrypt the build output artifacts if your service role has permission to that key. </p> </note> <p>You can specify either the Amazon Resource Name (ARN) of the CMK or, if available, the CMK's alias (using the format <code>alias/<i>alias-name</i> </code>).</p>",
         "DeleteProjectInput$name": "<p>The name of the build project.</p>",
         "DeleteSourceCredentialsInput$arn": "<p> The Amazon Resource Name (ARN) of the token.</p>",
         "DeleteSourceCredentialsOutput$arn": "<p> The Amazon Resource Name (ARN) of the token. </p>",
@@ -445,9 +485,10 @@
         "NetworkInterface$subnetId": "<p>The ID of the subnet.</p>",
         "NetworkInterface$networkInterfaceId": "<p>The ID of the network interface.</p>",
         "Project$serviceRole": "<p>The ARN of the AWS Identity and Access Management (IAM) role that enables AWS CodeBuild to interact with dependent AWS services on behalf of the AWS account.</p>",
-        "Project$encryptionKey": "<p>The AWS Key Management Service (AWS KMS) customer master key (CMK) to be used for encrypting the build output artifacts.</p> <p>This is expressed either as the Amazon Resource Name (ARN) of the CMK or, if specified, the CMK's alias (using the format <code>alias/<i>alias-name</i> </code>).</p>",
-        "ProjectEnvironment$image": "<p>The ID of the Docker image to use for this build project.</p>",
+        "Project$encryptionKey": "<p>The AWS Key Management Service (AWS KMS) customer master key (CMK) to be used for encrypting the build output artifacts.</p> <note> <p> You can use a cross-account KMS key to encrypt the build output artifacts if your service role has permission to that key. </p> </note> <p>You can specify either the Amazon Resource Name (ARN) of the CMK or, if available, the CMK's alias (using the format <code>alias/<i>alias-name</i> </code>).</p>",
+        "ProjectEnvironment$image": "<p>The image tag or image digest that identifies the Docker image to use for this build project. Use the following formats:</p> <ul> <li> <p>For an image tag: <code>registry/repository:tag</code>. For example, to specify an image with the tag \"latest,\" use <code>registry/repository:latest</code>.</p> </li> <li> <p>For an image digest: <code>registry/repository@digest</code>. For example, to specify an image with the digest \"sha256:cbbf2f9a99b47fc460d422812b6a5adff7dfee951d8fa2e4a98caa0382cfbdbf,\" use <code>registry/repository@sha256:cbbf2f9a99b47fc460d422812b6a5adff7dfee951d8fa2e4a98caa0382cfbdbf</code>.</p> </li> </ul>",
         "ProjectNames$member": null,
+        "RegistryCredential$credential": "<p> The Amazon Resource Name (ARN) or name of credentials created using AWS Secrets Manager. </p> <note> <p> The <code>credential</code> can use the name of the credentials only if they exist in your current region. </p> </note>",
         "SecurityGroupIds$member": null,
         "SourceCredentialsInfo$arn": "<p> The Amazon Resource Name (ARN) of the token. </p>",
         "StartBuildInput$projectName": "<p>The name of the AWS CodeBuild build project to start running a build.</p>",
@@ -457,7 +498,7 @@
         "Subnets$member": null,
         "UpdateProjectInput$name": "<p>The name of the build project.</p> <note> <p>You cannot change a build project's name.</p> </note>",
         "UpdateProjectInput$serviceRole": "<p>The replacement ARN of the AWS Identity and Access Management (IAM) role that enables AWS CodeBuild to interact with dependent AWS services on behalf of the AWS account.</p>",
-        "UpdateProjectInput$encryptionKey": "<p>The replacement AWS Key Management Service (AWS KMS) customer master key (CMK) to be used for encrypting the build output artifacts.</p> <p>You can specify either the Amazon Resource Name (ARN)of the CMK or, if available, the CMK's alias (using the format <code>alias/<i>alias-name</i> </code>).</p>",
+        "UpdateProjectInput$encryptionKey": "<p>The AWS Key Management Service (AWS KMS) customer master key (CMK) to be used for encrypting the build output artifacts.</p> <note> <p> You can use a cross-account KMS key to encrypt the build output artifacts if your service role has permission to that key. </p> </note> <p>You can specify either the Amazon Resource Name (ARN) of the CMK or, if available, the CMK's alias (using the format <code>alias/<i>alias-name</i> </code>).</p>",
         "VpcConfig$vpcId": "<p>The ID of the Amazon VPC.</p>",
         "Webhook$url": "<p>The URL to the webhook.</p>",
         "Webhook$payloadUrl": "<p> The AWS CodeBuild endpoint where webhook events are sent.</p>",
@@ -528,6 +569,12 @@
         "Project$cache": "<p>Information about the cache for the build project.</p>",
         "StartBuildInput$cacheOverride": "<p>A ProjectCache object specified for this build that overrides the one defined in the build project.</p>",
         "UpdateProjectInput$cache": "<p>Stores recently used information so that it can be quickly accessed at a later time.</p>"
+      }
+    },
+    "ProjectCacheModes": {
+      "base": null,
+      "refs": {
+        "ProjectCache$modes": "<p> If you use a <code>LOCAL</code> cache, the local cache mode. You can use one or more local cache modes at the same time. </p> <ul> <li> <p> <code>LOCAL_SOURCE_CACHE</code> mode caches Git metadata for primary and secondary sources. After the cache is created, subsequent builds pull only the change between commits. This mode is a good choice for projects with a clean working directory and a source that is a large Git repository. If you choose this option and your project does not use a Git repository (GitHub, GitHub Enterprise, or Bitbucket), the option is ignored. </p> </li> <li> <p> <code>LOCAL_DOCKER_LAYER_CACHE</code> mode caches existing Docker layers. This mode is a good choice for projects that build or pull large Docker images. It can prevent the performance issues caused by pulling large Docker images down from the network. </p> <note> <ul> <li> <p> You can use a Docker layer cache in the Linux enviornment only. </p> </li> <li> <p> The <code>privileged</code> flag must be set so that your project has the required Docker permissions. </p> </li> <li> <p> You should consider the security implications before you use a Docker layer cache. </p> </li> </ul> </note> </li> </ul> <ul> <li> <p> <code>LOCAL_CUSTOM_CACHE</code> mode caches directories you specify in the buildspec file. This mode is a good choice if your build scenario is not suited to one of the other three local cache modes. If you use a custom cache: </p> <ul> <li> <p> Only directories can be specified for caching. You cannot specify individual files. </p> </li> <li> <p> Symlinks are used to reference cached directories. </p> </li> <li> <p> Cached directories are linked to your build before it downloads its project sources. Cached items are overriden if a source item has the same name. Directories are specified using cache paths in the buildspec file. </p> </li> </ul> </li> </ul>"
       }
     },
     "ProjectDescription": {
@@ -608,6 +655,13 @@
       "base": null,
       "refs": {
         "BatchGetProjectsOutput$projects": "<p>Information about the requested build projects.</p>"
+      }
+    },
+    "RegistryCredential": {
+      "base": "<p> Information about credentials that provide access to a private Docker registry. When this is set: </p> <ul> <li> <p> <code>imagePullCredentialsType</code> must be set to <code>SERVICE_ROLE</code>. </p> </li> <li> <p> images cannot be curated or an Amazon ECR image.</p> </li> </ul> <p> For more information, see <a href=\"https://docs.aws.amazon.com/codebuild/latest/userguide/sample-private-registry.html\">Private Registry with AWS Secrets Manager Sample for AWS CodeBuild</a>. </p>",
+      "refs": {
+        "ProjectEnvironment$registryCredential": "<p> The credentials for access to a private registry.</p>",
+        "StartBuildInput$registryCredentialOverride": "<p> The credentials for access to a private registry. </p>"
       }
     },
     "ResourceAlreadyExistsException": {
@@ -723,9 +777,9 @@
         "BuildArtifacts$md5sum": "<p>The MD5 hash of the build artifact.</p> <p>You can use this hash along with a checksum tool to confirm file integrity and authenticity.</p> <note> <p>This value is available only if the build project's <code>packaging</code> value is set to <code>ZIP</code>.</p> </note>",
         "BuildArtifacts$artifactIdentifier": "<p> An identifier for this artifact definition. </p>",
         "BuildNotDeleted$statusCode": "<p>Additional information about the build that could not be successfully deleted.</p>",
-        "CloudWatchLogsConfig$groupName": "<p> The group name of the logs in Amazon CloudWatch Logs. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html\">Working with Log Groups and Log Streams</a>. </p>",
-        "CloudWatchLogsConfig$streamName": "<p> The prefix of the stream name of the Amazon CloudWatch Logs. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html\">Working with Log Groups and Log Streams</a>. </p>",
-        "CreateWebhookInput$branchFilter": "<p>A regular expression used to determine which repository branches are built when a webhook is triggered. If the name of a branch matches the regular expression, then it is built. If <code>branchFilter</code> is empty, then all branches are built.</p>",
+        "CloudWatchLogsConfig$groupName": "<p> The group name of the logs in Amazon CloudWatch Logs. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html\">Working with Log Groups and Log Streams</a>. </p>",
+        "CloudWatchLogsConfig$streamName": "<p> The prefix of the stream name of the Amazon CloudWatch Logs. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html\">Working with Log Groups and Log Streams</a>. </p>",
+        "CreateWebhookInput$branchFilter": "<p>A regular expression used to determine which repository branches are built when a webhook is triggered. If the name of a branch matches the regular expression, then it is built. If <code>branchFilter</code> is empty, then all branches are built.</p> <note> <p> It is recommended that you use <code>filterGroups</code> instead of <code>branchFilter</code>. </p> </note>",
         "EnvironmentImage$name": "<p>The name of the Docker image.</p>",
         "EnvironmentImage$description": "<p>The description of the Docker image.</p>",
         "EnvironmentVariable$value": "<p>The value of the environment variable.</p> <important> <p>We strongly discourage the use of environment variables to store sensitive values, especially AWS secret key IDs and secret access keys. Environment variables can be displayed in plain text using the AWS CodeBuild console and the AWS Command Line Interface (AWS CLI).</p> </important>",
@@ -747,7 +801,7 @@
         "ProjectArtifacts$name": "<p>Along with <code>path</code> and <code>namespaceType</code>, the pattern that AWS CodeBuild uses to name and store the output artifact:</p> <ul> <li> <p>If <code>type</code> is set to <code>CODEPIPELINE</code>, AWS CodePipeline ignores this value if specified. This is because AWS CodePipeline manages its build output names instead of AWS CodeBuild.</p> </li> <li> <p>If <code>type</code> is set to <code>NO_ARTIFACTS</code>, this value is ignored if specified, because no build output is produced.</p> </li> <li> <p>If <code>type</code> is set to <code>S3</code>, this is the name of the output artifact object. If you set the name to be a forward slash (\"/\"), the artifact is stored in the root of the output bucket.</p> </li> </ul> <p>For example:</p> <ul> <li> <p> If <code>path</code> is set to <code>MyArtifacts</code>, <code>namespaceType</code> is set to <code>BUILD_ID</code>, and <code>name</code> is set to <code>MyArtifact.zip</code>, then the output artifact is stored in <code>MyArtifacts/<i>build-ID</i>/MyArtifact.zip</code>. </p> </li> <li> <p> If <code>path</code> is empty, <code>namespaceType</code> is set to <code>NONE</code>, and <code>name</code> is set to \"<code>/</code>\", the output artifact is stored in the root of the output bucket. </p> </li> <li> <p> If <code>path</code> is set to <code>MyArtifacts</code>, <code>namespaceType</code> is set to <code>BUILD_ID</code>, and <code>name</code> is set to \"<code>/</code>\", the output artifact is stored in <code>MyArtifacts/<i>build-ID</i> </code>. </p> </li> </ul>",
         "ProjectArtifacts$artifactIdentifier": "<p> An identifier for this artifact definition. </p>",
         "ProjectBadge$badgeRequestUrl": "<p>The publicly-accessible URL through which you can access the build badge for your project. </p> <p>The publicly accessible URL through which you can access the build badge for your project. </p>",
-        "ProjectCache$location": "<p>Information about the cache location: </p> <ul> <li> <p> <code>NO_CACHE</code>: This value is ignored.</p> </li> <li> <p> <code>S3</code>: This is the S3 bucket name/prefix.</p> </li> </ul>",
+        "ProjectCache$location": "<p>Information about the cache location: </p> <ul> <li> <p> <code>NO_CACHE</code> or <code>LOCAL</code>: This value is ignored.</p> </li> <li> <p> <code>S3</code>: This is the S3 bucket name/prefix.</p> </li> </ul>",
         "ProjectEnvironment$certificate": "<p>The certificate to use with this build project.</p>",
         "ProjectSource$location": "<p>Information about the location of the source code to be built. Valid values include:</p> <ul> <li> <p>For source code settings that are specified in the source action of a pipeline in AWS CodePipeline, <code>location</code> should not be specified. If it is specified, AWS CodePipeline ignores it. This is because AWS CodePipeline uses the settings in a pipeline's source action instead of this value.</p> </li> <li> <p>For source code in an AWS CodeCommit repository, the HTTPS clone URL to the repository that contains the source code and the build spec (for example, <code>https://git-codecommit.<i>region-ID</i>.amazonaws.com/v1/repos/<i>repo-name</i> </code>).</p> </li> <li> <p>For source code in an Amazon Simple Storage Service (Amazon S3) input bucket, one of the following. </p> <ul> <li> <p> The path to the ZIP file that contains the source code (for example, <code> <i>bucket-name</i>/<i>path</i>/<i>to</i>/<i>object-name</i>.zip</code>). </p> </li> <li> <p> The path to the folder that contains the source code (for example, <code> <i>bucket-name</i>/<i>path</i>/<i>to</i>/<i>source-code</i>/<i>folder</i>/</code>). </p> </li> </ul> </li> <li> <p>For source code in a GitHub repository, the HTTPS clone URL to the repository that contains the source and the build spec. You must connect your AWS account to your GitHub account. Use the AWS CodeBuild console to start creating a build project. When you use the console to connect (or reconnect) with GitHub, on the GitHub <b>Authorize application</b> page, for <b>Organization access</b>, choose <b>Request access</b> next to each repository you want to allow AWS CodeBuild to have access to, and then choose <b>Authorize application</b>. (After you have connected to your GitHub account, you do not need to finish creating the build project. You can leave the AWS CodeBuild console.) To instruct AWS CodeBuild to use this connection, in the <code>source</code> object, set the <code>auth</code> object's <code>type</code> value to <code>OAUTH</code>.</p> </li> <li> <p>For source code in a Bitbucket repository, the HTTPS clone URL to the repository that contains the source and the build spec. You must connect your AWS account to your Bitbucket account. Use the AWS CodeBuild console to start creating a build project. When you use the console to connect (or reconnect) with Bitbucket, on the Bitbucket <b>Confirm access to your account</b> page, choose <b>Grant access</b>. (After you have connected to your Bitbucket account, you do not need to finish creating the build project. You can leave the AWS CodeBuild console.) To instruct AWS CodeBuild to use this connection, in the <code>source</code> object, set the <code>auth</code> object's <code>type</code> value to <code>OAUTH</code>.</p> </li> </ul>",
         "ProjectSource$buildspec": "<p>The build spec declaration to use for the builds in this build project.</p> <p>If this value is not specified, a build spec must be included along with the source code to be built.</p>",
@@ -761,8 +815,9 @@
         "StartBuildInput$buildspecOverride": "<p>A build spec declaration that overrides, for this build only, the latest one already defined in the build project.</p>",
         "StartBuildInput$certificateOverride": "<p>The name of a certificate for this build that overrides the one specified in the build project.</p>",
         "StartBuildInput$idempotencyToken": "<p>A unique, case sensitive identifier you provide to ensure the idempotency of the StartBuild request. The token is included in the StartBuild request and is valid for 12 hours. If you repeat the StartBuild request with the same token, but change a parameter, AWS CodeBuild returns a parameter mismatch error. </p>",
-        "UpdateWebhookInput$branchFilter": "<p>A regular expression used to determine which repository branches are built when a webhook is triggered. If the name of a branch matches the regular expression, then it is built. If <code>branchFilter</code> is empty, then all branches are built.</p>",
-        "Webhook$branchFilter": "<p>A regular expression used to determine which repository branches are built when a webhook is triggered. If the name of a branch matches the regular expression, then it is built. If <code>branchFilter</code> is empty, then all branches are built.</p>"
+        "UpdateWebhookInput$branchFilter": "<p>A regular expression used to determine which repository branches are built when a webhook is triggered. If the name of a branch matches the regular expression, then it is built. If <code>branchFilter</code> is empty, then all branches are built.</p> <note> <p> It is recommended that you use <code>filterGroups</code> instead of <code>branchFilter</code>. </p> </note>",
+        "Webhook$branchFilter": "<p>A regular expression used to determine which repository branches are built when a webhook is triggered. If the name of a branch matches the regular expression, then it is built. If <code>branchFilter</code> is empty, then all branches are built.</p> <note> <p> It is recommended that you use <code>filterGroups</code> instead of <code>branchFilter</code>. </p> </note>",
+        "WebhookFilter$pattern": "<p> For a <code>WebHookFilter</code> that uses <code>EVENT</code> type, a comma-separated string that specifies one or more events. For example, the webhook filter <code>PUSH, PULL_REQUEST_CREATED, PULL_REQUEST_UPDATED</code> allows all push, pull request created, and pull request updated events to trigger a build. </p> <p> For a <code>WebHookFilter</code> that uses any of the other filter types, a regular expression pattern. For example, a <code>WebHookFilter</code> that uses <code>HEAD_REF</code> for its <code>type</code> and the pattern <code>^refs/heads/</code> triggers a build when the head reference is a branch with a reference name <code>refs/heads/branch-name</code>. </p>"
       }
     },
     "Subnets": {
@@ -853,21 +908,36 @@
         "UpdateWebhookOutput$webhook": "<p> Information about a repository's webhook that is associated with a project in AWS CodeBuild. </p>"
       }
     },
+    "WebhookFilter": {
+      "base": "<p> A filter used to determine which webhooks trigger a build. </p>",
+      "refs": {
+        "FilterGroup$member": null
+      }
+    },
+    "WebhookFilterType": {
+      "base": null,
+      "refs": {
+        "WebhookFilter$type": "<p> The type of webhook filter. There are five webhook filter types: <code>EVENT</code>, <code>ACTOR_ACCOUNT_ID</code>, <code>HEAD_REF</code>, <code>BASE_REF</code>, and <code>FILE_PATH</code>. </p> <dl> <dt> EVENT </dt> <dd> <p> A webhook event triggers a build when the provided <code>pattern</code> matches one of four event types: <code>PUSH</code>, <code>PULL_REQUEST_CREATED</code>, <code>PULL_REQUEST_UPDATED</code>, and <code>PULL_REQUEST_REOPENED</code>. The <code>EVENT</code> patterns are specified as a comma-separated string. For example, <code>PUSH, PULL_REQUEST_CREATED, PULL_REQUEST_UPDATED</code> filters all push, pull request created, and pull request updated events. </p> <note> <p> The <code>PULL_REQUEST_REOPENED</code> works with GitHub and GitHub Enterprise only. </p> </note> </dd> <dt> ACTOR_ACCOUNT_ID </dt> <dd> <p> A webhook event triggers a build when a GitHub, GitHub Enterprise, or Bitbucket account ID matches the regular expression <code>pattern</code>. </p> </dd> <dt> HEAD_REF </dt> <dd> <p> A webhook event triggers a build when the head reference matches the regular expression <code>pattern</code>. For example, <code>refs/heads/branch-name</code> and <code>refs/tags/tag-name</code>. </p> <p> Works with GitHub and GitHub Enterprise push, GitHub and GitHub Enterprise pull request, Bitbucket push, and Bitbucket pull request events. </p> </dd> <dt> BASE_REF </dt> <dd> <p> A webhook event triggers a build when the base reference matches the regular expression <code>pattern</code>. For example, <code>refs/heads/branch-name</code>. </p> <note> <p> Works with pull request events only. </p> </note> </dd> <dt> FILE_PATH </dt> <dd> <p> A webhook triggers a build when the path of a changed file matches the regular expression <code>pattern</code>. </p> <note> <p> Works with GitHub and GitHub Enterprise push events only. </p> </note> </dd> </dl>"
+      }
+    },
     "WrapperBoolean": {
       "base": null,
       "refs": {
         "BuildArtifacts$overrideArtifactName": "<p> If this flag is set, a name specified in the build spec file overrides the artifact name. The name specified in a build spec file is calculated at build time and uses the Shell Command Language. For example, you can append a date and time to your artifact name so that it is always unique. </p>",
         "BuildArtifacts$encryptionDisabled": "<p> Information that tells you if encryption for build artifacts is disabled. </p>",
         "CreateProjectInput$badgeEnabled": "<p>Set this to true to generate a publicly accessible URL for your project's build badge.</p>",
+        "GitSubmodulesConfig$fetchSubmodules": "<p> Set to true to fetch Git submodules for your AWS CodeBuild build project. </p>",
         "ProjectArtifacts$overrideArtifactName": "<p> If this flag is set, a name specified in the build spec file overrides the artifact name. The name specified in a build spec file is calculated at build time and uses the Shell Command Language. For example, you can append a date and time to your artifact name so that it is always unique. </p>",
         "ProjectArtifacts$encryptionDisabled": "<p> Set to true if you do not want your output artifacts encrypted. This option is valid only if your artifacts type is Amazon Simple Storage Service (Amazon S3). If this is set with another artifacts type, an invalidInputException is thrown. </p>",
         "ProjectEnvironment$privilegedMode": "<p>Enables running the Docker daemon inside a Docker container. Set to true only if the build project is be used to build Docker images, and the specified build environment image is not provided by AWS CodeBuild with Docker support. Otherwise, all associated builds that attempt to interact with the Docker daemon fail. You must also start the Docker daemon so that builds can interact with it. One way to do this is to initialize the Docker daemon during the install phase of your build spec by running the following build commands. (Do not run these commands if the specified build environment image is provided by AWS CodeBuild with Docker support.)</p> <p>If the operating system's base image is Ubuntu Linux:</p> <p> <code>- nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --storage-driver=overlay&amp; - timeout 15 sh -c \"until docker info; do echo .; sleep 1; done\"</code> </p> <p>If the operating system's base image is Alpine Linux, add the <code>-t</code> argument to <code>timeout</code>:</p> <p> <code>- nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --storage-driver=overlay&amp; - timeout 15 -t sh -c \"until docker info; do echo .; sleep 1; done\"</code> </p>",
         "ProjectSource$reportBuildStatus": "<p> Set to true to report the status of a build's start and finish to your source provider. This option is valid only when your source provider is GitHub, GitHub Enterprise, or Bitbucket. If this is set and you use a different source provider, an invalidInputException is thrown. </p>",
         "ProjectSource$insecureSsl": "<p>Enable this flag to ignore SSL warnings while connecting to the project source code.</p>",
+        "S3LogsConfig$encryptionDisabled": "<p> Set to true if you do not want your S3 build log output encrypted. By default S3 build logs are encrypted. </p>",
         "StartBuildInput$insecureSslOverride": "<p>Enable this flag to override the insecure SSL setting that is specified in the build project. The insecure SSL setting determines whether to ignore SSL warnings while connecting to the project source code. This override applies only if the build's source is GitHub Enterprise.</p>",
         "StartBuildInput$reportBuildStatusOverride": "<p> Set to true to report to your source provider the status of a build's start and completion. If you use this option with a source provider other than GitHub, GitHub Enterprise, or Bitbucket, an invalidInputException is thrown. </p>",
         "StartBuildInput$privilegedModeOverride": "<p>Enable this flag to override privileged mode in the build project.</p>",
-        "UpdateProjectInput$badgeEnabled": "<p>Set this to true to generate a publicly accessible URL for your project's build badge.</p>"
+        "UpdateProjectInput$badgeEnabled": "<p>Set this to true to generate a publicly accessible URL for your project's build badge.</p>",
+        "WebhookFilter$excludeMatchedPattern": "<p> Used to indicate that the <code>pattern</code> determines which webhook events do not trigger a build. If true, then a webhook event that does not match the <code>pattern</code> triggers a build. If false, then a webhook event that matches the <code>pattern</code> triggers a build. </p>"
       }
     },
     "WrapperInt": {

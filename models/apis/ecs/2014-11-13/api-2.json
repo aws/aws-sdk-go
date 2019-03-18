@@ -367,6 +367,20 @@
         {"shape":"InvalidParameterException"}
       ]
     },
+    "PutAccountSettingDefault":{
+      "name":"PutAccountSettingDefault",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutAccountSettingDefaultRequest"},
+      "output":{"shape":"PutAccountSettingDefaultResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ClientException"},
+        {"shape":"InvalidParameterException"}
+      ]
+    },
     "PutAttributes":{
       "name":"PutAttributes",
       "http":{
@@ -764,8 +778,21 @@
         "reason":{"shape":"String"},
         "networkBindings":{"shape":"NetworkBindings"},
         "networkInterfaces":{"shape":"NetworkInterfaces"},
-        "healthStatus":{"shape":"HealthStatus"}
+        "healthStatus":{"shape":"HealthStatus"},
+        "cpu":{"shape":"String"},
+        "memory":{"shape":"String"},
+        "memoryReservation":{"shape":"String"},
+        "gpuIds":{"shape":"GpuIds"}
       }
+    },
+    "ContainerCondition":{
+      "type":"string",
+      "enum":[
+        "START",
+        "COMPLETE",
+        "SUCCESS",
+        "HEALTHY"
+      ]
     },
     "ContainerDefinition":{
       "type":"structure",
@@ -786,6 +813,9 @@
         "volumesFrom":{"shape":"VolumeFromList"},
         "linuxParameters":{"shape":"LinuxParameters"},
         "secrets":{"shape":"SecretList"},
+        "dependsOn":{"shape":"ContainerDependencies"},
+        "startTimeout":{"shape":"BoxedInteger"},
+        "stopTimeout":{"shape":"BoxedInteger"},
         "hostname":{"shape":"String"},
         "user":{"shape":"String"},
         "workingDirectory":{"shape":"String"},
@@ -802,12 +832,28 @@
         "ulimits":{"shape":"UlimitList"},
         "logConfiguration":{"shape":"LogConfiguration"},
         "healthCheck":{"shape":"HealthCheck"},
-        "systemControls":{"shape":"SystemControls"}
+        "systemControls":{"shape":"SystemControls"},
+        "resourceRequirements":{"shape":"ResourceRequirements"}
       }
     },
     "ContainerDefinitions":{
       "type":"list",
       "member":{"shape":"ContainerDefinition"}
+    },
+    "ContainerDependencies":{
+      "type":"list",
+      "member":{"shape":"ContainerDependency"}
+    },
+    "ContainerDependency":{
+      "type":"structure",
+      "required":[
+        "containerName",
+        "condition"
+      ],
+      "members":{
+        "containerName":{"shape":"String"},
+        "condition":{"shape":"ContainerCondition"}
+      }
     },
     "ContainerInstance":{
       "type":"structure",
@@ -856,7 +902,8 @@
         "environment":{"shape":"EnvironmentVariables"},
         "cpu":{"shape":"BoxedInteger"},
         "memory":{"shape":"BoxedInteger"},
-        "memoryReservation":{"shape":"BoxedInteger"}
+        "memoryReservation":{"shape":"BoxedInteger"},
+        "resourceRequirements":{"shape":"ResourceRequirements"}
       }
     },
     "ContainerOverrides":{
@@ -1208,6 +1255,10 @@
     "Failures":{
       "type":"list",
       "member":{"shape":"Failure"}
+    },
+    "GpuIds":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "HealthCheck":{
       "type":"structure",
@@ -1594,6 +1645,25 @@
         "binpack"
       ]
     },
+    "PlatformDevice":{
+      "type":"structure",
+      "required":[
+        "id",
+        "type"
+      ],
+      "members":{
+        "id":{"shape":"String"},
+        "type":{"shape":"PlatformDeviceType"}
+      }
+    },
+    "PlatformDeviceType":{
+      "type":"string",
+      "enum":["GPU"]
+    },
+    "PlatformDevices":{
+      "type":"list",
+      "member":{"shape":"PlatformDevice"}
+    },
     "PlatformTaskDefinitionIncompatibilityException":{
       "type":"structure",
       "members":{
@@ -1624,6 +1694,40 @@
         "TASK_DEFINITION",
         "SERVICE"
       ]
+    },
+    "ProxyConfiguration":{
+      "type":"structure",
+      "required":["containerName"],
+      "members":{
+        "type":{"shape":"ProxyConfigurationType"},
+        "containerName":{"shape":"String"},
+        "properties":{"shape":"ProxyConfigurationProperties"}
+      }
+    },
+    "ProxyConfigurationProperties":{
+      "type":"list",
+      "member":{"shape":"KeyValuePair"}
+    },
+    "ProxyConfigurationType":{
+      "type":"string",
+      "enum":["APPMESH"]
+    },
+    "PutAccountSettingDefaultRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "value"
+      ],
+      "members":{
+        "name":{"shape":"SettingName"},
+        "value":{"shape":"String"}
+      }
+    },
+    "PutAccountSettingDefaultResponse":{
+      "type":"structure",
+      "members":{
+        "setting":{"shape":"Setting"}
+      }
     },
     "PutAccountSettingRequest":{
       "type":"structure",
@@ -1667,6 +1771,7 @@
         "versionInfo":{"shape":"VersionInfo"},
         "containerInstanceArn":{"shape":"String"},
         "attributes":{"shape":"Attributes"},
+        "platformDevices":{"shape":"PlatformDevices"},
         "tags":{"shape":"Tags"}
       }
     },
@@ -1695,7 +1800,8 @@
         "memory":{"shape":"String"},
         "tags":{"shape":"Tags"},
         "pidMode":{"shape":"PidMode"},
-        "ipcMode":{"shape":"IpcMode"}
+        "ipcMode":{"shape":"IpcMode"},
+        "proxyConfiguration":{"shape":"ProxyConfiguration"}
       }
     },
     "RegisterTaskDefinitionResponse":{
@@ -1732,6 +1838,25 @@
       "members":{
       },
       "exception":true
+    },
+    "ResourceRequirement":{
+      "type":"structure",
+      "required":[
+        "value",
+        "type"
+      ],
+      "members":{
+        "value":{"shape":"String"},
+        "type":{"shape":"ResourceType"}
+      }
+    },
+    "ResourceRequirements":{
+      "type":"list",
+      "member":{"shape":"ResourceRequirement"}
+    },
+    "ResourceType":{
+      "type":"string",
+      "enum":["GPU"]
     },
     "Resources":{
       "type":"list",
@@ -2140,7 +2265,8 @@
         "cpu":{"shape":"String"},
         "memory":{"shape":"String"},
         "pidMode":{"shape":"PidMode"},
-        "ipcMode":{"shape":"IpcMode"}
+        "ipcMode":{"shape":"IpcMode"},
+        "proxyConfiguration":{"shape":"ProxyConfiguration"}
       }
     },
     "TaskDefinitionFamilyStatus":{

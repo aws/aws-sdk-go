@@ -50,8 +50,7 @@ func (c *IoT) AcceptCertificateTransferRequest(input *AcceptCertificateTransferI
 
 	output = &AcceptCertificateTransferOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -151,6 +150,7 @@ func (c *IoT) AddThingToBillingGroupRequest(input *AddThingToBillingGroupInput) 
 
 	output = &AddThingToBillingGroupOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -236,6 +236,7 @@ func (c *IoT) AddThingToThingGroupRequest(input *AddThingToThingGroupInput) (req
 
 	output = &AddThingToThingGroupOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -417,8 +418,7 @@ func (c *IoT) AttachPolicyRequest(input *AttachPolicyInput) (req *request.Reques
 
 	output = &AttachPolicyOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -518,8 +518,7 @@ func (c *IoT) AttachPrincipalPolicyRequest(input *AttachPrincipalPolicyInput) (r
 
 	output = &AttachPrincipalPolicyOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -621,6 +620,7 @@ func (c *IoT) AttachSecurityProfileRequest(input *AttachSecurityProfileInput) (r
 
 	output = &AttachSecurityProfileOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -715,12 +715,15 @@ func (c *IoT) AttachThingPrincipalRequest(input *AttachThingPrincipalInput) (req
 
 	output = &AttachThingPrincipalOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
 // AttachThingPrincipal API operation for AWS IoT.
 //
-// Attaches the specified principal to the specified thing.
+// Attaches the specified principal to the specified thing. A principal can
+// be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities
+// or federated identities.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -806,6 +809,7 @@ func (c *IoT) CancelAuditTaskRequest(input *CancelAuditTaskInput) (req *request.
 
 	output = &CancelAuditTaskOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -893,8 +897,7 @@ func (c *IoT) CancelCertificateTransferRequest(input *CancelCertificateTransferI
 
 	output = &CancelCertificateTransferOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1084,8 +1087,7 @@ func (c *IoT) CancelJobExecutionRequest(input *CancelJobExecutionInput) (req *re
 
 	output = &CancelJobExecutionOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1180,6 +1182,7 @@ func (c *IoT) ClearDefaultAuthorizerRequest(input *ClearDefaultAuthorizerInput) 
 
 	output = &ClearDefaultAuthorizerOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2529,7 +2532,7 @@ func (c *IoT) CreateThingRequest(input *CreateThingInput) (req *request.Request,
 //
 // Creates a thing record in the registry.
 //
-// This is a control plane operation. See Authorization (http://docs.aws.amazon.com/iot/latest/developerguide/authorization.html)
+// This is a control plane operation. See Authorization (https://docs.aws.amazon.com/iot/latest/developerguide/authorization.html)
 // for information about authorizing control plane actions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2626,7 +2629,7 @@ func (c *IoT) CreateThingGroupRequest(input *CreateThingGroupInput) (req *reques
 //
 // Create a thing group.
 //
-// This is a control plane operation. See Authorization (http://docs.aws.amazon.com/iot/latest/developerguide/authorization.html)
+// This is a control plane operation. See Authorization (https://docs.aws.amazon.com/iot/latest/developerguide/authorization.html)
 // for information about authorizing control plane actions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2798,8 +2801,7 @@ func (c *IoT) CreateTopicRuleRequest(input *CreateTopicRuleInput) (req *request.
 
 	output = &CreateTopicRuleOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2894,6 +2896,7 @@ func (c *IoT) DeleteAccountAuditConfigurationRequest(input *DeleteAccountAuditCo
 
 	output = &DeleteAccountAuditConfigurationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2981,6 +2984,7 @@ func (c *IoT) DeleteAuthorizerRequest(input *DeleteAuthorizerInput) (req *reques
 
 	output = &DeleteAuthorizerOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3075,6 +3079,7 @@ func (c *IoT) DeleteBillingGroupRequest(input *DeleteBillingGroupInput) (req *re
 
 	output = &DeleteBillingGroupOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3161,6 +3166,7 @@ func (c *IoT) DeleteCACertificateRequest(input *DeleteCACertificateInput) (req *
 
 	output = &DeleteCACertificateOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3255,8 +3261,7 @@ func (c *IoT) DeleteCertificateRequest(input *DeleteCertificateInput) (req *requ
 
 	output = &DeleteCertificateOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3359,6 +3364,7 @@ func (c *IoT) DeleteDynamicThingGroupRequest(input *DeleteDynamicThingGroupInput
 
 	output = &DeleteDynamicThingGroupOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3445,8 +3451,7 @@ func (c *IoT) DeleteJobRequest(input *DeleteJobInput) (req *request.Request, out
 
 	output = &DeleteJobOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3549,8 +3554,7 @@ func (c *IoT) DeleteJobExecutionRequest(input *DeleteJobExecutionInput) (req *re
 
 	output = &DeleteJobExecutionOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3641,6 +3645,7 @@ func (c *IoT) DeleteOTAUpdateRequest(input *DeleteOTAUpdateInput) (req *request.
 
 	output = &DeleteOTAUpdateOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3736,8 +3741,7 @@ func (c *IoT) DeletePolicyRequest(input *DeletePolicyInput) (req *request.Reques
 
 	output = &DeletePolicyOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3842,8 +3846,7 @@ func (c *IoT) DeletePolicyVersionRequest(input *DeletePolicyVersionInput) (req *
 
 	output = &DeletePolicyVersionOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3941,6 +3944,7 @@ func (c *IoT) DeleteRegistrationCodeRequest(input *DeleteRegistrationCodeInput) 
 
 	output = &DeleteRegistrationCodeOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4029,6 +4033,7 @@ func (c *IoT) DeleteRoleAliasRequest(input *DeleteRoleAliasInput) (req *request.
 
 	output = &DeleteRoleAliasOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4123,6 +4128,7 @@ func (c *IoT) DeleteScheduledAuditRequest(input *DeleteScheduledAuditInput) (req
 
 	output = &DeleteScheduledAuditOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4208,6 +4214,7 @@ func (c *IoT) DeleteSecurityProfileRequest(input *DeleteSecurityProfileInput) (r
 
 	output = &DeleteSecurityProfileOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4294,6 +4301,7 @@ func (c *IoT) DeleteStreamRequest(input *DeleteStreamInput) (req *request.Reques
 
 	output = &DeleteStreamOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4388,6 +4396,7 @@ func (c *IoT) DeleteThingRequest(input *DeleteThingInput) (req *request.Request,
 
 	output = &DeleteThingOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4484,6 +4493,7 @@ func (c *IoT) DeleteThingGroupRequest(input *DeleteThingGroupInput) (req *reques
 
 	output = &DeleteThingGroupOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4570,6 +4580,7 @@ func (c *IoT) DeleteThingTypeRequest(input *DeleteThingTypeInput) (req *request.
 
 	output = &DeleteThingTypeOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4665,8 +4676,7 @@ func (c *IoT) DeleteTopicRuleRequest(input *DeleteTopicRuleInput) (req *request.
 
 	output = &DeleteTopicRuleOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4756,8 +4766,7 @@ func (c *IoT) DeleteV2LoggingLevelRequest(input *DeleteV2LoggingLevelInput) (req
 
 	output = &DeleteV2LoggingLevelOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4840,6 +4849,7 @@ func (c *IoT) DeprecateThingTypeRequest(input *DeprecateThingTypeInput) (req *re
 
 	output = &DeprecateThingTypeOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6679,8 +6689,7 @@ func (c *IoT) DetachPolicyRequest(input *DetachPolicyInput) (req *request.Reques
 
 	output = &DetachPolicyOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6777,8 +6786,7 @@ func (c *IoT) DetachPrincipalPolicyRequest(input *DetachPrincipalPolicyInput) (r
 
 	output = &DetachPrincipalPolicyOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6876,6 +6884,7 @@ func (c *IoT) DetachSecurityProfileRequest(input *DetachSecurityProfileInput) (r
 
 	output = &DetachSecurityProfileOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6962,12 +6971,15 @@ func (c *IoT) DetachThingPrincipalRequest(input *DetachThingPrincipalInput) (req
 
 	output = &DetachThingPrincipalOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
 // DetachThingPrincipal API operation for AWS IoT.
 //
-// Detaches the specified principal from the specified thing.
+// Detaches the specified principal from the specified thing. A principal can
+// be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities
+// or federated identities.
 //
 // This call is asynchronous. It might take several seconds for the detachment
 // to propagate.
@@ -7056,8 +7068,7 @@ func (c *IoT) DisableTopicRuleRequest(input *DisableTopicRuleInput) (req *reques
 
 	output = &DisableTopicRuleOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -7147,8 +7158,7 @@ func (c *IoT) EnableTopicRuleRequest(input *EnableTopicRuleInput) (req *request.
 
 	output = &EnableTopicRuleOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -9719,7 +9729,7 @@ func (c *IoT) ListPrincipalPoliciesRequest(input *ListPrincipalPoliciesInput) (r
 // ListPrincipalPolicies API operation for AWS IoT.
 //
 // Lists the policies attached to the specified principal. If you use an Cognito
-// identity, the ID must be in AmazonCognito Identity format (http://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetCredentialsForIdentity.html#API_GetCredentialsForIdentity_RequestSyntax).
+// identity, the ID must be in AmazonCognito Identity format (https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetCredentialsForIdentity.html#API_GetCredentialsForIdentity_RequestSyntax).
 //
 // Note: This API is deprecated. Please use ListAttachedPolicies instead.
 //
@@ -9816,7 +9826,9 @@ func (c *IoT) ListPrincipalThingsRequest(input *ListPrincipalThingsInput) (req *
 
 // ListPrincipalThings API operation for AWS IoT.
 //
-// Lists the things associated with the specified principal.
+// Lists the things associated with the specified principal. A principal can
+// be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities
+// or federated identities.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10763,7 +10775,9 @@ func (c *IoT) ListThingPrincipalsRequest(input *ListThingPrincipalsInput) (req *
 
 // ListThingPrincipals API operation for AWS IoT.
 //
-// Lists the principals associated with the specified thing.
+// Lists the principals associated with the specified thing. A principal can
+// be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities
+// or federated identities.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11921,8 +11935,7 @@ func (c *IoT) RejectCertificateTransferRequest(input *RejectCertificateTransferI
 
 	output = &RejectCertificateTransferOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -12026,6 +12039,7 @@ func (c *IoT) RemoveThingFromBillingGroupRequest(input *RemoveThingFromBillingGr
 
 	output = &RemoveThingFromBillingGroupOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -12111,6 +12125,7 @@ func (c *IoT) RemoveThingFromThingGroupRequest(input *RemoveThingFromThingGroupI
 
 	output = &RemoveThingFromThingGroupOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -12196,8 +12211,7 @@ func (c *IoT) ReplaceTopicRuleRequest(input *ReplaceTopicRuleInput) (req *reques
 
 	output = &ReplaceTopicRuleOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -12484,8 +12498,7 @@ func (c *IoT) SetDefaultPolicyVersionRequest(input *SetDefaultPolicyVersionInput
 
 	output = &SetDefaultPolicyVersionOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -12580,8 +12593,7 @@ func (c *IoT) SetLoggingOptionsRequest(input *SetLoggingOptionsInput) (req *requ
 
 	output = &SetLoggingOptionsOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -12666,8 +12678,7 @@ func (c *IoT) SetV2LoggingLevelRequest(input *SetV2LoggingLevelInput) (req *requ
 
 	output = &SetV2LoggingLevelOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -12753,8 +12764,7 @@ func (c *IoT) SetV2LoggingOptionsRequest(input *SetV2LoggingOptionsInput) (req *
 
 	output = &SetV2LoggingOptionsOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -13007,6 +13017,7 @@ func (c *IoT) StopThingRegistrationTaskRequest(input *StopThingRegistrationTaskI
 
 	output = &StopThingRegistrationTaskOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -13095,6 +13106,7 @@ func (c *IoT) TagResourceRequest(input *TagResourceInput) (req *request.Request,
 
 	output = &TagResourceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -13485,6 +13497,7 @@ func (c *IoT) UntagResourceRequest(input *UntagResourceInput) (req *request.Requ
 
 	output = &UntagResourceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -13570,6 +13583,7 @@ func (c *IoT) UpdateAccountAuditConfigurationRequest(input *UpdateAccountAuditCo
 
 	output = &UpdateAccountAuditConfigurationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -13837,8 +13851,7 @@ func (c *IoT) UpdateCACertificateRequest(input *UpdateCACertificateInput) (req *
 
 	output = &UpdateCACertificateOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -13930,8 +13943,7 @@ func (c *IoT) UpdateCertificateRequest(input *UpdateCertificateInput) (req *requ
 
 	output = &UpdateCertificateOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -14124,6 +14136,7 @@ func (c *IoT) UpdateEventConfigurationsRequest(input *UpdateEventConfigurationsI
 
 	output = &UpdateEventConfigurationsOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -14206,6 +14219,7 @@ func (c *IoT) UpdateIndexingConfigurationRequest(input *UpdateIndexingConfigurat
 
 	output = &UpdateIndexingConfigurationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -14294,8 +14308,7 @@ func (c *IoT) UpdateJobRequest(input *UpdateJobInput) (req *request.Request, out
 
 	output = &UpdateJobOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -14738,6 +14751,7 @@ func (c *IoT) UpdateThingRequest(input *UpdateThingInput) (req *request.Request,
 
 	output = &UpdateThingOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -14922,6 +14936,7 @@ func (c *IoT) UpdateThingGroupsForThingRequest(input *UpdateThingGroupsForThingI
 
 	output = &UpdateThingGroupsForThingOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -16846,6 +16861,11 @@ func (s *Behavior) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.Criteria != nil {
+		if err := s.Criteria.Validate(); err != nil {
+			invalidParams.AddNested("Criteria", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -16875,12 +16895,30 @@ func (s *Behavior) SetName(v string) *Behavior {
 type BehaviorCriteria struct {
 	_ struct{} `type:"structure"`
 
-	// The operator that relates the thing measured (metric) to the criteria (value).
+	// The operator that relates the thing measured (metric) to the criteria (containing
+	// a value or statisticalThreshold).
 	ComparisonOperator *string `locationName:"comparisonOperator" type:"string" enum:"ComparisonOperator"`
 
-	// Use this to specify the period of time over which the behavior is evaluated,
+	// If a device is in violation of the behavior for the specified number of consecutive
+	// datapoints, an alarm occurs. If not specified, the default is 1.
+	ConsecutiveDatapointsToAlarm *int64 `locationName:"consecutiveDatapointsToAlarm" min:"1" type:"integer"`
+
+	// If an alarm has occurred and the offending device is no longer in violation
+	// of the behavior for the specified number of consecutive datapoints, the alarm
+	// is cleared. If not specified, the default is 1.
+	ConsecutiveDatapointsToClear *int64 `locationName:"consecutiveDatapointsToClear" min:"1" type:"integer"`
+
+	// Use this to specify the time duration over which the behavior is evaluated,
 	// for those criteria which have a time dimension (for example, NUM_MESSAGES_SENT).
+	// For a statisticalThreshhold metric comparison, measurements from all devices
+	// are accumulated over this time duration before being used to calculate percentiles,
+	// and later, measurements from an individual device are also accumulated over
+	// this time duration before being given a percentile rank.
 	DurationSeconds *int64 `locationName:"durationSeconds" type:"integer"`
+
+	// A statistical ranking (percentile) which indicates a threshold value by which
+	// a behavior is determined to be in compliance or in violation of the behavior.
+	StatisticalThreshold *StatisticalThreshold `locationName:"statisticalThreshold" type:"structure"`
 
 	// The value to be compared with the metric.
 	Value *MetricValue `locationName:"value" type:"structure"`
@@ -16896,15 +16934,49 @@ func (s BehaviorCriteria) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BehaviorCriteria) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BehaviorCriteria"}
+	if s.ConsecutiveDatapointsToAlarm != nil && *s.ConsecutiveDatapointsToAlarm < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ConsecutiveDatapointsToAlarm", 1))
+	}
+	if s.ConsecutiveDatapointsToClear != nil && *s.ConsecutiveDatapointsToClear < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ConsecutiveDatapointsToClear", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetComparisonOperator sets the ComparisonOperator field's value.
 func (s *BehaviorCriteria) SetComparisonOperator(v string) *BehaviorCriteria {
 	s.ComparisonOperator = &v
 	return s
 }
 
+// SetConsecutiveDatapointsToAlarm sets the ConsecutiveDatapointsToAlarm field's value.
+func (s *BehaviorCriteria) SetConsecutiveDatapointsToAlarm(v int64) *BehaviorCriteria {
+	s.ConsecutiveDatapointsToAlarm = &v
+	return s
+}
+
+// SetConsecutiveDatapointsToClear sets the ConsecutiveDatapointsToClear field's value.
+func (s *BehaviorCriteria) SetConsecutiveDatapointsToClear(v int64) *BehaviorCriteria {
+	s.ConsecutiveDatapointsToClear = &v
+	return s
+}
+
 // SetDurationSeconds sets the DurationSeconds field's value.
 func (s *BehaviorCriteria) SetDurationSeconds(v int64) *BehaviorCriteria {
 	s.DurationSeconds = &v
+	return s
+}
+
+// SetStatisticalThreshold sets the StatisticalThreshold field's value.
+func (s *BehaviorCriteria) SetStatisticalThreshold(v *StatisticalThreshold) *BehaviorCriteria {
+	s.StatisticalThreshold = v
 	return s
 }
 
@@ -17816,10 +17888,10 @@ type CloudwatchMetricAction struct {
 	// MetricNamespace is a required field
 	MetricNamespace *string `locationName:"metricNamespace" type:"string" required:"true"`
 
-	// An optional Unix timestamp (http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp).
+	// An optional Unix timestamp (https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp).
 	MetricTimestamp *string `locationName:"metricTimestamp" type:"string"`
 
-	// The metric unit (http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit)
+	// The metric unit (https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit)
 	// supported by CloudWatch.
 	//
 	// MetricUnit is a required field
@@ -18380,7 +18452,7 @@ type CreateDynamicThingGroupInput struct {
 
 	// The dynamic thing group search query string.
 	//
-	// See Query Syntax (http://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html)
+	// See Query Syntax (https://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html)
 	// for information about query string syntax.
 	//
 	// QueryString is a required field
@@ -18863,6 +18935,9 @@ type CreateOTAUpdateInput struct {
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"20" type:"string" required:"true"`
 
+	// Metadata which can be used to manage updates.
+	Tags []*Tag `locationName:"tags" type:"list"`
+
 	// Specifies whether the update will continue to run (CONTINUOUS), or will be
 	// complete after all the things specified as targets have completed the update
 	// (SNAPSHOT). If continuous, the update may also be run on a thing when a change
@@ -18969,6 +19044,12 @@ func (s *CreateOTAUpdateInput) SetOtaUpdateId(v string) *CreateOTAUpdateInput {
 // SetRoleArn sets the RoleArn field's value.
 func (s *CreateOTAUpdateInput) SetRoleArn(v string) *CreateOTAUpdateInput {
 	s.RoleArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateOTAUpdateInput) SetTags(v []*Tag) *CreateOTAUpdateInput {
+	s.Tags = v
 	return s
 }
 
@@ -19399,6 +19480,9 @@ type CreateScheduledAuditInput struct {
 	// ScheduledAuditName is a required field
 	ScheduledAuditName *string `location:"uri" locationName:"scheduledAuditName" min:"1" type:"string" required:"true"`
 
+	// Metadata which can be used to manage the scheduled audit.
+	Tags []*Tag `locationName:"tags" type:"list"`
+
 	// Which checks are performed during the scheduled audit. Checks must be enabled
 	// for your account. (Use DescribeAccountAuditConfiguration to see the list
 	// of all checks including those that are enabled or UpdateAccountAuditConfiguration
@@ -19464,6 +19548,12 @@ func (s *CreateScheduledAuditInput) SetScheduledAuditName(v string) *CreateSched
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateScheduledAuditInput) SetTags(v []*Tag) *CreateScheduledAuditInput {
+	s.Tags = v
+	return s
+}
+
 // SetTargetCheckNames sets the TargetCheckNames field's value.
 func (s *CreateScheduledAuditInput) SetTargetCheckNames(v []*string) *CreateScheduledAuditInput {
 	s.TargetCheckNames = v
@@ -19496,15 +19586,18 @@ func (s *CreateScheduledAuditOutput) SetScheduledAuditArn(v string) *CreateSched
 type CreateSecurityProfileInput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of metrics whose data is retained (stored). By default, data is retained
+	// for any metric used in the profile's behaviors but it is also retained for
+	// any metric specified here.
+	AdditionalMetricsToRetain []*string `locationName:"additionalMetricsToRetain" type:"list"`
+
 	// Specifies the destinations to which alerts are sent. (Alerts are always sent
 	// to the console.) Alerts are generated when a device (thing) violates a behavior.
 	AlertTargets map[string]*AlertTarget `locationName:"alertTargets" type:"map"`
 
 	// Specifies the behaviors that, when violated by a device (thing), cause an
 	// alert.
-	//
-	// Behaviors is a required field
-	Behaviors []*Behavior `locationName:"behaviors" type:"list" required:"true"`
+	Behaviors []*Behavior `locationName:"behaviors" type:"list"`
 
 	// A description of the security profile.
 	SecurityProfileDescription *string `locationName:"securityProfileDescription" type:"string"`
@@ -19531,9 +19624,6 @@ func (s CreateSecurityProfileInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateSecurityProfileInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateSecurityProfileInput"}
-	if s.Behaviors == nil {
-		invalidParams.Add(request.NewErrParamRequired("Behaviors"))
-	}
 	if s.SecurityProfileName == nil {
 		invalidParams.Add(request.NewErrParamRequired("SecurityProfileName"))
 	}
@@ -19565,6 +19655,12 @@ func (s *CreateSecurityProfileInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAdditionalMetricsToRetain sets the AdditionalMetricsToRetain field's value.
+func (s *CreateSecurityProfileInput) SetAdditionalMetricsToRetain(v []*string) *CreateSecurityProfileInput {
+	s.AdditionalMetricsToRetain = v
+	return s
 }
 
 // SetAlertTargets sets the AlertTargets field's value.
@@ -19650,6 +19746,9 @@ type CreateStreamInput struct {
 	//
 	// StreamId is a required field
 	StreamId *string `location:"uri" locationName:"streamId" min:"1" type:"string" required:"true"`
+
+	// Metadata which can be used to manage streams.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation
@@ -19721,6 +19820,12 @@ func (s *CreateStreamInput) SetRoleArn(v string) *CreateStreamInput {
 // SetStreamId sets the StreamId field's value.
 func (s *CreateStreamInput) SetStreamId(v string) *CreateStreamInput {
 	s.StreamId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateStreamInput) SetTags(v []*Tag) *CreateStreamInput {
+	s.Tags = v
 	return s
 }
 
@@ -20119,6 +20224,15 @@ type CreateTopicRuleInput struct {
 	// RuleName is a required field
 	RuleName *string `location:"uri" locationName:"ruleName" min:"1" type:"string" required:"true"`
 
+	// Metadata which can be used to manage the topic rule.
+	//
+	// For URI Request parameters use format: ...key1=value1&key2=value2...
+	//
+	// For the CLI command-line parameter use format: --tags "key1=value1&key2=value2..."
+	//
+	// For the cli-input-json file use format: "tags": "key1=value1&key2=value2..."
+	Tags *string `location:"header" locationName:"x-amz-tagging" type:"string"`
+
 	// The rule payload.
 	//
 	// TopicRulePayload is a required field
@@ -20162,6 +20276,12 @@ func (s *CreateTopicRuleInput) Validate() error {
 // SetRuleName sets the RuleName field's value.
 func (s *CreateTopicRuleInput) SetRuleName(v string) *CreateTopicRuleInput {
 	s.RuleName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateTopicRuleInput) SetTags(v string) *CreateTopicRuleInput {
+	s.Tags = &v
 	return s
 }
 
@@ -22757,6 +22877,11 @@ func (s *DescribeSecurityProfileInput) SetSecurityProfileName(v string) *Describ
 type DescribeSecurityProfileOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of metrics whose data is retained (stored). By default, data is retained
+	// for any metric used in the profile's behaviors but it is also retained for
+	// any metric specified here.
+	AdditionalMetricsToRetain []*string `locationName:"additionalMetricsToRetain" type:"list"`
+
 	// Where the alerts are sent. (Alerts are always sent to the console.)
 	AlertTargets map[string]*AlertTarget `locationName:"alertTargets" type:"map"`
 
@@ -22793,6 +22918,12 @@ func (s DescribeSecurityProfileOutput) String() string {
 // GoString returns the string representation
 func (s DescribeSecurityProfileOutput) GoString() string {
 	return s.String()
+}
+
+// SetAdditionalMetricsToRetain sets the AdditionalMetricsToRetain field's value.
+func (s *DescribeSecurityProfileOutput) SetAdditionalMetricsToRetain(v []*string) *DescribeSecurityProfileOutput {
+	s.AdditionalMetricsToRetain = v
+	return s
 }
 
 // SetAlertTargets sets the AlertTargets field's value.
@@ -24000,10 +24131,14 @@ type DynamoDBv2Action struct {
 	//
 	// Each attribute in the message payload will be written to a separate column
 	// in the DynamoDB database.
-	PutItem *PutItemInput `locationName:"putItem" type:"structure"`
+	//
+	// PutItem is a required field
+	PutItem *PutItemInput `locationName:"putItem" type:"structure" required:"true"`
 
 	// The ARN of the IAM role that grants access to the DynamoDB table.
-	RoleArn *string `locationName:"roleArn" type:"string"`
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -24019,6 +24154,12 @@ func (s DynamoDBv2Action) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DynamoDBv2Action) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DynamoDBv2Action"}
+	if s.PutItem == nil {
+		invalidParams.Add(request.NewErrParamRequired("PutItem"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
 	if s.PutItem != nil {
 		if err := s.PutItem.Validate(); err != nil {
 			invalidParams.AddNested("PutItem", err.(request.ErrInvalidParams))
@@ -25407,10 +25548,10 @@ type Job struct {
 	// If the job was updated, describes the reason for the update.
 	Comment *string `locationName:"comment" type:"string"`
 
-	// The time, in milliseconds since the epoch, when the job was completed.
+	// The time, in seconds since the epoch, when the job was completed.
 	CompletedAt *time.Time `locationName:"completedAt" type:"timestamp"`
 
-	// The time, in milliseconds since the epoch, when the job was created.
+	// The time, in seconds since the epoch, when the job was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
 	// A short text description of the job.
@@ -25432,7 +25573,7 @@ type Job struct {
 	// Details about the job process.
 	JobProcessDetails *JobProcessDetails `locationName:"jobProcessDetails" type:"structure"`
 
-	// The time, in milliseconds since the epoch, when the job was last updated.
+	// The time, in seconds since the epoch, when the job was last updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
 	// Configuration for pre-signed S3 URLs.
@@ -25599,14 +25740,13 @@ type JobExecution struct {
 	// The unique identifier you assigned to the job when it was created.
 	JobId *string `locationName:"jobId" min:"1" type:"string"`
 
-	// The time, in milliseconds since the epoch, when the job execution was last
-	// updated.
+	// The time, in seconds since the epoch, when the job execution was last updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
-	// The time, in milliseconds since the epoch, when the job execution was queued.
+	// The time, in seconds since the epoch, when the job execution was queued.
 	QueuedAt *time.Time `locationName:"queuedAt" type:"timestamp"`
 
-	// The time, in milliseconds since the epoch, when the job execution started.
+	// The time, in seconds since the epoch, when the job execution started.
 	StartedAt *time.Time `locationName:"startedAt" type:"timestamp"`
 
 	// The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCEEDED,
@@ -25733,14 +25873,13 @@ type JobExecutionSummary struct {
 	// in commands which return or update job execution information.
 	ExecutionNumber *int64 `locationName:"executionNumber" type:"long"`
 
-	// The time, in milliseconds since the epoch, when the job execution was last
-	// updated.
+	// The time, in seconds since the epoch, when the job execution was last updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
-	// The time, in milliseconds since the epoch, when the job execution was queued.
+	// The time, in seconds since the epoch, when the job execution was queued.
 	QueuedAt *time.Time `locationName:"queuedAt" type:"timestamp"`
 
-	// The time, in milliseconds since the epoch, when the job execution started.
+	// The time, in seconds since the epoch, when the job execution started.
 	StartedAt *time.Time `locationName:"startedAt" type:"timestamp"`
 
 	// The status of the job execution.
@@ -26010,10 +26149,10 @@ func (s *JobProcessDetails) SetProcessingTargets(v []*string) *JobProcessDetails
 type JobSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The time, in milliseconds since the epoch, when the job completed.
+	// The time, in seconds since the epoch, when the job completed.
 	CompletedAt *time.Time `locationName:"completedAt" type:"timestamp"`
 
-	// The time, in milliseconds since the epoch, when the job was created.
+	// The time, in seconds since the epoch, when the job was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
 	// The job ARN.
@@ -26022,7 +26161,7 @@ type JobSummary struct {
 	// The unique identifier you assigned to this job when it was created.
 	JobId *string `locationName:"jobId" min:"1" type:"string"`
 
-	// The time, in milliseconds since the epoch, when the job was last updated.
+	// The time, in seconds since the epoch, when the job was last updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
 	// The job summary status.
@@ -31170,11 +31309,11 @@ func (s *RegisterCertificateOutput) SetCertificateId(v string) *RegisterCertific
 type RegisterThingInput struct {
 	_ struct{} `type:"structure"`
 
-	// The parameters for provisioning a thing. See Programmatic Provisioning (http://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html)
+	// The parameters for provisioning a thing. See Programmatic Provisioning (https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html)
 	// for more information.
 	Parameters map[string]*string `locationName:"parameters" type:"map"`
 
-	// The provisioning template. See Programmatic Provisioning (http://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html)
+	// The provisioning template. See Programmatic Provisioning (https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html)
 	// for more information.
 	//
 	// TemplateBody is a required field
@@ -31871,7 +32010,7 @@ type S3Action struct {
 	BucketName *string `locationName:"bucketName" type:"string" required:"true"`
 
 	// The Amazon S3 canned ACL that controls access to the object identified by
-	// the object key. For more information, see S3 canned ACLs (http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl).
+	// the object key. For more information, see S3 canned ACLs (https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl).
 	CannedAcl *string `locationName:"cannedAcl" type:"string" enum:"CannedAccessControlList"`
 
 	// The object key.
@@ -32766,7 +32905,7 @@ type SnsAction struct {
 	// are "JSON" and "RAW". The default value of the attribute is "RAW". SNS uses
 	// this setting to determine if the payload should be parsed and relevant platform-specific
 	// bits of the payload should be extracted. To read more about SNS message formats,
-	// see http://docs.aws.amazon.com/sns/latest/dg/json-formats.html (http://docs.aws.amazon.com/sns/latest/dg/json-formats.html)
+	// see https://docs.aws.amazon.com/sns/latest/dg/json-formats.html (https://docs.aws.amazon.com/sns/latest/dg/json-formats.html)
 	// refer to their official documentation.
 	MessageFormat *string `locationName:"messageFormat" type:"string" enum:"MessageFormat"`
 
@@ -33119,6 +33258,38 @@ func (s StartThingRegistrationTaskOutput) GoString() string {
 // SetTaskId sets the TaskId field's value.
 func (s *StartThingRegistrationTaskOutput) SetTaskId(v string) *StartThingRegistrationTaskOutput {
 	s.TaskId = &v
+	return s
+}
+
+// A statistical ranking (percentile) which indicates a threshold value by which
+// a behavior is determined to be in compliance or in violation of the behavior.
+type StatisticalThreshold struct {
+	_ struct{} `type:"structure"`
+
+	// The percentile which resolves to a threshold value by which compliance with
+	// a behavior is determined. Metrics are collected over the specified period
+	// (durationSeconds) from all reporting devices in your account and statistical
+	// ranks are calculated. Then, the measurements from a device are collected
+	// over the same period. If the accumulated measurements from the device fall
+	// above or below (comparisonOperator) the value associated with the percentile
+	// specified, then the device is considered to be in compliance with the behavior,
+	// otherwise a violation occurs.
+	Statistic *string `locationName:"statistic" type:"string"`
+}
+
+// String returns the string representation
+func (s StatisticalThreshold) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StatisticalThreshold) GoString() string {
+	return s.String()
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *StatisticalThreshold) SetStatistic(v string) *StatisticalThreshold {
+	s.Statistic = &v
 	return s
 }
 
@@ -34643,7 +34814,7 @@ type TopicRulePayload struct {
 	RuleDisabled *bool `locationName:"ruleDisabled" type:"boolean"`
 
 	// The SQL statement used to query the topic. For more information, see AWS
-	// IoT SQL Reference (http://docs.aws.amazon.com/iot/latest/developerguide/iot-rules.html#aws-iot-sql-reference)
+	// IoT SQL Reference (https://docs.aws.amazon.com/iot/latest/developerguide/iot-rules.html#aws-iot-sql-reference)
 	// in the AWS IoT Developer Guide.
 	//
 	// Sql is a required field
@@ -35975,12 +36146,30 @@ func (s *UpdateScheduledAuditOutput) SetScheduledAuditArn(v string) *UpdateSched
 type UpdateSecurityProfileInput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of metrics whose data is retained (stored). By default, data is retained
+	// for any metric used in the profile's behaviors but it is also retained for
+	// any metric specified here.
+	AdditionalMetricsToRetain []*string `locationName:"additionalMetricsToRetain" type:"list"`
+
 	// Where the alerts are sent. (Alerts are always sent to the console.)
 	AlertTargets map[string]*AlertTarget `locationName:"alertTargets" type:"map"`
 
 	// Specifies the behaviors that, when violated by a device (thing), cause an
 	// alert.
 	Behaviors []*Behavior `locationName:"behaviors" type:"list"`
+
+	// If true, delete all additionalMetricsToRetain defined for this security profile.
+	// If any additionalMetricsToRetain are defined in the current invocation an
+	// exception occurs.
+	DeleteAdditionalMetricsToRetain *bool `locationName:"deleteAdditionalMetricsToRetain" type:"boolean"`
+
+	// If true, delete all alertTargets defined for this security profile. If any
+	// alertTargets are defined in the current invocation an exception occurs.
+	DeleteAlertTargets *bool `locationName:"deleteAlertTargets" type:"boolean"`
+
+	// If true, delete all behaviors defined for this security profile. If any behaviors
+	// are defined in the current invocation an exception occurs.
+	DeleteBehaviors *bool `locationName:"deleteBehaviors" type:"boolean"`
 
 	// The expected version of the security profile. A new version is generated
 	// whenever the security profile is updated. If you specify a value that is
@@ -36042,6 +36231,12 @@ func (s *UpdateSecurityProfileInput) Validate() error {
 	return nil
 }
 
+// SetAdditionalMetricsToRetain sets the AdditionalMetricsToRetain field's value.
+func (s *UpdateSecurityProfileInput) SetAdditionalMetricsToRetain(v []*string) *UpdateSecurityProfileInput {
+	s.AdditionalMetricsToRetain = v
+	return s
+}
+
 // SetAlertTargets sets the AlertTargets field's value.
 func (s *UpdateSecurityProfileInput) SetAlertTargets(v map[string]*AlertTarget) *UpdateSecurityProfileInput {
 	s.AlertTargets = v
@@ -36051,6 +36246,24 @@ func (s *UpdateSecurityProfileInput) SetAlertTargets(v map[string]*AlertTarget) 
 // SetBehaviors sets the Behaviors field's value.
 func (s *UpdateSecurityProfileInput) SetBehaviors(v []*Behavior) *UpdateSecurityProfileInput {
 	s.Behaviors = v
+	return s
+}
+
+// SetDeleteAdditionalMetricsToRetain sets the DeleteAdditionalMetricsToRetain field's value.
+func (s *UpdateSecurityProfileInput) SetDeleteAdditionalMetricsToRetain(v bool) *UpdateSecurityProfileInput {
+	s.DeleteAdditionalMetricsToRetain = &v
+	return s
+}
+
+// SetDeleteAlertTargets sets the DeleteAlertTargets field's value.
+func (s *UpdateSecurityProfileInput) SetDeleteAlertTargets(v bool) *UpdateSecurityProfileInput {
+	s.DeleteAlertTargets = &v
+	return s
+}
+
+// SetDeleteBehaviors sets the DeleteBehaviors field's value.
+func (s *UpdateSecurityProfileInput) SetDeleteBehaviors(v bool) *UpdateSecurityProfileInput {
+	s.DeleteBehaviors = &v
 	return s
 }
 
@@ -36074,6 +36287,11 @@ func (s *UpdateSecurityProfileInput) SetSecurityProfileName(v string) *UpdateSec
 
 type UpdateSecurityProfileOutput struct {
 	_ struct{} `type:"structure"`
+
+	// A list of metrics whose data is retained (stored). By default, data is retained
+	// for any metric used in the security profile's behaviors but it is also retained
+	// for any metric specified here.
+	AdditionalMetricsToRetain []*string `locationName:"additionalMetricsToRetain" type:"list"`
 
 	// Where the alerts are sent. (Alerts are always sent to the console.)
 	AlertTargets map[string]*AlertTarget `locationName:"alertTargets" type:"map"`
@@ -36109,6 +36327,12 @@ func (s UpdateSecurityProfileOutput) String() string {
 // GoString returns the string representation
 func (s UpdateSecurityProfileOutput) GoString() string {
 	return s.String()
+}
+
+// SetAdditionalMetricsToRetain sets the AdditionalMetricsToRetain field's value.
+func (s *UpdateSecurityProfileOutput) SetAdditionalMetricsToRetain(v []*string) *UpdateSecurityProfileOutput {
+	s.AdditionalMetricsToRetain = v
+	return s
 }
 
 // SetAlertTargets sets the AlertTargets field's value.

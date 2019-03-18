@@ -128,6 +128,10 @@ type GameLiftAPI interface {
 	DeleteMatchmakingConfigurationWithContext(aws.Context, *gamelift.DeleteMatchmakingConfigurationInput, ...request.Option) (*gamelift.DeleteMatchmakingConfigurationOutput, error)
 	DeleteMatchmakingConfigurationRequest(*gamelift.DeleteMatchmakingConfigurationInput) (*request.Request, *gamelift.DeleteMatchmakingConfigurationOutput)
 
+	DeleteMatchmakingRuleSet(*gamelift.DeleteMatchmakingRuleSetInput) (*gamelift.DeleteMatchmakingRuleSetOutput, error)
+	DeleteMatchmakingRuleSetWithContext(aws.Context, *gamelift.DeleteMatchmakingRuleSetInput, ...request.Option) (*gamelift.DeleteMatchmakingRuleSetOutput, error)
+	DeleteMatchmakingRuleSetRequest(*gamelift.DeleteMatchmakingRuleSetInput) (*request.Request, *gamelift.DeleteMatchmakingRuleSetOutput)
+
 	DeleteScalingPolicy(*gamelift.DeleteScalingPolicyInput) (*gamelift.DeleteScalingPolicyOutput, error)
 	DeleteScalingPolicyWithContext(aws.Context, *gamelift.DeleteScalingPolicyInput, ...request.Option) (*gamelift.DeleteScalingPolicyOutput, error)
 	DeleteScalingPolicyRequest(*gamelift.DeleteScalingPolicyInput) (*request.Request, *gamelift.DeleteScalingPolicyOutput)

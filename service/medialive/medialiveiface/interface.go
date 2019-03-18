@@ -76,6 +76,10 @@ type MediaLiveAPI interface {
 	CreateInputSecurityGroupWithContext(aws.Context, *medialive.CreateInputSecurityGroupInput, ...request.Option) (*medialive.CreateInputSecurityGroupOutput, error)
 	CreateInputSecurityGroupRequest(*medialive.CreateInputSecurityGroupInput) (*request.Request, *medialive.CreateInputSecurityGroupOutput)
 
+	CreateTags(*medialive.CreateTagsInput) (*medialive.CreateTagsOutput, error)
+	CreateTagsWithContext(aws.Context, *medialive.CreateTagsInput, ...request.Option) (*medialive.CreateTagsOutput, error)
+	CreateTagsRequest(*medialive.CreateTagsInput) (*request.Request, *medialive.CreateTagsOutput)
+
 	DeleteChannel(*medialive.DeleteChannelInput) (*medialive.DeleteChannelOutput, error)
 	DeleteChannelWithContext(aws.Context, *medialive.DeleteChannelInput, ...request.Option) (*medialive.DeleteChannelOutput, error)
 	DeleteChannelRequest(*medialive.DeleteChannelInput) (*request.Request, *medialive.DeleteChannelOutput)
@@ -91,6 +95,10 @@ type MediaLiveAPI interface {
 	DeleteReservation(*medialive.DeleteReservationInput) (*medialive.DeleteReservationOutput, error)
 	DeleteReservationWithContext(aws.Context, *medialive.DeleteReservationInput, ...request.Option) (*medialive.DeleteReservationOutput, error)
 	DeleteReservationRequest(*medialive.DeleteReservationInput) (*request.Request, *medialive.DeleteReservationOutput)
+
+	DeleteTags(*medialive.DeleteTagsInput) (*medialive.DeleteTagsOutput, error)
+	DeleteTagsWithContext(aws.Context, *medialive.DeleteTagsInput, ...request.Option) (*medialive.DeleteTagsOutput, error)
+	DeleteTagsRequest(*medialive.DeleteTagsInput) (*request.Request, *medialive.DeleteTagsOutput)
 
 	DescribeChannel(*medialive.DescribeChannelInput) (*medialive.DescribeChannelOutput, error)
 	DescribeChannelWithContext(aws.Context, *medialive.DescribeChannelInput, ...request.Option) (*medialive.DescribeChannelOutput, error)
@@ -153,6 +161,10 @@ type MediaLiveAPI interface {
 
 	ListReservationsPages(*medialive.ListReservationsInput, func(*medialive.ListReservationsOutput, bool) bool) error
 	ListReservationsPagesWithContext(aws.Context, *medialive.ListReservationsInput, func(*medialive.ListReservationsOutput, bool) bool, ...request.Option) error
+
+	ListTagsForResource(*medialive.ListTagsForResourceInput) (*medialive.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *medialive.ListTagsForResourceInput, ...request.Option) (*medialive.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*medialive.ListTagsForResourceInput) (*request.Request, *medialive.ListTagsForResourceOutput)
 
 	PurchaseOffering(*medialive.PurchaseOfferingInput) (*medialive.PurchaseOfferingOutput, error)
 	PurchaseOfferingWithContext(aws.Context, *medialive.PurchaseOfferingInput, ...request.Option) (*medialive.PurchaseOfferingOutput, error)

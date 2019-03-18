@@ -158,6 +158,7 @@
       "output":{"shape":"DescribeProtectionResponse"},
       "errors":[
         {"shape":"InternalErrorException"},
+        {"shape":"InvalidParameterException"},
         {"shape":"ResourceNotFoundException"}
       ]
     },
@@ -497,9 +498,9 @@
     },
     "DescribeProtectionRequest":{
       "type":"structure",
-      "required":["ProtectionId"],
       "members":{
-        "ProtectionId":{"shape":"ProtectionId"}
+        "ProtectionId":{"shape":"ProtectionId"},
+        "ResourceArn":{"shape":"ResourceArn"}
       }
     },
     "DescribeProtectionResponse":{

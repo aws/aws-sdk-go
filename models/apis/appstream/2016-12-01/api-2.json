@@ -835,7 +835,8 @@
         "Description":{"shape":"Description"},
         "DisplayName":{"shape":"DisplayName"},
         "EnableDefaultInternetAccess":{"shape":"BooleanObject"},
-        "DomainJoinInfo":{"shape":"DomainJoinInfo"}
+        "DomainJoinInfo":{"shape":"DomainJoinInfo"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "CreateFleetResult":{
@@ -860,7 +861,8 @@
         "VpcConfig":{"shape":"VpcConfig"},
         "EnableDefaultInternetAccess":{"shape":"BooleanObject"},
         "DomainJoinInfo":{"shape":"DomainJoinInfo"},
-        "AppstreamAgentVersion":{"shape":"AppstreamAgentVersion"}
+        "AppstreamAgentVersion":{"shape":"AppstreamAgentVersion"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "CreateImageBuilderResult":{
@@ -895,7 +897,8 @@
         "RedirectURL":{"shape":"RedirectURL"},
         "FeedbackURL":{"shape":"FeedbackURL"},
         "UserSettings":{"shape":"UserSettingList"},
-        "ApplicationSettings":{"shape":"ApplicationSettings"}
+        "ApplicationSettings":{"shape":"ApplicationSettings"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "CreateStackResult":{
@@ -1734,9 +1737,19 @@
         "StackName":{"shape":"String"},
         "FleetName":{"shape":"String"},
         "State":{"shape":"SessionState"},
+        "ConnectionState":{"shape":"SessionConnectionState"},
+        "StartTime":{"shape":"Timestamp"},
+        "MaxExpirationTime":{"shape":"Timestamp"},
         "AuthenticationType":{"shape":"AuthenticationType"},
         "NetworkAccessConfiguration":{"shape":"NetworkAccessConfiguration"}
       }
+    },
+    "SessionConnectionState":{
+      "type":"string",
+      "enum":[
+        "CONNECTED",
+        "NOT_CONNECTED"
+      ]
     },
     "SessionList":{
       "type":"list",

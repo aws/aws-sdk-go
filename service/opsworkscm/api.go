@@ -8,6 +8,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
 const opAssociateNode = "AssociateNode"
@@ -371,6 +373,7 @@ func (c *OpsWorksCM) DeleteBackupRequest(input *DeleteBackupInput) (req *request
 
 	output = &DeleteBackupOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -462,6 +465,7 @@ func (c *OpsWorksCM) DeleteServerRequest(input *DeleteServerInput) (req *request
 
 	output = &DeleteServerOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1184,6 +1188,7 @@ func (c *OpsWorksCM) RestoreServerRequest(input *RestoreServerInput) (req *reque
 
 	output = &RestoreServerOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1469,9 +1474,8 @@ func (c *OpsWorksCM) UpdateServerEngineAttributesRequest(input *UpdateServerEngi
 //
 // Updates engine-specific attributes on a specified server. The server enters
 // the MODIFYING state when this operation is in progress. Only one update can
-// occur at a time. You can use this command to reset a Chef server's private
-// key (CHEF_PIVOTAL_KEY), a Chef server's admin password (CHEF_DELIVERY_ADMIN_PASSWORD),
-// or a Puppet server's admin password (PUPPET_ADMIN_PASSWORD).
+// occur at a time. You can use this command to reset a Chef server's public
+// key (CHEF_PIVOTAL_KEY) or a Puppet server's admin password (PUPPET_ADMIN_PASSWORD).
 //
 // This operation is asynchronous.
 //
@@ -2021,10 +2025,9 @@ type CreateServerInput struct {
 	//
 	// Attributes accepted in a Chef createServer request:
 	//
-	//    * CHEF_PIVOTAL_KEY: A base64-encoded RSA private key that is not stored
-	//    by AWS OpsWorks for Chef Automate. This private key is required to access
-	//    the Chef API. When no CHEF_PIVOTAL_KEY is set, one is generated and returned
-	//    in the response.
+	//    * CHEF_PIVOTAL_KEY: A base64-encoded RSA public key. The corresponding
+	//    private key is required to access the Chef API. When no CHEF_PIVOTAL_KEY
+	//    is set, a private key is generated and returned in the response.
 	//
 	//    * CHEF_DELIVERY_ADMIN_PASSWORD: The password for the administrative user
 	//    in the Chef Automate GUI. The password length is a minimum of eight characters,
@@ -2038,6 +2041,14 @@ type CreateServerInput struct {
 	//
 	//    * PUPPET_ADMIN_PASSWORD: To work with the Puppet Enterprise console, a
 	//    password must use ASCII characters.
+	//
+	//    * PUPPET_R10K_REMOTE: The r10k remote is the URL of your control repository
+	//    (for example, ssh://git@your.git-repo.com:user/control-repo.git). Specifying
+	//    an r10k remote opens TCP port 8170.
+	//
+	//    * PUPPET_R10K_PRIVATE_KEY: If you are using a private Git repository,
+	//    add PUPPET_R10K_PRIVATE_KEY to specify an SSH URL and a PEM-encoded private
+	//    SSH key.
 	EngineAttributes []*EngineAttribute `type:"list"`
 
 	// The engine model of the server. Valid values in this release include Monolithic
@@ -2133,7 +2144,7 @@ type CreateServerInput struct {
 	// enabled.
 	//
 	// For more information about supported Amazon EC2 platforms, see Supported
-	// Platforms (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html).
+	// Platforms (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html).
 	SubnetIds []*string `type:"list"`
 }
 
@@ -2975,27 +2986,35 @@ func (s *EngineAttribute) SetValue(v string) *EngineAttribute {
 type ExportServerEngineAttributeInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the export attribute. Currently supported export attribute is
-	// "Userdata" which exports a userdata script filled out with parameters provided
-	// in the InputAttributes list.
+	// The name of the export attribute. Currently, the supported export attribute
+	// is Userdata. This exports a user data script that includes parameters and
+	// values provided in the InputAttributes list.
 	//
 	// ExportAttributeName is a required field
 	ExportAttributeName *string `type:"string" required:"true"`
 
-	// The list of engine attributes. The list type is EngineAttribute. EngineAttribute
-	// is a pair of attribute name and value. For ExportAttributeName "Userdata",
-	// currently supported input attribute names are: - "RunList": For Chef, an
-	// ordered list of roles and/or recipes that are run in the exact order. For
-	// Puppet, this parameter is ignored. - "OrganizationName": For Chef, an organization
-	// name. AWS OpsWorks for Chef Server always creates the organization "default".
-	// For Puppet, this parameter is ignored. - "NodeEnvironment": For Chef, a node
-	// environment (eg. development, staging, onebox). For Puppet, this parameter
-	// is ignored. - "NodeClientVersion": For Chef, version of Chef Engine (3 numbers
-	// separated by dots, eg. "13.8.5"). If empty, it uses the latest one. For Puppet,
-	// this parameter is ignored.
+	// The list of engine attributes. The list type is EngineAttribute. An EngineAttribute
+	// list item is a pair that includes an attribute name and its value. For the
+	// Userdata ExportAttributeName, the following are supported engine attribute
+	// names.
+	//
+	//    * RunList In Chef, a list of roles or recipes that are run in the specified
+	//    order. In Puppet, this parameter is ignored.
+	//
+	//    * OrganizationName In Chef, an organization name. AWS OpsWorks for Chef
+	//    Automate always creates the organization default. In Puppet, this parameter
+	//    is ignored.
+	//
+	//    * NodeEnvironment In Chef, a node environment (for example, development,
+	//    staging, or one-box). In Puppet, this parameter is ignored.
+	//
+	//    * NodeClientVersion In Chef, the version of the Chef engine (three numbers
+	//    separated by dots, such as 13.8.5). If this attribute is empty, OpsWorks
+	//    for Chef Automate uses the most current version. In Puppet, this parameter
+	//    is ignored.
 	InputAttributes []*EngineAttribute `type:"list"`
 
-	// The name of the Server to which the attribute is being exported from
+	// The name of the server from which you are exporting the attribute.
 	//
 	// ServerName is a required field
 	ServerName *string `min:"1" type:"string" required:"true"`
@@ -3054,7 +3073,7 @@ type ExportServerEngineAttributeOutput struct {
 	// The requested engine attribute pair with attribute name and value.
 	EngineAttribute *EngineAttribute `type:"structure"`
 
-	// The requested ServerName.
+	// The server name used in the request.
 	ServerName *string `min:"1" type:"string"`
 }
 

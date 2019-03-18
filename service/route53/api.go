@@ -9,6 +9,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/restxml"
 )
 
 const opAssociateVPCWithHostedZone = "AssociateVPCWithHostedZone"
@@ -355,6 +357,7 @@ func (c *Route53) ChangeTagsForResourceRequest(input *ChangeTagsForResourceInput
 
 	output = &ChangeTagsForResourceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1537,6 +1540,7 @@ func (c *Route53) DeleteHealthCheckRequest(input *DeleteHealthCheckInput) (req *
 
 	output = &DeleteHealthCheckOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1754,6 +1758,7 @@ func (c *Route53) DeleteQueryLoggingConfigRequest(input *DeleteQueryLoggingConfi
 
 	output = &DeleteQueryLoggingConfigOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1844,6 +1849,7 @@ func (c *Route53) DeleteReusableDelegationSetRequest(input *DeleteReusableDelega
 
 	output = &DeleteReusableDelegationSetOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1940,6 +1946,7 @@ func (c *Route53) DeleteTrafficPolicyRequest(input *DeleteTrafficPolicyInput) (r
 
 	output = &DeleteTrafficPolicyOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2030,6 +2037,7 @@ func (c *Route53) DeleteTrafficPolicyInstanceRequest(input *DeleteTrafficPolicyI
 
 	output = &DeleteTrafficPolicyInstanceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2122,6 +2130,7 @@ func (c *Route53) DeleteVPCAssociationAuthorizationRequest(input *DeleteVPCAssoc
 
 	output = &DeleteVPCAssociationAuthorizationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -5989,8 +5998,11 @@ type AliasTarget struct {
 	//
 	// AWS Management Console: Go to the EC2 page, choose Load Balancers in the
 	// navigation pane, choose the load balancer, choose the Description tab, and
-	// get the value of the DNS name field. (If you're routing traffic to a Classic
-	// Load Balancer, get the value that begins with dualstack.)
+	// get the value of the DNS name field.
+	//
+	// If you're routing traffic to a Classic Load Balancer, get the value that
+	// begins with dualstack. If you're routing traffic to another type of load
+	// balancer, get the value that applies to the record type, A or AAAA.
 	//
 	// Elastic Load Balancing API: Use DescribeLoadBalancers to get the value of
 	// DNSName. For more information, see the applicable guide:
@@ -6008,7 +6020,7 @@ type AliasTarget struct {
 	//
 	// Amazon S3 bucket that is configured as a static websiteSpecify the domain
 	// name of the Amazon S3 website endpoint that you created the bucket in, for
-	// example, s3-website-us-east-2.amazonaws.com. For more information about valid
+	// example, s3-website.us-east-2.amazonaws.com. For more information about valid
 	// values, see the table Amazon Simple Storage Service (S3) Website Endpoints
 	// (http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region) in the
 	// Amazon Web Services General Reference. For more information about using S3
@@ -14935,6 +14947,9 @@ const (
 	// CloudWatchRegionApNortheast3 is a CloudWatchRegion enum value
 	CloudWatchRegionApNortheast3 = "ap-northeast-3"
 
+	// CloudWatchRegionEuNorth1 is a CloudWatchRegion enum value
+	CloudWatchRegionEuNorth1 = "eu-north-1"
+
 	// CloudWatchRegionSaEast1 is a CloudWatchRegion enum value
 	CloudWatchRegionSaEast1 = "sa-east-1"
 )
@@ -15124,6 +15139,9 @@ const (
 	// ResourceRecordSetRegionApNortheast3 is a ResourceRecordSetRegion enum value
 	ResourceRecordSetRegionApNortheast3 = "ap-northeast-3"
 
+	// ResourceRecordSetRegionEuNorth1 is a ResourceRecordSetRegion enum value
+	ResourceRecordSetRegionEuNorth1 = "eu-north-1"
+
 	// ResourceRecordSetRegionSaEast1 is a ResourceRecordSetRegion enum value
 	ResourceRecordSetRegionSaEast1 = "sa-east-1"
 
@@ -15209,6 +15227,9 @@ const (
 
 	// VPCRegionApNortheast3 is a VPCRegion enum value
 	VPCRegionApNortheast3 = "ap-northeast-3"
+
+	// VPCRegionEuNorth1 is a VPCRegion enum value
+	VPCRegionEuNorth1 = "eu-north-1"
 
 	// VPCRegionSaEast1 is a VPCRegion enum value
 	VPCRegionSaEast1 = "sa-east-1"

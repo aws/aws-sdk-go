@@ -30,10 +30,12 @@ matrix:
 
 script:
   - if [ $TRAVIS_GO_VERSION == "tip" ] ||
-    [ $TRAVIS_GO_VERSION == "1.11.x" ] || 
+    [ $TRAVIS_GO_VERSION == "1.11.x" ] ||
     [ $TRAVIS_GO_VERSION == "1.10.x" ]; then
+        make get-deps;
         make ci-test;
     else
+        make get-deps-tests;
         make unit-old-go-race-cover;
     fi
 

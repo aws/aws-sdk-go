@@ -7,7 +7,10 @@ const (
 	// ErrCodeAccessDeniedException for service response error code
 	// "AccessDeniedException".
 	//
-	// You don't have access to this.
+	// You don't have access to this. The provided credentials couldn't be validated.
+	// You might not be authorized to carry out the request. Ensure that your account
+	// is authorized to use the Amazon QuickSight service, that your policies have
+	// the correct permissions, and that you are using the correct access keys.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
 	// ErrCodeDomainNotWhitelistedException for service response error code
@@ -20,7 +23,7 @@ const (
 	// ErrCodeIdentityTypeNotSupportedException for service response error code
 	// "IdentityTypeNotSupportedException".
 	//
-	// The identity type specified is not supported. Supported identity types include:
+	// The identity type specified is not supported. Supported identity types include
 	// IAM and QUICKSIGHT.
 	ErrCodeIdentityTypeNotSupportedException = "IdentityTypeNotSupportedException"
 
@@ -63,7 +66,7 @@ const (
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// One or more resources couldn't be found.
+	// One or more resources can't be found.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
 	// ErrCodeResourceUnavailableException for service response error code
@@ -75,8 +78,8 @@ const (
 	// ErrCodeSessionLifetimeInMinutesInvalidException for service response error code
 	// "SessionLifetimeInMinutesInvalidException".
 	//
-	// The number of minutes specified for the lifetime of a session is invalid.
-	// The session lifetime must be between 15 and 600 minutes.
+	// The number of minutes specified for the lifetime of a session is not valid.
+	// The session lifetime must be from 15 to 600 minutes.
 	ErrCodeSessionLifetimeInMinutesInvalidException = "SessionLifetimeInMinutesInvalidException"
 
 	// ErrCodeThrottlingException for service response error code
@@ -88,17 +91,17 @@ const (
 	// ErrCodeUnsupportedUserEditionException for service response error code
 	// "UnsupportedUserEditionException".
 	//
-	// Indicates that you are calling an operation on an Amazon QuickSight subscription
-	// where the edition does not include support for that operation. Amazon QuickSight
-	// currently has Standard Edition and Enterprise Edition. Not every operation
-	// and capability is available in every edition.
+	// This error indicates that you are calling an operation on an Amazon QuickSight
+	// subscription where the edition doesn't include support for that operation.
+	// Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+	// Not every operation and capability is available in every edition.
 	ErrCodeUnsupportedUserEditionException = "UnsupportedUserEditionException"
 
 	// ErrCodeUserNotFoundException for service response error code
 	// "QuickSightUserNotFoundException".
 	//
-	// The user is not found. This could happen in any operation that requires finding
-	// a user based on the provided user name, such as DeleteUser, DescribeUser,
+	// The user is not found. This error can happen in any operation that requires
+	// finding a user based on a provided user name, such as DeleteUser, DescribeUser,
 	// and so on.
 	ErrCodeUserNotFoundException = "QuickSightUserNotFoundException"
 )

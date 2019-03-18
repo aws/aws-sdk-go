@@ -278,7 +278,7 @@
         "RedshiftInstanceDetails$Family": "<p>The instance family of the recommended reservation.</p>",
         "RedshiftInstanceDetails$NodeType": "<p>The type of node that AWS recommends.</p>",
         "RedshiftInstanceDetails$Region": "<p>The AWS Region of the recommended reservation.</p>",
-        "ReservationPurchaseRecommendationDetail$AccountId": null,
+        "ReservationPurchaseRecommendationDetail$AccountId": "<p>The account that this RI recommendation is for.</p>",
         "ReservationPurchaseRecommendationDetail$RecommendedNumberOfInstancesToPurchase": "<p>The number of instances that AWS recommends that you purchase.</p>",
         "ReservationPurchaseRecommendationDetail$RecommendedNormalizedUnitsToPurchase": "<p>The number of normalized units that AWS recommends that you purchase.</p>",
         "ReservationPurchaseRecommendationDetail$MinimumNumberOfInstancesUsedPerHour": "<p>The minimum number of instances that you used in an hour during the historical period. AWS uses this to calculate your recommended reservation purchases.</p>",
@@ -411,7 +411,7 @@
       "refs": {
         "GetCostAndUsageRequest$GroupBy": "<p>You can group AWS costs using up to two different groups, either dimensions, tag keys, or both.</p> <p>When you group by tag key, you get all tag values, including empty strings.</p> <p>Valid values are <code>AZ</code>, <code>INSTANCE_TYPE</code>, <code>LEGAL_ENTITY_NAME</code>, <code>LINKED_ACCOUNT</code>, <code>OPERATION</code>, <code>PLATFORM</code>, <code>PURCHASE_TYPE</code>, <code>SERVICE</code>, <code>TAGS</code>, <code>TENANCY</code>, and <code>USAGE_TYPE</code>.</p>",
         "GetCostAndUsageResponse$GroupDefinitions": "<p>The groups that are specified by the <code>Filter</code> or <code>GroupBy</code> parameters in the request.</p>",
-        "GetReservationCoverageRequest$GroupBy": "<p>You can group the data by the following attributes:</p> <ul> <li> <p>AZ</p> </li> <li> <p>CACHE_ENGINE</p> </li> <li> <p>DATABASE_ENGINE</p> </li> <li> <p>DEPLOYMENT_OPTION</p> </li> <li> <p>INSTANCE_TYPE</p> </li> <li> <p>LINKED_ACCOUNT</p> </li> <li> <p>OPERATING_SYSTEM</p> </li> <li> <p>PLATFORM</p> </li> <li> <p>REGION</p> </li> <li> <p>TAG</p> </li> <li> <p>TENANCY</p> </li> </ul>",
+        "GetReservationCoverageRequest$GroupBy": "<p>You can group the data by the following attributes:</p> <ul> <li> <p>AZ</p> </li> <li> <p>CACHE_ENGINE</p> </li> <li> <p>DATABASE_ENGINE</p> </li> <li> <p>DEPLOYMENT_OPTION</p> </li> <li> <p>INSTANCE_TYPE</p> </li> <li> <p>LINKED_ACCOUNT</p> </li> <li> <p>OPERATING_SYSTEM</p> </li> <li> <p>PLATFORM</p> </li> <li> <p>REGION</p> </li> <li> <p>TENANCY</p> </li> </ul>",
         "GetReservationUtilizationRequest$GroupBy": "<p>Groups only by <code>SUBSCRIPTION_ID</code>. Metadata is included.</p>"
       }
     },
@@ -479,7 +479,7 @@
       "base": null,
       "refs": {
         "GetCostAndUsageRequest$Metrics": "<p>Which metrics are returned in the query. For more information about blended and unblended rates, see <a href=\"https://aws.amazon.com/premiumsupport/knowledge-center/blended-rates-intro/\">Why does the \"blended\" annotation appear on some line items in my bill?</a>. </p> <p>Valid values are <code>AmortizedCost</code>, <code>BlendedCost</code>, <code>NetAmortizedCost</code>, <code>NetUnblendedCost</code>, <code>NormalizedUsageAmount</code>, <code>UnblendedCost</code>, and <code>UsageQuantity</code>. </p> <note> <p>If you return the <code>UsageQuantity</code> metric, the service aggregates all usage numbers without taking into account the units. For example, if you aggregate <code>usageQuantity</code> across all of Amazon EC2, the results aren't meaningful because Amazon EC2 compute hours and data transfer are measured in different units (for example, hours vs. GB). To get more meaningful <code>UsageQuantity</code> metrics, filter by <code>UsageType</code> or <code>UsageTypeGroups</code>. </p> </note> <p> <code>Metrics</code> is required for <code>GetCostAndUsage</code> requests.</p>",
-        "GetReservationCoverageRequest$Metrics": null
+        "GetReservationCoverageRequest$Metrics": "<p>The measurement that you want your reservation coverage reported in.</p> <p>Valid values are <code>Hour</code>, <code>Unit</code>, and <code>Cost</code>. You can use multiple values in a request.</p>"
       }
     },
     "MetricUnit": {

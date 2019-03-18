@@ -9,6 +9,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
 const opBatchDetectDominantLanguage = "BatchDetectDominantLanguage"
@@ -534,6 +536,7 @@ func (c *Comprehend) CreateDocumentClassifierRequest(input *CreateDocumentClassi
 // To create a classifier you provide a set of training documents that labeled
 // with the categories that you want to use. After the classifier is trained
 // you can use it to categorize a set of labeled documents into the categories.
+// For more information, see how-document-classification.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -727,6 +730,7 @@ func (c *Comprehend) DeleteDocumentClassifierRequest(input *DeleteDocumentClassi
 
 	output = &DeleteDocumentClassifierOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -832,6 +836,7 @@ func (c *Comprehend) DeleteEntityRecognizerRequest(input *DeleteEntityRecognizer
 
 	output = &DeleteEntityRecognizerOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3985,6 +3990,198 @@ func (c *Comprehend) StopSentimentDetectionJobWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opStopTrainingDocumentClassifier = "StopTrainingDocumentClassifier"
+
+// StopTrainingDocumentClassifierRequest generates a "aws/request.Request" representing the
+// client's request for the StopTrainingDocumentClassifier operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopTrainingDocumentClassifier for more information on using the StopTrainingDocumentClassifier
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StopTrainingDocumentClassifierRequest method.
+//    req, resp := client.StopTrainingDocumentClassifierRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/StopTrainingDocumentClassifier
+func (c *Comprehend) StopTrainingDocumentClassifierRequest(input *StopTrainingDocumentClassifierInput) (req *request.Request, output *StopTrainingDocumentClassifierOutput) {
+	op := &request.Operation{
+		Name:       opStopTrainingDocumentClassifier,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopTrainingDocumentClassifierInput{}
+	}
+
+	output = &StopTrainingDocumentClassifierOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopTrainingDocumentClassifier API operation for Amazon Comprehend.
+//
+// Stops a document classifier training job while in progress.
+//
+// If the training job state is TRAINING, the job is marked for termination
+// and put into the STOP_REQUESTED state. If the training job completes before
+// it can be stopped, it is put into the TRAINED; otherwise the training job
+// is stopped and put into the STOPPED state and the service sends back an HTTP
+// 200 response with an empty HTTP body.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation StopTrainingDocumentClassifier for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is invalid.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource ARN was not found. Check the ARN and try your request
+//   again.
+//
+//   * ErrCodeInternalServerException "InternalServerException"
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/StopTrainingDocumentClassifier
+func (c *Comprehend) StopTrainingDocumentClassifier(input *StopTrainingDocumentClassifierInput) (*StopTrainingDocumentClassifierOutput, error) {
+	req, out := c.StopTrainingDocumentClassifierRequest(input)
+	return out, req.Send()
+}
+
+// StopTrainingDocumentClassifierWithContext is the same as StopTrainingDocumentClassifier with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopTrainingDocumentClassifier for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) StopTrainingDocumentClassifierWithContext(ctx aws.Context, input *StopTrainingDocumentClassifierInput, opts ...request.Option) (*StopTrainingDocumentClassifierOutput, error) {
+	req, out := c.StopTrainingDocumentClassifierRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopTrainingEntityRecognizer = "StopTrainingEntityRecognizer"
+
+// StopTrainingEntityRecognizerRequest generates a "aws/request.Request" representing the
+// client's request for the StopTrainingEntityRecognizer operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopTrainingEntityRecognizer for more information on using the StopTrainingEntityRecognizer
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StopTrainingEntityRecognizerRequest method.
+//    req, resp := client.StopTrainingEntityRecognizerRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/StopTrainingEntityRecognizer
+func (c *Comprehend) StopTrainingEntityRecognizerRequest(input *StopTrainingEntityRecognizerInput) (req *request.Request, output *StopTrainingEntityRecognizerOutput) {
+	op := &request.Operation{
+		Name:       opStopTrainingEntityRecognizer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopTrainingEntityRecognizerInput{}
+	}
+
+	output = &StopTrainingEntityRecognizerOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopTrainingEntityRecognizer API operation for Amazon Comprehend.
+//
+// Stops an entity recognizer training job while in progress.
+//
+// If the training job state is TRAINING, the job is marked for termination
+// and put into the STOP_REQUESTED state. If the training job completes before
+// it can be stopped, it is put into the TRAINED; otherwise the training job
+// is stopped and putted into the STOPPED state and the service sends back an
+// HTTP 200 response with an empty HTTP body.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation StopTrainingEntityRecognizer for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is invalid.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource ARN was not found. Check the ARN and try your request
+//   again.
+//
+//   * ErrCodeInternalServerException "InternalServerException"
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/StopTrainingEntityRecognizer
+func (c *Comprehend) StopTrainingEntityRecognizer(input *StopTrainingEntityRecognizerInput) (*StopTrainingEntityRecognizerOutput, error) {
+	req, out := c.StopTrainingEntityRecognizerRequest(input)
+	return out, req.Send()
+}
+
+// StopTrainingEntityRecognizerWithContext is the same as StopTrainingEntityRecognizer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopTrainingEntityRecognizer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) StopTrainingEntityRecognizerWithContext(ctx aws.Context, input *StopTrainingEntityRecognizerInput, opts ...request.Option) (*StopTrainingEntityRecognizerOutput, error) {
+	req, out := c.StopTrainingEntityRecognizerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 type BatchDetectDominantLanguageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6384,7 +6581,7 @@ type DocumentClassifierProperties struct {
 	// Additional information about the status of the classifier.
 	Message *string `type:"string"`
 
-	// The status of the document classifier. The the status is TRAINED the classifier
+	// The status of the document classifier. If the status is TRAINED the classifier
 	// is ready to use. If the status is FAILED you can see additional information
 	// about why the classifier wasn't trained in the Message field.
 	Status *string `type:"string" enum:"ModelStatus"`
@@ -10147,6 +10344,112 @@ func (s *StopSentimentDetectionJobOutput) SetJobStatus(v string) *StopSentimentD
 	return s
 }
 
+type StopTrainingDocumentClassifierInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) that identifies the document classifier currently
+	// being trained.
+	//
+	// DocumentClassifierArn is a required field
+	DocumentClassifierArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StopTrainingDocumentClassifierInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopTrainingDocumentClassifierInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopTrainingDocumentClassifierInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopTrainingDocumentClassifierInput"}
+	if s.DocumentClassifierArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DocumentClassifierArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDocumentClassifierArn sets the DocumentClassifierArn field's value.
+func (s *StopTrainingDocumentClassifierInput) SetDocumentClassifierArn(v string) *StopTrainingDocumentClassifierInput {
+	s.DocumentClassifierArn = &v
+	return s
+}
+
+type StopTrainingDocumentClassifierOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s StopTrainingDocumentClassifierOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopTrainingDocumentClassifierOutput) GoString() string {
+	return s.String()
+}
+
+type StopTrainingEntityRecognizerInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) that identifies the entity recognizer currently
+	// being trained.
+	//
+	// EntityRecognizerArn is a required field
+	EntityRecognizerArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StopTrainingEntityRecognizerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopTrainingEntityRecognizerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopTrainingEntityRecognizerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopTrainingEntityRecognizerInput"}
+	if s.EntityRecognizerArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityRecognizerArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntityRecognizerArn sets the EntityRecognizerArn field's value.
+func (s *StopTrainingEntityRecognizerInput) SetEntityRecognizerArn(v string) *StopTrainingEntityRecognizerInput {
+	s.EntityRecognizerArn = &v
+	return s
+}
+
+type StopTrainingEntityRecognizerOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s StopTrainingEntityRecognizerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopTrainingEntityRecognizerOutput) GoString() string {
+	return s.String()
+}
+
 // Represents a work in the input text that was recognized and assigned a part
 // of speech. There is one syntax token record for each word in the source text.
 type SyntaxToken struct {
@@ -10467,6 +10770,12 @@ const (
 
 	// ModelStatusDeleting is a ModelStatus enum value
 	ModelStatusDeleting = "DELETING"
+
+	// ModelStatusStopRequested is a ModelStatus enum value
+	ModelStatusStopRequested = "STOP_REQUESTED"
+
+	// ModelStatusStopped is a ModelStatus enum value
+	ModelStatusStopped = "STOPPED"
 
 	// ModelStatusInError is a ModelStatus enum value
 	ModelStatusInError = "IN_ERROR"

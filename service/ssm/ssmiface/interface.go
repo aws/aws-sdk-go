@@ -363,6 +363,10 @@ type SSMAPI interface {
 	GetPatchBaselineForPatchGroupWithContext(aws.Context, *ssm.GetPatchBaselineForPatchGroupInput, ...request.Option) (*ssm.GetPatchBaselineForPatchGroupOutput, error)
 	GetPatchBaselineForPatchGroupRequest(*ssm.GetPatchBaselineForPatchGroupInput) (*request.Request, *ssm.GetPatchBaselineForPatchGroupOutput)
 
+	GetServiceSetting(*ssm.GetServiceSettingInput) (*ssm.GetServiceSettingOutput, error)
+	GetServiceSettingWithContext(aws.Context, *ssm.GetServiceSettingInput, ...request.Option) (*ssm.GetServiceSettingOutput, error)
+	GetServiceSettingRequest(*ssm.GetServiceSettingInput) (*request.Request, *ssm.GetServiceSettingOutput)
+
 	LabelParameterVersion(*ssm.LabelParameterVersionInput) (*ssm.LabelParameterVersionOutput, error)
 	LabelParameterVersionWithContext(aws.Context, *ssm.LabelParameterVersionInput, ...request.Option) (*ssm.LabelParameterVersionOutput, error)
 	LabelParameterVersionRequest(*ssm.LabelParameterVersionInput) (*request.Request, *ssm.LabelParameterVersionOutput)
@@ -463,6 +467,10 @@ type SSMAPI interface {
 	RemoveTagsFromResourceWithContext(aws.Context, *ssm.RemoveTagsFromResourceInput, ...request.Option) (*ssm.RemoveTagsFromResourceOutput, error)
 	RemoveTagsFromResourceRequest(*ssm.RemoveTagsFromResourceInput) (*request.Request, *ssm.RemoveTagsFromResourceOutput)
 
+	ResetServiceSetting(*ssm.ResetServiceSettingInput) (*ssm.ResetServiceSettingOutput, error)
+	ResetServiceSettingWithContext(aws.Context, *ssm.ResetServiceSettingInput, ...request.Option) (*ssm.ResetServiceSettingOutput, error)
+	ResetServiceSettingRequest(*ssm.ResetServiceSettingInput) (*request.Request, *ssm.ResetServiceSettingOutput)
+
 	ResumeSession(*ssm.ResumeSessionInput) (*ssm.ResumeSessionOutput, error)
 	ResumeSessionWithContext(aws.Context, *ssm.ResumeSessionInput, ...request.Option) (*ssm.ResumeSessionOutput, error)
 	ResumeSessionRequest(*ssm.ResumeSessionInput) (*request.Request, *ssm.ResumeSessionOutput)
@@ -530,6 +538,10 @@ type SSMAPI interface {
 	UpdatePatchBaseline(*ssm.UpdatePatchBaselineInput) (*ssm.UpdatePatchBaselineOutput, error)
 	UpdatePatchBaselineWithContext(aws.Context, *ssm.UpdatePatchBaselineInput, ...request.Option) (*ssm.UpdatePatchBaselineOutput, error)
 	UpdatePatchBaselineRequest(*ssm.UpdatePatchBaselineInput) (*request.Request, *ssm.UpdatePatchBaselineOutput)
+
+	UpdateServiceSetting(*ssm.UpdateServiceSettingInput) (*ssm.UpdateServiceSettingOutput, error)
+	UpdateServiceSettingWithContext(aws.Context, *ssm.UpdateServiceSettingInput, ...request.Option) (*ssm.UpdateServiceSettingOutput, error)
+	UpdateServiceSettingRequest(*ssm.UpdateServiceSettingInput) (*request.Request, *ssm.UpdateServiceSettingOutput)
 }
 
 var _ SSMAPI = (*ssm.SSM)(nil)

@@ -7,7 +7,7 @@ aws-sdk-go is the official AWS SDK for the Go programming language.
 Checkout our [release notes](https://github.com/aws/aws-sdk-go/releases) for
 information about the latest bug fixes, updates, and features added to the SDK.
 
-We [announced](https://aws.amazon.com/blogs/developer/aws-sdk-for-go-2-0-developer-preview/) the Developer Preview for the [v2 AWS SDK for Go](https://github.com/aws/aws-sdk-go-v2). The v2 SDK source is available at https://github.com/aws/aws-sdk-go-v2, and add it to your project with `go get github.com/aws/aws-sdk-go-v2`. Check out the v2 SDK's [changes and updates](https://github.com/aws/aws-sdk-go-v2/blob/master/CHANGELOG.md), and let us know what you think. We want your feedback. 
+We [announced](https://aws.amazon.com/blogs/developer/aws-sdk-for-go-2-0-developer-preview/) the Developer Preview for the [v2 AWS SDK for Go](https://github.com/aws/aws-sdk-go-v2). The v2 SDK source is available at https://github.com/aws/aws-sdk-go-v2, and add it to your project with `go get github.com/aws/aws-sdk-go-v2`. Check out the v2 SDK's [changes and updates](https://github.com/aws/aws-sdk-go-v2/blob/master/CHANGELOG.md), and let us know what you think. We want your feedback.
 
 ## Installing
 
@@ -469,7 +469,9 @@ response.
   	}
   	// Ensure the context is canceled to prevent leaking.
   	// See context package for more information, https://golang.org/pkg/context/
-  	defer cancelFn()
+	if cancelFn {
+  		defer cancelFn()
+	}
 
   	// Uploads the object to S3. The Context will interrupt the request if the
   	// timeout expires.

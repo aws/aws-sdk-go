@@ -104,7 +104,6 @@ type Shape struct {
 	Validations ShapeValidations
 
 	// Error information that is set if the shape is an error shape.
-	IsError   bool
 	ErrorInfo ErrorInfo `json:"error"`
 
 	// Flags that the shape cannot be rename. Prevents the shape from being
@@ -144,6 +143,13 @@ func (s *Shape) ErrorName() string {
 		if len(s.ErrorInfo.Code) > 0 {
 			name = s.ErrorInfo.Code
 		}
+	}
+
+	if len(name) == 0 {
+		name = s.OrigShapeName
+	}
+	if len(name) == 0 {
+		name = s.ShapeName
 	}
 
 	return name
@@ -295,7 +301,7 @@ func (s *Shape) GoStructType(name string, ref *ShapeRef) string {
 	}
 
 	if ref.JSONValue {
-		s.API.imports["github.com/aws/aws-sdk-go/aws"] = true
+		s.API.AddSDKImport("aws")
 		return "aws.JSONValue"
 	}
 
@@ -803,9 +809,12 @@ func (s *Shape) IsRequired(member string) bool {
 	ref, ok := s.MemberRefs[member]
 	if !ok {
 		panic(fmt.Sprintf(
-			"attemped to check required for unknown member, %s.%s",
+			"attempted to check required for unknown member, %s.%s",
 			s.ShapeName, member,
 		))
+	}
+	if ref.IdempotencyToken || ref.Shape.IdempotencyToken {
+		return false
 	}
 	if ref.Location == "uri" || ref.HostLabel {
 		return true

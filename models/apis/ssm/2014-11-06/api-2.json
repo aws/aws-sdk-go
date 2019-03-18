@@ -1027,6 +1027,19 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "GetServiceSetting":{
+      "name":"GetServiceSetting",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetServiceSettingRequest"},
+      "output":{"shape":"GetServiceSettingResult"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"ServiceSettingNotFound"}
+      ]
+    },
     "LabelParameterVersion":{
       "name":"LabelParameterVersion",
       "http":{
@@ -1372,6 +1385,20 @@
         {"shape":"TooManyUpdates"}
       ]
     },
+    "ResetServiceSetting":{
+      "name":"ResetServiceSetting",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ResetServiceSettingRequest"},
+      "output":{"shape":"ResetServiceSettingResult"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"ServiceSettingNotFound"},
+        {"shape":"TooManyUpdates"}
+      ]
+    },
     "ResumeSession":{
       "name":"ResumeSession",
       "http":{
@@ -1634,6 +1661,20 @@
         {"shape":"DoesNotExistException"},
         {"shape":"InternalServerError"}
       ]
+    },
+    "UpdateServiceSetting":{
+      "name":"UpdateServiceSetting",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateServiceSettingRequest"},
+      "output":{"shape":"UpdateServiceSettingResult"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"ServiceSettingNotFound"},
+        {"shape":"TooManyUpdates"}
+      ]
     }
   },
   "shapes":{
@@ -1664,7 +1705,8 @@
         "RegistrationsCount":{"shape":"RegistrationsCount"},
         "ExpirationDate":{"shape":"ExpirationDate"},
         "Expired":{"shape":"Boolean"},
-        "CreatedDate":{"shape":"CreatedDate"}
+        "CreatedDate":{"shape":"CreatedDate"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "ActivationCode":{
@@ -1734,7 +1776,7 @@
     "Association":{
       "type":"structure",
       "members":{
-        "Name":{"shape":"DocumentName"},
+        "Name":{"shape":"DocumentARN"},
         "InstanceId":{"shape":"InstanceId"},
         "AssociationId":{"shape":"AssociationId"},
         "AssociationVersion":{"shape":"AssociationVersion"},
@@ -1765,7 +1807,7 @@
     "AssociationDescription":{
       "type":"structure",
       "members":{
-        "Name":{"shape":"DocumentName"},
+        "Name":{"shape":"DocumentARN"},
         "InstanceId":{"shape":"InstanceId"},
         "AssociationVersion":{"shape":"AssociationVersion"},
         "Date":{"shape":"DateTime"},
@@ -1773,6 +1815,7 @@
         "Status":{"shape":"AssociationStatus"},
         "Overview":{"shape":"AssociationOverview"},
         "DocumentVersion":{"shape":"DocumentVersion"},
+        "AutomationTargetParameterName":{"shape":"AutomationTargetParameterName"},
         "Parameters":{"shape":"Parameters"},
         "AssociationId":{"shape":"AssociationId"},
         "Targets":{"shape":"Targets"},
@@ -2020,7 +2063,7 @@
         "AssociationId":{"shape":"AssociationId"},
         "AssociationVersion":{"shape":"AssociationVersion"},
         "CreatedDate":{"shape":"DateTime"},
-        "Name":{"shape":"DocumentName"},
+        "Name":{"shape":"DocumentARN"},
         "DocumentVersion":{"shape":"DocumentVersion"},
         "Parameters":{"shape":"Parameters"},
         "Targets":{"shape":"Targets"},
@@ -2303,6 +2346,11 @@
         "Message":{"shape":"String"}
       },
       "exception":true
+    },
+    "AutomationTargetParameterName":{
+      "type":"string",
+      "max":50,
+      "min":1
     },
     "AutomationType":{
       "type":"string",
@@ -2746,7 +2794,8 @@
           "shape":"RegistrationLimit",
           "box":true
         },
-        "ExpirationDate":{"shape":"ExpirationDate"}
+        "ExpirationDate":{"shape":"ExpirationDate"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateActivationResult":{
@@ -2772,9 +2821,10 @@
       "type":"structure",
       "required":["Name"],
       "members":{
-        "Name":{"shape":"DocumentName"},
+        "Name":{"shape":"DocumentARN"},
         "InstanceId":{"shape":"InstanceId"},
         "Parameters":{"shape":"Parameters"},
+        "AutomationTargetParameterName":{"shape":"AutomationTargetParameterName"},
         "DocumentVersion":{"shape":"DocumentVersion"},
         "Targets":{"shape":"Targets"},
         "ScheduleExpression":{"shape":"ScheduleExpression"},
@@ -2796,7 +2846,7 @@
       "type":"structure",
       "required":["Name"],
       "members":{
-        "Name":{"shape":"DocumentName"},
+        "Name":{"shape":"DocumentARN"},
         "DocumentVersion":{"shape":"DocumentVersion"},
         "InstanceId":{"shape":"InstanceId"},
         "Parameters":{"shape":"Parameters"},
@@ -2804,6 +2854,7 @@
         "ScheduleExpression":{"shape":"ScheduleExpression"},
         "OutputLocation":{"shape":"InstanceAssociationOutputLocation"},
         "AssociationName":{"shape":"AssociationName"},
+        "AutomationTargetParameterName":{"shape":"AutomationTargetParameterName"},
         "MaxErrors":{"shape":"MaxErrors"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"}
@@ -2828,7 +2879,8 @@
         "VersionName":{"shape":"DocumentVersionName"},
         "DocumentType":{"shape":"DocumentType"},
         "DocumentFormat":{"shape":"DocumentFormat"},
-        "TargetType":{"shape":"TargetType"}
+        "TargetType":{"shape":"TargetType"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateDocumentResult":{
@@ -2859,7 +2911,8 @@
         "ClientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
-        }
+        },
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateMaintenanceWindowResult":{
@@ -2889,7 +2942,8 @@
         "ClientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
-        }
+        },
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreatePatchBaselineResult":{
@@ -2945,7 +2999,7 @@
     "DeleteAssociationRequest":{
       "type":"structure",
       "members":{
-        "Name":{"shape":"DocumentName"},
+        "Name":{"shape":"DocumentARN"},
         "InstanceId":{"shape":"InstanceId"},
         "AssociationId":{"shape":"AssociationId"}
       }
@@ -3207,7 +3261,7 @@
     "DescribeAssociationRequest":{
       "type":"structure",
       "members":{
-        "Name":{"shape":"DocumentName"},
+        "Name":{"shape":"DocumentARN"},
         "InstanceId":{"shape":"InstanceId"},
         "AssociationId":{"shape":"AssociationId"},
         "AssociationVersion":{"shape":"AssociationVersion"}
@@ -4508,6 +4562,19 @@
         "Sources":{"shape":"PatchSourceList"}
       }
     },
+    "GetServiceSettingRequest":{
+      "type":"structure",
+      "required":["SettingId"],
+      "members":{
+        "SettingId":{"shape":"ServiceSettingId"}
+      }
+    },
+    "GetServiceSettingResult":{
+      "type":"structure",
+      "members":{
+        "ServiceSetting":{"shape":"ServiceSetting"}
+      }
+    },
     "HierarchyLevelLimitExceededException":{
       "type":"structure",
       "members":{
@@ -4596,7 +4663,7 @@
       "type":"structure",
       "members":{
         "AssociationId":{"shape":"AssociationId"},
-        "Name":{"shape":"DocumentName"},
+        "Name":{"shape":"DocumentARN"},
         "DocumentVersion":{"shape":"DocumentVersion"},
         "AssociationVersion":{"shape":"AssociationVersion"},
         "InstanceId":{"shape":"InstanceId"},
@@ -6855,7 +6922,8 @@
           "shape":"Boolean",
           "box":true
         },
-        "AllowedPattern":{"shape":"AllowedPattern"}
+        "AllowedPattern":{"shape":"AllowedPattern"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "PutParameterResult":{
@@ -6994,6 +7062,19 @@
     "RemoveTagsFromResourceResult":{
       "type":"structure",
       "members":{
+      }
+    },
+    "ResetServiceSettingRequest":{
+      "type":"structure",
+      "required":["SettingId"],
+      "members":{
+        "SettingId":{"shape":"ServiceSettingId"}
+      }
+    },
+    "ResetServiceSettingResult":{
+      "type":"structure",
+      "members":{
+        "ServiceSetting":{"shape":"ServiceSetting"}
       }
     },
     "ResolvedTargets":{
@@ -7269,6 +7350,34 @@
       }
     },
     "ServiceRole":{"type":"string"},
+    "ServiceSetting":{
+      "type":"structure",
+      "members":{
+        "SettingId":{"shape":"ServiceSettingId"},
+        "SettingValue":{"shape":"ServiceSettingValue"},
+        "LastModifiedDate":{"shape":"DateTime"},
+        "LastModifiedUser":{"shape":"String"},
+        "ARN":{"shape":"String"},
+        "Status":{"shape":"String"}
+      }
+    },
+    "ServiceSettingId":{
+      "type":"string",
+      "max":1000,
+      "min":1
+    },
+    "ServiceSettingNotFound":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "ServiceSettingValue":{
+      "type":"string",
+      "max":4096,
+      "min":1
+    },
     "Session":{
       "type":"structure",
       "members":{
@@ -7656,11 +7765,12 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"^(?!^(?i)aws:)(?=^[\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*$).*$"
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
     "TagList":{
       "type":"list",
-      "member":{"shape":"Tag"}
+      "member":{"shape":"Tag"},
+      "max":1000
     },
     "TagValue":{
       "type":"string",
@@ -7861,10 +7971,11 @@
         "DocumentVersion":{"shape":"DocumentVersion"},
         "ScheduleExpression":{"shape":"ScheduleExpression"},
         "OutputLocation":{"shape":"InstanceAssociationOutputLocation"},
-        "Name":{"shape":"DocumentName"},
+        "Name":{"shape":"DocumentARN"},
         "Targets":{"shape":"Targets"},
         "AssociationName":{"shape":"AssociationName"},
         "AssociationVersion":{"shape":"AssociationVersion"},
+        "AutomationTargetParameterName":{"shape":"AutomationTargetParameterName"},
         "MaxErrors":{"shape":"MaxErrors"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"}
@@ -7884,7 +7995,7 @@
         "AssociationStatus"
       ],
       "members":{
-        "Name":{"shape":"DocumentName"},
+        "Name":{"shape":"DocumentARN"},
         "InstanceId":{"shape":"InstanceId"},
         "AssociationStatus":{"shape":"AssociationStatus"}
       }
@@ -8120,6 +8231,22 @@
         "ModifiedDate":{"shape":"DateTime"},
         "Description":{"shape":"BaselineDescription"},
         "Sources":{"shape":"PatchSourceList"}
+      }
+    },
+    "UpdateServiceSettingRequest":{
+      "type":"structure",
+      "required":[
+        "SettingId",
+        "SettingValue"
+      ],
+      "members":{
+        "SettingId":{"shape":"ServiceSettingId"},
+        "SettingValue":{"shape":"ServiceSettingValue"}
+      }
+    },
+    "UpdateServiceSettingResult":{
+      "type":"structure",
+      "members":{
       }
     },
     "Url":{"type":"string"},

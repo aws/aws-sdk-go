@@ -141,8 +141,7 @@ func (c *InputService1ProtocolTest) InputService1TestCaseOperation1Request(input
 
 	output = &InputService1TestShapeInputService1TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -280,8 +279,7 @@ func (c *InputService2ProtocolTest) InputService2TestCaseOperation1Request(input
 
 	output = &InputService2TestShapeInputService2TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -444,8 +442,7 @@ func (c *InputService3ProtocolTest) InputService3TestCaseOperation1Request(input
 
 	output = &InputService3TestShapeInputService3TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -608,8 +605,7 @@ func (c *InputService4ProtocolTest) InputService4TestCaseOperation1Request(input
 
 	output = &InputService4TestShapeInputService4TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -755,8 +751,7 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation1Request(input
 
 	output = &InputService5TestShapeInputService5TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -927,8 +922,7 @@ func (c *InputService6ProtocolTest) InputService6TestCaseOperation1Request(input
 
 	output = &InputService6TestShapeInputService6TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1099,8 +1093,7 @@ func (c *InputService7ProtocolTest) InputService7TestCaseOperation1Request(input
 
 	output = &InputService7TestShapeInputService7TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1170,8 +1163,7 @@ func (c *InputService7ProtocolTest) InputService7TestCaseOperation2Request(input
 
 	output = &InputService7TestShapeInputService7TestCaseOperation2Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1333,8 +1325,7 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation1Request(input
 
 	output = &InputService8TestShapeInputService8TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1513,8 +1504,7 @@ func (c *InputService9ProtocolTest) InputService9TestCaseOperation1Request(input
 
 	output = &InputService9TestShapeInputService9TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1721,8 +1711,7 @@ func (c *InputService10ProtocolTest) InputService10TestCaseOperation1Request(inp
 
 	output = &InputService10TestShapeInputService10TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1937,8 +1926,7 @@ func (c *InputService11ProtocolTest) InputService11TestCaseOperation1Request(inp
 
 	output = &InputService11TestShapeInputService11TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2117,8 +2105,7 @@ func (c *InputService12ProtocolTest) InputService12TestCaseOperation1Request(inp
 
 	output = &InputService12TestShapeInputService12TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2290,8 +2277,7 @@ func (c *InputService13ProtocolTest) InputService13TestCaseOperation1Request(inp
 
 	output = &InputService13TestShapeInputService13TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2361,8 +2347,7 @@ func (c *InputService13ProtocolTest) InputService13TestCaseOperation2Request(inp
 
 	output = &InputService13TestShapeInputService13TestCaseOperation2Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2524,8 +2509,7 @@ func (c *InputService14ProtocolTest) InputService14TestCaseOperation1Request(inp
 
 	output = &InputService14TestShapeInputService14TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2595,8 +2579,7 @@ func (c *InputService14ProtocolTest) InputService14TestCaseOperation2Request(inp
 
 	output = &InputService14TestShapeInputService14TestCaseOperation2Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2770,8 +2753,7 @@ func (c *InputService15ProtocolTest) InputService15TestCaseOperation1Request(inp
 
 	output = &InputService15TestShapeInputService15TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2841,8 +2823,7 @@ func (c *InputService15ProtocolTest) InputService15TestCaseOperation2Request(inp
 
 	output = &InputService15TestShapeInputService15TestCaseOperation2Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3004,8 +2985,7 @@ func (c *InputService16ProtocolTest) InputService16TestCaseOperation1Request(inp
 
 	output = &InputService16TestShapeInputService16TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3075,8 +3055,7 @@ func (c *InputService16ProtocolTest) InputService16TestCaseOperation2Request(inp
 
 	output = &InputService16TestShapeInputService16TestCaseOperation2Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3146,8 +3125,7 @@ func (c *InputService16ProtocolTest) InputService16TestCaseOperation3Request(inp
 
 	output = &InputService16TestShapeInputService16TestCaseOperation3Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3217,8 +3195,7 @@ func (c *InputService16ProtocolTest) InputService16TestCaseOperation4Request(inp
 
 	output = &InputService16TestShapeInputService16TestCaseOperation4Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3288,8 +3265,7 @@ func (c *InputService16ProtocolTest) InputService16TestCaseOperation5Request(inp
 
 	output = &InputService16TestShapeInputService16TestCaseOperation5Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3359,8 +3335,7 @@ func (c *InputService16ProtocolTest) InputService16TestCaseOperation6Request(inp
 
 	output = &InputService16TestShapeInputService16TestCaseOperation6Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3622,8 +3597,7 @@ func (c *InputService17ProtocolTest) InputService17TestCaseOperation1Request(inp
 
 	output = &InputService17TestShapeInputService17TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3833,8 +3807,7 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation1Request(inp
 
 	output = &InputService18TestShapeInputService18TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3980,8 +3953,7 @@ func (c *InputService19ProtocolTest) InputService19TestCaseOperation1Request(inp
 
 	output = &InputService19TestShapeInputService19TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4127,8 +4099,7 @@ func (c *InputService20ProtocolTest) InputService20TestCaseOperation1Request(inp
 
 	output = &InputService20TestShapeInputService20TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4198,8 +4169,7 @@ func (c *InputService20ProtocolTest) InputService20TestCaseOperation2Request(inp
 
 	output = &InputService20TestShapeInputService20TestCaseOperation2Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4361,8 +4331,7 @@ func (c *InputService21ProtocolTest) InputService21TestCaseOperation1Request(inp
 
 	output = &InputService21TestShapeInputService21TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4432,8 +4401,7 @@ func (c *InputService21ProtocolTest) InputService21TestCaseOperation2Request(inp
 
 	output = &InputService21TestShapeInputService21TestCaseOperation2Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4503,8 +4471,7 @@ func (c *InputService21ProtocolTest) InputService21TestCaseOperation3Request(inp
 
 	output = &InputService21TestShapeInputService21TestCaseOperation3Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4750,8 +4717,7 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation1Request(inp
 
 	output = &InputService22TestShapeInputService22TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4821,8 +4787,7 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation2Request(inp
 
 	output = &InputService22TestShapeInputService22TestCaseOperation2Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -5062,8 +5027,7 @@ func (c *InputService23ProtocolTest) InputService23TestCaseOperation1Request(inp
 
 	output = &InputService23TestShapeInputService23TestCaseOperation1Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("data-", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -5125,7 +5089,7 @@ const opInputService23TestCaseOperation2 = "MemberRefOp"
 func (c *InputService23ProtocolTest) InputService23TestCaseOperation2Request(input *InputService23TestShapeInputService23TestCaseOperation2Input) (req *request.Request, output *InputService23TestShapeInputService23TestCaseOperation2Output) {
 	op := &request.Operation{
 		Name:       opInputService23TestCaseOperation2,
-		HTTPMethod: "GET",
+		HTTPMethod: "POST",
 		HTTPPath:   "/path",
 	}
 
@@ -5135,8 +5099,7 @@ func (c *InputService23ProtocolTest) InputService23TestCaseOperation2Request(inp
 
 	output = &InputService23TestShapeInputService23TestCaseOperation2Output{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("foo-{Name}.", input.hostLabels))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -5223,6 +5186,160 @@ func (s *InputService23TestShapeInputService23TestCaseOperation2Input) hostLabel
 }
 
 type InputService23TestShapeInputService23TestCaseOperation2Output struct {
+	_ struct{} `type:"structure"`
+}
+
+// InputService24ProtocolTest provides the API operation methods for making requests to
+// . See this package's package overview docs
+// for details on the service.
+//
+// InputService24ProtocolTest methods are safe to use concurrently. It is not safe to
+// modify mutate any of the struct's properties though.
+type InputService24ProtocolTest struct {
+	*client.Client
+}
+
+// New creates a new instance of the InputService24ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService24ProtocolTest client from just a session.
+//     svc := inputservice24protocoltest.New(mySession)
+//
+//     // Create a InputService24ProtocolTest client with additional configuration
+//     svc := inputservice24protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService24ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService24ProtocolTest {
+	c := p.ClientConfig("inputservice24protocoltest", cfgs...)
+	return newInputService24ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService24ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *InputService24ProtocolTest {
+	svc := &InputService24ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "InputService24ProtocolTest",
+				ServiceID:     "InputService24ProtocolTest",
+				SigningName:   signingName,
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
+	}
+
+	// Handlers
+	svc.Handlers.Sign.PushBackNamed(v4.SignRequestHandler)
+	svc.Handlers.Build.PushBackNamed(restjson.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(restjson.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(restjson.UnmarshalMetaHandler)
+	svc.Handlers.UnmarshalError.PushBackNamed(restjson.UnmarshalErrorHandler)
+
+	return svc
+}
+
+// newRequest creates a new request for a InputService24ProtocolTest operation and runs any
+// custom request initialization.
+func (c *InputService24ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(op, params, data)
+
+	return req
+}
+
+const opInputService24TestCaseOperation1 = "OperationName"
+
+// InputService24TestCaseOperation1Request generates a "aws/request.Request" representing the
+// client's request for the InputService24TestCaseOperation1 operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See InputService24TestCaseOperation1 for more information on using the InputService24TestCaseOperation1
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the InputService24TestCaseOperation1Request method.
+//    req, resp := client.InputService24TestCaseOperation1Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *InputService24ProtocolTest) InputService24TestCaseOperation1Request(input *InputService24TestShapeInputService24TestCaseOperation1Input) (req *request.Request, output *InputService24TestShapeInputService24TestCaseOperation1Output) {
+	op := &request.Operation{
+		Name:       opInputService24TestCaseOperation1,
+		HTTPMethod: "GET",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &InputService24TestShapeInputService24TestCaseOperation1Input{}
+	}
+
+	output = &InputService24TestShapeInputService24TestCaseOperation1Output{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// InputService24TestCaseOperation1 API operation for .
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for 's
+// API operation InputService24TestCaseOperation1 for usage and error information.
+func (c *InputService24ProtocolTest) InputService24TestCaseOperation1(input *InputService24TestShapeInputService24TestCaseOperation1Input) (*InputService24TestShapeInputService24TestCaseOperation1Output, error) {
+	req, out := c.InputService24TestCaseOperation1Request(input)
+	return out, req.Send()
+}
+
+// InputService24TestCaseOperation1WithContext is the same as InputService24TestCaseOperation1 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See InputService24TestCaseOperation1 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *InputService24ProtocolTest) InputService24TestCaseOperation1WithContext(ctx aws.Context, input *InputService24TestShapeInputService24TestCaseOperation1Input, opts ...request.Option) (*InputService24TestShapeInputService24TestCaseOperation1Output, error) {
+	req, out := c.InputService24TestCaseOperation1Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+type InputService24TestShapeInputService24TestCaseOperation1Input struct {
+	_ struct{} `type:"structure"`
+
+	Header1 *string `location:"header" type:"string"`
+
+	HeaderMap map[string]*string `location:"headers" locationName:"header-map-" type:"map"`
+}
+
+// SetHeader1 sets the Header1 field's value.
+func (s *InputService24TestShapeInputService24TestCaseOperation1Input) SetHeader1(v string) *InputService24TestShapeInputService24TestCaseOperation1Input {
+	s.Header1 = &v
+	return s
+}
+
+// SetHeaderMap sets the HeaderMap field's value.
+func (s *InputService24TestShapeInputService24TestCaseOperation1Input) SetHeaderMap(v map[string]*string) *InputService24TestShapeInputService24TestCaseOperation1Input {
+	s.HeaderMap = v
+	return s
+}
+
+type InputService24TestShapeInputService24TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 }
 
@@ -5502,7 +5619,7 @@ func TestInputService10ProtocolTestURIParameterQuerystringParamsHeadersAndJSONBo
 
 	// assert headers
 	if e, a := "12345", r.Header.Get("x-amz-checksum"); e != a {
-		t.Errorf("expect %v to be %v", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 
 }
@@ -5537,7 +5654,7 @@ func TestInputService11ProtocolTestStreamingPayloadCase1(t *testing.T) {
 
 	// assert headers
 	if e, a := "foo", r.Header.Get("x-amz-sha256-tree-hash"); e != a {
-		t.Errorf("expect %v to be %v", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 
 }
@@ -5954,13 +6071,13 @@ func TestInputService17ProtocolTestTimestampValuesCase1(t *testing.T) {
 
 	// assert headers
 	if e, a := "Sun, 25 Jan 2015 08:00:00 GMT", r.Header.Get("x-amz-timearg"); e != a {
-		t.Errorf("expect %v to be %v", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 	if e, a := "1422172800", r.Header.Get("x-amz-timecustom-header"); e != a {
-		t.Errorf("expect %v to be %v", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 	if e, a := "1422172800", r.Header.Get("x-amz-timeformat-header"); e != a {
-		t.Errorf("expect %v to be %v", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 
 }
@@ -6113,7 +6230,7 @@ func TestInputService21ProtocolTestJSONValueTraitCase1(t *testing.T) {
 
 	// assert headers
 	if e, a := "eyJGb28iOiJCYXIifQ==", r.Header.Get("X-Amz-Foo"); e != a {
-		t.Errorf("expect %v to be %v", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 
 }
@@ -6188,8 +6305,8 @@ func TestInputService22ProtocolTestEnumCase1(t *testing.T) {
 		QueryFooEnum: aws.String("bar"),
 		QueryListEnums: []*string{
 			aws.String("0"),
-			aws.String(""),
 			aws.String("1"),
+			aws.String(""),
 		},
 	}
 	req, _ := svc.InputService22TestCaseOperation1Request(input)
@@ -6213,7 +6330,7 @@ func TestInputService22ProtocolTestEnumCase1(t *testing.T) {
 
 	// assert headers
 	if e, a := "baz", r.Header.Get("x-amz-enum"); e != a {
-		t.Errorf("expect %v to be %v", e, a)
+		t.Errorf("expect %v, got %v", e, a)
 	}
 
 }
@@ -6290,5 +6407,51 @@ func TestInputService23ProtocolTestEndpointHostTraitCase2(t *testing.T) {
 	awstesting.AssertURL(t, "https://foo-myname.service.region.amazonaws.com/path", r.URL.String())
 
 	// assert headers
+
+}
+
+func TestInputService24ProtocolTestHeaderWhitespaceCase1(t *testing.T) {
+	svc := NewInputService24ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
+	input := &InputService24TestShapeInputService24TestCaseOperation1Input{
+		Header1: aws.String("   headerValue"),
+		HeaderMap: map[string]*string{
+			"   key-leading-space": aws.String("value"),
+			"   key-with-space   ": aws.String("value"),
+			"leading-space":        aws.String("   value"),
+			"leading-tab":          aws.String("    value"),
+			"with-space":           aws.String("   value   "),
+		},
+	}
+	req, _ := svc.InputService24TestCaseOperation1Request(input)
+	r := req.HTTPRequest
+
+	// build request
+	req.Build()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
+
+	// assert URL
+	awstesting.AssertURL(t, "https://test/", r.URL.String())
+
+	// assert headers
+	if e, a := "value", r.Header.Get("header-map-key-leading-space"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "value", r.Header.Get("header-map-key-with-space"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "value", r.Header.Get("header-map-leading-space"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "value", r.Header.Get("header-map-leading-tab"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "value", r.Header.Get("header-map-with-space"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "headerValue", r.Header.Get("header1"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }

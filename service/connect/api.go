@@ -148,8 +148,7 @@ func (c *Connect) DeleteUserRequest(input *DeleteUserInput) (req *request.Reques
 
 	output = &DeleteUserOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -473,6 +472,91 @@ func (c *Connect) DescribeUserHierarchyStructure(input *DescribeUserHierarchyStr
 // for more information on using Contexts.
 func (c *Connect) DescribeUserHierarchyStructureWithContext(ctx aws.Context, input *DescribeUserHierarchyStructureInput, opts ...request.Option) (*DescribeUserHierarchyStructureOutput, error) {
 	req, out := c.DescribeUserHierarchyStructureRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetContactAttributes = "GetContactAttributes"
+
+// GetContactAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the GetContactAttributes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetContactAttributes for more information on using the GetContactAttributes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetContactAttributesRequest method.
+//    req, resp := client.GetContactAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetContactAttributes
+func (c *Connect) GetContactAttributesRequest(input *GetContactAttributesInput) (req *request.Request, output *GetContactAttributesOutput) {
+	op := &request.Operation{
+		Name:       opGetContactAttributes,
+		HTTPMethod: "GET",
+		HTTPPath:   "/contact/attributes/{InstanceId}/{InitialContactId}",
+	}
+
+	if input == nil {
+		input = &GetContactAttributesInput{}
+	}
+
+	output = &GetContactAttributesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetContactAttributes API operation for Amazon Connect Service.
+//
+// Retrieves the contact attributes associated with a contact.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation GetContactAttributes for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is not valid.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource was not found.
+//
+//   * ErrCodeInternalServiceException "InternalServiceException"
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetContactAttributes
+func (c *Connect) GetContactAttributes(input *GetContactAttributesInput) (*GetContactAttributesOutput, error) {
+	req, out := c.GetContactAttributesRequest(input)
+	return out, req.Send()
+}
+
+// GetContactAttributesWithContext is the same as GetContactAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetContactAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) GetContactAttributesWithContext(ctx aws.Context, input *GetContactAttributesInput, opts ...request.Option) (*GetContactAttributesOutput, error) {
+	req, out := c.GetContactAttributesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1292,6 +1376,9 @@ func (c *Connect) StartOutboundVoiceContactRequest(input *StartOutboundVoiceCont
 // If you are using an IAM account, it must have permission to the connect:StartOutboundVoiceContact
 // action.
 //
+// There is a 60 second dialing timeout for this operation. If the call is not
+// connected after 60 seconds, the call fails.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1382,6 +1469,7 @@ func (c *Connect) StopContactRequest(input *StopContactInput) (req *request.Requ
 
 	output = &StopContactOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1476,6 +1564,7 @@ func (c *Connect) UpdateContactAttributesRequest(input *UpdateContactAttributesI
 
 	output = &UpdateContactAttributesOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1586,8 +1675,7 @@ func (c *Connect) UpdateUserHierarchyRequest(input *UpdateUserHierarchyInput) (r
 
 	output = &UpdateUserHierarchyOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1679,8 +1767,7 @@ func (c *Connect) UpdateUserIdentityInfoRequest(input *UpdateUserIdentityInfoInp
 
 	output = &UpdateUserIdentityInfoOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1773,8 +1860,7 @@ func (c *Connect) UpdateUserPhoneConfigRequest(input *UpdateUserPhoneConfigInput
 
 	output = &UpdateUserPhoneConfigOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1867,8 +1953,7 @@ func (c *Connect) UpdateUserRoutingProfileRequest(input *UpdateUserRoutingProfil
 
 	output = &UpdateUserRoutingProfileOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1960,8 +2045,7 @@ func (c *Connect) UpdateUserSecurityProfilesRequest(input *UpdateUserSecurityPro
 
 	output = &UpdateUserSecurityProfilesOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2067,7 +2151,9 @@ type CreateUserInput struct {
 	// SecurityProfileIds is a required field
 	SecurityProfileIds []*string `min:"1" type:"list" required:"true"`
 
-	// The user name in Amazon Connect for the account to create.
+	// The user name in Amazon Connect for the account to create. If you are using
+	// SAML for identity management in your Amazon Connect, the value for Username
+	// can include up to 64 characters from [a-zA-Z0-9_-.\@]+.
 	//
 	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
@@ -2759,11 +2845,94 @@ func (s *Filters) SetQueues(v []*string) *Filters {
 	return s
 }
 
+type GetContactAttributesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID for the initial contact in Amazon Connect associated with the attributes
+	// to update.
+	//
+	// InitialContactId is a required field
+	InitialContactId *string `location:"uri" locationName:"InitialContactId" min:"1" type:"string" required:"true"`
+
+	// The instance ID for the instance from which to retrieve contact attributes.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetContactAttributesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContactAttributesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetContactAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetContactAttributesInput"}
+	if s.InitialContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InitialContactId"))
+	}
+	if s.InitialContactId != nil && len(*s.InitialContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InitialContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInitialContactId sets the InitialContactId field's value.
+func (s *GetContactAttributesInput) SetInitialContactId(v string) *GetContactAttributesInput {
+	s.InitialContactId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *GetContactAttributesInput) SetInstanceId(v string) *GetContactAttributesInput {
+	s.InstanceId = &v
+	return s
+}
+
+type GetContactAttributesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The attributes to update.
+	Attributes map[string]*string `type:"map"`
+}
+
+// String returns the string representation
+func (s GetContactAttributesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContactAttributesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *GetContactAttributesOutput) SetAttributes(v map[string]*string) *GetContactAttributesOutput {
+	s.Attributes = v
+	return s
+}
+
 type GetCurrentMetricDataInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of CurrentMetric objects for the metrics to retrieve. Each CurrentMetric
-	// includes a name of a metric to retrieve and the unit to use for it.
+	// includes a name of a metric to retrieve and the unit to use for it. You must
+	// list each metric to retrieve data for in the request.
 	//
 	// The following metrics are available:
 	//
@@ -3082,8 +3251,8 @@ type GetMetricDataInput struct {
 	// A HistoricalMetric object contains: HistoricalMetricName, Statistic, Threshold,
 	// and Unit.
 	//
-	// For each historical metric you include in the request, you must include a
-	// Unit and a Statistic.
+	// You must list each metric to retrieve data for in the request. For each historical
+	// metric you include in the request, you must include a Unit and a Statistic.
 	//
 	// The following historical metrics are available:
 	//
@@ -3652,13 +3821,13 @@ type HistoricalMetric struct {
 	// The name of the historical metric.
 	Name *string `type:"string" enum:"HistoricalMetricName"`
 
-	// The statistic for the metric: SUM, MAX, or SUM.
+	// The statistic for the metric.
 	Statistic *string `type:"string" enum:"Statistic"`
 
 	// The threshold for the metric, used with service level metrics.
 	Threshold *Threshold `type:"structure"`
 
-	// The unit for the metric: COUNT, PERCENT, or SECONDS.
+	// The unit for the metric.
 	Unit *string `type:"string" enum:"Unit"`
 }
 
@@ -4295,8 +4464,8 @@ type StartOutboundVoiceContactInput struct {
 	// standard Amazon Connect attributes, and can be accessed in contact flows
 	// just like any other contact attributes.
 	//
-	// There can be up to 32,768 UTF-8 bytes across all key-value pairs. Attribute
-	// keys can include only alphanumeric, dash, and underscore characters.
+	// There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact.
+	// Attribute keys can include only alphanumeric, dash, and underscore characters.
 	//
 	// For example, if you want play a greeting when the customer answers the call,
 	// you can pass the customer name in attributes similar to the following:
@@ -4559,7 +4728,12 @@ func (s *Threshold) SetThresholdValue(v float64) *Threshold {
 type UpdateContactAttributesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The key-value pairs for the attribute to update.
+	// Specify a custom key-value pair using an attribute map. The attributes are
+	// standard Amazon Connect attributes, and can be accessed in contact flows
+	// just like any other contact attributes.
+	//
+	// There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact.
+	// Attribute keys can include only alphanumeric, dash, and underscore characters.
 	//
 	// Attributes is a required field
 	Attributes map[string]*string `type:"map" required:"true"`

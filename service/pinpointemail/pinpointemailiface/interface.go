@@ -72,6 +72,10 @@ type PinpointEmailAPI interface {
 	CreateDedicatedIpPoolWithContext(aws.Context, *pinpointemail.CreateDedicatedIpPoolInput, ...request.Option) (*pinpointemail.CreateDedicatedIpPoolOutput, error)
 	CreateDedicatedIpPoolRequest(*pinpointemail.CreateDedicatedIpPoolInput) (*request.Request, *pinpointemail.CreateDedicatedIpPoolOutput)
 
+	CreateDeliverabilityTestReport(*pinpointemail.CreateDeliverabilityTestReportInput) (*pinpointemail.CreateDeliverabilityTestReportOutput, error)
+	CreateDeliverabilityTestReportWithContext(aws.Context, *pinpointemail.CreateDeliverabilityTestReportInput, ...request.Option) (*pinpointemail.CreateDeliverabilityTestReportOutput, error)
+	CreateDeliverabilityTestReportRequest(*pinpointemail.CreateDeliverabilityTestReportInput) (*request.Request, *pinpointemail.CreateDeliverabilityTestReportOutput)
+
 	CreateEmailIdentity(*pinpointemail.CreateEmailIdentityInput) (*pinpointemail.CreateEmailIdentityOutput, error)
 	CreateEmailIdentityWithContext(aws.Context, *pinpointemail.CreateEmailIdentityInput, ...request.Option) (*pinpointemail.CreateEmailIdentityOutput, error)
 	CreateEmailIdentityRequest(*pinpointemail.CreateEmailIdentityInput) (*request.Request, *pinpointemail.CreateEmailIdentityOutput)
@@ -96,6 +100,10 @@ type PinpointEmailAPI interface {
 	GetAccountWithContext(aws.Context, *pinpointemail.GetAccountInput, ...request.Option) (*pinpointemail.GetAccountOutput, error)
 	GetAccountRequest(*pinpointemail.GetAccountInput) (*request.Request, *pinpointemail.GetAccountOutput)
 
+	GetBlacklistReports(*pinpointemail.GetBlacklistReportsInput) (*pinpointemail.GetBlacklistReportsOutput, error)
+	GetBlacklistReportsWithContext(aws.Context, *pinpointemail.GetBlacklistReportsInput, ...request.Option) (*pinpointemail.GetBlacklistReportsOutput, error)
+	GetBlacklistReportsRequest(*pinpointemail.GetBlacklistReportsInput) (*request.Request, *pinpointemail.GetBlacklistReportsOutput)
+
 	GetConfigurationSet(*pinpointemail.GetConfigurationSetInput) (*pinpointemail.GetConfigurationSetOutput, error)
 	GetConfigurationSetWithContext(aws.Context, *pinpointemail.GetConfigurationSetInput, ...request.Option) (*pinpointemail.GetConfigurationSetOutput, error)
 	GetConfigurationSetRequest(*pinpointemail.GetConfigurationSetInput) (*request.Request, *pinpointemail.GetConfigurationSetOutput)
@@ -115,6 +123,18 @@ type PinpointEmailAPI interface {
 	GetDedicatedIpsPages(*pinpointemail.GetDedicatedIpsInput, func(*pinpointemail.GetDedicatedIpsOutput, bool) bool) error
 	GetDedicatedIpsPagesWithContext(aws.Context, *pinpointemail.GetDedicatedIpsInput, func(*pinpointemail.GetDedicatedIpsOutput, bool) bool, ...request.Option) error
 
+	GetDeliverabilityDashboardOptions(*pinpointemail.GetDeliverabilityDashboardOptionsInput) (*pinpointemail.GetDeliverabilityDashboardOptionsOutput, error)
+	GetDeliverabilityDashboardOptionsWithContext(aws.Context, *pinpointemail.GetDeliverabilityDashboardOptionsInput, ...request.Option) (*pinpointemail.GetDeliverabilityDashboardOptionsOutput, error)
+	GetDeliverabilityDashboardOptionsRequest(*pinpointemail.GetDeliverabilityDashboardOptionsInput) (*request.Request, *pinpointemail.GetDeliverabilityDashboardOptionsOutput)
+
+	GetDeliverabilityTestReport(*pinpointemail.GetDeliverabilityTestReportInput) (*pinpointemail.GetDeliverabilityTestReportOutput, error)
+	GetDeliverabilityTestReportWithContext(aws.Context, *pinpointemail.GetDeliverabilityTestReportInput, ...request.Option) (*pinpointemail.GetDeliverabilityTestReportOutput, error)
+	GetDeliverabilityTestReportRequest(*pinpointemail.GetDeliverabilityTestReportInput) (*request.Request, *pinpointemail.GetDeliverabilityTestReportOutput)
+
+	GetDomainStatisticsReport(*pinpointemail.GetDomainStatisticsReportInput) (*pinpointemail.GetDomainStatisticsReportOutput, error)
+	GetDomainStatisticsReportWithContext(aws.Context, *pinpointemail.GetDomainStatisticsReportInput, ...request.Option) (*pinpointemail.GetDomainStatisticsReportOutput, error)
+	GetDomainStatisticsReportRequest(*pinpointemail.GetDomainStatisticsReportInput) (*request.Request, *pinpointemail.GetDomainStatisticsReportOutput)
+
 	GetEmailIdentity(*pinpointemail.GetEmailIdentityInput) (*pinpointemail.GetEmailIdentityOutput, error)
 	GetEmailIdentityWithContext(aws.Context, *pinpointemail.GetEmailIdentityInput, ...request.Option) (*pinpointemail.GetEmailIdentityOutput, error)
 	GetEmailIdentityRequest(*pinpointemail.GetEmailIdentityInput) (*request.Request, *pinpointemail.GetEmailIdentityOutput)
@@ -132,6 +152,13 @@ type PinpointEmailAPI interface {
 
 	ListDedicatedIpPoolsPages(*pinpointemail.ListDedicatedIpPoolsInput, func(*pinpointemail.ListDedicatedIpPoolsOutput, bool) bool) error
 	ListDedicatedIpPoolsPagesWithContext(aws.Context, *pinpointemail.ListDedicatedIpPoolsInput, func(*pinpointemail.ListDedicatedIpPoolsOutput, bool) bool, ...request.Option) error
+
+	ListDeliverabilityTestReports(*pinpointemail.ListDeliverabilityTestReportsInput) (*pinpointemail.ListDeliverabilityTestReportsOutput, error)
+	ListDeliverabilityTestReportsWithContext(aws.Context, *pinpointemail.ListDeliverabilityTestReportsInput, ...request.Option) (*pinpointemail.ListDeliverabilityTestReportsOutput, error)
+	ListDeliverabilityTestReportsRequest(*pinpointemail.ListDeliverabilityTestReportsInput) (*request.Request, *pinpointemail.ListDeliverabilityTestReportsOutput)
+
+	ListDeliverabilityTestReportsPages(*pinpointemail.ListDeliverabilityTestReportsInput, func(*pinpointemail.ListDeliverabilityTestReportsOutput, bool) bool) error
+	ListDeliverabilityTestReportsPagesWithContext(aws.Context, *pinpointemail.ListDeliverabilityTestReportsInput, func(*pinpointemail.ListDeliverabilityTestReportsOutput, bool) bool, ...request.Option) error
 
 	ListEmailIdentities(*pinpointemail.ListEmailIdentitiesInput) (*pinpointemail.ListEmailIdentitiesOutput, error)
 	ListEmailIdentitiesWithContext(aws.Context, *pinpointemail.ListEmailIdentitiesInput, ...request.Option) (*pinpointemail.ListEmailIdentitiesOutput, error)
@@ -171,6 +198,10 @@ type PinpointEmailAPI interface {
 	PutDedicatedIpWarmupAttributes(*pinpointemail.PutDedicatedIpWarmupAttributesInput) (*pinpointemail.PutDedicatedIpWarmupAttributesOutput, error)
 	PutDedicatedIpWarmupAttributesWithContext(aws.Context, *pinpointemail.PutDedicatedIpWarmupAttributesInput, ...request.Option) (*pinpointemail.PutDedicatedIpWarmupAttributesOutput, error)
 	PutDedicatedIpWarmupAttributesRequest(*pinpointemail.PutDedicatedIpWarmupAttributesInput) (*request.Request, *pinpointemail.PutDedicatedIpWarmupAttributesOutput)
+
+	PutDeliverabilityDashboardOption(*pinpointemail.PutDeliverabilityDashboardOptionInput) (*pinpointemail.PutDeliverabilityDashboardOptionOutput, error)
+	PutDeliverabilityDashboardOptionWithContext(aws.Context, *pinpointemail.PutDeliverabilityDashboardOptionInput, ...request.Option) (*pinpointemail.PutDeliverabilityDashboardOptionOutput, error)
+	PutDeliverabilityDashboardOptionRequest(*pinpointemail.PutDeliverabilityDashboardOptionInput) (*request.Request, *pinpointemail.PutDeliverabilityDashboardOptionOutput)
 
 	PutEmailIdentityDkimAttributes(*pinpointemail.PutEmailIdentityDkimAttributesInput) (*pinpointemail.PutEmailIdentityDkimAttributesOutput, error)
 	PutEmailIdentityDkimAttributesWithContext(aws.Context, *pinpointemail.PutEmailIdentityDkimAttributesInput, ...request.Option) (*pinpointemail.PutEmailIdentityDkimAttributesOutput, error)

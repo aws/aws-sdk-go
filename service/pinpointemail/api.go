@@ -9,6 +9,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
 const opCreateConfigurationSet = "CreateConfigurationSet"
@@ -50,6 +52,7 @@ func (c *PinpointEmail) CreateConfigurationSetRequest(input *CreateConfiguration
 
 	output = &CreateConfigurationSetOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -145,6 +148,7 @@ func (c *PinpointEmail) CreateConfigurationSetEventDestinationRequest(input *Cre
 
 	output = &CreateConfigurationSetEventDestinationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -243,6 +247,7 @@ func (c *PinpointEmail) CreateDedicatedIpPoolRequest(input *CreateDedicatedIpPoo
 
 	output = &CreateDedicatedIpPoolOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -291,6 +296,115 @@ func (c *PinpointEmail) CreateDedicatedIpPool(input *CreateDedicatedIpPoolInput)
 // for more information on using Contexts.
 func (c *PinpointEmail) CreateDedicatedIpPoolWithContext(ctx aws.Context, input *CreateDedicatedIpPoolInput, opts ...request.Option) (*CreateDedicatedIpPoolOutput, error) {
 	req, out := c.CreateDedicatedIpPoolRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateDeliverabilityTestReport = "CreateDeliverabilityTestReport"
+
+// CreateDeliverabilityTestReportRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDeliverabilityTestReport operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateDeliverabilityTestReport for more information on using the CreateDeliverabilityTestReport
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateDeliverabilityTestReportRequest method.
+//    req, resp := client.CreateDeliverabilityTestReportRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/CreateDeliverabilityTestReport
+func (c *PinpointEmail) CreateDeliverabilityTestReportRequest(input *CreateDeliverabilityTestReportInput) (req *request.Request, output *CreateDeliverabilityTestReportOutput) {
+	op := &request.Operation{
+		Name:       opCreateDeliverabilityTestReport,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/email/deliverability-dashboard/test",
+	}
+
+	if input == nil {
+		input = &CreateDeliverabilityTestReportInput{}
+	}
+
+	output = &CreateDeliverabilityTestReportOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateDeliverabilityTestReport API operation for Amazon Pinpoint Email Service.
+//
+// Create a new predictive inbox placement test. Predictive inbox placement
+// tests can help you predict how your messages will be handled by various email
+// providers around the world. When you perform a predictive inbox placement
+// test, you provide a sample message that contains the content that you plan
+// to send to your customers. Amazon Pinpoint then sends that message to special
+// email addresses spread across several major email providers. After about
+// 24 hours, the test is complete, and you can use the GetDeliverabilityTestReport
+// operation to view the results of the test.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint Email Service's
+// API operation CreateDeliverabilityTestReport for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeAccountSuspendedException "AccountSuspendedException"
+//   The message can't be sent because the account's ability to send email has
+//   been permanently restricted.
+//
+//   * ErrCodeSendingPausedException "SendingPausedException"
+//   The message can't be sent because the account's ability to send email is
+//   currently paused.
+//
+//   * ErrCodeMessageRejected "MessageRejected"
+//   The message can't be sent because it contains invalid content.
+//
+//   * ErrCodeMailFromDomainNotVerifiedException "MailFromDomainNotVerifiedException"
+//   The message can't be sent because the sending domain isn't verified.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource you attempted to access doesn't exist.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   Too many requests have been made to the operation.
+//
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   There are too many instances of the specified resource type.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/CreateDeliverabilityTestReport
+func (c *PinpointEmail) CreateDeliverabilityTestReport(input *CreateDeliverabilityTestReportInput) (*CreateDeliverabilityTestReportOutput, error) {
+	req, out := c.CreateDeliverabilityTestReportRequest(input)
+	return out, req.Send()
+}
+
+// CreateDeliverabilityTestReportWithContext is the same as CreateDeliverabilityTestReport with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateDeliverabilityTestReport for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointEmail) CreateDeliverabilityTestReportWithContext(ctx aws.Context, input *CreateDeliverabilityTestReportInput, opts ...request.Option) (*CreateDeliverabilityTestReportOutput, error) {
+	req, out := c.CreateDeliverabilityTestReportRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -435,6 +549,7 @@ func (c *PinpointEmail) DeleteConfigurationSetRequest(input *DeleteConfiguration
 
 	output = &DeleteConfigurationSetOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -526,6 +641,7 @@ func (c *PinpointEmail) DeleteConfigurationSetEventDestinationRequest(input *Del
 
 	output = &DeleteConfigurationSetEventDestinationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -618,6 +734,7 @@ func (c *PinpointEmail) DeleteDedicatedIpPoolRequest(input *DeleteDedicatedIpPoo
 
 	output = &DeleteDedicatedIpPoolOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -703,6 +820,7 @@ func (c *PinpointEmail) DeleteEmailIdentityRequest(input *DeleteEmailIdentityInp
 
 	output = &DeleteEmailIdentityOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -828,6 +946,92 @@ func (c *PinpointEmail) GetAccount(input *GetAccountInput) (*GetAccountOutput, e
 // for more information on using Contexts.
 func (c *PinpointEmail) GetAccountWithContext(ctx aws.Context, input *GetAccountInput, opts ...request.Option) (*GetAccountOutput, error) {
 	req, out := c.GetAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetBlacklistReports = "GetBlacklistReports"
+
+// GetBlacklistReportsRequest generates a "aws/request.Request" representing the
+// client's request for the GetBlacklistReports operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetBlacklistReports for more information on using the GetBlacklistReports
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetBlacklistReportsRequest method.
+//    req, resp := client.GetBlacklistReportsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetBlacklistReports
+func (c *PinpointEmail) GetBlacklistReportsRequest(input *GetBlacklistReportsInput) (req *request.Request, output *GetBlacklistReportsOutput) {
+	op := &request.Operation{
+		Name:       opGetBlacklistReports,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/email/deliverability-dashboard/blacklist-report",
+	}
+
+	if input == nil {
+		input = &GetBlacklistReportsInput{}
+	}
+
+	output = &GetBlacklistReportsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetBlacklistReports API operation for Amazon Pinpoint Email Service.
+//
+// Retrieve a list of the blacklists that your dedicated IP addresses appear
+// on.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint Email Service's
+// API operation GetBlacklistReports for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   Too many requests have been made to the operation.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource you attempted to access doesn't exist.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetBlacklistReports
+func (c *PinpointEmail) GetBlacklistReports(input *GetBlacklistReportsInput) (*GetBlacklistReportsOutput, error) {
+	req, out := c.GetBlacklistReportsRequest(input)
+	return out, req.Send()
+}
+
+// GetBlacklistReportsWithContext is the same as GetBlacklistReports with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetBlacklistReports for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointEmail) GetBlacklistReportsWithContext(ctx aws.Context, input *GetBlacklistReportsInput, opts ...request.Option) (*GetBlacklistReportsOutput, error) {
+	req, out := c.GetBlacklistReportsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1248,6 +1452,271 @@ func (c *PinpointEmail) GetDedicatedIpsPagesWithContext(ctx aws.Context, input *
 	return p.Err()
 }
 
+const opGetDeliverabilityDashboardOptions = "GetDeliverabilityDashboardOptions"
+
+// GetDeliverabilityDashboardOptionsRequest generates a "aws/request.Request" representing the
+// client's request for the GetDeliverabilityDashboardOptions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDeliverabilityDashboardOptions for more information on using the GetDeliverabilityDashboardOptions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetDeliverabilityDashboardOptionsRequest method.
+//    req, resp := client.GetDeliverabilityDashboardOptionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetDeliverabilityDashboardOptions
+func (c *PinpointEmail) GetDeliverabilityDashboardOptionsRequest(input *GetDeliverabilityDashboardOptionsInput) (req *request.Request, output *GetDeliverabilityDashboardOptionsOutput) {
+	op := &request.Operation{
+		Name:       opGetDeliverabilityDashboardOptions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/email/deliverability-dashboard",
+	}
+
+	if input == nil {
+		input = &GetDeliverabilityDashboardOptionsInput{}
+	}
+
+	output = &GetDeliverabilityDashboardOptionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDeliverabilityDashboardOptions API operation for Amazon Pinpoint Email Service.
+//
+// Show the status of the Deliverability dashboard. When the Deliverability
+// dashboard is enabled, you gain access to reputation metrics for the domains
+// that you use to send email using Amazon Pinpoint. You also gain the ability
+// to perform predictive inbox placement tests.
+//
+// When you use the Deliverability dashboard, you pay a monthly charge of USD$1,250.00,
+// in addition to any other fees that you accrue by using Amazon Pinpoint. If
+// you enable the Deliverability dashboard after the first day of a calendar
+// month, AWS prorates the monthly charge based on how many days have elapsed
+// in the current calendar month.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint Email Service's
+// API operation GetDeliverabilityDashboardOptions for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   Too many requests have been made to the operation.
+//
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   There are too many instances of the specified resource type.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetDeliverabilityDashboardOptions
+func (c *PinpointEmail) GetDeliverabilityDashboardOptions(input *GetDeliverabilityDashboardOptionsInput) (*GetDeliverabilityDashboardOptionsOutput, error) {
+	req, out := c.GetDeliverabilityDashboardOptionsRequest(input)
+	return out, req.Send()
+}
+
+// GetDeliverabilityDashboardOptionsWithContext is the same as GetDeliverabilityDashboardOptions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDeliverabilityDashboardOptions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointEmail) GetDeliverabilityDashboardOptionsWithContext(ctx aws.Context, input *GetDeliverabilityDashboardOptionsInput, opts ...request.Option) (*GetDeliverabilityDashboardOptionsOutput, error) {
+	req, out := c.GetDeliverabilityDashboardOptionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetDeliverabilityTestReport = "GetDeliverabilityTestReport"
+
+// GetDeliverabilityTestReportRequest generates a "aws/request.Request" representing the
+// client's request for the GetDeliverabilityTestReport operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDeliverabilityTestReport for more information on using the GetDeliverabilityTestReport
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetDeliverabilityTestReportRequest method.
+//    req, resp := client.GetDeliverabilityTestReportRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetDeliverabilityTestReport
+func (c *PinpointEmail) GetDeliverabilityTestReportRequest(input *GetDeliverabilityTestReportInput) (req *request.Request, output *GetDeliverabilityTestReportOutput) {
+	op := &request.Operation{
+		Name:       opGetDeliverabilityTestReport,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/email/deliverability-dashboard/test-reports/{ReportId}",
+	}
+
+	if input == nil {
+		input = &GetDeliverabilityTestReportInput{}
+	}
+
+	output = &GetDeliverabilityTestReportOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDeliverabilityTestReport API operation for Amazon Pinpoint Email Service.
+//
+// Retrieve the results of a predictive inbox placement test.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint Email Service's
+// API operation GetDeliverabilityTestReport for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   Too many requests have been made to the operation.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource you attempted to access doesn't exist.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetDeliverabilityTestReport
+func (c *PinpointEmail) GetDeliverabilityTestReport(input *GetDeliverabilityTestReportInput) (*GetDeliverabilityTestReportOutput, error) {
+	req, out := c.GetDeliverabilityTestReportRequest(input)
+	return out, req.Send()
+}
+
+// GetDeliverabilityTestReportWithContext is the same as GetDeliverabilityTestReport with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDeliverabilityTestReport for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointEmail) GetDeliverabilityTestReportWithContext(ctx aws.Context, input *GetDeliverabilityTestReportInput, opts ...request.Option) (*GetDeliverabilityTestReportOutput, error) {
+	req, out := c.GetDeliverabilityTestReportRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetDomainStatisticsReport = "GetDomainStatisticsReport"
+
+// GetDomainStatisticsReportRequest generates a "aws/request.Request" representing the
+// client's request for the GetDomainStatisticsReport operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDomainStatisticsReport for more information on using the GetDomainStatisticsReport
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetDomainStatisticsReportRequest method.
+//    req, resp := client.GetDomainStatisticsReportRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetDomainStatisticsReport
+func (c *PinpointEmail) GetDomainStatisticsReportRequest(input *GetDomainStatisticsReportInput) (req *request.Request, output *GetDomainStatisticsReportOutput) {
+	op := &request.Operation{
+		Name:       opGetDomainStatisticsReport,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/email/deliverability-dashboard/statistics-report/{Domain}",
+	}
+
+	if input == nil {
+		input = &GetDomainStatisticsReportInput{}
+	}
+
+	output = &GetDomainStatisticsReportOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDomainStatisticsReport API operation for Amazon Pinpoint Email Service.
+//
+// Retrieve inbox placement and engagement rates for the domains that you use
+// to send email.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint Email Service's
+// API operation GetDomainStatisticsReport for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   Too many requests have been made to the operation.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource you attempted to access doesn't exist.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/GetDomainStatisticsReport
+func (c *PinpointEmail) GetDomainStatisticsReport(input *GetDomainStatisticsReportInput) (*GetDomainStatisticsReportOutput, error) {
+	req, out := c.GetDomainStatisticsReportRequest(input)
+	return out, req.Send()
+}
+
+// GetDomainStatisticsReportWithContext is the same as GetDomainStatisticsReport with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDomainStatisticsReport for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointEmail) GetDomainStatisticsReportWithContext(ctx aws.Context, input *GetDomainStatisticsReportInput, opts ...request.Option) (*GetDomainStatisticsReportOutput, error) {
+	req, out := c.GetDomainStatisticsReportRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetEmailIdentity = "GetEmailIdentity"
 
 // GetEmailIdentityRequest generates a "aws/request.Request" representing the
@@ -1619,6 +2088,150 @@ func (c *PinpointEmail) ListDedicatedIpPoolsPagesWithContext(ctx aws.Context, in
 	return p.Err()
 }
 
+const opListDeliverabilityTestReports = "ListDeliverabilityTestReports"
+
+// ListDeliverabilityTestReportsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDeliverabilityTestReports operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDeliverabilityTestReports for more information on using the ListDeliverabilityTestReports
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListDeliverabilityTestReportsRequest method.
+//    req, resp := client.ListDeliverabilityTestReportsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/ListDeliverabilityTestReports
+func (c *PinpointEmail) ListDeliverabilityTestReportsRequest(input *ListDeliverabilityTestReportsInput) (req *request.Request, output *ListDeliverabilityTestReportsOutput) {
+	op := &request.Operation{
+		Name:       opListDeliverabilityTestReports,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/email/deliverability-dashboard/test-reports",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "PageSize",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDeliverabilityTestReportsInput{}
+	}
+
+	output = &ListDeliverabilityTestReportsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDeliverabilityTestReports API operation for Amazon Pinpoint Email Service.
+//
+// Show a list of the predictive inbox placement tests that you've performed,
+// regardless of their statuses. For predictive inbox placement tests that are
+// complete, you can use the GetDeliverabilityTestReport operation to view the
+// results.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint Email Service's
+// API operation ListDeliverabilityTestReports for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   Too many requests have been made to the operation.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource you attempted to access doesn't exist.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/ListDeliverabilityTestReports
+func (c *PinpointEmail) ListDeliverabilityTestReports(input *ListDeliverabilityTestReportsInput) (*ListDeliverabilityTestReportsOutput, error) {
+	req, out := c.ListDeliverabilityTestReportsRequest(input)
+	return out, req.Send()
+}
+
+// ListDeliverabilityTestReportsWithContext is the same as ListDeliverabilityTestReports with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDeliverabilityTestReports for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointEmail) ListDeliverabilityTestReportsWithContext(ctx aws.Context, input *ListDeliverabilityTestReportsInput, opts ...request.Option) (*ListDeliverabilityTestReportsOutput, error) {
+	req, out := c.ListDeliverabilityTestReportsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDeliverabilityTestReportsPages iterates over the pages of a ListDeliverabilityTestReports operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDeliverabilityTestReports method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListDeliverabilityTestReports operation.
+//    pageNum := 0
+//    err := client.ListDeliverabilityTestReportsPages(params,
+//        func(page *ListDeliverabilityTestReportsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *PinpointEmail) ListDeliverabilityTestReportsPages(input *ListDeliverabilityTestReportsInput, fn func(*ListDeliverabilityTestReportsOutput, bool) bool) error {
+	return c.ListDeliverabilityTestReportsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDeliverabilityTestReportsPagesWithContext same as ListDeliverabilityTestReportsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointEmail) ListDeliverabilityTestReportsPagesWithContext(ctx aws.Context, input *ListDeliverabilityTestReportsInput, fn func(*ListDeliverabilityTestReportsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDeliverabilityTestReportsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDeliverabilityTestReportsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListDeliverabilityTestReportsOutput), !p.HasNextPage())
+	}
+	return p.Err()
+}
+
 const opListEmailIdentities = "ListEmailIdentities"
 
 // ListEmailIdentitiesRequest generates a "aws/request.Request" representing the
@@ -1799,6 +2412,7 @@ func (c *PinpointEmail) PutAccountDedicatedIpWarmupAttributesRequest(input *PutA
 
 	output = &PutAccountDedicatedIpWarmupAttributesOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1881,6 +2495,7 @@ func (c *PinpointEmail) PutAccountSendingAttributesRequest(input *PutAccountSend
 
 	output = &PutAccountSendingAttributesOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1963,6 +2578,7 @@ func (c *PinpointEmail) PutConfigurationSetDeliveryOptionsRequest(input *PutConf
 
 	output = &PutConfigurationSetDeliveryOptionsOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2050,6 +2666,7 @@ func (c *PinpointEmail) PutConfigurationSetReputationOptionsRequest(input *PutCo
 
 	output = &PutConfigurationSetReputationOptionsOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2136,6 +2753,7 @@ func (c *PinpointEmail) PutConfigurationSetSendingOptionsRequest(input *PutConfi
 
 	output = &PutConfigurationSetSendingOptionsOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2222,6 +2840,7 @@ func (c *PinpointEmail) PutConfigurationSetTrackingOptionsRequest(input *PutConf
 
 	output = &PutConfigurationSetTrackingOptionsOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2308,6 +2927,7 @@ func (c *PinpointEmail) PutDedicatedIpInPoolRequest(input *PutDedicatedIpInPoolI
 
 	output = &PutDedicatedIpInPoolOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2399,6 +3019,7 @@ func (c *PinpointEmail) PutDedicatedIpWarmupAttributesRequest(input *PutDedicate
 
 	output = &PutDedicatedIpWarmupAttributesOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2443,6 +3064,107 @@ func (c *PinpointEmail) PutDedicatedIpWarmupAttributesWithContext(ctx aws.Contex
 	return out, req.Send()
 }
 
+const opPutDeliverabilityDashboardOption = "PutDeliverabilityDashboardOption"
+
+// PutDeliverabilityDashboardOptionRequest generates a "aws/request.Request" representing the
+// client's request for the PutDeliverabilityDashboardOption operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutDeliverabilityDashboardOption for more information on using the PutDeliverabilityDashboardOption
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutDeliverabilityDashboardOptionRequest method.
+//    req, resp := client.PutDeliverabilityDashboardOptionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutDeliverabilityDashboardOption
+func (c *PinpointEmail) PutDeliverabilityDashboardOptionRequest(input *PutDeliverabilityDashboardOptionInput) (req *request.Request, output *PutDeliverabilityDashboardOptionOutput) {
+	op := &request.Operation{
+		Name:       opPutDeliverabilityDashboardOption,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v1/email/deliverability-dashboard",
+	}
+
+	if input == nil {
+		input = &PutDeliverabilityDashboardOptionInput{}
+	}
+
+	output = &PutDeliverabilityDashboardOptionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutDeliverabilityDashboardOption API operation for Amazon Pinpoint Email Service.
+//
+// Enable or disable the Deliverability dashboard. When you enable the Deliverability
+// dashboard, you gain access to reputation metrics for the domains that you
+// use to send email using Amazon Pinpoint. You also gain the ability to perform
+// predictive inbox placement tests.
+//
+// When you use the Deliverability dashboard, you pay a monthly charge of USD$1,250.00,
+// in addition to any other fees that you accrue by using Amazon Pinpoint. If
+// you enable the Deliverability dashboard after the first day of a calendar
+// month, we prorate the monthly charge based on how many days have elapsed
+// in the current calendar month.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint Email Service's
+// API operation PutDeliverabilityDashboardOption for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+//   The resource specified in your request already exists.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource you attempted to access doesn't exist.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   Too many requests have been made to the operation.
+//
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   There are too many instances of the specified resource type.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/PutDeliverabilityDashboardOption
+func (c *PinpointEmail) PutDeliverabilityDashboardOption(input *PutDeliverabilityDashboardOptionInput) (*PutDeliverabilityDashboardOptionOutput, error) {
+	req, out := c.PutDeliverabilityDashboardOptionRequest(input)
+	return out, req.Send()
+}
+
+// PutDeliverabilityDashboardOptionWithContext is the same as PutDeliverabilityDashboardOption with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutDeliverabilityDashboardOption for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointEmail) PutDeliverabilityDashboardOptionWithContext(ctx aws.Context, input *PutDeliverabilityDashboardOptionInput, opts ...request.Option) (*PutDeliverabilityDashboardOptionOutput, error) {
+	req, out := c.PutDeliverabilityDashboardOptionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutEmailIdentityDkimAttributes = "PutEmailIdentityDkimAttributes"
 
 // PutEmailIdentityDkimAttributesRequest generates a "aws/request.Request" representing the
@@ -2482,6 +3204,7 @@ func (c *PinpointEmail) PutEmailIdentityDkimAttributesRequest(input *PutEmailIde
 
 	output = &PutEmailIdentityDkimAttributesOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2567,6 +3290,7 @@ func (c *PinpointEmail) PutEmailIdentityFeedbackAttributesRequest(input *PutEmai
 
 	output = &PutEmailIdentityFeedbackAttributesOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2666,6 +3390,7 @@ func (c *PinpointEmail) PutEmailIdentityMailFromAttributesRequest(input *PutEmai
 
 	output = &PutEmailIdentityMailFromAttributesOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2864,6 +3589,7 @@ func (c *PinpointEmail) UpdateConfigurationSetEventDestinationRequest(input *Upd
 
 	output = &UpdateConfigurationSetEventDestinationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2915,6 +3641,50 @@ func (c *PinpointEmail) UpdateConfigurationSetEventDestinationWithContext(ctx aw
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// An object that contains information about a blacklisting event that impacts
+// one of the dedicated IP addresses that is associated with your account.
+type BlacklistEntry struct {
+	_ struct{} `type:"structure"`
+
+	// Additional information about the blacklisting event, as provided by the blacklist
+	// maintainer.
+	Description *string `type:"string"`
+
+	// The time when the blacklisting event occurred, shown in Unix time format.
+	ListingTime *time.Time `type:"timestamp"`
+
+	// The name of the blacklist that the IP address appears on.
+	RblName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s BlacklistEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BlacklistEntry) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *BlacklistEntry) SetDescription(v string) *BlacklistEntry {
+	s.Description = &v
+	return s
+}
+
+// SetListingTime sets the ListingTime field's value.
+func (s *BlacklistEntry) SetListingTime(v time.Time) *BlacklistEntry {
+	s.ListingTime = &v
+	return s
+}
+
+// SetRblName sets the RblName field's value.
+func (s *BlacklistEntry) SetRblName(v string) *BlacklistEntry {
+	s.RblName = &v
+	return s
 }
 
 // Represents the body of the email message.
@@ -3406,6 +4176,124 @@ func (s CreateDedicatedIpPoolOutput) GoString() string {
 	return s.String()
 }
 
+// A request to perform a predictive inbox placement test. Predictive inbox
+// placement tests can help you predict how your messages will be handled by
+// various email providers around the world. When you perform a predictive inbox
+// placement test, you provide a sample message that contains the content that
+// you plan to send to your customers. Amazon Pinpoint then sends that message
+// to special email addresses spread across several major email providers. After
+// about 24 hours, the test is complete, and you can use the GetDeliverabilityTestReport
+// operation to view the results of the test.
+type CreateDeliverabilityTestReportInput struct {
+	_ struct{} `type:"structure"`
+
+	// The HTML body of the message that you sent when you performed the predictive
+	// inbox placement test.
+	//
+	// Content is a required field
+	Content *EmailContent `type:"structure" required:"true"`
+
+	// The email address that the predictive inbox placement test email was sent
+	// from.
+	//
+	// FromEmailAddress is a required field
+	FromEmailAddress *string `type:"string" required:"true"`
+
+	// A unique name that helps you to identify the predictive inbox placement test
+	// when you retrieve the results.
+	ReportName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateDeliverabilityTestReportInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateDeliverabilityTestReportInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDeliverabilityTestReportInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDeliverabilityTestReportInput"}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.FromEmailAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("FromEmailAddress"))
+	}
+	if s.Content != nil {
+		if err := s.Content.Validate(); err != nil {
+			invalidParams.AddNested("Content", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContent sets the Content field's value.
+func (s *CreateDeliverabilityTestReportInput) SetContent(v *EmailContent) *CreateDeliverabilityTestReportInput {
+	s.Content = v
+	return s
+}
+
+// SetFromEmailAddress sets the FromEmailAddress field's value.
+func (s *CreateDeliverabilityTestReportInput) SetFromEmailAddress(v string) *CreateDeliverabilityTestReportInput {
+	s.FromEmailAddress = &v
+	return s
+}
+
+// SetReportName sets the ReportName field's value.
+func (s *CreateDeliverabilityTestReportInput) SetReportName(v string) *CreateDeliverabilityTestReportInput {
+	s.ReportName = &v
+	return s
+}
+
+// Information about the predictive inbox placement test that you created.
+type CreateDeliverabilityTestReportOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the predictive inbox placement test. If the status is IN_PROGRESS,
+	// then the predictive inbox placement test is currently running. Predictive
+	// inbox placement tests are usually complete within 24 hours of creating the
+	// test. If the status is COMPLETE, then the test is finished, and you can use
+	// the GetDeliverabilityTestReport to view the results of the test.
+	//
+	// DeliverabilityTestStatus is a required field
+	DeliverabilityTestStatus *string `type:"string" required:"true" enum:"DeliverabilityTestStatus"`
+
+	// A unique string that identifies the predictive inbox placement test.
+	//
+	// ReportId is a required field
+	ReportId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateDeliverabilityTestReportOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateDeliverabilityTestReportOutput) GoString() string {
+	return s.String()
+}
+
+// SetDeliverabilityTestStatus sets the DeliverabilityTestStatus field's value.
+func (s *CreateDeliverabilityTestReportOutput) SetDeliverabilityTestStatus(v string) *CreateDeliverabilityTestReportOutput {
+	s.DeliverabilityTestStatus = &v
+	return s
+}
+
+// SetReportId sets the ReportId field's value.
+func (s *CreateDeliverabilityTestReportOutput) SetReportId(v string) *CreateDeliverabilityTestReportOutput {
+	s.ReportId = &v
+	return s
+}
+
 // A request to begin the verification process for an email identity (an email
 // address or domain).
 type CreateEmailIdentityInput struct {
@@ -3493,6 +4381,51 @@ func (s *CreateEmailIdentityOutput) SetIdentityType(v string) *CreateEmailIdenti
 // SetVerifiedForSendingStatus sets the VerifiedForSendingStatus field's value.
 func (s *CreateEmailIdentityOutput) SetVerifiedForSendingStatus(v bool) *CreateEmailIdentityOutput {
 	s.VerifiedForSendingStatus = &v
+	return s
+}
+
+// An object that contains information about the volume of email sent on each
+// day of the analysis period.
+type DailyVolume struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains inbox placement metrics for a specifid day in the
+	// analysis period, broken out by the recipient's email provider.
+	DomainIspPlacements []*DomainIspPlacement `type:"list"`
+
+	// The date that the DailyVolume metrics apply to, in Unix time.
+	StartDate *time.Time `type:"timestamp"`
+
+	// An object that contains inbox placement metrics for a specific day in the
+	// analysis period.
+	VolumeStatistics *VolumeStatistics `type:"structure"`
+}
+
+// String returns the string representation
+func (s DailyVolume) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DailyVolume) GoString() string {
+	return s.String()
+}
+
+// SetDomainIspPlacements sets the DomainIspPlacements field's value.
+func (s *DailyVolume) SetDomainIspPlacements(v []*DomainIspPlacement) *DailyVolume {
+	s.DomainIspPlacements = v
+	return s
+}
+
+// SetStartDate sets the StartDate field's value.
+func (s *DailyVolume) SetStartDate(v time.Time) *DailyVolume {
+	s.StartDate = &v
+	return s
+}
+
+// SetVolumeStatistics sets the VolumeStatistics field's value.
+func (s *DailyVolume) SetVolumeStatistics(v *VolumeStatistics) *DailyVolume {
+	s.VolumeStatistics = v
 	return s
 }
 
@@ -3817,6 +4750,83 @@ func (s DeleteEmailIdentityOutput) GoString() string {
 	return s.String()
 }
 
+// An object that contains metadata related to a predictive inbox placement
+// test.
+type DeliverabilityTestReport struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time when the predictive inbox placement test was created, in
+	// Unix time format.
+	CreateDate *time.Time `type:"timestamp"`
+
+	// The status of the predictive inbox placement test. If the status is IN_PROGRESS,
+	// then the predictive inbox placement test is currently running. Predictive
+	// inbox placement tests are usually complete within 24 hours of creating the
+	// test. If the status is COMPLETE, then the test is finished, and you can use
+	// the GetDeliverabilityTestReport to view the results of the test.
+	DeliverabilityTestStatus *string `type:"string" enum:"DeliverabilityTestStatus"`
+
+	// The sender address that you specified for the predictive inbox placement
+	// test.
+	FromEmailAddress *string `type:"string"`
+
+	// A unique string that identifies the predictive inbox placement test.
+	ReportId *string `type:"string"`
+
+	// A name that helps you identify a predictive inbox placement test report.
+	ReportName *string `type:"string"`
+
+	// The subject line for an email that you submitted in a predictive inbox placement
+	// test.
+	Subject *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DeliverabilityTestReport) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeliverabilityTestReport) GoString() string {
+	return s.String()
+}
+
+// SetCreateDate sets the CreateDate field's value.
+func (s *DeliverabilityTestReport) SetCreateDate(v time.Time) *DeliverabilityTestReport {
+	s.CreateDate = &v
+	return s
+}
+
+// SetDeliverabilityTestStatus sets the DeliverabilityTestStatus field's value.
+func (s *DeliverabilityTestReport) SetDeliverabilityTestStatus(v string) *DeliverabilityTestReport {
+	s.DeliverabilityTestStatus = &v
+	return s
+}
+
+// SetFromEmailAddress sets the FromEmailAddress field's value.
+func (s *DeliverabilityTestReport) SetFromEmailAddress(v string) *DeliverabilityTestReport {
+	s.FromEmailAddress = &v
+	return s
+}
+
+// SetReportId sets the ReportId field's value.
+func (s *DeliverabilityTestReport) SetReportId(v string) *DeliverabilityTestReport {
+	s.ReportId = &v
+	return s
+}
+
+// SetReportName sets the ReportName field's value.
+func (s *DeliverabilityTestReport) SetReportName(v string) *DeliverabilityTestReport {
+	s.ReportName = &v
+	return s
+}
+
+// SetSubject sets the Subject field's value.
+func (s *DeliverabilityTestReport) SetSubject(v string) *DeliverabilityTestReport {
+	s.Subject = &v
+	return s
+}
+
 // Used to associate a configuration set with a dedicated IP pool.
 type DeliveryOptions struct {
 	_ struct{} `type:"structure"`
@@ -3951,6 +4961,71 @@ func (s *DkimAttributes) SetStatus(v string) *DkimAttributes {
 // SetTokens sets the Tokens field's value.
 func (s *DkimAttributes) SetTokens(v []*string) *DkimAttributes {
 	s.Tokens = v
+	return s
+}
+
+// An object that contains inbox placement data for email sent from one of your
+// email domains to a specific email provider.
+type DomainIspPlacement struct {
+	_ struct{} `type:"structure"`
+
+	// The percentage of messages that were sent from the selected domain to the
+	// specified email provider that arrived in recipients' inboxes.
+	InboxPercentage *float64 `type:"double"`
+
+	// The total number of messages that were sent from the selected domain to the
+	// specified email provider that arrived in recipients' inboxes.
+	InboxRawCount *int64 `type:"long"`
+
+	// The name of the email provider that the inbox placement data applies to.
+	IspName *string `type:"string"`
+
+	// The percentage of messages that were sent from the selected domain to the
+	// specified email provider that arrived in recipients' spam or junk mail folders.
+	SpamPercentage *float64 `type:"double"`
+
+	// The total number of messages that were sent from the selected domain to the
+	// specified email provider that arrived in recipients' spam or junk mail folders.
+	SpamRawCount *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s DomainIspPlacement) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DomainIspPlacement) GoString() string {
+	return s.String()
+}
+
+// SetInboxPercentage sets the InboxPercentage field's value.
+func (s *DomainIspPlacement) SetInboxPercentage(v float64) *DomainIspPlacement {
+	s.InboxPercentage = &v
+	return s
+}
+
+// SetInboxRawCount sets the InboxRawCount field's value.
+func (s *DomainIspPlacement) SetInboxRawCount(v int64) *DomainIspPlacement {
+	s.InboxRawCount = &v
+	return s
+}
+
+// SetIspName sets the IspName field's value.
+func (s *DomainIspPlacement) SetIspName(v string) *DomainIspPlacement {
+	s.IspName = &v
+	return s
+}
+
+// SetSpamPercentage sets the SpamPercentage field's value.
+func (s *DomainIspPlacement) SetSpamPercentage(v float64) *DomainIspPlacement {
+	s.SpamPercentage = &v
+	return s
+}
+
+// SetSpamRawCount sets the SpamRawCount field's value.
+func (s *DomainIspPlacement) SetSpamRawCount(v int64) *DomainIspPlacement {
+	s.SpamRawCount = &v
 	return s
 }
 
@@ -4343,6 +5418,75 @@ func (s *GetAccountOutput) SetSendingEnabled(v bool) *GetAccountOutput {
 	return s
 }
 
+// A request to retrieve a list of the blacklists that your dedicated IP addresses
+// appear on.
+type GetBlacklistReportsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of IP addresses that you want to retrieve blacklist information about.
+	// You can only specify the dedicated IP addresses that you use to send email
+	// using Amazon Pinpoint or Amazon SES.
+	//
+	// BlacklistItemNames is a required field
+	BlacklistItemNames []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s GetBlacklistReportsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBlacklistReportsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetBlacklistReportsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetBlacklistReportsInput"}
+	if s.BlacklistItemNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("BlacklistItemNames"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBlacklistItemNames sets the BlacklistItemNames field's value.
+func (s *GetBlacklistReportsInput) SetBlacklistItemNames(v []*string) *GetBlacklistReportsInput {
+	s.BlacklistItemNames = v
+	return s
+}
+
+// An object that contains information about blacklist events.
+type GetBlacklistReportsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains information about a blacklist that one of your dedicated
+	// IP addresses appears on.
+	//
+	// BlacklistReport is a required field
+	BlacklistReport map[string][]*BlacklistEntry `type:"map" required:"true"`
+}
+
+// String returns the string representation
+func (s GetBlacklistReportsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBlacklistReportsOutput) GoString() string {
+	return s.String()
+}
+
+// SetBlacklistReport sets the BlacklistReport field's value.
+func (s *GetBlacklistReportsOutput) SetBlacklistReport(v map[string][]*BlacklistEntry) *GetBlacklistReportsOutput {
+	s.BlacklistReport = v
+	return s
+}
+
 // A request to obtain information about the event destinations for a configuration
 // set.
 type GetConfigurationSetEventDestinationsInput struct {
@@ -4669,6 +5813,277 @@ func (s *GetDedicatedIpsOutput) SetNextToken(v string) *GetDedicatedIpsOutput {
 	return s
 }
 
+// A request to retrieve the status of the Deliverability dashboard for your
+// account. When the Deliverability dashboard is enabled, you gain access to
+// reputation metrics for the domains that you use to send email using Amazon
+// Pinpoint. You also gain the ability to perform predictive inbox placement
+// tests.
+//
+// When you use the Deliverability dashboard, you pay a monthly charge of USD$1,250.00,
+// in addition to any other fees that you accrue by using Amazon Pinpoint. If
+// you enable the Deliverability dashboard after the first day of a calendar
+// month, AWS prorates the monthly charge based on how many days have elapsed
+// in the current calendar month.
+type GetDeliverabilityDashboardOptionsInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetDeliverabilityDashboardOptionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetDeliverabilityDashboardOptionsInput) GoString() string {
+	return s.String()
+}
+
+// An object that shows the status of the Deliverability dashboard for your
+// Amazon Pinpoint account.
+type GetDeliverabilityDashboardOptionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the Deliverability dashboard is enabled. If the value is
+	// true, then the dashboard is enabled.
+	//
+	// DashboardEnabled is a required field
+	DashboardEnabled *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation
+func (s GetDeliverabilityDashboardOptionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetDeliverabilityDashboardOptionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDashboardEnabled sets the DashboardEnabled field's value.
+func (s *GetDeliverabilityDashboardOptionsOutput) SetDashboardEnabled(v bool) *GetDeliverabilityDashboardOptionsOutput {
+	s.DashboardEnabled = &v
+	return s
+}
+
+// A request to retrieve the results of a predictive inbox placement test.
+type GetDeliverabilityTestReportInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique string that identifies the predictive inbox placement test.
+	//
+	// ReportId is a required field
+	ReportId *string `location:"uri" locationName:"ReportId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetDeliverabilityTestReportInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetDeliverabilityTestReportInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDeliverabilityTestReportInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDeliverabilityTestReportInput"}
+	if s.ReportId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReportId"))
+	}
+	if s.ReportId != nil && len(*s.ReportId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReportId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetReportId sets the ReportId field's value.
+func (s *GetDeliverabilityTestReportInput) SetReportId(v string) *GetDeliverabilityTestReportInput {
+	s.ReportId = &v
+	return s
+}
+
+// The results of the predictive inbox placement test.
+type GetDeliverabilityTestReportOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains the results of the predictive inbox placement test.
+	//
+	// DeliverabilityTestReport is a required field
+	DeliverabilityTestReport *DeliverabilityTestReport `type:"structure" required:"true"`
+
+	// An object that describes how the test email was handled by several email
+	// providers, including Gmail, Hotmail, Yahoo, AOL, and others.
+	//
+	// IspPlacements is a required field
+	IspPlacements []*IspPlacement `type:"list" required:"true"`
+
+	// An object that contains the message that you sent when you performed this
+	// predictive inbox placement test.
+	Message *string `type:"string"`
+
+	// An object that specifies how many test messages that were sent during the
+	// predictive inbox placement test were delivered to recipients' inboxes, how
+	// many were sent to recipients' spam folders, and how many weren't delivered.
+	//
+	// OverallPlacement is a required field
+	OverallPlacement *PlacementStatistics `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GetDeliverabilityTestReportOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetDeliverabilityTestReportOutput) GoString() string {
+	return s.String()
+}
+
+// SetDeliverabilityTestReport sets the DeliverabilityTestReport field's value.
+func (s *GetDeliverabilityTestReportOutput) SetDeliverabilityTestReport(v *DeliverabilityTestReport) *GetDeliverabilityTestReportOutput {
+	s.DeliverabilityTestReport = v
+	return s
+}
+
+// SetIspPlacements sets the IspPlacements field's value.
+func (s *GetDeliverabilityTestReportOutput) SetIspPlacements(v []*IspPlacement) *GetDeliverabilityTestReportOutput {
+	s.IspPlacements = v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *GetDeliverabilityTestReportOutput) SetMessage(v string) *GetDeliverabilityTestReportOutput {
+	s.Message = &v
+	return s
+}
+
+// SetOverallPlacement sets the OverallPlacement field's value.
+func (s *GetDeliverabilityTestReportOutput) SetOverallPlacement(v *PlacementStatistics) *GetDeliverabilityTestReportOutput {
+	s.OverallPlacement = v
+	return s
+}
+
+// A request to obtain deliverability metrics for a domain.
+type GetDomainStatisticsReportInput struct {
+	_ struct{} `type:"structure"`
+
+	// The domain that you want to obtain deliverability metrics for.
+	//
+	// Domain is a required field
+	Domain *string `location:"uri" locationName:"Domain" type:"string" required:"true"`
+
+	// The last day (in Unix time) that you want to obtain domain deliverability
+	// metrics for. The EndDate that you specify has to be less than or equal to
+	// 30 days after the StartDate.
+	//
+	// EndDate is a required field
+	EndDate *time.Time `type:"timestamp" required:"true"`
+
+	// The first day (in Unix time) that you want to obtain domain deliverability
+	// metrics for.
+	//
+	// StartDate is a required field
+	StartDate *time.Time `type:"timestamp" required:"true"`
+}
+
+// String returns the string representation
+func (s GetDomainStatisticsReportInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetDomainStatisticsReportInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDomainStatisticsReportInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDomainStatisticsReportInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.EndDate == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndDate"))
+	}
+	if s.StartDate == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartDate"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomain sets the Domain field's value.
+func (s *GetDomainStatisticsReportInput) SetDomain(v string) *GetDomainStatisticsReportInput {
+	s.Domain = &v
+	return s
+}
+
+// SetEndDate sets the EndDate field's value.
+func (s *GetDomainStatisticsReportInput) SetEndDate(v time.Time) *GetDomainStatisticsReportInput {
+	s.EndDate = &v
+	return s
+}
+
+// SetStartDate sets the StartDate field's value.
+func (s *GetDomainStatisticsReportInput) SetStartDate(v time.Time) *GetDomainStatisticsReportInput {
+	s.StartDate = &v
+	return s
+}
+
+// An object that includes statistics that are related to the domain that you
+// specified.
+type GetDomainStatisticsReportOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains deliverability metrics for the domain that you specified.
+	// This object contains data for each day, starting on the StartDate and ending
+	// on the EndDate.
+	//
+	// DailyVolumes is a required field
+	DailyVolumes []*DailyVolume `type:"list" required:"true"`
+
+	// An object that contains deliverability metrics for the domain that you specified.
+	// The data in this object is a summary of all of the data that was collected
+	// from the StartDate to the EndDate.
+	//
+	// OverallVolume is a required field
+	OverallVolume *OverallVolume `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GetDomainStatisticsReportOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetDomainStatisticsReportOutput) GoString() string {
+	return s.String()
+}
+
+// SetDailyVolumes sets the DailyVolumes field's value.
+func (s *GetDomainStatisticsReportOutput) SetDailyVolumes(v []*DailyVolume) *GetDomainStatisticsReportOutput {
+	s.DailyVolumes = v
+	return s
+}
+
+// SetOverallVolume sets the OverallVolume field's value.
+func (s *GetDomainStatisticsReportOutput) SetOverallVolume(v *OverallVolume) *GetDomainStatisticsReportOutput {
+	s.OverallVolume = v
+	return s
+}
+
 // A request to return details about an email identity.
 type GetEmailIdentityInput struct {
 	_ struct{} `type:"structure"`
@@ -4838,6 +6253,40 @@ func (s *IdentityInfo) SetIdentityType(v string) *IdentityInfo {
 // SetSendingEnabled sets the SendingEnabled field's value.
 func (s *IdentityInfo) SetSendingEnabled(v bool) *IdentityInfo {
 	s.SendingEnabled = &v
+	return s
+}
+
+// An object that describes how email sent during the predictive inbox placement
+// test was handled by a certain email provider.
+type IspPlacement struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the email provider that the inbox placement data applies to.
+	IspName *string `type:"string"`
+
+	// An object that contains inbox placement metrics for a specific email provider.
+	PlacementStatistics *PlacementStatistics `type:"structure"`
+}
+
+// String returns the string representation
+func (s IspPlacement) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s IspPlacement) GoString() string {
+	return s.String()
+}
+
+// SetIspName sets the IspName field's value.
+func (s *IspPlacement) SetIspName(v string) *IspPlacement {
+	s.IspName = &v
+	return s
+}
+
+// SetPlacementStatistics sets the PlacementStatistics field's value.
+func (s *IspPlacement) SetPlacementStatistics(v *PlacementStatistics) *IspPlacement {
+	s.PlacementStatistics = v
 	return s
 }
 
@@ -5042,6 +6491,86 @@ func (s *ListDedicatedIpPoolsOutput) SetDedicatedIpPools(v []*string) *ListDedic
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListDedicatedIpPoolsOutput) SetNextToken(v string) *ListDedicatedIpPoolsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// A request to list all of the predictive inbox placement tests that you've
+// performed.
+type ListDeliverabilityTestReportsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A token returned from a previous call to ListDeliverabilityTestReports to
+	// indicate the position in the list of predictive inbox placement tests.
+	NextToken *string `type:"string"`
+
+	// The number of results to show in a single call to ListDeliverabilityTestReports.
+	// If the number of results is larger than the number you specified in this
+	// parameter, then the response includes a NextToken element, which you can
+	// use to obtain additional results.
+	//
+	// The value you specify has to be at least 0, and can be no more than 1000.
+	PageSize *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s ListDeliverabilityTestReportsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDeliverabilityTestReportsInput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDeliverabilityTestReportsInput) SetNextToken(v string) *ListDeliverabilityTestReportsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPageSize sets the PageSize field's value.
+func (s *ListDeliverabilityTestReportsInput) SetPageSize(v int64) *ListDeliverabilityTestReportsInput {
+	s.PageSize = &v
+	return s
+}
+
+// A list of the predictive inbox placement test reports that are available
+// for your account, regardless of whether or not those tests are complete.
+type ListDeliverabilityTestReportsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains a lists of predictive inbox placement tests that
+	// you've performed.
+	//
+	// DeliverabilityTestReports is a required field
+	DeliverabilityTestReports []*DeliverabilityTestReport `type:"list" required:"true"`
+
+	// A token that indicates that there are additional predictive inbox placement
+	// tests to list. To view additional predictive inbox placement tests, issue
+	// another request to ListDeliverabilityTestReports, and pass this token in
+	// the NextToken parameter.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListDeliverabilityTestReportsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDeliverabilityTestReportsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDeliverabilityTestReports sets the DeliverabilityTestReports field's value.
+func (s *ListDeliverabilityTestReportsOutput) SetDeliverabilityTestReports(v []*DeliverabilityTestReport) *ListDeliverabilityTestReportsOutput {
+	s.DeliverabilityTestReports = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDeliverabilityTestReportsOutput) SetNextToken(v string) *ListDeliverabilityTestReportsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -5326,6 +6855,52 @@ func (s *MessageTag) SetValue(v string) *MessageTag {
 	return s
 }
 
+// An object that contains information about email that was sent from the selected
+// domain.
+type OverallVolume struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains inbox and junk mail placement metrics for individual
+	// email providers.
+	DomainIspPlacements []*DomainIspPlacement `type:"list"`
+
+	// The percentage of emails that were sent from the domain that were read by
+	// their recipients.
+	ReadRatePercent *float64 `type:"double"`
+
+	// An object that contains information about the numbers of messages that arrived
+	// in recipients' inboxes and junk mail folders.
+	VolumeStatistics *VolumeStatistics `type:"structure"`
+}
+
+// String returns the string representation
+func (s OverallVolume) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OverallVolume) GoString() string {
+	return s.String()
+}
+
+// SetDomainIspPlacements sets the DomainIspPlacements field's value.
+func (s *OverallVolume) SetDomainIspPlacements(v []*DomainIspPlacement) *OverallVolume {
+	s.DomainIspPlacements = v
+	return s
+}
+
+// SetReadRatePercent sets the ReadRatePercent field's value.
+func (s *OverallVolume) SetReadRatePercent(v float64) *OverallVolume {
+	s.ReadRatePercent = &v
+	return s
+}
+
+// SetVolumeStatistics sets the VolumeStatistics field's value.
+func (s *OverallVolume) SetVolumeStatistics(v *VolumeStatistics) *OverallVolume {
+	s.VolumeStatistics = v
+	return s
+}
+
 // An object that defines a Amazon Pinpoint destination for email events. You
 // can use Amazon Pinpoint events to create attributes in Amazon Pinpoint projects.
 // You can use these attributes to create segments for your campaigns.
@@ -5350,6 +6925,71 @@ func (s PinpointDestination) GoString() string {
 // SetApplicationArn sets the ApplicationArn field's value.
 func (s *PinpointDestination) SetApplicationArn(v string) *PinpointDestination {
 	s.ApplicationArn = &v
+	return s
+}
+
+// An object that contains inbox placement data for an email provider.
+type PlacementStatistics struct {
+	_ struct{} `type:"structure"`
+
+	// The percentage of emails that were authenticated by using DomainKeys Identified
+	// Mail (DKIM) during the predictive inbox placement test.
+	DkimPercentage *float64 `type:"double"`
+
+	// The percentage of emails that arrived in recipients' inboxes during the predictive
+	// inbox placement test.
+	InboxPercentage *float64 `type:"double"`
+
+	// The percentage of emails that didn't arrive in recipients' inboxes at all
+	// during the predictive inbox placement test.
+	MissingPercentage *float64 `type:"double"`
+
+	// The percentage of emails that arrived in recipients' spam or junk mail folders
+	// during the predictive inbox placement test.
+	SpamPercentage *float64 `type:"double"`
+
+	// The percentage of emails that were authenticated by using Sender Policy Framework
+	// (SPF) during the predictive inbox placement test.
+	SpfPercentage *float64 `type:"double"`
+}
+
+// String returns the string representation
+func (s PlacementStatistics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PlacementStatistics) GoString() string {
+	return s.String()
+}
+
+// SetDkimPercentage sets the DkimPercentage field's value.
+func (s *PlacementStatistics) SetDkimPercentage(v float64) *PlacementStatistics {
+	s.DkimPercentage = &v
+	return s
+}
+
+// SetInboxPercentage sets the InboxPercentage field's value.
+func (s *PlacementStatistics) SetInboxPercentage(v float64) *PlacementStatistics {
+	s.InboxPercentage = &v
+	return s
+}
+
+// SetMissingPercentage sets the MissingPercentage field's value.
+func (s *PlacementStatistics) SetMissingPercentage(v float64) *PlacementStatistics {
+	s.MissingPercentage = &v
+	return s
+}
+
+// SetSpamPercentage sets the SpamPercentage field's value.
+func (s *PlacementStatistics) SetSpamPercentage(v float64) *PlacementStatistics {
+	s.SpamPercentage = &v
+	return s
+}
+
+// SetSpfPercentage sets the SpfPercentage field's value.
+func (s *PlacementStatistics) SetSpfPercentage(v float64) *PlacementStatistics {
+	s.SpfPercentage = &v
 	return s
 }
 
@@ -5778,6 +7418,8 @@ func (s *PutDedicatedIpInPoolInput) SetIp(v string) *PutDedicatedIpInPoolInput {
 	return s
 }
 
+// An HTTP 200 response if the request succeeds, or an error message if the
+// request fails.
 type PutDedicatedIpInPoolOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5863,6 +7505,71 @@ func (s PutDedicatedIpWarmupAttributesOutput) String() string {
 
 // GoString returns the string representation
 func (s PutDedicatedIpWarmupAttributesOutput) GoString() string {
+	return s.String()
+}
+
+// A request to enable or disable the Deliverability dashboard. When you enable
+// the Deliverability dashboard, you gain access to reputation metrics for the
+// domains that you use to send email using Amazon Pinpoint. You also gain the
+// ability to perform predictive inbox placement tests.
+//
+// When you use the Deliverability dashboard, you pay a monthly charge of USD$1,250.00,
+// in addition to any other fees that you accrue by using Amazon Pinpoint. If
+// you enable the Deliverability dashboard after the first day of a calendar
+// month, we prorate the monthly charge based on how many days have elapsed
+// in the current calendar month.
+type PutDeliverabilityDashboardOptionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the Deliverability dashboard is enabled. If the value is
+	// true, then the dashboard is enabled.
+	//
+	// DashboardEnabled is a required field
+	DashboardEnabled *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation
+func (s PutDeliverabilityDashboardOptionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutDeliverabilityDashboardOptionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutDeliverabilityDashboardOptionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutDeliverabilityDashboardOptionInput"}
+	if s.DashboardEnabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("DashboardEnabled"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDashboardEnabled sets the DashboardEnabled field's value.
+func (s *PutDeliverabilityDashboardOptionInput) SetDashboardEnabled(v bool) *PutDeliverabilityDashboardOptionInput {
+	s.DashboardEnabled = &v
+	return s
+}
+
+// A response that indicates whether the Deliverability dashboard is enabled
+// for your Amazon Pinpoint account.
+type PutDeliverabilityDashboardOptionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutDeliverabilityDashboardOptionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutDeliverabilityDashboardOptionOutput) GoString() string {
 	return s.String()
 }
 
@@ -6176,9 +7883,9 @@ func (s *RawMessage) SetData(v []byte) *RawMessage {
 type ReputationOptions struct {
 	_ struct{} `type:"structure"`
 
-	// The date and time when the reputation metrics were last given a fresh start.
-	// When your account is given a fresh start, your reputation metrics are calculated
-	// starting from the date of the fresh start.
+	// The date and time (in Unix time) when the reputation metrics were last given
+	// a fresh start. When your account is given a fresh start, your reputation
+	// metrics are calculated starting from the date of the fresh start.
 	LastFreshStart *time.Time `type:"timestamp"`
 
 	// If true, tracking of reputation metrics is enabled for the configuration
@@ -6617,6 +8324,61 @@ func (s UpdateConfigurationSetEventDestinationOutput) GoString() string {
 	return s.String()
 }
 
+// An object that contains information about the amount of email that was delivered
+// to recipients.
+type VolumeStatistics struct {
+	_ struct{} `type:"structure"`
+
+	// The total number of emails that arrived in recipients' inboxes.
+	InboxRawCount *int64 `type:"long"`
+
+	// An estimate of the percentage of emails sent from the current domain that
+	// will arrive in recipients' inboxes.
+	ProjectedInbox *int64 `type:"long"`
+
+	// An estimate of the percentage of emails sent from the current domain that
+	// will arrive in recipients' spam or junk mail folders.
+	ProjectedSpam *int64 `type:"long"`
+
+	// The total number of emails that arrived in recipients' spam or junk mail
+	// folders.
+	SpamRawCount *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s VolumeStatistics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VolumeStatistics) GoString() string {
+	return s.String()
+}
+
+// SetInboxRawCount sets the InboxRawCount field's value.
+func (s *VolumeStatistics) SetInboxRawCount(v int64) *VolumeStatistics {
+	s.InboxRawCount = &v
+	return s
+}
+
+// SetProjectedInbox sets the ProjectedInbox field's value.
+func (s *VolumeStatistics) SetProjectedInbox(v int64) *VolumeStatistics {
+	s.ProjectedInbox = &v
+	return s
+}
+
+// SetProjectedSpam sets the ProjectedSpam field's value.
+func (s *VolumeStatistics) SetProjectedSpam(v int64) *VolumeStatistics {
+	s.ProjectedSpam = &v
+	return s
+}
+
+// SetSpamRawCount sets the SpamRawCount field's value.
+func (s *VolumeStatistics) SetSpamRawCount(v int64) *VolumeStatistics {
+	s.SpamRawCount = &v
+	return s
+}
+
 // The action that you want Amazon Pinpoint to take if it can't read the required
 // MX record for a custom MAIL FROM domain. When you set this value to UseDefaultValue,
 // Amazon Pinpoint uses amazonses.com as the MAIL FROM domain. When you set
@@ -6631,6 +8393,19 @@ const (
 
 	// BehaviorOnMxFailureRejectMessage is a BehaviorOnMxFailure enum value
 	BehaviorOnMxFailureRejectMessage = "REJECT_MESSAGE"
+)
+
+// The status of a predictive inbox placement test. If the status is IN_PROGRESS,
+// then the predictive inbox placement test is currently running. Predictive
+// inbox placement tests are usually complete within 24 hours of creating the
+// test. If the status is COMPLETE, then the test is finished, and you can use
+// the GetDeliverabilityTestReport operation to view the results of the test.
+const (
+	// DeliverabilityTestStatusInProgress is a DeliverabilityTestStatus enum value
+	DeliverabilityTestStatusInProgress = "IN_PROGRESS"
+
+	// DeliverabilityTestStatusCompleted is a DeliverabilityTestStatus enum value
+	DeliverabilityTestStatusCompleted = "COMPLETED"
 )
 
 // The location where Amazon Pinpoint finds the value of a dimension to publish

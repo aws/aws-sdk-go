@@ -8,7 +8,7 @@ import (
 )
 
 func setupEndpointHostPrefix(op *Operation) {
-	op.API.imports["github.com/aws/aws-sdk-go/private/protocol"] = true
+	op.API.AddSDKImport("private/protocol")
 
 	buildHandler := fmt.Sprintf("protocol.NewHostPrefixHandler(%q, ",
 		op.Endpoint.HostPrefix)

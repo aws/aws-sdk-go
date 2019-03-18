@@ -9,6 +9,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
 const opAssociateFleet = "AssociateFleet"
@@ -50,6 +52,7 @@ func (c *AppStream) AssociateFleetRequest(input *AssociateFleetInput) (req *requ
 
 	output = &AssociateFleetOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -974,6 +977,7 @@ func (c *AppStream) CreateUserRequest(input *CreateUserInput) (req *request.Requ
 
 	output = &CreateUserOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1066,6 +1070,7 @@ func (c *AppStream) DeleteDirectoryConfigRequest(input *DeleteDirectoryConfigInp
 
 	output = &DeleteDirectoryConfigOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1150,6 +1155,7 @@ func (c *AppStream) DeleteFleetRequest(input *DeleteFleetInput) (req *request.Re
 
 	output = &DeleteFleetOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1409,6 +1415,7 @@ func (c *AppStream) DeleteImagePermissionsRequest(input *DeleteImagePermissionsI
 
 	output = &DeleteImagePermissionsOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1493,6 +1500,7 @@ func (c *AppStream) DeleteStackRequest(input *DeleteStackInput) (req *request.Re
 
 	output = &DeleteStackOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1581,6 +1589,7 @@ func (c *AppStream) DeleteUserRequest(input *DeleteUserInput) (req *request.Requ
 
 	output = &DeleteUserOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2188,10 +2197,11 @@ func (c *AppStream) DescribeSessionsRequest(input *DescribeSessionsInput) (req *
 
 // DescribeSessions API operation for Amazon AppStream.
 //
-// Retrieves a list that describes the streaming sessions for a specified stack
-// and fleet. If a user ID is provided for the stack and fleet, only streaming
-// sessions for that user are described. If an authentication type is not provided,
-// the default is to authenticate users using a streaming URL.
+// Retrieves a list that describes the active streaming sessions for a specified
+// stack and fleet. If a value for UserId is provided for the stack and fleet,
+// only streaming sessions for that user are described. If an authentication
+// type is not provided, the default is to authenticate users using a streaming
+// URL.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2435,8 +2445,7 @@ func (c *AppStream) DescribeUsersRequest(input *DescribeUsersInput) (req *reques
 
 // DescribeUsers API operation for Amazon AppStream.
 //
-// Retrieves a list that describes one or more specified users in the user pool,
-// if user names are provided. Otherwise, all users in the user pool are described.
+// Retrieves a list that describes one or more specified users in the user pool.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2513,6 +2522,7 @@ func (c *AppStream) DisableUserRequest(input *DisableUserInput) (req *request.Re
 
 	output = &DisableUserOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2593,6 +2603,7 @@ func (c *AppStream) DisassociateFleetRequest(input *DisassociateFleetInput) (req
 
 	output = &DisassociateFleetOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2678,6 +2689,7 @@ func (c *AppStream) EnableUserRequest(input *EnableUserInput) (req *request.Requ
 
 	output = &EnableUserOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2762,6 +2774,7 @@ func (c *AppStream) ExpireSessionRequest(input *ExpireSessionInput) (req *reques
 
 	output = &ExpireSessionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2992,7 +3005,7 @@ func (c *AppStream) ListTagsForResourceRequest(input *ListTagsForResourceInput) 
 // Retrieves a list of all tags for the specified AppStream 2.0 resource. You
 // can tag AppStream 2.0 image builders, images, fleets, and stacks.
 //
-// For more information about tags, see Tagging Your Resources (http://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html)
+// For more information about tags, see Tagging Your Resources (https://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html)
 // in the Amazon AppStream 2.0 Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3067,6 +3080,7 @@ func (c *AppStream) StartFleetRequest(input *StartFleetInput) (req *request.Requ
 
 	output = &StartFleetOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3251,6 +3265,7 @@ func (c *AppStream) StopFleetRequest(input *StopFleetInput) (req *request.Reques
 
 	output = &StopFleetOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3418,6 +3433,7 @@ func (c *AppStream) TagResourceRequest(input *TagResourceInput) (req *request.Re
 
 	output = &TagResourceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3432,7 +3448,7 @@ func (c *AppStream) TagResourceRequest(input *TagResourceInput) (req *request.Re
 // To list the current tags for your resources, use ListTagsForResource. To
 // disassociate tags from your resources, use UntagResource.
 //
-// For more information about tags, see Tagging Your Resources (http://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html)
+// For more information about tags, see Tagging Your Resources (https://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html)
 // in the Amazon AppStream 2.0 Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3514,6 +3530,7 @@ func (c *AppStream) UntagResourceRequest(input *UntagResourceInput) (req *reques
 
 	output = &UntagResourceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3524,7 +3541,7 @@ func (c *AppStream) UntagResourceRequest(input *UntagResourceInput) (req *reques
 //
 // To list the current tags for your resources, use ListTagsForResource.
 //
-// For more information about tags, see Tagging Your Resources (http://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html)
+// For more information about tags, see Tagging Your Resources (https://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html)
 // in the Amazon AppStream 2.0 Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3798,6 +3815,7 @@ func (c *AppStream) UpdateImagePermissionsRequest(input *UpdateImagePermissionsI
 
 	output = &UpdateImagePermissionsOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3949,7 +3967,7 @@ func (c *AppStream) UpdateStackWithContext(ctx aws.Context, input *UpdateStackIn
 type Application struct {
 	_ struct{} `type:"structure"`
 
-	// The application name for display.
+	// The application name to display.
 	DisplayName *string `min:"1" type:"string"`
 
 	// If there is a problem, the application can be disabled after image creation.
@@ -4633,19 +4651,20 @@ type CreateFleetInput struct {
 	// ComputeCapacity is a required field
 	ComputeCapacity *ComputeCapacity `type:"structure" required:"true"`
 
-	// The description for display.
+	// The description to display.
 	Description *string `type:"string"`
 
 	// The time after disconnection when a session is considered to have ended,
 	// in seconds. If a user who was disconnected reconnects within this time interval,
 	// the user is connected to their previous session. Specify a value between
-	// 60 and 57600.
+	// 60 and 360000.
 	DisconnectTimeoutInSeconds *int64 `type:"integer"`
 
-	// The fleet name for display.
+	// The fleet name to display.
 	DisplayName *string `type:"string"`
 
-	// The information needed to join a Microsoft Active Directory domain.
+	// The name of the directory and organizational unit (OU) to use to join the
+	// fleet to a Microsoft Active Directory domain.
 	DomainJoinInfo *DomainJoinInfo `type:"structure"`
 
 	// Enables or disables default internet access for the fleet.
@@ -4715,13 +4734,23 @@ type CreateFleetInput struct {
 	InstanceType *string `min:"1" type:"string" required:"true"`
 
 	// The maximum time that a streaming session can run, in seconds. Specify a
-	// value between 600 and 57600.
+	// value between 600 and 360000.
 	MaxUserDurationInSeconds *int64 `type:"integer"`
 
 	// A unique name for the fleet.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
+
+	// The tags to associate with the fleet. A tag is a key-value pair, and the
+	// value is optional. For example, Environment=Test. If you do not specify a
+	// value, Environment=.
+	//
+	// If you do not specify a value, the value is set to an empty string.
+	//
+	// For more information, see Tagging Your Resources (https://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html)
+	// in the Amazon AppStream 2.0 Developer Guide.
+	Tags map[string]*string `min:"1" type:"map"`
 
 	// The VPC configuration for the fleet.
 	VpcConfig *VpcConfig `type:"structure"`
@@ -4754,6 +4783,9 @@ func (s *CreateFleetInput) Validate() error {
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
 	if s.ComputeCapacity != nil {
 		if err := s.ComputeCapacity.Validate(); err != nil {
@@ -4839,6 +4871,12 @@ func (s *CreateFleetInput) SetName(v string) *CreateFleetInput {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateFleetInput) SetTags(v map[string]*string) *CreateFleetInput {
+	s.Tags = v
+	return s
+}
+
 // SetVpcConfig sets the VpcConfig field's value.
 func (s *CreateFleetInput) SetVpcConfig(v *VpcConfig) *CreateFleetInput {
 	s.VpcConfig = v
@@ -4875,13 +4913,14 @@ type CreateImageBuilderInput struct {
 	// use the latest version of the AppStream 2.0 agent, specify [LATEST].
 	AppstreamAgentVersion *string `min:"1" type:"string"`
 
-	// The description for display.
+	// The description to display.
 	Description *string `type:"string"`
 
-	// The image builder name for display.
+	// The image builder name to display.
 	DisplayName *string `type:"string"`
 
-	// The information needed to join a Microsoft Active Directory domain.
+	// The name of the directory and organizational unit (OU) to use to join the
+	// image builder to a Microsoft Active Directory domain.
 	DomainJoinInfo *DomainJoinInfo `type:"structure"`
 
 	// Enables or disables default internet access for the image builder.
@@ -4890,7 +4929,7 @@ type CreateImageBuilderInput struct {
 	// The ARN of the public, private, or shared image to use.
 	ImageArn *string `type:"string"`
 
-	// The name of the image used to create the builder.
+	// The name of the image used to create the image builder.
 	ImageName *string `min:"1" type:"string"`
 
 	// The instance type to use when launching the image builder.
@@ -4902,6 +4941,16 @@ type CreateImageBuilderInput struct {
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
+
+	// The tags to associate with the image builder. A tag is a key-value pair,
+	// and the value is optional. For example, Environment=Test. If you do not specify
+	// a value, Environment=.
+	//
+	// If you do not specify a value, the value is set to an empty string.
+	//
+	// For more information about tags, see Tagging Your Resources (https://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html)
+	// in the Amazon AppStream 2.0 Developer Guide.
+	Tags map[string]*string `min:"1" type:"map"`
 
 	// The VPC configuration for the image builder. You can specify only one subnet.
 	VpcConfig *VpcConfig `type:"structure"`
@@ -4934,6 +4983,9 @@ func (s *CreateImageBuilderInput) Validate() error {
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -4993,6 +5045,12 @@ func (s *CreateImageBuilderInput) SetInstanceType(v string) *CreateImageBuilderI
 // SetName sets the Name field's value.
 func (s *CreateImageBuilderInput) SetName(v string) *CreateImageBuilderInput {
 	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateImageBuilderInput) SetTags(v map[string]*string) *CreateImageBuilderInput {
+	s.Tags = v
 	return s
 }
 
@@ -5116,10 +5174,10 @@ type CreateStackInput struct {
 	// are automatically saved after each session and applied to the next session.
 	ApplicationSettings *ApplicationSettings `type:"structure"`
 
-	// The description for display.
+	// The description to display.
 	Description *string `type:"string"`
 
-	// The stack name for display.
+	// The stack name to display.
 	DisplayName *string `type:"string"`
 
 	// The URL that users are redirected to after they click the Send Feedback link.
@@ -5136,6 +5194,16 @@ type CreateStackInput struct {
 
 	// The storage connectors to enable.
 	StorageConnectors []*StorageConnector `type:"list"`
+
+	// The tags to associate with the stack. A tag is a key-value pair, and the
+	// value is optional. For example, Environment=Test. If you do not specify a
+	// value, Environment=.
+	//
+	// If you do not specify a value, the value is set to an empty string.
+	//
+	// For more information about tags, see Tagging Your Resources (https://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html)
+	// in the Amazon AppStream 2.0 Developer Guide.
+	Tags map[string]*string `min:"1" type:"map"`
 
 	// The actions that are enabled or disabled for users during their streaming
 	// sessions. By default, these actions are enabled.
@@ -5157,6 +5225,9 @@ func (s *CreateStackInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateStackInput"}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
 	if s.UserSettings != nil && len(s.UserSettings) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("UserSettings", 1))
@@ -5235,6 +5306,12 @@ func (s *CreateStackInput) SetStorageConnectors(v []*StorageConnector) *CreateSt
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateStackInput) SetTags(v map[string]*string) *CreateStackInput {
+	s.Tags = v
+	return s
+}
+
 // SetUserSettings sets the UserSettings field's value.
 func (s *CreateStackInput) SetUserSettings(v []*UserSetting) *CreateStackInput {
 	s.UserSettings = v
@@ -5276,7 +5353,7 @@ type CreateStreamingURLInput struct {
 	// FleetName is a required field
 	FleetName *string `min:"1" type:"string" required:"true"`
 
-	// The session context. For more information, see Session Context (http://docs.aws.amazon.com/appstream2/latest/developerguide/managing-stacks-fleets.html#managing-stacks-fleets-parameters)
+	// The session context. For more information, see Session Context (https://docs.aws.amazon.com/appstream2/latest/developerguide/managing-stacks-fleets.html#managing-stacks-fleets-parameters)
 	// in the Amazon AppStream 2.0 Developer Guide.
 	SessionContext *string `min:"1" type:"string"`
 
@@ -5285,7 +5362,7 @@ type CreateStreamingURLInput struct {
 	// StackName is a required field
 	StackName *string `min:"1" type:"string" required:"true"`
 
-	// The ID of the user.
+	// The identifier of the user.
 	//
 	// UserId is a required field
 	UserId *string `min:"2" type:"string" required:"true"`
@@ -5747,7 +5824,7 @@ type DeleteImagePermissionsInput struct {
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
-	// The 12-digit ID of the AWS account for which to delete image permissions.
+	// The 12-digit identifier of the AWS account for which to delete image permissions.
 	//
 	// SharedAccountId is a required field
 	SharedAccountId *string `type:"string" required:"true"`
@@ -6202,7 +6279,8 @@ type DescribeImagePermissionsInput struct {
 	// operation. If this value is null, it retrieves the first page.
 	NextToken *string `min:"1" type:"string"`
 
-	// The 12-digit ID of one or more AWS accounts with which the image is shared.
+	// The 12-digit identifier of one or more AWS accounts with which the image
+	// is shared.
 	SharedAwsAccountIds []*string `min:"1" type:"list"`
 }
 
@@ -6411,8 +6489,8 @@ type DescribeSessionsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The authentication method. Specify API for a user authenticated using a streaming
-	// URL or SAML for a SAML federated user. The default is to authenticate users
-	// using a streaming URL.
+	// URL, SAML for a SAML 2.0-federated user, or USERPOOL for a user in the AppStream
+	// 2.0 user pool. The default is to authenticate users using a streaming URL.
 	AuthenticationType *string `type:"string" enum:"AuthenticationType"`
 
 	// The name of the fleet. This value is case-sensitive.
@@ -6433,7 +6511,7 @@ type DescribeSessionsInput struct {
 	// StackName is a required field
 	StackName *string `min:"1" type:"string" required:"true"`
 
-	// The user ID.
+	// The user identifier.
 	UserId *string `min:"2" type:"string"`
 }
 
@@ -6830,7 +6908,8 @@ func (s *DescribeUsersOutput) SetUsers(v []*User) *DescribeUsersOutput {
 	return s
 }
 
-// Configuration information for the directory used to join domains.
+// Describes the configuration information for the directory used to join a
+// streaming instance to a Microsoft Active Directory domain.
 type DirectoryConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -7025,7 +7104,8 @@ func (s DisassociateFleetOutput) GoString() string {
 	return s.String()
 }
 
-// Contains the information needed to join a Microsoft Active Directory domain.
+// Describes the configuration information required to join fleets and image
+// builders to Microsoft Active Directory domains.
 type DomainJoinInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -7130,7 +7210,7 @@ func (s EnableUserOutput) GoString() string {
 type ExpireSessionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the streaming session.
+	// The identifier of the streaming session.
 	//
 	// SessionId is a required field
 	SessionId *string `min:"1" type:"string" required:"true"`
@@ -7182,7 +7262,7 @@ func (s ExpireSessionOutput) GoString() string {
 	return s.String()
 }
 
-// Contains the parameters for a fleet.
+// Describes the parameters for a fleet.
 type Fleet struct {
 	_ struct{} `type:"structure"`
 
@@ -7199,19 +7279,20 @@ type Fleet struct {
 	// The time the fleet was created.
 	CreatedTime *time.Time `type:"timestamp"`
 
-	// The description for display.
+	// The description to display.
 	Description *string `min:"1" type:"string"`
 
 	// The time after disconnection when a session is considered to have ended,
 	// in seconds. If a user who was disconnected reconnects within this time interval,
 	// the user is connected to their previous session. Specify a value between
-	// 60 and 57600.
+	// 60 and 360000. By default, this value is 900 seconds (15 minutes).
 	DisconnectTimeoutInSeconds *int64 `type:"integer"`
 
-	// The fleet name for display.
+	// The fleet name to display.
 	DisplayName *string `min:"1" type:"string"`
 
-	// The information needed to join a Microsoft Active Directory domain.
+	// The name of the directory and organizational unit (OU) to use to join the
+	// fleet to a Microsoft Active Directory domain.
 	DomainJoinInfo *DomainJoinInfo `type:"structure"`
 
 	// Indicates whether default internet access is enabled for the fleet.
@@ -7243,7 +7324,7 @@ type Fleet struct {
 	InstanceType *string `min:"1" type:"string" required:"true"`
 
 	// The maximum time that a streaming session can run, in seconds. Specify a
-	// value between 600 and 57600.
+	// value between 600 and 360000.
 	MaxUserDurationInSeconds *int64 `type:"integer"`
 
 	// The name of the fleet.
@@ -7425,10 +7506,10 @@ type Image struct {
 	// The time the image was created.
 	CreatedTime *time.Time `type:"timestamp"`
 
-	// The description for display.
+	// The description to display.
 	Description *string `min:"1" type:"string"`
 
-	// The image name for display.
+	// The image name to display.
 	DisplayName *string `min:"1" type:"string"`
 
 	// Indicates whether an image builder can be launched from this image.
@@ -7561,12 +7642,11 @@ func (s *Image) SetVisibility(v string) *Image {
 	return s
 }
 
-// Describes a streaming instance used for editing an image. New images are
-// created from a snapshot through an image builder.
+// Describes a virtual machine that is used to create an image.
 type ImageBuilder struct {
 	_ struct{} `type:"structure"`
 
-	// The version of the AppStream 2.0 agent that is currently being used by this
+	// The version of the AppStream 2.0 agent that is currently being used by the
 	// image builder.
 	AppstreamAgentVersion *string `min:"1" type:"string"`
 
@@ -7576,13 +7656,14 @@ type ImageBuilder struct {
 	// The time stamp when the image builder was created.
 	CreatedTime *time.Time `type:"timestamp"`
 
-	// The description for display.
+	// The description to display.
 	Description *string `min:"1" type:"string"`
 
-	// The image builder name for display.
+	// The image builder name to display.
 	DisplayName *string `min:"1" type:"string"`
 
-	// The information needed to join a Microsoft Active Directory domain.
+	// The name of the directory and organizational unit (OU) to use to join the
+	// image builder to a Microsoft Active Directory domain.
 	DomainJoinInfo *DomainJoinInfo `type:"structure"`
 
 	// Enables or disables default internet access for the image builder.
@@ -8049,7 +8130,7 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
-// The network details of the fleet instance for the streaming session.
+// Describes the network details of the fleet instance for the streaming session.
 type NetworkAccessConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -8194,18 +8275,31 @@ type Session struct {
 	_ struct{} `type:"structure"`
 
 	// The authentication method. The user is authenticated using a streaming URL
-	// (API) or SAML federation (SAML).
+	// (API), SAML 2.0 federation (SAML), or the AppStream 2.0 user pool (USERPOOL).
+	// The default is to authenticate users using a streaming URL.
 	AuthenticationType *string `type:"string" enum:"AuthenticationType"`
+
+	// Specifies whether a user is connected to the streaming session.
+	ConnectionState *string `type:"string" enum:"SessionConnectionState"`
 
 	// The name of the fleet for the streaming session.
 	//
 	// FleetName is a required field
 	FleetName *string `min:"1" type:"string" required:"true"`
 
-	// The ID of the streaming session.
+	// The identifier of the streaming session.
 	//
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
+
+	// The time when the streaming session is set to expire. This time is based
+	// on the MaxUserDurationinSeconds value, which determines the maximum length
+	// of time that a streaming session can run. A streaming session might end earlier
+	// than the time specified in SessionMaxExpirationTime, when the DisconnectTimeOutInSeconds
+	// elapses or the user chooses to end his or her session. If the DisconnectTimeOutInSeconds
+	// elapses, or the user chooses to end his or her session, the streaming instance
+	// is terminated and the streaming session ends.
+	MaxExpirationTime *time.Time `type:"timestamp"`
 
 	// The network details for the streaming session.
 	NetworkAccessConfiguration *NetworkAccessConfiguration `type:"structure"`
@@ -8214,6 +8308,9 @@ type Session struct {
 	//
 	// StackName is a required field
 	StackName *string `min:"1" type:"string" required:"true"`
+
+	// The time when a streaming instance is dedicated for the user.
+	StartTime *time.Time `type:"timestamp"`
 
 	// The current state of the streaming session.
 	//
@@ -8242,6 +8339,12 @@ func (s *Session) SetAuthenticationType(v string) *Session {
 	return s
 }
 
+// SetConnectionState sets the ConnectionState field's value.
+func (s *Session) SetConnectionState(v string) *Session {
+	s.ConnectionState = &v
+	return s
+}
+
 // SetFleetName sets the FleetName field's value.
 func (s *Session) SetFleetName(v string) *Session {
 	s.FleetName = &v
@@ -8254,6 +8357,12 @@ func (s *Session) SetId(v string) *Session {
 	return s
 }
 
+// SetMaxExpirationTime sets the MaxExpirationTime field's value.
+func (s *Session) SetMaxExpirationTime(v time.Time) *Session {
+	s.MaxExpirationTime = &v
+	return s
+}
+
 // SetNetworkAccessConfiguration sets the NetworkAccessConfiguration field's value.
 func (s *Session) SetNetworkAccessConfiguration(v *NetworkAccessConfiguration) *Session {
 	s.NetworkAccessConfiguration = v
@@ -8263,6 +8372,12 @@ func (s *Session) SetNetworkAccessConfiguration(v *NetworkAccessConfiguration) *
 // SetStackName sets the StackName field's value.
 func (s *Session) SetStackName(v string) *Session {
 	s.StackName = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *Session) SetStartTime(v time.Time) *Session {
+	s.StartTime = &v
 	return s
 }
 
@@ -8288,7 +8403,7 @@ type SharedImagePermissions struct {
 	// ImagePermissions is a required field
 	ImagePermissions *ImagePermissions `locationName:"imagePermissions" type:"structure" required:"true"`
 
-	// The 12-digit ID of the AWS account with which the image is shared.
+	// The 12-digit identifier of the AWS account with which the image is shared.
 	//
 	// SharedAccountId is a required field
 	SharedAccountId *string `locationName:"sharedAccountId" type:"string" required:"true"`
@@ -8329,10 +8444,10 @@ type Stack struct {
 	// The time the stack was created.
 	CreatedTime *time.Time `type:"timestamp"`
 
-	// The description for display.
+	// The description to display.
 	Description *string `min:"1" type:"string"`
 
-	// The stack name for display.
+	// The stack name to display.
 	DisplayName *string `min:"1" type:"string"`
 
 	// The URL that users are redirected to after they click the Send Feedback link.
@@ -8727,7 +8842,7 @@ type StorageConnector struct {
 	// ConnectorType is a required field
 	ConnectorType *string `type:"string" required:"true" enum:"StorageConnectorType"`
 
-	// The names of the domains for the G Suite account.
+	// The names of the domains for the account.
 	Domains []*string `type:"list"`
 
 	// The ARN of the storage connector.
@@ -8786,10 +8901,10 @@ type TagResourceInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `type:"string" required:"true"`
 
-	// The tags to associate. A tag is a key-value pair (the value is optional).
-	// For example, Environment=Test, or, if you do not specify a value, Environment=.
+	// The tags to associate. A tag is a key-value pair, and the value is optional.
+	// For example, Environment=Test. If you do not specify a value, Environment=.
 	//
-	// If you do not specify a value, we set the value to an empty string.
+	// If you do not specify a value, the value is set to an empty string.
 	//
 	// Tags is a required field
 	Tags map[string]*string `min:"1" type:"map" required:"true"`
@@ -9018,19 +9133,20 @@ type UpdateFleetInput struct {
 	// Deprecated: DeleteVpcConfig has been deprecated
 	DeleteVpcConfig *bool `deprecated:"true" type:"boolean"`
 
-	// The description for display.
+	// The description to display.
 	Description *string `type:"string"`
 
 	// The time after disconnection when a session is considered to have ended,
 	// in seconds. If a user who was disconnected reconnects within this time interval,
 	// the user is connected to their previous session. Specify a value between
-	// 60 and 57600.
+	// 60 and 360000. By default, the value is 900 seconds (15 minutes).
 	DisconnectTimeoutInSeconds *int64 `type:"integer"`
 
-	// The fleet name for display.
+	// The fleet name to display.
 	DisplayName *string `type:"string"`
 
-	// The information needed to join a Microsoft Active Directory domain.
+	// The name of the directory and organizational unit (OU) to use to join the
+	// fleet to a Microsoft Active Directory domain.
 	DomainJoinInfo *DomainJoinInfo `type:"structure"`
 
 	// Enables or disables default internet access for the fleet.
@@ -9087,7 +9203,7 @@ type UpdateFleetInput struct {
 	InstanceType *string `min:"1" type:"string"`
 
 	// The maximum time that a streaming session can run, in seconds. Specify a
-	// value between 600 and 57600.
+	// value between 600 and 360000. By default, the value is 900 seconds (15 minutes).
 	MaxUserDurationInSeconds *int64 `type:"integer"`
 
 	// A unique name for the fleet.
@@ -9251,8 +9367,8 @@ type UpdateImagePermissionsInput struct {
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
-	// The 12-digit ID of the AWS account for which you want add or update image
-	// permissions.
+	// The 12-digit identifier of the AWS account for which you want add or update
+	// image permissions.
 	//
 	// SharedAccountId is a required field
 	SharedAccountId *string `type:"string" required:"true"`
@@ -9335,14 +9451,14 @@ type UpdateStackInput struct {
 	// Deprecated: DeleteStorageConnectors has been deprecated
 	DeleteStorageConnectors *bool `deprecated:"true" type:"boolean"`
 
-	// The description for display.
+	// The description to display.
 	Description *string `type:"string"`
 
-	// The stack name for display.
+	// The stack name to display.
 	DisplayName *string `type:"string"`
 
-	// The URL that users are redirected to after they click the Send Feedback link.
-	// If no URL is specified, no Send Feedback link is displayed.
+	// The URL that users are redirected to after they choose the Send Feedback
+	// link. If no URL is specified, no Send Feedback link is displayed.
 	FeedbackURL *string `type:"string"`
 
 	// The name of the stack.
@@ -9779,14 +9895,16 @@ func (s *UserStackAssociationError) SetUserStackAssociation(v *UserStackAssociat
 	return s
 }
 
-// Describes VPC configuration information.
+// Describes VPC configuration information for fleets and image builders.
 type VpcConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The security groups for the fleet.
+	// The identifiers of the security groups for the fleet or image builder.
 	SecurityGroupIds []*string `type:"list"`
 
-	// The subnets to which a network interface is established from the fleet instance.
+	// The identifiers of the subnets to which a network interface is attached from
+	// the fleet instance or image builder instance. Fleet instances use one or
+	// two subnets. Image builder instances use one subnet.
 	SubnetIds []*string `type:"list"`
 }
 
@@ -10040,7 +10158,14 @@ const (
 	PlatformTypeWindows = "WINDOWS"
 )
 
-// Possible values for the state of a streaming session.
+const (
+	// SessionConnectionStateConnected is a SessionConnectionState enum value
+	SessionConnectionStateConnected = "CONNECTED"
+
+	// SessionConnectionStateNotConnected is a SessionConnectionState enum value
+	SessionConnectionStateNotConnected = "NOT_CONNECTED"
+)
+
 const (
 	// SessionStateActive is a SessionState enum value
 	SessionStateActive = "ACTIVE"

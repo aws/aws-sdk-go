@@ -1037,7 +1037,10 @@
     },
     "ModifyClientPropertiesRequest":{
       "type":"structure",
-      "required":["ResourceId"],
+      "required":[
+        "ResourceId",
+        "ClientProperties"
+      ],
       "members":{
         "ResourceId":{"shape":"NonEmptyString"},
         "ClientProperties":{"shape":"ClientProperties"}

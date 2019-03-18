@@ -1,9 +1,10 @@
 {
   "version": "2.0",
-  "service": "<fullname>AWS CodeCommit</fullname> <p>This is the <i>AWS CodeCommit API Reference</i>. This reference provides descriptions of the operations and data types for AWS CodeCommit API along with usage examples.</p> <p>You can use the AWS CodeCommit API to work with the following objects:</p> <p>Repositories, by calling the following:</p> <ul> <li> <p> <a>BatchGetRepositories</a>, which returns information about one or more repositories associated with your AWS account.</p> </li> <li> <p> <a>CreateRepository</a>, which creates an AWS CodeCommit repository.</p> </li> <li> <p> <a>DeleteRepository</a>, which deletes an AWS CodeCommit repository.</p> </li> <li> <p> <a>GetRepository</a>, which returns information about a specified repository.</p> </li> <li> <p> <a>ListRepositories</a>, which lists all AWS CodeCommit repositories associated with your AWS account.</p> </li> <li> <p> <a>UpdateRepositoryDescription</a>, which sets or updates the description of the repository.</p> </li> <li> <p> <a>UpdateRepositoryName</a>, which changes the name of the repository. If you change the name of a repository, no other users of that repository will be able to access it until you send them the new HTTPS or SSH URL to use.</p> </li> </ul> <p>Branches, by calling the following:</p> <ul> <li> <p> <a>CreateBranch</a>, which creates a new branch in a specified repository.</p> </li> <li> <p> <a>DeleteBranch</a>, which deletes the specified branch in a repository unless it is the default branch.</p> </li> <li> <p> <a>GetBranch</a>, which returns information about a specified branch.</p> </li> <li> <p> <a>ListBranches</a>, which lists all branches for a specified repository.</p> </li> <li> <p> <a>UpdateDefaultBranch</a>, which changes the default branch for a repository.</p> </li> </ul> <p>Files, by calling the following:</p> <ul> <li> <p> <a>DeleteFile</a>, which deletes the content of a specified file from a specified branch.</p> </li> <li> <p> <a>GetFile</a>, which returns the base-64 encoded content of a specified file.</p> </li> <li> <p> <a>GetFolder</a>, which returns the contents of a specified folder or directory.</p> </li> <li> <p> <a>PutFile</a>, which adds or modifies a file in a specified repository and branch.</p> </li> </ul> <p>Information about committed code in a repository, by calling the following:</p> <ul> <li> <p> <a>GetBlob</a>, which returns the base-64 encoded content of an individual Git blob object within a repository.</p> </li> <li> <p> <a>GetCommit</a>, which returns information about a commit, including commit messages and author and committer information.</p> </li> <li> <p> <a>GetDifferences</a>, which returns information about the differences in a valid commit specifier (such as a branch, tag, HEAD, commit ID or other fully qualified reference).</p> </li> </ul> <p>Pull requests, by calling the following:</p> <ul> <li> <p> <a>CreatePullRequest</a>, which creates a pull request in a specified repository.</p> </li> <li> <p> <a>DescribePullRequestEvents</a>, which returns information about one or more pull request events.</p> </li> <li> <p> <a>GetCommentsForPullRequest</a>, which returns information about comments on a specified pull request.</p> </li> <li> <p> <a>GetMergeConflicts</a>, which returns information about merge conflicts between the source and destination branch in a pull request.</p> </li> <li> <p> <a>GetPullRequest</a>, which returns information about a specified pull request.</p> </li> <li> <p> <a>ListPullRequests</a>, which lists all pull requests for a repository.</p> </li> <li> <p> <a>MergePullRequestByFastForward</a>, which merges the source destination branch of a pull request into the specified destination branch for that pull request using the fast-forward merge option.</p> </li> <li> <p> <a>PostCommentForPullRequest</a>, which posts a comment to a pull request at the specified line, file, or request.</p> </li> <li> <p> <a>UpdatePullRequestDescription</a>, which updates the description of a pull request.</p> </li> <li> <p> <a>UpdatePullRequestStatus</a>, which updates the status of a pull request.</p> </li> <li> <p> <a>UpdatePullRequestTitle</a>, which updates the title of a pull request.</p> </li> </ul> <p>Information about comments in a repository, by calling the following:</p> <ul> <li> <p> <a>DeleteCommentContent</a>, which deletes the content of a comment on a commit in a repository.</p> </li> <li> <p> <a>GetComment</a>, which returns information about a comment on a commit.</p> </li> <li> <p> <a>GetCommentsForComparedCommit</a>, which returns information about comments on the comparison between two commit specifiers in a repository.</p> </li> <li> <p> <a>PostCommentForComparedCommit</a>, which creates a comment on the comparison between two commit specifiers in a repository.</p> </li> <li> <p> <a>PostCommentReply</a>, which creates a reply to a comment.</p> </li> <li> <p> <a>UpdateComment</a>, which updates the content of a comment on a commit in a repository.</p> </li> </ul> <p>Triggers, by calling the following:</p> <ul> <li> <p> <a>GetRepositoryTriggers</a>, which returns information about triggers configured for a repository.</p> </li> <li> <p> <a>PutRepositoryTriggers</a>, which replaces all triggers for a repository and can be used to create or delete triggers.</p> </li> <li> <p> <a>TestRepositoryTriggers</a>, which tests the functionality of a repository trigger by sending data to the trigger target.</p> </li> </ul> <p>For information about how to use AWS CodeCommit, see the <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit User Guide</a>.</p>",
+  "service": "<fullname>AWS CodeCommit</fullname> <p>This is the <i>AWS CodeCommit API Reference</i>. This reference provides descriptions of the operations and data types for AWS CodeCommit API along with usage examples.</p> <p>You can use the AWS CodeCommit API to work with the following objects:</p> <p>Repositories, by calling the following:</p> <ul> <li> <p> <a>BatchGetRepositories</a>, which returns information about one or more repositories associated with your AWS account.</p> </li> <li> <p> <a>CreateRepository</a>, which creates an AWS CodeCommit repository.</p> </li> <li> <p> <a>DeleteRepository</a>, which deletes an AWS CodeCommit repository.</p> </li> <li> <p> <a>GetRepository</a>, which returns information about a specified repository.</p> </li> <li> <p> <a>ListRepositories</a>, which lists all AWS CodeCommit repositories associated with your AWS account.</p> </li> <li> <p> <a>UpdateRepositoryDescription</a>, which sets or updates the description of the repository.</p> </li> <li> <p> <a>UpdateRepositoryName</a>, which changes the name of the repository. If you change the name of a repository, no other users of that repository will be able to access it until you send them the new HTTPS or SSH URL to use.</p> </li> </ul> <p>Branches, by calling the following:</p> <ul> <li> <p> <a>CreateBranch</a>, which creates a new branch in a specified repository.</p> </li> <li> <p> <a>DeleteBranch</a>, which deletes the specified branch in a repository unless it is the default branch.</p> </li> <li> <p> <a>GetBranch</a>, which returns information about a specified branch.</p> </li> <li> <p> <a>ListBranches</a>, which lists all branches for a specified repository.</p> </li> <li> <p> <a>UpdateDefaultBranch</a>, which changes the default branch for a repository.</p> </li> </ul> <p>Files, by calling the following:</p> <ul> <li> <p> <a>DeleteFile</a>, which deletes the content of a specified file from a specified branch.</p> </li> <li> <p> <a>GetFile</a>, which returns the base-64 encoded content of a specified file.</p> </li> <li> <p> <a>GetFolder</a>, which returns the contents of a specified folder or directory.</p> </li> <li> <p> <a>PutFile</a>, which adds or modifies a file in a specified repository and branch.</p> </li> </ul> <p>Information about committed code in a repository, by calling the following:</p> <ul> <li> <p> <a>CreateCommit</a>, which creates a commit for changes to a repository.</p> </li> <li> <p> <a>GetBlob</a>, which returns the base-64 encoded content of an individual Git blob object within a repository.</p> </li> <li> <p> <a>GetCommit</a>, which returns information about a commit, including commit messages and author and committer information.</p> </li> <li> <p> <a>GetDifferences</a>, which returns information about the differences in a valid commit specifier (such as a branch, tag, HEAD, commit ID or other fully qualified reference).</p> </li> </ul> <p>Pull requests, by calling the following:</p> <ul> <li> <p> <a>CreatePullRequest</a>, which creates a pull request in a specified repository.</p> </li> <li> <p> <a>DescribePullRequestEvents</a>, which returns information about one or more pull request events.</p> </li> <li> <p> <a>GetCommentsForPullRequest</a>, which returns information about comments on a specified pull request.</p> </li> <li> <p> <a>GetMergeConflicts</a>, which returns information about merge conflicts between the source and destination branch in a pull request.</p> </li> <li> <p> <a>GetPullRequest</a>, which returns information about a specified pull request.</p> </li> <li> <p> <a>ListPullRequests</a>, which lists all pull requests for a repository.</p> </li> <li> <p> <a>MergePullRequestByFastForward</a>, which merges the source destination branch of a pull request into the specified destination branch for that pull request using the fast-forward merge option.</p> </li> <li> <p> <a>PostCommentForPullRequest</a>, which posts a comment to a pull request at the specified line, file, or request.</p> </li> <li> <p> <a>UpdatePullRequestDescription</a>, which updates the description of a pull request.</p> </li> <li> <p> <a>UpdatePullRequestStatus</a>, which updates the status of a pull request.</p> </li> <li> <p> <a>UpdatePullRequestTitle</a>, which updates the title of a pull request.</p> </li> </ul> <p>Information about comments in a repository, by calling the following:</p> <ul> <li> <p> <a>DeleteCommentContent</a>, which deletes the content of a comment on a commit in a repository.</p> </li> <li> <p> <a>GetComment</a>, which returns information about a comment on a commit.</p> </li> <li> <p> <a>GetCommentsForComparedCommit</a>, which returns information about comments on the comparison between two commit specifiers in a repository.</p> </li> <li> <p> <a>PostCommentForComparedCommit</a>, which creates a comment on the comparison between two commit specifiers in a repository.</p> </li> <li> <p> <a>PostCommentReply</a>, which creates a reply to a comment.</p> </li> <li> <p> <a>UpdateComment</a>, which updates the content of a comment on a commit in a repository.</p> </li> </ul> <p>Triggers, by calling the following:</p> <ul> <li> <p> <a>GetRepositoryTriggers</a>, which returns information about triggers configured for a repository.</p> </li> <li> <p> <a>PutRepositoryTriggers</a>, which replaces all triggers for a repository and can be used to create or delete triggers.</p> </li> <li> <p> <a>TestRepositoryTriggers</a>, which tests the functionality of a repository trigger by sending data to the trigger target.</p> </li> </ul> <p>For information about how to use AWS CodeCommit, see the <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit User Guide</a>.</p>",
   "operations": {
     "BatchGetRepositories": "<p>Returns information about one or more repositories.</p> <note> <p>The description field for a repository accepts all HTML characters and all valid Unicode characters. Applications that do not HTML-encode the description and display it in a web page could expose users to potentially malicious code. Make sure that you HTML-encode the description field in any application that uses this API to display the repository description on a web page.</p> </note>",
     "CreateBranch": "<p>Creates a new branch in a repository and points the branch to a commit.</p> <note> <p>Calling the create branch operation does not set a repository's default branch. To do this, call the update default branch operation.</p> </note>",
+    "CreateCommit": "<p>Creates a commit for a repository on the tip of a specified branch.</p>",
     "CreatePullRequest": "<p>Creates a pull request in the specified repository.</p>",
     "CreateRepository": "<p>Creates a new, empty repository.</p>",
     "DeleteBranch": "<p>Deletes a branch from a repository, unless that branch is the default branch for the repository. </p>",
@@ -128,6 +129,7 @@
         "BranchInfo$branchName": "<p>The name of the branch.</p>",
         "BranchNameList$member": null,
         "CreateBranchInput$branchName": "<p>The name of the new branch to create.</p>",
+        "CreateCommitInput$branchName": "<p>The name of the branch where you will create the commit.</p>",
         "DeleteBranchInput$branchName": "<p>The name of the branch to delete.</p>",
         "DeleteFileInput$branchName": "<p>The name of the branch where the commit will be made deleting the file.</p>",
         "GetBranchInput$branchName": "<p>The name of the branch for which you want to retrieve information.</p>",
@@ -296,6 +298,7 @@
         "CommentsForPullRequest$beforeCommitId": "<p>The full commit ID of the commit that was the tip of the destination branch when the pull request was created. This commit will be superceded by the after commit in the source branch when and if you merge the source branch into the destination branch.</p>",
         "CommentsForPullRequest$afterCommitId": "<p>he full commit ID of the commit that was the tip of the source branch at the time the comment was made. </p>",
         "CreateBranchInput$commitId": "<p>The ID of the commit to point the new branch to.</p>",
+        "CreateCommitInput$parentCommitId": "<p>The ID of the commit that is the parent of the commit you will create. If this is an empty repository, this is not required.</p>",
         "DeleteFileInput$parentCommitId": "<p>The ID of the commit that is the tip of the branch where you want to create the commit that will delete the file. This must be the HEAD commit for the branch. The commit that deletes the file will be created from this commit ID.</p>",
         "GetCommentsForComparedCommitInput$beforeCommitId": "<p>To establish the directionality of the comparison, the full commit ID of the 'before' commit.</p>",
         "GetCommentsForComparedCommitInput$afterCommitId": "<p>To establish the directionality of the comparison, the full commit ID of the 'after' commit.</p>",
@@ -370,6 +373,16 @@
       "refs": {
       }
     },
+    "CreateCommitInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateCommitOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreatePullRequestInput": {
       "base": null,
       "refs": {
@@ -427,6 +440,18 @@
     "DeleteCommentContentOutput": {
       "base": null,
       "refs": {
+      }
+    },
+    "DeleteFileEntries": {
+      "base": null,
+      "refs": {
+        "CreateCommitInput$deleteFiles": "<p>The files to delete in this commit. These files will still exist in prior commits.</p>"
+      }
+    },
+    "DeleteFileEntry": {
+      "base": "<p>A file that will be deleted as part of a commit.</p>",
+      "refs": {
+        "DeleteFileEntries$member": null
       }
     },
     "DeleteFileInput": {
@@ -487,6 +512,7 @@
     "Email": {
       "base": null,
       "refs": {
+        "CreateCommitInput$email": "<p>The email address of the person who created the commit.</p>",
         "DeleteFileInput$email": "<p>The email address for the commit that deletes the file. If no email address is specified, the email address will be left blank.</p>",
         "PutFileInput$email": "<p>An email address for the person adding or updating the file.</p>",
         "UserInfo$email": "<p>The email address associated with the user who made the commit, if any.</p>"
@@ -533,7 +559,13 @@
       "base": null,
       "refs": {
         "GetFileOutput$fileContent": "<p>The base-64 encoded binary data object that represents the content of the file.</p>",
+        "PutFileEntry$fileContent": "<p>The content of the file, if a source file is not specified.</p>",
         "PutFileInput$fileContent": "<p>The content of the file, in binary object format. </p>"
+      }
+    },
+    "FileContentAndSourceFileSpecifiedException": {
+      "base": "<p>The commit cannot be created because both a source file and file content have been specified for the same file. You cannot provide both. Either specify a source file, or provide the file content directly.</p>",
+      "refs": {
       }
     },
     "FileContentRequiredException": {
@@ -542,12 +574,17 @@
       }
     },
     "FileContentSizeLimitExceededException": {
-      "base": "<p>The file cannot be added because it is too large. The maximum file size that can be added using PutFile is 6 MB. For files larger than 6 MB but smaller than 2 GB, add them using a Git client.</p>",
+      "base": "<p>The file cannot be added because it is too large. The maximum file size that can be added using PutFile is 6 MB, and the combined file content change size is 7 MB. Consider making these changes using a Git client.</p>",
       "refs": {
       }
     },
     "FileDoesNotExistException": {
       "base": "<p>The specified file does not exist. Verify that you have provided the correct name of the file, including its full path and extension.</p>",
+      "refs": {
+      }
+    },
+    "FileEntryRequiredException": {
+      "base": "<p>The commit cannot be created because no files have been specified as added, updated, or changed (PutFile or DeleteFile) for the commit.</p>",
       "refs": {
       }
     },
@@ -557,12 +594,26 @@
         "GetFolderOutput$files": "<p>The list of files that exist in the specified folder, if any.</p>"
       }
     },
+    "FileMetadata": {
+      "base": "<p>A file that will be added, updated, or deleted as part of a commit.</p>",
+      "refs": {
+        "FilesMetadata$member": null
+      }
+    },
+    "FileModeRequiredException": {
+      "base": "<p>The commit cannot be created because a file mode is required to update mode permissions for an existing file, but no file mode has been specified.</p>",
+      "refs": {
+      }
+    },
     "FileModeTypeEnum": {
       "base": null,
       "refs": {
         "File$fileMode": "<p>The extrapolated file mode permissions for the file. Valid values include EXECUTABLE and NORMAL.</p>",
+        "FileMetadata$fileMode": "<p>The extrapolated file mode permissions for the file. Valid values include EXECUTABLE and NORMAL.</p>",
         "GetFileOutput$fileMode": "<p>The extrapolated file mode permissions of the blob. Valid values include strings such as EXECUTABLE and not numeric values.</p> <note> <p>The file mode permissions returned by this API are not the standard file mode permission values, such as 100644, but rather extrapolated values. See below for a full list of supported return values.</p> </note>",
+        "PutFileEntry$fileMode": "<p>The extrapolated file mode permissions for the file. Valid values include EXECUTABLE and NORMAL.</p>",
         "PutFileInput$fileMode": "<p>The file mode permissions of the blob. Valid file mode permissions are listed below.</p>",
+        "SetFileModeEntry$fileMode": "<p>The file mode for the file.</p>",
         "SymbolicLink$fileMode": "<p>The file mode permissions of the blob that cotains information about the symbolic link.</p>"
       }
     },
@@ -571,15 +622,33 @@
       "refs": {
       }
     },
+    "FilePathConflictsWithSubmodulePathException": {
+      "base": "<p>The commit cannot be created because a specified file path points to a submodule. Verify that the destination files have valid file paths that do not point to a submodule.</p>",
+      "refs": {
+      }
+    },
     "FileTooLargeException": {
       "base": "<p>The specified file exceeds the file size limit for AWS CodeCommit. For more information about limits in AWS CodeCommit, see <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/limits.html\">AWS CodeCommit User Guide</a>.</p>",
       "refs": {
+      }
+    },
+    "FilesMetadata": {
+      "base": null,
+      "refs": {
+        "CreateCommitOutput$filesAdded": "<p>The files added as part of the committed file changes.</p>",
+        "CreateCommitOutput$filesUpdated": "<p>The files updated as part of the commited file changes.</p>",
+        "CreateCommitOutput$filesDeleted": "<p>The files deleted as part of the committed file changes.</p>"
       }
     },
     "Folder": {
       "base": "<p>Returns information about a folder in a repository.</p>",
       "refs": {
         "FolderList$member": null
+      }
+    },
+    "FolderContentSizeLimitExceededException": {
+      "base": "<p>The commit cannot be created because at least one of the overall changes in the commit result in a folder contents exceeding the limit of 6 MB. Either reduce the number and size of your changes, or split the changes across multiple folders.</p>",
+      "refs": {
       }
     },
     "FolderDoesNotExistException": {
@@ -946,9 +1015,16 @@
         "MergeMetadata$isMerged": "<p>A Boolean value indicating whether the merge has been made.</p>"
       }
     },
+    "IsMove": {
+      "base": null,
+      "refs": {
+        "SourceFileSpecifier$isMove": "<p>Whether to remove the source file from the parent commit.</p>"
+      }
+    },
     "KeepEmptyFolders": {
       "base": null,
       "refs": {
+        "CreateCommitInput$keepEmptyFolders": "<p>If the commit contains deletions, whether to keep a folder or folder structure if the changes leave the folders empty. If this is specified as true, a .gitkeep file will be created for empty folders.</p>",
         "DeleteFileInput$keepEmptyFolders": "<p>Specifies whether to delete the folder or directory that contains the file you want to delete if that file is the only object in the folder or directory. By default, empty folders will be deleted. This includes empty folders that are part of the directory structure. For example, if the path to a file is dir1/dir2/dir3/dir4, and dir2 and dir3 are empty, deleting the last file in dir4 will also delete the empty folders dir4, dir3, and dir2.</p>"
       }
     },
@@ -1026,6 +1102,11 @@
       "refs": {
       }
     },
+    "MaximumFileEntriesExceededException": {
+      "base": "<p>The number of specified files to change as part of this commit exceeds the maximum number of files that can be changed in a single commit. Consider using a Git client for these changes.</p>",
+      "refs": {
+      }
+    },
     "MaximumOpenPullRequestsExceededException": {
       "base": "<p>You cannot create the pull request because the repository has too many open pull requests. The maximum number of open pull requests for a repository is 1,000. Close one or more open pull requests, and then try again.</p>",
       "refs": {
@@ -1073,6 +1154,7 @@
       "base": null,
       "refs": {
         "Commit$message": "<p>The commit message associated with the specified commit.</p>",
+        "CreateCommitInput$commitMessage": "<p>The commit message you want to include as part of creating the commit. Commit messages are limited to 256 KB. If no message is specified, a default message will be used.</p>",
         "DeleteFileInput$commitMessage": "<p>The commit message you want to include as part of deleting the file. Commit messages are limited to 256 KB. If no message is specified, a default message will be used.</p>",
         "PutFileInput$commitMessage": "<p>A message about why this file was added or updated. While optional, adding a message is strongly encouraged in order to provide a more useful commit history for your repository.</p>"
       }
@@ -1091,6 +1173,7 @@
     "Name": {
       "base": null,
       "refs": {
+        "CreateCommitInput$authorName": "<p>The name of the author who created the commit. This information will be used as both the author and committer for the commit.</p>",
         "DeleteFileInput$name": "<p>The name of the author of the commit that deletes the file. If no name is specified, the user's ARN will be used as the author name and committer name.</p>",
         "PutFileInput$name": "<p>The name of the person adding or updating the file. While optional, adding a name is strongly encouraged in order to provide a more useful commit history for your repository.</p>",
         "UserInfo$name": "<p>The name of the user who made the specified commit.</p>"
@@ -1120,6 +1203,11 @@
         "ListRepositoriesOutput$nextToken": "<p>An enumeration token that allows the operation to batch the results of the operation. Batch sizes are 1,000 for list repository operations. When the client sends the token back to AWS CodeCommit, another page of 1,000 records is retrieved.</p>"
       }
     },
+    "NoChangeException": {
+      "base": "<p>The commit cannot be created because no changes will be made to the repository as a result of this commit. A commit must contain at least one change.</p>",
+      "refs": {
+      }
+    },
     "ObjectId": {
       "base": null,
       "refs": {
@@ -1130,10 +1218,13 @@
         "CommentsForPullRequest$afterBlobId": "<p>The full blob ID of the file on which you want to comment on the source commit.</p>",
         "Commit$commitId": "<p>The full SHA of the specified commit. </p>",
         "Commit$treeId": "<p>Tree information for the specified commit.</p>",
+        "CreateCommitOutput$commitId": "<p>The full commit ID of the commit that contains your committed file changes.</p>",
+        "CreateCommitOutput$treeId": "<p>The full SHA-1 pointer of the tree information for the commit that contains the commited file changes.</p>",
         "DeleteFileOutput$commitId": "<p>The full commit ID of the commit that contains the change that deletes the file.</p>",
         "DeleteFileOutput$blobId": "<p>The blob ID removed from the tree as part of deleting the file.</p>",
         "DeleteFileOutput$treeId": "<p>The full SHA-1 pointer of the tree information for the commit that contains the delete file change.</p>",
         "File$blobId": "<p>The blob ID that contains the file information.</p>",
+        "FileMetadata$blobId": "<p>The blob ID that contains the file information.</p>",
         "Folder$treeId": "<p>The full SHA-1 pointer of the tree information for the commit that contains the folder.</p>",
         "GetBlobInput$blobId": "<p>The ID of the blob, which is its SHA-1 pointer.</p>",
         "GetCommitInput$commitId": "<p>The commit ID. Commit IDs are the full SHA of the commit.</p>",
@@ -1190,10 +1281,12 @@
       "base": null,
       "refs": {
         "BlobMetadata$path": "<p>The path to the blob and any associated file name, if any.</p>",
+        "DeleteFileEntry$filePath": "<p>The full path of the file that will be deleted, including the name of the file.</p>",
         "DeleteFileInput$filePath": "<p>The fully-qualified path to the file that will be deleted, including the full name and extension of that file. For example, /examples/file.md is a fully qualified path to a file named file.md in a folder named examples.</p>",
         "DeleteFileOutput$filePath": "<p>The fully-qualified path to the file that will be deleted, including the full name and extension of that file.</p>",
         "File$absolutePath": "<p>The fully-qualified path to the file in the repository.</p>",
         "File$relativePath": "<p>The relative path of the file from the folder where the query originated.</p>",
+        "FileMetadata$absolutePath": "<p>The full path to the file that will be added or updated, including the name of the file.</p>",
         "Folder$absolutePath": "<p>The fully-qualified path of the folder in the repository.</p>",
         "Folder$relativePath": "<p>The relative path of the specified folder from the folder where the query originated.</p>",
         "GetDifferencesInput$beforePath": "<p>The file path in which to check for differences. Limits the results to this path. Can also be used to specify the previous name of a directory or folder. If <code>beforePath</code> and <code>afterPath</code> are not specified, differences will be shown for all paths.</p>",
@@ -1203,7 +1296,10 @@
         "GetFolderInput$folderPath": "<p>The fully-qualified path to the folder whose contents will be returned, including the folder name. For example, /examples is a fully-qualified path to a folder named examples that was created off of the root directory (/) of a repository. </p>",
         "GetFolderOutput$folderPath": "<p>The fully-qualified path of the folder whose contents are returned.</p>",
         "Location$filePath": "<p>The name of the file being compared, including its extension and subdirectory, if any.</p>",
+        "PutFileEntry$filePath": "<p>The full path to the file in the repository, including the name of the file.</p>",
         "PutFileInput$filePath": "<p>The name of the file you want to add or update, including the relative path to the file in the repository.</p> <note> <p>If the path does not currently exist in the repository, the path will be created as part of adding the file.</p> </note>",
+        "SetFileModeEntry$filePath": "<p>The full path to the file, including the name of the file.</p>",
+        "SourceFileSpecifier$filePath": "<p>The full path to the file, including the name of the file.</p>",
         "SubModule$absolutePath": "<p>The fully qualified path to the folder that contains the reference to the submodule.</p>",
         "SubModule$relativePath": "<p>The relative path of the submodule from the folder where the query originated.</p>",
         "SymbolicLink$absolutePath": "<p>The fully-qualified path to the folder that contains the symbolic link.</p>",
@@ -1375,6 +1471,23 @@
         "PullRequest$pullRequestTargets": "<p>The targets of the pull request, including the source branch and destination branch for the pull request.</p>"
       }
     },
+    "PutFileEntries": {
+      "base": null,
+      "refs": {
+        "CreateCommitInput$putFiles": "<p>The files to add or update in this commit.</p>"
+      }
+    },
+    "PutFileEntry": {
+      "base": "<p>Information about a file that will be added or updated as part of a commit.</p>",
+      "refs": {
+        "PutFileEntries$member": null
+      }
+    },
+    "PutFileEntryConflictException": {
+      "base": "<p>The commit cannot be created because one or more files specified in the commit reference both a file and a folder.</p>",
+      "refs": {
+      }
+    },
     "PutFileInput": {
       "base": null,
       "refs": {
@@ -1472,6 +1585,7 @@
         "CommentsForComparedCommit$repositoryName": "<p>The name of the repository that contains the compared commits.</p>",
         "CommentsForPullRequest$repositoryName": "<p>The name of the repository that contains the pull request.</p>",
         "CreateBranchInput$repositoryName": "<p>The name of the repository in which you want to create the new branch.</p>",
+        "CreateCommitInput$repositoryName": "<p>The name of the repository where you will create the commit.</p>",
         "CreateRepositoryInput$repositoryName": "<p>The name of the new repository to be created.</p> <note> <p>The repository name must be unique across the calling AWS account. In addition, repository names are limited to 100 alphanumeric, dash, and underscore characters, and cannot include certain characters. For a full description of the limits on repository names, see <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/limits.html\">Limits</a> in the AWS CodeCommit User Guide. The suffix \".git\" is prohibited.</p> </note>",
         "DeleteBranchInput$repositoryName": "<p>The name of the repository that contains the branch to be deleted.</p>",
         "DeleteFileInput$repositoryName": "<p>The name of the repository that contains the file to delete.</p>",
@@ -1546,7 +1660,7 @@
       }
     },
     "RepositoryNotAssociatedWithPullRequestException": {
-      "base": "<p>The repository does not contain any pull requests with that pull request ID. Check to make sure you have provided the correct repository name for the pull request.</p>",
+      "base": "<p>The repository does not contain any pull requests with that pull request ID. Use GetPullRequest to verify the correct repository name for the pull request ID.</p>",
       "refs": {
       }
     },
@@ -1652,9 +1766,31 @@
       "refs": {
       }
     },
+    "RestrictedSourceFileException": {
+      "base": "<p>The commit cannot be created because one of the changes specifies copying or moving a .gitkeep file.</p>",
+      "refs": {
+      }
+    },
     "SameFileContentException": {
       "base": "<p>The file was not added or updated because the content of the file is exactly the same as the content of that file in the repository and branch that you specified.</p>",
       "refs": {
+      }
+    },
+    "SamePathRequestException": {
+      "base": "<p>The commit cannot be created because one or more changes in this commit duplicate actions in the same file path. For example, you cannot make the same delete request to the same file in the same file path twice, or make a delete request and a move request to the same file as part of the same commit.</p>",
+      "refs": {
+      }
+    },
+    "SetFileModeEntries": {
+      "base": null,
+      "refs": {
+        "CreateCommitInput$setFileModes": "<p>The file modes to update for files in this commit.</p>"
+      }
+    },
+    "SetFileModeEntry": {
+      "base": "<p>Information about the file mode changes.</p>",
+      "refs": {
+        "SetFileModeEntries$member": null
       }
     },
     "SortByEnum": {
@@ -1666,6 +1802,17 @@
     "SourceAndDestinationAreSameException": {
       "base": "<p>The source branch and the destination branch for the pull request are the same. You must specify different branches for the source and destination.</p>",
       "refs": {
+      }
+    },
+    "SourceFileOrContentRequiredException": {
+      "base": "<p>The commit cannot be created because no source files or file content have been specified for the commit.</p>",
+      "refs": {
+      }
+    },
+    "SourceFileSpecifier": {
+      "base": "<p>Information about a source file that is part of changes made in a commit.</p>",
+      "refs": {
+        "PutFileEntry$sourceFile": "<p>The name and full path of the file that contains the changes you want to make as part of the commit, if you are not providing the file content directly.</p>"
       }
     },
     "SubModule": {

@@ -104,16 +104,16 @@ func (o *Operation) HasOutput() bool {
 
 // GetSigner returns the signer that should be used for a API request.
 func (o *Operation) GetSigner() string {
-	if o.AuthType == "v4-unsigned-body" {
-		o.API.imports["github.com/aws/aws-sdk-go/aws/signer/v4"] = true
-	}
-
 	buf := bytes.NewBuffer(nil)
 
 	switch o.AuthType {
 	case "none":
+		o.API.AddSDKImport("aws/credentials")
+
 		buf.WriteString("req.Config.Credentials = credentials.AnonymousCredentials")
 	case "v4-unsigned-body":
+		o.API.AddSDKImport("aws/signer/v4")
+
 		buf.WriteString("req.Handlers.Sign.Remove(v4.SignRequestHandler)\n")
 		buf.WriteString("handler := v4.BuildNamedHandler(\"v4.CustomSignerHandler\", v4.WithUnsignedPayload)\n")
 		buf.WriteString("req.Handlers.Sign.PushFrontNamed(handler)")
@@ -154,7 +154,7 @@ const op{{ .ExportedName }} = "{{ .Name }}"
 //        fmt.Println(resp)
 //    }
 {{ $crosslinkURL := GetCrosslinkURL $.API.BaseCrosslinkURL $.API.Metadata.UID $.ExportedName -}}
-{{ if ne $crosslinkURL "" -}} 
+{{ if ne $crosslinkURL "" -}}
 //
 // See also, {{ $crosslinkURL }}
 {{ end -}}
@@ -166,7 +166,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	{{ if (or .Deprecated (or .InputRef.Deprecated .OutputRef.Deprecated)) }}if c.Client.Config.Logger != nil {
 		c.Client.Config.Logger.Log("This operation, {{ .ExportedName }}, has been deprecated")
 	}
-	op := &request.Operation{ {{ else }} op := &request.Operation{ {{ end }}	
+	op := &request.Operation{ {{ else }} op := &request.Operation{ {{ end }}
 		Name:       op{{ .ExportedName }},
 		{{ if ne .HTTP.Method "" }}HTTPMethod: "{{ .HTTP.Method }}",
 		{{ end }}HTTPPath: {{ if ne .HTTP.RequestURI "" }}"{{ .HTTP.RequestURI }}"{{ else }}"/"{{ end }},
@@ -185,12 +185,14 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 
 	output = &{{ .OutputRef.GoTypeElem }}{}
 	req = c.newRequest(op, input, output)
-	{{ if eq .OutputRef.Shape.Placeholder true -}}
-		req.Handlers.Unmarshal.Remove({{ .API.ProtocolPackage }}.UnmarshalHandler)
-		req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	{{ end -}}
-	{{ if ne .AuthType "" }}{{ .GetSigner }}{{ end -}}
-	{{ if .OutputRef.Shape.EventStreamsMemberName -}}
+	{{ if ne .AuthType "" }}{{ .GetSigner }}{{ end }}
+	{{- if .ShouldDiscardResponse -}}
+		{{- $_ := .API.AddSDKImport "private/protocol" -}}
+		{{- $_ := .API.AddSDKImport "private/protocol" .API.ProtocolPackage -}}
+		req.Handlers.Unmarshal.Swap({{ .API.ProtocolPackage }}.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	{{ else if .OutputRef.Shape.EventStreamsMemberName -}}
+		{{- $_ := .API.AddSDKImport "private/protocol" .API.ProtocolPackage -}}
+		{{- $_ := .API.AddSDKImport "private/protocol/rest" -}}
 		req.Handlers.Send.Swap(client.LogHTTPResponseHandler.Name, client.LogHTTPResponseHeaderHandler)
 		req.Handlers.Unmarshal.Swap({{ .API.ProtocolPackage }}.UnmarshalHandler.Name, rest.UnmarshalHandler)
 		req.Handlers.Unmarshal.PushBack(output.runEventStreamLoop)
@@ -260,7 +262,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 {{ end -}}
 {{ end -}}
 {{ $crosslinkURL := GetCrosslinkURL $.API.BaseCrosslinkURL $.API.Metadata.UID $.ExportedName -}}
-{{ if ne $crosslinkURL "" -}} 
+{{ if ne $crosslinkURL "" -}}
 // See also, {{ $crosslinkURL }}
 {{ end -}}
 {{- if .Deprecated }}//
@@ -434,16 +436,16 @@ func (o *Operation) GoCode() string {
 	var buf bytes.Buffer
 
 	if len(o.OutputRef.Shape.EventStreamsMemberName) != 0 {
-		o.API.imports["github.com/aws/aws-sdk-go/aws/client"] = true
-		o.API.imports["github.com/aws/aws-sdk-go/private/protocol"] = true
-		o.API.imports["github.com/aws/aws-sdk-go/private/protocol/rest"] = true
-		o.API.imports["github.com/aws/aws-sdk-go/private/protocol/"+o.API.ProtocolPackage()] = true
+		o.API.AddSDKImport("aws/client")
+		o.API.AddSDKImport("private/protocol")
+		o.API.AddSDKImport("private/protocol/rest")
+		o.API.AddSDKImport("private/protocol", o.API.ProtocolPackage())
 	}
 
 	if o.API.EndpointDiscoveryOp != nil {
-		o.API.imports["github.com/aws/aws-sdk-go/aws/crr"] = true
-		o.API.imports["time"] = true
-		o.API.imports["net/url"] = true
+		o.API.AddSDKImport("aws/crr")
+		o.API.AddImport("time")
+		o.API.AddImport("net/url")
 	}
 
 	if o.Endpoint != nil && len(o.Endpoint.HostPrefix) != 0 {
@@ -519,7 +521,7 @@ func (o *Operation) Example() string {
 func (o *Operation) ExampleInput() string {
 	if len(o.InputRef.Shape.MemberRefs) == 0 {
 		if strings.Contains(o.InputRef.GoTypeElem(), ".") {
-			o.imports["github.com/aws/aws-sdk-go/service/"+strings.Split(o.InputRef.GoTypeElem(), ".")[0]] = true
+			o.imports[SDKImportRoot+"service/"+strings.Split(o.InputRef.GoTypeElem(), ".")[0]] = true
 			return fmt.Sprintf("var params *%s", o.InputRef.GoTypeElem())
 		}
 		return fmt.Sprintf("var params *%s.%s",
@@ -527,6 +529,13 @@ func (o *Operation) ExampleInput() string {
 	}
 	e := example{o, map[string]int{}}
 	return "params := " + e.traverseAny(o.InputRef.Shape, false, false)
+}
+
+// ShouldDiscardResponse returns if the operation should discard the response
+// returned by the service.
+func (o *Operation) ShouldDiscardResponse() bool {
+	s := o.OutputRef.Shape
+	return s.Placeholder || len(s.MemberRefs) == 0
 }
 
 // A example provides

@@ -3,7 +3,9 @@
 package api
 
 import (
+	"fmt"
 	"io/ioutil"
+	"os"
 	"path/filepath"
 	"strings"
 )
@@ -56,6 +58,19 @@ func (a *API) customizationPasses() {
 		// MTurk smoke test is invalid. The service requires AWS account to be
 		// linked to Amazon Mechanical Turk Account.
 		"mturk": supressSmokeTest,
+
+		// Backfill the authentication type for cognito identity and sts.
+		// Removes the need for the customizations in these services.
+		"cognitoidentity": backfillAuthType("none",
+			"GetId",
+			"GetOpenIdToken",
+			"UnlinkIdentity",
+			"GetCredentialsForIdentity",
+		),
+		"sts": backfillAuthType("none",
+			"AssumeRoleWithSAML",
+			"AssumeRoleWithWebIdentity",
+		),
 	}
 
 	for k := range mergeServices {
@@ -135,13 +150,15 @@ func s3CustRemoveHeadObjectModeledErrors(a *API) {
 // S3 service operations with an AccountId need accessors to be generated for
 // them so the fields can be dynamically accessed without reflection.
 func s3ControlCustomizations(a *API) {
-	for _, op := range a.Operations {
+	for opName, op := range a.Operations {
 		// Add moving AccountId into the hostname instead of header.
-		if _, ok := op.InputRef.Shape.MemberRefs["AccountId"]; ok {
-			op.CustomBuildHandlers = append(op.CustomBuildHandlers,
-				`buildPrefixHostHandler("AccountID", aws.StringValue(input.AccountId))`,
-				`buildRemoveHeaderHandler("X-Amz-Account-Id")`,
-			)
+		if ref, ok := op.InputRef.Shape.MemberRefs["AccountId"]; ok {
+			if op.Endpoint != nil {
+				fmt.Fprintf(os.Stderr, "S3 Control, %s, model already defining endpoint trait, remove this customization.\n", opName)
+			}
+
+			op.Endpoint = &EndpointTrait{HostPrefix: "{AccountId}."}
+			ref.HostLabel = true
 		}
 	}
 }
@@ -181,7 +198,7 @@ func mergeServicesCustomizations(a *API) {
 
 	for n := range a.Shapes {
 		if _, ok := serviceAPI.Shapes[n]; ok {
-			a.Shapes[n].resolvePkg = "github.com/aws/aws-sdk-go/service/" + info.dstName
+			a.Shapes[n].resolvePkg = SDKImportRoot + "/service/" + info.dstName
 		}
 	}
 }
@@ -213,4 +230,21 @@ func rdsCustomizations(a *API) {
 
 func disableEndpointResolving(a *API) {
 	a.Metadata.NoResolveEndpoint = true
+}
+
+func backfillAuthType(typ string, opNames ...string) func(*API) {
+	return func(a *API) {
+		for _, opName := range opNames {
+			op, ok := a.Operations[opName]
+			if !ok {
+				panic("unable to backfill auth-type for unknown operation " + opName)
+			}
+			if v := op.AuthType; len(v) != 0 {
+				fmt.Fprintf(os.Stderr, "unable to backfill auth-type for %s, already set, %s", opName, v)
+				continue
+			}
+
+			op.AuthType = typ
+		}
+	}
 }

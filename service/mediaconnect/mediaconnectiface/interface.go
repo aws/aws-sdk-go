@@ -91,6 +91,10 @@ type MediaConnectAPI interface {
 	ListFlowsPages(*mediaconnect.ListFlowsInput, func(*mediaconnect.ListFlowsOutput, bool) bool) error
 	ListFlowsPagesWithContext(aws.Context, *mediaconnect.ListFlowsInput, func(*mediaconnect.ListFlowsOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*mediaconnect.ListTagsForResourceInput) (*mediaconnect.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *mediaconnect.ListTagsForResourceInput, ...request.Option) (*mediaconnect.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*mediaconnect.ListTagsForResourceInput) (*request.Request, *mediaconnect.ListTagsForResourceOutput)
+
 	RemoveFlowOutput(*mediaconnect.RemoveFlowOutputInput) (*mediaconnect.RemoveFlowOutputOutput, error)
 	RemoveFlowOutputWithContext(aws.Context, *mediaconnect.RemoveFlowOutputInput, ...request.Option) (*mediaconnect.RemoveFlowOutputOutput, error)
 	RemoveFlowOutputRequest(*mediaconnect.RemoveFlowOutputInput) (*request.Request, *mediaconnect.RemoveFlowOutputOutput)
@@ -106,6 +110,14 @@ type MediaConnectAPI interface {
 	StopFlow(*mediaconnect.StopFlowInput) (*mediaconnect.StopFlowOutput, error)
 	StopFlowWithContext(aws.Context, *mediaconnect.StopFlowInput, ...request.Option) (*mediaconnect.StopFlowOutput, error)
 	StopFlowRequest(*mediaconnect.StopFlowInput) (*request.Request, *mediaconnect.StopFlowOutput)
+
+	TagResource(*mediaconnect.TagResourceInput) (*mediaconnect.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *mediaconnect.TagResourceInput, ...request.Option) (*mediaconnect.TagResourceOutput, error)
+	TagResourceRequest(*mediaconnect.TagResourceInput) (*request.Request, *mediaconnect.TagResourceOutput)
+
+	UntagResource(*mediaconnect.UntagResourceInput) (*mediaconnect.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *mediaconnect.UntagResourceInput, ...request.Option) (*mediaconnect.UntagResourceOutput, error)
+	UntagResourceRequest(*mediaconnect.UntagResourceInput) (*request.Request, *mediaconnect.UntagResourceOutput)
 
 	UpdateFlowEntitlement(*mediaconnect.UpdateFlowEntitlementInput) (*mediaconnect.UpdateFlowEntitlementOutput, error)
 	UpdateFlowEntitlementWithContext(aws.Context, *mediaconnect.UpdateFlowEntitlementInput, ...request.Option) (*mediaconnect.UpdateFlowEntitlementOutput, error)

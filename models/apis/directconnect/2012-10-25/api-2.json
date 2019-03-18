@@ -705,6 +705,10 @@
         "connectionId":{"shape":"ConnectionId"}
       }
     },
+    "AvailablePortSpeeds":{
+      "type":"list",
+      "member":{"shape":"PortSpeed"}
+    },
     "AwsDevice":{
       "type":"string",
       "deprecated":true
@@ -744,7 +748,8 @@
       "type":"string",
       "enum":[
         "up",
-        "down"
+        "down",
+        "unknown"
       ]
     },
     "Bandwidth":{"type":"string"},
@@ -827,7 +832,8 @@
         "down",
         "deleting",
         "deleted",
-        "rejected"
+        "rejected",
+        "unknown"
       ]
     },
     "Connections":{
@@ -1316,7 +1322,8 @@
         "available",
         "down",
         "deleting",
-        "deleted"
+        "deleted",
+        "unknown"
       ]
     },
     "Interconnects":{
@@ -1360,7 +1367,8 @@
         "available",
         "down",
         "deleting",
-        "deleted"
+        "deleted",
+        "unknown"
       ]
     },
     "Lags":{
@@ -1387,7 +1395,8 @@
       "members":{
         "locationCode":{"shape":"LocationCode"},
         "locationName":{"shape":"LocationName"},
-        "region":{"shape":"Region"}
+        "region":{"shape":"Region"},
+        "availablePortSpeeds":{"shape":"AvailablePortSpeeds"}
       }
     },
     "LocationCode":{"type":"string"},
@@ -1495,6 +1504,7 @@
     "OwnerAccount":{"type":"string"},
     "PaginationToken":{"type":"string"},
     "PartnerName":{"type":"string"},
+    "PortSpeed":{"type":"string"},
     "ProviderName":{"type":"string"},
     "Region":{"type":"string"},
     "ResourceArn":{"type":"string"},
@@ -1675,7 +1685,8 @@
         "down",
         "deleting",
         "deleted",
-        "rejected"
+        "rejected",
+        "unknown"
       ]
     },
     "VirtualInterfaceType":{"type":"string"},

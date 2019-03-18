@@ -6,10 +6,14 @@ const (
 
 	// ErrCodeAlreadyExistsException for service response error code
 	// "AlreadyExistsException".
+	//
+	// The resource specified in your request already exists.
 	ErrCodeAlreadyExistsException = "AlreadyExistsException"
 
 	// ErrCodeBadRequestException for service response error code
 	// "BadRequestException".
+	//
+	// The input you provided is invalid.
 	ErrCodeBadRequestException = "BadRequestException"
 
 	// ErrCodeInternalServiceErrorException for service response error code
@@ -21,13 +25,20 @@ const (
 
 	// ErrCodeLimitExceededException for service response error code
 	// "LimitExceededException".
+	//
+	// There are too many instances of the specified resource type.
 	ErrCodeLimitExceededException = "LimitExceededException"
 
 	// ErrCodeNotFoundException for service response error code
 	// "NotFoundException".
+	//
+	// The resource you attempted to access doesn't exist.
 	ErrCodeNotFoundException = "NotFoundException"
 
 	// ErrCodeTooManyRequestsException for service response error code
 	// "TooManyRequestsException".
+	//
+	// You've issued too many requests to the resource. Wait a few minutes, and
+	// then try again.
 	ErrCodeTooManyRequestsException = "TooManyRequestsException"
 )

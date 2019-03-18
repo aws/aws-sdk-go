@@ -96,6 +96,10 @@ type ConfigServiceAPI interface {
 	DeletePendingAggregationRequestWithContext(aws.Context, *configservice.DeletePendingAggregationRequestInput, ...request.Option) (*configservice.DeletePendingAggregationRequestOutput, error)
 	DeletePendingAggregationRequestRequest(*configservice.DeletePendingAggregationRequestInput) (*request.Request, *configservice.DeletePendingAggregationRequestOutput)
 
+	DeleteRemediationConfiguration(*configservice.DeleteRemediationConfigurationInput) (*configservice.DeleteRemediationConfigurationOutput, error)
+	DeleteRemediationConfigurationWithContext(aws.Context, *configservice.DeleteRemediationConfigurationInput, ...request.Option) (*configservice.DeleteRemediationConfigurationOutput, error)
+	DeleteRemediationConfigurationRequest(*configservice.DeleteRemediationConfigurationInput) (*request.Request, *configservice.DeleteRemediationConfigurationOutput)
+
 	DeleteRetentionConfiguration(*configservice.DeleteRetentionConfigurationInput) (*configservice.DeleteRetentionConfigurationOutput, error)
 	DeleteRetentionConfigurationWithContext(aws.Context, *configservice.DeleteRetentionConfigurationInput, ...request.Option) (*configservice.DeleteRetentionConfigurationOutput, error)
 	DeleteRetentionConfigurationRequest(*configservice.DeleteRetentionConfigurationInput) (*request.Request, *configservice.DeleteRetentionConfigurationOutput)
@@ -156,6 +160,17 @@ type ConfigServiceAPI interface {
 	DescribePendingAggregationRequestsWithContext(aws.Context, *configservice.DescribePendingAggregationRequestsInput, ...request.Option) (*configservice.DescribePendingAggregationRequestsOutput, error)
 	DescribePendingAggregationRequestsRequest(*configservice.DescribePendingAggregationRequestsInput) (*request.Request, *configservice.DescribePendingAggregationRequestsOutput)
 
+	DescribeRemediationConfigurations(*configservice.DescribeRemediationConfigurationsInput) (*configservice.DescribeRemediationConfigurationsOutput, error)
+	DescribeRemediationConfigurationsWithContext(aws.Context, *configservice.DescribeRemediationConfigurationsInput, ...request.Option) (*configservice.DescribeRemediationConfigurationsOutput, error)
+	DescribeRemediationConfigurationsRequest(*configservice.DescribeRemediationConfigurationsInput) (*request.Request, *configservice.DescribeRemediationConfigurationsOutput)
+
+	DescribeRemediationExecutionStatus(*configservice.DescribeRemediationExecutionStatusInput) (*configservice.DescribeRemediationExecutionStatusOutput, error)
+	DescribeRemediationExecutionStatusWithContext(aws.Context, *configservice.DescribeRemediationExecutionStatusInput, ...request.Option) (*configservice.DescribeRemediationExecutionStatusOutput, error)
+	DescribeRemediationExecutionStatusRequest(*configservice.DescribeRemediationExecutionStatusInput) (*request.Request, *configservice.DescribeRemediationExecutionStatusOutput)
+
+	DescribeRemediationExecutionStatusPages(*configservice.DescribeRemediationExecutionStatusInput, func(*configservice.DescribeRemediationExecutionStatusOutput, bool) bool) error
+	DescribeRemediationExecutionStatusPagesWithContext(aws.Context, *configservice.DescribeRemediationExecutionStatusInput, func(*configservice.DescribeRemediationExecutionStatusOutput, bool) bool, ...request.Option) error
+
 	DescribeRetentionConfigurations(*configservice.DescribeRetentionConfigurationsInput) (*configservice.DescribeRetentionConfigurationsOutput, error)
 	DescribeRetentionConfigurationsWithContext(aws.Context, *configservice.DescribeRetentionConfigurationsInput, ...request.Option) (*configservice.DescribeRetentionConfigurationsOutput, error)
 	DescribeRetentionConfigurationsRequest(*configservice.DescribeRetentionConfigurationsInput) (*request.Request, *configservice.DescribeRetentionConfigurationsOutput)
@@ -211,6 +226,10 @@ type ConfigServiceAPI interface {
 	ListDiscoveredResourcesWithContext(aws.Context, *configservice.ListDiscoveredResourcesInput, ...request.Option) (*configservice.ListDiscoveredResourcesOutput, error)
 	ListDiscoveredResourcesRequest(*configservice.ListDiscoveredResourcesInput) (*request.Request, *configservice.ListDiscoveredResourcesOutput)
 
+	ListTagsForResource(*configservice.ListTagsForResourceInput) (*configservice.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *configservice.ListTagsForResourceInput, ...request.Option) (*configservice.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*configservice.ListTagsForResourceInput) (*request.Request, *configservice.ListTagsForResourceOutput)
+
 	PutAggregationAuthorization(*configservice.PutAggregationAuthorizationInput) (*configservice.PutAggregationAuthorizationOutput, error)
 	PutAggregationAuthorizationWithContext(aws.Context, *configservice.PutAggregationAuthorizationInput, ...request.Option) (*configservice.PutAggregationAuthorizationOutput, error)
 	PutAggregationAuthorizationRequest(*configservice.PutAggregationAuthorizationInput) (*request.Request, *configservice.PutAggregationAuthorizationOutput)
@@ -235,6 +254,10 @@ type ConfigServiceAPI interface {
 	PutEvaluationsWithContext(aws.Context, *configservice.PutEvaluationsInput, ...request.Option) (*configservice.PutEvaluationsOutput, error)
 	PutEvaluationsRequest(*configservice.PutEvaluationsInput) (*request.Request, *configservice.PutEvaluationsOutput)
 
+	PutRemediationConfigurations(*configservice.PutRemediationConfigurationsInput) (*configservice.PutRemediationConfigurationsOutput, error)
+	PutRemediationConfigurationsWithContext(aws.Context, *configservice.PutRemediationConfigurationsInput, ...request.Option) (*configservice.PutRemediationConfigurationsOutput, error)
+	PutRemediationConfigurationsRequest(*configservice.PutRemediationConfigurationsInput) (*request.Request, *configservice.PutRemediationConfigurationsOutput)
+
 	PutRetentionConfiguration(*configservice.PutRetentionConfigurationInput) (*configservice.PutRetentionConfigurationOutput, error)
 	PutRetentionConfigurationWithContext(aws.Context, *configservice.PutRetentionConfigurationInput, ...request.Option) (*configservice.PutRetentionConfigurationOutput, error)
 	PutRetentionConfigurationRequest(*configservice.PutRetentionConfigurationInput) (*request.Request, *configservice.PutRetentionConfigurationOutput)
@@ -247,9 +270,21 @@ type ConfigServiceAPI interface {
 	StartConfigurationRecorderWithContext(aws.Context, *configservice.StartConfigurationRecorderInput, ...request.Option) (*configservice.StartConfigurationRecorderOutput, error)
 	StartConfigurationRecorderRequest(*configservice.StartConfigurationRecorderInput) (*request.Request, *configservice.StartConfigurationRecorderOutput)
 
+	StartRemediationExecution(*configservice.StartRemediationExecutionInput) (*configservice.StartRemediationExecutionOutput, error)
+	StartRemediationExecutionWithContext(aws.Context, *configservice.StartRemediationExecutionInput, ...request.Option) (*configservice.StartRemediationExecutionOutput, error)
+	StartRemediationExecutionRequest(*configservice.StartRemediationExecutionInput) (*request.Request, *configservice.StartRemediationExecutionOutput)
+
 	StopConfigurationRecorder(*configservice.StopConfigurationRecorderInput) (*configservice.StopConfigurationRecorderOutput, error)
 	StopConfigurationRecorderWithContext(aws.Context, *configservice.StopConfigurationRecorderInput, ...request.Option) (*configservice.StopConfigurationRecorderOutput, error)
 	StopConfigurationRecorderRequest(*configservice.StopConfigurationRecorderInput) (*request.Request, *configservice.StopConfigurationRecorderOutput)
+
+	TagResource(*configservice.TagResourceInput) (*configservice.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *configservice.TagResourceInput, ...request.Option) (*configservice.TagResourceOutput, error)
+	TagResourceRequest(*configservice.TagResourceInput) (*request.Request, *configservice.TagResourceOutput)
+
+	UntagResource(*configservice.UntagResourceInput) (*configservice.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *configservice.UntagResourceInput, ...request.Option) (*configservice.UntagResourceOutput, error)
+	UntagResourceRequest(*configservice.UntagResourceInput) (*request.Request, *configservice.UntagResourceOutput)
 }
 
 var _ ConfigServiceAPI = (*configservice.ConfigService)(nil)

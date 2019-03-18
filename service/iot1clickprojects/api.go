@@ -8,6 +8,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
 const opAssociateDeviceWithPlacement = "AssociateDeviceWithPlacement"
@@ -49,6 +51,7 @@ func (c *IoT1ClickProjects) AssociateDeviceWithPlacementRequest(input *Associate
 
 	output = &AssociateDeviceWithPlacementOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -133,6 +136,7 @@ func (c *IoT1ClickProjects) CreatePlacementRequest(input *CreatePlacementInput) 
 
 	output = &CreatePlacementOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -217,6 +221,7 @@ func (c *IoT1ClickProjects) CreateProjectRequest(input *CreateProjectInput) (req
 
 	output = &CreateProjectOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -300,6 +305,7 @@ func (c *IoT1ClickProjects) DeletePlacementRequest(input *DeletePlacementInput) 
 
 	output = &DeletePlacementOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -387,6 +393,7 @@ func (c *IoT1ClickProjects) DeleteProjectRequest(input *DeleteProjectInput) (req
 
 	output = &DeleteProjectOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -638,6 +645,7 @@ func (c *IoT1ClickProjects) DisassociateDeviceFromPlacementRequest(input *Disass
 
 	output = &DisassociateDeviceFromPlacementOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -967,6 +975,7 @@ func (c *IoT1ClickProjects) UpdatePlacementRequest(input *UpdatePlacementInput) 
 
 	output = &UpdatePlacementOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1052,6 +1061,7 @@ func (c *IoT1ClickProjects) UpdateProjectRequest(input *UpdateProjectInput) (req
 
 	output = &UpdateProjectOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 

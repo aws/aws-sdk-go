@@ -102,6 +102,23 @@
         {"shape":"ResourceUnavailableException"}
       ]
     },
+    "DeleteUserByPrincipalId":{
+      "name":"DeleteUserByPrincipalId",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/accounts/{AwsAccountId}/namespaces/{Namespace}/user-principals/{PrincipalId}"
+      },
+      "input":{"shape":"DeleteUserByPrincipalIdRequest"},
+      "output":{"shape":"DeleteUserByPrincipalIdResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceUnavailableException"}
+      ]
+    },
     "DescribeGroup":{
       "name":"DescribeGroup",
       "http":{
@@ -459,6 +476,41 @@
         }
       }
     },
+    "DeleteUserByPrincipalIdRequest":{
+      "type":"structure",
+      "required":[
+        "PrincipalId",
+        "AwsAccountId",
+        "Namespace"
+      ],
+      "members":{
+        "PrincipalId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"PrincipalId"
+        },
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "Namespace":{
+          "shape":"Namespace",
+          "location":"uri",
+          "locationName":"Namespace"
+        }
+      }
+    },
+    "DeleteUserByPrincipalIdResponse":{
+      "type":"structure",
+      "members":{
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
     "DeleteUserRequest":{
       "type":"structure",
       "required":[
@@ -572,7 +624,7 @@
         "Message":{"shape":"String"},
         "RequestId":{"shape":"String"}
       },
-      "error":{"httpStatusCode":407},
+      "error":{"httpStatusCode":403},
       "exception":true
     },
     "EmbeddingUrl":{
@@ -647,7 +699,8 @@
       "members":{
         "Arn":{"shape":"Arn"},
         "GroupName":{"shape":"GroupName"},
-        "Description":{"shape":"GroupDescription"}
+        "Description":{"shape":"GroupDescription"},
+        "PrincipalId":{"shape":"String"}
       }
     },
     "GroupDescription":{
@@ -694,7 +747,7 @@
         "Message":{"shape":"String"},
         "RequestId":{"shape":"String"}
       },
-      "error":{"httpStatusCode":416},
+      "error":{"httpStatusCode":403},
       "exception":true
     },
     "InternalFailureException":{
@@ -939,7 +992,7 @@
         "Message":{"shape":"String"},
         "RequestId":{"shape":"String"}
       },
-      "error":{"httpStatusCode":412},
+      "error":{"httpStatusCode":404},
       "exception":true
     },
     "RegisterUserRequest":{
@@ -956,7 +1009,7 @@
         "Email":{"shape":"String"},
         "UserRole":{"shape":"UserRole"},
         "IamArn":{"shape":"String"},
-        "SessionName":{"shape":"String"},
+        "SessionName":{"shape":"RoleSessionName"},
         "AwsAccountId":{
           "shape":"AwsAccountId",
           "location":"uri",
@@ -974,6 +1027,7 @@
       "type":"structure",
       "members":{
         "User":{"shape":"User"},
+        "UserInvitationUrl":{"shape":"String"},
         "RequestId":{"shape":"String"},
         "Status":{
           "shape":"StatusCode",
@@ -1011,6 +1065,12 @@
       "error":{"httpStatusCode":503},
       "exception":true
     },
+    "RoleSessionName":{
+      "type":"string",
+      "max":64,
+      "min":2,
+      "pattern":"[\\w+=.@-]*"
+    },
     "SessionLifetimeInMinutes":{
       "type":"long",
       "max":600,
@@ -1022,7 +1082,7 @@
         "Message":{"shape":"String"},
         "RequestId":{"shape":"String"}
       },
-      "error":{"httpStatusCode":418},
+      "error":{"httpStatusCode":400},
       "exception":true
     },
     "StatusCode":{"type":"integer"},
@@ -1042,7 +1102,7 @@
         "Message":{"shape":"String"},
         "RequestId":{"shape":"String"}
       },
-      "error":{"httpStatusCode":419},
+      "error":{"httpStatusCode":403},
       "exception":true
     },
     "UpdateGroupRequest":{
@@ -1130,7 +1190,8 @@
         "Email":{"shape":"String"},
         "Role":{"shape":"UserRole"},
         "IdentityType":{"shape":"IdentityType"},
-        "Active":{"shape":"Boolean"}
+        "Active":{"shape":"Boolean"},
+        "PrincipalId":{"shape":"String"}
       }
     },
     "UserList":{

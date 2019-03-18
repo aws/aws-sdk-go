@@ -2115,13 +2115,11 @@
     },
     "CreateDiskSnapshotRequest":{
       "type":"structure",
-      "required":[
-        "diskName",
-        "diskSnapshotName"
-      ],
+      "required":["diskSnapshotName"],
       "members":{
         "diskName":{"shape":"ResourceName"},
         "diskSnapshotName":{"shape":"ResourceName"},
+        "instanceName":{"shape":"ResourceName"},
         "tags":{"shape":"TagList"}
       }
     },
@@ -2634,7 +2632,9 @@
         "state":{"shape":"DiskSnapshotState"},
         "progress":{"shape":"string"},
         "fromDiskName":{"shape":"ResourceName"},
-        "fromDiskArn":{"shape":"NonEmptyString"}
+        "fromDiskArn":{"shape":"NonEmptyString"},
+        "fromInstanceName":{"shape":"ResourceName"},
+        "fromInstanceArn":{"shape":"NonEmptyString"}
       }
     },
     "DiskSnapshotInfo":{
@@ -4174,7 +4174,8 @@
       "enum":[
         "DEFAULT",
         "INSTANCE",
-        "NONE"
+        "NONE",
+        "CLOSED"
       ]
     },
     "PortList":{

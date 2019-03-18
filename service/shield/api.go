@@ -9,6 +9,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
 const opAssociateDRTLogBucket = "AssociateDRTLogBucket"
@@ -50,6 +52,7 @@ func (c *Shield) AssociateDRTLogBucketRequest(input *AssociateDRTLogBucketInput)
 
 	output = &AssociateDRTLogBucketOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -166,6 +169,7 @@ func (c *Shield) AssociateDRTRoleRequest(input *AssociateDRTRoleInput) (req *req
 
 	output = &AssociateDRTRoleOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -300,7 +304,8 @@ func (c *Shield) CreateProtectionRequest(input *CreateProtectionInput) (req *req
 //
 // Enables AWS Shield Advanced for a specific AWS resource. The resource can
 // be an Amazon CloudFront distribution, Elastic Load Balancing load balancer,
-// Elastic IP Address, or an Amazon Route 53 hosted zone.
+// AWS Global Accelerator accelerator, Elastic IP Address, or an Amazon Route
+// 53 hosted zone.
 //
 // You can add protection to only a single resource with each CreateProtection
 // request. If you want to add protection to multiple resources at once, use
@@ -406,6 +411,7 @@ func (c *Shield) CreateSubscriptionRequest(input *CreateSubscriptionInput) (req 
 
 	output = &CreateSubscriptionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -498,6 +504,7 @@ func (c *Shield) DeleteProtectionRequest(input *DeleteProtectionInput) (req *req
 
 	output = &DeleteProtectionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -590,6 +597,7 @@ func (c *Shield) DeleteSubscriptionRequest(input *DeleteSubscriptionInput) (req 
 
 	output = &DeleteSubscriptionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -705,6 +713,8 @@ func (c *Shield) DescribeAttackRequest(input *DescribeAttackInput) (req *request
 //   You can retry the request.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   Exception that indicates the specified AttackId does not exist, or the requester
+//   does not have the appropriate permissions to access the AttackId.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeAttack
 func (c *Shield) DescribeAttack(input *DescribeAttackInput) (*DescribeAttackOutput, error) {
@@ -955,6 +965,9 @@ func (c *Shield) DescribeProtectionRequest(input *DescribeProtectionInput) (req 
 //   Exception that indicates that a problem occurred with the service infrastructure.
 //   You can retry the request.
 //
+//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   Exception that indicates that the parameters passed to the API are invalid.
+//
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   Exception indicating the specified resource does not exist.
 //
@@ -1102,6 +1115,7 @@ func (c *Shield) DisassociateDRTLogBucketRequest(input *DisassociateDRTLogBucket
 
 	output = &DisassociateDRTLogBucketOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1210,6 +1224,7 @@ func (c *Shield) DisassociateDRTRoleRequest(input *DisassociateDRTRoleInput) (re
 
 	output = &DisassociateDRTRoleOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1563,6 +1578,7 @@ func (c *Shield) UpdateEmergencyContactSettingsRequest(input *UpdateEmergencyCon
 
 	output = &UpdateEmergencyContactSettingsOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1654,6 +1670,7 @@ func (c *Shield) UpdateSubscriptionRequest(input *UpdateSubscriptionInput) (req 
 
 	output = &UpdateSubscriptionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2151,7 +2168,9 @@ type CreateProtectionInput struct {
 	//
 	//    * For an Elastic Load Balancer (Classic Load Balancer): arn:aws:elasticloadbalancing:region:account-id:loadbalancer/load-balancer-name
 	//
-	//    * For AWS CloudFront distribution: arn:aws:cloudfront::account-id:distribution/distribution-id
+	//    * For an AWS CloudFront distribution: arn:aws:cloudfront::account-id:distribution/distribution-id
+	//
+	//    * For an AWS Global Accelerator accelerator: arn:aws:globalaccelerator::account-id:accelerator/accelerator-id
 	//
 	//    * For Amazon Route 53: arn:aws:route53:::hostedzone/hosted-zone-id
 	//
@@ -2493,10 +2512,15 @@ func (s *DescribeEmergencyContactSettingsOutput) SetEmergencyContactList(v []*Em
 type DescribeProtectionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier (ID) for the Protection object that is described.
-	//
-	// ProtectionId is a required field
-	ProtectionId *string `min:"1" type:"string" required:"true"`
+	// The unique identifier (ID) for the Protection object that is described. When
+	// submitting the DescribeProtection request you must provide either the ResourceArn
+	// or the ProtectionID, but not both.
+	ProtectionId *string `min:"1" type:"string"`
+
+	// The ARN (Amazon Resource Name) of the AWS resource for the Protection object
+	// that is described. When submitting the DescribeProtection request you must
+	// provide either the ResourceArn or the ProtectionID, but not both.
+	ResourceArn *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -2512,11 +2536,11 @@ func (s DescribeProtectionInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeProtectionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeProtectionInput"}
-	if s.ProtectionId == nil {
-		invalidParams.Add(request.NewErrParamRequired("ProtectionId"))
-	}
 	if s.ProtectionId != nil && len(*s.ProtectionId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ProtectionId", 1))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2528,6 +2552,12 @@ func (s *DescribeProtectionInput) Validate() error {
 // SetProtectionId sets the ProtectionId field's value.
 func (s *DescribeProtectionInput) SetProtectionId(v string) *DescribeProtectionInput {
 	s.ProtectionId = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *DescribeProtectionInput) SetResourceArn(v string) *DescribeProtectionInput {
+	s.ResourceArn = &v
 	return s
 }
 

@@ -8,6 +8,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
 const opAssociateDelegateToResource = "AssociateDelegateToResource"
@@ -49,6 +51,7 @@ func (c *WorkMail) AssociateDelegateToResourceRequest(input *AssociateDelegateTo
 
 	output = &AssociateDelegateToResourceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -144,6 +147,7 @@ func (c *WorkMail) AssociateMemberToGroupRequest(input *AssociateMemberToGroupIn
 
 	output = &AssociateMemberToGroupOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -249,6 +253,7 @@ func (c *WorkMail) CreateAliasRequest(input *CreateAliasInput) (req *request.Req
 
 	output = &CreateAliasOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -669,6 +674,7 @@ func (c *WorkMail) DeleteAliasRequest(input *DeleteAliasInput) (req *request.Req
 
 	output = &DeleteAliasOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -764,6 +770,7 @@ func (c *WorkMail) DeleteGroupRequest(input *DeleteGroupInput) (req *request.Req
 
 	output = &DeleteGroupOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -865,6 +872,7 @@ func (c *WorkMail) DeleteMailboxPermissionsRequest(input *DeleteMailboxPermissio
 
 	output = &DeleteMailboxPermissionsOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -960,6 +968,7 @@ func (c *WorkMail) DeleteResourceRequest(input *DeleteResourceInput) (req *reque
 
 	output = &DeleteResourceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1051,6 +1060,7 @@ func (c *WorkMail) DeleteUserRequest(input *DeleteUserInput) (req *request.Reque
 
 	output = &DeleteUserOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1154,6 +1164,7 @@ func (c *WorkMail) DeregisterFromWorkMailRequest(input *DeregisterFromWorkMailIn
 
 	output = &DeregisterFromWorkMailOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1608,6 +1619,7 @@ func (c *WorkMail) DisassociateDelegateFromResourceRequest(input *DisassociateDe
 
 	output = &DisassociateDelegateFromResourceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1703,6 +1715,7 @@ func (c *WorkMail) DisassociateMemberFromGroupRequest(input *DisassociateMemberF
 
 	output = &DisassociateMemberFromGroupOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2921,6 +2934,7 @@ func (c *WorkMail) PutMailboxPermissionsRequest(input *PutMailboxPermissionsInpu
 
 	output = &PutMailboxPermissionsOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3017,6 +3031,7 @@ func (c *WorkMail) RegisterToWorkMailRequest(input *RegisterToWorkMailInput) (re
 
 	output = &RegisterToWorkMailOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3141,6 +3156,7 @@ func (c *WorkMail) ResetPasswordRequest(input *ResetPasswordInput) (req *request
 
 	output = &ResetPasswordOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3250,6 +3266,7 @@ func (c *WorkMail) UpdatePrimaryEmailAddressRequest(input *UpdatePrimaryEmailAdd
 
 	output = &UpdatePrimaryEmailAddressOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3372,6 +3389,7 @@ func (c *WorkMail) UpdateResourceRequest(input *UpdateResourceInput) (req *reque
 
 	output = &UpdateResourceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 

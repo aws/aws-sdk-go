@@ -181,7 +181,7 @@ func Test{{ .OpName }}(t *testing.T) {
 	// assert headers
 	{{ range $k, $v := .TestCase.InputTest.Headers -}}
 		if e, a := "{{ $v }}", r.Header.Get("{{ $k }}"); e != a {
-			t.Errorf("expect %v to be %v", e, a)
+			t.Errorf("expect %v, got %v", e, a)
 		}
 	{{ end }}
 }
@@ -263,8 +263,8 @@ func Test{{ .OpName }}(t *testing.T) {
 	{{ end }}
 
 	// unmarshal response
-	{{ .TestCase.TestSuite.API.ProtocolPackage }}.UnmarshalMeta(req)
-	{{ .TestCase.TestSuite.API.ProtocolPackage }}.Unmarshal(req)
+	req.Handlers.UnmarshalMeta.Run(req)
+	req.Handlers.Unmarshal.Run(req)
 	if req.Error != nil {
 		t.Errorf("expect not error, got %v", req.Error)
 	}

@@ -104,7 +104,7 @@ func TestUploadOrderMulti(t *testing.T) {
 
 	resp, err := u.Upload(&s3manager.UploadInput{
 		Bucket:               aws.String("Bucket"),
-		Key:                  aws.String("Key"),
+		Key:                  aws.String("Key - value"),
 		Body:                 bytes.NewReader(buf12MB),
 		ServerSideEncryption: aws.String("aws:kms"),
 		SSEKMSKeyId:          aws.String("KmsId"),
@@ -120,8 +120,8 @@ func TestUploadOrderMulti(t *testing.T) {
 		t.Errorf("Expected %v, but received %v", expected, *ops)
 	}
 
-	if "https://location" != resp.Location {
-		t.Errorf("Expected %q, but received %q", "https://location", resp.Location)
+	if e, a := `https://s3.mock-region.amazonaws.com/Bucket/Key%20-%20value`, resp.Location; e != a {
+		t.Errorf("Expected %q, but received %q", e, a)
 	}
 
 	if "UPLOAD-ID" != resp.UploadID {
@@ -268,12 +268,12 @@ func TestUploadFailIfPartSizeTooSmall(t *testing.T) {
 	}
 
 	aerr := err.(awserr.Error)
-	if "ConfigError" != aerr.Code() {
-		t.Errorf("Expected %q, but received %q", "ConfigError", aerr.Code())
+	if e, a := "ConfigError", aerr.Code(); e != a {
+		t.Errorf("Expected %q, but received %q", e, a)
 	}
 
-	if strings.Contains("part size must be at least", aerr.Message()) {
-		t.Errorf("Expected string to contain %q, but received %q", "part size must be at least", aerr.Message())
+	if e, a := "part size must be at least", aerr.Message(); !strings.Contains(a, e) {
+		t.Errorf("expect %v to be in %v", e, a)
 	}
 }
 
@@ -282,7 +282,7 @@ func TestUploadOrderSingle(t *testing.T) {
 	mgr := s3manager.NewUploaderWithClient(s)
 	resp, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket:               aws.String("Bucket"),
-		Key:                  aws.String("Key"),
+		Key:                  aws.String("Key - value"),
 		Body:                 bytes.NewReader(buf2MB),
 		ServerSideEncryption: aws.String("aws:kms"),
 		SSEKMSKeyId:          aws.String("KmsId"),
@@ -297,8 +297,8 @@ func TestUploadOrderSingle(t *testing.T) {
 		t.Errorf("Expected %v, but received %v", vals, *ops)
 	}
 
-	if len(resp.Location) == 0 {
-		t.Error("Expected Location to not be empty")
+	if e, a := `https://s3.mock-region.amazonaws.com/Bucket/Key%20-%20value`, resp.Location; e != a {
+		t.Errorf("Expected %q, but received %q", e, a)
 	}
 
 	if e := "VERSION-ID"; e != *resp.VersionID {

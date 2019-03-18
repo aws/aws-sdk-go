@@ -9,6 +9,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
 const opCreateLifecyclePolicy = "CreateLifecyclePolicy"
@@ -136,6 +138,7 @@ func (c *DLM) DeleteLifecyclePolicyRequest(input *DeleteLifecyclePolicyInput) (r
 
 	output = &DeleteLifecyclePolicyOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -397,6 +400,7 @@ func (c *DLM) UpdateLifecyclePolicyRequest(input *UpdateLifecyclePolicyInput) (r
 
 	output = &UpdateLifecyclePolicyOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -854,10 +858,10 @@ type LifecyclePolicy struct {
 	_ struct{} `type:"structure"`
 
 	// The local date and time when the lifecycle policy was created.
-	DateCreated *time.Time `type:"timestamp"`
+	DateCreated *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The local date and time when the lifecycle policy was last modified.
-	DateModified *time.Time `type:"timestamp"`
+	DateModified *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The description of the lifecycle policy.
 	Description *string `type:"string"`

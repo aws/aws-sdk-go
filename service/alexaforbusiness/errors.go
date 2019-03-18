@@ -13,7 +13,7 @@ const (
 	// ErrCodeConcurrentModificationException for service response error code
 	// "ConcurrentModificationException".
 	//
-	// Concurrent modification of resources. HTTP Status Code: 400.
+	// There is a concurrent modification of resources.
 	ErrCodeConcurrentModificationException = "ConcurrentModificationException"
 
 	// ErrCodeDeviceNotRegisteredException for service response error code
@@ -64,6 +64,12 @@ const (
 	//
 	// The resource in the request is already in use.
 	ErrCodeResourceInUseException = "ResourceInUseException"
+
+	// ErrCodeSkillNotLinkedException for service response error code
+	// "SkillNotLinkedException".
+	//
+	// The skill must be linked to a third-party account.
+	ErrCodeSkillNotLinkedException = "SkillNotLinkedException"
 
 	// ErrCodeUnauthorizedException for service response error code
 	// "UnauthorizedException".

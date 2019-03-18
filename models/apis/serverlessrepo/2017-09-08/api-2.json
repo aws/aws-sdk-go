@@ -610,6 +610,10 @@
           "shape" : "__string",
           "locationName" : "semanticVersion"
         },
+        "SourceCodeArchiveUrl" : {
+          "shape" : "__string",
+          "locationName" : "sourceCodeArchiveUrl"
+        },
         "SourceCodeUrl" : {
           "shape" : "__string",
           "locationName" : "sourceCodeUrl"
@@ -671,6 +675,10 @@
         "SemanticVersion" : {
           "shape" : "__string",
           "locationName" : "semanticVersion"
+        },
+        "SourceCodeArchiveUrl" : {
+          "shape" : "__string",
+          "locationName" : "sourceCodeArchiveUrl"
         },
         "SourceCodeUrl" : {
           "shape" : "__string",
@@ -743,6 +751,10 @@
     "CreateApplicationVersionInput" : {
       "type" : "structure",
       "members" : {
+        "SourceCodeArchiveUrl" : {
+          "shape" : "__string",
+          "locationName" : "sourceCodeArchiveUrl"
+        },
         "SourceCodeUrl" : {
           "shape" : "__string",
           "locationName" : "sourceCodeUrl"
@@ -769,6 +781,10 @@
           "shape" : "__string",
           "location" : "uri",
           "locationName" : "semanticVersion"
+        },
+        "SourceCodeArchiveUrl" : {
+          "shape" : "__string",
+          "locationName" : "sourceCodeArchiveUrl"
         },
         "SourceCodeUrl" : {
           "shape" : "__string",
@@ -811,6 +827,10 @@
         "SemanticVersion" : {
           "shape" : "__string",
           "locationName" : "semanticVersion"
+        },
+        "SourceCodeArchiveUrl" : {
+          "shape" : "__string",
+          "locationName" : "sourceCodeArchiveUrl"
         },
         "SourceCodeUrl" : {
           "shape" : "__string",
@@ -1637,6 +1657,10 @@
         "SemanticVersion" : {
           "shape" : "__string",
           "locationName" : "semanticVersion"
+        },
+        "SourceCodeArchiveUrl" : {
+          "shape" : "__string",
+          "locationName" : "sourceCodeArchiveUrl"
         },
         "SourceCodeUrl" : {
           "shape" : "__string",

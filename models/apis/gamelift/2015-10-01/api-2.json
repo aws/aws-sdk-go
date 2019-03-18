@@ -6,6 +6,7 @@
     "jsonVersion":"1.1",
     "protocol":"json",
     "serviceFullName":"Amazon GameLift",
+    "serviceId":"GameLift",
     "signatureVersion":"v4",
     "targetPrefix":"GameLift",
     "uid":"gamelift-2015-10-01"
@@ -277,6 +278,21 @@
         {"shape":"NotFoundException"},
         {"shape":"InternalServiceException"},
         {"shape":"UnsupportedRegionException"}
+      ]
+    },
+    "DeleteMatchmakingRuleSet":{
+      "name":"DeleteMatchmakingRuleSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteMatchmakingRuleSetInput"},
+      "output":{"shape":"DeleteMatchmakingRuleSetOutput"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"UnsupportedRegionException"},
+        {"shape":"NotFoundException"}
       ]
     },
     "DeleteScalingPolicy":{
@@ -1210,7 +1226,8 @@
         "MetricGroups":{"shape":"MetricGroupList"},
         "PeerVpcAwsAccountId":{"shape":"NonZeroAndMaxString"},
         "PeerVpcId":{"shape":"NonZeroAndMaxString"},
-        "FleetType":{"shape":"FleetType"}
+        "FleetType":{"shape":"FleetType"},
+        "InstanceRoleArn":{"shape":"NonEmptyString"}
       }
     },
     "CreateFleetOutput":{
@@ -1421,6 +1438,18 @@
       }
     },
     "DeleteMatchmakingConfigurationOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteMatchmakingRuleSetInput":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"MatchmakingIdStringModel"}
+      }
+    },
+    "DeleteMatchmakingRuleSetOutput":{
       "type":"structure",
       "members":{
       }
@@ -1938,7 +1967,8 @@
         "OperatingSystem":{"shape":"OperatingSystem"},
         "ResourceCreationLimitPolicy":{"shape":"ResourceCreationLimitPolicy"},
         "MetricGroups":{"shape":"MetricGroupList"},
-        "StoppedActions":{"shape":"FleetActionList"}
+        "StoppedActions":{"shape":"FleetActionList"},
+        "InstanceRoleArn":{"shape":"NonEmptyString"}
       }
     },
     "FleetAttributesList":{

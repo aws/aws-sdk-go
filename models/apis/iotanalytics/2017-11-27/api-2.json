@@ -1404,6 +1404,16 @@
           "shape":"MaxResults",
           "location":"querystring",
           "locationName":"maxResults"
+        },
+        "scheduledOnOrAfter":{
+          "shape":"Timestamp",
+          "location":"querystring",
+          "locationName":"scheduledOnOrAfter"
+        },
+        "scheduledBefore":{
+          "shape":"Timestamp",
+          "location":"querystring",
+          "locationName":"scheduledBefore"
         }
       }
     },

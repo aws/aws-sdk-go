@@ -53,6 +53,7 @@ func (c *CognitoIdentityProvider) AddCustomAttributesRequest(input *AddCustomAtt
 
 	output = &AddCustomAttributesOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -151,8 +152,7 @@ func (c *CognitoIdentityProvider) AdminAddUserToGroupRequest(input *AdminAddUser
 
 	output = &AdminAddUserToGroupOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(jsonrpc.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -252,6 +252,7 @@ func (c *CognitoIdentityProvider) AdminConfirmSignUpRequest(input *AdminConfirmS
 
 	output = &AdminConfirmSignUpOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -523,8 +524,7 @@ func (c *CognitoIdentityProvider) AdminDeleteUserRequest(input *AdminDeleteUserI
 
 	output = &AdminDeleteUserOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(jsonrpc.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -624,6 +624,7 @@ func (c *CognitoIdentityProvider) AdminDeleteUserAttributesRequest(input *AdminD
 
 	output = &AdminDeleteUserAttributesOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -724,6 +725,7 @@ func (c *CognitoIdentityProvider) AdminDisableProviderForUserRequest(input *Admi
 
 	output = &AdminDisableProviderForUserOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -855,6 +857,7 @@ func (c *CognitoIdentityProvider) AdminDisableUserRequest(input *AdminDisableUse
 
 	output = &AdminDisableUserOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -954,6 +957,7 @@ func (c *CognitoIdentityProvider) AdminEnableUserRequest(input *AdminEnableUserI
 
 	output = &AdminEnableUserOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1053,8 +1057,7 @@ func (c *CognitoIdentityProvider) AdminForgetDeviceRequest(input *AdminForgetDev
 
 	output = &AdminForgetDeviceOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(jsonrpc.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1490,6 +1493,7 @@ func (c *CognitoIdentityProvider) AdminLinkProviderForUserRequest(input *AdminLi
 
 	output = &AdminLinkProviderForUserOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1910,8 +1914,7 @@ func (c *CognitoIdentityProvider) AdminRemoveUserFromGroupRequest(input *AdminRe
 
 	output = &AdminRemoveUserFromGroupOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(jsonrpc.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2011,6 +2014,7 @@ func (c *CognitoIdentityProvider) AdminResetUserPasswordRequest(input *AdminRese
 
 	output = &AdminResetUserPasswordOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2306,6 +2310,7 @@ func (c *CognitoIdentityProvider) AdminSetUserMFAPreferenceRequest(input *AdminS
 
 	output = &AdminSetUserMFAPreferenceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2405,6 +2410,7 @@ func (c *CognitoIdentityProvider) AdminSetUserSettingsRequest(input *AdminSetUse
 
 	output = &AdminSetUserSettingsOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2500,6 +2506,7 @@ func (c *CognitoIdentityProvider) AdminUpdateAuthEventFeedbackRequest(input *Adm
 
 	output = &AdminUpdateAuthEventFeedbackOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2602,6 +2609,7 @@ func (c *CognitoIdentityProvider) AdminUpdateDeviceStatusRequest(input *AdminUpd
 
 	output = &AdminUpdateDeviceStatusOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2704,6 +2712,7 @@ func (c *CognitoIdentityProvider) AdminUpdateUserAttributesRequest(input *AdminU
 
 	output = &AdminUpdateUserAttributesOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2828,6 +2837,7 @@ func (c *CognitoIdentityProvider) AdminUserGlobalSignOutRequest(input *AdminUser
 
 	output = &AdminUserGlobalSignOutOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3023,6 +3033,7 @@ func (c *CognitoIdentityProvider) ChangePasswordRequest(input *ChangePasswordInp
 	output = &ChangePasswordOutput{}
 	req = c.newRequest(op, input, output)
 	req.Config.Credentials = credentials.AnonymousCredentials
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3254,6 +3265,7 @@ func (c *CognitoIdentityProvider) ConfirmForgotPasswordRequest(input *ConfirmFor
 	output = &ConfirmForgotPasswordOutput{}
 	req = c.newRequest(op, input, output)
 	req.Config.Credentials = credentials.AnonymousCredentials
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3386,6 +3398,7 @@ func (c *CognitoIdentityProvider) ConfirmSignUpRequest(input *ConfirmSignUpInput
 	output = &ConfirmSignUpOutput{}
 	req = c.newRequest(op, input, output)
 	req.Config.Credentials = credentials.AnonymousCredentials
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4232,8 +4245,7 @@ func (c *CognitoIdentityProvider) DeleteGroupRequest(input *DeleteGroupInput) (r
 
 	output = &DeleteGroupOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(jsonrpc.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4330,8 +4342,7 @@ func (c *CognitoIdentityProvider) DeleteIdentityProviderRequest(input *DeleteIde
 
 	output = &DeleteIdentityProviderOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(jsonrpc.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4429,8 +4440,7 @@ func (c *CognitoIdentityProvider) DeleteResourceServerRequest(input *DeleteResou
 
 	output = &DeleteResourceServerOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(jsonrpc.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4525,9 +4535,8 @@ func (c *CognitoIdentityProvider) DeleteUserRequest(input *DeleteUserInput) (req
 
 	output = &DeleteUserOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(jsonrpc.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	req.Config.Credentials = credentials.AnonymousCredentials
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4632,6 +4641,7 @@ func (c *CognitoIdentityProvider) DeleteUserAttributesRequest(input *DeleteUserA
 	output = &DeleteUserAttributesOutput{}
 	req = c.newRequest(op, input, output)
 	req.Config.Credentials = credentials.AnonymousCredentials
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4735,8 +4745,7 @@ func (c *CognitoIdentityProvider) DeleteUserPoolRequest(input *DeleteUserPoolInp
 
 	output = &DeleteUserPoolOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(jsonrpc.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4835,8 +4844,7 @@ func (c *CognitoIdentityProvider) DeleteUserPoolClientRequest(input *DeleteUserP
 
 	output = &DeleteUserPoolClientOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(jsonrpc.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -4931,6 +4939,7 @@ func (c *CognitoIdentityProvider) DeleteUserPoolDomainRequest(input *DeleteUserP
 
 	output = &DeleteUserPoolDomainOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -5683,8 +5692,7 @@ func (c *CognitoIdentityProvider) ForgetDeviceRequest(input *ForgetDeviceInput) 
 
 	output = &ForgetDeviceOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Remove(jsonrpc.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6838,6 +6846,7 @@ func (c *CognitoIdentityProvider) GlobalSignOutRequest(input *GlobalSignOutInput
 
 	output = &GlobalSignOutOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -8414,6 +8423,7 @@ func (c *CognitoIdentityProvider) SetUserMFAPreferenceRequest(input *SetUserMFAP
 
 	output = &SetUserMFAPreferenceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -8618,6 +8628,7 @@ func (c *CognitoIdentityProvider) SetUserSettingsRequest(input *SetUserSettingsI
 	output = &SetUserSettingsOutput{}
 	req = c.newRequest(op, input, output)
 	req.Config.Credentials = credentials.AnonymousCredentials
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -9046,6 +9057,7 @@ func (c *CognitoIdentityProvider) UpdateAuthEventFeedbackRequest(input *UpdateAu
 
 	output = &UpdateAuthEventFeedbackOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -9148,6 +9160,7 @@ func (c *CognitoIdentityProvider) UpdateDeviceStatusRequest(input *UpdateDeviceS
 
 	output = &UpdateDeviceStatusOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -9687,6 +9700,7 @@ func (c *CognitoIdentityProvider) UpdateUserPoolRequest(input *UpdateUserPoolInp
 
 	output = &UpdateUserPoolOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -9874,6 +9888,128 @@ func (c *CognitoIdentityProvider) UpdateUserPoolClientWithContext(ctx aws.Contex
 	return out, req.Send()
 }
 
+const opUpdateUserPoolDomain = "UpdateUserPoolDomain"
+
+// UpdateUserPoolDomainRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateUserPoolDomain operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateUserPoolDomain for more information on using the UpdateUserPoolDomain
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateUserPoolDomainRequest method.
+//    req, resp := client.UpdateUserPoolDomainRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateUserPoolDomain
+func (c *CognitoIdentityProvider) UpdateUserPoolDomainRequest(input *UpdateUserPoolDomainInput) (req *request.Request, output *UpdateUserPoolDomainOutput) {
+	op := &request.Operation{
+		Name:       opUpdateUserPoolDomain,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateUserPoolDomainInput{}
+	}
+
+	output = &UpdateUserPoolDomainOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateUserPoolDomain API operation for Amazon Cognito Identity Provider.
+//
+// Updates the Secure Sockets Layer (SSL) certificate for the custom domain
+// for your user pool.
+//
+// You can use this operation to provide the Amazon Resource Name (ARN) of a
+// new certificate to Amazon Cognito. You cannot use it to change the domain
+// for a user pool.
+//
+// A custom domain is used to host the Amazon Cognito hosted UI, which provides
+// sign-up and sign-in pages for your application. When you set up a custom
+// domain, you provide a certificate that you manage with AWS Certificate Manager
+// (ACM). When necessary, you can use this operation to change the certificate
+// that you applied to your custom domain.
+//
+// Usually, this is unnecessary following routine certificate renewal with ACM.
+// When you renew your existing certificate in ACM, the ARN for your certificate
+// remains the same, and your custom domain uses the new certificate automatically.
+//
+// However, if you replace your existing certificate with a new one, ACM gives
+// the new certificate a new ARN. To apply the new certificate to your custom
+// domain, you must provide this ARN to Amazon Cognito.
+//
+// When you add your new certificate in ACM, you must choose US East (N. Virginia)
+// as the AWS Region.
+//
+// After you submit your request, Amazon Cognito requires up to 1 hour to distribute
+// your new certificate to your custom domain.
+//
+// For more information about adding a custom domain to your user pool, see
+// Using Your Own Domain for the Hosted UI (http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-add-custom-domain.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Cognito Identity Provider's
+// API operation UpdateUserPoolDomain for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   This exception is thrown when the Amazon Cognito service encounters an invalid
+//   parameter.
+//
+//   * ErrCodeNotAuthorizedException "NotAuthorizedException"
+//   This exception is thrown when a user is not authorized.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   This exception is thrown when the Amazon Cognito service cannot find the
+//   requested resource.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   This exception is thrown when the user has made too many requests for a given
+//   operation.
+//
+//   * ErrCodeInternalErrorException "InternalErrorException"
+//   This exception is thrown when Amazon Cognito encounters an internal error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateUserPoolDomain
+func (c *CognitoIdentityProvider) UpdateUserPoolDomain(input *UpdateUserPoolDomainInput) (*UpdateUserPoolDomainOutput, error) {
+	req, out := c.UpdateUserPoolDomainRequest(input)
+	return out, req.Send()
+}
+
+// UpdateUserPoolDomainWithContext is the same as UpdateUserPoolDomain with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateUserPoolDomain for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CognitoIdentityProvider) UpdateUserPoolDomainWithContext(ctx aws.Context, input *UpdateUserPoolDomainInput, opts ...request.Option) (*UpdateUserPoolDomainOutput, error) {
+	req, out := c.UpdateUserPoolDomainRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opVerifySoftwareToken = "VerifySoftwareToken"
 
 // VerifySoftwareTokenRequest generates a "aws/request.Request" representing the
@@ -10037,6 +10173,7 @@ func (c *CognitoIdentityProvider) VerifyUserAttributeRequest(input *VerifyUserAt
 	output = &VerifyUserAttributeOutput{}
 	req = c.newRequest(op, input, output)
 	req.Config.Credentials = credentials.AnonymousCredentials
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -14934,7 +15071,15 @@ type CreateUserPoolClientInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The write attributes.
+	// The user pool attributes that the app client can write to.
+	//
+	// If your app client allows users to sign in through an identity provider,
+	// this array must include all attributes that are mapped to identity provider
+	// attributes. Amazon Cognito updates mapped attributes when users sign in to
+	// your application through an identity provider. If your app client lacks write
+	// access to a mapped attribute, Amazon Cognito throws an error when it attempts
+	// to update the attribute. For more information, see Specifying Identity Provider
+	// Attribute Mappings for Your User Pool (http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html).
 	WriteAttributes []*string `type:"list"`
 }
 
@@ -15098,8 +15243,8 @@ type CreateUserPoolDomainInput struct {
 	// The configuration for a custom domain that hosts the sign-up and sign-in
 	// webpages for your application.
 	//
-	// Provide this parameter only if you want to use own custom domain for your
-	// user pool. Otherwise, you can exclude this parameter and use the Amazon Cognito
+	// Provide this parameter only if you want to use a custom domain for your user
+	// pool. Otherwise, you can exclude this parameter and use the Amazon Cognito
 	// hosted domain instead.
 	//
 	// For more information about the hosted domain and custom domains, see Configuring
@@ -20621,6 +20766,13 @@ type SchemaAttributeType struct {
 	DeveloperOnlyAttribute *bool `type:"boolean"`
 
 	// Specifies whether the value of the attribute can be changed.
+	//
+	// For any user pool attribute that's mapped to an identity provider attribute,
+	// you must set this parameter to true. Amazon Cognito updates mapped attributes
+	// when users sign in to your application through an identity provider. If an
+	// attribute is immutable, Amazon Cognito throws an error when it attempts to
+	// update the attribute. For more information, see Specifying Identity Provider
+	// Attribute Mappings for Your User Pool (http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html).
 	Mutable *bool `type:"boolean"`
 
 	// A schema attribute of the name type.
@@ -22703,6 +22855,117 @@ func (s UpdateUserPoolClientOutput) GoString() string {
 // SetUserPoolClient sets the UserPoolClient field's value.
 func (s *UpdateUserPoolClientOutput) SetUserPoolClient(v *UserPoolClientType) *UpdateUserPoolClientOutput {
 	s.UserPoolClient = v
+	return s
+}
+
+// The UpdateUserPoolDomain request input.
+type UpdateUserPoolDomainInput struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration for a custom domain that hosts the sign-up and sign-in
+	// pages for your application. Use this object to specify an SSL certificate
+	// that is managed by ACM.
+	//
+	// CustomDomainConfig is a required field
+	CustomDomainConfig *CustomDomainConfigType `type:"structure" required:"true"`
+
+	// The domain name for the custom domain that hosts the sign-up and sign-in
+	// pages for your application. For example: auth.example.com.
+	//
+	// This string can include only lowercase letters, numbers, and hyphens. Do
+	// not use a hyphen for the first or last character. Use periods to separate
+	// subdomain names.
+	//
+	// Domain is a required field
+	Domain *string `min:"1" type:"string" required:"true"`
+
+	// The ID of the user pool that is associated with the custom domain that you
+	// are updating the certificate for.
+	//
+	// UserPoolId is a required field
+	UserPoolId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateUserPoolDomainInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateUserPoolDomainInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateUserPoolDomainInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateUserPoolDomainInput"}
+	if s.CustomDomainConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("CustomDomainConfig"))
+	}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+	if s.CustomDomainConfig != nil {
+		if err := s.CustomDomainConfig.Validate(); err != nil {
+			invalidParams.AddNested("CustomDomainConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomDomainConfig sets the CustomDomainConfig field's value.
+func (s *UpdateUserPoolDomainInput) SetCustomDomainConfig(v *CustomDomainConfigType) *UpdateUserPoolDomainInput {
+	s.CustomDomainConfig = v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *UpdateUserPoolDomainInput) SetDomain(v string) *UpdateUserPoolDomainInput {
+	s.Domain = &v
+	return s
+}
+
+// SetUserPoolId sets the UserPoolId field's value.
+func (s *UpdateUserPoolDomainInput) SetUserPoolId(v string) *UpdateUserPoolDomainInput {
+	s.UserPoolId = &v
+	return s
+}
+
+// The UpdateUserPoolDomain response output.
+type UpdateUserPoolDomainOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon CloudFront endpoint that Amazon Cognito set up when you added
+	// the custom domain to your user pool.
+	CloudFrontDomain *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateUserPoolDomainOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateUserPoolDomainOutput) GoString() string {
+	return s.String()
+}
+
+// SetCloudFrontDomain sets the CloudFrontDomain field's value.
+func (s *UpdateUserPoolDomainOutput) SetCloudFrontDomain(v string) *UpdateUserPoolDomainOutput {
+	s.CloudFrontDomain = &v
 	return s
 }
 

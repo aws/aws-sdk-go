@@ -74,6 +74,20 @@
       "output":{"shape":"AssociateSkillWithSkillGroupResponse"},
       "errors":[
         {"shape":"ConcurrentModificationException"},
+        {"shape":"NotFoundException"},
+        {"shape":"SkillNotLinkedException"}
+      ]
+    },
+    "AssociateSkillWithUsers":{
+      "name":"AssociateSkillWithUsers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateSkillWithUsersRequest"},
+      "output":{"shape":"AssociateSkillWithUsersResponse"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"},
         {"shape":"NotFoundException"}
       ]
     },
@@ -359,6 +373,19 @@
         {"shape":"NotFoundException"}
       ]
     },
+    "DisassociateSkillFromUsers":{
+      "name":"DisassociateSkillFromUsers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociateSkillFromUsersRequest"},
+      "output":{"shape":"DisassociateSkillFromUsersResponse"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
     "DisassociateSkillGroupFromRoom":{
       "name":"DisassociateSkillGroupFromRoom",
       "http":{
@@ -439,6 +466,18 @@
       },
       "input":{"shape":"GetDeviceRequest"},
       "output":{"shape":"GetDeviceResponse"},
+      "errors":[
+        {"shape":"NotFoundException"}
+      ]
+    },
+    "GetInvitationConfiguration":{
+      "name":"GetInvitationConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetInvitationConfigurationRequest"},
+      "output":{"shape":"GetInvitationConfigurationResponse"},
       "errors":[
         {"shape":"NotFoundException"}
       ]
@@ -582,6 +621,19 @@
       "output":{"shape":"PutConferencePreferenceResponse"},
       "errors":[
         {"shape":"NotFoundException"}
+      ]
+    },
+    "PutInvitationConfiguration":{
+      "name":"PutInvitationConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutInvitationConfigurationRequest"},
+      "output":{"shape":"PutInvitationConfigurationResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "PutRoomSkillParameter":{
@@ -1011,6 +1063,18 @@
       }
     },
     "AssociateSkillWithSkillGroupResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "AssociateSkillWithUsersRequest":{
+      "type":"structure",
+      "required":["SkillId"],
+      "members":{
+        "SkillId":{"shape":"SkillId"}
+      }
+    },
+    "AssociateSkillWithUsersResponse":{
       "type":"structure",
       "members":{
       }
@@ -1720,6 +1784,18 @@
       "members":{
       }
     },
+    "DisassociateSkillFromUsersRequest":{
+      "type":"structure",
+      "required":["SkillId"],
+      "members":{
+        "SkillId":{"shape":"SkillId"}
+      }
+    },
+    "DisassociateSkillFromUsersResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DisassociateSkillGroupFromRoomRequest":{
       "type":"structure",
       "members":{
@@ -1909,6 +1985,19 @@
       "type":"structure",
       "members":{
         "Device":{"shape":"Device"}
+      }
+    },
+    "GetInvitationConfigurationRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetInvitationConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "OrganizationName":{"shape":"OrganizationName"},
+        "ContactEmail":{"shape":"Email"},
+        "PrivateSkillIds":{"shape":"ShortSkillIdList"}
       }
     },
     "GetProfileRequest":{
@@ -2181,6 +2270,12 @@
       "max":2,
       "min":1
     },
+    "OrganizationName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"([A-Za-z\\-' 0-9._]|\\p{IsLetter})*"
+    },
     "OutboundPhoneNumber":{
       "type":"string",
       "pattern":"\\d{10}"
@@ -2259,6 +2354,20 @@
       }
     },
     "PutConferencePreferenceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "PutInvitationConfigurationRequest":{
+      "type":"structure",
+      "required":["OrganizationName"],
+      "members":{
+        "OrganizationName":{"shape":"OrganizationName"},
+        "ContactEmail":{"shape":"Email"},
+        "PrivateSkillIds":{"shape":"ShortSkillIdList"}
+      }
+    },
+    "PutInvitationConfigurationResponse":{
       "type":"structure",
       "members":{
       }
@@ -2590,6 +2699,12 @@
       }
     },
     "ShortDescription":{"type":"string"},
+    "ShortSkillIdList":{
+      "type":"list",
+      "member":{"shape":"SkillId"},
+      "max":3,
+      "min":0
+    },
     "SkillDetails":{
       "type":"structure",
       "members":{
@@ -2651,6 +2766,13 @@
       "max":100,
       "min":1,
       "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u0085\\u00A0-\\uD7FF\\uE000-\\uFFFD\\u10000-\\u10FFFF]*"
+    },
+    "SkillNotLinkedException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
     },
     "SkillStoreType":{"type":"string"},
     "SkillSummary":{

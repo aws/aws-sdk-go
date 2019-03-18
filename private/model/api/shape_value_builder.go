@@ -171,7 +171,7 @@ func (b ShapeValueBuilder) BuildComplex(name, memName string, ref *ShapeRef, v m
 			},
 			`, name, b.GoType(ref, false), b.BuildShape(ref, v, true))
 	default:
-		panic(fmt.Sprintf("Expected complex type but recieved %q", ref.Shape.Type))
+		panic(fmt.Sprintf("Expected complex type but received %q", ref.Shape.Type))
 	}
 }
 

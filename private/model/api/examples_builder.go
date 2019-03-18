@@ -2,11 +2,6 @@
 
 package api
 
-import (
-	"bytes"
-	"fmt"
-)
-
 type examplesBuilder interface {
 	BuildShape(*ShapeRef, map[string]interface{}, bool) string
 	BuildList(string, string, *ShapeRef, []interface{}) string
@@ -20,16 +15,13 @@ type defaultExamplesBuilder struct {
 }
 
 func (builder defaultExamplesBuilder) Imports(a *API) string {
-	buf := bytes.NewBuffer(nil)
-	buf.WriteString(`"fmt"
+	return `"fmt"
 	"strings"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/session"
-	`)
-
-	buf.WriteString(fmt.Sprintf("\"%s/%s\"", "github.com/aws/aws-sdk-go/service", a.PackageName()))
-	return buf.String()
+	"` + SDKImportRoot + `/aws"
+	"` + SDKImportRoot + `/aws/awserr"
+	"` + SDKImportRoot + `/aws/session"
+	"` + SDKImportRoot + `/service/` + a.PackageName() + `"
+	`
 }

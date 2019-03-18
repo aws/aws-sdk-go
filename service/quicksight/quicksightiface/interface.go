@@ -80,6 +80,10 @@ type QuickSightAPI interface {
 	DeleteUserWithContext(aws.Context, *quicksight.DeleteUserInput, ...request.Option) (*quicksight.DeleteUserOutput, error)
 	DeleteUserRequest(*quicksight.DeleteUserInput) (*request.Request, *quicksight.DeleteUserOutput)
 
+	DeleteUserByPrincipalId(*quicksight.DeleteUserByPrincipalIdInput) (*quicksight.DeleteUserByPrincipalIdOutput, error)
+	DeleteUserByPrincipalIdWithContext(aws.Context, *quicksight.DeleteUserByPrincipalIdInput, ...request.Option) (*quicksight.DeleteUserByPrincipalIdOutput, error)
+	DeleteUserByPrincipalIdRequest(*quicksight.DeleteUserByPrincipalIdInput) (*request.Request, *quicksight.DeleteUserByPrincipalIdOutput)
+
 	DescribeGroup(*quicksight.DescribeGroupInput) (*quicksight.DescribeGroupOutput, error)
 	DescribeGroupWithContext(aws.Context, *quicksight.DescribeGroupInput, ...request.Option) (*quicksight.DescribeGroupOutput, error)
 	DescribeGroupRequest(*quicksight.DescribeGroupInput) (*request.Request, *quicksight.DescribeGroupOutput)

@@ -9,6 +9,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
 const opCreateScalingPlan = "CreateScalingPlan"
@@ -140,6 +142,7 @@ func (c *AutoScalingPlans) DeleteScalingPlanRequest(input *DeleteScalingPlanInpu
 
 	output = &DeleteScalingPlanOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -499,6 +502,7 @@ func (c *AutoScalingPlans) UpdateScalingPlanRequest(input *UpdateScalingPlanInpu
 
 	output = &UpdateScalingPlanOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -724,8 +728,7 @@ func (s *CreateScalingPlanOutput) SetScalingPlanVersion(v int64) *CreateScalingP
 // For predictive scaling to work with a customized load metric specification,
 // AWS Auto Scaling needs access to the Sum and Average statistics that CloudWatch
 // computes from metric data. Statistics are calculations used to aggregate
-// data over specified time periods. For more information, see the Amazon CloudWatch
-// User Guide (http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html).
+// data over specified time periods.
 //
 // When you choose a load metric, make sure that the required Sum and Average
 // statistics for your metric are available in CloudWatch and that they provide
@@ -737,11 +740,16 @@ func (s *CreateScalingPlanOutput) SetScalingPlanVersion(v int64) *CreateScalingP
 // group, then the Average statistic for the specified metric must represent
 // the average request count processed by each instance of the group.
 //
-// For information about terminology, see Amazon CloudWatch Concepts (http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html).
+// For information about terminology, available metrics, or how to publish new
+// metrics, see Amazon CloudWatch Concepts (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html)
+// in the Amazon CloudWatch User Guide.
 type CustomizedLoadMetricSpecification struct {
 	_ struct{} `type:"structure"`
 
 	// The dimensions of the metric.
+	//
+	// Conditional: If you published your metric with dimensions, you must specify
+	// the same dimensions in your customized load metric specification.
 	Dimensions []*MetricDimension `type:"list"`
 
 	// The name of the metric.
@@ -835,11 +843,27 @@ func (s *CustomizedLoadMetricSpecification) SetUnit(v string) *CustomizedLoadMet
 // Represents a CloudWatch metric of your choosing that can be used for dynamic
 // scaling as part of a target tracking scaling policy.
 //
-// For information about terminology, see Amazon CloudWatch Concepts (http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html).
+// To create your customized scaling metric specification:
+//
+//    * Add values for each required parameter from CloudWatch. You can use
+//    an existing metric, or a new metric that you create. To use your own metric,
+//    you must first publish the metric to CloudWatch. For more information,
+//    see Publish Custom Metrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html)
+//    in the Amazon CloudWatch User Guide.
+//
+//    * Choose a metric that changes proportionally with capacity. The value
+//    of the metric should increase or decrease in inverse proportion to the
+//    number of capacity units. That is, the value of the metric should decrease
+//    when capacity increases.
+//
+// For more information about CloudWatch, see Amazon CloudWatch Concepts (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html).
 type CustomizedScalingMetricSpecification struct {
 	_ struct{} `type:"structure"`
 
 	// The dimensions of the metric.
+	//
+	// Conditional: If you published your metric with dimensions, you must specify
+	// the same dimensions in your customized scaling metric specification.
 	Dimensions []*MetricDimension `type:"list"`
 
 	// The name of the metric.
@@ -1658,7 +1682,11 @@ func (s *PredefinedScalingMetricSpecification) SetResourceLabel(v string) *Prede
 // for the two days ahead and schedules scaling actions that proactively add
 // and remove resource capacity to match the forecast.
 //
-// For more information, see the AWS Auto Scaling User Guide (http://docs.aws.amazon.com/autoscaling/plans/userguide/what-is-aws-auto-scaling.html).
+// We recommend waiting a minimum of 24 hours after creating an Auto Scaling
+// group to configure predictive scaling. At minimum, there must be 24 hours
+// of historical data to generate a forecast.
+//
+// For more information, see Getting Started with AWS Auto Scaling (https://docs.aws.amazon.com/autoscaling/plans/userguide/auto-scaling-getting-started.html).
 type ScalingInstruction struct {
 	_ struct{} `type:"structure"`
 
@@ -1776,7 +1804,8 @@ type ScalingInstruction struct {
 	//    a DynamoDB global secondary index.
 	//
 	//    * rds:cluster:ReadReplicaCount - The count of Aurora Replicas in an Aurora
-	//    DB cluster. Available for Aurora MySQL-compatible edition.
+	//    DB cluster. Available for Aurora MySQL-compatible edition and Aurora PostgreSQL-compatible
+	//    edition.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -2139,7 +2168,8 @@ type ScalingPlanResource struct {
 	//    a DynamoDB global secondary index.
 	//
 	//    * rds:cluster:ReadReplicaCount - The count of Aurora Replicas in an Aurora
-	//    DB cluster. Available for Aurora MySQL-compatible edition.
+	//    DB cluster. Available for Aurora MySQL-compatible edition and Aurora PostgreSQL-compatible
+	//    edition.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -2253,7 +2283,8 @@ type ScalingPolicy struct {
 	// PolicyType is a required field
 	PolicyType *string `type:"string" required:"true" enum:"PolicyType"`
 
-	// The target tracking scaling policy.
+	// The target tracking scaling policy. Includes support for predefined or customized
+	// metrics.
 	TargetTrackingConfiguration *TargetTrackingConfiguration `type:"structure"`
 }
 
@@ -2331,12 +2362,13 @@ func (s *TagFilter) SetValues(v []*string) *TagFilter {
 	return s
 }
 
-// Describes a target tracking configuration. Used with ScalingInstruction and
-// ScalingPolicy.
+// Describes a target tracking configuration to use with AWS Auto Scaling. Used
+// with ScalingInstruction and ScalingPolicy.
 type TargetTrackingConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// A customized metric.
+	// A customized metric. You can specify either a predefined metric or a customized
+	// metric.
 	CustomizedScalingMetricSpecification *CustomizedScalingMetricSpecification `type:"structure"`
 
 	// Indicates whether scale in by the target tracking scaling policy is disabled.
@@ -2353,7 +2385,8 @@ type TargetTrackingConfiguration struct {
 	// Auto Scaling group.
 	EstimatedInstanceWarmup *int64 `type:"integer"`
 
-	// A predefined metric.
+	// A predefined metric. You can specify either a predefined metric or a customized
+	// metric.
 	PredefinedScalingMetricSpecification *PredefinedScalingMetricSpecification `type:"structure"`
 
 	// The amount of time, in seconds, after a scale in activity completes before

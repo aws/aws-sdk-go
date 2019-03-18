@@ -167,6 +167,11 @@ func (a *API) Setup() {
 	a.setMetadataEndpointsKey()
 	a.writeShapeNames()
 	a.resolveReferences()
+
+	if !a.NoRemoveUnusedShapes {
+		a.removeUnusedShapes()
+	}
+
 	a.fixStutterNames()
 	a.renameExportable()
 	a.applyShapeNameAliases()
@@ -174,7 +179,6 @@ func (a *API) Setup() {
 	a.renameAPIPayloadShapes()
 	a.renameCollidingFields()
 	a.updateTopLevelShapeReferences()
-	a.suppressHTTP2EventStreams()
 	a.setupEventStreams()
 	a.findEndpointDiscoveryOp()
 	a.customizationPasses()

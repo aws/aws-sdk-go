@@ -462,6 +462,7 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"TransactionCanceledException"},
+        {"shape":"ProvisionedThroughputExceededException"},
         {"shape":"InternalServerError"}
       ],
       "endpointdiscovery":{
@@ -480,6 +481,7 @@
         {"shape":"TransactionCanceledException"},
         {"shape":"TransactionInProgressException"},
         {"shape":"IdempotentParameterMismatchException"},
+        {"shape":"ProvisionedThroughputExceededException"},
         {"shape":"InternalServerError"}
       ],
       "endpointdiscovery":{
@@ -838,7 +840,8 @@
       "type":"string",
       "enum":[
         "USER",
-        "SYSTEM"
+        "SYSTEM",
+        "AWS_BACKUP"
       ]
     },
     "BackupTypeFilter":{
@@ -846,6 +849,7 @@
       "enum":[
         "USER",
         "SYSTEM",
+        "AWS_BACKUP",
         "ALL"
       ]
     },
@@ -948,6 +952,11 @@
         "WriteCapacityUnits":{"shape":"ConsumedCapacityUnits"},
         "CapacityUnits":{"shape":"ConsumedCapacityUnits"}
       }
+    },
+    "ClientRequestToken":{
+      "type":"string",
+      "max":36,
+      "min":1
     },
     "Code":{"type":"string"},
     "ComparisonOperator":{
@@ -2583,7 +2592,7 @@
         "ReturnConsumedCapacity":{"shape":"ReturnConsumedCapacity"},
         "ReturnItemCollectionMetrics":{"shape":"ReturnItemCollectionMetrics"},
         "ClientRequestToken":{
-          "shape":"String",
+          "shape":"ClientRequestToken",
           "idempotencyToken":true
         }
       }
