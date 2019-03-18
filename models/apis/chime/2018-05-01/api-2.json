@@ -10,11 +10,68 @@
     "uid":"chime-2018-05-01"
   },
   "operations":{
+    "AssociatePhoneNumberWithUser":{
+      "name":"AssociatePhoneNumberWithUser",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{accountId}/users/{userId}?operation=associate-phone-number",
+        "responseCode":200
+      },
+      "input":{"shape":"AssociatePhoneNumberWithUserRequest"},
+      "output":{"shape":"AssociatePhoneNumberWithUserResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "AssociatePhoneNumbersWithVoiceConnector":{
+      "name":"AssociatePhoneNumbersWithVoiceConnector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/voice-connectors/{voiceConnectorId}?operation=associate-phone-numbers",
+        "responseCode":200
+      },
+      "input":{"shape":"AssociatePhoneNumbersWithVoiceConnectorRequest"},
+      "output":{"shape":"AssociatePhoneNumbersWithVoiceConnectorResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "BatchDeletePhoneNumber":{
+      "name":"BatchDeletePhoneNumber",
+      "http":{
+        "method":"POST",
+        "requestUri":"/phone-numbers?operation=batch-delete",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchDeletePhoneNumberRequest"},
+      "output":{"shape":"BatchDeletePhoneNumberResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "BatchSuspendUser":{
       "name":"BatchSuspendUser",
       "http":{
         "method":"POST",
-        "requestUri":"/console/accounts/{accountId}/users?operation=suspend",
+        "requestUri":"/accounts/{accountId}/users?operation=suspend",
         "responseCode":200
       },
       "input":{"shape":"BatchSuspendUserRequest"},
@@ -33,7 +90,7 @@
       "name":"BatchUnsuspendUser",
       "http":{
         "method":"POST",
-        "requestUri":"/console/accounts/{accountId}/users?operation=unsuspend",
+        "requestUri":"/accounts/{accountId}/users?operation=unsuspend",
         "responseCode":200
       },
       "input":{"shape":"BatchUnsuspendUserRequest"},
@@ -48,11 +105,30 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "BatchUpdatePhoneNumber":{
+      "name":"BatchUpdatePhoneNumber",
+      "http":{
+        "method":"POST",
+        "requestUri":"/phone-numbers?operation=batch-update",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchUpdatePhoneNumberRequest"},
+      "output":{"shape":"BatchUpdatePhoneNumberResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "BatchUpdateUser":{
       "name":"BatchUpdateUser",
       "http":{
         "method":"POST",
-        "requestUri":"/console/accounts/{accountId}/users",
+        "requestUri":"/accounts/{accountId}/users",
         "responseCode":200
       },
       "input":{"shape":"BatchUpdateUserRequest"},
@@ -71,7 +147,7 @@
       "name":"CreateAccount",
       "http":{
         "method":"POST",
-        "requestUri":"/console/accounts",
+        "requestUri":"/accounts",
         "responseCode":201
       },
       "input":{"shape":"CreateAccountRequest"},
@@ -86,11 +162,47 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "CreatePhoneNumberOrder":{
+      "name":"CreatePhoneNumberOrder",
+      "http":{
+        "method":"POST",
+        "requestUri":"/phone-number-orders",
+        "responseCode":201
+      },
+      "input":{"shape":"CreatePhoneNumberOrderRequest"},
+      "output":{"shape":"CreatePhoneNumberOrderResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "CreateVoiceConnector":{
+      "name":"CreateVoiceConnector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/voice-connectors",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateVoiceConnectorRequest"},
+      "output":{"shape":"CreateVoiceConnectorResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "DeleteAccount":{
       "name":"DeleteAccount",
       "http":{
         "method":"DELETE",
-        "requestUri":"/console/accounts/{accountId}",
+        "requestUri":"/accounts/{accountId}",
         "responseCode":204
       },
       "input":{"shape":"DeleteAccountRequest"},
@@ -106,11 +218,139 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "DeletePhoneNumber":{
+      "name":"DeletePhoneNumber",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/phone-numbers/{phoneNumberId}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeletePhoneNumberRequest"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "DeleteVoiceConnector":{
+      "name":"DeleteVoiceConnector",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/voice-connectors/{voiceConnectorId}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteVoiceConnectorRequest"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "DeleteVoiceConnectorOrigination":{
+      "name":"DeleteVoiceConnectorOrigination",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/voice-connectors/{voiceConnectorId}/origination",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteVoiceConnectorOriginationRequest"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "DeleteVoiceConnectorTermination":{
+      "name":"DeleteVoiceConnectorTermination",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/voice-connectors/{voiceConnectorId}/termination",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteVoiceConnectorTerminationRequest"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "DeleteVoiceConnectorTerminationCredentials":{
+      "name":"DeleteVoiceConnectorTerminationCredentials",
+      "http":{
+        "method":"POST",
+        "requestUri":"/voice-connectors/{voiceConnectorId}/termination/credentials?operation=delete",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteVoiceConnectorTerminationCredentialsRequest"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "DisassociatePhoneNumberFromUser":{
+      "name":"DisassociatePhoneNumberFromUser",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{accountId}/users/{userId}?operation=disassociate-phone-number",
+        "responseCode":200
+      },
+      "input":{"shape":"DisassociatePhoneNumberFromUserRequest"},
+      "output":{"shape":"DisassociatePhoneNumberFromUserResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "DisassociatePhoneNumbersFromVoiceConnector":{
+      "name":"DisassociatePhoneNumbersFromVoiceConnector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/voice-connectors/{voiceConnectorId}?operation=disassociate-phone-numbers",
+        "responseCode":200
+      },
+      "input":{"shape":"DisassociatePhoneNumbersFromVoiceConnectorRequest"},
+      "output":{"shape":"DisassociatePhoneNumbersFromVoiceConnectorResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "GetAccount":{
       "name":"GetAccount",
       "http":{
         "method":"GET",
-        "requestUri":"/console/accounts/{accountId}"
+        "requestUri":"/accounts/{accountId}"
       },
       "input":{"shape":"GetAccountRequest"},
       "output":{"shape":"GetAccountResponse"},
@@ -128,7 +368,7 @@
       "name":"GetAccountSettings",
       "http":{
         "method":"GET",
-        "requestUri":"/console/accounts/{accountId}/settings"
+        "requestUri":"/accounts/{accountId}/settings"
       },
       "input":{"shape":"GetAccountSettingsRequest"},
       "output":{"shape":"GetAccountSettingsResponse"},
@@ -142,11 +382,65 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "GetGlobalSettings":{
+      "name":"GetGlobalSettings",
+      "http":{
+        "method":"GET",
+        "requestUri":"/settings",
+        "responseCode":200
+      },
+      "output":{"shape":"GetGlobalSettingsResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "GetPhoneNumber":{
+      "name":"GetPhoneNumber",
+      "http":{
+        "method":"GET",
+        "requestUri":"/phone-numbers/{phoneNumberId}"
+      },
+      "input":{"shape":"GetPhoneNumberRequest"},
+      "output":{"shape":"GetPhoneNumberResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "GetPhoneNumberOrder":{
+      "name":"GetPhoneNumberOrder",
+      "http":{
+        "method":"GET",
+        "requestUri":"/phone-number-orders/{phoneNumberOrderId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetPhoneNumberOrderRequest"},
+      "output":{"shape":"GetPhoneNumberOrderResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "GetUser":{
       "name":"GetUser",
       "http":{
         "method":"GET",
-        "requestUri":"/console/accounts/{accountId}/users/{userId}",
+        "requestUri":"/accounts/{accountId}/users/{userId}",
         "responseCode":200
       },
       "input":{"shape":"GetUserRequest"},
@@ -161,11 +455,106 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "GetUserSettings":{
+      "name":"GetUserSettings",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{accountId}/users/{userId}/settings",
+        "responseCode":200
+      },
+      "input":{"shape":"GetUserSettingsRequest"},
+      "output":{"shape":"GetUserSettingsResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "GetVoiceConnector":{
+      "name":"GetVoiceConnector",
+      "http":{
+        "method":"GET",
+        "requestUri":"/voice-connectors/{voiceConnectorId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetVoiceConnectorRequest"},
+      "output":{"shape":"GetVoiceConnectorResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "GetVoiceConnectorOrigination":{
+      "name":"GetVoiceConnectorOrigination",
+      "http":{
+        "method":"GET",
+        "requestUri":"/voice-connectors/{voiceConnectorId}/origination",
+        "responseCode":200
+      },
+      "input":{"shape":"GetVoiceConnectorOriginationRequest"},
+      "output":{"shape":"GetVoiceConnectorOriginationResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "GetVoiceConnectorTermination":{
+      "name":"GetVoiceConnectorTermination",
+      "http":{
+        "method":"GET",
+        "requestUri":"/voice-connectors/{voiceConnectorId}/termination",
+        "responseCode":200
+      },
+      "input":{"shape":"GetVoiceConnectorTerminationRequest"},
+      "output":{"shape":"GetVoiceConnectorTerminationResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "GetVoiceConnectorTerminationHealth":{
+      "name":"GetVoiceConnectorTerminationHealth",
+      "http":{
+        "method":"GET",
+        "requestUri":"/voice-connectors/{voiceConnectorId}/termination/health",
+        "responseCode":200
+      },
+      "input":{"shape":"GetVoiceConnectorTerminationHealthRequest"},
+      "output":{"shape":"GetVoiceConnectorTerminationHealthResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "InviteUsers":{
       "name":"InviteUsers",
       "http":{
         "method":"POST",
-        "requestUri":"/console/accounts/{accountId}/users?operation=add",
+        "requestUri":"/accounts/{accountId}/users?operation=add",
         "responseCode":201
       },
       "input":{"shape":"InviteUsersRequest"},
@@ -184,7 +573,7 @@
       "name":"ListAccounts",
       "http":{
         "method":"GET",
-        "requestUri":"/console/accounts"
+        "requestUri":"/accounts"
       },
       "input":{"shape":"ListAccountsRequest"},
       "output":{"shape":"ListAccountsResponse"},
@@ -198,11 +587,46 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "ListPhoneNumberOrders":{
+      "name":"ListPhoneNumberOrders",
+      "http":{
+        "method":"GET",
+        "requestUri":"/phone-number-orders",
+        "responseCode":200
+      },
+      "input":{"shape":"ListPhoneNumberOrdersRequest"},
+      "output":{"shape":"ListPhoneNumberOrdersResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "ListPhoneNumbers":{
+      "name":"ListPhoneNumbers",
+      "http":{
+        "method":"GET",
+        "requestUri":"/phone-numbers"
+      },
+      "input":{"shape":"ListPhoneNumbersRequest"},
+      "output":{"shape":"ListPhoneNumbersResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "ListUsers":{
       "name":"ListUsers",
       "http":{
         "method":"GET",
-        "requestUri":"/console/accounts/{accountId}/users",
+        "requestUri":"/accounts/{accountId}/users",
         "responseCode":200
       },
       "input":{"shape":"ListUsersRequest"},
@@ -217,11 +641,48 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "ListVoiceConnectorTerminationCredentials":{
+      "name":"ListVoiceConnectorTerminationCredentials",
+      "http":{
+        "method":"GET",
+        "requestUri":"/voice-connectors/{voiceConnectorId}/termination/credentials",
+        "responseCode":200
+      },
+      "input":{"shape":"ListVoiceConnectorTerminationCredentialsRequest"},
+      "output":{"shape":"ListVoiceConnectorTerminationCredentialsResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "ListVoiceConnectors":{
+      "name":"ListVoiceConnectors",
+      "http":{
+        "method":"GET",
+        "requestUri":"/voice-connectors",
+        "responseCode":200
+      },
+      "input":{"shape":"ListVoiceConnectorsRequest"},
+      "output":{"shape":"ListVoiceConnectorsResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "LogoutUser":{
       "name":"LogoutUser",
       "http":{
         "method":"POST",
-        "requestUri":"/console/accounts/{accountId}/users/{userId}?operation=logout",
+        "requestUri":"/accounts/{accountId}/users/{userId}?operation=logout",
         "responseCode":204
       },
       "input":{"shape":"LogoutUserRequest"},
@@ -236,11 +697,67 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "PutVoiceConnectorOrigination":{
+      "name":"PutVoiceConnectorOrigination",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/voice-connectors/{voiceConnectorId}/origination",
+        "responseCode":200
+      },
+      "input":{"shape":"PutVoiceConnectorOriginationRequest"},
+      "output":{"shape":"PutVoiceConnectorOriginationResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "PutVoiceConnectorTermination":{
+      "name":"PutVoiceConnectorTermination",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/voice-connectors/{voiceConnectorId}/termination",
+        "responseCode":200
+      },
+      "input":{"shape":"PutVoiceConnectorTerminationRequest"},
+      "output":{"shape":"PutVoiceConnectorTerminationResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "PutVoiceConnectorTerminationCredentials":{
+      "name":"PutVoiceConnectorTerminationCredentials",
+      "http":{
+        "method":"POST",
+        "requestUri":"/voice-connectors/{voiceConnectorId}/termination/credentials?operation=put",
+        "responseCode":204
+      },
+      "input":{"shape":"PutVoiceConnectorTerminationCredentialsRequest"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "ResetPersonalPIN":{
       "name":"ResetPersonalPIN",
       "http":{
         "method":"POST",
-        "requestUri":"/console/accounts/{accountId}/users/{userId}?operation=reset-personal-pin",
+        "requestUri":"/accounts/{accountId}/users/{userId}?operation=reset-personal-pin",
         "responseCode":200
       },
       "input":{"shape":"ResetPersonalPINRequest"},
@@ -255,11 +772,47 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "RestorePhoneNumber":{
+      "name":"RestorePhoneNumber",
+      "http":{
+        "method":"POST",
+        "requestUri":"/phone-numbers/{phoneNumberId}?operation=restore",
+        "responseCode":200
+      },
+      "input":{"shape":"RestorePhoneNumberRequest"},
+      "output":{"shape":"RestorePhoneNumberResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "SearchAvailablePhoneNumbers":{
+      "name":"SearchAvailablePhoneNumbers",
+      "http":{
+        "method":"GET",
+        "requestUri":"/search?type=phone-numbers"
+      },
+      "input":{"shape":"SearchAvailablePhoneNumbersRequest"},
+      "output":{"shape":"SearchAvailablePhoneNumbersResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "UpdateAccount":{
       "name":"UpdateAccount",
       "http":{
         "method":"POST",
-        "requestUri":"/console/accounts/{accountId}",
+        "requestUri":"/accounts/{accountId}",
         "responseCode":200
       },
       "input":{"shape":"UpdateAccountRequest"},
@@ -278,7 +831,7 @@
       "name":"UpdateAccountSettings",
       "http":{
         "method":"PUT",
-        "requestUri":"/console/accounts/{accountId}/settings",
+        "requestUri":"/accounts/{accountId}/settings",
         "responseCode":204
       },
       "input":{"shape":"UpdateAccountSettingsRequest"},
@@ -294,15 +847,88 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "UpdateGlobalSettings":{
+      "name":"UpdateGlobalSettings",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/settings",
+        "responseCode":204
+      },
+      "input":{"shape":"UpdateGlobalSettingsRequest"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "UpdatePhoneNumber":{
+      "name":"UpdatePhoneNumber",
+      "http":{
+        "method":"POST",
+        "requestUri":"/phone-numbers/{phoneNumberId}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdatePhoneNumberRequest"},
+      "output":{"shape":"UpdatePhoneNumberResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "UpdateUser":{
       "name":"UpdateUser",
       "http":{
         "method":"POST",
-        "requestUri":"/console/accounts/{accountId}/users/{userId}",
+        "requestUri":"/accounts/{accountId}/users/{userId}",
         "responseCode":200
       },
       "input":{"shape":"UpdateUserRequest"},
       "output":{"shape":"UpdateUserResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "UpdateUserSettings":{
+      "name":"UpdateUserSettings",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/accounts/{accountId}/users/{userId}/settings",
+        "responseCode":204
+      },
+      "input":{"shape":"UpdateUserSettingsRequest"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "UpdateVoiceConnector":{
+      "name":"UpdateVoiceConnector",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/voice-connectors/{voiceConnectorId}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateVoiceConnectorRequest"},
+      "output":{"shape":"UpdateVoiceConnectorResponse"},
       "errors":[
         {"shape":"UnauthorizedClientException"},
         {"shape":"NotFoundException"},
@@ -358,6 +984,50 @@
         "EnterpriseOIDC"
       ]
     },
+    "AssociatePhoneNumberWithUserRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "UserId",
+        "E164PhoneNumber"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "UserId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"userId"
+        },
+        "E164PhoneNumber":{"shape":"E164PhoneNumber"}
+      }
+    },
+    "AssociatePhoneNumberWithUserResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "AssociatePhoneNumbersWithVoiceConnectorRequest":{
+      "type":"structure",
+      "required":["VoiceConnectorId"],
+      "members":{
+        "VoiceConnectorId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"voiceConnectorId"
+        },
+        "E164PhoneNumbers":{"shape":"E164PhoneNumberList"}
+      }
+    },
+    "AssociatePhoneNumbersWithVoiceConnectorResponse":{
+      "type":"structure",
+      "members":{
+        "PhoneNumberErrors":{"shape":"PhoneNumberErrorList"}
+      }
+    },
     "BadRequestException":{
       "type":"structure",
       "members":{
@@ -366,6 +1036,19 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "BatchDeletePhoneNumberRequest":{
+      "type":"structure",
+      "required":["PhoneNumberIds"],
+      "members":{
+        "PhoneNumberIds":{"shape":"NonEmptyStringList"}
+      }
+    },
+    "BatchDeletePhoneNumberResponse":{
+      "type":"structure",
+      "members":{
+        "PhoneNumberErrors":{"shape":"PhoneNumberErrorList"}
+      }
     },
     "BatchSuspendUserRequest":{
       "type":"structure",
@@ -409,6 +1092,19 @@
         "UserErrors":{"shape":"UserErrorList"}
       }
     },
+    "BatchUpdatePhoneNumberRequest":{
+      "type":"structure",
+      "required":["UpdatePhoneNumberRequestItems"],
+      "members":{
+        "UpdatePhoneNumberRequestItems":{"shape":"UpdatePhoneNumberRequestItemList"}
+      }
+    },
+    "BatchUpdatePhoneNumberResponse":{
+      "type":"structure",
+      "members":{
+        "PhoneNumberErrors":{"shape":"PhoneNumberErrorList"}
+      }
+    },
     "BatchUpdateUserRequest":{
       "type":"structure",
       "required":[
@@ -431,6 +1127,20 @@
       }
     },
     "Boolean":{"type":"boolean"},
+    "BusinessCallingSettings":{
+      "type":"structure",
+      "members":{
+        "CdrBucket":{
+          "shape":"String",
+          "box":true
+        }
+      }
+    },
+    "CallingRegion":{"type":"string"},
+    "CallingRegionList":{
+      "type":"list",
+      "member":{"shape":"CallingRegion"}
+    },
     "ConflictException":{
       "type":"structure",
       "members":{
@@ -439,6 +1149,10 @@
       },
       "error":{"httpStatusCode":409},
       "exception":true
+    },
+    "CpsLimit":{
+      "type":"integer",
+      "min":1
     },
     "CreateAccountRequest":{
       "type":"structure",
@@ -452,6 +1166,51 @@
       "members":{
         "Account":{"shape":"Account"}
       }
+    },
+    "CreatePhoneNumberOrderRequest":{
+      "type":"structure",
+      "required":[
+        "ProductType",
+        "E164PhoneNumbers"
+      ],
+      "members":{
+        "ProductType":{"shape":"PhoneNumberProductType"},
+        "E164PhoneNumbers":{"shape":"E164PhoneNumberList"}
+      }
+    },
+    "CreatePhoneNumberOrderResponse":{
+      "type":"structure",
+      "members":{
+        "PhoneNumberOrder":{"shape":"PhoneNumberOrder"}
+      }
+    },
+    "CreateVoiceConnectorRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "RequireEncryption"
+      ],
+      "members":{
+        "Name":{"shape":"VoiceConnectorName"},
+        "RequireEncryption":{"shape":"Boolean"}
+      }
+    },
+    "CreateVoiceConnectorResponse":{
+      "type":"structure",
+      "members":{
+        "VoiceConnector":{"shape":"VoiceConnector"}
+      }
+    },
+    "Credential":{
+      "type":"structure",
+      "members":{
+        "Username":{"shape":"SensitiveString"},
+        "Password":{"shape":"SensitiveString"}
+      }
+    },
+    "CredentialList":{
+      "type":"list",
+      "member":{"shape":"Credential"}
     },
     "DeleteAccountRequest":{
       "type":"structure",
@@ -468,6 +1227,113 @@
       "type":"structure",
       "members":{
       }
+    },
+    "DeletePhoneNumberRequest":{
+      "type":"structure",
+      "required":["PhoneNumberId"],
+      "members":{
+        "PhoneNumberId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"phoneNumberId"
+        }
+      }
+    },
+    "DeleteVoiceConnectorOriginationRequest":{
+      "type":"structure",
+      "required":["VoiceConnectorId"],
+      "members":{
+        "VoiceConnectorId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"voiceConnectorId"
+        }
+      }
+    },
+    "DeleteVoiceConnectorRequest":{
+      "type":"structure",
+      "required":["VoiceConnectorId"],
+      "members":{
+        "VoiceConnectorId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"voiceConnectorId"
+        }
+      }
+    },
+    "DeleteVoiceConnectorTerminationCredentialsRequest":{
+      "type":"structure",
+      "required":["VoiceConnectorId"],
+      "members":{
+        "VoiceConnectorId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"voiceConnectorId"
+        },
+        "Usernames":{"shape":"SensitiveStringList"}
+      }
+    },
+    "DeleteVoiceConnectorTerminationRequest":{
+      "type":"structure",
+      "required":["VoiceConnectorId"],
+      "members":{
+        "VoiceConnectorId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"voiceConnectorId"
+        }
+      }
+    },
+    "DisassociatePhoneNumberFromUserRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "UserId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "UserId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"userId"
+        }
+      }
+    },
+    "DisassociatePhoneNumberFromUserResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DisassociatePhoneNumbersFromVoiceConnectorRequest":{
+      "type":"structure",
+      "required":["VoiceConnectorId"],
+      "members":{
+        "VoiceConnectorId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"voiceConnectorId"
+        },
+        "E164PhoneNumbers":{"shape":"E164PhoneNumberList"}
+      }
+    },
+    "DisassociatePhoneNumbersFromVoiceConnectorResponse":{
+      "type":"structure",
+      "members":{
+        "PhoneNumberErrors":{"shape":"PhoneNumberErrorList"}
+      }
+    },
+    "E164PhoneNumber":{
+      "type":"string",
+      "pattern":"^\\+?[1-9]\\d{1,14}$",
+      "sensitive":true
+    },
+    "E164PhoneNumberList":{
+      "type":"list",
+      "member":{"shape":"E164PhoneNumber"}
     },
     "EmailAddress":{
       "type":"string",
@@ -540,6 +1406,47 @@
         "AccountSettings":{"shape":"AccountSettings"}
       }
     },
+    "GetGlobalSettingsResponse":{
+      "type":"structure",
+      "members":{
+        "BusinessCalling":{"shape":"BusinessCallingSettings"},
+        "VoiceConnector":{"shape":"VoiceConnectorSettings"}
+      }
+    },
+    "GetPhoneNumberOrderRequest":{
+      "type":"structure",
+      "required":["PhoneNumberOrderId"],
+      "members":{
+        "PhoneNumberOrderId":{
+          "shape":"GuidString",
+          "location":"uri",
+          "locationName":"phoneNumberOrderId"
+        }
+      }
+    },
+    "GetPhoneNumberOrderResponse":{
+      "type":"structure",
+      "members":{
+        "PhoneNumberOrder":{"shape":"PhoneNumberOrder"}
+      }
+    },
+    "GetPhoneNumberRequest":{
+      "type":"structure",
+      "required":["PhoneNumberId"],
+      "members":{
+        "PhoneNumberId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"phoneNumberId"
+        }
+      }
+    },
+    "GetPhoneNumberResponse":{
+      "type":"structure",
+      "members":{
+        "PhoneNumber":{"shape":"PhoneNumber"}
+      }
+    },
     "GetUserRequest":{
       "type":"structure",
       "required":[
@@ -564,6 +1471,103 @@
       "members":{
         "User":{"shape":"User"}
       }
+    },
+    "GetUserSettingsRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "UserId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "UserId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"userId"
+        }
+      }
+    },
+    "GetUserSettingsResponse":{
+      "type":"structure",
+      "members":{
+        "UserSettings":{"shape":"UserSettings"}
+      }
+    },
+    "GetVoiceConnectorOriginationRequest":{
+      "type":"structure",
+      "required":["VoiceConnectorId"],
+      "members":{
+        "VoiceConnectorId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"voiceConnectorId"
+        }
+      }
+    },
+    "GetVoiceConnectorOriginationResponse":{
+      "type":"structure",
+      "members":{
+        "Origination":{"shape":"Origination"}
+      }
+    },
+    "GetVoiceConnectorRequest":{
+      "type":"structure",
+      "required":["VoiceConnectorId"],
+      "members":{
+        "VoiceConnectorId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"voiceConnectorId"
+        }
+      }
+    },
+    "GetVoiceConnectorResponse":{
+      "type":"structure",
+      "members":{
+        "VoiceConnector":{"shape":"VoiceConnector"}
+      }
+    },
+    "GetVoiceConnectorTerminationHealthRequest":{
+      "type":"structure",
+      "required":["VoiceConnectorId"],
+      "members":{
+        "VoiceConnectorId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"voiceConnectorId"
+        }
+      }
+    },
+    "GetVoiceConnectorTerminationHealthResponse":{
+      "type":"structure",
+      "members":{
+        "TerminationHealth":{"shape":"TerminationHealth"}
+      }
+    },
+    "GetVoiceConnectorTerminationRequest":{
+      "type":"structure",
+      "required":["VoiceConnectorId"],
+      "members":{
+        "VoiceConnectorId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"voiceConnectorId"
+        }
+      }
+    },
+    "GetVoiceConnectorTerminationResponse":{
+      "type":"structure",
+      "members":{
+        "Termination":{"shape":"Termination"}
+      }
+    },
+    "GuidString":{
+      "type":"string",
+      "pattern":"[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}"
     },
     "Invite":{
       "type":"structure",
@@ -656,6 +1660,70 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "ListPhoneNumberOrdersRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"ResultMax",
+          "location":"querystring",
+          "locationName":"max-results"
+        }
+      }
+    },
+    "ListPhoneNumberOrdersResponse":{
+      "type":"structure",
+      "members":{
+        "PhoneNumberOrders":{"shape":"PhoneNumberOrderList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListPhoneNumbersRequest":{
+      "type":"structure",
+      "members":{
+        "Status":{
+          "shape":"PhoneNumberStatus",
+          "location":"querystring",
+          "locationName":"status"
+        },
+        "ProductType":{
+          "shape":"PhoneNumberProductType",
+          "location":"querystring",
+          "locationName":"product-type"
+        },
+        "FilterName":{
+          "shape":"PhoneNumberAssociationName",
+          "location":"querystring",
+          "locationName":"filter-name"
+        },
+        "FilterValue":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"filter-value"
+        },
+        "MaxResults":{
+          "shape":"ResultMax",
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"next-token"
+        }
+      }
+    },
+    "ListPhoneNumbersResponse":{
+      "type":"structure",
+      "members":{
+        "PhoneNumbers":{"shape":"PhoneNumberList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
     "ListUsersRequest":{
       "type":"structure",
       "required":["AccountId"],
@@ -689,6 +1757,45 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "ListVoiceConnectorTerminationCredentialsRequest":{
+      "type":"structure",
+      "required":["VoiceConnectorId"],
+      "members":{
+        "VoiceConnectorId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"voiceConnectorId"
+        }
+      }
+    },
+    "ListVoiceConnectorTerminationCredentialsResponse":{
+      "type":"structure",
+      "members":{
+        "Usernames":{"shape":"SensitiveStringList"}
+      }
+    },
+    "ListVoiceConnectorsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"ResultMax",
+          "location":"querystring",
+          "locationName":"max-results"
+        }
+      }
+    },
+    "ListVoiceConnectorsResponse":{
+      "type":"structure",
+      "members":{
+        "VoiceConnectors":{"shape":"VoiceConnectorList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
     "LogoutUserRequest":{
       "type":"structure",
       "required":[
@@ -717,6 +1824,11 @@
       "type":"string",
       "pattern":".*\\S.*"
     },
+    "NonEmptyStringList":{
+      "type":"list",
+      "member":{"shape":"String"},
+      "min":1
+    },
     "NotFoundException":{
       "type":"structure",
       "members":{
@@ -726,10 +1838,237 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "NullableBoolean":{"type":"boolean"},
+    "OrderedPhoneNumber":{
+      "type":"structure",
+      "members":{
+        "E164PhoneNumber":{"shape":"E164PhoneNumber"},
+        "Status":{"shape":"OrderedPhoneNumberStatus"}
+      }
+    },
+    "OrderedPhoneNumberList":{
+      "type":"list",
+      "member":{"shape":"OrderedPhoneNumber"}
+    },
+    "OrderedPhoneNumberStatus":{
+      "type":"string",
+      "enum":[
+        "Processing",
+        "Acquired",
+        "Failed"
+      ]
+    },
+    "Origination":{
+      "type":"structure",
+      "members":{
+        "Routes":{"shape":"OriginationRouteList"},
+        "Disabled":{"shape":"Boolean"}
+      }
+    },
+    "OriginationRoute":{
+      "type":"structure",
+      "members":{
+        "Host":{"shape":"String"},
+        "Port":{"shape":"Port"},
+        "Protocol":{"shape":"OriginationRouteProtocol"},
+        "Priority":{"shape":"OriginationRoutePriority"},
+        "Weight":{"shape":"OriginationRouteWeight"}
+      }
+    },
+    "OriginationRouteList":{
+      "type":"list",
+      "member":{"shape":"OriginationRoute"}
+    },
+    "OriginationRoutePriority":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
+    "OriginationRouteProtocol":{
+      "type":"string",
+      "enum":[
+        "TCP",
+        "UDP"
+      ]
+    },
+    "OriginationRouteWeight":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
+    "PhoneNumber":{
+      "type":"structure",
+      "members":{
+        "PhoneNumberId":{"shape":"String"},
+        "E164PhoneNumber":{"shape":"E164PhoneNumber"},
+        "ProductType":{"shape":"PhoneNumberProductType"},
+        "Status":{"shape":"PhoneNumberStatus"},
+        "Capabilities":{"shape":"PhoneNumberCapabilities"},
+        "Associations":{"shape":"PhoneNumberAssociationList"},
+        "CreatedTimestamp":{"shape":"Iso8601Timestamp"},
+        "UpdatedTimestamp":{"shape":"Iso8601Timestamp"},
+        "DeletionTimestamp":{"shape":"Iso8601Timestamp"}
+      }
+    },
+    "PhoneNumberAssociation":{
+      "type":"structure",
+      "members":{
+        "Value":{"shape":"String"},
+        "Name":{"shape":"PhoneNumberAssociationName"},
+        "AssociatedTimestamp":{"shape":"Iso8601Timestamp"}
+      }
+    },
+    "PhoneNumberAssociationList":{
+      "type":"list",
+      "member":{"shape":"PhoneNumberAssociation"}
+    },
+    "PhoneNumberAssociationName":{
+      "type":"string",
+      "enum":[
+        "AccountId",
+        "UserId",
+        "VoiceConnectorId"
+      ]
+    },
+    "PhoneNumberCapabilities":{
+      "type":"structure",
+      "members":{
+        "InboundCall":{"shape":"NullableBoolean"},
+        "OutboundCall":{"shape":"NullableBoolean"},
+        "InboundSMS":{"shape":"NullableBoolean"},
+        "OutboundSMS":{"shape":"NullableBoolean"},
+        "InboundMMS":{"shape":"NullableBoolean"},
+        "OutboundMMS":{"shape":"NullableBoolean"}
+      }
+    },
+    "PhoneNumberError":{
+      "type":"structure",
+      "members":{
+        "PhoneNumberId":{"shape":"NonEmptyString"},
+        "ErrorCode":{"shape":"ErrorCode"},
+        "ErrorMessage":{"shape":"String"}
+      }
+    },
+    "PhoneNumberErrorList":{
+      "type":"list",
+      "member":{"shape":"PhoneNumberError"}
+    },
+    "PhoneNumberList":{
+      "type":"list",
+      "member":{"shape":"PhoneNumber"}
+    },
+    "PhoneNumberMaxResults":{
+      "type":"integer",
+      "max":500,
+      "min":1
+    },
+    "PhoneNumberOrder":{
+      "type":"structure",
+      "members":{
+        "PhoneNumberOrderId":{"shape":"GuidString"},
+        "ProductType":{"shape":"PhoneNumberProductType"},
+        "Status":{"shape":"PhoneNumberOrderStatus"},
+        "OrderedPhoneNumbers":{"shape":"OrderedPhoneNumberList"},
+        "CreatedTimestamp":{"shape":"Iso8601Timestamp"},
+        "UpdatedTimestamp":{"shape":"Iso8601Timestamp"}
+      }
+    },
+    "PhoneNumberOrderList":{
+      "type":"list",
+      "member":{"shape":"PhoneNumberOrder"}
+    },
+    "PhoneNumberOrderStatus":{
+      "type":"string",
+      "enum":[
+        "Processing",
+        "Successful",
+        "Failed",
+        "Partial"
+      ]
+    },
+    "PhoneNumberProductType":{
+      "type":"string",
+      "enum":[
+        "BusinessCalling",
+        "VoiceConnector"
+      ]
+    },
+    "PhoneNumberStatus":{
+      "type":"string",
+      "enum":[
+        "AcquireInProgress",
+        "AcquireFailed",
+        "Unassigned",
+        "Assigned",
+        "ReleaseInProgress",
+        "DeleteInProgress",
+        "ReleaseFailed",
+        "DeleteFailed"
+      ]
+    },
+    "Port":{
+      "type":"integer",
+      "max":65535,
+      "min":0
+    },
     "ProfileServiceMaxResults":{
       "type":"integer",
       "max":200,
       "min":1
+    },
+    "PutVoiceConnectorOriginationRequest":{
+      "type":"structure",
+      "required":[
+        "VoiceConnectorId",
+        "Origination"
+      ],
+      "members":{
+        "VoiceConnectorId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"voiceConnectorId"
+        },
+        "Origination":{"shape":"Origination"}
+      }
+    },
+    "PutVoiceConnectorOriginationResponse":{
+      "type":"structure",
+      "members":{
+        "Origination":{"shape":"Origination"}
+      }
+    },
+    "PutVoiceConnectorTerminationCredentialsRequest":{
+      "type":"structure",
+      "required":["VoiceConnectorId"],
+      "members":{
+        "VoiceConnectorId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"voiceConnectorId"
+        },
+        "Credentials":{"shape":"CredentialList"}
+      }
+    },
+    "PutVoiceConnectorTerminationRequest":{
+      "type":"structure",
+      "required":[
+        "VoiceConnectorId",
+        "Termination"
+      ],
+      "members":{
+        "VoiceConnectorId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"voiceConnectorId"
+        },
+        "Termination":{"shape":"Termination"}
+      }
+    },
+    "PutVoiceConnectorTerminationResponse":{
+      "type":"structure",
+      "members":{
+        "Termination":{"shape":"Termination"}
+      }
     },
     "RegistrationStatus":{
       "type":"string",
@@ -764,9 +2103,76 @@
         "User":{"shape":"User"}
       }
     },
+    "RestorePhoneNumberRequest":{
+      "type":"structure",
+      "required":["PhoneNumberId"],
+      "members":{
+        "PhoneNumberId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"phoneNumberId"
+        }
+      }
+    },
+    "RestorePhoneNumberResponse":{
+      "type":"structure",
+      "members":{
+        "PhoneNumber":{"shape":"PhoneNumber"}
+      }
+    },
+    "ResultMax":{
+      "type":"integer",
+      "max":99,
+      "min":1
+    },
+    "SearchAvailablePhoneNumbersRequest":{
+      "type":"structure",
+      "members":{
+        "AreaCode":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"area-code"
+        },
+        "City":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"city"
+        },
+        "Country":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"country"
+        },
+        "State":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"state"
+        },
+        "MaxResults":{
+          "shape":"PhoneNumberMaxResults",
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"next-token"
+        }
+      }
+    },
+    "SearchAvailablePhoneNumbersResponse":{
+      "type":"structure",
+      "members":{
+        "E164PhoneNumbers":{"shape":"E164PhoneNumberList"}
+      }
+    },
     "SensitiveString":{
       "type":"string",
       "sensitive":true
+    },
+    "SensitiveStringList":{
+      "type":"list",
+      "member":{"shape":"SensitiveString"}
     },
     "ServiceFailureException":{
       "type":"structure",
@@ -789,6 +2195,40 @@
       "fault":true
     },
     "String":{"type":"string"},
+    "StringList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "TelephonySettings":{
+      "type":"structure",
+      "required":[
+        "InboundCalling",
+        "OutboundCalling",
+        "SMS"
+      ],
+      "members":{
+        "InboundCalling":{"shape":"Boolean"},
+        "OutboundCalling":{"shape":"Boolean"},
+        "SMS":{"shape":"Boolean"}
+      }
+    },
+    "Termination":{
+      "type":"structure",
+      "members":{
+        "CpsLimit":{"shape":"CpsLimit"},
+        "DefaultPhoneNumber":{"shape":"E164PhoneNumber"},
+        "CallingRegions":{"shape":"CallingRegionList"},
+        "CidrAllowedList":{"shape":"StringList"},
+        "Disabled":{"shape":"Boolean"}
+      }
+    },
+    "TerminationHealth":{
+      "type":"structure",
+      "members":{
+        "Timestamp":{"shape":"Iso8601Timestamp"},
+        "Source":{"shape":"String"}
+      }
+    },
     "ThrottledClientException":{
       "type":"structure",
       "members":{
@@ -854,6 +2294,47 @@
       "members":{
       }
     },
+    "UpdateGlobalSettingsRequest":{
+      "type":"structure",
+      "required":[
+        "BusinessCalling",
+        "VoiceConnector"
+      ],
+      "members":{
+        "BusinessCalling":{"shape":"BusinessCallingSettings"},
+        "VoiceConnector":{"shape":"VoiceConnectorSettings"}
+      }
+    },
+    "UpdatePhoneNumberRequest":{
+      "type":"structure",
+      "required":["PhoneNumberId"],
+      "members":{
+        "PhoneNumberId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"phoneNumberId"
+        },
+        "ProductType":{"shape":"PhoneNumberProductType"}
+      }
+    },
+    "UpdatePhoneNumberRequestItem":{
+      "type":"structure",
+      "required":["PhoneNumberId"],
+      "members":{
+        "PhoneNumberId":{"shape":"NonEmptyString"},
+        "ProductType":{"shape":"PhoneNumberProductType"}
+      }
+    },
+    "UpdatePhoneNumberRequestItemList":{
+      "type":"list",
+      "member":{"shape":"UpdatePhoneNumberRequestItem"}
+    },
+    "UpdatePhoneNumberResponse":{
+      "type":"structure",
+      "members":{
+        "PhoneNumber":{"shape":"PhoneNumber"}
+      }
+    },
     "UpdateUserRequest":{
       "type":"structure",
       "required":[
@@ -893,6 +2374,50 @@
         "User":{"shape":"User"}
       }
     },
+    "UpdateUserSettingsRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "UserId",
+        "UserSettings"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "UserId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"userId"
+        },
+        "UserSettings":{"shape":"UserSettings"}
+      }
+    },
+    "UpdateVoiceConnectorRequest":{
+      "type":"structure",
+      "required":[
+        "VoiceConnectorId",
+        "Name",
+        "RequireEncryption"
+      ],
+      "members":{
+        "VoiceConnectorId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"voiceConnectorId"
+        },
+        "Name":{"shape":"VoiceConnectorName"},
+        "RequireEncryption":{"shape":"Boolean"}
+      }
+    },
+    "UpdateVoiceConnectorResponse":{
+      "type":"structure",
+      "members":{
+        "VoiceConnector":{"shape":"VoiceConnector"}
+      }
+    },
     "User":{
       "type":"structure",
       "required":["UserId"],
@@ -900,6 +2425,7 @@
         "UserId":{"shape":"String"},
         "AccountId":{"shape":"String"},
         "PrimaryEmail":{"shape":"EmailAddress"},
+        "PrimaryProvisionedNumber":{"shape":"SensitiveString"},
         "DisplayName":{"shape":"SensitiveString"},
         "LicenseType":{"shape":"License"},
         "UserRegistrationStatus":{"shape":"RegistrationStatus"},
@@ -934,6 +2460,42 @@
     "UserList":{
       "type":"list",
       "member":{"shape":"User"}
+    },
+    "UserSettings":{
+      "type":"structure",
+      "required":["Telephony"],
+      "members":{
+        "Telephony":{"shape":"TelephonySettings"}
+      }
+    },
+    "VoiceConnector":{
+      "type":"structure",
+      "members":{
+        "VoiceConnectorId":{"shape":"NonEmptyString"},
+        "Name":{"shape":"VoiceConnectorName"},
+        "OutboundHostName":{"shape":"String"},
+        "RequireEncryption":{"shape":"Boolean"},
+        "CreatedTimestamp":{"shape":"Iso8601Timestamp"},
+        "UpdatedTimestamp":{"shape":"Iso8601Timestamp"}
+      }
+    },
+    "VoiceConnectorList":{
+      "type":"list",
+      "member":{"shape":"VoiceConnector"}
+    },
+    "VoiceConnectorName":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "VoiceConnectorSettings":{
+      "type":"structure",
+      "members":{
+        "CdrBucket":{
+          "shape":"String",
+          "box":true
+        }
+      }
     }
   }
 }
