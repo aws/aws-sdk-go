@@ -107,6 +107,23 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "UpdateClusterConfig":{
+      "name":"UpdateClusterConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/clusters/{name}/update-config"
+      },
+      "input":{"shape":"UpdateClusterConfigRequest"},
+      "output":{"shape":"UpdateClusterConfigResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServerException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
     "UpdateClusterVersion":{
       "name":"UpdateClusterVersion",
       "http":{
@@ -126,6 +143,11 @@
     }
   },
   "shapes":{
+    "Boolean":{"type":"boolean"},
+    "BoxedBoolean":{
+      "type":"boolean",
+      "box":true
+    },
     "Certificate":{
       "type":"structure",
       "members":{
@@ -433,6 +455,28 @@
         "errors":{"shape":"ErrorDetails"}
       }
     },
+    "UpdateClusterConfigRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "resourcesVpcConfig":{"shape":"VpcConfigRequest"},
+        "clientRequestToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "UpdateClusterConfigResponse":{
+      "type":"structure",
+      "members":{
+        "update":{"shape":"Update"}
+      }
+    },
     "UpdateClusterVersionRequest":{
       "type":"structure",
       "required":[
@@ -469,7 +513,9 @@
       "type":"string",
       "enum":[
         "Version",
-        "PlatformVersion"
+        "PlatformVersion",
+        "EndpointPrivateAccess",
+        "EndpointPublicAccess"
       ]
     },
     "UpdateParams":{
@@ -487,14 +533,18 @@
     },
     "UpdateType":{
       "type":"string",
-      "enum":["VersionUpdate"]
+      "enum":[
+        "VersionUpdate",
+        "EndpointAccessUpdate"
+      ]
     },
     "VpcConfigRequest":{
       "type":"structure",
-      "required":["subnetIds"],
       "members":{
         "subnetIds":{"shape":"StringList"},
-        "securityGroupIds":{"shape":"StringList"}
+        "securityGroupIds":{"shape":"StringList"},
+        "endpointPublicAccess":{"shape":"BoxedBoolean"},
+        "endpointPrivateAccess":{"shape":"BoxedBoolean"}
       }
     },
     "VpcConfigResponse":{
@@ -502,7 +552,9 @@
       "members":{
         "subnetIds":{"shape":"StringList"},
         "securityGroupIds":{"shape":"StringList"},
-        "vpcId":{"shape":"String"}
+        "vpcId":{"shape":"String"},
+        "endpointPublicAccess":{"shape":"Boolean"},
+        "endpointPrivateAccess":{"shape":"Boolean"}
       }
     }
   }

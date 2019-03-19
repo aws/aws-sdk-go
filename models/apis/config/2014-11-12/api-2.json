@@ -665,6 +665,20 @@
         {"shape":"MaxNumberOfRetentionConfigurationsExceededException"}
       ]
     },
+    "SelectResourceConfig":{
+      "name":"SelectResourceConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SelectResourceConfigRequest"},
+      "output":{"shape":"SelectResourceConfigResponse"},
+      "errors":[
+        {"shape":"InvalidExpressionException"},
+        {"shape":"InvalidLimitException"},
+        {"shape":"InvalidNextTokenException"}
+      ]
+    },
     "StartConfigRulesEvaluation":{
       "name":"StartConfigRulesEvaluation",
       "http":{
@@ -1690,6 +1704,11 @@
       "type":"string",
       "enum":["aws.config"]
     },
+    "Expression":{
+      "type":"string",
+      "max":4096,
+      "min":1
+    },
     "FailedRemediationBatch":{
       "type":"structure",
       "members":{
@@ -1701,6 +1720,17 @@
       "type":"list",
       "member":{"shape":"FailedRemediationBatch"}
     },
+    "FieldInfo":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"FieldName"}
+      }
+    },
+    "FieldInfoList":{
+      "type":"list",
+      "member":{"shape":"FieldInfo"}
+    },
+    "FieldName":{"type":"string"},
     "GetAggregateComplianceDetailsByConfigRuleRequest":{
       "type":"structure",
       "required":[
@@ -1918,6 +1948,12 @@
       "exception":true
     },
     "InvalidDeliveryChannelNameException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "InvalidExpressionException":{
       "type":"structure",
       "members":{
       },
@@ -2303,6 +2339,12 @@
         "RetentionConfiguration":{"shape":"RetentionConfiguration"}
       }
     },
+    "QueryInfo":{
+      "type":"structure",
+      "members":{
+        "SelectFields":{"shape":"FieldInfoList"}
+      }
+    },
     "RecorderName":{
       "type":"string",
       "max":256,
@@ -2625,6 +2667,10 @@
       "type":"string",
       "enum":["RESOURCE_ID"]
     },
+    "Results":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "RetentionConfiguration":{
       "type":"structure",
       "required":[
@@ -2669,6 +2715,23 @@
         "TagKey":{"shape":"StringWithCharLimit128"},
         "TagValue":{"shape":"StringWithCharLimit256"},
         "ComplianceResourceId":{"shape":"BaseResourceId"}
+      }
+    },
+    "SelectResourceConfigRequest":{
+      "type":"structure",
+      "required":["Expression"],
+      "members":{
+        "Expression":{"shape":"Expression"},
+        "Limit":{"shape":"Limit"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "SelectResourceConfigResponse":{
+      "type":"structure",
+      "members":{
+        "Results":{"shape":"Results"},
+        "QueryInfo":{"shape":"QueryInfo"},
+        "NextToken":{"shape":"NextToken"}
       }
     },
     "Source":{
