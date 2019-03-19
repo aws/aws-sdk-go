@@ -17,7 +17,7 @@ import (
 // 			Value int
 // 		}
 //
-// 		func (u *exampleUnmarshaler) UnmarshalDynamoDBAttributeValue(av *dynamodb.AttributeValue) error {
+// 		func (u *ExampleUnmarshaler) UnmarshalDynamoDBAttributeValue(av *dynamodb.AttributeValue) error {
 // 			if av.N == nil {
 // 				return nil
 // 			}
@@ -27,7 +27,7 @@ import (
 // 				return err
 // 			}
 //
-// 			u.Value = n
+// 			u.Value = int(n)
 // 			return nil
 // 		}
 type Unmarshaler interface {
