@@ -143,8 +143,7 @@ package under the service folder at the root of the SDK.
 
 The SDK includes the Go types and utilities you can use to make requests to
 AWS service APIs. Within the service folder at the root of the SDK you'll find
-a package for each AWS service the SDK supports. All service clients follows
-a common pattern of creation and usage.
+a package for each AWS service the SDK supports. All service clients follow common pattern of creation and usage.
 
 When creating a client for an AWS service you'll first need to have a Session
 value constructed. The Session provides shared configuration that can be shared
