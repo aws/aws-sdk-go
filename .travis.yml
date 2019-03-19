@@ -12,6 +12,7 @@ go:
     - 1.9.x
     - 1.10.x
     - 1.11.x
+    - 1.12.x
     - tip
 
 matrix:
@@ -29,9 +30,10 @@ matrix:
           env: GO15VENDOREXPERIMENT=1
 
 script:
-  - if [ $TRAVIS_GO_VERSION == "tip" ] ||
+  - if [ $TRAVIS_GO_VERSION == "1.10.x" ] ||
     [ $TRAVIS_GO_VERSION == "1.11.x" ] ||
-    [ $TRAVIS_GO_VERSION == "1.10.x" ]; then
+    [ $TRAVIS_GO_VERSION == "1.12.x" ] ||
+    [ $TRAVIS_GO_VERSION == "tip" ]; then
         make get-deps;
         make ci-test;
     else
