@@ -262,6 +262,10 @@ type ConfigServiceAPI interface {
 	PutRetentionConfigurationWithContext(aws.Context, *configservice.PutRetentionConfigurationInput, ...request.Option) (*configservice.PutRetentionConfigurationOutput, error)
 	PutRetentionConfigurationRequest(*configservice.PutRetentionConfigurationInput) (*request.Request, *configservice.PutRetentionConfigurationOutput)
 
+	SelectResourceConfig(*configservice.SelectResourceConfigInput) (*configservice.SelectResourceConfigOutput, error)
+	SelectResourceConfigWithContext(aws.Context, *configservice.SelectResourceConfigInput, ...request.Option) (*configservice.SelectResourceConfigOutput, error)
+	SelectResourceConfigRequest(*configservice.SelectResourceConfigInput) (*request.Request, *configservice.SelectResourceConfigOutput)
+
 	StartConfigRulesEvaluation(*configservice.StartConfigRulesEvaluationInput) (*configservice.StartConfigRulesEvaluationOutput, error)
 	StartConfigRulesEvaluationWithContext(aws.Context, *configservice.StartConfigRulesEvaluationInput, ...request.Option) (*configservice.StartConfigRulesEvaluationOutput, error)
 	StartConfigRulesEvaluationRequest(*configservice.StartConfigRulesEvaluationInput) (*request.Request, *configservice.StartConfigRulesEvaluationOutput)

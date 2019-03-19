@@ -1,3 +1,10 @@
+Release v1.18.5 (2019-03-19)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API and documentation
+* `service/eks`: Updates service API and documentation
+
 Release v1.18.4 (2019-03-18)
 ===
 

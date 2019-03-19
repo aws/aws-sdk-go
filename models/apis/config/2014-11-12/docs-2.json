@@ -20,7 +20,7 @@
     "DescribeComplianceByResource": "<p>Indicates whether the specified AWS resources are compliant. If a resource is noncompliant, this action returns the number of AWS Config rules that the resource does not comply with.</p> <p>A resource is compliant if it complies with all the AWS Config rules that evaluate it. It is noncompliant if it does not comply with one or more of these rules.</p> <p>If AWS Config has no current evaluation results for the resource, it returns <code>INSUFFICIENT_DATA</code>. This result might indicate one of the following conditions about the rules that evaluate the resource:</p> <ul> <li> <p>AWS Config has never invoked an evaluation for the rule. To check whether it has, use the <code>DescribeConfigRuleEvaluationStatus</code> action to get the <code>LastSuccessfulInvocationTime</code> and <code>LastFailedInvocationTime</code>.</p> </li> <li> <p>The rule's AWS Lambda function is failing to send evaluation results to AWS Config. Verify that the role that you assigned to your configuration recorder includes the <code>config:PutEvaluations</code> permission. If the rule is a custom rule, verify that the AWS Lambda execution role includes the <code>config:PutEvaluations</code> permission.</p> </li> <li> <p>The rule's AWS Lambda function has returned <code>NOT_APPLICABLE</code> for all evaluation results. This can occur if the resources were deleted or removed from the rule's scope.</p> </li> </ul>",
     "DescribeConfigRuleEvaluationStatus": "<p>Returns status information for each of your AWS managed Config rules. The status includes information such as the last time AWS Config invoked the rule, the last time AWS Config failed to invoke the rule, and the related error for the last failure.</p>",
     "DescribeConfigRules": "<p>Returns details about your AWS Config rules.</p>",
-    "DescribeConfigurationAggregatorSourcesStatus": "<p> Returns status information for sources within an aggregator. The status includes information about the last time AWS Config verified authorization between the source account and an aggregator account. In case of a failure, the status contains the related error code or message. </p>",
+    "DescribeConfigurationAggregatorSourcesStatus": "<p>Returns status information for sources within an aggregator. The status includes information about the last time AWS Config verified authorization between the source account and an aggregator account. In case of a failure, the status contains the related error code or message. </p>",
     "DescribeConfigurationAggregators": "<p>Returns the details of one or more configuration aggregators. If the configuration aggregator is not specified, this action returns the details for all the configuration aggregators associated with the account. </p>",
     "DescribeConfigurationRecorderStatus": "<p>Returns the current status of the specified configuration recorder. If a configuration recorder is not specified, this action returns the status of all configuration recorders associated with the account.</p> <note> <p>Currently, you can specify only one configuration recorder per region in your account.</p> </note>",
     "DescribeConfigurationRecorders": "<p>Returns the details for the specified configuration recorders. If the configuration recorder is not specified, this action returns the details for all configuration recorders associated with the account.</p> <note> <p>Currently, you can specify only one configuration recorder per region in your account.</p> </note>",
@@ -51,6 +51,7 @@
     "PutEvaluations": "<p>Used by an AWS Lambda function to deliver evaluation results to AWS Config. This action is required in every AWS Lambda function that is invoked by an AWS Config rule.</p>",
     "PutRemediationConfigurations": "<p>Adds or updates the remediation configuration with a specific AWS Config rule with the selected target or action. The API creates the <code>RemediationConfiguration</code> object for the AWS Config rule. The AWS Config rule must already exist for you to add a remediation configuration. The target (SSM document) must exist and have permissions to use the target. </p>",
     "PutRetentionConfiguration": "<p>Creates and updates the retention configuration with details about retention period (number of days) that AWS Config stores your historical information. The API creates the <code>RetentionConfiguration</code> object and names the object as <b>default</b>. When you have a <code>RetentionConfiguration</code> object named <b>default</b>, calling the API modifies the default object. </p> <note> <p>Currently, AWS Config supports only one retention configuration per region in your account.</p> </note>",
+    "SelectResourceConfig": "<p>Accepts a structured query language (SQL) <code>SELECT</code> command, performs the corresponding search, and returns resource configurations matching the properties.</p> <p>For more information about query components, see the <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/query-components.html\"> <b>Query Components</b> </a> section in the AWS Config Developer Guide.</p>",
     "StartConfigRulesEvaluation": "<p>Runs an on-demand evaluation for the specified AWS Config rules against the last known configuration state of the resources. Use <code>StartConfigRulesEvaluation</code> when you want to test that a rule you updated is working as expected. <code>StartConfigRulesEvaluation</code> does not re-record the latest configuration state for your resources. It re-runs an evaluation against the last known state of your resources. </p> <p>You can specify up to 25 AWS Config rules per request. </p> <p>An existing <code>StartConfigRulesEvaluation</code> call for the specified rules must complete before you can call the API again. If you chose to have AWS Config stream to an Amazon SNS topic, you will receive a <code>ConfigRuleEvaluationStarted</code> notification when the evaluation starts.</p> <note> <p>You don't need to call the <code>StartConfigRulesEvaluation</code> API to run an evaluation for a new rule. When you create a rule, AWS Config evaluates your resources against the rule automatically. </p> </note> <p>The <code>StartConfigRulesEvaluation</code> API is useful if you want to run on-demand evaluations, such as the following example:</p> <ol> <li> <p>You have a custom rule that evaluates your IAM resources every 24 hours.</p> </li> <li> <p>You update your Lambda function to add additional conditions to your rule.</p> </li> <li> <p>Instead of waiting for the next periodic evaluation, you call the <code>StartConfigRulesEvaluation</code> API.</p> </li> <li> <p>AWS Config invokes your Lambda function and evaluates your IAM resources.</p> </li> <li> <p>Your custom rule will still run periodic evaluations every 24 hours.</p> </li> </ol>",
     "StartConfigurationRecorder": "<p>Starts recording configurations of the AWS resources you have selected to record in your AWS account.</p> <p>You must have created at least one delivery channel to successfully start the configuration recorder.</p>",
     "StartRemediationExecution": "<p>Runs an on-demand remediation for the specified AWS Config rules against the last known remediation configuration. It runs an execution against the current state of your resources. Remediation execution is asynchronous.</p> <p>You can specify up to 100 resource keys per request. An existing StartRemediationExecution call for the specified resource keys must complete before you can call the API again.</p>",
@@ -972,6 +973,12 @@
         "SourceDetail$EventSource": "<p>The source of the event, such as an AWS service, that triggers AWS Config to evaluate your AWS resources.</p>"
       }
     },
+    "Expression": {
+      "base": null,
+      "refs": {
+        "SelectResourceConfigRequest$Expression": "<p>The SQL query <code>SELECT</code> command.</p>"
+      }
+    },
     "FailedRemediationBatch": {
       "base": "<p>List of each of the failed remediations with specific reasons.</p>",
       "refs": {
@@ -982,6 +989,24 @@
       "base": null,
       "refs": {
         "PutRemediationConfigurationsResponse$FailedBatches": "<p>Returns a list of failed remediation batch objects.</p>"
+      }
+    },
+    "FieldInfo": {
+      "base": "<p>Details about the fields such as name of the field.</p>",
+      "refs": {
+        "FieldInfoList$member": null
+      }
+    },
+    "FieldInfoList": {
+      "base": null,
+      "refs": {
+        "QueryInfo$SelectFields": "<p>Returns a <code>FieldInfo</code> object.</p>"
+      }
+    },
+    "FieldName": {
+      "base": null,
+      "refs": {
+        "FieldInfo$Name": "<p>Name of the field.</p>"
       }
     },
     "GetAggregateComplianceDetailsByConfigRuleRequest": {
@@ -1131,6 +1156,11 @@
       "refs": {
       }
     },
+    "InvalidExpressionException": {
+      "base": "<p>The syntax of the query is incorrect.</p>",
+      "refs": {
+      }
+    },
     "InvalidLimitException": {
       "base": "<p>The specified limit is outside the allowable range.</p>",
       "refs": {
@@ -1201,7 +1231,8 @@
         "GetResourceConfigHistoryRequest$limit": "<p>The maximum number of configuration items returned on each page. The default is 10. You cannot specify a number greater than 100. If you specify 0, AWS Config uses the default.</p>",
         "ListAggregateDiscoveredResourcesRequest$Limit": "<p>The maximum number of resource identifiers returned on each page. The default is 100. You cannot specify a number greater than 100. If you specify 0, AWS Config uses the default.</p>",
         "ListDiscoveredResourcesRequest$limit": "<p>The maximum number of resource identifiers returned on each page. The default is 100. You cannot specify a number greater than 100. If you specify 0, AWS Config uses the default.</p>",
-        "ListTagsForResourceRequest$Limit": "<p>The maximum number of tags returned on each page. The limit maximum is 50. You cannot specify a number greater than 50. If you specify 0, AWS Config uses the default. </p>"
+        "ListTagsForResourceRequest$Limit": "<p>The maximum number of tags returned on each page. The limit maximum is 50. You cannot specify a number greater than 50. If you specify 0, AWS Config uses the default. </p>",
+        "SelectResourceConfigRequest$Limit": "<p>The maximum number of query results returned on each page. </p>"
       }
     },
     "LimitExceededException": {
@@ -1314,7 +1345,9 @@
         "ListDiscoveredResourcesRequest$nextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "ListDiscoveredResourcesResponse$nextToken": "<p>The string that you use in a subsequent request to get the next page of results in a paginated response.</p>",
         "ListTagsForResourceRequest$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
-        "ListTagsForResourceResponse$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response. </p>"
+        "ListTagsForResourceResponse$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
+        "SelectResourceConfigRequest$NextToken": "<p>The <code>nextToken</code> string returned in a previous request that you use to request the next page of results in a paginated response. </p>",
+        "SelectResourceConfigResponse$NextToken": "<p>The <code>nextToken</code> string returned in a previous request that you use to request the next page of results in a paginated response. </p>"
       }
     },
     "NoAvailableConfigurationRecorderException": {
@@ -1481,6 +1514,12 @@
     "PutRetentionConfigurationResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "QueryInfo": {
+      "base": "<p>Details about the query.</p>",
+      "refs": {
+        "SelectResourceConfigResponse$QueryInfo": "<p>Returns the <code>QueryInfo</code> object.</p>"
       }
     },
     "RecorderName": {
@@ -1776,6 +1815,12 @@
         "ResourceValue$Value": "<p>The value is a resource ID.</p>"
       }
     },
+    "Results": {
+      "base": null,
+      "refs": {
+        "SelectResourceConfigResponse$Results": "<p>Returns the results for the SQL query.</p>"
+      }
+    },
     "RetentionConfiguration": {
       "base": "<p>An object with the name of the retention configuration and the retention period in days. The object stores the configuration for data retention in AWS Config.</p>",
       "refs": {
@@ -1820,6 +1865,16 @@
       "base": "<p>Defines which resources trigger an evaluation for an AWS Config rule. The scope can include one or more resource types, a combination of a tag key and value, or a combination of one resource type and one resource ID. Specify a scope to constrain which resources trigger an evaluation for a rule. Otherwise, evaluations for the rule are triggered when any resource in your recording group changes in configuration.</p>",
       "refs": {
         "ConfigRule$Scope": "<p>Defines which resources can trigger an evaluation for the rule. The scope can include one or more resource types, a combination of one resource type and one resource ID, or a combination of a tag key and value. Specify a scope to constrain the resources that can trigger an evaluation for the rule. If you do not specify a scope, evaluations are triggered when any resource in the recording group changes.</p>"
+      }
+    },
+    "SelectResourceConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SelectResourceConfigResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "Source": {
@@ -1934,6 +1989,7 @@
         "RemediationConfiguration$ResourceType": "<p>The type of a resource. </p>",
         "RemediationExecutionStep$Name": "<p>The details of the step.</p>",
         "RemediationExecutionStep$ErrorMessage": "<p>An error message if the step was interrupted during execution.</p>",
+        "Results$member": null,
         "StartRemediationExecutionResponse$FailureMessage": "<p>Returns a failure message. For example, the resource is already compliant.</p>"
       }
     },
