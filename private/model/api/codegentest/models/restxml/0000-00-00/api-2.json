@@ -3,7 +3,6 @@
   "metadata":{
     "apiVersion":"0000-00-00",
     "endpointPrefix":"restxmlservice",
-    "jsonVersion":"1.1",
     "protocol":"rest-xml",
     "serviceAbbreviation":"RESTXMLService",
     "serviceFullName":"REST XML Service",
