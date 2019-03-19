@@ -5583,6 +5583,9 @@ func TestInputService9ProtocolTestURIParameterQuerystringParamsAndJSONBodyCase1(
 	awstesting.AssertURL(t, "https://test/2014-01-01/jobsByPipeline/foo?Ascending=true&PageToken=bar", r.URL.String())
 
 	// assert headers
+	if e, a := "application/json", r.Header.Get("Content-Type"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -5618,6 +5621,9 @@ func TestInputService10ProtocolTestURIParameterQuerystringParamsHeadersAndJSONBo
 	awstesting.AssertURL(t, "https://test/2014-01-01/jobsByPipeline/foo?Ascending=true&PageToken=bar", r.URL.String())
 
 	// assert headers
+	if e, a := "application/json", r.Header.Get("Content-Type"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 	if e, a := "12345", r.Header.Get("x-amz-checksum"); e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
@@ -5685,6 +5691,9 @@ func TestInputService12ProtocolTestSerializeBlobsInBodyCase1(t *testing.T) {
 	awstesting.AssertURL(t, "https://test/2014-01-01/foo_name", r.URL.String())
 
 	// assert headers
+	if e, a := "application/json", r.Header.Get("Content-Type"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -5764,6 +5773,9 @@ func TestInputService14ProtocolTestStructurePayloadCase1(t *testing.T) {
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
+	if e, a := "application/json", r.Header.Get("Content-Type"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -5853,6 +5865,9 @@ func TestInputService16ProtocolTestRecursiveShapesCase1(t *testing.T) {
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
 
 	// assert headers
+	if e, a := "application/json", r.Header.Get("Content-Type"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -5885,6 +5900,9 @@ func TestInputService16ProtocolTestRecursiveShapesCase2(t *testing.T) {
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
 
 	// assert headers
+	if e, a := "application/json", r.Header.Get("Content-Type"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -5921,6 +5939,9 @@ func TestInputService16ProtocolTestRecursiveShapesCase3(t *testing.T) {
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
 
 	// assert headers
+	if e, a := "application/json", r.Header.Get("Content-Type"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -5958,6 +5979,9 @@ func TestInputService16ProtocolTestRecursiveShapesCase4(t *testing.T) {
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
 
 	// assert headers
+	if e, a := "application/json", r.Header.Get("Content-Type"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -5997,6 +6021,9 @@ func TestInputService16ProtocolTestRecursiveShapesCase5(t *testing.T) {
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
 
 	// assert headers
+	if e, a := "application/json", r.Header.Get("Content-Type"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -6034,6 +6061,9 @@ func TestInputService16ProtocolTestRecursiveShapesCase6(t *testing.T) {
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
 
 	// assert headers
+	if e, a := "application/json", r.Header.Get("Content-Type"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -6070,6 +6100,9 @@ func TestInputService17ProtocolTestTimestampValuesCase1(t *testing.T) {
 	awstesting.AssertURL(t, "https://test/path?TimeQuery=2015-01-25T08%3A00%3A00Z&TimeCustomQuery=1422172800&TimeFormatQuery=1422172800", r.URL.String())
 
 	// assert headers
+	if e, a := "application/json", r.Header.Get("Content-Type"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 	if e, a := "Sun, 25 Jan 2015 08:00:00 GMT", r.Header.Get("x-amz-timearg"); e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
@@ -6107,6 +6140,9 @@ func TestInputService18ProtocolTestNamedLocationsInJSONBodyCase1(t *testing.T) {
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
 
 	// assert headers
+	if e, a := "application/json", r.Header.Get("Content-Type"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -6165,6 +6201,9 @@ func TestInputService20ProtocolTestIdempotencyTokenAutoFillCase1(t *testing.T) {
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
 
 	// assert headers
+	if e, a := "application/json", r.Header.Get("Content-Type"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -6191,6 +6230,9 @@ func TestInputService20ProtocolTestIdempotencyTokenAutoFillCase2(t *testing.T) {
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
 
 	// assert headers
+	if e, a := "application/json", r.Header.Get("Content-Type"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -6229,6 +6271,9 @@ func TestInputService21ProtocolTestJSONValueTraitCase1(t *testing.T) {
 	awstesting.AssertURL(t, "https://test/?Bar=%7B%22Foo%22%3A%22Bar%22%7D", r.URL.String())
 
 	// assert headers
+	if e, a := "application/json", r.Header.Get("Content-Type"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 	if e, a := "eyJGb28iOiJCYXIifQ==", r.Header.Get("X-Amz-Foo"); e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
@@ -6270,6 +6315,9 @@ func TestInputService21ProtocolTestJSONValueTraitCase2(t *testing.T) {
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
+	if e, a := "application/json", r.Header.Get("Content-Type"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -6329,6 +6377,9 @@ func TestInputService22ProtocolTestEnumCase1(t *testing.T) {
 	awstesting.AssertURL(t, "https://test/path?Enum=bar&List=0&List=1&List=", r.URL.String())
 
 	// assert headers
+	if e, a := "application/json", r.Header.Get("Content-Type"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 	if e, a := "baz", r.Header.Get("x-amz-enum"); e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
@@ -6379,6 +6430,9 @@ func TestInputService23ProtocolTestEndpointHostTraitCase1(t *testing.T) {
 	awstesting.AssertURL(t, "https://data-service.region.amazonaws.com/path", r.URL.String())
 
 	// assert headers
+	if e, a := "application/json", r.Header.Get("Content-Type"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
@@ -6407,6 +6461,9 @@ func TestInputService23ProtocolTestEndpointHostTraitCase2(t *testing.T) {
 	awstesting.AssertURL(t, "https://foo-myname.service.region.amazonaws.com/path", r.URL.String())
 
 	// assert headers
+	if e, a := "application/json", r.Header.Get("Content-Type"); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 
 }
 
