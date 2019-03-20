@@ -200,9 +200,7 @@
       "required":[
         "ProductCode",
         "Timestamp",
-        "UsageDimension",
-        "UsageQuantity",
-        "DryRun"
+        "UsageDimension"
       ],
       "members":{
         "ProductCode":{"shape":"ProductCode"},
@@ -294,7 +292,7 @@
     },
     "UsageQuantity":{
       "type":"integer",
-      "max":1000000,
+      "max":2147483647,
       "min":0
     },
     "UsageRecord":{
@@ -302,8 +300,7 @@
       "required":[
         "Timestamp",
         "CustomerIdentifier",
-        "Dimension",
-        "Quantity"
+        "Dimension"
       ],
       "members":{
         "Timestamp":{"shape":"Timestamp"},

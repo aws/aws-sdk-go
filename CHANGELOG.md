@@ -1,3 +1,16 @@
+Release v1.18.6 (2019-03-20)
+===
+
+### Service Client Updates
+* `service/codepipeline`: Updates service API and documentation
+  * Add support for viewing details of each action execution belonging to past and latest pipeline executions that have occurred in customer's pipeline. The details include start/updated times, action execution results, input/output artifacts information, etc. Customers also have the option to add pipelineExecutionId in the input to filter the results down to a single pipeline execution.
+* `service/cognito-identity`: Updates service API and documentation
+* `service/meteringmarketplace`: Updates service API and documentation
+  * This release increases AWS Marketplace Metering Service maximum usage quantity to 2147483647 and makes parameters usage quantity and dryrun optional.
+
+### SDK Bugs
+* `private/protocol`: Use correct Content-Type for rest json protocol ([#2497](https://github.com/aws/aws-sdk-go/pull/2497))
+  * Updates the SDK to use the correct `application/json` content type for all rest json protocol based AWS services. This fixes the bug where the jsonrpc protocol's `application/x-amz-json-X.Y` content type would be used for services like Pinpoint SMS.
 Release v1.18.5 (2019-03-19)
 ===
 
