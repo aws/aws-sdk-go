@@ -215,6 +215,21 @@
         {"shape":"InvalidJobException"}
       ]
     },
+    "ListActionExecutions":{
+      "name":"ListActionExecutions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListActionExecutionsInput"},
+      "output":{"shape":"ListActionExecutionsOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"PipelineNotFoundException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"PipelineExecutionNotFoundException"}
+      ]
+    },
     "ListActionTypes":{
       "name":"ListActionTypes",
       "http":{
@@ -623,6 +638,57 @@
         "errorDetails":{"shape":"ErrorDetails"}
       }
     },
+    "ActionExecutionDetail":{
+      "type":"structure",
+      "members":{
+        "pipelineExecutionId":{"shape":"PipelineExecutionId"},
+        "actionExecutionId":{"shape":"ActionExecutionId"},
+        "pipelineVersion":{"shape":"PipelineVersion"},
+        "stageName":{"shape":"StageName"},
+        "actionName":{"shape":"ActionName"},
+        "startTime":{"shape":"Timestamp"},
+        "lastUpdateTime":{"shape":"Timestamp"},
+        "status":{"shape":"ActionExecutionStatus"},
+        "input":{"shape":"ActionExecutionInput"},
+        "output":{"shape":"ActionExecutionOutput"}
+      }
+    },
+    "ActionExecutionDetailList":{
+      "type":"list",
+      "member":{"shape":"ActionExecutionDetail"}
+    },
+    "ActionExecutionFilter":{
+      "type":"structure",
+      "members":{
+        "pipelineExecutionId":{"shape":"PipelineExecutionId"}
+      }
+    },
+    "ActionExecutionId":{"type":"string"},
+    "ActionExecutionInput":{
+      "type":"structure",
+      "members":{
+        "actionTypeId":{"shape":"ActionTypeId"},
+        "configuration":{"shape":"ActionConfigurationMap"},
+        "roleArn":{"shape":"RoleArn"},
+        "region":{"shape":"AWSRegionName"},
+        "inputArtifacts":{"shape":"ArtifactDetailList"}
+      }
+    },
+    "ActionExecutionOutput":{
+      "type":"structure",
+      "members":{
+        "outputArtifacts":{"shape":"ArtifactDetailList"},
+        "executionResult":{"shape":"ActionExecutionResult"}
+      }
+    },
+    "ActionExecutionResult":{
+      "type":"structure",
+      "members":{
+        "externalExecutionId":{"shape":"ExternalExecutionId"},
+        "externalExecutionSummary":{"shape":"ExternalExecutionSummary"},
+        "externalExecutionUrl":{"shape":"Url"}
+      }
+    },
     "ActionExecutionStatus":{
       "type":"string",
       "enum":[
@@ -779,6 +845,17 @@
         "revision":{"shape":"Revision"},
         "location":{"shape":"ArtifactLocation"}
       }
+    },
+    "ArtifactDetail":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"ArtifactName"},
+        "s3location":{"shape":"S3Location"}
+      }
+    },
+    "ArtifactDetailList":{
+      "type":"list",
+      "member":{"shape":"ArtifactDetail"}
     },
     "ArtifactDetails":{
       "type":"structure",
@@ -1076,6 +1153,8 @@
       "max":2048,
       "min":1
     },
+    "ExternalExecutionId":{"type":"string"},
+    "ExternalExecutionSummary":{"type":"string"},
     "FailureDetails":{
       "type":"structure",
       "required":[
@@ -1330,6 +1409,23 @@
       "members":{
       },
       "exception":true
+    },
+    "ListActionExecutionsInput":{
+      "type":"structure",
+      "required":["pipelineName"],
+      "members":{
+        "pipelineName":{"shape":"PipelineName"},
+        "filter":{"shape":"ActionExecutionFilter"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListActionExecutionsOutput":{
+      "type":"structure",
+      "members":{
+        "actionExecutionDetails":{"shape":"ActionExecutionDetailList"},
+        "nextToken":{"shape":"NextToken"}
+      }
     },
     "ListActionTypesInput":{
       "type":"structure",
@@ -1794,7 +1890,24 @@
         "objectKey":{"shape":"S3ObjectKey"}
       }
     },
+    "S3Bucket":{
+      "type":"string",
+      "max":63,
+      "min":3
+    },
     "S3BucketName":{"type":"string"},
+    "S3Key":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "S3Location":{
+      "type":"structure",
+      "members":{
+        "bucket":{"shape":"S3Bucket"},
+        "key":{"shape":"S3Key"}
+      }
+    },
     "S3ObjectKey":{"type":"string"},
     "SecretAccessKey":{"type":"string"},
     "SessionToken":{"type":"string"},

@@ -120,6 +120,10 @@ type CodePipelineAPI interface {
 	GetThirdPartyJobDetailsWithContext(aws.Context, *codepipeline.GetThirdPartyJobDetailsInput, ...request.Option) (*codepipeline.GetThirdPartyJobDetailsOutput, error)
 	GetThirdPartyJobDetailsRequest(*codepipeline.GetThirdPartyJobDetailsInput) (*request.Request, *codepipeline.GetThirdPartyJobDetailsOutput)
 
+	ListActionExecutions(*codepipeline.ListActionExecutionsInput) (*codepipeline.ListActionExecutionsOutput, error)
+	ListActionExecutionsWithContext(aws.Context, *codepipeline.ListActionExecutionsInput, ...request.Option) (*codepipeline.ListActionExecutionsOutput, error)
+	ListActionExecutionsRequest(*codepipeline.ListActionExecutionsInput) (*request.Request, *codepipeline.ListActionExecutionsOutput)
+
 	ListActionTypes(*codepipeline.ListActionTypesInput) (*codepipeline.ListActionTypesOutput, error)
 	ListActionTypesWithContext(aws.Context, *codepipeline.ListActionTypesInput, ...request.Option) (*codepipeline.ListActionTypesOutput, error)
 	ListActionTypesRequest(*codepipeline.ListActionTypesInput) (*request.Request, *codepipeline.ListActionTypesOutput)
