@@ -176,6 +176,10 @@ type LightsailAPI interface {
 	DeleteKeyPairWithContext(aws.Context, *lightsail.DeleteKeyPairInput, ...request.Option) (*lightsail.DeleteKeyPairOutput, error)
 	DeleteKeyPairRequest(*lightsail.DeleteKeyPairInput) (*request.Request, *lightsail.DeleteKeyPairOutput)
 
+	DeleteKnownHostKeys(*lightsail.DeleteKnownHostKeysInput) (*lightsail.DeleteKnownHostKeysOutput, error)
+	DeleteKnownHostKeysWithContext(aws.Context, *lightsail.DeleteKnownHostKeysInput, ...request.Option) (*lightsail.DeleteKnownHostKeysOutput, error)
+	DeleteKnownHostKeysRequest(*lightsail.DeleteKnownHostKeysInput) (*request.Request, *lightsail.DeleteKnownHostKeysOutput)
+
 	DeleteLoadBalancer(*lightsail.DeleteLoadBalancerInput) (*lightsail.DeleteLoadBalancerOutput, error)
 	DeleteLoadBalancerWithContext(aws.Context, *lightsail.DeleteLoadBalancerInput, ...request.Option) (*lightsail.DeleteLoadBalancerOutput, error)
 	DeleteLoadBalancerRequest(*lightsail.DeleteLoadBalancerInput) (*request.Request, *lightsail.DeleteLoadBalancerOutput)

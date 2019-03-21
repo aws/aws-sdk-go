@@ -1305,6 +1305,22 @@
         {"shape":"InternalErrorException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"}
+      ]
+    },
     "ListUserImportJobs":{
       "name":"ListUserImportJobs",
       "http":{
@@ -1589,6 +1605,38 @@
         {"shape":"InternalErrorException"},
         {"shape":"PreconditionNotMetException"},
         {"shape":"NotAuthorizedException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"}
       ]
     },
     "UpdateAuthEventFeedback":{
@@ -3851,6 +3899,19 @@
         "NextToken":{"shape":"PaginationKeyType"}
       }
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"ArnType"}
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"UserPoolTagsType"}
+      }
+    },
     "ListUserImportJobsRequest":{
       "type":"structure",
       "required":[
@@ -4597,6 +4658,29 @@
       "type":"list",
       "member":{"shape":"ProviderNameType"}
     },
+    "TagKeysType":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"ArnType"},
+        "Tags":{"shape":"UserPoolTagsType"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValueType":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
     "TokenModelType":{
       "type":"string",
       "pattern":"[A-Za-z0-9-_=.]+",
@@ -4648,6 +4732,19 @@
         "message":{"shape":"MessageType"}
       },
       "exception":true
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"ArnType"},
+        "TagKeys":{"shape":"UserPoolTagsListType"}
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateAuthEventFeedbackRequest":{
       "type":"structure",
@@ -5034,10 +5131,14 @@
       },
       "exception":true
     },
+    "UserPoolTagsListType":{
+      "type":"list",
+      "member":{"shape":"TagKeysType"}
+    },
     "UserPoolTagsType":{
       "type":"map",
-      "key":{"shape":"StringType"},
-      "value":{"shape":"StringType"}
+      "key":{"shape":"TagKeysType"},
+      "value":{"shape":"TagValueType"}
     },
     "UserPoolType":{
       "type":"structure",

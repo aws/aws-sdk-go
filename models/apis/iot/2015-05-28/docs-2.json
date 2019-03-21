@@ -28,7 +28,7 @@
     "CreateScheduledAudit": "<p>Creates a scheduled audit that is run at a specified time interval.</p>",
     "CreateSecurityProfile": "<p>Creates a Device Defender security profile.</p>",
     "CreateStream": "<p>Creates a stream for delivering one or more large files in chunks over MQTT. A stream transports data bytes in chunks or blocks packaged as MQTT messages from a source like S3. You can have one or more files associated with a stream. The total size of a file associated with the stream cannot exceed more than 2 MB. The stream will be created with version 0. If a stream is created with the same streamID as a stream that existed and was deleted within last 90 days, we will resurrect that old stream by incrementing the version by 1.</p>",
-    "CreateThing": "<p>Creates a thing record in the registry.</p> <note> <p>This is a control plane operation. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note>",
+    "CreateThing": "<p>Creates a thing record in the registry. If this call is made multiple times using the same thing name and configuration, the call will succeed. If this call is made with the same thing name but different configuration a <code>ResourceAlreadyExistsException</code> is thrown.</p> <note> <p>This is a control plane operation. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note>",
     "CreateThingGroup": "<p>Create a thing group.</p> <note> <p>This is a control plane operation. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note>",
     "CreateThingType": "<p>Creates a new thing type.</p>",
     "CreateTopicRule": "<p>Creates a rule. Creating rules is an administrator-level action. Any user who has permission to create rules will be able to access data processed by the rule.</p>",
@@ -88,6 +88,7 @@
     "GetPolicy": "<p>Gets information about the specified policy with the policy document of the default version.</p>",
     "GetPolicyVersion": "<p>Gets information about the specified policy version.</p>",
     "GetRegistrationCode": "<p>Gets a registration code used to register a CA certificate with AWS IoT.</p>",
+    "GetStatistics": "<p>Gets statistics about things that match the specified query.</p>",
     "GetTopicRule": "<p>Gets information about the rule.</p>",
     "GetV2LoggingOptions": "<p>Gets the fine grained logging options.</p>",
     "ListActiveViolations": "<p>Lists the active violations for a given Device Defender security profile.</p>",
@@ -274,6 +275,12 @@
       "refs": {
         "CreateOTAUpdateRequest$additionalParameters": "<p>A list of additional OTA update parameters which are name-value pairs.</p>",
         "OTAUpdateInfo$additionalParameters": "<p>A collection of name/value pairs</p>"
+      }
+    },
+    "AggregationField": {
+      "base": null,
+      "refs": {
+        "GetStatisticsRequest$aggregationField": "<p>The aggregation field name. Currently not supported.</p>"
       }
     },
     "AlarmName": {
@@ -818,7 +825,7 @@
     "Boolean": {
       "base": null,
       "refs": {
-        "ThingConnectivity$connected": "<p>True if the thing is connected to the AWS IoT service, false if it is not connected.</p>",
+        "ThingConnectivity$connected": "<p>True if the thing is connected to the AWS IoT service; false if it is not connected.</p>",
         "ThingTypeMetadata$deprecated": "<p>Whether the thing type is deprecated. If <b>true</b>, no new things could be associated with this type.</p>"
       }
     },
@@ -1148,7 +1155,7 @@
     "ConnectivityTimestamp": {
       "base": null,
       "refs": {
-        "ThingConnectivity$timestamp": "<p>The epoch time (in milliseconds) when the thing last connected or disconnected. Note that if the thing has been disconnected for more than a few weeks, the time value can be missing.</p>"
+        "ThingConnectivity$timestamp": "<p>The epoch time (in milliseconds) when the thing last connected or disconnected. If the thing has been disconnected for more than a few weeks, the time value might be missing.</p>"
       }
     },
     "ConsecutiveDatapointsToAlarm": {
@@ -1167,7 +1174,8 @@
       "base": null,
       "refs": {
         "DescribeThingRegistrationTaskResponse$successCount": "<p>The number of things successfully provisioned.</p>",
-        "DescribeThingRegistrationTaskResponse$failureCount": "<p>The number of things that failed to be provisioned.</p>"
+        "DescribeThingRegistrationTaskResponse$failureCount": "<p>The number of things that failed to be provisioned.</p>",
+        "Statistics$count": "<p>The count of things that match the query.</p>"
       }
     },
     "CreateAuthorizerRequest": {
@@ -2307,6 +2315,16 @@
       "refs": {
       }
     },
+    "GetStatisticsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetStatisticsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetTopicRuleRequest": {
       "base": "<p>The input for the GetTopicRule operation.</p>",
       "refs": {
@@ -2390,6 +2408,7 @@
         "DescribeIndexRequest$indexName": "<p>The index name.</p>",
         "DescribeIndexResponse$indexName": "<p>The index name.</p>",
         "DescribeThingGroupResponse$indexName": "<p>The dynamic thing group index name.</p>",
+        "GetStatisticsRequest$indexName": "<p>The name of the index to search. The default value is <code>AWS_Things</code>.</p>",
         "IndexNamesList$member": null,
         "SearchIndexRequest$indexName": "<p>The search index name.</p>",
         "UpdateDynamicThingGroupRequest$indexName": "<p>The dynamic thing group index to update.</p> <note> <p>Currently one index is supported: 'AWS_Things'.</p> </note>"
@@ -2409,7 +2428,7 @@
     "IndexSchema": {
       "base": null,
       "refs": {
-        "DescribeIndexResponse$schema": "<p>Contains a value that specifies the type of indexing performed. Valid values are:</p> <ul> <li> <p>REGISTRY – Your thing index will contain only registry data.</p> </li> <li> <p>REGISTRY_AND_SHADOW - Your thing index will contain registry data and shadow data.</p> </li> <li> <p>REGISTRY_AND_CONNECTIVITY_STATUS - Your thing index will contain registry data and thing connectivity status data.</p> </li> <li> <p>REGISTRY_AND_SHADOW_AND_CONNECTIVITY_STATUS - Your thing index will contain registry data, shadow data, and thing connectivity status data.</p> </li> </ul>"
+        "DescribeIndexResponse$schema": "<p>Contains a value that specifies the type of indexing performed. Valid values are:</p> <ul> <li> <p>REGISTRY – Your thing index contains only registry data.</p> </li> <li> <p>REGISTRY_AND_SHADOW - Your thing index contains registry data and shadow data.</p> </li> <li> <p>REGISTRY_AND_CONNECTIVITY_STATUS - Your thing index contains registry data and thing connectivity status data.</p> </li> <li> <p>REGISTRY_AND_SHADOW_AND_CONNECTIVITY_STATUS - Your thing index contains registry data, shadow data, and thing connectivity status data.</p> </li> </ul>"
       }
     },
     "IndexStatus": {
@@ -2437,6 +2456,11 @@
     },
     "InternalFailureException": {
       "base": "<p>An unexpected error has occurred.</p>",
+      "refs": {
+      }
+    },
+    "InvalidAggregationException": {
+      "base": "<p>The aggregation is invalid.</p>",
       "refs": {
       }
     },
@@ -3290,8 +3314,8 @@
         "ListAuditTasksResponse$nextToken": "<p>A token that can be used to retrieve the next set of results, or <code>null</code> if there are no additional results.</p>",
         "ListBillingGroupsRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
         "ListBillingGroupsResponse$nextToken": "<p>The token used to get the next set of results, or <b>null</b> if there are no additional results.</p>",
-        "ListIndicesRequest$nextToken": "<p>The token used to get the next set of results, or <b>null</b> if there are no additional results.</p>",
-        "ListIndicesResponse$nextToken": "<p>The token used to get the next set of results, or <b>null</b> if there are no additional results.</p>",
+        "ListIndicesRequest$nextToken": "<p>The token used to get the next set of results, or null if there are no additional results.</p>",
+        "ListIndicesResponse$nextToken": "<p>The token used to get the next set of results, or null if there are no additional results.</p>",
         "ListJobExecutionsForJobRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
         "ListJobExecutionsForJobResponse$nextToken": "<p>The token for the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListJobExecutionsForThingRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
@@ -3336,8 +3360,8 @@
         "ListV2LoggingLevelsResponse$nextToken": "<p>The token used to get the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListViolationEventsRequest$nextToken": "<p>The token for the next set of results.</p>",
         "ListViolationEventsResponse$nextToken": "<p>A token that can be used to retrieve the next set of results, or <code>null</code> if there are no additional results.</p>",
-        "SearchIndexRequest$nextToken": "<p>The token used to get the next set of results, or <b>null</b> if there are no additional results.</p>",
-        "SearchIndexResponse$nextToken": "<p>The token used to get the next set of results, or <b>null</b> if there are no additional results.</p>"
+        "SearchIndexRequest$nextToken": "<p>The token used to get the next set of results, or null if there are no additional results.</p>",
+        "SearchIndexResponse$nextToken": "<p>The token used to get the next set of results, or null if there are no additional results.</p>"
       }
     },
     "NonCompliantChecksCount": {
@@ -3769,6 +3793,7 @@
         "CreateDynamicThingGroupRequest$queryString": "<p>The dynamic thing group search query string.</p> <p>See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html\">Query Syntax</a> for information about query string syntax.</p>",
         "CreateDynamicThingGroupResponse$queryString": "<p>The dynamic thing group search query string.</p>",
         "DescribeThingGroupResponse$queryString": "<p>The dynamic thing group search query string.</p>",
+        "GetStatisticsRequest$queryString": "<p>The query used to search. You can specify \"*\" for the query string to get the count of all indexed things in your AWS account.</p>",
         "SearchIndexRequest$queryString": "<p>The search query string.</p>",
         "UpdateDynamicThingGroupRequest$queryString": "<p>The dynamic thing group search query string to update.</p>"
       }
@@ -3779,6 +3804,7 @@
         "CreateDynamicThingGroupRequest$queryVersion": "<p>The dynamic thing group query version.</p> <note> <p>Currently one query version is supported: \"2017-09-30\". If not specified, the query version defaults to this value.</p> </note>",
         "CreateDynamicThingGroupResponse$queryVersion": "<p>The dynamic thing group query version.</p>",
         "DescribeThingGroupResponse$queryVersion": "<p>The dynamic thing group query version.</p>",
+        "GetStatisticsRequest$queryVersion": "<p>The version of the query used to search.</p>",
         "SearchIndexRequest$queryVersion": "<p>The query version.</p>",
         "UpdateDynamicThingGroupRequest$queryVersion": "<p>The dynamic thing group query version to update.</p> <note> <p>Currently one query version is supported: \"2017-09-30\". If not specified, the query version defaults to this value.</p> </note>"
       }
@@ -4378,7 +4404,7 @@
     "SetAsActiveFlag": {
       "base": null,
       "refs": {
-        "RegisterCertificateRequest$setAsActive": "<p>A boolean value that specifies if the CA certificate is set to active.</p>"
+        "RegisterCertificateRequest$setAsActive": "<p>A boolean value that specifies if the certificate is set to active.</p>"
       }
     },
     "SetAsDefault": {
@@ -4518,6 +4544,12 @@
       "base": "<p>A statistical ranking (percentile) which indicates a threshold value by which a behavior is determined to be in compliance or in violation of the behavior.</p>",
       "refs": {
         "BehaviorCriteria$statisticalThreshold": "<p>A statistical ranking (percentile) which indicates a threshold value by which a behavior is determined to be in compliance or in violation of the behavior.</p>"
+      }
+    },
+    "Statistics": {
+      "base": "<p>A map of key-value pairs for all supported statistics. Currently, only count is supported.</p>",
+      "refs": {
+        "GetStatisticsResponse$statistics": "<p>The statistics returned by the Fleet Indexing service based on the query and aggregation field.</p>"
       }
     },
     "Status": {
@@ -4835,13 +4867,13 @@
     "ThingConnectivity": {
       "base": "<p>The connectivity status of the thing.</p>",
       "refs": {
-        "ThingDocument$connectivity": "<p>Indicates whether or not the thing is connected to the AWS IoT service.</p>"
+        "ThingDocument$connectivity": "<p>Indicates whether the thing is connected to the AWS IoT service.</p>"
       }
     },
     "ThingConnectivityIndexingMode": {
       "base": null,
       "refs": {
-        "ThingIndexingConfiguration$thingConnectivityIndexingMode": "<p>Thing connectivity indexing mode. Valid values are: </p> <ul> <li> <p>STATUS – Your thing index will contain connectivity status. In order to enable thing connectivity indexing, thingIndexMode must not be set to OFF.</p> </li> <li> <p>OFF - Thing connectivity status indexing is disabled.</p> </li> </ul>"
+        "ThingIndexingConfiguration$thingConnectivityIndexingMode": "<p>Thing connectivity indexing mode. Valid values are: </p> <ul> <li> <p>STATUS – Your thing index contains connectivity status. To enable thing connectivity indexing, thingIndexMode must not be set to OFF.</p> </li> <li> <p>OFF - Thing connectivity status indexing is disabled.</p> </li> </ul>"
       }
     },
     "ThingDocument": {
@@ -4993,7 +5025,7 @@
     "ThingIndexingMode": {
       "base": null,
       "refs": {
-        "ThingIndexingConfiguration$thingIndexingMode": "<p>Thing indexing mode. Valid values are:</p> <ul> <li> <p>REGISTRY – Your thing index will contain only registry data.</p> </li> <li> <p>REGISTRY_AND_SHADOW - Your thing index will contain registry and shadow data.</p> </li> <li> <p>OFF - Thing indexing is disabled.</p> </li> </ul>"
+        "ThingIndexingConfiguration$thingIndexingMode": "<p>Thing indexing mode. Valid values are:</p> <ul> <li> <p>REGISTRY – Your thing index contains registry data only.</p> </li> <li> <p>REGISTRY_AND_SHADOW - Your thing index contains registry and shadow data.</p> </li> <li> <p>OFF - Thing indexing is disabled.</p> </li> </ul>"
       }
     },
     "ThingName": {
@@ -5525,6 +5557,7 @@
         "IndexNotReadyException$message": "<p>The message for the exception.</p>",
         "InternalException$message": "<p>The message for the exception.</p>",
         "InternalFailureException$message": "<p>The message for the exception.</p>",
+        "InvalidAggregationException$message": null,
         "InvalidQueryException$message": "<p>The message for the exception.</p>",
         "InvalidRequestException$message": "<p>The message for the exception.</p>",
         "InvalidResponseException$message": "<p>The message for the exception.</p>",

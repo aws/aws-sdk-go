@@ -404,6 +404,10 @@ type IoTAPI interface {
 	GetRegistrationCodeWithContext(aws.Context, *iot.GetRegistrationCodeInput, ...request.Option) (*iot.GetRegistrationCodeOutput, error)
 	GetRegistrationCodeRequest(*iot.GetRegistrationCodeInput) (*request.Request, *iot.GetRegistrationCodeOutput)
 
+	GetStatistics(*iot.GetStatisticsInput) (*iot.GetStatisticsOutput, error)
+	GetStatisticsWithContext(aws.Context, *iot.GetStatisticsInput, ...request.Option) (*iot.GetStatisticsOutput, error)
+	GetStatisticsRequest(*iot.GetStatisticsInput) (*request.Request, *iot.GetStatisticsOutput)
+
 	GetTopicRule(*iot.GetTopicRuleInput) (*iot.GetTopicRuleOutput, error)
 	GetTopicRuleWithContext(aws.Context, *iot.GetTopicRuleInput, ...request.Option) (*iot.GetTopicRuleOutput, error)
 	GetTopicRuleRequest(*iot.GetTopicRuleInput) (*request.Request, *iot.GetTopicRuleOutput)

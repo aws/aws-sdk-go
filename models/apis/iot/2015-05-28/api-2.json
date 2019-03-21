@@ -1411,6 +1411,26 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "GetStatistics":{
+      "name":"GetStatistics",
+      "http":{
+        "method":"POST",
+        "requestUri":"/indices/statistics"
+      },
+      "input":{"shape":"GetStatisticsRequest"},
+      "output":{"shape":"GetStatisticsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidQueryException"},
+        {"shape":"InvalidAggregationException"},
+        {"shape":"IndexNotReadyException"}
+      ]
+    },
     "GetTopicRule":{
       "name":"GetTopicRule",
       "http":{
@@ -2819,6 +2839,10 @@
       "type":"map",
       "key":{"shape":"AttributeKey"},
       "value":{"shape":"Value"}
+    },
+    "AggregationField":{
+      "type":"string",
+      "min":1
     },
     "AlarmName":{"type":"string"},
     "AlertTarget":{
@@ -5355,6 +5379,22 @@
         "registrationCode":{"shape":"RegistrationCode"}
       }
     },
+    "GetStatisticsRequest":{
+      "type":"structure",
+      "required":["queryString"],
+      "members":{
+        "indexName":{"shape":"IndexName"},
+        "queryString":{"shape":"QueryString"},
+        "aggregationField":{"shape":"AggregationField"},
+        "queryVersion":{"shape":"QueryVersion"}
+      }
+    },
+    "GetStatisticsResponse":{
+      "type":"structure",
+      "members":{
+        "statistics":{"shape":"Statistics"}
+      }
+    },
     "GetTopicRuleRequest":{
       "type":"structure",
       "required":["ruleName"],
@@ -5460,6 +5500,14 @@
       "error":{"httpStatusCode":500},
       "exception":true,
       "fault":true
+    },
+    "InvalidAggregationException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"errorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
     },
     "InvalidQueryException":{
       "type":"structure",
@@ -7921,6 +7969,12 @@
       "type":"structure",
       "members":{
         "statistic":{"shape":"EvaluationStatistic"}
+      }
+    },
+    "Statistics":{
+      "type":"structure",
+      "members":{
+        "count":{"shape":"Count"}
       }
     },
     "Status":{
