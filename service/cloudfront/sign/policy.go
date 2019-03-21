@@ -32,7 +32,7 @@ func (t AWSEpochTime) MarshalJSON() ([]byte, error) {
 	return []byte(fmt.Sprintf(`{"AWS:EpochTime":%d}`, t.UTC().Unix())), nil
 }
 
-// MarshalJSON serializes the epoch time as AWS Profile epoch time.
+// UnmarshalJSON unserializes AWS Profile epoch time.
 func (t *AWSEpochTime) UnmarshalJSON(data []byte) error {
 	var epochTime struct {
 		Sec int64 `json:"AWS:EpochTime"`
