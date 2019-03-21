@@ -7,6 +7,7 @@ import (
 	"crypto/rsa"
 	"crypto/sha1"
 	"encoding/base64"
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/url"
@@ -30,6 +31,20 @@ func NewAWSEpochTime(t time.Time) *AWSEpochTime {
 func (t AWSEpochTime) MarshalJSON() ([]byte, error) {
 	return []byte(fmt.Sprintf(`{"AWS:EpochTime":%d}`, t.UTC().Unix())), nil
 }
+
+// MarshalJSON serializes the epoch time as AWS Profile epoch time.
+func (t *AWSEpochTime) UnmarshalJSON(data []byte) error {
+	var epochTime struct {
+		Sec int64 `json:"AWS:EpochTime"`
+	}
+	err := json.Unmarshal(data, &epochTime)
+	if err != nil {
+		return err
+	}
+	t.Time = time.Unix(epochTime.Sec, 0).UTC()
+	return nil
+}
+
 
 // An IPAddress wraps an IPAddress source IP providing JSON serialization information
 type IPAddress struct {
