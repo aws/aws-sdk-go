@@ -45,7 +45,6 @@ func (t *AWSEpochTime) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-
 // An IPAddress wraps an IPAddress source IP providing JSON serialization information
 type IPAddress struct {
 	SourceIP string `json:"AWS:SourceIp"`
