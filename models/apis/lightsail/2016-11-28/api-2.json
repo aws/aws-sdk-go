@@ -534,6 +534,24 @@
         {"shape":"UnauthenticatedException"}
       ]
     },
+    "DeleteKnownHostKeys":{
+      "name":"DeleteKnownHostKeys",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteKnownHostKeysRequest"},
+      "output":{"shape":"DeleteKnownHostKeysResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
     "DeleteLoadBalancer":{
       "name":"DeleteLoadBalancer",
       "http":{
@@ -2454,6 +2472,19 @@
         "operation":{"shape":"Operation"}
       }
     },
+    "DeleteKnownHostKeysRequest":{
+      "type":"structure",
+      "required":["instanceName"],
+      "members":{
+        "instanceName":{"shape":"ResourceName"}
+      }
+    },
+    "DeleteKnownHostKeysResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
     "DeleteLoadBalancerRequest":{
       "type":"structure",
       "required":["loadBalancerName"],
@@ -3405,6 +3436,22 @@
         "nextPageToken":{"shape":"string"}
       }
     },
+    "HostKeyAttributes":{
+      "type":"structure",
+      "members":{
+        "algorithm":{"shape":"string"},
+        "publicKey":{"shape":"string"},
+        "witnessedAt":{"shape":"IsoDate"},
+        "fingerprintSHA1":{"shape":"string"},
+        "fingerprintSHA256":{"shape":"string"},
+        "notValidBefore":{"shape":"IsoDate"},
+        "notValidAfter":{"shape":"IsoDate"}
+      }
+    },
+    "HostKeysList":{
+      "type":"list",
+      "member":{"shape":"HostKeyAttributes"}
+    },
     "ImportKeyPairRequest":{
       "type":"structure",
       "required":[
@@ -3457,7 +3504,8 @@
         "privateKey":{"shape":"string"},
         "protocol":{"shape":"InstanceAccessProtocol"},
         "instanceName":{"shape":"ResourceName"},
-        "username":{"shape":"string"}
+        "username":{"shape":"string"},
+        "hostKeys":{"shape":"HostKeysList"}
       }
     },
     "InstanceAccessProtocol":{
@@ -4061,6 +4109,7 @@
     "OperationType":{
       "type":"string",
       "enum":[
+        "DeleteKnownHostKeys",
         "DeleteInstance",
         "CreateInstance",
         "StopInstance",

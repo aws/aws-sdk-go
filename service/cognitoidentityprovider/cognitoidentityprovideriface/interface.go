@@ -340,6 +340,10 @@ type CognitoIdentityProviderAPI interface {
 	ListResourceServersWithContext(aws.Context, *cognitoidentityprovider.ListResourceServersInput, ...request.Option) (*cognitoidentityprovider.ListResourceServersOutput, error)
 	ListResourceServersRequest(*cognitoidentityprovider.ListResourceServersInput) (*request.Request, *cognitoidentityprovider.ListResourceServersOutput)
 
+	ListTagsForResource(*cognitoidentityprovider.ListTagsForResourceInput) (*cognitoidentityprovider.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *cognitoidentityprovider.ListTagsForResourceInput, ...request.Option) (*cognitoidentityprovider.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*cognitoidentityprovider.ListTagsForResourceInput) (*request.Request, *cognitoidentityprovider.ListTagsForResourceOutput)
+
 	ListUserImportJobs(*cognitoidentityprovider.ListUserImportJobsInput) (*cognitoidentityprovider.ListUserImportJobsOutput, error)
 	ListUserImportJobsWithContext(aws.Context, *cognitoidentityprovider.ListUserImportJobsInput, ...request.Option) (*cognitoidentityprovider.ListUserImportJobsOutput, error)
 	ListUserImportJobsRequest(*cognitoidentityprovider.ListUserImportJobsInput) (*request.Request, *cognitoidentityprovider.ListUserImportJobsOutput)
@@ -399,6 +403,14 @@ type CognitoIdentityProviderAPI interface {
 	StopUserImportJob(*cognitoidentityprovider.StopUserImportJobInput) (*cognitoidentityprovider.StopUserImportJobOutput, error)
 	StopUserImportJobWithContext(aws.Context, *cognitoidentityprovider.StopUserImportJobInput, ...request.Option) (*cognitoidentityprovider.StopUserImportJobOutput, error)
 	StopUserImportJobRequest(*cognitoidentityprovider.StopUserImportJobInput) (*request.Request, *cognitoidentityprovider.StopUserImportJobOutput)
+
+	TagResource(*cognitoidentityprovider.TagResourceInput) (*cognitoidentityprovider.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *cognitoidentityprovider.TagResourceInput, ...request.Option) (*cognitoidentityprovider.TagResourceOutput, error)
+	TagResourceRequest(*cognitoidentityprovider.TagResourceInput) (*request.Request, *cognitoidentityprovider.TagResourceOutput)
+
+	UntagResource(*cognitoidentityprovider.UntagResourceInput) (*cognitoidentityprovider.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *cognitoidentityprovider.UntagResourceInput, ...request.Option) (*cognitoidentityprovider.UntagResourceOutput, error)
+	UntagResourceRequest(*cognitoidentityprovider.UntagResourceInput) (*request.Request, *cognitoidentityprovider.UntagResourceOutput)
 
 	UpdateAuthEventFeedback(*cognitoidentityprovider.UpdateAuthEventFeedbackInput) (*cognitoidentityprovider.UpdateAuthEventFeedbackOutput, error)
 	UpdateAuthEventFeedbackWithContext(aws.Context, *cognitoidentityprovider.UpdateAuthEventFeedbackInput, ...request.Option) (*cognitoidentityprovider.UpdateAuthEventFeedbackOutput, error)

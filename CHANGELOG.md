@@ -1,3 +1,21 @@
+Release v1.19.0 (2019-03-21)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service documentation
+  * Documentation updates for Amazon EC2 Auto Scaling
+* `service/cognito-idp`: Updates service API and documentation
+* `service/events`: Updates service API and documentation
+  * Added 3 new APIs, and one additional parameter to the PutRule API, to support tagging of CloudWatch Events rules.
+* `service/iot`: Updates service API and documentation
+  * This release adds the GetStatistics API for the AWS IoT Fleet Indexing Service, which allows customers to query for statistics about registered devices that match a search query. This release only supports the count statistics. For more information about this API, see https://docs.aws.amazon.com/iot/latest/apireference/API_GetStatistics.html
+* `service/lightsail`: Updates service API and documentation
+  * This release adds the DeleteKnownHostKeys API, which enables Lightsail's browser-based SSH or RDP clients to connect to the instance after a host key mismatch.
+
+### SDK Features
+* `aws/credentials/stscreds`: Update StdinTokenProvider to prompt on stder ([#2481](https://github.com/aws/aws-sdk-go/pull/2481))
+  * Updates the `stscreds` package default MFA token provider, `StdinTokenProvider`, to prompt on `stderr` instead of `stdout`. This is to make it possible to redirect/pipe output when using `StdinTokenProvider` and still seeing the prompt text.
+
 Release v1.18.6 (2019-03-20)
 ===
 
