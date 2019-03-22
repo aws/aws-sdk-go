@@ -104,6 +104,18 @@ type IoT1ClickProjectsAPI interface {
 	ListProjectsWithContext(aws.Context, *iot1clickprojects.ListProjectsInput, ...request.Option) (*iot1clickprojects.ListProjectsOutput, error)
 	ListProjectsRequest(*iot1clickprojects.ListProjectsInput) (*request.Request, *iot1clickprojects.ListProjectsOutput)
 
+	ListTagsForResource(*iot1clickprojects.ListTagsForResourceInput) (*iot1clickprojects.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *iot1clickprojects.ListTagsForResourceInput, ...request.Option) (*iot1clickprojects.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*iot1clickprojects.ListTagsForResourceInput) (*request.Request, *iot1clickprojects.ListTagsForResourceOutput)
+
+	TagResource(*iot1clickprojects.TagResourceInput) (*iot1clickprojects.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *iot1clickprojects.TagResourceInput, ...request.Option) (*iot1clickprojects.TagResourceOutput, error)
+	TagResourceRequest(*iot1clickprojects.TagResourceInput) (*request.Request, *iot1clickprojects.TagResourceOutput)
+
+	UntagResource(*iot1clickprojects.UntagResourceInput) (*iot1clickprojects.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *iot1clickprojects.UntagResourceInput, ...request.Option) (*iot1clickprojects.UntagResourceOutput, error)
+	UntagResourceRequest(*iot1clickprojects.UntagResourceInput) (*request.Request, *iot1clickprojects.UntagResourceOutput)
+
 	UpdatePlacement(*iot1clickprojects.UpdatePlacementInput) (*iot1clickprojects.UpdatePlacementOutput, error)
 	UpdatePlacementWithContext(aws.Context, *iot1clickprojects.UpdatePlacementInput, ...request.Option) (*iot1clickprojects.UpdatePlacementOutput, error)
 	UpdatePlacementRequest(*iot1clickprojects.UpdatePlacementInput) (*request.Request, *iot1clickprojects.UpdatePlacementOutput)

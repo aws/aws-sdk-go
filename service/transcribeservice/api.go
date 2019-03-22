@@ -1799,6 +1799,10 @@ type StartTranscriptionJobInput struct {
 	// the bucket. For more information, see Permissions Required for IAM User Roles
 	// (https://docs.aws.amazon.com/transcribe/latest/dg/access-control-managing-permissions.html#auth-role-iam-user).
 	//
+	// Amazon Transcribe uses the default Amazon S3 key for server-side encryption
+	// of transcripts that are placed in your S3 bucket. You can't specify your
+	// own encryption key.
+	//
 	// If you don't set the OutputBucketName, Amazon Transcribe generates a pre-signed
 	// URL, a shareable URL that provides secure access to your transcription, and
 	// returns it in the TranscriptFileUri field. Use this URL to download the transcription.
@@ -1969,6 +1973,36 @@ type TranscriptionJob struct {
 
 	// If the TranscriptionJobStatus field is FAILED, this field contains information
 	// about why the job failed.
+	//
+	// The FailureReason field can contain one of the following values:
+	//
+	//    * Unsupported media format - The media format specified in the MediaFormat
+	//    field of the request isn't valid. See the description of the MediaFormat
+	//    field for a list of valid values.
+	//
+	//    * The media format provided does not match the detected media format -
+	//    The media format of the audio file doesn't match the format specified
+	//    in the MediaFormat field in the request. Check the media format of your
+	//    media file and make sure that the two values match.
+	//
+	//    * Invalid sample rate for audio file - The sample rate specified in the
+	//    MediaSampleRateHertz of the request isn't valid. The sample rate must
+	//    be between 8000 and 48000 Hertz.
+	//
+	//    * The sample rate provided does not match the detected sample rate - The
+	//    sample rate in the audio file doesn't match the sample rate specified
+	//    in the MediaSampleRateHertz field in the request. Check the sample rate
+	//    of your media file and make sure that the two values match.
+	//
+	//    * Invalid file size: file size too large - The size of your audio file
+	//    is larger than Amazon Transcribe can process. For more information, see
+	//    Limits (https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits)
+	//    in the Amazon Transcribe Developer Guide.
+	//
+	//    * Invalid number of channels: number of channels too large - Your audio
+	//    contains more channels than Amazon Transcribe is configured to process.
+	//    To request additional channels, see Amazon Transcribe Limits (https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits-amazon-transcribe)
+	//    in the Amazon Web Services General Reference.
 	FailureReason *string `type:"string"`
 
 	// The language code for the input speech.
@@ -2361,6 +2395,9 @@ const (
 
 	// LanguageCodeItIt is a LanguageCode enum value
 	LanguageCodeItIt = "it-IT"
+
+	// LanguageCodeKoKr is a LanguageCode enum value
+	LanguageCodeKoKr = "ko-KR"
 )
 
 const (

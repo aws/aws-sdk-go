@@ -250,7 +250,8 @@
         "de-DE",
         "pt-BR",
         "fr-FR",
-        "it-IT"
+        "it-IT",
+        "ko-KR"
       ]
     },
     "LimitExceededException":{
