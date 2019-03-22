@@ -1,3 +1,11 @@
+Release v1.19.1 (2019-03-22)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/iot1click-projects`: Updates service API and documentation
+* `service/transcribe`: Updates service API and documentation
+
 Release v1.19.0 (2019-03-21)
 ===
 
