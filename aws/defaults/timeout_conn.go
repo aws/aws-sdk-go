@@ -9,10 +9,10 @@ import (
 )
 
 type Timeouts struct {
-	Connect              time.Duration
-	NetProtocolKeepalive time.Duration
-	Read                 time.Duration
-	Write                time.Duration
+	Connect       time.Duration
+	ConnKeepAlive time.Duration
+	Read          time.Duration
+	Write         time.Duration
 
 	TLSHandshake   time.Duration
 	ExpectContinue time.Duration
@@ -22,10 +22,10 @@ type Timeouts struct {
 
 func DefaultTimeouts() Timeouts {
 	return Timeouts{
-		Connect:              30 * time.Second,
-		NetProtocolKeepalive: 30 * time.Second,
-		Read:                 30 * time.Second,
-		Write:                30 * time.Second,
+		Connect:       30 * time.Second,
+		ConnKeepAlive: 30 * time.Second,
+		Read:          30 * time.Second,
+		Write:         30 * time.Second,
 
 		TLSHandshake:   10 * time.Second,
 		ExpectContinue: 1 * time.Second,
@@ -35,20 +35,27 @@ func DefaultTimeouts() Timeouts {
 }
 
 func NewClient(timeouts Timeouts) *http.Client {
-	dialer := dialTimeoutConnWrapper{
-		Dialer: &net.Dialer{
-			// Connect timeout.
-			Timeout: timeouts.Connect,
-			// protocol keep alive, e.g. TCP keep-alive
-			KeepAlive: timeouts.NetProtocolKeepalive,
-		},
-		ReadTimeout:  timeouts.Read,
-		WriteTimeout: timeouts.Write,
+	dialer := &net.Dialer{
+		// Connect timeout.
+		Timeout: timeouts.Connect,
+		// protocol keep alive, e.g. TCP keep-alive
+		KeepAlive: timeouts.ConnKeepAlive,
+	}
+	dialContextFn := dialer.DialContext
+
+	// Don't use the timeout wrapper if not needed
+	if timeouts.Read > 0 || timeouts.Write > 0 {
+		wrapper := &dialTimeoutConnWrapper{
+			Dialer:       dialer,
+			ReadTimeout:  timeouts.Read,
+			WriteTimeout: timeouts.Write,
+		}
+		dialContextFn = wrapper.DialContext
 	}
 
 	tr := &http.Transport{
 		Proxy:                 http.ProxyFromEnvironment,
-		DialContext:           dialer.DialContext,
+		DialContext:           dialContextFn,
 		MaxIdleConns:          100,
 		IdleConnTimeout:       timeouts.IdleConn,
 		TLSHandshakeTimeout:   timeouts.TLSHandshake,
@@ -96,22 +103,18 @@ type timeoutConn struct {
 }
 
 func (c *timeoutConn) Read(b []byte) (int, error) {
-	if !atomic.CompareAndSwapInt32(&c.readDeadlineSet, 1, 0) {
+	if c.ReadTimeout > 0 && !atomic.CompareAndSwapInt32(&c.readDeadlineSet, 1, 0) {
 		c.Conn.SetReadDeadline(time.Now().Add(c.ReadTimeout))
 	}
 
-	n, err := c.Conn.Read(b)
-
-	atomic.StoreInt32(&c.readDeadlineSet, 0)
-	return n, err
+	return c.Conn.Read(b)
 }
 
 func (c *timeoutConn) Write(b []byte) (int, error) {
-	if !atomic.CompareAndSwapInt32(&c.writeDeadlineSet, 1, 0) {
+	if c.WriteTimeout > 0 && !atomic.CompareAndSwapInt32(&c.writeDeadlineSet, 1, 0) {
 		c.Conn.SetWriteDeadline(time.Now().Add(c.WriteTimeout))
 	}
 
-	atomic.StoreInt32(&c.writeDeadlineSet, 0)
 	return c.Conn.Write(b)
 }
 
