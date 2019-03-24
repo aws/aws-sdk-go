@@ -714,8 +714,8 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 		{
 			name:              "ecs container credential source",
 			profile:           "ecscontainer",
-			expectedAccessKey: "access-key",
-			expectedSecretKey: "secret-key",
+			expectedAccessKey: "AKID",
+			expectedSecretKey: "SECRET",
 			init: func(cfg *aws.Config, profile string) func() error {
 				os.Setenv("AWS_REGION", "us-east-1")
 				os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
