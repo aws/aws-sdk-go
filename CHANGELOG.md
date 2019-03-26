@@ -1,3 +1,13 @@
+Release v1.19.2 (2019-03-26)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/glue`: Updates service API and documentation
+  * This new feature will now allow customers to add a customized csv classifier with classifier API. They can specify a custom delimiter, quote symbol and control other behavior they'd like crawlers to have while recognizing csv files
+* `service/workmail`: Updates service API and documentation
+  * Documentation updates for Amazon WorkMail.
+
 Release v1.19.1 (2019-03-22)
 ===
 

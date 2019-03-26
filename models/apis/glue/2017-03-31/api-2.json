@@ -1822,7 +1822,8 @@
       "members":{
         "GrokClassifier":{"shape":"GrokClassifier"},
         "XMLClassifier":{"shape":"XMLClassifier"},
-        "JsonClassifier":{"shape":"JsonClassifier"}
+        "JsonClassifier":{"shape":"JsonClassifier"},
+        "CsvClassifier":{"shape":"CsvClassifier"}
       }
     },
     "ClassifierList":{
@@ -2141,7 +2142,8 @@
       "members":{
         "GrokClassifier":{"shape":"CreateGrokClassifierRequest"},
         "XMLClassifier":{"shape":"CreateXMLClassifierRequest"},
-        "JsonClassifier":{"shape":"CreateJsonClassifierRequest"}
+        "JsonClassifier":{"shape":"CreateJsonClassifierRequest"},
+        "CsvClassifier":{"shape":"CreateCsvClassifierRequest"}
       }
     },
     "CreateClassifierResponse":{
@@ -2188,6 +2190,19 @@
     "CreateCrawlerResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "CreateCsvClassifierRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"NameString"},
+        "Delimiter":{"shape":"CsvColumnDelimiter"},
+        "QuoteSymbol":{"shape":"CsvQuoteSymbol"},
+        "ContainsHeader":{"shape":"CsvHeaderOption"},
+        "Header":{"shape":"CsvHeader"},
+        "DisableValueTrimming":{"shape":"NullableBoolean"},
+        "AllowSingleColumn":{"shape":"NullableBoolean"}
       }
     },
     "CreateDatabaseRequest":{
@@ -2428,6 +2443,46 @@
       }
     },
     "CronExpression":{"type":"string"},
+    "CsvClassifier":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"NameString"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastUpdated":{"shape":"Timestamp"},
+        "Version":{"shape":"VersionId"},
+        "Delimiter":{"shape":"CsvColumnDelimiter"},
+        "QuoteSymbol":{"shape":"CsvQuoteSymbol"},
+        "ContainsHeader":{"shape":"CsvHeaderOption"},
+        "Header":{"shape":"CsvHeader"},
+        "DisableValueTrimming":{"shape":"NullableBoolean"},
+        "AllowSingleColumn":{"shape":"NullableBoolean"}
+      }
+    },
+    "CsvColumnDelimiter":{
+      "type":"string",
+      "max":1,
+      "min":1,
+      "pattern":"[^\\r\\n]"
+    },
+    "CsvHeader":{
+      "type":"list",
+      "member":{"shape":"NameString"}
+    },
+    "CsvHeaderOption":{
+      "type":"string",
+      "enum":[
+        "UNKNOWN",
+        "PRESENT",
+        "ABSENT"
+      ]
+    },
+    "CsvQuoteSymbol":{
+      "type":"string",
+      "max":1,
+      "min":1,
+      "pattern":"[^\\r\\n]"
+    },
     "CustomPatterns":{
       "type":"string",
       "max":16000,
@@ -3814,6 +3869,10 @@
       "box":true,
       "min":1
     },
+    "NullableBoolean":{
+      "type":"boolean",
+      "box":true
+    },
     "NullableDouble":{
       "type":"double",
       "box":true
@@ -4500,7 +4559,8 @@
       "members":{
         "GrokClassifier":{"shape":"UpdateGrokClassifierRequest"},
         "XMLClassifier":{"shape":"UpdateXMLClassifierRequest"},
-        "JsonClassifier":{"shape":"UpdateJsonClassifierRequest"}
+        "JsonClassifier":{"shape":"UpdateJsonClassifierRequest"},
+        "CsvClassifier":{"shape":"UpdateCsvClassifierRequest"}
       }
     },
     "UpdateClassifierResponse":{
@@ -4558,6 +4618,19 @@
     "UpdateCrawlerScheduleResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateCsvClassifierRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"NameString"},
+        "Delimiter":{"shape":"CsvColumnDelimiter"},
+        "QuoteSymbol":{"shape":"CsvQuoteSymbol"},
+        "ContainsHeader":{"shape":"CsvHeaderOption"},
+        "Header":{"shape":"CsvHeader"},
+        "DisableValueTrimming":{"shape":"NullableBoolean"},
+        "AllowSingleColumn":{"shape":"NullableBoolean"}
       }
     },
     "UpdateDatabaseRequest":{
