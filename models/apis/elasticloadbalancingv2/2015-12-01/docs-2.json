@@ -655,10 +655,34 @@
       "refs": {
       }
     },
+    "HostHeaderConditionConfig": {
+      "base": null,
+      "refs": {
+        "RuleCondition$HostHeaderConfig": null
+      }
+    },
     "HttpCode": {
       "base": null,
       "refs": {
         "Matcher$HttpCode": "<p>The HTTP codes.</p> <p>For Application Load Balancers, you can specify values between 200 and 499, and the default value is 200. You can specify multiple values (for example, \"200,202\") or a range of values (for example, \"200-299\").</p> <p>For Network Load Balancers, this is 200–399.</p>"
+      }
+    },
+    "HttpHeaderConditionConfig": {
+      "base": null,
+      "refs": {
+        "RuleCondition$HttpHeaderConfig": null
+      }
+    },
+    "HttpHeaderConditionName": {
+      "base": null,
+      "refs": {
+        "HttpHeaderConditionConfig$HttpHeaderName": null
+      }
+    },
+    "HttpRequestMethodConditionConfig": {
+      "base": null,
+      "refs": {
+        "RuleCondition$HttpRequestMethodConfig": null
       }
     },
     "IncompatibleProtocolsException": {
@@ -732,7 +756,12 @@
     "ListOfString": {
       "base": null,
       "refs": {
-        "RuleCondition$Values": "<p>The condition value.</p> <p>If the field name is <code>host-header</code>, you can specify a single host name (for example, my.example.com). A host name is case insensitive, can be up to 128 characters in length, and can contain any of the following characters. You can include up to three wildcard characters.</p> <ul> <li> <p>A-Z, a-z, 0-9</p> </li> <li> <p>- .</p> </li> <li> <p>* (matches 0 or more characters)</p> </li> <li> <p>? (matches exactly 1 character)</p> </li> </ul> <p>If the field name is <code>path-pattern</code>, you can specify a single path pattern (for example, /img/*). A path pattern is case-sensitive, can be up to 128 characters in length, and can contain any of the following characters. You can include up to three wildcard characters.</p> <ul> <li> <p>A-Z, a-z, 0-9</p> </li> <li> <p>_ - . $ / ~ \" ' @ : +</p> </li> <li> <p>&amp; (using &amp;amp;)</p> </li> <li> <p>* (matches 0 or more characters)</p> </li> <li> <p>? (matches exactly 1 character)</p> </li> </ul>"
+        "HostHeaderConditionConfig$Values": null,
+        "HttpHeaderConditionConfig$Values": null,
+        "HttpRequestMethodConditionConfig$Values": null,
+        "PathPatternConditionConfig$Values": null,
+        "RuleCondition$Values": "<p>The condition value.</p> <p>If the field name is <code>host-header</code>, you can specify a single host name (for example, my.example.com). A host name is case insensitive, can be up to 128 characters in length, and can contain any of the following characters. You can include up to three wildcard characters.</p> <ul> <li> <p>A-Z, a-z, 0-9</p> </li> <li> <p>- .</p> </li> <li> <p>* (matches 0 or more characters)</p> </li> <li> <p>? (matches exactly 1 character)</p> </li> </ul> <p>If the field name is <code>path-pattern</code>, you can specify a single path pattern (for example, /img/*). A path pattern is case-sensitive, can be up to 128 characters in length, and can contain any of the following characters. You can include up to three wildcard characters.</p> <ul> <li> <p>A-Z, a-z, 0-9</p> </li> <li> <p>_ - . $ / ~ \" ' @ : +</p> </li> <li> <p>&amp; (using &amp;amp;)</p> </li> <li> <p>* (matches 0 or more characters)</p> </li> <li> <p>? (matches exactly 1 character)</p> </li> </ul>",
+        "SourceIpConditionConfig$Values": null
       }
     },
     "Listener": {
@@ -1008,6 +1037,12 @@
         "TargetGroup$HealthCheckPath": "<p>The destination for the health check request.</p>"
       }
     },
+    "PathPatternConditionConfig": {
+      "base": null,
+      "refs": {
+        "RuleCondition$PathPatternConfig": null
+      }
+    },
     "Port": {
       "base": null,
       "refs": {
@@ -1035,6 +1070,24 @@
         "ModifyTargetGroupInput$HealthCheckProtocol": "<p>The protocol the load balancer uses when performing health checks on targets. The TCP protocol is supported for health checks only if the protocol of the target group is TCP or TLS. The TLS protocol is not supported for health checks.</p> <p>If the protocol of the target group is TCP, you can't modify this setting.</p>",
         "TargetGroup$Protocol": "<p>The protocol to use for routing traffic to the targets.</p>",
         "TargetGroup$HealthCheckProtocol": "<p>The protocol to use to connect with the target.</p>"
+      }
+    },
+    "QueryStringConditionConfig": {
+      "base": null,
+      "refs": {
+        "RuleCondition$QueryStringConfig": null
+      }
+    },
+    "QueryStringKeyValuePair": {
+      "base": null,
+      "refs": {
+        "QueryStringKeyValuePairList$member": null
+      }
+    },
+    "QueryStringKeyValuePairList": {
+      "base": null,
+      "refs": {
+        "QueryStringConditionConfig$Values": null
       }
     },
     "RedirectActionConfig": {
@@ -1258,6 +1311,12 @@
       "refs": {
       }
     },
+    "SourceIpConditionConfig": {
+      "base": null,
+      "refs": {
+        "RuleCondition$SourceIpConfig": null
+      }
+    },
     "SslPolicies": {
       "base": null,
       "refs": {
@@ -1313,7 +1372,9 @@
     "StringValue": {
       "base": null,
       "refs": {
-        "ListOfString$member": null
+        "ListOfString$member": null,
+        "QueryStringKeyValuePair$Key": null,
+        "QueryStringKeyValuePair$Value": null
       }
     },
     "SubnetId": {

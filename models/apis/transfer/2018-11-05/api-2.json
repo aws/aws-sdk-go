@@ -287,6 +287,8 @@
     "CreateServerRequest":{
       "type":"structure",
       "members":{
+        "EndpointDetails":{"shape":"EndpointDetails"},
+        "EndpointType":{"shape":"EndpointType"},
         "IdentityProviderDetails":{"shape":"IdentityProviderDetails"},
         "IdentityProviderType":{"shape":"IdentityProviderType"},
         "LoggingRole":{"shape":"Role"},
@@ -401,6 +403,8 @@
       "required":["Arn"],
       "members":{
         "Arn":{"shape":"Arn"},
+        "EndpointDetails":{"shape":"EndpointDetails"},
+        "EndpointType":{"shape":"EndpointType"},
         "IdentityProviderDetails":{"shape":"IdentityProviderDetails"},
         "IdentityProviderType":{"shape":"IdentityProviderType"},
         "LoggingRole":{"shape":"Role"},
@@ -422,6 +426,19 @@
         "Tags":{"shape":"Tags"},
         "UserName":{"shape":"UserName"}
       }
+    },
+    "EndpointDetails":{
+      "type":"structure",
+      "members":{
+        "VpcEndpointId":{"shape":"VpcEndpointId"}
+      }
+    },
+    "EndpointType":{
+      "type":"string",
+      "enum":[
+        "PUBLIC",
+        "VPC_ENDPOINT"
+      ]
     },
     "HomeDirectory":{
       "type":"string",
@@ -552,6 +569,7 @@
       "members":{
         "Arn":{"shape":"Arn"},
         "IdentityProviderType":{"shape":"IdentityProviderType"},
+        "EndpointType":{"shape":"EndpointType"},
         "LoggingRole":{"shape":"Role"},
         "ServerId":{"shape":"ServerId"},
         "State":{"shape":"State"},
@@ -770,6 +788,8 @@
       "type":"structure",
       "required":["ServerId"],
       "members":{
+        "EndpointDetails":{"shape":"EndpointDetails"},
+        "EndpointType":{"shape":"EndpointType"},
         "IdentityProviderDetails":{"shape":"IdentityProviderDetails"},
         "LoggingRole":{"shape":"NullableRole"},
         "ServerId":{"shape":"ServerId"}
@@ -811,8 +831,12 @@
     "UserCount":{"type":"integer"},
     "UserName":{
       "type":"string",
-      "pattern":"^[a-z0-9]{3,32}$"
+      "pattern":"^[a-zA-Z0-9_][a-zA-Z0-9_-]{2,31}$"
     },
-    "UserPassword":{"type":"string"}
+    "UserPassword":{"type":"string"},
+    "VpcEndpointId":{
+      "type":"string",
+      "pattern":"^vpce-[0-9a-f]{17}$"
+    }
   }
 }

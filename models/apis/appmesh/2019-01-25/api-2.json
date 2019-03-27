@@ -642,6 +642,34 @@
         }
       ]
     },
+    "ListTagsForResource": {
+      "name": "ListTagsForResource",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v20190125/tags",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListTagsForResourceInput"
+      },
+      "output": {
+        "shape": "ListTagsForResourceOutput"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        }
+      ]
+    },
     "ListVirtualNodes": {
       "name": "ListVirtualNodes",
       "http": {
@@ -743,6 +771,105 @@
           "shape": "TooManyRequestsException"
         }
       ]
+    },
+    "TagResource": {
+      "name": "TagResource",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v20190125/tag",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "TagResourceInput"
+      },
+      "output": {
+        "shape": "TagResourceOutput"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyTagsException"
+        }
+      ],
+      "idempotent": true
+    },
+    "UntagResource": {
+      "name": "UntagResource",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v20190125/untag",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UntagResourceInput"
+      },
+      "output": {
+        "shape": "UntagResourceOutput"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        }
+      ],
+      "idempotent": true
+    },
+    "UpdateMesh": {
+      "name": "UpdateMesh",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v20190125/meshes/{meshName}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateMeshInput"
+      },
+      "output": {
+        "shape": "UpdateMeshOutput"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ],
+      "idempotent": true
     },
     "UpdateRoute": {
       "name": "UpdateRoute",
@@ -981,6 +1108,9 @@
         "spec": {
           "shape": "VirtualServiceSpec"
         },
+        "tags": {
+          "shape": "TagList"
+        },
         "virtualServiceName": {
           "shape": "ServiceName"
         }
@@ -1021,6 +1151,37 @@
         }
       }
     },
+    "TagKeyList": {
+      "type": "list",
+      "member": {
+        "shape": "TagKey"
+      },
+      "min": 0,
+      "max": 50
+    },
+    "ListTagsForResourceInput": {
+      "type": "structure",
+      "required": [
+        "resourceArn"
+      ],
+      "members": {
+        "limit": {
+          "shape": "TagsLimit",
+          "location": "querystring",
+          "locationName": "limit"
+        },
+        "nextToken": {
+          "shape": "String",
+          "location": "querystring",
+          "locationName": "nextToken"
+        },
+        "resourceArn": {
+          "shape": "Arn",
+          "location": "querystring",
+          "locationName": "resourceArn"
+        }
+      }
+    },
     "CreateVirtualNodeOutput": {
       "type": "structure",
       "required": [
@@ -1032,6 +1193,14 @@
         }
       },
       "payload": "virtualNode"
+    },
+    "Logging": {
+      "type": "structure",
+      "members": {
+        "accessLog": {
+          "shape": "AccessLog"
+        }
+      }
     },
     "ServiceUnavailableException": {
       "type": "structure",
@@ -1176,13 +1345,17 @@
       "type": "list",
       "member": {
         "shape": "Listener"
-      }
+      },
+      "min": 0,
+      "max": 1
     },
     "Backends": {
       "type": "list",
       "member": {
         "shape": "Backend"
-      }
+      },
+      "min": 0,
+      "max": 25
     },
     "ResourceInUseException": {
       "type": "structure",
@@ -1316,6 +1489,11 @@
       "min": 0,
       "max": 100
     },
+    "TagValue": {
+      "type": "string",
+      "min": 0,
+      "max": 256
+    },
     "HttpRouteAction": {
       "type": "structure",
       "required": [
@@ -1408,6 +1586,17 @@
         }
       }
     },
+    "EgressFilter": {
+      "type": "structure",
+      "required": [
+        "type"
+      ],
+      "members": {
+        "type": {
+          "shape": "EgressFilterType"
+        }
+      }
+    },
     "VirtualServiceList": {
       "type": "list",
       "member": {
@@ -1483,6 +1672,11 @@
       },
       "payload": "virtualService"
     },
+    "FilePath": {
+      "type": "string",
+      "min": 1,
+      "max": 255
+    },
     "VirtualNodeRef": {
       "type": "structure",
       "required": [
@@ -1514,6 +1708,12 @@
         },
         "meshName": {
           "shape": "ResourceName"
+        },
+        "spec": {
+          "shape": "MeshSpec"
+        },
+        "tags": {
+          "shape": "TagList"
         }
       }
     },
@@ -1542,6 +1742,18 @@
         "httpStatusCode": 400,
         "senderFault": true
       }
+    },
+    "UpdateMeshOutput": {
+      "type": "structure",
+      "required": [
+        "mesh"
+      ],
+      "members": {
+        "mesh": {
+          "shape": "MeshData"
+        }
+      },
+      "payload": "mesh"
     },
     "CreateRouteOutput": {
       "type": "structure",
@@ -1643,6 +1855,10 @@
         }
       }
     },
+    "UntagResourceOutput": {
+      "type": "structure",
+      "members": { }
+    },
     "VirtualServiceSpec": {
       "type": "structure",
       "members": {
@@ -1694,6 +1910,17 @@
     },
     "Arn": {
       "type": "string"
+    },
+    "TcpRoute": {
+      "type": "structure",
+      "required": [
+        "action"
+      ],
+      "members": {
+        "action": {
+          "shape": "TcpRouteAction"
+        }
+      }
     },
     "VirtualNodeList": {
       "type": "list",
@@ -1751,6 +1978,26 @@
         }
       }
     },
+    "UpdateMeshInput": {
+      "type": "structure",
+      "required": [
+        "meshName"
+      ],
+      "members": {
+        "clientToken": {
+          "shape": "String",
+          "idempotencyToken": true
+        },
+        "meshName": {
+          "shape": "ResourceName",
+          "location": "uri",
+          "locationName": "meshName"
+        },
+        "spec": {
+          "shape": "MeshSpec"
+        }
+      }
+    },
     "ListVirtualServicesInput": {
       "type": "structure",
       "required": [
@@ -1794,8 +2041,19 @@
         "spec": {
           "shape": "VirtualRouterSpec"
         },
+        "tags": {
+          "shape": "TagList"
+        },
         "virtualRouterName": {
           "shape": "ResourceName"
+        }
+      }
+    },
+    "AccessLog": {
+      "type": "structure",
+      "members": {
+        "file": {
+          "shape": "FileAccessLog"
         }
       }
     },
@@ -1929,6 +2187,9 @@
         "listeners": {
           "shape": "Listeners"
         },
+        "logging": {
+          "shape": "Logging"
+        },
         "serviceDiscovery": {
           "shape": "ServiceDiscovery"
         }
@@ -1952,7 +2213,9 @@
       "type": "list",
       "member": {
         "shape": "VirtualRouterListener"
-      }
+      },
+      "min": 1,
+      "max": 1
     },
     "ConflictException": {
       "type": "structure",
@@ -1995,6 +2258,20 @@
       "type": "list",
       "member": {
         "shape": "MeshRef"
+      }
+    },
+    "TagRef": {
+      "type": "structure",
+      "required": [
+        "key"
+      ],
+      "members": {
+        "key": {
+          "shape": "TagKey"
+        },
+        "value": {
+          "shape": "TagValue"
+        }
       }
     },
     "MeshRef": {
@@ -2040,6 +2317,7 @@
       "required": [
         "meshName",
         "metadata",
+        "spec",
         "status"
       ],
       "members": {
@@ -2048,6 +2326,9 @@
         },
         "metadata": {
           "shape": "ResourceMetadata"
+        },
+        "spec": {
+          "shape": "MeshSpec"
         },
         "status": {
           "shape": "MeshStatus"
@@ -2091,6 +2372,17 @@
         },
         "weight": {
           "shape": "PercentInt"
+        }
+      }
+    },
+    "TcpRouteAction": {
+      "type": "structure",
+      "required": [
+        "weightedTargets"
+      ],
+      "members": {
+        "weightedTargets": {
+          "shape": "WeightedTargets"
         }
       }
     },
@@ -2262,6 +2554,14 @@
         "fault": true
       }
     },
+    "TagList": {
+      "type": "list",
+      "member": {
+        "shape": "TagRef"
+      },
+      "min": 0,
+      "max": 50
+    },
     "DescribeVirtualRouterInput": {
       "type": "structure",
       "required": [
@@ -2280,6 +2580,10 @@
           "locationName": "virtualRouterName"
         }
       }
+    },
+    "TagResourceOutput": {
+      "type": "structure",
+      "members": { }
     },
     "RouteList": {
       "type": "list",
@@ -2301,6 +2605,20 @@
         "senderFault": true
       }
     },
+    "TooManyTagsException": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "shape": "String"
+        }
+      },
+      "exception": true,
+      "error": {
+        "code": "TooManyTagsException",
+        "httpStatusCode": 400,
+        "senderFault": true
+      }
+    },
     "DeleteMeshOutput": {
       "type": "structure",
       "required": [
@@ -2313,6 +2631,13 @@
       },
       "payload": "mesh"
     },
+    "EgressFilterType": {
+      "type": "string",
+      "enum": [
+        "ALLOW_ALL",
+        "DROP_ALL"
+      ]
+    },
     "Hostname": {
       "type": "string"
     },
@@ -2320,6 +2645,23 @@
       "type": "integer",
       "min": 1,
       "max": 65535
+    },
+    "TagResourceInput": {
+      "type": "structure",
+      "required": [
+        "resourceArn",
+        "tags"
+      ],
+      "members": {
+        "resourceArn": {
+          "shape": "Arn",
+          "location": "querystring",
+          "locationName": "resourceArn"
+        },
+        "tags": {
+          "shape": "TagList"
+        }
+      }
     },
     "CreateRouteInput": {
       "type": "structure",
@@ -2345,6 +2687,9 @@
         "spec": {
           "shape": "RouteSpec"
         },
+        "tags": {
+          "shape": "TagList"
+        },
         "virtualRouterName": {
           "shape": "ResourceName",
           "location": "uri",
@@ -2356,7 +2701,9 @@
       "type": "list",
       "member": {
         "shape": "WeightedTarget"
-      }
+      },
+      "min": 1,
+      "max": 10
     },
     "VirtualServiceProvider": {
       "type": "structure",
@@ -2445,6 +2792,9 @@
         "spec": {
           "shape": "VirtualNodeSpec"
         },
+        "tags": {
+          "shape": "TagList"
+        },
         "virtualNodeName": {
           "shape": "ResourceName"
         }
@@ -2469,6 +2819,9 @@
       "members": {
         "httpRoute": {
           "shape": "HttpRoute"
+        },
+        "tcpRoute": {
+          "shape": "TcpRoute"
         }
       }
     },
@@ -2500,6 +2853,14 @@
         }
       }
     },
+    "MeshSpec": {
+      "type": "structure",
+      "members": {
+        "egressFilter": {
+          "shape": "EgressFilter"
+        }
+      }
+    },
     "CreateVirtualServiceOutput": {
       "type": "structure",
       "required": [
@@ -2511,6 +2872,17 @@
         }
       },
       "payload": "virtualService"
+    },
+    "FileAccessLog": {
+      "type": "structure",
+      "required": [
+        "path"
+      ],
+      "members": {
+        "path": {
+          "shape": "FilePath"
+        }
+      }
     },
     "VirtualRouterServiceProvider": {
       "type": "structure",
@@ -2542,6 +2914,20 @@
         }
       }
     },
+    "ListTagsForResourceOutput": {
+      "type": "structure",
+      "required": [
+        "tags"
+      ],
+      "members": {
+        "nextToken": {
+          "shape": "String"
+        },
+        "tags": {
+          "shape": "TagList"
+        }
+      }
+    },
     "ServiceDiscovery": {
       "type": "structure",
       "members": {
@@ -2564,6 +2950,23 @@
         }
       }
     },
+    "UntagResourceInput": {
+      "type": "structure",
+      "required": [
+        "resourceArn",
+        "tagKeys"
+      ],
+      "members": {
+        "resourceArn": {
+          "shape": "Arn",
+          "location": "querystring",
+          "locationName": "resourceArn"
+        },
+        "tagKeys": {
+          "shape": "TagKeyList"
+        }
+      }
+    },
     "DeleteVirtualRouterOutput": {
       "type": "structure",
       "required": [
@@ -2575,6 +2978,17 @@
         }
       },
       "payload": "virtualRouter"
+    },
+    "TagsLimit": {
+      "type": "integer",
+      "box": true,
+      "min": 1,
+      "max": 50
+    },
+    "TagKey": {
+      "type": "string",
+      "min": 1,
+      "max": 128
     },
     "VirtualServiceStatusCode": {
       "type": "string",
