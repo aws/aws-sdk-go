@@ -1,17 +1,17 @@
 {
   "version": "2.0",
-  "service": "<p>his section provides documentation for the AWS RoboMaker API operations.</p>",
+  "service": "<p>This section provides documentation for the AWS RoboMaker API operations.</p>",
   "operations": {
     "BatchDescribeSimulationJob": "<p>Describes one or more simulation jobs.</p>",
     "CancelSimulationJob": "<p>Cancels the specified simulation job.</p>",
-    "CreateDeploymentJob": "<p>Deploys a specific version of a robot application to robots in a fleet.</p> <p>The robot application must have a numbered <code>applicationVersion</code> for consistency reasons. To create a new version, use <code>CreateRobotApplicationVersion</code> or see <a href=\"https://docs.aws.amazon.com/robomaker/latest/dg/create-robot-application-version.html\">Creating a Robot Application Version</a>. </p>",
+    "CreateDeploymentJob": "<p>Deploys a specific version of a robot application to robots in a fleet.</p> <p>The robot application must have a numbered <code>applicationVersion</code> for consistency reasons. To create a new version, use <code>CreateRobotApplicationVersion</code> or see <a href=\"https://docs.aws.amazon.com/robomaker/latest/dg/create-robot-application-version.html\">Creating a Robot Application Version</a>. </p> <note> <p>After 90 days, deployment jobs expire and will be deleted. They will no longer be accessible. </p> </note>",
     "CreateFleet": "<p>Creates a fleet, a logical group of robots running the same robot application.</p>",
     "CreateRobot": "<p>Creates a robot.</p>",
     "CreateRobotApplication": "<p>Creates a robot application. </p>",
     "CreateRobotApplicationVersion": "<p>Creates a version of a robot application.</p>",
     "CreateSimulationApplication": "<p>Creates a simulation application.</p>",
     "CreateSimulationApplicationVersion": "<p>Creates a simulation application with a specific revision id.</p>",
-    "CreateSimulationJob": "<p>Creates a simulation job.</p>",
+    "CreateSimulationJob": "<p>Creates a simulation job.</p> <note> <p>After 90 days, simulation jobs expire and will be deleted. They will no longer be accessible. </p> </note>",
     "DeleteFleet": "<p>Deletes a fleet.</p>",
     "DeleteRobot": "<p>Deletes a robot.</p>",
     "DeleteRobotApplication": "<p>Deletes a robot application.</p>",
@@ -23,18 +23,18 @@
     "DescribeRobotApplication": "<p>Describes a robot application.</p>",
     "DescribeSimulationApplication": "<p>Describes a simulation application.</p>",
     "DescribeSimulationJob": "<p>Describes a simulation job.</p>",
-    "ListDeploymentJobs": "<p>Returns a list of deployment jobs for a fleet. You can optionally provide filters to retrieve specific deployment jobs.</p>",
-    "ListFleets": "<p>Returns a list of fleets. You can optionally provide filters to retrieve specific fleets.</p>",
+    "ListDeploymentJobs": "<p>Returns a list of deployment jobs for a fleet. You can optionally provide filters to retrieve specific deployment jobs. </p> <note> <p> </p> </note>",
+    "ListFleets": "<p>Returns a list of fleets. You can optionally provide filters to retrieve specific fleets. </p>",
     "ListRobotApplications": "<p>Returns a list of robot application. You can optionally provide filters to retrieve specific robot applications.</p>",
     "ListRobots": "<p>Returns a list of robots. You can optionally provide filters to retrieve specific robots.</p>",
-    "ListSimulationApplications": "<p>Returns a list of simulation applications. You can optionally provide filters to retrieve specific simulation applications.</p>",
-    "ListSimulationJobs": "<p>Returns a list of simulation jobs. You can optionally provide filters to retrieve specific simulation jobs.</p>",
+    "ListSimulationApplications": "<p>Returns a list of simulation applications. You can optionally provide filters to retrieve specific simulation applications. </p>",
+    "ListSimulationJobs": "<p>Returns a list of simulation jobs. You can optionally provide filters to retrieve specific simulation jobs. </p>",
     "ListTagsForResource": "<p>Lists all tags on a AWS RoboMaker resource.</p>",
     "RegisterRobot": "<p>Registers a robot with a fleet.</p>",
     "RestartSimulationJob": "<p>Restarts a running simulation job.</p>",
     "SyncDeploymentJob": "<p>Syncrhonizes robots in a fleet to the latest deployment. This is helpful if robots were added after a deployment.</p>",
     "TagResource": "<p>Adds or edits tags for a AWS RoboMaker resource.</p> <p>Each tag consists of a tag key and a tag value. Tag keys and tag values are both required, but tag values can be empty strings. </p> <p>For information about the rules that apply to tag keys and tag values, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/allocation-tag-restrictions.html\">User-Defined Tag Restrictions</a> in the <i>AWS Billing and Cost Management User Guide</i>. </p>",
-    "UntagResource": "<p>Removes the specified tags from the specified AWS RoboMaker resource.</p> <p>To remove a tag, specify the tag key. To change the tag value of an existing tag key, use <a href=\"https://docs.aws.amazon.com/robomaker/latest/dg//API_Reference.htmlAPI_TagResource.html\"> <code>TagResource</code> </a>. </p>",
+    "UntagResource": "<p>Removes the specified tags from the specified AWS RoboMaker resource.</p> <p>To remove a tag, specify the tag key. To change the tag value of an existing tag key, use <a href=\"https://docs.aws.amazon.com/robomaker/latest/dg/API_TagResource.html\"> <code>TagResource</code> </a>. </p>",
     "UpdateRobotApplication": "<p>Updates a robot application.</p>",
     "UpdateSimulationApplication": "<p>Updates a simulation application.</p>"
   },
@@ -166,6 +166,15 @@
         "DescribeSimulationJobResponse$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "SimulationJob$clientRequestToken": "<p>A unique identifier for this <code>SimulationJob</code> request.</p>",
         "SyncDeploymentJobRequest$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>"
+      }
+    },
+    "Command": {
+      "base": null,
+      "refs": {
+        "DeploymentLaunchConfig$packageName": "<p>The package name.</p>",
+        "DeploymentLaunchConfig$launchFile": "<p>The launch file name.</p>",
+        "LaunchConfig$packageName": "<p>The package name.</p>",
+        "LaunchConfig$launchFile": "<p>The launch file name.</p>"
       }
     },
     "ConcurrentDeploymentException": {
@@ -498,12 +507,12 @@
     "Filters": {
       "base": null,
       "refs": {
-        "ListDeploymentJobsRequest$filters": "<p>Optional filters to limit results.</p>",
-        "ListFleetsRequest$filters": "<p>Optional filters to limit results.</p>",
-        "ListRobotApplicationsRequest$filters": "<p>Optional filters to limit results.</p>",
-        "ListRobotsRequest$filters": "<p>Optional filters to limit results.</p>",
-        "ListSimulationApplicationsRequest$filters": "<p>Optional list of filters to limit results. The only valid filter name is <code>name</code>.</p>",
-        "ListSimulationJobsRequest$filters": "<p>Optional filters to limit results.</p>"
+        "ListDeploymentJobsRequest$filters": "<p>Optional filters to limit results.</p> <p>The filter names <code>status</code> and <code>fleetName</code> are supported. When filtering, you must use the complete value of the filtered item. You can use up to three filters, but they must be for the same named item. For example, if you are looking for items with the status <code>InProgress</code> or the status <code>Pending</code>.</p>",
+        "ListFleetsRequest$filters": "<p>Optional filters to limit results.</p> <p>The filter name <code>name</code> is supported. When filtering, you must use the complete value of the filtered item. You can use up to three filters.</p>",
+        "ListRobotApplicationsRequest$filters": "<p>Optional filters to limit results.</p> <p>The filter name <code>name</code> is supported. When filtering, you must use the complete value of the filtered item. You can use up to three filters.</p>",
+        "ListRobotsRequest$filters": "<p>Optional filters to limit results.</p> <p>The filter names <code>status</code> and <code>fleetName</code> are supported. When filtering, you must use the complete value of the filtered item. You can use up to three filters, but they must be for the same named item. For example, if you are looking for items with the status <code>Registered</code> or the status <code>Available</code>.</p>",
+        "ListSimulationApplicationsRequest$filters": "<p>Optional list of filters to limit results.</p> <p>The filter name <code>name</code> is supported. When filtering, you must use the complete value of the filtered item. You can use up to three filters.</p>",
+        "ListSimulationJobsRequest$filters": "<p>Optional filters to limit results.</p> <p>The filter names <code>status</code> and <code>simulationApplicationName</code> and <code>robotApplicationName</code> are supported. When filtering, you must use the complete value of the filtered item. You can use up to three filters, but they must be for the same named item. For example, if you are looking for items with the status <code>Preparing</code> or the status <code>Running</code>.</p>"
       }
     },
     "Fleet": {
@@ -518,20 +527,19 @@
         "ListFleetsResponse$fleetDetails": "<p>A list of fleet details meeting the request criteria.</p>"
       }
     },
+    "GenericInteger": {
+      "base": null,
+      "refs": {
+        "ProgressDetail$estimatedTimeRemainingSeconds": "<p>Estimated amount of time in seconds remaining in the step. This currently only applies to the <code>Downloading/Extracting</code> step of the deployment. It is empty for other steps.</p>"
+      }
+    },
     "GenericString": {
       "base": null,
       "refs": {
         "CreateDeploymentJobResponse$failureReason": "<p>The failure reason of the deployment job if it failed.</p>",
         "DeploymentJob$failureReason": "<p>A short description of the reason why the deployment job failed.</p>",
-        "DeploymentLaunchConfig$packageName": "<p>The package name.</p>",
-        "DeploymentLaunchConfig$preLaunchFile": "<p>The deployment pre-launch file. This file will be executed prior to the launch file.</p>",
-        "DeploymentLaunchConfig$launchFile": "<p>The launch file name.</p>",
-        "DeploymentLaunchConfig$postLaunchFile": "<p>The deployment post-launch file. This file will be executed after the launch file.</p>",
         "DescribeDeploymentJobResponse$failureReason": "<p>A short description of the reason why the deployment job failed.</p>",
         "DescribeSimulationJobResponse$failureReason": "<p>Details about why the simulation job failed. For more information about troubleshooting, see <a href=\"https://docs.aws.amazon.com/robomaker/latest/dg/troubleshooting.html\">Troubleshooting</a>.</p>",
-        "LaunchConfig$packageName": "<p>The package name.</p>",
-        "LaunchConfig$launchFile": "<p>The launch file name.</p>",
-        "ProgressDetail$currentProgress": "<p>The current progress status.</p>",
         "ProgressDetail$targetResource": "<p>The Amazon Resource Name (ARN) of the deployment job.</p>",
         "RobotDeployment$failureReason": "<p>A short description of the reason why the robot deployment failed.</p>",
         "SecurityGroups$member": null,
@@ -578,7 +586,7 @@
       "base": null,
       "refs": {
         "CreateSimulationJobRequest$maxJobDurationInSeconds": "<p>The maximum simulation job duration in seconds (up to 14 days or 1,209,600 seconds. When <code>maxJobDurationInSeconds</code> is reached, the simulation job will status will transition to <code>Completed</code>.</p>",
-        "CreateSimulationJobResponse$maxJobDurationInSeconds": "<p>The maximum simulation job duration in seconds. The value must be 8 days (691,200 seconds) or less. </p>",
+        "CreateSimulationJobResponse$maxJobDurationInSeconds": "<p>The maximum simulation job duration in seconds. </p>",
         "DescribeSimulationJobResponse$maxJobDurationInSeconds": "<p>The maximum job duration in seconds. The value must be 8 days (691,200 seconds) or less.</p>",
         "SimulationJob$maxJobDurationInSeconds": "<p>The maximum simulation job duration in seconds. The value must be 8 days (691,200 seconds) or less.</p>"
       }
@@ -689,10 +697,10 @@
       "refs": {
         "ListDeploymentJobsRequest$maxResults": "<p>The maximum number of deployment job results returned by <code>ListDeploymentJobs</code> in paginated output. When this parameter is used, <code>ListDeploymentJobs</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListDeploymentJobs</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListDeploymentJobs</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>",
         "ListFleetsRequest$maxResults": "<p>The maximum number of deployment job results returned by <code>ListFleets</code> in paginated output. When this parameter is used, <code>ListFleets</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListFleets</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListFleets</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>",
-        "ListRobotApplicationsRequest$maxResults": "<p>The maximum number of deployment job results returned by <code>ListRobotApplications</code> in paginated output. When this parameter is used, <code>ListRobotApplications</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListFleets</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListRobotApplications</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>",
-        "ListRobotsRequest$maxResults": "<p>The maximum number of deployment job results returned by <code>ListRobots</code> in paginated output. When this parameter is used, <code>ListRobots</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListFleets</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListRobots</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>",
-        "ListSimulationApplicationsRequest$maxResults": "<p>The maximum number of deployment job results returned by <code>ListSimulationApplications</code> in paginated output. When this parameter is used, <code>ListSimulationApplications</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListFleets</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListSimulationApplications</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>",
-        "ListSimulationJobsRequest$maxResults": "<p>The maximum number of deployment job results returned by <code>ListSimulationJobs</code> in paginated output. When this parameter is used, <code>ListSimulationJobs</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListFleets</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListSimulationJobs</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>"
+        "ListRobotApplicationsRequest$maxResults": "<p>The maximum number of deployment job results returned by <code>ListRobotApplications</code> in paginated output. When this parameter is used, <code>ListRobotApplications</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListRobotApplications</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListRobotApplications</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>",
+        "ListRobotsRequest$maxResults": "<p>The maximum number of deployment job results returned by <code>ListRobots</code> in paginated output. When this parameter is used, <code>ListRobots</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListRobots</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListRobots</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>",
+        "ListSimulationApplicationsRequest$maxResults": "<p>The maximum number of deployment job results returned by <code>ListSimulationApplications</code> in paginated output. When this parameter is used, <code>ListSimulationApplications</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListSimulationApplications</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListSimulationApplications</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>",
+        "ListSimulationJobsRequest$maxResults": "<p>The maximum number of deployment job results returned by <code>ListSimulationJobs</code> in paginated output. When this parameter is used, <code>ListSimulationJobs</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListSimulationJobs</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListSimulationJobs</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>"
       }
     },
     "Name": {
@@ -751,6 +759,19 @@
         "ListSimulationApplicationsResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListSimulationApplications</code> request. When the results of a <code>ListRobot</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>",
         "ListSimulationJobsRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListSimulationJobs</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. </p> <note> <p>This token should be treated as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
         "ListSimulationJobsResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListSimulationJobs</code> request. When the results of a <code>ListRobot</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>"
+      }
+    },
+    "Path": {
+      "base": null,
+      "refs": {
+        "DeploymentLaunchConfig$preLaunchFile": "<p>The deployment pre-launch file. This file will be executed prior to the launch file.</p>",
+        "DeploymentLaunchConfig$postLaunchFile": "<p>The deployment post-launch file. This file will be executed after the launch file.</p>"
+      }
+    },
+    "PercentDone": {
+      "base": null,
+      "refs": {
+        "ProgressDetail$percentDone": "<p>Precentage of the step that is done. This currently only applies to the <code>Downloading/Extracting</code> step of the deployment. It is empty for other steps.</p>"
       }
     },
     "Percentage": {
@@ -879,6 +900,12 @@
       "base": "<p>Information about a robot deployment.</p>",
       "refs": {
         "RobotDeploymentSummary$member": null
+      }
+    },
+    "RobotDeploymentStep": {
+      "base": null,
+      "refs": {
+        "ProgressDetail$currentProgress": "<p>The current progress status.</p> <dl> <dt>Validating</dt> <dd> <p>Validating the deployment.</p> </dd> <dt>Downloading/Extracting</dt> <dd> <p>Downloading and extracting the bundle on the robot.</p> </dd> <dt>Executing pre-launch script(s)</dt> <dd> <p>Executing pre-launch script(s) if provided.</p> </dd> <dt>Launching</dt> <dd> <p>Launching the robot application.</p> </dd> <dt>Executing post-launch script(s)</dt> <dd> <p>Executing post-launch script(s) if provided.</p> </dd> <dt>Finished</dt> <dd> <p>Deployment is complete.</p> </dd> </dl>"
       }
     },
     "RobotDeploymentSummary": {

@@ -165,13 +165,13 @@
       "type":"structure",
       "required":[
         "VocabularyName",
-        "LanguageCode",
-        "Phrases"
+        "LanguageCode"
       ],
       "members":{
         "VocabularyName":{"shape":"VocabularyName"},
         "LanguageCode":{"shape":"LanguageCode"},
-        "Phrases":{"shape":"Phrases"}
+        "Phrases":{"shape":"Phrases"},
+        "VocabularyFileUri":{"shape":"Uri"}
       }
     },
     "CreateVocabularyResponse":{
@@ -446,13 +446,13 @@
       "type":"structure",
       "required":[
         "VocabularyName",
-        "LanguageCode",
-        "Phrases"
+        "LanguageCode"
       ],
       "members":{
         "VocabularyName":{"shape":"VocabularyName"},
         "LanguageCode":{"shape":"LanguageCode"},
-        "Phrases":{"shape":"Phrases"}
+        "Phrases":{"shape":"Phrases"},
+        "VocabularyFileUri":{"shape":"Uri"}
       }
     },
     "UpdateVocabularyResponse":{

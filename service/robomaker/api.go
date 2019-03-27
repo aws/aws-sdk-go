@@ -244,6 +244,9 @@ func (c *RoboMaker) CreateDeploymentJobRequest(input *CreateDeploymentJobInput) 
 // reasons. To create a new version, use CreateRobotApplicationVersion or see
 // Creating a Robot Application Version (https://docs.aws.amazon.com/robomaker/latest/dg/create-robot-application-version.html).
 //
+// After 90 days, deployment jobs expire and will be deleted. They will no longer
+// be accessible.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -920,6 +923,9 @@ func (c *RoboMaker) CreateSimulationJobRequest(input *CreateSimulationJobInput) 
 // CreateSimulationJob API operation for AWS RoboMaker.
 //
 // Creates a simulation job.
+//
+// After 90 days, simulation jobs expire and will be deleted. They will no longer
+// be accessible.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1988,6 +1994,12 @@ func (c *RoboMaker) ListDeploymentJobsRequest(input *ListDeploymentJobsInput) (r
 		Name:       opListDeploymentJobs,
 		HTTPMethod: "POST",
 		HTTPPath:   "/listDeploymentJobs",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2048,6 +2060,56 @@ func (c *RoboMaker) ListDeploymentJobsWithContext(ctx aws.Context, input *ListDe
 	return out, req.Send()
 }
 
+// ListDeploymentJobsPages iterates over the pages of a ListDeploymentJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDeploymentJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListDeploymentJobs operation.
+//    pageNum := 0
+//    err := client.ListDeploymentJobsPages(params,
+//        func(page *ListDeploymentJobsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *RoboMaker) ListDeploymentJobsPages(input *ListDeploymentJobsInput, fn func(*ListDeploymentJobsOutput, bool) bool) error {
+	return c.ListDeploymentJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDeploymentJobsPagesWithContext same as ListDeploymentJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RoboMaker) ListDeploymentJobsPagesWithContext(ctx aws.Context, input *ListDeploymentJobsInput, fn func(*ListDeploymentJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDeploymentJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDeploymentJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListDeploymentJobsOutput), !p.HasNextPage())
+	}
+	return p.Err()
+}
+
 const opListFleets = "ListFleets"
 
 // ListFleetsRequest generates a "aws/request.Request" representing the
@@ -2079,6 +2141,12 @@ func (c *RoboMaker) ListFleetsRequest(input *ListFleetsInput) (req *request.Requ
 		Name:       opListFleets,
 		HTTPMethod: "POST",
 		HTTPPath:   "/listFleets",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2139,6 +2207,56 @@ func (c *RoboMaker) ListFleetsWithContext(ctx aws.Context, input *ListFleetsInpu
 	return out, req.Send()
 }
 
+// ListFleetsPages iterates over the pages of a ListFleets operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFleets method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListFleets operation.
+//    pageNum := 0
+//    err := client.ListFleetsPages(params,
+//        func(page *ListFleetsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *RoboMaker) ListFleetsPages(input *ListFleetsInput, fn func(*ListFleetsOutput, bool) bool) error {
+	return c.ListFleetsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFleetsPagesWithContext same as ListFleetsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RoboMaker) ListFleetsPagesWithContext(ctx aws.Context, input *ListFleetsInput, fn func(*ListFleetsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFleetsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFleetsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListFleetsOutput), !p.HasNextPage())
+	}
+	return p.Err()
+}
+
 const opListRobotApplications = "ListRobotApplications"
 
 // ListRobotApplicationsRequest generates a "aws/request.Request" representing the
@@ -2170,6 +2288,12 @@ func (c *RoboMaker) ListRobotApplicationsRequest(input *ListRobotApplicationsInp
 		Name:       opListRobotApplications,
 		HTTPMethod: "POST",
 		HTTPPath:   "/listRobotApplications",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2227,6 +2351,56 @@ func (c *RoboMaker) ListRobotApplicationsWithContext(ctx aws.Context, input *Lis
 	return out, req.Send()
 }
 
+// ListRobotApplicationsPages iterates over the pages of a ListRobotApplications operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRobotApplications method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListRobotApplications operation.
+//    pageNum := 0
+//    err := client.ListRobotApplicationsPages(params,
+//        func(page *ListRobotApplicationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *RoboMaker) ListRobotApplicationsPages(input *ListRobotApplicationsInput, fn func(*ListRobotApplicationsOutput, bool) bool) error {
+	return c.ListRobotApplicationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRobotApplicationsPagesWithContext same as ListRobotApplicationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RoboMaker) ListRobotApplicationsPagesWithContext(ctx aws.Context, input *ListRobotApplicationsInput, fn func(*ListRobotApplicationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRobotApplicationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRobotApplicationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListRobotApplicationsOutput), !p.HasNextPage())
+	}
+	return p.Err()
+}
+
 const opListRobots = "ListRobots"
 
 // ListRobotsRequest generates a "aws/request.Request" representing the
@@ -2258,6 +2432,12 @@ func (c *RoboMaker) ListRobotsRequest(input *ListRobotsInput) (req *request.Requ
 		Name:       opListRobots,
 		HTTPMethod: "POST",
 		HTTPPath:   "/listRobots",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2318,6 +2498,56 @@ func (c *RoboMaker) ListRobotsWithContext(ctx aws.Context, input *ListRobotsInpu
 	return out, req.Send()
 }
 
+// ListRobotsPages iterates over the pages of a ListRobots operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRobots method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListRobots operation.
+//    pageNum := 0
+//    err := client.ListRobotsPages(params,
+//        func(page *ListRobotsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *RoboMaker) ListRobotsPages(input *ListRobotsInput, fn func(*ListRobotsOutput, bool) bool) error {
+	return c.ListRobotsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRobotsPagesWithContext same as ListRobotsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RoboMaker) ListRobotsPagesWithContext(ctx aws.Context, input *ListRobotsInput, fn func(*ListRobotsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRobotsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRobotsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListRobotsOutput), !p.HasNextPage())
+	}
+	return p.Err()
+}
+
 const opListSimulationApplications = "ListSimulationApplications"
 
 // ListSimulationApplicationsRequest generates a "aws/request.Request" representing the
@@ -2349,6 +2579,12 @@ func (c *RoboMaker) ListSimulationApplicationsRequest(input *ListSimulationAppli
 		Name:       opListSimulationApplications,
 		HTTPMethod: "POST",
 		HTTPPath:   "/listSimulationApplications",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2406,6 +2642,56 @@ func (c *RoboMaker) ListSimulationApplicationsWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+// ListSimulationApplicationsPages iterates over the pages of a ListSimulationApplications operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSimulationApplications method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListSimulationApplications operation.
+//    pageNum := 0
+//    err := client.ListSimulationApplicationsPages(params,
+//        func(page *ListSimulationApplicationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *RoboMaker) ListSimulationApplicationsPages(input *ListSimulationApplicationsInput, fn func(*ListSimulationApplicationsOutput, bool) bool) error {
+	return c.ListSimulationApplicationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSimulationApplicationsPagesWithContext same as ListSimulationApplicationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RoboMaker) ListSimulationApplicationsPagesWithContext(ctx aws.Context, input *ListSimulationApplicationsInput, fn func(*ListSimulationApplicationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSimulationApplicationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSimulationApplicationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListSimulationApplicationsOutput), !p.HasNextPage())
+	}
+	return p.Err()
+}
+
 const opListSimulationJobs = "ListSimulationJobs"
 
 // ListSimulationJobsRequest generates a "aws/request.Request" representing the
@@ -2437,6 +2723,12 @@ func (c *RoboMaker) ListSimulationJobsRequest(input *ListSimulationJobsInput) (r
 		Name:       opListSimulationJobs,
 		HTTPMethod: "POST",
 		HTTPPath:   "/listSimulationJobs",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2492,6 +2784,56 @@ func (c *RoboMaker) ListSimulationJobsWithContext(ctx aws.Context, input *ListSi
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListSimulationJobsPages iterates over the pages of a ListSimulationJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSimulationJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListSimulationJobs operation.
+//    pageNum := 0
+//    err := client.ListSimulationJobsPages(params,
+//        func(page *ListSimulationJobsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *RoboMaker) ListSimulationJobsPages(input *ListSimulationJobsInput, fn func(*ListSimulationJobsOutput, bool) bool) error {
+	return c.ListSimulationJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSimulationJobsPagesWithContext same as ListSimulationJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RoboMaker) ListSimulationJobsPagesWithContext(ctx aws.Context, input *ListSimulationJobsInput, fn func(*ListSimulationJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSimulationJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSimulationJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListSimulationJobsOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListTagsForResource = "ListTagsForResource"
@@ -3022,7 +3364,7 @@ func (c *RoboMaker) UntagResourceRequest(input *UntagResourceInput) (req *reques
 // Removes the specified tags from the specified AWS RoboMaker resource.
 //
 // To remove a tag, specify the tag key. To change the tag value of an existing
-// tag key, use TagResource (https://docs.aws.amazon.com/robomaker/latest/dg//API_Reference.htmlAPI_TagResource.html).
+// tag key, use TagResource (https://docs.aws.amazon.com/robomaker/latest/dg/API_TagResource.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4779,8 +5121,7 @@ type CreateSimulationJobOutput struct {
 	// updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
-	// The maximum simulation job duration in seconds. The value must be 8 days
-	// (691,200 seconds) or less.
+	// The maximum simulation job duration in seconds.
 	MaxJobDurationInSeconds *int64 `locationName:"maxJobDurationInSeconds" type:"long"`
 
 	// Simulation job output files location.
@@ -5368,20 +5709,20 @@ type DeploymentLaunchConfig struct {
 	// The launch file name.
 	//
 	// LaunchFile is a required field
-	LaunchFile *string `locationName:"launchFile" type:"string" required:"true"`
+	LaunchFile *string `locationName:"launchFile" min:"1" type:"string" required:"true"`
 
 	// The package name.
 	//
 	// PackageName is a required field
-	PackageName *string `locationName:"packageName" type:"string" required:"true"`
+	PackageName *string `locationName:"packageName" min:"1" type:"string" required:"true"`
 
 	// The deployment post-launch file. This file will be executed after the launch
 	// file.
-	PostLaunchFile *string `locationName:"postLaunchFile" type:"string"`
+	PostLaunchFile *string `locationName:"postLaunchFile" min:"1" type:"string"`
 
 	// The deployment pre-launch file. This file will be executed prior to the launch
 	// file.
-	PreLaunchFile *string `locationName:"preLaunchFile" type:"string"`
+	PreLaunchFile *string `locationName:"preLaunchFile" min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -5400,8 +5741,20 @@ func (s *DeploymentLaunchConfig) Validate() error {
 	if s.LaunchFile == nil {
 		invalidParams.Add(request.NewErrParamRequired("LaunchFile"))
 	}
+	if s.LaunchFile != nil && len(*s.LaunchFile) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LaunchFile", 1))
+	}
 	if s.PackageName == nil {
 		invalidParams.Add(request.NewErrParamRequired("PackageName"))
+	}
+	if s.PackageName != nil && len(*s.PackageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PackageName", 1))
+	}
+	if s.PostLaunchFile != nil && len(*s.PostLaunchFile) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PostLaunchFile", 1))
+	}
+	if s.PreLaunchFile != nil && len(*s.PreLaunchFile) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PreLaunchFile", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6611,12 +6964,12 @@ type LaunchConfig struct {
 	// The launch file name.
 	//
 	// LaunchFile is a required field
-	LaunchFile *string `locationName:"launchFile" type:"string" required:"true"`
+	LaunchFile *string `locationName:"launchFile" min:"1" type:"string" required:"true"`
 
 	// The package name.
 	//
 	// PackageName is a required field
-	PackageName *string `locationName:"packageName" type:"string" required:"true"`
+	PackageName *string `locationName:"packageName" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -6635,8 +6988,14 @@ func (s *LaunchConfig) Validate() error {
 	if s.LaunchFile == nil {
 		invalidParams.Add(request.NewErrParamRequired("LaunchFile"))
 	}
+	if s.LaunchFile != nil && len(*s.LaunchFile) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LaunchFile", 1))
+	}
 	if s.PackageName == nil {
 		invalidParams.Add(request.NewErrParamRequired("PackageName"))
+	}
+	if s.PackageName != nil && len(*s.PackageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PackageName", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6667,6 +7026,11 @@ type ListDeploymentJobsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Optional filters to limit results.
+	//
+	// The filter names status and fleetName are supported. When filtering, you
+	// must use the complete value of the filtered item. You can use up to three
+	// filters, but they must be for the same named item. For example, if you are
+	// looking for items with the status InProgress or the status Pending.
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
 
 	// The maximum number of deployment job results returned by ListDeploymentJobs
@@ -6781,6 +7145,9 @@ type ListFleetsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Optional filters to limit results.
+	//
+	// The filter name name is supported. When filtering, you must use the complete
+	// value of the filtered item. You can use up to three filters.
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
 
 	// The maximum number of deployment job results returned by ListFleets in paginated
@@ -6895,15 +7262,19 @@ type ListRobotApplicationsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Optional filters to limit results.
+	//
+	// The filter name name is supported. When filtering, you must use the complete
+	// value of the filtered item. You can use up to three filters.
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
 
 	// The maximum number of deployment job results returned by ListRobotApplications
 	// in paginated output. When this parameter is used, ListRobotApplications only
 	// returns maxResults results in a single page along with a nextToken response
 	// element. The remaining results of the initial request can be seen by sending
-	// another ListFleets request with the returned nextToken value. This value
-	// can be between 1 and 100. If this parameter is not used, then ListRobotApplications
-	// returns up to 100 results and a nextToken value if applicable.
+	// another ListRobotApplications request with the returned nextToken value.
+	// This value can be between 1 and 100. If this parameter is not used, then
+	// ListRobotApplications returns up to 100 results and a nextToken value if
+	// applicable.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The nextToken value returned from a previous paginated ListRobotApplications
@@ -7018,12 +7389,17 @@ type ListRobotsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Optional filters to limit results.
+	//
+	// The filter names status and fleetName are supported. When filtering, you
+	// must use the complete value of the filtered item. You can use up to three
+	// filters, but they must be for the same named item. For example, if you are
+	// looking for items with the status Registered or the status Available.
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
 
 	// The maximum number of deployment job results returned by ListRobots in paginated
 	// output. When this parameter is used, ListRobots only returns maxResults results
 	// in a single page along with a nextToken response element. The remaining results
-	// of the initial request can be seen by sending another ListFleets request
+	// of the initial request can be seen by sending another ListRobots request
 	// with the returned nextToken value. This value can be between 1 and 100. If
 	// this parameter is not used, then ListRobots returns up to 100 results and
 	// a nextToken value if applicable.
@@ -7131,17 +7507,20 @@ func (s *ListRobotsOutput) SetRobots(v []*Robot) *ListRobotsOutput {
 type ListSimulationApplicationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Optional list of filters to limit results. The only valid filter name is
-	// name.
+	// Optional list of filters to limit results.
+	//
+	// The filter name name is supported. When filtering, you must use the complete
+	// value of the filtered item. You can use up to three filters.
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
 
 	// The maximum number of deployment job results returned by ListSimulationApplications
 	// in paginated output. When this parameter is used, ListSimulationApplications
 	// only returns maxResults results in a single page along with a nextToken response
 	// element. The remaining results of the initial request can be seen by sending
-	// another ListFleets request with the returned nextToken value. This value
-	// can be between 1 and 100. If this parameter is not used, then ListSimulationApplications
-	// returns up to 100 results and a nextToken value if applicable.
+	// another ListSimulationApplications request with the returned nextToken value.
+	// This value can be between 1 and 100. If this parameter is not used, then
+	// ListSimulationApplications returns up to 100 results and a nextToken value
+	// if applicable.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The nextToken value returned from a previous paginated ListSimulationApplications
@@ -7257,14 +7636,20 @@ type ListSimulationJobsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Optional filters to limit results.
+	//
+	// The filter names status and simulationApplicationName and robotApplicationName
+	// are supported. When filtering, you must use the complete value of the filtered
+	// item. You can use up to three filters, but they must be for the same named
+	// item. For example, if you are looking for items with the status Preparing
+	// or the status Running.
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
 
 	// The maximum number of deployment job results returned by ListSimulationJobs
 	// in paginated output. When this parameter is used, ListSimulationJobs only
 	// returns maxResults results in a single page along with a nextToken response
 	// element. The remaining results of the initial request can be seen by sending
-	// another ListFleets request with the returned nextToken value. This value
-	// can be between 1 and 100. If this parameter is not used, then ListSimulationJobs
+	// another ListSimulationJobs request with the returned nextToken value. This
+	// value can be between 1 and 100. If this parameter is not used, then ListSimulationJobs
 	// returns up to 100 results and a nextToken value if applicable.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
@@ -7487,7 +7872,28 @@ type ProgressDetail struct {
 	_ struct{} `type:"structure"`
 
 	// The current progress status.
-	CurrentProgress *string `locationName:"currentProgress" type:"string"`
+	//
+	// ValidatingValidating the deployment.
+	//
+	// Downloading/ExtractingDownloading and extracting the bundle on the robot.
+	//
+	// Executing pre-launch script(s)Executing pre-launch script(s) if provided.
+	//
+	// LaunchingLaunching the robot application.
+	//
+	// Executing post-launch script(s)Executing post-launch script(s) if provided.
+	//
+	// FinishedDeployment is complete.
+	CurrentProgress *string `locationName:"currentProgress" type:"string" enum:"RobotDeploymentStep"`
+
+	// Estimated amount of time in seconds remaining in the step. This currently
+	// only applies to the Downloading/Extracting step of the deployment. It is
+	// empty for other steps.
+	EstimatedTimeRemainingSeconds *int64 `locationName:"estimatedTimeRemainingSeconds" type:"integer"`
+
+	// Precentage of the step that is done. This currently only applies to the Downloading/Extracting
+	// step of the deployment. It is empty for other steps.
+	PercentDone *float64 `locationName:"percentDone" type:"float"`
 
 	// The Amazon Resource Name (ARN) of the deployment job.
 	TargetResource *string `locationName:"targetResource" type:"string"`
@@ -7506,6 +7912,18 @@ func (s ProgressDetail) GoString() string {
 // SetCurrentProgress sets the CurrentProgress field's value.
 func (s *ProgressDetail) SetCurrentProgress(v string) *ProgressDetail {
 	s.CurrentProgress = &v
+	return s
+}
+
+// SetEstimatedTimeRemainingSeconds sets the EstimatedTimeRemainingSeconds field's value.
+func (s *ProgressDetail) SetEstimatedTimeRemainingSeconds(v int64) *ProgressDetail {
+	s.EstimatedTimeRemainingSeconds = &v
+	return s
+}
+
+// SetPercentDone sets the PercentDone field's value.
+func (s *ProgressDetail) SetPercentDone(v float64) *ProgressDetail {
+	s.PercentDone = &v
 	return s
 }
 
@@ -9361,11 +9779,20 @@ const (
 	// DeploymentJobErrorCodeResourceNotFound is a DeploymentJobErrorCode enum value
 	DeploymentJobErrorCodeResourceNotFound = "ResourceNotFound"
 
+	// DeploymentJobErrorCodeEnvironmentSetupError is a DeploymentJobErrorCode enum value
+	DeploymentJobErrorCodeEnvironmentSetupError = "EnvironmentSetupError"
+
+	// DeploymentJobErrorCodeEtagMismatch is a DeploymentJobErrorCode enum value
+	DeploymentJobErrorCodeEtagMismatch = "EtagMismatch"
+
 	// DeploymentJobErrorCodeFailureThresholdBreached is a DeploymentJobErrorCode enum value
 	DeploymentJobErrorCodeFailureThresholdBreached = "FailureThresholdBreached"
 
 	// DeploymentJobErrorCodeRobotDeploymentNoResponse is a DeploymentJobErrorCode enum value
 	DeploymentJobErrorCodeRobotDeploymentNoResponse = "RobotDeploymentNoResponse"
+
+	// DeploymentJobErrorCodeRobotAgentConnectionTimeout is a DeploymentJobErrorCode enum value
+	DeploymentJobErrorCodeRobotAgentConnectionTimeout = "RobotAgentConnectionTimeout"
 
 	// DeploymentJobErrorCodeGreengrassDeploymentFailed is a DeploymentJobErrorCode enum value
 	DeploymentJobErrorCodeGreengrassDeploymentFailed = "GreengrassDeploymentFailed"
@@ -9426,6 +9853,26 @@ const (
 const (
 	// RenderingEngineTypeOgre is a RenderingEngineType enum value
 	RenderingEngineTypeOgre = "OGRE"
+)
+
+const (
+	// RobotDeploymentStepValidating is a RobotDeploymentStep enum value
+	RobotDeploymentStepValidating = "Validating"
+
+	// RobotDeploymentStepDownloadingExtracting is a RobotDeploymentStep enum value
+	RobotDeploymentStepDownloadingExtracting = "DownloadingExtracting"
+
+	// RobotDeploymentStepExecutingPreLaunch is a RobotDeploymentStep enum value
+	RobotDeploymentStepExecutingPreLaunch = "ExecutingPreLaunch"
+
+	// RobotDeploymentStepLaunching is a RobotDeploymentStep enum value
+	RobotDeploymentStepLaunching = "Launching"
+
+	// RobotDeploymentStepExecutingPostLaunch is a RobotDeploymentStep enum value
+	RobotDeploymentStepExecutingPostLaunch = "ExecutingPostLaunch"
+
+	// RobotDeploymentStepFinished is a RobotDeploymentStep enum value
+	RobotDeploymentStepFinished = "Finished"
 )
 
 const (

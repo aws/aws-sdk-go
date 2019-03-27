@@ -1755,6 +1755,10 @@
           "shape": "__stringPatternS3",
           "locationName": "destination"
         },
+        "DestinationSettings": {
+          "shape": "DestinationSettings",
+          "locationName": "destinationSettings"
+        },
         "Encryption": {
           "shape": "CmafEncryptionSettings",
           "locationName": "encryption"
@@ -2014,9 +2018,9 @@
           "shape": "JobSettings",
           "locationName": "settings"
         },
-        "StatusUpdateIntervalInSecs": {
-          "shape": "__integerMin10Max600",
-          "locationName": "statusUpdateIntervalInSecs"
+        "StatusUpdateInterval": {
+          "shape": "StatusUpdateInterval",
+          "locationName": "statusUpdateInterval"
         },
         "UserMetadata": {
           "shape": "__mapOf__string",
@@ -2064,9 +2068,9 @@
           "shape": "JobTemplateSettings",
           "locationName": "settings"
         },
-        "StatusUpdateIntervalInSecs": {
-          "shape": "__integerMin10Max600",
-          "locationName": "statusUpdateIntervalInSecs"
+        "StatusUpdateInterval": {
+          "shape": "StatusUpdateInterval",
+          "locationName": "statusUpdateInterval"
         },
         "Tags": {
           "shape": "__mapOf__string",
@@ -2181,6 +2185,10 @@
         "Destination": {
           "shape": "__stringPatternS3",
           "locationName": "destination"
+        },
+        "DestinationSettings": {
+          "shape": "DestinationSettings",
+          "locationName": "destinationSettings"
         },
         "Encryption": {
           "shape": "DashIsoEncryptionSettings",
@@ -2370,6 +2378,15 @@
         "NextToken": {
           "shape": "__string",
           "locationName": "nextToken"
+        }
+      }
+    },
+    "DestinationSettings": {
+      "type": "structure",
+      "members": {
+        "S3Settings": {
+          "shape": "S3DestinationSettings",
+          "locationName": "s3Settings"
         }
       }
     },
@@ -2889,6 +2906,10 @@
         "Destination": {
           "shape": "__stringPatternS3",
           "locationName": "destination"
+        },
+        "DestinationSettings": {
+          "shape": "DestinationSettings",
+          "locationName": "destinationSettings"
         }
       }
     },
@@ -3971,6 +3992,10 @@
           "shape": "__stringPatternS3",
           "locationName": "destination"
         },
+        "DestinationSettings": {
+          "shape": "DestinationSettings",
+          "locationName": "destinationSettings"
+        },
         "DirectoryStructure": {
           "shape": "HlsDirectoryStructure",
           "locationName": "directoryStructure"
@@ -4450,6 +4475,10 @@
           "shape": "__timestampUnix",
           "locationName": "createdAt"
         },
+        "CurrentPhase": {
+          "shape": "JobPhase",
+          "locationName": "currentPhase"
+        },
         "ErrorCode": {
           "shape": "__integer",
           "locationName": "errorCode"
@@ -4461,6 +4490,10 @@
         "Id": {
           "shape": "__string",
           "locationName": "id"
+        },
+        "JobPercentComplete": {
+          "shape": "__integer",
+          "locationName": "jobPercentComplete"
         },
         "JobTemplate": {
           "shape": "__string",
@@ -4474,6 +4507,10 @@
           "shape": "__string",
           "locationName": "queue"
         },
+        "RetryCount": {
+          "shape": "__integer",
+          "locationName": "retryCount"
+        },
         "Role": {
           "shape": "__string",
           "locationName": "role"
@@ -4486,9 +4523,9 @@
           "shape": "JobStatus",
           "locationName": "status"
         },
-        "StatusUpdateIntervalInSecs": {
-          "shape": "__integerMin10Max600",
-          "locationName": "statusUpdateIntervalInSecs"
+        "StatusUpdateInterval": {
+          "shape": "StatusUpdateInterval",
+          "locationName": "statusUpdateInterval"
         },
         "Timing": {
           "shape": "Timing",
@@ -4502,6 +4539,14 @@
       "required": [
         "Role",
         "Settings"
+      ]
+    },
+    "JobPhase": {
+      "type": "string",
+      "enum": [
+        "PROBING",
+        "TRANSCODING",
+        "UPLOADING"
       ]
     },
     "JobSettings": {
@@ -4594,9 +4639,9 @@
           "shape": "JobTemplateSettings",
           "locationName": "settings"
         },
-        "StatusUpdateIntervalInSecs": {
-          "shape": "__integerMin10Max600",
-          "locationName": "statusUpdateIntervalInSecs"
+        "StatusUpdateInterval": {
+          "shape": "StatusUpdateInterval",
+          "locationName": "statusUpdateInterval"
         },
         "Type": {
           "shape": "Type",
@@ -5860,6 +5905,10 @@
           "shape": "__stringPatternS3",
           "locationName": "destination"
         },
+        "DestinationSettings": {
+          "shape": "DestinationSettings",
+          "locationName": "destinationSettings"
+        },
         "Encryption": {
           "shape": "MsSmoothEncryptionSettings",
           "locationName": "encryption"
@@ -6485,6 +6534,35 @@
         "PASSTHROUGH"
       ]
     },
+    "S3DestinationSettings": {
+      "type": "structure",
+      "members": {
+        "Encryption": {
+          "shape": "S3EncryptionSettings",
+          "locationName": "encryption"
+        }
+      }
+    },
+    "S3EncryptionSettings": {
+      "type": "structure",
+      "members": {
+        "EncryptionType": {
+          "shape": "S3ServerSideEncryptionType",
+          "locationName": "encryptionType"
+        },
+        "KmsKeyArn": {
+          "shape": "__stringPatternArnAwsUsGovKmsAZ26EastWestCentralNorthSouthEastWest1912D12KeyAFAF098AFAF094AFAF094AFAF094AFAF0912",
+          "locationName": "kmsKeyArn"
+        }
+      }
+    },
+    "S3ServerSideEncryptionType": {
+      "type": "string",
+      "enum": [
+        "SERVER_SIDE_ENCRYPTION_S3",
+        "SERVER_SIDE_ENCRYPTION_KMS"
+      ]
+    },
     "ScalingBehavior": {
       "type": "string",
       "enum": [
@@ -6551,6 +6629,26 @@
           "locationName": "url"
         }
       }
+    },
+    "StatusUpdateInterval": {
+      "type": "string",
+      "enum": [
+        "SECONDS_10",
+        "SECONDS_12",
+        "SECONDS_15",
+        "SECONDS_20",
+        "SECONDS_30",
+        "SECONDS_60",
+        "SECONDS_120",
+        "SECONDS_180",
+        "SECONDS_240",
+        "SECONDS_300",
+        "SECONDS_360",
+        "SECONDS_420",
+        "SECONDS_480",
+        "SECONDS_540",
+        "SECONDS_600"
+      ]
     },
     "TagResourceRequest": {
       "type": "structure",
@@ -6780,9 +6878,9 @@
           "shape": "JobTemplateSettings",
           "locationName": "settings"
         },
-        "StatusUpdateIntervalInSecs": {
-          "shape": "__integerMin10Max600",
-          "locationName": "statusUpdateIntervalInSecs"
+        "StatusUpdateInterval": {
+          "shape": "StatusUpdateInterval",
+          "locationName": "statusUpdateInterval"
         }
       },
       "required": [
@@ -7245,11 +7343,6 @@
       "type": "integer",
       "min": 10,
       "max": 48
-    },
-    "__integerMin10Max600": {
-      "type": "long",
-      "min": 10,
-      "max": 600
     },
     "__integerMin16Max24": {
       "type": "integer",
@@ -7757,6 +7850,10 @@
     "__stringPatternArnAwsUsGovAcm": {
       "type": "string",
       "pattern": "^arn:aws(-us-gov)?:acm:"
+    },
+    "__stringPatternArnAwsUsGovKmsAZ26EastWestCentralNorthSouthEastWest1912D12KeyAFAF098AFAF094AFAF094AFAF094AFAF0912": {
+      "type": "string",
+      "pattern": "^arn:aws(-us-gov)?:kms:[a-z-]{2,6}-(east|west|central|((north|south)(east|west)?))-[1-9]{1,2}:\\d{12}:key/[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
     },
     "__stringPatternDD": {
       "type": "string",
