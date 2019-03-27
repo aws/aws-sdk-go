@@ -46,6 +46,27 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "CreateTaskSet":{
+      "name":"CreateTaskSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateTaskSetRequest"},
+      "output":{"shape":"CreateTaskSetResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ClientException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClusterNotFoundException"},
+        {"shape":"UnsupportedFeatureException"},
+        {"shape":"PlatformUnknownException"},
+        {"shape":"PlatformTaskDefinitionIncompatibilityException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceNotFoundException"},
+        {"shape":"ServiceNotActiveException"}
+      ]
+    },
     "DeleteAccountSetting":{
       "name":"DeleteAccountSetting",
       "http":{
@@ -106,6 +127,26 @@
         {"shape":"InvalidParameterException"},
         {"shape":"ClusterNotFoundException"},
         {"shape":"ServiceNotFoundException"}
+      ]
+    },
+    "DeleteTaskSet":{
+      "name":"DeleteTaskSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteTaskSetRequest"},
+      "output":{"shape":"DeleteTaskSetResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ClientException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClusterNotFoundException"},
+        {"shape":"UnsupportedFeatureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceNotFoundException"},
+        {"shape":"ServiceNotActiveException"},
+        {"shape":"TaskSetNotFoundException"}
       ]
     },
     "DeregisterContainerInstance":{
@@ -193,6 +234,25 @@
         {"shape":"ServerException"},
         {"shape":"ClientException"},
         {"shape":"InvalidParameterException"}
+      ]
+    },
+    "DescribeTaskSets":{
+      "name":"DescribeTaskSets",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeTaskSetsRequest"},
+      "output":{"shape":"DescribeTaskSetsResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ClientException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClusterNotFoundException"},
+        {"shape":"UnsupportedFeatureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceNotFoundException"},
+        {"shape":"ServiceNotActiveException"}
       ]
     },
     "DescribeTasks":{
@@ -586,6 +646,47 @@
         {"shape":"PlatformTaskDefinitionIncompatibilityException"},
         {"shape":"AccessDeniedException"}
       ]
+    },
+    "UpdateServicePrimaryTaskSet":{
+      "name":"UpdateServicePrimaryTaskSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateServicePrimaryTaskSetRequest"},
+      "output":{"shape":"UpdateServicePrimaryTaskSetResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ClientException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClusterNotFoundException"},
+        {"shape":"UnsupportedFeatureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceNotFoundException"},
+        {"shape":"ServiceNotActiveException"},
+        {"shape":"TaskSetNotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "UpdateTaskSet":{
+      "name":"UpdateTaskSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateTaskSetRequest"},
+      "output":{"shape":"UpdateTaskSetResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ClientException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClusterNotFoundException"},
+        {"shape":"UnsupportedFeatureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceNotFoundException"},
+        {"shape":"ServiceNotActiveException"},
+        {"shape":"TaskSetNotFoundException"}
+      ]
     }
   },
   "shapes":{
@@ -943,10 +1044,7 @@
     },
     "CreateServiceRequest":{
       "type":"structure",
-      "required":[
-        "serviceName",
-        "taskDefinition"
-      ],
+      "required":["serviceName"],
       "members":{
         "cluster":{"shape":"String"},
         "serviceName":{"shape":"String"},
@@ -974,6 +1072,33 @@
       "type":"structure",
       "members":{
         "service":{"shape":"Service"}
+      }
+    },
+    "CreateTaskSetRequest":{
+      "type":"structure",
+      "required":[
+        "service",
+        "cluster",
+        "taskDefinition"
+      ],
+      "members":{
+        "service":{"shape":"String"},
+        "cluster":{"shape":"String"},
+        "externalId":{"shape":"String"},
+        "taskDefinition":{"shape":"String"},
+        "networkConfiguration":{"shape":"NetworkConfiguration"},
+        "loadBalancers":{"shape":"LoadBalancers"},
+        "serviceRegistries":{"shape":"ServiceRegistries"},
+        "launchType":{"shape":"LaunchType"},
+        "platformVersion":{"shape":"String"},
+        "scale":{"shape":"Scale"},
+        "clientToken":{"shape":"String"}
+      }
+    },
+    "CreateTaskSetResponse":{
+      "type":"structure",
+      "members":{
+        "taskSet":{"shape":"TaskSet"}
       }
     },
     "DeleteAccountSettingRequest":{
@@ -1032,6 +1157,26 @@
         "service":{"shape":"Service"}
       }
     },
+    "DeleteTaskSetRequest":{
+      "type":"structure",
+      "required":[
+        "cluster",
+        "service",
+        "taskSet"
+      ],
+      "members":{
+        "cluster":{"shape":"String"},
+        "service":{"shape":"String"},
+        "taskSet":{"shape":"String"},
+        "force":{"shape":"BoxedBoolean"}
+      }
+    },
+    "DeleteTaskSetResponse":{
+      "type":"structure",
+      "members":{
+        "taskSet":{"shape":"TaskSet"}
+      }
+    },
     "Deployment":{
       "type":"structure",
       "members":{
@@ -1066,7 +1211,8 @@
       "type":"string",
       "enum":[
         "ECS",
-        "CODE_DEPLOY"
+        "CODE_DEPLOY",
+        "EXTERNAL"
       ]
     },
     "Deployments":{
@@ -1160,6 +1306,25 @@
       "members":{
         "taskDefinition":{"shape":"TaskDefinition"},
         "tags":{"shape":"Tags"}
+      }
+    },
+    "DescribeTaskSetsRequest":{
+      "type":"structure",
+      "required":[
+        "cluster",
+        "service"
+      ],
+      "members":{
+        "cluster":{"shape":"String"},
+        "service":{"shape":"String"},
+        "taskSets":{"shape":"StringList"}
+      }
+    },
+    "DescribeTaskSetsResponse":{
+      "type":"structure",
+      "members":{
+        "taskSets":{"shape":"TaskSets"},
+        "failures":{"shape":"Failures"}
       }
     },
     "DescribeTasksRequest":{
@@ -2328,6 +2493,8 @@
       "members":{
         "id":{"shape":"String"},
         "taskSetArn":{"shape":"String"},
+        "serviceArn":{"shape":"String"},
+        "clusterArn":{"shape":"String"},
         "startedBy":{"shape":"String"},
         "externalId":{"shape":"String"},
         "status":{"shape":"String"},
@@ -2341,10 +2508,17 @@
         "platformVersion":{"shape":"String"},
         "networkConfiguration":{"shape":"NetworkConfiguration"},
         "loadBalancers":{"shape":"LoadBalancers"},
+        "serviceRegistries":{"shape":"ServiceRegistries"},
         "scale":{"shape":"Scale"},
         "stabilityStatus":{"shape":"StabilityStatus"},
         "stabilityStatusAt":{"shape":"Timestamp"}
       }
+    },
+    "TaskSetNotFoundException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
     },
     "TaskSets":{
       "type":"list",
@@ -2484,6 +2658,25 @@
       },
       "exception":true
     },
+    "UpdateServicePrimaryTaskSetRequest":{
+      "type":"structure",
+      "required":[
+        "cluster",
+        "service",
+        "primaryTaskSet"
+      ],
+      "members":{
+        "cluster":{"shape":"String"},
+        "service":{"shape":"String"},
+        "primaryTaskSet":{"shape":"String"}
+      }
+    },
+    "UpdateServicePrimaryTaskSetResponse":{
+      "type":"structure",
+      "members":{
+        "taskSet":{"shape":"TaskSet"}
+      }
+    },
     "UpdateServiceRequest":{
       "type":"structure",
       "required":["service"],
@@ -2503,6 +2696,27 @@
       "type":"structure",
       "members":{
         "service":{"shape":"Service"}
+      }
+    },
+    "UpdateTaskSetRequest":{
+      "type":"structure",
+      "required":[
+        "cluster",
+        "service",
+        "taskSet",
+        "scale"
+      ],
+      "members":{
+        "cluster":{"shape":"String"},
+        "service":{"shape":"String"},
+        "taskSet":{"shape":"String"},
+        "scale":{"shape":"Scale"}
+      }
+    },
+    "UpdateTaskSetResponse":{
+      "type":"structure",
+      "members":{
+        "taskSet":{"shape":"TaskSet"}
       }
     },
     "VersionInfo":{

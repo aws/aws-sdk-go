@@ -108,6 +108,23 @@
         "DescribeUserResponse$User": "<p>An array containing the properties of the user account for the <code>ServerID</code> value that you specified.</p>"
       }
     },
+    "EndpointDetails": {
+      "base": null,
+      "refs": {
+        "CreateServerRequest$EndpointDetails": null,
+        "DescribedServer$EndpointDetails": null,
+        "UpdateServerRequest$EndpointDetails": null
+      }
+    },
+    "EndpointType": {
+      "base": null,
+      "refs": {
+        "CreateServerRequest$EndpointType": null,
+        "DescribedServer$EndpointType": null,
+        "ListedServer$EndpointType": null,
+        "UpdateServerRequest$EndpointType": null
+      }
+    },
     "HomeDirectory": {
       "base": null,
       "refs": {
@@ -283,14 +300,14 @@
     "Role": {
       "base": null,
       "refs": {
-        "CreateServerRequest$LoggingRole": "<p>A value that allows the service to write your SFTP users’ activity to your Amazon CloudWatch logs for monitoring and auditing purposes.</p>",
-        "CreateUserRequest$Role": "<p>The IAM role that controls your user’s access to your Amazon S3 bucket. The policies attached to this role will determine the level of access you want to provide your users when transferring files into and out of your Amazon S3 bucket or buckets. The IAM role should also contain a trust relationship that allows the SFTP server to access your resources when servicing your SFTP user’s transfer requests.</p>",
+        "CreateServerRequest$LoggingRole": "<p>A value that allows the service to write your SFTP users' activity to your Amazon CloudWatch logs for monitoring and auditing purposes.</p>",
+        "CreateUserRequest$Role": "<p>The IAM role that controls your user's access to your Amazon S3 bucket. The policies attached to this role will determine the level of access you want to provide your users when transferring files into and out of your Amazon S3 bucket or buckets. The IAM role should also contain a trust relationship that allows the SFTP server to access your resources when servicing your SFTP user's transfer requests.</p>",
         "DescribedServer$LoggingRole": "<p>This property is an AWS Identity and Access Management (IAM) entity that allows the server to turn on Amazon CloudWatch logging for Amazon S3 events. When set, user activity can be view in your CloudWatch logs.</p>",
-        "DescribedUser$Role": "<p>This property specifies the IAM role that controls your user’s access to your Amazon S3 bucket. The policies attached to this role will determine the level of access you want to provide your users when transferring files into and out of your Amazon S3 bucket or buckets. The IAM role should also contain a trust relationship that allows the SFTP server to access your resources when servicing your SFTP user’s transfer requests.</p>",
+        "DescribedUser$Role": "<p>This property specifies the IAM role that controls your user's access to your Amazon S3 bucket. The policies attached to this role will determine the level of access you want to provide your users when transferring files into and out of your Amazon S3 bucket or buckets. The IAM role should also contain a trust relationship that allows the SFTP server to access your resources when servicing your SFTP user's transfer requests.</p>",
         "IdentityProviderDetails$InvocationRole": "<p>The <code>Role</code> parameter provides the type of <code>InvocationRole</code> used to authenticate the user account.</p>",
         "ListedServer$LoggingRole": "<p>The AWS Identity and Access Management entity that allows the server to turn on Amazon CloudWatch logging.</p>",
         "ListedUser$Role": "<p>The role in use by this user. A <i>role</i> is an AWS Identity and Access Management (IAM) entity that in this case allows the SFTP server to act on a user's behalf. It allows the server to inherit the trust relationship that enables that user to perform file operations to their Amazon S3 bucket.</p>",
-        "UpdateUserRequest$Role": "<p>The IAM role that controls your user’s access to your Amazon S3 bucket. The policies attached to this role will determine the level of access you want to provide your users when transferring files into and out of your Amazon S3 bucket or buckets. The IAM role should also contain a trust relationship that allows the Secure File Transfer Protocol (SFTP) server to access your resources when servicing your SFTP user’s transfer requests.</p>"
+        "UpdateUserRequest$Role": "<p>The IAM role that controls your user's access to your Amazon S3 bucket. The policies attached to this role will determine the level of access you want to provide your users when transferring files into and out of your Amazon S3 bucket or buckets. The IAM role should also contain a trust relationship that allows the Secure File Transfer Protocol (SFTP) server to access your resources when servicing your SFTP user's transfer requests.</p>"
       }
     },
     "ServerId": {
@@ -354,7 +371,7 @@
     "SshPublicKeyId": {
       "base": null,
       "refs": {
-        "DeleteSshPublicKeyRequest$SshPublicKeyId": "<p>A unique identifier used to reference your user’s specific SSH key.</p>",
+        "DeleteSshPublicKeyRequest$SshPublicKeyId": "<p>A unique identifier used to reference your user's specific SSH key.</p>",
         "ImportSshPublicKeyResponse$SshPublicKeyId": "<p>This identifier is the name given to a public key by the system that was imported.</p>",
         "SshPublicKey$SshPublicKeyId": "<p>The <code>SshPublicKeyId</code> parameter contains the identifier of the public key.</p>"
       }
@@ -499,6 +516,12 @@
       "base": null,
       "refs": {
         "TestIdentityProviderRequest$UserPassword": "<p>The password of the user account to be tested.</p>"
+      }
+    },
+    "VpcEndpointId": {
+      "base": null,
+      "refs": {
+        "EndpointDetails$VpcEndpointId": null
       }
     }
   }

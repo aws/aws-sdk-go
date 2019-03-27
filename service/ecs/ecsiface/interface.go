@@ -68,6 +68,10 @@ type ECSAPI interface {
 	CreateServiceWithContext(aws.Context, *ecs.CreateServiceInput, ...request.Option) (*ecs.CreateServiceOutput, error)
 	CreateServiceRequest(*ecs.CreateServiceInput) (*request.Request, *ecs.CreateServiceOutput)
 
+	CreateTaskSet(*ecs.CreateTaskSetInput) (*ecs.CreateTaskSetOutput, error)
+	CreateTaskSetWithContext(aws.Context, *ecs.CreateTaskSetInput, ...request.Option) (*ecs.CreateTaskSetOutput, error)
+	CreateTaskSetRequest(*ecs.CreateTaskSetInput) (*request.Request, *ecs.CreateTaskSetOutput)
+
 	DeleteAccountSetting(*ecs.DeleteAccountSettingInput) (*ecs.DeleteAccountSettingOutput, error)
 	DeleteAccountSettingWithContext(aws.Context, *ecs.DeleteAccountSettingInput, ...request.Option) (*ecs.DeleteAccountSettingOutput, error)
 	DeleteAccountSettingRequest(*ecs.DeleteAccountSettingInput) (*request.Request, *ecs.DeleteAccountSettingOutput)
@@ -83,6 +87,10 @@ type ECSAPI interface {
 	DeleteService(*ecs.DeleteServiceInput) (*ecs.DeleteServiceOutput, error)
 	DeleteServiceWithContext(aws.Context, *ecs.DeleteServiceInput, ...request.Option) (*ecs.DeleteServiceOutput, error)
 	DeleteServiceRequest(*ecs.DeleteServiceInput) (*request.Request, *ecs.DeleteServiceOutput)
+
+	DeleteTaskSet(*ecs.DeleteTaskSetInput) (*ecs.DeleteTaskSetOutput, error)
+	DeleteTaskSetWithContext(aws.Context, *ecs.DeleteTaskSetInput, ...request.Option) (*ecs.DeleteTaskSetOutput, error)
+	DeleteTaskSetRequest(*ecs.DeleteTaskSetInput) (*request.Request, *ecs.DeleteTaskSetOutput)
 
 	DeregisterContainerInstance(*ecs.DeregisterContainerInstanceInput) (*ecs.DeregisterContainerInstanceOutput, error)
 	DeregisterContainerInstanceWithContext(aws.Context, *ecs.DeregisterContainerInstanceInput, ...request.Option) (*ecs.DeregisterContainerInstanceOutput, error)
@@ -107,6 +115,10 @@ type ECSAPI interface {
 	DescribeTaskDefinition(*ecs.DescribeTaskDefinitionInput) (*ecs.DescribeTaskDefinitionOutput, error)
 	DescribeTaskDefinitionWithContext(aws.Context, *ecs.DescribeTaskDefinitionInput, ...request.Option) (*ecs.DescribeTaskDefinitionOutput, error)
 	DescribeTaskDefinitionRequest(*ecs.DescribeTaskDefinitionInput) (*request.Request, *ecs.DescribeTaskDefinitionOutput)
+
+	DescribeTaskSets(*ecs.DescribeTaskSetsInput) (*ecs.DescribeTaskSetsOutput, error)
+	DescribeTaskSetsWithContext(aws.Context, *ecs.DescribeTaskSetsInput, ...request.Option) (*ecs.DescribeTaskSetsOutput, error)
+	DescribeTaskSetsRequest(*ecs.DescribeTaskSetsInput) (*request.Request, *ecs.DescribeTaskSetsOutput)
 
 	DescribeTasks(*ecs.DescribeTasksInput) (*ecs.DescribeTasksOutput, error)
 	DescribeTasksWithContext(aws.Context, *ecs.DescribeTasksInput, ...request.Option) (*ecs.DescribeTasksOutput, error)
@@ -229,6 +241,14 @@ type ECSAPI interface {
 	UpdateService(*ecs.UpdateServiceInput) (*ecs.UpdateServiceOutput, error)
 	UpdateServiceWithContext(aws.Context, *ecs.UpdateServiceInput, ...request.Option) (*ecs.UpdateServiceOutput, error)
 	UpdateServiceRequest(*ecs.UpdateServiceInput) (*request.Request, *ecs.UpdateServiceOutput)
+
+	UpdateServicePrimaryTaskSet(*ecs.UpdateServicePrimaryTaskSetInput) (*ecs.UpdateServicePrimaryTaskSetOutput, error)
+	UpdateServicePrimaryTaskSetWithContext(aws.Context, *ecs.UpdateServicePrimaryTaskSetInput, ...request.Option) (*ecs.UpdateServicePrimaryTaskSetOutput, error)
+	UpdateServicePrimaryTaskSetRequest(*ecs.UpdateServicePrimaryTaskSetInput) (*request.Request, *ecs.UpdateServicePrimaryTaskSetOutput)
+
+	UpdateTaskSet(*ecs.UpdateTaskSetInput) (*ecs.UpdateTaskSetOutput, error)
+	UpdateTaskSetWithContext(aws.Context, *ecs.UpdateTaskSetInput, ...request.Option) (*ecs.UpdateTaskSetOutput, error)
+	UpdateTaskSetRequest(*ecs.UpdateTaskSetInput) (*request.Request, *ecs.UpdateTaskSetOutput)
 
 	WaitUntilServicesInactive(*ecs.DescribeServicesInput) error
 	WaitUntilServicesInactiveWithContext(aws.Context, *ecs.DescribeServicesInput, ...request.WaiterOption) error

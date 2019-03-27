@@ -134,6 +134,13 @@ type AppMeshAPI interface {
 	ListRoutesPages(*appmesh.ListRoutesInput, func(*appmesh.ListRoutesOutput, bool) bool) error
 	ListRoutesPagesWithContext(aws.Context, *appmesh.ListRoutesInput, func(*appmesh.ListRoutesOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*appmesh.ListTagsForResourceInput) (*appmesh.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *appmesh.ListTagsForResourceInput, ...request.Option) (*appmesh.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*appmesh.ListTagsForResourceInput) (*request.Request, *appmesh.ListTagsForResourceOutput)
+
+	ListTagsForResourcePages(*appmesh.ListTagsForResourceInput, func(*appmesh.ListTagsForResourceOutput, bool) bool) error
+	ListTagsForResourcePagesWithContext(aws.Context, *appmesh.ListTagsForResourceInput, func(*appmesh.ListTagsForResourceOutput, bool) bool, ...request.Option) error
+
 	ListVirtualNodes(*appmesh.ListVirtualNodesInput) (*appmesh.ListVirtualNodesOutput, error)
 	ListVirtualNodesWithContext(aws.Context, *appmesh.ListVirtualNodesInput, ...request.Option) (*appmesh.ListVirtualNodesOutput, error)
 	ListVirtualNodesRequest(*appmesh.ListVirtualNodesInput) (*request.Request, *appmesh.ListVirtualNodesOutput)
@@ -154,6 +161,18 @@ type AppMeshAPI interface {
 
 	ListVirtualServicesPages(*appmesh.ListVirtualServicesInput, func(*appmesh.ListVirtualServicesOutput, bool) bool) error
 	ListVirtualServicesPagesWithContext(aws.Context, *appmesh.ListVirtualServicesInput, func(*appmesh.ListVirtualServicesOutput, bool) bool, ...request.Option) error
+
+	TagResource(*appmesh.TagResourceInput) (*appmesh.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *appmesh.TagResourceInput, ...request.Option) (*appmesh.TagResourceOutput, error)
+	TagResourceRequest(*appmesh.TagResourceInput) (*request.Request, *appmesh.TagResourceOutput)
+
+	UntagResource(*appmesh.UntagResourceInput) (*appmesh.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *appmesh.UntagResourceInput, ...request.Option) (*appmesh.UntagResourceOutput, error)
+	UntagResourceRequest(*appmesh.UntagResourceInput) (*request.Request, *appmesh.UntagResourceOutput)
+
+	UpdateMesh(*appmesh.UpdateMeshInput) (*appmesh.UpdateMeshOutput, error)
+	UpdateMeshWithContext(aws.Context, *appmesh.UpdateMeshInput, ...request.Option) (*appmesh.UpdateMeshOutput, error)
+	UpdateMeshRequest(*appmesh.UpdateMeshInput) (*request.Request, *appmesh.UpdateMeshOutput)
 
 	UpdateRoute(*appmesh.UpdateRouteInput) (*appmesh.UpdateRouteOutput, error)
 	UpdateRouteWithContext(aws.Context, *appmesh.UpdateRouteInput, ...request.Option) (*appmesh.UpdateRouteOutput, error)
