@@ -1,3 +1,16 @@
+Release v1.19.4 (2019-03-27)
+===
+
+### Service Client Updates
+* `service/directconnect`: Updates service API and documentation
+  * Direct Connect gateway enables you to establish connectivity between your on-premise networks and Amazon Virtual Private Clouds (VPCs) in any commercial AWS Region (except in China) using AWS Direct Connect connections at any AWS Direct Connect location. This release enables multi-account support for Direct Connect gateway, with multi-account support for Direct Connect gateway, you can associate up to ten VPCs from any AWS account with a Direct Connect gateway. The AWS accounts owning VPCs and the Direct Connect gateway must belong to the same AWS payer account ID. This release also enables Direct Connect Gateway owners to allocate allowed prefixes from each associated VPCs.
+* `service/fms`: Updates service API, documentation, and paginators
+* `service/iotanalytics`: Updates service API and documentation
+* `service/mediaconvert`: Updates service API and documentation
+  * This release adds support for detailed job progress status and S3 server-side output encryption. In addition, the anti-alias filter will now be automatically applied to all outputs
+* `service/robomaker`: Updates service API, documentation, and paginators
+* `service/transcribe`: Updates service API and documentation
+
 Release v1.19.3 (2019-03-27)
 ===
 

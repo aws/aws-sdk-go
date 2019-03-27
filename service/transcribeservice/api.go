@@ -993,9 +993,23 @@ type CreateVocabularyInput struct {
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
 
 	// An array of strings that contains the vocabulary entries.
+	Phrases []*string `type:"list"`
+
+	// The S3 location of the text file that contains the definition of the custom
+	// vocabulary. The URI must be in the same region as the API endpoint that you
+	// are calling. The general form is
 	//
-	// Phrases is a required field
-	Phrases []*string `type:"list" required:"true"`
+	// https://s3-<aws-region>.amazonaws.com/<bucket-name>/<keyprefix>/<objectkey>
+	//
+	// For example:
+	//
+	// https://s3-us-east-1.amazonaws.com/examplebucket/vocab.txt
+	//
+	// For more information about S3 object names, see Object Keys (http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
+	// in the Amazon S3 Developer Guide.
+	//
+	// For more information about custom vocabularies, see Custom Vocabularies (http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary).
+	VocabularyFileUri *string `min:"1" type:"string"`
 
 	// The name of the vocabulary. The name must be unique within an AWS account.
 	// The name is case-sensitive.
@@ -1020,8 +1034,8 @@ func (s *CreateVocabularyInput) Validate() error {
 	if s.LanguageCode == nil {
 		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
 	}
-	if s.Phrases == nil {
-		invalidParams.Add(request.NewErrParamRequired("Phrases"))
+	if s.VocabularyFileUri != nil && len(*s.VocabularyFileUri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyFileUri", 1))
 	}
 	if s.VocabularyName == nil {
 		invalidParams.Add(request.NewErrParamRequired("VocabularyName"))
@@ -1045,6 +1059,12 @@ func (s *CreateVocabularyInput) SetLanguageCode(v string) *CreateVocabularyInput
 // SetPhrases sets the Phrases field's value.
 func (s *CreateVocabularyInput) SetPhrases(v []*string) *CreateVocabularyInput {
 	s.Phrases = v
+	return s
+}
+
+// SetVocabularyFileUri sets the VocabularyFileUri field's value.
+func (s *CreateVocabularyInput) SetVocabularyFileUri(v string) *CreateVocabularyInput {
+	s.VocabularyFileUri = &v
 	return s
 }
 
@@ -2205,9 +2225,23 @@ type UpdateVocabularyInput struct {
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
 
 	// An array of strings containing the vocabulary entries.
+	Phrases []*string `type:"list"`
+
+	// The S3 location of the text file that contains the definition of the custom
+	// vocabulary. The URI must be in the same region as the API endpoint that you
+	// are calling. The general form is
 	//
-	// Phrases is a required field
-	Phrases []*string `type:"list" required:"true"`
+	// https://s3-<aws-region>.amazonaws.com/<bucket-name>/<keyprefix>/<objectkey>
+	//
+	// For example:
+	//
+	// https://s3-us-east-1.amazonaws.com/examplebucket/vocab.txt
+	//
+	// For more information about S3 object names, see Object Keys (http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
+	// in the Amazon S3 Developer Guide.
+	//
+	// For more information about custom vocabularies, see Custom Vocabularies (http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary).
+	VocabularyFileUri *string `min:"1" type:"string"`
 
 	// The name of the vocabulary to update. The name is case-sensitive.
 	//
@@ -2231,8 +2265,8 @@ func (s *UpdateVocabularyInput) Validate() error {
 	if s.LanguageCode == nil {
 		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
 	}
-	if s.Phrases == nil {
-		invalidParams.Add(request.NewErrParamRequired("Phrases"))
+	if s.VocabularyFileUri != nil && len(*s.VocabularyFileUri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyFileUri", 1))
 	}
 	if s.VocabularyName == nil {
 		invalidParams.Add(request.NewErrParamRequired("VocabularyName"))
@@ -2256,6 +2290,12 @@ func (s *UpdateVocabularyInput) SetLanguageCode(v string) *UpdateVocabularyInput
 // SetPhrases sets the Phrases field's value.
 func (s *UpdateVocabularyInput) SetPhrases(v []*string) *UpdateVocabularyInput {
 	s.Phrases = v
+	return s
+}
+
+// SetVocabularyFileUri sets the VocabularyFileUri field's value.
+func (s *UpdateVocabularyInput) SetVocabularyFileUri(v string) *UpdateVocabularyInput {
+	s.VocabularyFileUri = &v
 	return s
 }
 
