@@ -563,7 +563,8 @@
       "members":{
         "GroupName":{"shape":"IpGroupName"},
         "GroupDesc":{"shape":"IpGroupDesc"},
-        "UserRules":{"shape":"IpRuleList"}
+        "UserRules":{"shape":"IpRuleList"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateIpGroupResult":{
@@ -916,7 +917,8 @@
         "Ec2ImageId":{"shape":"Ec2ImageId"},
         "IngestionProcess":{"shape":"WorkspaceImageIngestionProcess"},
         "ImageName":{"shape":"WorkspaceImageName"},
-        "ImageDescription":{"shape":"WorkspaceImageDescription"}
+        "ImageDescription":{"shape":"WorkspaceImageDescription"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "ImportWorkspaceImageResult":{

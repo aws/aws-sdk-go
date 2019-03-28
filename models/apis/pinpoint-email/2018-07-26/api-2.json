@@ -27,7 +27,8 @@
         {"shape":"NotFoundException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"LimitExceededException"},
-        {"shape":"BadRequestException"}
+        {"shape":"BadRequestException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "CreateConfigurationSetEventDestination":{
@@ -58,7 +59,8 @@
         {"shape":"AlreadyExistsException"},
         {"shape":"LimitExceededException"},
         {"shape":"TooManyRequestsException"},
-        {"shape":"BadRequestException"}
+        {"shape":"BadRequestException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "CreateDeliverabilityTestReport":{
@@ -77,7 +79,8 @@
         {"shape":"NotFoundException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"LimitExceededException"},
-        {"shape":"BadRequestException"}
+        {"shape":"BadRequestException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "CreateEmailIdentity":{
@@ -91,7 +94,8 @@
       "errors":[
         {"shape":"LimitExceededException"},
         {"shape":"TooManyRequestsException"},
-        {"shape":"BadRequestException"}
+        {"shape":"BadRequestException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "DeleteConfigurationSet":{
@@ -105,7 +109,8 @@
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"TooManyRequestsException"},
-        {"shape":"BadRequestException"}
+        {"shape":"BadRequestException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "DeleteConfigurationSetEventDestination":{
@@ -133,7 +138,8 @@
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"TooManyRequestsException"},
-        {"shape":"BadRequestException"}
+        {"shape":"BadRequestException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "DeleteEmailIdentity":{
@@ -147,7 +153,8 @@
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"TooManyRequestsException"},
-        {"shape":"BadRequestException"}
+        {"shape":"BadRequestException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "GetAccount":{
@@ -342,6 +349,20 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v1/email/tags"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "PutAccountDedicatedIpWarmupAttributes":{
       "name":"PutAccountDedicatedIpWarmupAttributes",
       "http":{
@@ -529,6 +550,36 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/email/tags"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v1/email/tags"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "UpdateConfigurationSetEventDestination":{
       "name":"UpdateConfigurationSetEventDestination",
       "http":{
@@ -629,6 +680,13 @@
       "type":"list",
       "member":{"shape":"CloudWatchDimensionConfiguration"}
     },
+    "ConcurrentModificationException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{"httpStatusCode":500},
+      "exception":true
+    },
     "ConfigurationSetName":{"type":"string"},
     "ConfigurationSetNameList":{
       "type":"list",
@@ -671,7 +729,8 @@
         "TrackingOptions":{"shape":"TrackingOptions"},
         "DeliveryOptions":{"shape":"DeliveryOptions"},
         "ReputationOptions":{"shape":"ReputationOptions"},
-        "SendingOptions":{"shape":"SendingOptions"}
+        "SendingOptions":{"shape":"SendingOptions"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateConfigurationSetResponse":{
@@ -683,7 +742,8 @@
       "type":"structure",
       "required":["PoolName"],
       "members":{
-        "PoolName":{"shape":"PoolName"}
+        "PoolName":{"shape":"PoolName"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateDedicatedIpPoolResponse":{
@@ -700,7 +760,8 @@
       "members":{
         "ReportName":{"shape":"ReportName"},
         "FromEmailAddress":{"shape":"EmailAddress"},
-        "Content":{"shape":"EmailContent"}
+        "Content":{"shape":"EmailContent"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateDeliverabilityTestReportResponse":{
@@ -718,7 +779,8 @@
       "type":"structure",
       "required":["EmailIdentity"],
       "members":{
-        "EmailIdentity":{"shape":"Identity"}
+        "EmailIdentity":{"shape":"Identity"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateEmailIdentityResponse":{
@@ -1278,6 +1340,20 @@
       "type":"list",
       "member":{"shape":"PoolName"}
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"AmazonResourceName"}
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "required":["Tags"],
+      "members":{
+        "Tags":{"shape":"TagList"}
+      }
+    },
     "MailFromAttributes":{
       "type":"structure",
       "required":[
@@ -1648,6 +1724,43 @@
         "TopicArn":{"shape":"AmazonResourceName"}
       }
     },
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"TagKey"},
+        "Value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{"type":"string"},
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"}
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"}
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "Tags"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"AmazonResourceName"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{"type":"string"},
     "Timestamp":{"type":"timestamp"},
     "TooManyRequestsException":{
       "type":"structure",
@@ -1661,6 +1774,30 @@
       "required":["CustomRedirectDomain"],
       "members":{
         "CustomRedirectDomain":{"shape":"CustomRedirectDomain"}
+      }
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceArn":{
+          "shape":"AmazonResourceName",
+          "location":"querystring",
+          "locationName":"ResourceArn"
+        },
+        "TagKeys":{
+          "shape":"TagKeyList",
+          "location":"querystring",
+          "locationName":"TagKeys"
+        }
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "UpdateConfigurationSetEventDestinationRequest":{

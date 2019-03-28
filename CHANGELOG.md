@@ -1,3 +1,15 @@
+Release v1.19.5 (2019-03-28)
+===
+
+### Service Client Updates
+* `service/medialive`: Updates service API and documentation
+  * This release adds a new output locking mode synchronized to the Unix epoch.
+* `service/pinpoint-email`: Updates service API and documentation
+* `service/servicecatalog`: Updates service API and documentation
+  * Adds "Tags" field in UpdateProvisionedProduct API. The product should have a new RESOURCE_UPDATE Constraint with TagUpdateOnProvisionedProduct field set to ALLOWED for it to work. See API docs for CreateConstraint for more information
+* `service/workspaces`: Updates service API and documentation
+  * Amazon WorkSpaces adds tagging support for WorkSpaces Images, WorkSpaces directories, WorkSpaces bundles and IP Access control groups.
+
 Release v1.19.4 (2019-03-27)
 ===
 
