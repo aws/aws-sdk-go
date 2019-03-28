@@ -87,6 +87,9 @@ func (c *PinpointEmail) CreateConfigurationSetRequest(input *CreateConfiguration
 //   * ErrCodeBadRequestException "BadRequestException"
 //   The input you provided is invalid.
 //
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   The resource is being modified by another operation or thread.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/CreateConfigurationSet
 func (c *PinpointEmail) CreateConfigurationSet(input *CreateConfigurationSetInput) (*CreateConfigurationSetOutput, error) {
 	req, out := c.CreateConfigurationSetRequest(input)
@@ -279,6 +282,9 @@ func (c *PinpointEmail) CreateDedicatedIpPoolRequest(input *CreateDedicatedIpPoo
 //   * ErrCodeBadRequestException "BadRequestException"
 //   The input you provided is invalid.
 //
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   The resource is being modified by another operation or thread.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/CreateDedicatedIpPool
 func (c *PinpointEmail) CreateDedicatedIpPool(input *CreateDedicatedIpPoolInput) (*CreateDedicatedIpPoolOutput, error) {
 	req, out := c.CreateDedicatedIpPoolRequest(input)
@@ -388,6 +394,9 @@ func (c *PinpointEmail) CreateDeliverabilityTestReportRequest(input *CreateDeliv
 //   * ErrCodeBadRequestException "BadRequestException"
 //   The input you provided is invalid.
 //
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   The resource is being modified by another operation or thread.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/CreateDeliverabilityTestReport
 func (c *PinpointEmail) CreateDeliverabilityTestReport(input *CreateDeliverabilityTestReportInput) (*CreateDeliverabilityTestReportOutput, error) {
 	req, out := c.CreateDeliverabilityTestReportRequest(input)
@@ -488,6 +497,9 @@ func (c *PinpointEmail) CreateEmailIdentityRequest(input *CreateEmailIdentityInp
 //   * ErrCodeBadRequestException "BadRequestException"
 //   The input you provided is invalid.
 //
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   The resource is being modified by another operation or thread.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/CreateEmailIdentity
 func (c *PinpointEmail) CreateEmailIdentity(input *CreateEmailIdentityInput) (*CreateEmailIdentityOutput, error) {
 	req, out := c.CreateEmailIdentityRequest(input)
@@ -579,6 +591,9 @@ func (c *PinpointEmail) DeleteConfigurationSetRequest(input *DeleteConfiguration
 //
 //   * ErrCodeBadRequestException "BadRequestException"
 //   The input you provided is invalid.
+//
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   The resource is being modified by another operation or thread.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/DeleteConfigurationSet
 func (c *PinpointEmail) DeleteConfigurationSet(input *DeleteConfigurationSetInput) (*DeleteConfigurationSetOutput, error) {
@@ -759,6 +774,9 @@ func (c *PinpointEmail) DeleteDedicatedIpPoolRequest(input *DeleteDedicatedIpPoo
 //   * ErrCodeBadRequestException "BadRequestException"
 //   The input you provided is invalid.
 //
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   The resource is being modified by another operation or thread.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/DeleteDedicatedIpPool
 func (c *PinpointEmail) DeleteDedicatedIpPool(input *DeleteDedicatedIpPoolInput) (*DeleteDedicatedIpPoolOutput, error) {
 	req, out := c.DeleteDedicatedIpPoolRequest(input)
@@ -845,6 +863,9 @@ func (c *PinpointEmail) DeleteEmailIdentityRequest(input *DeleteEmailIdentityInp
 //
 //   * ErrCodeBadRequestException "BadRequestException"
 //   The input you provided is invalid.
+//
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   The resource is being modified by another operation or thread.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/DeleteEmailIdentity
 func (c *PinpointEmail) DeleteEmailIdentity(input *DeleteEmailIdentityInput) (*DeleteEmailIdentityOutput, error) {
@@ -2373,6 +2394,96 @@ func (c *PinpointEmail) ListEmailIdentitiesPagesWithContext(ctx aws.Context, inp
 	return p.Err()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/ListTagsForResource
+func (c *PinpointEmail) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/email/tags",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for Amazon Pinpoint Email Service.
+//
+// Retrieve a list of the tags (keys and values) that are associated with a
+// specific resource. A tag is a label that you optionally define and associate
+// with a resource in Amazon Pinpoint. Each tag consists of a required tag key and
+// an optional associated tag value. A tag key is a general label that acts
+// as a category for more specific tag values. A tag value acts as a descriptor
+// within a tag key.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint Email Service's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource you attempted to access doesn't exist.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   Too many requests have been made to the operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/ListTagsForResource
+func (c *PinpointEmail) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointEmail) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutAccountDedicatedIpWarmupAttributes = "PutAccountDedicatedIpWarmupAttributes"
 
 // PutAccountDedicatedIpWarmupAttributesRequest generates a "aws/request.Request" representing the
@@ -3550,6 +3661,193 @@ func (c *PinpointEmail) SendEmailWithContext(ctx aws.Context, input *SendEmailIn
 	return out, req.Send()
 }
 
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TagResourceRequest method.
+//    req, resp := client.TagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/TagResource
+func (c *PinpointEmail) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/email/tags",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for Amazon Pinpoint Email Service.
+//
+// Add one or more tags (keys and values) to one or more specified resources.
+// A tag is a label that you optionally define and associate with a resource
+// in Amazon Pinpoint. Tags can help you categorize and manage resources in
+// different ways, such as by purpose, owner, environment, or other criteria.
+// A resource can have as many as 50 tags.
+//
+// Each tag consists of a required tag key and an associated tag value, both
+// of which you define. A tag key is a general label that acts as a category
+// for more specific tag values. A tag value acts as a descriptor within a tag
+// key.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint Email Service's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
+//
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   The resource is being modified by another operation or thread.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource you attempted to access doesn't exist.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   Too many requests have been made to the operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/TagResource
+func (c *PinpointEmail) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointEmail) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UntagResourceRequest method.
+//    req, resp := client.UntagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/UntagResource
+func (c *PinpointEmail) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v1/email/tags",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for Amazon Pinpoint Email Service.
+//
+// Remove one or more tags (keys and values) from a specified resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint Email Service's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
+//
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   The resource is being modified by another operation or thread.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource you attempted to access doesn't exist.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   Too many requests have been made to the operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26/UntagResource
+func (c *PinpointEmail) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointEmail) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateConfigurationSetEventDestination = "UpdateConfigurationSetEventDestination"
 
 // UpdateConfigurationSetEventDestinationRequest generates a "aws/request.Request" representing the
@@ -4045,6 +4343,10 @@ type CreateConfigurationSetInput struct {
 	// you send using the configuration set.
 	SendingOptions *SendingOptions `type:"structure"`
 
+	// An object that defines the tags (keys and values) that you want to associate
+	// with the configuration set.
+	Tags []*Tag `type:"list"`
+
 	// An object that defines the open and click tracking options for emails that
 	// you send using the configuration set.
 	TrackingOptions *TrackingOptions `type:"structure"`
@@ -4063,6 +4365,16 @@ func (s CreateConfigurationSetInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateConfigurationSetInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateConfigurationSetInput"}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.TrackingOptions != nil {
 		if err := s.TrackingOptions.Validate(); err != nil {
 			invalidParams.AddNested("TrackingOptions", err.(request.ErrInvalidParams))
@@ -4099,6 +4411,12 @@ func (s *CreateConfigurationSetInput) SetSendingOptions(v *SendingOptions) *Crea
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateConfigurationSetInput) SetTags(v []*Tag) *CreateConfigurationSetInput {
+	s.Tags = v
+	return s
+}
+
 // SetTrackingOptions sets the TrackingOptions field's value.
 func (s *CreateConfigurationSetInput) SetTrackingOptions(v *TrackingOptions) *CreateConfigurationSetInput {
 	s.TrackingOptions = v
@@ -4129,6 +4447,10 @@ type CreateDedicatedIpPoolInput struct {
 	//
 	// PoolName is a required field
 	PoolName *string `type:"string" required:"true"`
+
+	// An object that defines the tags (keys and values) that you want to associate
+	// with the pool.
+	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation
@@ -4147,6 +4469,16 @@ func (s *CreateDedicatedIpPoolInput) Validate() error {
 	if s.PoolName == nil {
 		invalidParams.Add(request.NewErrParamRequired("PoolName"))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4157,6 +4489,12 @@ func (s *CreateDedicatedIpPoolInput) Validate() error {
 // SetPoolName sets the PoolName field's value.
 func (s *CreateDedicatedIpPoolInput) SetPoolName(v string) *CreateDedicatedIpPoolInput {
 	s.PoolName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDedicatedIpPoolInput) SetTags(v []*Tag) *CreateDedicatedIpPoolInput {
+	s.Tags = v
 	return s
 }
 
@@ -4202,6 +4540,10 @@ type CreateDeliverabilityTestReportInput struct {
 	// A unique name that helps you to identify the predictive inbox placement test
 	// when you retrieve the results.
 	ReportName *string `type:"string"`
+
+	// An object that defines the tags (keys and values) that you want to associate
+	// with the predictive inbox placement test.
+	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation
@@ -4228,6 +4570,16 @@ func (s *CreateDeliverabilityTestReportInput) Validate() error {
 			invalidParams.AddNested("Content", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4250,6 +4602,12 @@ func (s *CreateDeliverabilityTestReportInput) SetFromEmailAddress(v string) *Cre
 // SetReportName sets the ReportName field's value.
 func (s *CreateDeliverabilityTestReportInput) SetReportName(v string) *CreateDeliverabilityTestReportInput {
 	s.ReportName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDeliverabilityTestReportInput) SetTags(v []*Tag) *CreateDeliverabilityTestReportInput {
+	s.Tags = v
 	return s
 }
 
@@ -4303,6 +4661,10 @@ type CreateEmailIdentityInput struct {
 	//
 	// EmailIdentity is a required field
 	EmailIdentity *string `type:"string" required:"true"`
+
+	// An object that defines the tags (keys and values) that you want to associate
+	// with the email identity.
+	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation
@@ -4321,6 +4683,16 @@ func (s *CreateEmailIdentityInput) Validate() error {
 	if s.EmailIdentity == nil {
 		invalidParams.Add(request.NewErrParamRequired("EmailIdentity"))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4331,6 +4703,12 @@ func (s *CreateEmailIdentityInput) Validate() error {
 // SetEmailIdentity sets the EmailIdentity field's value.
 func (s *CreateEmailIdentityInput) SetEmailIdentity(v string) *CreateEmailIdentityInput {
 	s.EmailIdentity = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateEmailIdentityInput) SetTags(v []*Tag) *CreateEmailIdentityInput {
+	s.Tags = v
 	return s
 }
 
@@ -4352,7 +4730,7 @@ type CreateEmailIdentityOutput struct {
 
 	// Specifies whether or not the identity is verified. In Amazon Pinpoint, you
 	// can only send email from verified email addresses or domains. For more information
-	// about verifying identities, see the Amazon Pinpoint User Guide (http://docs.aws.amazon.com/pinpoint/latest/userguide/channels-email-manage-verify.html).
+	// about verifying identities, see the Amazon Pinpoint User Guide (https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-email-manage-verify.html).
 	VerifiedForSendingStatus *bool `type:"boolean"`
 }
 
@@ -6159,7 +6537,7 @@ type GetEmailIdentityOutput struct {
 
 	// Specifies whether or not the identity is verified. In Amazon Pinpoint, you
 	// can only send email from verified email addresses or domains. For more information
-	// about verifying identities, see the Amazon Pinpoint User Guide (http://docs.aws.amazon.com/pinpoint/latest/userguide/channels-email-manage-verify.html).
+	// about verifying identities, see the Amazon Pinpoint User Guide (https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-email-manage-verify.html).
 	VerifiedForSendingStatus *bool `type:"boolean"`
 }
 
@@ -6652,6 +7030,71 @@ func (s *ListEmailIdentitiesOutput) SetEmailIdentities(v []*IdentityInfo) *ListE
 // SetNextToken sets the NextToken field's value.
 func (s *ListEmailIdentitiesOutput) SetNextToken(v string) *ListEmailIdentitiesOutput {
 	s.NextToken = &v
+	return s
+}
+
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource that you want to retrieve
+	// tag information for.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array that lists all the tags that are associated with the resource. Each
+	// tag consists of a required tag key (Key) and an associated tag value (Value)
+	//
+	// Tags is a required field
+	Tags []*Tag `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
+	s.Tags = v
 	return s
 }
 
@@ -8146,7 +8589,7 @@ type SnsDestination struct {
 
 	// The Amazon Resource Name (ARN) of the Amazon SNS topic that you want to publish
 	// email events to. For more information about Amazon SNS topics, see the Amazon
-	// SNS Developer Guide (http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html).
+	// SNS Developer Guide (https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html).
 	//
 	// TopicArn is a required field
 	TopicArn *string `type:"string" required:"true"`
@@ -8179,6 +8622,175 @@ func (s *SnsDestination) Validate() error {
 func (s *SnsDestination) SetTopicArn(v string) *SnsDestination {
 	s.TopicArn = &v
 	return s
+}
+
+// An object that defines the tags that are associated with a resource. A tag is
+// a label that you optionally define and associate with a resource in Amazon
+// Pinpoint. Tags can help you categorize and manage resources in different
+// ways, such as by purpose, owner, environment, or other criteria. A resource
+// can have as many as 50 tags.
+//
+// Each tag consists of a required tag key and an associated tag value, both
+// of which you define. A tag key is a general label that acts as a category
+// for a more specific tag value. A tag value acts as a descriptor within a
+// tag key. For example, if you have two versions of an Amazon Pinpoint project,
+// one for internal testing and another for external use, you might assign a Stack tag
+// key to both projects. The value of the Stack tag key might be Test for one
+// project and Production for the other project.
+//
+// A tag key can contain as many as 128 characters. A tag value can contain
+// as many as 256 characters. The characters can be Unicode letters, digits,
+// white space, or one of the following symbols: _ . : / = + -. The following
+// additional restrictions apply to tags:
+//
+//    * Tag keys and values are case sensitive.
+//
+//    * For each associated resource, each tag key must be unique and it can
+//    have only one value.
+//
+//    * The aws: prefix is reserved for use by AWS; you can’t use it in any
+//    tag keys or values that you define. In addition, you can't edit or remove
+//    tag keys or values that use this prefix. Tags that use this prefix don’t
+//    count against the limit of 50 tags per resource.
+//
+//    * You can associate tags with public or shared resources, but the tags
+//    are available only for your AWS account, not any other accounts that share
+//    the resource. In addition, the tags are available only for resources that
+//    are located in the specified AWS Region for your AWS account.
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// One part of a key-value pair that defines a tag. The maximum length of a
+	// tag key is 128 characters. The minimum length is 1 character.
+	//
+	// Key is a required field
+	Key *string `type:"string" required:"true"`
+
+	// The optional part of a key-value pair that defines a tag. The maximum length
+	// of a tag value is 256 characters. The minimum length is 0 characters. If
+	// you don’t want a resource to have a specific tag value, don’t specify a value
+	// for this parameter. Amazon Pinpoint will set the value to an empty string.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
+}
+
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource that you want to add one or
+	// more tags to.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+
+	// A list of the tags that you want to add to the resource. A tag consists of
+	// a required tag key (Key) and an associated tag value (Value). The maximum
+	// length of a tag key is 128 characters. The maximum length of a tag value
+	// is 256 characters.
+	//
+	// Tags is a required field
+	Tags []*Tag `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceOutput) GoString() string {
+	return s.String()
 }
 
 // An object that defines the tracking options for a configuration set. When
@@ -8226,6 +8838,78 @@ func (s *TrackingOptions) Validate() error {
 func (s *TrackingOptions) SetCustomRedirectDomain(v string) *TrackingOptions {
 	s.CustomRedirectDomain = &v
 	return s
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource that you want to remove one
+	// or more tags from.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"querystring" locationName:"ResourceArn" type:"string" required:"true"`
+
+	// The tags (tag keys) that you want to remove from the resource. When you specify
+	// a tag key, the action removes both that key and its associated tag value.
+	//
+	// To remove more than one tag from the resource, append the TagKeys parameter
+	// and argument for each additional tag to remove, separated by an ampersand.
+	// For example: /v1/email/tags?ResourceArn=ResourceArn&TagKeys=Key1&TagKeys=Key2
+	//
+	// TagKeys is a required field
+	TagKeys []*string `location:"querystring" locationName:"TagKeys" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 // A request to change the settings for an event destination for a configuration

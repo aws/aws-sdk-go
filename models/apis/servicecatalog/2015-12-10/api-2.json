@@ -3564,6 +3564,7 @@
         "PathId":{"shape":"Id"},
         "ProvisioningParameters":{"shape":"UpdateProvisioningParameters"},
         "ProvisioningPreferences":{"shape":"UpdateProvisioningPreferences"},
+        "Tags":{"shape":"Tags"},
         "UpdateToken":{
           "shape":"IdempotencyToken",
           "idempotencyToken":true

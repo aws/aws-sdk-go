@@ -6,10 +6,10 @@
     "serviceFullName": "AWS Elemental MediaLive",
     "serviceId": "MediaLive",
     "protocol": "rest-json",
-    "jsonVersion": "1.1",
     "uid": "medialive-2017-10-14",
     "signatureVersion": "v4",
-    "serviceAbbreviation": "MediaLive"
+    "serviceAbbreviation": "MediaLive",
+    "jsonVersion": "1.1"
   },
   "operations": {
     "BatchUpdateSchedule": {
@@ -3629,6 +3629,10 @@
           "shape": "InputLossBehavior",
           "locationName": "inputLossBehavior"
         },
+        "OutputLockingMode": {
+          "shape": "GlobalConfigurationOutputLockingMode",
+          "locationName": "outputLockingMode"
+        },
         "OutputTimingSource": {
           "shape": "GlobalConfigurationOutputTimingSource",
           "locationName": "outputTimingSource"
@@ -3651,6 +3655,13 @@
       "enum": [
         "DISABLED",
         "ENABLED"
+      ]
+    },
+    "GlobalConfigurationOutputLockingMode": {
+      "type": "string",
+      "enum": [
+        "EPOCH_LOCKING",
+        "PIPELINE_LOCKING"
       ]
     },
     "GlobalConfigurationOutputTimingSource": {

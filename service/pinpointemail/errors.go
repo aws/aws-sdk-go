@@ -23,6 +23,12 @@ const (
 	// The input you provided is invalid.
 	ErrCodeBadRequestException = "BadRequestException"
 
+	// ErrCodeConcurrentModificationException for service response error code
+	// "ConcurrentModificationException".
+	//
+	// The resource is being modified by another operation or thread.
+	ErrCodeConcurrentModificationException = "ConcurrentModificationException"
+
 	// ErrCodeLimitExceededException for service response error code
 	// "LimitExceededException".
 	//

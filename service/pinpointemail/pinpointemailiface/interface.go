@@ -167,6 +167,10 @@ type PinpointEmailAPI interface {
 	ListEmailIdentitiesPages(*pinpointemail.ListEmailIdentitiesInput, func(*pinpointemail.ListEmailIdentitiesOutput, bool) bool) error
 	ListEmailIdentitiesPagesWithContext(aws.Context, *pinpointemail.ListEmailIdentitiesInput, func(*pinpointemail.ListEmailIdentitiesOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*pinpointemail.ListTagsForResourceInput) (*pinpointemail.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *pinpointemail.ListTagsForResourceInput, ...request.Option) (*pinpointemail.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*pinpointemail.ListTagsForResourceInput) (*request.Request, *pinpointemail.ListTagsForResourceOutput)
+
 	PutAccountDedicatedIpWarmupAttributes(*pinpointemail.PutAccountDedicatedIpWarmupAttributesInput) (*pinpointemail.PutAccountDedicatedIpWarmupAttributesOutput, error)
 	PutAccountDedicatedIpWarmupAttributesWithContext(aws.Context, *pinpointemail.PutAccountDedicatedIpWarmupAttributesInput, ...request.Option) (*pinpointemail.PutAccountDedicatedIpWarmupAttributesOutput, error)
 	PutAccountDedicatedIpWarmupAttributesRequest(*pinpointemail.PutAccountDedicatedIpWarmupAttributesInput) (*request.Request, *pinpointemail.PutAccountDedicatedIpWarmupAttributesOutput)
@@ -218,6 +222,14 @@ type PinpointEmailAPI interface {
 	SendEmail(*pinpointemail.SendEmailInput) (*pinpointemail.SendEmailOutput, error)
 	SendEmailWithContext(aws.Context, *pinpointemail.SendEmailInput, ...request.Option) (*pinpointemail.SendEmailOutput, error)
 	SendEmailRequest(*pinpointemail.SendEmailInput) (*request.Request, *pinpointemail.SendEmailOutput)
+
+	TagResource(*pinpointemail.TagResourceInput) (*pinpointemail.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *pinpointemail.TagResourceInput, ...request.Option) (*pinpointemail.TagResourceOutput, error)
+	TagResourceRequest(*pinpointemail.TagResourceInput) (*request.Request, *pinpointemail.TagResourceOutput)
+
+	UntagResource(*pinpointemail.UntagResourceInput) (*pinpointemail.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *pinpointemail.UntagResourceInput, ...request.Option) (*pinpointemail.UntagResourceOutput, error)
+	UntagResourceRequest(*pinpointemail.UntagResourceInput) (*request.Request, *pinpointemail.UntagResourceOutput)
 
 	UpdateConfigurationSetEventDestination(*pinpointemail.UpdateConfigurationSetEventDestinationInput) (*pinpointemail.UpdateConfigurationSetEventDestinationOutput, error)
 	UpdateConfigurationSetEventDestinationWithContext(aws.Context, *pinpointemail.UpdateConfigurationSetEventDestinationInput, ...request.Option) (*pinpointemail.UpdateConfigurationSetEventDestinationOutput, error)

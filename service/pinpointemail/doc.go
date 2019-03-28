@@ -5,14 +5,17 @@
 //
 // This document contains reference information for the Amazon Pinpoint (https://aws.amazon.com/pinpoint)
 // Email API, version 1.0. This document is best used in conjunction with the
-// Amazon Pinpoint Developer Guide (http://docs.aws.amazon.com/pinpoint/latest/developerguide/welcome.html).
+// Amazon Pinpoint Developer Guide (https://docs.aws.amazon.com/pinpoint/latest/developerguide/welcome.html).
 //
 // The Amazon Pinpoint Email API is available in the US East (N. Virginia),
-// US West (Oregon) and the EU (Ireland) Regions at the following endpoints:
+// US West (Oregon), EU (Frankfurt), and EU (Ireland) Regions at the following
+// endpoints:
 //
 //    * US East (N. Virginia): email.us-east-1.amazonaws.com
 //
 //    * US West (Oregon): email.us-west-2.amazonaws.com
+//
+//    * EU (Frankfurt): email.eu-central-1.amazonaws.com
 //
 //    * EU (Ireland): email.eu-west-1.amazonaws.com
 //
