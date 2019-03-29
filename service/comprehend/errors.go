@@ -36,6 +36,13 @@ const (
 	// The specified job was not found. Check the job ID and try again.
 	ErrCodeJobNotFoundException = "JobNotFoundException"
 
+	// ErrCodeKmsKeyValidationException for service response error code
+	// "KmsKeyValidationException".
+	//
+	// The KMS customer managed key (CMK) entered cannot be validated. Verify the
+	// key and re-enter it.
+	ErrCodeKmsKeyValidationException = "KmsKeyValidationException"
+
 	// ErrCodeResourceInUseException for service response error code
 	// "ResourceInUseException".
 	//

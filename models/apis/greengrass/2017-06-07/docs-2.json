@@ -76,9 +76,12 @@
     "ListResourceDefinitions" : "Retrieves a list of resource definitions.",
     "ListSubscriptionDefinitionVersions" : "Lists the versions of a subscription definition.",
     "ListSubscriptionDefinitions" : "Retrieves a list of subscription definitions.",
+    "ListTagsForResource" : "Retrieves a list of resource tags for a resource arn.",
     "ResetDeployments" : "Resets a group's deployments.",
     "StartBulkDeployment" : "Deploys multiple groups in one operation. This action starts the bulk deployment of a specified set of group versions. Each group version deployment will be triggered with an adaptive rate that has a fixed upper limit. We recommend that you include an ''X-Amzn-Client-Token'' token in every ''StartBulkDeployment'' request. These requests are idempotent with respect to the token and the request parameters.",
     "StopBulkDeployment" : "Stops the execution of a bulk deployment. This action returns a status of ''Stopping'' until the deployment is stopped. You cannot start a new bulk deployment while a previous deployment is in the ''Stopping'' state. This action doesn't rollback completed deployments or cancel pending deployments.",
+    "TagResource" : "Add resource tags to a Greengrass Resource. Valid resources are Group, Connector, Core, Device, Function, Logger, Subscription, and Resource Defintions, and also BulkDeploymentIds.",
+    "UntagResource" : "Remove resource tags from a Greengrass Resource.",
     "UpdateConnectivityInfo" : "Updates the connectivity information for the core. Any devices that belong to the group which has this core will receive this information in order to find the location of the core and connect to it.",
     "UpdateConnectorDefinition" : "Updates a connector definition.",
     "UpdateCoreDefinition" : "Updates a core definition.",
@@ -574,6 +577,13 @@
         "GetSubscriptionDefinitionVersionResponse$Definition" : "Information about the subscription definition version."
       }
     },
+    "Tags" : {
+      "base" : null,
+      "refs" : {
+        "DefinitionInformation$Tags" : null,
+        "GetBulkDeploymentStatusResponse$Tags" : null
+      }
+    },
     "UpdateAgentLogLevel" : {
       "base" : "The minimum level of log statements that should be logged by the OTA Agent during an update.",
       "refs" : {
@@ -885,6 +895,7 @@
         "Subscription$Source" : "The source of the subscription. Can be a thing ARN, a Lambda function ARN, a connector ARN, 'cloud' (which represents the AWS IoT cloud), or 'GGShadowService'.",
         "Subscription$Subject" : "The MQTT topic used to route the message.",
         "Subscription$Target" : "Where the message is sent to. Can be a thing ARN, a Lambda function ARN, a connector ARN, 'cloud' (which represents the AWS IoT cloud), or 'GGShadowService'.",
+        "Tags$member" : "A map of the key-value pairs for the resource tag.",
         "UpdateConnectivityInfoResponse$Message" : "A message about the connectivity info update request.",
         "UpdateConnectivityInfoResponse$Version" : "The new version of the connectivity info.",
         "UpdateGroupCertificateConfigurationRequest$CertificateExpiryInMilliseconds" : "The amount of time remaining before the certificate expires, in milliseconds.",

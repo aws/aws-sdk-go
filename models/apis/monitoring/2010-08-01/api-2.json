@@ -192,6 +192,23 @@
         {"shape":"InvalidParameterValueException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceInput"},
+      "output":{
+        "shape":"ListTagsForResourceOutput",
+        "resultWrapper":"ListTagsForResourceResult"
+      },
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceFault"}
+      ]
+    },
     "PutDashboard":{
       "name":"PutDashboard",
       "http":{
@@ -244,6 +261,42 @@
         {"shape":"ResourceNotFound"},
         {"shape":"InvalidFormatFault"}
       ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceInput"},
+      "output":{
+        "shape":"TagResourceOutput",
+        "resultWrapper":"TagResourceResult"
+      },
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"InternalServiceFault"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceInput"},
+      "output":{
+        "shape":"UntagResourceOutput",
+        "resultWrapper":"UntagResourceResult"
+      },
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"InternalServiceFault"}
+      ]
     }
   },
   "shapes":{
@@ -292,6 +345,11 @@
       "member":{"shape":"AlarmName"},
       "max":100
     },
+    "AmazonResourceName":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
     "AwsQueryErrorMessage":{"type":"string"},
     "ComparisonOperator":{
       "type":"string",
@@ -301,6 +359,17 @@
         "LessThanThreshold",
         "LessThanOrEqualToThreshold"
       ]
+    },
+    "ConcurrentModificationException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ConcurrentModificationException",
+        "httpStatusCode":429,
+        "senderFault":true
+      },
+      "exception":true
     },
     "Counts":{
       "type":"list",
@@ -774,6 +843,19 @@
         "NextToken"
       ]
     },
+    "ListTagsForResourceInput":{
+      "type":"structure",
+      "required":["ResourceARN"],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"}
+      }
+    },
+    "ListTagsForResourceOutput":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagList"}
+      }
+    },
     "MaxRecords":{
       "type":"integer",
       "max":100,
@@ -973,11 +1055,7 @@
       "min":1,
       "pattern":"[^:].*"
     },
-    "NextToken":{
-      "type":"string",
-      "max":1024,
-      "min":0
-    },
+    "NextToken":{"type":"string"},
     "OutputFormat":{"type":"string"},
     "Period":{
       "type":"integer",
@@ -1028,7 +1106,8 @@
         "ComparisonOperator":{"shape":"ComparisonOperator"},
         "TreatMissingData":{"shape":"TreatMissingData"},
         "EvaluateLowSampleCountPercentile":{"shape":"EvaluateLowSampleCountPercentile"},
-        "Metrics":{"shape":"MetricDataQueries"}
+        "Metrics":{"shape":"MetricDataQueries"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "PutMetricDataInput":{
@@ -1042,6 +1121,7 @@
         "MetricData":{"shape":"MetricData"}
       }
     },
+    "ResourceId":{"type":"string"},
     "ResourceList":{
       "type":"list",
       "member":{"shape":"ResourceName"},
@@ -1064,6 +1144,20 @@
       },
       "exception":true
     },
+    "ResourceNotFoundException":{
+      "type":"structure",
+      "members":{
+        "ResourceType":{"shape":"ResourceType"},
+        "ResourceId":{"shape":"ResourceId"}
+      },
+      "error":{
+        "code":"ResourceNotFoundException",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ResourceType":{"type":"string"},
     "ReturnData":{"type":"boolean"},
     "ScanBy":{
       "type":"string",
@@ -1181,6 +1275,51 @@
       "type":"integer",
       "min":1
     },
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"TagKey"},
+        "Value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"}
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"}
+    },
+    "TagResourceInput":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "Tags"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "TagResourceOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
     "Threshold":{"type":"double"},
     "Timestamp":{"type":"timestamp"},
     "Timestamps":{
@@ -1191,6 +1330,22 @@
       "type":"string",
       "max":255,
       "min":1
+    },
+    "UntagResourceInput":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "TagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UntagResourceOutput":{
+      "type":"structure",
+      "members":{
+      }
     },
     "Values":{
       "type":"list",
