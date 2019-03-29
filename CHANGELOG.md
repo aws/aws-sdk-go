@@ -1,3 +1,14 @@
+Release v1.19.6 (2019-03-29)
+===
+
+### Service Client Updates
+* `service/comprehend`: Updates service API and documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/greengrass`: Updates service API and documentation
+  * Greengrass APIs now support tagging operations on resources
+* `service/monitoring`: Updates service API and documentation
+  * Added 3 new APIs, and one additional parameter to PutMetricAlarm API, to support tagging of CloudWatch Alarms.
+
 Release v1.19.5 (2019-03-28)
 ===
 

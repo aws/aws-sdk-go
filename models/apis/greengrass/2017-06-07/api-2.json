@@ -376,6 +376,20 @@
         "shape" : "BadRequestException"
       } ]
     },
+    "TagResource" : {
+      "name" : "TagResource",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/tags/{resource-arn}",
+        "responseCode" : 204
+      },
+      "input" : {
+        "shape" : "TagResourceRequest"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      } ]
+    },
     "DeleteConnectorDefinition" : {
       "name" : "DeleteConnectorDefinition",
       "http" : {
@@ -507,6 +521,20 @@
       },
       "output" : {
         "shape" : "DeleteSubscriptionDefinitionResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      } ]
+    },
+    "UntagResource" : {
+      "name" : "UntagResource",
+      "http" : {
+        "method" : "DELETE",
+        "requestUri" : "/tags/{resource-arn}",
+        "responseCode" : 204
+      },
+      "input" : {
+        "shape" : "UntagResourceRequest"
       },
       "errors" : [ {
         "shape" : "BadRequestException"
@@ -1273,6 +1301,23 @@
       },
       "errors" : [ ]
     },
+    "ListTagsForResource" : {
+      "name" : "ListTagsForResource",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/tags/{resource-arn}",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "ListTagsForResourceRequest"
+      },
+      "output" : {
+        "shape" : "ListTagsForResourceResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      } ]
+    },
     "ResetDeployments" : {
       "name" : "ResetDeployments",
       "http" : {
@@ -1705,6 +1750,9 @@
         },
         "Name" : {
           "shape" : "__string"
+        },
+        "tags": {
+          "shape": "Tags"
         }
       }
     },
@@ -1783,6 +1831,9 @@
         },
         "Name" : {
           "shape" : "__string"
+        },
+        "tags": {
+          "shape": "Tags"
         }
       }
     },
@@ -1897,6 +1948,9 @@
         },
         "Name" : {
           "shape" : "__string"
+        },
+        "tags": {
+          "shape": "Tags"
         }
       }
     },
@@ -1975,6 +2029,9 @@
         },
         "Name" : {
           "shape" : "__string"
+        },
+        "tags": {
+          "shape": "Tags"
         }
       }
     },
@@ -2080,6 +2137,9 @@
         },
         "Name" : {
           "shape" : "__string"
+        },
+        "tags": {
+          "shape": "Tags"
         }
       }
     },
@@ -2176,6 +2236,9 @@
         },
         "Name" : {
           "shape" : "__string"
+        },
+        "tags": {
+          "shape": "Tags"
         }
       }
     },
@@ -2254,6 +2317,9 @@
         },
         "Name" : {
           "shape" : "__string"
+        },
+        "tags": {
+          "shape": "Tags"
         }
       }
     },
@@ -2371,6 +2437,9 @@
         },
         "Name" : {
           "shape" : "__string"
+        },
+        "tags": {
+          "shape": "Tags"
         }
       }
     },
@@ -2436,6 +2505,20 @@
         }
       }
     },
+    "TagResourceRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ResourceArn" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "resource-arn"
+        },
+        "tags" : {
+          "shape" : "__mapOf__string"
+        }
+      },
+      "required" : [ "ResourceArn", "tags" ]
+    },
     "DefinitionInformation" : {
       "type" : "structure",
       "members" : {
@@ -2459,6 +2542,10 @@
         },
         "Name" : {
           "shape" : "__string"
+        },
+        "Tags" : {
+          "shape" : "Tags",
+          "locationName" : "tags"
         }
       }
     },
@@ -2581,6 +2668,22 @@
     "DeleteSubscriptionDefinitionResponse" : {
       "type" : "structure",
       "members" : { }
+    },
+    "UntagResourceRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ResourceArn" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "resource-arn"
+        },
+        "TagKeys" : {
+          "shape" : "__listOf__string",
+          "location" : "querystring",
+          "locationName" : "tagKeys"
+        }
+      },
+      "required" : [ "TagKeys", "ResourceArn" ]
     },
     "Deployment" : {
       "type" : "structure",
@@ -2869,6 +2972,9 @@
         },
         "ErrorMessage" : {
           "shape" : "__string"
+        },
+        "tags" : {
+          "shape" : "__mapOf__string"
         }
       }
     },
@@ -2929,6 +3035,9 @@
         },
         "Name" : {
           "shape" : "__string"
+        },
+        "tags" : {
+          "shape" : "__mapOf__string"
         }
       }
     },
@@ -3010,6 +3119,9 @@
         },
         "Name" : {
           "shape" : "__string"
+        },
+        "tags" : {
+          "shape" : "__mapOf__string"
         }
       }
     },
@@ -3122,6 +3234,9 @@
         },
         "Name" : {
           "shape" : "__string"
+        },
+        "tags" : {
+          "shape" : "__mapOf__string"
         }
       }
     },
@@ -3203,6 +3318,9 @@
         },
         "Name" : {
           "shape" : "__string"
+        },
+        "tags" : {
+          "shape" : "__mapOf__string"
         }
       }
     },
@@ -3339,6 +3457,9 @@
         },
         "Name" : {
           "shape" : "__string"
+        },
+        "tags" : {
+          "shape" : "__mapOf__string"
         }
       }
     },
@@ -3412,6 +3533,9 @@
         },
         "Name" : {
           "shape" : "__string"
+        },
+        "tags" : {
+          "shape" : "__mapOf__string"
         }
       }
     },
@@ -3490,6 +3614,9 @@
         },
         "Name" : {
           "shape" : "__string"
+        },
+        "tags" : {
+          "shape" : "__mapOf__string"
         }
       }
     },
@@ -3578,6 +3705,9 @@
         },
         "Name" : {
           "shape" : "__string"
+        },
+        "tags" : {
+          "shape" : "__mapOf__string"
         }
       }
     },
@@ -4312,6 +4442,25 @@
         }
       }
     },
+    "ListTagsForResourceRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ResourceArn" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "resource-arn"
+        }
+      },
+      "required" : [ "ResourceArn" ]
+    },
+    "ListTagsForResourceResponse" : {
+      "type" : "structure",
+      "members" : {
+        "Tags" : {
+          "shape" : "__mapOf__string"
+        }
+      }
+    },
     "ListVersionsResponse" : {
       "type" : "structure",
       "members" : {
@@ -4531,6 +4680,9 @@
         },
         "InputFileUri" : {
           "shape" : "__string"
+        },
+        "tags": {
+          "shape": "Tags"
         }
       }
     },
@@ -4584,6 +4736,15 @@
         "Subscriptions" : {
           "shape" : "__listOfSubscription"
         }
+      }
+    },
+    "Tags" : {
+      "type" : "map",
+      "key" : {
+        "shape" : "__string"
+      },
+      "value" : {
+        "shape" : "__string"
       }
     },
     "UpdateAgentLogLevel" : {

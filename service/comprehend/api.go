@@ -59,7 +59,7 @@ func (c *Comprehend) BatchDetectDominantLanguageRequest(input *BatchDetectDomina
 //
 // Determines the dominant language of the input text for a batch of documents.
 // For a list of languages that Amazon Comprehend can detect, see Amazon Comprehend
-// Supported Languages (http://docs.aws.amazon.com/comprehend/latest/dg/how-languages.html).
+// Supported Languages (https://docs.aws.amazon.com/comprehend/latest/dg/how-languages.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -566,6 +566,10 @@ func (c *Comprehend) CreateDocumentClassifierRequest(input *CreateDocumentClassi
 //   accepted. For most other APIs, Amazon Comprehend accepts only English or
 //   Spanish text.
 //
+//   * ErrCodeKmsKeyValidationException "KmsKeyValidationException"
+//   The KMS customer managed key (CMK) entered cannot be validated. Verify the
+//   key and re-enter it.
+//
 //   * ErrCodeInternalServerException "InternalServerException"
 //   An internal server error occurred. Retry your request.
 //
@@ -665,6 +669,10 @@ func (c *Comprehend) CreateEntityRecognizerRequest(input *CreateEntityRecognizer
 //   entity recognition APIs (such as CreateEntityRecognizer), only English is
 //   accepted. For most other APIs, Amazon Comprehend accepts only English or
 //   Spanish text.
+//
+//   * ErrCodeKmsKeyValidationException "KmsKeyValidationException"
+//   The KMS customer managed key (CMK) entered cannot be validated. Verify the
+//   key and re-enter it.
 //
 //   * ErrCodeInternalServerException "InternalServerException"
 //   An internal server error occurred. Retry your request.
@@ -1662,7 +1670,7 @@ func (c *Comprehend) DetectDominantLanguageRequest(input *DetectDominantLanguage
 //
 // Determines the dominant language of the input text. For a list of languages
 // that Amazon Comprehend can detect, see Amazon Comprehend Supported Languages
-// (http://docs.aws.amazon.com/comprehend/latest/dg/how-languages.html).
+// (https://docs.aws.amazon.com/comprehend/latest/dg/how-languages.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3138,6 +3146,10 @@ func (c *Comprehend) StartDocumentClassificationJobRequest(input *StartDocumentC
 //   The specified resource is not available. Check to see if the resource is
 //   in the TRAINED state and try your request again.
 //
+//   * ErrCodeKmsKeyValidationException "KmsKeyValidationException"
+//   The KMS customer managed key (CMK) entered cannot be validated. Verify the
+//   key and re-enter it.
+//
 //   * ErrCodeInternalServerException "InternalServerException"
 //   An internal server error occurred. Retry your request.
 //
@@ -3223,6 +3235,10 @@ func (c *Comprehend) StartDominantLanguageDetectionJobRequest(input *StartDomina
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * ErrCodeKmsKeyValidationException "KmsKeyValidationException"
+//   The KMS customer managed key (CMK) entered cannot be validated. Verify the
+//   key and re-enter it.
 //
 //   * ErrCodeInternalServerException "InternalServerException"
 //   An internal server error occurred. Retry your request.
@@ -3323,6 +3339,10 @@ func (c *Comprehend) StartEntitiesDetectionJobRequest(input *StartEntitiesDetect
 //   The specified resource is not available. Check to see if the resource is
 //   in the TRAINED state and try your request again.
 //
+//   * ErrCodeKmsKeyValidationException "KmsKeyValidationException"
+//   The KMS customer managed key (CMK) entered cannot be validated. Verify the
+//   key and re-enter it.
+//
 //   * ErrCodeInternalServerException "InternalServerException"
 //   An internal server error occurred. Retry your request.
 //
@@ -3408,6 +3428,10 @@ func (c *Comprehend) StartKeyPhrasesDetectionJobRequest(input *StartKeyPhrasesDe
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * ErrCodeKmsKeyValidationException "KmsKeyValidationException"
+//   The KMS customer managed key (CMK) entered cannot be validated. Verify the
+//   key and re-enter it.
 //
 //   * ErrCodeInternalServerException "InternalServerException"
 //   An internal server error occurred. Retry your request.
@@ -3495,6 +3519,10 @@ func (c *Comprehend) StartSentimentDetectionJobRequest(input *StartSentimentDete
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //   The number of requests exceeds the limit. Resubmit your request later.
 //
+//   * ErrCodeKmsKeyValidationException "KmsKeyValidationException"
+//   The KMS customer managed key (CMK) entered cannot be validated. Verify the
+//   key and re-enter it.
+//
 //   * ErrCodeInternalServerException "InternalServerException"
 //   An internal server error occurred. Retry your request.
 //
@@ -3580,6 +3608,10 @@ func (c *Comprehend) StartTopicsDetectionJobRequest(input *StartTopicsDetectionJ
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * ErrCodeKmsKeyValidationException "KmsKeyValidationException"
+//   The KMS customer managed key (CMK) entered cannot be validated. Verify the
+//   key and re-enter it.
 //
 //   * ErrCodeInternalServerException "InternalServerException"
 //   An internal server error occurred. Retry your request.
@@ -5019,6 +5051,16 @@ type CreateDocumentClassifierInput struct {
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
+
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt data on the storage volume attached to the ML compute instance(s)
+	// that process the analysis job. The VolumeKmsKeyId can be either of the following
+	// formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	VolumeKmsKeyId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -5094,6 +5136,12 @@ func (s *CreateDocumentClassifierInput) SetLanguageCode(v string) *CreateDocumen
 	return s
 }
 
+// SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
+func (s *CreateDocumentClassifierInput) SetVolumeKmsKeyId(v string) *CreateDocumentClassifierInput {
+	s.VolumeKmsKeyId = &v
+	return s
+}
+
 type CreateDocumentClassifierOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5149,6 +5197,16 @@ type CreateEntityRecognizerInput struct {
 	//
 	// RecognizerName is a required field
 	RecognizerName *string `type:"string" required:"true"`
+
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt data on the storage volume attached to the ML compute instance(s)
+	// that process the analysis job. The VolumeKmsKeyId can be either of the following
+	// formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	VolumeKmsKeyId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -5221,6 +5279,12 @@ func (s *CreateEntityRecognizerInput) SetLanguageCode(v string) *CreateEntityRec
 // SetRecognizerName sets the RecognizerName field's value.
 func (s *CreateEntityRecognizerInput) SetRecognizerName(v string) *CreateEntityRecognizerInput {
 	s.RecognizerName = &v
+	return s
+}
+
+// SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
+func (s *CreateEntityRecognizerInput) SetVolumeKmsKeyId(v string) *CreateEntityRecognizerInput {
+	s.VolumeKmsKeyId = &v
 	return s
 }
 
@@ -6384,6 +6448,16 @@ type DocumentClassificationJobProperties struct {
 
 	// The time that the document classification job was submitted for processing.
 	SubmitTime *time.Time `type:"timestamp"`
+
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt data on the storage volume attached to the ML compute instance(s)
+	// that process the analysis job. The VolumeKmsKeyId can be either of the following
+	// formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	VolumeKmsKeyId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -6453,6 +6527,12 @@ func (s *DocumentClassificationJobProperties) SetOutputDataConfig(v *OutputDataC
 // SetSubmitTime sets the SubmitTime field's value.
 func (s *DocumentClassificationJobProperties) SetSubmitTime(v time.Time) *DocumentClassificationJobProperties {
 	s.SubmitTime = &v
+	return s
+}
+
+// SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
+func (s *DocumentClassificationJobProperties) SetVolumeKmsKeyId(v string) *DocumentClassificationJobProperties {
+	s.VolumeKmsKeyId = &v
 	return s
 }
 
@@ -6597,6 +6677,16 @@ type DocumentClassifierProperties struct {
 	// Indicates the time when the training starts on documentation classifiers.
 	// You are billed for the time interval between this time and the value of TrainingEndTime.
 	TrainingStartTime *time.Time `type:"timestamp"`
+
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt data on the storage volume attached to the ML compute instance(s)
+	// that process the analysis job. The VolumeKmsKeyId can be either of the following
+	// formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	VolumeKmsKeyId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -6672,6 +6762,12 @@ func (s *DocumentClassifierProperties) SetTrainingEndTime(v time.Time) *Document
 // SetTrainingStartTime sets the TrainingStartTime field's value.
 func (s *DocumentClassifierProperties) SetTrainingStartTime(v time.Time) *DocumentClassifierProperties {
 	s.TrainingStartTime = &v
+	return s
+}
+
+// SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
+func (s *DocumentClassifierProperties) SetVolumeKmsKeyId(v string) *DocumentClassifierProperties {
+	s.VolumeKmsKeyId = &v
 	return s
 }
 
@@ -6816,6 +6912,16 @@ type DominantLanguageDetectionJobProperties struct {
 
 	// The time that the dominant language detection job was submitted for processing.
 	SubmitTime *time.Time `type:"timestamp"`
+
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt data on the storage volume attached to the ML compute instance(s)
+	// that process the analysis job. The VolumeKmsKeyId can be either of the following
+	// formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	VolumeKmsKeyId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -6879,6 +6985,12 @@ func (s *DominantLanguageDetectionJobProperties) SetOutputDataConfig(v *OutputDa
 // SetSubmitTime sets the SubmitTime field's value.
 func (s *DominantLanguageDetectionJobProperties) SetSubmitTime(v time.Time) *DominantLanguageDetectionJobProperties {
 	s.SubmitTime = &v
+	return s
+}
+
+// SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
+func (s *DominantLanguageDetectionJobProperties) SetVolumeKmsKeyId(v string) *DominantLanguageDetectionJobProperties {
+	s.VolumeKmsKeyId = &v
 	return s
 }
 
@@ -6992,6 +7104,16 @@ type EntitiesDetectionJobProperties struct {
 
 	// The time that the entities detection job was submitted for processing.
 	SubmitTime *time.Time `type:"timestamp"`
+
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt data on the storage volume attached to the ML compute instance(s)
+	// that process the analysis job. The VolumeKmsKeyId can be either of the following
+	// formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	VolumeKmsKeyId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -7067,6 +7189,12 @@ func (s *EntitiesDetectionJobProperties) SetOutputDataConfig(v *OutputDataConfig
 // SetSubmitTime sets the SubmitTime field's value.
 func (s *EntitiesDetectionJobProperties) SetSubmitTime(v time.Time) *EntitiesDetectionJobProperties {
 	s.SubmitTime = &v
+	return s
+}
+
+// SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
+func (s *EntitiesDetectionJobProperties) SetVolumeKmsKeyId(v string) *EntitiesDetectionJobProperties {
+	s.VolumeKmsKeyId = &v
 	return s
 }
 
@@ -7569,6 +7697,16 @@ type EntityRecognizerProperties struct {
 
 	// The time that training of the entity recognizer started.
 	TrainingStartTime *time.Time `type:"timestamp"`
+
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt data on the storage volume attached to the ML compute instance(s)
+	// that process the analysis job. The VolumeKmsKeyId can be either of the following
+	// formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	VolumeKmsKeyId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -7644,6 +7782,12 @@ func (s *EntityRecognizerProperties) SetTrainingEndTime(v time.Time) *EntityReco
 // SetTrainingStartTime sets the TrainingStartTime field's value.
 func (s *EntityRecognizerProperties) SetTrainingStartTime(v time.Time) *EntityRecognizerProperties {
 	s.TrainingStartTime = &v
+	return s
+}
+
+// SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
+func (s *EntityRecognizerProperties) SetVolumeKmsKeyId(v string) *EntityRecognizerProperties {
+	s.VolumeKmsKeyId = &v
 	return s
 }
 
@@ -7914,6 +8058,16 @@ type KeyPhrasesDetectionJobProperties struct {
 
 	// The time that the key phrases detection job was submitted for processing.
 	SubmitTime *time.Time `type:"timestamp"`
+
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt data on the storage volume attached to the ML compute instance(s)
+	// that process the analysis job. The VolumeKmsKeyId can be either of the following
+	// formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	VolumeKmsKeyId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -7983,6 +8137,12 @@ func (s *KeyPhrasesDetectionJobProperties) SetOutputDataConfig(v *OutputDataConf
 // SetSubmitTime sets the SubmitTime field's value.
 func (s *KeyPhrasesDetectionJobProperties) SetSubmitTime(v time.Time) *KeyPhrasesDetectionJobProperties {
 	s.SubmitTime = &v
+	return s
+}
+
+// SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
+func (s *KeyPhrasesDetectionJobProperties) SetVolumeKmsKeyId(v string) *KeyPhrasesDetectionJobProperties {
+	s.VolumeKmsKeyId = &v
 	return s
 }
 
@@ -8747,6 +8907,19 @@ func (s *ListTopicsDetectionJobsOutput) SetTopicsDetectionJobPropertiesList(v []
 type OutputDataConfig struct {
 	_ struct{} `type:"structure"`
 
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt the output results from an analysis job. The KmsKeyId can be one
+	// of the following formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * KMS Key Alias: "alias/ExampleAlias"
+	//
+	//    * ARN of a KMS Key Alias: "arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias"
+	KmsKeyId *string `type:"string"`
+
 	// When you use the OutputDataConfig object with asynchronous operations, you
 	// specify the Amazon S3 location where you want to write the output data. The
 	// URI must be in the same region as the API endpoint that you are calling.
@@ -8783,6 +8956,12 @@ func (s *OutputDataConfig) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *OutputDataConfig) SetKmsKeyId(v string) *OutputDataConfig {
+	s.KmsKeyId = &v
+	return s
 }
 
 // SetS3Uri sets the S3Uri field's value.
@@ -8935,6 +9114,16 @@ type SentimentDetectionJobProperties struct {
 
 	// The time that the sentiment detection job was submitted for processing.
 	SubmitTime *time.Time `type:"timestamp"`
+
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt data on the storage volume attached to the ML compute instance(s)
+	// that process the analysis job. The VolumeKmsKeyId can be either of the following
+	// formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	VolumeKmsKeyId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -9004,6 +9193,12 @@ func (s *SentimentDetectionJobProperties) SetOutputDataConfig(v *OutputDataConfi
 // SetSubmitTime sets the SubmitTime field's value.
 func (s *SentimentDetectionJobProperties) SetSubmitTime(v time.Time) *SentimentDetectionJobProperties {
 	s.SubmitTime = &v
+	return s
+}
+
+// SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
+func (s *SentimentDetectionJobProperties) SetVolumeKmsKeyId(v string) *SentimentDetectionJobProperties {
+	s.VolumeKmsKeyId = &v
 	return s
 }
 
@@ -9094,6 +9289,16 @@ type StartDocumentClassificationJobInput struct {
 	//
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
+
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt data on the storage volume attached to the ML compute instance(s)
+	// that process the analysis job. The VolumeKmsKeyId can be either of the following
+	// formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	VolumeKmsKeyId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -9183,6 +9388,12 @@ func (s *StartDocumentClassificationJobInput) SetOutputDataConfig(v *OutputDataC
 	return s
 }
 
+// SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
+func (s *StartDocumentClassificationJobInput) SetVolumeKmsKeyId(v string) *StartDocumentClassificationJobInput {
+	s.VolumeKmsKeyId = &v
+	return s
+}
+
 type StartDocumentClassificationJobOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9256,6 +9467,16 @@ type StartDominantLanguageDetectionJobInput struct {
 	//
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
+
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt data on the storage volume attached to the ML compute instance(s)
+	// that process the analysis job. The VolumeKmsKeyId can be either of the following
+	// formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	VolumeKmsKeyId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -9333,6 +9554,12 @@ func (s *StartDominantLanguageDetectionJobInput) SetJobName(v string) *StartDomi
 // SetOutputDataConfig sets the OutputDataConfig field's value.
 func (s *StartDominantLanguageDetectionJobInput) SetOutputDataConfig(v *OutputDataConfig) *StartDominantLanguageDetectionJobInput {
 	s.OutputDataConfig = v
+	return s
+}
+
+// SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
+func (s *StartDominantLanguageDetectionJobInput) SetVolumeKmsKeyId(v string) *StartDominantLanguageDetectionJobInput {
+	s.VolumeKmsKeyId = &v
 	return s
 }
 
@@ -9418,6 +9645,16 @@ type StartEntitiesDetectionJobInput struct {
 	//
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
+
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt data on the storage volume attached to the ML compute instance(s)
+	// that process the analysis job. The VolumeKmsKeyId can be either of the following
+	// formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	VolumeKmsKeyId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -9513,6 +9750,12 @@ func (s *StartEntitiesDetectionJobInput) SetOutputDataConfig(v *OutputDataConfig
 	return s
 }
 
+// SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
+func (s *StartEntitiesDetectionJobInput) SetVolumeKmsKeyId(v string) *StartEntitiesDetectionJobInput {
+	s.VolumeKmsKeyId = &v
+	return s
+}
+
 type StartEntitiesDetectionJobOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9592,6 +9835,16 @@ type StartKeyPhrasesDetectionJobInput struct {
 	//
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
+
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt data on the storage volume attached to the ML compute instance(s)
+	// that process the analysis job. The VolumeKmsKeyId can be either of the following
+	// formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	VolumeKmsKeyId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -9681,6 +9934,12 @@ func (s *StartKeyPhrasesDetectionJobInput) SetOutputDataConfig(v *OutputDataConf
 	return s
 }
 
+// SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
+func (s *StartKeyPhrasesDetectionJobInput) SetVolumeKmsKeyId(v string) *StartKeyPhrasesDetectionJobInput {
+	s.VolumeKmsKeyId = &v
+	return s
+}
+
 type StartKeyPhrasesDetectionJobOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9755,6 +10014,16 @@ type StartSentimentDetectionJobInput struct {
 	//
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
+
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt data on the storage volume attached to the ML compute instance(s)
+	// that process the analysis job. The VolumeKmsKeyId can be either of the following
+	// formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	VolumeKmsKeyId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -9844,6 +10113,12 @@ func (s *StartSentimentDetectionJobInput) SetOutputDataConfig(v *OutputDataConfi
 	return s
 }
 
+// SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
+func (s *StartSentimentDetectionJobInput) SetVolumeKmsKeyId(v string) *StartSentimentDetectionJobInput {
+	s.VolumeKmsKeyId = &v
+	return s
+}
+
 type StartSentimentDetectionJobOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9917,6 +10192,16 @@ type StartTopicsDetectionJobInput struct {
 	//
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
+
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt data on the storage volume attached to the ML compute instance(s)
+	// that process the analysis job. The VolumeKmsKeyId can be either of the following
+	// formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	VolumeKmsKeyId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -10003,6 +10288,12 @@ func (s *StartTopicsDetectionJobInput) SetNumberOfTopics(v int64) *StartTopicsDe
 // SetOutputDataConfig sets the OutputDataConfig field's value.
 func (s *StartTopicsDetectionJobInput) SetOutputDataConfig(v *OutputDataConfig) *StartTopicsDetectionJobInput {
 	s.OutputDataConfig = v
+	return s
+}
+
+// SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
+func (s *StartTopicsDetectionJobInput) SetVolumeKmsKeyId(v string) *StartTopicsDetectionJobInput {
+	s.VolumeKmsKeyId = &v
 	return s
 }
 
@@ -10588,6 +10879,10 @@ func (s *TopicsDetectionJobFilter) SetSubmitTimeBefore(v time.Time) *TopicsDetec
 type TopicsDetectionJobProperties struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role
+	// that grants Amazon Comprehend read access to your input data.
+	DataAccessRoleArn *string `min:"20" type:"string"`
+
 	// The time that the topic detection job was completed.
 	EndTime *time.Time `type:"timestamp"`
 
@@ -10618,6 +10913,16 @@ type TopicsDetectionJobProperties struct {
 
 	// The time that the topic detection job was submitted for processing.
 	SubmitTime *time.Time `type:"timestamp"`
+
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt data on the storage volume attached to the ML compute instance(s)
+	// that process the analysis job. The VolumeKmsKeyId can be either of the following
+	// formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	VolumeKmsKeyId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -10628,6 +10933,12 @@ func (s TopicsDetectionJobProperties) String() string {
 // GoString returns the string representation
 func (s TopicsDetectionJobProperties) GoString() string {
 	return s.String()
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *TopicsDetectionJobProperties) SetDataAccessRoleArn(v string) *TopicsDetectionJobProperties {
+	s.DataAccessRoleArn = &v
+	return s
 }
 
 // SetEndTime sets the EndTime field's value.
@@ -10681,6 +10992,12 @@ func (s *TopicsDetectionJobProperties) SetOutputDataConfig(v *OutputDataConfig) 
 // SetSubmitTime sets the SubmitTime field's value.
 func (s *TopicsDetectionJobProperties) SetSubmitTime(v time.Time) *TopicsDetectionJobProperties {
 	s.SubmitTime = &v
+	return s
+}
+
+// SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
+func (s *TopicsDetectionJobProperties) SetVolumeKmsKeyId(v string) *TopicsDetectionJobProperties {
+	s.VolumeKmsKeyId = &v
 	return s
 }
 

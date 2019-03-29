@@ -127,6 +127,10 @@ type CloudWatchAPI interface {
 	ListMetricsPages(*cloudwatch.ListMetricsInput, func(*cloudwatch.ListMetricsOutput, bool) bool) error
 	ListMetricsPagesWithContext(aws.Context, *cloudwatch.ListMetricsInput, func(*cloudwatch.ListMetricsOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*cloudwatch.ListTagsForResourceInput) (*cloudwatch.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *cloudwatch.ListTagsForResourceInput, ...request.Option) (*cloudwatch.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*cloudwatch.ListTagsForResourceInput) (*request.Request, *cloudwatch.ListTagsForResourceOutput)
+
 	PutDashboard(*cloudwatch.PutDashboardInput) (*cloudwatch.PutDashboardOutput, error)
 	PutDashboardWithContext(aws.Context, *cloudwatch.PutDashboardInput, ...request.Option) (*cloudwatch.PutDashboardOutput, error)
 	PutDashboardRequest(*cloudwatch.PutDashboardInput) (*request.Request, *cloudwatch.PutDashboardOutput)
@@ -142,6 +146,14 @@ type CloudWatchAPI interface {
 	SetAlarmState(*cloudwatch.SetAlarmStateInput) (*cloudwatch.SetAlarmStateOutput, error)
 	SetAlarmStateWithContext(aws.Context, *cloudwatch.SetAlarmStateInput, ...request.Option) (*cloudwatch.SetAlarmStateOutput, error)
 	SetAlarmStateRequest(*cloudwatch.SetAlarmStateInput) (*request.Request, *cloudwatch.SetAlarmStateOutput)
+
+	TagResource(*cloudwatch.TagResourceInput) (*cloudwatch.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *cloudwatch.TagResourceInput, ...request.Option) (*cloudwatch.TagResourceOutput, error)
+	TagResourceRequest(*cloudwatch.TagResourceInput) (*request.Request, *cloudwatch.TagResourceOutput)
+
+	UntagResource(*cloudwatch.UntagResourceInput) (*cloudwatch.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *cloudwatch.UntagResourceInput, ...request.Option) (*cloudwatch.UntagResourceOutput, error)
+	UntagResourceRequest(*cloudwatch.UntagResourceInput) (*request.Request, *cloudwatch.UntagResourceOutput)
 
 	WaitUntilAlarmExists(*cloudwatch.DescribeAlarmsInput) error
 	WaitUntilAlarmExistsWithContext(aws.Context, *cloudwatch.DescribeAlarmsInput, ...request.WaiterOption) error
