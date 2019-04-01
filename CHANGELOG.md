@@ -1,3 +1,12 @@
+Release v1.19.7 (2019-04-01)
+===
+
+### Service Client Updates
+* `service/elasticmapreduce`: Updates service API, documentation, and paginators
+  * Amazon EMR adds the ability to modify instance group configurations on a running cluster through the new "configurations" field in the ModifyInstanceGroups API.
+* `service/ssm`: Updates service documentation
+  * March 2019 documentation updates for Systems Manager.
+
 Release v1.19.6 (2019-03-29)
 ===
 

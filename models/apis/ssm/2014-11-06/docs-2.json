@@ -42,8 +42,8 @@
     "DescribeInstancePatchStatesForPatchGroup": "<p>Retrieves the high-level patch state for the instances in the specified patch group.</p>",
     "DescribeInstancePatches": "<p>Retrieves information about the patches on the specified instance and their state relative to the patch baseline being used for the instance.</p>",
     "DescribeInventoryDeletions": "<p>Describes a specific delete inventory operation.</p>",
-    "DescribeMaintenanceWindowExecutionTaskInvocations": "<p>Retrieves the individual task executions (one per target) for a particular task executed as part of a Maintenance Window execution.</p>",
-    "DescribeMaintenanceWindowExecutionTasks": "<p>For a given Maintenance Window execution, lists the tasks that were executed.</p>",
+    "DescribeMaintenanceWindowExecutionTaskInvocations": "<p>Retrieves the individual task executions (one per target) for a particular task run as part of a Maintenance Window execution.</p>",
+    "DescribeMaintenanceWindowExecutionTasks": "<p>For a given Maintenance Window execution, lists the tasks that were run.</p>",
     "DescribeMaintenanceWindowExecutions": "<p>Lists the executions of a Maintenance Window. This includes information about when the Maintenance Window was scheduled to be active, and information about tasks registered and run with the Maintenance Window.</p>",
     "DescribeMaintenanceWindowSchedule": "<p>Retrieves information about upcoming executions of a Maintenance Window.</p>",
     "DescribeMaintenanceWindowTargets": "<p>Lists the targets registered with the Maintenance Window.</p>",
@@ -64,9 +64,9 @@
     "GetInventory": "<p>Query inventory information.</p>",
     "GetInventorySchema": "<p>Return a list of inventory type names for the account, or return a list of attribute names for a specific Inventory item type. </p>",
     "GetMaintenanceWindow": "<p>Retrieves a Maintenance Window.</p>",
-    "GetMaintenanceWindowExecution": "<p>Retrieves details about a specific task executed as part of a Maintenance Window execution.</p>",
-    "GetMaintenanceWindowExecutionTask": "<p>Retrieves the details about a specific task executed as part of a Maintenance Window execution.</p>",
-    "GetMaintenanceWindowExecutionTaskInvocation": "<p>Retrieves a task invocation. A task invocation is a specific task executing on a specific target. Maintenance Windows report status for all invocations. </p>",
+    "GetMaintenanceWindowExecution": "<p>Retrieves details about a specific task run as part of a Maintenance Window execution.</p>",
+    "GetMaintenanceWindowExecutionTask": "<p>Retrieves the details about a specific task run as part of a Maintenance Window execution.</p>",
+    "GetMaintenanceWindowExecutionTaskInvocation": "<p>Retrieves a task invocation. A task invocation is a specific task running on a specific target. Maintenance Windows report status for all invocations. </p>",
     "GetMaintenanceWindowTask": "<p>Lists the tasks in a Maintenance Window.</p>",
     "GetParameter": "<p>Get information about a parameter by using the parameter name. Don't confuse this API action with the <a>GetParameters</a> API action.</p>",
     "GetParameterHistory": "<p>Query a list of all parameters used by the AWS account.</p>",
@@ -78,7 +78,7 @@
     "LabelParameterVersion": "<p>A parameter label is a user-defined alias to help you manage different versions of a parameter. When you modify a parameter, Systems Manager automatically saves a new version and increments the version number by one. A label can help you remember the purpose of a parameter when there are multiple versions. </p> <p>Parameter labels have the following requirements and restrictions.</p> <ul> <li> <p>A version of a parameter can have a maximum of 10 labels.</p> </li> <li> <p>You can't attach the same label to different versions of the same parameter. For example, if version 1 has the label Production, then you can't attach Production to version 2.</p> </li> <li> <p>You can move a label from one version of a parameter to another.</p> </li> <li> <p>You can't create a label when you create a new parameter. You must attach a label to a specific version of a parameter.</p> </li> <li> <p>You can't delete a parameter label. If you no longer want to use a parameter label, then you must move it to a different version of a parameter.</p> </li> <li> <p>A label can have a maximum of 100 characters.</p> </li> <li> <p>Labels can contain letters (case sensitive), numbers, periods (.), hyphens (-), or underscores (_).</p> </li> <li> <p>Labels can't begin with a number, \"aws,\" or \"ssm\" (not case sensitive). If a label fails to meet these requirements, then the label is not associated with a parameter and the system displays it in the list of InvalidLabels.</p> </li> </ul>",
     "ListAssociationVersions": "<p>Retrieves all versions of an association for a specific association ID.</p>",
     "ListAssociations": "<p>Lists the associations for the specified Systems Manager document or instance.</p>",
-    "ListCommandInvocations": "<p>An invocation is copy of a command sent to a specific instance. A command can apply to one or more instances. A command invocation applies to one instance. For example, if a user executes SendCommand against three instances, then a command invocation is created for each requested instance ID. ListCommandInvocations provide status about command execution.</p>",
+    "ListCommandInvocations": "<p>An invocation is copy of a command sent to a specific instance. A command can apply to one or more instances. A command invocation applies to one instance. For example, if a user runs SendCommand against three instances, then a command invocation is created for each requested instance ID. ListCommandInvocations provide status about command execution.</p>",
     "ListCommands": "<p>Lists the commands requested by users of the AWS account.</p>",
     "ListComplianceItems": "<p>For a specified resource ID, this API action returns a list of compliance statuses for different resource types. Currently, you can only specify one resource ID per call. List results depend on the criteria specified in the filter. </p>",
     "ListComplianceSummaries": "<p>Returns a summary count of compliant and non-compliant resources for a compliance type. For example, this call can return State Manager associations, patches, or custom compliance types according to the filter criteria that you specify. </p>",
@@ -100,13 +100,13 @@
     "ResetServiceSetting": "<p> <code>ServiceSetting</code> is an account-level setting for an AWS service. This setting defines how a user interacts with or uses a service or a feature of a service. For example, if an AWS service charges money to the account based on feature or service usage, then the AWS service team might create a default setting of \"false\". This means the user can't use this feature unless they change the setting to \"true\" and intentionally opt in for a paid feature.</p> <p>Services map a <code>SettingId</code> object to a setting value. AWS services teams define the default value for a <code>SettingId</code>. You can't create a new <code>SettingId</code>, but you can overwrite the default value if you have the <code>ssm:UpdateServiceSetting</code> permission for the setting. Use the <a>GetServiceSetting</a> API action to view the current value. Use the <a>UpdateServiceSetting</a> API action to change the default setting. </p> <p>Reset the service setting for the account to the default value as provisioned by the AWS service team. </p>",
     "ResumeSession": "<p>Reconnects a session to an instance after it has been disconnected. Connections can be resumed for disconnected sessions, but not terminated sessions.</p> <note> <p>This command is primarily for use by client machines to automatically reconnect during intermittent network issues. It is not intended for any other use.</p> </note>",
     "SendAutomationSignal": "<p>Sends a signal to an Automation execution to change the current behavior or status of the execution. </p>",
-    "SendCommand": "<p>Executes commands on one or more managed instances.</p>",
-    "StartAssociationsOnce": "<p>Use this API action to execute an association immediately and only one time. This action can be helpful when troubleshooting associations.</p>",
+    "SendCommand": "<p>Runs commands on one or more managed instances.</p>",
+    "StartAssociationsOnce": "<p>Use this API action to run an association immediately and only one time. This action can be helpful when troubleshooting associations.</p>",
     "StartAutomationExecution": "<p>Initiates execution of an Automation document.</p>",
     "StartSession": "<p>Initiates a connection to a target (for example, an instance) for a Session Manager session. Returns a URL and token that can be used to open a WebSocket connection for sending input and receiving outputs.</p> <note> <p>AWS CLI usage: <code>start-session</code> is an interactive command that requires the Session Manager plugin to be installed on the client machine making the call. For information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html\"> Install the Session Manager Plugin for the AWS CLI</a> in the <i>AWS Systems Manager User Guide</i>.</p> </note>",
-    "StopAutomationExecution": "<p>Stop an Automation that is currently executing.</p>",
+    "StopAutomationExecution": "<p>Stop an Automation that is currently running.</p>",
     "TerminateSession": "<p>Permanently ends a session and closes the data connection between the Session Manager client and SSM Agent on the instance. A terminated session cannot be resumed.</p>",
-    "UpdateAssociation": "<p>Updates an association. You can update the association name and version, the document version, schedule, parameters, and Amazon S3 output.</p>",
+    "UpdateAssociation": "<p>Updates an association. You can update the association name and version, the document version, schedule, parameters, and Amazon S3 output.</p> <important> <p>When you update an association, the association immediately runs against the specified targets.</p> </important>",
     "UpdateAssociationStatus": "<p>Updates the status of the Systems Manager document associated with the specified instance.</p>",
     "UpdateDocument": "<p>The document you want to update.</p>",
     "UpdateDocumentDefaultVersion": "<p>Set the default version of a document. </p>",
@@ -403,7 +403,7 @@
     "AssociationIdList": {
       "base": null,
       "refs": {
-        "StartAssociationsOnceRequest$AssociationIds": "<p>The association IDs that you want to execute immediately and only one time.</p>"
+        "StartAssociationsOnceRequest$AssociationIds": "<p>The association IDs that you want to run immediately and only one time.</p>"
       }
     },
     "AssociationLimitExceeded": {
@@ -710,7 +710,7 @@
         "SendAutomationSignalRequest$Payload": "<p>The data sent with the signal. The data schema depends on the type of signal used in the request. </p>",
         "StartAutomationExecutionRequest$Parameters": "<p>A key-value map of execution parameters, which match the declared parameters in the Automation document.</p>",
         "StepExecution$Outputs": "<p>Returned values from the execution of the step.</p>",
-        "StepExecution$OverriddenParameters": "<p>A user-specified list of parameters to override when executing a step.</p>"
+        "StepExecution$OverriddenParameters": "<p>A user-specified list of parameters to override when running a step.</p>"
       }
     },
     "AutomationParameterValue": {
@@ -742,7 +742,7 @@
     "AutomationType": {
       "base": null,
       "refs": {
-        "AutomationExecutionMetadata$AutomationType": "<p>Use this filter with <a>DescribeAutomationExecutions</a>. Specify either Local or CrossAccount. CrossAccount is an Automation that executes in multiple AWS Regions and accounts. For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-automation-multiple-accounts-and-regions.html\">Concurrently Executing Automations in Multiple AWS Regions and Accounts</a> in the <i>AWS Systems Manager User Guide</i>. </p>"
+        "AutomationExecutionMetadata$AutomationType": "<p>Use this filter with <a>DescribeAutomationExecutions</a>. Specify either Local or CrossAccount. CrossAccount is an Automation that runs in multiple AWS Regions and accounts. For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-automation-multiple-accounts-and-regions.html\">Executing Automations in Multiple AWS Regions and Accounts</a> in the <i>AWS Systems Manager User Guide</i>. </p>"
       }
     },
     "BaselineDescription": {
@@ -805,7 +805,7 @@
         "DocumentVersionInfo$IsDefaultVersion": "<p>An identifier for the default version of the document.</p>",
         "GetParameterHistoryRequest$WithDecryption": "<p>Return decrypted values for secure string parameters. This flag is ignored for String and StringList parameter types.</p>",
         "GetParameterRequest$WithDecryption": "<p>Return decrypted values for secure string parameters. This flag is ignored for String and StringList parameter types.</p>",
-        "GetParametersByPathRequest$Recursive": "<p>Retrieve all parameters within a hierarchy.</p> <important> <p>If a user has access to a path, then the user can access all levels of that path. For example, if a user has permission to access path /a, then the user can also access /a/b. Even if a user has explicitly been denied access in IAM for parameter /a, they can still call the GetParametersByPath API action recursively and view /a/b.</p> </important>",
+        "GetParametersByPathRequest$Recursive": "<p>Retrieve all parameters within a hierarchy.</p> <important> <p>If a user has access to a path, then the user can access all levels of that path. For example, if a user has permission to access path <code>/a</code>, then the user can also access <code>/a/b</code>. Even if a user has explicitly been denied access in IAM for parameter <code>/a/b</code>, they can still call the GetParametersByPath API action recursively for <code>/a</code> and view <code>/a/b</code>.</p> </important>",
         "GetParametersByPathRequest$WithDecryption": "<p>Retrieve all parameters in a hierarchy with their value decrypted.</p>",
         "GetParametersRequest$WithDecryption": "<p>Return decrypted secure string value. Return decrypted values for secure string parameters. This flag is ignored for String and StringList parameter types.</p>",
         "GetPatchBaselineResult$ApprovedPatchesEnableNonSecurity": "<p>Indicates whether the list of approved patches includes non-security updates that should be applied to the instances. The default value is 'false'. Applies to Linux instances only.</p>",
@@ -920,7 +920,7 @@
       }
     },
     "CommandInvocation": {
-      "base": "<p>An invocation is copy of a command sent to a specific instance. A command can apply to one or more instances. A command invocation applies to one instance. For example, if a user executes SendCommand against three instances, then a command invocation is created for each requested instance ID. A command invocation returns status and detail information about a command you executed. </p>",
+      "base": "<p>An invocation is copy of a command sent to a specific instance. A command can apply to one or more instances. A command invocation applies to one instance. For example, if a user runs SendCommand against three instances, then a command invocation is created for each requested instance ID. A command invocation returns status and detail information about a command you ran. </p>",
       "refs": {
         "CommandInvocationList$member": null
       }
@@ -980,7 +980,7 @@
     "CommandPluginStatus": {
       "base": null,
       "refs": {
-        "CommandPlugin$Status": "<p>The status of this plugin. You can execute a document with multiple plugins.</p>"
+        "CommandPlugin$Status": "<p>The status of this plugin. You can run a document with multiple plugins.</p>"
       }
     },
     "CommandStatus": {
@@ -995,7 +995,7 @@
         "Command$Comment": "<p>User-specified information about the command, such as a brief description of what the command should do.</p>",
         "CommandInvocation$Comment": "<p>User-specified information about the command, such as a brief description of what the command should do.</p>",
         "GetCommandInvocationResult$Comment": "<p>The comment text for the command.</p>",
-        "MaintenanceWindowRunCommandParameters$Comment": "<p>Information about the command(s) to execute.</p>",
+        "MaintenanceWindowRunCommandParameters$Comment": "<p>Information about the command(s) to run.</p>",
         "SendCommandRequest$Comment": "<p>User-specified information about the command, such as a brief description of what the command should do.</p>"
       }
     },
@@ -1335,28 +1335,28 @@
         "AutomationExecution$ExecutionEndTime": "<p>The time the execution finished.</p>",
         "AutomationExecutionMetadata$ExecutionStartTime": "<p>The time the execution started.&gt;</p>",
         "AutomationExecutionMetadata$ExecutionEndTime": "<p>The time the execution finished. This is not populated if the execution is still in progress.</p>",
-        "Command$ExpiresAfter": "<p>If this time is reached and the command has not already started executing, it will not run. Calculated based on the ExpiresAfter user input provided as part of the SendCommand API.</p>",
+        "Command$ExpiresAfter": "<p>If this time is reached and the command has not already started running, it will not run. Calculated based on the ExpiresAfter user input provided as part of the SendCommand API.</p>",
         "Command$RequestedDateTime": "<p>The date and time the command was requested.</p>",
         "CommandInvocation$RequestedDateTime": "<p>The time and date the request was sent to this instance.</p>",
-        "CommandPlugin$ResponseStartDateTime": "<p>The time the plugin started executing. </p>",
-        "CommandPlugin$ResponseFinishDateTime": "<p>The time the plugin stopped executing. Could stop prematurely if, for example, a cancel command was sent. </p>",
+        "CommandPlugin$ResponseStartDateTime": "<p>The time the plugin started running. </p>",
+        "CommandPlugin$ResponseFinishDateTime": "<p>The time the plugin stopped running. Could stop prematurely if, for example, a cancel command was sent. </p>",
         "ComplianceExecutionSummary$ExecutionTime": "<p>The time the execution ran as a datetime object that is saved in the following format: yyyy-MM-dd'T'HH:mm:ss'Z'.</p>",
         "DocumentDescription$CreatedDate": "<p>The date when the document was created.</p>",
         "DocumentVersionInfo$CreatedDate": "<p>The date the document was created.</p>",
-        "GetMaintenanceWindowExecutionResult$StartTime": "<p>The time the Maintenance Window started executing.</p>",
-        "GetMaintenanceWindowExecutionResult$EndTime": "<p>The time the Maintenance Window finished executing.</p>",
-        "GetMaintenanceWindowExecutionTaskInvocationResult$StartTime": "<p>The time that the task started executing on the target.</p>",
-        "GetMaintenanceWindowExecutionTaskInvocationResult$EndTime": "<p>The time that the task finished executing on the target.</p>",
+        "GetMaintenanceWindowExecutionResult$StartTime": "<p>The time the Maintenance Window started running.</p>",
+        "GetMaintenanceWindowExecutionResult$EndTime": "<p>The time the Maintenance Window finished running.</p>",
+        "GetMaintenanceWindowExecutionTaskInvocationResult$StartTime": "<p>The time that the task started running on the target.</p>",
+        "GetMaintenanceWindowExecutionTaskInvocationResult$EndTime": "<p>The time that the task finished running on the target.</p>",
         "GetMaintenanceWindowExecutionTaskResult$StartTime": "<p>The time the task execution started.</p>",
         "GetMaintenanceWindowExecutionTaskResult$EndTime": "<p>The time the task execution completed.</p>",
         "GetMaintenanceWindowResult$CreatedDate": "<p>The date the Maintenance Window was created.</p>",
         "GetMaintenanceWindowResult$ModifiedDate": "<p>The date the Maintenance Window was last modified.</p>",
         "GetPatchBaselineResult$CreatedDate": "<p>The date the patch baseline was created.</p>",
         "GetPatchBaselineResult$ModifiedDate": "<p>The date the patch baseline was last modified.</p>",
-        "InstanceAssociationStatusInfo$ExecutionDate": "<p>The date the instance association executed. </p>",
+        "InstanceAssociationStatusInfo$ExecutionDate": "<p>The date the instance association ran. </p>",
         "InstanceInformation$LastPingDateTime": "<p>The date and time when agent last pinged Systems Manager service. </p>",
         "InstanceInformation$RegistrationDate": "<p>The date the server or VM was registered with AWS as a managed instance.</p>",
-        "InstanceInformation$LastAssociationExecutionDate": "<p>The date the association was last executed.</p>",
+        "InstanceInformation$LastAssociationExecutionDate": "<p>The date the association was last run.</p>",
         "InstanceInformation$LastSuccessfulAssociationExecutionDate": "<p>The last date the association was successfully run.</p>",
         "InstancePatchState$OperationStartTime": "<p>The time the most recent patching operation was started on the instance.</p>",
         "InstancePatchState$OperationEndTime": "<p>The time the most recent patching operation completed on the instance.</p>",
@@ -1860,8 +1860,8 @@
         "Association$Name": "<p>The name of the Systems Manager document.</p>",
         "AssociationDescription$Name": "<p>The name of the Systems Manager document.</p>",
         "AssociationVersionInfo$Name": "<p>The name specified when the association was created.</p>",
-        "CreateAssociationBatchRequestEntry$Name": "<p>The name of the SSM document that contains the configuration information for the instance. You can specify Command, Policy, or Automation documents.</p> <p>You can specify AWS-predefined documents, documents you created, or a document that is shared with you from another account.</p> <p>For SSM documents that are shared with you from other AWS accounts, you must specify the complete SSM document ARN, in the following format:</p> <p> <code>arn:aws:ssm:<i>region</i>:<i>account-id</i>:document/<i>document-name</i> </code> </p> <p>For example:</p> <p> <code>arn:aws:ssm:us-east-2:12345678912:document/My-Shared-Document</code> </p> <p>For AWS-predefined documents and SSM documents you created in your account, you only need to specify the document name. For example, <code>AWS-ApplyPatchBaseline</code> or <code>My-Document</code>.</p>",
-        "CreateAssociationRequest$Name": "<p>The name of the SSM document that contains the configuration information for the instance. You can specify Command, Policy, or Automation documents.</p> <p>You can specify AWS-predefined documents, documents you created, or a document that is shared with you from another account.</p> <p>For SSM documents that are shared with you from other AWS accounts, you must specify the complete SSM document ARN, in the following format:</p> <p> <code>arn:<i>partition</i>:ssm:<i>region</i>:<i>account-id</i>:document/<i>document-name</i> </code> </p> <p>For example:</p> <p> <code>arn:aws:ssm:us-east-2:12345678912:document/My-Shared-Document</code> </p> <p>For AWS-predefined documents and SSM documents you created in your account, you only need to specify the document name. For example, <code>AWS-ApplyPatchBaseline</code> or <code>My-Document</code>.</p>",
+        "CreateAssociationBatchRequestEntry$Name": "<p>The name of the SSM document that contains the configuration information for the instance. You can specify Command or Automation documents.</p> <p>You can specify AWS-predefined documents, documents you created, or a document that is shared with you from another account.</p> <p>For SSM documents that are shared with you from other AWS accounts, you must specify the complete SSM document ARN, in the following format:</p> <p> <code>arn:aws:ssm:<i>region</i>:<i>account-id</i>:document/<i>document-name</i> </code> </p> <p>For example:</p> <p> <code>arn:aws:ssm:us-east-2:12345678912:document/My-Shared-Document</code> </p> <p>For AWS-predefined documents and SSM documents you created in your account, you only need to specify the document name. For example, <code>AWS-ApplyPatchBaseline</code> or <code>My-Document</code>.</p>",
+        "CreateAssociationRequest$Name": "<p>The name of the SSM document that contains the configuration information for the instance. You can specify Command or Automation documents.</p> <p>You can specify AWS-predefined documents, documents you created, or a document that is shared with you from another account.</p> <p>For SSM documents that are shared with you from other AWS accounts, you must specify the complete SSM document ARN, in the following format:</p> <p> <code>arn:<i>partition</i>:ssm:<i>region</i>:<i>account-id</i>:document/<i>document-name</i> </code> </p> <p>For example:</p> <p> <code>arn:aws:ssm:us-east-2:12345678912:document/My-Shared-Document</code> </p> <p>For AWS-predefined documents and SSM documents you created in your account, you only need to specify the document name. For example, <code>AWS-ApplyPatchBaseline</code> or <code>My-Document</code>.</p>",
         "DeleteAssociationRequest$Name": "<p>The name of the Systems Manager document.</p>",
         "DescribeAssociationRequest$Name": "<p>The name of the Systems Manager document.</p>",
         "DescribeDocumentRequest$Name": "<p>The name of the Systems Manager document.</p>",
@@ -1870,10 +1870,10 @@
         "GetDocumentRequest$Name": "<p>The name of the Systems Manager document.</p>",
         "GetDocumentResult$Name": "<p>The name of the Systems Manager document.</p>",
         "InstanceAssociationStatusInfo$Name": "<p>The name of the association.</p>",
-        "SendCommandRequest$DocumentName": "<p>Required. The name of the Systems Manager document to execute. This can be a public document or a custom document.</p>",
+        "SendCommandRequest$DocumentName": "<p>Required. The name of the Systems Manager document to run. This can be a public document or a custom document.</p>",
         "StartAutomationExecutionRequest$DocumentName": "<p>The name of the Automation document to use for this execution.</p>",
         "StartSessionRequest$DocumentName": "<p>The name of the SSM document to define the parameters and plugin settings for the session. For example, <code>SSM-SessionManagerRunShell</code>. If no document name is provided, a shell to the instance is launched by default.</p>",
-        "UpdateAssociationRequest$Name": "<p>The name of the SSM document that contains the configuration information for the instance. You can specify Command, Policy, or Automation documents.</p> <p>You can specify AWS-predefined documents, documents you created, or a document that is shared with you from another account.</p> <p>For SSM documents that are shared with you from other AWS accounts, you must specify the complete SSM document ARN, in the following format:</p> <p> <code>arn:aws:ssm:<i>region</i>:<i>account-id</i>:document/<i>document-name</i> </code> </p> <p>For example:</p> <p> <code>arn:aws:ssm:us-east-2:12345678912:document/My-Shared-Document</code> </p> <p>For AWS-predefined documents and SSM documents you created in your account, you only need to specify the document name. For example, <code>AWS-ApplyPatchBaseline</code> or <code>My-Document</code>.</p>",
+        "UpdateAssociationRequest$Name": "<p>The name of the SSM document that contains the configuration information for the instance. You can specify Command or Automation documents.</p> <p>You can specify AWS-predefined documents, documents you created, or a document that is shared with you from another account.</p> <p>For SSM documents that are shared with you from other AWS accounts, you must specify the complete SSM document ARN, in the following format:</p> <p> <code>arn:aws:ssm:<i>region</i>:<i>account-id</i>:document/<i>document-name</i> </code> </p> <p>For example:</p> <p> <code>arn:aws:ssm:us-east-2:12345678912:document/My-Shared-Document</code> </p> <p>For AWS-predefined documents and SSM documents you created in your account, you only need to specify the document name. For example, <code>AWS-ApplyPatchBaseline</code> or <code>My-Document</code>.</p>",
         "UpdateAssociationStatusRequest$Name": "<p>The name of the Systems Manager document.</p>"
       }
     },
@@ -2016,7 +2016,7 @@
         "DescribeDocumentPermissionRequest$Name": "<p>The name of the document for which you are the owner.</p>",
         "DocumentDefaultVersionDescription$Name": "<p>The name of the document.</p>",
         "DocumentVersionInfo$Name": "<p>The document name.</p>",
-        "GetCommandInvocationResult$DocumentName": "<p>The name of the document that was executed. For example, AWS-RunShellScript.</p>",
+        "GetCommandInvocationResult$DocumentName": "<p>The name of the document that was run. For example, AWS-RunShellScript.</p>",
         "ListDocumentVersionsRequest$Name": "<p>The name of the document about which you want version information.</p>",
         "ModifyDocumentPermissionRequest$Name": "<p>The name of the document that you want to share.</p>",
         "Session$DocumentName": "<p>The name of the Session Manager SSM document used to define the parameters and plugin settings for the session. For example, <code>SSM-SessionManagerRunShell</code>.</p>",
@@ -2032,7 +2032,7 @@
       }
     },
     "DocumentParameter": {
-      "base": "<p>Parameters specified in a System Manager document that execute on the server when the command is run. </p>",
+      "base": "<p>Parameters specified in a System Manager document that run on the server when the command is run. </p>",
       "refs": {
         "DocumentParameterList$member": null
       }
@@ -2141,7 +2141,7 @@
         "GetDocumentResult$DocumentVersion": "<p>The document version.</p>",
         "InstanceAssociationStatusInfo$DocumentVersion": "<p>The association document verions.</p>",
         "MaintenanceWindowAutomationParameters$DocumentVersion": "<p>The version of an Automation document to use during task execution.</p>",
-        "SendCommandRequest$DocumentVersion": "<p>The SSM document version to use in the request. You can specify $DEFAULT, $LATEST, or a specific version number. If you execute commands by using the AWS CLI, then you must escape the first two options by using a backslash. If you specify a version number, then you don't need to use the backslash. For example:</p> <p>--document-version \"\\$DEFAULT\"</p> <p>--document-version \"\\$LATEST\"</p> <p>--document-version \"3\"</p>",
+        "SendCommandRequest$DocumentVersion": "<p>The SSM document version to use in the request. You can specify $DEFAULT, $LATEST, or a specific version number. If you run commands by using the AWS CLI, then you must escape the first two options by using a backslash. If you specify a version number, then you don't need to use the backslash. For example:</p> <p>--document-version \"\\$DEFAULT\"</p> <p>--document-version \"\\$LATEST\"</p> <p>--document-version \"3\"</p>",
         "StartAutomationExecutionRequest$DocumentVersion": "<p>The version of the Automation document to use for this execution.</p>",
         "UpdateAssociationRequest$DocumentVersion": "<p>The document version you want update for the association. </p>",
         "UpdateDocumentRequest$DocumentVersion": "<p>The version of the document that you want to update.</p>"
@@ -2245,7 +2245,7 @@
     "ExecutionRoleName": {
       "base": null,
       "refs": {
-        "TargetLocation$ExecutionRoleName": "<p>The Automation execution role used by the currently executing Automation.</p>"
+        "TargetLocation$ExecutionRoleName": "<p>The Automation execution role used by the currently running Automation.</p>"
       }
     },
     "ExpirationDate": {
@@ -2639,7 +2639,7 @@
         "CancelCommandRequest$InstanceIds": "<p>(Optional) A list of instance IDs on which you want to cancel the command. If not provided, the command is canceled on every instance on which it was requested.</p>",
         "Command$InstanceIds": "<p>The instance IDs against which this command was requested.</p>",
         "DescribeInstancePatchStatesRequest$InstanceIds": "<p>The ID of the instance whose patch state information should be retrieved.</p>",
-        "SendCommandRequest$InstanceIds": "<p>The instance IDs where the command should execute. You can specify a maximum of 50 IDs. If you prefer not to list individual instance IDs, you can instead send commands to a fleet of instances using the Targets parameter, which accepts EC2 tags. For more information about how to use targets, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html\">Sending Commands to a Fleet</a> in the <i>AWS Systems Manager User Guide</i>.</p>"
+        "SendCommandRequest$InstanceIds": "<p>The instance IDs where the command should run. You can specify a maximum of 50 IDs. If you prefer not to list individual instance IDs, you can instead send commands to a fleet of instances using the Targets parameter, which accepts EC2 tags. For more information about how to use targets, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html\">Sending Commands to a Fleet</a> in the <i>AWS Systems Manager User Guide</i>.</p>"
       }
     },
     "InstanceInformation": {
@@ -2779,9 +2779,9 @@
         "DescribePatchGroupStateResult$InstancesWithMissingPatches": "<p>The number of instances with missing patches from the patch baseline.</p>",
         "DescribePatchGroupStateResult$InstancesWithFailedPatches": "<p>The number of instances with patches from the patch baseline that failed to install.</p>",
         "DescribePatchGroupStateResult$InstancesWithNotApplicablePatches": "<p>The number of instances with patches that aren't applicable.</p>",
-        "ProgressCounters$TotalSteps": "<p>The total number of steps executed in all specified AWS Regions and accounts for the current Automation execution.</p>",
+        "ProgressCounters$TotalSteps": "<p>The total number of steps run in all specified AWS Regions and accounts for the current Automation execution.</p>",
         "ProgressCounters$SuccessSteps": "<p>The total number of steps that successfully completed in all specified AWS Regions and accounts for the current Automation execution.</p>",
-        "ProgressCounters$FailedSteps": "<p>The total number of steps that failed to execute in all specified AWS Regions and accounts for the current Automation execution.</p>",
+        "ProgressCounters$FailedSteps": "<p>The total number of steps that failed to run in all specified AWS Regions and accounts for the current Automation execution.</p>",
         "ProgressCounters$CancelledSteps": "<p>The total number of steps that the system cancelled in all specified AWS Regions and accounts for the current Automation execution.</p>",
         "ProgressCounters$TimedOutSteps": "<p>The total number of steps that timed out in all specified AWS Regions and accounts for the current Automation execution.</p>",
         "StepExecution$MaxAttempts": "<p>The maximum number of tries to run the action of the step. The default value is 1.</p>"
@@ -3521,7 +3521,7 @@
     "MaintenanceWindowAllowUnassociatedTargets": {
       "base": null,
       "refs": {
-        "CreateMaintenanceWindowRequest$AllowUnassociatedTargets": "<p>Enables a Maintenance Window task to execute on managed instances, even if you have not registered those instances as targets. If enabled, then you must specify the unregistered instances (by instance ID) when you register a task with the Maintenance Window </p> <p>If you don't enable this option, then you must specify previously-registered targets when you register a task with the Maintenance Window. </p>",
+        "CreateMaintenanceWindowRequest$AllowUnassociatedTargets": "<p>Enables a Maintenance Window task to run on managed instances, even if you have not registered those instances as targets. If enabled, then you must specify the unregistered instances (by instance ID) when you register a task with the Maintenance Window </p> <p>If you don't enable this option, then you must specify previously-registered targets when you register a task with the Maintenance Window. </p>",
         "GetMaintenanceWindowResult$AllowUnassociatedTargets": "<p>Whether targets must be registered with the Maintenance Window before tasks can be defined for those targets.</p>",
         "UpdateMaintenanceWindowRequest$AllowUnassociatedTargets": "<p>Whether targets must be registered with the Maintenance Window before tasks can be defined for those targets.</p>",
         "UpdateMaintenanceWindowResult$AllowUnassociatedTargets": "<p>Whether targets must be registered with the Maintenance Window before tasks can be defined for those targets.</p>"
@@ -3694,8 +3694,8 @@
     "MaintenanceWindowExecutionTaskInvocationParameters": {
       "base": null,
       "refs": {
-        "GetMaintenanceWindowExecutionTaskInvocationResult$Parameters": "<p>The parameters used at the time that the task executed.</p>",
-        "MaintenanceWindowExecutionTaskInvocationIdentity$Parameters": "<p>The parameters that were provided for the invocation when it was executed.</p>"
+        "GetMaintenanceWindowExecutionTaskInvocationResult$Parameters": "<p>The parameters used at the time that the task ran.</p>",
+        "MaintenanceWindowExecutionTaskInvocationIdentity$Parameters": "<p>The parameters that were provided for the invocation when it was run.</p>"
       }
     },
     "MaintenanceWindowFilter": {
@@ -3941,11 +3941,11 @@
     "MaintenanceWindowTaskArn": {
       "base": null,
       "refs": {
-        "GetMaintenanceWindowExecutionTaskResult$TaskArn": "<p>The ARN of the executed task.</p>",
+        "GetMaintenanceWindowExecutionTaskResult$TaskArn": "<p>The ARN of the task that ran.</p>",
         "GetMaintenanceWindowTaskResult$TaskArn": "<p>The resource that the task used during execution. For RUN_COMMAND and AUTOMATION task types, the TaskArn is the Systems Manager Document name/ARN. For LAMBDA tasks, the value is the function name/ARN. For STEP_FUNCTION tasks, the value is the state machine ARN.</p>",
-        "MaintenanceWindowExecutionTaskIdentity$TaskArn": "<p>The ARN of the executed task.</p>",
+        "MaintenanceWindowExecutionTaskIdentity$TaskArn": "<p>The ARN of the task that ran.</p>",
         "MaintenanceWindowTask$TaskArn": "<p>The resource that the task uses during execution. For RUN_COMMAND and AUTOMATION task types, <code>TaskArn</code> is the Systems Manager document name or ARN. For LAMBDA tasks, it's the function name or ARN. For STEP_FUNCTION tasks, it's the state machine ARN.</p>",
-        "RegisterTaskWithMaintenanceWindowRequest$TaskArn": "<p>The ARN of the task to execute </p>",
+        "RegisterTaskWithMaintenanceWindowRequest$TaskArn": "<p>The ARN of the task to run.</p>",
         "UpdateMaintenanceWindowTaskRequest$TaskArn": "<p>The task ARN to modify.</p>",
         "UpdateMaintenanceWindowTaskResult$TaskArn": "<p>The updated task ARN value.</p>"
       }
@@ -3966,7 +3966,7 @@
     "MaintenanceWindowTaskInvocationParameters": {
       "base": "<p>The parameters for task execution.</p>",
       "refs": {
-        "GetMaintenanceWindowTaskResult$TaskInvocationParameters": "<p>The parameters to pass to the task when it executes.</p>",
+        "GetMaintenanceWindowTaskResult$TaskInvocationParameters": "<p>The parameters to pass to the task when it runs.</p>",
         "RegisterTaskWithMaintenanceWindowRequest$TaskInvocationParameters": "<p>The parameters that the task should use during execution. Populate only the fields that match the task type. All other fields should be empty. </p>",
         "UpdateMaintenanceWindowTaskRequest$TaskInvocationParameters": "<p>The parameters that the task should use during execution. Populate only the fields that match the task type. All other fields should be empty.</p>",
         "UpdateMaintenanceWindowTaskResult$TaskInvocationParameters": "<p>The updated parameter values.</p>"
@@ -4005,10 +4005,10 @@
     "MaintenanceWindowTaskParameters": {
       "base": null,
       "refs": {
-        "GetMaintenanceWindowTaskResult$TaskParameters": "<p>The parameters to pass to the task when it executes.</p> <note> <p> <code>TaskParameters</code> has been deprecated. To specify parameters to pass to a task when it runs, instead use the <code>Parameters</code> option in the <code>TaskInvocationParameters</code> structure. For information about how Systems Manager handles these options for the supported Maintenance Window task types, see <a>MaintenanceWindowTaskInvocationParameters</a>.</p> </note>",
-        "MaintenanceWindowTask$TaskParameters": "<p>The parameters that should be passed to the task when it is executed.</p> <note> <p> <code>TaskParameters</code> has been deprecated. To specify parameters to pass to a task when it runs, instead use the <code>Parameters</code> option in the <code>TaskInvocationParameters</code> structure. For information about how Systems Manager handles these options for the supported Maintenance Window task types, see <a>MaintenanceWindowTaskInvocationParameters</a>.</p> </note>",
+        "GetMaintenanceWindowTaskResult$TaskParameters": "<p>The parameters to pass to the task when it runs.</p> <note> <p> <code>TaskParameters</code> has been deprecated. To specify parameters to pass to a task when it runs, instead use the <code>Parameters</code> option in the <code>TaskInvocationParameters</code> structure. For information about how Systems Manager handles these options for the supported Maintenance Window task types, see <a>MaintenanceWindowTaskInvocationParameters</a>.</p> </note>",
+        "MaintenanceWindowTask$TaskParameters": "<p>The parameters that should be passed to the task when it is run.</p> <note> <p> <code>TaskParameters</code> has been deprecated. To specify parameters to pass to a task when it runs, instead use the <code>Parameters</code> option in the <code>TaskInvocationParameters</code> structure. For information about how Systems Manager handles these options for the supported Maintenance Window task types, see <a>MaintenanceWindowTaskInvocationParameters</a>.</p> </note>",
         "MaintenanceWindowTaskParametersList$member": null,
-        "RegisterTaskWithMaintenanceWindowRequest$TaskParameters": "<p>The parameters that should be passed to the task when it is executed.</p> <note> <p> <code>TaskParameters</code> has been deprecated. To specify parameters to pass to a task when it runs, instead use the <code>Parameters</code> option in the <code>TaskInvocationParameters</code> structure. For information about how Systems Manager handles these options for the supported Maintenance Window task types, see <a>MaintenanceWindowTaskInvocationParameters</a>.</p> </note>",
+        "RegisterTaskWithMaintenanceWindowRequest$TaskParameters": "<p>The parameters that should be passed to the task when it is run.</p> <note> <p> <code>TaskParameters</code> has been deprecated. To specify parameters to pass to a task when it runs, instead use the <code>Parameters</code> option in the <code>TaskInvocationParameters</code> structure. For information about how Systems Manager handles these options for the supported Maintenance Window task types, see <a>MaintenanceWindowTaskInvocationParameters</a>.</p> </note>",
         "UpdateMaintenanceWindowTaskRequest$TaskParameters": "<p>The parameters to modify.</p> <note> <p> <code>TaskParameters</code> has been deprecated. To specify parameters to pass to a task when it runs, instead use the <code>Parameters</code> option in the <code>TaskInvocationParameters</code> structure. For information about how Systems Manager handles these options for the supported Maintenance Window task types, see <a>MaintenanceWindowTaskInvocationParameters</a>.</p> </note> <p>The map has the following format:</p> <p>Key: string, between 1 and 255 characters</p> <p>Value: an array of strings, each string is between 1 and 255 characters</p>",
         "UpdateMaintenanceWindowTaskResult$TaskParameters": "<p>The updated parameter values.</p> <note> <p> <code>TaskParameters</code> has been deprecated. To specify parameters to pass to a task when it runs, instead use the <code>Parameters</code> option in the <code>TaskInvocationParameters</code> structure. For information about how Systems Manager handles these options for the supported Maintenance Window task types, see <a>MaintenanceWindowTaskInvocationParameters</a>.</p> </note>"
       }
@@ -4016,14 +4016,14 @@
     "MaintenanceWindowTaskParametersList": {
       "base": null,
       "refs": {
-        "GetMaintenanceWindowExecutionTaskResult$TaskParameters": "<p>The parameters passed to the task when it was executed.</p> <note> <p> <code>TaskParameters</code> has been deprecated. To specify parameters to pass to a task when it runs, instead use the <code>Parameters</code> option in the <code>TaskInvocationParameters</code> structure. For information about how Systems Manager handles these options for the supported Maintenance Window task types, see <a>MaintenanceWindowTaskInvocationParameters</a>.</p> </note> <p>The map has the following format:</p> <p>Key: string, between 1 and 255 characters</p> <p>Value: an array of strings, each string is between 1 and 255 characters</p>"
+        "GetMaintenanceWindowExecutionTaskResult$TaskParameters": "<p>The parameters passed to the task when it was run.</p> <note> <p> <code>TaskParameters</code> has been deprecated. To specify parameters to pass to a task when it runs, instead use the <code>Parameters</code> option in the <code>TaskInvocationParameters</code> structure. For information about how Systems Manager handles these options for the supported Maintenance Window task types, see <a>MaintenanceWindowTaskInvocationParameters</a>.</p> </note> <p>The map has the following format:</p> <p>Key: string, between 1 and 255 characters</p> <p>Value: an array of strings, each string is between 1 and 255 characters</p>"
       }
     },
     "MaintenanceWindowTaskPriority": {
       "base": null,
       "refs": {
         "GetMaintenanceWindowExecutionTaskResult$Priority": "<p>The priority of the task.</p>",
-        "GetMaintenanceWindowTaskResult$Priority": "<p>The priority of the task when it executes. The lower the number, the higher the priority. Tasks that have the same priority are scheduled in parallel.</p>",
+        "GetMaintenanceWindowTaskResult$Priority": "<p>The priority of the task when it runs. The lower the number, the higher the priority. Tasks that have the same priority are scheduled in parallel.</p>",
         "MaintenanceWindowTask$Priority": "<p>The priority of the task in the Maintenance Window. The lower the number, the higher the priority. Tasks that have the same priority are scheduled in parallel.</p>",
         "RegisterTaskWithMaintenanceWindowRequest$Priority": "<p>The priority of the task in the Maintenance Window, the lower the number the higher the priority. Tasks in a Maintenance Window are scheduled in priority order with tasks that have the same priority scheduled in parallel.</p>",
         "UpdateMaintenanceWindowTaskRequest$Priority": "<p>The new task priority to specify. The lower the number, the higher the priority. Tasks that have the same priority are scheduled in parallel.</p>",
@@ -4041,9 +4041,9 @@
       "base": null,
       "refs": {
         "GetMaintenanceWindowExecutionTaskInvocationResult$TaskType": "<p>Retrieves the task type for a Maintenance Window. Task types include the following: LAMBDA, STEP_FUNCTION, AUTOMATION, RUN_COMMAND.</p>",
-        "GetMaintenanceWindowExecutionTaskResult$Type": "<p>The type of task executed.</p>",
-        "GetMaintenanceWindowTaskResult$TaskType": "<p>The type of task to execute.</p>",
-        "MaintenanceWindowExecutionTaskIdentity$TaskType": "<p>The type of executed task.</p>",
+        "GetMaintenanceWindowExecutionTaskResult$Type": "<p>The type of task that was run.</p>",
+        "GetMaintenanceWindowTaskResult$TaskType": "<p>The type of task to run.</p>",
+        "MaintenanceWindowExecutionTaskIdentity$TaskType": "<p>The type of task that ran.</p>",
         "MaintenanceWindowExecutionTaskInvocationIdentity$TaskType": "<p>The task type.</p>",
         "MaintenanceWindowTask$Type": "<p>The type of task. The type can be one of the following: RUN_COMMAND, AUTOMATION, LAMBDA, or STEP_FUNCTION.</p>",
         "RegisterTaskWithMaintenanceWindowRequest$TaskType": "<p>The type of task being registered.</p>"
@@ -4075,21 +4075,21 @@
     "MaxConcurrency": {
       "base": null,
       "refs": {
-        "AssociationDescription$MaxConcurrency": "<p>The maximum number of targets allowed to run the association at the same time. You can specify a number, for example 10, or a percentage of the target set, for example 10%. The default value is 100%, which means all targets run the association at the same time.</p> <p>If a new instance starts and attempts to execute an association while Systems Manager is executing MaxConcurrency associations, the association is allowed to run. During the next association interval, the new instance will process its association within the limit specified for MaxConcurrency.</p>",
-        "AssociationVersionInfo$MaxConcurrency": "<p>The maximum number of targets allowed to run the association at the same time. You can specify a number, for example 10, or a percentage of the target set, for example 10%. The default value is 100%, which means all targets run the association at the same time.</p> <p>If a new instance starts and attempts to execute an association while Systems Manager is executing MaxConcurrency associations, the association is allowed to run. During the next association interval, the new instance will process its association within the limit specified for MaxConcurrency.</p>",
+        "AssociationDescription$MaxConcurrency": "<p>The maximum number of targets allowed to run the association at the same time. You can specify a number, for example 10, or a percentage of the target set, for example 10%. The default value is 100%, which means all targets run the association at the same time.</p> <p>If a new instance starts and attempts to run an association while Systems Manager is running MaxConcurrency associations, the association is allowed to run. During the next association interval, the new instance will process its association within the limit specified for MaxConcurrency.</p>",
+        "AssociationVersionInfo$MaxConcurrency": "<p>The maximum number of targets allowed to run the association at the same time. You can specify a number, for example 10, or a percentage of the target set, for example 10%. The default value is 100%, which means all targets run the association at the same time.</p> <p>If a new instance starts and attempts to run an association while Systems Manager is running MaxConcurrency associations, the association is allowed to run. During the next association interval, the new instance will process its association within the limit specified for MaxConcurrency.</p>",
         "AutomationExecution$MaxConcurrency": "<p>The MaxConcurrency value specified by the user when the execution started.</p>",
         "AutomationExecutionMetadata$MaxConcurrency": "<p>The MaxConcurrency value specified by the user when starting the Automation.</p>",
-        "Command$MaxConcurrency": "<p>The maximum number of instances that are allowed to execute the command at the same time. You can specify a number of instances, such as 10, or a percentage of instances, such as 10%. The default value is 50. For more information about how to use MaxConcurrency, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/run-command.html\">Executing Commands Using Systems Manager Run Command</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
-        "CreateAssociationBatchRequestEntry$MaxConcurrency": "<p>The maximum number of targets allowed to run the association at the same time. You can specify a number, for example 10, or a percentage of the target set, for example 10%. The default value is 100%, which means all targets run the association at the same time.</p> <p>If a new instance starts and attempts to execute an association while Systems Manager is executing MaxConcurrency associations, the association is allowed to run. During the next association interval, the new instance will process its association within the limit specified for MaxConcurrency.</p>",
-        "CreateAssociationRequest$MaxConcurrency": "<p>The maximum number of targets allowed to run the association at the same time. You can specify a number, for example 10, or a percentage of the target set, for example 10%. The default value is 100%, which means all targets run the association at the same time.</p> <p>If a new instance starts and attempts to execute an association while Systems Manager is executing MaxConcurrency associations, the association is allowed to run. During the next association interval, the new instance will process its association within the limit specified for MaxConcurrency.</p>",
+        "Command$MaxConcurrency": "<p>The maximum number of instances that are allowed to run the command at the same time. You can specify a number of instances, such as 10, or a percentage of instances, such as 10%. The default value is 50. For more information about how to use MaxConcurrency, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/run-command.html\">Running Commands Using Systems Manager Run Command</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
+        "CreateAssociationBatchRequestEntry$MaxConcurrency": "<p>The maximum number of targets allowed to run the association at the same time. You can specify a number, for example 10, or a percentage of the target set, for example 10%. The default value is 100%, which means all targets run the association at the same time.</p> <p>If a new instance starts and attempts to run an association while Systems Manager is running MaxConcurrency associations, the association is allowed to run. During the next association interval, the new instance will process its association within the limit specified for MaxConcurrency.</p>",
+        "CreateAssociationRequest$MaxConcurrency": "<p>The maximum number of targets allowed to run the association at the same time. You can specify a number, for example 10, or a percentage of the target set, for example 10%. The default value is 100%, which means all targets run the association at the same time.</p> <p>If a new instance starts and attempts to run an association while Systems Manager is running MaxConcurrency associations, the association is allowed to run. During the next association interval, the new instance will process its association within the limit specified for MaxConcurrency.</p>",
         "GetMaintenanceWindowExecutionTaskResult$MaxConcurrency": "<p>The defined maximum number of task executions that could be run in parallel.</p>",
         "GetMaintenanceWindowTaskResult$MaxConcurrency": "<p>The maximum number of targets allowed to run this task in parallel.</p>",
         "MaintenanceWindowTask$MaxConcurrency": "<p>The maximum number of targets this task can be run for in parallel.</p>",
         "RegisterTaskWithMaintenanceWindowRequest$MaxConcurrency": "<p>The maximum number of targets this task can be run for in parallel.</p>",
-        "SendCommandRequest$MaxConcurrency": "<p>(Optional) The maximum number of instances that are allowed to execute the command at the same time. You can specify a number such as 10 or a percentage such as 10%. The default value is 50. For more information about how to use MaxConcurrency, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html#send-commands-velocity\">Using Concurrency Controls</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
+        "SendCommandRequest$MaxConcurrency": "<p>(Optional) The maximum number of instances that are allowed to run the command at the same time. You can specify a number such as 10 or a percentage such as 10%. The default value is 50. For more information about how to use MaxConcurrency, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html#send-commands-velocity\">Using Concurrency Controls</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
         "StartAutomationExecutionRequest$MaxConcurrency": "<p>The maximum number of targets allowed to run this task in parallel. You can specify a number, such as 10, or a percentage, such as 10%. The default value is 10.</p>",
         "TargetLocation$TargetLocationMaxConcurrency": "<p>The maxium number of AWS accounts and AWS regions allowed to run the Automation concurrently </p>",
-        "UpdateAssociationRequest$MaxConcurrency": "<p>The maximum number of targets allowed to run the association at the same time. You can specify a number, for example 10, or a percentage of the target set, for example 10%. The default value is 100%, which means all targets run the association at the same time.</p> <p>If a new instance starts and attempts to execute an association while Systems Manager is executing MaxConcurrency associations, the association is allowed to run. During the next association interval, the new instance will process its association within the limit specified for MaxConcurrency.</p>",
+        "UpdateAssociationRequest$MaxConcurrency": "<p>The maximum number of targets allowed to run the association at the same time. You can specify a number, for example 10, or a percentage of the target set, for example 10%. The default value is 100%, which means all targets run the association at the same time.</p> <p>If a new instance starts and attempts to run an association while Systems Manager is running MaxConcurrency associations, the association is allowed to run. During the next association interval, the new instance will process its association within the limit specified for MaxConcurrency.</p>",
         "UpdateMaintenanceWindowTaskRequest$MaxConcurrency": "<p>The new <code>MaxConcurrency</code> value you want to specify. <code>MaxConcurrency</code> is the number of targets that are allowed to run this task in parallel.</p>",
         "UpdateMaintenanceWindowTaskResult$MaxConcurrency": "<p>The updated MaxConcurrency value.</p>"
       }
@@ -4106,7 +4106,7 @@
         "AssociationVersionInfo$MaxErrors": "<p>The number of errors that are allowed before the system stops sending requests to run the association on additional targets. You can specify either an absolute number of errors, for example 10, or a percentage of the target set, for example 10%. If you specify 3, for example, the system stops sending requests when the fourth error is received. If you specify 0, then the system stops sending requests after the first error is returned. If you run an association on 50 instances and set MaxError to 10%, then the system stops sending the request when the sixth error is received.</p> <p>Executions that are already running an association when MaxErrors is reached are allowed to complete, but some of these executions may fail as well. If you need to ensure that there won't be more than max-errors failed executions, set MaxConcurrency to 1 so that executions proceed one at a time.</p>",
         "AutomationExecution$MaxErrors": "<p>The MaxErrors value specified by the user when the execution started.</p>",
         "AutomationExecutionMetadata$MaxErrors": "<p>The MaxErrors value specified by the user when starting the Automation.</p>",
-        "Command$MaxErrors": "<p>The maximum number of errors allowed before the system stops sending the command to additional targets. You can specify a number of errors, such as 10, or a percentage or errors, such as 10%. The default value is 0. For more information about how to use MaxErrors, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/run-command.html\">Executing Commands Using Systems Manager Run Command</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
+        "Command$MaxErrors": "<p>The maximum number of errors allowed before the system stops sending the command to additional targets. You can specify a number of errors, such as 10, or a percentage or errors, such as 10%. The default value is 0. For more information about how to use MaxErrors, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/run-command.html\">Running Commands Using Systems Manager Run Command</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
         "CreateAssociationBatchRequestEntry$MaxErrors": "<p>The number of errors that are allowed before the system stops sending requests to run the association on additional targets. You can specify either an absolute number of errors, for example 10, or a percentage of the target set, for example 10%. If you specify 3, for example, the system stops sending requests when the fourth error is received. If you specify 0, then the system stops sending requests after the first error is returned. If you run an association on 50 instances and set MaxError to 10%, then the system stops sending the request when the sixth error is received.</p> <p>Executions that are already running an association when MaxErrors is reached are allowed to complete, but some of these executions may fail as well. If you need to ensure that there won't be more than max-errors failed executions, set MaxConcurrency to 1 so that executions proceed one at a time.</p>",
         "CreateAssociationRequest$MaxErrors": "<p>The number of errors that are allowed before the system stops sending requests to run the association on additional targets. You can specify either an absolute number of errors, for example 10, or a percentage of the target set, for example 10%. If you specify 3, for example, the system stops sending requests when the fourth error is received. If you specify 0, then the system stops sending requests after the first error is returned. If you run an association on 50 instances and set MaxError to 10%, then the system stops sending the request when the sixth error is received.</p> <p>Executions that are already running an association when MaxErrors is reached are allowed to complete, but some of these executions may fail as well. If you need to ensure that there won't be more than max-errors failed executions, set MaxConcurrency to 1 so that executions proceed one at a time.</p>",
         "GetMaintenanceWindowExecutionTaskResult$MaxErrors": "<p>The defined maximum number of task execution errors allowed before scheduling of the task execution would have been stopped.</p>",
@@ -4115,7 +4115,7 @@
         "RegisterTaskWithMaintenanceWindowRequest$MaxErrors": "<p>The maximum number of errors allowed before this task stops being scheduled.</p>",
         "SendCommandRequest$MaxErrors": "<p>The maximum number of errors allowed without the command failing. When the command fails one more time beyond the value of MaxErrors, the systems stops sending the command to additional targets. You can specify a number like 10 or a percentage like 10%. The default value is 0. For more information about how to use MaxErrors, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html#send-commands-maxerrors\">Using Error Controls</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
         "StartAutomationExecutionRequest$MaxErrors": "<p>The number of errors that are allowed before the system stops running the automation on additional targets. You can specify either an absolute number of errors, for example 10, or a percentage of the target set, for example 10%. If you specify 3, for example, the system stops running the automation when the fourth error is received. If you specify 0, then the system stops running the automation on additional targets after the first error result is returned. If you run an automation on 50 resources and set max-errors to 10%, then the system stops running the automation on additional targets when the sixth error is received.</p> <p>Executions that are already running an automation when max-errors is reached are allowed to complete, but some of these executions may fail as well. If you need to ensure that there won't be more than max-errors failed executions, set max-concurrency to 1 so the executions proceed one at a time.</p>",
-        "TargetLocation$TargetLocationMaxErrors": "<p>The maxium number of errors allowed before the system stops queueing additional Automation executions for the currently executing Automation. </p>",
+        "TargetLocation$TargetLocationMaxErrors": "<p>The maxium number of errors allowed before the system stops queueing additional Automation executions for the currently running Automation. </p>",
         "UpdateAssociationRequest$MaxErrors": "<p>The number of errors that are allowed before the system stops sending requests to run the association on additional targets. You can specify either an absolute number of errors, for example 10, or a percentage of the target set, for example 10%. If you specify 3, for example, the system stops sending requests when the fourth error is received. If you specify 0, then the system stops sending requests after the first error is returned. If you run an association on 50 instances and set MaxError to 10%, then the system stops sending the request when the sixth error is received.</p> <p>Executions that are already running an association when MaxErrors is reached are allowed to complete, but some of these executions may fail as well. If you need to ensure that there won't be more than max-errors failed executions, set MaxConcurrency to 1 so that executions proceed one at a time.</p>",
         "UpdateMaintenanceWindowTaskRequest$MaxErrors": "<p>The new <code>MaxErrors</code> value to specify. <code>MaxErrors</code> is the maximum number of errors that are allowed before the task stops being scheduled.</p>",
         "UpdateMaintenanceWindowTaskResult$MaxErrors": "<p>The updated MaxErrors value.</p>"
@@ -4559,11 +4559,11 @@
       "refs": {
         "AssociationDescription$Parameters": "<p>A description of the parameters for a document. </p>",
         "AssociationVersionInfo$Parameters": "<p>Parameters specified when the association version was created.</p>",
-        "Command$Parameters": "<p>The parameter values to be inserted in the document when executing the command.</p>",
+        "Command$Parameters": "<p>The parameter values to be inserted in the document when running the command.</p>",
         "CreateAssociationBatchRequestEntry$Parameters": "<p>A description of the parameters for a document. </p>",
         "CreateAssociationRequest$Parameters": "<p>The parameters for the documents runtime configuration. </p>",
         "MaintenanceWindowRunCommandParameters$Parameters": "<p>The parameters for the RUN_COMMAND task execution.</p>",
-        "SendCommandRequest$Parameters": "<p>The required and optional parameters specified in the document being executed.</p>",
+        "SendCommandRequest$Parameters": "<p>The required and optional parameters specified in the document being run.</p>",
         "UpdateAssociationRequest$Parameters": "<p>The parameters you want to update for the association. If you create a parameter using Parameter Store, you can reference the parameter using {{ssm:parameter-name}}</p>"
       }
     },
@@ -5306,8 +5306,8 @@
     "ResponseCode": {
       "base": null,
       "refs": {
-        "CommandPlugin$ResponseCode": "<p>A numeric response code generated after executing the plugin. </p>",
-        "GetCommandInvocationResult$ResponseCode": "<p>The error level response code for the plugin script. If the response code is -1, then the command has not started executing on the instance, or it was not received by the instance.</p>"
+        "CommandPlugin$ResponseCode": "<p>A numeric response code generated after running the plugin. </p>",
+        "GetCommandInvocationResult$ResponseCode": "<p>The error level response code for the plugin script. If the response code is -1, then the command has not started running on the instance, or it was not received by the instance.</p>"
       }
     },
     "ResultAttribute": {
@@ -5424,10 +5424,10 @@
       "refs": {
         "Command$ServiceRole": "<p>The IAM service role that Run Command uses to act on your behalf when sending notifications about command status changes. </p>",
         "CommandInvocation$ServiceRole": "<p>The IAM service role that Run Command uses to act on your behalf when sending notifications about command status changes on a per instance basis.</p>",
-        "GetMaintenanceWindowExecutionTaskResult$ServiceRole": "<p>The role that was assumed when executing the task.</p>",
+        "GetMaintenanceWindowExecutionTaskResult$ServiceRole": "<p>The role that was assumed when running the task.</p>",
         "GetMaintenanceWindowTaskResult$ServiceRoleArn": "<p>The IAM service role to assume during task execution.</p>",
         "MaintenanceWindowRunCommandParameters$ServiceRoleArn": "<p>The IAM service role to assume during task execution.</p>",
-        "MaintenanceWindowTask$ServiceRoleArn": "<p>The role that should be assumed when executing the task</p>",
+        "MaintenanceWindowTask$ServiceRoleArn": "<p>The role that should be assumed when running the task.</p>",
         "RegisterTaskWithMaintenanceWindowRequest$ServiceRoleArn": "<p>The role to assume when running the Maintenance Window task.</p> <p>If you do not specify a service role ARN, Systems Manager will use your account's service-linked role for Systems Manager by default. If no service-linked role for Systems Manager exists in your account, it will be created when you run <code>RegisterTaskWithMaintenanceWindow</code> without specifying a service role ARN.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/using-service-linked-roles.html#slr-permissions\">Service-Linked Role Permissions for Systems Manager</a> and <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-maintenance-permissions.html#maintenance-window-tasks-service-role\">Should I Use a Service-Linked Role or a Custom Service Role to Run Maintenance Window Tasks? </a> in the <i>AWS Systems Manager User Guide</i>.</p>",
         "SendCommandRequest$ServiceRoleArn": "<p>The IAM role that Systems Manager uses to send notifications. </p>",
         "UpdateMaintenanceWindowTaskRequest$ServiceRoleArn": "<p>The IAM service role ARN to modify. The system assumes this role during task execution.</p> <p>If you do not specify a service role ARN, Systems Manager will use your account's service-linked role for Systems Manager by default. If no service-linked role for Systems Manager exists in your account, it will be created when you run <code>RegisterTaskWithMaintenanceWindow</code> without specifying a service role ARN.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/using-service-linked-roles.html#slr-permissions\">Service-Linked Role Permissions for Systems Manager</a> and <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-maintenance-permissions.html#maintenance-window-tasks-service-role\">Should I Use a Service-Linked Role or a Custom Service Role to Run Maintenance Window Tasks? </a> in the <i>AWS Systems Manager User Guide</i>.</p>",
@@ -5620,13 +5620,13 @@
     "StandardErrorContent": {
       "base": null,
       "refs": {
-        "GetCommandInvocationResult$StandardErrorContent": "<p>The first 8,000 characters written by the plugin to stderr. If the command has not finished executing, then this string is empty.</p>"
+        "GetCommandInvocationResult$StandardErrorContent": "<p>The first 8,000 characters written by the plugin to stderr. If the command has not finished running, then this string is empty.</p>"
       }
     },
     "StandardOutputContent": {
       "base": null,
       "refs": {
-        "GetCommandInvocationResult$StandardOutputContent": "<p>The first 24,000 characters written by the plugin to stdout. If the command has not finished executing, if ExecutionStatus is neither Succeeded nor Failed, then this string is empty.</p>"
+        "GetCommandInvocationResult$StandardOutputContent": "<p>The first 24,000 characters written by the plugin to stdout. If the command has not finished running, if ExecutionStatus is neither Succeeded nor Failed, then this string is empty.</p>"
       }
     },
     "StartAssociationsOnceRequest": {
@@ -5668,10 +5668,10 @@
     "StatusDetails": {
       "base": null,
       "refs": {
-        "Command$StatusDetails": "<p>A detailed status of the command execution. StatusDetails includes more information than Status because it includes states resulting from error and concurrency control parameters. StatusDetails can show different results than Status. For more information about these statuses, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/monitor-commands.html\">Understanding Command Statuses</a> in the <i>AWS Systems Manager User Guide</i>. StatusDetails can be one of the following values:</p> <ul> <li> <p>Pending: The command has not been sent to any instances.</p> </li> <li> <p>In Progress: The command has been sent to at least one instance but has not reached a final state on all instances.</p> </li> <li> <p>Success: The command successfully executed on all invocations. This is a terminal state.</p> </li> <li> <p>Delivery Timed Out: The value of MaxErrors or more command invocations shows a status of Delivery Timed Out. This is a terminal state.</p> </li> <li> <p>Execution Timed Out: The value of MaxErrors or more command invocations shows a status of Execution Timed Out. This is a terminal state.</p> </li> <li> <p>Failed: The value of MaxErrors or more command invocations shows a status of Failed. This is a terminal state.</p> </li> <li> <p>Incomplete: The command was attempted on all instances and one or more invocations does not have a value of Success but not enough invocations failed for the status to be Failed. This is a terminal state.</p> </li> <li> <p>Canceled: The command was terminated before it was completed. This is a terminal state.</p> </li> <li> <p>Rate Exceeded: The number of instances targeted by the command exceeded the account limit for pending invocations. The system has canceled the command before executing it on any instance. This is a terminal state.</p> </li> </ul>",
+        "Command$StatusDetails": "<p>A detailed status of the command execution. StatusDetails includes more information than Status because it includes states resulting from error and concurrency control parameters. StatusDetails can show different results than Status. For more information about these statuses, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/monitor-commands.html\">Understanding Command Statuses</a> in the <i>AWS Systems Manager User Guide</i>. StatusDetails can be one of the following values:</p> <ul> <li> <p>Pending: The command has not been sent to any instances.</p> </li> <li> <p>In Progress: The command has been sent to at least one instance but has not reached a final state on all instances.</p> </li> <li> <p>Success: The command successfully ran on all invocations. This is a terminal state.</p> </li> <li> <p>Delivery Timed Out: The value of MaxErrors or more command invocations shows a status of Delivery Timed Out. This is a terminal state.</p> </li> <li> <p>Execution Timed Out: The value of MaxErrors or more command invocations shows a status of Execution Timed Out. This is a terminal state.</p> </li> <li> <p>Failed: The value of MaxErrors or more command invocations shows a status of Failed. This is a terminal state.</p> </li> <li> <p>Incomplete: The command was attempted on all instances and one or more invocations does not have a value of Success but not enough invocations failed for the status to be Failed. This is a terminal state.</p> </li> <li> <p>Canceled: The command was terminated before it was completed. This is a terminal state.</p> </li> <li> <p>Rate Exceeded: The number of instances targeted by the command exceeded the account limit for pending invocations. The system has canceled the command before running it on any instance. This is a terminal state.</p> </li> </ul>",
         "CommandInvocation$StatusDetails": "<p>A detailed status of the command execution for each invocation (each instance targeted by the command). StatusDetails includes more information than Status because it includes states resulting from error and concurrency control parameters. StatusDetails can show different results than Status. For more information about these statuses, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/monitor-commands.html\">Understanding Command Statuses</a> in the <i>AWS Systems Manager User Guide</i>. StatusDetails can be one of the following values:</p> <ul> <li> <p>Pending: The command has not been sent to the instance.</p> </li> <li> <p>In Progress: The command has been sent to the instance but has not reached a terminal state.</p> </li> <li> <p>Success: The execution of the command or plugin was successfully completed. This is a terminal state.</p> </li> <li> <p>Delivery Timed Out: The command was not delivered to the instance before the delivery timeout expired. Delivery timeouts do not count against the parent command's MaxErrors limit, but they do contribute to whether the parent command status is Success or Incomplete. This is a terminal state.</p> </li> <li> <p>Execution Timed Out: Command execution started on the instance, but the execution was not complete before the execution timeout expired. Execution timeouts count against the MaxErrors limit of the parent command. This is a terminal state.</p> </li> <li> <p>Failed: The command was not successful on the instance. For a plugin, this indicates that the result code was not zero. For a command invocation, this indicates that the result code for one or more plugins was not zero. Invocation failures count against the MaxErrors limit of the parent command. This is a terminal state.</p> </li> <li> <p>Canceled: The command was terminated before it was completed. This is a terminal state.</p> </li> <li> <p>Undeliverable: The command can't be delivered to the instance. The instance might not exist or might not be responding. Undeliverable invocations don't count against the parent command's MaxErrors limit and don't contribute to whether the parent command status is Success or Incomplete. This is a terminal state.</p> </li> <li> <p>Terminated: The parent command exceeded its MaxErrors limit and subsequent command invocations were canceled by the system. This is a terminal state.</p> </li> </ul>",
         "CommandPlugin$StatusDetails": "<p>A detailed status of the plugin execution. StatusDetails includes more information than Status because it includes states resulting from error and concurrency control parameters. StatusDetails can show different results than Status. For more information about these statuses, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/monitor-commands.html\">Understanding Command Statuses</a> in the <i>AWS Systems Manager User Guide</i>. StatusDetails can be one of the following values:</p> <ul> <li> <p>Pending: The command has not been sent to the instance.</p> </li> <li> <p>In Progress: The command has been sent to the instance but has not reached a terminal state.</p> </li> <li> <p>Success: The execution of the command or plugin was successfully completed. This is a terminal state.</p> </li> <li> <p>Delivery Timed Out: The command was not delivered to the instance before the delivery timeout expired. Delivery timeouts do not count against the parent command's MaxErrors limit, but they do contribute to whether the parent command status is Success or Incomplete. This is a terminal state.</p> </li> <li> <p>Execution Timed Out: Command execution started on the instance, but the execution was not complete before the execution timeout expired. Execution timeouts count against the MaxErrors limit of the parent command. This is a terminal state.</p> </li> <li> <p>Failed: The command was not successful on the instance. For a plugin, this indicates that the result code was not zero. For a command invocation, this indicates that the result code for one or more plugins was not zero. Invocation failures count against the MaxErrors limit of the parent command. This is a terminal state.</p> </li> <li> <p>Canceled: The command was terminated before it was completed. This is a terminal state.</p> </li> <li> <p>Undeliverable: The command can't be delivered to the instance. The instance might not exist, or it might not be responding. Undeliverable invocations don't count against the parent command's MaxErrors limit, and they don't contribute to whether the parent command status is Success or Incomplete. This is a terminal state.</p> </li> <li> <p>Terminated: The parent command exceeded its MaxErrors limit and subsequent command invocations were canceled by the system. This is a terminal state.</p> </li> </ul>",
-        "GetCommandInvocationResult$StatusDetails": "<p>A detailed status of the command execution for an invocation. StatusDetails includes more information than Status because it includes states resulting from error and concurrency control parameters. StatusDetails can show different results than Status. For more information about these statuses, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/monitor-commands.html\">Understanding Command Statuses</a> in the <i>AWS Systems Manager User Guide</i>. StatusDetails can be one of the following values:</p> <ul> <li> <p>Pending: The command has not been sent to the instance.</p> </li> <li> <p>In Progress: The command has been sent to the instance but has not reached a terminal state.</p> </li> <li> <p>Delayed: The system attempted to send the command to the target, but the target was not available. The instance might not be available because of network issues, the instance was stopped, etc. The system will try to deliver the command again.</p> </li> <li> <p>Success: The command or plugin was executed successfully. This is a terminal state.</p> </li> <li> <p>Delivery Timed Out: The command was not delivered to the instance before the delivery timeout expired. Delivery timeouts do not count against the parent command's MaxErrors limit, but they do contribute to whether the parent command status is Success or Incomplete. This is a terminal state.</p> </li> <li> <p>Execution Timed Out: The command started to execute on the instance, but the execution was not complete before the timeout expired. Execution timeouts count against the MaxErrors limit of the parent command. This is a terminal state.</p> </li> <li> <p>Failed: The command wasn't executed successfully on the instance. For a plugin, this indicates that the result code was not zero. For a command invocation, this indicates that the result code for one or more plugins was not zero. Invocation failures count against the MaxErrors limit of the parent command. This is a terminal state.</p> </li> <li> <p>Canceled: The command was terminated before it was completed. This is a terminal state.</p> </li> <li> <p>Undeliverable: The command can't be delivered to the instance. The instance might not exist or might not be responding. Undeliverable invocations don't count against the parent command's MaxErrors limit and don't contribute to whether the parent command status is Success or Incomplete. This is a terminal state.</p> </li> <li> <p>Terminated: The parent command exceeded its MaxErrors limit and subsequent command invocations were canceled by the system. This is a terminal state.</p> </li> </ul>"
+        "GetCommandInvocationResult$StatusDetails": "<p>A detailed status of the command execution for an invocation. StatusDetails includes more information than Status because it includes states resulting from error and concurrency control parameters. StatusDetails can show different results than Status. For more information about these statuses, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/monitor-commands.html\">Understanding Command Statuses</a> in the <i>AWS Systems Manager User Guide</i>. StatusDetails can be one of the following values:</p> <ul> <li> <p>Pending: The command has not been sent to the instance.</p> </li> <li> <p>In Progress: The command has been sent to the instance but has not reached a terminal state.</p> </li> <li> <p>Delayed: The system attempted to send the command to the target, but the target was not available. The instance might not be available because of network issues, the instance was stopped, etc. The system will try to deliver the command again.</p> </li> <li> <p>Success: The command or plugin was run successfully. This is a terminal state.</p> </li> <li> <p>Delivery Timed Out: The command was not delivered to the instance before the delivery timeout expired. Delivery timeouts do not count against the parent command's MaxErrors limit, but they do contribute to whether the parent command status is Success or Incomplete. This is a terminal state.</p> </li> <li> <p>Execution Timed Out: The command started to run on the instance, but the execution was not complete before the timeout expired. Execution timeouts count against the MaxErrors limit of the parent command. This is a terminal state.</p> </li> <li> <p>Failed: The command wasn't run successfully on the instance. For a plugin, this indicates that the result code was not zero. For a command invocation, this indicates that the result code for one or more plugins was not zero. Invocation failures count against the MaxErrors limit of the parent command. This is a terminal state.</p> </li> <li> <p>Canceled: The command was terminated before it was completed. This is a terminal state.</p> </li> <li> <p>Undeliverable: The command can't be delivered to the instance. The instance might not exist or might not be responding. Undeliverable invocations don't count against the parent command's MaxErrors limit and don't contribute to whether the parent command status is Success or Incomplete. This is a terminal state.</p> </li> <li> <p>Terminated: The parent command exceeded its MaxErrors limit and subsequent command invocations were canceled by the system. This is a terminal state.</p> </li> </ul>"
       }
     },
     "StatusMessage": {
@@ -5741,7 +5741,7 @@
     "StepExecutionList": {
       "base": null,
       "refs": {
-        "AutomationExecution$StepExecutions": "<p>A list of details about the current state of all steps that comprise an execution. An Automation document contains a list of steps that are executed in order.</p>",
+        "AutomationExecution$StepExecutions": "<p>A list of details about the current state of all steps that comprise an execution. An Automation document contains a list of steps that are run in order.</p>",
         "DescribeAutomationStepExecutionsResult$StepExecutions": "<p>A list of details about the current state of all steps that make up an execution.</p>"
       }
     },
@@ -5778,15 +5778,15 @@
         "AutomationDefinitionNotFoundException$Message": null,
         "AutomationDefinitionVersionNotFoundException$Message": null,
         "AutomationExecution$FailureMessage": "<p>A message describing why an execution has failed, if the status is set to Failed.</p>",
-        "AutomationExecution$ExecutedBy": "<p>The Amazon Resource Name (ARN) of the user who executed the automation.</p>",
-        "AutomationExecution$CurrentStepName": "<p>The name of the currently executing step.</p>",
-        "AutomationExecution$CurrentAction": "<p>The action of the currently executing step.</p>",
+        "AutomationExecution$ExecutedBy": "<p>The Amazon Resource Name (ARN) of the user who ran the automation.</p>",
+        "AutomationExecution$CurrentStepName": "<p>The name of the step that is currently running.</p>",
+        "AutomationExecution$CurrentAction": "<p>The action of the step that is currently running.</p>",
         "AutomationExecution$Target": "<p>The target of the execution.</p>",
         "AutomationExecutionLimitExceededException$Message": null,
-        "AutomationExecutionMetadata$ExecutedBy": "<p>The IAM role ARN of the user who executed the Automation.</p>",
+        "AutomationExecutionMetadata$ExecutedBy": "<p>The IAM role ARN of the user who ran the Automation.</p>",
         "AutomationExecutionMetadata$LogFile": "<p>An Amazon S3 bucket where execution information is stored.</p>",
-        "AutomationExecutionMetadata$CurrentStepName": "<p>The name of the currently executing step.</p>",
-        "AutomationExecutionMetadata$CurrentAction": "<p>The action of the currently executing step.</p>",
+        "AutomationExecutionMetadata$CurrentStepName": "<p>The name of the step that is currently running.</p>",
+        "AutomationExecutionMetadata$CurrentAction": "<p>The action of the step that is currently running.</p>",
         "AutomationExecutionMetadata$FailureMessage": "<p>The list of execution outputs as defined in the Automation document.</p>",
         "AutomationExecutionMetadata$Target": "<p>The list of execution outputs as defined in the Automation document.</p>",
         "AutomationExecutionNotFoundException$Message": null,
@@ -5894,9 +5894,9 @@
     "StringDateTime": {
       "base": null,
       "refs": {
-        "GetCommandInvocationResult$ExecutionStartDateTime": "<p>The date and time the plugin started executing. Date and time are written in ISO 8601 format. For example, June 7, 2017 is represented as 2017-06-7. The following sample AWS CLI command uses the <code>InvokedBefore</code> filter.</p> <p> <code>aws ssm list-commands --filters key=InvokedBefore,value=2017-06-07T00:00:00Z</code> </p> <p>If the plugin has not started to execute, the string is empty.</p>",
+        "GetCommandInvocationResult$ExecutionStartDateTime": "<p>The date and time the plugin started running. Date and time are written in ISO 8601 format. For example, June 7, 2017 is represented as 2017-06-7. The following sample AWS CLI command uses the <code>InvokedBefore</code> filter.</p> <p> <code>aws ssm list-commands --filters key=InvokedBefore,value=2017-06-07T00:00:00Z</code> </p> <p>If the plugin has not started to run, the string is empty.</p>",
         "GetCommandInvocationResult$ExecutionElapsedTime": "<p>Duration since ExecutionStartDateTime.</p>",
-        "GetCommandInvocationResult$ExecutionEndDateTime": "<p>The date and time the plugin was finished executing. Date and time are written in ISO 8601 format. For example, June 7, 2017 is represented as 2017-06-7. The following sample AWS CLI command uses the <code>InvokedAfter</code> filter.</p> <p> <code>aws ssm list-commands --filters key=InvokedAfter,value=2017-06-07T00:00:00Z</code> </p> <p>If the plugin has not started to execute, the string is empty.</p>"
+        "GetCommandInvocationResult$ExecutionEndDateTime": "<p>The date and time the plugin was finished running. Date and time are written in ISO 8601 format. For example, June 7, 2017 is represented as 2017-06-7. The following sample AWS CLI command uses the <code>InvokedAfter</code> filter.</p> <p> <code>aws ssm list-commands --filters key=InvokedAfter,value=2017-06-07T00:00:00Z</code> </p> <p>If the plugin has not started to run, the string is empty.</p>"
       }
     },
     "StringList": {
@@ -5977,8 +5977,8 @@
     "TargetLocations": {
       "base": null,
       "refs": {
-        "AutomationExecution$TargetLocations": "<p>The combination of AWS Regions and/or AWS accounts where you want to execute the Automation.</p>",
-        "StartAutomationExecutionRequest$TargetLocations": "<p>A location is a combination of AWS Regions and/or AWS accounts where you want to execute the Automation. Use this action to start an Automation in multiple Regions and multiple accounts. For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-automation-multiple-accounts-and-regions.html\">Concurrently Executing Automations in Multiple AWS Regions and Accounts</a> in the <i>AWS Systems Manager User Guide</i>. </p>"
+        "AutomationExecution$TargetLocations": "<p>The combination of AWS Regions and/or AWS accounts where you want to run the Automation.</p>",
+        "StartAutomationExecutionRequest$TargetLocations": "<p>A location is a combination of AWS Regions and/or AWS accounts where you want to run the Automation. Use this action to start an Automation in multiple Regions and multiple accounts. For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-automation-multiple-accounts-and-regions.html\">Executing Automations in Multiple AWS Regions and Accounts</a> in the <i>AWS Systems Manager User Guide</i>. </p>"
       }
     },
     "TargetMap": {
@@ -6042,7 +6042,7 @@
     "TargetValues": {
       "base": null,
       "refs": {
-        "Target$Values": "<p>User-defined criteria that maps to Key. For example, if you specified tag:ServerRole, you could specify value:WebServer to execute a command on instances that include Amazon EC2 tags of ServerRole,WebServer. For more information about how to send commands that target instances using Key,Value parameters, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html\">Sending Commands to a Fleet</a> in the <i>AWS Systems Manager User Guide</i>.</p>"
+        "Target$Values": "<p>User-defined criteria that maps to Key. For example, if you specified tag:ServerRole, you could specify value:WebServer to run a command on instances that include Amazon EC2 tags of ServerRole,WebServer. For more information about how to send commands that target instances using Key,Value parameters, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html\">Sending Commands to a Fleet</a> in the <i>AWS Systems Manager User Guide</i>.</p>"
       }
     },
     "Targets": {
@@ -6058,7 +6058,7 @@
         "CreateAssociationRequest$Targets": "<p>The targets (either instances or tags) for the association.</p>",
         "DescribeMaintenanceWindowScheduleRequest$Targets": "<p>The instance ID or key/value pair to retrieve information about.</p>",
         "DescribeMaintenanceWindowsForTargetRequest$Targets": "<p>The instance ID or key/value pair to retrieve information about.</p>",
-        "GetMaintenanceWindowTaskResult$Targets": "<p>The targets where the task should execute.</p>",
+        "GetMaintenanceWindowTaskResult$Targets": "<p>The targets where the task should run.</p>",
         "MaintenanceWindowTarget$Targets": "<p>The targets (either instances or tags). Instances are specified using Key=instanceids,Values=&lt;instanceid1&gt;,&lt;instanceid2&gt;. Tags are specified using Key=&lt;tag name&gt;,Values=&lt;tag value&gt;.</p>",
         "MaintenanceWindowTask$Targets": "<p>The targets (either instances or tags). Instances are specified using Key=instanceids,Values=&lt;instanceid1&gt;,&lt;instanceid2&gt;. Tags are specified using Key=&lt;tag name&gt;,Values=&lt;tag value&gt;.</p>",
         "RegisterTargetWithMaintenanceWindowRequest$Targets": "<p>The targets (either instances or tags). </p> <p>Specify instances using the following format:</p> <p> <code>Key=InstanceIds,Values=&lt;instance-id-1&gt;,&lt;instance-id-2&gt;</code> </p> <p>Specify tags using either of the following formats:</p> <p> <code>Key=tag:&lt;tag-key&gt;,Values=&lt;tag-value-1&gt;,&lt;tag-value-2&gt;</code> </p> <p> <code>Key=tag-key,Values=&lt;tag-key-1&gt;,&lt;tag-key-2&gt;</code> </p>",
@@ -6086,8 +6086,8 @@
     "TimeoutSeconds": {
       "base": null,
       "refs": {
-        "MaintenanceWindowRunCommandParameters$TimeoutSeconds": "<p>If this time is reached and the command has not already started executing, it doesn't run.</p>",
-        "SendCommandRequest$TimeoutSeconds": "<p>If this time is reached and the command has not already started executing, it will not run.</p>"
+        "MaintenanceWindowRunCommandParameters$TimeoutSeconds": "<p>If this time is reached and the command has not already started running, it doesn't run.</p>",
+        "SendCommandRequest$TimeoutSeconds": "<p>If this time is reached and the command has not already started running, it will not run.</p>"
       }
     },
     "TokenValue": {
@@ -6251,7 +6251,7 @@
         "CommandPlugin$StandardOutputUrl": "<p>The URL for the complete text written by the plugin to stdout in Amazon S3. If the Amazon S3 bucket for the command was not specified, then this string is empty.</p>",
         "CommandPlugin$StandardErrorUrl": "<p>The URL for the complete text written by the plugin to stderr. If execution is not yet complete, then this string is empty.</p>",
         "GetCommandInvocationResult$StandardOutputUrl": "<p>The URL for the complete text written by the plugin to stdout in Amazon S3. If an Amazon S3 bucket was not specified, then this string is empty.</p>",
-        "GetCommandInvocationResult$StandardErrorUrl": "<p>The URL for the complete text written by the plugin to stderr. If the command has not finished executing, then this string is empty.</p>",
+        "GetCommandInvocationResult$StandardErrorUrl": "<p>The URL for the complete text written by the plugin to stderr. If the command has not finished running, then this string is empty.</p>",
         "S3OutputUrl$OutputUrl": "<p>A URL for an Amazon S3 bucket where you want to store the results of this request.</p>"
       }
     },
@@ -6264,7 +6264,7 @@
     "ValidNextStepList": {
       "base": null,
       "refs": {
-        "StepExecution$ValidNextSteps": "<p>Strategies used when step fails, we support Continue and Abort. Abort will fail the automation when the step fails. Continue will ignore the failure of current step and allow automation to execute the next step. With conditional branching, we add step:stepName to support the automation to go to another specific step.</p>"
+        "StepExecution$ValidNextSteps": "<p>Strategies used when step fails, we support Continue and Abort. Abort will fail the automation when the step fails. Continue will ignore the failure of current step and allow automation to run the next step. With conditional branching, we add step:stepName to support the automation to go to another specific step.</p>"
       }
     },
     "Version": {
