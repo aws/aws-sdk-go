@@ -53,15 +53,15 @@ cleanup-models:
 ###################
 unit: verify
 	@echo "go test SDK and vendor packages"
-	go test -tags ${UNIT_TEST_TAGS} ${SDK_ALL_PKGS}
+	go test -count=1 -tags ${UNIT_TEST_TAGS} ${SDK_ALL_PKGS}
 
 unit-with-race-cover: verify
 	@echo "go test SDK and vendor packages"
-	go test -tags ${UNIT_TEST_TAGS} -race -cpu=1,2,4 ${SDK_ALL_PKGS}
+	go test -count=1 -tags ${UNIT_TEST_TAGS} -race -cpu=1,2,4 ${SDK_ALL_PKGS}
 
 unit-old-go-race-cover:
 	@echo "go test SDK only packages for old Go versions"
-	go test -race -cpu=1,2,4 ${SDK_COMPA_PKGS}
+	go test -count=1 -race -cpu=1,2,4 ${SDK_COMPA_PKGS}
 
 ci-test: generate unit-with-race-cover ci-test-generate-validate
 
@@ -213,11 +213,11 @@ get-deps-verify:
 ##############
 bench:
 	@echo "go bench SDK packages"
-	go test -run NONE -bench . -benchmem -tags 'bench' ${SDK_ALL_PKGS}
+	go test -count=1 -run NONE -bench . -benchmem -tags 'bench' ${SDK_ALL_PKGS}
 
 bench-protocol:
 	@echo "go bench SDK protocol marshallers"
-	go test -run NONE -bench . -benchmem -tags 'bench' ./private/protocol/...
+	go test -count=1 -run NONE -bench . -benchmem -tags 'bench' ./private/protocol/...
 
 #############
 # Utilities #
