@@ -1,3 +1,13 @@
+Release v1.19.8 (2019-04-02)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service documentation
+  * Documentation updates for acm
+* `service/ec2`: Updates service paginators
+  * Add paginators.
+* `service/securityhub`: Updates service API and documentation
+
 Release v1.19.7 (2019-04-01)
 ===
 
