@@ -24,7 +24,8 @@
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
         {"shape":"LimitExceededException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidAccessException"}
       ]
     },
     "BatchDisableStandards":{
@@ -38,6 +39,7 @@
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"},
         {"shape":"LimitExceededException"}
       ]
     },
@@ -52,6 +54,7 @@
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"},
         {"shape":"LimitExceededException"}
       ]
     },
@@ -66,7 +69,8 @@
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidAccessException"}
       ]
     },
     "CreateInsight":{
@@ -80,7 +84,9 @@
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"ResourceConflictException"}
       ]
     },
     "CreateMembers":{
@@ -94,7 +100,9 @@
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"ResourceConflictException"}
       ]
     },
     "DeclineInvitations":{
@@ -108,7 +116,7 @@
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
-        {"shape":"LimitExceededException"},
+        {"shape":"InvalidAccessException"},
         {"shape":"ResourceNotFoundException"}
       ]
     },
@@ -123,7 +131,9 @@
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"InvalidAccessException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DeleteInvitations":{
@@ -138,7 +148,8 @@
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
         {"shape":"LimitExceededException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidAccessException"}
       ]
     },
     "DeleteMembers":{
@@ -152,6 +163,7 @@
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"},
         {"shape":"LimitExceededException"},
         {"shape":"ResourceNotFoundException"}
       ]
@@ -167,7 +179,9 @@
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "DisableSecurityHub":{
@@ -180,7 +194,9 @@
       "output":{"shape":"DisableSecurityHubResponse"},
       "errors":[
         {"shape":"InternalException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DisassociateFromMasterAccount":{
@@ -194,6 +210,7 @@
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"},
         {"shape":"LimitExceededException"},
         {"shape":"ResourceNotFoundException"}
       ]
@@ -209,6 +226,7 @@
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"},
         {"shape":"LimitExceededException"},
         {"shape":"ResourceNotFoundException"}
       ]
@@ -223,7 +241,10 @@
       "output":{"shape":"EnableImportFindingsForProductResponse"},
       "errors":[
         {"shape":"InternalException"},
-        {"shape":"InvalidInputException"}
+        {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "EnableSecurityHub":{
@@ -236,7 +257,10 @@
       "output":{"shape":"EnableSecurityHubResponse"},
       "errors":[
         {"shape":"InternalException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "GetEnabledStandards":{
@@ -250,6 +274,7 @@
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"},
         {"shape":"LimitExceededException"}
       ]
     },
@@ -264,8 +289,8 @@
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
-        {"shape":"LimitExceededException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"InvalidAccessException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "GetInsightResults":{
@@ -279,7 +304,9 @@
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"InvalidAccessException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "GetInsights":{
@@ -293,7 +320,9 @@
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"InvalidAccessException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "GetInvitationsCount":{
@@ -307,8 +336,8 @@
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
-        {"shape":"LimitExceededException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"InvalidAccessException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "GetMasterAccount":{
@@ -322,6 +351,7 @@
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"},
         {"shape":"LimitExceededException"},
         {"shape":"ResourceNotFoundException"}
       ]
@@ -337,6 +367,7 @@
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"},
         {"shape":"LimitExceededException"},
         {"shape":"ResourceNotFoundException"}
       ]
@@ -352,6 +383,7 @@
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"},
         {"shape":"LimitExceededException"},
         {"shape":"ResourceNotFoundException"}
       ]
@@ -366,7 +398,8 @@
       "output":{"shape":"ListEnabledProductsForImportResponse"},
       "errors":[
         {"shape":"InternalException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidAccessException"}
       ]
     },
     "ListInvitations":{
@@ -380,8 +413,8 @@
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
-        {"shape":"LimitExceededException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"InvalidAccessException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "ListMembers":{
@@ -395,8 +428,8 @@
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
-        {"shape":"LimitExceededException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"InvalidAccessException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "UpdateFindings":{
@@ -411,6 +444,7 @@
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
         {"shape":"LimitExceededException"},
+        {"shape":"InvalidAccessException"},
         {"shape":"ResourceNotFoundException"}
       ]
     },
@@ -425,6 +459,7 @@
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"},
         {"shape":"LimitExceededException"},
         {"shape":"ResourceNotFoundException"}
       ]
@@ -442,6 +477,15 @@
       "type":"structure",
       "members":{
       }
+    },
+    "AccessDeniedException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"NonEmptyString"},
+        "Code":{"shape":"NonEmptyString"}
+      },
+      "error":{"httpStatusCode":403},
+      "exception":true
     },
     "AccountDetails":{
       "type":"structure",
@@ -1069,6 +1113,15 @@
       "error":{"httpStatusCode":500},
       "exception":true
     },
+    "InvalidAccessException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"NonEmptyString"},
+        "Code":{"shape":"NonEmptyString"}
+      },
+      "error":{"httpStatusCode":401},
+      "exception":true
+    },
     "InvalidInputException":{
       "type":"structure",
       "members":{
@@ -1417,6 +1470,15 @@
         "Tags":{"shape":"FieldMap"},
         "Details":{"shape":"ResourceDetails"}
       }
+    },
+    "ResourceConflictException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"NonEmptyString"},
+        "Code":{"shape":"NonEmptyString"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
     },
     "ResourceDetails":{
       "type":"structure",
