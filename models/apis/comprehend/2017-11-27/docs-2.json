@@ -31,6 +31,7 @@
     "ListEntityRecognizers": "<p>Gets a list of the properties of all entity recognizers that you created, including recognizers currently in training. Allows you to filter the list of recognizers based on criteria such as status and submission time. This call returns up to 500 entity recognizers in the list, with a default number of 100 recognizers in the list.</p> <p>The results of this list are not in any particular order. Please get the list and sort locally if needed.</p>",
     "ListKeyPhrasesDetectionJobs": "<p>Get a list of key phrase detection jobs that you have submitted.</p>",
     "ListSentimentDetectionJobs": "<p>Gets a list of sentiment detection jobs that you have submitted.</p>",
+    "ListTagsForResource": "<p>Lists all tags associated with a given Amazon Comprehend resource. Up to the maximum number of tags allowed per resource will be displayed. </p>",
     "ListTopicsDetectionJobs": "<p>Gets a list of the topic detection jobs that you have submitted.</p>",
     "StartDocumentClassificationJob": "<p>Starts an asynchronous document classification job. Use the operation to track the progress of the job.</p>",
     "StartDominantLanguageDetectionJob": "<p>Starts an asynchronous dominant language detection job for a collection of documents. Use the operation to track the status of a job.</p>",
@@ -43,7 +44,9 @@
     "StopKeyPhrasesDetectionJob": "<p>Stops a key phrases detection job in progress.</p> <p>If the job state is <code>IN_PROGRESS</code> the job is marked for termination and put into the <code>STOP_REQUESTED</code> state. If the job completes before it can be stopped, it is put into the <code>COMPLETED</code> state; otherwise the job is stopped and put into the <code>STOPPED</code> state.</p> <p>If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you call the <code>StopDominantLanguageDetectionJob</code> operation, the operation returns a 400 Internal Request Exception. </p> <p>When a job is stopped, any documents already processed are written to the output location.</p>",
     "StopSentimentDetectionJob": "<p>Stops a sentiment detection job in progress.</p> <p>If the job state is <code>IN_PROGRESS</code> the job is marked for termination and put into the <code>STOP_REQUESTED</code> state. If the job completes before it can be stopped, it is put into the <code>COMPLETED</code> state; otherwise the job is be stopped and put into the <code>STOPPED</code> state.</p> <p>If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you call the <code>StopDominantLanguageDetectionJob</code> operation, the operation returns a 400 Internal Request Exception. </p> <p>When a job is stopped, any documents already processed are written to the output location.</p>",
     "StopTrainingDocumentClassifier": "<p>Stops a document classifier training job while in progress.</p> <p>If the training job state is <code>TRAINING</code>, the job is marked for termination and put into the <code>STOP_REQUESTED</code> state. If the training job completes before it can be stopped, it is put into the <code>TRAINED</code>; otherwise the training job is stopped and put into the <code>STOPPED</code> state and the service sends back an HTTP 200 response with an empty HTTP body. </p>",
-    "StopTrainingEntityRecognizer": "<p>Stops an entity recognizer training job while in progress.</p> <p>If the training job state is <code>TRAINING</code>, the job is marked for termination and put into the <code>STOP_REQUESTED</code> state. If the training job completes before it can be stopped, it is put into the <code>TRAINED</code>; otherwise the training job is stopped and putted into the <code>STOPPED</code> state and the service sends back an HTTP 200 response with an empty HTTP body.</p>"
+    "StopTrainingEntityRecognizer": "<p>Stops an entity recognizer training job while in progress.</p> <p>If the training job state is <code>TRAINING</code>, the job is marked for termination and put into the <code>STOP_REQUESTED</code> state. If the training job completes before it can be stopped, it is put into the <code>TRAINED</code>; otherwise the training job is stopped and putted into the <code>STOPPED</code> state and the service sends back an HTTP 200 response with an empty HTTP body.</p>",
+    "TagResource": "<p>Associates a specific tag with an Amazon Comprehend resource. A tag is a key-value pair that adds as a metadata to a resource used by Amazon Comprehend. For example, a tag with the key-value pair ‘Department’:’Sales’ might be added to a resource to indicate its use by a particular department. </p>",
+    "UntagResource": "<p>Removes a specific tag associated with an Amazon Comprehend resource. </p>"
   },
   "shapes": {
     "AnyLengthString": {
@@ -186,11 +189,25 @@
         "StartTopicsDetectionJobRequest$ClientRequestToken": "<p>A unique identifier for the request. If you do not set the client request token, Amazon Comprehend generates one.</p>"
       }
     },
+    "ComprehendArn": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the given Amazon Comprehend resource you are querying. </p>",
+        "ListTagsForResourceResponse$ResourceArn": "<p>The Amazon Resource Name (ARN) of the given Amazon Comprehend resource you are querying.</p>",
+        "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the given Amazon Comprehend resource to which you want to associate the tags. </p>",
+        "UntagResourceRequest$ResourceArn": "<p> The Amazon Resource Name (ARN) of the given Amazon Comprehend resource from which you want to remove the tags. </p>"
+      }
+    },
     "ComprehendArnName": {
       "base": null,
       "refs": {
         "CreateDocumentClassifierRequest$DocumentClassifierName": "<p>The name of the document classifier.</p>",
         "CreateEntityRecognizerRequest$RecognizerName": "<p>The name given to the newly created recognizer. Recognizer names can be a maximum of 256 characters. Alphanumeric characters, hyphens (-) and underscores (_) are allowed. The name must be unique in the account/region.</p>"
+      }
+    },
+    "ConcurrentModificationException": {
+      "base": "<p>Concurrent modification of the tags associated with an Amazon Comprehend resource is not supported. </p>",
+      "refs": {
       }
     },
     "CreateDocumentClassifierRequest": {
@@ -617,7 +634,7 @@
         "StartKeyPhrasesDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions\">https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions</a>.</p>",
         "StartSentimentDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions\">https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions</a>.</p>",
         "StartTopicsDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions\">https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions</a>.</p>",
-        "TopicsDetectionJobProperties$DataAccessRoleArn": "<p> The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role that grants Amazon Comprehend read access to your input data.</p>"
+        "TopicsDetectionJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role that grants Amazon Comprehend read access to your job data. </p>"
       }
     },
     "InputDataConfig": {
@@ -969,6 +986,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTopicsDetectionJobsRequest": {
       "base": null,
       "refs": {
@@ -1226,6 +1253,7 @@
         "BatchItemError$ErrorCode": "<p>The numeric error code of the error.</p>",
         "BatchItemError$ErrorMessage": "<p>A text description of the error.</p>",
         "BatchSizeLimitExceededException$Message": null,
+        "ConcurrentModificationException$Message": null,
         "DetectDominantLanguageRequest$Text": "<p>A UTF-8 text string. Each string should contain at least 20 characters and must contain fewer that 5,000 bytes of UTF-8 encoded characters.</p>",
         "DetectEntitiesRequest$Text": "<p>A UTF-8 text string. Each string must contain fewer that 5,000 bytes of UTF-8 encoded characters.</p>",
         "DetectKeyPhrasesRequest$Text": "<p>A UTF-8 text string. Each string must contain fewer that 5,000 bytes of UTF-8 encoded characters.</p>",
@@ -1263,6 +1291,8 @@
         "SyntaxToken$Text": "<p>The word that was recognized in the source text.</p>",
         "TextSizeLimitExceededException$Message": null,
         "TooManyRequestsException$Message": null,
+        "TooManyTagKeysException$Message": null,
+        "TooManyTagsException$Message": null,
         "UnsupportedLanguageException$Message": null
       }
     },
@@ -1287,6 +1317,50 @@
       "base": "<p>Represents a work in the input text that was recognized and assigned a part of speech. There is one syntax token record for each word in the source text.</p>",
       "refs": {
         "ListOfSyntaxTokens$member": null
+      }
+    },
+    "Tag": {
+      "base": "<p>A key-value pair that adds as a metadata to a resource used by Amazon Comprehend. For example, a tag with the key-value pair ‘Department’:’Sales’ might be added to a resource to indicate its use by a particular department. </p>",
+      "refs": {
+        "TagList$member": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "Tag$Key": "<p>The initial part of a key-value pair that forms a tag associated with a given resource. For instance, if you want to show which resources are used by which departments, you might use “Department” as the key portion of the pair, with multiple possible values such as “sales,” “legal,” and “administration.” </p>",
+        "TagKeyList$member": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": "<p>The initial part of a key-value pair that forms a tag being removed from a given resource. For instance, “Department” might be used as the key portion of the pair, with multiple values such as “sales,” “legal,” and “administration.” </p>"
+      }
+    },
+    "TagList": {
+      "base": null,
+      "refs": {
+        "CreateDocumentClassifierRequest$Tags": "<p>Tags to be associated with the document classifier being created. A tag is a key-value pair that adds as a metadata to a resource used by Amazon Comprehend. For example, a tag with the key-value pair ‘Department’:’Sales’ might be added to a resource to indicate its use by a particular department. </p>",
+        "CreateEntityRecognizerRequest$Tags": "<p>Tags to be associated with the entity recognizer being created. A tag is a key-value pair that adds as a metadata to a resource used by Amazon Comprehend. For example, a tag with the key-value pair ‘Department’:’Sales’ might be added to a resource to indicate its use by a particular department. </p>",
+        "ListTagsForResourceResponse$Tags": "<p>Tags associated with the Amazon Comprehend resource being queried. A tag is a key-value pair that adds as a metadata to a resource used by Amazon Comprehend. For example, a tag with the key-value pair ‘Department’:’Sales’ might be added to a resource to indicate its use by a particular department. </p>",
+        "TagResourceRequest$Tags": "<p>Tags being associated with a specific Amazon Comprehend resource. </p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tag$Value": "<p> The second part of a key-value pair that forms a tag associated with a given resource. For instance, if you want to show which resources are used by which departments, you might use “Department” as the initial (key) portion of the pair, with a value of “sales” to indicate the sales department. </p>"
       }
     },
     "TextSizeLimitExceededException": {
@@ -1340,6 +1414,16 @@
       "refs": {
       }
     },
+    "TooManyTagKeysException": {
+      "base": "<p>The request contains more tag keys than can be associated with a resource (50 tag keys per resource).</p>",
+      "refs": {
+      }
+    },
+    "TooManyTagsException": {
+      "base": "<p>The request contains more tags than can be associated with a resource (50 tags per resource). </p>",
+      "refs": {
+      }
+    },
     "TopicsDetectionJobFilter": {
       "base": "<p>Provides information for filtering topic detection jobs. For more information, see .</p>",
       "refs": {
@@ -1361,6 +1445,16 @@
     },
     "UnsupportedLanguageException": {
       "base": "<p>Amazon Comprehend can't process the language of the input text. For all custom entity recognition APIs (such as <code>CreateEntityRecognizer</code>), only English is accepted. For most other APIs, Amazon Comprehend accepts only English or Spanish text. </p>",
+      "refs": {
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
       "refs": {
       }
     }

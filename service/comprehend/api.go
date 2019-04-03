@@ -553,6 +553,10 @@ func (c *Comprehend) CreateDocumentClassifierRequest(input *CreateDocumentClassi
 //   The specified name is already in use. Use a different name and try your request
 //   again.
 //
+//   * ErrCodeTooManyTagsException "TooManyTagsException"
+//   The request contains more tags than can be associated with a resource (50
+//   tags per resource).
+//
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //   The number of requests exceeds the limit. Resubmit your request later.
 //
@@ -656,6 +660,10 @@ func (c *Comprehend) CreateEntityRecognizerRequest(input *CreateEntityRecognizer
 //   * ErrCodeResourceInUseException "ResourceInUseException"
 //   The specified name is already in use. Use a different name and try your request
 //   again.
+//
+//   * ErrCodeTooManyTagsException "TooManyTagsException"
+//   The request contains more tags than can be associated with a resource (50
+//   tags per resource).
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //   The number of requests exceeds the limit. Resubmit your request later.
@@ -2932,6 +2940,93 @@ func (c *Comprehend) ListSentimentDetectionJobsPagesWithContext(ctx aws.Context,
 	return p.Err()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ListTagsForResource
+func (c *Comprehend) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for Amazon Comprehend.
+//
+// Lists all tags associated with a given Amazon Comprehend resource. Up to
+// the maximum number of tags allowed per resource will be displayed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is invalid.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource ARN was not found. Check the ARN and try your request
+//   again.
+//
+//   * ErrCodeInternalServerException "InternalServerException"
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ListTagsForResource
+func (c *Comprehend) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListTopicsDetectionJobs = "ListTopicsDetectionJobs"
 
 // ListTopicsDetectionJobsRequest generates a "aws/request.Request" representing the
@@ -4214,6 +4309,199 @@ func (c *Comprehend) StopTrainingEntityRecognizerWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TagResourceRequest method.
+//    req, resp := client.TagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/TagResource
+func (c *Comprehend) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for Amazon Comprehend.
+//
+// Associates a specific tag with an Amazon Comprehend resource. A tag is a
+// key-value pair that adds as a metadata to a resource used by Amazon Comprehend.
+// For example, a tag with the key-value pair ‘Department’:’Sales’ might be
+// added to a resource to indicate its use by a particular department.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is invalid.
+//
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   Concurrent modification of the tags associated with an Amazon Comprehend
+//   resource is not supported.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource ARN was not found. Check the ARN and try your request
+//   again.
+//
+//   * ErrCodeTooManyTagsException "TooManyTagsException"
+//   The request contains more tags than can be associated with a resource (50
+//   tags per resource).
+//
+//   * ErrCodeInternalServerException "InternalServerException"
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/TagResource
+func (c *Comprehend) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UntagResourceRequest method.
+//    req, resp := client.UntagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/UntagResource
+func (c *Comprehend) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for Amazon Comprehend.
+//
+// Removes a specific tag associated with an Amazon Comprehend resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeTooManyTagKeysException "TooManyTagKeysException"
+//   The request contains more tag keys than can be associated with a resource
+//   (50 tag keys per resource).
+//
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is invalid.
+//
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   Concurrent modification of the tags associated with an Amazon Comprehend
+//   resource is not supported.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource ARN was not found. Check the ARN and try your request
+//   again.
+//
+//   * ErrCodeInternalServerException "InternalServerException"
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/UntagResource
+func (c *Comprehend) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 type BatchDetectDominantLanguageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5052,6 +5340,12 @@ type CreateDocumentClassifierInput struct {
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
 
+	// Tags to be associated with the document classifier being created. A tag is
+	// a key-value pair that adds as a metadata to a resource used by Amazon Comprehend.
+	// For example, a tag with the key-value pair ‘Department’:’Sales’ might be
+	// added to a resource to indicate its use by a particular department.
+	Tags []*Tag `type:"list"`
+
 	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
 	// to encrypt data on the storage volume attached to the ML compute instance(s)
 	// that process the analysis job. The VolumeKmsKeyId can be either of the following
@@ -5099,6 +5393,16 @@ func (s *CreateDocumentClassifierInput) Validate() error {
 			invalidParams.AddNested("InputDataConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5133,6 +5437,12 @@ func (s *CreateDocumentClassifierInput) SetInputDataConfig(v *DocumentClassifier
 // SetLanguageCode sets the LanguageCode field's value.
 func (s *CreateDocumentClassifierInput) SetLanguageCode(v string) *CreateDocumentClassifierInput {
 	s.LanguageCode = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDocumentClassifierInput) SetTags(v []*Tag) *CreateDocumentClassifierInput {
+	s.Tags = v
 	return s
 }
 
@@ -5198,6 +5508,12 @@ type CreateEntityRecognizerInput struct {
 	// RecognizerName is a required field
 	RecognizerName *string `type:"string" required:"true"`
 
+	// Tags to be associated with the entity recognizer being created. A tag is
+	// a key-value pair that adds as a metadata to a resource used by Amazon Comprehend.
+	// For example, a tag with the key-value pair ‘Department’:’Sales’ might be
+	// added to a resource to indicate its use by a particular department.
+	Tags []*Tag `type:"list"`
+
 	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
 	// to encrypt data on the storage volume attached to the ML compute instance(s)
 	// that process the analysis job. The VolumeKmsKeyId can be either of the following
@@ -5245,6 +5561,16 @@ func (s *CreateEntityRecognizerInput) Validate() error {
 			invalidParams.AddNested("InputDataConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5279,6 +5605,12 @@ func (s *CreateEntityRecognizerInput) SetLanguageCode(v string) *CreateEntityRec
 // SetRecognizerName sets the RecognizerName field's value.
 func (s *CreateEntityRecognizerInput) SetRecognizerName(v string) *CreateEntityRecognizerInput {
 	s.RecognizerName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateEntityRecognizerInput) SetTags(v []*Tag) *CreateEntityRecognizerInput {
+	s.Tags = v
 	return s
 }
 
@@ -8807,6 +9139,81 @@ func (s *ListSentimentDetectionJobsOutput) SetSentimentDetectionJobPropertiesLis
 	return s
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the given Amazon Comprehend resource you
+	// are querying.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the given Amazon Comprehend resource you
+	// are querying.
+	ResourceArn *string `type:"string"`
+
+	// Tags associated with the Amazon Comprehend resource being queried. A tag
+	// is a key-value pair that adds as a metadata to a resource used by Amazon
+	// Comprehend. For example, a tag with the key-value pair ‘Department’:’Sales’
+	// might be added to a resource to indicate its use by a particular department.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceOutput) SetResourceArn(v string) *ListTagsForResourceOutput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
 type ListTopicsDetectionJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10806,6 +11213,142 @@ func (s *SyntaxToken) SetTokenId(v int64) *SyntaxToken {
 	return s
 }
 
+// A key-value pair that adds as a metadata to a resource used by Amazon Comprehend.
+// For example, a tag with the key-value pair ‘Department’:’Sales’ might be
+// added to a resource to indicate its use by a particular department.
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// The initial part of a key-value pair that forms a tag associated with a given
+	// resource. For instance, if you want to show which resources are used by which
+	// departments, you might use “Department” as the key portion of the pair, with
+	// multiple possible values such as “sales,” “legal,” and “administration.”
+	//
+	// Key is a required field
+	Key *string `min:"1" type:"string" required:"true"`
+
+	// The second part of a key-value pair that forms a tag associated with a given
+	// resource. For instance, if you want to show which resources are used by which
+	// departments, you might use “Department” as the initial (key) portion of the
+	// pair, with a value of “sales” to indicate the sales department.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
+}
+
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the given Amazon Comprehend resource to
+	// which you want to associate the tags.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+
+	// Tags being associated with a specific Amazon Comprehend resource.
+	//
+	// Tags is a required field
+	Tags []*Tag `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
 // Provides information for filtering topic detection jobs. For more information,
 // see .
 type TopicsDetectionJobFilter struct {
@@ -10880,7 +11423,7 @@ type TopicsDetectionJobProperties struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role
-	// that grants Amazon Comprehend read access to your input data.
+	// that grants Amazon Comprehend read access to your job data.
 	DataAccessRoleArn *string `min:"20" type:"string"`
 
 	// The time that the topic detection job was completed.
@@ -10999,6 +11542,75 @@ func (s *TopicsDetectionJobProperties) SetSubmitTime(v time.Time) *TopicsDetecti
 func (s *TopicsDetectionJobProperties) SetVolumeKmsKeyId(v string) *TopicsDetectionJobProperties {
 	s.VolumeKmsKeyId = &v
 	return s
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the given Amazon Comprehend resource from
+	// which you want to remove the tags.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+
+	// The initial part of a key-value pair that forms a tag being removed from
+	// a given resource. For instance, “Department” might be used as the key portion
+	// of the pair, with multiple values such as “sales,” “legal,” and “administration.”
+	//
+	// TagKeys is a required field
+	TagKeys []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 const (
