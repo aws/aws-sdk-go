@@ -188,6 +188,10 @@ type ComprehendAPI interface {
 	ListSentimentDetectionJobsPages(*comprehend.ListSentimentDetectionJobsInput, func(*comprehend.ListSentimentDetectionJobsOutput, bool) bool) error
 	ListSentimentDetectionJobsPagesWithContext(aws.Context, *comprehend.ListSentimentDetectionJobsInput, func(*comprehend.ListSentimentDetectionJobsOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*comprehend.ListTagsForResourceInput) (*comprehend.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *comprehend.ListTagsForResourceInput, ...request.Option) (*comprehend.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*comprehend.ListTagsForResourceInput) (*request.Request, *comprehend.ListTagsForResourceOutput)
+
 	ListTopicsDetectionJobs(*comprehend.ListTopicsDetectionJobsInput) (*comprehend.ListTopicsDetectionJobsOutput, error)
 	ListTopicsDetectionJobsWithContext(aws.Context, *comprehend.ListTopicsDetectionJobsInput, ...request.Option) (*comprehend.ListTopicsDetectionJobsOutput, error)
 	ListTopicsDetectionJobsRequest(*comprehend.ListTopicsDetectionJobsInput) (*request.Request, *comprehend.ListTopicsDetectionJobsOutput)
@@ -242,6 +246,14 @@ type ComprehendAPI interface {
 	StopTrainingEntityRecognizer(*comprehend.StopTrainingEntityRecognizerInput) (*comprehend.StopTrainingEntityRecognizerOutput, error)
 	StopTrainingEntityRecognizerWithContext(aws.Context, *comprehend.StopTrainingEntityRecognizerInput, ...request.Option) (*comprehend.StopTrainingEntityRecognizerOutput, error)
 	StopTrainingEntityRecognizerRequest(*comprehend.StopTrainingEntityRecognizerInput) (*request.Request, *comprehend.StopTrainingEntityRecognizerOutput)
+
+	TagResource(*comprehend.TagResourceInput) (*comprehend.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *comprehend.TagResourceInput, ...request.Option) (*comprehend.TagResourceOutput, error)
+	TagResourceRequest(*comprehend.TagResourceInput) (*request.Request, *comprehend.TagResourceOutput)
+
+	UntagResource(*comprehend.UntagResourceInput) (*comprehend.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *comprehend.UntagResourceInput, ...request.Option) (*comprehend.UntagResourceOutput, error)
+	UntagResourceRequest(*comprehend.UntagResourceInput) (*request.Request, *comprehend.UntagResourceOutput)
 }
 
 var _ ComprehendAPI = (*comprehend.Comprehend)(nil)

@@ -103,6 +103,7 @@
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceInUseException"},
+        {"shape":"TooManyTagsException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"ResourceLimitExceededException"},
         {"shape":"UnsupportedLanguageException"},
@@ -121,6 +122,7 @@
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceInUseException"},
+        {"shape":"TooManyTagsException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"ResourceLimitExceededException"},
         {"shape":"UnsupportedLanguageException"},
@@ -461,6 +463,20 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListTopicsDetectionJobs":{
       "name":"ListTopicsDetectionJobs",
       "http":{
@@ -655,6 +671,38 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"}
       ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"TooManyTagKeysException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
     }
   },
   "shapes":{
@@ -844,10 +892,22 @@
       "min":1,
       "pattern":"^[a-zA-Z0-9-]+$"
     },
+    "ComprehendArn":{
+      "type":"string",
+      "max":256,
+      "pattern":"arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-Z0-9-]{1,64}/[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+    },
     "ComprehendArnName":{
       "type":"string",
       "max":63,
       "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+    },
+    "ConcurrentModificationException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
     },
     "CreateDocumentClassifierRequest":{
       "type":"structure",
@@ -860,6 +920,7 @@
       "members":{
         "DocumentClassifierName":{"shape":"ComprehendArnName"},
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
+        "Tags":{"shape":"TagList"},
         "InputDataConfig":{"shape":"DocumentClassifierInputDataConfig"},
         "ClientRequestToken":{
           "shape":"ClientRequestTokenString",
@@ -886,6 +947,7 @@
       "members":{
         "RecognizerName":{"shape":"ComprehendArnName"},
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
+        "Tags":{"shape":"TagList"},
         "InputDataConfig":{"shape":"EntityRecognizerInputDataConfig"},
         "ClientRequestToken":{
           "shape":"ClientRequestTokenString",
@@ -1658,6 +1720,20 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"ComprehendArn"}
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceArn":{"shape":"ComprehendArn"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
     "ListTopicsDetectionJobsRequest":{
       "type":"structure",
       "members":{
@@ -2088,6 +2164,48 @@
         "PartOfSpeech":{"shape":"PartOfSpeechTag"}
       }
     },
+    "Tag":{
+      "type":"structure",
+      "required":["Key"],
+      "members":{
+        "Key":{"shape":"TagKey"},
+        "Value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"}
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"}
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "Tags"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"ComprehendArn"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
     "TextSizeLimitExceededException":{
       "type":"structure",
       "members":{
@@ -2097,6 +2215,20 @@
     },
     "Timestamp":{"type":"timestamp"},
     "TooManyRequestsException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "TooManyTagKeysException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "TooManyTagsException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"String"}
@@ -2138,6 +2270,22 @@
         "Message":{"shape":"String"}
       },
       "exception":true
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"ComprehendArn"},
+        "TagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
     }
   }
 }

@@ -11,6 +11,13 @@ const (
 	// request again with fewer documents.
 	ErrCodeBatchSizeLimitExceededException = "BatchSizeLimitExceededException"
 
+	// ErrCodeConcurrentModificationException for service response error code
+	// "ConcurrentModificationException".
+	//
+	// Concurrent modification of the tags associated with an Amazon Comprehend
+	// resource is not supported.
+	ErrCodeConcurrentModificationException = "ConcurrentModificationException"
+
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
 	//
@@ -82,6 +89,20 @@ const (
 	//
 	// The number of requests exceeds the limit. Resubmit your request later.
 	ErrCodeTooManyRequestsException = "TooManyRequestsException"
+
+	// ErrCodeTooManyTagKeysException for service response error code
+	// "TooManyTagKeysException".
+	//
+	// The request contains more tag keys than can be associated with a resource
+	// (50 tag keys per resource).
+	ErrCodeTooManyTagKeysException = "TooManyTagKeysException"
+
+	// ErrCodeTooManyTagsException for service response error code
+	// "TooManyTagsException".
+	//
+	// The request contains more tags than can be associated with a resource (50
+	// tags per resource).
+	ErrCodeTooManyTagsException = "TooManyTagsException"
 
 	// ErrCodeUnsupportedLanguageException for service response error code
 	// "UnsupportedLanguageException".

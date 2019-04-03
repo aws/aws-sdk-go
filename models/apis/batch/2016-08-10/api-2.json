@@ -431,7 +431,8 @@
         "taskArn":{"shape":"String"},
         "logStreamName":{"shape":"String"},
         "instanceType":{"shape":"String"},
-        "networkInterfaces":{"shape":"NetworkInterfaceList"}
+        "networkInterfaces":{"shape":"NetworkInterfaceList"},
+        "resourceRequirements":{"shape":"ResourceRequirements"}
       }
     },
     "ContainerOverrides":{
@@ -441,7 +442,8 @@
         "memory":{"shape":"Integer"},
         "command":{"shape":"StringList"},
         "instanceType":{"shape":"String"},
-        "environment":{"shape":"EnvironmentVariables"}
+        "environment":{"shape":"EnvironmentVariables"},
+        "resourceRequirements":{"shape":"ResourceRequirements"}
       }
     },
     "ContainerProperties":{
@@ -459,7 +461,8 @@
         "privileged":{"shape":"Boolean"},
         "ulimits":{"shape":"Ulimits"},
         "user":{"shape":"String"},
-        "instanceType":{"shape":"String"}
+        "instanceType":{"shape":"String"},
+        "resourceRequirements":{"shape":"ResourceRequirements"}
       }
     },
     "ContainerSummary":{
@@ -852,6 +855,7 @@
     "NodeOverrides":{
       "type":"structure",
       "members":{
+        "numNodes":{"shape":"Integer"},
         "nodePropertyOverrides":{"shape":"NodePropertyOverrides"}
       }
     },
@@ -933,6 +937,25 @@
         "jobDefinitionArn":{"shape":"String"},
         "revision":{"shape":"Integer"}
       }
+    },
+    "ResourceRequirement":{
+      "type":"structure",
+      "required":[
+        "value",
+        "type"
+      ],
+      "members":{
+        "value":{"shape":"String"},
+        "type":{"shape":"ResourceType"}
+      }
+    },
+    "ResourceRequirements":{
+      "type":"list",
+      "member":{"shape":"ResourceRequirement"}
+    },
+    "ResourceType":{
+      "type":"string",
+      "enum":["GPU"]
     },
     "RetryStrategy":{
       "type":"structure",

@@ -1,3 +1,12 @@
+Release v1.19.9 (2019-04-03)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API and documentation
+  * Support for GPU resource requirement in RegisterJobDefinition and SubmitJob
+* `service/comprehend`: Updates service API and documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.19.8 (2019-04-02)
 ===
 
