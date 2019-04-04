@@ -13,11 +13,12 @@ type stubSTS struct {
 	TestInput func(*sts.AssumeRoleInput)
 }
 
+var expiry = time.Now().Add(60 * time.Minute)
+
 func (s *stubSTS) AssumeRole(input *sts.AssumeRoleInput) (*sts.AssumeRoleOutput, error) {
 	if s.TestInput != nil {
 		s.TestInput(input)
 	}
-	expiry := time.Now().Add(60 * time.Minute)
 	return &sts.AssumeRoleOutput{
 		Credentials: &sts.Credentials{
 			// Just reflect the role arn to the provider.
@@ -48,6 +49,9 @@ func TestAssumeRoleProvider(t *testing.T) {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 	if e, a := "assumedSessionToken", creds.SessionToken; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := expiry, creds.Expiration; e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 }
@@ -82,6 +86,9 @@ func TestAssumeRoleProvider_WithTokenCode(t *testing.T) {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 	if e, a := "assumedSessionToken", creds.SessionToken; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := expiry, creds.Expiration; e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 }
@@ -120,6 +127,9 @@ func TestAssumeRoleProvider_WithTokenProvider(t *testing.T) {
 	if e, a := "assumedSessionToken", creds.SessionToken; e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
+	if e, a := expiry, creds.Expiration; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 }
 
 func TestAssumeRoleProvider_WithTokenProviderError(t *testing.T) {
@@ -151,6 +161,9 @@ func TestAssumeRoleProvider_WithTokenProviderError(t *testing.T) {
 	if v := creds.SessionToken; len(v) != 0 {
 		t.Errorf("expect empty, got %v", v)
 	}
+	if v := creds.Expiration; !v.IsZero() {
+		t.Errorf("expect empty, got %v", v)
+	}
 }
 
 func TestAssumeRoleProvider_MFAWithNoToken(t *testing.T) {
@@ -177,6 +190,9 @@ func TestAssumeRoleProvider_MFAWithNoToken(t *testing.T) {
 		t.Errorf("expect empty, got %v", v)
 	}
 	if v := creds.SessionToken; len(v) != 0 {
+		t.Errorf("expect empty, got %v", v)
+	}
+	if v := creds.Expiration; !v.IsZero() {
 		t.Errorf("expect empty, got %v", v)
 	}
 }

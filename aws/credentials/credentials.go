@@ -79,6 +79,9 @@ type Value struct {
 	// AWS Session Token
 	SessionToken string
 
+	// AWS Session Expiration
+	Expiration time.Time
+
 	// Provider used to get credentials
 	ProviderName string
 }
