@@ -173,6 +173,7 @@
         "endpoint":{"shape":"String"},
         "roleArn":{"shape":"String"},
         "resourcesVpcConfig":{"shape":"VpcConfigResponse"},
+        "logging":{"shape":"Logging"},
         "status":{"shape":"ClusterStatus"},
         "certificateAuthority":{"shape":"Certificate"},
         "clientRequestToken":{"shape":"String"},
@@ -206,6 +207,7 @@
         "version":{"shape":"String"},
         "roleArn":{"shape":"String"},
         "resourcesVpcConfig":{"shape":"VpcConfigRequest"},
+        "logging":{"shape":"Logging"},
         "clientRequestToken":{
           "shape":"String",
           "idempotencyToken":true
@@ -382,6 +384,37 @@
         "nextToken":{"shape":"String"}
       }
     },
+    "LogSetup":{
+      "type":"structure",
+      "members":{
+        "types":{"shape":"LogTypes"},
+        "enabled":{"shape":"BoxedBoolean"}
+      }
+    },
+    "LogSetups":{
+      "type":"list",
+      "member":{"shape":"LogSetup"}
+    },
+    "LogType":{
+      "type":"string",
+      "enum":[
+        "api",
+        "audit",
+        "authenticator",
+        "controllerManager",
+        "scheduler"
+      ]
+    },
+    "LogTypes":{
+      "type":"list",
+      "member":{"shape":"LogType"}
+    },
+    "Logging":{
+      "type":"structure",
+      "members":{
+        "clusterLogging":{"shape":"LogSetups"}
+      }
+    },
     "ResourceInUseException":{
       "type":"structure",
       "members":{
@@ -465,6 +498,7 @@
           "locationName":"name"
         },
         "resourcesVpcConfig":{"shape":"VpcConfigRequest"},
+        "logging":{"shape":"Logging"},
         "clientRequestToken":{
           "shape":"String",
           "idempotencyToken":true
@@ -515,7 +549,8 @@
         "Version",
         "PlatformVersion",
         "EndpointPrivateAccess",
-        "EndpointPublicAccess"
+        "EndpointPublicAccess",
+        "ClusterLogging"
       ]
     },
     "UpdateParams":{
@@ -535,7 +570,8 @@
       "type":"string",
       "enum":[
         "VersionUpdate",
-        "EndpointAccessUpdate"
+        "EndpointAccessUpdate",
+        "LoggingUpdate"
       ]
     },
     "VpcConfigRequest":{
