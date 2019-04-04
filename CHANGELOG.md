@@ -1,3 +1,11 @@
+Release v1.19.10 (2019-04-04)
+===
+
+### Service Client Updates
+* `service/eks`: Updates service API and documentation
+* `service/iam`: Updates service documentation
+  * Documentation updates for iam
+
 Release v1.19.9 (2019-04-03)
 ===
 
