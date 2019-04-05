@@ -3,38 +3,32 @@
     "DescribeSchedule": {
       "input_token": "NextToken",
       "output_token": "NextToken",
-      "limit_key": "MaxResults",
-      "result_key": "ScheduleActions"
+      "limit_key": "MaxResults"
     },
     "ListChannels": {
       "input_token": "NextToken",
       "output_token": "NextToken",
-      "limit_key": "MaxResults",
-      "result_key": "Channels"
+      "limit_key": "MaxResults"
     },
     "ListInputSecurityGroups": {
       "input_token": "NextToken",
       "output_token": "NextToken",
-      "limit_key": "MaxResults",
-      "result_key": "InputSecurityGroups"
+      "limit_key": "MaxResults"
     },
     "ListInputs": {
       "input_token": "NextToken",
       "output_token": "NextToken",
-      "limit_key": "MaxResults",
-      "result_key": "Inputs"
+      "limit_key": "MaxResults"
     },
     "ListOfferings": {
       "input_token": "NextToken",
       "output_token": "NextToken",
-      "limit_key": "MaxResults",
-      "result_key": "Offerings"
+      "limit_key": "MaxResults"
     },
     "ListReservations": {
       "input_token": "NextToken",
       "output_token": "NextToken",
-      "limit_key": "MaxResults",
-      "result_key": "Reservations"
+      "limit_key": "MaxResults"
     }
   }
 }

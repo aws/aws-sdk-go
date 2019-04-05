@@ -29,7 +29,8 @@
     "StopChannel": "Stops a running channel",
     "UpdateChannel": "Updates a channel.",
     "UpdateInput": "Updates an input.",
-    "UpdateInputSecurityGroup": "Update an Input Security Group's Whilelists."
+    "UpdateInputSecurityGroup": "Update an Input Security Group's Whilelists.",
+    "UpdateReservation": "Update reservation."
   },
   "shapes": {
     "AacCodingMode": {
@@ -422,6 +423,15 @@
       "refs": {
         "CreateChannelResultModel$Channel": null,
         "UpdateChannelResultModel$Channel": null
+      }
+    },
+    "ChannelClass": {
+      "base": "A standard channel has two encoding pipelines and a single pipeline channel only has one.",
+      "refs": {
+        "Channel$ChannelClass": "The class for this channel. STANDARD for a channel with two pipelines or SINGLE_PIPELINE for a channel with one pipeline.",
+        "ChannelSummary$ChannelClass": "The class for this channel. STANDARD for a channel with two pipelines or SINGLE_PIPELINE for a channel with one pipeline.",
+        "CreateChannel$ChannelClass": "The class for this channel. STANDARD for a channel with two pipelines or SINGLE_PIPELINE for a channel with one pipeline.",
+        "ReservationResourceSpecification$ChannelClass": "Channel class, e.g. 'STANDARD'"
       }
     },
     "ChannelConfigurationValidationError": {
@@ -1109,6 +1119,12 @@
         "__listOfInputChannelLevel$member": null
       }
     },
+    "InputClass": {
+      "base": "A standard input has two sources and a single pipeline input only has one.",
+      "refs": {
+        "Input$InputClass": "STANDARD - MediaLive expects two sources to be connected to this input. If the channel is also STANDARD, both sources will be ingested. If the channel is SINGLE_PIPELINE, only the first source will be ingested; the second source will always be ignored, even if the first source fails.\nSINGLE_PIPELINE - You can connect only one source to this input. If the ChannelClass is also  SINGLE_PIPELINE, this value is valid. If the ChannelClass is STANDARD, this value is not valid because the channel requires two sources in the input.\n"
+      }
+    },
     "InputCodec": {
       "base": "codec in increasing order of complexity",
       "refs": {
@@ -1684,6 +1700,7 @@
       "base": "Reserved resources available to use",
       "refs": {
         "PurchaseOfferingResultModel$Reservation": null,
+        "UpdateReservationResultModel$Reservation": null,
         "__listOfReservation$member": null
       }
     },
@@ -2037,6 +2054,8 @@
         "Input$Tags": "A collection of key-value pairs.",
         "InputSecurityGroup$Tags": "A collection of key-value pairs.",
         "InputSecurityGroupWhitelistRequest$Tags": "A collection of key-value pairs.",
+        "PurchaseOffering$Tags": "A collection of key-value pairs",
+        "Reservation$Tags": "A collection of key-value pairs",
         "TagsModel$Tags": null
       }
     },
@@ -2137,6 +2156,16 @@
     },
     "UpdateInputSecurityGroupResultModel": {
       "base": null,
+      "refs": {
+      }
+    },
+    "UpdateReservation": {
+      "base": "UpdateReservation request",
+      "refs": {
+      }
+    },
+    "UpdateReservationResultModel": {
+      "base": "UpdateReservation response",
       "refs": {
       }
     },
@@ -2991,6 +3020,7 @@
         "UpdateChannel$RoleArn": "An optional Amazon Resource Name (ARN) of the role to assume when running the Channel. If you do not specify this on an update call but the role was previously set that role will be removed.",
         "UpdateInput$Name": "Name of the input.",
         "UpdateInput$RoleArn": "The Amazon Resource Name (ARN) of the role this input assumes during and after creation.",
+        "UpdateReservation$Name": "Name of the reservation",
         "ValidationError$ElementPath": null,
         "ValidationError$ErrorMessage": null,
         "VideoDescription$Name": "The name of this VideoDescription. Outputs will use this name to uniquely identify this Description.  Description names should be unique within this Live Event.",

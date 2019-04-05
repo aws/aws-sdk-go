@@ -555,7 +555,8 @@ func (c *Comprehend) CreateDocumentClassifierRequest(input *CreateDocumentClassi
 //
 //   * ErrCodeTooManyTagsException "TooManyTagsException"
 //   The request contains more tags than can be associated with a resource (50
-//   tags per resource).
+//   tags per resource). The maximum number of tags includes both existing tags
+//   and those included in your current request.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //   The number of requests exceeds the limit. Resubmit your request later.
@@ -663,7 +664,8 @@ func (c *Comprehend) CreateEntityRecognizerRequest(input *CreateEntityRecognizer
 //
 //   * ErrCodeTooManyTagsException "TooManyTagsException"
 //   The request contains more tags than can be associated with a resource (50
-//   tags per resource).
+//   tags per resource). The maximum number of tags includes both existing tags
+//   and those included in your current request.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //   The number of requests exceeds the limit. Resubmit your request later.
@@ -2984,8 +2986,7 @@ func (c *Comprehend) ListTagsForResourceRequest(input *ListTagsForResourceInput)
 
 // ListTagsForResource API operation for Amazon Comprehend.
 //
-// Lists all tags associated with a given Amazon Comprehend resource. Up to
-// the maximum number of tags allowed per resource will be displayed.
+// Lists all tags associated with a given Amazon Comprehend resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4356,8 +4357,8 @@ func (c *Comprehend) TagResourceRequest(input *TagResourceInput) (req *request.R
 //
 // Associates a specific tag with an Amazon Comprehend resource. A tag is a
 // key-value pair that adds as a metadata to a resource used by Amazon Comprehend.
-// For example, a tag with the key-value pair ‘Department’:’Sales’ might be
-// added to a resource to indicate its use by a particular department.
+// For example, a tag with "Sales" as the key might be added to a resource to
+// indicate its use by the sales department.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4380,7 +4381,8 @@ func (c *Comprehend) TagResourceRequest(input *TagResourceInput) (req *request.R
 //
 //   * ErrCodeTooManyTagsException "TooManyTagsException"
 //   The request contains more tags than can be associated with a resource (50
-//   tags per resource).
+//   tags per resource). The maximum number of tags includes both existing tags
+//   and those included in your current request.
 //
 //   * ErrCodeInternalServerException "InternalServerException"
 //   An internal server error occurred. Retry your request.
@@ -5340,10 +5342,14 @@ type CreateDocumentClassifierInput struct {
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
 
+	// Enables the addition of output results configuration parameters for custom
+	// classifier jobs.
+	OutputDataConfig *DocumentClassifierOutputDataConfig `type:"structure"`
+
 	// Tags to be associated with the document classifier being created. A tag is
 	// a key-value pair that adds as a metadata to a resource used by Amazon Comprehend.
-	// For example, a tag with the key-value pair ‘Department’:’Sales’ might be
-	// added to a resource to indicate its use by a particular department.
+	// For example, a tag with "Sales" as the key might be added to a resource to
+	// indicate its use by the sales department.
 	Tags []*Tag `type:"list"`
 
 	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
@@ -5440,6 +5446,12 @@ func (s *CreateDocumentClassifierInput) SetLanguageCode(v string) *CreateDocumen
 	return s
 }
 
+// SetOutputDataConfig sets the OutputDataConfig field's value.
+func (s *CreateDocumentClassifierInput) SetOutputDataConfig(v *DocumentClassifierOutputDataConfig) *CreateDocumentClassifierInput {
+	s.OutputDataConfig = v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *CreateDocumentClassifierInput) SetTags(v []*Tag) *CreateDocumentClassifierInput {
 	s.Tags = v
@@ -5510,8 +5522,8 @@ type CreateEntityRecognizerInput struct {
 
 	// Tags to be associated with the entity recognizer being created. A tag is
 	// a key-value pair that adds as a metadata to a resource used by Amazon Comprehend.
-	// For example, a tag with the key-value pair ‘Department’:’Sales’ might be
-	// added to a resource to indicate its use by a particular department.
+	// For example, a tag with "Sales" as the key might be added to a resource to
+	// indicate its use by the sales department.
 	Tags []*Tag `type:"list"`
 
 	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
@@ -6963,6 +6975,58 @@ func (s *DocumentClassifierInputDataConfig) SetS3Uri(v string) *DocumentClassifi
 	return s
 }
 
+// Provides output results configuration parameters for custom classifier jobs.
+type DocumentClassifierOutputDataConfig struct {
+	_ struct{} `type:"structure"`
+
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt the output results from an analysis job. The KmsKeyId can be one
+	// of the following formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * KMS Key Alias: "alias/ExampleAlias"
+	//
+	//    * ARN of a KMS Key Alias: "arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias"
+	KmsKeyId *string `type:"string"`
+
+	// When you use the OutputDataConfig object while creating a custom classifier,
+	// you specify the Amazon S3 location where you want to write the confusion
+	// matrix. The URI must be in the same region as the API endpoint that you are
+	// calling. The location is used as the prefix for the actual location of this
+	// output file.
+	//
+	// When the custom classifier job is finished, the service creates the output
+	// file in a directory specific to the job. The S3Uri field contains the location
+	// of the output file, called output.tar.gz. It is a compressed archive that
+	// contains the confusion matrix.
+	S3Uri *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DocumentClassifierOutputDataConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DocumentClassifierOutputDataConfig) GoString() string {
+	return s.String()
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *DocumentClassifierOutputDataConfig) SetKmsKeyId(v string) *DocumentClassifierOutputDataConfig {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *DocumentClassifierOutputDataConfig) SetS3Uri(v string) *DocumentClassifierOutputDataConfig {
+	s.S3Uri = &v
+	return s
+}
+
 // Provides information about a document classifier.
 type DocumentClassifierProperties struct {
 	_ struct{} `type:"structure"`
@@ -6992,6 +7056,9 @@ type DocumentClassifierProperties struct {
 
 	// Additional information about the status of the classifier.
 	Message *string `type:"string"`
+
+	// Provides output results configuration parameters for custom classifier jobs.
+	OutputDataConfig *DocumentClassifierOutputDataConfig `type:"structure"`
 
 	// The status of the document classifier. If the status is TRAINED the classifier
 	// is ready to use. If the status is FAILED you can see additional information
@@ -7070,6 +7137,12 @@ func (s *DocumentClassifierProperties) SetLanguageCode(v string) *DocumentClassi
 // SetMessage sets the Message field's value.
 func (s *DocumentClassifierProperties) SetMessage(v string) *DocumentClassifierProperties {
 	s.Message = &v
+	return s
+}
+
+// SetOutputDataConfig sets the OutputDataConfig field's value.
+func (s *DocumentClassifierProperties) SetOutputDataConfig(v *DocumentClassifierOutputDataConfig) *DocumentClassifierProperties {
+	s.OutputDataConfig = v
 	return s
 }
 
@@ -9187,8 +9260,8 @@ type ListTagsForResourceOutput struct {
 
 	// Tags associated with the Amazon Comprehend resource being queried. A tag
 	// is a key-value pair that adds as a metadata to a resource used by Amazon
-	// Comprehend. For example, a tag with the key-value pair ‘Department’:’Sales’
-	// might be added to a resource to indicate its use by a particular department.
+	// Comprehend. For example, a tag with "Sales" as the key might be added to
+	// a resource to indicate its use by the sales department.
 	Tags []*Tag `type:"list"`
 }
 
@@ -11281,7 +11354,9 @@ type TagResourceInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `type:"string" required:"true"`
 
-	// Tags being associated with a specific Amazon Comprehend resource.
+	// Tags being associated with a specific Amazon Comprehend resource. There can
+	// be a maximum of 50 tags (both existing and pending) associated with a specific
+	// resource.
 	//
 	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
@@ -11554,8 +11629,9 @@ type UntagResourceInput struct {
 	ResourceArn *string `type:"string" required:"true"`
 
 	// The initial part of a key-value pair that forms a tag being removed from
-	// a given resource. For instance, “Department” might be used as the key portion
-	// of the pair, with multiple values such as “sales,” “legal,” and “administration.”
+	// a given resource. For example, a tag with "Sales" as the key might be added
+	// to a resource to indicate its use by the sales department. Keys must be unique
+	// and cannot be duplicated for a particular resource.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `type:"list" required:"true"`

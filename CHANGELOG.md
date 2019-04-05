@@ -1,3 +1,16 @@
+Release v1.19.11 (2019-04-05)
+===
+
+### Service Client Updates
+* `service/comprehend`: Updates service API and documentation
+* `service/glue`: Updates service API and documentation
+  * AWS Glue now supports workerType choices in the CreateJob, UpdateJob, and StartJobRun APIs, to be used for memory-intensive jobs.
+* `service/iot1click-devices`: Updates service API and documentation
+* `service/mediaconvert`: Updates service API
+  * Rectify incorrect modelling of DisassociateCertificate method
+* `service/medialive`: Updates service API, documentation, and paginators
+  * Today AWS Elemental MediaLive (https://aws.amazon.com/medialive/) adds the option to create "Single Pipeline" channels, which offers a lower-cost option compared to Standard channels. MediaLive Single Pipeline channels have a single encoding pipeline rather than the redundant dual Availability Zone (AZ) pipelines that MediaLive provides with a "Standard" channel.
+
 Release v1.19.10 (2019-04-04)
 ===
 
