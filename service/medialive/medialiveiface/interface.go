@@ -189,6 +189,10 @@ type MediaLiveAPI interface {
 	UpdateInputSecurityGroup(*medialive.UpdateInputSecurityGroupInput) (*medialive.UpdateInputSecurityGroupOutput, error)
 	UpdateInputSecurityGroupWithContext(aws.Context, *medialive.UpdateInputSecurityGroupInput, ...request.Option) (*medialive.UpdateInputSecurityGroupOutput, error)
 	UpdateInputSecurityGroupRequest(*medialive.UpdateInputSecurityGroupInput) (*request.Request, *medialive.UpdateInputSecurityGroupOutput)
+
+	UpdateReservation(*medialive.UpdateReservationInput) (*medialive.UpdateReservationOutput, error)
+	UpdateReservationWithContext(aws.Context, *medialive.UpdateReservationInput, ...request.Option) (*medialive.UpdateReservationOutput, error)
+	UpdateReservationRequest(*medialive.UpdateReservationInput) (*request.Request, *medialive.UpdateReservationOutput)
 }
 
 var _ MediaLiveAPI = (*medialive.MediaLive)(nil)

@@ -6,10 +6,10 @@
     "serviceFullName": "AWS Elemental MediaLive",
     "serviceId": "MediaLive",
     "protocol": "rest-json",
+    "jsonVersion": "1.1",
     "uid": "medialive-2017-10-14",
     "signatureVersion": "v4",
-    "serviceAbbreviation": "MediaLive",
-    "jsonVersion": "1.1"
+    "serviceAbbreviation": "MediaLive"
   },
   "operations": {
     "BatchUpdateSchedule": {
@@ -1017,6 +1017,46 @@
           "shape": "ConflictException"
         }
       ]
+    },
+    "UpdateReservation": {
+      "name": "UpdateReservation",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/prod/reservations/{reservationId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateReservationRequest"
+      },
+      "output": {
+        "shape": "UpdateReservationResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
     }
   },
   "shapes": {
@@ -1993,6 +2033,10 @@
           "shape": "__string",
           "locationName": "arn"
         },
+        "ChannelClass": {
+          "shape": "ChannelClass",
+          "locationName": "channelClass"
+        },
         "Destinations": {
           "shape": "__listOfOutputDestination",
           "locationName": "destinations"
@@ -2043,6 +2087,13 @@
         }
       }
     },
+    "ChannelClass": {
+      "type": "string",
+      "enum": [
+        "STANDARD",
+        "SINGLE_PIPELINE"
+      ]
+    },
     "ChannelConfigurationValidationError": {
       "type": "structure",
       "members": {
@@ -2085,6 +2136,10 @@
         "Arn": {
           "shape": "__string",
           "locationName": "arn"
+        },
+        "ChannelClass": {
+          "shape": "ChannelClass",
+          "locationName": "channelClass"
         },
         "Destinations": {
           "shape": "__listOfOutputDestination",
@@ -2148,6 +2203,10 @@
     "CreateChannel": {
       "type": "structure",
       "members": {
+        "ChannelClass": {
+          "shape": "ChannelClass",
+          "locationName": "channelClass"
+        },
         "Destinations": {
           "shape": "__listOfOutputDestination",
           "locationName": "destinations"
@@ -2195,6 +2254,10 @@
     "CreateChannelRequest": {
       "type": "structure",
       "members": {
+        "ChannelClass": {
+          "shape": "ChannelClass",
+          "locationName": "channelClass"
+        },
         "Destinations": {
           "shape": "__listOfOutputDestination",
           "locationName": "destinations"
@@ -2435,6 +2498,10 @@
           "shape": "__string",
           "locationName": "arn"
         },
+        "ChannelClass": {
+          "shape": "ChannelClass",
+          "locationName": "channelClass"
+        },
         "Destinations": {
           "shape": "__listOfOutputDestination",
           "locationName": "destinations"
@@ -2601,6 +2668,10 @@
           "shape": "ReservationState",
           "locationName": "state"
         },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
+        },
         "UsagePrice": {
           "shape": "__double",
           "locationName": "usagePrice"
@@ -2645,6 +2716,10 @@
         "Arn": {
           "shape": "__string",
           "locationName": "arn"
+        },
+        "ChannelClass": {
+          "shape": "ChannelClass",
+          "locationName": "channelClass"
         },
         "Destinations": {
           "shape": "__listOfOutputDestination",
@@ -2727,6 +2802,10 @@
         "Id": {
           "shape": "__string",
           "locationName": "id"
+        },
+        "InputClass": {
+          "shape": "InputClass",
+          "locationName": "inputClass"
         },
         "MediaConnectFlows": {
           "shape": "__listOfMediaConnectFlow",
@@ -2945,6 +3024,10 @@
         "State": {
           "shape": "ReservationState",
           "locationName": "state"
+        },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
         },
         "UsagePrice": {
           "shape": "__double",
@@ -4504,6 +4587,10 @@
           "shape": "__string",
           "locationName": "id"
         },
+        "InputClass": {
+          "shape": "InputClass",
+          "locationName": "inputClass"
+        },
         "MediaConnectFlows": {
           "shape": "__listOfMediaConnectFlow",
           "locationName": "mediaConnectFlows"
@@ -4570,6 +4657,13 @@
       "required": [
         "InputChannel",
         "Gain"
+      ]
+    },
+    "InputClass": {
+      "type": "string",
+      "enum": [
+        "STANDARD",
+        "SINGLE_PIPELINE"
       ]
     },
     "InputCodec": {
@@ -5135,6 +5229,11 @@
     "ListOfferingsRequest": {
       "type": "structure",
       "members": {
+        "ChannelClass": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "channelClass"
+        },
         "ChannelConfiguration": {
           "shape": "__string",
           "location": "querystring",
@@ -5216,6 +5315,11 @@
     "ListReservationsRequest": {
       "type": "structure",
       "members": {
+        "ChannelClass": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "channelClass"
+        },
         "Codec": {
           "shape": "__string",
           "location": "querystring",
@@ -6204,6 +6308,10 @@
         "Start": {
           "shape": "__string",
           "locationName": "start"
+        },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
         }
       },
       "required": [
@@ -6234,6 +6342,10 @@
         "Start": {
           "shape": "__string",
           "locationName": "start"
+        },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
         }
       },
       "required": [
@@ -6346,6 +6458,10 @@
           "shape": "ReservationState",
           "locationName": "state"
         },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
+        },
         "UsagePrice": {
           "shape": "__double",
           "locationName": "usagePrice"
@@ -6387,6 +6503,10 @@
     "ReservationResourceSpecification": {
       "type": "structure",
       "members": {
+        "ChannelClass": {
+          "shape": "ChannelClass",
+          "locationName": "channelClass"
+        },
         "Codec": {
           "shape": "ReservationCodec",
           "locationName": "codec"
@@ -7015,6 +7135,10 @@
           "shape": "__string",
           "locationName": "arn"
         },
+        "ChannelClass": {
+          "shape": "ChannelClass",
+          "locationName": "channelClass"
+        },
         "Destinations": {
           "shape": "__listOfOutputDestination",
           "locationName": "destinations"
@@ -7161,6 +7285,10 @@
         "Arn": {
           "shape": "__string",
           "locationName": "arn"
+        },
+        "ChannelClass": {
+          "shape": "ChannelClass",
+          "locationName": "channelClass"
         },
         "Destinations": {
           "shape": "__listOfOutputDestination",
@@ -7585,6 +7713,50 @@
         "SecurityGroup": {
           "shape": "InputSecurityGroup",
           "locationName": "securityGroup"
+        }
+      }
+    },
+    "UpdateReservation": {
+      "type": "structure",
+      "members": {
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        }
+      }
+    },
+    "UpdateReservationRequest": {
+      "type": "structure",
+      "members": {
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "ReservationId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "reservationId"
+        }
+      },
+      "required": [
+        "ReservationId"
+      ]
+    },
+    "UpdateReservationResponse": {
+      "type": "structure",
+      "members": {
+        "Reservation": {
+          "shape": "Reservation",
+          "locationName": "reservation"
+        }
+      }
+    },
+    "UpdateReservationResultModel": {
+      "type": "structure",
+      "members": {
+        "Reservation": {
+          "shape": "Reservation",
+          "locationName": "reservation"
         }
       }
     },

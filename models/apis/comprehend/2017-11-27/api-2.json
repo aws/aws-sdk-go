@@ -922,6 +922,7 @@
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
         "Tags":{"shape":"TagList"},
         "InputDataConfig":{"shape":"DocumentClassifierInputDataConfig"},
+        "OutputDataConfig":{"shape":"DocumentClassifierOutputDataConfig"},
         "ClientRequestToken":{
           "shape":"ClientRequestTokenString",
           "idempotencyToken":true
@@ -1222,6 +1223,13 @@
         "S3Uri":{"shape":"S3Uri"}
       }
     },
+    "DocumentClassifierOutputDataConfig":{
+      "type":"structure",
+      "members":{
+        "S3Uri":{"shape":"S3Uri"},
+        "KmsKeyId":{"shape":"KmsKeyId"}
+      }
+    },
     "DocumentClassifierProperties":{
       "type":"structure",
       "members":{
@@ -1234,6 +1242,7 @@
         "TrainingStartTime":{"shape":"Timestamp"},
         "TrainingEndTime":{"shape":"Timestamp"},
         "InputDataConfig":{"shape":"DocumentClassifierInputDataConfig"},
+        "OutputDataConfig":{"shape":"DocumentClassifierOutputDataConfig"},
         "ClassifierMetadata":{"shape":"ClassifierMetadata"},
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
         "VolumeKmsKeyId":{"shape":"KmsKeyId"}

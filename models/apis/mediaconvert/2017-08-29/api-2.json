@@ -2395,7 +2395,8 @@
       "members": {
         "Arn": {
           "shape": "__string",
-          "locationName": "arn"
+          "locationName": "arn",
+          "location": "uri"
         }
       },
       "required": [
