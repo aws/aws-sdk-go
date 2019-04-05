@@ -71,7 +71,7 @@ func TxAwareUnmarshalError(req *request.Request) {
 type jsonTxErrorResponse struct {
 	Code                string                        `json:"__type"`
 	Message             string                        `json:"message"`
-	CancellationReasons []dynamodb.CancellationReason `json:CancellationReasons`
+	CancellationReasons []dynamodb.CancellationReason `json:"CancellationReasons"`
 }
 
 // So that the Error interface type can be included as an anonymous field
