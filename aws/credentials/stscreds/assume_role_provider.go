@@ -271,7 +271,10 @@ func (p *AssumeRoleProvider) Retrieve() (credentials.Value, error) {
 		// Expire as often as AWS permits.
 		p.Duration = DefaultDuration
 	}
-	jitter := time.Duration(sdkrand.SeededRand.Int63n(int64(p.MaxJitter)))
+	var jitter time.Duration
+	if p.MaxJitter > 0 {
+		jitter = time.Duration(sdkrand.SeededRand.Int63n(int64(p.MaxJitter)))
+	}
 	input := &sts.AssumeRoleInput{
 		DurationSeconds: aws.Int64(int64((p.Duration - jitter) / time.Second)),
 		RoleArn:         aws.String(p.RoleARN),
