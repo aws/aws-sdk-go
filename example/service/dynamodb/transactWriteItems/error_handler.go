@@ -117,3 +117,4 @@ func (r txRequestError) RequestID() string {
 func (r txRequestError) CancellationReasons() []dynamodb.CancellationReason {
 	return r.cancellationReasons
 }
+
