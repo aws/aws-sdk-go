@@ -158,6 +158,7 @@ func credsFromAssumeRole(cfg aws.Config,
 			if len(sharedCfg.AssumeRole.MFASerial) > 0 {
 				opt.SerialNumber = aws.String(sharedCfg.AssumeRole.MFASerial)
 				opt.TokenProvider = sessOpts.AssumeRoleTokenProvider
+				opt.Duration = sessOpts.AssumeRoleDuration
 			}
 		},
 	), nil
