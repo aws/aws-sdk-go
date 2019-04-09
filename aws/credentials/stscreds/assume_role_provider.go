@@ -196,18 +196,14 @@ type AssumeRoleProvider struct {
 	// If ExpiryWindow is 0 or less it will be ignored.
 	ExpiryWindow time.Duration
 
-	// MaxJitterFrac makes the effective Duration different each time the STS
-	// credentials are requested. An arbitrary value between 0s and
-	// MaxJitterFrac*Duration is subtracted from Duration before the AssumeRole
-	// call is made.
-	//
+	// MaxJitterFrac reduces the effective Duration of each credential requested
+	// by a random percentage between 0 and MaxJitterFraction. MaxJitterFrac must
+	// have a value between 0 and 1. Any other value may lead to expected behavior.
+	// With a MaxJitterFrac value of 0, default) will no jitter will be used.
+	// 
 	// For example, with a Duration of 30m and a MaxJitterFrac of 0.1, the
 	// AssumeRole call will be made with an arbitrary Duration between 27m and
 	// 30m.
-	//
-	// MaxJitterFrac must not be so large as to potentially make the effective
-	// Duration less than the DefaultDuration.
-	// ie. (Duration - MaxJitterFrac*Duration >= DefaultDuration) must be true.
 	//
 	// MaxJitterFrac should not be negative.
 	MaxJitterFrac float64
