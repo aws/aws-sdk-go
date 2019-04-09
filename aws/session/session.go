@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
@@ -209,6 +210,12 @@ type Options struct {
 	// This field is only used if the shared configuration is enabled, and
 	// the config enables assume role wit MFA via the mfa_serial field.
 	AssumeRoleTokenProvider func() (string, error)
+
+	// When the SDK's shared config is configured to assume a role with MFA
+	// this option may be provided to set the expiry duration of the STS
+	// credentials. Defaults to 15 minutes if not set as documented in the
+	// stscreds.AssumeRoleProvider.
+	AssumeRoleTokenDuration time.Duration
 
 	// Reader for a custom Credentials Authority (CA) bundle in PEM format that
 	// the SDK will use instead of the default system's root CA bundle. Use this
@@ -579,6 +586,7 @@ func assumeRoleCredentials(cfg aws.Config, handlers request.Handlers, sharedCfg 
 			if len(sharedCfg.AssumeRole.MFASerial) > 0 {
 				opt.SerialNumber = aws.String(sharedCfg.AssumeRole.MFASerial)
 				opt.TokenProvider = sessOpts.AssumeRoleTokenProvider
+				opt.Duration = sessOpts.AssumeRoleTokenDuration
 			}
 		},
 	)
