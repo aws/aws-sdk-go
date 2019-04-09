@@ -196,20 +196,21 @@ type AssumeRoleProvider struct {
 	// If ExpiryWindow is 0 or less it will be ignored.
 	ExpiryWindow time.Duration
 
-	// MaxJitter makes the effective Duration different each time the STS
-	// credentials are requested. An arbitrary value between 0s and MaxJitter
-	// is subtracted from Duration before the AssumeRole call is made.
+	// MaxJitterFrac makes the effective Duration different each time the STS
+	// credentials are requested. An arbitrary value between 0s and
+	// MaxJitterFrac*Duration is subtracted from Duration before the AssumeRole
+	// call is made.
 	//
-	// For example, with a Duration of 30m and a MaxJitter of 5m, the
-	// AssumeRole call will be made with an arbitrary Duration between 25m and
+	// For example, with a Duration of 30m and a MaxJitterFrac of 0.1, the
+	// AssumeRole call will be made with an arbitrary Duration between 27m and
 	// 30m.
 	//
-	// MaxJitter must not be so large as to potentially make the effective
+	// MaxJitterFrac must not be so large as to potentially make the effective
 	// Duration less than the DefaultDuration.
-	// ie. (Duration - MaxJitter >= DefaultDuration) must be true.
+	// ie. (Duration - MaxJitterFrac*Duration >= DefaultDuration) must be true.
 	//
-	// MaxJitter must not be negative.
-	MaxJitter time.Duration
+	// MaxJitterFrac should not be negative.
+	MaxJitterFrac float64
 }
 
 // NewCredentials returns a pointer to a new Credentials object wrapping the
@@ -271,10 +272,7 @@ func (p *AssumeRoleProvider) Retrieve() (credentials.Value, error) {
 		// Expire as often as AWS permits.
 		p.Duration = DefaultDuration
 	}
-	var jitter time.Duration
-	if p.MaxJitter > 0 {
-		jitter = time.Duration(sdkrand.SeededRand.Int63n(int64(p.MaxJitter)))
-	}
+	jitter := time.Duration(sdkrand.SeededRand.Float64() * p.MaxJitterFrac * float64(p.Duration))
 	input := &sts.AssumeRoleInput{
 		DurationSeconds: aws.Int64(int64((p.Duration - jitter) / time.Second)),
 		RoleArn:         aws.String(p.RoleARN),
