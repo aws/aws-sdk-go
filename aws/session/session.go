@@ -207,9 +207,9 @@ type Options struct {
 	// the config enables assume role wit MFA via the mfa_serial field.
 	AssumeRoleTokenProvider func() (string, error)
 
-	// When the SDK's shared config is configured to assume a role with MFA
-	// this option may be provided to set the expiry duration of the STS
-	// credentials. Defaults to 15 minutes if not set as documented in the
+	// When the SDK's shared config is configured to assume a role this option
+	// may be provided to set the expiry duration of the STS credentials.
+	// Defaults to 15 minutes if not set as documented in the
 	// stscreds.AssumeRoleProvider.
 	AssumeRoleDuration time.Duration
 
