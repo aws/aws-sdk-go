@@ -50,7 +50,7 @@ func main() {
 		"The `path` to generate service clients in to.",
 	)
 	flag.StringVar(&svcImportPath, "svc-import-path",
-		"github.com/aws/aws-sdk-go/service",
+		api.SDKImportRoot+"/service",
 		"The Go `import path` to generate client to be under.",
 	)
 	flag.Usage = usage
