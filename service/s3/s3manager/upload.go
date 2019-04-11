@@ -542,21 +542,6 @@ func (u *multiuploader) upload(firstBuf io.ReadSeeker, firstPart []byte) (*Uploa
 
 	// Read and queue the rest of the parts
 	for u.geterr() == nil && err == nil {
-		num++
-		// This upload exceeded maximum number of supported parts, error now.
-		if num > int64(u.cfg.MaxUploadParts) || num > int64(MaxUploadParts) {
-			var msg string
-			if num > int64(u.cfg.MaxUploadParts) {
-				msg = fmt.Sprintf("exceeded total allowed configured MaxUploadParts (%d). Adjust PartSize to fit in this limit",
-					u.cfg.MaxUploadParts)
-			} else {
-				msg = fmt.Sprintf("exceeded total allowed S3 limit MaxUploadParts (%d). Adjust PartSize to fit in this limit",
-					MaxUploadParts)
-			}
-			u.seterr(awserr.New("TotalPartsExceeded", msg, nil))
-			break
-		}
-
 		var reader io.ReadSeeker
 		var nextChunkLen int
 		var part []byte
@@ -574,6 +559,21 @@ func (u *multiuploader) upload(firstBuf io.ReadSeeker, firstPart []byte) (*Uploa
 			// No need to upload empty part, if file was empty to start
 			// with empty single part would of been created and never
 			// started multipart upload.
+			break
+		}
+
+		num++
+		// This upload exceeded maximum number of supported parts, error now.
+		if num > int64(u.cfg.MaxUploadParts) || num > int64(MaxUploadParts) {
+			var msg string
+			if num > int64(u.cfg.MaxUploadParts) {
+				msg = fmt.Sprintf("exceeded total allowed configured MaxUploadParts (%d). Adjust PartSize to fit in this limit",
+					u.cfg.MaxUploadParts)
+			} else {
+				msg = fmt.Sprintf("exceeded total allowed S3 limit MaxUploadParts (%d). Adjust PartSize to fit in this limit",
+					MaxUploadParts)
+			}
+			u.seterr(awserr.New("TotalPartsExceeded", msg, nil))
 			break
 		}
 
