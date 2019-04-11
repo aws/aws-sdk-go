@@ -425,7 +425,7 @@ const assumeRoleRespMsg = `
 </AssumeRoleResponse>
 `
 
-func TestSesisonAssumeRole(t *testing.T) {
+func TestSessionAssumeRole(t *testing.T) {
 	oldEnv := initSessionTestEnv()
 	defer awstesting.PopEnv(oldEnv)
 
@@ -439,6 +439,51 @@ func TestSesisonAssumeRole(t *testing.T) {
 	}))
 
 	s, err := NewSession(&aws.Config{Endpoint: aws.String(server.URL), DisableSSL: aws.Bool(true)})
+
+	creds, err := s.Config.Credentials.Get()
+	if err != nil {
+		t.Errorf("expect nil, %v", err)
+	}
+	if e, a := "AKID", creds.AccessKeyID; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "SECRET", creds.SecretAccessKey; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "SESSION_TOKEN", creds.SessionToken; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "AssumeRoleProvider", creds.ProviderName; !strings.Contains(a, e) {
+		t.Errorf("expect %v, to contain %v", e, a)
+	}
+}
+
+func TestSessionAssumeRole_ExtendedDuration(t *testing.T) {
+	oldEnv := initSessionTestEnv()
+	defer awstesting.PopEnv(oldEnv)
+
+	os.Setenv("AWS_REGION", "us-east-1")
+	os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
+	os.Setenv("AWS_SHARED_CREDENTIALS_FILE", testConfigFilename)
+	os.Setenv("AWS_PROFILE", "assume_role_w_creds")
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if e, a := "1800", r.FormValue("DurationSeconds"); e != a {
+			t.Errorf("expect %v, got %v", e, a)
+		}
+
+		w.Write([]byte(fmt.Sprintf(assumeRoleRespMsg, time.Now().Add(15*time.Minute).Format("2006-01-02T15:04:05Z"))))
+	}))
+
+	s, err := NewSessionWithOptions(Options{
+		Profile: "assume_role_w_creds",
+		Config: aws.Config{
+			Endpoint:   aws.String(server.URL),
+			DisableSSL: aws.Bool(true),
+		},
+		SharedConfigState:  SharedConfigEnable,
+		AssumeRoleDuration: 30 * time.Minute,
+	})
 
 	creds, err := s.Config.Credentials.Get()
 	if err != nil {
@@ -472,6 +517,9 @@ func TestSessionAssumeRole_WithMFA(t *testing.T) {
 			t.Errorf("expect %v, got %v", e, a)
 		}
 		if e, a := r.FormValue("TokenCode"), "tokencode"; e != a {
+			t.Errorf("expect %v, got %v", e, a)
+		}
+		if e, a := "900", r.FormValue("DurationSeconds"); e != a {
 			t.Errorf("expect %v, got %v", e, a)
 		}
 
@@ -550,8 +598,8 @@ func TestSessionAssumeRole_WithMFA_ExtendedDuration(t *testing.T) {
 			Endpoint:   aws.String(server.URL),
 			DisableSSL: aws.Bool(true),
 		},
-		SharedConfigState:       SharedConfigEnable,
-		AssumeRoleTokenDuration: 30 * time.Minute,
+		SharedConfigState:  SharedConfigEnable,
+		AssumeRoleDuration: 30 * time.Minute,
 		AssumeRoleTokenProvider: func() (string, error) {
 			customProviderCalled = true
 
