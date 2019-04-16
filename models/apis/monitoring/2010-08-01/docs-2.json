@@ -909,7 +909,7 @@
       "base": null,
       "refs": {
         "ListTagsForResourceOutput$Tags": "<p>The list of tag keys and values associated with the resource you specified.</p>",
-        "PutMetricAlarmInput$Tags": "<p>A list of key-value pairs to associate with the alarm or dashboard. You can associate as many as 50 tags with an alarm.</p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values.</p>",
+        "PutMetricAlarmInput$Tags": "<p>A list of key-value pairs to associate with the alarm. You can associate as many as 50 tags with an alarm.</p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values.</p>",
         "TagResourceInput$Tags": "<p>The list of key-value pairs to associate with the resource.</p>"
       }
     },

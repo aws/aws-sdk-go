@@ -91,14 +91,19 @@
         },
         "endpoints" : {
           "ap-northeast-1" : { },
+          "ap-northeast-2" : { },
+          "ap-south-1" : { },
           "ap-southeast-1" : { },
           "ap-southeast-2" : { },
           "ca-central-1" : { },
           "eu-central-1" : { },
+          "eu-north-1" : { },
           "eu-west-1" : { },
           "eu-west-2" : { },
+          "eu-west-3" : { },
           "us-east-1" : { },
           "us-east-2" : { },
+          "us-west-1" : { },
           "us-west-2" : { }
         }
       },
@@ -470,6 +475,7 @@
       },
       "cloud9" : {
         "endpoints" : {
+          "ap-northeast-1" : { },
           "ap-southeast-1" : { },
           "eu-west-1" : { },
           "us-east-1" : { },
@@ -1198,6 +1204,7 @@
       },
       "email" : {
         "endpoints" : {
+          "eu-central-1" : { },
           "eu-west-1" : { },
           "us-east-1" : { },
           "us-west-2" : { }
@@ -1295,6 +1302,7 @@
       "fsx" : {
         "endpoints" : {
           "ap-northeast-1" : { },
+          "ap-southeast-2" : { },
           "eu-west-1" : { },
           "us-east-1" : { },
           "us-east-2" : { },
@@ -2313,6 +2321,7 @@
           "ap-southeast-2" : { },
           "ca-central-1" : { },
           "eu-central-1" : { },
+          "eu-north-1" : { },
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
@@ -2390,6 +2399,9 @@
             "protocols" : [ "https" ]
           },
           "eu-central-1" : {
+            "protocols" : [ "https" ]
+          },
+          "eu-north-1" : {
             "protocols" : [ "https" ]
           },
           "eu-west-1" : {
@@ -2995,6 +3007,19 @@
           "cn-north-1" : { },
           "cn-northwest-1" : { }
         }
+      },
+      "cloudfront" : {
+        "endpoints" : {
+          "aws-cn-global" : {
+            "credentialScope" : {
+              "region" : "cn-northwest-1"
+            },
+            "hostname" : "cloudfront.cn-northwest-1.amazonaws.com.cn",
+            "protocols" : [ "http", "https" ]
+          }
+        },
+        "isRegionalized" : false,
+        "partitionEndpoint" : "aws-cn-global"
       },
       "cloudtrail" : {
         "endpoints" : {

@@ -4042,7 +4042,8 @@
         "EstimatedTimeToCompletionInSeconds":{"shape":"LongOptional"},
         "ResizeType":{"shape":"String"},
         "Message":{"shape":"String"},
-        "TargetEncryptionType":{"shape":"String"}
+        "TargetEncryptionType":{"shape":"String"},
+        "DataTransferProgressPercent":{"shape":"DoubleOptional"}
       }
     },
     "ResourceNotFoundFault":{

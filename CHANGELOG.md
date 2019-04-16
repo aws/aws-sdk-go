@@ -1,3 +1,24 @@
+Release v1.19.12 (2019-04-16)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service API, documentation, and paginators
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/monitoring`: Updates service documentation
+  * Documentation updates for monitoring
+* `service/mq`: Updates service API and documentation
+  * This release adds the ability to retrieve information about broker engines and broker instance options. See Broker Engine Types and Broker Instance Options in the Amazon MQ REST API Reference.
+* `service/organizations`: Updates service documentation
+  * Documentation updates for organizations
+* `service/redshift`: Updates service API and documentation
+  * DescribeResize can now return percent of data transferred from source cluster to target cluster for a classic resize.
+* `service/storagegateway`: Updates service API and documentation
+  * This change allows you to select either a weekly or monthly maintenance window for your volume or tape gateway. It also allows you to tag your tape and volume resources on creation by adding a Tag value on calls to the respective api endpoints.
+
+### SDK Enhancements
+* `example/service/dynamodb`: Add custom unmarshaller error example for TransactWriteItems ([#2548](https://github.com/aws/aws-sdk-go/pull/2548))
+  * Adds an example for building and using a custom unmarshaller to unmarshal TransactionCancelledExceptions from the error response of TransactWriteItems operation.
+
 Release v1.19.11 (2019-04-05)
 ===
 
