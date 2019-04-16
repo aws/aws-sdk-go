@@ -485,7 +485,10 @@
         {"shape":"TooManyRequestsException"},
         {"shape":"NotAuthorizedException"},
         {"shape":"UserNotFoundException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidSmsRoleAccessPolicyException"},
+        {"shape":"InvalidEmailRoleAccessPolicyException"},
+        {"shape":"InvalidSmsRoleTrustRelationshipException"}
       ]
     },
     "AdminUserGlobalSignOut":{
@@ -3306,7 +3309,8 @@
       "type":"structure",
       "members":{
         "SourceArn":{"shape":"ArnType"},
-        "ReplyToEmailAddress":{"shape":"EmailAddressType"}
+        "ReplyToEmailAddress":{"shape":"EmailAddressType"},
+        "EmailSendingAccount":{"shape":"EmailSendingAccountType"}
       }
     },
     "EmailNotificationBodyType":{
@@ -3320,6 +3324,13 @@
       "max":140,
       "min":1,
       "pattern":"[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}\\s]+"
+    },
+    "EmailSendingAccountType":{
+      "type":"string",
+      "enum":[
+        "COGNITO_DEFAULT",
+        "DEVELOPER"
+      ]
     },
     "EmailVerificationMessageByLinkType":{
       "type":"string",
@@ -3875,7 +3886,7 @@
     "ListProvidersLimitType":{
       "type":"integer",
       "max":60,
-      "min":1
+      "min":0
     },
     "ListResourceServersLimitType":{
       "type":"integer",
