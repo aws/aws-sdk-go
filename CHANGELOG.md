@@ -1,3 +1,12 @@
+Release v1.19.13 (2019-04-17)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for requester-managed Interface VPC Endpoints (powered by AWS PrivateLink). The feature prevents VPC endpoint owners from accidentally deleting or otherwise mismanaging the VPC endpoints of some AWS VPC endpoint services.
+* `service/polly`: Updates service API
+  * Amazon Polly adds Arabic language support with new female voice - "Zeina"
+
 Release v1.19.12 (2019-04-16)
 ===
 
