@@ -1175,7 +1175,7 @@ type GetSpeechSynthesisTaskInput struct {
 	// The Amazon Polly generated identifier for a speech synthesis task.
 	//
 	// TaskId is a required field
-	TaskId *string `location:"uri" locationName:"TaskId" min:"1" type:"string" required:"true"`
+	TaskId *string `location:"uri" locationName:"TaskId" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -1827,7 +1827,7 @@ type SynthesisTask struct {
 	SpeechMarkTypes []*string `type:"list"`
 
 	// The Amazon Polly generated identifier for a speech synthesis task.
-	TaskId *string `min:"1" type:"string"`
+	TaskId *string `type:"string"`
 
 	// Current status of the individual speech synthesis task.
 	TaskStatus *string `type:"string" enum:"TaskStatus"`
@@ -2213,6 +2213,9 @@ const (
 )
 
 const (
+	// LanguageCodeArb is a LanguageCode enum value
+	LanguageCodeArb = "arb"
+
 	// LanguageCodeCmnCn is a LanguageCode enum value
 	LanguageCodeCmnCn = "cmn-CN"
 
@@ -2349,44 +2352,77 @@ const (
 )
 
 const (
-	// VoiceIdGeraint is a VoiceId enum value
-	VoiceIdGeraint = "Geraint"
-
-	// VoiceIdGwyneth is a VoiceId enum value
-	VoiceIdGwyneth = "Gwyneth"
-
-	// VoiceIdMads is a VoiceId enum value
-	VoiceIdMads = "Mads"
-
-	// VoiceIdNaja is a VoiceId enum value
-	VoiceIdNaja = "Naja"
-
-	// VoiceIdHans is a VoiceId enum value
-	VoiceIdHans = "Hans"
-
-	// VoiceIdMarlene is a VoiceId enum value
-	VoiceIdMarlene = "Marlene"
-
-	// VoiceIdNicole is a VoiceId enum value
-	VoiceIdNicole = "Nicole"
-
-	// VoiceIdRussell is a VoiceId enum value
-	VoiceIdRussell = "Russell"
+	// VoiceIdAditi is a VoiceId enum value
+	VoiceIdAditi = "Aditi"
 
 	// VoiceIdAmy is a VoiceId enum value
 	VoiceIdAmy = "Amy"
 
+	// VoiceIdAstrid is a VoiceId enum value
+	VoiceIdAstrid = "Astrid"
+
+	// VoiceIdBianca is a VoiceId enum value
+	VoiceIdBianca = "Bianca"
+
 	// VoiceIdBrian is a VoiceId enum value
 	VoiceIdBrian = "Brian"
+
+	// VoiceIdCarla is a VoiceId enum value
+	VoiceIdCarla = "Carla"
+
+	// VoiceIdCarmen is a VoiceId enum value
+	VoiceIdCarmen = "Carmen"
+
+	// VoiceIdCeline is a VoiceId enum value
+	VoiceIdCeline = "Celine"
+
+	// VoiceIdChantal is a VoiceId enum value
+	VoiceIdChantal = "Chantal"
+
+	// VoiceIdConchita is a VoiceId enum value
+	VoiceIdConchita = "Conchita"
+
+	// VoiceIdCristiano is a VoiceId enum value
+	VoiceIdCristiano = "Cristiano"
+
+	// VoiceIdDora is a VoiceId enum value
+	VoiceIdDora = "Dora"
 
 	// VoiceIdEmma is a VoiceId enum value
 	VoiceIdEmma = "Emma"
 
-	// VoiceIdRaveena is a VoiceId enum value
-	VoiceIdRaveena = "Raveena"
+	// VoiceIdEnrique is a VoiceId enum value
+	VoiceIdEnrique = "Enrique"
+
+	// VoiceIdEwa is a VoiceId enum value
+	VoiceIdEwa = "Ewa"
+
+	// VoiceIdFiliz is a VoiceId enum value
+	VoiceIdFiliz = "Filiz"
+
+	// VoiceIdGeraint is a VoiceId enum value
+	VoiceIdGeraint = "Geraint"
+
+	// VoiceIdGiorgio is a VoiceId enum value
+	VoiceIdGiorgio = "Giorgio"
+
+	// VoiceIdGwyneth is a VoiceId enum value
+	VoiceIdGwyneth = "Gwyneth"
+
+	// VoiceIdHans is a VoiceId enum value
+	VoiceIdHans = "Hans"
+
+	// VoiceIdInes is a VoiceId enum value
+	VoiceIdInes = "Ines"
 
 	// VoiceIdIvy is a VoiceId enum value
 	VoiceIdIvy = "Ivy"
+
+	// VoiceIdJacek is a VoiceId enum value
+	VoiceIdJacek = "Jacek"
+
+	// VoiceIdJan is a VoiceId enum value
+	VoiceIdJan = "Jan"
 
 	// VoiceIdJoanna is a VoiceId enum value
 	VoiceIdJoanna = "Joanna"
@@ -2397,56 +2433,17 @@ const (
 	// VoiceIdJustin is a VoiceId enum value
 	VoiceIdJustin = "Justin"
 
+	// VoiceIdKarl is a VoiceId enum value
+	VoiceIdKarl = "Karl"
+
 	// VoiceIdKendra is a VoiceId enum value
 	VoiceIdKendra = "Kendra"
 
 	// VoiceIdKimberly is a VoiceId enum value
 	VoiceIdKimberly = "Kimberly"
 
-	// VoiceIdMatthew is a VoiceId enum value
-	VoiceIdMatthew = "Matthew"
-
-	// VoiceIdSalli is a VoiceId enum value
-	VoiceIdSalli = "Salli"
-
-	// VoiceIdConchita is a VoiceId enum value
-	VoiceIdConchita = "Conchita"
-
-	// VoiceIdEnrique is a VoiceId enum value
-	VoiceIdEnrique = "Enrique"
-
-	// VoiceIdMiguel is a VoiceId enum value
-	VoiceIdMiguel = "Miguel"
-
-	// VoiceIdPenelope is a VoiceId enum value
-	VoiceIdPenelope = "Penelope"
-
-	// VoiceIdChantal is a VoiceId enum value
-	VoiceIdChantal = "Chantal"
-
-	// VoiceIdCeline is a VoiceId enum value
-	VoiceIdCeline = "Celine"
-
 	// VoiceIdLea is a VoiceId enum value
 	VoiceIdLea = "Lea"
-
-	// VoiceIdMathieu is a VoiceId enum value
-	VoiceIdMathieu = "Mathieu"
-
-	// VoiceIdDora is a VoiceId enum value
-	VoiceIdDora = "Dora"
-
-	// VoiceIdKarl is a VoiceId enum value
-	VoiceIdKarl = "Karl"
-
-	// VoiceIdCarla is a VoiceId enum value
-	VoiceIdCarla = "Carla"
-
-	// VoiceIdGiorgio is a VoiceId enum value
-	VoiceIdGiorgio = "Giorgio"
-
-	// VoiceIdMizuki is a VoiceId enum value
-	VoiceIdMizuki = "Mizuki"
 
 	// VoiceIdLiv is a VoiceId enum value
 	VoiceIdLiv = "Liv"
@@ -2454,69 +2451,78 @@ const (
 	// VoiceIdLotte is a VoiceId enum value
 	VoiceIdLotte = "Lotte"
 
-	// VoiceIdRuben is a VoiceId enum value
-	VoiceIdRuben = "Ruben"
+	// VoiceIdLucia is a VoiceId enum value
+	VoiceIdLucia = "Lucia"
 
-	// VoiceIdEwa is a VoiceId enum value
-	VoiceIdEwa = "Ewa"
-
-	// VoiceIdJacek is a VoiceId enum value
-	VoiceIdJacek = "Jacek"
-
-	// VoiceIdJan is a VoiceId enum value
-	VoiceIdJan = "Jan"
+	// VoiceIdMads is a VoiceId enum value
+	VoiceIdMads = "Mads"
 
 	// VoiceIdMaja is a VoiceId enum value
 	VoiceIdMaja = "Maja"
 
-	// VoiceIdRicardo is a VoiceId enum value
-	VoiceIdRicardo = "Ricardo"
+	// VoiceIdMarlene is a VoiceId enum value
+	VoiceIdMarlene = "Marlene"
 
-	// VoiceIdVitoria is a VoiceId enum value
-	VoiceIdVitoria = "Vitoria"
+	// VoiceIdMathieu is a VoiceId enum value
+	VoiceIdMathieu = "Mathieu"
 
-	// VoiceIdCristiano is a VoiceId enum value
-	VoiceIdCristiano = "Cristiano"
-
-	// VoiceIdInes is a VoiceId enum value
-	VoiceIdInes = "Ines"
-
-	// VoiceIdCarmen is a VoiceId enum value
-	VoiceIdCarmen = "Carmen"
+	// VoiceIdMatthew is a VoiceId enum value
+	VoiceIdMatthew = "Matthew"
 
 	// VoiceIdMaxim is a VoiceId enum value
 	VoiceIdMaxim = "Maxim"
 
-	// VoiceIdTatyana is a VoiceId enum value
-	VoiceIdTatyana = "Tatyana"
+	// VoiceIdMia is a VoiceId enum value
+	VoiceIdMia = "Mia"
 
-	// VoiceIdAstrid is a VoiceId enum value
-	VoiceIdAstrid = "Astrid"
+	// VoiceIdMiguel is a VoiceId enum value
+	VoiceIdMiguel = "Miguel"
 
-	// VoiceIdFiliz is a VoiceId enum value
-	VoiceIdFiliz = "Filiz"
+	// VoiceIdMizuki is a VoiceId enum value
+	VoiceIdMizuki = "Mizuki"
 
-	// VoiceIdVicki is a VoiceId enum value
-	VoiceIdVicki = "Vicki"
+	// VoiceIdNaja is a VoiceId enum value
+	VoiceIdNaja = "Naja"
 
-	// VoiceIdTakumi is a VoiceId enum value
-	VoiceIdTakumi = "Takumi"
+	// VoiceIdNicole is a VoiceId enum value
+	VoiceIdNicole = "Nicole"
+
+	// VoiceIdPenelope is a VoiceId enum value
+	VoiceIdPenelope = "Penelope"
+
+	// VoiceIdRaveena is a VoiceId enum value
+	VoiceIdRaveena = "Raveena"
+
+	// VoiceIdRicardo is a VoiceId enum value
+	VoiceIdRicardo = "Ricardo"
+
+	// VoiceIdRuben is a VoiceId enum value
+	VoiceIdRuben = "Ruben"
+
+	// VoiceIdRussell is a VoiceId enum value
+	VoiceIdRussell = "Russell"
+
+	// VoiceIdSalli is a VoiceId enum value
+	VoiceIdSalli = "Salli"
 
 	// VoiceIdSeoyeon is a VoiceId enum value
 	VoiceIdSeoyeon = "Seoyeon"
 
-	// VoiceIdAditi is a VoiceId enum value
-	VoiceIdAditi = "Aditi"
+	// VoiceIdTakumi is a VoiceId enum value
+	VoiceIdTakumi = "Takumi"
+
+	// VoiceIdTatyana is a VoiceId enum value
+	VoiceIdTatyana = "Tatyana"
+
+	// VoiceIdVicki is a VoiceId enum value
+	VoiceIdVicki = "Vicki"
+
+	// VoiceIdVitoria is a VoiceId enum value
+	VoiceIdVitoria = "Vitoria"
+
+	// VoiceIdZeina is a VoiceId enum value
+	VoiceIdZeina = "Zeina"
 
 	// VoiceIdZhiyu is a VoiceId enum value
 	VoiceIdZhiyu = "Zhiyu"
-
-	// VoiceIdBianca is a VoiceId enum value
-	VoiceIdBianca = "Bianca"
-
-	// VoiceIdLucia is a VoiceId enum value
-	VoiceIdLucia = "Lucia"
-
-	// VoiceIdMia is a VoiceId enum value
-	VoiceIdMia = "Mia"
 )

@@ -15526,6 +15526,7 @@
       "max":255,
       "min":5
     },
+    "MillisecondDateTime":{"type":"timestamp"},
     "ModifyCapacityReservationRequest":{
       "type":"structure",
       "required":["CapacityReservationId"],
@@ -19956,6 +19957,10 @@
           "shape":"Boolean",
           "locationName":"acceptanceRequired"
         },
+        "ManagesVpcEndpoints":{
+          "shape":"Boolean",
+          "locationName":"managesVpcEndpoints"
+        },
         "NetworkLoadBalancerArns":{
           "shape":"ValueStringList",
           "locationName":"networkLoadBalancerArnSet"
@@ -20011,6 +20016,10 @@
         "AcceptanceRequired":{
           "shape":"Boolean",
           "locationName":"acceptanceRequired"
+        },
+        "ManagesVpcEndpoints":{
+          "shape":"Boolean",
+          "locationName":"managesVpcEndpoints"
         }
       }
     },
@@ -22879,6 +22888,10 @@
           "shape":"Boolean",
           "locationName":"privateDnsEnabled"
         },
+        "RequesterManaged":{
+          "shape":"Boolean",
+          "locationName":"requesterManaged"
+        },
         "NetworkInterfaceIds":{
           "shape":"ValueStringList",
           "locationName":"networkInterfaceIdSet"
@@ -22888,7 +22901,7 @@
           "locationName":"dnsEntrySet"
         },
         "CreationTimestamp":{
-          "shape":"DateTime",
+          "shape":"MillisecondDateTime",
           "locationName":"creationTimestamp"
         }
       }
@@ -22913,7 +22926,7 @@
           "locationName":"vpcEndpointState"
         },
         "CreationTimestamp":{
-          "shape":"DateTime",
+          "shape":"MillisecondDateTime",
           "locationName":"creationTimestamp"
         }
       }
