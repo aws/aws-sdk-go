@@ -83,6 +83,18 @@ type KafkaAPI interface {
 	ListNodes(*kafka.ListNodesInput) (*kafka.ListNodesOutput, error)
 	ListNodesWithContext(aws.Context, *kafka.ListNodesInput, ...request.Option) (*kafka.ListNodesOutput, error)
 	ListNodesRequest(*kafka.ListNodesInput) (*request.Request, *kafka.ListNodesOutput)
+
+	ListTagsForResource(*kafka.ListTagsForResourceInput) (*kafka.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *kafka.ListTagsForResourceInput, ...request.Option) (*kafka.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*kafka.ListTagsForResourceInput) (*request.Request, *kafka.ListTagsForResourceOutput)
+
+	TagResource(*kafka.TagResourceInput) (*kafka.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *kafka.TagResourceInput, ...request.Option) (*kafka.TagResourceOutput, error)
+	TagResourceRequest(*kafka.TagResourceInput) (*request.Request, *kafka.TagResourceOutput)
+
+	UntagResource(*kafka.UntagResourceInput) (*kafka.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *kafka.UntagResourceInput, ...request.Option) (*kafka.UntagResourceOutput, error)
+	UntagResourceRequest(*kafka.UntagResourceInput) (*request.Request, *kafka.UntagResourceOutput)
 }
 
 var _ KafkaAPI = (*kafka.Kafka)(nil)

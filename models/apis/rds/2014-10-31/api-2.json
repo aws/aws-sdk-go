@@ -6123,7 +6123,8 @@
         "MinCapacity":{"shape":"IntegerOptional"},
         "MaxCapacity":{"shape":"IntegerOptional"},
         "AutoPause":{"shape":"BooleanOptional"},
-        "SecondsUntilAutoPause":{"shape":"IntegerOptional"}
+        "SecondsUntilAutoPause":{"shape":"IntegerOptional"},
+        "TimeoutAction":{"shape":"String"}
       }
     },
     "ScalingConfigurationInfo":{
@@ -6132,7 +6133,8 @@
         "MinCapacity":{"shape":"IntegerOptional"},
         "MaxCapacity":{"shape":"IntegerOptional"},
         "AutoPause":{"shape":"BooleanOptional"},
-        "SecondsUntilAutoPause":{"shape":"IntegerOptional"}
+        "SecondsUntilAutoPause":{"shape":"IntegerOptional"},
+        "TimeoutAction":{"shape":"String"}
       }
     },
     "SharedSnapshotQuotaExceededFault":{

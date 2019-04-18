@@ -501,7 +501,8 @@
       "type":"string",
       "enum":[
         "NOT_FOUND",
-        "INTERNAL_SERVER_ERROR"
+        "INTERNAL_SERVER_ERROR",
+        "OVER_LIMIT"
       ]
     },
     "BatchDeleteImportDataErrorDescription":{"type":"string"},
@@ -979,13 +980,15 @@
       "enum":[
         "IMPORT_IN_PROGRESS",
         "IMPORT_COMPLETE",
+        "IMPORT_COMPLETE_WITH_ERRORS",
         "IMPORT_FAILED",
         "IMPORT_FAILED_SERVER_LIMIT_EXCEEDED",
         "IMPORT_FAILED_RECORD_LIMIT_EXCEEDED",
         "DELETE_IN_PROGRESS",
         "DELETE_COMPLETE",
         "DELETE_FAILED",
-        "DELETE_FAILED_LIMIT_EXCEEDED"
+        "DELETE_FAILED_LIMIT_EXCEEDED",
+        "INTERNAL_ERROR"
       ]
     },
     "ImportTask":{

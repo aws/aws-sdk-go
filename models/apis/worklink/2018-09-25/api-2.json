@@ -13,6 +13,23 @@
     "uid":"worklink-2018-09-25"
   },
   "operations":{
+    "AssociateDomain":{
+      "name":"AssociateDomain",
+      "http":{
+        "method":"POST",
+        "requestUri":"/associateDomain"
+      },
+      "input":{"shape":"AssociateDomainRequest"},
+      "output":{"shape":"AssociateDomainResponse"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "AssociateWebsiteCertificateAuthority":{
       "name":"AssociateWebsiteCertificateAuthority",
       "http":{
@@ -127,6 +144,22 @@
         {"shape":"TooManyRequestsException"}
       ]
     },
+    "DescribeDomain":{
+      "name":"DescribeDomain",
+      "http":{
+        "method":"POST",
+        "requestUri":"/describeDomain"
+      },
+      "input":{"shape":"DescribeDomainRequest"},
+      "output":{"shape":"DescribeDomainResponse"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "DescribeFleetMetadata":{
       "name":"DescribeFleetMetadata",
       "http":{
@@ -175,6 +208,22 @@
         {"shape":"TooManyRequestsException"}
       ]
     },
+    "DisassociateDomain":{
+      "name":"DisassociateDomain",
+      "http":{
+        "method":"POST",
+        "requestUri":"/disassociateDomain"
+      },
+      "input":{"shape":"DisassociateDomainRequest"},
+      "output":{"shape":"DisassociateDomainResponse"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "DisassociateWebsiteCertificateAuthority":{
       "name":"DisassociateWebsiteCertificateAuthority",
       "http":{
@@ -207,6 +256,21 @@
         {"shape":"TooManyRequestsException"}
       ]
     },
+    "ListDomains":{
+      "name":"ListDomains",
+      "http":{
+        "method":"POST",
+        "requestUri":"/listDomains"
+      },
+      "input":{"shape":"ListDomainsRequest"},
+      "output":{"shape":"ListDomainsResponse"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "ListFleets":{
       "name":"ListFleets",
       "http":{
@@ -234,6 +298,38 @@
         {"shape":"UnauthorizedException"},
         {"shape":"InternalServerErrorException"},
         {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "RestoreDomainAccess":{
+      "name":"RestoreDomainAccess",
+      "http":{
+        "method":"POST",
+        "requestUri":"/restoreDomainAccess"
+      },
+      "input":{"shape":"RestoreDomainAccessRequest"},
+      "output":{"shape":"RestoreDomainAccessResponse"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "RevokeDomainAccess":{
+      "name":"RevokeDomainAccess",
+      "http":{
+        "method":"POST",
+        "requestUri":"/revokeDomainAccess"
+      },
+      "input":{"shape":"RevokeDomainAccessRequest"},
+      "output":{"shape":"RevokeDomainAccessResponse"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -301,6 +397,22 @@
         {"shape":"TooManyRequestsException"}
       ]
     },
+    "UpdateDomainMetadata":{
+      "name":"UpdateDomainMetadata",
+      "http":{
+        "method":"POST",
+        "requestUri":"/updateDomainMetadata"
+      },
+      "input":{"shape":"UpdateDomainMetadataRequest"},
+      "output":{"shape":"UpdateDomainMetadataResponse"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "UpdateFleetMetadata":{
       "name":"UpdateFleetMetadata",
       "http":{
@@ -335,6 +447,29 @@
     }
   },
   "shapes":{
+    "AcmCertificateArn":{
+      "type":"string",
+      "pattern":"arn:[\\w+=/,.@-]+:[\\w+=/,.@-]+:[\\w+=/,.@-]*:[0-9]+:[\\w+=,.@-]+(/[\\w+=/,.@-]+)*"
+    },
+    "AssociateDomainRequest":{
+      "type":"structure",
+      "required":[
+        "FleetArn",
+        "DomainName",
+        "AcmCertificateArn"
+      ],
+      "members":{
+        "FleetArn":{"shape":"FleetArn"},
+        "DomainName":{"shape":"DomainName"},
+        "AcmCertificateArn":{"shape":"AcmCertificateArn"},
+        "DisplayName":{"shape":"DisplayName"}
+      }
+    },
+    "AssociateDomainResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "AssociateWebsiteCertificateAuthorityRequest":{
       "type":"structure",
       "required":[
@@ -466,6 +601,25 @@
         "Username":{"shape":"Username"}
       }
     },
+    "DescribeDomainRequest":{
+      "type":"structure",
+      "required":[
+        "FleetArn",
+        "DomainName"
+      ],
+      "members":{
+        "FleetArn":{"shape":"FleetArn"},
+        "DomainName":{"shape":"DomainName"}
+      }
+    },
+    "DescribeDomainResponse":{
+      "type":"structure",
+      "members":{
+        "DisplayName":{"shape":"DisplayName"},
+        "CreatedTime":{"shape":"DateTime"},
+        "DomainStatus":{"shape":"DomainStatus"}
+      }
+    },
     "DescribeFleetMetadataRequest":{
       "type":"structure",
       "required":["FleetArn"],
@@ -562,6 +716,22 @@
       "type":"list",
       "member":{"shape":"DeviceSummary"}
     },
+    "DisassociateDomainRequest":{
+      "type":"structure",
+      "required":[
+        "FleetArn",
+        "DomainName"
+      ],
+      "members":{
+        "FleetArn":{"shape":"FleetArn"},
+        "DomainName":{"shape":"DomainName"}
+      }
+    },
+    "DisassociateDomainResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DisassociateWebsiteCertificateAuthorityRequest":{
       "type":"structure",
       "required":[
@@ -581,6 +751,43 @@
     "DisplayName":{
       "type":"string",
       "max":100
+    },
+    "DomainName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9]?((?!-)([A-Za-z0-9-]*[A-Za-z0-9])\\.)+[a-zA-Z0-9]+$"
+    },
+    "DomainStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING_VALIDATION",
+        "ASSOCIATING",
+        "ACTIVE",
+        "INACTIVE",
+        "DISASSOCIATING",
+        "DISASSOCIATED",
+        "FAILED_TO_ASSOCIATE",
+        "FAILED_TO_DISASSOCIATE"
+      ]
+    },
+    "DomainSummary":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "CreatedTime",
+        "DomainStatus"
+      ],
+      "members":{
+        "DomainName":{"shape":"DomainName"},
+        "CreatedTime":{"shape":"DateTime"},
+        "DomainStatus":{"shape":"DomainStatus"},
+        "DisplayName":{"shape":"DisplayName"}
+      }
+    },
+    "DomainSummaryList":{
+      "type":"list",
+      "member":{"shape":"DomainSummary"}
     },
     "ExceptionMessage":{"type":"string"},
     "FleetArn":{
@@ -662,6 +869,22 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListDomainsRequest":{
+      "type":"structure",
+      "required":["FleetArn"],
+      "members":{
+        "FleetArn":{"shape":"FleetArn"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListDomainsResponse":{
+      "type":"structure",
+      "members":{
+        "Domains":{"shape":"DomainSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListFleetsRequest":{
       "type":"structure",
       "members":{
@@ -717,6 +940,38 @@
       },
       "error":{"httpStatusCode":404},
       "exception":true
+    },
+    "RestoreDomainAccessRequest":{
+      "type":"structure",
+      "required":[
+        "FleetArn",
+        "DomainName"
+      ],
+      "members":{
+        "FleetArn":{"shape":"FleetArn"},
+        "DomainName":{"shape":"DomainName"}
+      }
+    },
+    "RestoreDomainAccessResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "RevokeDomainAccessRequest":{
+      "type":"structure",
+      "required":[
+        "FleetArn",
+        "DomainName"
+      ],
+      "members":{
+        "FleetArn":{"shape":"FleetArn"},
+        "DomainName":{"shape":"DomainName"}
+      }
+    },
+    "RevokeDomainAccessResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "SamlMetadata":{
       "type":"string",
@@ -813,6 +1068,23 @@
       }
     },
     "UpdateDevicePolicyConfigurationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateDomainMetadataRequest":{
+      "type":"structure",
+      "required":[
+        "FleetArn",
+        "DomainName"
+      ],
+      "members":{
+        "FleetArn":{"shape":"FleetArn"},
+        "DomainName":{"shape":"DomainName"},
+        "DisplayName":{"shape":"DisplayName"}
+      }
+    },
+    "UpdateDomainMetadataResponse":{
       "type":"structure",
       "members":{
       }

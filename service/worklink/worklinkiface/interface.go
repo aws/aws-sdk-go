@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // Amazon WorkLink.
 //    func myFunc(svc worklinkiface.WorkLinkAPI) bool {
-//        // Make svc.AssociateWebsiteCertificateAuthority request
+//        // Make svc.AssociateDomain request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockWorkLinkClient struct {
 //        worklinkiface.WorkLinkAPI
 //    }
-//    func (m *mockWorkLinkClient) AssociateWebsiteCertificateAuthority(input *worklink.AssociateWebsiteCertificateAuthorityInput) (*worklink.AssociateWebsiteCertificateAuthorityOutput, error) {
+//    func (m *mockWorkLinkClient) AssociateDomain(input *worklink.AssociateDomainInput) (*worklink.AssociateDomainOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type WorkLinkAPI interface {
+	AssociateDomain(*worklink.AssociateDomainInput) (*worklink.AssociateDomainOutput, error)
+	AssociateDomainWithContext(aws.Context, *worklink.AssociateDomainInput, ...request.Option) (*worklink.AssociateDomainOutput, error)
+	AssociateDomainRequest(*worklink.AssociateDomainInput) (*request.Request, *worklink.AssociateDomainOutput)
+
 	AssociateWebsiteCertificateAuthority(*worklink.AssociateWebsiteCertificateAuthorityInput) (*worklink.AssociateWebsiteCertificateAuthorityOutput, error)
 	AssociateWebsiteCertificateAuthorityWithContext(aws.Context, *worklink.AssociateWebsiteCertificateAuthorityInput, ...request.Option) (*worklink.AssociateWebsiteCertificateAuthorityOutput, error)
 	AssociateWebsiteCertificateAuthorityRequest(*worklink.AssociateWebsiteCertificateAuthorityInput) (*request.Request, *worklink.AssociateWebsiteCertificateAuthorityOutput)
@@ -88,6 +92,10 @@ type WorkLinkAPI interface {
 	DescribeDevicePolicyConfigurationWithContext(aws.Context, *worklink.DescribeDevicePolicyConfigurationInput, ...request.Option) (*worklink.DescribeDevicePolicyConfigurationOutput, error)
 	DescribeDevicePolicyConfigurationRequest(*worklink.DescribeDevicePolicyConfigurationInput) (*request.Request, *worklink.DescribeDevicePolicyConfigurationOutput)
 
+	DescribeDomain(*worklink.DescribeDomainInput) (*worklink.DescribeDomainOutput, error)
+	DescribeDomainWithContext(aws.Context, *worklink.DescribeDomainInput, ...request.Option) (*worklink.DescribeDomainOutput, error)
+	DescribeDomainRequest(*worklink.DescribeDomainInput) (*request.Request, *worklink.DescribeDomainOutput)
+
 	DescribeFleetMetadata(*worklink.DescribeFleetMetadataInput) (*worklink.DescribeFleetMetadataOutput, error)
 	DescribeFleetMetadataWithContext(aws.Context, *worklink.DescribeFleetMetadataInput, ...request.Option) (*worklink.DescribeFleetMetadataOutput, error)
 	DescribeFleetMetadataRequest(*worklink.DescribeFleetMetadataInput) (*request.Request, *worklink.DescribeFleetMetadataOutput)
@@ -100,6 +108,10 @@ type WorkLinkAPI interface {
 	DescribeWebsiteCertificateAuthorityWithContext(aws.Context, *worklink.DescribeWebsiteCertificateAuthorityInput, ...request.Option) (*worklink.DescribeWebsiteCertificateAuthorityOutput, error)
 	DescribeWebsiteCertificateAuthorityRequest(*worklink.DescribeWebsiteCertificateAuthorityInput) (*request.Request, *worklink.DescribeWebsiteCertificateAuthorityOutput)
 
+	DisassociateDomain(*worklink.DisassociateDomainInput) (*worklink.DisassociateDomainOutput, error)
+	DisassociateDomainWithContext(aws.Context, *worklink.DisassociateDomainInput, ...request.Option) (*worklink.DisassociateDomainOutput, error)
+	DisassociateDomainRequest(*worklink.DisassociateDomainInput) (*request.Request, *worklink.DisassociateDomainOutput)
+
 	DisassociateWebsiteCertificateAuthority(*worklink.DisassociateWebsiteCertificateAuthorityInput) (*worklink.DisassociateWebsiteCertificateAuthorityOutput, error)
 	DisassociateWebsiteCertificateAuthorityWithContext(aws.Context, *worklink.DisassociateWebsiteCertificateAuthorityInput, ...request.Option) (*worklink.DisassociateWebsiteCertificateAuthorityOutput, error)
 	DisassociateWebsiteCertificateAuthorityRequest(*worklink.DisassociateWebsiteCertificateAuthorityInput) (*request.Request, *worklink.DisassociateWebsiteCertificateAuthorityOutput)
@@ -110,6 +122,13 @@ type WorkLinkAPI interface {
 
 	ListDevicesPages(*worklink.ListDevicesInput, func(*worklink.ListDevicesOutput, bool) bool) error
 	ListDevicesPagesWithContext(aws.Context, *worklink.ListDevicesInput, func(*worklink.ListDevicesOutput, bool) bool, ...request.Option) error
+
+	ListDomains(*worklink.ListDomainsInput) (*worklink.ListDomainsOutput, error)
+	ListDomainsWithContext(aws.Context, *worklink.ListDomainsInput, ...request.Option) (*worklink.ListDomainsOutput, error)
+	ListDomainsRequest(*worklink.ListDomainsInput) (*request.Request, *worklink.ListDomainsOutput)
+
+	ListDomainsPages(*worklink.ListDomainsInput, func(*worklink.ListDomainsOutput, bool) bool) error
+	ListDomainsPagesWithContext(aws.Context, *worklink.ListDomainsInput, func(*worklink.ListDomainsOutput, bool) bool, ...request.Option) error
 
 	ListFleets(*worklink.ListFleetsInput) (*worklink.ListFleetsOutput, error)
 	ListFleetsWithContext(aws.Context, *worklink.ListFleetsInput, ...request.Option) (*worklink.ListFleetsOutput, error)
@@ -124,6 +143,14 @@ type WorkLinkAPI interface {
 
 	ListWebsiteCertificateAuthoritiesPages(*worklink.ListWebsiteCertificateAuthoritiesInput, func(*worklink.ListWebsiteCertificateAuthoritiesOutput, bool) bool) error
 	ListWebsiteCertificateAuthoritiesPagesWithContext(aws.Context, *worklink.ListWebsiteCertificateAuthoritiesInput, func(*worklink.ListWebsiteCertificateAuthoritiesOutput, bool) bool, ...request.Option) error
+
+	RestoreDomainAccess(*worklink.RestoreDomainAccessInput) (*worklink.RestoreDomainAccessOutput, error)
+	RestoreDomainAccessWithContext(aws.Context, *worklink.RestoreDomainAccessInput, ...request.Option) (*worklink.RestoreDomainAccessOutput, error)
+	RestoreDomainAccessRequest(*worklink.RestoreDomainAccessInput) (*request.Request, *worklink.RestoreDomainAccessOutput)
+
+	RevokeDomainAccess(*worklink.RevokeDomainAccessInput) (*worklink.RevokeDomainAccessOutput, error)
+	RevokeDomainAccessWithContext(aws.Context, *worklink.RevokeDomainAccessInput, ...request.Option) (*worklink.RevokeDomainAccessOutput, error)
+	RevokeDomainAccessRequest(*worklink.RevokeDomainAccessInput) (*request.Request, *worklink.RevokeDomainAccessOutput)
 
 	SignOutUser(*worklink.SignOutUserInput) (*worklink.SignOutUserOutput, error)
 	SignOutUserWithContext(aws.Context, *worklink.SignOutUserInput, ...request.Option) (*worklink.SignOutUserOutput, error)
@@ -140,6 +167,10 @@ type WorkLinkAPI interface {
 	UpdateDevicePolicyConfiguration(*worklink.UpdateDevicePolicyConfigurationInput) (*worklink.UpdateDevicePolicyConfigurationOutput, error)
 	UpdateDevicePolicyConfigurationWithContext(aws.Context, *worklink.UpdateDevicePolicyConfigurationInput, ...request.Option) (*worklink.UpdateDevicePolicyConfigurationOutput, error)
 	UpdateDevicePolicyConfigurationRequest(*worklink.UpdateDevicePolicyConfigurationInput) (*request.Request, *worklink.UpdateDevicePolicyConfigurationOutput)
+
+	UpdateDomainMetadata(*worklink.UpdateDomainMetadataInput) (*worklink.UpdateDomainMetadataOutput, error)
+	UpdateDomainMetadataWithContext(aws.Context, *worklink.UpdateDomainMetadataInput, ...request.Option) (*worklink.UpdateDomainMetadataOutput, error)
+	UpdateDomainMetadataRequest(*worklink.UpdateDomainMetadataInput) (*request.Request, *worklink.UpdateDomainMetadataOutput)
 
 	UpdateFleetMetadata(*worklink.UpdateFleetMetadataInput) (*worklink.UpdateFleetMetadataOutput, error)
 	UpdateFleetMetadataWithContext(aws.Context, *worklink.UpdateFleetMetadataInput, ...request.Option) (*worklink.UpdateFleetMetadataOutput, error)
