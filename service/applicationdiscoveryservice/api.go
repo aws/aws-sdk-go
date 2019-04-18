@@ -5950,6 +5950,9 @@ const (
 
 	// BatchDeleteImportDataErrorCodeInternalServerError is a BatchDeleteImportDataErrorCode enum value
 	BatchDeleteImportDataErrorCodeInternalServerError = "INTERNAL_SERVER_ERROR"
+
+	// BatchDeleteImportDataErrorCodeOverLimit is a BatchDeleteImportDataErrorCode enum value
+	BatchDeleteImportDataErrorCodeOverLimit = "OVER_LIMIT"
 )
 
 const (
@@ -6020,6 +6023,9 @@ const (
 	// ImportStatusImportComplete is a ImportStatus enum value
 	ImportStatusImportComplete = "IMPORT_COMPLETE"
 
+	// ImportStatusImportCompleteWithErrors is a ImportStatus enum value
+	ImportStatusImportCompleteWithErrors = "IMPORT_COMPLETE_WITH_ERRORS"
+
 	// ImportStatusImportFailed is a ImportStatus enum value
 	ImportStatusImportFailed = "IMPORT_FAILED"
 
@@ -6040,6 +6046,9 @@ const (
 
 	// ImportStatusDeleteFailedLimitExceeded is a ImportStatus enum value
 	ImportStatusDeleteFailedLimitExceeded = "DELETE_FAILED_LIMIT_EXCEEDED"
+
+	// ImportStatusInternalError is a ImportStatus enum value
+	ImportStatusInternalError = "INTERNAL_ERROR"
 )
 
 const (

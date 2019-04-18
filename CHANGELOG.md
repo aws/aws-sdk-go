@@ -1,3 +1,20 @@
+Release v1.19.14 (2019-04-18)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service documentation
+* `service/discovery`: Updates service API
+  * The Application Discovery Service's DescribeImportTasks and BatchDeleteImportData APIs now return additional statuses for error reporting.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/kafka`: Updates service API and documentation
+* `service/organizations`: Updates service API and documentation
+  * AWS Organizations is now available in the AWS GovCloud (US) Regions, and we added a new API action for creating accounts in those Regions. For more information, see CreateGovCloudAccount in the AWS Organizations API Reference.
+* `service/rds`: Updates service API and documentation
+  * This release adds the TimeoutAction parameter to the ScalingConfiguration of an Aurora Serverless DB cluster. You can now configure the behavior when an auto-scaling capacity change can't find a scaling point.
+* `service/worklink`: Updates service API, documentation, and paginators
+* `service/workspaces`: Updates service documentation
+  * Documentation updates for workspaces
+
 Release v1.19.13 (2019-04-17)
 ===
 

@@ -7,7 +7,10 @@
     "DescribeCluster" : "<p>Returns a description of the MSK cluster whose Amazon Resource Name (ARN) is specified in the request.</p>",
     "GetBootstrapBrokers" : "<p>A list of brokers that a client application can use to bootstrap.</p>",
     "ListClusters" : "<p>Returns a list of clusters in an account.</p>",
-    "ListNodes" : "<p>Returns a list of the broker nodes in the cluster.</p>"
+    "ListNodes" : "<p>Returns a list of the broker nodes in the cluster.</p>",
+    "ListTagsForResource" : "<p>List tags for a resource.</p>",
+    "TagResource" : "<p>Add tags to a resource</p>",
+    "UntagResource" : "<p>Remove tags from a resource.</p>"
   },
   "shapes" : {
     "BadRequestException" : {
@@ -125,6 +128,10 @@
       "base" : "<p>Information about nodes in the cluster.</p>",
       "refs" : { }
     },
+    "ListTagsForResourceResponse" : {
+      "base" : "<p>List tags for a resource</p>",
+      "refs" : { }
+    },
     "NodeInfo" : {
       "base" : "<p>The node information object.</p>",
       "refs" : {
@@ -150,6 +157,10 @@
       "refs" : {
         "BrokerNodeGroupInfo$StorageInfo" : "<p>Contains information about storage volumes attached to MSK broker nodes.</p>"
       }
+    },
+    "TagResourceRequest" : {
+      "base" : "<p>Add tags for a resource</p>",
+      "refs" : { }
     },
     "TooManyRequestsException" : {
       "base" : "<p>Returns information about an error.</p>",
@@ -209,6 +220,13 @@
         "BrokerNodeGroupInfo$SecurityGroups" : "<p>The AWS security groups to associate with the elastic network interfaces in order to specify who can connect to and communicate with the Amazon MSK cluster.</p>"
       }
     },
+    "__mapOf__string" : {
+      "base" : null,
+      "refs" : {
+        "ListTagsForResourceResponse$Tags" : "<p>The Key value pairs indicating resource tags.</p>",
+        "TagResourceRequest$Tags" : "<p>The Key value pairs indicating resource tags.</p>"
+      }
+    },
     "__string" : {
       "base" : null,
       "refs" : {
@@ -237,7 +255,8 @@
         "ZookeeperNodeInfo$AttachedENIId" : "<p>The attached elastic network interface of the broker.</p>",
         "ZookeeperNodeInfo$ClientVpcIpAddress" : "<p>The virtual private cloud (VPC) IP address of the client.</p>",
         "ZookeeperNodeInfo$ZookeeperVersion" : "<p>The version of Zookeeper.</p>",
-        "__listOf__string$member" : null
+        "__listOf__string$member" : null,
+        "__mapOf__string$member" : null
       }
     },
     "__stringMin1Max128" : {
