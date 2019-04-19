@@ -282,7 +282,8 @@
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"OperationNotSupportedException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValuesException"}
       ]
     },
     "ListAvailableManagementCidrRanges":{
@@ -464,6 +465,7 @@
       "type":"list",
       "member":{"shape":"AccountModification"}
     },
+    "AdditionalInfo":{"type":"string"},
     "Alias":{"type":"string"},
     "AssociateIpGroupsRequest":{
       "type":"structure",
@@ -1164,7 +1166,8 @@
       "type":"structure",
       "required":["RebuildWorkspaceRequests"],
       "members":{
-        "RebuildWorkspaceRequests":{"shape":"RebuildWorkspaceRequests"}
+        "RebuildWorkspaceRequests":{"shape":"RebuildWorkspaceRequests"},
+        "AdditionalInfo":{"shape":"AdditionalInfo"}
       }
     },
     "RebuildWorkspacesResult":{

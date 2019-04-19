@@ -1,3 +1,12 @@
+Release v1.19.15 (2019-04-19)
+===
+
+### Service Client Updates
+* `service/resource-groups`: Updates service API and documentation
+* `service/transcribe`: Updates service API
+* `service/workspaces`: Updates service API and documentation
+  * Added a new reserved field.
+
 Release v1.19.14 (2019-04-18)
 ===
 
