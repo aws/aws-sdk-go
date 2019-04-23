@@ -37,7 +37,7 @@ const (
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//    out.Body = resp.Body
+//    out.SetBody(resp.Body)
 //
 // See also, https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#DownloadCompleteDBLogFile
 func (c *RDS) DownloadCompleteDBLogFileRequest(input *DownloadCompleteDBLogFileInput) (req *request.Request, output *DownloadCompleteDBLogFileOutput) {
@@ -86,7 +86,7 @@ func (c *RDS) DownloadCompleteDBLogFile(input *DownloadCompleteDBLogFileInput) (
 	if err != nil {
 		return nil, err
 	}
-	out.Body = resp.Body
+	out.SetBody(resp.Body)
 	return out, nil
 }
 
@@ -108,7 +108,7 @@ func (c *RDS) DownloadCompleteDBLogFileWithContext(ctx aws.Context, input *Downl
 	if err != nil {
 		return nil, err
 	}
-	out.Body = resp.Body
+	out.SetBody(resp.Body)
 	return out, nil
 }
 
