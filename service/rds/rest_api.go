@@ -20,8 +20,8 @@ const (
 // value will be populated with the request's response once the request completes
 // successfully.
 //
-// Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// Cannot use "Send" method on the returned Request to send the API call to the service.
+// Use http.DefaultClient.Do(req.HTTPRequest) instead of "Send" method.
 //
 // See DownloadCompleteDBLogFile for more information on using the DownloadCompleteDBLogFile
 // API call, and error handling.
@@ -31,12 +31,13 @@ const (
 //
 //
 //    // Example sending a request using the DownloadCompleteDBLogFileRequest method.
-//    req, resp := client.DownloadCompleteDBLogFileRequest(params)
+//    req, out := client.DownloadCompleteDBLogFileRequest(params)
 //
-//    err := req.Send()
+//    resp, err := http.DefaultClient.Do(req.HTTPRequest)
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//    out.Body = resp.Body
 //
 // See also, https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#DownloadCompleteDBLogFile
 func (c *RDS) DownloadCompleteDBLogFileRequest(input *DownloadCompleteDBLogFileInput) (req *request.Request, output *DownloadCompleteDBLogFileOutput) {
