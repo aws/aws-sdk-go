@@ -112,6 +112,7 @@ func (c *RDS) DownloadCompleteDBLogFileWithContext(ctx aws.Context, input *Downl
 	return out, nil
 }
 
+// DownloadCompleteDBLogFileInput is used as a parameter for DownloadCompleteDBLogFile.
 type DownloadCompleteDBLogFileInput struct {
 	_ struct{} `type:"structure"`
 
@@ -169,7 +170,7 @@ func (s *DownloadCompleteDBLogFileInput) SetLogFileName(v string) *DownloadCompl
 	return s
 }
 
-// This data type is used as a response element to DownloadCompleteDBLogFile.
+// DownloadCompleteDBLogFileOutput is used as a response element to DownloadCompleteDBLogFile.
 type DownloadCompleteDBLogFileOutput struct {
 	_ struct{} `type:"structure" payload:"Body"`
 
