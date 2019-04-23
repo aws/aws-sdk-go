@@ -56,7 +56,6 @@ func (c *RDS) DownloadCompleteDBLogFileRequest(input *DownloadCompleteDBLogFileI
 
 	output = &DownloadCompleteDBLogFileOutput{}
 	req = c.newRequest(op, input, output)
-	v4.SignSDKRequest(req)
 	return
 }
 
@@ -81,6 +80,7 @@ func (c *RDS) DownloadCompleteDBLogFileRequest(input *DownloadCompleteDBLogFileI
 // See also, https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#DownloadCompleteDBLogFile
 func (c *RDS) DownloadCompleteDBLogFile(input *DownloadCompleteDBLogFileInput) (*DownloadCompleteDBLogFileOutput, error) {
 	req, out := c.DownloadCompleteDBLogFileRequest(input)
+	v4.SignSDKRequest(req)
 	resp, err := http.DefaultClient.Do(req.HTTPRequest)
 	if err != nil {
 		return nil, err
@@ -102,7 +102,13 @@ func (c *RDS) DownloadCompleteDBLogFileWithContext(ctx aws.Context, input *Downl
 	req, out := c.DownloadCompleteDBLogFileRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
-	return out, req.Send()
+	v4.SignSDKRequest(req)
+	resp, err := http.DefaultClient.Do(req.HTTPRequest)
+	if err != nil {
+		return nil, err
+	}
+	out.Body = resp.Body
+	return out, nil
 }
 
 type DownloadCompleteDBLogFileInput struct {
