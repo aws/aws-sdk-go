@@ -1,3 +1,10 @@
+Release v1.19.17 (2019-04-24)
+===
+
+### Bug Fixes
+* `aws/endpoints`: Fix incorrect AWS Organizations global endpoint
+  * Fixes the endpoint metadata for the AWS Organization in [Release v1.19.16](https://github.com/aws/aws-sdk-go/releases/tag/v1.19.16)
+
 Release v1.19.16 (2019-04-24)
 ===
 
