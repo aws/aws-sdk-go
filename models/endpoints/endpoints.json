@@ -1903,15 +1903,10 @@
               "region" : "us-east-1"
             },
             "hostname" : "organizations.us-east-1.amazonaws.com"
-          },
-          "aws-us-gov-global" : {
-            "credentialScope" : {
-              "region" : "us-gov-west-1"
-            },
-            "hostname" : "organizations.us-gov-west-1.amazonaws.com"
           }
         },
-        "isRegionalized" : false
+        "isRegionalized" : false,
+        "partitionEndpoint" : "aws-global"
       },
       "pinpoint" : {
         "defaults" : {
@@ -3716,12 +3711,6 @@
       },
       "organizations" : {
         "endpoints" : {
-          "aws-global" : {
-            "credentialScope" : {
-              "region" : "us-east-1"
-            },
-            "hostname" : "organizations.us-east-1.amazonaws.com"
-          },
           "aws-us-gov-global" : {
             "credentialScope" : {
               "region" : "us-gov-west-1"
@@ -3729,7 +3718,8 @@
             "hostname" : "organizations.us-gov-west-1.amazonaws.com"
           }
         },
-        "isRegionalized" : false
+        "isRegionalized" : false,
+        "partitionEndpoint" : "aws-us-gov-global"
       },
       "polly" : {
         "endpoints" : {

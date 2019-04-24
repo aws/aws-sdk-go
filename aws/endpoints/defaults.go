@@ -2045,19 +2045,14 @@ var awsPartition = partition{
 			},
 		},
 		"organizations": service{
-			IsRegionalized: boxedFalse,
+			PartitionEndpoint: "aws-global",
+			IsRegionalized:    boxedFalse,
 
 			Endpoints: endpoints{
 				"aws-global": endpoint{
 					Hostname: "organizations.us-east-1.amazonaws.com",
 					CredentialScope: credentialScope{
 						Region: "us-east-1",
-					},
-				},
-				"aws-us-gov-global": endpoint{
-					Hostname: "organizations.us-gov-west-1.amazonaws.com",
-					CredentialScope: credentialScope{
-						Region: "us-gov-west-1",
 					},
 				},
 			},
@@ -4000,15 +3995,10 @@ var awsusgovPartition = partition{
 			},
 		},
 		"organizations": service{
-			IsRegionalized: boxedFalse,
+			PartitionEndpoint: "aws-us-gov-global",
+			IsRegionalized:    boxedFalse,
 
 			Endpoints: endpoints{
-				"aws-global": endpoint{
-					Hostname: "organizations.us-east-1.amazonaws.com",
-					CredentialScope: credentialScope{
-						Region: "us-east-1",
-					},
-				},
 				"aws-us-gov-global": endpoint{
 					Hostname: "organizations.us-gov-west-1.amazonaws.com",
 					CredentialScope: credentialScope{
