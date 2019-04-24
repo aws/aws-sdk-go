@@ -252,6 +252,9 @@ type StorageGatewayAPI interface {
 	ListFileSharesWithContext(aws.Context, *storagegateway.ListFileSharesInput, ...request.Option) (*storagegateway.ListFileSharesOutput, error)
 	ListFileSharesRequest(*storagegateway.ListFileSharesInput) (*request.Request, *storagegateway.ListFileSharesOutput)
 
+	ListFileSharesPages(*storagegateway.ListFileSharesInput, func(*storagegateway.ListFileSharesOutput, bool) bool) error
+	ListFileSharesPagesWithContext(aws.Context, *storagegateway.ListFileSharesInput, func(*storagegateway.ListFileSharesOutput, bool) bool, ...request.Option) error
+
 	ListGateways(*storagegateway.ListGatewaysInput) (*storagegateway.ListGatewaysOutput, error)
 	ListGatewaysWithContext(aws.Context, *storagegateway.ListGatewaysInput, ...request.Option) (*storagegateway.ListGatewaysOutput, error)
 	ListGatewaysRequest(*storagegateway.ListGatewaysInput) (*request.Request, *storagegateway.ListGatewaysOutput)
@@ -267,9 +270,15 @@ type StorageGatewayAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *storagegateway.ListTagsForResourceInput, ...request.Option) (*storagegateway.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*storagegateway.ListTagsForResourceInput) (*request.Request, *storagegateway.ListTagsForResourceOutput)
 
+	ListTagsForResourcePages(*storagegateway.ListTagsForResourceInput, func(*storagegateway.ListTagsForResourceOutput, bool) bool) error
+	ListTagsForResourcePagesWithContext(aws.Context, *storagegateway.ListTagsForResourceInput, func(*storagegateway.ListTagsForResourceOutput, bool) bool, ...request.Option) error
+
 	ListTapes(*storagegateway.ListTapesInput) (*storagegateway.ListTapesOutput, error)
 	ListTapesWithContext(aws.Context, *storagegateway.ListTapesInput, ...request.Option) (*storagegateway.ListTapesOutput, error)
 	ListTapesRequest(*storagegateway.ListTapesInput) (*request.Request, *storagegateway.ListTapesOutput)
+
+	ListTapesPages(*storagegateway.ListTapesInput, func(*storagegateway.ListTapesOutput, bool) bool) error
+	ListTapesPagesWithContext(aws.Context, *storagegateway.ListTapesInput, func(*storagegateway.ListTapesOutput, bool) bool, ...request.Option) error
 
 	ListVolumeInitiators(*storagegateway.ListVolumeInitiatorsInput) (*storagegateway.ListVolumeInitiatorsOutput, error)
 	ListVolumeInitiatorsWithContext(aws.Context, *storagegateway.ListVolumeInitiatorsInput, ...request.Option) (*storagegateway.ListVolumeInitiatorsOutput, error)

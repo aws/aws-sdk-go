@@ -1903,10 +1903,15 @@
               "region" : "us-east-1"
             },
             "hostname" : "organizations.us-east-1.amazonaws.com"
+          },
+          "aws-us-gov-global" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "organizations.us-gov-west-1.amazonaws.com"
           }
         },
-        "isRegionalized" : false,
-        "partitionEndpoint" : "aws-global"
+        "isRegionalized" : false
       },
       "pinpoint" : {
         "defaults" : {
@@ -3206,6 +3211,11 @@
           "cn-northwest-1" : { }
         }
       },
+      "mediaconvert" : {
+        "endpoints" : {
+          "cn-northwest-1" : { }
+        }
+      },
       "monitoring" : {
         "defaults" : {
           "protocols" : [ "http", "https" ]
@@ -3446,6 +3456,11 @@
           "us-gov-west-1" : { }
         }
       },
+      "codecommit" : {
+        "endpoints" : {
+          "us-gov-west-1" : { }
+        }
+      },
       "codedeploy" : {
         "endpoints" : {
           "us-gov-east-1" : { },
@@ -3666,6 +3681,12 @@
           "us-gov-west-1" : { }
         }
       },
+      "license-manager" : {
+        "endpoints" : {
+          "us-gov-east-1" : { },
+          "us-gov-west-1" : { }
+        }
+      },
       "logs" : {
         "endpoints" : {
           "us-gov-east-1" : { },
@@ -3692,6 +3713,23 @@
           "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
+      },
+      "organizations" : {
+        "endpoints" : {
+          "aws-global" : {
+            "credentialScope" : {
+              "region" : "us-east-1"
+            },
+            "hostname" : "organizations.us-east-1.amazonaws.com"
+          },
+          "aws-us-gov-global" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "organizations.us-gov-west-1.amazonaws.com"
+          }
+        },
+        "isRegionalized" : false
       },
       "polly" : {
         "endpoints" : {

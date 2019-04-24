@@ -176,6 +176,7 @@
         "Id":{"shape":"NonEmptyString"},
         "Relationships":{"shape":"RelationshipList"},
         "EntityTypes":{"shape":"EntityTypes"},
+        "SelectionStatus":{"shape":"SelectionStatus"},
         "Page":{"shape":"UInteger"}
       }
     },
@@ -191,7 +192,8 @@
         "LINE",
         "WORD",
         "TABLE",
-        "CELL"
+        "CELL",
+        "SELECTION_ELEMENT"
       ]
     },
     "BoundingBox":{
@@ -492,6 +494,13 @@
       "max":1024,
       "min":20,
       "pattern":"(^arn:([a-z\\d-]+):sns:[a-zA-Z\\d-]{1,20}:\\w{12}:.+$)"
+    },
+    "SelectionStatus":{
+      "type":"string",
+      "enum":[
+        "SELECTED",
+        "NOT_SELECTED"
+      ]
     },
     "StartDocumentAnalysisRequest":{
       "type":"structure",

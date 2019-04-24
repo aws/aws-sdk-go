@@ -293,6 +293,7 @@ func (c *MediaTailor) ListTagsForResourceRequest(input *ListTagsForResourceInput
 //
 // Returned Error Codes:
 //   * ErrCodeBadRequestException "BadRequestException"
+//   One of the parameters in the request is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/ListTagsForResource
 func (c *MediaTailor) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -447,6 +448,7 @@ func (c *MediaTailor) TagResourceRequest(input *TagResourceInput) (req *request.
 //
 // Returned Error Codes:
 //   * ErrCodeBadRequestException "BadRequestException"
+//   One of the parameters in the request is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/TagResource
 func (c *MediaTailor) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -527,6 +529,7 @@ func (c *MediaTailor) UntagResourceRequest(input *UntagResourceInput) (req *requ
 //
 // Returned Error Codes:
 //   * ErrCodeBadRequestException "BadRequestException"
+//   One of the parameters in the request is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/UntagResource
 func (c *MediaTailor) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -605,11 +608,18 @@ type DashConfiguration struct {
 	// DASH manifests. MediaTailor populates the Location tag with the URL for manifest
 	// update requests, to be used by players that don't support sticky redirects.
 	// Disable this if you have CDN routing rules set up for accessing MediaTailor
-	// manifests and you are either using client-side reporting or your players
+	// manifests, and you are either using client-side reporting or your players
 	// support sticky HTTP redirects. Valid values are DISABLED and EMT_DEFAULT.
 	// The EMT_DEFAULT setting enables the inclusion of the tag and is the default
 	// value.
 	MpdLocation *string `type:"string"`
+
+	// The setting that controls whether MediaTailor handles manifests from the
+	// origin server as multi-period manifests or single-period manifests. If your
+	// origin server produces single-period manifests, set this to SINGLE_PERIOD.
+	// The default setting is MULTI_PERIOD. For multi-period manifests, omit this
+	// setting or set it to MULTI_PERIOD.
+	OriginManifestType *string `type:"string" enum:"OriginManifestType"`
 }
 
 // String returns the string representation
@@ -634,6 +644,12 @@ func (s *DashConfiguration) SetMpdLocation(v string) *DashConfiguration {
 	return s
 }
 
+// SetOriginManifestType sets the OriginManifestType field's value.
+func (s *DashConfiguration) SetOriginManifestType(v string) *DashConfiguration {
+	s.OriginManifestType = &v
+	return s
+}
+
 // The configuration for DASH PUT operations.
 type DashConfigurationForPut struct {
 	_ struct{} `type:"structure"`
@@ -642,11 +658,18 @@ type DashConfigurationForPut struct {
 	// DASH manifests. MediaTailor populates the Location tag with the URL for manifest
 	// update requests, to be used by players that don't support sticky redirects.
 	// Disable this if you have CDN routing rules set up for accessing MediaTailor
-	// manifests and you are either using client-side reporting or your players
+	// manifests, and you are either using client-side reporting or your players
 	// support sticky HTTP redirects. Valid values are DISABLED and EMT_DEFAULT.
 	// The EMT_DEFAULT setting enables the inclusion of the tag and is the default
 	// value.
 	MpdLocation *string `type:"string"`
+
+	// The setting that controls whether MediaTailor handles manifests from the
+	// origin server as multi-period manifests or single-period manifests. If your
+	// origin server produces single-period manifests, set this to SINGLE_PERIOD.
+	// The default setting is MULTI_PERIOD. For multi-period manifests, omit this
+	// setting or set it to MULTI_PERIOD.
+	OriginManifestType *string `type:"string" enum:"OriginManifestType"`
 }
 
 // String returns the string representation
@@ -662,6 +685,12 @@ func (s DashConfigurationForPut) GoString() string {
 // SetMpdLocation sets the MpdLocation field's value.
 func (s *DashConfigurationForPut) SetMpdLocation(v string) *DashConfigurationForPut {
 	s.MpdLocation = &v
+	return s
+}
+
+// SetOriginManifestType sets the OriginManifestType field's value.
+func (s *DashConfigurationForPut) SetOriginManifestType(v string) *DashConfigurationForPut {
+	s.OriginManifestType = &v
 	return s
 }
 
@@ -966,8 +995,8 @@ func (s *ListPlaybackConfigurationsInput) SetNextToken(v string) *ListPlaybackCo
 type ListPlaybackConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Array of playback configurations. This may be all of the available configurations
-	// or a subset, depending on the settings you provide and on the total number
+	// Array of playback configurations. This might be all the available configurations
+	// or a subset, depending on the settings that you provide and the total number
 	// of configurations stored.
 	Items []*PlaybackConfiguration `type:"list"`
 
@@ -1516,3 +1545,11 @@ func (s UntagResourceOutput) String() string {
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// OriginManifestTypeSinglePeriod is a OriginManifestType enum value
+	OriginManifestTypeSinglePeriod = "SINGLE_PERIOD"
+
+	// OriginManifestTypeMultiPeriod is a OriginManifestType enum value
+	OriginManifestTypeMultiPeriod = "MULTI_PERIOD"
+)

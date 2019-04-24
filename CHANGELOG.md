@@ -1,3 +1,25 @@
+Release v1.19.16 (2019-04-24)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API, documentation, and paginators
+* `service/cloudformation`: Updates service documentation
+  * Documentation updates for cloudformation
+* `service/ec2`: Updates service API
+  * You can now launch the new Amazon EC2 general purpose burstable instance types T3a that feature AMD EPYC processors.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/mediaconnect`: Updates service API, documentation, and paginators
+* `service/mediatailor`: Updates service API and documentation
+* `service/rds`: Updates service API and documentation
+  * A new parameter "feature-name" is added to the add-role and remove-role db cluster APIs. The value for the parameter is optional for Aurora MySQL compatible database clusters, but mandatory for Aurora PostgresQL. You can find the valid list of values using describe db engine versions API.
+* `service/route53`: Updates service API and documentation
+  * Amazon Route 53 now supports the Asia Pacific (Hong Kong) Region (ap-east-1) for latency records, geoproximity records, and private DNS for Amazon VPCs in that region.
+* `service/ssm`: Updates service API and documentation
+  * This release updates AWS Systems Manager APIs to allow customers to configure parameters to use either the standard-parameter tier (the default tier) or the advanced-parameter tier. It allows customers to create parameters with larger values and attach parameter policies to an Advanced Parameter.
+* `service/storagegateway`: Updates service API, documentation, and paginators
+  * AWS Storage Gateway now supports Access Control Lists (ACLs) on File Gateway SMB shares, enabling you to apply fine grained access controls for Active Directory users and groups.
+* `service/textract`: Updates service API and documentation
+
 Release v1.19.15 (2019-04-19)
 ===
 

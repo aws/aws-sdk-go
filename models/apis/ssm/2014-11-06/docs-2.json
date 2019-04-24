@@ -304,8 +304,8 @@
     "AssociationExecutionId": {
       "base": null,
       "refs": {
-        "AssociationExecution$ExecutionId": "<p>The execution ID for the association. If the association does not run at intervals or according to a schedule, then the ExecutionID is the same as the AssociationID.</p>",
-        "AssociationExecutionTarget$ExecutionId": "<p>The execution ID. If the association does not run at intervals or according to a schedule, then the ExecutionID is the same as the AssociationID.</p>",
+        "AssociationExecution$ExecutionId": "<p>The execution ID for the association.</p>",
+        "AssociationExecutionTarget$ExecutionId": "<p>The execution ID.</p>",
         "DescribeAssociationExecutionTargetsRequest$ExecutionId": "<p>The execution ID for which you want to view details.</p>"
       }
     },
@@ -2532,6 +2532,11 @@
       "refs": {
       }
     },
+    "IncompatiblePolicyException": {
+      "base": "<p>There is a conflict in the policies specified for this parameter. You can't, for example, specify two Expiration policies for a parameter. Review your policies, and try again.</p>",
+      "refs": {
+      }
+    },
     "InstallOverrideList": {
       "base": null,
       "refs": {
@@ -2969,6 +2974,16 @@
     },
     "InvalidPluginName": {
       "base": "<p>The plugin name is not valid.</p>",
+      "refs": {
+      }
+    },
+    "InvalidPolicyAttributeException": {
+      "base": "<p>A policy attribute or its value is invalid. </p>",
+      "refs": {
+      }
+    },
+    "InvalidPolicyTypeException": {
+      "base": "<p>The policy type is not supported. Parameter Store supports the following policy types: Expiration, ExpirationNotification, and NoChangeNotification.</p>",
       "refs": {
       }
     },
@@ -3550,7 +3565,7 @@
         "GetMaintenanceWindowResult$Description": "<p>The description of the Maintenance Window.</p>",
         "GetMaintenanceWindowTaskResult$Description": "<p>The retrieved task description.</p>",
         "MaintenanceWindowIdentity$Description": "<p>A description of the Maintenance Window.</p>",
-        "MaintenanceWindowTarget$Description": "<p>A description of the target.</p>",
+        "MaintenanceWindowTarget$Description": "<p>A description for the target.</p>",
         "MaintenanceWindowTask$Description": "<p>A description of the task.</p>",
         "RegisterTargetWithMaintenanceWindowRequest$Description": "<p>An optional description for the target.</p>",
         "RegisterTaskWithMaintenanceWindowRequest$Description": "<p>An optional description for the task.</p>",
@@ -3754,8 +3769,8 @@
         "MaintenanceWindowExecution$WindowId": "<p>The ID of the Maintenance Window.</p>",
         "MaintenanceWindowIdentity$WindowId": "<p>The ID of the Maintenance Window.</p>",
         "MaintenanceWindowIdentityForTarget$WindowId": "<p>The ID of the Maintenance Window.</p>",
-        "MaintenanceWindowTarget$WindowId": "<p>The Maintenance Window ID where the target is registered.</p>",
-        "MaintenanceWindowTask$WindowId": "<p>The Maintenance Window ID where the task is registered.</p>",
+        "MaintenanceWindowTarget$WindowId": "<p>The ID of the Maintenance Window to register the target with.</p>",
+        "MaintenanceWindowTask$WindowId": "<p>The ID of the Maintenance Window where the task is registered.</p>",
         "RegisterTargetWithMaintenanceWindowRequest$WindowId": "<p>The ID of the Maintenance Window the target should be registered with.</p>",
         "RegisterTaskWithMaintenanceWindowRequest$WindowId": "<p>The ID of the Maintenance Window the task should be added to.</p>",
         "ScheduledWindowExecution$WindowId": "<p>The ID of the Maintenance Window to be run.</p>",
@@ -3846,7 +3861,7 @@
       "refs": {
         "DescribeMaintenanceWindowScheduleRequest$ResourceType": "<p>The type of resource you want to retrieve information about. For example, \"INSTANCE\".</p>",
         "DescribeMaintenanceWindowsForTargetRequest$ResourceType": "<p>The type of resource you want to retrieve information about. For example, \"INSTANCE\".</p>",
-        "MaintenanceWindowTarget$ResourceType": "<p>The type of target.</p>",
+        "MaintenanceWindowTarget$ResourceType": "<p>The type of target that is being registered with the Maintenance Window.</p>",
         "RegisterTargetWithMaintenanceWindowRequest$ResourceType": "<p>The type of target being registered with the Maintenance Window.</p>"
       }
     },
@@ -4084,7 +4099,7 @@
         "CreateAssociationRequest$MaxConcurrency": "<p>The maximum number of targets allowed to run the association at the same time. You can specify a number, for example 10, or a percentage of the target set, for example 10%. The default value is 100%, which means all targets run the association at the same time.</p> <p>If a new instance starts and attempts to run an association while Systems Manager is running MaxConcurrency associations, the association is allowed to run. During the next association interval, the new instance will process its association within the limit specified for MaxConcurrency.</p>",
         "GetMaintenanceWindowExecutionTaskResult$MaxConcurrency": "<p>The defined maximum number of task executions that could be run in parallel.</p>",
         "GetMaintenanceWindowTaskResult$MaxConcurrency": "<p>The maximum number of targets allowed to run this task in parallel.</p>",
-        "MaintenanceWindowTask$MaxConcurrency": "<p>The maximum number of targets this task can be run for in parallel.</p>",
+        "MaintenanceWindowTask$MaxConcurrency": "<p>The maximum number of targets this task can be run for, in parallel.</p>",
         "RegisterTaskWithMaintenanceWindowRequest$MaxConcurrency": "<p>The maximum number of targets this task can be run for in parallel.</p>",
         "SendCommandRequest$MaxConcurrency": "<p>(Optional) The maximum number of instances that are allowed to run the command at the same time. You can specify a number such as 10 or a percentage such as 10%. The default value is 50. For more information about how to use MaxConcurrency, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html#send-commands-velocity\">Using Concurrency Controls</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
         "StartAutomationExecutionRequest$MaxConcurrency": "<p>The maximum number of targets allowed to run this task in parallel. You can specify a number, such as 10, or a percentage, such as 10%. The default value is 10.</p>",
@@ -4331,7 +4346,7 @@
         "GetMaintenanceWindowExecutionTaskInvocationResult$OwnerInformation": "<p>User-provided value to be included in any CloudWatch events raised while running tasks for these targets in this Maintenance Window. </p>",
         "InstancePatchState$OwnerInformation": "<p>Placeholder information. This field will always be empty in the current release of the service.</p>",
         "MaintenanceWindowExecutionTaskInvocationIdentity$OwnerInformation": "<p>User-provided value that was specified when the target was registered with the Maintenance Window. This was also included in any CloudWatch events raised during the task invocation.</p>",
-        "MaintenanceWindowTarget$OwnerInformation": "<p>User-provided value that will be included in any CloudWatch events raised while running tasks for these targets in this Maintenance Window.</p>",
+        "MaintenanceWindowTarget$OwnerInformation": "<p>A user-provided value that will be included in any CloudWatch events that are raised while running tasks for these targets in this Maintenance Window.</p>",
         "RegisterTargetWithMaintenanceWindowRequest$OwnerInformation": "<p>User-provided value that will be included in any CloudWatch events raised while running tasks for these targets in this Maintenance Window.</p>",
         "UpdateMaintenanceWindowTargetRequest$OwnerInformation": "<p>User-provided value that will be included in any CloudWatch events raised while running tasks for these targets in this Maintenance Window.</p>",
         "UpdateMaintenanceWindowTargetResult$OwnerInformation": "<p>The updated owner.</p>"
@@ -4363,7 +4378,7 @@
       "refs": {
         "Parameter$Value": "<p>The parameter value.</p>",
         "ParameterHistory$Value": "<p>The parameter value.</p>",
-        "PutParameterRequest$Value": "<p>The parameter value that you want to add to the system.</p>"
+        "PutParameterRequest$Value": "<p>The parameter value that you want to add to the system. Standard parameters have a value limit of 4 KB. Advanced parameters have a value limit of 8 KB.</p>"
       }
     },
     "PSParameterVersion": {
@@ -4406,6 +4421,12 @@
       "base": null,
       "refs": {
         "GetParameterHistoryResult$Parameters": "<p>A list of parameters returned by the request.</p>"
+      }
+    },
+    "ParameterInlinePolicy": {
+      "base": "<p>One or more policies assigned to a parameter.</p>",
+      "refs": {
+        "ParameterPolicyList$member": null
       }
     },
     "ParameterKeyId": {
@@ -4485,8 +4506,21 @@
       "refs": {
       }
     },
+    "ParameterPolicies": {
+      "base": null,
+      "refs": {
+        "PutParameterRequest$Policies": "<p>One or more policies to apply to a parameter. This action takes a JSON array. Parameter Store supports the following policy types:</p> <p>Expiration: This policy deletes the parameter after it expires. When you create the policy, you specify the expiration date. You can update the expiration date and time by updating the policy. Updating the <i>parameter</i> does not affect the expiration date and time. When the expiration time is reached, Parameter Store deletes the parameter.</p> <p>ExpirationNotification: This policy triggers an event in Amazon CloudWatch Events that notifies you about the expiration. By using this policy, you can receive notification before or after the expiration time is reached, in units of days or hours.</p> <p>NoChangeNotification: This policy triggers a CloudWatch event if a parameter has not been modified for a specified period of time. This policy type is useful when, for example, a secret needs to be changed within a period of time, but it has not been changed.</p> <p>All existing policies are preserved until you send new policies or an empty policy. For more information about parameter policies, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-su-policies.html\">Working with Parameter Policies</a>. </p>"
+      }
+    },
+    "ParameterPolicyList": {
+      "base": null,
+      "refs": {
+        "ParameterHistory$Policies": "<p>Information about the policies assigned to a parameter.</p>",
+        "ParameterMetadata$Policies": "<p>A list of policies associated with a parameter.</p>"
+      }
+    },
     "ParameterStringFilter": {
-      "base": "<p>One or more filters. Use a filter to return a more specific list of results.</p> <note> <p>The <code>Name</code> field can't be used with the <a>GetParametersByPath</a> API action.</p> </note>",
+      "base": "<p>One or more filters. Use a filter to return a more specific list of results.</p> <note> <p>The <code>Name</code> and <code>Tier</code> filter keys can't be used with the <a>GetParametersByPath</a> API action. Also, the <code>Label</code> filter key can't be used with the <a>DescribeParameters</a> API action.</p> </note>",
       "refs": {
         "ParameterStringFilterList$member": null
       }
@@ -4520,6 +4554,14 @@
       "base": null,
       "refs": {
         "ParameterStringFilter$Option": "<p>Valid options are Equals and BeginsWith. For Path filter, valid options are Recursive and OneLevel.</p>"
+      }
+    },
+    "ParameterTier": {
+      "base": null,
+      "refs": {
+        "ParameterHistory$Tier": "<p>The parameter tier.</p>",
+        "ParameterMetadata$Tier": "<p>The parameter tier.</p>",
+        "PutParameterRequest$Tier": "<p>Parameter Store offers a standard tier and an advanced tier for parameters. Standard parameters have a value limit of 4 KB and can't be configured to use parameter policies. You can create a maximum of 10,000 standard parameters per account and per Region. Standard parameters are offered at no additional cost.</p> <p>Advanced parameters have a value limit of 8 KB and can be configured to use parameter policies. You can create a maximum of 100,000 advanced parameters per account and per Region. Advanced parameters incur a charge.</p> <p>If you don't specify a parameter tier when you create a new parameter, the parameter defaults to using the standard tier. You can change a standard parameter to an advanced parameter at any time. But you can't revert an advanced parameter to a standard parameter. Reverting an advanced parameter to a standard parameter would result in data loss because the system would truncate the size of the parameter from 8 KB to 4 KB. Reverting would also remove any policies attached to the parameter. Lastly, advanced parameters use a different form of encryption than standard parameters.</p> <p>If you no longer need an advanced parameter, or if you no longer want to incur charges for an advanced parameter, you must delete it and recreate it as a new standard parameter. For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-advanced-parameters.html\">About Advanced Parameters</a> in the <i>AWS Systems Manager User Guide</i>.</p>"
       }
     },
     "ParameterType": {
@@ -4561,7 +4603,7 @@
         "AssociationVersionInfo$Parameters": "<p>Parameters specified when the association version was created.</p>",
         "Command$Parameters": "<p>The parameter values to be inserted in the document when running the command.</p>",
         "CreateAssociationBatchRequestEntry$Parameters": "<p>A description of the parameters for a document. </p>",
-        "CreateAssociationRequest$Parameters": "<p>The parameters for the documents runtime configuration. </p>",
+        "CreateAssociationRequest$Parameters": "<p>The parameters for the runtime configuration of the document. </p>",
         "MaintenanceWindowRunCommandParameters$Parameters": "<p>The parameters for the RUN_COMMAND task execution.</p>",
         "SendCommandRequest$Parameters": "<p>The required and optional parameters specified in the document being run.</p>",
         "UpdateAssociationRequest$Parameters": "<p>The parameters you want to update for the association. If you create a parameter using Parameter Store, you can reference the parameter using {{ssm:parameter-name}}</p>"
@@ -4787,12 +4829,12 @@
     "PatchIdList": {
       "base": null,
       "refs": {
-        "CreatePatchBaselineRequest$ApprovedPatches": "<p>A list of explicitly approved patches for the baseline.</p> <p>For information about accepted formats for lists of approved patches and rejected patches, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html\">Package Name Formats for Approved and Rejected Patch Lists</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
-        "CreatePatchBaselineRequest$RejectedPatches": "<p>A list of explicitly rejected patches for the baseline.</p> <p>For information about accepted formats for lists of approved patches and rejected patches, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html\">Package Name Formats for Approved and Rejected Patch Lists</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
+        "CreatePatchBaselineRequest$ApprovedPatches": "<p>A list of explicitly approved patches for the baseline.</p> <p>For information about accepted formats for lists of approved patches and rejected patches, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html\">Package Name Formats for Approved and Rejected Patch Lists</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
+        "CreatePatchBaselineRequest$RejectedPatches": "<p>A list of explicitly rejected patches for the baseline.</p> <p>For information about accepted formats for lists of approved patches and rejected patches, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html\">Package Name Formats for Approved and Rejected Patch Lists</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
         "GetPatchBaselineResult$ApprovedPatches": "<p>A list of explicitly approved patches for the baseline.</p>",
         "GetPatchBaselineResult$RejectedPatches": "<p>A list of explicitly rejected patches for the baseline.</p>",
-        "UpdatePatchBaselineRequest$ApprovedPatches": "<p>A list of explicitly approved patches for the baseline.</p> <p>For information about accepted formats for lists of approved patches and rejected patches, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html\">Package Name Formats for Approved and Rejected Patch Lists</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
-        "UpdatePatchBaselineRequest$RejectedPatches": "<p>A list of explicitly rejected patches for the baseline.</p> <p>For information about accepted formats for lists of approved patches and rejected patches, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html\">Package Name Formats for Approved and Rejected Patch Lists</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
+        "UpdatePatchBaselineRequest$ApprovedPatches": "<p>A list of explicitly approved patches for the baseline.</p> <p>For information about accepted formats for lists of approved patches and rejected patches, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html\">Package Name Formats for Approved and Rejected Patch Lists</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
+        "UpdatePatchBaselineRequest$RejectedPatches": "<p>A list of explicitly rejected patches for the baseline.</p> <p>For information about accepted formats for lists of approved patches and rejected patches, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html\">Package Name Formats for Approved and Rejected Patch Lists</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
         "UpdatePatchBaselineResult$ApprovedPatches": "<p>A list of explicitly approved patches for the baseline.</p>",
         "UpdatePatchBaselineResult$RejectedPatches": "<p>A list of explicitly rejected patches for the baseline.</p>"
       }
@@ -5013,6 +5055,11 @@
       "refs": {
         "DocumentDescription$PlatformTypes": "<p>The list of OS platforms compatible with this Systems Manager document. </p>",
         "DocumentIdentifier$PlatformTypes": "<p>The operating system platform. </p>"
+      }
+    },
+    "PoliciesLimitExceededException": {
+      "base": "<p>You specified more than the maximum number of allowed policies for the parameter. The maximum is 10.</p>",
+      "refs": {
       }
     },
     "Product": {
@@ -5806,6 +5853,7 @@
         "HierarchyLevelLimitExceededException$message": "<p>A hierarchy can have a maximum of 15 levels. For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-parameter-name-constraints.html\">Requirements and Constraints for Parameter Names</a> in the <i>AWS Systems Manager User Guide</i>. </p>",
         "HierarchyTypeMismatchException$message": "<p>Parameter Store does not support changing a parameter type in a hierarchy. For example, you can't change a parameter from a String type to a SecureString type. You must create a new, unique parameter.</p>",
         "IdempotentParameterMismatch$Message": null,
+        "IncompatiblePolicyException$message": null,
         "InstanceInformation$PlatformName": "<p>The name of the operating system platform running on your instance. </p>",
         "InstanceInformation$PlatformVersion": "<p>The version of the OS platform running on your instance. </p>",
         "InstanceInformation$Name": "<p>The name of the managed instance.</p>",
@@ -5841,6 +5889,8 @@
         "InvalidOptionException$Message": null,
         "InvalidParameters$Message": null,
         "InvalidPermissionType$Message": null,
+        "InvalidPolicyAttributeException$message": null,
+        "InvalidPolicyTypeException$message": null,
         "InvalidResultAttributeException$Message": null,
         "InvalidRole$Message": null,
         "InvalidSchedule$Message": null,
@@ -5856,6 +5906,9 @@
         "Parameter$ARN": "<p>The Amazon Resource Name (ARN) of the parameter.</p>",
         "ParameterAlreadyExists$message": null,
         "ParameterHistory$LastModifiedUser": "<p>Amazon Resource Name (ARN) of the AWS user who last changed the parameter.</p>",
+        "ParameterInlinePolicy$PolicyText": "<p>The JSON text of the policy.</p>",
+        "ParameterInlinePolicy$PolicyType": "<p>The type of policy. Parameter Store supports the following policy types: Expiration, ExpirationNotification, and NoChangeNotification. </p>",
+        "ParameterInlinePolicy$PolicyStatus": "<p>The status of the policy. Policies report the following statuses: Pending (the policy has not been enforced or applied yet), Finished (the policy was applied), Failed (the policy was not applied), or InProgress (the policy is being applied now). </p>",
         "ParameterLimitExceeded$message": null,
         "ParameterMaxVersionLimitExceeded$message": null,
         "ParameterMetadata$LastModifiedUser": "<p>Amazon Resource Name (ARN) of the AWS user who last changed the parameter.</p>",
@@ -5863,6 +5916,7 @@
         "ParameterPatternMismatchException$message": "<p>The parameter name is not valid.</p>",
         "ParameterVersionLabelLimitExceeded$message": null,
         "ParameterVersionNotFound$message": null,
+        "PoliciesLimitExceededException$message": null,
         "ResourceDataSyncCountExceededException$Message": null,
         "ResourceDataSyncInvalidConfigurationException$Message": null,
         "ResourceInUseException$Message": null,
@@ -5964,7 +6018,7 @@
     "TargetKey": {
       "base": null,
       "refs": {
-        "Target$Key": "<p>User-defined criteria for sending commands that target instances that meet the criteria. Key can be tag:&lt;Amazon EC2 tag&gt; or InstanceIds. For more information about how to send commands that target instances using Key,Value parameters, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html#send-commands-targeting\">Targeting Multiple Instances</a> in the <i>AWS Systems Manager User Guide</i>.</p>"
+        "Target$Key": "<p>User-defined criteria for sending commands that target instances that meet the criteria. <code>Key</code> can be <code>tag:&lt;Amazon EC2 tag&gt;</code> or <code>InstanceIds</code>. For more information about how to send commands that target instances using <code>Key,Value</code> parameters, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html#send-commands-targeting\">Using Targets and Rate Controls to Send Commands to a Fleet</a> in the <i>AWS Systems Manager User Guide</i>.</p>"
       }
     },
     "TargetLocation": {
@@ -6042,7 +6096,7 @@
     "TargetValues": {
       "base": null,
       "refs": {
-        "Target$Values": "<p>User-defined criteria that maps to Key. For example, if you specified tag:ServerRole, you could specify value:WebServer to run a command on instances that include Amazon EC2 tags of ServerRole,WebServer. For more information about how to send commands that target instances using Key,Value parameters, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html\">Sending Commands to a Fleet</a> in the <i>AWS Systems Manager User Guide</i>.</p>"
+        "Target$Values": "<p>User-defined criteria that maps to <code>Key</code>. For example, if you specified <code>tag:ServerRole</code>, you could specify <code>value:WebServer</code> to run a command on instances that include Amazon EC2 tags of <code>ServerRole,WebServer</code>. For more information about how to send commands that target instances using <code>Key,Value</code> parameters, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html\">Using Targets and Rate Controls to Send Commands to a Fleet</a> in the <i>AWS Systems Manager User Guide</i>.</p>"
       }
     },
     "Targets": {
@@ -6059,7 +6113,7 @@
         "DescribeMaintenanceWindowScheduleRequest$Targets": "<p>The instance ID or key/value pair to retrieve information about.</p>",
         "DescribeMaintenanceWindowsForTargetRequest$Targets": "<p>The instance ID or key/value pair to retrieve information about.</p>",
         "GetMaintenanceWindowTaskResult$Targets": "<p>The targets where the task should run.</p>",
-        "MaintenanceWindowTarget$Targets": "<p>The targets (either instances or tags). Instances are specified using Key=instanceids,Values=&lt;instanceid1&gt;,&lt;instanceid2&gt;. Tags are specified using Key=&lt;tag name&gt;,Values=&lt;tag value&gt;.</p>",
+        "MaintenanceWindowTarget$Targets": "<p>The targets, either instances or tags.</p> <p>Specify instances using the following format:</p> <p> <code>Key=instanceids,Values=&lt;instanceid1&gt;,&lt;instanceid2&gt;</code> </p> <p>Tags are specified using the following format:</p> <p> <code>Key=&lt;tag name&gt;,Values=&lt;tag value&gt;</code>.</p>",
         "MaintenanceWindowTask$Targets": "<p>The targets (either instances or tags). Instances are specified using Key=instanceids,Values=&lt;instanceid1&gt;,&lt;instanceid2&gt;. Tags are specified using Key=&lt;tag name&gt;,Values=&lt;tag value&gt;.</p>",
         "RegisterTargetWithMaintenanceWindowRequest$Targets": "<p>The targets (either instances or tags). </p> <p>Specify instances using the following format:</p> <p> <code>Key=InstanceIds,Values=&lt;instance-id-1&gt;,&lt;instance-id-2&gt;</code> </p> <p>Specify tags using either of the following formats:</p> <p> <code>Key=tag:&lt;tag-key&gt;,Values=&lt;tag-value-1&gt;,&lt;tag-value-2&gt;</code> </p> <p> <code>Key=tag-key,Values=&lt;tag-key-1&gt;,&lt;tag-key-2&gt;</code> </p>",
         "RegisterTaskWithMaintenanceWindowRequest$Targets": "<p>The targets (either instances or Maintenance Window targets).</p> <p>Specify instances using the following format: </p> <p> <code>Key=InstanceIds,Values=&lt;instance-id-1&gt;,&lt;instance-id-2&gt;</code> </p> <p>Specify Maintenance Window targets using the following format:</p> <p> <code>Key=&lt;WindowTargetIds&gt;,Values=&lt;window-target-id-1&gt;,&lt;window-target-id-2&gt;</code> </p>",
