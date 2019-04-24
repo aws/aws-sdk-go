@@ -52,26 +52,35 @@ func (c *Textract) AnalyzeDocumentRequest(input *AnalyzeDocumentInput) (req *req
 
 // AnalyzeDocument API operation for Amazon Textract.
 //
-// Analyzes an input document for relationships in the detected text and tables.
+// Analyzes an input document for relationships between detected items.
 //
-// Two types of information are returned:
+// The types of information returned are as follows:
 //
 //    * Words and lines that are related to nearby lines and words. The related
-//    information is returned in two Block objects: a KEY Block object and a
-//    VALUE Block object. For example, Name: Ana Silva Carolina contains a key
-//    and value. Name: is the key. Ana Silva Carolina is the value.
+//    information is returned in two Block objects each of type KEY_VALUE_SET:
+//    a KEY Block object and a VALUE Block object. For example, Name: Ana Silva
+//    Carolina contains a key and value. Name: is the key. Ana Silva Carolina
+//    is the value.
 //
-//    * Table and table cell data. A TABLE Block contains information about
-//    a detected table. A CELL block is returned for each cell in a table.
+//    * Table and table cell data. A TABLE Block object contains information
+//    about a detected table. A CELL Block object is returned for each cell
+//    in a table.
+//
+//    * Selectable elements such as checkboxes and radio buttons. A SELECTION_ELEMENT
+//    Block object contains information about a selectable element.
+//
+//    * Lines and words of text. A LINE Block object contains one or more WORD
+//    Block objects.
 //
 // You can choose which type of analysis to perform by specifying the FeatureTypes
 // list.
 //
-// The output is returned in a list of BLOCK objects (Blocks). For more information,
-// see how-it-works-analyzing.
+// The output is returned in a list of BLOCK objects.
 //
 // AnalyzeDocument is a synchronous operation. To analyze documents asynchronously,
 // use StartDocumentAnalysis.
+//
+// For more information, see Document Text Analysis (https://docs.aws.amazon.com/textract/latest/dg/how-it-works-analyzing.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -186,10 +195,17 @@ func (c *Textract) DetectDocumentTextRequest(input *DetectDocumentTextInput) (re
 // Detects text in the input document. Amazon Textract can detect lines of text
 // and the words that make up a line of text. The input document must be an
 // image in JPG or PNG format. DetectDocumentText returns the detected text
-// in an array of Block objects. For more information, see how-it-works-detecting.
+// in an array of Block objects.
+//
+// Each document page has as an associated Block of type PAGE. Each PAGE Block
+// object is the parent of LINE Block objects that represent the lines of detected
+// text on a page. A LINE Block object is a parent for each word that makes
+// up the line. Words are represented by Block objects of type WORD.
 //
 // DetectDocumentText is a synchronous operation. To analyze documents asynchronously,
 // use StartDocumentTextDetection.
+//
+// For more information, see Document Text Detection (https://docs.aws.amazon.com/textract/latest/dg/how-it-works-detecting.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -302,7 +318,7 @@ func (c *Textract) GetDocumentAnalysisRequest(input *GetDocumentAnalysisInput) (
 // GetDocumentAnalysis API operation for Amazon Textract.
 //
 // Gets the results for an Amazon Textract asynchronous operation that analyzes
-// text in a document image.
+// text in a document.
 //
 // You start asynchronous text analysis by calling StartDocumentAnalysis, which
 // returns a job identifier (JobId). When the text analysis operation finishes,
@@ -313,8 +329,24 @@ func (c *Textract) GetDocumentAnalysisRequest(input *GetDocumentAnalysisInput) (
 // GetDocumentAnalysis, and pass the job identifier (JobId) from the initial
 // call to StartDocumentAnalysis.
 //
-// GetDocumentAnalysis returns an array of Block objects. For more information,
-// see how-it-works-analyzing.
+// GetDocumentAnalysis returns an array of Block objects. The following types
+// of information are returned:
+//
+//    * Words and lines that are related to nearby lines and words. The related
+//    information is returned in two Block objects each of type KEY_VALUE_SET:
+//    a KEY Block object and a VALUE Block object. For example, Name: Ana Silva
+//    Carolina contains a key and value. Name: is the key. Ana Silva Carolina
+//    is the value.
+//
+//    * Table and table cell data. A TABLE Block object contains information
+//    about a detected table. A CELL Block object is returned for each cell
+//    in a table.
+//
+//    * Selectable elements such as checkboxes and radio buttons. A SELECTION_ELEMENT
+//    Block object contains information about a selectable element.
+//
+//    * Lines and words of text. A LINE Block object contains one or more WORD
+//    Block objects.
 //
 // Use the MaxResults parameter to limit the number of blocks returned. If there
 // are more results than specified in MaxResults, the value of NextToken in
@@ -322,6 +354,8 @@ func (c *Textract) GetDocumentAnalysisRequest(input *GetDocumentAnalysisInput) (
 // of results. To get the next page of results, call GetDocumentAnalysis, and
 // populate the NextToken request parameter with the token value that's returned
 // from the previous call to GetDocumentAnalysis.
+//
+// For more information, see Document Text Analysis (https://docs.aws.amazon.com/textract/latest/dg/how-it-works-analyzing.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -421,8 +455,8 @@ func (c *Textract) GetDocumentTextDetectionRequest(input *GetDocumentTextDetecti
 // GetDocumentTextDetection API operation for Amazon Textract.
 //
 // Gets the results for an Amazon Textract asynchronous operation that detects
-// text in a document image. Amazon Textract can detect lines of text and the
-// words that make up a line of text.
+// text in a document. Amazon Textract can detect lines of text and the words
+// that make up a line of text.
 //
 // You start asynchronous text detection by calling StartDocumentTextDetection,
 // which returns a job identifier (JobId). When the text detection operation
@@ -433,8 +467,12 @@ func (c *Textract) GetDocumentTextDetectionRequest(input *GetDocumentTextDetecti
 // topic is SUCCEEDED. If so, call GetDocumentTextDetection, and pass the job
 // identifier (JobId) from the initial call to StartDocumentTextDetection.
 //
-// GetDocumentTextDetection returns an array of Block objects. For more information,
-// see how-it-works-detecting.
+// GetDocumentTextDetection returns an array of Block objects.
+//
+// Each document page has as an associated Block of type PAGE. Each PAGE Block
+// object is the parent of LINE Block objects that represent the lines of detected
+// text on a page. A LINE Block object is a parent for each word that makes
+// up the line. Words are represented by Block objects of type WORD.
 //
 // Use the MaxResults parameter to limit the number of blocks that are returned.
 // If there are more results than specified in MaxResults, the value of NextToken
@@ -443,8 +481,7 @@ func (c *Textract) GetDocumentTextDetectionRequest(input *GetDocumentTextDetecti
 // and populate the NextToken request parameter with the token value that's
 // returned from the previous call to GetDocumentTextDetection.
 //
-// For more information, see Document Text Detection in the Amazon Textract
-// Developer Guide.
+// For more information, see Document Text Detection (https://docs.aws.amazon.com/textract/latest/dg/how-it-works-detecting.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -543,21 +580,12 @@ func (c *Textract) StartDocumentAnalysisRequest(input *StartDocumentAnalysisInpu
 
 // StartDocumentAnalysis API operation for Amazon Textract.
 //
-// Starts asynchronous analysis of text for relationships in the text and tables
-// that are detected in a document. Amazon Textract returns for two types of
-// information:
+// Starts asynchronous analysis of an input document for relationships between
+// detected items such as key and value pairs, tables, and selection elements.
 //
-//    * Words and lines that are related to nearby lines and words. The related
-//    information is returned in two Block objects: A KEY Block object and a
-//    VALUE Block object. For example, Name: Ana Silva Carolina contains a key
-//    and value. Name: is the key. Ana Silva Carolina is the value.
-//
-//    * Table and table cell data. A TABLE block contains information about
-//    a detected table. A CELL block is returned for each cell in a table.
-//
-// Amazon Textract can analyze text in document images and PDF files that are
-// stored in an Amazon S3 bucket. Use DocumentLocation to specify the bucket
-// name and file name of the document image.
+// StartDocumentAnalysis can analyze text in documents that are in JPG, PNG,
+// and PDF format. The documents are stored in an Amazon S3 bucket. Use DocumentLocation
+// to specify the bucket name and file name of the document.
 //
 // StartDocumentAnalysis returns a job identifier (JobId) that you use to get
 // the results of the operation. When text analysis is finished, Amazon Textract
@@ -566,6 +594,8 @@ func (c *Textract) StartDocumentAnalysisRequest(input *StartDocumentAnalysisInpu
 // the text analysis operation, first check that the status value published
 // to the Amazon SNS topic is SUCCEEDED. If so, call GetDocumentAnalysis, and
 // pass the job identifier (JobId) from the initial call to StartDocumentAnalysis.
+//
+// For more information, see Document Text Analysis (https://docs.aws.amazon.com/textract/latest/dg/how-it-works-analyzing.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -692,9 +722,9 @@ func (c *Textract) StartDocumentTextDetectionRequest(input *StartDocumentTextDet
 // Starts the asynchronous detection of text in a document. Amazon Textract
 // can detect lines of text and the words that make up a line of text.
 //
-// Amazon Textract can detect text in document images and PDF files that are
-// stored in an Amazon S3 bucket. Use DocumentLocation to specify the bucket
-// name and the file name of the document image.
+// StartDocumentTextDetection can analyze text in documents that are in JPG,
+// PNG, and PDF format. The documents are stored in an Amazon S3 bucket. Use
+// DocumentLocation to specify the bucket name and file name of the document.
 //
 // StartTextDetection returns a job identifier (JobId) that you use to get the
 // results of the operation. When text detection is finished, Amazon Textract
@@ -704,8 +734,7 @@ func (c *Textract) StartDocumentTextDetectionRequest(input *StartDocumentTextDet
 // to the Amazon SNS topic is SUCCEEDED. If so, call GetDocumentTextDetection,
 // and pass the job identifier (JobId) from the initial call to StartDocumentTextDetection.
 //
-// For more information, see Document Text Detection in the Amazon Textract
-// Developer Guide.
+// For more information, see Document Text Detection (https://docs.aws.amazon.com/textract/latest/dg/how-it-works-detecting.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -791,6 +820,9 @@ type AnalyzeDocumentInput struct {
 	// The input document as base64-encoded bytes or an Amazon S3 object. If you
 	// use the AWS CLI to call Amazon Textract operations, you can't pass image
 	// bytes. The document must be an image in JPG or PNG format.
+	//
+	// If you are using an AWS SDK to call Amazon Textract, you might not need to
+	// base64-encode image bytes passed using the Bytes field.
 	//
 	// Document is a required field
 	Document *Document `type:"structure" required:"true"`
@@ -879,17 +911,19 @@ func (s *AnalyzeDocumentOutput) SetDocumentMetadata(v *DocumentMetadata) *Analyz
 	return s
 }
 
-// A Block represents text that's recognized in a document within a group of
-// pixels close to each other. The information returned in a Block depends on
-// the type of operation. In document-text detection (for example DetectDocumentText),
+// A Block represents items that are recognized in a document within a group
+// of pixels close to each other. The information returned in a Block depends
+// on the type of operation. In document-text detection (for example DetectDocumentText),
 // you get information about the detected words and lines of text. In text analysis
-// (for example AnalyzeDocument), you can get information about the fields and
-// tables that are detected in the document.
+// (for example AnalyzeDocument), you can also get information about the fields,
+// tables and selection elements that are detected in the document.
 //
 // An array of Block objects is returned by both synchronous and asynchronous
 // operations. In synchronous operations, such as DetectDocumentText, the array
 // of Block objects is the entire set of results. In asynchronous operations,
 // such as GetDocumentAnalysis, the array is returned over one or more responses.
+//
+// For more information, see How Amazon Textract Works (https://docs.aws.amazon.com/textract/latest/dg/how-it-works.html).
 type Block struct {
 	_ struct{} `type:"structure"`
 
@@ -897,31 +931,41 @@ type Block struct {
 	// the following types are returned:
 	//
 	//    * PAGE - Contains a list of the LINE Block objects that are detected on
-	//    a specific page.
+	//    a document page.
 	//
-	//    * WORD - One or more ISO basic Latin script characters that aren't separated
-	//    by spaces.
+	//    * WORD - A word detected on a document page. A word is one or more ISO
+	//    basic Latin script characters that aren't separated by spaces.
 	//
-	//    * LINE - A string of equally spaced words.
+	//    * LINE - A string of tab-delimited, contiguous words that's detected on
+	//    a document page.
 	//
 	// In text analysis operations, the following types are returned:
 	//
 	//    * PAGE - Contains a list of child Block objects that are detected on a
-	//    specific page.
+	//    document page.
 	//
 	//    * KEY_VALUE_SET - Stores the KEY and VALUE Block objects for a field that's
-	//    detected in a document. Use the EntityType field to determine if a KEY_VALUE_SET
-	//    object is a KEY Block object or a VALUE Block object.
+	//    detected on a document page. Use the EntityType field to determine if
+	//    a KEY_VALUE_SET object is a KEY Block object or a VALUE Block object.
 	//
-	//    * WORD - One or more ISO basic Latin script characters that aren't separated
-	//    by spaces.
 	//
-	//    * LINE - A string of tab-delimited, contiguous words.
+	//    * WORD - A word detected on a document page. A word is one or more ISO
+	//    basic Latin script characters that aren't separated by spaces that's detected
+	//    on a document page.
 	//
-	//    * TABLE - A table that's detected in the document.
+	//    * LINE - A string of tab-delimited, contiguous words that's detected on
+	//    a document page.
+	//
+	//    * TABLE - A table that's detected on a document page. A table is any grid-based
+	//    information with 2 or more rows or columns with a cell span of 1 row and
+	//    1 column each.
 	//
 	//    * CELL - A cell within a detected table. The cell is the parent of the
 	//    block that contains the text in the cell.
+	//
+	//    * SELECTION_ELEMENT - A selectable element such as a radio button or checkbox
+	//    that's detected on a document page. Use the value of SelectionStatus to
+	//    determine the status of the selection element.
 	BlockType *string `type:"string" enum:"BlockType"`
 
 	// The column in which a table cell appears. The first column position is 1.
@@ -954,7 +998,12 @@ type Block struct {
 	// a single operation.
 	Id *string `type:"string"`
 
-	// The page in which a block was detected.
+	// The page in which a block was detected. Page is returned by asynchronous
+	// operations. Page values greater than 1 are only returned for multi-page documents
+	// that are in PDF format. A scanned image (JPG/PNG), even if it contains multiple
+	// document pages, is always considered to be a single-page document and the
+	// value of Page is always 1. Synchronous operations don't return Page as every
+	// input document is considered to be a single-page document.
 	Page *int64 `type:"integer"`
 
 	// A list of child blocks of the current block. For example a LINE object has
@@ -974,6 +1023,9 @@ type Block struct {
 	// The number of rows that a table spans. RowSpan isn't returned by DetectDocumentText
 	// and GetDocumentTextDetection.
 	RowSpan *int64 `type:"integer"`
+
+	// The selection status of a selectable element such as a radio button or checkbox.
+	SelectionStatus *string `type:"string" enum:"SelectionStatus"`
 
 	// The word or line of text that's recognized by Amazon Textract.
 	Text *string `type:"string"`
@@ -1055,6 +1107,12 @@ func (s *Block) SetRowSpan(v int64) *Block {
 	return s
 }
 
+// SetSelectionStatus sets the SelectionStatus field's value.
+func (s *Block) SetSelectionStatus(v string) *Block {
+	s.SelectionStatus = &v
+	return s
+}
+
 // SetText sets the Text field's value.
 func (s *Block) SetText(v string) *Block {
 	s.Text = &v
@@ -1133,6 +1191,9 @@ type DetectDocumentTextInput struct {
 	// The input document as base64-encoded bytes or an Amazon S3 object. If you
 	// use the AWS CLI to call Amazon Textract operations, you can't pass image
 	// bytes. The document must be an image in JPG or PNG format.
+	//
+	// If you are using an AWS SDK to call Amazon Textract, you might not need to
+	// base64-encode image bytes passed using the Bytes field.
 	//
 	// Document is a required field
 	Document *Document `type:"structure" required:"true"`
@@ -1218,7 +1279,7 @@ func (s *DetectDocumentTextOutput) SetDocumentMetadata(v *DocumentMetadata) *Det
 // to be base64 encoded.
 //
 // The AWS Region for the S3 bucket that contains the S3 object must match the
-// Region that you use for Amazon Textract operations.
+// AWS Region that you use for Amazon Textract operations.
 //
 // If you use the AWS CLI to call Amazon Textract operations, passing image
 // bytes using the Bytes property isn't supported. You must first upload the
@@ -1230,8 +1291,12 @@ func (s *DetectDocumentTextOutput) SetDocumentMetadata(v *DocumentMetadata) *Det
 type Document struct {
 	_ struct{} `type:"structure"`
 
-	// A blob of documents bytes. The maximum size of a document that's provided
-	// in a blob of bytes is 5 MB.
+	// A blob of base-64 encoded documents bytes. The maximum size of a document
+	// that's provided in a blob of bytes is 5 MB. The document bytes must be in
+	// PNG or JPG format.
+	//
+	// If you are using an AWS SDK to call Amazon Textract, you might not need to
+	// base64-encode image bytes passed using the Bytes field.
 	//
 	// Bytes is automatically base64 encoded/decoded by the SDK.
 	Bytes []byte `min:"1" type:"blob"`
@@ -1894,13 +1959,17 @@ type StartDocumentAnalysisInput struct {
 	// A list of the types of analysis to perform. Add TABLES to the list to return
 	// information about the tables that are detected in the input document. Add
 	// FORMS to return detected fields and the associated text. To perform both
-	// types of analysis, add TABLES and FORMS to FeatureTypes.
+	// types of analysis, add TABLES and FORMS to FeatureTypes. All selectable elements
+	// (SELECTION_ELEMENT) that are detected are returned, whatever the value of
+	// FeatureTypes.
 	//
 	// FeatureTypes is a required field
 	FeatureTypes []*string `type:"list" required:"true"`
 
-	// The unique identifier you specify to identify the job in the completion status
-	// that's published to the Amazon SNS topic.
+	// An identifier you specify that's included in the completion notification
+	// that's published to the Amazon SNS topic. For example, you can use JobTag
+	// to identify the type of document, such as a tax form or a receipt, that the
+	// completion notification corresponds to.
 	JobTag *string `min:"1" type:"string"`
 
 	// The Amazon SNS topic ARN that you want Amazon Textract to publish the completion
@@ -1983,7 +2052,7 @@ func (s *StartDocumentAnalysisInput) SetNotificationChannel(v *NotificationChann
 type StartDocumentAnalysisOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the document text-detection job. Use JobId to identify
+	// The identifier for the document text detection job. Use JobId to identify
 	// the job in a subsequent call to GetDocumentAnalysis.
 	JobId *string `min:"1" type:"string"`
 }
@@ -2018,8 +2087,10 @@ type StartDocumentTextDetectionInput struct {
 	// DocumentLocation is a required field
 	DocumentLocation *DocumentLocation `type:"structure" required:"true"`
 
-	// A unique identifier you specify to identify the job in the completion status
-	// that's published to the Amazon Simple Notification Service (Amazon SNS) topic.
+	// An identifier you specify that's included in the completion notification
+	// that's published to the Amazon SNS topic. For example, you can use JobTag
+	// to identify the type of document, such as a tax form or a receipt, that the
+	// completion notification corresponds to.
 	JobTag *string `min:"1" type:"string"`
 
 	// The Amazon SNS topic ARN that you want Amazon Textract to publish the completion
@@ -2166,6 +2237,9 @@ const (
 
 	// BlockTypeCell is a BlockType enum value
 	BlockTypeCell = "CELL"
+
+	// BlockTypeSelectionElement is a BlockType enum value
+	BlockTypeSelectionElement = "SELECTION_ELEMENT"
 )
 
 const (
@@ -2204,4 +2278,12 @@ const (
 
 	// RelationshipTypeChild is a RelationshipType enum value
 	RelationshipTypeChild = "CHILD"
+)
+
+const (
+	// SelectionStatusSelected is a SelectionStatus enum value
+	SelectionStatusSelected = "SELECTED"
+
+	// SelectionStatusNotSelected is a SelectionStatus enum value
+	SelectionStatusNotSelected = "NOT_SELECTED"
 )

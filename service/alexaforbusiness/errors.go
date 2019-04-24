@@ -59,6 +59,12 @@ const (
 	// The resource is not found.
 	ErrCodeNotFoundException = "NotFoundException"
 
+	// ErrCodeResourceAssociatedException for service response error code
+	// "ResourceAssociatedException".
+	//
+	// Another resource is associated with the resource in the request.
+	ErrCodeResourceAssociatedException = "ResourceAssociatedException"
+
 	// ErrCodeResourceInUseException for service response error code
 	// "ResourceInUseException".
 	//

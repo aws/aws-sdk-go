@@ -141,6 +141,19 @@
         {"shape":"LimitExceededException"}
       ]
     },
+    "CreateGatewayGroup":{
+      "name":"CreateGatewayGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateGatewayGroupRequest"},
+      "output":{"shape":"CreateGatewayGroupResponse"},
+      "errors":[
+        {"shape":"AlreadyExistsException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "CreateProfile":{
       "name":"CreateProfile",
       "http":{
@@ -259,6 +272,18 @@
         {"shape":"NotFoundException"},
         {"shape":"ConcurrentModificationException"},
         {"shape":"InvalidCertificateAuthorityException"}
+      ]
+    },
+    "DeleteGatewayGroup":{
+      "name":"DeleteGatewayGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteGatewayGroupRequest"},
+      "output":{"shape":"DeleteGatewayGroupResponse"},
+      "errors":[
+        {"shape":"ResourceAssociatedException"}
       ]
     },
     "DeleteProfile":{
@@ -470,6 +495,30 @@
         {"shape":"NotFoundException"}
       ]
     },
+    "GetGateway":{
+      "name":"GetGateway",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetGatewayRequest"},
+      "output":{"shape":"GetGatewayResponse"},
+      "errors":[
+        {"shape":"NotFoundException"}
+      ]
+    },
+    "GetGatewayGroup":{
+      "name":"GetGatewayGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetGatewayGroupRequest"},
+      "output":{"shape":"GetGatewayGroupResponse"},
+      "errors":[
+        {"shape":"NotFoundException"}
+      ]
+    },
     "GetInvitationConfiguration":{
       "name":"GetInvitationConfiguration",
       "http":{
@@ -559,6 +608,24 @@
       "errors":[
         {"shape":"NotFoundException"}
       ]
+    },
+    "ListGatewayGroups":{
+      "name":"ListGatewayGroups",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListGatewayGroupsRequest"},
+      "output":{"shape":"ListGatewayGroupsResponse"}
+    },
+    "ListGateways":{
+      "name":"ListGateways",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListGatewaysRequest"},
+      "output":{"shape":"ListGatewaysResponse"}
     },
     "ListSkills":{
       "name":"ListSkills",
@@ -902,6 +969,32 @@
         {"shape":"NotFoundException"},
         {"shape":"ConcurrentModificationException"},
         {"shape":"DeviceNotRegisteredException"}
+      ]
+    },
+    "UpdateGateway":{
+      "name":"UpdateGateway",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateGatewayRequest"},
+      "output":{"shape":"UpdateGatewayResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"NameInUseException"}
+      ]
+    },
+    "UpdateGatewayGroup":{
+      "name":"UpdateGatewayGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateGatewayGroupRequest"},
+      "output":{"shape":"UpdateGatewayGroupResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"NameInUseException"}
       ]
     },
     "UpdateProfile":{
@@ -1387,6 +1480,27 @@
         "ContactArn":{"shape":"Arn"}
       }
     },
+    "CreateGatewayGroupRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "ClientRequestToken"
+      ],
+      "members":{
+        "Name":{"shape":"GatewayGroupName"},
+        "Description":{"shape":"GatewayGroupDescription"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateGatewayGroupResponse":{
+      "type":"structure",
+      "members":{
+        "GatewayGroupArn":{"shape":"Arn"}
+      }
+    },
     "CreateProfileRequest":{
       "type":"structure",
       "required":[
@@ -1543,6 +1657,18 @@
       }
     },
     "DeleteDeviceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteGatewayGroupRequest":{
+      "type":"structure",
+      "required":["GatewayGroupArn"],
+      "members":{
+        "GatewayGroupArn":{"shape":"Arn"}
+      }
+    },
+    "DeleteGatewayGroupResponse":{
       "type":"structure",
       "members":{
       }
@@ -1906,7 +2032,7 @@
     "FilterValueList":{
       "type":"list",
       "member":{"shape":"FilterValue"},
-      "max":5
+      "max":50
     },
     "ForgetSmartHomeAppliancesRequest":{
       "type":"structure",
@@ -1919,6 +2045,78 @@
       "type":"structure",
       "members":{
       }
+    },
+    "Gateway":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "Name":{"shape":"GatewayName"},
+        "Description":{"shape":"GatewayDescription"},
+        "GatewayGroupArn":{"shape":"Arn"},
+        "SoftwareVersion":{"shape":"GatewayVersion"}
+      }
+    },
+    "GatewayDescription":{
+      "type":"string",
+      "max":200,
+      "min":0,
+      "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u0085\\u00A0-\\uD7FF\\uE000-\\uFFFD\\u10000-\\u10FFFF]*"
+    },
+    "GatewayGroup":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "Name":{"shape":"GatewayGroupName"},
+        "Description":{"shape":"GatewayGroupDescription"}
+      }
+    },
+    "GatewayGroupDescription":{
+      "type":"string",
+      "max":200,
+      "min":0
+    },
+    "GatewayGroupName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u0085\\u00A0-\\uD7FF\\uE000-\\uFFFD\\u10000-\\u10FFFF]*"
+    },
+    "GatewayGroupSummaries":{
+      "type":"list",
+      "member":{"shape":"GatewayGroupSummary"}
+    },
+    "GatewayGroupSummary":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "Name":{"shape":"GatewayGroupName"},
+        "Description":{"shape":"GatewayGroupDescription"}
+      }
+    },
+    "GatewayName":{
+      "type":"string",
+      "max":253,
+      "min":1,
+      "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u0085\\u00A0-\\uD7FF\\uE000-\\uFFFD\\u10000-\\u10FFFF]*"
+    },
+    "GatewaySummaries":{
+      "type":"list",
+      "member":{"shape":"GatewaySummary"}
+    },
+    "GatewaySummary":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "Name":{"shape":"GatewayName"},
+        "Description":{"shape":"GatewayDescription"},
+        "GatewayGroupArn":{"shape":"Arn"},
+        "SoftwareVersion":{"shape":"GatewayVersion"}
+      }
+    },
+    "GatewayVersion":{
+      "type":"string",
+      "max":50,
+      "min":1
     },
     "GenericKeyword":{"type":"string"},
     "GenericKeywords":{
@@ -1985,6 +2183,32 @@
       "type":"structure",
       "members":{
         "Device":{"shape":"Device"}
+      }
+    },
+    "GetGatewayGroupRequest":{
+      "type":"structure",
+      "required":["GatewayGroupArn"],
+      "members":{
+        "GatewayGroupArn":{"shape":"Arn"}
+      }
+    },
+    "GetGatewayGroupResponse":{
+      "type":"structure",
+      "members":{
+        "GatewayGroup":{"shape":"GatewayGroup"}
+      }
+    },
+    "GetGatewayRequest":{
+      "type":"structure",
+      "required":["GatewayArn"],
+      "members":{
+        "GatewayArn":{"shape":"Arn"}
+      }
+    },
+    "GetGatewayResponse":{
+      "type":"structure",
+      "members":{
+        "Gateway":{"shape":"Gateway"}
       }
     },
     "GetInvitationConfigurationRequest":{
@@ -2141,6 +2365,35 @@
       "type":"structure",
       "members":{
         "DeviceEvents":{"shape":"DeviceEventList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListGatewayGroupsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListGatewayGroupsResponse":{
+      "type":"structure",
+      "members":{
+        "GatewayGroups":{"shape":"GatewayGroupSummaries"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListGatewaysRequest":{
+      "type":"structure",
+      "members":{
+        "GatewayGroupArn":{"shape":"Arn"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListGatewaysResponse":{
+      "type":"structure",
+      "members":{
+        "Gateways":{"shape":"GatewaySummaries"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -2468,6 +2721,13 @@
         "RoomName":{"shape":"RoomName"},
         "RoomSkillParameters":{"shape":"RoomSkillParameters"}
       }
+    },
+    "ResourceAssociatedException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
     },
     "ResourceInUseException":{
       "type":"structure",
@@ -3053,6 +3313,35 @@
       }
     },
     "UpdateDeviceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateGatewayGroupRequest":{
+      "type":"structure",
+      "required":["GatewayGroupArn"],
+      "members":{
+        "GatewayGroupArn":{"shape":"Arn"},
+        "Name":{"shape":"GatewayGroupName"},
+        "Description":{"shape":"GatewayGroupDescription"}
+      }
+    },
+    "UpdateGatewayGroupResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateGatewayRequest":{
+      "type":"structure",
+      "required":["GatewayArn"],
+      "members":{
+        "GatewayArn":{"shape":"Arn"},
+        "Name":{"shape":"GatewayName"},
+        "Description":{"shape":"GatewayDescription"},
+        "SoftwareVersion":{"shape":"GatewayVersion"}
+      }
+    },
+    "UpdateGatewayResponse":{
       "type":"structure",
       "members":{
       }
