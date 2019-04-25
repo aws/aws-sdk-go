@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"strings"
 	"time"
 )
 
@@ -16,7 +15,6 @@ func RecordTrace(w io.Writer, trace *RequestTrace) {
 		Reused:     trace.Reused,
 		Latency:    trace.Finish.Sub(trace.Start),
 		ReqWritten: trace.RequestWritten.Sub(trace.Start),
-		Err:        trace.Err_,
 	}
 
 	if !trace.FirstResponseByte.IsZero() {
@@ -38,10 +36,6 @@ func RecordTrace(w io.Writer, trace *RequestTrace) {
 		attempt.TLSHandshake = trace.TLSHandshakeDone.Sub(trace.TLSHandshakeStart)
 	}
 
-	reqErr := "none"
-	if attempt.Err != nil {
-		reqErr = strings.Replace(attempt.Err.Error(), "\n", `\n`, -1)
-	}
 	_, err := fmt.Fprintln(w,
 		"Latency:",
 		attempt.Latency,
@@ -76,9 +70,6 @@ func RecordTrace(w io.Writer, trace *RequestTrace) {
 		fmt.Sprintf("%s", attempt.RespFirstByte),
 		"WaitRespFirstByte:",
 		fmt.Sprintf("%s", attempt.WaitRespFirstByte),
-
-		"Error:",
-		reqErr,
 	)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "failed to write request trace, %v\n", err)

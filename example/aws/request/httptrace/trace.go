@@ -7,11 +7,11 @@ import (
 	"time"
 )
 
+// RequestTrace provides the trace time stamps of the HTTP request's segments.
 type RequestTrace struct {
 	context.Context
 
 	Start, Finish time.Time
-	Err_          error
 
 	Reused bool
 
@@ -22,6 +22,8 @@ type RequestTrace struct {
 	FirstResponseByte                   time.Time
 }
 
+// NewRequestTrace returns a initialized RequestTrace for an
+// httptrace.ClientTrace, based on the context passed.
 func NewRequestTrace(ctx context.Context) *RequestTrace {
 	rt := &RequestTrace{
 		Start: time.Now(),

@@ -36,5 +36,5 @@ Message: My Really cool Message
 The example will output the http trace timing information for how long the request took.
 
 ```
-Latency: 79.863505ms ConnectionReused: false DNSStartAt: 280.452µs DNSDoneAt: 1.526342ms DNSDur: 1.24589ms ConnectStartAt: 1.533484ms ConnectDoneAt: 11.290792ms ConnectDur: 9.757308ms TLSStatAt: 11.331066ms TLSDoneAt: 33.912968ms TLSDur: 22.581902ms RequestWritten 34.951272ms RespFirstByte: 79.534808ms WaitRespFirstByte: 44.583536ms Error: none
+Latency: 79.863505ms ConnectionReused: false DNSStartAt: 280.452µs DNSDoneAt: 1.526342ms DNSDur: 1.24589ms ConnectStartAt: 1.533484ms ConnectDoneAt: 11.290792ms ConnectDur: 9.757308ms TLSStatAt: 11.331066ms TLSDoneAt: 33.912968ms TLSDur: 22.581902ms RequestWritten 34.951272ms RespFirstByte: 79.534808ms WaitRespFirstByte: 44.583536ms
 ```
