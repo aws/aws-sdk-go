@@ -18,9 +18,10 @@
     "GetFunction": "<p>Returns information about the function or function version, with a link to download the deployment package that's valid for 10 minutes. If you specify a function version, only details that are specific to that version are returned.</p>",
     "GetFunctionConfiguration": "<p>Returns the version-specific settings of a Lambda function or version. The output includes only options that can vary between versions of a function. To modify these settings, use <a>UpdateFunctionConfiguration</a>.</p> <p>To get all of a function's details, including function-level settings, use <a>GetFunction</a>.</p>",
     "GetLayerVersion": "<p>Returns information about a version of an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html\">AWS Lambda layer</a>, with a link to download the layer archive that's valid for 10 minutes.</p>",
+    "GetLayerVersionByArn": "<p>Returns information about a version of an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html\">AWS Lambda layer</a>, with a link to download the layer archive that's valid for 10 minutes.</p>",
     "GetLayerVersionPolicy": "<p>Returns the permission policy for a version of an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html\">AWS Lambda layer</a>. For more information, see <a>AddLayerVersionPermission</a>.</p>",
     "GetPolicy": "<p>Returns the <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html\">resource-based IAM policy</a> for a function, version, or alias.</p>",
-    "Invoke": "<p>Invokes a Lambda function. You can invoke a function synchronously (and wait for the response), or asynchronously. To invoke a function asynchronously, set <code>InvocationType</code> to <code>Event</code>.</p> <p>For synchronous invocation, details about the function response, including errors, are included in the response body and headers. For either invocation type, you can find more information in the <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions.html\">execution log</a> and <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/dlq.html\">trace</a>. To record function errors for asynchronous invocations, configure your function with a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/dlq.html\">dead letter queue</a>.</p> <p>The status code in the API response doesn't reflect function errors. Error codes are reserved for errors that prevent your function from executing, such as permissions errors, <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/limits.html\">limit errors</a>, or issues with your function's code and configuration. For example, Lambda returns <code>TooManyRequestsException</code> if executing the function would cause you to exceed a concurrency limit at either the account level (<code>ConcurrentInvocationLimitExceeded</code>) or function level (<code>ReservedFunctionConcurrentInvocationLimitExceeded</code>).</p> <p>For functions with a long timeout, your client might be disconnected during synchronous invocation while it waits for a response. Configure your HTTP client, SDK, firewall, proxy, or operating system to allow for long connections with timeout or keep-alive settings.</p> <p>This operation requires permission for the <code>lambda:InvokeFunction</code> action.</p>",
+    "Invoke": "<p>Invokes a Lambda function. You can invoke a function synchronously (and wait for the response), or asynchronously. To invoke a function asynchronously, set <code>InvocationType</code> to <code>Event</code>.</p> <p>For synchronous invocation, details about the function response, including errors, are included in the response body and headers. For either invocation type, you can find more information in the <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions.html\">execution log</a> and <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/dlq.html\">trace</a>. To record function errors for asynchronous invocations, configure your function with a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/dlq.html\">dead letter queue</a>.</p> <p>When an error occurs, your function may be invoked multiple times. Retry behavior varies by error type, client, event source, and invocation type. For example, if you invoke a function asynchronously and it returns an error, Lambda executes the function up to two more times. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/retries-on-errors.html\">Retry Behavior</a>.</p> <p>The status code in the API response doesn't reflect function errors. Error codes are reserved for errors that prevent your function from executing, such as permissions errors, <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/limits.html\">limit errors</a>, or issues with your function's code and configuration. For example, Lambda returns <code>TooManyRequestsException</code> if executing the function would cause you to exceed a concurrency limit at either the account level (<code>ConcurrentInvocationLimitExceeded</code>) or function level (<code>ReservedFunctionConcurrentInvocationLimitExceeded</code>).</p> <p>For functions with a long timeout, your client might be disconnected during synchronous invocation while it waits for a response. Configure your HTTP client, SDK, firewall, proxy, or operating system to allow for long connections with timeout or keep-alive settings.</p> <p>This operation requires permission for the <code>lambda:InvokeFunction</code> action.</p>",
     "InvokeAsync": "<important> <p>For asynchronous function invocation, use <a>Invoke</a>.</p> </important> <p>Invokes a function asynchronously.</p>",
     "ListAliases": "<p>Returns a list of <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html\">aliases</a> for a Lambda function.</p>",
     "ListEventSourceMappings": "<p>Lists event source mappings. Specify an <code>EventSourceArn</code> to only show event source mappings for a single event source.</p>",
@@ -39,7 +40,7 @@
     "UpdateAlias": "<p>Updates the configuration of a Lambda function <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html\">alias</a>.</p>",
     "UpdateEventSourceMapping": "<p>Updates an event source mapping. You can change the function that AWS Lambda invokes, or pause invocation and resume later from the same location.</p>",
     "UpdateFunctionCode": "<p>Updates a Lambda function's code.</p> <p>The function's code is locked when you publish a version. You can't modify the code of a published version, only the unpublished version.</p>",
-    "UpdateFunctionConfiguration": "<p>Modify the version-specifc settings of a Lambda function.</p> <p>These settings can vary between versions of a function and are locked when you publish a version. You can't modify the configuration of a published version, only the unpublished version.</p> <p>To configure function concurrency, use <a>PutFunctionConcurrency</a>. To grant invoke permissions to an account or AWS service, use <a>AddPermission</a>.</p>"
+    "UpdateFunctionConfiguration": "<p>Modify the version-specific settings of a Lambda function.</p> <p>These settings can vary between versions of a function and are locked when you publish a version. You can't modify the configuration of a published version, only the unpublished version.</p> <p>To configure function concurrency, use <a>PutFunctionConcurrency</a>. To grant invoke permissions to an account or AWS service, use <a>AddPermission</a>.</p>"
   },
   "shapes": {
     "AccountLimit": {
@@ -164,7 +165,7 @@
       }
     },
     "CodeStorageExceededException": {
-      "base": "<p>You have exceeded your maximum total code size per account. <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/limits.html\">Limits</a> </p>",
+      "base": "<p>You have exceeded your maximum total code size per account. <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/limits.html\">Learn more</a> </p>",
       "refs": {
       }
     },
@@ -443,6 +444,11 @@
       "refs": {
       }
     },
+    "GetLayerVersionByArnRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetLayerVersionPolicyRequest": {
       "base": null,
       "refs": {
@@ -627,6 +633,7 @@
     "LayerVersionArn": {
       "base": null,
       "refs": {
+        "GetLayerVersionByArnRequest$Arn": "<p>The ARN of the layer version.</p>",
         "GetLayerVersionResponse$LayerVersionArn": "<p>The ARN of the layer version.</p>",
         "Layer$Arn": "<p>The Amazon Resource Name (ARN) of the function layer.</p>",
         "LayerList$member": null,
@@ -850,7 +857,7 @@
       }
     },
     "PolicyLengthExceededException": {
-      "base": "<p>Lambda function access policy is limited to 20 KB.</p>",
+      "base": "<p>The permissions policy for the resource is too large. <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/limits.html\">Learn more</a> </p>",
       "refs": {
       }
     },

@@ -1,3 +1,21 @@
+Release v1.19.18 (2019-04-25)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service documentation
+  * Documentation updates for AWS Batch.
+* `service/dynamodb`: Updates service API and documentation
+  * This update allows you to tag Amazon DynamoDB tables when you create them. Tags are labels you can attach to AWS resources to make them easier to manage, search, and filter.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/gamelift`: Updates service API and documentation
+  * This release introduces the new Realtime Servers feature, giving game developers a lightweight yet flexible solution that eliminates the need to build a fully custom game server. The AWS SDK updates provide support for scripts, which are used to configure and customize Realtime Servers.
+* `service/inspector`: Updates service API and documentation
+  * AWS Inspector - Improve the ListFindings API response time and decreases the maximum number of agentIDs from 500 to 99.
+* `service/lambda`: Updates service API and documentation
+  * AWS Lambda now supports the GetLayerVersionByArn API.
+* `service/workspaces`: Updates service documentation
+  * Documentation updates for workspaces
+
 Release v1.19.17 (2019-04-24)
 ===
 

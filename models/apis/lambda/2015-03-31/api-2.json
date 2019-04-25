@@ -269,6 +269,22 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "GetLayerVersionByArn":{
+      "name":"GetLayerVersionByArn",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2018-10-31/layers?find=LayerVersion",
+        "responseCode":200
+      },
+      "input":{"shape":"GetLayerVersionByArnRequest"},
+      "output":{"shape":"GetLayerVersionResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "GetLayerVersionPolicy":{
       "name":"GetLayerVersionPolicy",
       "http":{
@@ -1207,6 +1223,17 @@
         "Code":{"shape":"FunctionCodeLocation"},
         "Tags":{"shape":"Tags"},
         "Concurrency":{"shape":"Concurrency"}
+      }
+    },
+    "GetLayerVersionByArnRequest":{
+      "type":"structure",
+      "required":["Arn"],
+      "members":{
+        "Arn":{
+          "shape":"LayerVersionArn",
+          "location":"querystring",
+          "locationName":"Arn"
+        }
       }
     },
     "GetLayerVersionPolicyRequest":{

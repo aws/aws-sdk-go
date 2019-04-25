@@ -1127,7 +1127,8 @@
         "BillingMode":{"shape":"BillingMode"},
         "ProvisionedThroughput":{"shape":"ProvisionedThroughput"},
         "StreamSpecification":{"shape":"StreamSpecification"},
-        "SSESpecification":{"shape":"SSESpecification"}
+        "SSESpecification":{"shape":"SSESpecification"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateTableOutput":{
