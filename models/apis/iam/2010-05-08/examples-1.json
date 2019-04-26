@@ -568,6 +568,7 @@
             "AttachedPoliciesPerGroupQuota": 10,
             "AttachedPoliciesPerRoleQuota": 10,
             "AttachedPoliciesPerUserQuota": 10,
+            "GlobalEndpointTokenVersion": 2,
             "GroupPolicySizeQuota": 5120,
             "Groups": 15,
             "GroupsPerUserQuota": 10,
@@ -1217,6 +1218,22 @@
         "description": "The following command removes the user named Bob from the IAM group named Admins.",
         "id": "fb54d5b4-0caf-41d8-af0e-10a84413f174",
         "title": "To remove a user from an IAM group"
+      }
+    ],
+    "SetSecurityTokenServicePreferences": [
+      {
+        "input": {
+          "GlobalEndpointTokenVersion": "v2Token"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following command sets the STS global endpoint token to version 2. Version 2 tokens are valid in all Regions.",
+        "id": "61a785a7-d30a-415a-ae18-ab9236e56871",
+        "title": "To delete an access key for an IAM user"
       }
     ],
     "TagRole": [

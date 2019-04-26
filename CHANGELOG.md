@@ -1,3 +1,13 @@
+Release v1.19.19 (2019-04-26)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/iam`: Updates service API, documentation, waiters, and examples
+  * AWS Security Token Service (STS) enables you to request session tokens from the global STS endpoint that work in all AWS Regions. You can configure the global STS endpoint to vend session tokens that are compatible with all AWS Regions using the new IAM SetSecurityTokenServicePreferences API.
+* `service/sns`: Updates service API and documentation
+  * With this release AWS SNS adds tagging support for Topics.
+
 Release v1.19.18 (2019-04-25)
 ===
 
