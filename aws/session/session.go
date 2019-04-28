@@ -469,50 +469,11 @@ func mergeConfigSrcs(cfg, userCfg *aws.Config, envCfg envConfig, sharedCfg share
 
 		// inspect the profile to see if a credential source has been specified.
 		if envCfg.EnableSharedConfig && len(sharedCfg.AssumeRole.CredentialSource) > 0 {
-
-			// if both credential_source and source_profile have been set, return an error
-			// as this is undefined behavior.
-			if len(sharedCfg.AssumeRole.SourceProfile) > 0 {
-				return ErrSharedConfigSourceCollision
+			cred, err := resolveFromCredentialSource(cfg, envCfg, sharedCfg, handlers, sessOpts)
+			if err != nil {
+				return err
 			}
-
-			// valid credential source values
-			const (
-				credSourceEc2Metadata  = "Ec2InstanceMetadata"
-				credSourceEnvironment  = "Environment"
-				credSourceECSContainer = "EcsContainer"
-			)
-
-			switch sharedCfg.AssumeRole.CredentialSource {
-			case credSourceEc2Metadata:
-				cfgCp := *cfg
-				p := defaults.RemoteCredProvider(cfgCp, handlers)
-				cfgCp.Credentials = credentials.NewCredentials(p)
-
-				if len(sharedCfg.AssumeRole.MFASerial) > 0 && sessOpts.AssumeRoleTokenProvider == nil {
-					// AssumeRole Token provider is required if doing Assume Role
-					// with MFA.
-					return AssumeRoleTokenProviderNotSetError{}
-				}
-
-				cfg.Credentials = assumeRoleCredentials(cfgCp, handlers, sharedCfg, sessOpts)
-			case credSourceEnvironment:
-				cfg.Credentials = credentials.NewStaticCredentialsFromCreds(
-					envCfg.Creds,
-				)
-			case credSourceECSContainer:
-				if len(os.Getenv(shareddefaults.ECSCredsProviderEnvVar)) == 0 {
-					return ErrSharedConfigECSContainerEnvVarEmpty
-				}
-
-				cfgCp := *cfg
-				p := defaults.RemoteCredProvider(cfgCp, handlers)
-				creds := credentials.NewCredentials(p)
-
-				cfg.Credentials = creds
-			default:
-				return ErrSharedConfigInvalidCredSource
-			}
+			cfg.Credentials = cred
 
 			return nil
 		}
@@ -521,43 +482,103 @@ func mergeConfigSrcs(cfg, userCfg *aws.Config, envCfg envConfig, sharedCfg share
 			cfg.Credentials = credentials.NewStaticCredentialsFromCreds(
 				envCfg.Creds,
 			)
-		} else if envCfg.EnableSharedConfig && len(sharedCfg.AssumeRole.RoleARN) > 0 && sharedCfg.AssumeRoleSource != nil {
-			cfgCp := *cfg
-			cfgCp.Credentials = credentials.NewStaticCredentialsFromCreds(
-				sharedCfg.AssumeRoleSource.Creds,
-			)
-
-			if len(sharedCfg.AssumeRole.MFASerial) > 0 && sessOpts.AssumeRoleTokenProvider == nil {
-				// AssumeRole Token provider is required if doing Assume Role
-				// with MFA.
-				return AssumeRoleTokenProviderNotSetError{}
-			}
-
-			cfg.Credentials = assumeRoleCredentials(cfgCp, handlers, sharedCfg, sessOpts)
-		} else if len(sharedCfg.Creds.AccessKeyID) > 0 {
-			cfg.Credentials = credentials.NewStaticCredentialsFromCreds(
-				sharedCfg.Creds,
-			)
-		} else if len(sharedCfg.CredentialProcess) > 0 {
-			cfg.Credentials = processcreds.NewCredentials(
-				sharedCfg.CredentialProcess,
-			)
 		} else {
-			// Fallback to default credentials provider, include mock errors
-			// for the credential chain so user can identify why credentials
-			// failed to be retrieved.
-			cfg.Credentials = credentials.NewCredentials(&credentials.ChainProvider{
-				VerboseErrors: aws.BoolValue(cfg.CredentialsChainVerboseErrors),
-				Providers: []credentials.Provider{
-					&credProviderError{Err: awserr.New("EnvAccessKeyNotFound", "failed to find credentials in the environment.", nil)},
-					&credProviderError{Err: awserr.New("SharedCredsLoad", fmt.Sprintf("failed to load profile, %s.", envCfg.Profile), nil)},
-					defaults.RemoteCredProvider(*cfg, handlers),
-				},
-			})
+			cred, err := resolveSharedChain(cfg, envCfg, sharedCfg, handlers, sessOpts)
+			if err != nil {
+				return err
+			}
+			cfg.Credentials = cred
 		}
 	}
 
 	return nil
+}
+
+func resolveFromCredentialSource(cfg *aws.Config, envCfg envConfig, sharedCfg sharedConfig, handlers request.Handlers, sessOpts Options) (*credentials.Credentials, error) {
+	// if both credential_source and source_profile have been set, return an error
+	// as this is undefined behavior.
+	if len(sharedCfg.AssumeRole.SourceProfile) > 0 {
+		return nil, ErrSharedConfigSourceCollision
+	}
+
+	// valid credential source values
+	const (
+		credSourceEc2Metadata  = "Ec2InstanceMetadata"
+		credSourceEnvironment  = "Environment"
+		credSourceECSContainer = "EcsContainer"
+	)
+
+	switch sharedCfg.AssumeRole.CredentialSource {
+	case credSourceEc2Metadata:
+		cfgCp := *cfg
+		p := defaults.RemoteCredProvider(cfgCp, handlers)
+		cfgCp.Credentials = credentials.NewCredentials(p)
+
+		if len(sharedCfg.AssumeRole.MFASerial) > 0 && sessOpts.AssumeRoleTokenProvider == nil {
+			// AssumeRole Token provider is required if doing Assume Role
+			// with MFA.
+			return nil, AssumeRoleTokenProviderNotSetError{}
+		}
+
+		return assumeRoleCredentials(cfgCp, handlers, sharedCfg, sessOpts), nil
+	case credSourceEnvironment:
+		return credentials.NewStaticCredentialsFromCreds(
+			envCfg.Creds,
+		), nil
+	case credSourceECSContainer:
+		if len(os.Getenv(shareddefaults.ECSCredsProviderEnvVar)) == 0 {
+			return nil, ErrSharedConfigECSContainerEnvVarEmpty
+		}
+
+		cfgCp := *cfg
+		p := defaults.RemoteCredProvider(cfgCp, handlers)
+		creds := credentials.NewCredentials(p)
+
+		return creds, nil
+	default:
+		return nil, ErrSharedConfigInvalidCredSource
+	}
+}
+
+func resolveSharedChain(cfg *aws.Config, envCfg envConfig, sharedCfg sharedConfig, handlers request.Handlers, sessOpts Options) (*credentials.Credentials, error) {
+	if envCfg.EnableSharedConfig && len(sharedCfg.AssumeRole.RoleARN) > 0 && sharedCfg.AssumeRoleSource != nil {
+
+		if len(sharedCfg.AssumeRole.MFASerial) > 0 && sessOpts.AssumeRoleTokenProvider == nil {
+			// AssumeRole Token provider is required if doing Assume Role
+			// with MFA.
+			return nil, AssumeRoleTokenProviderNotSetError{}
+		}
+
+		cfgCp := *cfg
+		cred, err := resolveSharedChain(cfg, envCfg, *sharedCfg.AssumeRoleSource, handlers, sessOpts)
+		if err != nil {
+			return nil, err
+		}
+		cfgCp.Credentials = cred
+		return assumeRoleCredentials(cfgCp, handlers, sharedCfg, sessOpts), nil
+	} else if len(sharedCfg.Creds.AccessKeyID) > 0 {
+		return credentials.NewStaticCredentialsFromCreds(
+			sharedCfg.Creds,
+		), nil
+	} else if len(sharedCfg.CredentialProcess) > 0 {
+		return processcreds.NewCredentials(
+			sharedCfg.CredentialProcess,
+		), nil
+	} else if envCfg.EnableSharedConfig && len(sharedCfg.AssumeRole.CredentialSource) > 0 {
+		return resolveFromCredentialSource(cfg, envCfg, sharedCfg, handlers, sessOpts)
+	} else {
+		// Fallback to default credentials provider, include mock errors
+		// for the credential chain so user can identify why credentials
+		// failed to be retrieved.
+		return credentials.NewCredentials(&credentials.ChainProvider{
+			VerboseErrors: aws.BoolValue(cfg.CredentialsChainVerboseErrors),
+			Providers: []credentials.Provider{
+				&credProviderError{Err: awserr.New("EnvAccessKeyNotFound", "failed to find credentials in the environment.", nil)},
+				&credProviderError{Err: awserr.New("SharedCredsLoad", fmt.Sprintf("failed to load profile, %s.", envCfg.Profile), nil)},
+				defaults.RemoteCredProvider(*cfg, handlers),
+			},
+		}), nil
+	}
 }
 
 func assumeRoleCredentials(cfg aws.Config, handlers request.Handlers, sharedCfg sharedConfig, sessOpts Options) *credentials.Credentials {
