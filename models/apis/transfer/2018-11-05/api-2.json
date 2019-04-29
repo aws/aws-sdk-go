@@ -25,7 +25,8 @@
       "errors":[
         {"shape":"ServiceUnavailableException"},
         {"shape":"InternalServiceError"},
-        {"shape":"InvalidRequestException"}
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceExistsException"}
       ]
     },
     "CreateUser":{
@@ -289,6 +290,7 @@
       "members":{
         "EndpointDetails":{"shape":"EndpointDetails"},
         "EndpointType":{"shape":"EndpointType"},
+        "HostKey":{"shape":"HostKey"},
         "IdentityProviderDetails":{"shape":"IdentityProviderDetails"},
         "IdentityProviderType":{"shape":"IdentityProviderType"},
         "LoggingRole":{"shape":"Role"},
@@ -405,6 +407,7 @@
         "Arn":{"shape":"Arn"},
         "EndpointDetails":{"shape":"EndpointDetails"},
         "EndpointType":{"shape":"EndpointType"},
+        "HostKeyFingerprint":{"shape":"HostKeyFingerprint"},
         "IdentityProviderDetails":{"shape":"IdentityProviderDetails"},
         "IdentityProviderType":{"shape":"IdentityProviderType"},
         "LoggingRole":{"shape":"Role"},
@@ -445,6 +448,11 @@
       "max":1024,
       "pattern":"^$|/.*"
     },
+    "HostKey":{
+      "type":"string",
+      "max":4096
+    },
+    "HostKeyFingerprint":{"type":"string"},
     "IdentityProviderDetails":{
       "type":"structure",
       "members":{
@@ -790,6 +798,7 @@
       "members":{
         "EndpointDetails":{"shape":"EndpointDetails"},
         "EndpointType":{"shape":"EndpointType"},
+        "HostKey":{"shape":"HostKey"},
         "IdentityProviderDetails":{"shape":"IdentityProviderDetails"},
         "LoggingRole":{"shape":"NullableRole"},
         "ServerId":{"shape":"ServerId"}

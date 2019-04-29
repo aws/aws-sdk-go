@@ -1,3 +1,13 @@
+Release v1.19.20 (2019-04-29)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Adds support for Elastic Fabric Adapter (EFA) ENIs.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/transfer`: Updates service API, documentation, and paginators
+  * This release adds support for per-server host-key management. You can now specify the SSH RSA private key used by your SFTP server.
+
 Release v1.19.19 (2019-04-26)
 ===
 
