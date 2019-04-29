@@ -6041,6 +6041,7 @@
           "shape":"Integer",
           "locationName":"secondaryPrivateIpAddressCount"
         },
+        "InterfaceType":{"shape":"NetworkInterfaceCreationType"},
         "SubnetId":{
           "shape":"String",
           "locationName":"subnetId"
@@ -13948,6 +13949,10 @@
         "VpcId":{
           "shape":"String",
           "locationName":"vpcId"
+        },
+        "InterfaceType":{
+          "shape":"String",
+          "locationName":"interfaceType"
         }
       }
     },
@@ -14052,7 +14057,8 @@
         "SubnetId":{
           "shape":"String",
           "locationName":"subnetId"
-        }
+        },
+        "InterfaceType":{"shape":"String"}
       }
     },
     "InstanceNetworkInterfaceSpecificationList":{
@@ -15087,6 +15093,10 @@
           "shape":"GroupIdStringList",
           "locationName":"groupSet"
         },
+        "InterfaceType":{
+          "shape":"String",
+          "locationName":"interfaceType"
+        },
         "Ipv6AddressCount":{
           "shape":"Integer",
           "locationName":"ipv6AddressCount"
@@ -15135,6 +15145,7 @@
           "shape":"SecurityGroupIdStringList",
           "locationName":"SecurityGroupId"
         },
+        "InterfaceType":{"shape":"String"},
         "Ipv6AddressCount":{"shape":"Integer"},
         "Ipv6Addresses":{"shape":"InstanceIpv6AddressListRequest"},
         "NetworkInterfaceId":{"shape":"String"},
@@ -16719,6 +16730,10 @@
         "attachment"
       ]
     },
+    "NetworkInterfaceCreationType":{
+      "type":"string",
+      "enum":["efa"]
+    },
     "NetworkInterfaceIdList":{
       "type":"list",
       "member":{
@@ -16853,7 +16868,8 @@
       "type":"string",
       "enum":[
         "interface",
-        "natGateway"
+        "natGateway",
+        "efa"
       ]
     },
     "NewDhcpConfiguration":{
@@ -18202,11 +18218,11 @@
         "CreditSpecification":{"shape":"CreditSpecificationRequest"},
         "CpuOptions":{"shape":"LaunchTemplateCpuOptionsRequest"},
         "CapacityReservationSpecification":{"shape":"LaunchTemplateCapacityReservationSpecificationRequest"},
-        "HibernationOptions":{"shape":"LaunchTemplateHibernationOptionsRequest"},
         "LicenseSpecifications":{
           "shape":"LaunchTemplateLicenseSpecificationListRequest",
           "locationName":"LicenseSpecification"
-        }
+        },
+        "HibernationOptions":{"shape":"LaunchTemplateHibernationOptionsRequest"}
       }
     },
     "RequestSpotFleetRequest":{
@@ -19068,13 +19084,13 @@
           "shape":"LaunchTemplateCapacityReservationSpecificationResponse",
           "locationName":"capacityReservationSpecification"
         },
-        "HibernationOptions":{
-          "shape":"LaunchTemplateHibernationOptions",
-          "locationName":"hibernationOptions"
-        },
         "LicenseSpecifications":{
           "shape":"LaunchTemplateLicenseList",
           "locationName":"licenseSet"
+        },
+        "HibernationOptions":{
+          "shape":"LaunchTemplateHibernationOptions",
+          "locationName":"hibernationOptions"
         }
       }
     },

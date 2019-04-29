@@ -3765,6 +3765,18 @@
           "us-gov-west-1" : { }
         }
       },
+      "organizations" : {
+        "endpoints" : {
+          "aws-us-gov-global" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "organizations.us-gov-west-1.amazonaws.com"
+          }
+        },
+        "isRegionalized" : false,
+        "partitionEndpoint" : "aws-us-gov-global"
+      },
       "polly" : {
         "endpoints" : {
           "us-gov-west-1" : { }
