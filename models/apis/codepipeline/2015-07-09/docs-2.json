@@ -184,8 +184,9 @@
       }
     },
     "ActionExecutionId": {
-      "base": "<p>The system-generated unique ID that corresponds to an action's execution.</p>",
+      "base": null,
       "refs": {
+        "ActionContext$actionExecutionId": "<p>The system-generated unique ID that corresponds to an action's execution.</p>",
         "ActionExecutionDetail$actionExecutionId": "<p>The action execution ID.</p>"
       }
     },
@@ -936,8 +937,8 @@
     "MaxResults": {
       "base": null,
       "refs": {
-        "ListActionExecutionsInput$maxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned nextToken value. The action execution history is limited to the most recent 12 months, based on action execution start times. Default value is 100. </p>",
-        "ListPipelineExecutionsInput$maxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned nextToken value. The available pipeline execution history is limited to the most recent 12 months, based on pipeline execution start times. Default value is 100.</p>",
+        "ListActionExecutionsInput$maxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned nextToken value. Action execution history is retained for up to 12 months, based on action execution start times. Default value is 100. </p> <note> <p>Detailed execution history is available for executions run on or after February 21, 2019.</p> </note>",
+        "ListPipelineExecutionsInput$maxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned nextToken value. Pipeline history is limited to the most recent 12 months, based on pipeline execution start times. Default value is 100.</p>",
         "ListWebhooksInput$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned nextToken value.</p>"
       }
     },
@@ -1011,14 +1012,15 @@
     "PipelineArn": {
       "base": null,
       "refs": {
+        "PipelineContext$pipelineArn": "<p>The pipeline execution ID provided to the job worker.</p>",
         "PipelineMetadata$pipelineArn": "<p>The Amazon Resource Name (ARN) of the pipeline.</p>"
       }
     },
     "PipelineContext": {
-      "base": "<p>Represents information about a pipeline to a job worker.</p>",
+      "base": "<p>Represents information about a pipeline to a job worker.</p> <note> <p>PipelineContext contains <code>pipelineArn</code> and <code>pipelineExecutionId</code> for custom action jobs. The <code>pipelineArn</code> and <code>pipelineExecutionId</code> fields are not populated for ThirdParty action jobs.</p> </note>",
       "refs": {
-        "JobData$pipelineContext": "<p>Represents information about a pipeline to a job worker.</p>",
-        "ThirdPartyJobData$pipelineContext": "<p>Represents information about a pipeline to a job worker.</p>"
+        "JobData$pipelineContext": "<p>Represents information about a pipeline to a job worker.</p> <note> <p>Includes <code>pipelineArn</code> and <code>pipelineExecutionId</code> for Custom jobs.</p> </note>",
+        "ThirdPartyJobData$pipelineContext": "<p>Represents information about a pipeline to a job worker.</p> <note> <p>Does not include <code>pipelineArn</code> and <code>pipelineExecutionId</code> for ThirdParty jobs.</p> </note>"
       }
     },
     "PipelineDeclaration": {
@@ -1043,6 +1045,7 @@
         "ActionExecutionDetail$pipelineExecutionId": "<p>The pipeline execution ID for the action execution.</p>",
         "ActionExecutionFilter$pipelineExecutionId": "<p>The pipeline execution ID used to filter action execution history.</p>",
         "GetPipelineExecutionInput$pipelineExecutionId": "<p>The ID of the pipeline execution about which you want to get execution details.</p>",
+        "PipelineContext$pipelineExecutionId": "<p>The pipeline Amazon Resource Name (ARN) provided to the job worker.</p>",
         "PipelineExecution$pipelineExecutionId": "<p>The ID of the pipeline execution.</p>",
         "PipelineExecutionSummary$pipelineExecutionId": "<p>The ID of the pipeline execution.</p>",
         "PutActionRevisionOutput$pipelineExecutionId": "<p>The ID of the current workflow state of the pipeline.</p>",

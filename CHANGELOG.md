@@ -1,3 +1,20 @@
+Release v1.19.21 (2019-04-30)
+===
+
+### Service Client Updates
+* `service/codepipeline`: Updates service API and documentation
+  * This release contains an update to the PipelineContext object that includes the Pipeline ARN, and the Pipeline Execution Id. The ActionContext object is also updated to include the Action Execution Id.
+* `service/directconnect`: Updates service API and documentation
+  * This release adds support for AWS Direct Connect customers to use AWS Transit Gateway with AWS Direct Connect gateway to route traffic between on-premise networks and their VPCs.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/managedblockchain`: Adds new service
+* `service/neptune`: Updates service API, documentation, and examples
+  * Adds a feature to allow customers to specify a custom parameter group when restoring a database cluster.
+* `service/s3control`: Updates service API, documentation, and paginators
+  * Add support for Amazon S3 Batch Operations.
+* `service/servicecatalog`: Updates service API, documentation, and paginators
+  * Admin users can now associate/disassociate aws budgets with a portfolio or product in Service Catalog. End users can see the association by listing it or as part of the describe portfolio/product output. A new optional boolean parameter, "DisableTemplateValidation", is added to ProvisioningArtifactProperties data type. The purpose of the parameter is to enable or disable the CloudFormation template validtion when creating a product or a provisioning artifact.
+
 Release v1.19.20 (2019-04-29)
 ===
 

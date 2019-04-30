@@ -80,6 +80,10 @@ type DirectConnectAPI interface {
 	AllocatePublicVirtualInterfaceWithContext(aws.Context, *directconnect.AllocatePublicVirtualInterfaceInput, ...request.Option) (*directconnect.VirtualInterface, error)
 	AllocatePublicVirtualInterfaceRequest(*directconnect.AllocatePublicVirtualInterfaceInput) (*request.Request, *directconnect.VirtualInterface)
 
+	AllocateTransitVirtualInterface(*directconnect.AllocateTransitVirtualInterfaceInput) (*directconnect.AllocateTransitVirtualInterfaceOutput, error)
+	AllocateTransitVirtualInterfaceWithContext(aws.Context, *directconnect.AllocateTransitVirtualInterfaceInput, ...request.Option) (*directconnect.AllocateTransitVirtualInterfaceOutput, error)
+	AllocateTransitVirtualInterfaceRequest(*directconnect.AllocateTransitVirtualInterfaceInput) (*request.Request, *directconnect.AllocateTransitVirtualInterfaceOutput)
+
 	AssociateConnectionWithLag(*directconnect.AssociateConnectionWithLagInput) (*directconnect.Connection, error)
 	AssociateConnectionWithLagWithContext(aws.Context, *directconnect.AssociateConnectionWithLagInput, ...request.Option) (*directconnect.Connection, error)
 	AssociateConnectionWithLagRequest(*directconnect.AssociateConnectionWithLagInput) (*request.Request, *directconnect.Connection)
@@ -103,6 +107,10 @@ type DirectConnectAPI interface {
 	ConfirmPublicVirtualInterface(*directconnect.ConfirmPublicVirtualInterfaceInput) (*directconnect.ConfirmPublicVirtualInterfaceOutput, error)
 	ConfirmPublicVirtualInterfaceWithContext(aws.Context, *directconnect.ConfirmPublicVirtualInterfaceInput, ...request.Option) (*directconnect.ConfirmPublicVirtualInterfaceOutput, error)
 	ConfirmPublicVirtualInterfaceRequest(*directconnect.ConfirmPublicVirtualInterfaceInput) (*request.Request, *directconnect.ConfirmPublicVirtualInterfaceOutput)
+
+	ConfirmTransitVirtualInterface(*directconnect.ConfirmTransitVirtualInterfaceInput) (*directconnect.ConfirmTransitVirtualInterfaceOutput, error)
+	ConfirmTransitVirtualInterfaceWithContext(aws.Context, *directconnect.ConfirmTransitVirtualInterfaceInput, ...request.Option) (*directconnect.ConfirmTransitVirtualInterfaceOutput, error)
+	ConfirmTransitVirtualInterfaceRequest(*directconnect.ConfirmTransitVirtualInterfaceInput) (*request.Request, *directconnect.ConfirmTransitVirtualInterfaceOutput)
 
 	CreateBGPPeer(*directconnect.CreateBGPPeerInput) (*directconnect.CreateBGPPeerOutput, error)
 	CreateBGPPeerWithContext(aws.Context, *directconnect.CreateBGPPeerInput, ...request.Option) (*directconnect.CreateBGPPeerOutput, error)
@@ -139,6 +147,10 @@ type DirectConnectAPI interface {
 	CreatePublicVirtualInterface(*directconnect.CreatePublicVirtualInterfaceInput) (*directconnect.VirtualInterface, error)
 	CreatePublicVirtualInterfaceWithContext(aws.Context, *directconnect.CreatePublicVirtualInterfaceInput, ...request.Option) (*directconnect.VirtualInterface, error)
 	CreatePublicVirtualInterfaceRequest(*directconnect.CreatePublicVirtualInterfaceInput) (*request.Request, *directconnect.VirtualInterface)
+
+	CreateTransitVirtualInterface(*directconnect.CreateTransitVirtualInterfaceInput) (*directconnect.CreateTransitVirtualInterfaceOutput, error)
+	CreateTransitVirtualInterfaceWithContext(aws.Context, *directconnect.CreateTransitVirtualInterfaceInput, ...request.Option) (*directconnect.CreateTransitVirtualInterfaceOutput, error)
+	CreateTransitVirtualInterfaceRequest(*directconnect.CreateTransitVirtualInterfaceInput) (*request.Request, *directconnect.CreateTransitVirtualInterfaceOutput)
 
 	DeleteBGPPeer(*directconnect.DeleteBGPPeerInput) (*directconnect.DeleteBGPPeerOutput, error)
 	DeleteBGPPeerWithContext(aws.Context, *directconnect.DeleteBGPPeerInput, ...request.Option) (*directconnect.DeleteBGPPeerOutput, error)

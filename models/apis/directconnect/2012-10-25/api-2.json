@@ -78,6 +78,19 @@
         {"shape":"DirectConnectClientException"}
       ]
     },
+    "AllocateTransitVirtualInterface":{
+      "name":"AllocateTransitVirtualInterface",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AllocateTransitVirtualInterfaceRequest"},
+      "output":{"shape":"AllocateTransitVirtualInterfaceResult"},
+      "errors":[
+        {"shape":"DirectConnectServerException"},
+        {"shape":"DirectConnectClientException"}
+      ]
+    },
     "AssociateConnectionWithLag":{
       "name":"AssociateConnectionWithLag",
       "http":{
@@ -151,6 +164,19 @@
       },
       "input":{"shape":"ConfirmPublicVirtualInterfaceRequest"},
       "output":{"shape":"ConfirmPublicVirtualInterfaceResponse"},
+      "errors":[
+        {"shape":"DirectConnectServerException"},
+        {"shape":"DirectConnectClientException"}
+      ]
+    },
+    "ConfirmTransitVirtualInterface":{
+      "name":"ConfirmTransitVirtualInterface",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ConfirmTransitVirtualInterfaceRequest"},
+      "output":{"shape":"ConfirmTransitVirtualInterfaceResponse"},
       "errors":[
         {"shape":"DirectConnectServerException"},
         {"shape":"DirectConnectClientException"}
@@ -268,6 +294,19 @@
       },
       "input":{"shape":"CreatePublicVirtualInterfaceRequest"},
       "output":{"shape":"VirtualInterface"},
+      "errors":[
+        {"shape":"DirectConnectServerException"},
+        {"shape":"DirectConnectClientException"}
+      ]
+    },
+    "CreateTransitVirtualInterface":{
+      "name":"CreateTransitVirtualInterface",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateTransitVirtualInterfaceRequest"},
+      "output":{"shape":"CreateTransitVirtualInterfaceResult"},
       "errors":[
         {"shape":"DirectConnectServerException"},
         {"shape":"DirectConnectClientException"}
@@ -756,6 +795,25 @@
         "newPublicVirtualInterfaceAllocation":{"shape":"NewPublicVirtualInterfaceAllocation"}
       }
     },
+    "AllocateTransitVirtualInterfaceRequest":{
+      "type":"structure",
+      "required":[
+        "connectionId",
+        "ownerAccount",
+        "newTransitVirtualInterfaceAllocation"
+      ],
+      "members":{
+        "connectionId":{"shape":"ConnectionId"},
+        "ownerAccount":{"shape":"OwnerAccount"},
+        "newTransitVirtualInterfaceAllocation":{"shape":"NewTransitVirtualInterfaceAllocation"}
+      }
+    },
+    "AllocateTransitVirtualInterfaceResult":{
+      "type":"structure",
+      "members":{
+        "virtualInterface":{"shape":"VirtualInterface"}
+      }
+    },
     "AmazonAddress":{"type":"string"},
     "AssociateConnectionWithLagRequest":{
       "type":"structure",
@@ -886,6 +944,23 @@
       }
     },
     "ConfirmPublicVirtualInterfaceResponse":{
+      "type":"structure",
+      "members":{
+        "virtualInterfaceState":{"shape":"VirtualInterfaceState"}
+      }
+    },
+    "ConfirmTransitVirtualInterfaceRequest":{
+      "type":"structure",
+      "required":[
+        "virtualInterfaceId",
+        "directConnectGatewayId"
+      ],
+      "members":{
+        "virtualInterfaceId":{"shape":"VirtualInterfaceId"},
+        "directConnectGatewayId":{"shape":"DirectConnectGatewayId"}
+      }
+    },
+    "ConfirmTransitVirtualInterfaceResponse":{
       "type":"structure",
       "members":{
         "virtualInterfaceState":{"shape":"VirtualInterfaceState"}
@@ -1066,6 +1141,23 @@
       "members":{
         "connectionId":{"shape":"ConnectionId"},
         "newPublicVirtualInterface":{"shape":"NewPublicVirtualInterface"}
+      }
+    },
+    "CreateTransitVirtualInterfaceRequest":{
+      "type":"structure",
+      "required":[
+        "connectionId",
+        "newTransitVirtualInterface"
+      ],
+      "members":{
+        "connectionId":{"shape":"ConnectionId"},
+        "newTransitVirtualInterface":{"shape":"NewTransitVirtualInterface"}
+      }
+    },
+    "CreateTransitVirtualInterfaceResult":{
+      "type":"structure",
+      "members":{
+        "virtualInterface":{"shape":"VirtualInterface"}
       }
     },
     "CustomerAddress":{"type":"string"},
@@ -1402,6 +1494,7 @@
         "virtualInterfaceRegion":{"shape":"VirtualInterfaceRegion"},
         "virtualInterfaceOwnerAccount":{"shape":"OwnerAccount"},
         "attachmentState":{"shape":"DirectConnectGatewayAttachmentState"},
+        "attachmentType":{"shape":"DirectConnectGatewayAttachmentType"},
         "stateChangeError":{"shape":"StateChangeError"}
       }
     },
@@ -1416,6 +1509,13 @@
         "attached",
         "detaching",
         "detached"
+      ]
+    },
+    "DirectConnectGatewayAttachmentType":{
+      "type":"string",
+      "enum":[
+        "TransitVirtualInterface",
+        "PrivateVirtualInterface"
       ]
     },
     "DirectConnectGatewayId":{"type":"string"},
@@ -1462,7 +1562,10 @@
     "GatewayIdentifier":{"type":"string"},
     "GatewayType":{
       "type":"string",
-      "enum":["virtualPrivateGateway"]
+      "enum":[
+        "virtualPrivateGateway",
+        "transitGateway"
+      ]
     },
     "HasLogicalRedundancy":{
       "type":"string",
@@ -1680,6 +1783,33 @@
         "customerAddress":{"shape":"CustomerAddress"},
         "addressFamily":{"shape":"AddressFamily"},
         "routeFilterPrefixes":{"shape":"RouteFilterPrefixList"}
+      }
+    },
+    "NewTransitVirtualInterface":{
+      "type":"structure",
+      "members":{
+        "virtualInterfaceName":{"shape":"VirtualInterfaceName"},
+        "vlan":{"shape":"VLAN"},
+        "asn":{"shape":"ASN"},
+        "mtu":{"shape":"MTU"},
+        "authKey":{"shape":"BGPAuthKey"},
+        "amazonAddress":{"shape":"AmazonAddress"},
+        "customerAddress":{"shape":"CustomerAddress"},
+        "addressFamily":{"shape":"AddressFamily"},
+        "directConnectGatewayId":{"shape":"DirectConnectGatewayId"}
+      }
+    },
+    "NewTransitVirtualInterfaceAllocation":{
+      "type":"structure",
+      "members":{
+        "virtualInterfaceName":{"shape":"VirtualInterfaceName"},
+        "vlan":{"shape":"VLAN"},
+        "asn":{"shape":"ASN"},
+        "mtu":{"shape":"MTU"},
+        "authKey":{"shape":"BGPAuthKey"},
+        "amazonAddress":{"shape":"AmazonAddress"},
+        "customerAddress":{"shape":"CustomerAddress"},
+        "addressFamily":{"shape":"AddressFamily"}
       }
     },
     "OwnerAccount":{"type":"string"},

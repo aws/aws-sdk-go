@@ -604,7 +604,8 @@
     "ActionContext":{
       "type":"structure",
       "members":{
-        "name":{"shape":"ActionName"}
+        "name":{"shape":"ActionName"},
+        "actionExecutionId":{"shape":"ActionExecutionId"}
       }
     },
     "ActionDeclaration":{
@@ -1570,7 +1571,9 @@
       "members":{
         "pipelineName":{"shape":"PipelineName"},
         "stage":{"shape":"StageContext"},
-        "action":{"shape":"ActionContext"}
+        "action":{"shape":"ActionContext"},
+        "pipelineArn":{"shape":"PipelineArn"},
+        "pipelineExecutionId":{"shape":"PipelineExecutionId"}
       }
     },
     "PipelineDeclaration":{
