@@ -26,6 +26,21 @@
         {"shape":"LimitExceededException"}
       ]
     },
+    "AssociateBudgetWithResource":{
+      "name":"AssociateBudgetWithResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateBudgetWithResourceInput"},
+      "output":{"shape":"AssociateBudgetWithResourceOutput"},
+      "errors":[
+        {"shape":"InvalidParametersException"},
+        {"shape":"DuplicateResourceException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "AssociatePrincipalWithPortfolio":{
       "name":"AssociatePrincipalWithPortfolio",
       "http":{
@@ -535,6 +550,18 @@
         {"shape":"OperationNotSupportedException"}
       ]
     },
+    "DisassociateBudgetFromResource":{
+      "name":"DisassociateBudgetFromResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociateBudgetFromResourceInput"},
+      "output":{"shape":"DisassociateBudgetFromResourceOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "DisassociatePrincipalFromPortfolio":{
       "name":"DisassociatePrincipalFromPortfolio",
       "http":{
@@ -653,6 +680,19 @@
       "errors":[
         {"shape":"InvalidParametersException"},
         {"shape":"OperationNotSupportedException"}
+      ]
+    },
+    "ListBudgetsForResource":{
+      "name":"ListBudgetsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListBudgetsForResourceInput"},
+      "output":{"shape":"ListBudgetsForResourceOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParametersException"}
       ]
     },
     "ListConstraintsForPortfolio":{
@@ -1094,6 +1134,22 @@
       "member":{"shape":"AllowedValue"}
     },
     "ApproximateCount":{"type":"integer"},
+    "AssociateBudgetWithResourceInput":{
+      "type":"structure",
+      "required":[
+        "BudgetName",
+        "ResourceId"
+      ],
+      "members":{
+        "BudgetName":{"shape":"BudgetName"},
+        "ResourceId":{"shape":"Id"}
+      }
+    },
+    "AssociateBudgetWithResourceOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "AssociatePrincipalWithPortfolioInput":{
       "type":"structure",
       "required":[
@@ -1194,6 +1250,21 @@
       "members":{
         "FailedServiceActionAssociations":{"shape":"FailedServiceActionAssociations"}
       }
+    },
+    "BudgetDetail":{
+      "type":"structure",
+      "members":{
+        "BudgetName":{"shape":"BudgetName"}
+      }
+    },
+    "BudgetName":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "Budgets":{
+      "type":"list",
+      "member":{"shape":"BudgetDetail"}
     },
     "CausingEntity":{"type":"string"},
     "ChangeAction":{
@@ -1359,7 +1430,7 @@
     "CreatePortfolioShareOutput":{
       "type":"structure",
       "members":{
-        "PortfolioShareToken":{"shape":"PortfolioShareToken"}
+        "PortfolioShareToken":{"shape":"Id"}
       }
     },
     "CreateProductInput":{
@@ -1544,7 +1615,7 @@
     "DeletePortfolioShareOutput":{
       "type":"structure",
       "members":{
-        "PortfolioShareToken":{"shape":"PortfolioShareToken"}
+        "PortfolioShareToken":{"shape":"Id"}
       }
     },
     "DeleteProductInput":{
@@ -1661,20 +1732,21 @@
       "members":{
         "PortfolioDetail":{"shape":"PortfolioDetail"},
         "Tags":{"shape":"Tags"},
-        "TagOptions":{"shape":"TagOptionDetails"}
+        "TagOptions":{"shape":"TagOptionDetails"},
+        "Budgets":{"shape":"Budgets"}
       }
     },
     "DescribePortfolioShareStatusInput":{
       "type":"structure",
       "required":["PortfolioShareToken"],
       "members":{
-        "PortfolioShareToken":{"shape":"PortfolioShareToken"}
+        "PortfolioShareToken":{"shape":"Id"}
       }
     },
     "DescribePortfolioShareStatusOutput":{
       "type":"structure",
       "members":{
-        "PortfolioShareToken":{"shape":"PortfolioShareToken"},
+        "PortfolioShareToken":{"shape":"Id"},
         "PortfolioId":{"shape":"Id"},
         "OrganizationNodeValue":{"shape":"OrganizationNodeValue"},
         "Status":{"shape":"ShareStatus"},
@@ -1695,7 +1767,8 @@
         "ProductViewDetail":{"shape":"ProductViewDetail"},
         "ProvisioningArtifactSummaries":{"shape":"ProvisioningArtifactSummaries"},
         "Tags":{"shape":"Tags"},
-        "TagOptions":{"shape":"TagOptionDetails"}
+        "TagOptions":{"shape":"TagOptionDetails"},
+        "Budgets":{"shape":"Budgets"}
       }
     },
     "DescribeProductInput":{
@@ -1710,7 +1783,8 @@
       "type":"structure",
       "members":{
         "ProductViewSummary":{"shape":"ProductViewSummary"},
-        "ProvisioningArtifacts":{"shape":"ProvisioningArtifacts"}
+        "ProvisioningArtifacts":{"shape":"ProvisioningArtifacts"},
+        "Budgets":{"shape":"Budgets"}
       }
     },
     "DescribeProductViewInput":{
@@ -1857,6 +1931,23 @@
       }
     },
     "DisableAWSOrganizationsAccessOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DisableTemplateValidation":{"type":"boolean"},
+    "DisassociateBudgetFromResourceInput":{
+      "type":"structure",
+      "required":[
+        "BudgetName",
+        "ResourceId"
+      ],
+      "members":{
+        "BudgetName":{"shape":"BudgetName"},
+        "ResourceId":{"shape":"Id"}
+      }
+    },
+    "DisassociateBudgetFromResourceOutput":{
       "type":"structure",
       "members":{
       }
@@ -2087,6 +2178,23 @@
       "type":"structure",
       "members":{
         "PortfolioDetails":{"shape":"PortfolioDetails"},
+        "NextPageToken":{"shape":"PageToken"}
+      }
+    },
+    "ListBudgetsForResourceInput":{
+      "type":"structure",
+      "required":["ResourceId"],
+      "members":{
+        "AcceptLanguage":{"shape":"AcceptLanguage"},
+        "ResourceId":{"shape":"Id"},
+        "PageSize":{"shape":"PageSize"},
+        "PageToken":{"shape":"PageToken"}
+      }
+    },
+    "ListBudgetsForResourceOutput":{
+      "type":"structure",
+      "members":{
+        "Budgets":{"shape":"Budgets"},
         "NextPageToken":{"shape":"PageToken"}
       }
     },
@@ -2466,7 +2574,6 @@
       "min":1
     },
     "PortfolioName":{"type":"string"},
-    "PortfolioShareToken":{"type":"string"},
     "PortfolioShareType":{
       "type":"string",
       "enum":[
@@ -2839,7 +2946,8 @@
         "Name":{"shape":"ProvisioningArtifactName"},
         "Description":{"shape":"ProvisioningArtifactDescription"},
         "Info":{"shape":"ProvisioningArtifactInfo"},
-        "Type":{"shape":"ProvisioningArtifactType"}
+        "Type":{"shape":"ProvisioningArtifactType"},
+        "DisableTemplateValidation":{"shape":"DisableTemplateValidation"}
       }
     },
     "ProvisioningArtifactPropertyName":{
