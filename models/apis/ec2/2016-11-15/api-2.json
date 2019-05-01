@@ -2537,6 +2537,15 @@
       "input":{"shape":"ModifyVpcTenancyRequest"},
       "output":{"shape":"ModifyVpcTenancyResult"}
     },
+    "ModifyVpnConnection":{
+      "name":"ModifyVpnConnection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyVpnConnectionRequest"},
+      "output":{"shape":"ModifyVpnConnectionResult"}
+    },
     "MonitorInstances":{
       "name":"MonitorInstances",
       "http":{
@@ -16265,6 +16274,25 @@
         "ReturnValue":{
           "shape":"Boolean",
           "locationName":"return"
+        }
+      }
+    },
+    "ModifyVpnConnectionRequest":{
+      "type":"structure",
+      "required":["VpnConnectionId"],
+      "members":{
+        "VpnConnectionId":{"shape":"String"},
+        "TransitGatewayId":{"shape":"String"},
+        "VpnGatewayId":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "ModifyVpnConnectionResult":{
+      "type":"structure",
+      "members":{
+        "VpnConnection":{
+          "shape":"VpnConnection",
+          "locationName":"vpnConnection"
         }
       }
     },

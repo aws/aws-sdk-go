@@ -686,6 +686,12 @@ func (c *XRay) GetGroupsRequest(input *GetGroupsInput) (req *request.Request, ou
 		Name:       opGetGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/Groups",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -737,6 +743,56 @@ func (c *XRay) GetGroupsWithContext(ctx aws.Context, input *GetGroupsInput, opts
 	return out, req.Send()
 }
 
+// GetGroupsPages iterates over the pages of a GetGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetGroups operation.
+//    pageNum := 0
+//    err := client.GetGroupsPages(params,
+//        func(page *GetGroupsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *XRay) GetGroupsPages(input *GetGroupsInput, fn func(*GetGroupsOutput, bool) bool) error {
+	return c.GetGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetGroupsPagesWithContext same as GetGroupsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *XRay) GetGroupsPagesWithContext(ctx aws.Context, input *GetGroupsInput, fn func(*GetGroupsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetGroupsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetGroupsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*GetGroupsOutput), !p.HasNextPage())
+	}
+	return p.Err()
+}
+
 const opGetSamplingRules = "GetSamplingRules"
 
 // GetSamplingRulesRequest generates a "aws/request.Request" representing the
@@ -768,6 +824,12 @@ func (c *XRay) GetSamplingRulesRequest(input *GetSamplingRulesInput) (req *reque
 		Name:       opGetSamplingRules,
 		HTTPMethod: "POST",
 		HTTPPath:   "/GetSamplingRules",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -819,6 +881,56 @@ func (c *XRay) GetSamplingRulesWithContext(ctx aws.Context, input *GetSamplingRu
 	return out, req.Send()
 }
 
+// GetSamplingRulesPages iterates over the pages of a GetSamplingRules operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetSamplingRules method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetSamplingRules operation.
+//    pageNum := 0
+//    err := client.GetSamplingRulesPages(params,
+//        func(page *GetSamplingRulesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *XRay) GetSamplingRulesPages(input *GetSamplingRulesInput, fn func(*GetSamplingRulesOutput, bool) bool) error {
+	return c.GetSamplingRulesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetSamplingRulesPagesWithContext same as GetSamplingRulesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *XRay) GetSamplingRulesPagesWithContext(ctx aws.Context, input *GetSamplingRulesInput, fn func(*GetSamplingRulesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetSamplingRulesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetSamplingRulesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*GetSamplingRulesOutput), !p.HasNextPage())
+	}
+	return p.Err()
+}
+
 const opGetSamplingStatisticSummaries = "GetSamplingStatisticSummaries"
 
 // GetSamplingStatisticSummariesRequest generates a "aws/request.Request" representing the
@@ -850,6 +962,12 @@ func (c *XRay) GetSamplingStatisticSummariesRequest(input *GetSamplingStatisticS
 		Name:       opGetSamplingStatisticSummaries,
 		HTTPMethod: "POST",
 		HTTPPath:   "/SamplingStatisticSummaries",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -899,6 +1017,56 @@ func (c *XRay) GetSamplingStatisticSummariesWithContext(ctx aws.Context, input *
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// GetSamplingStatisticSummariesPages iterates over the pages of a GetSamplingStatisticSummaries operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetSamplingStatisticSummaries method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetSamplingStatisticSummaries operation.
+//    pageNum := 0
+//    err := client.GetSamplingStatisticSummariesPages(params,
+//        func(page *GetSamplingStatisticSummariesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *XRay) GetSamplingStatisticSummariesPages(input *GetSamplingStatisticSummariesInput, fn func(*GetSamplingStatisticSummariesOutput, bool) bool) error {
+	return c.GetSamplingStatisticSummariesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetSamplingStatisticSummariesPagesWithContext same as GetSamplingStatisticSummariesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *XRay) GetSamplingStatisticSummariesPagesWithContext(ctx aws.Context, input *GetSamplingStatisticSummariesInput, fn func(*GetSamplingStatisticSummariesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetSamplingStatisticSummariesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetSamplingStatisticSummariesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*GetSamplingStatisticSummariesOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opGetSamplingTargets = "GetSamplingTargets"
@@ -1125,6 +1293,144 @@ func (c *XRay) GetServiceGraphPagesWithContext(ctx aws.Context, input *GetServic
 	return p.Err()
 }
 
+const opGetTimeSeriesServiceStatistics = "GetTimeSeriesServiceStatistics"
+
+// GetTimeSeriesServiceStatisticsRequest generates a "aws/request.Request" representing the
+// client's request for the GetTimeSeriesServiceStatistics operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetTimeSeriesServiceStatistics for more information on using the GetTimeSeriesServiceStatistics
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetTimeSeriesServiceStatisticsRequest method.
+//    req, resp := client.GetTimeSeriesServiceStatisticsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetTimeSeriesServiceStatistics
+func (c *XRay) GetTimeSeriesServiceStatisticsRequest(input *GetTimeSeriesServiceStatisticsInput) (req *request.Request, output *GetTimeSeriesServiceStatisticsOutput) {
+	op := &request.Operation{
+		Name:       opGetTimeSeriesServiceStatistics,
+		HTTPMethod: "POST",
+		HTTPPath:   "/TimeSeriesServiceStatistics",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetTimeSeriesServiceStatisticsInput{}
+	}
+
+	output = &GetTimeSeriesServiceStatisticsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetTimeSeriesServiceStatistics API operation for AWS X-Ray.
+//
+// Get an aggregation of service statistics defined by a specific time range.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS X-Ray's
+// API operation GetTimeSeriesServiceStatistics for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is missing required parameters or has invalid parameters.
+//
+//   * ErrCodeThrottledException "ThrottledException"
+//   The request exceeds the maximum number of requests per second.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetTimeSeriesServiceStatistics
+func (c *XRay) GetTimeSeriesServiceStatistics(input *GetTimeSeriesServiceStatisticsInput) (*GetTimeSeriesServiceStatisticsOutput, error) {
+	req, out := c.GetTimeSeriesServiceStatisticsRequest(input)
+	return out, req.Send()
+}
+
+// GetTimeSeriesServiceStatisticsWithContext is the same as GetTimeSeriesServiceStatistics with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetTimeSeriesServiceStatistics for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *XRay) GetTimeSeriesServiceStatisticsWithContext(ctx aws.Context, input *GetTimeSeriesServiceStatisticsInput, opts ...request.Option) (*GetTimeSeriesServiceStatisticsOutput, error) {
+	req, out := c.GetTimeSeriesServiceStatisticsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetTimeSeriesServiceStatisticsPages iterates over the pages of a GetTimeSeriesServiceStatistics operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetTimeSeriesServiceStatistics method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetTimeSeriesServiceStatistics operation.
+//    pageNum := 0
+//    err := client.GetTimeSeriesServiceStatisticsPages(params,
+//        func(page *GetTimeSeriesServiceStatisticsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *XRay) GetTimeSeriesServiceStatisticsPages(input *GetTimeSeriesServiceStatisticsInput, fn func(*GetTimeSeriesServiceStatisticsOutput, bool) bool) error {
+	return c.GetTimeSeriesServiceStatisticsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetTimeSeriesServiceStatisticsPagesWithContext same as GetTimeSeriesServiceStatisticsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *XRay) GetTimeSeriesServiceStatisticsPagesWithContext(ctx aws.Context, input *GetTimeSeriesServiceStatisticsInput, fn func(*GetTimeSeriesServiceStatisticsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetTimeSeriesServiceStatisticsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetTimeSeriesServiceStatisticsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*GetTimeSeriesServiceStatisticsOutput), !p.HasNextPage())
+	}
+	return p.Err()
+}
+
 const opGetTraceGraph = "GetTraceGraph"
 
 // GetTraceGraphRequest generates a "aws/request.Request" representing the
@@ -1328,7 +1634,7 @@ func (c *XRay) GetTraceSummariesRequest(input *GetTraceSummariesInput) (req *req
 // annotation.account = "12345"
 //
 // For a full list of indexed fields and keywords that you can use in filter
-// expressions, see Using Filter Expressions (http://docs.aws.amazon.com/xray/latest/devguide/xray-console-filters.html)
+// expressions, see Using Filter Expressions (https://docs.aws.amazon.com/xray/latest/devguide/xray-console-filters.html)
 // in the AWS X-Ray Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2136,7 +2442,7 @@ type CreateGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The filter expression defining criteria by which to group traces.
-	FilterExpression *string `min:"1" type:"string"`
+	FilterExpression *string `type:"string"`
 
 	// The case-sensitive name of the new group. Default is a reserved name and
 	// names must be unique.
@@ -2158,9 +2464,6 @@ func (s CreateGroupInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateGroupInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateGroupInput"}
-	if s.FilterExpression != nil && len(*s.FilterExpression) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("FilterExpression", 1))
-	}
 	if s.GroupName == nil {
 		invalidParams.Add(request.NewErrParamRequired("GroupName"))
 	}
@@ -3445,6 +3748,157 @@ func (s *GetServiceGraphOutput) SetStartTime(v time.Time) *GetServiceGraphOutput
 	return s
 }
 
+type GetTimeSeriesServiceStatisticsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The end of the time frame for which to aggregate statistics.
+	//
+	// EndTime is a required field
+	EndTime *time.Time `type:"timestamp" required:"true"`
+
+	// A filter expression defining entities that will be aggregated for statistics.
+	// Supports ID, service, and edge functions. If no selector expression is specified,
+	// edge statistics are returned.
+	EntitySelectorExpression *string `min:"1" type:"string"`
+
+	// The ARN of the group for which to pull statistics from.
+	GroupARN *string `min:"1" type:"string"`
+
+	// The case-sensitive name of the group for which to pull statistics from.
+	GroupName *string `min:"1" type:"string"`
+
+	// Pagination token. Not used.
+	NextToken *string `type:"string"`
+
+	// Aggregation period in seconds.
+	Period *int64 `type:"integer"`
+
+	// The start of the time frame for which to aggregate statistics.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `type:"timestamp" required:"true"`
+}
+
+// String returns the string representation
+func (s GetTimeSeriesServiceStatisticsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetTimeSeriesServiceStatisticsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetTimeSeriesServiceStatisticsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetTimeSeriesServiceStatisticsInput"}
+	if s.EndTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndTime"))
+	}
+	if s.EntitySelectorExpression != nil && len(*s.EntitySelectorExpression) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntitySelectorExpression", 1))
+	}
+	if s.GroupARN != nil && len(*s.GroupARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupARN", 1))
+	}
+	if s.GroupName != nil && len(*s.GroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
+	}
+	if s.StartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTime"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *GetTimeSeriesServiceStatisticsInput) SetEndTime(v time.Time) *GetTimeSeriesServiceStatisticsInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetEntitySelectorExpression sets the EntitySelectorExpression field's value.
+func (s *GetTimeSeriesServiceStatisticsInput) SetEntitySelectorExpression(v string) *GetTimeSeriesServiceStatisticsInput {
+	s.EntitySelectorExpression = &v
+	return s
+}
+
+// SetGroupARN sets the GroupARN field's value.
+func (s *GetTimeSeriesServiceStatisticsInput) SetGroupARN(v string) *GetTimeSeriesServiceStatisticsInput {
+	s.GroupARN = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *GetTimeSeriesServiceStatisticsInput) SetGroupName(v string) *GetTimeSeriesServiceStatisticsInput {
+	s.GroupName = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetTimeSeriesServiceStatisticsInput) SetNextToken(v string) *GetTimeSeriesServiceStatisticsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPeriod sets the Period field's value.
+func (s *GetTimeSeriesServiceStatisticsInput) SetPeriod(v int64) *GetTimeSeriesServiceStatisticsInput {
+	s.Period = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *GetTimeSeriesServiceStatisticsInput) SetStartTime(v time.Time) *GetTimeSeriesServiceStatisticsInput {
+	s.StartTime = &v
+	return s
+}
+
+type GetTimeSeriesServiceStatisticsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A flag indicating whether or not a group's filter expression has been consistent,
+	// or if a returned aggregation may show statistics from an older version of
+	// the group's filter expression.
+	ContainsOldGroupVersions *bool `type:"boolean"`
+
+	// Pagination token. Not used.
+	NextToken *string `type:"string"`
+
+	// The collection of statistics.
+	TimeSeriesServiceStatistics []*TimeSeriesServiceStatistics `type:"list"`
+}
+
+// String returns the string representation
+func (s GetTimeSeriesServiceStatisticsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetTimeSeriesServiceStatisticsOutput) GoString() string {
+	return s.String()
+}
+
+// SetContainsOldGroupVersions sets the ContainsOldGroupVersions field's value.
+func (s *GetTimeSeriesServiceStatisticsOutput) SetContainsOldGroupVersions(v bool) *GetTimeSeriesServiceStatisticsOutput {
+	s.ContainsOldGroupVersions = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetTimeSeriesServiceStatisticsOutput) SetNextToken(v string) *GetTimeSeriesServiceStatisticsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTimeSeriesServiceStatistics sets the TimeSeriesServiceStatistics field's value.
+func (s *GetTimeSeriesServiceStatisticsOutput) SetTimeSeriesServiceStatistics(v []*TimeSeriesServiceStatistics) *GetTimeSeriesServiceStatisticsOutput {
+	s.TimeSeriesServiceStatistics = v
+	return s
+}
+
 type GetTraceGraphInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3534,7 +3988,7 @@ type GetTraceSummariesInput struct {
 
 	// Specify a filter expression to retrieve trace summaries for services or requests
 	// that meet certain requirements.
-	FilterExpression *string `min:"1" type:"string"`
+	FilterExpression *string `type:"string"`
 
 	// Specify the pagination token returned by a previous request to retrieve the
 	// next page of results.
@@ -3543,10 +3997,18 @@ type GetTraceSummariesInput struct {
 	// Set to true to get summaries for only a subset of available traces.
 	Sampling *bool `type:"boolean"`
 
+	// A paramater to indicate whether to enable sampling on trace summaries. Input
+	// parameters are Name and Value.
+	SamplingStrategy *SamplingStrategy `type:"structure"`
+
 	// The start of the time frame for which to retrieve traces.
 	//
 	// StartTime is a required field
 	StartTime *time.Time `type:"timestamp" required:"true"`
+
+	// A parameter to indicate whether to query trace summaries by TraceId or Event
+	// time.
+	TimeRangeType *string `type:"string" enum:"TimeRangeType"`
 }
 
 // String returns the string representation
@@ -3564,9 +4026,6 @@ func (s *GetTraceSummariesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetTraceSummariesInput"}
 	if s.EndTime == nil {
 		invalidParams.Add(request.NewErrParamRequired("EndTime"))
-	}
-	if s.FilterExpression != nil && len(*s.FilterExpression) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("FilterExpression", 1))
 	}
 	if s.StartTime == nil {
 		invalidParams.Add(request.NewErrParamRequired("StartTime"))
@@ -3602,9 +4061,21 @@ func (s *GetTraceSummariesInput) SetSampling(v bool) *GetTraceSummariesInput {
 	return s
 }
 
+// SetSamplingStrategy sets the SamplingStrategy field's value.
+func (s *GetTraceSummariesInput) SetSamplingStrategy(v *SamplingStrategy) *GetTraceSummariesInput {
+	s.SamplingStrategy = v
+	return s
+}
+
 // SetStartTime sets the StartTime field's value.
 func (s *GetTraceSummariesInput) SetStartTime(v time.Time) *GetTraceSummariesInput {
 	s.StartTime = &v
+	return s
+}
+
+// SetTimeRangeType sets the TimeRangeType field's value.
+func (s *GetTraceSummariesInput) SetTimeRangeType(v string) *GetTraceSummariesInput {
+	s.TimeRangeType = &v
 	return s
 }
 
@@ -4850,6 +5321,39 @@ func (s *SamplingStatisticsDocument) SetTimestamp(v time.Time) *SamplingStatisti
 	return s
 }
 
+// The name and value of a sampling rule to apply to a trace summary.
+type SamplingStrategy struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a sampling rule.
+	Name *string `type:"string" enum:"SamplingStrategyName"`
+
+	// The value of a sampling rule.
+	Value *float64 `type:"double"`
+}
+
+// String returns the string representation
+func (s SamplingStrategy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SamplingStrategy) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *SamplingStrategy) SetName(v string) *SamplingStrategy {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *SamplingStrategy) SetValue(v float64) *SamplingStrategy {
+	s.Value = &v
+	return s
+}
+
 // Temporary changes to a sampling rule configuration. To meet the global sampling
 // target for a rule, X-Ray calculates a new reservoir for each service based
 // on the recent sampling results of all services that called GetSamplingTargets.
@@ -5281,6 +5785,57 @@ func (s *TelemetryRecord) SetTimestamp(v time.Time) *TelemetryRecord {
 	return s
 }
 
+// A list of TimeSeriesStatistic structures.
+type TimeSeriesServiceStatistics struct {
+	_ struct{} `type:"structure"`
+
+	// Response statistics for an edge.
+	EdgeSummaryStatistics *EdgeStatistics `type:"structure"`
+
+	// The response time histogram for the selected entities.
+	ResponseTimeHistogram []*HistogramEntry `type:"list"`
+
+	// Response statistics for a service.
+	ServiceSummaryStatistics *ServiceStatistics `type:"structure"`
+
+	// Timestamp of the window for which statistics are aggregated.
+	Timestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s TimeSeriesServiceStatistics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TimeSeriesServiceStatistics) GoString() string {
+	return s.String()
+}
+
+// SetEdgeSummaryStatistics sets the EdgeSummaryStatistics field's value.
+func (s *TimeSeriesServiceStatistics) SetEdgeSummaryStatistics(v *EdgeStatistics) *TimeSeriesServiceStatistics {
+	s.EdgeSummaryStatistics = v
+	return s
+}
+
+// SetResponseTimeHistogram sets the ResponseTimeHistogram field's value.
+func (s *TimeSeriesServiceStatistics) SetResponseTimeHistogram(v []*HistogramEntry) *TimeSeriesServiceStatistics {
+	s.ResponseTimeHistogram = v
+	return s
+}
+
+// SetServiceSummaryStatistics sets the ServiceSummaryStatistics field's value.
+func (s *TimeSeriesServiceStatistics) SetServiceSummaryStatistics(v *ServiceStatistics) *TimeSeriesServiceStatistics {
+	s.ServiceSummaryStatistics = v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *TimeSeriesServiceStatistics) SetTimestamp(v time.Time) *TimeSeriesServiceStatistics {
+	s.Timestamp = &v
+	return s
+}
+
 // A collection of segment documents with matching trace IDs.
 type Trace struct {
 	_ struct{} `type:"structure"`
@@ -5370,6 +5925,9 @@ type TraceSummary struct {
 
 	// One or more of the segment documents is in progress.
 	IsPartial *bool `type:"boolean"`
+
+	// The matched time stamp of a defined event.
+	MatchedEventTime *time.Time `type:"timestamp"`
 
 	// A list of resource ARNs for any resource corresponding to the trace segments.
 	ResourceARNs []*ResourceARNDetail `type:"list"`
@@ -5479,6 +6037,12 @@ func (s *TraceSummary) SetInstanceIds(v []*InstanceIdDetail) *TraceSummary {
 // SetIsPartial sets the IsPartial field's value.
 func (s *TraceSummary) SetIsPartial(v bool) *TraceSummary {
 	s.IsPartial = &v
+	return s
+}
+
+// SetMatchedEventTime sets the MatchedEventTime field's value.
+func (s *TraceSummary) SetMatchedEventTime(v time.Time) *TraceSummary {
+	s.MatchedEventTime = &v
 	return s
 }
 
@@ -5640,7 +6204,7 @@ type UpdateGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The updated filter expression defining criteria by which to group traces.
-	FilterExpression *string `min:"1" type:"string"`
+	FilterExpression *string `type:"string"`
 
 	// The ARN that was generated upon creation.
 	GroupARN *string `min:"1" type:"string"`
@@ -5662,9 +6226,6 @@ func (s UpdateGroupInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateGroupInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateGroupInput"}
-	if s.FilterExpression != nil && len(*s.FilterExpression) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("FilterExpression", 1))
-	}
 	if s.GroupARN != nil && len(*s.GroupARN) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("GroupARN", 1))
 	}
@@ -5834,4 +6395,20 @@ const (
 
 	// EncryptionTypeKms is a EncryptionType enum value
 	EncryptionTypeKms = "KMS"
+)
+
+const (
+	// SamplingStrategyNamePartialScan is a SamplingStrategyName enum value
+	SamplingStrategyNamePartialScan = "PartialScan"
+
+	// SamplingStrategyNameFixedRate is a SamplingStrategyName enum value
+	SamplingStrategyNameFixedRate = "FixedRate"
+)
+
+const (
+	// TimeRangeTypeTraceId is a TimeRangeType enum value
+	TimeRangeTypeTraceId = "TraceId"
+
+	// TimeRangeTypeEvent is a TimeRangeType enum value
+	TimeRangeTypeEvent = "Event"
 )

@@ -1390,6 +1390,10 @@ type EC2API interface {
 	ModifyVpcTenancyWithContext(aws.Context, *ec2.ModifyVpcTenancyInput, ...request.Option) (*ec2.ModifyVpcTenancyOutput, error)
 	ModifyVpcTenancyRequest(*ec2.ModifyVpcTenancyInput) (*request.Request, *ec2.ModifyVpcTenancyOutput)
 
+	ModifyVpnConnection(*ec2.ModifyVpnConnectionInput) (*ec2.ModifyVpnConnectionOutput, error)
+	ModifyVpnConnectionWithContext(aws.Context, *ec2.ModifyVpnConnectionInput, ...request.Option) (*ec2.ModifyVpnConnectionOutput, error)
+	ModifyVpnConnectionRequest(*ec2.ModifyVpnConnectionInput) (*request.Request, *ec2.ModifyVpnConnectionOutput)
+
 	MonitorInstances(*ec2.MonitorInstancesInput) (*ec2.MonitorInstancesOutput, error)
 	MonitorInstancesWithContext(aws.Context, *ec2.MonitorInstancesInput, ...request.Option) (*ec2.MonitorInstancesOutput, error)
 	MonitorInstancesRequest(*ec2.MonitorInstancesInput) (*request.Request, *ec2.MonitorInstancesOutput)
