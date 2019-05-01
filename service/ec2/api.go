@@ -26438,6 +26438,78 @@ func (c *EC2) ModifyVpcTenancyWithContext(ctx aws.Context, input *ModifyVpcTenan
 	return out, req.Send()
 }
 
+const opModifyVpnConnection = "ModifyVpnConnection"
+
+// ModifyVpnConnectionRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyVpnConnection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifyVpnConnection for more information on using the ModifyVpnConnection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ModifyVpnConnectionRequest method.
+//    req, resp := client.ModifyVpnConnectionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15/ModifyVpnConnection
+func (c *EC2) ModifyVpnConnectionRequest(input *ModifyVpnConnectionInput) (req *request.Request, output *ModifyVpnConnectionOutput) {
+	op := &request.Operation{
+		Name:       opModifyVpnConnection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyVpnConnectionInput{}
+	}
+
+	output = &ModifyVpnConnectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ModifyVpnConnection API operation for Amazon Elastic Compute Cloud.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Compute Cloud's
+// API operation ModifyVpnConnection for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15/ModifyVpnConnection
+func (c *EC2) ModifyVpnConnection(input *ModifyVpnConnectionInput) (*ModifyVpnConnectionOutput, error) {
+	req, out := c.ModifyVpnConnectionRequest(input)
+	return out, req.Send()
+}
+
+// ModifyVpnConnectionWithContext is the same as ModifyVpnConnection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifyVpnConnection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EC2) ModifyVpnConnectionWithContext(ctx aws.Context, input *ModifyVpnConnectionInput, opts ...request.Option) (*ModifyVpnConnectionOutput, error) {
+	req, out := c.ModifyVpnConnectionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opMonitorInstances = "MonitorInstances"
 
 // MonitorInstancesRequest generates a "aws/request.Request" representing the
@@ -71152,6 +71224,89 @@ func (s ModifyVpcTenancyOutput) GoString() string {
 // SetReturnValue sets the ReturnValue field's value.
 func (s *ModifyVpcTenancyOutput) SetReturnValue(v bool) *ModifyVpcTenancyOutput {
 	s.ReturnValue = &v
+	return s
+}
+
+type ModifyVpnConnectionInput struct {
+	_ struct{} `type:"structure"`
+
+	DryRun *bool `type:"boolean"`
+
+	TransitGatewayId *string `type:"string"`
+
+	// VpnConnectionId is a required field
+	VpnConnectionId *string `type:"string" required:"true"`
+
+	VpnGatewayId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ModifyVpnConnectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyVpnConnectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyVpnConnectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyVpnConnectionInput"}
+	if s.VpnConnectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpnConnectionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ModifyVpnConnectionInput) SetDryRun(v bool) *ModifyVpnConnectionInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetTransitGatewayId sets the TransitGatewayId field's value.
+func (s *ModifyVpnConnectionInput) SetTransitGatewayId(v string) *ModifyVpnConnectionInput {
+	s.TransitGatewayId = &v
+	return s
+}
+
+// SetVpnConnectionId sets the VpnConnectionId field's value.
+func (s *ModifyVpnConnectionInput) SetVpnConnectionId(v string) *ModifyVpnConnectionInput {
+	s.VpnConnectionId = &v
+	return s
+}
+
+// SetVpnGatewayId sets the VpnGatewayId field's value.
+func (s *ModifyVpnConnectionInput) SetVpnGatewayId(v string) *ModifyVpnConnectionInput {
+	s.VpnGatewayId = &v
+	return s
+}
+
+type ModifyVpnConnectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes a VPN connection.
+	VpnConnection *VpnConnection `locationName:"vpnConnection" type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyVpnConnectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyVpnConnectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetVpnConnection sets the VpnConnection field's value.
+func (s *ModifyVpnConnectionOutput) SetVpnConnection(v *VpnConnection) *ModifyVpnConnectionOutput {
+	s.VpnConnection = v
 	return s
 }
 

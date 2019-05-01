@@ -288,6 +288,7 @@
     "ModifyVpcEndpointServicePermissions": "<p>Modifies the permissions for your <a href=\"https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/endpoint-service.html\">VPC endpoint service</a>. You can add or remove permissions for service consumers (IAM users, IAM roles, and AWS accounts) to connect to your endpoint service.</p> <p>If you grant permissions to all principals, the service is public. Any users who know the name of a public service can send a request to attach an endpoint. If the service does not require manual approval, attachments are automatically approved.</p>",
     "ModifyVpcPeeringConnectionOptions": "<p>Modifies the VPC peering connection options on one side of a VPC peering connection. You can do the following:</p> <ul> <li> <p>Enable/disable communication over the peering connection between an EC2-Classic instance that's linked to your VPC (using ClassicLink) and instances in the peer VPC.</p> </li> <li> <p>Enable/disable communication over the peering connection between instances in your VPC and an EC2-Classic instance that's linked to the peer VPC.</p> </li> <li> <p>Enable/disable the ability to resolve public DNS hostnames to private IP addresses when queried from instances in the peer VPC.</p> </li> </ul> <p>If the peered VPCs are in the same AWS account, you can enable DNS resolution for queries from the local VPC. This ensures that queries from the local VPC resolve to private IP addresses in the peer VPC. This option is not available if the peered VPCs are in different AWS accounts or different regions. For peered VPCs in different AWS accounts, each AWS account owner must initiate a separate request to modify the peering connection options. For inter-region peering connections, you must use the region for the requester VPC to modify the requester VPC peering options and the region for the accepter VPC to modify the accepter VPC peering options. To verify which VPCs are the accepter and the requester for a VPC peering connection, use the <a>DescribeVpcPeeringConnections</a> command.</p>",
     "ModifyVpcTenancy": "<p>Modifies the instance tenancy attribute of the specified VPC. You can change the instance tenancy attribute of a VPC to <code>default</code> only. You cannot change the instance tenancy attribute to <code>dedicated</code>.</p> <p>After you modify the tenancy of the VPC, any new instances that you launch into the VPC have a tenancy of <code>default</code>, unless you specify otherwise during launch. The tenancy of any existing instances in the VPC is not affected.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-instance.html\">Dedicated Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "ModifyVpnConnection": null,
     "MonitorInstances": "<p>Enables detailed monitoring for a running instance. Otherwise, basic monitoring is enabled. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html\">Monitoring Your Instances and Volumes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>To disable detailed monitoring, see .</p>",
     "MoveAddressToVpc": "<p>Moves an Elastic IP address from the EC2-Classic platform to the EC2-VPC platform. The Elastic IP address must be allocated to your account for more than 24 hours, and it must not be associated with an instance. After the Elastic IP address is moved, it is no longer available for use in the EC2-Classic platform, unless you move it back using the <a>RestoreAddressToClassic</a> request. You cannot move an Elastic IP address that was originally allocated for use in the EC2-VPC platform to the EC2-Classic platform. </p>",
     "ProvisionByoipCidr": "<p>Provisions an address range for use with your AWS resources through bring your own IP addresses (BYOIP) and creates a corresponding address pool. After the address range is provisioned, it is ready to be advertised using <a>AdvertiseByoipCidr</a>.</p> <p>AWS verifies that you own the address range and are authorized to advertise it. You must ensure that the address range is registered to you and that you created an RPKI ROA to authorize Amazon ASNs 16509 and 14618 to advertise the address range. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html\">Bring Your Own IP Addresses (BYOIP)</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Provisioning an address range is an asynchronous operation, so the call returns immediately, but the address range is not ready to use until its status changes from <code>pending-provision</code> to <code>provisioned</code>. To monitor the status of an address range, use <a>DescribeByoipCidrs</a>. To allocate an Elastic IP address from your address pool, use <a>AllocateAddress</a> with either the specific address from the address pool or the ID of the address pool.</p>",
@@ -1248,6 +1249,7 @@
         "ModifyVpcPeeringConnectionOptionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyVpcTenancyRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyVpcTenancyResult$ReturnValue": "<p>Returns <code>true</code> if the request succeeds; otherwise, returns an error.</p>",
+        "ModifyVpnConnectionRequest$DryRun": null,
         "MonitorInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "MoveAddressToVpcRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "NetworkAcl$IsDefault": "<p>Indicates whether this is the default network ACL for the VPC.</p>",
@@ -6796,6 +6798,16 @@
       "refs": {
       }
     },
+    "ModifyVpnConnectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyVpnConnectionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "MonitorInstancesRequest": {
       "base": null,
       "refs": {
@@ -9628,6 +9640,9 @@
         "ModifyVpcEndpointServicePermissionsRequest$ServiceId": "<p>The ID of the service.</p>",
         "ModifyVpcPeeringConnectionOptionsRequest$VpcPeeringConnectionId": "<p>The ID of the VPC peering connection.</p>",
         "ModifyVpcTenancyRequest$VpcId": "<p>The ID of the VPC.</p>",
+        "ModifyVpnConnectionRequest$VpnConnectionId": null,
+        "ModifyVpnConnectionRequest$TransitGatewayId": null,
+        "ModifyVpnConnectionRequest$VpnGatewayId": null,
         "MoveAddressToVpcRequest$PublicIp": "<p>The Elastic IP address.</p>",
         "MoveAddressToVpcResult$AllocationId": "<p>The allocation ID for the Elastic IP address.</p>",
         "MovingAddressStatus$PublicIp": "<p>The Elastic IP address.</p>",
@@ -11319,6 +11334,7 @@
       "base": "<p>Describes a VPN connection.</p>",
       "refs": {
         "CreateVpnConnectionResult$VpnConnection": "<p>Information about the VPN connection.</p>",
+        "ModifyVpnConnectionResult$VpnConnection": null,
         "VpnConnectionList$member": null
       }
     },
