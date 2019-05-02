@@ -391,6 +391,10 @@ type AlexaForBusinessAPI interface {
 	SearchUsersPages(*alexaforbusiness.SearchUsersInput, func(*alexaforbusiness.SearchUsersOutput, bool) bool) error
 	SearchUsersPagesWithContext(aws.Context, *alexaforbusiness.SearchUsersInput, func(*alexaforbusiness.SearchUsersOutput, bool) bool, ...request.Option) error
 
+	SendAnnouncement(*alexaforbusiness.SendAnnouncementInput) (*alexaforbusiness.SendAnnouncementOutput, error)
+	SendAnnouncementWithContext(aws.Context, *alexaforbusiness.SendAnnouncementInput, ...request.Option) (*alexaforbusiness.SendAnnouncementOutput, error)
+	SendAnnouncementRequest(*alexaforbusiness.SendAnnouncementInput) (*request.Request, *alexaforbusiness.SendAnnouncementOutput)
+
 	SendInvitation(*alexaforbusiness.SendInvitationInput) (*alexaforbusiness.SendInvitationOutput, error)
 	SendInvitationWithContext(aws.Context, *alexaforbusiness.SendInvitationInput, ...request.Option) (*alexaforbusiness.SendInvitationOutput, error)
 	SendInvitationRequest(*alexaforbusiness.SendInvitationInput) (*request.Request, *alexaforbusiness.SendInvitationOutput)

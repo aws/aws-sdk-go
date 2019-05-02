@@ -6592,6 +6592,89 @@ func (c *AlexaForBusiness) SearchUsersPagesWithContext(ctx aws.Context, input *S
 	return p.Err()
 }
 
+const opSendAnnouncement = "SendAnnouncement"
+
+// SendAnnouncementRequest generates a "aws/request.Request" representing the
+// client's request for the SendAnnouncement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SendAnnouncement for more information on using the SendAnnouncement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SendAnnouncementRequest method.
+//    req, resp := client.SendAnnouncementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SendAnnouncement
+func (c *AlexaForBusiness) SendAnnouncementRequest(input *SendAnnouncementInput) (req *request.Request, output *SendAnnouncementOutput) {
+	op := &request.Operation{
+		Name:       opSendAnnouncement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &SendAnnouncementInput{}
+	}
+
+	output = &SendAnnouncementOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SendAnnouncement API operation for Alexa For Business.
+//
+// Triggers an asynchronous flow to send text, SSML, or audio announcements
+// to multiple rooms, identified by a search, such as filter.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Alexa For Business's
+// API operation SendAnnouncement for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   You are performing an action that would put you beyond your account's limits.
+//
+//   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+//   The resource being created already exists.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SendAnnouncement
+func (c *AlexaForBusiness) SendAnnouncement(input *SendAnnouncementInput) (*SendAnnouncementOutput, error) {
+	req, out := c.SendAnnouncementRequest(input)
+	return out, req.Send()
+}
+
+// SendAnnouncementWithContext is the same as SendAnnouncement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SendAnnouncement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AlexaForBusiness) SendAnnouncementWithContext(ctx aws.Context, input *SendAnnouncementInput, opts ...request.Option) (*SendAnnouncementOutput, error) {
+	req, out := c.SendAnnouncementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opSendInvitation = "SendInvitation"
 
 // SendInvitationRequest generates a "aws/request.Request" representing the
@@ -8252,6 +8335,71 @@ func (s AssociateSkillWithUsersOutput) GoString() string {
 	return s.String()
 }
 
+// The audio message. There is a 1 MB limit on the audio file input, and the
+// only supported format is MP3. You must convert audio files to an Alexa-friendly
+// format.
+//
+// You might need to use converter software to convert your MP3 files to the
+// required codec version (MPEG version 2) and bit rate (48 kbps). One option
+// for this is a command-line tool, FFmpeg. For more information, see FFmpeg
+// (https://www.ffmpeg.org/). The following command converts the provided <input-file>
+// to an MP3 file that will be played in the announcement:
+//
+// ffmpeg -i <input-file> -ac 2 -codec:a libmp3lame -b:a 48k -ar 16000 <output-file.mp3>
+type Audio struct {
+	_ struct{} `type:"structure"`
+
+	// The locale of the audio message. Currently, en-US is supported.
+	//
+	// Locale is a required field
+	Locale *string `type:"string" required:"true" enum:"Locale"`
+
+	// The location of the audio file. Currently, S3 URLs are supported. Only S3
+	// locations comprised of safe character are valid. For more information, see
+	// Safe Characters (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#Safe%20Characters).
+	//
+	// Location is a required field
+	Location *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Audio) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Audio) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Audio) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Audio"}
+	if s.Locale == nil {
+		invalidParams.Add(request.NewErrParamRequired("Locale"))
+	}
+	if s.Location == nil {
+		invalidParams.Add(request.NewErrParamRequired("Location"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLocale sets the Locale field's value.
+func (s *Audio) SetLocale(v string) *Audio {
+	s.Locale = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *Audio) SetLocation(v string) *Audio {
+	s.Location = &v
+	return s
+}
+
 // Usage report with specified parameters.
 type BusinessReport struct {
 	_ struct{} `type:"structure"`
@@ -8729,6 +8877,89 @@ func (s *ContactData) SetLastName(v string) *ContactData {
 // SetPhoneNumber sets the PhoneNumber field's value.
 func (s *ContactData) SetPhoneNumber(v string) *ContactData {
 	s.PhoneNumber = &v
+	return s
+}
+
+// The content definition. It can contain only one text, SSML, or audio list
+// object.
+type Content struct {
+	_ struct{} `type:"structure"`
+
+	// The list of audio messages.
+	AudioList []*Audio `type:"list"`
+
+	// The list of SSML messages.
+	SsmlList []*Ssml `type:"list"`
+
+	// The list of text messages.
+	TextList []*Text `type:"list"`
+}
+
+// String returns the string representation
+func (s Content) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Content) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Content) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Content"}
+	if s.AudioList != nil {
+		for i, v := range s.AudioList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AudioList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.SsmlList != nil {
+		for i, v := range s.SsmlList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SsmlList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.TextList != nil {
+		for i, v := range s.TextList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TextList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAudioList sets the AudioList field's value.
+func (s *Content) SetAudioList(v []*Audio) *Content {
+	s.AudioList = v
+	return s
+}
+
+// SetSsmlList sets the SsmlList field's value.
+func (s *Content) SetSsmlList(v []*Ssml) *Content {
+	s.SsmlList = v
+	return s
+}
+
+// SetTextList sets the TextList field's value.
+func (s *Content) SetTextList(v []*Text) *Content {
+	s.TextList = v
 	return s
 }
 
@@ -15071,6 +15302,124 @@ func (s *SearchUsersOutput) SetUsers(v []*UserData) *SearchUsersOutput {
 	return s
 }
 
+type SendAnnouncementInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique, user-specified identifier for the request that ensures idempotency.
+	ClientRequestToken *string `min:"10" type:"string" idempotencyToken:"true"`
+
+	// The announcement content. This can contain only one of the three possible
+	// announcement types (text, SSML or audio).
+	//
+	// Content is a required field
+	Content *Content `type:"structure" required:"true"`
+
+	// The filters to use to send an announcement to a specified list of rooms.
+	// The supported filter keys are RoomName, ProfileName, RoomArn, and ProfileArn.
+	// To send to all rooms, specify an empty RoomFilters list.
+	//
+	// RoomFilters is a required field
+	RoomFilters []*Filter `type:"list" required:"true"`
+
+	// The time to live for an announcement. If delivery doesn't occur within this
+	// time, the announcement will not be delivered.
+	TimeToLiveInSeconds *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s SendAnnouncementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SendAnnouncementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SendAnnouncementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SendAnnouncementInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 10))
+	}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.RoomFilters == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoomFilters"))
+	}
+	if s.TimeToLiveInSeconds != nil && *s.TimeToLiveInSeconds < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("TimeToLiveInSeconds", 1))
+	}
+	if s.Content != nil {
+		if err := s.Content.Validate(); err != nil {
+			invalidParams.AddNested("Content", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RoomFilters != nil {
+		for i, v := range s.RoomFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RoomFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *SendAnnouncementInput) SetClientRequestToken(v string) *SendAnnouncementInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *SendAnnouncementInput) SetContent(v *Content) *SendAnnouncementInput {
+	s.Content = v
+	return s
+}
+
+// SetRoomFilters sets the RoomFilters field's value.
+func (s *SendAnnouncementInput) SetRoomFilters(v []*Filter) *SendAnnouncementInput {
+	s.RoomFilters = v
+	return s
+}
+
+// SetTimeToLiveInSeconds sets the TimeToLiveInSeconds field's value.
+func (s *SendAnnouncementInput) SetTimeToLiveInSeconds(v int64) *SendAnnouncementInput {
+	s.TimeToLiveInSeconds = &v
+	return s
+}
+
+type SendAnnouncementOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the announcement.
+	AnnouncementArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SendAnnouncementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SendAnnouncementOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnnouncementArn sets the AnnouncementArn field's value.
+func (s *SendAnnouncementOutput) SetAnnouncementArn(v string) *SendAnnouncementOutput {
+	s.AnnouncementArn = &v
+	return s
+}
+
 type SendInvitationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15536,6 +15885,60 @@ func (s *Sort) SetValue(v string) *Sort {
 	return s
 }
 
+// The SSML message. For more information, see SSML Reference (https://developer.amazon.com/docs/custom-skills/speech-synthesis-markup-language-ssml-reference.html).
+type Ssml struct {
+	_ struct{} `type:"structure"`
+
+	// The locale of the SSML message. Currently, en-US is supported.
+	//
+	// Locale is a required field
+	Locale *string `type:"string" required:"true" enum:"Locale"`
+
+	// The value of the SSML message in the correct SSML format. The audio tag is
+	// not supported.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Ssml) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Ssml) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Ssml) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Ssml"}
+	if s.Locale == nil {
+		invalidParams.Add(request.NewErrParamRequired("Locale"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLocale sets the Locale field's value.
+func (s *Ssml) SetLocale(v string) *Ssml {
+	s.Locale = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Ssml) SetValue(v string) *Ssml {
+	s.Value = &v
+	return s
+}
+
 type StartDeviceSyncInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15789,6 +16192,59 @@ func (s TagResourceOutput) String() string {
 // GoString returns the string representation
 func (s TagResourceOutput) GoString() string {
 	return s.String()
+}
+
+// The text message.
+type Text struct {
+	_ struct{} `type:"structure"`
+
+	// The locale of the text message. Currently, en-US is supported.
+	//
+	// Locale is a required field
+	Locale *string `type:"string" required:"true" enum:"Locale"`
+
+	// The value of the text message.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Text) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Text) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Text) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Text"}
+	if s.Locale == nil {
+		invalidParams.Add(request.NewErrParamRequired("Locale"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLocale sets the Locale field's value.
+func (s *Text) SetLocale(v string) *Text {
+	s.Locale = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Text) SetValue(v string) *Text {
+	s.Value = &v
+	return s
 }
 
 type UntagResourceInput struct {
@@ -17014,6 +17470,11 @@ const (
 
 	// FeatureAll is a Feature enum value
 	FeatureAll = "ALL"
+)
+
+const (
+	// LocaleEnUs is a Locale enum value
+	LocaleEnUs = "en-US"
 )
 
 const (
