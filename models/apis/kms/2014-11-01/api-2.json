@@ -811,6 +811,7 @@
         "INVALID_CREDENTIALS",
         "CLUSTER_NOT_FOUND",
         "NETWORK_ERRORS",
+        "INTERNAL_ERROR",
         "INSUFFICIENT_CLOUDHSM_HSMS",
         "USER_LOCKED_OUT"
       ]

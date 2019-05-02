@@ -843,6 +843,19 @@
       "input":{"shape":"SearchUsersRequest"},
       "output":{"shape":"SearchUsersResponse"}
     },
+    "SendAnnouncement":{
+      "name":"SendAnnouncement",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SendAnnouncementRequest"},
+      "output":{"shape":"SendAnnouncementResponse"},
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"AlreadyExistsException"}
+      ]
+    },
     "SendInvitation":{
       "name":"SendInvitation",
       "http":{
@@ -1172,6 +1185,28 @@
       "members":{
       }
     },
+    "Audio":{
+      "type":"structure",
+      "required":[
+        "Locale",
+        "Location"
+      ],
+      "members":{
+        "Locale":{"shape":"Locale"},
+        "Location":{"shape":"AudioLocation"}
+      }
+    },
+    "AudioList":{
+      "type":"list",
+      "member":{"shape":"Audio"},
+      "max":1
+    },
+    "AudioLocation":{
+      "type":"string",
+      "max":1200,
+      "min":0,
+      "pattern":"https://([A-Za-z0-9_.-]+)?(s3-[A-Za-z0-9-]+|s3\\.([A-Za-z0-9-])+|s3|s3.dualstack\\.([A-Za-z0-9-])+)+.amazonaws.com/.*"
+    },
     "AuthorizationResult":{
       "type":"map",
       "key":{"shape":"Key"},
@@ -1190,7 +1225,7 @@
         "Status":{"shape":"BusinessReportStatus"},
         "FailureCode":{"shape":"BusinessReportFailureCode"},
         "S3Location":{"shape":"BusinessReportS3Location"},
-        "DeliveryTime":{"shape":"Timestamp"},
+        "DeliveryTime":{"shape":"BusinessReportDeliveryTime"},
         "DownloadUrl":{"shape":"BusinessReportDownloadUrl"}
       }
     },
@@ -1200,6 +1235,7 @@
         "Interval":{"shape":"BusinessReportInterval"}
       }
     },
+    "BusinessReportDeliveryTime":{"type":"timestamp"},
     "BusinessReportDownloadUrl":{"type":"string"},
     "BusinessReportFailureCode":{
       "type":"string",
@@ -1387,6 +1423,14 @@
       "max":100,
       "min":1,
       "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u0085\\u00A0-\\uD7FF\\uE000-\\uFFFD\\u10000-\\u10FFFF]*"
+    },
+    "Content":{
+      "type":"structure",
+      "members":{
+        "TextList":{"shape":"TextList"},
+        "SsmlList":{"shape":"SsmlList"},
+        "AudioList":{"shape":"AudioList"}
+      }
     },
     "CountryCode":{
       "type":"string",
@@ -1797,13 +1841,14 @@
       "members":{
         "Type":{"shape":"DeviceEventType"},
         "Value":{"shape":"DeviceEventValue"},
-        "Timestamp":{"shape":"Timestamp"}
+        "Timestamp":{"shape":"DeviceEventTime"}
       }
     },
     "DeviceEventList":{
       "type":"list",
       "member":{"shape":"DeviceEvent"}
     },
+    "DeviceEventTime":{"type":"timestamp"},
     "DeviceEventType":{
       "type":"string",
       "enum":[
@@ -2476,6 +2521,10 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "Locale":{
+      "type":"string",
+      "enum":["en-US"]
+    },
     "MacAddress":{"type":"string"},
     "MaxResults":{
       "type":"integer",
@@ -2947,6 +2996,29 @@
         "TotalCount":{"shape":"TotalCount"}
       }
     },
+    "SendAnnouncementRequest":{
+      "type":"structure",
+      "required":[
+        "RoomFilters",
+        "Content",
+        "ClientRequestToken"
+      ],
+      "members":{
+        "RoomFilters":{"shape":"FilterList"},
+        "Content":{"shape":"Content"},
+        "TimeToLiveInSeconds":{"shape":"TimeToLiveInSeconds"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "SendAnnouncementResponse":{
+      "type":"structure",
+      "members":{
+        "AnnouncementArn":{"shape":"Arn"}
+      }
+    },
     "SendInvitationRequest":{
       "type":"structure",
       "members":{
@@ -3128,6 +3200,28 @@
         "DESC"
       ]
     },
+    "Ssml":{
+      "type":"structure",
+      "required":[
+        "Locale",
+        "Value"
+      ],
+      "members":{
+        "Locale":{"shape":"Locale"},
+        "Value":{"shape":"SsmlValue"}
+      }
+    },
+    "SsmlList":{
+      "type":"list",
+      "member":{"shape":"Ssml"},
+      "max":1
+    },
+    "SsmlValue":{
+      "type":"string",
+      "max":4096,
+      "min":0,
+      "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u0085\\u00A0-\\uD7FF\\uE000-\\uFFFD\\u10000-\\u10FFFF]*"
+    },
     "StartDeviceSyncRequest":{
       "type":"structure",
       "required":["Features"],
@@ -3208,7 +3302,33 @@
         "CELSIUS"
       ]
     },
-    "Timestamp":{"type":"timestamp"},
+    "Text":{
+      "type":"structure",
+      "required":[
+        "Locale",
+        "Value"
+      ],
+      "members":{
+        "Locale":{"shape":"Locale"},
+        "Value":{"shape":"TextValue"}
+      }
+    },
+    "TextList":{
+      "type":"list",
+      "member":{"shape":"Text"},
+      "max":1
+    },
+    "TextValue":{
+      "type":"string",
+      "max":4096,
+      "min":0,
+      "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u0085\\u00A0-\\uD7FF\\uE000-\\uFFFD\\u10000-\\u10FFFF]*"
+    },
+    "TimeToLiveInSeconds":{
+      "type":"integer",
+      "max":3600,
+      "min":1
+    },
     "Timezone":{
       "type":"string",
       "max":100,

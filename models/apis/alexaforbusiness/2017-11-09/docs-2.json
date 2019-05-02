@@ -72,6 +72,7 @@
     "SearchRooms": "<p>Searches rooms and lists the ones that meet a set of filter and sort criteria.</p>",
     "SearchSkillGroups": "<p>Searches skill groups and lists the ones that meet a set of filter and sort criteria.</p>",
     "SearchUsers": "<p>Searches users and lists the ones that meet a set of filter and sort criteria.</p>",
+    "SendAnnouncement": "<p>Triggers an asynchronous flow to send text, SSML, or audio announcements to multiple rooms, identified by a search, such as filter. </p>",
     "SendInvitation": "<p>Sends an enrollment invitation email with a URL to a user. The URL is valid for 72 hours or until you call this operation again, whichever comes first. </p>",
     "StartDeviceSync": "<p>Resets a device and its account to the known default settings, by clearing all information and settings set by previous users.</p>",
     "StartSmartHomeApplianceDiscovery": "<p>Initiates the discovery of any smart home appliances associated with the room.</p>",
@@ -256,6 +257,7 @@
         "Room$ProfileArn": "<p>The profile ARN of a room.</p>",
         "RoomData$RoomArn": "<p>The ARN of a room.</p>",
         "RoomData$ProfileArn": "<p>The profile ARN of a room.</p>",
+        "SendAnnouncementResponse$AnnouncementArn": "<p>The identifier of the announcement.</p>",
         "SendInvitationRequest$UserArn": "<p>The ARN of the user to whom to send an invitation. Required.</p>",
         "SkillGroup$SkillGroupArn": "<p>The ARN of a skill group.</p>",
         "SkillGroupData$SkillGroupArn": "<p>The skill group ARN of a skill group.</p>",
@@ -328,6 +330,24 @@
       "refs": {
       }
     },
+    "Audio": {
+      "base": "<p>The audio message. There is a 1 MB limit on the audio file input, and the only supported format is MP3. You must convert audio files to an Alexa-friendly format. </p> <p>You might need to use converter software to convert your MP3 files to the required codec version (MPEG version 2) and bit rate (48 kbps). One option for this is a command-line tool, FFmpeg. For more information, see <a href=\"https://www.ffmpeg.org/\">FFmpeg</a>. The following command converts the provided &lt;input-file&gt; to an MP3 file that will be played in the announcement:</p> <p> <code>ffmpeg -i &lt;input-file&gt; -ac 2 -codec:a libmp3lame -b:a 48k -ar 16000 &lt;output-file.mp3&gt;</code> </p>",
+      "refs": {
+        "AudioList$member": null
+      }
+    },
+    "AudioList": {
+      "base": null,
+      "refs": {
+        "Content$AudioList": "<p>The list of audio messages.</p>"
+      }
+    },
+    "AudioLocation": {
+      "base": null,
+      "refs": {
+        "Audio$Location": "<p>The location of the audio file. Currently, S3 URLs are supported. Only S3 locations comprised of safe character are valid. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#Safe%20Characters\">Safe Characters</a>.</p>"
+      }
+    },
     "AuthorizationResult": {
       "base": null,
       "refs": {
@@ -372,6 +392,12 @@
       "refs": {
         "BusinessReportSchedule$ContentRange": "<p>The content range of the reports.</p>",
         "CreateBusinessReportScheduleRequest$ContentRange": "<p>The content range of the reports.</p>"
+      }
+    },
+    "BusinessReportDeliveryTime": {
+      "base": null,
+      "refs": {
+        "BusinessReport$DeliveryTime": "<p>The time of report delivery.</p>"
       }
     },
     "BusinessReportDownloadUrl": {
@@ -489,7 +515,8 @@
         "CreateRoomRequest$ClientRequestToken": "<p>A unique, user-specified identifier for this request that ensures idempotency. </p>",
         "CreateSkillGroupRequest$ClientRequestToken": "<p>A unique, user-specified identifier for this request that ensures idempotency. </p>",
         "CreateUserRequest$ClientRequestToken": "<p>A unique, user-specified identifier for this request that ensures idempotency. </p>",
-        "ResourceInUseException$ClientRequestToken": null
+        "ResourceInUseException$ClientRequestToken": null,
+        "SendAnnouncementRequest$ClientRequestToken": "<p>The unique, user-specified identifier for the request that ensures idempotency.</p>"
       }
     },
     "CommsProtocol": {
@@ -577,6 +604,12 @@
         "UpdateContactRequest$DisplayName": "<p>The updated display name of the contact.</p>",
         "UpdateContactRequest$FirstName": "<p>The updated first name of the contact.</p>",
         "UpdateContactRequest$LastName": "<p>The updated last name of the contact.</p>"
+      }
+    },
+    "Content": {
+      "base": "<p>The content definition. It can contain only one text, SSML, or audio list object.</p>",
+      "refs": {
+        "SendAnnouncementRequest$Content": "<p>The announcement content. This can contain only one of the three possible announcement types (text, SSML or audio).</p>"
       }
     },
     "CountryCode": {
@@ -852,6 +885,12 @@
         "ListDeviceEventsResponse$DeviceEvents": "<p>The device events requested for the device ARN.</p>"
       }
     },
+    "DeviceEventTime": {
+      "base": null,
+      "refs": {
+        "DeviceEvent$Timestamp": "<p>The time (in epoch) when the event occurred. </p>"
+      }
+    },
     "DeviceEventType": {
       "base": null,
       "refs": {
@@ -1097,7 +1136,8 @@
         "SearchProfilesRequest$Filters": "<p>The filters to use to list a specified set of room profiles. Supported filter keys are ProfileName and Address. Required. </p>",
         "SearchRoomsRequest$Filters": "<p>The filters to use to list a specified set of rooms. The supported filter keys are RoomName and ProfileName.</p>",
         "SearchSkillGroupsRequest$Filters": "<p>The filters to use to list a specified set of skill groups. The supported filter key is SkillGroupName. </p>",
-        "SearchUsersRequest$Filters": "<p>The filters to use for listing a specific set of users. Required. Supported filter keys are UserId, FirstName, LastName, Email, and EnrollmentStatus.</p>"
+        "SearchUsersRequest$Filters": "<p>The filters to use for listing a specific set of users. Required. Supported filter keys are UserId, FirstName, LastName, Email, and EnrollmentStatus.</p>",
+        "SendAnnouncementRequest$RoomFilters": "<p>The filters to use to send an announcement to a specified list of rooms. The supported filter keys are RoomName, ProfileName, RoomArn, and ProfileArn. To send to all rooms, specify an empty RoomFilters list.</p>"
       }
     },
     "FilterValue": {
@@ -1476,6 +1516,14 @@
     "ListTagsResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "Locale": {
+      "base": null,
+      "refs": {
+        "Audio$Locale": "<p>The locale of the audio message. Currently, en-US is supported.</p>",
+        "Ssml$Locale": "<p>The locale of the SSML message. Currently, en-US is supported.</p>",
+        "Text$Locale": "<p>The locale of the text message. Currently, en-US is supported.</p>"
       }
     },
     "MacAddress": {
@@ -1934,6 +1982,16 @@
       "refs": {
       }
     },
+    "SendAnnouncementRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SendAnnouncementResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "SendInvitationRequest": {
       "base": null,
       "refs": {
@@ -2135,6 +2193,24 @@
         "Sort$Value": "<p>The sort value of a sort object.</p>"
       }
     },
+    "Ssml": {
+      "base": "<p>The SSML message. For more information, see <a href=\"https://developer.amazon.com/docs/custom-skills/speech-synthesis-markup-language-ssml-reference.html\">SSML Reference</a>.</p>",
+      "refs": {
+        "SsmlList$member": null
+      }
+    },
+    "SsmlList": {
+      "base": null,
+      "refs": {
+        "Content$SsmlList": "<p>The list of SSML messages.</p>"
+      }
+    },
+    "SsmlValue": {
+      "base": null,
+      "refs": {
+        "Ssml$Value": "<p>The value of the SSML message in the correct SSML format. The audio tag is not supported.</p>"
+      }
+    },
     "StartDeviceSyncRequest": {
       "base": null,
       "refs": {
@@ -2208,11 +2284,28 @@
         "UpdateProfileRequest$TemperatureUnit": "<p>The updated temperature unit for the room profile.</p>"
       }
     },
-    "Timestamp": {
+    "Text": {
+      "base": "<p>The text message.</p>",
+      "refs": {
+        "TextList$member": null
+      }
+    },
+    "TextList": {
       "base": null,
       "refs": {
-        "BusinessReport$DeliveryTime": "<p>The time of report delivery.</p>",
-        "DeviceEvent$Timestamp": "<p>The time (in epoch) when the event occurred. </p>"
+        "Content$TextList": "<p>The list of text messages.</p>"
+      }
+    },
+    "TextValue": {
+      "base": null,
+      "refs": {
+        "Text$Value": "<p>The value of the text message.</p>"
+      }
+    },
+    "TimeToLiveInSeconds": {
+      "base": null,
+      "refs": {
+        "SendAnnouncementRequest$TimeToLiveInSeconds": "<p>The time to live for an announcement. If delivery doesn't occur within this time, the announcement will not be delivered.</p>"
       }
     },
     "Timezone": {
