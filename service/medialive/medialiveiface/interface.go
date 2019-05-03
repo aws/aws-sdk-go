@@ -96,6 +96,10 @@ type MediaLiveAPI interface {
 	DeleteReservationWithContext(aws.Context, *medialive.DeleteReservationInput, ...request.Option) (*medialive.DeleteReservationOutput, error)
 	DeleteReservationRequest(*medialive.DeleteReservationInput) (*request.Request, *medialive.DeleteReservationOutput)
 
+	DeleteSchedule(*medialive.DeleteScheduleInput) (*medialive.DeleteScheduleOutput, error)
+	DeleteScheduleWithContext(aws.Context, *medialive.DeleteScheduleInput, ...request.Option) (*medialive.DeleteScheduleOutput, error)
+	DeleteScheduleRequest(*medialive.DeleteScheduleInput) (*request.Request, *medialive.DeleteScheduleOutput)
+
 	DeleteTags(*medialive.DeleteTagsInput) (*medialive.DeleteTagsOutput, error)
 	DeleteTagsWithContext(aws.Context, *medialive.DeleteTagsInput, ...request.Option) (*medialive.DeleteTagsOutput, error)
 	DeleteTagsRequest(*medialive.DeleteTagsInput) (*request.Request, *medialive.DeleteTagsOutput)
@@ -181,6 +185,10 @@ type MediaLiveAPI interface {
 	UpdateChannel(*medialive.UpdateChannelInput) (*medialive.UpdateChannelOutput, error)
 	UpdateChannelWithContext(aws.Context, *medialive.UpdateChannelInput, ...request.Option) (*medialive.UpdateChannelOutput, error)
 	UpdateChannelRequest(*medialive.UpdateChannelInput) (*request.Request, *medialive.UpdateChannelOutput)
+
+	UpdateChannelClass(*medialive.UpdateChannelClassInput) (*medialive.UpdateChannelClassOutput, error)
+	UpdateChannelClassWithContext(aws.Context, *medialive.UpdateChannelClassInput, ...request.Option) (*medialive.UpdateChannelClassOutput, error)
+	UpdateChannelClassRequest(*medialive.UpdateChannelClassInput) (*request.Request, *medialive.UpdateChannelClassOutput)
 
 	UpdateInput(*medialive.UpdateInputInput) (*medialive.UpdateInputOutput, error)
 	UpdateInputWithContext(aws.Context, *medialive.UpdateInputInput, ...request.Option) (*medialive.UpdateInputOutput, error)

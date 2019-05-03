@@ -23,6 +23,7 @@
     "AdminResetUserPassword": "<p>Resets the specified user's password in a user pool as an administrator. Works on any user.</p> <p>When a developer calls this API, the current password is invalidated, so it must be changed. If a user tries to sign in after the API is called, the app will get a PasswordResetRequiredException exception back and should direct the user down the flow to reset the password, which is the same as the forgot password flow. In addition, if the user pool has phone verification selected and a verified phone number exists for the user, or if email verification is selected and a verified email exists for the user, calling this API will also result in sending a message to the end user with the code to change their password.</p> <p>Requires developer credentials.</p>",
     "AdminRespondToAuthChallenge": "<p>Responds to an authentication challenge, as an administrator.</p> <p>Requires developer credentials.</p>",
     "AdminSetUserMFAPreference": "<p>Sets the user's multi-factor authentication (MFA) preference.</p>",
+    "AdminSetUserPassword": null,
     "AdminSetUserSettings": "<p>Sets all the user settings for a specified user name. Works on any user.</p> <p>Requires developer credentials.</p>",
     "AdminUpdateAuthEventFeedback": "<p>Provides feedback for an authentication event as to whether it was from a valid user. This feedback is used for improving the risk evaluation decision for the user pool as part of Amazon Cognito advanced security.</p>",
     "AdminUpdateDeviceStatus": "<p>Updates the device status as an administrator.</p> <p>Requires developer credentials.</p>",
@@ -346,6 +347,16 @@
       "refs": {
       }
     },
+    "AdminSetUserPasswordRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AdminSetUserPasswordResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "AdminSetUserSettingsRequest": {
       "base": "<p>Represents the request to set user settings as an administrator.</p>",
       "refs": {
@@ -593,6 +604,7 @@
       "refs": {
         "AdminCreateUserConfigType$AllowAdminCreateUserOnly": "<p>Set to <code>True</code> if only the administrator is allowed to create user profiles. Set to <code>False</code> if users can sign themselves up via an app.</p>",
         "AdminGetUserResponse$Enabled": "<p>Indicates that the status is enabled.</p>",
+        "AdminSetUserPasswordRequest$Permanent": null,
         "AnalyticsConfigurationType$UserDataShared": "<p>If <code>UserDataShared</code> is <code>true</code>, Amazon Cognito will include user data in the events it publishes to Amazon Pinpoint analytics.</p>",
         "ConfirmDeviceResponse$UserConfirmationNecessary": "<p>Indicates whether the user confirmation is necessary to confirm the device response.</p>",
         "CreateUserPoolClientRequest$AllowedOAuthFlowsUserPoolClient": "<p>Set to <code>True</code> if the client is allowed to follow the OAuth protocol when interacting with Cognito user pools.</p>",
@@ -1975,6 +1987,7 @@
       "base": null,
       "refs": {
         "AdminCreateUserRequest$TemporaryPassword": "<p>The user's temporary password. This password must conform to the password policy that you specified when you created the user pool.</p> <p>The temporary password is valid only once. To complete the Admin Create User flow, the user must enter the temporary password in the sign-in page along with a new password to be used in all future sign-ins.</p> <p>This parameter is not required. If you do not specify a value, Amazon Cognito generates one for you.</p> <p>The temporary password can only be used until the user account expiration limit that you specified when you created the user pool. To reset the account after that time limit, you must call <code>AdminCreateUser</code> again, specifying <code>\"RESEND\"</code> for the <code>MessageAction</code> parameter.</p>",
+        "AdminSetUserPasswordRequest$Password": null,
         "ChangePasswordRequest$PreviousPassword": "<p>The old password.</p>",
         "ChangePasswordRequest$ProposedPassword": "<p>The new password.</p>",
         "ConfirmForgotPasswordRequest$Password": "<p>The password sent by a user's request to retrieve a forgotten password.</p>",
@@ -2540,6 +2553,12 @@
         "UserPoolTagsType$value": null
       }
     },
+    "TemporaryPasswordValidityDaysType": {
+      "base": null,
+      "refs": {
+        "PasswordPolicyType$TemporaryPasswordValidityDays": null
+      }
+    },
     "TokenModelType": {
       "base": null,
       "refs": {
@@ -2842,6 +2861,7 @@
         "AdminResetUserPasswordRequest$UserPoolId": "<p>The user pool ID for the user pool where you want to reset the user's password.</p>",
         "AdminRespondToAuthChallengeRequest$UserPoolId": "<p>The ID of the Amazon Cognito user pool.</p>",
         "AdminSetUserMFAPreferenceRequest$UserPoolId": "<p>The user pool ID.</p>",
+        "AdminSetUserPasswordRequest$UserPoolId": null,
         "AdminSetUserSettingsRequest$UserPoolId": "<p>The user pool ID for the user pool where you want to set the user's settings, such as MFA options.</p>",
         "AdminUpdateAuthEventFeedbackRequest$UserPoolId": "<p>The user pool ID.</p>",
         "AdminUpdateDeviceStatusRequest$UserPoolId": "<p>The user pool ID.</p>",
@@ -3017,6 +3037,7 @@
         "AdminRemoveUserFromGroupRequest$Username": "<p>The username for the user.</p>",
         "AdminResetUserPasswordRequest$Username": "<p>The user name of the user whose password you wish to reset.</p>",
         "AdminSetUserMFAPreferenceRequest$Username": "<p>The user pool username or alias.</p>",
+        "AdminSetUserPasswordRequest$Username": null,
         "AdminSetUserSettingsRequest$Username": "<p>The user name of the user for whom you wish to set user settings.</p>",
         "AdminUpdateAuthEventFeedbackRequest$Username": "<p>The user pool username.</p>",
         "AdminUpdateDeviceStatusRequest$Username": "<p>The user name.</p>",

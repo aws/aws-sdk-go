@@ -342,6 +342,43 @@
         }
       ]
     },
+    "DeleteSchedule": {
+      "name": "DeleteSchedule",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/prod/channels/{channelId}/schedule",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DeleteScheduleRequest"
+      },
+      "output": {
+        "shape": "DeleteScheduleResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "DeleteTags": {
       "name": "DeleteTags",
       "http": {
@@ -938,6 +975,49 @@
         },
         {
           "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "UpdateChannelClass": {
+      "name": "UpdateChannelClass",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/prod/channels/{channelId}/channelClass",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateChannelClassRequest"
+      },
+      "output": {
+        "shape": "UpdateChannelClassResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnprocessableEntityException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
         },
         {
           "shape": "ConflictException"
@@ -2127,7 +2207,9 @@
         "RECOVERING",
         "STOPPING",
         "DELETING",
-        "DELETED"
+        "DELETED",
+        "UPDATING",
+        "UPDATE_FAILED"
       ]
     },
     "ChannelSummary": {
@@ -2676,6 +2758,24 @@
           "shape": "__double",
           "locationName": "usagePrice"
         }
+      }
+    },
+    "DeleteScheduleRequest": {
+      "type": "structure",
+      "members": {
+        "ChannelId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "channelId"
+        }
+      },
+      "required": [
+        "ChannelId"
+      ]
+    },
+    "DeleteScheduleResponse": {
+      "type": "structure",
+      "members": {
       }
     },
     "DeleteTagsRequest": {
@@ -6739,6 +6839,11 @@
         }
       }
     },
+    "ScheduleDeleteResultModel": {
+      "type": "structure",
+      "members": {
+      }
+    },
     "ScheduleDescribeResultModel": {
       "type": "structure",
       "members": {
@@ -7531,6 +7636,53 @@
         "RoleArn": {
           "shape": "__string",
           "locationName": "roleArn"
+        }
+      }
+    },
+    "UpdateChannelClass": {
+      "type": "structure",
+      "members": {
+        "ChannelClass": {
+          "shape": "ChannelClass",
+          "locationName": "channelClass"
+        },
+        "Destinations": {
+          "shape": "__listOfOutputDestination",
+          "locationName": "destinations"
+        }
+      },
+      "required": [
+        "ChannelClass"
+      ]
+    },
+    "UpdateChannelClassRequest": {
+      "type": "structure",
+      "members": {
+        "ChannelClass": {
+          "shape": "ChannelClass",
+          "locationName": "channelClass"
+        },
+        "ChannelId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "channelId"
+        },
+        "Destinations": {
+          "shape": "__listOfOutputDestination",
+          "locationName": "destinations"
+        }
+      },
+      "required": [
+        "ChannelId",
+        "ChannelClass"
+      ]
+    },
+    "UpdateChannelClassResponse": {
+      "type": "structure",
+      "members": {
+        "Channel": {
+          "shape": "Channel",
+          "locationName": "channel"
         }
       }
     },

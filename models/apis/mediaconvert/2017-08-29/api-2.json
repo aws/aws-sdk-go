@@ -2169,6 +2169,10 @@
     "DashIsoEncryptionSettings": {
       "type": "structure",
       "members": {
+        "PlaybackDeviceCompatibility": {
+          "shape": "DashIsoPlaybackDeviceCompatibility",
+          "locationName": "playbackDeviceCompatibility"
+        },
         "SpekeKeyProvider": {
           "shape": "SpekeKeyProvider",
           "locationName": "spekeKeyProvider"
@@ -2225,6 +2229,13 @@
       "enum": [
         "HBBTV_1_5",
         "NONE"
+      ]
+    },
+    "DashIsoPlaybackDeviceCompatibility": {
+      "type": "string",
+      "enum": [
+        "CENC_V1",
+        "UNENCRYPTED_SEI"
       ]
     },
     "DashIsoSegmentControl": {

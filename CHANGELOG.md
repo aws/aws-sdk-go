@@ -1,3 +1,16 @@
+Release v1.19.24 (2019-05-03)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service API and documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/mediaconvert`: Updates service API and documentation
+  * DASH output groups using DRM encryption can now enable a playback device compatibility mode to correct problems with playback on older devices.
+* `service/medialive`: Updates service API and documentation
+  * You can now switch the channel mode of your channels from standard to single pipeline and from single pipeline to standard. In order to switch a channel from single pipeline to standard all inputs attached to the channel must support two encoder pipelines.
+* `service/workmail`: Updates service API, documentation, and paginators
+  * Amazon WorkMail is releasing two new actions: 'GetMailboxDetails' and 'UpdateMailboxQuota'. They add insight into how much space is used by a given mailbox (size) and what its limit is (quota). A mailbox quota can be updated, but lowering the value will not influence WorkMail per user charges. For a closer look at the actions please visit https://docs.aws.amazon.com/workmail/latest/APIReference/API_Operations.html
+
 Release v1.19.23 (2019-05-02)
 ===
 

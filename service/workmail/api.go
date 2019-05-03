@@ -1777,6 +1777,94 @@ func (c *WorkMail) DisassociateMemberFromGroupWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opGetMailboxDetails = "GetMailboxDetails"
+
+// GetMailboxDetailsRequest generates a "aws/request.Request" representing the
+// client's request for the GetMailboxDetails operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMailboxDetails for more information on using the GetMailboxDetails
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMailboxDetailsRequest method.
+//    req, resp := client.GetMailboxDetailsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/GetMailboxDetails
+func (c *WorkMail) GetMailboxDetailsRequest(input *GetMailboxDetailsInput) (req *request.Request, output *GetMailboxDetailsOutput) {
+	op := &request.Operation{
+		Name:       opGetMailboxDetails,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetMailboxDetailsInput{}
+	}
+
+	output = &GetMailboxDetailsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMailboxDetails API operation for Amazon WorkMail.
+//
+// Requests a user's mailbox details for a specified organization and user.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation GetMailboxDetails for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   The organization must have a valid state (Active or Synchronizing) to perform
+//   certain operations on the organization or its members.
+//
+//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+//   The identifier supplied for the user, group, or resource does not exist in
+//   your organization.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/GetMailboxDetails
+func (c *WorkMail) GetMailboxDetails(input *GetMailboxDetailsInput) (*GetMailboxDetailsOutput, error) {
+	req, out := c.GetMailboxDetailsRequest(input)
+	return out, req.Send()
+}
+
+// GetMailboxDetailsWithContext is the same as GetMailboxDetails with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMailboxDetails for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) GetMailboxDetailsWithContext(ctx aws.Context, input *GetMailboxDetailsInput, opts ...request.Option) (*GetMailboxDetailsOutput, error) {
+	req, out := c.GetMailboxDetailsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListAliases = "ListAliases"
 
 // ListAliasesRequest generates a "aws/request.Request" representing the
@@ -2541,6 +2629,12 @@ func (c *WorkMail) ListResourceDelegatesRequest(input *ListResourceDelegatesInpu
 		Name:       opListResourceDelegates,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2604,6 +2698,56 @@ func (c *WorkMail) ListResourceDelegatesWithContext(ctx aws.Context, input *List
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListResourceDelegatesPages iterates over the pages of a ListResourceDelegates operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListResourceDelegates method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListResourceDelegates operation.
+//    pageNum := 0
+//    err := client.ListResourceDelegatesPages(params,
+//        func(page *ListResourceDelegatesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *WorkMail) ListResourceDelegatesPages(input *ListResourceDelegatesInput, fn func(*ListResourceDelegatesOutput, bool) bool) error {
+	return c.ListResourceDelegatesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListResourceDelegatesPagesWithContext same as ListResourceDelegatesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) ListResourceDelegatesPagesWithContext(ctx aws.Context, input *ListResourceDelegatesInput, fn func(*ListResourceDelegatesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListResourceDelegatesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListResourceDelegatesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListResourceDelegatesOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListResources = "ListResources"
@@ -3218,6 +3362,102 @@ func (c *WorkMail) ResetPassword(input *ResetPasswordInput) (*ResetPasswordOutpu
 // for more information on using Contexts.
 func (c *WorkMail) ResetPasswordWithContext(ctx aws.Context, input *ResetPasswordInput, opts ...request.Option) (*ResetPasswordOutput, error) {
 	req, out := c.ResetPasswordRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateMailboxQuota = "UpdateMailboxQuota"
+
+// UpdateMailboxQuotaRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateMailboxQuota operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateMailboxQuota for more information on using the UpdateMailboxQuota
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateMailboxQuotaRequest method.
+//    req, resp := client.UpdateMailboxQuotaRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/UpdateMailboxQuota
+func (c *WorkMail) UpdateMailboxQuotaRequest(input *UpdateMailboxQuotaInput) (req *request.Request, output *UpdateMailboxQuotaOutput) {
+	op := &request.Operation{
+		Name:       opUpdateMailboxQuota,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateMailboxQuotaInput{}
+	}
+
+	output = &UpdateMailboxQuotaOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateMailboxQuota API operation for Amazon WorkMail.
+//
+// Updates a user's current mailbox quota for a specified organization and user.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation UpdateMailboxQuota for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   One or more of the input parameters don't match the service's restrictions.
+//
+//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   The organization must have a valid state (Active or Synchronizing) to perform
+//   certain operations on the organization or its members.
+//
+//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+//   The identifier supplied for the user, group, or resource does not exist in
+//   your organization.
+//
+//   * ErrCodeEntityStateException "EntityStateException"
+//   You are performing an operation on a user, group, or resource that isn't
+//   in the expected state, such as trying to delete an active user.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/UpdateMailboxQuota
+func (c *WorkMail) UpdateMailboxQuota(input *UpdateMailboxQuotaInput) (*UpdateMailboxQuotaOutput, error) {
+	req, out := c.UpdateMailboxQuotaRequest(input)
+	return out, req.Send()
+}
+
+// UpdateMailboxQuotaWithContext is the same as UpdateMailboxQuota with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateMailboxQuota for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) UpdateMailboxQuotaWithContext(ctx aws.Context, input *UpdateMailboxQuotaInput, opts ...request.Option) (*UpdateMailboxQuotaOutput, error) {
+	req, out := c.UpdateMailboxQuotaRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5244,6 +5484,94 @@ func (s DisassociateMemberFromGroupOutput) GoString() string {
 	return s.String()
 }
 
+type GetMailboxDetailsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the organization that contains the user whose mailbox
+	// details are being requested.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `type:"string" required:"true"`
+
+	// The identifier for the user whose mailbox details are being requested.
+	//
+	// UserId is a required field
+	UserId *string `min:"12" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetMailboxDetailsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMailboxDetailsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMailboxDetailsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMailboxDetailsInput"}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *GetMailboxDetailsInput) SetOrganizationId(v string) *GetMailboxDetailsInput {
+	s.OrganizationId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *GetMailboxDetailsInput) SetUserId(v string) *GetMailboxDetailsInput {
+	s.UserId = &v
+	return s
+}
+
+type GetMailboxDetailsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum allowed mailbox size, in MB, for the specified user.
+	MailboxQuota *int64 `min:"1" type:"integer"`
+
+	// The current mailbox size, in MB, for the specified user.
+	MailboxSize *float64 `type:"double"`
+}
+
+// String returns the string representation
+func (s GetMailboxDetailsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMailboxDetailsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMailboxQuota sets the MailboxQuota field's value.
+func (s *GetMailboxDetailsOutput) SetMailboxQuota(v int64) *GetMailboxDetailsOutput {
+	s.MailboxQuota = &v
+	return s
+}
+
+// SetMailboxSize sets the MailboxSize field's value.
+func (s *GetMailboxDetailsOutput) SetMailboxSize(v float64) *GetMailboxDetailsOutput {
+	s.MailboxSize = &v
+	return s
+}
+
 // The representation of an Amazon WorkMail group.
 type Group struct {
 	_ struct{} `type:"structure"`
@@ -6670,6 +6998,93 @@ func (s *Resource) SetState(v string) *Resource {
 func (s *Resource) SetType(v string) *Resource {
 	s.Type = &v
 	return s
+}
+
+type UpdateMailboxQuotaInput struct {
+	_ struct{} `type:"structure"`
+
+	// The updated mailbox quota, in MB, for the specified user.
+	//
+	// MailboxQuota is a required field
+	MailboxQuota *int64 `min:"1" type:"integer" required:"true"`
+
+	// The identifier for the organization that contains the user for whom to update
+	// the mailbox quota.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `type:"string" required:"true"`
+
+	// The identifer for the user for whom to update the mailbox quota.
+	//
+	// UserId is a required field
+	UserId *string `min:"12" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateMailboxQuotaInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateMailboxQuotaInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateMailboxQuotaInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateMailboxQuotaInput"}
+	if s.MailboxQuota == nil {
+		invalidParams.Add(request.NewErrParamRequired("MailboxQuota"))
+	}
+	if s.MailboxQuota != nil && *s.MailboxQuota < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MailboxQuota", 1))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMailboxQuota sets the MailboxQuota field's value.
+func (s *UpdateMailboxQuotaInput) SetMailboxQuota(v int64) *UpdateMailboxQuotaInput {
+	s.MailboxQuota = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *UpdateMailboxQuotaInput) SetOrganizationId(v string) *UpdateMailboxQuotaInput {
+	s.OrganizationId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *UpdateMailboxQuotaInput) SetUserId(v string) *UpdateMailboxQuotaInput {
+	s.UserId = &v
+	return s
+}
+
+type UpdateMailboxQuotaOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateMailboxQuotaOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateMailboxQuotaOutput) GoString() string {
+	return s.String()
 }
 
 type UpdatePrimaryEmailAddressInput struct {
