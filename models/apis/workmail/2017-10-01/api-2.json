@@ -333,6 +333,21 @@
       ],
       "idempotent":true
     },
+    "GetMailboxDetails":{
+      "name":"GetMailboxDetails",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetMailboxDetailsRequest"},
+      "output":{"shape":"GetMailboxDetailsResponse"},
+      "errors":[
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"},
+        {"shape":"EntityNotFoundException"}
+      ],
+      "idempotent":true
+    },
     "ListAliases":{
       "name":"ListAliases",
       "http":{
@@ -517,6 +532,23 @@
         {"shape":"OrganizationNotFoundException"},
         {"shape":"OrganizationStateException"},
         {"shape":"UnsupportedOperationException"}
+      ],
+      "idempotent":true
+    },
+    "UpdateMailboxQuota":{
+      "name":"UpdateMailboxQuota",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateMailboxQuotaRequest"},
+      "output":{"shape":"UpdateMailboxQuotaResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"EntityStateException"}
       ],
       "idempotent":true
     },
@@ -985,6 +1017,24 @@
       },
       "exception":true
     },
+    "GetMailboxDetailsRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "UserId"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "UserId":{"shape":"WorkMailIdentifier"}
+      }
+    },
+    "GetMailboxDetailsResponse":{
+      "type":"structure",
+      "members":{
+        "MailboxQuota":{"shape":"MailboxQuota"},
+        "MailboxSize":{"shape":"MailboxSize"}
+      }
+    },
     "Group":{
       "type":"structure",
       "members":{
@@ -1182,6 +1232,15 @@
         "Message":{"shape":"String"}
       },
       "exception":true
+    },
+    "MailboxQuota":{
+      "type":"integer",
+      "box":true,
+      "min":1
+    },
+    "MailboxSize":{
+      "type":"double",
+      "min":0
     },
     "MaxResults":{
       "type":"integer",
@@ -1406,6 +1465,24 @@
         "Message":{"shape":"String"}
       },
       "exception":true
+    },
+    "UpdateMailboxQuotaRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "UserId",
+        "MailboxQuota"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "UserId":{"shape":"WorkMailIdentifier"},
+        "MailboxQuota":{"shape":"MailboxQuota"}
+      }
+    },
+    "UpdateMailboxQuotaResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdatePrimaryEmailAddressRequest":{
       "type":"structure",

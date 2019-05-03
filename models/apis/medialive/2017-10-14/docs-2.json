@@ -11,6 +11,7 @@
     "DeleteInput": "Deletes the input end point",
     "DeleteInputSecurityGroup": "Deletes an Input Security Group",
     "DeleteReservation": "Delete an expired reservation.",
+    "DeleteSchedule": "Delete all schedule actions on a channel.",
     "DeleteTags": "Removes tags for a resource",
     "DescribeChannel": "Gets details about a channel",
     "DescribeInput": "Produces details about an input",
@@ -28,6 +29,7 @@
     "StartChannel": "Starts an existing channel",
     "StopChannel": "Stops a running channel",
     "UpdateChannel": "Updates a channel.",
+    "UpdateChannelClass": "Changes the class of the channel.",
     "UpdateInput": "Updates an input.",
     "UpdateInputSecurityGroup": "Update an Input Security Group's Whilelists.",
     "UpdateReservation": "Update reservation."
@@ -431,7 +433,8 @@
         "Channel$ChannelClass": "The class for this channel. STANDARD for a channel with two pipelines or SINGLE_PIPELINE for a channel with one pipeline.",
         "ChannelSummary$ChannelClass": "The class for this channel. STANDARD for a channel with two pipelines or SINGLE_PIPELINE for a channel with one pipeline.",
         "CreateChannel$ChannelClass": "The class for this channel. STANDARD for a channel with two pipelines or SINGLE_PIPELINE for a channel with one pipeline.",
-        "ReservationResourceSpecification$ChannelClass": "Channel class, e.g. 'STANDARD'"
+        "ReservationResourceSpecification$ChannelClass": "Channel class, e.g. 'STANDARD'",
+        "UpdateChannelClass$ChannelClass": "The channel class that you wish to update this channel to use."
       }
     },
     "ChannelConfigurationValidationError": {
@@ -1823,6 +1826,11 @@
         "ScheduleAction$ScheduleActionStartSettings": "The time for the action to start in the channel."
       }
     },
+    "ScheduleDeleteResultModel": {
+      "base": "Result of a schedule deletion.",
+      "refs": {
+      }
+    },
     "ScheduleDescribeResultModel": {
       "base": "Results of a schedule describe.",
       "refs": {
@@ -2135,6 +2143,11 @@
       }
     },
     "UpdateChannel": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateChannelClass": {
       "base": null,
       "refs": {
       }
@@ -2806,7 +2819,8 @@
         "Channel$Destinations": "A list of destinations of the channel. For UDP outputs, there is one\ndestination per output. For other types (HLS, for example), there is\none destination per packager.\n",
         "ChannelSummary$Destinations": "A list of destinations of the channel. For UDP outputs, there is one\ndestination per output. For other types (HLS, for example), there is\none destination per packager.\n",
         "CreateChannel$Destinations": null,
-        "UpdateChannel$Destinations": "A list of output destinations for this channel."
+        "UpdateChannel$Destinations": "A list of output destinations for this channel.",
+        "UpdateChannelClass$Destinations": "A list of output destinations for this channel."
       }
     },
     "__listOfOutputDestinationSettings": {

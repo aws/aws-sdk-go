@@ -150,6 +150,10 @@ type CognitoIdentityProviderAPI interface {
 	AdminSetUserMFAPreferenceWithContext(aws.Context, *cognitoidentityprovider.AdminSetUserMFAPreferenceInput, ...request.Option) (*cognitoidentityprovider.AdminSetUserMFAPreferenceOutput, error)
 	AdminSetUserMFAPreferenceRequest(*cognitoidentityprovider.AdminSetUserMFAPreferenceInput) (*request.Request, *cognitoidentityprovider.AdminSetUserMFAPreferenceOutput)
 
+	AdminSetUserPassword(*cognitoidentityprovider.AdminSetUserPasswordInput) (*cognitoidentityprovider.AdminSetUserPasswordOutput, error)
+	AdminSetUserPasswordWithContext(aws.Context, *cognitoidentityprovider.AdminSetUserPasswordInput, ...request.Option) (*cognitoidentityprovider.AdminSetUserPasswordOutput, error)
+	AdminSetUserPasswordRequest(*cognitoidentityprovider.AdminSetUserPasswordInput) (*request.Request, *cognitoidentityprovider.AdminSetUserPasswordOutput)
+
 	AdminSetUserSettings(*cognitoidentityprovider.AdminSetUserSettingsInput) (*cognitoidentityprovider.AdminSetUserSettingsOutput, error)
 	AdminSetUserSettingsWithContext(aws.Context, *cognitoidentityprovider.AdminSetUserSettingsInput, ...request.Option) (*cognitoidentityprovider.AdminSetUserSettingsOutput, error)
 	AdminSetUserSettingsRequest(*cognitoidentityprovider.AdminSetUserSettingsInput) (*request.Request, *cognitoidentityprovider.AdminSetUserSettingsOutput)

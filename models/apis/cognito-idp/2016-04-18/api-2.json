@@ -415,6 +415,24 @@
         {"shape":"InternalErrorException"}
       ]
     },
+    "AdminSetUserPassword":{
+      "name":"AdminSetUserPassword",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AdminSetUserPasswordRequest"},
+      "output":{"shape":"AdminSetUserPasswordResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"UserNotFoundException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidPasswordException"}
+      ]
+    },
     "AdminSetUserSettings":{
       "name":"AdminSetUserSettings",
       "http":{
@@ -2297,6 +2315,25 @@
       "members":{
       }
     },
+    "AdminSetUserPasswordRequest":{
+      "type":"structure",
+      "required":[
+        "UserPoolId",
+        "Username",
+        "Password"
+      ],
+      "members":{
+        "UserPoolId":{"shape":"UserPoolIdType"},
+        "Username":{"shape":"UsernameType"},
+        "Password":{"shape":"PasswordType"},
+        "Permanent":{"shape":"BooleanType"}
+      }
+    },
+    "AdminSetUserPasswordResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "AdminSetUserSettingsRequest":{
       "type":"structure",
       "required":[
@@ -4130,7 +4167,8 @@
         "RequireUppercase":{"shape":"BooleanType"},
         "RequireLowercase":{"shape":"BooleanType"},
         "RequireNumbers":{"shape":"BooleanType"},
-        "RequireSymbols":{"shape":"BooleanType"}
+        "RequireSymbols":{"shape":"BooleanType"},
+        "TemporaryPasswordValidityDays":{"shape":"TemporaryPasswordValidityDaysType"}
       }
     },
     "PasswordResetRequiredException":{
@@ -4690,6 +4728,11 @@
     "TagValueType":{
       "type":"string",
       "max":256,
+      "min":0
+    },
+    "TemporaryPasswordValidityDaysType":{
+      "type":"integer",
+      "max":365,
       "min":0
     },
     "TokenModelType":{
