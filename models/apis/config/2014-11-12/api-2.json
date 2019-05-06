@@ -2253,7 +2253,8 @@
       ],
       "members":{
         "AuthorizedAccountId":{"shape":"AccountId"},
-        "AuthorizedAwsRegion":{"shape":"AwsRegion"}
+        "AuthorizedAwsRegion":{"shape":"AwsRegion"},
+        "Tags":{"shape":"TagsList"}
       }
     },
     "PutAggregationAuthorizationResponse":{
@@ -2266,7 +2267,8 @@
       "type":"structure",
       "required":["ConfigRule"],
       "members":{
-        "ConfigRule":{"shape":"ConfigRule"}
+        "ConfigRule":{"shape":"ConfigRule"},
+        "Tags":{"shape":"TagsList"}
       }
     },
     "PutConfigurationAggregatorRequest":{
@@ -2275,7 +2277,8 @@
       "members":{
         "ConfigurationAggregatorName":{"shape":"ConfigurationAggregatorName"},
         "AccountAggregationSources":{"shape":"AccountAggregationSourceList"},
-        "OrganizationAggregationSource":{"shape":"OrganizationAggregationSource"}
+        "OrganizationAggregationSource":{"shape":"OrganizationAggregationSource"},
+        "Tags":{"shape":"TagsList"}
       }
     },
     "PutConfigurationAggregatorResponse":{
@@ -2887,6 +2890,12 @@
       "type":"map",
       "key":{"shape":"Name"},
       "value":{"shape":"Value"}
+    },
+    "TagsList":{
+      "type":"list",
+      "member":{"shape":"Tag"},
+      "max":50,
+      "min":0
     },
     "TooManyTagsException":{
       "type":"structure",

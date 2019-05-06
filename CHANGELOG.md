@@ -1,3 +1,15 @@
+Release v1.19.25 (2019-05-06)
+===
+
+### Service Client Updates
+* `service/codepipeline`: Updates service documentation
+  * Documentation updates for codepipeline
+* `service/config`: Updates service API and documentation
+* `service/iam`: Updates service documentation
+  * Documentation updates for iam
+* `service/sts`: Updates service documentation
+  * Documentation updates for sts
+
 Release v1.19.24 (2019-05-03)
 ===
 
