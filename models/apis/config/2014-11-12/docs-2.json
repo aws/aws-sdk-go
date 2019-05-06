@@ -477,7 +477,7 @@
       }
     },
     "ConfigSnapshotDeliveryProperties": {
-      "base": "<p>Provides options for how often AWS Config delivers configuration snapshots to the Amazon S3 bucket in your delivery channel.</p> <note> <p>If you want to create a rule that triggers evaluations for your resources when AWS Config delivers the configuration snapshot, see the following:</p> </note> <p>The frequency for a rule that triggers evaluations for your resources when AWS Config delivers the configuration snapshot is set by one of two values, depending on which is less frequent:</p> <ul> <li> <p>The value for the <code>deliveryFrequency</code> parameter within the delivery channel configuration, which sets how often AWS Config delivers configuration snapshots. This value also sets how often AWS Config invokes evaluations for AWS Config rules.</p> </li> <li> <p>The value for the <code>MaximumExecutionFrequency</code> parameter, which sets the maximum frequency with which AWS Config invokes evaluations for the rule. For more information, see <a>ConfigRule</a>.</p> </li> </ul> <p>If the <code>deliveryFrequency</code> value is less frequent than the <code>MaximumExecutionFrequency</code> value for a rule, AWS Config invokes the rule only as often as the <code>deliveryFrequency</code> value.</p> <ol> <li> <p>For example, you want your rule to run evaluations when AWS Config delivers the configuration snapshot.</p> </li> <li> <p>You specify the <code>MaximumExecutionFrequency</code> value for <code>Six_Hours</code>. </p> </li> <li> <p>You then specify the delivery channel <code>deliveryFrequency</code> value for <code>TwentyFour_Hours</code>.</p> </li> <li> <p>Because the value for <code>deliveryFrequency</code> is less frequent than <code>MaximumExecutionFrequency</code>, AWS Config invokes evaluations for the rule every 24 hours. </p> </li> </ol> <p>You should set the <code>MaximumExecutionFrequency</code> value to be at least as frequent as the <code>deliveryFrequency</code> value. You can view the <code>deliveryFrequency</code> value by using the <code>DescribeDeliveryChannnels</code> action.</p> <p>To update the <code>deliveryFrequency</code> with which AWS Config delivers your configuration snapshots, use the <code>PutDeliveryChannel</code> action.</p>",
+      "base": "<p>Provides options for how often AWS Config delivers configuration snapshots to the Amazon S3 bucket in your delivery channel.</p> <p>The frequency for a rule that triggers evaluations for your resources when AWS Config delivers the configuration snapshot is set by one of two values, depending on which is less frequent:</p> <ul> <li> <p>The value for the <code>deliveryFrequency</code> parameter within the delivery channel configuration, which sets how often AWS Config delivers configuration snapshots. This value also sets how often AWS Config invokes evaluations for AWS Config rules.</p> </li> <li> <p>The value for the <code>MaximumExecutionFrequency</code> parameter, which sets the maximum frequency with which AWS Config invokes evaluations for the rule. For more information, see <a>ConfigRule</a>.</p> </li> </ul> <p>If the <code>deliveryFrequency</code> value is less frequent than the <code>MaximumExecutionFrequency</code> value for a rule, AWS Config invokes the rule only as often as the <code>deliveryFrequency</code> value.</p> <ol> <li> <p>For example, you want your rule to run evaluations when AWS Config delivers the configuration snapshot.</p> </li> <li> <p>You specify the <code>MaximumExecutionFrequency</code> value for <code>Six_Hours</code>. </p> </li> <li> <p>You then specify the delivery channel <code>deliveryFrequency</code> value for <code>TwentyFour_Hours</code>.</p> </li> <li> <p>Because the value for <code>deliveryFrequency</code> is less frequent than <code>MaximumExecutionFrequency</code>, AWS Config invokes evaluations for the rule every 24 hours. </p> </li> </ol> <p>You should set the <code>MaximumExecutionFrequency</code> value to be at least as frequent as the <code>deliveryFrequency</code> value. You can view the <code>deliveryFrequency</code> value by using the <code>DescribeDeliveryChannnels</code> action.</p> <p>To update the <code>deliveryFrequency</code> with which AWS Config delivers your configuration snapshots, use the <code>PutDeliveryChannel</code> action.</p>",
       "refs": {
         "DeliveryChannel$configSnapshotDeliveryProperties": "<p>The options for how often AWS Config delivers configuration snapshots to the Amazon S3 bucket.</p>"
       }
@@ -1280,7 +1280,7 @@
       }
     },
     "MaxNumberOfConfigRulesExceededException": {
-      "base": "<p>Failed to add the AWS Config rule because the account already contains the maximum number of 50 rules. Consider deleting any deactivated rules before you add new rules.</p>",
+      "base": "<p>Failed to add the AWS Config rule because the account already contains the maximum number of 150 rules. Consider deleting any deactivated rules before you add new rules.</p>",
       "refs": {
       }
     },
@@ -1417,7 +1417,7 @@
       }
     },
     "OrganizationAggregationSource": {
-      "base": "<p>This object contains regions to setup the aggregator and an IAM role to retrieve organization details.</p>",
+      "base": "<p>This object contains regions to set up the aggregator and an IAM role to retrieve organization details.</p>",
       "refs": {
         "ConfigurationAggregator$OrganizationAggregationSource": "<p>Provides an organization and list of regions to be aggregated.</p>",
         "PutConfigurationAggregatorRequest$OrganizationAggregationSource": "<p>An OrganizationAggregationSource object.</p>"
@@ -1858,7 +1858,7 @@
     "RuleLimit": {
       "base": null,
       "refs": {
-        "DescribeConfigRuleEvaluationStatusRequest$Limit": "<p>The number of rule evaluation results that you want returned.</p> <p>This parameter is required if the rule limit for your account is more than the default of 50 rules.</p> <p>For information about requesting a rule limit increase, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_config\">AWS Config Limits</a> in the <i>AWS General Reference Guide</i>.</p>"
+        "DescribeConfigRuleEvaluationStatusRequest$Limit": "<p>The number of rule evaluation results that you want returned.</p> <p>This parameter is required if the rule limit for your account is more than the default of 150 rules.</p> <p>For information about requesting a rule limit increase, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_config\">AWS Config Limits</a> in the <i>AWS General Reference Guide</i>.</p>"
       }
     },
     "Scope": {
@@ -1983,7 +1983,7 @@
         "FailedRemediationBatch$FailureMessage": "<p>Returns a failure message. For example, the resource is already compliant.</p>",
         "GetComplianceDetailsByResourceRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "GetComplianceDetailsByResourceResponse$NextToken": "<p>The string that you use in a subsequent request to get the next page of results in a paginated response.</p>",
-        "OrganizationAggregationSource$RoleArn": "<p>ARN of the IAM role used to retreive AWS Organization details associated with the aggregator account.</p>",
+        "OrganizationAggregationSource$RoleArn": "<p>ARN of the IAM role used to retrieve AWS Organization details associated with the aggregator account.</p>",
         "PutEvaluationsRequest$ResultToken": "<p>An encrypted token that associates an evaluation with an AWS Config rule. Identifies the rule and the event that triggered the evaluation.</p>",
         "RemediationConfiguration$TargetVersion": "<p>Version of the target. For example, version of the SSM document.</p>",
         "RemediationConfiguration$ResourceType": "<p>The type of a resource. </p>",
@@ -2073,7 +2073,8 @@
     "Tag": {
       "base": "<p>The tags for the resource. The metadata that you apply to a resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.</p>",
       "refs": {
-        "TagList$member": null
+        "TagList$member": null,
+        "TagsList$member": null
       }
     },
     "TagKey": {
@@ -2111,6 +2112,14 @@
       "base": null,
       "refs": {
         "ConfigurationItem$tags": "<p>A mapping of key value tags associated with the resource.</p>"
+      }
+    },
+    "TagsList": {
+      "base": null,
+      "refs": {
+        "PutAggregationAuthorizationRequest$Tags": null,
+        "PutConfigRuleRequest$Tags": null,
+        "PutConfigurationAggregatorRequest$Tags": null
       }
     },
     "TooManyTagsException": {
