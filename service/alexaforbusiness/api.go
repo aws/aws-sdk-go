@@ -1679,6 +1679,96 @@ func (c *AlexaForBusiness) DeleteDeviceWithContext(ctx aws.Context, input *Delet
 	return out, req.Send()
 }
 
+const opDeleteDeviceUsageData = "DeleteDeviceUsageData"
+
+// DeleteDeviceUsageDataRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDeviceUsageData operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteDeviceUsageData for more information on using the DeleteDeviceUsageData
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteDeviceUsageDataRequest method.
+//    req, resp := client.DeleteDeviceUsageDataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteDeviceUsageData
+func (c *AlexaForBusiness) DeleteDeviceUsageDataRequest(input *DeleteDeviceUsageDataInput) (req *request.Request, output *DeleteDeviceUsageDataOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDeviceUsageData,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteDeviceUsageDataInput{}
+	}
+
+	output = &DeleteDeviceUsageDataOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteDeviceUsageData API operation for Alexa For Business.
+//
+// When this action is called for a specified shared device, it allows authorized
+// users to delete the device's entire previous history of voice input data
+// and associated response data. This action can be called once every 24 hours
+// for a specific shared device.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Alexa For Business's
+// API operation DeleteDeviceUsageData for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource is not found.
+//
+//   * ErrCodeDeviceNotRegisteredException "DeviceNotRegisteredException"
+//   The request failed because this device is no longer registered and therefore
+//   no longer managed by this account.
+//
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   You are performing an action that would put you beyond your account's limits.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteDeviceUsageData
+func (c *AlexaForBusiness) DeleteDeviceUsageData(input *DeleteDeviceUsageDataInput) (*DeleteDeviceUsageDataOutput, error) {
+	req, out := c.DeleteDeviceUsageDataRequest(input)
+	return out, req.Send()
+}
+
+// DeleteDeviceUsageDataWithContext is the same as DeleteDeviceUsageData with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDeviceUsageData for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AlexaForBusiness) DeleteDeviceUsageDataWithContext(ctx aws.Context, input *DeleteDeviceUsageDataInput, opts ...request.Option) (*DeleteDeviceUsageDataOutput, error) {
+	req, out := c.DeleteDeviceUsageDataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteGatewayGroup = "DeleteGatewayGroup"
 
 // DeleteGatewayGroupRequest generates a "aws/request.Request" representing the
@@ -6637,7 +6727,7 @@ func (c *AlexaForBusiness) SendAnnouncementRequest(input *SendAnnouncementInput)
 // SendAnnouncement API operation for Alexa For Business.
 //
 // Triggers an asynchronous flow to send text, SSML, or audio announcements
-// to multiple rooms, identified by a search, such as filter.
+// to rooms that are identified by a search or filter.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8335,15 +8425,14 @@ func (s AssociateSkillWithUsersOutput) GoString() string {
 	return s.String()
 }
 
-// The audio message. There is a 1 MB limit on the audio file input, and the
-// only supported format is MP3. You must convert audio files to an Alexa-friendly
-// format.
+// The audio message. There is a 1 MB limit on the audio file input and the
+// only supported format is MP3. To convert your MP3 audio files to an Alexa-friendly,
 //
-// You might need to use converter software to convert your MP3 files to the
-// required codec version (MPEG version 2) and bit rate (48 kbps). One option
-// for this is a command-line tool, FFmpeg. For more information, see FFmpeg
-// (https://www.ffmpeg.org/). The following command converts the provided <input-file>
-// to an MP3 file that will be played in the announcement:
+// required codec version (MPEG version 2) and bit rate (48 kbps), you might
+// use converter software. One option for this is a command-line tool, FFmpeg.
+// For more information, see FFmpeg (https://www.ffmpeg.org/). The following
+// command converts the provided <input-file> to an MP3 file that is played
+// in the announcement:
 //
 // ffmpeg -i <input-file> -ac 2 -codec:a libmp3lame -b:a 48k -ar 16000 <output-file.mp3>
 type Audio struct {
@@ -8355,7 +8444,7 @@ type Audio struct {
 	Locale *string `type:"string" required:"true" enum:"Locale"`
 
 	// The location of the audio file. Currently, S3 URLs are supported. Only S3
-	// locations comprised of safe character are valid. For more information, see
+	// locations comprised of safe characters are valid. For more information, see
 	// Safe Characters (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#Safe%20Characters).
 	//
 	// Location is a required field
@@ -8880,7 +8969,7 @@ func (s *ContactData) SetPhoneNumber(v string) *ContactData {
 	return s
 }
 
-// The content definition. It can contain only one text, SSML, or audio list
+// The content definition. This can contain only one text, SSML, or audio list
 // object.
 type Content struct {
 	_ struct{} `type:"structure"`
@@ -10282,6 +10371,72 @@ func (s DeleteDeviceOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteDeviceOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteDeviceUsageDataInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the device.
+	//
+	// DeviceArn is a required field
+	DeviceArn *string `type:"string" required:"true"`
+
+	// The type of usage data to delete.
+	//
+	// DeviceUsageType is a required field
+	DeviceUsageType *string `type:"string" required:"true" enum:"DeviceUsageType"`
+}
+
+// String returns the string representation
+func (s DeleteDeviceUsageDataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDeviceUsageDataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDeviceUsageDataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDeviceUsageDataInput"}
+	if s.DeviceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceArn"))
+	}
+	if s.DeviceUsageType == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceUsageType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeviceArn sets the DeviceArn field's value.
+func (s *DeleteDeviceUsageDataInput) SetDeviceArn(v string) *DeleteDeviceUsageDataInput {
+	s.DeviceArn = &v
+	return s
+}
+
+// SetDeviceUsageType sets the DeviceUsageType field's value.
+func (s *DeleteDeviceUsageDataInput) SetDeviceUsageType(v string) *DeleteDeviceUsageDataInput {
+	s.DeviceUsageType = &v
+	return s
+}
+
+type DeleteDeviceUsageDataOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDeviceUsageDataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDeviceUsageDataOutput) GoString() string {
 	return s.String()
 }
 
@@ -15321,8 +15476,8 @@ type SendAnnouncementInput struct {
 	// RoomFilters is a required field
 	RoomFilters []*Filter `type:"list" required:"true"`
 
-	// The time to live for an announcement. If delivery doesn't occur within this
-	// time, the announcement will not be delivered.
+	// The time to live for an announcement. Default is 300. If delivery doesn't
+	// occur within this time, the announcement is not delivered.
 	TimeToLiveInSeconds *int64 `min:"1" type:"integer"`
 }
 
@@ -17409,6 +17564,50 @@ const (
 
 	// DeviceStatusDetailCodeDeviceWasOffline is a DeviceStatusDetailCode enum value
 	DeviceStatusDetailCodeDeviceWasOffline = "DEVICE_WAS_OFFLINE"
+
+	// DeviceStatusDetailCodeCredentialsAccessFailure is a DeviceStatusDetailCode enum value
+	DeviceStatusDetailCodeCredentialsAccessFailure = "CREDENTIALS_ACCESS_FAILURE"
+
+	// DeviceStatusDetailCodeTlsVersionMismatch is a DeviceStatusDetailCode enum value
+	DeviceStatusDetailCodeTlsVersionMismatch = "TLS_VERSION_MISMATCH"
+
+	// DeviceStatusDetailCodeAssociationRejection is a DeviceStatusDetailCode enum value
+	DeviceStatusDetailCodeAssociationRejection = "ASSOCIATION_REJECTION"
+
+	// DeviceStatusDetailCodeAuthenticationFailure is a DeviceStatusDetailCode enum value
+	DeviceStatusDetailCodeAuthenticationFailure = "AUTHENTICATION_FAILURE"
+
+	// DeviceStatusDetailCodeDhcpFailure is a DeviceStatusDetailCode enum value
+	DeviceStatusDetailCodeDhcpFailure = "DHCP_FAILURE"
+
+	// DeviceStatusDetailCodeInternetUnavailable is a DeviceStatusDetailCode enum value
+	DeviceStatusDetailCodeInternetUnavailable = "INTERNET_UNAVAILABLE"
+
+	// DeviceStatusDetailCodeDnsFailure is a DeviceStatusDetailCode enum value
+	DeviceStatusDetailCodeDnsFailure = "DNS_FAILURE"
+
+	// DeviceStatusDetailCodeUnknownFailure is a DeviceStatusDetailCode enum value
+	DeviceStatusDetailCodeUnknownFailure = "UNKNOWN_FAILURE"
+
+	// DeviceStatusDetailCodeCertificateIssuingLimitExceeded is a DeviceStatusDetailCode enum value
+	DeviceStatusDetailCodeCertificateIssuingLimitExceeded = "CERTIFICATE_ISSUING_LIMIT_EXCEEDED"
+
+	// DeviceStatusDetailCodeInvalidCertificateAuthority is a DeviceStatusDetailCode enum value
+	DeviceStatusDetailCodeInvalidCertificateAuthority = "INVALID_CERTIFICATE_AUTHORITY"
+
+	// DeviceStatusDetailCodeNetworkProfileNotFound is a DeviceStatusDetailCode enum value
+	DeviceStatusDetailCodeNetworkProfileNotFound = "NETWORK_PROFILE_NOT_FOUND"
+
+	// DeviceStatusDetailCodeInvalidPasswordState is a DeviceStatusDetailCode enum value
+	DeviceStatusDetailCodeInvalidPasswordState = "INVALID_PASSWORD_STATE"
+
+	// DeviceStatusDetailCodePasswordNotFound is a DeviceStatusDetailCode enum value
+	DeviceStatusDetailCodePasswordNotFound = "PASSWORD_NOT_FOUND"
+)
+
+const (
+	// DeviceUsageTypeVoice is a DeviceUsageType enum value
+	DeviceUsageTypeVoice = "VOICE"
 )
 
 const (

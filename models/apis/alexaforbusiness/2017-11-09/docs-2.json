@@ -22,6 +22,7 @@
     "DeleteConferenceProvider": "<p>Deletes a conference provider.</p>",
     "DeleteContact": "<p>Deletes a contact by the contact ARN.</p>",
     "DeleteDevice": "<p>Removes a device from Alexa For Business.</p>",
+    "DeleteDeviceUsageData": "<p>When this action is called for a specified shared device, it allows authorized users to delete the device's entire previous history of voice input data and associated response data. This action can be called once every 24 hours for a specific shared device.</p>",
     "DeleteGatewayGroup": "<p>Deletes a gateway group.</p>",
     "DeleteProfile": "<p>Deletes a room profile by the profile ARN.</p>",
     "DeleteRoom": "<p>Deletes a room by the room ARN.</p>",
@@ -72,7 +73,7 @@
     "SearchRooms": "<p>Searches rooms and lists the ones that meet a set of filter and sort criteria.</p>",
     "SearchSkillGroups": "<p>Searches skill groups and lists the ones that meet a set of filter and sort criteria.</p>",
     "SearchUsers": "<p>Searches users and lists the ones that meet a set of filter and sort criteria.</p>",
-    "SendAnnouncement": "<p>Triggers an asynchronous flow to send text, SSML, or audio announcements to multiple rooms, identified by a search, such as filter. </p>",
+    "SendAnnouncement": "<p>Triggers an asynchronous flow to send text, SSML, or audio announcements to rooms that are identified by a search or filter. </p>",
     "SendInvitation": "<p>Sends an enrollment invitation email with a URL to a user. The URL is valid for 72 hours or until you call this operation again, whichever comes first. </p>",
     "StartDeviceSync": "<p>Resets a device and its account to the known default settings, by clearing all information and settings set by previous users.</p>",
     "StartSmartHomeApplianceDiscovery": "<p>Initiates the discovery of any smart home appliances associated with the room.</p>",
@@ -206,6 +207,7 @@
         "DeleteConferenceProviderRequest$ConferenceProviderArn": "<p>The ARN of the conference provider.</p>",
         "DeleteContactRequest$ContactArn": "<p>The ARN of the contact to delete.</p>",
         "DeleteDeviceRequest$DeviceArn": "<p>The ARN of the device for which to request details.</p>",
+        "DeleteDeviceUsageDataRequest$DeviceArn": "<p>The ARN of the device.</p>",
         "DeleteGatewayGroupRequest$GatewayGroupArn": "<p>The ARN of the gateway group to delete.</p>",
         "DeleteProfileRequest$ProfileArn": "<p>The ARN of the room profile to delete. Required.</p>",
         "DeleteRoomRequest$RoomArn": "<p>The ARN of the room to delete. Required.</p>",
@@ -331,7 +333,7 @@
       }
     },
     "Audio": {
-      "base": "<p>The audio message. There is a 1 MB limit on the audio file input, and the only supported format is MP3. You must convert audio files to an Alexa-friendly format. </p> <p>You might need to use converter software to convert your MP3 files to the required codec version (MPEG version 2) and bit rate (48 kbps). One option for this is a command-line tool, FFmpeg. For more information, see <a href=\"https://www.ffmpeg.org/\">FFmpeg</a>. The following command converts the provided &lt;input-file&gt; to an MP3 file that will be played in the announcement:</p> <p> <code>ffmpeg -i &lt;input-file&gt; -ac 2 -codec:a libmp3lame -b:a 48k -ar 16000 &lt;output-file.mp3&gt;</code> </p>",
+      "base": "<p>The audio message. There is a 1 MB limit on the audio file input and the only supported format is MP3. To convert your MP3 audio files to an Alexa-friendly, </p> <p>required codec version (MPEG version 2) and bit rate (48 kbps), you might use converter software. One option for this is a command-line tool, FFmpeg. For more information, see <a href=\"https://www.ffmpeg.org/\">FFmpeg</a>. The following command converts the provided &lt;input-file&gt; to an MP3 file that is played in the announcement:</p> <p> <code>ffmpeg -i &lt;input-file&gt; -ac 2 -codec:a libmp3lame -b:a 48k -ar 16000 &lt;output-file.mp3&gt;</code> </p>",
       "refs": {
         "AudioList$member": null
       }
@@ -345,7 +347,7 @@
     "AudioLocation": {
       "base": null,
       "refs": {
-        "Audio$Location": "<p>The location of the audio file. Currently, S3 URLs are supported. Only S3 locations comprised of safe character are valid. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#Safe%20Characters\">Safe Characters</a>.</p>"
+        "Audio$Location": "<p>The location of the audio file. Currently, S3 URLs are supported. Only S3 locations comprised of safe characters are valid. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#Safe%20Characters\">Safe Characters</a>.</p>"
       }
     },
     "AuthorizationResult": {
@@ -607,7 +609,7 @@
       }
     },
     "Content": {
-      "base": "<p>The content definition. It can contain only one text, SSML, or audio list object.</p>",
+      "base": "<p>The content definition. This can contain only one text, SSML, or audio list object.</p>",
       "refs": {
         "SendAnnouncementRequest$Content": "<p>The announcement content. This can contain only one of the three possible announcement types (text, SSML or audio).</p>"
       }
@@ -769,6 +771,16 @@
       }
     },
     "DeleteDeviceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDeviceUsageDataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDeviceUsageDataResponse": {
       "base": null,
       "refs": {
       }
@@ -967,6 +979,12 @@
       "refs": {
         "Device$DeviceType": "<p>The type of a device.</p>",
         "DeviceData$DeviceType": "<p>The type of a device.</p>"
+      }
+    },
+    "DeviceUsageType": {
+      "base": null,
+      "refs": {
+        "DeleteDeviceUsageDataRequest$DeviceUsageType": "<p>The type of usage data to delete.</p>"
       }
     },
     "DisassociateContactFromAddressBookRequest": {
@@ -2305,7 +2323,7 @@
     "TimeToLiveInSeconds": {
       "base": null,
       "refs": {
-        "SendAnnouncementRequest$TimeToLiveInSeconds": "<p>The time to live for an announcement. If delivery doesn't occur within this time, the announcement will not be delivered.</p>"
+        "SendAnnouncementRequest$TimeToLiveInSeconds": "<p>The time to live for an announcement. Default is 300. If delivery doesn't occur within this time, the announcement is not delivered.</p>"
       }
     },
     "Timezone": {

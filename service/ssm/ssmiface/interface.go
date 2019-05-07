@@ -277,6 +277,10 @@ type SSMAPI interface {
 	DescribePatchGroupsWithContext(aws.Context, *ssm.DescribePatchGroupsInput, ...request.Option) (*ssm.DescribePatchGroupsOutput, error)
 	DescribePatchGroupsRequest(*ssm.DescribePatchGroupsInput) (*request.Request, *ssm.DescribePatchGroupsOutput)
 
+	DescribePatchProperties(*ssm.DescribePatchPropertiesInput) (*ssm.DescribePatchPropertiesOutput, error)
+	DescribePatchPropertiesWithContext(aws.Context, *ssm.DescribePatchPropertiesInput, ...request.Option) (*ssm.DescribePatchPropertiesOutput, error)
+	DescribePatchPropertiesRequest(*ssm.DescribePatchPropertiesInput) (*request.Request, *ssm.DescribePatchPropertiesOutput)
+
 	DescribeSessions(*ssm.DescribeSessionsInput) (*ssm.DescribeSessionsOutput, error)
 	DescribeSessionsWithContext(aws.Context, *ssm.DescribeSessionsInput, ...request.Option) (*ssm.DescribeSessionsOutput, error)
 	DescribeSessionsRequest(*ssm.DescribeSessionsInput) (*request.Request, *ssm.DescribeSessionsOutput)

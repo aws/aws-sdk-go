@@ -140,6 +140,10 @@ type AlexaForBusinessAPI interface {
 	DeleteDeviceWithContext(aws.Context, *alexaforbusiness.DeleteDeviceInput, ...request.Option) (*alexaforbusiness.DeleteDeviceOutput, error)
 	DeleteDeviceRequest(*alexaforbusiness.DeleteDeviceInput) (*request.Request, *alexaforbusiness.DeleteDeviceOutput)
 
+	DeleteDeviceUsageData(*alexaforbusiness.DeleteDeviceUsageDataInput) (*alexaforbusiness.DeleteDeviceUsageDataOutput, error)
+	DeleteDeviceUsageDataWithContext(aws.Context, *alexaforbusiness.DeleteDeviceUsageDataInput, ...request.Option) (*alexaforbusiness.DeleteDeviceUsageDataOutput, error)
+	DeleteDeviceUsageDataRequest(*alexaforbusiness.DeleteDeviceUsageDataInput) (*request.Request, *alexaforbusiness.DeleteDeviceUsageDataOutput)
+
 	DeleteGatewayGroup(*alexaforbusiness.DeleteGatewayGroupInput) (*alexaforbusiness.DeleteGatewayGroupOutput, error)
 	DeleteGatewayGroupWithContext(aws.Context, *alexaforbusiness.DeleteGatewayGroupInput, ...request.Option) (*alexaforbusiness.DeleteGatewayGroupOutput, error)
 	DeleteGatewayGroupRequest(*alexaforbusiness.DeleteGatewayGroupInput) (*request.Request, *alexaforbusiness.DeleteGatewayGroupOutput)

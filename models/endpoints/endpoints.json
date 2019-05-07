@@ -985,6 +985,18 @@
       },
       "docdb" : {
         "endpoints" : {
+          "ap-northeast-1" : {
+            "credentialScope" : {
+              "region" : "ap-northeast-1"
+            },
+            "hostname" : "rds.ap-northeast-1.amazonaws.com"
+          },
+          "ap-northeast-2" : {
+            "credentialScope" : {
+              "region" : "ap-northeast-2"
+            },
+            "hostname" : "rds.ap-northeast-2.amazonaws.com"
+          },
           "eu-central-1" : {
             "credentialScope" : {
               "region" : "eu-central-1"
@@ -3288,7 +3300,12 @@
       },
       "mediaconvert" : {
         "endpoints" : {
-          "cn-northwest-1" : { }
+          "cn-northwest-1" : {
+            "credentialScope" : {
+              "region" : "cn-northwest-1"
+            },
+            "hostname" : "subscribe.mediaconvert.cn-northwest-1.amazonaws.com.cn"
+          }
         }
       },
       "monitoring" : {
