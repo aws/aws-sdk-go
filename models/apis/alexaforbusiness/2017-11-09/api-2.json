@@ -274,6 +274,20 @@
         {"shape":"InvalidCertificateAuthorityException"}
       ]
     },
+    "DeleteDeviceUsageData":{
+      "name":"DeleteDeviceUsageData",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteDeviceUsageDataRequest"},
+      "output":{"shape":"DeleteDeviceUsageDataResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"DeviceNotRegisteredException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "DeleteGatewayGroup":{
       "name":"DeleteGatewayGroup",
       "http":{
@@ -1705,6 +1719,22 @@
       "members":{
       }
     },
+    "DeleteDeviceUsageDataRequest":{
+      "type":"structure",
+      "required":[
+        "DeviceArn",
+        "DeviceUsageType"
+      ],
+      "members":{
+        "DeviceArn":{"shape":"Arn"},
+        "DeviceUsageType":{"shape":"DeviceUsageType"}
+      }
+    },
+    "DeleteDeviceUsageDataResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteGatewayGroupRequest":{
       "type":"structure",
       "required":["GatewayGroupArn"],
@@ -1897,7 +1927,20 @@
       "type":"string",
       "enum":[
         "DEVICE_SOFTWARE_UPDATE_NEEDED",
-        "DEVICE_WAS_OFFLINE"
+        "DEVICE_WAS_OFFLINE",
+        "CREDENTIALS_ACCESS_FAILURE",
+        "TLS_VERSION_MISMATCH",
+        "ASSOCIATION_REJECTION",
+        "AUTHENTICATION_FAILURE",
+        "DHCP_FAILURE",
+        "INTERNET_UNAVAILABLE",
+        "DNS_FAILURE",
+        "UNKNOWN_FAILURE",
+        "CERTIFICATE_ISSUING_LIMIT_EXCEEDED",
+        "INVALID_CERTIFICATE_AUTHORITY",
+        "NETWORK_PROFILE_NOT_FOUND",
+        "INVALID_PASSWORD_STATE",
+        "PASSWORD_NOT_FOUND"
       ]
     },
     "DeviceStatusDetails":{
@@ -1914,6 +1957,10 @@
     "DeviceType":{
       "type":"string",
       "pattern":"[a-zA-Z0-9]{1,200}"
+    },
+    "DeviceUsageType":{
+      "type":"string",
+      "enum":["VOICE"]
     },
     "DisassociateContactFromAddressBookRequest":{
       "type":"structure",

@@ -160,6 +160,10 @@ type AppSyncAPI interface {
 	ListResolversByFunctionWithContext(aws.Context, *appsync.ListResolversByFunctionInput, ...request.Option) (*appsync.ListResolversByFunctionOutput, error)
 	ListResolversByFunctionRequest(*appsync.ListResolversByFunctionInput) (*request.Request, *appsync.ListResolversByFunctionOutput)
 
+	ListTagsForResource(*appsync.ListTagsForResourceInput) (*appsync.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *appsync.ListTagsForResourceInput, ...request.Option) (*appsync.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*appsync.ListTagsForResourceInput) (*request.Request, *appsync.ListTagsForResourceOutput)
+
 	ListTypes(*appsync.ListTypesInput) (*appsync.ListTypesOutput, error)
 	ListTypesWithContext(aws.Context, *appsync.ListTypesInput, ...request.Option) (*appsync.ListTypesOutput, error)
 	ListTypesRequest(*appsync.ListTypesInput) (*request.Request, *appsync.ListTypesOutput)
@@ -167,6 +171,14 @@ type AppSyncAPI interface {
 	StartSchemaCreation(*appsync.StartSchemaCreationInput) (*appsync.StartSchemaCreationOutput, error)
 	StartSchemaCreationWithContext(aws.Context, *appsync.StartSchemaCreationInput, ...request.Option) (*appsync.StartSchemaCreationOutput, error)
 	StartSchemaCreationRequest(*appsync.StartSchemaCreationInput) (*request.Request, *appsync.StartSchemaCreationOutput)
+
+	TagResource(*appsync.TagResourceInput) (*appsync.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *appsync.TagResourceInput, ...request.Option) (*appsync.TagResourceOutput, error)
+	TagResourceRequest(*appsync.TagResourceInput) (*request.Request, *appsync.TagResourceOutput)
+
+	UntagResource(*appsync.UntagResourceInput) (*appsync.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *appsync.UntagResourceInput, ...request.Option) (*appsync.UntagResourceOutput, error)
+	UntagResourceRequest(*appsync.UntagResourceInput) (*request.Request, *appsync.UntagResourceOutput)
 
 	UpdateApiKey(*appsync.UpdateApiKeyInput) (*appsync.UpdateApiKeyOutput, error)
 	UpdateApiKeyWithContext(aws.Context, *appsync.UpdateApiKeyInput, ...request.Option) (*appsync.UpdateApiKeyOutput, error)

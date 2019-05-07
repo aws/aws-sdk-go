@@ -750,6 +750,18 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "DescribePatchProperties":{
+      "name":"DescribePatchProperties",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribePatchPropertiesRequest"},
+      "output":{"shape":"DescribePatchPropertiesResult"},
+      "errors":[
+        {"shape":"InternalServerError"}
+      ]
+    },
     "DescribeSessions":{
       "name":"DescribeSessions",
       "http":{
@@ -827,7 +839,8 @@
       "output":{"shape":"GetDeployablePatchSnapshotForInstanceResult"},
       "errors":[
         {"shape":"InternalServerError"},
-        {"shape":"UnsupportedOperatingSystem"}
+        {"shape":"UnsupportedOperatingSystem"},
+        {"shape":"UnsupportedFeatureRequiredException"}
       ]
     },
     "GetDocument":{
@@ -3744,7 +3757,11 @@
         },
         "InstancesWithMissingPatches":{"shape":"Integer"},
         "InstancesWithFailedPatches":{"shape":"Integer"},
-        "InstancesWithNotApplicablePatches":{"shape":"Integer"}
+        "InstancesWithNotApplicablePatches":{"shape":"Integer"},
+        "InstancesWithUnreportedNotApplicablePatches":{
+          "shape":"Integer",
+          "box":true
+        }
       }
     },
     "DescribePatchGroupsRequest":{
@@ -3762,6 +3779,30 @@
       "type":"structure",
       "members":{
         "Mappings":{"shape":"PatchGroupPatchBaselineMappingList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribePatchPropertiesRequest":{
+      "type":"structure",
+      "required":[
+        "OperatingSystem",
+        "Property"
+      ],
+      "members":{
+        "OperatingSystem":{"shape":"OperatingSystem"},
+        "Property":{"shape":"PatchProperty"},
+        "PatchSet":{"shape":"PatchSet"},
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true
+        },
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribePatchPropertiesResult":{
+      "type":"structure",
+      "members":{
+        "Properties":{"shape":"PatchPropertiesList"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -4823,6 +4864,10 @@
         },
         "MissingCount":{"shape":"PatchMissingCount"},
         "FailedCount":{"shape":"PatchFailedCount"},
+        "UnreportedNotApplicableCount":{
+          "shape":"PatchUnreportedNotApplicableCount",
+          "box":true
+        },
         "NotApplicableCount":{"shape":"PatchNotApplicableCount"},
         "OperationStartTime":{"shape":"DateTime"},
         "OperationEndTime":{"shape":"DateTime"},
@@ -6693,7 +6738,9 @@
     "PatchFilterKey":{
       "type":"string",
       "enum":[
+        "PATCH_SET",
         "PRODUCT",
+        "PRODUCT_FAMILY",
         "CLASSIFICATION",
         "MSRC_SEVERITY",
         "PATCH_ID",
@@ -6800,6 +6847,26 @@
     },
     "PatchProduct":{"type":"string"},
     "PatchProductFamily":{"type":"string"},
+    "PatchPropertiesList":{
+      "type":"list",
+      "member":{"shape":"PatchPropertyEntry"}
+    },
+    "PatchProperty":{
+      "type":"string",
+      "enum":[
+        "PRODUCT",
+        "PRODUCT_FAMILY",
+        "CLASSIFICATION",
+        "MSRC_SEVERITY",
+        "PRIORITY",
+        "SEVERITY"
+      ]
+    },
+    "PatchPropertyEntry":{
+      "type":"map",
+      "key":{"shape":"AttributeName"},
+      "value":{"shape":"AttributeValue"}
+    },
     "PatchRule":{
       "type":"structure",
       "required":[
@@ -6831,6 +6898,13 @@
       "member":{"shape":"PatchRule"},
       "max":10,
       "min":0
+    },
+    "PatchSet":{
+      "type":"string",
+      "enum":[
+        "OS",
+        "APPLICATION"
+      ]
     },
     "PatchSeverity":{"type":"string"},
     "PatchSource":{
@@ -6882,6 +6956,7 @@
       }
     },
     "PatchTitle":{"type":"string"},
+    "PatchUnreportedNotApplicableCount":{"type":"integer"},
     "PatchVendor":{"type":"string"},
     "PingStatus":{
       "type":"string",
@@ -7978,6 +8053,13 @@
     },
     "TotalCount":{"type":"integer"},
     "TotalSizeLimitExceededException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "UnsupportedFeatureRequiredException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"String"}

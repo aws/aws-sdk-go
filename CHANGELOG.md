@@ -1,3 +1,15 @@
+Release v1.19.26 (2019-05-07)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API and documentation
+* `service/appsync`: Updates service API and documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/ssm`: Updates service API and documentation
+  * Patch Manager adds support for Microsoft Application Patching.
+* `service/storagegateway`: Updates service API and documentation
+  * Add optional field AdminUserList to CreateSMBFileShare and UpdateSMBFileShare APIs.
+
 Release v1.19.25 (2019-05-06)
 ===
 

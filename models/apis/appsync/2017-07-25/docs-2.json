@@ -27,8 +27,11 @@
     "ListGraphqlApis": "<p>Lists your GraphQL APIs.</p>",
     "ListResolvers": "<p>Lists the resolvers for a given API and type.</p>",
     "ListResolversByFunction": "<p>List the resolvers that are associated with a specific function.</p>",
+    "ListTagsForResource": "<p>Lists the tags for a resource.</p>",
     "ListTypes": "<p>Lists the types for a given API.</p>",
     "StartSchemaCreation": "<p>Adds a new schema to your GraphQL API.</p> <p>This operation is asynchronous. Use to determine when it has completed.</p>",
+    "TagResource": "<p>Tags a resource with user-supplied tags.</p>",
+    "UntagResource": "<p>Untags a resource.</p>",
     "UpdateApiKey": "<p>Updates an API key.</p>",
     "UpdateDataSource": "<p>Updates a <code>DataSource</code> object.</p>",
     "UpdateFunction": "<p>Updates a <code>Function</code> object.</p>",
@@ -37,6 +40,25 @@
     "UpdateType": "<p>Updates a <code>Type</code> object.</p>"
   },
   "shapes": {
+    "AccessDeniedException": {
+      "base": "<p>You do not have access to perform this operation on this resource.</p>",
+      "refs": {
+      }
+    },
+    "AdditionalAuthenticationProvider": {
+      "base": "<p>Describes an additional authentication provider.</p>",
+      "refs": {
+        "AdditionalAuthenticationProviders$member": null
+      }
+    },
+    "AdditionalAuthenticationProviders": {
+      "base": null,
+      "refs": {
+        "CreateGraphqlApiRequest$additionalAuthenticationProviders": "<p>A list of additional authentication providers for the <code>GraphqlApi</code> API.</p>",
+        "GraphqlApi$additionalAuthenticationProviders": "<p>A list of additional authentication providers for the <code>GraphqlApi</code> API.</p>",
+        "UpdateGraphqlApiRequest$additionalAuthenticationProviders": "<p>A list of additional authentication providers for the <code>GraphqlApi</code> API.</p>"
+      }
+    },
     "ApiKey": {
       "base": "<p>Describes an API key.</p> <p>Customers invoke AWS AppSync GraphQL API operations with API keys as an identity mechanism. There are two key versions:</p> <p> <b>da1</b>: This version was introduced at launch in November 2017. These keys always expire after 7 days. Key expiration is managed by Amazon DynamoDB TTL. The keys ceased to be valid after February 21, 2018 and should not be used after that date.</p> <ul> <li> <p> <code>ListApiKeys</code> returns the expiration time in milliseconds.</p> </li> <li> <p> <code>CreateApiKey</code> returns the expiration time in milliseconds.</p> </li> <li> <p> <code>UpdateApiKey</code> is not available for this key version.</p> </li> <li> <p> <code>DeleteApiKey</code> deletes the item from the table.</p> </li> <li> <p>Expiration is stored in Amazon DynamoDB as milliseconds. This results in a bug where keys are not automatically deleted because DynamoDB expects the TTL to be stored in seconds. As a one-time action, we will delete these keys from the table after February 21, 2018.</p> </li> </ul> <p> <b>da2</b>: This version was introduced in February 2018 when AppSync added support to extend key expiration.</p> <ul> <li> <p> <code>ListApiKeys</code> returns the expiration time in seconds.</p> </li> <li> <p> <code>CreateApiKey</code> returns the expiration time in seconds and accepts a user-provided expiration time in seconds.</p> </li> <li> <p> <code>UpdateApiKey</code> returns the expiration time in seconds and accepts a user-provided expiration time in seconds. Key expiration can only be updated while the key has not expired.</p> </li> <li> <p> <code>DeleteApiKey</code> deletes the item from the table.</p> </li> <li> <p>Expiration is stored in Amazon DynamoDB as seconds.</p> </li> </ul>",
       "refs": {
@@ -69,7 +91,8 @@
     "AuthenticationType": {
       "base": null,
       "refs": {
-        "CreateGraphqlApiRequest$authenticationType": "<p>The authentication type: API key, AWS IAM, or Amazon Cognito user pools.</p>",
+        "AdditionalAuthenticationProvider$authenticationType": "<p>The authentication type: API key, AWS IAM, OIDC, or Amazon Cognito user pools.</p>",
+        "CreateGraphqlApiRequest$authenticationType": "<p>The authentication type: API key, AWS IAM, OIDC, or Amazon Cognito user pools.</p>",
         "GraphqlApi$authenticationType": "<p>The authentication type.</p>",
         "UpdateGraphqlApiRequest$authenticationType": "<p>The new authentication type for the <code>GraphqlApi</code> object.</p>"
       }
@@ -108,6 +131,18 @@
       "base": null,
       "refs": {
         "DynamodbDataSourceConfig$useCallerCredentials": "<p>Set to TRUE to use Amazon Cognito credentials with this data source.</p>"
+      }
+    },
+    "BooleanValue": {
+      "base": null,
+      "refs": {
+        "GetIntrospectionSchemaRequest$includeDirectives": "<p>A flag that specifies whether the schema introspection should contain directives.</p>"
+      }
+    },
+    "CognitoUserPoolConfig": {
+      "base": "<p>Describes an Amazon Cognito user pool configuration.</p>",
+      "refs": {
+        "AdditionalAuthenticationProvider$userPoolConfig": "<p>The Amazon Cognito user pool configuration.</p>"
       }
     },
     "ConcurrentModificationException": {
@@ -491,6 +526,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTypesRequest": {
       "base": null,
       "refs": {
@@ -562,6 +607,7 @@
     "OpenIDConnectConfig": {
       "base": "<p>Describes an OpenID Connect configuration.</p>",
       "refs": {
+        "AdditionalAuthenticationProvider$openIDConnectConfig": "<p>The OpenID Connect configuration.</p>",
         "CreateGraphqlApiRequest$openIDConnectConfig": "<p>The OpenID Connect configuration.</p>",
         "GraphqlApi$openIDConnectConfig": "<p>The OpenID Connect configuration.</p>",
         "UpdateGraphqlApiRequest$openIDConnectConfig": "<p>The OpenID Connect configuration for the <code>GraphqlApi</code> object.</p>"
@@ -644,6 +690,14 @@
         "ListResolversResponse$resolvers": "<p>The <code>Resolver</code> objects.</p>"
       }
     },
+    "ResourceArn": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$resourceArn": "<p>The <code>GraphqlApi</code> ARN.</p>",
+        "TagResourceRequest$resourceArn": "<p>The <code>GraphqlApi</code> ARN.</p>",
+        "UntagResourceRequest$resourceArn": "<p>The <code>GraphqlApi</code> ARN.</p>"
+      }
+    },
     "ResourceName": {
       "base": null,
       "refs": {
@@ -684,8 +738,8 @@
     "SchemaStatus": {
       "base": null,
       "refs": {
-        "GetSchemaCreationStatusResponse$status": "<p>The current state of the schema (PROCESSING, ACTIVE, or DELETING). Once the schema is in the ACTIVE state, you can add data.</p>",
-        "StartSchemaCreationResponse$status": "<p>The current state of the schema (PROCESSING, ACTIVE, or DELETING). When the schema is in the ACTIVE state, you can add data.</p>"
+        "GetSchemaCreationStatusResponse$status": "<p>The current state of the schema (PROCESSING, FAILED, SUCCESS, or NOT_APPLICABLE). When the schema is in the ACTIVE state, you can add data.</p>",
+        "StartSchemaCreationResponse$status": "<p>The current state of the schema (PROCESSING, FAILED, SUCCESS, or NOT_APPLICABLE). When the schema is in the ACTIVE state, you can add data.</p>"
       }
     },
     "StartSchemaCreationRequest": {
@@ -701,6 +755,7 @@
     "String": {
       "base": null,
       "refs": {
+        "AccessDeniedException$message": null,
         "ApiKey$id": "<p>The API key ID.</p>",
         "ApiKey$description": "<p>A description of the purpose of the API key.</p>",
         "ApiKeyLimitExceededException$message": null,
@@ -708,6 +763,9 @@
         "ApiLimitExceededException$message": null,
         "AwsIamConfig$signingRegion": "<p>The signing region for AWS IAM authorization.</p>",
         "AwsIamConfig$signingServiceName": "<p>The signing service name for AWS IAM authorization.</p>",
+        "CognitoUserPoolConfig$userPoolId": "<p>The user pool ID.</p>",
+        "CognitoUserPoolConfig$awsRegion": "<p>The AWS Region in which the user pool was created.</p>",
+        "CognitoUserPoolConfig$appIdClientRegex": "<p>A regular expression for validating the incoming Amazon Cognito user pool app client ID.</p>",
         "CreateApiKeyRequest$apiId": "<p>The ID for your GraphQL API.</p>",
         "CreateApiKeyRequest$description": "<p>A description of the purpose of the API key.</p>",
         "CreateDataSourceRequest$apiId": "<p>The API ID for the GraphQL API for the <code>DataSource</code>.</p>",
@@ -797,6 +855,44 @@
         "UserPoolConfig$appIdClientRegex": "<p>A regular expression for validating the incoming Amazon Cognito user pool app client ID.</p>"
       }
     },
+    "TagKey": {
+      "base": "<p>The key for the tag.</p>",
+      "refs": {
+        "TagKeyList$member": null,
+        "TagMap$key": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$tagKeys": "<p>A list of <code>TagKey</code> objects.</p>"
+      }
+    },
+    "TagMap": {
+      "base": "<p>A map with keys of <code>TagKey</code> objects and values of <code>TagValue</code> objects.</p>",
+      "refs": {
+        "CreateGraphqlApiRequest$tags": "<p>A <code>TagMap</code> object.</p>",
+        "GraphqlApi$tags": "<p>The tags.</p>",
+        "ListTagsForResourceResponse$tags": "<p>A <code>TagMap</code> object.</p>",
+        "TagResourceRequest$tags": "<p>A <code>TagMap</code> object.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": "<p>The value for the tag.</p>",
+      "refs": {
+        "TagMap$value": null
+      }
+    },
     "Type": {
       "base": "<p>Describes a type.</p>",
       "refs": {
@@ -824,6 +920,16 @@
     },
     "UnauthorizedException": {
       "base": "<p>You are not authorized to perform this operation.</p>",
+      "refs": {
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
       "refs": {
       }
     },

@@ -170,7 +170,8 @@
         {"shape":"ConcurrentModificationException"},
         {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"InternalFailureException"}
+        {"shape":"InternalFailureException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "DeleteResolver":{
@@ -246,7 +247,8 @@
         {"shape":"BadRequestException"},
         {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"InternalFailureException"}
+        {"shape":"InternalFailureException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "GetIntrospectionSchema":{
@@ -398,6 +400,23 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v1/tags/{resourceArn}"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "ListTypes":{
       "name":"ListTypes",
       "http":{
@@ -428,6 +447,40 @@
         {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
         {"shape":"InternalFailureException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/tags/{resourceArn}"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v1/tags/{resourceArn}"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "UpdateApiKey":{
@@ -491,7 +544,8 @@
         {"shape":"ConcurrentModificationException"},
         {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"InternalFailureException"}
+        {"shape":"InternalFailureException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "UpdateResolver":{
@@ -527,6 +581,26 @@
     }
   },
   "shapes":{
+    "AccessDeniedException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":403},
+      "exception":true
+    },
+    "AdditionalAuthenticationProvider":{
+      "type":"structure",
+      "members":{
+        "authenticationType":{"shape":"AuthenticationType"},
+        "openIDConnectConfig":{"shape":"OpenIDConnectConfig"},
+        "userPoolConfig":{"shape":"CognitoUserPoolConfig"}
+      }
+    },
+    "AdditionalAuthenticationProviders":{
+      "type":"list",
+      "member":{"shape":"AdditionalAuthenticationProvider"}
+    },
     "ApiKey":{
       "type":"structure",
       "members":{
@@ -601,6 +675,19 @@
     },
     "Blob":{"type":"blob"},
     "Boolean":{"type":"boolean"},
+    "BooleanValue":{"type":"boolean"},
+    "CognitoUserPoolConfig":{
+      "type":"structure",
+      "required":[
+        "userPoolId",
+        "awsRegion"
+      ],
+      "members":{
+        "userPoolId":{"shape":"String"},
+        "awsRegion":{"shape":"String"},
+        "appIdClientRegex":{"shape":"String"}
+      }
+    },
     "ConcurrentModificationException":{
       "type":"structure",
       "members":{
@@ -698,7 +785,9 @@
         "logConfig":{"shape":"LogConfig"},
         "authenticationType":{"shape":"AuthenticationType"},
         "userPoolConfig":{"shape":"UserPoolConfig"},
-        "openIDConnectConfig":{"shape":"OpenIDConnectConfig"}
+        "openIDConnectConfig":{"shape":"OpenIDConnectConfig"},
+        "tags":{"shape":"TagMap"},
+        "additionalAuthenticationProviders":{"shape":"AdditionalAuthenticationProviders"}
       }
     },
     "CreateGraphqlApiResponse":{
@@ -1078,6 +1167,11 @@
           "shape":"OutputType",
           "location":"querystring",
           "locationName":"format"
+        },
+        "includeDirectives":{
+          "shape":"BooleanValue",
+          "location":"querystring",
+          "locationName":"includeDirectives"
         }
       }
     },
@@ -1186,7 +1280,9 @@
         "userPoolConfig":{"shape":"UserPoolConfig"},
         "openIDConnectConfig":{"shape":"OpenIDConnectConfig"},
         "arn":{"shape":"String"},
-        "uris":{"shape":"MapOfStringToString"}
+        "uris":{"shape":"MapOfStringToString"},
+        "tags":{"shape":"TagMap"},
+        "additionalAuthenticationProviders":{"shape":"AdditionalAuthenticationProviders"}
       }
     },
     "GraphqlApis":{
@@ -1402,6 +1498,23 @@
         "nextToken":{"shape":"PaginationToken"}
       }
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{
+          "shape":"ResourceArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        }
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "tags":{"shape":"TagMap"}
+      }
+    },
     "ListTypesRequest":{
       "type":"structure",
       "required":[
@@ -1545,6 +1658,12 @@
       "type":"list",
       "member":{"shape":"Resolver"}
     },
+    "ResourceArn":{
+      "type":"string",
+      "max":75,
+      "min":70,
+      "pattern":"^arn:aws:appsync:[A-Za-z0-9_/.-]{0,63}:\\d{12}:apis/[0-9A-Za-z_-]{26}$"
+    },
     "ResourceName":{
       "type":"string",
       "pattern":"[_A-Za-z][_0-9A-Za-z]*"
@@ -1554,7 +1673,10 @@
       "enum":[
         "PROCESSING",
         "ACTIVE",
-        "DELETING"
+        "DELETING",
+        "FAILED",
+        "SUCCESS",
+        "NOT_APPLICABLE"
       ]
     },
     "StartSchemaCreationRequest":{
@@ -1579,6 +1701,49 @@
       }
     },
     "String":{"type":"string"},
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^(?!aws:)[a-zA-Z+-=._:/]+$"
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":50,
+      "min":1
+    },
+    "TagMap":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"},
+      "max":50,
+      "min":1
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tags"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"ResourceArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tags":{"shape":"TagMap"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256
+    },
     "Type":{
       "type":"structure",
       "members":{
@@ -1607,6 +1772,30 @@
       },
       "error":{"httpStatusCode":401},
       "exception":true
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tagKeys"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"ResourceArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tagKeys":{
+          "shape":"TagKeyList",
+          "location":"querystring",
+          "locationName":"tagKeys"
+        }
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateApiKeyRequest":{
       "type":"structure",
@@ -1720,7 +1909,8 @@
         "logConfig":{"shape":"LogConfig"},
         "authenticationType":{"shape":"AuthenticationType"},
         "userPoolConfig":{"shape":"UserPoolConfig"},
-        "openIDConnectConfig":{"shape":"OpenIDConnectConfig"}
+        "openIDConnectConfig":{"shape":"OpenIDConnectConfig"},
+        "additionalAuthenticationProviders":{"shape":"AdditionalAuthenticationProviders"}
       }
     },
     "UpdateGraphqlApiResponse":{
