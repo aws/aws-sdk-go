@@ -132,6 +132,10 @@ type KinesisAnalyticsV2API interface {
 	ListApplicationsWithContext(aws.Context, *kinesisanalyticsv2.ListApplicationsInput, ...request.Option) (*kinesisanalyticsv2.ListApplicationsOutput, error)
 	ListApplicationsRequest(*kinesisanalyticsv2.ListApplicationsInput) (*request.Request, *kinesisanalyticsv2.ListApplicationsOutput)
 
+	ListTagsForResource(*kinesisanalyticsv2.ListTagsForResourceInput) (*kinesisanalyticsv2.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *kinesisanalyticsv2.ListTagsForResourceInput, ...request.Option) (*kinesisanalyticsv2.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*kinesisanalyticsv2.ListTagsForResourceInput) (*request.Request, *kinesisanalyticsv2.ListTagsForResourceOutput)
+
 	StartApplication(*kinesisanalyticsv2.StartApplicationInput) (*kinesisanalyticsv2.StartApplicationOutput, error)
 	StartApplicationWithContext(aws.Context, *kinesisanalyticsv2.StartApplicationInput, ...request.Option) (*kinesisanalyticsv2.StartApplicationOutput, error)
 	StartApplicationRequest(*kinesisanalyticsv2.StartApplicationInput) (*request.Request, *kinesisanalyticsv2.StartApplicationOutput)
@@ -139,6 +143,14 @@ type KinesisAnalyticsV2API interface {
 	StopApplication(*kinesisanalyticsv2.StopApplicationInput) (*kinesisanalyticsv2.StopApplicationOutput, error)
 	StopApplicationWithContext(aws.Context, *kinesisanalyticsv2.StopApplicationInput, ...request.Option) (*kinesisanalyticsv2.StopApplicationOutput, error)
 	StopApplicationRequest(*kinesisanalyticsv2.StopApplicationInput) (*request.Request, *kinesisanalyticsv2.StopApplicationOutput)
+
+	TagResource(*kinesisanalyticsv2.TagResourceInput) (*kinesisanalyticsv2.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *kinesisanalyticsv2.TagResourceInput, ...request.Option) (*kinesisanalyticsv2.TagResourceOutput, error)
+	TagResourceRequest(*kinesisanalyticsv2.TagResourceInput) (*request.Request, *kinesisanalyticsv2.TagResourceOutput)
+
+	UntagResource(*kinesisanalyticsv2.UntagResourceInput) (*kinesisanalyticsv2.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *kinesisanalyticsv2.UntagResourceInput, ...request.Option) (*kinesisanalyticsv2.UntagResourceOutput, error)
+	UntagResourceRequest(*kinesisanalyticsv2.UntagResourceInput) (*request.Request, *kinesisanalyticsv2.UntagResourceOutput)
 
 	UpdateApplication(*kinesisanalyticsv2.UpdateApplicationInput) (*kinesisanalyticsv2.UpdateApplicationOutput, error)
 	UpdateApplicationWithContext(aws.Context, *kinesisanalyticsv2.UpdateApplicationInput, ...request.Option) (*kinesisanalyticsv2.UpdateApplicationOutput, error)

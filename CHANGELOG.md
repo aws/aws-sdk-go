@@ -1,3 +1,18 @@
+Release v1.19.27 (2019-05-08)
+===
+
+### Service Client Updates
+* `service/eks`: Updates service documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/iot1click-projects`: Updates service paginators
+* `service/kinesisanalytics`: Updates service API and documentation
+  * Kinesis Data Analytics APIs now support tagging on applications.
+* `service/kinesisanalyticsv2`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Workteams now supports notification configurations. Neo now supports Jetson Nano as a target device and NumberOfHumanWorkersPerDataObject is now included in the ListLabelingJobsForWorkteam response.
+* `service/servicecatalog`: Updates service API and documentation
+  * Adds "Parameters" field in UpdateConstraint API, which will allow Admin user to update "Parameters" in created Constraints.
+
 Release v1.19.26 (2019-05-07)
 ===
 

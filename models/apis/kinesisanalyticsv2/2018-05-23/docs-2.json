@@ -1,13 +1,13 @@
 {
   "version": "2.0",
-  "service": "<p>Documentation for Kinesis Data Analytics API v2</p>",
+  "service": "<p>Amazon Kinesis Data Analytics is a fully managed service that you can use to process and analyze streaming data using SQL or Java. The service enables you to quickly author and run SQL or Java code against streaming sources to perform time series analytics, feed real-time dashboards, and create real-time metrics.</p>",
   "operations": {
     "AddApplicationCloudWatchLoggingOption": "<p>Adds an Amazon CloudWatch log stream to monitor application configuration errors.</p>",
     "AddApplicationInput": "<p> Adds a streaming source to your SQL-based Amazon Kinesis Data Analytics application. </p> <p>You can add a streaming source when you create an application, or you can use this operation to add a streaming source after you create an application. For more information, see <a>CreateApplication</a>.</p> <p>Any configuration update, including adding a streaming source using this operation, results in a new version of the application. You can use the <a>DescribeApplication</a> operation to find the current application version. </p>",
     "AddApplicationInputProcessingConfiguration": "<p>Adds an <a>InputProcessingConfiguration</a> to an SQL-based Kinesis Data Analytics application. An input processor pre-processes records on the input stream before the application's SQL code executes. Currently, the only input processor available is <a href=\"https://aws.amazon.com/documentation/lambda/\">AWS Lambda</a>.</p>",
     "AddApplicationOutput": "<p>Adds an external destination to your SQL-based Amazon Kinesis Data Analytics application.</p> <p>If you want Kinesis Data Analytics to deliver data from an in-application stream within your application to an external destination (such as an Kinesis data stream, a Kinesis Data Firehose delivery stream, or an AWS Lambda function), you add the relevant configuration to your application using this operation. You can configure one or more outputs for your application. Each output configuration maps an in-application stream and an external destination.</p> <p> You can use one of the output configurations to deliver data from your in-application error stream to an external destination so that you can analyze the errors. </p> <p> Any configuration update, including adding a streaming source using this operation, results in a new version of the application. You can use the <a>DescribeApplication</a> operation to find the current application version.</p>",
     "AddApplicationReferenceDataSource": "<p>Adds a reference data source to an existing SQL-based Amazon Kinesis Data Analytics application.</p> <p>Kinesis Data Analytics reads reference data (that is, an Amazon S3 object) and creates an in-application table within your application. In the request, you provide the source (S3 bucket name and object key name), name of the in-application table to create, and the necessary mapping information that describes how data in an Amazon S3 object maps to columns in the resulting in-application table.</p>",
-    "CreateApplication": "<p>Creates an Amazon Kinesis Data Analytics application. For information about creating a Kinesis Data Analytics application, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/Java/creating-app.html\">Creating an Application</a>. </p> <note> <p>SQL is not enabled for this private beta release. Using SQL parameters (such as <a>SqlApplicationConfiguration</a>) will result in an error.</p> </note>",
+    "CreateApplication": "<p>Creates an Amazon Kinesis Data Analytics application. For information about creating a Kinesis Data Analytics application, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/getting-started.html\">Creating an Application</a>. </p>",
     "CreateApplicationSnapshot": "<p>Creates a snapshot of the application's state data.</p>",
     "DeleteApplication": "<p>Deletes the specified application. Kinesis Data Analytics halts application execution and deletes the application.</p>",
     "DeleteApplicationCloudWatchLoggingOption": "<p>Deletes an Amazon CloudWatch log stream from an Amazon Kinesis Data Analytics application. </p>",
@@ -20,9 +20,12 @@
     "DiscoverInputSchema": "<p>Infers a schema for an SQL-based Amazon Kinesis Data Analytics application by evaluating sample records on the specified streaming source (Kinesis data stream or Kinesis Data Firehose delivery stream) or Amazon S3 object. In the response, the operation returns the inferred schema and also the sample records that the operation used to infer the schema.</p> <p> You can use the inferred schema when configuring a streaming source for your application. When you create an application using the Kinesis Data Analytics console, the console uses this operation to infer a schema and show it in the console user interface. </p>",
     "ListApplicationSnapshots": "<p>Lists information about the current application snapshots.</p>",
     "ListApplications": "<p>Returns a list of Amazon Kinesis Data Analytics applications in your account. For each application, the response includes the application name, Amazon Resource Name (ARN), and status. </p> <p>If you want detailed information about a specific application, use <a>DescribeApplication</a>.</p>",
-    "StartApplication": "<p>Starts the specified Amazon Kinesis Data Analytics application. After creating an application, you must exclusively call this operation to start your application.</p> <note> <p>SQL is not enabled for this private beta. Using SQL parameters (such as <a>RunConfiguration$SqlRunConfigurations</a>) will result in an error.</p> </note>",
+    "ListTagsForResource": "<p>Retrieves the list of key-value tags assigned to the application.</p>",
+    "StartApplication": "<p>Starts the specified Amazon Kinesis Data Analytics application. After creating an application, you must exclusively call this operation to start your application.</p>",
     "StopApplication": "<p>Stops the application from processing data. You can stop an application only if it is in the running state. You can use the <a>DescribeApplication</a> operation to find the application state. </p>",
-    "UpdateApplication": "<p>Updates an existing Amazon Kinesis Data Analytics application. Using this operation, you can update application code, input configuration, and output configuration. </p> <p>Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you update your application. </p> <note> <p>SQL is not enabled for this private beta. Using SQL parameters (such as <a>SqlApplicationConfigurationUpdate</a>) will result in an error.</p> </note>"
+    "TagResource": "<p>Adds one or more key-value tags to a Kinesis Analytics application. Note that the maximum number of application tags includes system tags. The maximum number of user-defined application tags is 50.</p>",
+    "UntagResource": "<p>Removes one or more tags from a Kinesis Analytics application.</p>",
+    "UpdateApplication": "<p>Updates an existing Amazon Kinesis Data Analytics application. Using this operation, you can update application code, input configuration, and output configuration. </p> <p>Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you update your application. </p>"
   },
   "shapes": {
     "AddApplicationCloudWatchLoggingOptionRequest": {
@@ -541,6 +544,7 @@
         "ResourceNotFoundException$Message": null,
         "ResourceProvisionedThroughputExceededException$Message": null,
         "ServiceUnavailableException$Message": null,
+        "TooManyTagsException$message": null,
         "UnableToDetectSchemaException$Message": null,
         "UnsupportedOperationException$Message": null
       }
@@ -766,6 +770,14 @@
         "FlinkApplicationConfigurationDescription$JobPlanDescription": "<p>The job plan for an application. For more information about the job plan, see <a href=\"https://ci.apache.org/projects/flink/flink-docs-stable/internals/job_scheduling.html\">Jobs and Scheduling</a> in the <a href=\"https://ci.apache.org/projects/flink/flink-docs-release-1.6/\">Apache Flink Documentation</a>. To retrieve the job plan for the application, use the <a>DescribeApplicationRequest$IncludeAdditionalDetails</a> parameter of the <a>DescribeApplication</a> operation.</p>"
       }
     },
+    "KinesisAnalyticsARN": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$ResourceARN": "<p>The ARN of the application for which to retrieve tags.</p>",
+        "TagResourceRequest$ResourceARN": "<p>The ARN of the application to assign the tags.</p>",
+        "UntagResourceRequest$ResourceARN": "<p>The ARN of the Kinesis Analytics application from which to remove the tags.</p>"
+      }
+    },
     "KinesisFirehoseInput": {
       "base": "<p>For an SQL-based Amazon Kinesis Data Analytics application, identifies a Kinesis Data Firehose delivery stream as the streaming source. You provide the delivery stream's Amazon Resource Name (ARN).</p>",
       "refs": {
@@ -893,6 +905,16 @@
         "ListApplicationSnapshotsRequest$Limit": "<p>The maximum number of application snapshots to list.</p>"
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "LogLevel": {
       "base": null,
       "refs": {
@@ -932,7 +954,7 @@
       }
     },
     "MonitoringConfiguration": {
-      "base": "<p>Describes configuration parameters for Amazon CloudWatch logging for a Java-based Kinesis Data Analytics application. For more information about CloudWatch logging, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/Java/monitoring-overview.html\">Monitoring</a>.</p>",
+      "base": "<p>Describes configuration parameters for Amazon CloudWatch logging for a Java-based Kinesis Data Analytics application. For more information about CloudWatch logging, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/monitoring-overview.html\">Monitoring</a>.</p>",
       "refs": {
         "FlinkApplicationConfiguration$MonitoringConfiguration": "<p>Describes configuration parameters for Amazon CloudWatch logging for an application.</p>"
       }
@@ -980,7 +1002,7 @@
     "OutputDescriptions": {
       "base": null,
       "refs": {
-        "AddApplicationOutputResponse$OutputDescriptions": "<p>Describes the application output configuration. For more information, see <a href=\"http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-output.html\">Configuring Application Output</a>. </p>",
+        "AddApplicationOutputResponse$OutputDescriptions": "<p>Describes the application output configuration. For more information, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-output.html\">Configuring Application Output</a>. </p>",
         "SqlApplicationConfigurationDescription$OutputDescriptions": "<p>The array of <a>OutputDescription</a> objects describing the destination streams used by the application.</p>"
       }
     },
@@ -1128,7 +1150,7 @@
     "RecordColumnMapping": {
       "base": null,
       "refs": {
-        "RecordColumn$Mapping": "<p>A reference to the data element in the streaming input of the reference data source.</p>"
+        "RecordColumn$Mapping": "<p>A reference to the data element in the streaming input or the reference data source.</p>"
       }
     },
     "RecordColumnName": {
@@ -1236,9 +1258,9 @@
         "DeleteApplicationOutputResponse$ApplicationARN": "<p>The application Amazon Resource Name (ARN).</p>",
         "DeleteApplicationReferenceDataSourceResponse$ApplicationARN": "<p>The application Amazon Resource Name (ARN).</p>",
         "DiscoverInputSchemaRequest$ResourceARN": "<p>The Amazon Resource Name (ARN) of the streaming source.</p>",
-        "InputLambdaProcessor$ResourceARN": "<p>The ARN of the AWS Lambda function that operates on records in the stream.</p>",
-        "InputLambdaProcessorDescription$ResourceARN": "<p>The ARN of the AWS Lambda function that is used to preprocess the records in the stream.</p>",
-        "InputLambdaProcessorUpdate$ResourceARNUpdate": "<p>The Amazon Resource Name (ARN) of the new AWS Lambda function that is used to preprocess the records in the stream.</p>",
+        "InputLambdaProcessor$ResourceARN": "<p>The ARN of the AWS Lambda function that operates on records in the stream.</p> <note> <p>To specify an earlier version of the Lambda function than the latest, include the Lambda function version in the Lambda function ARN. For more information about Lambda ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda\">Example ARNs: AWS Lambda</a> </p> </note>",
+        "InputLambdaProcessorDescription$ResourceARN": "<p>The ARN of the AWS Lambda function that is used to preprocess the records in the stream.</p> <note> <p>To specify an earlier version of the Lambda function than the latest, include the Lambda function version in the Lambda function ARN. For more information about Lambda ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda\">Example ARNs: AWS Lambda</a> </p> </note>",
+        "InputLambdaProcessorUpdate$ResourceARNUpdate": "<p>The Amazon Resource Name (ARN) of the new AWS Lambda function that is used to preprocess the records in the stream.</p> <note> <p>To specify an earlier version of the Lambda function than the latest, include the Lambda function version in the Lambda function ARN. For more information about Lambda ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda\">Example ARNs: AWS Lambda</a> </p> </note>",
         "KinesisFirehoseInput$ResourceARN": "<p>The Amazon Resource Name (ARN) of the delivery stream.</p>",
         "KinesisFirehoseInputDescription$ResourceARN": "<p>The Amazon Resource Name (ARN) of the delivery stream.</p>",
         "KinesisFirehoseInputUpdate$ResourceARNUpdate": "<p>The Amazon Resource Name (ARN) of the input delivery stream to read.</p>",
@@ -1251,9 +1273,9 @@
         "KinesisStreamsOutput$ResourceARN": "<p>The ARN of the destination Kinesis data stream to write to.</p>",
         "KinesisStreamsOutputDescription$ResourceARN": "<p>The Amazon Resource Name (ARN) of the Kinesis data stream.</p>",
         "KinesisStreamsOutputUpdate$ResourceARNUpdate": "<p>The Amazon Resource Name (ARN) of the Kinesis data stream where you want to write the output.</p>",
-        "LambdaOutput$ResourceARN": "<p>The Amazon Resource Name (ARN) of the destination Lambda function to write to.</p>",
+        "LambdaOutput$ResourceARN": "<p>The Amazon Resource Name (ARN) of the destination Lambda function to write to.</p> <note> <p>To specify an earlier version of the Lambda function than the latest, include the Lambda function version in the Lambda function ARN. For more information about Lambda ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda\">Example ARNs: AWS Lambda</a> </p> </note>",
         "LambdaOutputDescription$ResourceARN": "<p>The Amazon Resource Name (ARN) of the destination Lambda function.</p>",
-        "LambdaOutputUpdate$ResourceARNUpdate": "<p>The Amazon Resource Name (ARN) of the destination AWS Lambda function.</p>"
+        "LambdaOutputUpdate$ResourceARNUpdate": "<p>The Amazon Resource Name (ARN) of the destination AWS Lambda function.</p> <note> <p>To specify an earlier version of the Lambda function than the latest, include the Lambda function version in the Lambda function ARN. For more information about Lambda ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda\">Example ARNs: AWS Lambda</a> </p> </note>"
       }
     },
     "ResourceInUseException": {
@@ -1309,9 +1331,9 @@
     "RuntimeEnvironment": {
       "base": null,
       "refs": {
-        "ApplicationDetail$RuntimeEnvironment": "<p>The runtime environment for the application (<code>SQL-1.0</code> or <code>JAVA-8-FLINK-1.5</code>).</p>",
-        "ApplicationSummary$RuntimeEnvironment": "<p>The runtime environment for the application (<code>SQL-1.0</code> or <code>JAVA-8-FLINK-1.5</code>).</p>",
-        "CreateApplicationRequest$RuntimeEnvironment": "<p>The runtime environment for the application (<code>SQL-1.0</code> or <code>JAVA-8-FLINK-1.5</code>).</p>"
+        "ApplicationDetail$RuntimeEnvironment": "<p>The runtime environment for the application (<code>SQL-1.0</code> or <code>FLINK-1_6</code>).</p>",
+        "ApplicationSummary$RuntimeEnvironment": "<p>The runtime environment for the application (<code>SQL-1.0</code> or <code>FLINK-1_6</code>).</p>",
+        "CreateApplicationRequest$RuntimeEnvironment": "<p>The runtime environment for the application (<code>SQL-1.0</code> or <code>FLINK-1_6</code>).</p>"
       }
     },
     "S3ApplicationCodeLocationDescription": {
@@ -1451,6 +1473,49 @@
       "refs": {
       }
     },
+    "Tag": {
+      "base": "<p>A key-value pair (the value is optional) that you can define and assign to AWS resources. If you specify a tag that already exists, the tag value is replaced with the value that you specify in the request. Note that the maximum number of application tags includes system tags. The maximum number of user-defined application tags is 50. For more information, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html\">Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management Guide</i>.</p>",
+      "refs": {
+        "Tags$member": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "Tag$Key": "<p>The key of the key-value tag.</p>",
+        "TagKeys$member": null
+      }
+    },
+    "TagKeys": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": "<p>A list of keys of tags to remove from the specified application.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tag$Value": "<p>The value of the key-value tag. The value is optional.</p>"
+      }
+    },
+    "Tags": {
+      "base": null,
+      "refs": {
+        "CreateApplicationRequest$Tags": "<p>A list of one or more tags to assign to the application. A tag is a key-value pair that identifies an application. Note that the maximum number of application tags includes system tags. The maximum number of user-defined application tags is 50. For more information, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html\">Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management Guide</i>.</p>",
+        "ListTagsForResourceResponse$Tags": "<p>The key-value tags assigned to the application.</p>",
+        "TagResourceRequest$Tags": "<p>The key-value tags to assign to the application.</p>"
+      }
+    },
     "TextContent": {
       "base": null,
       "refs": {
@@ -1469,6 +1534,11 @@
         "SnapshotDetails$SnapshotCreationTimestamp": "<p>The timestamp of the application snapshot.</p>"
       }
     },
+    "TooManyTagsException": {
+      "base": "<p>Application created with too many tags, or too many tags added to an application. Note that the maximum number of application tags includes system tags. The maximum number of user-defined application tags is 50.</p>",
+      "refs": {
+      }
+    },
     "UnableToDetectSchemaException": {
       "base": "<p>The data format is not valid. Amazon Kinesis Data Analytics cannot detect the schema for the given streaming source.</p>",
       "refs": {
@@ -1476,6 +1546,16 @@
     },
     "UnsupportedOperationException": {
       "base": "<p>The request was rejected because a specified parameter is not supported or a specified resource is not valid for this operation. </p>",
+      "refs": {
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
       "refs": {
       }
     },
