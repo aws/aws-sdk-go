@@ -804,6 +804,12 @@ func (c *IoT1ClickProjects) ListPlacementsRequest(input *ListPlacementsInput) (r
 		Name:       opListPlacements,
 		HTTPMethod: "GET",
 		HTTPPath:   "/projects/{projectName}/placements",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -855,6 +861,56 @@ func (c *IoT1ClickProjects) ListPlacementsWithContext(ctx aws.Context, input *Li
 	return out, req.Send()
 }
 
+// ListPlacementsPages iterates over the pages of a ListPlacements operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPlacements method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListPlacements operation.
+//    pageNum := 0
+//    err := client.ListPlacementsPages(params,
+//        func(page *ListPlacementsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoT1ClickProjects) ListPlacementsPages(input *ListPlacementsInput, fn func(*ListPlacementsOutput, bool) bool) error {
+	return c.ListPlacementsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPlacementsPagesWithContext same as ListPlacementsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT1ClickProjects) ListPlacementsPagesWithContext(ctx aws.Context, input *ListPlacementsInput, fn func(*ListPlacementsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPlacementsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPlacementsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListPlacementsOutput), !p.HasNextPage())
+	}
+	return p.Err()
+}
+
 const opListProjects = "ListProjects"
 
 // ListProjectsRequest generates a "aws/request.Request" representing the
@@ -886,6 +942,12 @@ func (c *IoT1ClickProjects) ListProjectsRequest(input *ListProjectsInput) (req *
 		Name:       opListProjects,
 		HTTPMethod: "GET",
 		HTTPPath:   "/projects",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -934,6 +996,56 @@ func (c *IoT1ClickProjects) ListProjectsWithContext(ctx aws.Context, input *List
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListProjectsPages iterates over the pages of a ListProjects operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListProjects method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListProjects operation.
+//    pageNum := 0
+//    err := client.ListProjectsPages(params,
+//        func(page *ListProjectsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoT1ClickProjects) ListProjectsPages(input *ListProjectsInput, fn func(*ListProjectsOutput, bool) bool) error {
+	return c.ListProjectsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListProjectsPagesWithContext same as ListProjectsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT1ClickProjects) ListProjectsPagesWithContext(ctx aws.Context, input *ListProjectsInput, fn func(*ListProjectsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListProjectsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListProjectsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*ListProjectsOutput), !p.HasNextPage())
+	}
+	return p.Err()
 }
 
 const opListTagsForResource = "ListTagsForResource"

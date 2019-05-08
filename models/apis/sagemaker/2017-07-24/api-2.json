@@ -1357,8 +1357,7 @@
       "type":"structure",
       "required":[
         "HyperParameterTuningJobName",
-        "HyperParameterTuningJobConfig",
-        "TrainingJobDefinition"
+        "HyperParameterTuningJobConfig"
       ],
       "members":{
         "HyperParameterTuningJobName":{"shape":"HyperParameterTuningJobName"},
@@ -1578,6 +1577,7 @@
         "WorkteamName":{"shape":"WorkteamName"},
         "MemberDefinitions":{"shape":"MemberDefinitions"},
         "Description":{"shape":"String200"},
+        "NotificationConfiguration":{"shape":"NotificationConfiguration"},
         "Tags":{"shape":"TagList"}
       }
     },
@@ -1596,7 +1596,6 @@
     },
     "DataSource":{
       "type":"structure",
-      "required":["S3DataSource"],
       "members":{
         "S3DataSource":{"shape":"S3DataSource"}
       }
@@ -1855,7 +1854,6 @@
         "HyperParameterTuningJobName",
         "HyperParameterTuningJobArn",
         "HyperParameterTuningJobConfig",
-        "TrainingJobDefinition",
         "HyperParameterTuningJobStatus",
         "CreationTime",
         "TrainingJobStatusCounters",
@@ -2524,9 +2522,7 @@
       "type":"structure",
       "required":[
         "Strategy",
-        "HyperParameterTuningJobObjective",
-        "ResourceLimits",
-        "ParameterRanges"
+        "ResourceLimits"
       ],
       "members":{
         "Strategy":{"shape":"HyperParameterTuningJobStrategyType"},
@@ -2855,7 +2851,8 @@
         "JobReferenceCode":{"shape":"JobReferenceCode"},
         "WorkRequesterAccountId":{"shape":"AccountId"},
         "CreationTime":{"shape":"Timestamp"},
-        "LabelCounters":{"shape":"LabelCountersForWorkteam"}
+        "LabelCounters":{"shape":"LabelCountersForWorkteam"},
+        "NumberOfHumanWorkersPerDataObject":{"shape":"NumberOfHumanWorkersPerDataObject"}
       }
     },
     "LabelingJobForWorkteamSummaryList":{
@@ -3462,7 +3459,8 @@
     "MetricRegex":{
       "type":"string",
       "max":500,
-      "min":1
+      "min":1,
+      "pattern":".+"
     },
     "MetricValue":{"type":"float"},
     "ModelArn":{
@@ -3796,6 +3794,16 @@
       "type":"integer",
       "max":16384,
       "min":5
+    },
+    "NotificationConfiguration":{
+      "type":"structure",
+      "members":{
+        "NotificationTopicArn":{"shape":"NotificationTopicArn"}
+      }
+    },
+    "NotificationTopicArn":{
+      "type":"string",
+      "pattern":"arn:aws[a-z\\-]*:sns:[a-z0-9\\-]*:[0-9]{12}:[a-zA-Z0-9_.-]*"
     },
     "NumberOfHumanWorkersPerDataObject":{
       "type":"integer",
@@ -4514,6 +4522,7 @@
     "TargetDevice":{
       "type":"string",
       "enum":[
+        "lambda",
         "ml_m4",
         "ml_m5",
         "ml_c4",
@@ -4522,6 +4531,7 @@
         "ml_p3",
         "jetson_tx1",
         "jetson_tx2",
+        "jetson_nano",
         "rasp3b",
         "deeplens",
         "rk3399",
@@ -5051,7 +5061,8 @@
       "members":{
         "WorkteamName":{"shape":"WorkteamName"},
         "MemberDefinitions":{"shape":"MemberDefinitions"},
-        "Description":{"shape":"String200"}
+        "Description":{"shape":"String200"},
+        "NotificationConfiguration":{"shape":"NotificationConfiguration"}
       }
     },
     "UpdateWorkteamResponse":{
@@ -5112,7 +5123,8 @@
         "Description":{"shape":"String200"},
         "SubDomain":{"shape":"String"},
         "CreateDate":{"shape":"Timestamp"},
-        "LastUpdatedDate":{"shape":"Timestamp"}
+        "LastUpdatedDate":{"shape":"Timestamp"},
+        "NotificationConfiguration":{"shape":"NotificationConfiguration"}
       }
     },
     "WorkteamArn":{

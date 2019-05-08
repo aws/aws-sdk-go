@@ -3605,7 +3605,8 @@
       "members":{
         "AcceptLanguage":{"shape":"AcceptLanguage"},
         "Id":{"shape":"Id"},
-        "Description":{"shape":"ConstraintDescription"}
+        "Description":{"shape":"ConstraintDescription"},
+        "Parameters":{"shape":"ConstraintParameters"}
       }
     },
     "UpdateConstraintOutput":{

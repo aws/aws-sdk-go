@@ -27,7 +27,8 @@
         {"shape":"ResourceInUseException"},
         {"shape":"InvalidArgumentException"},
         {"shape":"ConcurrentModificationException"},
-        {"shape":"InvalidRequestException"}
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidApplicationConfigurationException"}
       ]
     },
     "AddApplicationInput":{
@@ -108,7 +109,9 @@
         {"shape":"ResourceInUseException"},
         {"shape":"LimitExceededException"},
         {"shape":"InvalidArgumentException"},
-        {"shape":"InvalidRequestException"}
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "CreateApplicationSnapshot":{
@@ -141,7 +144,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceInUseException"},
         {"shape":"InvalidArgumentException"},
-        {"shape":"InvalidRequestException"}
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidApplicationConfigurationException"}
       ]
     },
     "DeleteApplicationCloudWatchLoggingOption":{
@@ -157,7 +161,8 @@
         {"shape":"ResourceInUseException"},
         {"shape":"InvalidArgumentException"},
         {"shape":"ConcurrentModificationException"},
-        {"shape":"InvalidRequestException"}
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidApplicationConfigurationException"}
       ]
     },
     "DeleteApplicationInputProcessingConfiguration":{
@@ -293,6 +298,20 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"ConcurrentModificationException"}
+      ]
+    },
     "StartApplication":{
       "name":"StartApplication",
       "http":{
@@ -321,7 +340,40 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceInUseException"},
         {"shape":"InvalidArgumentException"},
-        {"shape":"InvalidRequestException"}
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidApplicationConfigurationException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"ConcurrentModificationException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "UpdateApplication":{
@@ -338,7 +390,8 @@
         {"shape":"ResourceInUseException"},
         {"shape":"InvalidArgumentException"},
         {"shape":"ConcurrentModificationException"},
-        {"shape":"InvalidRequestException"}
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidApplicationConfigurationException"}
       ]
     }
   },
@@ -776,7 +829,8 @@
         "RuntimeEnvironment":{"shape":"RuntimeEnvironment"},
         "ServiceExecutionRole":{"shape":"RoleARN"},
         "ApplicationConfiguration":{"shape":"ApplicationConfiguration"},
-        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"}
+        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "CreateApplicationResponse":{
@@ -1037,8 +1091,7 @@
     "InAppStreamName":{
       "type":"string",
       "max":32,
-      "min":1,
-      "pattern":"[a-zA-Z][a-zA-Z0-9_]+"
+      "min":1
     },
     "InAppStreamNames":{
       "type":"list",
@@ -1047,8 +1100,7 @@
     "InAppTableName":{
       "type":"string",
       "max":32,
-      "min":1,
-      "pattern":"[a-zA-Z][a-zA-Z0-9_]+"
+      "min":1
     },
     "Input":{
       "type":"structure",
@@ -1215,6 +1267,12 @@
       }
     },
     "JobPlanDescription":{"type":"string"},
+    "KinesisAnalyticsARN":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"arn:aws:kinesisanalytics:[a-z]{2}-[a-z]+-\\d{1}+:\\d{12}+:application/[a-zA-Z0-9_.-]{1,128}"
+    },
     "KinesisFirehoseInput":{
       "type":"structure",
       "required":["ResourceARN"],
@@ -1372,6 +1430,19 @@
       "type":"integer",
       "max":50,
       "min":1
+    },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceARN"],
+      "members":{
+        "ResourceARN":{"shape":"KinesisAnalyticsARN"}
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"Tags"}
+      }
     },
     "LogLevel":{
       "type":"string",
@@ -1594,10 +1665,7 @@
       "min":1
     },
     "RecordColumnMapping":{"type":"string"},
-    "RecordColumnName":{
-      "type":"string",
-      "pattern":"[a-zA-Z_][a-zA-Z0-9_]*"
-    },
+    "RecordColumnName":{"type":"string"},
     "RecordColumnSqlType":{
       "type":"string",
       "min":1
@@ -1931,12 +1999,65 @@
       "members":{
       }
     },
+    "Tag":{
+      "type":"structure",
+      "required":["Key"],
+      "members":{
+        "Key":{"shape":"TagKey"},
+        "Value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeys":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":200,
+      "min":1
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "Tags"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"KinesisAnalyticsARN"},
+        "Tags":{"shape":"Tags"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
+    "Tags":{
+      "type":"list",
+      "member":{"shape":"Tag"},
+      "max":200,
+      "min":1
+    },
     "TextContent":{
       "type":"string",
       "max":102400,
       "min":0
     },
     "Timestamp":{"type":"timestamp"},
+    "TooManyTagsException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "UnableToDetectSchemaException":{
       "type":"structure",
       "members":{
@@ -1952,6 +2073,22 @@
         "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"KinesisAnalyticsARN"},
+        "TagKeys":{"shape":"TagKeys"}
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateApplicationRequest":{
       "type":"structure",
