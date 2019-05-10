@@ -1816,6 +1816,26 @@
         "ImportedBy":{"shape":"NameString"}
       }
     },
+    "CatalogTablesList":{
+      "type":"list",
+      "member":{"shape":"NameString"},
+      "min":1
+    },
+    "CatalogTarget":{
+      "type":"structure",
+      "required":[
+        "DatabaseName",
+        "Tables"
+      ],
+      "members":{
+        "DatabaseName":{"shape":"NameString"},
+        "Tables":{"shape":"CatalogTablesList"}
+      }
+    },
+    "CatalogTargetList":{
+      "type":"list",
+      "member":{"shape":"CatalogTarget"}
+    },
     "Classification":{"type":"string"},
     "Classifier":{
       "type":"structure",
@@ -2134,7 +2154,8 @@
       "members":{
         "S3Targets":{"shape":"S3TargetList"},
         "JdbcTargets":{"shape":"JdbcTargetList"},
-        "DynamoDBTargets":{"shape":"DynamoDBTargetList"}
+        "DynamoDBTargets":{"shape":"DynamoDBTargetList"},
+        "CatalogTargets":{"shape":"CatalogTargetList"}
       }
     },
     "CreateClassifierRequest":{
@@ -2169,7 +2190,6 @@
       "required":[
         "Name",
         "Role",
-        "DatabaseName",
         "Targets"
       ],
       "members":{

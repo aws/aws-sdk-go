@@ -13,9 +13,9 @@
     "BatchGetPartition": "<p>Retrieves partitions in a batch request.</p>",
     "BatchGetTriggers": "<p>Returns a list of resource metadata for a given list of trigger names. After calling the <code>ListTriggers</code> operation, you can call this operation to access the data to which you have been granted permissions. This operation supports all IAM permissions, including permission conditions that uses tags.</p>",
     "BatchStopJobRun": "<p>Stops one or more job runs for a specified job definition.</p>",
-    "CreateClassifier": "<p>Creates a classifier in the user's account. This may be a <code>GrokClassifier</code>, an <code>XMLClassifier</code>, a <code>JsonClassifier</code>, or a <code>CsvClassifier</code>, depending on which field of the request is present.</p>",
+    "CreateClassifier": "<p>Creates a classifier in the user's account. This can be a <code>GrokClassifier</code>, an <code>XMLClassifier</code>, a <code>JsonClassifier</code>, or a <code>CsvClassifier</code>, depending on which field of the request is present.</p>",
     "CreateConnection": "<p>Creates a connection definition in the Data Catalog.</p>",
-    "CreateCrawler": "<p>Creates a new crawler with specified targets, role, configuration, and optional schedule. At least one crawl target must be specified, in the <i>s3Targets</i> field, the <i>jdbcTargets</i> field, or the <i>DynamoDBTargets</i> field.</p>",
+    "CreateCrawler": "<p>Creates a new crawler with specified targets, role, configuration, and optional schedule. At least one crawl target must be specified, in the <code>s3Targets</code> field, the <code>jdbcTargets</code> field, or the <code>DynamoDBTargets</code> field.</p>",
     "CreateDatabase": "<p>Creates a new database in a Data Catalog.</p>",
     "CreateDevEndpoint": "<p>Creates a new DevEndpoint.</p>",
     "CreateJob": "<p>Creates a new job definition.</p>",
@@ -27,7 +27,7 @@
     "CreateUserDefinedFunction": "<p>Creates a new function definition in the Data Catalog.</p>",
     "DeleteClassifier": "<p>Removes a classifier from the Data Catalog.</p>",
     "DeleteConnection": "<p>Deletes a connection from the Data Catalog.</p>",
-    "DeleteCrawler": "<p>Removes a specified crawler from the Data Catalog, unless the crawler state is <code>RUNNING</code>.</p>",
+    "DeleteCrawler": "<p>Removes a specified crawler from the AWS Glue Data Catalog, unless the crawler state is <code>RUNNING</code>.</p>",
     "DeleteDatabase": "<p>Removes a specified Database from a Data Catalog.</p> <note> <p>After completing this operation, you will no longer have access to the tables (and all table versions and partitions that might belong to the tables) and the user-defined functions in the deleted database. AWS Glue deletes these \"orphaned\" resources asynchronously in a timely manner, at the discretion of the service.</p> <p>To ensure immediate deletion of all related resources, before calling <code>DeleteDatabase</code>, use <code>DeleteTableVersion</code> or <code>BatchDeleteTableVersion</code>, <code>DeletePartition</code> or <code>BatchDeletePartition</code>, <code>DeleteUserDefinedFunction</code>, and <code>DeleteTable</code> or <code>BatchDeleteTable</code>, to delete any resources that belong to the database.</p> </note>",
     "DeleteDevEndpoint": "<p>Deletes a specified DevEndpoint.</p>",
     "DeleteJob": "<p>Deletes a specified job definition. If the job definition is not found, no exception is thrown.</p>",
@@ -344,7 +344,7 @@
       }
     },
     "CatalogEntry": {
-      "base": "<p>Specifies a table definition in the Data Catalog.</p>",
+      "base": "<p>Specifies a table definition in the AWS Glue Data Catalog.</p>",
       "refs": {
         "CatalogEntries$member": null,
         "GetMappingRequest$Source": "<p>Specifies the source table.</p>",
@@ -400,6 +400,24 @@
         "GetCatalogImportStatusResponse$ImportStatus": "<p>The status of the specified catalog migration.</p>"
       }
     },
+    "CatalogTablesList": {
+      "base": null,
+      "refs": {
+        "CatalogTarget$Tables": "<p>A list of the tables to be synchronized.</p>"
+      }
+    },
+    "CatalogTarget": {
+      "base": "<p>Specifies an AWS Glue Data Catalog target.</p>",
+      "refs": {
+        "CatalogTargetList$member": null
+      }
+    },
+    "CatalogTargetList": {
+      "base": null,
+      "refs": {
+        "CrawlerTargets$CatalogTargets": "<p>Specifies AWS Glue Data Catalog targets.</p>"
+      }
+    },
     "Classification": {
       "base": null,
       "refs": {
@@ -412,7 +430,7 @@
       }
     },
     "Classifier": {
-      "base": "<p>Classifiers are triggered during a crawl task. A classifier checks whether a given file is in a format it can handle, and if it is, the classifier creates a schema in the form of a <code>StructType</code> object that matches that data format.</p> <p>You can use the standard classifiers that AWS Glue supplies, or you can write your own classifiers to best categorize your data sources and specify the appropriate schemas to use for them. A classifier can be a <code>grok</code> classifier, an <code>XML</code> classifier, a <code>JSON</code> classifier, or a custom <code>CSV</code> classifier as specified in one of the fields in the <code>Classifier</code> object.</p>",
+      "base": "<p>Classifiers are triggered during a crawl task. A classifier checks whether a given file is in a format it can handle. If it is, the classifier creates a schema in the form of a <code>StructType</code> object that matches that data format.</p> <p>You can use the standard classifiers that AWS Glue provides, or you can write your own classifiers to best categorize your data sources and specify the appropriate schemas to use for them. A classifier can be a <code>grok</code> classifier, an <code>XML</code> classifier, a <code>JSON</code> classifier, or a custom <code>CSV</code> classifier, as specified in one of the fields in the <code>Classifier</code> object.</p>",
       "refs": {
         "ClassifierList$member": null,
         "GetClassifierResponse$Classifier": "<p>The requested classifier.</p>"
@@ -427,7 +445,7 @@
     "ClassifierNameList": {
       "base": null,
       "refs": {
-        "Crawler$Classifiers": "<p>A list of custom classifiers associated with the crawler.</p>",
+        "Crawler$Classifiers": "<p>A list of UTF-8 strings that specify the custom classifiers that are associated with the crawler.</p>",
         "CreateCrawlerRequest$Classifiers": "<p>A list of custom classifiers that the user has registered. By default, all built-in classifiers are included in a crawl, but these custom classifiers always override the default classifiers for a given classification.</p>",
         "UpdateCrawlerRequest$Classifiers": "<p>A list of custom classifiers that the user has registered. By default, all built-in classifiers are included in a crawl, but these custom classifiers always override the default classifiers for a given classification.</p>"
       }
@@ -488,14 +506,14 @@
       "refs": {
         "CodeGenNode$Args": "<p>Properties of the node, in the form of name-value pairs.</p>",
         "Location$Jdbc": "<p>A JDBC location.</p>",
-        "Location$S3": "<p>An Amazon S3 location.</p>",
-        "Location$DynamoDB": "<p>A DynamoDB Table location.</p>"
+        "Location$S3": "<p>An Amazon Simple Storage Service (Amazon S3) location.</p>",
+        "Location$DynamoDB": "<p>An Amazon DynamoDB table location.</p>"
       }
     },
     "CodeGenNodeType": {
       "base": null,
       "refs": {
-        "CodeGenNode$NodeType": "<p>The type of node this is.</p>"
+        "CodeGenNode$NodeType": "<p>The type of node that this is.</p>"
       }
     },
     "Column": {
@@ -637,8 +655,8 @@
       "base": null,
       "refs": {
         "Crawler$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Configuring a Crawler</a>.</p>",
-        "CreateCrawlerRequest$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Configuring a Crawler</a>.</p>",
-        "UpdateCrawlerRequest$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Configuring a Crawler</a>.</p>"
+        "CreateCrawlerRequest$Configuration": "<p>The crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Configuring a Crawler</a>.</p>",
+        "UpdateCrawlerRequest$Configuration": "<p>The crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Configuring a Crawler</a>.</p>"
       }
     },
     "CrawlerList": {
@@ -663,8 +681,8 @@
     "CrawlerNameList": {
       "base": null,
       "refs": {
-        "BatchGetCrawlersRequest$CrawlerNames": "<p>A list of crawler names, which may be the names returned from the <code>ListCrawlers</code> operation.</p>",
-        "BatchGetCrawlersResponse$CrawlersNotFound": "<p>A list of names of crawlers not found.</p>",
+        "BatchGetCrawlersRequest$CrawlerNames": "<p>A list of crawler names, which might be the names returned from the <code>ListCrawlers</code> operation.</p>",
+        "BatchGetCrawlersResponse$CrawlersNotFound": "<p>A list of names of crawlers that were not found.</p>",
         "GetCrawlerMetricsRequest$CrawlerNameList": "<p>A list of the names of crawlers about which to retrieve metrics.</p>",
         "ListCrawlersResponse$CrawlerNames": "<p>The names of all crawlers in the account, or the crawlers with the specified tags.</p>"
       }
@@ -682,9 +700,9 @@
     "CrawlerSecurityConfiguration": {
       "base": null,
       "refs": {
-        "Crawler$CrawlerSecurityConfiguration": "<p>The name of the SecurityConfiguration structure to be used by this Crawler.</p>",
-        "CreateCrawlerRequest$CrawlerSecurityConfiguration": "<p>The name of the SecurityConfiguration structure to be used by this Crawler.</p>",
-        "UpdateCrawlerRequest$CrawlerSecurityConfiguration": "<p>The name of the SecurityConfiguration structure to be used by this Crawler.</p>"
+        "Crawler$CrawlerSecurityConfiguration": "<p>The name of the <code>SecurityConfiguration</code> structure to be used by this crawler.</p>",
+        "CreateCrawlerRequest$CrawlerSecurityConfiguration": "<p>The name of the <code>SecurityConfiguration</code> structure to be used by this crawler.</p>",
+        "UpdateCrawlerRequest$CrawlerSecurityConfiguration": "<p>The name of the <code>SecurityConfiguration</code> structure to be used by this crawler.</p>"
       }
     },
     "CrawlerState": {
@@ -853,16 +871,16 @@
     "CronExpression": {
       "base": null,
       "refs": {
-        "CreateCrawlerRequest$Schedule": "<p>A <code>cron</code> expression used to specify the schedule (see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html\">Time-Based Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15 UTC, you would specify: <code>cron(15 12 * * ? *)</code>.</p>",
-        "Schedule$ScheduleExpression": "<p>A <code>cron</code> expression used to specify the schedule (see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html\">Time-Based Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15 UTC, you would specify: <code>cron(15 12 * * ? *)</code>.</p>",
-        "UpdateCrawlerRequest$Schedule": "<p>A <code>cron</code> expression used to specify the schedule (see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html\">Time-Based Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15 UTC, you would specify: <code>cron(15 12 * * ? *)</code>.</p>",
-        "UpdateCrawlerScheduleRequest$Schedule": "<p>The updated <code>cron</code> expression used to specify the schedule (see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html\">Time-Based Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15 UTC, you would specify: <code>cron(15 12 * * ? *)</code>.</p>"
+        "CreateCrawlerRequest$Schedule": "<p>A <code>cron</code> expression used to specify the schedule. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html\">Time-Based Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15 UTC, specify <code>cron(15 12 * * ? *)</code>.</p>",
+        "Schedule$ScheduleExpression": "<p>A <code>cron</code> expression used to specify the schedule. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html\">Time-Based Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15 UTC, specify <code>cron(15 12 * * ? *)</code>.</p>",
+        "UpdateCrawlerRequest$Schedule": "<p>A <code>cron</code> expression used to specify the schedule. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html\">Time-Based Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15 UTC, specify <code>cron(15 12 * * ? *)</code>.</p>",
+        "UpdateCrawlerScheduleRequest$Schedule": "<p>The updated <code>cron</code> expression used to specify the schedule. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html\">Time-Based Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15 UTC, specify <code>cron(15 12 * * ? *)</code>.</p>"
       }
     },
     "CsvClassifier": {
       "base": "<p>A classifier for custom <code>CSV</code> content.</p>",
       "refs": {
-        "Classifier$CsvClassifier": "<p>A <code>CSVClassifier</code> object.</p>"
+        "Classifier$CsvClassifier": "<p>A classifier for comma-separated values (CSV).</p>"
       }
     },
     "CsvColumnDelimiter": {
@@ -893,15 +911,15 @@
       "base": null,
       "refs": {
         "CreateCsvClassifierRequest$QuoteSymbol": "<p>A custom symbol to denote what combines content into a single column value. Must be different from the column delimiter.</p>",
-        "CsvClassifier$QuoteSymbol": "<p>A custom symbol to denote what combines content into a single column value. Must be different from the column delimiter.</p>",
-        "UpdateCsvClassifierRequest$QuoteSymbol": "<p>A custom symbol to denote what combines content into a single column value. Must be different from the column delimiter.</p>"
+        "CsvClassifier$QuoteSymbol": "<p>A custom symbol to denote what combines content into a single column value. It must be different from the column delimiter.</p>",
+        "UpdateCsvClassifierRequest$QuoteSymbol": "<p>A custom symbol to denote what combines content into a single column value. It must be different from the column delimiter.</p>"
       }
     },
     "CustomPatterns": {
       "base": null,
       "refs": {
         "CreateGrokClassifierRequest$CustomPatterns": "<p>Optional custom grok patterns used by this classifier.</p>",
-        "GrokClassifier$CustomPatterns": "<p>Optional custom grok patterns defined by this classifier. For more information, see custom patterns in <a href=\"http://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html\">Writing Custom Classifers</a>.</p>",
+        "GrokClassifier$CustomPatterns": "<p>Optional custom grok patterns defined by this classifier. For more information, see custom patterns in <a href=\"http://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html\">Writing Custom Classifiers</a>.</p>",
         "UpdateGrokClassifierRequest$CustomPatterns": "<p>Optional custom grok patterns used by this classifier.</p>"
       }
     },
@@ -949,7 +967,7 @@
     "DatabaseName": {
       "base": null,
       "refs": {
-        "Crawler$DatabaseName": "<p>The database where metadata is written by this crawler.</p>",
+        "Crawler$DatabaseName": "<p>The name of the database in which the crawler's output is stored.</p>",
         "CreateCrawlerRequest$DatabaseName": "<p>The AWS Glue database where results are written, such as: <code>arn:aws:daylight:us-east-1::database/sometable/*</code>.</p>",
         "UpdateCrawlerRequest$DatabaseName": "<p>The AWS Glue database where results are stored, such as: <code>arn:aws:daylight:us-east-1::database/sometable/*</code>.</p>"
       }
@@ -1157,7 +1175,7 @@
       }
     },
     "DynamoDBTarget": {
-      "base": "<p>Specifies a DynamoDB table to crawl.</p>",
+      "base": "<p>Specifies an Amazon DynamoDB table to crawl.</p>",
       "refs": {
         "DynamoDBTargetList$member": null
       }
@@ -1165,7 +1183,7 @@
     "DynamoDBTargetList": {
       "base": null,
       "refs": {
-        "CrawlerTargets$DynamoDBTargets": "<p>Specifies DynamoDB targets.</p>"
+        "CrawlerTargets$DynamoDBTargets": "<p>Specifies Amazon DynamoDB targets.</p>"
       }
     },
     "EncryptionAtRest": {
@@ -1693,14 +1711,14 @@
     "GrokClassifier": {
       "base": "<p>A classifier that uses <code>grok</code> patterns.</p>",
       "refs": {
-        "Classifier$GrokClassifier": "<p>A <code>GrokClassifier</code> object.</p>"
+        "Classifier$GrokClassifier": "<p>A classifier that uses <code>grok</code>.</p>"
       }
     },
     "GrokPattern": {
       "base": null,
       "refs": {
         "CreateGrokClassifierRequest$GrokPattern": "<p>The grok pattern used by this classifier.</p>",
-        "GrokClassifier$GrokPattern": "<p>The grok pattern applied to a data store by this classifier. For more information, see built-in patterns in <a href=\"http://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html\">Writing Custom Classifers</a>.</p>",
+        "GrokClassifier$GrokPattern": "<p>The grok pattern applied to a data store by this classifier. For more information, see built-in patterns in <a href=\"http://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html\">Writing Custom Classifiers</a>.</p>",
         "UpdateGrokClassifierRequest$GrokPattern": "<p>The grok pattern used by this classifier.</p>"
       }
     },
@@ -1880,15 +1898,15 @@
     "JsonClassifier": {
       "base": "<p>A classifier for <code>JSON</code> content.</p>",
       "refs": {
-        "Classifier$JsonClassifier": "<p>A <code>JsonClassifier</code> object.</p>"
+        "Classifier$JsonClassifier": "<p>A classifier for JSON content.</p>"
       }
     },
     "JsonPath": {
       "base": null,
       "refs": {
-        "CreateJsonClassifierRequest$JsonPath": "<p>A <code>JsonPath</code> string defining the JSON data for the classifier to classify. AWS Glue supports a subset of JsonPath, as described in <a href=\"https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json\">Writing JsonPath Custom Classifiers</a>.</p>",
-        "JsonClassifier$JsonPath": "<p>A <code>JsonPath</code> string defining the JSON data for the classifier to classify. AWS Glue supports a subset of JsonPath, as described in <a href=\"https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json\">Writing JsonPath Custom Classifiers</a>.</p>",
-        "UpdateJsonClassifierRequest$JsonPath": "<p>A <code>JsonPath</code> string defining the JSON data for the classifier to classify. AWS Glue supports a subset of JsonPath, as described in <a href=\"https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json\">Writing JsonPath Custom Classifiers</a>.</p>"
+        "CreateJsonClassifierRequest$JsonPath": "<p>A <code>JsonPath</code> string defining the JSON data for the classifier to classify. AWS Glue supports a subset of <code>JsonPath</code>, as described in <a href=\"https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json\">Writing JsonPath Custom Classifiers</a>.</p>",
+        "JsonClassifier$JsonPath": "<p>A <code>JsonPath</code> string defining the JSON data for the classifier to classify. AWS Glue supports a subset of <code>JsonPath</code>, as described in <a href=\"https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json\">Writing JsonPath Custom Classifiers</a>.</p>",
+        "UpdateJsonClassifierRequest$JsonPath": "<p>A <code>JsonPath</code> string defining the JSON data for the classifier to classify. AWS Glue supports a subset of <code>JsonPath</code>, as described in <a href=\"https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json\">Writing JsonPath Custom Classifiers</a>.</p>"
       }
     },
     "JsonValue": {
@@ -1974,7 +1992,7 @@
       "base": "<p>The location of resources.</p>",
       "refs": {
         "GetMappingRequest$Location": "<p>Parameters for the mapping.</p>",
-        "GetPlanRequest$Location": "<p>Parameters for the mapping.</p>"
+        "GetPlanRequest$Location": "<p>The parameters for the mapping.</p>"
       }
     },
     "LocationMap": {
@@ -2116,6 +2134,8 @@
         "CatalogEntry$DatabaseName": "<p>The database in which the table metadata resides.</p>",
         "CatalogEntry$TableName": "<p>The name of the table in question.</p>",
         "CatalogImportStatus$ImportedBy": "<p>The name of the person who initiated the migration.</p>",
+        "CatalogTablesList$member": null,
+        "CatalogTarget$DatabaseName": "<p>The name of the database to be synchronized.</p>",
         "ClassifierNameList$member": null,
         "Column$Name": "<p>The name of the <code>Column</code>.</p>",
         "Condition$JobName": "<p>The name of the Job to whose JobRuns this condition applies and on which this trigger waits.</p>",
@@ -2123,7 +2143,7 @@
         "Connection$LastUpdatedBy": "<p>The user, group, or role that last updated this connection definition.</p>",
         "ConnectionInput$Name": "<p>The name of the connection.</p>",
         "ConnectionPasswordEncryption$AwsKmsKeyId": "<p>An AWS KMS key that is used to encrypt the connection password. </p> <p>If connection password protection is enabled, the caller of <code>CreateConnection</code> and <code>UpdateConnection</code> needs at least <code>kms:Encrypt</code> permission on the specified AWS KMS key, to encrypt passwords before storing them in the Data Catalog. </p> <p>You can set the decrypt permission to enable or restrict access on the password key according to your security requirements.</p>",
-        "Crawler$Name": "<p>The crawler name.</p>",
+        "Crawler$Name": "<p>The name of the crawler.</p>",
         "CrawlerMetrics$CrawlerName": "<p>The name of the crawler.</p>",
         "CrawlerNameList$member": null,
         "CreateCrawlerRequest$Name": "<p>Name of the new crawler.</p>",
@@ -2151,7 +2171,7 @@
         "DeleteClassifierRequest$Name": "<p>Name of the classifier to remove.</p>",
         "DeleteConnectionNameList$member": null,
         "DeleteConnectionRequest$ConnectionName": "<p>The name of the connection to delete.</p>",
-        "DeleteCrawlerRequest$Name": "<p>Name of the crawler to remove.</p>",
+        "DeleteCrawlerRequest$Name": "<p>The name of the crawler to remove.</p>",
         "DeleteDatabaseRequest$Name": "<p>The name of the Database to delete. For Hive compatibility, this must be all lowercase.</p>",
         "DeleteJobRequest$JobName": "<p>The name of the job definition to delete.</p>",
         "DeleteJobResponse$JobName": "<p>The name of the job definition that was deleted.</p>",
@@ -2173,7 +2193,7 @@
         "ErrorDetail$ErrorCode": "<p>The code associated with this error.</p>",
         "GetClassifierRequest$Name": "<p>Name of the classifier to retrieve.</p>",
         "GetConnectionRequest$Name": "<p>The name of the connection definition to retrieve.</p>",
-        "GetCrawlerRequest$Name": "<p>Name of the crawler to retrieve metadata for.</p>",
+        "GetCrawlerRequest$Name": "<p>The name of the crawler to retrieve metadata for.</p>",
         "GetDatabaseRequest$Name": "<p>The name of the database to retrieve. For Hive compatibility, this should be all lowercase.</p>",
         "GetJobRequest$JobName": "<p>The name of the job definition to retrieve.</p>",
         "GetJobRunRequest$JobName": "<p>Name of the job definition being run.</p>",
@@ -2241,7 +2261,7 @@
         "TriggerUpdate$Name": "<p>Reserved for future use.</p>",
         "UpdateConnectionRequest$Name": "<p>The name of the connection definition to update.</p>",
         "UpdateCrawlerRequest$Name": "<p>Name of the new crawler.</p>",
-        "UpdateCrawlerScheduleRequest$CrawlerName": "<p>Name of the crawler whose schedule to update.</p>",
+        "UpdateCrawlerScheduleRequest$CrawlerName": "<p>The name of the crawler whose schedule to update.</p>",
         "UpdateCsvClassifierRequest$Name": "<p>The name of the classifier.</p>",
         "UpdateDatabaseRequest$Name": "<p>The name of the database to update in the catalog. For Hive compatibility, this is folded to lowercase.</p>",
         "UpdateGrokClassifierRequest$Name": "<p>The name of the <code>GrokClassifier</code>.</p>",
@@ -2318,7 +2338,7 @@
       "refs": {
         "CreateCsvClassifierRequest$DisableValueTrimming": "<p>Specifies not to trim values before identifying the type of column values. The default value is true.</p>",
         "CreateCsvClassifierRequest$AllowSingleColumn": "<p>Enables the processing of files that contain only one column.</p>",
-        "CsvClassifier$DisableValueTrimming": "<p>Specifies not to trim values before identifying the type of column values. The default value is true.</p>",
+        "CsvClassifier$DisableValueTrimming": "<p>Specifies not to trim values before identifying the type of column values. The default value is <code>true</code>.</p>",
         "CsvClassifier$AllowSingleColumn": "<p>Enables the processing of files that contain only one column.</p>",
         "UpdateCsvClassifierRequest$DisableValueTrimming": "<p>Specifies not to trim values before identifying the type of column values. The default value is true.</p>",
         "UpdateCsvClassifierRequest$AllowSingleColumn": "<p>Enables the processing of files that contain only one column.</p>"
@@ -2364,7 +2384,7 @@
     "PageSize": {
       "base": null,
       "refs": {
-        "GetClassifiersRequest$MaxResults": "<p>Size of the list to return (optional).</p>",
+        "GetClassifiersRequest$MaxResults": "<p>The size of the list to return (optional).</p>",
         "GetConnectionsRequest$MaxResults": "<p>The maximum number of connections to return in one response.</p>",
         "GetCrawlerMetricsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "GetCrawlersRequest$MaxResults": "<p>The number of crawlers to return on each call.</p>",
@@ -2588,9 +2608,9 @@
     "Role": {
       "base": null,
       "refs": {
-        "Crawler$Role": "<p>The IAM role (or ARN of an IAM role) used to access customer resources, such as data in Amazon S3.</p>",
-        "CreateCrawlerRequest$Role": "<p>The IAM role (or ARN of an IAM role) used by the new crawler to access customer resources.</p>",
-        "UpdateCrawlerRequest$Role": "<p>The IAM role (or ARN of an IAM role) used by the new crawler to access customer resources.</p>"
+        "Crawler$Role": "<p>The Amazon Resource Name (ARN) of an IAM role that's used to access customer resources, such as Amazon Simple Storage Service (Amazon S3) data.</p>",
+        "CreateCrawlerRequest$Role": "<p>The IAM role or Amazon Resource Name (ARN) of an IAM role used by the new crawler to access customer resources.</p>",
+        "UpdateCrawlerRequest$Role": "<p>The IAM role or Amazon Resource Name (ARN) of an IAM role that is used by the new crawler to access customer resources.</p>"
       }
     },
     "RoleArn": {
@@ -2612,9 +2632,9 @@
     "RowTag": {
       "base": null,
       "refs": {
-        "CreateXMLClassifierRequest$RowTag": "<p>The XML tag designating the element that contains each record in an XML document being parsed. Note that this cannot identify a self-closing element (closed by <code>/&gt;</code>). An empty row element that contains only attributes can be parsed as long as it ends with a closing tag (for example, <code>&lt;row item_a=\"A\" item_b=\"B\"&gt;&lt;/row&gt;</code> is okay, but <code>&lt;row item_a=\"A\" item_b=\"B\" /&gt;</code> is not).</p>",
-        "UpdateXMLClassifierRequest$RowTag": "<p>The XML tag designating the element that contains each record in an XML document being parsed. Note that this cannot identify a self-closing element (closed by <code>/&gt;</code>). An empty row element that contains only attributes can be parsed as long as it ends with a closing tag (for example, <code>&lt;row item_a=\"A\" item_b=\"B\"&gt;&lt;/row&gt;</code> is okay, but <code>&lt;row item_a=\"A\" item_b=\"B\" /&gt;</code> is not).</p>",
-        "XMLClassifier$RowTag": "<p>The XML tag designating the element that contains each record in an XML document being parsed. Note that this cannot identify a self-closing element (closed by <code>/&gt;</code>). An empty row element that contains only attributes can be parsed as long as it ends with a closing tag (for example, <code>&lt;row item_a=\"A\" item_b=\"B\"&gt;&lt;/row&gt;</code> is okay, but <code>&lt;row item_a=\"A\" item_b=\"B\" /&gt;</code> is not).</p>"
+        "CreateXMLClassifierRequest$RowTag": "<p>The XML tag designating the element that contains each record in an XML document being parsed. This can't identify a self-closing element (closed by <code>/&gt;</code>). An empty row element that contains only attributes can be parsed as long as it ends with a closing tag (for example, <code>&lt;row item_a=\"A\" item_b=\"B\"&gt;&lt;/row&gt;</code> is okay, but <code>&lt;row item_a=\"A\" item_b=\"B\" /&gt;</code> is not).</p>",
+        "UpdateXMLClassifierRequest$RowTag": "<p>The XML tag designating the element that contains each record in an XML document being parsed. This cannot identify a self-closing element (closed by <code>/&gt;</code>). An empty row element that contains only attributes can be parsed as long as it ends with a closing tag (for example, <code>&lt;row item_a=\"A\" item_b=\"B\"&gt;&lt;/row&gt;</code> is okay, but <code>&lt;row item_a=\"A\" item_b=\"B\" /&gt;</code> is not).</p>",
+        "XMLClassifier$RowTag": "<p>The XML tag designating the element that contains each record in an XML document being parsed. This can't identify a self-closing element (closed by <code>/&gt;</code>). An empty row element that contains only attributes can be parsed as long as it ends with a closing tag (for example, <code>&lt;row item_a=\"A\" item_b=\"B\"&gt;&lt;/row&gt;</code> is okay, but <code>&lt;row item_a=\"A\" item_b=\"B\" /&gt;</code> is not).</p>"
       }
     },
     "S3Encryption": {
@@ -2636,7 +2656,7 @@
       }
     },
     "S3Target": {
-      "base": "<p>Specifies a data store in Amazon S3.</p>",
+      "base": "<p>Specifies a data store in Amazon Simple Storage Service (Amazon S3).</p>",
       "refs": {
         "S3TargetList$member": null
       }
@@ -2644,14 +2664,14 @@
     "S3TargetList": {
       "base": null,
       "refs": {
-        "CrawlerTargets$S3Targets": "<p>Specifies Amazon S3 targets.</p>"
+        "CrawlerTargets$S3Targets": "<p>Specifies Amazon Simple Storage Service (Amazon S3) targets.</p>"
       }
     },
     "ScalaCode": {
       "base": null,
       "refs": {
         "CreateScriptResponse$ScalaCode": "<p>The Scala code generated from the DAG.</p>",
-        "GetPlanResponse$ScalaCode": "<p>Scala code to perform the mapping.</p>"
+        "GetPlanResponse$ScalaCode": "<p>The Scala code to perform the mapping.</p>"
       }
     },
     "Schedule": {
@@ -2682,11 +2702,11 @@
       }
     },
     "SchemaChangePolicy": {
-      "base": "<p>Crawler policy for update and deletion behavior.</p>",
+      "base": "<p>A policy that specifies update and deletion behaviors for the crawler.</p>",
       "refs": {
-        "Crawler$SchemaChangePolicy": "<p>Sets the behavior when the crawler finds a changed or deleted object.</p>",
-        "CreateCrawlerRequest$SchemaChangePolicy": "<p>Policy for the crawler's update and deletion behavior.</p>",
-        "UpdateCrawlerRequest$SchemaChangePolicy": "<p>Policy for the crawler's update and deletion behavior.</p>"
+        "Crawler$SchemaChangePolicy": "<p>The policy that specifies update and delete behaviors for the crawler.</p>",
+        "CreateCrawlerRequest$SchemaChangePolicy": "<p>The policy for the crawler's update and deletion behavior.</p>",
+        "UpdateCrawlerRequest$SchemaChangePolicy": "<p>The policy for the crawler's update and deletion behavior.</p>"
       }
     },
     "SchemaPathString": {
@@ -2934,7 +2954,7 @@
     "TagsMap": {
       "base": null,
       "refs": {
-        "CreateCrawlerRequest$Tags": "<p>The tags to use with this crawler request. You may use tags to limit access to the crawler. For more information about tags in AWS Glue, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">AWS Tags in AWS Glue</a> in the developer guide.</p>",
+        "CreateCrawlerRequest$Tags": "<p>The tags to use with this crawler request. You can use tags to limit access to the crawler. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">AWS Tags in AWS Glue</a>.</p>",
         "CreateDevEndpointRequest$Tags": "<p>The tags to use with this DevEndpoint. You may use tags to limit access to the DevEndpoint. For more information about tags in AWS Glue, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">AWS Tags in AWS Glue</a> in the developer guide.</p>",
         "CreateJobRequest$Tags": "<p>The tags to use with this job. You may use tags to limit access to the job. For more information about tags in AWS Glue, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">AWS Tags in AWS Glue</a> in the developer guide.</p>",
         "CreateTriggerRequest$Tags": "<p>The tags to use with this trigger. You may use tags to limit access to the trigger. For more information about tags in AWS Glue, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">AWS Tags in AWS Glue</a> in the developer guide. </p>",
@@ -2963,17 +2983,17 @@
         "CatalogImportStatus$ImportTime": "<p>The time that the migration was started.</p>",
         "Connection$CreationTime": "<p>The time that this connection definition was created.</p>",
         "Connection$LastUpdatedTime": "<p>The last time that this connection definition was updated.</p>",
-        "Crawler$CreationTime": "<p>The time when the crawler was created.</p>",
-        "Crawler$LastUpdated": "<p>The time the crawler was last updated.</p>",
-        "CsvClassifier$CreationTime": "<p>The time this classifier was registered.</p>",
-        "CsvClassifier$LastUpdated": "<p>The time this classifier was last updated.</p>",
+        "Crawler$CreationTime": "<p>The time that the crawler was created.</p>",
+        "Crawler$LastUpdated": "<p>The time that the crawler was last updated.</p>",
+        "CsvClassifier$CreationTime": "<p>The time that this classifier was registered.</p>",
+        "CsvClassifier$LastUpdated": "<p>The time that this classifier was last updated.</p>",
         "Database$CreateTime": "<p>The time at which the metadata database was created in the catalog.</p>",
         "GetResourcePolicyResponse$CreateTime": "<p>The date and time at which the policy was created.</p>",
         "GetResourcePolicyResponse$UpdateTime": "<p>The date and time at which the policy was last updated.</p>",
-        "GrokClassifier$CreationTime": "<p>The time this classifier was registered.</p>",
-        "GrokClassifier$LastUpdated": "<p>The time this classifier was last updated.</p>",
-        "JsonClassifier$CreationTime": "<p>The time this classifier was registered.</p>",
-        "JsonClassifier$LastUpdated": "<p>The time this classifier was last updated.</p>",
+        "GrokClassifier$CreationTime": "<p>The time that this classifier was registered.</p>",
+        "GrokClassifier$LastUpdated": "<p>The time that this classifier was last updated.</p>",
+        "JsonClassifier$CreationTime": "<p>The time that this classifier was registered.</p>",
+        "JsonClassifier$LastUpdated": "<p>The time that this classifier was last updated.</p>",
         "LastCrawlInfo$StartTime": "<p>The time at which the crawl started.</p>",
         "Partition$CreationTime": "<p>The time at which the partition was created.</p>",
         "Partition$LastAccessTime": "<p>The last time at which the partition was accessed.</p>",
@@ -2987,8 +3007,8 @@
         "TableInput$LastAccessTime": "<p>Last time the table was accessed.</p>",
         "TableInput$LastAnalyzedTime": "<p>Last time column statistics were computed for this table.</p>",
         "UserDefinedFunction$CreateTime": "<p>The time at which the function was created.</p>",
-        "XMLClassifier$CreationTime": "<p>The time this classifier was registered.</p>",
-        "XMLClassifier$LastUpdated": "<p>The time this classifier was last updated.</p>"
+        "XMLClassifier$CreationTime": "<p>The time that this classifier was registered.</p>",
+        "XMLClassifier$LastUpdated": "<p>The time that this classifier was last updated.</p>"
       }
     },
     "TimestampValue": {
@@ -3336,7 +3356,7 @@
     "XMLClassifier": {
       "base": "<p>A classifier for <code>XML</code> content.</p>",
       "refs": {
-        "Classifier$XMLClassifier": "<p>An <code>XMLClassifier</code> object.</p>"
+        "Classifier$XMLClassifier": "<p>A classifier for XML content.</p>"
       }
     }
   }
