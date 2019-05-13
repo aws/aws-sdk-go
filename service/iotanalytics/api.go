@@ -4870,6 +4870,7 @@ func (s *DatasetAction) SetQueryAction(v *SqlQueryDatasetAction) *DatasetAction 
 	return s
 }
 
+// Information about the action which automatically creates the data set's contents.
 type DatasetActionSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -4908,6 +4909,9 @@ type DatasetContentDeliveryDestination struct {
 
 	// Configuration information for delivery of data set contents to AWS IoT Events.
 	IotEventsDestinationConfiguration *IotEventsDestinationConfiguration `locationName:"iotEventsDestinationConfiguration" type:"structure"`
+
+	// Configuration information for delivery of data set contents to Amazon S3.
+	S3DestinationConfiguration *S3DestinationConfiguration `locationName:"s3DestinationConfiguration" type:"structure"`
 }
 
 // String returns the string representation
@@ -4928,6 +4932,11 @@ func (s *DatasetContentDeliveryDestination) Validate() error {
 			invalidParams.AddNested("IotEventsDestinationConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.S3DestinationConfiguration != nil {
+		if err := s.S3DestinationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("S3DestinationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4938,6 +4947,12 @@ func (s *DatasetContentDeliveryDestination) Validate() error {
 // SetIotEventsDestinationConfiguration sets the IotEventsDestinationConfiguration field's value.
 func (s *DatasetContentDeliveryDestination) SetIotEventsDestinationConfiguration(v *IotEventsDestinationConfiguration) *DatasetContentDeliveryDestination {
 	s.IotEventsDestinationConfiguration = v
+	return s
+}
+
+// SetS3DestinationConfiguration sets the S3DestinationConfiguration field's value.
+func (s *DatasetContentDeliveryDestination) SetS3DestinationConfiguration(v *S3DestinationConfiguration) *DatasetContentDeliveryDestination {
+	s.S3DestinationConfiguration = v
 	return s
 }
 
@@ -6584,6 +6599,69 @@ func (s *GetDatasetContentOutput) SetTimestamp(v time.Time) *GetDatasetContentOu
 	return s
 }
 
+// Configuration information for coordination with the AWS Glue ETL (extract,
+// transform and load) service.
+type GlueConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the database in your AWS Glue Data Catalog in which the table
+	// is located. (An AWS Glue Data Catalog database contains Glue Data tables.)
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `locationName:"databaseName" min:"1" type:"string" required:"true"`
+
+	// The name of the table in your AWS Glue Data Catalog which is used to perform
+	// the ETL (extract, transform and load) operations. (An AWS Glue Data Catalog
+	// table contains partitioned data and descriptions of data sources and targets.)
+	//
+	// TableName is a required field
+	TableName *string `locationName:"tableName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GlueConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GlueConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GlueConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GlueConfiguration"}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *GlueConfiguration) SetDatabaseName(v string) *GlueConfiguration {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *GlueConfiguration) SetTableName(v string) *GlueConfiguration {
+	s.TableName = &v
+	return s
+}
+
 // Configuration information for delivery of data set contents to AWS IoT Events.
 type IotEventsDestinationConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -8198,6 +8276,100 @@ func (s *RunPipelineActivityOutput) SetPayloads(v [][]byte) *RunPipelineActivity
 	return s
 }
 
+// Configuration information for delivery of data set contents to Amazon S3.
+type S3DestinationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon S3 bucket to which data set contents are delivered.
+	//
+	// Bucket is a required field
+	Bucket *string `locationName:"bucket" min:"3" type:"string" required:"true"`
+
+	// Configuration information for coordination with the AWS Glue ETL (extract,
+	// transform and load) service.
+	GlueConfiguration *GlueConfiguration `locationName:"glueConfiguration" type:"structure"`
+
+	// The key of the data set contents object. Each object in an Amazon S3 bucket
+	// has a key that is its unique identifier within the bucket (each object in
+	// a bucket has exactly one key).
+	//
+	// Key is a required field
+	Key *string `locationName:"key" min:"1" type:"string" required:"true"`
+
+	// The ARN of the role which grants AWS IoT Analytics permission to interact
+	// with your Amazon S3 and AWS Glue resources.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s S3DestinationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3DestinationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3DestinationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3DestinationConfiguration"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.GlueConfiguration != nil {
+		if err := s.GlueConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("GlueConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *S3DestinationConfiguration) SetBucket(v string) *S3DestinationConfiguration {
+	s.Bucket = &v
+	return s
+}
+
+// SetGlueConfiguration sets the GlueConfiguration field's value.
+func (s *S3DestinationConfiguration) SetGlueConfiguration(v *GlueConfiguration) *S3DestinationConfiguration {
+	s.GlueConfiguration = v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *S3DestinationConfiguration) SetKey(v string) *S3DestinationConfiguration {
+	s.Key = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *S3DestinationConfiguration) SetRoleArn(v string) *S3DestinationConfiguration {
+	s.RoleArn = &v
+	return s
+}
+
 type SampleChannelDataInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9264,6 +9436,7 @@ func (s *Variable) SetStringValue(v string) *Variable {
 	return s
 }
 
+// Information about the versioning of data set contents.
 type VersioningConfiguration struct {
 	_ struct{} `type:"structure"`
 
