@@ -221,6 +221,9 @@ type LambdaAPI interface {
 	UpdateFunctionConfiguration(*lambda.UpdateFunctionConfigurationInput) (*lambda.FunctionConfiguration, error)
 	UpdateFunctionConfigurationWithContext(aws.Context, *lambda.UpdateFunctionConfigurationInput, ...request.Option) (*lambda.FunctionConfiguration, error)
 	UpdateFunctionConfigurationRequest(*lambda.UpdateFunctionConfigurationInput) (*request.Request, *lambda.FunctionConfiguration)
+
+	WaitUntilFunctionExists(*lambda.GetFunctionInput) error
+	WaitUntilFunctionExistsWithContext(aws.Context, *lambda.GetFunctionInput, ...request.WaiterOption) error
 }
 
 var _ LambdaAPI = (*lambda.Lambda)(nil)

@@ -122,6 +122,18 @@
       "refs": {
       }
     },
+    "BucketKeyExpression": {
+      "base": null,
+      "refs": {
+        "S3DestinationConfiguration$key": "<p>The key of the data set contents object. Each object in an Amazon S3 bucket has a key that is its unique identifier within the bucket (each object in a bucket has exactly one key).</p>"
+      }
+    },
+    "BucketName": {
+      "base": null,
+      "refs": {
+        "S3DestinationConfiguration$bucket": "<p>The name of the Amazon S3 bucket to which data set contents are delivered.</p>"
+      }
+    },
     "CancelPipelineReprocessingRequest": {
       "base": null,
       "refs": {
@@ -279,7 +291,7 @@
       }
     },
     "DatasetActionSummary": {
-      "base": "<p/>",
+      "base": "<p>Information about the action which automatically creates the data set's contents.</p>",
       "refs": {
         "DatasetActionSummaries$member": null
       }
@@ -638,6 +650,24 @@
     "GetDatasetContentResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "GlueConfiguration": {
+      "base": "<p>Configuration information for coordination with the AWS Glue ETL (extract, transform and load) service.</p>",
+      "refs": {
+        "S3DestinationConfiguration$glueConfiguration": "<p>Configuration information for coordination with the AWS Glue ETL (extract, transform and load) service.</p>"
+      }
+    },
+    "GlueDatabaseName": {
+      "base": null,
+      "refs": {
+        "GlueConfiguration$databaseName": "<p>The name of the database in your AWS Glue Data Catalog in which the table is located. (An AWS Glue Data Catalog database contains Glue Data tables.)</p>"
+      }
+    },
+    "GlueTableName": {
+      "base": null,
+      "refs": {
+        "GlueConfiguration$tableName": "<p>The name of the table in your AWS Glue Data Catalog which is used to perform the ETL (extract, transform and load) operations. (An AWS Glue Data Catalog table contains partitioned data and descriptions of data sources and targets.)</p>"
       }
     },
     "Image": {
@@ -1048,7 +1078,8 @@
         "DeviceRegistryEnrichActivity$roleArn": "<p>The ARN of the role that allows access to the device's registry information.</p>",
         "DeviceShadowEnrichActivity$roleArn": "<p>The ARN of the role that allows access to the device's shadow.</p>",
         "IotEventsDestinationConfiguration$roleArn": "<p>The ARN of the role which grants AWS IoT Analytics permission to deliver data set contents to an AWS IoT Events input.</p>",
-        "LoggingOptions$roleArn": "<p>The ARN of the role that grants permission to AWS IoT Analytics to perform logging.</p>"
+        "LoggingOptions$roleArn": "<p>The ARN of the role that grants permission to AWS IoT Analytics to perform logging.</p>",
+        "S3DestinationConfiguration$roleArn": "<p>The ARN of the role which grants AWS IoT Analytics permission to interact with your Amazon S3 and AWS Glue resources.</p>"
       }
     },
     "RunPipelineActivityRequest": {
@@ -1059,6 +1090,12 @@
     "RunPipelineActivityResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "S3DestinationConfiguration": {
+      "base": "<p>Configuration information for delivery of data set contents to Amazon S3.</p>",
+      "refs": {
+        "DatasetContentDeliveryDestination$s3DestinationConfiguration": "<p>Configuration information for delivery of data set contents to Amazon S3.</p>"
       }
     },
     "SampleChannelDataRequest": {
@@ -1287,7 +1324,7 @@
       }
     },
     "VersioningConfiguration": {
-      "base": null,
+      "base": "<p>Information about the versioning of data set contents.</p>",
       "refs": {
         "CreateDatasetRequest$versioningConfiguration": "<p>[Optional] How many versions of data set contents are kept. If not specified or set to null, only the latest version plus the latest succeeded version (if they are different) are kept for the time period specified by the \"retentionPeriod\" parameter. (For more information, see https://docs.aws.amazon.com/iotanalytics/latest/userguide/getting-started.html#aws-iot-analytics-dataset-versions)</p>",
         "Dataset$versioningConfiguration": "<p>[Optional] How many versions of data set contents are kept. If not specified or set to null, only the latest version plus the latest succeeded version (if they are different) are kept for the time period specified by the \"retentionPeriod\" parameter. (For more information, see https://docs.aws.amazon.com/iotanalytics/latest/userguide/getting-started.html#aws-iot-analytics-dataset-versions)</p>",

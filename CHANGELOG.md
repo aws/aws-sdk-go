@@ -1,3 +1,12 @@
+Release v1.19.29 (2019-05-13)
+===
+
+### Service Client Updates
+* `service/datasync`: Updates service API and documentation
+* `service/iotanalytics`: Updates service API and documentation
+* `service/lambda`: Updates service API and waiters
+  * AWS Lambda now supports Node.js v10
+
 Release v1.19.28 (2019-05-10)
 ===
 
