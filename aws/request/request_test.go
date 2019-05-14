@@ -675,9 +675,9 @@ func TestSerializationErrConnectionReset_accept(t *testing.T) {
 	req.ApplyOptions(request.WithResponseReadTimeout(time.Second))
 	err := req.Send()
 	if err == nil {
-		t.Error("Expected rror 'SerializationError', but received nil")
+		t.Error("Expected error 'SerializationError', but received nil")
 	}
-	if aerr, ok := err.(awserr.Error); ok && aerr.Code() != "SerializationError" {
+	if aerr, ok := err.(awserr.Error); ok && aerr.Code() != request.ErrCodeSerialization {
 		t.Errorf("Expected 'SerializationError', but received %q", aerr.Code())
 	} else if !ok {
 		t.Errorf("Expected 'awserr.Error', but received %v", reflect.TypeOf(err))

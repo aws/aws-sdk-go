@@ -45,14 +45,15 @@ func TxAwareUnmarshalError(req *request.Request) {
 	err := json.NewDecoder(req.HTTPResponse.Body).Decode(&jsonErr)
 	if err == io.EOF {
 		req.Error = awserr.NewRequestFailure(
-			awserr.New("SerializationError", req.HTTPResponse.Status, nil),
+			awserr.New(request.ErrCodeSerialization, req.HTTPResponse.Status, nil),
 			req.HTTPResponse.StatusCode,
 			req.RequestID,
 		)
 		return
 	} else if err != nil {
 		req.Error = awserr.NewRequestFailure(
-			awserr.New("SerializationError", "failed decoding JSON RPC error response", err),
+			awserr.New(request.ErrCodeSerialization,
+				"failed decoding JSON RPC error response", err),
 			req.HTTPResponse.StatusCode,
 			req.RequestID,
 		)
