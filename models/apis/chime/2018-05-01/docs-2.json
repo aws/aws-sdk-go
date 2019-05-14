@@ -5,14 +5,16 @@
     "AssociatePhoneNumberWithUser": "<p>Associates a phone number with the specified Amazon Chime user.</p>",
     "AssociatePhoneNumbersWithVoiceConnector": "<p>Associates a phone number with the specified Amazon Chime Voice Connector.</p>",
     "BatchDeletePhoneNumber": "<p>Moves phone numbers into the <b>Deletion queue</b>. Phone numbers must be disassociated from any users or Amazon Chime Voice Connectors before they can be deleted.</p> <p>Phone numbers remain in the <b>Deletion queue</b> for 7 days before they are deleted permanently.</p>",
-    "BatchSuspendUser": "<p>Suspends up to 50 users from a <code>Team</code> or <code>EnterpriseLWA</code> Amazon Chime account. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p>Users suspended from a <code>Team</code> account are dissociated from the account, but they can continue to use Amazon Chime as free users. To remove the suspension from suspended <code>Team</code> account users, invite them to the <code>Team</code> account again. You can use the <a>InviteUsers</a> action to do so.</p> <p>Users suspended from an <code>EnterpriseLWA</code> account are immediately signed out of Amazon Chime and can no longer sign in. To remove the suspension from suspended <code>EnterpriseLWA</code> account users, use the <a>BatchUnsuspendUser</a> action. </p> <p>To sign out users without suspending them, use the <a>LogoutUser</a> action.</p>",
+    "BatchSuspendUser": "<p>Suspends up to 50 users from a <code>Team</code> or <code>EnterpriseLWA</code> Amazon Chime account. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p>Users suspended from a <code>Team</code> account are dissasociated from the account, but they can continue to use Amazon Chime as free users. To remove the suspension from suspended <code>Team</code> account users, invite them to the <code>Team</code> account again. You can use the <a>InviteUsers</a> action to do so.</p> <p>Users suspended from an <code>EnterpriseLWA</code> account are immediately signed out of Amazon Chime and can no longer sign in. To remove the suspension from suspended <code>EnterpriseLWA</code> account users, use the <a>BatchUnsuspendUser</a> action. </p> <p>To sign out users without suspending them, use the <a>LogoutUser</a> action.</p>",
     "BatchUnsuspendUser": "<p>Removes the suspension from up to 50 previously suspended users for the specified Amazon Chime <code>EnterpriseLWA</code> account. Only users on <code>EnterpriseLWA</code> accounts can be unsuspended using this action. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p>Previously suspended users who are unsuspended using this action are returned to <code>Registered</code> status. Users who are not previously suspended are ignored.</p>",
     "BatchUpdatePhoneNumber": "<p>Updates phone number product types. Choose from Amazon Chime Business Calling and Amazon Chime Voice Connector product types.</p>",
     "BatchUpdateUser": "<p>Updates user details within the <a>UpdateUserRequestItem</a> object for up to 20 users for the specified Amazon Chime account. Currently, only <code>LicenseType</code> updates are supported for this action.</p>",
     "CreateAccount": "<p>Creates an Amazon Chime account under the administrator's AWS account. Only <code>Team</code> account types are currently supported for this action. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
+    "CreateBot": "<p>Creates a bot for an Amazon Chime Enterprise account.</p>",
     "CreatePhoneNumberOrder": "<p>Creates an order for phone numbers to be provisioned. Choose from Amazon Chime Business Calling and Amazon Chime Voice Connector product types.</p>",
     "CreateVoiceConnector": "<p>Creates an Amazon Chime Voice Connector under the administrator's AWS account. Enabling <a>CreateVoiceConnectorRequest$RequireEncryption</a> configures your Amazon Chime Voice Connector to use TLS transport for SIP signaling and Secure RTP (SRTP) for media. Inbound calls use TLS transport, and unencrypted outbound calls are blocked.</p>",
     "DeleteAccount": "<p>Deletes the specified Amazon Chime account. You must suspend all users before deleting a <code>Team</code> account. You can use the <a>BatchSuspendUser</a> action to do so.</p> <p>For <code>EnterpriseLWA</code> and <code>EnterpriseAD</code> accounts, you must release the claimed domains for your Amazon Chime account before deletion. As soon as you release the domain, all users under that account are suspended.</p> <p>Deleted accounts appear in your <code>Disabled</code> accounts list for 90 days. To restore a deleted account from your <code>Disabled</code> accounts list, you must contact AWS Support.</p> <p>After 90 days, deleted accounts are permanently removed from your <code>Disabled</code> accounts list.</p>",
+    "DeleteEventsConfiguration": "<p>Deletes the events configuration that allows a bot to receive outgoing events.</p>",
     "DeletePhoneNumber": "<p>Moves the specified phone number into the <b>Deletion queue</b>. A phone number must be disassociated from any users or Amazon Chime Voice Connectors before it can be deleted.</p> <p>Deleted phone numbers remain in the <b>Deletion queue</b> for 7 days before they are deleted permanently.</p>",
     "DeleteVoiceConnector": "<p>Deletes the specified Amazon Chime Voice Connector. Any phone numbers assigned to the Amazon Chime Voice Connector must be unassigned from it before it can be deleted.</p>",
     "DeleteVoiceConnectorOrigination": "<p>Deletes the origination settings for the specified Amazon Chime Voice Connector.</p>",
@@ -22,6 +24,8 @@
     "DisassociatePhoneNumbersFromVoiceConnector": "<p>Disassociates the specified phone number from the specified Amazon Chime Voice Connector.</p>",
     "GetAccount": "<p>Retrieves details for the specified Amazon Chime account, such as account type and supported licenses.</p>",
     "GetAccountSettings": "<p>Retrieves account settings for the specified Amazon Chime account ID, such as remote control and dial out settings. For more information about these settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/policies.html\">Use the Policies Page</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
+    "GetBot": "<p>Retrieves details for the specified bot, such as bot email address, bot type, status, and display name.</p>",
+    "GetEventsConfiguration": "<p>Gets details for an events configuration that allows a bot to receive outgoing events, such as an HTTPS endpoint or Lambda function ARN. </p>",
     "GetGlobalSettings": "<p>Retrieves global settings for the administrator's AWS account, such as Amazon Chime Business Calling and Amazon Chime Voice Connector settings.</p>",
     "GetPhoneNumber": "<p>Retrieves details for the specified phone number ID, such as associations, capabilities, and product type.</p>",
     "GetPhoneNumberOrder": "<p>Retrieves details for the specified phone number order, such as order creation timestamp, phone numbers in E.164 format, product type, and order status.</p>",
@@ -33,20 +37,24 @@
     "GetVoiceConnectorTerminationHealth": "<p>Retrieves information about the last time a SIP <code>OPTIONS</code> ping was received from your SIP infrastructure for the specified Amazon Chime Voice Connector.</p>",
     "InviteUsers": "<p>Sends email invites to as many as 50 users, inviting them to the specified Amazon Chime <code>Team</code> account. Only <code>Team</code> account types are currently supported for this action. </p>",
     "ListAccounts": "<p>Lists the Amazon Chime accounts under the administrator's AWS account. You can filter accounts by account name prefix. To find out which Amazon Chime account a user belongs to, you can filter by the user's email address, which returns one account result.</p>",
+    "ListBots": "<p>Lists the bots associated with the administrator's Amazon Chime Enterprise account ID.</p>",
     "ListPhoneNumberOrders": "<p>Lists the phone number orders for the administrator's Amazon Chime account.</p>",
     "ListPhoneNumbers": "<p>Lists the phone numbers for the specified Amazon Chime account, Amazon Chime user, or Amazon Chime Voice Connector.</p>",
     "ListUsers": "<p>Lists the users that belong to the specified Amazon Chime account. You can specify an email address to list only the user that the email address belongs to.</p>",
     "ListVoiceConnectorTerminationCredentials": "<p>Lists the SIP credentials for the specified Amazon Chime Voice Connector.</p>",
     "ListVoiceConnectors": "<p>Lists the Amazon Chime Voice Connectors for the administrator's AWS account.</p>",
     "LogoutUser": "<p>Logs out the specified user from all of the devices they are currently logged into.</p>",
+    "PutEventsConfiguration": "<p>Creates an events configuration that allows a bot to receive outgoing events sent by Amazon Chime. Choose either an HTTPS endpoint or a Lambda function ARN. For more information, see <a>Bot</a>.</p>",
     "PutVoiceConnectorOrigination": "<p>Adds origination settings for the specified Amazon Chime Voice Connector.</p>",
     "PutVoiceConnectorTermination": "<p>Adds termination settings for the specified Amazon Chime Voice Connector.</p>",
     "PutVoiceConnectorTerminationCredentials": "<p>Adds termination SIP credentials for the specified Amazon Chime Voice Connector.</p>",
+    "RegenerateSecurityToken": "<p>Regenerates the security token for a bot.</p>",
     "ResetPersonalPIN": "<p>Resets the personal meeting PIN for the specified user on an Amazon Chime account. Returns the <a>User</a> object with the updated personal meeting PIN.</p>",
     "RestorePhoneNumber": "<p>Moves a phone number from the <b>Deletion queue</b> back into the phone number <b>Inventory</b>.</p>",
     "SearchAvailablePhoneNumbers": "<p>Searches phone numbers that can be ordered.</p>",
     "UpdateAccount": "<p>Updates account details for the specified Amazon Chime account. Currently, only account name updates are supported for this action.</p>",
     "UpdateAccountSettings": "<p>Updates the settings for the specified Amazon Chime account. You can update settings for remote control of shared screens, or for the dial-out option. For more information about these settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/policies.html\">Use the Policies Page</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
+    "UpdateBot": "<p>Updates the status of the specified bot, such as starting or stopping the bot from running in your Amazon Chime Enterprise account.</p>",
     "UpdateGlobalSettings": "<p>Updates global settings for the administrator's AWS account, such as Amazon Chime Business Calling and Amazon Chime Voice Connector settings.</p>",
     "UpdatePhoneNumber": "<p>Updates phone number details, such as product type, for the specified phone number ID.</p>",
     "UpdateUser": "<p>Updates user details for a specified user ID. Currently, only <code>LicenseType</code> updates are supported for this action.</p>",
@@ -180,6 +188,28 @@
         "VoiceConnector$RequireEncryption": "<p>Designates whether encryption is required for the Amazon Chime Voice Connector.</p>"
       }
     },
+    "Bot": {
+      "base": "<p>A resource that allows Enterprise account administrators to configure an interface to receive events from Amazon Chime.</p>",
+      "refs": {
+        "BotList$member": null,
+        "CreateBotResponse$Bot": "<p>The bot details.</p>",
+        "GetBotResponse$Bot": "<p>The chat bot details.</p>",
+        "RegenerateSecurityTokenResponse$Bot": null,
+        "UpdateBotResponse$Bot": "<p>The updated bot details.</p>"
+      }
+    },
+    "BotList": {
+      "base": null,
+      "refs": {
+        "ListBotsResponse$Bots": "<p>List of bots and bot details.</p>"
+      }
+    },
+    "BotType": {
+      "base": null,
+      "refs": {
+        "Bot$BotType": "<p>The bot type.</p>"
+      }
+    },
     "BusinessCallingSettings": {
       "base": "<p>The Amazon Chime Business Calling settings for the administrator's AWS account. Includes any Amazon S3 buckets designated for storing call detail records.</p>",
       "refs": {
@@ -216,6 +246,16 @@
       }
     },
     "CreateAccountResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateBotRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateBotResponse": {
       "base": null,
       "refs": {
       }
@@ -258,6 +298,11 @@
       }
     },
     "DeleteAccountResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteEventsConfigurationRequest": {
       "base": null,
       "refs": {
       }
@@ -350,6 +395,7 @@
         "ForbiddenException$Code": null,
         "NotFoundException$Code": null,
         "PhoneNumberError$ErrorCode": "<p>The error code.</p>",
+        "ResourceLimitExceededException$Code": null,
         "ServiceFailureException$Code": null,
         "ServiceUnavailableException$Code": null,
         "ThrottledClientException$Code": null,
@@ -358,8 +404,15 @@
         "UserError$ErrorCode": "<p>The error code.</p>"
       }
     },
+    "EventsConfiguration": {
+      "base": "<p>The configuration that allows a bot to receive outgoing events. Can be either an HTTPS endpoint or a Lambda function ARN.</p>",
+      "refs": {
+        "GetEventsConfigurationResponse$EventsConfiguration": "<p>The events configuration details.</p>",
+        "PutEventsConfigurationResponse$EventsConfiguration": null
+      }
+    },
     "ForbiddenException": {
-      "base": "<p>The client is permanently forbidden from making the request. For example, when a user tries to create an account from an unsupported region.</p>",
+      "base": "<p>The client is permanently forbidden from making the request. For example, when a user tries to create an account from an unsupported Region.</p>",
       "refs": {
       }
     },
@@ -379,6 +432,26 @@
       }
     },
     "GetAccountSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetBotRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetBotResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEventsConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEventsConfigurationResponse": {
       "base": null,
       "refs": {
       }
@@ -508,6 +581,8 @@
       "base": null,
       "refs": {
         "Account$CreatedTimestamp": "<p>The Amazon Chime account creation timestamp, in ISO 8601 format.</p>",
+        "Bot$CreatedTimestamp": "<p>The bot creation timestamp, in ISO 8601 format.</p>",
+        "Bot$UpdatedTimestamp": "<p>The updated bot timestamp, in ISO 8601 format.</p>",
         "PhoneNumber$CreatedTimestamp": "<p>The phone number creation timestamp, in ISO 8601 format.</p>",
         "PhoneNumber$UpdatedTimestamp": "<p>The updated phone number timestamp, in ISO 8601 format.</p>",
         "PhoneNumber$DeletionTimestamp": "<p>The deleted phone number timestamp, in ISO 8601 format.</p>",
@@ -543,6 +618,16 @@
       }
     },
     "ListAccountsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListBotsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListBotsResponse": {
       "base": null,
       "refs": {
       }
@@ -614,7 +699,11 @@
         "BatchSuspendUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "BatchUnsuspendUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "BatchUpdateUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "CreateBotRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "CreateBotRequest$Domain": "<p>The domain of the Amazon Chime Enterprise account.</p>",
         "DeleteAccountRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "DeleteEventsConfigurationRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "DeleteEventsConfigurationRequest$BotId": "<p>The bot ID.</p>",
         "DeleteVoiceConnectorOriginationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "DeleteVoiceConnectorRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "DeleteVoiceConnectorTerminationCredentialsRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
@@ -622,6 +711,10 @@
         "DisassociatePhoneNumbersFromVoiceConnectorRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "GetAccountRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "GetAccountSettingsRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "GetBotRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "GetBotRequest$BotId": "<p>The bot ID.</p>",
+        "GetEventsConfigurationRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "GetEventsConfigurationRequest$BotId": "<p>The bot ID.</p>",
         "GetUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "GetUserRequest$UserId": "<p>The user ID.</p>",
         "GetVoiceConnectorOriginationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
@@ -629,19 +722,26 @@
         "GetVoiceConnectorTerminationHealthRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "GetVoiceConnectorTerminationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "InviteUsersRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "ListBotsRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "ListUsersRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "ListVoiceConnectorTerminationCredentialsRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "LogoutUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "LogoutUserRequest$UserId": "<p>The user ID.</p>",
         "PhoneNumberError$PhoneNumberId": "<p>The phone number ID for which the action failed.</p>",
+        "PutEventsConfigurationRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "PutEventsConfigurationRequest$BotId": "<p>The bot ID.</p>",
         "PutVoiceConnectorOriginationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "PutVoiceConnectorTerminationCredentialsRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "PutVoiceConnectorTerminationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
+        "RegenerateSecurityTokenRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "RegenerateSecurityTokenRequest$BotId": "<p>The bot ID.</p>",
         "ResetPersonalPINRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "ResetPersonalPINRequest$UserId": "<p>The user ID.</p>",
         "RestorePhoneNumberRequest$PhoneNumberId": "<p>The phone number.</p>",
         "UpdateAccountRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "UpdateAccountSettingsRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "UpdateBotRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "UpdateBotRequest$BotId": "<p>The bot ID.</p>",
         "UpdatePhoneNumberRequestItem$PhoneNumberId": "<p>The phone number ID to update.</p>",
         "UpdateUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "UpdateUserRequest$UserId": "<p>The user ID.</p>",
@@ -666,12 +766,14 @@
     "NullableBoolean": {
       "base": null,
       "refs": {
+        "Bot$Disabled": "<p>When true, the bot is stopped from running in your account.</p>",
         "PhoneNumberCapabilities$InboundCall": "<p>Allows or denies inbound calling for the specified phone number.</p>",
         "PhoneNumberCapabilities$OutboundCall": "<p>Allows or denies outbound calling for the specified phone number.</p>",
         "PhoneNumberCapabilities$InboundSMS": "<p>Allows or denies inbound SMS messaging for the specified phone number.</p>",
         "PhoneNumberCapabilities$OutboundSMS": "<p>Allows or denies outbound SMS messaging for the specified phone number.</p>",
         "PhoneNumberCapabilities$InboundMMS": "<p>Allows or denies inbound MMS messaging for the specified phone number.</p>",
-        "PhoneNumberCapabilities$OutboundMMS": "<p>Allows or denies outbound MMS messaging for the specified phone number.</p>"
+        "PhoneNumberCapabilities$OutboundMMS": "<p>Allows or denies outbound MMS messaging for the specified phone number.</p>",
+        "UpdateBotRequest$Disabled": "<p>When true, stops the specified bot from running in your account.</p>"
       }
     },
     "OrderedPhoneNumber": {
@@ -842,6 +944,16 @@
         "ListUsersRequest$MaxResults": "<p>The maximum number of results to return in a single call. Defaults to 100.</p>"
       }
     },
+    "PutEventsConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutEventsConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "PutVoiceConnectorOriginationRequest": {
       "base": null,
       "refs": {
@@ -867,6 +979,16 @@
       "refs": {
       }
     },
+    "RegenerateSecurityTokenRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RegenerateSecurityTokenResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "RegistrationStatus": {
       "base": null,
       "refs": {
@@ -883,6 +1005,11 @@
       "refs": {
       }
     },
+    "ResourceLimitExceededException": {
+      "base": "<p>The request exceeds the resource limit.</p>",
+      "refs": {
+      }
+    },
     "RestorePhoneNumberRequest": {
       "base": null,
       "refs": {
@@ -896,6 +1023,7 @@
     "ResultMax": {
       "base": null,
       "refs": {
+        "ListBotsRequest$MaxResults": "<p>The maximum number of results to return in a single call. Default is 10.</p>",
         "ListPhoneNumberOrdersRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "ListPhoneNumbersRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "ListVoiceConnectorsRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>"
@@ -914,8 +1042,16 @@
     "SensitiveString": {
       "base": null,
       "refs": {
+        "Bot$DisplayName": "<p>The bot display name.</p>",
+        "Bot$BotEmail": "<p>The bot email address.</p>",
+        "Bot$SecurityToken": "<p>The security token used to authenticate Amazon Chime with the outgoing event endpoint.</p>",
+        "CreateBotRequest$DisplayName": "<p>The bot display name.</p>",
         "Credential$Username": "<p>The RFC2617 compliant user name associated with the SIP credentials, in US-ASCII format.</p>",
         "Credential$Password": "<p>The RFC2617 compliant password associated with the SIP credentials, in US-ASCII format.</p>",
+        "EventsConfiguration$OutboundEventsHTTPSEndpoint": "<p>HTTPS endpoint that allows a bot to receive outgoing events.</p>",
+        "EventsConfiguration$LambdaFunctionArn": "<p>Lambda function ARN that allows a bot to receive outgoing events.</p>",
+        "PutEventsConfigurationRequest$OutboundEventsHTTPSEndpoint": "<p>HTTPS endpoint that allows the bot to receive outgoing events.</p>",
+        "PutEventsConfigurationRequest$LambdaFunctionArn": "<p>Lambda function ARN that allows the bot to receive outgoing events.</p>",
         "SensitiveStringList$member": null,
         "User$PrimaryProvisionedNumber": "<p>The primary phone number associated with the user.</p>",
         "User$DisplayName": "<p>The display name of the user.</p>"
@@ -947,11 +1083,14 @@
         "AssociatePhoneNumberWithUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "AssociatePhoneNumberWithUserRequest$UserId": "<p>The user ID.</p>",
         "BadRequestException$Message": null,
+        "Bot$BotId": "<p>The bot ID.</p>",
+        "Bot$UserId": "<p>The unique ID for the bot user.</p>",
         "BusinessCallingSettings$CdrBucket": "<p>The Amazon S3 bucket designated for call detail record storage.</p>",
         "ConflictException$Message": null,
         "DeletePhoneNumberRequest$PhoneNumberId": "<p>The phone number ID.</p>",
         "DisassociatePhoneNumberFromUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "DisassociatePhoneNumberFromUserRequest$UserId": "<p>The user ID.</p>",
+        "EventsConfiguration$BotId": "<p>The bot ID.</p>",
         "ForbiddenException$Message": null,
         "GetPhoneNumberRequest$PhoneNumberId": "<p>The phone number ID.</p>",
         "GetUserSettingsRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
@@ -959,6 +1098,8 @@
         "Invite$InviteId": "<p>The invite ID.</p>",
         "ListAccountsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListAccountsResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
+        "ListBotsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
+        "ListBotsResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListPhoneNumberOrdersRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListPhoneNumberOrdersResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListPhoneNumbersRequest$FilterValue": "<p>The value to use for the filter.</p>",
@@ -974,6 +1115,7 @@
         "PhoneNumber$PhoneNumberId": "<p>The phone number ID.</p>",
         "PhoneNumberAssociation$Value": "<p>Contains the ID for the entity specified in Name.</p>",
         "PhoneNumberError$ErrorMessage": "<p>The error message.</p>",
+        "ResourceLimitExceededException$Message": null,
         "SearchAvailablePhoneNumbersRequest$AreaCode": "<p>The area code used to filter results.</p>",
         "SearchAvailablePhoneNumbersRequest$City": "<p>The city used to filter results.</p>",
         "SearchAvailablePhoneNumbersRequest$Country": "<p>The country used to filter results.</p>",
@@ -1054,6 +1196,16 @@
       }
     },
     "UpdateAccountSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateBotRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateBotResponse": {
       "base": null,
       "refs": {
       }
