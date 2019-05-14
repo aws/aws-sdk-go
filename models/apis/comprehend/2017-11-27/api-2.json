@@ -928,7 +928,8 @@
           "idempotencyToken":true
         },
         "LanguageCode":{"shape":"LanguageCode"},
-        "VolumeKmsKeyId":{"shape":"KmsKeyId"}
+        "VolumeKmsKeyId":{"shape":"KmsKeyId"},
+        "VpcConfig":{"shape":"VpcConfig"}
       }
     },
     "CreateDocumentClassifierResponse":{
@@ -955,7 +956,8 @@
           "idempotencyToken":true
         },
         "LanguageCode":{"shape":"LanguageCode"},
-        "VolumeKmsKeyId":{"shape":"KmsKeyId"}
+        "VolumeKmsKeyId":{"shape":"KmsKeyId"},
+        "VpcConfig":{"shape":"VpcConfig"}
       }
     },
     "CreateEntityRecognizerResponse":{
@@ -1196,7 +1198,8 @@
         "InputDataConfig":{"shape":"InputDataConfig"},
         "OutputDataConfig":{"shape":"OutputDataConfig"},
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
-        "VolumeKmsKeyId":{"shape":"KmsKeyId"}
+        "VolumeKmsKeyId":{"shape":"KmsKeyId"},
+        "VpcConfig":{"shape":"VpcConfig"}
       }
     },
     "DocumentClassificationJobPropertiesList":{
@@ -1245,7 +1248,8 @@
         "OutputDataConfig":{"shape":"DocumentClassifierOutputDataConfig"},
         "ClassifierMetadata":{"shape":"ClassifierMetadata"},
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
-        "VolumeKmsKeyId":{"shape":"KmsKeyId"}
+        "VolumeKmsKeyId":{"shape":"KmsKeyId"},
+        "VpcConfig":{"shape":"VpcConfig"}
       }
     },
     "DocumentClassifierPropertiesList":{
@@ -1280,7 +1284,8 @@
         "InputDataConfig":{"shape":"InputDataConfig"},
         "OutputDataConfig":{"shape":"OutputDataConfig"},
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
-        "VolumeKmsKeyId":{"shape":"KmsKeyId"}
+        "VolumeKmsKeyId":{"shape":"KmsKeyId"},
+        "VpcConfig":{"shape":"VpcConfig"}
       }
     },
     "DominantLanguageDetectionJobPropertiesList":{
@@ -1311,7 +1316,8 @@
         "OutputDataConfig":{"shape":"OutputDataConfig"},
         "LanguageCode":{"shape":"LanguageCode"},
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
-        "VolumeKmsKeyId":{"shape":"KmsKeyId"}
+        "VolumeKmsKeyId":{"shape":"KmsKeyId"},
+        "VpcConfig":{"shape":"VpcConfig"}
       }
     },
     "EntitiesDetectionJobPropertiesList":{
@@ -1416,7 +1422,8 @@
         "InputDataConfig":{"shape":"EntityRecognizerInputDataConfig"},
         "RecognizerMetadata":{"shape":"EntityRecognizerMetadata"},
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
-        "VolumeKmsKeyId":{"shape":"KmsKeyId"}
+        "VolumeKmsKeyId":{"shape":"KmsKeyId"},
+        "VpcConfig":{"shape":"VpcConfig"}
       }
     },
     "EntityRecognizerPropertiesList":{
@@ -1559,7 +1566,8 @@
         "OutputDataConfig":{"shape":"OutputDataConfig"},
         "LanguageCode":{"shape":"LanguageCode"},
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
-        "VolumeKmsKeyId":{"shape":"KmsKeyId"}
+        "VolumeKmsKeyId":{"shape":"KmsKeyId"},
+        "VpcConfig":{"shape":"VpcConfig"}
       }
     },
     "KeyPhrasesDetectionJobPropertiesList":{
@@ -1851,6 +1859,18 @@
       "max":1024,
       "pattern":"s3://[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9](/.*)?"
     },
+    "SecurityGroupId":{
+      "type":"string",
+      "max":32,
+      "min":1,
+      "pattern":"[-0-9a-zA-Z]+"
+    },
+    "SecurityGroupIds":{
+      "type":"list",
+      "member":{"shape":"SecurityGroupId"},
+      "max":5,
+      "min":1
+    },
     "SentimentDetectionJobFilter":{
       "type":"structure",
       "members":{
@@ -1873,7 +1893,8 @@
         "OutputDataConfig":{"shape":"OutputDataConfig"},
         "LanguageCode":{"shape":"LanguageCode"},
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
-        "VolumeKmsKeyId":{"shape":"KmsKeyId"}
+        "VolumeKmsKeyId":{"shape":"KmsKeyId"},
+        "VpcConfig":{"shape":"VpcConfig"}
       }
     },
     "SentimentDetectionJobPropertiesList":{
@@ -1916,7 +1937,8 @@
           "shape":"ClientRequestTokenString",
           "idempotencyToken":true
         },
-        "VolumeKmsKeyId":{"shape":"KmsKeyId"}
+        "VolumeKmsKeyId":{"shape":"KmsKeyId"},
+        "VpcConfig":{"shape":"VpcConfig"}
       }
     },
     "StartDocumentClassificationJobResponse":{
@@ -1942,7 +1964,8 @@
           "shape":"ClientRequestTokenString",
           "idempotencyToken":true
         },
-        "VolumeKmsKeyId":{"shape":"KmsKeyId"}
+        "VolumeKmsKeyId":{"shape":"KmsKeyId"},
+        "VpcConfig":{"shape":"VpcConfig"}
       }
     },
     "StartDominantLanguageDetectionJobResponse":{
@@ -1971,7 +1994,8 @@
           "shape":"ClientRequestTokenString",
           "idempotencyToken":true
         },
-        "VolumeKmsKeyId":{"shape":"KmsKeyId"}
+        "VolumeKmsKeyId":{"shape":"KmsKeyId"},
+        "VpcConfig":{"shape":"VpcConfig"}
       }
     },
     "StartEntitiesDetectionJobResponse":{
@@ -1999,7 +2023,8 @@
           "shape":"ClientRequestTokenString",
           "idempotencyToken":true
         },
-        "VolumeKmsKeyId":{"shape":"KmsKeyId"}
+        "VolumeKmsKeyId":{"shape":"KmsKeyId"},
+        "VpcConfig":{"shape":"VpcConfig"}
       }
     },
     "StartKeyPhrasesDetectionJobResponse":{
@@ -2027,7 +2052,8 @@
           "shape":"ClientRequestTokenString",
           "idempotencyToken":true
         },
-        "VolumeKmsKeyId":{"shape":"KmsKeyId"}
+        "VolumeKmsKeyId":{"shape":"KmsKeyId"},
+        "VpcConfig":{"shape":"VpcConfig"}
       }
     },
     "StartSentimentDetectionJobResponse":{
@@ -2054,7 +2080,8 @@
           "shape":"ClientRequestTokenString",
           "idempotencyToken":true
         },
-        "VolumeKmsKeyId":{"shape":"KmsKeyId"}
+        "VolumeKmsKeyId":{"shape":"KmsKeyId"},
+        "VpcConfig":{"shape":"VpcConfig"}
       }
     },
     "StartTopicsDetectionJobResponse":{
@@ -2151,6 +2178,18 @@
     "StringList":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "SubnetId":{
+      "type":"string",
+      "max":32,
+      "min":1,
+      "pattern":"[-0-9a-zA-Z]+"
+    },
+    "Subnets":{
+      "type":"list",
+      "member":{"shape":"SubnetId"},
+      "max":16,
+      "min":1
     },
     "SyntaxLanguageCode":{
       "type":"string",
@@ -2266,7 +2305,8 @@
         "OutputDataConfig":{"shape":"OutputDataConfig"},
         "NumberOfTopics":{"shape":"Integer"},
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
-        "VolumeKmsKeyId":{"shape":"KmsKeyId"}
+        "VolumeKmsKeyId":{"shape":"KmsKeyId"},
+        "VpcConfig":{"shape":"VpcConfig"}
       }
     },
     "TopicsDetectionJobPropertiesList":{
@@ -2294,6 +2334,17 @@
     "UntagResourceResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "VpcConfig":{
+      "type":"structure",
+      "required":[
+        "SecurityGroupIds",
+        "Subnets"
+      ],
+      "members":{
+        "SecurityGroupIds":{"shape":"SecurityGroupIds"},
+        "Subnets":{"shape":"Subnets"}
       }
     }
   }

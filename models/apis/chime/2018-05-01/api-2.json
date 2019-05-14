@@ -162,6 +162,25 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "CreateBot":{
+      "name":"CreateBot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{accountId}/bots",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateBotRequest"},
+      "output":{"shape":"CreateBotResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
     "CreatePhoneNumberOrder":{
       "name":"CreatePhoneNumberOrder",
       "http":{
@@ -216,6 +235,23 @@
         {"shape":"UnprocessableEntityException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
+      ]
+    },
+    "DeleteEventsConfiguration":{
+      "name":"DeleteEventsConfiguration",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/accounts/{accountId}/bots/{botId}/events-configuration",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteEventsConfigurationRequest"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ResourceLimitExceededException"}
       ]
     },
     "DeletePhoneNumber":{
@@ -380,6 +416,43 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
+      ]
+    },
+    "GetBot":{
+      "name":"GetBot",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{accountId}/bots/{botId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetBotRequest"},
+      "output":{"shape":"GetBotResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
+    "GetEventsConfiguration":{
+      "name":"GetEventsConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{accountId}/bots/{botId}/events-configuration",
+        "responseCode":200
+      },
+      "input":{"shape":"GetEventsConfigurationRequest"},
+      "output":{"shape":"GetEventsConfigurationResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"NotFoundException"}
       ]
     },
     "GetGlobalSettings":{
@@ -587,6 +660,24 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "ListBots":{
+      "name":"ListBots",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{accountId}/bots",
+        "responseCode":200
+      },
+      "input":{"shape":"ListBotsRequest"},
+      "output":{"shape":"ListBotsResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
     "ListPhoneNumberOrders":{
       "name":"ListPhoneNumberOrders",
       "http":{
@@ -697,6 +788,25 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "PutEventsConfiguration":{
+      "name":"PutEventsConfiguration",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/accounts/{accountId}/bots/{botId}/events-configuration",
+        "responseCode":201
+      },
+      "input":{"shape":"PutEventsConfigurationRequest"},
+      "output":{"shape":"PutEventsConfigurationResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
     "PutVoiceConnectorOrigination":{
       "name":"PutVoiceConnectorOrigination",
       "http":{
@@ -751,6 +861,24 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
+      ]
+    },
+    "RegenerateSecurityToken":{
+      "name":"RegenerateSecurityToken",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{accountId}/bots/{botId}?operation=regenerate-security-token",
+        "responseCode":200
+      },
+      "input":{"shape":"RegenerateSecurityTokenRequest"},
+      "output":{"shape":"RegenerateSecurityTokenResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"}
       ]
     },
     "ResetPersonalPIN":{
@@ -845,6 +973,24 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
+      ]
+    },
+    "UpdateBot":{
+      "name":"UpdateBot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{accountId}/bots/{botId}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateBotRequest"},
+      "output":{"shape":"UpdateBotResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"}
       ]
     },
     "UpdateGlobalSettings":{
@@ -1127,6 +1273,28 @@
       }
     },
     "Boolean":{"type":"boolean"},
+    "Bot":{
+      "type":"structure",
+      "members":{
+        "BotId":{"shape":"String"},
+        "UserId":{"shape":"String"},
+        "DisplayName":{"shape":"SensitiveString"},
+        "BotType":{"shape":"BotType"},
+        "Disabled":{"shape":"NullableBoolean"},
+        "CreatedTimestamp":{"shape":"Iso8601Timestamp"},
+        "UpdatedTimestamp":{"shape":"Iso8601Timestamp"},
+        "BotEmail":{"shape":"SensitiveString"},
+        "SecurityToken":{"shape":"SensitiveString"}
+      }
+    },
+    "BotList":{
+      "type":"list",
+      "member":{"shape":"Bot"}
+    },
+    "BotType":{
+      "type":"string",
+      "enum":["ChatBot"]
+    },
     "BusinessCallingSettings":{
       "type":"structure",
       "members":{
@@ -1165,6 +1333,28 @@
       "type":"structure",
       "members":{
         "Account":{"shape":"Account"}
+      }
+    },
+    "CreateBotRequest":{
+      "type":"structure",
+      "required":[
+        "DisplayName",
+        "AccountId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "DisplayName":{"shape":"SensitiveString"},
+        "Domain":{"shape":"NonEmptyString"}
+      }
+    },
+    "CreateBotResponse":{
+      "type":"structure",
+      "members":{
+        "Bot":{"shape":"Bot"}
       }
     },
     "CreatePhoneNumberOrderRequest":{
@@ -1226,6 +1416,25 @@
     "DeleteAccountResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DeleteEventsConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "BotId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "BotId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"botId"
+        }
       }
     },
     "DeletePhoneNumberRequest":{
@@ -1363,6 +1572,14 @@
         "PreconditionFailed"
       ]
     },
+    "EventsConfiguration":{
+      "type":"structure",
+      "members":{
+        "BotId":{"shape":"String"},
+        "OutboundEventsHTTPSEndpoint":{"shape":"SensitiveString"},
+        "LambdaFunctionArn":{"shape":"SensitiveString"}
+      }
+    },
     "ForbiddenException":{
       "type":"structure",
       "members":{
@@ -1404,6 +1621,56 @@
       "type":"structure",
       "members":{
         "AccountSettings":{"shape":"AccountSettings"}
+      }
+    },
+    "GetBotRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "BotId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "BotId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"botId"
+        }
+      }
+    },
+    "GetBotResponse":{
+      "type":"structure",
+      "members":{
+        "Bot":{"shape":"Bot"}
+      }
+    },
+    "GetEventsConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "BotId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "BotId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"botId"
+        }
+      }
+    },
+    "GetEventsConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "EventsConfiguration":{"shape":"EventsConfiguration"}
       }
     },
     "GetGlobalSettingsResponse":{
@@ -1657,6 +1924,34 @@
       "type":"structure",
       "members":{
         "Accounts":{"shape":"AccountList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListBotsRequest":{
+      "type":"structure",
+      "required":["AccountId"],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "MaxResults":{
+          "shape":"ResultMax",
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"next-token"
+        }
+      }
+    },
+    "ListBotsResponse":{
+      "type":"structure",
+      "members":{
+        "Bots":{"shape":"BotList"},
         "NextToken":{"shape":"String"}
       }
     },
@@ -2016,6 +2311,33 @@
       "max":200,
       "min":1
     },
+    "PutEventsConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "BotId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "BotId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "OutboundEventsHTTPSEndpoint":{"shape":"SensitiveString"},
+        "LambdaFunctionArn":{"shape":"SensitiveString"}
+      }
+    },
+    "PutEventsConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "EventsConfiguration":{"shape":"EventsConfiguration"}
+      }
+    },
     "PutVoiceConnectorOriginationRequest":{
       "type":"structure",
       "required":[
@@ -2070,6 +2392,31 @@
         "Termination":{"shape":"Termination"}
       }
     },
+    "RegenerateSecurityTokenRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "BotId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "BotId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"botId"
+        }
+      }
+    },
+    "RegenerateSecurityTokenResponse":{
+      "type":"structure",
+      "members":{
+        "Bot":{"shape":"Bot"}
+      }
+    },
     "RegistrationStatus":{
       "type":"string",
       "enum":[
@@ -2102,6 +2449,15 @@
       "members":{
         "User":{"shape":"User"}
       }
+    },
+    "ResourceLimitExceededException":{
+      "type":"structure",
+      "members":{
+        "Code":{"shape":"ErrorCode"},
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
     },
     "RestorePhoneNumberRequest":{
       "type":"structure",
@@ -2292,6 +2648,32 @@
     "UpdateAccountSettingsResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateBotRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "BotId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "BotId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "Disabled":{"shape":"NullableBoolean"}
+      }
+    },
+    "UpdateBotResponse":{
+      "type":"structure",
+      "members":{
+        "Bot":{"shape":"Bot"}
       }
     },
     "UpdateGlobalSettingsRequest":{

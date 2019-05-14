@@ -1279,7 +1279,8 @@
       ],
       "members":{
         "VolumeARN":{"shape":"VolumeARN"},
-        "SnapshotDescription":{"shape":"SnapshotDescription"}
+        "SnapshotDescription":{"shape":"SnapshotDescription"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "CreateSnapshotOutput":{
@@ -2950,7 +2951,8 @@
         "VolumeARN":{"shape":"VolumeARN"},
         "StartAt":{"shape":"HourOfDay"},
         "RecurrenceInHours":{"shape":"RecurrenceInHours"},
-        "Description":{"shape":"Description"}
+        "Description":{"shape":"Description"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "UpdateSnapshotScheduleOutput":{

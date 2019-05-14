@@ -92,6 +92,10 @@ type ChimeAPI interface {
 	CreateAccountWithContext(aws.Context, *chime.CreateAccountInput, ...request.Option) (*chime.CreateAccountOutput, error)
 	CreateAccountRequest(*chime.CreateAccountInput) (*request.Request, *chime.CreateAccountOutput)
 
+	CreateBot(*chime.CreateBotInput) (*chime.CreateBotOutput, error)
+	CreateBotWithContext(aws.Context, *chime.CreateBotInput, ...request.Option) (*chime.CreateBotOutput, error)
+	CreateBotRequest(*chime.CreateBotInput) (*request.Request, *chime.CreateBotOutput)
+
 	CreatePhoneNumberOrder(*chime.CreatePhoneNumberOrderInput) (*chime.CreatePhoneNumberOrderOutput, error)
 	CreatePhoneNumberOrderWithContext(aws.Context, *chime.CreatePhoneNumberOrderInput, ...request.Option) (*chime.CreatePhoneNumberOrderOutput, error)
 	CreatePhoneNumberOrderRequest(*chime.CreatePhoneNumberOrderInput) (*request.Request, *chime.CreatePhoneNumberOrderOutput)
@@ -103,6 +107,10 @@ type ChimeAPI interface {
 	DeleteAccount(*chime.DeleteAccountInput) (*chime.DeleteAccountOutput, error)
 	DeleteAccountWithContext(aws.Context, *chime.DeleteAccountInput, ...request.Option) (*chime.DeleteAccountOutput, error)
 	DeleteAccountRequest(*chime.DeleteAccountInput) (*request.Request, *chime.DeleteAccountOutput)
+
+	DeleteEventsConfiguration(*chime.DeleteEventsConfigurationInput) (*chime.DeleteEventsConfigurationOutput, error)
+	DeleteEventsConfigurationWithContext(aws.Context, *chime.DeleteEventsConfigurationInput, ...request.Option) (*chime.DeleteEventsConfigurationOutput, error)
+	DeleteEventsConfigurationRequest(*chime.DeleteEventsConfigurationInput) (*request.Request, *chime.DeleteEventsConfigurationOutput)
 
 	DeletePhoneNumber(*chime.DeletePhoneNumberInput) (*chime.DeletePhoneNumberOutput, error)
 	DeletePhoneNumberWithContext(aws.Context, *chime.DeletePhoneNumberInput, ...request.Option) (*chime.DeletePhoneNumberOutput, error)
@@ -139,6 +147,14 @@ type ChimeAPI interface {
 	GetAccountSettings(*chime.GetAccountSettingsInput) (*chime.GetAccountSettingsOutput, error)
 	GetAccountSettingsWithContext(aws.Context, *chime.GetAccountSettingsInput, ...request.Option) (*chime.GetAccountSettingsOutput, error)
 	GetAccountSettingsRequest(*chime.GetAccountSettingsInput) (*request.Request, *chime.GetAccountSettingsOutput)
+
+	GetBot(*chime.GetBotInput) (*chime.GetBotOutput, error)
+	GetBotWithContext(aws.Context, *chime.GetBotInput, ...request.Option) (*chime.GetBotOutput, error)
+	GetBotRequest(*chime.GetBotInput) (*request.Request, *chime.GetBotOutput)
+
+	GetEventsConfiguration(*chime.GetEventsConfigurationInput) (*chime.GetEventsConfigurationOutput, error)
+	GetEventsConfigurationWithContext(aws.Context, *chime.GetEventsConfigurationInput, ...request.Option) (*chime.GetEventsConfigurationOutput, error)
+	GetEventsConfigurationRequest(*chime.GetEventsConfigurationInput) (*request.Request, *chime.GetEventsConfigurationOutput)
 
 	GetGlobalSettings(*chime.GetGlobalSettingsInput) (*chime.GetGlobalSettingsOutput, error)
 	GetGlobalSettingsWithContext(aws.Context, *chime.GetGlobalSettingsInput, ...request.Option) (*chime.GetGlobalSettingsOutput, error)
@@ -187,6 +203,10 @@ type ChimeAPI interface {
 	ListAccountsPages(*chime.ListAccountsInput, func(*chime.ListAccountsOutput, bool) bool) error
 	ListAccountsPagesWithContext(aws.Context, *chime.ListAccountsInput, func(*chime.ListAccountsOutput, bool) bool, ...request.Option) error
 
+	ListBots(*chime.ListBotsInput) (*chime.ListBotsOutput, error)
+	ListBotsWithContext(aws.Context, *chime.ListBotsInput, ...request.Option) (*chime.ListBotsOutput, error)
+	ListBotsRequest(*chime.ListBotsInput) (*request.Request, *chime.ListBotsOutput)
+
 	ListPhoneNumberOrders(*chime.ListPhoneNumberOrdersInput) (*chime.ListPhoneNumberOrdersOutput, error)
 	ListPhoneNumberOrdersWithContext(aws.Context, *chime.ListPhoneNumberOrdersInput, ...request.Option) (*chime.ListPhoneNumberOrdersOutput, error)
 	ListPhoneNumberOrdersRequest(*chime.ListPhoneNumberOrdersInput) (*request.Request, *chime.ListPhoneNumberOrdersOutput)
@@ -223,6 +243,10 @@ type ChimeAPI interface {
 	LogoutUserWithContext(aws.Context, *chime.LogoutUserInput, ...request.Option) (*chime.LogoutUserOutput, error)
 	LogoutUserRequest(*chime.LogoutUserInput) (*request.Request, *chime.LogoutUserOutput)
 
+	PutEventsConfiguration(*chime.PutEventsConfigurationInput) (*chime.PutEventsConfigurationOutput, error)
+	PutEventsConfigurationWithContext(aws.Context, *chime.PutEventsConfigurationInput, ...request.Option) (*chime.PutEventsConfigurationOutput, error)
+	PutEventsConfigurationRequest(*chime.PutEventsConfigurationInput) (*request.Request, *chime.PutEventsConfigurationOutput)
+
 	PutVoiceConnectorOrigination(*chime.PutVoiceConnectorOriginationInput) (*chime.PutVoiceConnectorOriginationOutput, error)
 	PutVoiceConnectorOriginationWithContext(aws.Context, *chime.PutVoiceConnectorOriginationInput, ...request.Option) (*chime.PutVoiceConnectorOriginationOutput, error)
 	PutVoiceConnectorOriginationRequest(*chime.PutVoiceConnectorOriginationInput) (*request.Request, *chime.PutVoiceConnectorOriginationOutput)
@@ -234,6 +258,10 @@ type ChimeAPI interface {
 	PutVoiceConnectorTerminationCredentials(*chime.PutVoiceConnectorTerminationCredentialsInput) (*chime.PutVoiceConnectorTerminationCredentialsOutput, error)
 	PutVoiceConnectorTerminationCredentialsWithContext(aws.Context, *chime.PutVoiceConnectorTerminationCredentialsInput, ...request.Option) (*chime.PutVoiceConnectorTerminationCredentialsOutput, error)
 	PutVoiceConnectorTerminationCredentialsRequest(*chime.PutVoiceConnectorTerminationCredentialsInput) (*request.Request, *chime.PutVoiceConnectorTerminationCredentialsOutput)
+
+	RegenerateSecurityToken(*chime.RegenerateSecurityTokenInput) (*chime.RegenerateSecurityTokenOutput, error)
+	RegenerateSecurityTokenWithContext(aws.Context, *chime.RegenerateSecurityTokenInput, ...request.Option) (*chime.RegenerateSecurityTokenOutput, error)
+	RegenerateSecurityTokenRequest(*chime.RegenerateSecurityTokenInput) (*request.Request, *chime.RegenerateSecurityTokenOutput)
 
 	ResetPersonalPIN(*chime.ResetPersonalPINInput) (*chime.ResetPersonalPINOutput, error)
 	ResetPersonalPINWithContext(aws.Context, *chime.ResetPersonalPINInput, ...request.Option) (*chime.ResetPersonalPINOutput, error)
@@ -254,6 +282,10 @@ type ChimeAPI interface {
 	UpdateAccountSettings(*chime.UpdateAccountSettingsInput) (*chime.UpdateAccountSettingsOutput, error)
 	UpdateAccountSettingsWithContext(aws.Context, *chime.UpdateAccountSettingsInput, ...request.Option) (*chime.UpdateAccountSettingsOutput, error)
 	UpdateAccountSettingsRequest(*chime.UpdateAccountSettingsInput) (*request.Request, *chime.UpdateAccountSettingsOutput)
+
+	UpdateBot(*chime.UpdateBotInput) (*chime.UpdateBotOutput, error)
+	UpdateBotWithContext(aws.Context, *chime.UpdateBotInput, ...request.Option) (*chime.UpdateBotOutput, error)
+	UpdateBotRequest(*chime.UpdateBotInput) (*request.Request, *chime.UpdateBotOutput)
 
 	UpdateGlobalSettings(*chime.UpdateGlobalSettingsInput) (*chime.UpdateGlobalSettingsOutput, error)
 	UpdateGlobalSettingsWithContext(aws.Context, *chime.UpdateGlobalSettingsInput, ...request.Option) (*chime.UpdateGlobalSettingsOutput, error)

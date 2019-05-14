@@ -640,6 +640,9 @@ type EC2API interface {
 	DescribeDhcpOptionsWithContext(aws.Context, *ec2.DescribeDhcpOptionsInput, ...request.Option) (*ec2.DescribeDhcpOptionsOutput, error)
 	DescribeDhcpOptionsRequest(*ec2.DescribeDhcpOptionsInput) (*request.Request, *ec2.DescribeDhcpOptionsOutput)
 
+	DescribeDhcpOptionsPages(*ec2.DescribeDhcpOptionsInput, func(*ec2.DescribeDhcpOptionsOutput, bool) bool) error
+	DescribeDhcpOptionsPagesWithContext(aws.Context, *ec2.DescribeDhcpOptionsInput, func(*ec2.DescribeDhcpOptionsOutput, bool) bool, ...request.Option) error
+
 	DescribeEgressOnlyInternetGateways(*ec2.DescribeEgressOnlyInternetGatewaysInput) (*ec2.DescribeEgressOnlyInternetGatewaysOutput, error)
 	DescribeEgressOnlyInternetGatewaysWithContext(aws.Context, *ec2.DescribeEgressOnlyInternetGatewaysInput, ...request.Option) (*ec2.DescribeEgressOnlyInternetGatewaysOutput, error)
 	DescribeEgressOnlyInternetGatewaysRequest(*ec2.DescribeEgressOnlyInternetGatewaysInput) (*request.Request, *ec2.DescribeEgressOnlyInternetGatewaysOutput)
@@ -972,6 +975,9 @@ type EC2API interface {
 	DescribeSubnets(*ec2.DescribeSubnetsInput) (*ec2.DescribeSubnetsOutput, error)
 	DescribeSubnetsWithContext(aws.Context, *ec2.DescribeSubnetsInput, ...request.Option) (*ec2.DescribeSubnetsOutput, error)
 	DescribeSubnetsRequest(*ec2.DescribeSubnetsInput) (*request.Request, *ec2.DescribeSubnetsOutput)
+
+	DescribeSubnetsPages(*ec2.DescribeSubnetsInput, func(*ec2.DescribeSubnetsOutput, bool) bool) error
+	DescribeSubnetsPagesWithContext(aws.Context, *ec2.DescribeSubnetsInput, func(*ec2.DescribeSubnetsOutput, bool) bool, ...request.Option) error
 
 	DescribeTags(*ec2.DescribeTagsInput) (*ec2.DescribeTagsOutput, error)
 	DescribeTagsWithContext(aws.Context, *ec2.DescribeTagsInput, ...request.Option) (*ec2.DescribeTagsOutput, error)

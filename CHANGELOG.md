@@ -1,3 +1,15 @@
+Release v1.19.30 (2019-05-14)
+===
+
+### Service Client Updates
+* `service/chime`: Updates service API and documentation
+  * Amazon Chime private bots GA release.
+* `service/comprehend`: Updates service API, documentation, and paginators
+* `service/ec2`: Updates service API, documentation, and paginators
+  * Pagination support for ec2.DescribeSubnets, ec2.DescribeDhcpOptions
+* `service/storagegateway`: Updates service API and documentation
+  * Add Tags parameter to CreateSnapshot and UpdateSnapshotSchedule APIs, used for creating tags on create for one off snapshots and scheduled snapshots.
+
 Release v1.19.29 (2019-05-13)
 ===
 

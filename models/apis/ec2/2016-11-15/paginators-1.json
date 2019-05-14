@@ -67,6 +67,9 @@
       "result_key": "CustomerGateways"
     },
     "DescribeDhcpOptions": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
       "result_key": "DhcpOptions"
     },
     "DescribeEgressOnlyInternetGateways": {
@@ -300,6 +303,9 @@
       "result_key": "StaleSecurityGroupSet"
     },
     "DescribeSubnets": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
       "result_key": "Subnets"
     },
     "DescribeTags": {

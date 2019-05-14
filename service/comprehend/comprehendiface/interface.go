@@ -152,9 +152,15 @@ type ComprehendAPI interface {
 	ListDocumentClassificationJobsWithContext(aws.Context, *comprehend.ListDocumentClassificationJobsInput, ...request.Option) (*comprehend.ListDocumentClassificationJobsOutput, error)
 	ListDocumentClassificationJobsRequest(*comprehend.ListDocumentClassificationJobsInput) (*request.Request, *comprehend.ListDocumentClassificationJobsOutput)
 
+	ListDocumentClassificationJobsPages(*comprehend.ListDocumentClassificationJobsInput, func(*comprehend.ListDocumentClassificationJobsOutput, bool) bool) error
+	ListDocumentClassificationJobsPagesWithContext(aws.Context, *comprehend.ListDocumentClassificationJobsInput, func(*comprehend.ListDocumentClassificationJobsOutput, bool) bool, ...request.Option) error
+
 	ListDocumentClassifiers(*comprehend.ListDocumentClassifiersInput) (*comprehend.ListDocumentClassifiersOutput, error)
 	ListDocumentClassifiersWithContext(aws.Context, *comprehend.ListDocumentClassifiersInput, ...request.Option) (*comprehend.ListDocumentClassifiersOutput, error)
 	ListDocumentClassifiersRequest(*comprehend.ListDocumentClassifiersInput) (*request.Request, *comprehend.ListDocumentClassifiersOutput)
+
+	ListDocumentClassifiersPages(*comprehend.ListDocumentClassifiersInput, func(*comprehend.ListDocumentClassifiersOutput, bool) bool) error
+	ListDocumentClassifiersPagesWithContext(aws.Context, *comprehend.ListDocumentClassifiersInput, func(*comprehend.ListDocumentClassifiersOutput, bool) bool, ...request.Option) error
 
 	ListDominantLanguageDetectionJobs(*comprehend.ListDominantLanguageDetectionJobsInput) (*comprehend.ListDominantLanguageDetectionJobsOutput, error)
 	ListDominantLanguageDetectionJobsWithContext(aws.Context, *comprehend.ListDominantLanguageDetectionJobsInput, ...request.Option) (*comprehend.ListDominantLanguageDetectionJobsOutput, error)
@@ -173,6 +179,9 @@ type ComprehendAPI interface {
 	ListEntityRecognizers(*comprehend.ListEntityRecognizersInput) (*comprehend.ListEntityRecognizersOutput, error)
 	ListEntityRecognizersWithContext(aws.Context, *comprehend.ListEntityRecognizersInput, ...request.Option) (*comprehend.ListEntityRecognizersOutput, error)
 	ListEntityRecognizersRequest(*comprehend.ListEntityRecognizersInput) (*request.Request, *comprehend.ListEntityRecognizersOutput)
+
+	ListEntityRecognizersPages(*comprehend.ListEntityRecognizersInput, func(*comprehend.ListEntityRecognizersOutput, bool) bool) error
+	ListEntityRecognizersPagesWithContext(aws.Context, *comprehend.ListEntityRecognizersInput, func(*comprehend.ListEntityRecognizersOutput, bool) bool, ...request.Option) error
 
 	ListKeyPhrasesDetectionJobs(*comprehend.ListKeyPhrasesDetectionJobsInput) (*comprehend.ListKeyPhrasesDetectionJobsOutput, error)
 	ListKeyPhrasesDetectionJobsWithContext(aws.Context, *comprehend.ListKeyPhrasesDetectionJobsInput, ...request.Option) (*comprehend.ListKeyPhrasesDetectionJobsOutput, error)
