@@ -52,7 +52,10 @@
       "output":{"shape":"CreateCustomActionTypeOutput"},
       "errors":[
         {"shape":"ValidationException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"InvalidTagsException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "CreatePipeline":{
@@ -70,7 +73,10 @@
         {"shape":"InvalidActionDeclarationException"},
         {"shape":"InvalidBlockerDeclarationException"},
         {"shape":"InvalidStructureException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"InvalidTagsException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "DeleteCustomActionType":{
@@ -81,7 +87,8 @@
       },
       "input":{"shape":"DeleteCustomActionTypeInput"},
       "errors":[
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "DeletePipeline":{
@@ -92,7 +99,8 @@
       },
       "input":{"shape":"DeletePipelineInput"},
       "errors":[
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "DeleteWebhook":{
@@ -104,7 +112,8 @@
       "input":{"shape":"DeleteWebhookInput"},
       "output":{"shape":"DeleteWebhookOutput"},
       "errors":[
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "DeregisterWebhookWithThirdParty":{
@@ -270,6 +279,21 @@
         {"shape":"InvalidNextTokenException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceInput"},
+      "output":{"shape":"ListTagsForResourceOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidArnException"}
+      ]
+    },
     "ListWebhooks":{
       "name":"ListWebhooks",
       "http":{
@@ -408,7 +432,10 @@
         {"shape":"LimitExceededException"},
         {"shape":"InvalidWebhookFilterPatternException"},
         {"shape":"InvalidWebhookAuthenticationParametersException"},
-        {"shape":"PipelineNotFoundException"}
+        {"shape":"PipelineNotFoundException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"InvalidTagsException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "RegisterWebhookWithThirdParty":{
@@ -451,6 +478,39 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"PipelineNotFoundException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceInput"},
+      "output":{"shape":"TagResourceOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidArnException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"InvalidTagsException"},
+        {"shape":"ConcurrentModificationException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceInput"},
+      "output":{"shape":"UntagResourceOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidArnException"},
+        {"shape":"InvalidTagsException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "UpdatePipeline":{
@@ -969,6 +1029,13 @@
       "min":1
     },
     "Code":{"type":"string"},
+    "ConcurrentModificationException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"Message"}
+      },
+      "exception":true
+    },
     "ContinuationToken":{
       "type":"string",
       "max":2048,
@@ -990,27 +1057,31 @@
         "settings":{"shape":"ActionTypeSettings"},
         "configurationProperties":{"shape":"ActionConfigurationPropertyList"},
         "inputArtifactDetails":{"shape":"ArtifactDetails"},
-        "outputArtifactDetails":{"shape":"ArtifactDetails"}
+        "outputArtifactDetails":{"shape":"ArtifactDetails"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateCustomActionTypeOutput":{
       "type":"structure",
       "required":["actionType"],
       "members":{
-        "actionType":{"shape":"ActionType"}
+        "actionType":{"shape":"ActionType"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreatePipelineInput":{
       "type":"structure",
       "required":["pipeline"],
       "members":{
-        "pipeline":{"shape":"PipelineDeclaration"}
+        "pipeline":{"shape":"PipelineDeclaration"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreatePipelineOutput":{
       "type":"structure",
       "members":{
-        "pipeline":{"shape":"PipelineDeclaration"}
+        "pipeline":{"shape":"PipelineDeclaration"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CurrentRevision":{
@@ -1281,6 +1352,13 @@
       },
       "exception":true
     },
+    "InvalidArnException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"Message"}
+      },
+      "exception":true
+    },
     "InvalidBlockerDeclarationException":{
       "type":"structure",
       "members":{
@@ -1326,6 +1404,13 @@
     "InvalidStructureException":{
       "type":"structure",
       "members":{
+      },
+      "exception":true
+    },
+    "InvalidTagsException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"Message"}
       },
       "exception":true
     },
@@ -1472,6 +1557,22 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "ListTagsForResourceInput":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{"shape":"ResourceArn"},
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListTagsForResourceOutput":{
+      "type":"structure",
+      "members":{
+        "tags":{"shape":"TagList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "ListWebhookItem":{
       "type":"structure",
       "required":[
@@ -1484,7 +1585,8 @@
         "errorMessage":{"shape":"WebhookErrorMessage"},
         "errorCode":{"shape":"WebhookErrorCode"},
         "lastTriggered":{"shape":"WebhookLastTriggered"},
-        "arn":{"shape":"WebhookArn"}
+        "arn":{"shape":"WebhookArn"},
+        "tags":{"shape":"TagList"}
       }
     },
     "ListWebhooksInput":{
@@ -1814,7 +1916,8 @@
       "type":"structure",
       "required":["webhook"],
       "members":{
-        "webhook":{"shape":"WebhookDefinition"}
+        "webhook":{"shape":"WebhookDefinition"},
+        "tags":{"shape":"TagList"}
       }
     },
     "PutWebhookOutput":{
@@ -1840,6 +1943,16 @@
       "type":"structure",
       "members":{
       }
+    },
+    "ResourceArn":{
+      "type":"string",
+      "pattern":"arn:aws(-[\\w]+)*:codepipeline:.+:[0-9]{12}:.+"
+    },
+    "ResourceNotFoundException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
     },
     "RetryStageExecutionInput":{
       "type":"structure",
@@ -2032,6 +2145,51 @@
         "pipelineExecutionId":{"shape":"PipelineExecutionId"}
       }
     },
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "key",
+        "value"
+      ],
+      "members":{
+        "key":{"shape":"TagKey"},
+        "value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"}
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"}
+    },
+    "TagResourceInput":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tags"
+      ],
+      "members":{
+        "resourceArn":{"shape":"ResourceArn"},
+        "tags":{"shape":"TagList"}
+      }
+    },
+    "TagResourceOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
     "ThirdPartyJob":{
       "type":"structure",
       "members":{
@@ -2071,6 +2229,13 @@
     },
     "Time":{"type":"timestamp"},
     "Timestamp":{"type":"timestamp"},
+    "TooManyTagsException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"Message"}
+      },
+      "exception":true
+    },
     "TransitionState":{
       "type":"structure",
       "members":{
@@ -2078,6 +2243,22 @@
         "lastChangedBy":{"shape":"LastChangedBy"},
         "lastChangedAt":{"shape":"LastChangedAt"},
         "disabledReason":{"shape":"DisabledReason"}
+      }
+    },
+    "UntagResourceInput":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tagKeys"
+      ],
+      "members":{
+        "resourceArn":{"shape":"ResourceArn"},
+        "tagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UntagResourceOutput":{
+      "type":"structure",
+      "members":{
       }
     },
     "UpdatePipelineInput":{

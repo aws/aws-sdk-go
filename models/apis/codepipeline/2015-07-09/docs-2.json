@@ -21,6 +21,7 @@
     "ListActionTypes": "<p>Gets a summary of all AWS CodePipeline action types associated with your account.</p>",
     "ListPipelineExecutions": "<p>Gets a summary of the most recent executions for a pipeline.</p>",
     "ListPipelines": "<p>Gets a summary of all of the pipelines associated with your account.</p>",
+    "ListTagsForResource": "<p>Gets the set of key/value pairs (metadata) that are used to manage the resource.</p>",
     "ListWebhooks": "<p>Gets a listing of all the webhooks in this region for this account. The output lists all webhooks and includes the webhook URL and ARN, as well the configuration for each webhook.</p>",
     "PollForJobs": "<p>Returns information about any jobs for AWS CodePipeline to act upon. <code>PollForJobs</code> is only valid for action types with \"Custom\" in the owner field. If the action type contains \"AWS\" or \"ThirdParty\" in the owner field, the <code>PollForJobs</code> action returns an error.</p> <important> <p>When this API is called, AWS CodePipeline returns temporary credentials for the Amazon S3 bucket used to store artifacts for the pipeline, if the action requires access to that Amazon S3 bucket for input or output artifacts. Additionally, this API returns any secret values defined for the action.</p> </important>",
     "PollForThirdPartyJobs": "<p>Determines whether there are any third party jobs for a job worker to act on. Only used for partner actions.</p> <important> <p>When this API is called, AWS CodePipeline returns temporary credentials for the Amazon S3 bucket used to store artifacts for the pipeline, if the action requires access to that Amazon S3 bucket for input or output artifacts.</p> </important>",
@@ -34,6 +35,8 @@
     "RegisterWebhookWithThirdParty": "<p>Configures a connection between the webhook that was created and the external tool with events to be detected.</p>",
     "RetryStageExecution": "<p>Resumes the pipeline execution by retrying the last failed actions in a stage.</p>",
     "StartPipelineExecution": "<p>Starts the specified pipeline. Specifically, it begins processing the latest commit to the source location specified as part of the pipeline.</p>",
+    "TagResource": "<p>Adds to or modifies the tags of the given resource. Tags are metadata that can be used to manage a resource. </p>",
+    "UntagResource": "<p>Removes tags from an AWS resource.</p>",
     "UpdatePipeline": "<p>Updates a specified pipeline with edits or changes to its structure. Use a JSON file with the pipeline structure in conjunction with <code>UpdatePipeline</code> to provide the full structure of the pipeline. Updating the pipeline increases the version number of the pipeline by 1.</p>"
   },
   "shapes": {
@@ -496,6 +499,11 @@
         "ErrorDetails$code": "<p>The system ID or error number code of the error.</p>"
       }
     },
+    "ConcurrentModificationException": {
+      "base": "<p>Unable to modify the tag due to a simultaneous update request.</p>",
+      "refs": {
+      }
+    },
     "ContinuationToken": {
       "base": null,
       "refs": {
@@ -736,6 +744,11 @@
       "refs": {
       }
     },
+    "InvalidArnException": {
+      "base": "<p>The specified resource ARN is invalid.</p>",
+      "refs": {
+      }
+    },
     "InvalidBlockerDeclarationException": {
       "base": "<p>Reserved for future use.</p>",
       "refs": {
@@ -773,6 +786,11 @@
     },
     "InvalidStructureException": {
       "base": "<p>The specified structure was specified in an invalid format.</p>",
+      "refs": {
+      }
+    },
+    "InvalidTagsException": {
+      "base": "<p>The specified resource tags are invalid.</p>",
       "refs": {
       }
     },
@@ -904,6 +922,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListWebhookItem": {
       "base": "<p>The detail returned for each webhook after listing webhooks, such as the webhook URL, the webhook name, and the webhook ARN.</p>",
       "refs": {
@@ -939,6 +967,7 @@
       "refs": {
         "ListActionExecutionsInput$maxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned nextToken value. Action execution history is retained for up to 12 months, based on action execution start times. Default value is 100. </p> <note> <p>Detailed execution history is available for executions run on or after February 21, 2019.</p> </note>",
         "ListPipelineExecutionsInput$maxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned nextToken value. Pipeline history is limited to the most recent 12 months, based on pipeline execution start times. Default value is 100.</p>",
+        "ListTagsForResourceInput$maxResults": "<p>The maximum number of results to return in a single call.</p>",
         "ListWebhooksInput$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned nextToken value.</p>"
       }
     },
@@ -951,8 +980,12 @@
     "Message": {
       "base": null,
       "refs": {
+        "ConcurrentModificationException$message": null,
         "ErrorDetails$message": "<p>The text of the error message.</p>",
-        "FailureDetails$message": "<p>The message about the failure.</p>"
+        "FailureDetails$message": "<p>The message about the failure.</p>",
+        "InvalidArnException$message": null,
+        "InvalidTagsException$message": null,
+        "TooManyTagsException$message": null
       }
     },
     "MinimumArtifactCount": {
@@ -972,6 +1005,8 @@
         "ListPipelineExecutionsOutput$nextToken": "<p>A token that can be used in the next <code>ListPipelineExecutions</code> call. To view all items in the list, continue to call this operation with each subsequent token until no more nextToken values are returned.</p>",
         "ListPipelinesInput$nextToken": "<p>An identifier that was returned from the previous list pipelines call, which can be used to return the next set of pipelines in the list.</p>",
         "ListPipelinesOutput$nextToken": "<p>If the amount of returned information is significantly large, an identifier is also returned which can be used in a subsequent list pipelines call to return the next set of pipelines in the list.</p>",
+        "ListTagsForResourceInput$nextToken": "<p>The token that was returned from the previous API call, which would be used to return the next page of the list. However, the ListTagsforResource call lists all available tags in one call and does not use pagination.</p>",
+        "ListTagsForResourceOutput$nextToken": "<p>If the amount of returned information is significantly large, an identifier is also returned and can be used in a subsequent API call to return the next page of the list. However, the ListTagsforResource call lists all available tags in one call and does not use pagination.</p>",
         "ListWebhooksInput$NextToken": "<p>The token that was returned from the previous ListWebhooks call, which can be used to return the next set of webhooks in the list.</p>",
         "ListWebhooksOutput$NextToken": "<p>If the amount of returned information is significantly large, an identifier is also returned and can be used in a subsequent ListWebhooks call to return the next set of webhooks in the list. </p>"
       }
@@ -1238,6 +1273,19 @@
       "refs": {
       }
     },
+    "ResourceArn": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceInput$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource to get tags for.</p>",
+        "TagResourceInput$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource you want to add tags to.</p>",
+        "UntagResourceInput$resourceArn": "<p> The Amazon Resource Name (ARN) of the resource to remove tags from.</p>"
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p>The specified resource was specified in an invalid format.</p>",
+      "refs": {
+      }
+    },
     "RetryStageExecutionInput": {
       "base": "<p>Represents the input of a <code>RetryStageExecution</code> action.</p>",
       "refs": {
@@ -1437,6 +1485,54 @@
       "refs": {
       }
     },
+    "Tag": {
+      "base": "<p>A tag is a key/value pair that is used to manage the resource.</p>",
+      "refs": {
+        "TagList$member": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "Tag$key": "<p>The tag's key.</p>",
+        "TagKeyList$member": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceInput$tagKeys": "<p>The list of keys for the tags to be removed from the resource.</p>"
+      }
+    },
+    "TagList": {
+      "base": null,
+      "refs": {
+        "CreateCustomActionTypeInput$tags": "<p>The tags for the custom action.</p>",
+        "CreateCustomActionTypeOutput$tags": "<p>Specifies the tags applied to the custom action.</p>",
+        "CreatePipelineInput$tags": "<p>The tags for the pipeline.</p>",
+        "CreatePipelineOutput$tags": "<p>Specifies the tags applied to the pipeline.</p>",
+        "ListTagsForResourceOutput$tags": "<p>The tags for the resource.</p>",
+        "ListWebhookItem$tags": "<p>Specifies the tags applied to the webhook.</p>",
+        "PutWebhookInput$tags": "<p>The tags for the webhook.</p>",
+        "TagResourceInput$tags": "<p>The tags you want to modify or add to the resource.</p>"
+      }
+    },
+    "TagResourceInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tag$value": "<p>The tag's value.</p>"
+      }
+    },
     "ThirdPartyJob": {
       "base": "<p>A response to a <code>PollForThirdPartyJobs </code>request returned by AWS CodePipeline when there is a job to be worked upon by a partner action.</p>",
       "refs": {
@@ -1496,10 +1592,25 @@
         "PutApprovalResultOutput$approvedAt": "<p>The timestamp showing when the approval or rejection was submitted.</p>"
       }
     },
+    "TooManyTagsException": {
+      "base": "<p>The tags limit for a resource has been exceeded.</p>",
+      "refs": {
+      }
+    },
     "TransitionState": {
       "base": "<p>Represents information about the state of transitions between one stage and another stage.</p>",
       "refs": {
         "StageState$inboundTransitionState": "<p>The state of the inbound transition, which is either enabled or disabled.</p>"
+      }
+    },
+    "UntagResourceInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdatePipelineInput": {

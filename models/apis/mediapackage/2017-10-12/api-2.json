@@ -1601,7 +1601,8 @@
     "SegmentTemplateFormat": {
       "enum": [
         "NUMBER_WITH_TIMELINE", 
-        "TIME_WITH_TIMELINE"
+        "TIME_WITH_TIMELINE",
+        "NUMBER_WITH_DURATION"
       ], 
       "type": "string"
     }, 
