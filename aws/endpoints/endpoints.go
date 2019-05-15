@@ -46,6 +46,28 @@ type Options struct {
 	//
 	// This option is ignored if StrictMatching is enabled.
 	ResolveUnknownService bool
+
+	// Configures the endpoints Resolver to not use partition global endpoints
+	// for a service. Instead the endpoints Resolver will use the endpoint for
+	// the region specified only.
+	//
+	// if StrictMatching is not true, the endpoint resolver may return an
+	// endpoint that is unusable if the service does not have an endpoint in
+	// the given region.
+	//
+	// To use the global endpoint with this option enabled use "aws-global" as
+	// the region.
+	//
+	// This option may break resolving endpoints for services that only specify
+	// an "aws-global" endpoint, and should only be selectively used for
+	// individual service clients, not shared across all clients.
+	//
+	// For example the SDK's default endpoint resolver will always resolve the
+	// endpoint sts.amazonaws.com for all AWS regions. Setting this option will
+	// cause the default resovler to return the endpoint for the region
+	// specified. (e.g. given "us-west-2" resolve to
+	// "sts.us-west-2.amazonaws.com".
+	UseRegionalEndpoints bool
 }
 
 // Set combines all of the option functions together.
@@ -73,16 +95,47 @@ func StrictMatchingOption(o *Options) {
 	o.StrictMatching = true
 }
 
-// ResolveUnknownServiceOption sets the ResolveUnknownService option. Can be used
-// as a functional option when resolving endpoints.
+// ResolveUnknownServiceOption sets the ResolveUnknownService option. Can be
+// used as a functional option when resolving endpoints.
 func ResolveUnknownServiceOption(o *Options) {
 	o.ResolveUnknownService = true
 }
 
+// UseRegionalEndpoints sets the UseRegionalEndpoints Resolver options. Use
+// this option to configure the endpoints Resolver to not use partition global
+// endpoints for a service. Instead the endpoints Resolver will use the
+// endpoint for the region specified only.
+//
+// Can be used as a functional option when resolving endpoints.
+func UseRegionalEndpoints(o *Options) {
+	o.UseRegionalEndpoints = true
+}
+
 // A Resolver provides the interface for functionality to resolve endpoints.
-// The build in Partition and DefaultResolver return value satisfy this interface.
+// The build in Partition and DefaultResolver return value satisfy this
+// interface.
 type Resolver interface {
 	EndpointFor(service, region string, opts ...func(*Options)) (ResolvedEndpoint, error)
+}
+
+type optionsWrappedResolver struct {
+	resolver Resolver
+	options  []func(*Options)
+}
+
+// NewOptionsWrappedResolver returns a endpoints Resolver with pre-set options
+// that will be used for every Resolver.EndpointFor call before the
+// EndpointFor's functional options are evaluated.
+func NewOptionsWrappedResolver(r Resolver, opts ...func(*Options)) Resolver {
+	return optionsWrappedResolver{
+		resolver: r,
+		options:  append([]func(*Options){}, opts...),
+	}
+}
+
+// EndpointFor implements the Resolver interface
+func (w optionsWrappedResolver) EndpointFor(service, region string, opts ...func(*Options)) (ResolvedEndpoint, error) {
+	return w.resolver.EndpointFor(service, region, append(w.options, opts...)...)
 }
 
 // ResolverFunc is a helper utility that wraps a function so it satisfies the

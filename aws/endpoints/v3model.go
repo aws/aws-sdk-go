@@ -85,7 +85,7 @@ func (p partition) EndpointFor(service, region string, opts ...func(*Options)) (
 		return resolved, NewUnknownServiceError(p.ID, service, serviceList(p.Services))
 	}
 
-	e, hasEndpoint := s.endpointForRegion(region)
+	e, hasEndpoint := s.endpointForRegion(region, opt)
 	if !hasEndpoint && opt.StrictMatching {
 		return resolved, NewUnknownEndpointError(p.ID, service, region, endpointList(s.Endpoints))
 	}
@@ -142,8 +142,8 @@ type service struct {
 	Endpoints         endpoints `json:"endpoints"`
 }
 
-func (s *service) endpointForRegion(region string) (endpoint, bool) {
-	if s.IsRegionalized == boxedFalse {
+func (s *service) endpointForRegion(region string, opt Options) (endpoint, bool) {
+	if s.IsRegionalized == boxedFalse && !opt.UseRegionalEndpoints {
 		return s.Endpoints[s.PartitionEndpoint], region == s.PartitionEndpoint
 	}
 
