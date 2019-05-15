@@ -7686,6 +7686,11 @@
         }
       }
     },
+    "DescribeCapacityReservationsMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
     "DescribeCapacityReservationsRequest":{
       "type":"structure",
       "members":{
@@ -7694,7 +7699,7 @@
           "locationName":"CapacityReservationId"
         },
         "NextToken":{"shape":"String"},
-        "MaxResults":{"shape":"Integer"},
+        "MaxResults":{"shape":"DescribeCapacityReservationsMaxResults"},
         "Filters":{
           "shape":"FilterList",
           "locationName":"Filter"
@@ -8008,6 +8013,11 @@
         }
       }
     },
+    "DescribeElasticGpusMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":10
+    },
     "DescribeElasticGpusRequest":{
       "type":"structure",
       "members":{
@@ -8020,7 +8030,7 @@
           "shape":"FilterList",
           "locationName":"Filter"
         },
-        "MaxResults":{"shape":"Integer"},
+        "MaxResults":{"shape":"DescribeElasticGpusMaxResults"},
         "NextToken":{"shape":"String"}
       }
     },
@@ -8776,6 +8786,11 @@
         }
       }
     },
+    "DescribeLaunchTemplatesMaxResults":{
+      "type":"integer",
+      "max":200,
+      "min":1
+    },
     "DescribeLaunchTemplatesRequest":{
       "type":"structure",
       "members":{
@@ -8793,7 +8808,7 @@
           "locationName":"Filter"
         },
         "NextToken":{"shape":"String"},
-        "MaxResults":{"shape":"Integer"}
+        "MaxResults":{"shape":"DescribeLaunchTemplatesMaxResults"}
       }
     },
     "DescribeLaunchTemplatesResult":{
@@ -8952,6 +8967,11 @@
         }
       }
     },
+    "DescribeNetworkInterfacePermissionsMaxResults":{
+      "type":"integer",
+      "max":255,
+      "min":5
+    },
     "DescribeNetworkInterfacePermissionsRequest":{
       "type":"structure",
       "members":{
@@ -8964,7 +8984,7 @@
           "locationName":"Filter"
         },
         "NextToken":{"shape":"String"},
-        "MaxResults":{"shape":"Integer"}
+        "MaxResults":{"shape":"DescribeNetworkInterfacePermissionsMaxResults"}
       }
     },
     "DescribeNetworkInterfacePermissionsResult":{
@@ -8979,6 +8999,11 @@
           "locationName":"nextToken"
         }
       }
+    },
+    "DescribeNetworkInterfacesMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
     },
     "DescribeNetworkInterfacesRequest":{
       "type":"structure",
@@ -8996,7 +9021,7 @@
           "locationName":"NetworkInterfaceId"
         },
         "NextToken":{"shape":"String"},
-        "MaxResults":{"shape":"Integer"}
+        "MaxResults":{"shape":"DescribeNetworkInterfacesMaxResults"}
       }
     },
     "DescribeNetworkInterfacesResult":{
@@ -9283,6 +9308,11 @@
         }
       }
     },
+    "DescribeRouteTablesMaxResults":{
+      "type":"integer",
+      "max":100,
+      "min":5
+    },
     "DescribeRouteTablesRequest":{
       "type":"structure",
       "members":{
@@ -9299,7 +9329,7 @@
           "locationName":"RouteTableId"
         },
         "NextToken":{"shape":"String"},
-        "MaxResults":{"shape":"Integer"}
+        "MaxResults":{"shape":"DescribeRouteTablesMaxResults"}
       }
     },
     "DescribeRouteTablesResult":{
@@ -9395,6 +9425,11 @@
         }
       }
     },
+    "DescribeSecurityGroupsMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
     "DescribeSecurityGroupsRequest":{
       "type":"structure",
       "members":{
@@ -9415,7 +9450,7 @@
           "locationName":"dryRun"
         },
         "NextToken":{"shape":"String"},
-        "MaxResults":{"shape":"Integer"}
+        "MaxResults":{"shape":"DescribeSecurityGroupsMaxResults"}
       }
     },
     "DescribeSecurityGroupsResult":{
@@ -9738,13 +9773,23 @@
         }
       }
     },
+    "DescribeStaleSecurityGroupsMaxResults":{
+      "type":"integer",
+      "max":255,
+      "min":5
+    },
+    "DescribeStaleSecurityGroupsNextToken":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
     "DescribeStaleSecurityGroupsRequest":{
       "type":"structure",
       "required":["VpcId"],
       "members":{
         "DryRun":{"shape":"Boolean"},
-        "MaxResults":{"shape":"MaxResults"},
-        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"DescribeStaleSecurityGroupsMaxResults"},
+        "NextToken":{"shape":"DescribeStaleSecurityGroupsNextToken"},
         "VpcId":{"shape":"String"}
       }
     },
@@ -20045,6 +20090,10 @@
         "PrivateDnsName":{
           "shape":"String",
           "locationName":"privateDnsName"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },
@@ -20061,6 +20110,10 @@
         "ServiceName":{
           "shape":"String",
           "locationName":"serviceName"
+        },
+        "ServiceId":{
+          "shape":"String",
+          "locationName":"serviceId"
         },
         "ServiceType":{
           "shape":"ServiceTypeDetailSet",
@@ -20093,6 +20146,10 @@
         "ManagesVpcEndpoints":{
           "shape":"Boolean",
           "locationName":"managesVpcEndpoints"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },
@@ -22976,6 +23033,10 @@
         "CreationTimestamp":{
           "shape":"MillisecondDateTime",
           "locationName":"creationTimestamp"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },

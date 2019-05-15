@@ -1,3 +1,18 @@
+Release v1.19.31 (2019-05-15)
+===
+
+### Service Client Updates
+* `service/codepipeline`: Updates service API, documentation, and paginators
+  * This feature includes new APIs to add, edit, remove and view tags for pipeline, custom action type and webhook resources. You can also add tags while creating these resources.
+* `service/ec2`: Updates service API and documentation
+  * Adding tagging support for VPC Endpoints and VPC Endpoint Services.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/mediapackage`: Updates service API and documentation
+  * Adds optional configuration for DASH SegmentTemplateFormat to refer to segments by Number with Duration, rather than Number or Time with SegmentTimeline.
+* `service/rds`: Updates service documentation
+  * In the RDS API and CLI documentation, corrections to the descriptions for Boolean parameters to avoid references to TRUE and FALSE. The RDS CLI does not allow TRUE and FALSE values values for Boolean parameters.
+* `service/transcribe`: Updates service API
+
 Release v1.19.30 (2019-05-14)
 ===
 
