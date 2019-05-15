@@ -145,8 +145,13 @@ type Uploader struct {
 	// MaxUploadParts is the max number of parts which will be uploaded to S3.
 	// Will be used to calculate the partsize of the object to be uploaded.
 	// E.g: 5GB file, with MaxUploadParts set to 100, will upload the file
-	// as 100, 50MB parts.
-	// With a limited of s3.MaxUploadParts (10,000 parts).
+	// as 100, 50MB parts. With a limited of s3.MaxUploadParts (10,000 parts).
+	//
+	// MaxUploadParts must not be used to limit the total number of bytes uploaded.
+	// Use a type like to io.LimitReader (https://golang.org/pkg/io/#LimitedReader)
+	// instead. An io.LimitReader is helpful when uploading an unbounded reader
+	// to S3, and you know its maximum size. Otherwise the reader's io.EOF returned
+	// error must be used to signal end of stream.
 	//
 	// Defaults to package const's MaxUploadParts value.
 	MaxUploadParts int
