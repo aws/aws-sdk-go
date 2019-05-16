@@ -25,6 +25,8 @@ var noEscape [256]bool
 
 var errValueNotSet = fmt.Errorf("value not set")
 
+var byteSliceType = reflect.TypeOf([]byte{})
+
 func init() {
 	for i := 0; i < len(noEscape); i++ {
 		// AWS expects every character except these to be escaped
@@ -92,6 +94,14 @@ func buildLocationElements(r *request.Request, v reflect.Value, buildGETQuery bo
 			}
 			if field.Tag.Get("ignore") != "" {
 				continue
+			}
+
+			// Support the ability to customize values to be marshaled as a
+			// blob even though they were modeled as a string. Required for S3
+			// API operations like SSECustomerKey is modeled as stirng but
+			// required to be base64 encoded in request.
+			if field.Tag.Get("marshal-as") == "blob" {
+				m = m.Convert(byteSliceType)
 			}
 
 			var err error
