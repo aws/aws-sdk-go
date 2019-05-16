@@ -1,3 +1,12 @@
+Release v1.19.32 (2019-05-16)
+===
+
+### Service Client Updates
+* `service/medialive`: Updates service waiters and paginators
+  * Added channel state waiters to MediaLive.
+* `service/s3`: Updates service API, documentation, and examples
+  * This release updates the Amazon S3 PUT Bucket replication API to include a new optional field named token, which allows you to add a replication configuration to an S3 bucket that has Object Lock enabled.
+
 Release v1.19.31 (2019-05-15)
 ===
 

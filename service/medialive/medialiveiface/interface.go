@@ -201,6 +201,18 @@ type MediaLiveAPI interface {
 	UpdateReservation(*medialive.UpdateReservationInput) (*medialive.UpdateReservationOutput, error)
 	UpdateReservationWithContext(aws.Context, *medialive.UpdateReservationInput, ...request.Option) (*medialive.UpdateReservationOutput, error)
 	UpdateReservationRequest(*medialive.UpdateReservationInput) (*request.Request, *medialive.UpdateReservationOutput)
+
+	WaitUntilChannelCreated(*medialive.DescribeChannelInput) error
+	WaitUntilChannelCreatedWithContext(aws.Context, *medialive.DescribeChannelInput, ...request.WaiterOption) error
+
+	WaitUntilChannelDeleted(*medialive.DescribeChannelInput) error
+	WaitUntilChannelDeletedWithContext(aws.Context, *medialive.DescribeChannelInput, ...request.WaiterOption) error
+
+	WaitUntilChannelRunning(*medialive.DescribeChannelInput) error
+	WaitUntilChannelRunningWithContext(aws.Context, *medialive.DescribeChannelInput, ...request.WaiterOption) error
+
+	WaitUntilChannelStopped(*medialive.DescribeChannelInput) error
+	WaitUntilChannelStoppedWithContext(aws.Context, *medialive.DescribeChannelInput, ...request.WaiterOption) error
 }
 
 var _ MediaLiveAPI = (*medialive.MediaLive)(nil)
