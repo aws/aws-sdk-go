@@ -147,7 +147,7 @@ func buildBody(r *request.Request, v reflect.Value) {
 					case string:
 						r.SetStringBody(reader)
 					default:
-						r.Error = awserr.New("SerializationError",
+						r.Error = awserr.New(request.ErrCodeSerialization,
 							"failed to encode REST request",
 							fmt.Errorf("unknown payload type %s", payload.Type()))
 					}
@@ -162,7 +162,7 @@ func buildHeader(header *http.Header, v reflect.Value, name string, tag reflect.
 	if err == errValueNotSet {
 		return nil
 	} else if err != nil {
-		return awserr.New("SerializationError", "failed to encode REST request", err)
+		return awserr.New(request.ErrCodeSerialization, "failed to encode REST request", err)
 	}
 
 	name = strings.TrimSpace(name)
@@ -180,7 +180,7 @@ func buildHeaderMap(header *http.Header, v reflect.Value, tag reflect.StructTag)
 		if err == errValueNotSet {
 			continue
 		} else if err != nil {
-			return awserr.New("SerializationError", "failed to encode REST request", err)
+			return awserr.New(request.ErrCodeSerialization, "failed to encode REST request", err)
 
 		}
 		keyStr := strings.TrimSpace(key.String())
@@ -196,7 +196,7 @@ func buildURI(u *url.URL, v reflect.Value, name string, tag reflect.StructTag) e
 	if err == errValueNotSet {
 		return nil
 	} else if err != nil {
-		return awserr.New("SerializationError", "failed to encode REST request", err)
+		return awserr.New(request.ErrCodeSerialization, "failed to encode REST request", err)
 	}
 
 	u.Path = strings.Replace(u.Path, "{"+name+"}", value, -1)
@@ -229,7 +229,7 @@ func buildQueryString(query url.Values, v reflect.Value, name string, tag reflec
 		if err == errValueNotSet {
 			return nil
 		} else if err != nil {
-			return awserr.New("SerializationError", "failed to encode REST request", err)
+			return awserr.New(request.ErrCodeSerialization, "failed to encode REST request", err)
 		}
 		query.Set(name, str)
 	}
