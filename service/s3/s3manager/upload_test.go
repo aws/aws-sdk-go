@@ -993,3 +993,40 @@ func TestUploadWithContextCanceled(t *testing.T) {
 		t.Errorf("expected error message to contain %q, but did not %q", e, a)
 	}
 }
+
+// S3 Uploader incorrectly fails an upload if the content being uploaded
+// has a size of MinPartSize * MaxUploadParts.
+// Github:  aws/aws-sdk-go#2557
+func TestUploadMaxPartsEOF(t *testing.T) {
+	s, ops, _ := loggingSvc(emptyList)
+	mgr := s3manager.NewUploaderWithClient(s, func(u *s3manager.Uploader) {
+		u.Concurrency = 1
+		u.PartSize = s3manager.DefaultUploadPartSize
+		u.MaxUploadParts = 2
+	})
+	f := bytes.NewReader(make([]byte, int(mgr.PartSize)*mgr.MaxUploadParts))
+
+	r1 := io.NewSectionReader(f, 0, s3manager.DefaultUploadPartSize)
+	r2 := io.NewSectionReader(f, s3manager.DefaultUploadPartSize, 2*s3manager.DefaultUploadPartSize)
+	body := io.MultiReader(r1, r2)
+
+	_, err := mgr.Upload(&s3manager.UploadInput{
+		Bucket: aws.String("Bucket"),
+		Key:    aws.String("Key"),
+		Body:   body,
+	})
+
+	if err != nil {
+		t.Fatalf("expect no error, got %v", err)
+	}
+
+	expectOps := []string{
+		"CreateMultipartUpload",
+		"UploadPart",
+		"UploadPart",
+		"CompleteMultipartUpload",
+	}
+	if e, a := expectOps, *ops; !reflect.DeepEqual(e, a) {
+		t.Errorf("expect %v ops, got %v", e, a)
+	}
+}
