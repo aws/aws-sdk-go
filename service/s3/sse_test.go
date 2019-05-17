@@ -109,3 +109,30 @@ func TestComputeSSEKeysShortcircuit(t *testing.T) {
 		t.Errorf("expected %s, but received %s", e, a)
 	}
 }
+
+func TestSSECustomerKeysWithSpaces(t *testing.T) {
+	s := s3.New(unit.Session)
+	req, _ := s.CopyObjectRequest(&s3.CopyObjectInput{
+		Bucket:                   aws.String("bucket"),
+		CopySource:               aws.String("bucket/source"),
+		Key:                      aws.String("dest"),
+		SSECustomerKey:           aws.String("   key   "),
+		CopySourceSSECustomerKey: aws.String("   copykey   "),
+	})
+	err := req.Build()
+	if err != nil {
+		t.Errorf("expected no error, but received %v", err)
+	}
+	if e, a := "ICAga2V5ICAg", req.HTTPRequest.Header.Get("x-amz-server-side-encryption-customer-key"); e != a {
+		t.Errorf("expected %s, but received %s", e, a)
+	}
+	if e, a := "ICAgY29weWtleSAgIA==", req.HTTPRequest.Header.Get("x-amz-copy-source-server-side-encryption-customer-key"); e != a {
+		t.Errorf("expected %s, but received %s", e, a)
+	}
+	if e, a := "13XiUSCa6ReZ3CHtCLiJLg==", req.HTTPRequest.Header.Get("x-amz-server-side-encryption-customer-key-md5"); e != a {
+		t.Errorf("expected %s, but received %s", e, a)
+	}
+	if e, a := "MHVtfmuml539o1871Vsc6w==", req.HTTPRequest.Header.Get("x-amz-copy-source-server-side-encryption-customer-key-md5"); e != a {
+		t.Errorf("expected %s, but received %s", e, a)
+	}
+}

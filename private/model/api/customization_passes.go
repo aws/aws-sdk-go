@@ -110,6 +110,22 @@ func s3Customizations(a *API) {
 			}
 		}
 
+		// Decorate member references that are modeled with the wrong type.
+		// Specifically the case where a member was modeled as a string, but is
+		// expected to sent across the wire as a base64 value.
+		//
+		// e.g. S3's SSECustomerKey and CopySourceSSECustomerKey
+		for _, refName := range []string{
+			"SSECustomerKey",
+			"CopySourceSSECustomerKey",
+		} {
+			if ref, ok := s.MemberRefs[refName]; ok {
+				ref.CustomTags = append(ref.CustomTags, ShapeTag{
+					"marshal-as", "blob",
+				})
+			}
+		}
+
 		// Expires should be a string not time.Time since the format is not
 		// enforced by S3, and any value can be set to this field outside of the SDK.
 		if strings.HasSuffix(name, "Output") {

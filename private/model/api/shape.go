@@ -57,6 +57,9 @@ type ShapeRef struct {
 
 	IsEventPayload bool `json:"eventpayload"`
 	IsEventHeader  bool `json:"eventheader"`
+
+	// Collection of custom tags the shape reference includes.
+	CustomTags ShapeTags
 }
 
 // A Shape defines the definition of a shape type
@@ -434,7 +437,7 @@ func (s ShapeTags) String() string {
 
 // GoTags returns the rendered tags string for the ShapeRef
 func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
-	tags := ShapeTags{}
+	tags := append(ShapeTags{}, ref.CustomTags...)
 
 	if ref.Location != "" {
 		tags = append(tags, ShapeTag{"location", ref.Location})
