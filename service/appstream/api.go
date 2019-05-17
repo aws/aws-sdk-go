@@ -405,8 +405,8 @@ func (c *AppStream) CreateDirectoryConfigRequest(input *CreateDirectoryConfigInp
 // CreateDirectoryConfig API operation for Amazon AppStream.
 //
 // Creates a Directory Config object in AppStream 2.0. This object includes
-// the information required to join streaming instances to an Active Directory
-// domain.
+// the configuration information required to join fleets and image builders
+// to Microsoft Active Directory domains.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -933,6 +933,86 @@ func (c *AppStream) CreateStreamingURL(input *CreateStreamingURLInput) (*CreateS
 // for more information on using Contexts.
 func (c *AppStream) CreateStreamingURLWithContext(ctx aws.Context, input *CreateStreamingURLInput, opts ...request.Option) (*CreateStreamingURLOutput, error) {
 	req, out := c.CreateStreamingURLRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateUsageReportSubscription = "CreateUsageReportSubscription"
+
+// CreateUsageReportSubscriptionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateUsageReportSubscription operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateUsageReportSubscription for more information on using the CreateUsageReportSubscription
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateUsageReportSubscriptionRequest method.
+//    req, resp := client.CreateUsageReportSubscriptionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateUsageReportSubscription
+func (c *AppStream) CreateUsageReportSubscriptionRequest(input *CreateUsageReportSubscriptionInput) (req *request.Request, output *CreateUsageReportSubscriptionOutput) {
+	op := &request.Operation{
+		Name:       opCreateUsageReportSubscription,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateUsageReportSubscriptionInput{}
+	}
+
+	output = &CreateUsageReportSubscriptionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateUsageReportSubscription API operation for Amazon AppStream.
+//
+// Creates a usage report subscription. Usage reports are generated daily.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation CreateUsageReportSubscription for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidAccountStatusException "InvalidAccountStatusException"
+//   The resource cannot be created because your AWS account is suspended. For
+//   assistance, contact AWS Support.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateUsageReportSubscription
+func (c *AppStream) CreateUsageReportSubscription(input *CreateUsageReportSubscriptionInput) (*CreateUsageReportSubscriptionOutput, error) {
+	req, out := c.CreateUsageReportSubscriptionRequest(input)
+	return out, req.Send()
+}
+
+// CreateUsageReportSubscriptionWithContext is the same as CreateUsageReportSubscription with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateUsageReportSubscription for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) CreateUsageReportSubscriptionWithContext(ctx aws.Context, input *CreateUsageReportSubscriptionInput, opts ...request.Option) (*CreateUsageReportSubscriptionOutput, error) {
+	req, out := c.CreateUsageReportSubscriptionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1550,6 +1630,90 @@ func (c *AppStream) DeleteStackWithContext(ctx aws.Context, input *DeleteStackIn
 	return out, req.Send()
 }
 
+const opDeleteUsageReportSubscription = "DeleteUsageReportSubscription"
+
+// DeleteUsageReportSubscriptionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteUsageReportSubscription operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteUsageReportSubscription for more information on using the DeleteUsageReportSubscription
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteUsageReportSubscriptionRequest method.
+//    req, resp := client.DeleteUsageReportSubscriptionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteUsageReportSubscription
+func (c *AppStream) DeleteUsageReportSubscriptionRequest(input *DeleteUsageReportSubscriptionInput) (req *request.Request, output *DeleteUsageReportSubscriptionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteUsageReportSubscription,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteUsageReportSubscriptionInput{}
+	}
+
+	output = &DeleteUsageReportSubscriptionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteUsageReportSubscription API operation for Amazon AppStream.
+//
+// Disables usage report generation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation DeleteUsageReportSubscription for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidAccountStatusException "InvalidAccountStatusException"
+//   The resource cannot be created because your AWS account is suspended. For
+//   assistance, contact AWS Support.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteUsageReportSubscription
+func (c *AppStream) DeleteUsageReportSubscription(input *DeleteUsageReportSubscriptionInput) (*DeleteUsageReportSubscriptionOutput, error) {
+	req, out := c.DeleteUsageReportSubscriptionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteUsageReportSubscriptionWithContext is the same as DeleteUsageReportSubscription with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteUsageReportSubscription for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) DeleteUsageReportSubscriptionWithContext(ctx aws.Context, input *DeleteUsageReportSubscriptionInput, opts ...request.Option) (*DeleteUsageReportSubscriptionOutput, error) {
+	req, out := c.DeleteUsageReportSubscriptionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteUser = "DeleteUser"
 
 // DeleteUserRequest generates a "aws/request.Request" representing the
@@ -1677,8 +1841,8 @@ func (c *AppStream) DescribeDirectoryConfigsRequest(input *DescribeDirectoryConf
 // Retrieves a list that describes one or more specified Directory Config objects
 // for AppStream 2.0, if the names for these objects are provided. Otherwise,
 // all Directory Config objects in the account are described. These objects
-// include the information required to join streaming instances to an Active
-// Directory domain.
+// include the configuration information required to join fleets and image builders
+// to Microsoft Active Directory domains.
 //
 // Although the response syntax in this topic includes the account password,
 // this password is not returned in the actual response.
@@ -2197,11 +2361,10 @@ func (c *AppStream) DescribeSessionsRequest(input *DescribeSessionsInput) (req *
 
 // DescribeSessions API operation for Amazon AppStream.
 //
-// Retrieves a list that describes the active streaming sessions for a specified
-// stack and fleet. If a value for UserId is provided for the stack and fleet,
-// only streaming sessions for that user are described. If an authentication
-// type is not provided, the default is to authenticate users using a streaming
-// URL.
+// Retrieves a list that describes the streaming sessions for a specified stack
+// and fleet. If a UserId is provided for the stack and fleet, only streaming
+// sessions for that user are described. If an authentication type is not provided,
+// the default is to authenticate users using a streaming URL.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2311,6 +2474,89 @@ func (c *AppStream) DescribeStacks(input *DescribeStacksInput) (*DescribeStacksO
 // for more information on using Contexts.
 func (c *AppStream) DescribeStacksWithContext(ctx aws.Context, input *DescribeStacksInput, opts ...request.Option) (*DescribeStacksOutput, error) {
 	req, out := c.DescribeStacksRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeUsageReportSubscriptions = "DescribeUsageReportSubscriptions"
+
+// DescribeUsageReportSubscriptionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeUsageReportSubscriptions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeUsageReportSubscriptions for more information on using the DescribeUsageReportSubscriptions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeUsageReportSubscriptionsRequest method.
+//    req, resp := client.DescribeUsageReportSubscriptionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeUsageReportSubscriptions
+func (c *AppStream) DescribeUsageReportSubscriptionsRequest(input *DescribeUsageReportSubscriptionsInput) (req *request.Request, output *DescribeUsageReportSubscriptionsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeUsageReportSubscriptions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeUsageReportSubscriptionsInput{}
+	}
+
+	output = &DescribeUsageReportSubscriptionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeUsageReportSubscriptions API operation for Amazon AppStream.
+//
+// Retrieves a list that describes one or more usage report subscriptions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation DescribeUsageReportSubscriptions for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource was not found.
+//
+//   * ErrCodeInvalidAccountStatusException "InvalidAccountStatusException"
+//   The resource cannot be created because your AWS account is suspended. For
+//   assistance, contact AWS Support.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeUsageReportSubscriptions
+func (c *AppStream) DescribeUsageReportSubscriptions(input *DescribeUsageReportSubscriptionsInput) (*DescribeUsageReportSubscriptionsOutput, error) {
+	req, out := c.DescribeUsageReportSubscriptionsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeUsageReportSubscriptionsWithContext is the same as DescribeUsageReportSubscriptions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeUsageReportSubscriptions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) DescribeUsageReportSubscriptionsWithContext(ctx aws.Context, input *DescribeUsageReportSubscriptionsInput, opts ...request.Option) (*DescribeUsageReportSubscriptionsOutput, error) {
+	req, out := c.DescribeUsageReportSubscriptionsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3622,8 +3868,8 @@ func (c *AppStream) UpdateDirectoryConfigRequest(input *UpdateDirectoryConfigInp
 // UpdateDirectoryConfig API operation for Amazon AppStream.
 //
 // Updates the specified Directory Config object in AppStream 2.0. This object
-// includes the information required to join streaming instances to an Active
-// Directory domain.
+// includes the configuration information required to join fleets and image
+// builders to Microsoft Active Directory domains.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3712,8 +3958,9 @@ func (c *AppStream) UpdateFleetRequest(input *UpdateFleetInput) (req *request.Re
 //
 // If the fleet is in the STOPPED state, you can update any attribute except
 // the fleet name. If the fleet is in the RUNNING state, you can update the
-// DisplayName and ComputeCapacity attributes. If the fleet is in the STARTING
-// or STOPPING state, you can't update it.
+// DisplayName, ComputeCapacity, ImageARN, ImageName, and DisconnectTimeoutInSeconds
+// attributes. If the fleet is in the STARTING or STOPPING state, you can't
+// update it.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3940,6 +4187,9 @@ func (c *AppStream) UpdateStackRequest(input *UpdateStackInput) (req *request.Re
 //
 //   * ErrCodeOperationNotPermittedException "OperationNotPermittedException"
 //   The attempted operation is not permitted.
+//
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   An API error occurred. Wait a few minutes and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateStack
 func (c *AppStream) UpdateStack(input *UpdateStackInput) (*UpdateStackOutput, error) {
@@ -4218,7 +4468,7 @@ type BatchAssociateUserStackInput struct {
 	// The list of UserStackAssociation objects.
 	//
 	// UserStackAssociations is a required field
-	UserStackAssociations []*UserStackAssociation `type:"list" required:"true"`
+	UserStackAssociations []*UserStackAssociation `min:"1" type:"list" required:"true"`
 }
 
 // String returns the string representation
@@ -4236,6 +4486,9 @@ func (s *BatchAssociateUserStackInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "BatchAssociateUserStackInput"}
 	if s.UserStackAssociations == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserStackAssociations"))
+	}
+	if s.UserStackAssociations != nil && len(s.UserStackAssociations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserStackAssociations", 1))
 	}
 	if s.UserStackAssociations != nil {
 		for i, v := range s.UserStackAssociations {
@@ -4289,7 +4542,7 @@ type BatchDisassociateUserStackInput struct {
 	// The list of UserStackAssociation objects.
 	//
 	// UserStackAssociations is a required field
-	UserStackAssociations []*UserStackAssociation `type:"list" required:"true"`
+	UserStackAssociations []*UserStackAssociation `min:"1" type:"list" required:"true"`
 }
 
 // String returns the string representation
@@ -4307,6 +4560,9 @@ func (s *BatchDisassociateUserStackInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "BatchDisassociateUserStackInput"}
 	if s.UserStackAssociations == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserStackAssociations"))
+	}
+	if s.UserStackAssociations != nil && len(s.UserStackAssociations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserStackAssociations", 1))
 	}
 	if s.UserStackAssociations != nil {
 		for i, v := range s.UserStackAssociations {
@@ -4561,8 +4817,8 @@ type CreateDirectoryConfigInput struct {
 	// OrganizationalUnitDistinguishedNames is a required field
 	OrganizationalUnitDistinguishedNames []*string `type:"list" required:"true"`
 
-	// The credentials for the service account used by the streaming instance to
-	// connect to the directory.
+	// The credentials for the service account used by the fleet or image builder
+	// to connect to the directory.
 	//
 	// ServiceAccountCredentials is a required field
 	ServiceAccountCredentials *ServiceAccountCredentials `type:"structure" required:"true"`
@@ -4654,10 +4910,13 @@ type CreateFleetInput struct {
 	// The description to display.
 	Description *string `type:"string"`
 
-	// The time after disconnection when a session is considered to have ended,
-	// in seconds. If a user who was disconnected reconnects within this time interval,
-	// the user is connected to their previous session. Specify a value between
-	// 60 and 360000.
+	// The amount of time that a streaming session remains active after users disconnect.
+	// If users try to reconnect to the streaming session after a disconnection
+	// or network interruption within this time interval, they are connected to
+	// their previous session. Otherwise, they are connected to a new session with
+	// a new streaming instance.
+	//
+	// Specify a value between 60 and 360000.
 	DisconnectTimeoutInSeconds *int64 `type:"integer"`
 
 	// The fleet name to display.
@@ -4680,6 +4939,30 @@ type CreateFleetInput struct {
 	// are connected and a small hourly fee for instances that are not streaming
 	// apps.
 	FleetType *string `type:"string" enum:"FleetType"`
+
+	// The amount of time that users can be idle (inactive) before they are disconnected
+	// from their streaming session and the DisconnectTimeoutInSeconds time interval
+	// begins. Users are notified before they are disconnected due to inactivity.
+	// If they try to reconnect to the streaming session before the time interval
+	// specified in DisconnectTimeoutInSeconds elapses, they are connected to their
+	// previous session. Users are considered idle when they stop providing keyboard
+	// or mouse input during their streaming session. File uploads and downloads,
+	// audio in, audio out, and pixels changing do not qualify as user activity.
+	// If users continue to be idle after the time interval in IdleDisconnectTimeoutInSeconds
+	// elapses, they are disconnected.
+	//
+	// To prevent users from being disconnected due to inactivity, specify a value
+	// of 0. Otherwise, specify a value between 60 and 3600. The default value is
+	// 900.
+	//
+	// If you enable this feature, we recommend that you specify a value that corresponds
+	// exactly to a whole number of minutes (for example, 60, 120, and 180). If
+	// you don't do this, the value is rounded to the nearest minute. For example,
+	// if you specify a value of 70, users are disconnected after 1 minute of inactivity.
+	// If you specify a value that is at the midpoint between two different minutes,
+	// the value is rounded up. For example, if you specify a value of 90, users
+	// are disconnected after 2 minutes of inactivity.
+	IdleDisconnectTimeoutInSeconds *int64 `type:"integer"`
 
 	// The ARN of the public, private, or shared image to use.
 	ImageArn *string `type:"string"`
@@ -4733,8 +5016,13 @@ type CreateFleetInput struct {
 	// InstanceType is a required field
 	InstanceType *string `min:"1" type:"string" required:"true"`
 
-	// The maximum time that a streaming session can run, in seconds. Specify a
-	// value between 600 and 360000.
+	// The maximum amount of time that a streaming session can remain active, in
+	// seconds. If users are still connected to a streaming instance five minutes
+	// before this limit is reached, they are prompted to save any open documents
+	// before being disconnected. After this time elapses, the instance is terminated
+	// and replaced by a new instance.
+	//
+	// Specify a value between 600 and 360000.
 	MaxUserDurationInSeconds *int64 `type:"integer"`
 
 	// A unique name for the fleet.
@@ -4747,6 +5035,11 @@ type CreateFleetInput struct {
 	// value, Environment=.
 	//
 	// If you do not specify a value, the value is set to an empty string.
+	//
+	// Generally allowed characters are: letters, numbers, and spaces representable
+	// in UTF-8, and the following special characters:
+	//
+	// _ . : / = + \ - @
 	//
 	// For more information, see Tagging Your Resources (https://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html)
 	// in the Amazon AppStream 2.0 Developer Guide.
@@ -4838,6 +5131,12 @@ func (s *CreateFleetInput) SetEnableDefaultInternetAccess(v bool) *CreateFleetIn
 // SetFleetType sets the FleetType field's value.
 func (s *CreateFleetInput) SetFleetType(v string) *CreateFleetInput {
 	s.FleetType = &v
+	return s
+}
+
+// SetIdleDisconnectTimeoutInSeconds sets the IdleDisconnectTimeoutInSeconds field's value.
+func (s *CreateFleetInput) SetIdleDisconnectTimeoutInSeconds(v int64) *CreateFleetInput {
+	s.IdleDisconnectTimeoutInSeconds = &v
 	return s
 }
 
@@ -4945,6 +5244,11 @@ type CreateImageBuilderInput struct {
 	// The tags to associate with the image builder. A tag is a key-value pair,
 	// and the value is optional. For example, Environment=Test. If you do not specify
 	// a value, Environment=.
+	//
+	// Generally allowed characters are: letters, numbers, and spaces representable
+	// in UTF-8, and the following special characters:
+	//
+	// _ . : / = + \ - @
 	//
 	// If you do not specify a value, the value is set to an empty string.
 	//
@@ -5200,6 +5504,11 @@ type CreateStackInput struct {
 	// value, Environment=.
 	//
 	// If you do not specify a value, the value is set to an empty string.
+	//
+	// Generally allowed characters are: letters, numbers, and spaces representable
+	// in UTF-8, and the following special characters:
+	//
+	// _ . : / = + \ - @
 	//
 	// For more information about tags, see Tagging Your Resources (https://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html)
 	// in the Amazon AppStream 2.0 Developer Guide.
@@ -5484,6 +5793,55 @@ func (s *CreateStreamingURLOutput) SetStreamingURL(v string) *CreateStreamingURL
 	return s
 }
 
+type CreateUsageReportSubscriptionInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateUsageReportSubscriptionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateUsageReportSubscriptionInput) GoString() string {
+	return s.String()
+}
+
+type CreateUsageReportSubscriptionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 bucket where generated reports are stored. When a usage report
+	// subscription is enabled for the first time for an account in an AWS Region,
+	// an S3 bucket is created. The bucket is unique to the AWS account and the
+	// Region.
+	S3BucketName *string `min:"1" type:"string"`
+
+	// The schedule for generating usage reports.
+	Schedule *string `type:"string" enum:"UsageReportSchedule"`
+}
+
+// String returns the string representation
+func (s CreateUsageReportSubscriptionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateUsageReportSubscriptionOutput) GoString() string {
+	return s.String()
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *CreateUsageReportSubscriptionOutput) SetS3BucketName(v string) *CreateUsageReportSubscriptionOutput {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetSchedule sets the Schedule field's value.
+func (s *CreateUsageReportSubscriptionOutput) SetSchedule(v string) *CreateUsageReportSubscriptionOutput {
+	s.Schedule = &v
+	return s
+}
+
 type CreateUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5509,6 +5867,11 @@ type CreateUserInput struct {
 	MessageAction *string `type:"string" enum:"MessageAction"`
 
 	// The email address of the user.
+	//
+	// Users' email addresses are case-sensitive. During login, if they specify
+	// an email address that doesn't use the same capitalization as the email address
+	// specified when their user pool account was created, a "user does not exist"
+	// error message displays.
 	//
 	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true" sensitive:"true"`
@@ -5937,6 +6300,34 @@ func (s DeleteStackOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteUsageReportSubscriptionInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteUsageReportSubscriptionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteUsageReportSubscriptionInput) GoString() string {
+	return s.String()
+}
+
+type DeleteUsageReportSubscriptionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteUsageReportSubscriptionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteUsageReportSubscriptionOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5946,6 +6337,8 @@ type DeleteUserInput struct {
 	AuthenticationType *string `type:"string" required:"true" enum:"AuthenticationType"`
 
 	// The email address of the user.
+	//
+	// Users' email addresses are case-sensitive.
 	//
 	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true" sensitive:"true"`
@@ -6489,8 +6882,8 @@ type DescribeSessionsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The authentication method. Specify API for a user authenticated using a streaming
-	// URL, SAML for a SAML 2.0-federated user, or USERPOOL for a user in the AppStream
-	// 2.0 user pool. The default is to authenticate users using a streaming URL.
+	// URL or SAML for a SAML federated user. The default is to authenticate users
+	// using a streaming URL.
 	AuthenticationType *string `type:"string" enum:"AuthenticationType"`
 
 	// The name of the fleet. This value is case-sensitive.
@@ -6701,6 +7094,85 @@ func (s *DescribeStacksOutput) SetStacks(v []*Stack) *DescribeStacksOutput {
 	return s
 }
 
+type DescribeUsageReportSubscriptionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum size of each page of results.
+	MaxResults *int64 `type:"integer"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If this value is null, it retrieves the first page.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeUsageReportSubscriptionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeUsageReportSubscriptionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeUsageReportSubscriptionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeUsageReportSubscriptionsInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeUsageReportSubscriptionsInput) SetMaxResults(v int64) *DescribeUsageReportSubscriptionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeUsageReportSubscriptionsInput) SetNextToken(v string) *DescribeUsageReportSubscriptionsInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeUsageReportSubscriptionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If there are no more pages, this value is null.
+	NextToken *string `min:"1" type:"string"`
+
+	// Information about the usage report subscription.
+	UsageReportSubscriptions []*UsageReportSubscription `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeUsageReportSubscriptionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeUsageReportSubscriptionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeUsageReportSubscriptionsOutput) SetNextToken(v string) *DescribeUsageReportSubscriptionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetUsageReportSubscriptions sets the UsageReportSubscriptions field's value.
+func (s *DescribeUsageReportSubscriptionsOutput) SetUsageReportSubscriptions(v []*UsageReportSubscription) *DescribeUsageReportSubscriptionsOutput {
+	s.UsageReportSubscriptions = v
+	return s
+}
+
 type DescribeUserStackAssociationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6719,6 +7191,8 @@ type DescribeUserStackAssociationsInput struct {
 	StackName *string `min:"1" type:"string"`
 
 	// The email address of the user who is associated with the stack.
+	//
+	// Users' email addresses are case-sensitive.
 	UserName *string `min:"1" type:"string" sensitive:"true"`
 }
 
@@ -6789,7 +7263,7 @@ type DescribeUserStackAssociationsOutput struct {
 	NextToken *string `min:"1" type:"string"`
 
 	// The UserStackAssociation objects.
-	UserStackAssociations []*UserStackAssociation `type:"list"`
+	UserStackAssociations []*UserStackAssociation `min:"1" type:"list"`
 }
 
 // String returns the string representation
@@ -6908,8 +7382,8 @@ func (s *DescribeUsersOutput) SetUsers(v []*User) *DescribeUsersOutput {
 	return s
 }
 
-// Describes the configuration information for the directory used to join a
-// streaming instance to a Microsoft Active Directory domain.
+// Describes the configuration information required to join fleets and image
+// builders to Microsoft Active Directory domains.
 type DirectoryConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -6924,8 +7398,8 @@ type DirectoryConfig struct {
 	// The distinguished names of the organizational units for computer accounts.
 	OrganizationalUnitDistinguishedNames []*string `type:"list"`
 
-	// The credentials for the service account used by the streaming instance to
-	// connect to the directory.
+	// The credentials for the service account used by the fleet or image builder
+	// to connect to the directory.
 	ServiceAccountCredentials *ServiceAccountCredentials `type:"structure"`
 }
 
@@ -6972,6 +7446,8 @@ type DisableUserInput struct {
 	AuthenticationType *string `type:"string" required:"true" enum:"AuthenticationType"`
 
 	// The email address of the user.
+	//
+	// Users' email addresses are case-sensitive.
 	//
 	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true" sensitive:"true"`
@@ -7148,6 +7624,11 @@ type EnableUserInput struct {
 
 	// The email address of the user.
 	//
+	// Users' email addresses are case-sensitive. During login, if they specify
+	// an email address that doesn't use the same capitalization as the email address
+	// specified when their user pool account was created, a "user does not exist"
+	// error message displays.
+	//
 	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
@@ -7282,10 +7763,13 @@ type Fleet struct {
 	// The description to display.
 	Description *string `min:"1" type:"string"`
 
-	// The time after disconnection when a session is considered to have ended,
-	// in seconds. If a user who was disconnected reconnects within this time interval,
-	// the user is connected to their previous session. Specify a value between
-	// 60 and 360000. By default, this value is 900 seconds (15 minutes).
+	// The amount of time that a streaming session remains active after users disconnect.
+	// If they try to reconnect to the streaming session after a disconnection or
+	// network interruption within this time interval, they are connected to their
+	// previous session. Otherwise, they are connected to a new session with a new
+	// streaming instance.
+	//
+	// Specify a value between 60 and 360000.
 	DisconnectTimeoutInSeconds *int64 `type:"integer"`
 
 	// The fleet name to display.
@@ -7312,6 +7796,30 @@ type Fleet struct {
 	// apps.
 	FleetType *string `type:"string" enum:"FleetType"`
 
+	// The amount of time that users can be idle (inactive) before they are disconnected
+	// from their streaming session and the DisconnectTimeoutInSeconds time interval
+	// begins. Users are notified before they are disconnected due to inactivity.
+	// If users try to reconnect to the streaming session before the time interval
+	// specified in DisconnectTimeoutInSeconds elapses, they are connected to their
+	// previous session. Users are considered idle when they stop providing keyboard
+	// or mouse input during their streaming session. File uploads and downloads,
+	// audio in, audio out, and pixels changing do not qualify as user activity.
+	// If users continue to be idle after the time interval in IdleDisconnectTimeoutInSeconds
+	// elapses, they are disconnected.
+	//
+	// To prevent users from being disconnected due to inactivity, specify a value
+	// of 0. Otherwise, specify a value between 60 and 3600. The default value is
+	// 900.
+	//
+	// If you enable this feature, we recommend that you specify a value that corresponds
+	// exactly to a whole number of minutes (for example, 60, 120, and 180). If
+	// you don't do this, the value is rounded to the nearest minute. For example,
+	// if you specify a value of 70, users are disconnected after 1 minute of inactivity.
+	// If you specify a value that is at the midpoint between two different minutes,
+	// the value is rounded up. For example, if you specify a value of 90, users
+	// are disconnected after 2 minutes of inactivity.
+	IdleDisconnectTimeoutInSeconds *int64 `type:"integer"`
+
 	// The ARN for the public, private, or shared image.
 	ImageArn *string `type:"string"`
 
@@ -7323,8 +7831,13 @@ type Fleet struct {
 	// InstanceType is a required field
 	InstanceType *string `min:"1" type:"string" required:"true"`
 
-	// The maximum time that a streaming session can run, in seconds. Specify a
-	// value between 600 and 360000.
+	// The maximum amount of time that a streaming session can remain active, in
+	// seconds. If users are still connected to a streaming instance five minutes
+	// before this limit is reached, they are prompted to save any open documents
+	// before being disconnected. After this time elapses, the instance is terminated
+	// and replaced by a new instance.
+	//
+	// Specify a value between 600 and 360000.
 	MaxUserDurationInSeconds *int64 `type:"integer"`
 
 	// The name of the fleet.
@@ -7408,6 +7921,12 @@ func (s *Fleet) SetFleetErrors(v []*FleetError) *Fleet {
 // SetFleetType sets the FleetType field's value.
 func (s *Fleet) SetFleetType(v string) *Fleet {
 	s.FleetType = &v
+	return s
+}
+
+// SetIdleDisconnectTimeoutInSeconds sets the IdleDisconnectTimeoutInSeconds field's value.
+func (s *Fleet) SetIdleDisconnectTimeoutInSeconds(v int64) *Fleet {
+	s.IdleDisconnectTimeoutInSeconds = &v
 	return s
 }
 
@@ -7895,6 +8414,41 @@ func (s *ImageStateChangeReason) SetMessage(v string) *ImageStateChangeReason {
 	return s
 }
 
+// Describes the error that is returned when a usage report can't be generated.
+type LastReportGenerationExecutionError struct {
+	_ struct{} `type:"structure"`
+
+	// The error code for the error that is returned when a usage report can't be
+	// generated.
+	ErrorCode *string `type:"string" enum:"UsageReportExecutionErrorCode"`
+
+	// The error message for the error that is returned when a usage report can't
+	// be generated.
+	ErrorMessage *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s LastReportGenerationExecutionError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LastReportGenerationExecutionError) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *LastReportGenerationExecutionError) SetErrorCode(v string) *LastReportGenerationExecutionError {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *LastReportGenerationExecutionError) SetErrorMessage(v string) *LastReportGenerationExecutionError {
+	s.ErrorMessage = &v
+	return s
+}
+
 type ListAssociatedFleetsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8208,8 +8762,8 @@ func (s *ResourceError) SetErrorTimestamp(v time.Time) *ResourceError {
 	return s
 }
 
-// Describes the credentials for the service account used by the streaming instance
-// to connect to the directory.
+// Describes the credentials for the service account used by the fleet or image
+// builder to connect to the directory.
 type ServiceAccountCredentials struct {
 	_ struct{} `type:"structure"`
 
@@ -8275,8 +8829,7 @@ type Session struct {
 	_ struct{} `type:"structure"`
 
 	// The authentication method. The user is authenticated using a streaming URL
-	// (API), SAML 2.0 federation (SAML), or the AppStream 2.0 user pool (USERPOOL).
-	// The default is to authenticate users using a streaming URL.
+	// (API) or SAML 2.0 federation (SAML).
 	AuthenticationType *string `type:"string" enum:"AuthenticationType"`
 
 	// Specifies whether a user is connected to the streaming session.
@@ -8833,7 +9386,7 @@ func (s *StopImageBuilderOutput) SetImageBuilder(v *ImageBuilder) *StopImageBuil
 	return s
 }
 
-// Describes a connector to enable persistent storage for users.
+// Describes a connector that enables persistent storage for users.
 type StorageConnector struct {
 	_ struct{} `type:"structure"`
 
@@ -8905,6 +9458,11 @@ type TagResourceInput struct {
 	// For example, Environment=Test. If you do not specify a value, Environment=.
 	//
 	// If you do not specify a value, the value is set to an empty string.
+	//
+	// Generally allowed characters are: letters, numbers, and spaces representable
+	// in UTF-8, and the following special characters:
+	//
+	// _ . : / = + \ - @
 	//
 	// Tags is a required field
 	Tags map[string]*string `min:"1" type:"map" required:"true"`
@@ -9045,8 +9603,8 @@ type UpdateDirectoryConfigInput struct {
 	// The distinguished names of the organizational units for computer accounts.
 	OrganizationalUnitDistinguishedNames []*string `type:"list"`
 
-	// The credentials for the service account used by the streaming instance to
-	// connect to the directory.
+	// The credentials for the service account used by the fleet or image builder
+	// to connect to the directory.
 	ServiceAccountCredentials *ServiceAccountCredentials `type:"structure"`
 }
 
@@ -9136,10 +9694,13 @@ type UpdateFleetInput struct {
 	// The description to display.
 	Description *string `type:"string"`
 
-	// The time after disconnection when a session is considered to have ended,
-	// in seconds. If a user who was disconnected reconnects within this time interval,
-	// the user is connected to their previous session. Specify a value between
-	// 60 and 360000. By default, the value is 900 seconds (15 minutes).
+	// The amount of time that a streaming session remains active after users disconnect.
+	// If users try to reconnect to the streaming session after a disconnection
+	// or network interruption within this time interval, they are connected to
+	// their previous session. Otherwise, they are connected to a new session with
+	// a new streaming instance.
+	//
+	// Specify a value between 60 and 360000.
 	DisconnectTimeoutInSeconds *int64 `type:"integer"`
 
 	// The fleet name to display.
@@ -9151,6 +9712,30 @@ type UpdateFleetInput struct {
 
 	// Enables or disables default internet access for the fleet.
 	EnableDefaultInternetAccess *bool `type:"boolean"`
+
+	// The amount of time that users can be idle (inactive) before they are disconnected
+	// from their streaming session and the DisconnectTimeoutInSeconds time interval
+	// begins. Users are notified before they are disconnected due to inactivity.
+	// If users try to reconnect to the streaming session before the time interval
+	// specified in DisconnectTimeoutInSeconds elapses, they are connected to their
+	// previous session. Users are considered idle when they stop providing keyboard
+	// or mouse input during their streaming session. File uploads and downloads,
+	// audio in, audio out, and pixels changing do not qualify as user activity.
+	// If users continue to be idle after the time interval in IdleDisconnectTimeoutInSeconds
+	// elapses, they are disconnected.
+	//
+	// To prevent users from being disconnected due to inactivity, specify a value
+	// of 0. Otherwise, specify a value between 60 and 3600. The default value is
+	// 900.
+	//
+	// If you enable this feature, we recommend that you specify a value that corresponds
+	// exactly to a whole number of minutes (for example, 60, 120, and 180). If
+	// you don't do this, the value is rounded to the nearest minute. For example,
+	// if you specify a value of 70, users are disconnected after 1 minute of inactivity.
+	// If you specify a value that is at the midpoint between two different minutes,
+	// the value is rounded up. For example, if you specify a value of 90, users
+	// are disconnected after 2 minutes of inactivity.
+	IdleDisconnectTimeoutInSeconds *int64 `type:"integer"`
 
 	// The ARN of the public, private, or shared image to use.
 	ImageArn *string `type:"string"`
@@ -9202,8 +9787,13 @@ type UpdateFleetInput struct {
 	//    * stream.graphics-pro.16xlarge
 	InstanceType *string `min:"1" type:"string"`
 
-	// The maximum time that a streaming session can run, in seconds. Specify a
-	// value between 600 and 360000. By default, the value is 900 seconds (15 minutes).
+	// The maximum amount of time that a streaming session can remain active, in
+	// seconds. If users are still connected to a streaming instance five minutes
+	// before this limit is reached, they are prompted to save any open documents
+	// before being disconnected. After this time elapses, the instance is terminated
+	// and replaced by a new instance.
+	//
+	// Specify a value between 600 and 360000.
 	MaxUserDurationInSeconds *int64 `type:"integer"`
 
 	// A unique name for the fleet.
@@ -9292,6 +9882,12 @@ func (s *UpdateFleetInput) SetDomainJoinInfo(v *DomainJoinInfo) *UpdateFleetInpu
 // SetEnableDefaultInternetAccess sets the EnableDefaultInternetAccess field's value.
 func (s *UpdateFleetInput) SetEnableDefaultInternetAccess(v bool) *UpdateFleetInput {
 	s.EnableDefaultInternetAccess = &v
+	return s
+}
+
+// SetIdleDisconnectTimeoutInSeconds sets the IdleDisconnectTimeoutInSeconds field's value.
+func (s *UpdateFleetInput) SetIdleDisconnectTimeoutInSeconds(v int64) *UpdateFleetInput {
+	s.IdleDisconnectTimeoutInSeconds = &v
 	return s
 }
 
@@ -9614,6 +10210,60 @@ func (s *UpdateStackOutput) SetStack(v *Stack) *UpdateStackOutput {
 	return s
 }
 
+// Describes information about the usage report subscription.
+type UsageReportSubscription struct {
+	_ struct{} `type:"structure"`
+
+	// The time when the last usage report was generated.
+	LastGeneratedReportDate *time.Time `type:"timestamp"`
+
+	// The Amazon S3 bucket where generated reports are stored. When a usage report
+	// subscription is enabled for the first time for an account in an AWS Region,
+	// an S3 bucket is created. The bucket is unique to the AWS account and the
+	// Region.
+	S3BucketName *string `min:"1" type:"string"`
+
+	// The schedule for generating usage reports.
+	Schedule *string `type:"string" enum:"UsageReportSchedule"`
+
+	// The errors that are returned when usage reports can't be generated.
+	SubscriptionErrors []*LastReportGenerationExecutionError `type:"list"`
+}
+
+// String returns the string representation
+func (s UsageReportSubscription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UsageReportSubscription) GoString() string {
+	return s.String()
+}
+
+// SetLastGeneratedReportDate sets the LastGeneratedReportDate field's value.
+func (s *UsageReportSubscription) SetLastGeneratedReportDate(v time.Time) *UsageReportSubscription {
+	s.LastGeneratedReportDate = &v
+	return s
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *UsageReportSubscription) SetS3BucketName(v string) *UsageReportSubscription {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetSchedule sets the Schedule field's value.
+func (s *UsageReportSubscription) SetSchedule(v string) *UsageReportSubscription {
+	s.Schedule = &v
+	return s
+}
+
+// SetSubscriptionErrors sets the SubscriptionErrors field's value.
+func (s *UsageReportSubscription) SetSubscriptionErrors(v []*LastReportGenerationExecutionError) *UsageReportSubscription {
+	s.SubscriptionErrors = v
+	return s
+}
+
 // Describes a user in the user pool.
 type User struct {
 	_ struct{} `type:"structure"`
@@ -9652,6 +10302,8 @@ type User struct {
 	Status *string `min:"1" type:"string"`
 
 	// The email address of the user.
+	//
+	// Users' email addresses are case-sensitive.
 	UserName *string `min:"1" type:"string" sensitive:"true"`
 }
 
@@ -9786,6 +10438,8 @@ type UserStackAssociation struct {
 	StackName *string `min:"1" type:"string" required:"true"`
 
 	// The email address of the user who is associated with the stack.
+	//
+	// Users' email addresses are case-sensitive.
 	//
 	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true" sensitive:"true"`
@@ -10166,6 +10820,7 @@ const (
 	SessionConnectionStateNotConnected = "NOT_CONNECTED"
 )
 
+// Possible values for the state of a streaming session.
 const (
 	// SessionStateActive is a SessionState enum value
 	SessionStateActive = "ACTIVE"
@@ -10221,6 +10876,22 @@ const (
 
 	// StorageConnectorTypeOneDrive is a StorageConnectorType enum value
 	StorageConnectorTypeOneDrive = "ONE_DRIVE"
+)
+
+const (
+	// UsageReportExecutionErrorCodeResourceNotFound is a UsageReportExecutionErrorCode enum value
+	UsageReportExecutionErrorCodeResourceNotFound = "RESOURCE_NOT_FOUND"
+
+	// UsageReportExecutionErrorCodeAccessDenied is a UsageReportExecutionErrorCode enum value
+	UsageReportExecutionErrorCodeAccessDenied = "ACCESS_DENIED"
+
+	// UsageReportExecutionErrorCodeInternalServiceError is a UsageReportExecutionErrorCode enum value
+	UsageReportExecutionErrorCodeInternalServiceError = "INTERNAL_SERVICE_ERROR"
+)
+
+const (
+	// UsageReportScheduleDaily is a UsageReportSchedule enum value
+	UsageReportScheduleDaily = "DAILY"
 )
 
 const (

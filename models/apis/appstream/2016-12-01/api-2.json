@@ -170,6 +170,18 @@
         {"shape":"InvalidParameterCombinationException"}
       ]
     },
+    "CreateUsageReportSubscription":{
+      "name":"CreateUsageReportSubscription",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateUsageReportSubscriptionRequest"},
+      "output":{"shape":"CreateUsageReportSubscriptionResult"},
+      "errors":[
+        {"shape":"InvalidAccountStatusException"}
+      ]
+    },
     "CreateUser":{
       "name":"CreateUser",
       "http":{
@@ -269,6 +281,19 @@
         {"shape":"ConcurrentModificationException"}
       ]
     },
+    "DeleteUsageReportSubscription":{
+      "name":"DeleteUsageReportSubscription",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteUsageReportSubscriptionRequest"},
+      "output":{"shape":"DeleteUsageReportSubscriptionResult"},
+      "errors":[
+        {"shape":"InvalidAccountStatusException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "DeleteUser":{
       "name":"DeleteUser",
       "http":{
@@ -364,6 +389,19 @@
       "output":{"shape":"DescribeStacksResult"},
       "errors":[
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DescribeUsageReportSubscriptions":{
+      "name":"DescribeUsageReportSubscriptions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeUsageReportSubscriptionsRequest"},
+      "output":{"shape":"DescribeUsageReportSubscriptionsResult"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidAccountStatusException"}
       ]
     },
     "DescribeUserStackAssociations":{
@@ -619,7 +657,8 @@
         {"shape":"LimitExceededException"},
         {"shape":"InvalidAccountStatusException"},
         {"shape":"IncompatibleImageException"},
-        {"shape":"OperationNotPermittedException"}
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     }
   },
@@ -836,7 +875,8 @@
         "DisplayName":{"shape":"DisplayName"},
         "EnableDefaultInternetAccess":{"shape":"BooleanObject"},
         "DomainJoinInfo":{"shape":"DomainJoinInfo"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "IdleDisconnectTimeoutInSeconds":{"shape":"Integer"}
       }
     },
     "CreateFleetResult":{
@@ -928,6 +968,18 @@
       "members":{
         "StreamingURL":{"shape":"String"},
         "Expires":{"shape":"Timestamp"}
+      }
+    },
+    "CreateUsageReportSubscriptionRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "CreateUsageReportSubscriptionResult":{
+      "type":"structure",
+      "members":{
+        "S3BucketName":{"shape":"String"},
+        "Schedule":{"shape":"UsageReportSchedule"}
       }
     },
     "CreateUserRequest":{
@@ -1023,6 +1075,16 @@
       }
     },
     "DeleteStackResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteUsageReportSubscriptionRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteUsageReportSubscriptionResult":{
       "type":"structure",
       "members":{
       }
@@ -1161,6 +1223,20 @@
       "type":"structure",
       "members":{
         "Stacks":{"shape":"StackList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeUsageReportSubscriptionsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"Integer"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeUsageReportSubscriptionsResult":{
+      "type":"structure",
+      "members":{
+        "UsageReportSubscriptions":{"shape":"UsageReportSubscriptionList"},
         "NextToken":{"shape":"String"}
       }
     },
@@ -1331,7 +1407,8 @@
         "CreatedTime":{"shape":"Timestamp"},
         "FleetErrors":{"shape":"FleetErrors"},
         "EnableDefaultInternetAccess":{"shape":"BooleanObject"},
-        "DomainJoinInfo":{"shape":"DomainJoinInfo"}
+        "DomainJoinInfo":{"shape":"DomainJoinInfo"},
+        "IdleDisconnectTimeoutInSeconds":{"shape":"Integer"}
       }
     },
     "FleetAttribute":{
@@ -1546,6 +1623,17 @@
         "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "LastReportGenerationExecutionError":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"UsageReportExecutionErrorCode"},
+        "ErrorMessage":{"shape":"String"}
+      }
+    },
+    "LastReportGenerationExecutionErrors":{
+      "type":"list",
+      "member":{"shape":"LastReportGenerationExecutionError"}
     },
     "LimitExceededException":{
       "type":"structure",
@@ -2020,6 +2108,7 @@
         "DisplayName":{"shape":"DisplayName"},
         "EnableDefaultInternetAccess":{"shape":"BooleanObject"},
         "DomainJoinInfo":{"shape":"DomainJoinInfo"},
+        "IdleDisconnectTimeoutInSeconds":{"shape":"Integer"},
         "AttributesToDelete":{"shape":"FleetAttributes"}
       }
     },
@@ -2071,6 +2160,31 @@
       "members":{
         "Stack":{"shape":"Stack"}
       }
+    },
+    "UsageReportExecutionErrorCode":{
+      "type":"string",
+      "enum":[
+        "RESOURCE_NOT_FOUND",
+        "ACCESS_DENIED",
+        "INTERNAL_SERVICE_ERROR"
+      ]
+    },
+    "UsageReportSchedule":{
+      "type":"string",
+      "enum":["DAILY"]
+    },
+    "UsageReportSubscription":{
+      "type":"structure",
+      "members":{
+        "S3BucketName":{"shape":"String"},
+        "Schedule":{"shape":"UsageReportSchedule"},
+        "LastGeneratedReportDate":{"shape":"Timestamp"},
+        "SubscriptionErrors":{"shape":"LastReportGenerationExecutionErrors"}
+      }
+    },
+    "UsageReportSubscriptionList":{
+      "type":"list",
+      "member":{"shape":"UsageReportSubscription"}
     },
     "User":{
       "type":"structure",
@@ -2153,7 +2267,9 @@
     },
     "UserStackAssociationList":{
       "type":"list",
-      "member":{"shape":"UserStackAssociation"}
+      "member":{"shape":"UserStackAssociation"},
+      "max":25,
+      "min":1
     },
     "Username":{
       "type":"string",

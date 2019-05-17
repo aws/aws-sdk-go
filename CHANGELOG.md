@@ -1,3 +1,11 @@
+Release v1.19.33 (2019-05-17)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API and documentation
+  * Includes APIs for managing subscriptions to AppStream 2.0 usage reports and configuring idle disconnect timeouts on AppStream 2.0 fleets.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.19.32 (2019-05-16)
 ===
 
