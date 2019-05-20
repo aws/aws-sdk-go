@@ -163,9 +163,9 @@
     "Timestamp": {
       "base": null,
       "refs": {
-        "MeterUsageRequest$Timestamp": "<p>Timestamp of the hour, recorded in UTC. The seconds and milliseconds portions of the timestamp will be ignored.</p>",
+        "MeterUsageRequest$Timestamp": "<p>Timestamp, in UTC, for which the usage is being reported. Your application can meter usage for up to one hour in the past. Make sure the timestamp value is not before the start of the software usage.</p>",
         "RegisterUsageResult$PublicKeyRotationTimestamp": "<p>(Optional) Only included when public key version has expired</p>",
-        "UsageRecord$Timestamp": "<p>Timestamp of the hour, recorded in UTC. The seconds and milliseconds portions of the timestamp will be ignored.</p> <p>Your application can meter usage for up to one hour in the past.</p>"
+        "UsageRecord$Timestamp": "<p>Timestamp, in UTC, for which the usage is being reported.</p> <p>Your application can meter usage for up to one hour in the past. Make sure the timestamp value is not before the start of the software usage.</p>"
       }
     },
     "TimestampOutOfBoundsException": {
