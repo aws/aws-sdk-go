@@ -1,12 +1,16 @@
 {
   "version" : "2.0",
-  "service" : "<p>The operations for managing an Amazon MSK cluster.</p>",
+  "service" : "<p>The operations for managing an Amazon MSK cluster. This is prerelease documentation for a service in preview release. It is subject to change</p>",
   "operations" : {
     "CreateCluster" : "<p>Creates a new MSK cluster.</p>",
+    "CreateConfiguration" : "<p>Creates a new MSK configuration.</p>",
     "DeleteCluster" : "<p>Deletes the MSK cluster specified by the Amazon Resource Name (ARN) in the request.</p>",
     "DescribeCluster" : "<p>Returns a description of the MSK cluster whose Amazon Resource Name (ARN) is specified in the request.</p>",
+    "DescribeConfiguration" : "<p>Returns a description of this MSK configuration.</p>",
+    "DescribeConfigurationRevision" : "<p>Returns a description of this revision of the configuration.</p>",
     "GetBootstrapBrokers" : "<p>A list of brokers that a client application can use to bootstrap.</p>",
     "ListClusters" : "<p>Returns a list of clusters in an account.</p>",
+    "ListConfigurations" : "<p>Returns a list of all the MSK configurations in this Region for this account.</p>",
     "ListNodes" : "<p>Returns a list of the broker nodes in the cluster.</p>",
     "ListTagsForResource" : "<p>List tags for a resource.</p>",
     "TagResource" : "<p>Add tags to a resource</p>",
@@ -58,6 +62,26 @@
         "DeleteClusterResponse$State" : "<p>The state of the cluster. The possible states are CREATING, ACTIVE, and FAILED.</p>"
       }
     },
+    "Configuration" : {
+      "base" : "<p>Represents an MSK Configuration.</p>",
+      "refs" : {
+        "__listOfConfiguration$member" : null
+      }
+    },
+    "ConfigurationInfo" : {
+      "base" : "<p>Specifies the Kafka configuration to use for the brokers.</p>",
+      "refs" : {
+        "CreateClusterRequest$ConfigurationInfo" : "<p>Comprises of the Configuration to be used on Kafka brokers in a cluster.</p>"
+      }
+    },
+    "ConfigurationRevision" : {
+      "base" : "<p>Describes a configuration revision.</p>",
+      "refs" : {
+        "CreateConfigurationResponse$LatestRevision" : "<p>Latest revision of the configuration.</p>",
+        "DescribeConfigurationResponse$LatestRevision" : "<p>Latest revision of the configuration.</p>",
+        "__listOfConfigurationRevision$member" : null
+      }
+    },
     "ConflictException" : {
       "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
@@ -70,12 +94,28 @@
       "base" : "<p>Returns information about the created cluster.</p>",
       "refs" : { }
     },
+    "CreateConfigurationRequest" : {
+      "base" : "<p>Request body for CreateConfiguration.</p>",
+      "refs" : { }
+    },
+    "CreateConfigurationResponse" : {
+      "base" : "<p>Response body for CreateConfiguration</p>",
+      "refs" : { }
+    },
     "DeleteClusterResponse" : {
       "base" : "<p>Returns information about the deleted cluster.</p>",
       "refs" : { }
     },
     "DescribeClusterResponse" : {
       "base" : "<p>Returns information about a cluster.</p>",
+      "refs" : { }
+    },
+    "DescribeConfigurationResponse" : {
+      "base" : "<p>Response body for DescribeConfiguration.</p>",
+      "refs" : { }
+    },
+    "DescribeConfigurationRevisionResponse" : {
+      "base" : "<p>Response body for DescribeConfigurationRevision.</p>",
       "refs" : { }
     },
     "EBSStorageInfo" : {
@@ -122,6 +162,10 @@
     },
     "ListClustersResponse" : {
       "base" : "<p>The response contains an array containing cluster information and a next token if the response is truncated.</p>",
+      "refs" : { }
+    },
+    "ListConfigurationsResponse" : {
+      "base" : "<p>The response contains an array of Configuration and a next token if the response is truncated.</p>",
       "refs" : { }
     },
     "ListNodesResponse" : {
@@ -176,6 +220,13 @@
         "NodeInfo$ZookeeperNodeInfo" : "<p>The ZookeeperNodeInfo.</p>"
       }
     },
+    "__blob" : {
+      "base" : "<p>A blob of server.properties.</p>",
+      "refs" : {
+        "CreateConfigurationRequest$ServerProperties" : "<p>Contents of the server.properties file. When using the API, you must ensure that the contents of the file are base64 encoded. \n When using the AWS Management Console, the SDK, or the AWS CLI, the contents of server.properties can be in plaintext.</p>",
+        "DescribeConfigurationRevisionResponse$ServerProperties" : "<p>Contents of the server.properties file. When using the API, you must ensure that the contents of the file are base64 encoded. \n When using the AWS Management Console, the SDK, or the AWS CLI, the contents of server.properties can be in plaintext.</p>"
+      }
+    },
     "__double" : {
       "base" : null,
       "refs" : {
@@ -217,7 +268,17 @@
       "base" : null,
       "refs" : {
         "BrokerNodeGroupInfo$ClientSubnets" : "<p>The list of subnets to connect to in the client virtual private cloud (VPC). AWS creates elastic network interfaces inside these subnets. Client applications use elastic network interfaces to produce and consume data. Client subnets can't be in Availability Zone us-east-1e.</p>",
-        "BrokerNodeGroupInfo$SecurityGroups" : "<p>The AWS security groups to associate with the elastic network interfaces in order to specify who can connect to and communicate with the Amazon MSK cluster.</p>"
+        "BrokerNodeGroupInfo$SecurityGroups" : "<p>The AWS security groups to associate with the elastic network interfaces in order to specify who can connect to and communicate with the Amazon MSK cluster.</p>",
+        "CreateConfigurationRequest$KafkaVersions" : "<p>The versions of Apache Kafka with which you can use this MSK configuration.</p>",
+        "DescribeConfigurationResponse$KafkaVersions" : "<p>The versions of Apache Kafka with which you can use this MSK configuration.</p>"
+      }
+    },
+    "__long" : {
+      "base" : null,
+      "refs" : {
+        "BrokerSoftwareInfo$ConfigurationRevision" : "<p>The revision of the configuration to use.</p>",
+        "ConfigurationInfo$Revision" : "<p>The revision of the configuration to use.</p>",
+        "ConfigurationRevision$Revision" : "<p>The revision number.</p>"
       }
     },
     "__mapOf__string" : {
@@ -234,20 +295,34 @@
         "BrokerNodeInfo$ClientSubnet" : "<p>The client subnet to which this broker node belongs.</p>",
         "BrokerNodeInfo$ClientVpcIpAddress" : "<p>The virtual private cloud (VPC) of the client.</p>",
         "BrokerSoftwareInfo$ConfigurationArn" : "<p>The Amazon Resource Name (ARN) of the configuration used for the cluster.</p>",
-        "BrokerSoftwareInfo$ConfigurationRevision" : "<p>The revision of the configuration to use.</p>",
         "BrokerSoftwareInfo$KafkaVersion" : "<p>The version of Apache Kafka.</p>",
         "ClusterInfo$ClusterArn" : "<p>The Amazon Resource Name (ARN) that uniquely identifies the cluster.</p>",
         "ClusterInfo$ClusterName" : "<p>The name of the cluster.</p>",
         "ClusterInfo$CurrentVersion" : "<p>The current version of the MSK cluster.</p>",
         "ClusterInfo$ZookeeperConnectString" : "<p>The connection string to use to connect to the Apache ZooKeeper cluster.</p>",
+        "Configuration$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
+        "Configuration$Description" : "<p>The description of the configuration.</p>",
+        "Configuration$Name" : "<p>The name of the configuration.</p>",
+        "ConfigurationInfo$Arn" : "<p>ARN of the configuration to use.</p>",
+        "ConfigurationRevision$Description" : "<p>The description of the configuration revision.</p>",
         "CreateClusterResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "CreateClusterResponse$ClusterName" : "<p>The name of the MSK cluster.</p>",
+        "CreateConfigurationRequest$Description" : "<p>The description of the configuration.</p>",
+        "CreateConfigurationRequest$Name" : "<p>The name of the configuration.</p>",
+        "CreateConfigurationResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
+        "CreateConfigurationResponse$Name" : "<p>The name of the configuration.</p>",
         "DeleteClusterResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
+        "DescribeConfigurationResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
+        "DescribeConfigurationResponse$Description" : "<p>The description of the configuration.</p>",
+        "DescribeConfigurationResponse$Name" : "<p>The name of the configuration.</p>",
+        "DescribeConfigurationRevisionResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
+        "DescribeConfigurationRevisionResponse$Description" : "<p>The description of the configuration.</p>",
         "EncryptionAtRest$DataVolumeKMSKeyId" : "<p>The AWS KMS key used for data encryption.</p>",
         "Error$InvalidParameter" : "<p>The parameter that caused the error.</p>",
         "Error$Message" : "<p>The description of the error.</p>",
         "GetBootstrapBrokersResponse$BootstrapBrokerString" : "<p>A string containing one or more hostname:port pairs.</p>",
         "ListClustersResponse$NextToken" : "<p>The paginated results marker. When the result of a ListClusters operation is truncated, the call returns NextToken in the response. \n To get another batch of clusters, provide this token in your next request.</p>",
+        "ListConfigurationsResponse$NextToken" : "<p>The paginated results marker. When the result of a ListConfigurations operation is truncated, the call returns NextToken in the response. \n To get another batch of configurations, provide this token in your next request.</p>",
         "ListNodesResponse$NextToken" : "<p>The paginated results marker. When the result of a ListNodes operation is truncated, the call returns NextToken in the response. \n To get another batch of nodes, provide this token in your next request.</p>",
         "NodeInfo$AddedToClusterTime" : "<p>The start time.</p>",
         "NodeInfo$InstanceType" : "<p>The instance type.</p>",
@@ -280,7 +355,11 @@
     "__timestampIso8601" : {
       "base" : null,
       "refs" : {
-        "ClusterInfo$CreationTime" : "<p>The time when the cluster was created.</p>"
+        "ClusterInfo$CreationTime" : "<p>The time when the cluster was created.</p>",
+        "ConfigurationRevision$CreationTime" : "<p>The time when the configuration revision was created.</p>",
+        "CreateConfigurationResponse$CreationTime" : "<p>The time when the configuration was created.</p>",
+        "DescribeConfigurationResponse$CreationTime" : "<p>The time when the configuration was created.</p>",
+        "DescribeConfigurationRevisionResponse$CreationTime" : "<p>The time when the configuration was created.</p>"
       }
     }
   }

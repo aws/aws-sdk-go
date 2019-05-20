@@ -584,8 +584,9 @@ type MeterUsageInput struct {
 	// ProductCode is a required field
 	ProductCode *string `min:"1" type:"string" required:"true"`
 
-	// Timestamp of the hour, recorded in UTC. The seconds and milliseconds portions
-	// of the timestamp will be ignored.
+	// Timestamp, in UTC, for which the usage is being reported. Your application
+	// can meter usage for up to one hour in the past. Make sure the timestamp value
+	// is not before the start of the software usage.
 	//
 	// Timestamp is a required field
 	Timestamp *time.Time `type:"timestamp" required:"true"`
@@ -894,10 +895,10 @@ type UsageRecord struct {
 	// time. Defaults to 0 if not specified.
 	Quantity *int64 `type:"integer"`
 
-	// Timestamp of the hour, recorded in UTC. The seconds and milliseconds portions
-	// of the timestamp will be ignored.
+	// Timestamp, in UTC, for which the usage is being reported.
 	//
-	// Your application can meter usage for up to one hour in the past.
+	// Your application can meter usage for up to one hour in the past. Make sure
+	// the timestamp value is not before the start of the software usage.
 	//
 	// Timestamp is a required field
 	Timestamp *time.Time `type:"timestamp" required:"true"`
