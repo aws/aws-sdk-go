@@ -43,7 +43,7 @@ type UploaderAPI interface {
 
 var _ UploaderAPI = (*s3manager.Uploader)(nil)
 
-// NewDownloaderWithClient is the interface type for the contained method of the same name.
+// UploadWithIterator is the interface type for the contained method of the same name.
 type UploadWithIterator interface {
 	UploadWithIterator(aws.Context, s3manager.BatchUploadIterator, ...func(*s3manager.Uploader)) error
 }
