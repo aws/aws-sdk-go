@@ -19,17 +19,17 @@ type DownloaderAPI interface {
 
 var _ DownloaderAPI = (*s3manager.Downloader)(nil)
 
-// interface for DownloadWithIterator (separated from DownloaderAPI for user to compose)
+// DownloadWithIterator is the interface type for the contained method of the same name.
 type DownloadWithIterator interface {
 	DownloadWithIterator(aws.Context, s3manager.BatchDownloadIterator, ...func(*s3manager.Downloader)) error
 }
 
-// interface for NewDownloader (separated from DownloaderAPI for user to compose)
+// NewDownloader is the interface type for the contained method of the same name.
 type NewDownloader interface {
 	NewDownloader(client.ConfigProvider, ...func(*s3manager.Downloader)) *s3manager.Downloader
 }
 
-// interface for NewDownloaderWithClient (separated from DownloaderAPI for user to compose)
+// NewDownloaderWithClient is the interface type for the contained method of the same name.
 type NewDownloaderWithClient interface {
 	NewDownloaderWithClient(s3iface.S3API, ...func(*s3manager.Downloader)) *s3manager.Downloader
 }
@@ -43,23 +43,23 @@ type UploaderAPI interface {
 
 var _ UploaderAPI = (*s3manager.Uploader)(nil)
 
-// interface for NewDownloaderWithClient (separated from UploaderAPI for user to compose)
+// NewDownloaderWithClient is the interface type for the contained method of the same name.
 type UploadWithIterator interface {
 	UploadWithIterator(aws.Context, s3manager.BatchUploadIterator, ...func(*s3manager.Uploader)) error
 }
 
-// interface for NewUploader (separated from UploaderAPI for user to compose)
+// NewUploader is the interface type for the contained method of the same name.
 type NewUploader interface {
 	NewUploader(client.ConfigProvider, ...func(*s3manager.Uploader)) *s3manager.Uploader
 }
 
-// interface for NewUploaderWithClient (separated from UploaderAPI for user to compose)
+// NewUploaderWithClient is the interface type for the contained method of the same name.
 type NewUploaderWithClient interface {
 	NewUploaderWithClient(s3iface.S3API, ...func(*s3manager.Uploader)) *s3manager.Uploader
 }
 
 
-// BatchDeleteAPI is the interface type for BatchDelete (separated for user to compose)
+// BatchDeleteAPI is the interface type for BatchDelete (separated for user to compose).
 type BatchDeleteAPI interface {
 	Delete(aws.Context, s3manager.BatchDeleteIterator) error
 }
