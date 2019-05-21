@@ -252,7 +252,8 @@
     "Ec2SecurityGroupArn": {
       "base": null,
       "refs": {
-        "Ec2SecurityGroupArnList$member": null
+        "Ec2SecurityGroupArnList$member": null,
+        "PLSecurityGroupArnList$member": null
       }
     },
     "Ec2SecurityGroupArnList": {
@@ -264,13 +265,20 @@
     "Ec2SubnetArn": {
       "base": null,
       "refs": {
-        "Ec2Config$SubnetArn": "<p>The ARN of the subnet and the security group that DataSync uses to access the target EFS file system.</p>"
+        "Ec2Config$SubnetArn": "<p>The ARN of the subnet and the security group that DataSync uses to access the target EFS file system.</p>",
+        "PLSubnetArnList$member": null
       }
     },
     "EfsFilesystemArn": {
       "base": null,
       "refs": {
         "CreateLocationEfsRequest$EfsFilesystemArn": "<p>The Amazon Resource Name (ARN) for the Amazon EFS file system.</p>"
+      }
+    },
+    "EndpointOptions": {
+      "base": null,
+      "refs": {
+        "DescribeAgentResponse$EndpointOptions": null
       }
     },
     "FilterList": {
@@ -490,6 +498,18 @@
         "UpdateTaskRequest$Options": null
       }
     },
+    "PLSecurityGroupArnList": {
+      "base": null,
+      "refs": {
+        "PrivateLinkConfig$SecurityGroupArns": null
+      }
+    },
+    "PLSubnetArnList": {
+      "base": null,
+      "refs": {
+        "PrivateLinkConfig$SubnetArns": null
+      }
+    },
     "PhaseStatus": {
       "base": null,
       "refs": {
@@ -514,6 +534,12 @@
       "base": null,
       "refs": {
         "Options$PreserveDevices": "<p>A value that determines whether AWS DataSync should preserve the metadata of block and character devices in the source file system, and recreate the files with that device name and metadata on the destination.</p> <note> <p>AWS DataSync can't sync the actual contents of such devices, because they are nonterminal and don't return an end-of-file (EOF) marker.</p> </note> <p>Default value: NONE.</p> <p>NONE: Ignore special devices (recommended). </p> <p>PRESERVE: Preserve character and block device metadata. This option isn't currently supported for Amazon EFS. </p>"
+      }
+    },
+    "PrivateLinkConfig": {
+      "base": null,
+      "refs": {
+        "DescribeAgentResponse$PrivateLinkConfig": null
       }
     },
     "S3BucketArn": {
@@ -737,6 +763,13 @@
         "Options$VerifyMode": "<p>A value that determines whether a data integrity verification should be performed at the end of a task execution after all data and metadata have been transferred. </p> <p>Default value: POINT_IN_TIME_CONSISTENT.</p> <p>POINT_IN_TIME_CONSISTENT: Perform verification (recommended). </p> <p>NONE: Skip verification.</p>"
       }
     },
+    "boolean": {
+      "base": null,
+      "refs": {
+        "EndpointOptions$Fips": null,
+        "EndpointOptions$PrivateLink": null
+      }
+    },
     "long": {
       "base": null,
       "refs": {
@@ -756,6 +789,7 @@
         "InternalException$errorCode": null,
         "InvalidRequestException$message": null,
         "InvalidRequestException$errorCode": null,
+        "PrivateLinkConfig$PrivateLinkEndpoint": null,
         "TaskExecutionResultDetail$ErrorCode": "<p>Errors that AWS DataSync encountered during execution of the task. You can use this error code to help troubleshoot issues.</p>",
         "TaskExecutionResultDetail$ErrorDetail": "<p>Detailed description of an error that was encountered during the task execution. You can use this information to help troubleshoot issues. </p>"
       }

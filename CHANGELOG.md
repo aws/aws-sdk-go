@@ -1,3 +1,11 @@
+Release v1.19.35 (2019-05-21)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API, documentation, and paginators
+* `service/datasync`: Updates service API and documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.19.34 (2019-05-20)
 ===
 
