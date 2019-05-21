@@ -35,6 +35,18 @@ const (
 	// The device is in an invalid state.
 	ErrCodeInvalidDeviceException = "InvalidDeviceException"
 
+	// ErrCodeInvalidSecretsManagerResourceException for service response error code
+	// "InvalidSecretsManagerResourceException".
+	//
+	// A password in SecretsManager is in an invalid state.
+	ErrCodeInvalidSecretsManagerResourceException = "InvalidSecretsManagerResourceException"
+
+	// ErrCodeInvalidServiceLinkedRoleStateException for service response error code
+	// "InvalidServiceLinkedRoleStateException".
+	//
+	// The service linked role is locked for deletion.
+	ErrCodeInvalidServiceLinkedRoleStateException = "InvalidServiceLinkedRoleStateException"
+
 	// ErrCodeInvalidUserStatusException for service response error code
 	// "InvalidUserStatusException".
 	//

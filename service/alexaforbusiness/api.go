@@ -181,6 +181,93 @@ func (c *AlexaForBusiness) AssociateContactWithAddressBookWithContext(ctx aws.Co
 	return out, req.Send()
 }
 
+const opAssociateDeviceWithNetworkProfile = "AssociateDeviceWithNetworkProfile"
+
+// AssociateDeviceWithNetworkProfileRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateDeviceWithNetworkProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateDeviceWithNetworkProfile for more information on using the AssociateDeviceWithNetworkProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateDeviceWithNetworkProfileRequest method.
+//    req, resp := client.AssociateDeviceWithNetworkProfileRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateDeviceWithNetworkProfile
+func (c *AlexaForBusiness) AssociateDeviceWithNetworkProfileRequest(input *AssociateDeviceWithNetworkProfileInput) (req *request.Request, output *AssociateDeviceWithNetworkProfileOutput) {
+	op := &request.Operation{
+		Name:       opAssociateDeviceWithNetworkProfile,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AssociateDeviceWithNetworkProfileInput{}
+	}
+
+	output = &AssociateDeviceWithNetworkProfileOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AssociateDeviceWithNetworkProfile API operation for Alexa For Business.
+//
+// Associates a device with the specified network profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Alexa For Business's
+// API operation AssociateDeviceWithNetworkProfile for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource is not found.
+//
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   There is a concurrent modification of resources.
+//
+//   * ErrCodeDeviceNotRegisteredException "DeviceNotRegisteredException"
+//   The request failed because this device is no longer registered and therefore
+//   no longer managed by this account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateDeviceWithNetworkProfile
+func (c *AlexaForBusiness) AssociateDeviceWithNetworkProfile(input *AssociateDeviceWithNetworkProfileInput) (*AssociateDeviceWithNetworkProfileOutput, error) {
+	req, out := c.AssociateDeviceWithNetworkProfileRequest(input)
+	return out, req.Send()
+}
+
+// AssociateDeviceWithNetworkProfileWithContext is the same as AssociateDeviceWithNetworkProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateDeviceWithNetworkProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AlexaForBusiness) AssociateDeviceWithNetworkProfileWithContext(ctx aws.Context, input *AssociateDeviceWithNetworkProfileInput, opts ...request.Option) (*AssociateDeviceWithNetworkProfileOutput, error) {
+	req, out := c.AssociateDeviceWithNetworkProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAssociateDeviceWithRoom = "AssociateDeviceWithRoom"
 
 // AssociateDeviceWithRoomRequest generates a "aws/request.Request" representing the
@@ -921,6 +1008,97 @@ func (c *AlexaForBusiness) CreateGatewayGroup(input *CreateGatewayGroupInput) (*
 // for more information on using Contexts.
 func (c *AlexaForBusiness) CreateGatewayGroupWithContext(ctx aws.Context, input *CreateGatewayGroupInput, opts ...request.Option) (*CreateGatewayGroupOutput, error) {
 	req, out := c.CreateGatewayGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateNetworkProfile = "CreateNetworkProfile"
+
+// CreateNetworkProfileRequest generates a "aws/request.Request" representing the
+// client's request for the CreateNetworkProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateNetworkProfile for more information on using the CreateNetworkProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateNetworkProfileRequest method.
+//    req, resp := client.CreateNetworkProfileRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateNetworkProfile
+func (c *AlexaForBusiness) CreateNetworkProfileRequest(input *CreateNetworkProfileInput) (req *request.Request, output *CreateNetworkProfileOutput) {
+	op := &request.Operation{
+		Name:       opCreateNetworkProfile,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateNetworkProfileInput{}
+	}
+
+	output = &CreateNetworkProfileOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateNetworkProfile API operation for Alexa For Business.
+//
+// Creates a network profile with the specified details.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Alexa For Business's
+// API operation CreateNetworkProfile for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+//   The resource being created already exists.
+//
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   You are performing an action that would put you beyond your account's limits.
+//
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   There is a concurrent modification of resources.
+//
+//   * ErrCodeInvalidCertificateAuthorityException "InvalidCertificateAuthorityException"
+//   The Certificate Authority can't issue or revoke a certificate.
+//
+//   * ErrCodeInvalidServiceLinkedRoleStateException "InvalidServiceLinkedRoleStateException"
+//   The service linked role is locked for deletion.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateNetworkProfile
+func (c *AlexaForBusiness) CreateNetworkProfile(input *CreateNetworkProfileInput) (*CreateNetworkProfileOutput, error) {
+	req, out := c.CreateNetworkProfileRequest(input)
+	return out, req.Send()
+}
+
+// CreateNetworkProfileWithContext is the same as CreateNetworkProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateNetworkProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AlexaForBusiness) CreateNetworkProfileWithContext(ctx aws.Context, input *CreateNetworkProfileInput, opts ...request.Option) (*CreateNetworkProfileOutput, error) {
+	req, out := c.CreateNetworkProfileRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1725,9 +1903,8 @@ func (c *AlexaForBusiness) DeleteDeviceUsageDataRequest(input *DeleteDeviceUsage
 // DeleteDeviceUsageData API operation for Alexa For Business.
 //
 // When this action is called for a specified shared device, it allows authorized
-// users to delete the device's entire previous history of voice input data
-// and associated response data. This action can be called once every 24 hours
-// for a specific shared device.
+// users to delete the device's entire previous history of voice input data.
+// This action can be called once every 24 hours for a specific shared device.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1844,6 +2021,92 @@ func (c *AlexaForBusiness) DeleteGatewayGroup(input *DeleteGatewayGroupInput) (*
 // for more information on using Contexts.
 func (c *AlexaForBusiness) DeleteGatewayGroupWithContext(ctx aws.Context, input *DeleteGatewayGroupInput, opts ...request.Option) (*DeleteGatewayGroupOutput, error) {
 	req, out := c.DeleteGatewayGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteNetworkProfile = "DeleteNetworkProfile"
+
+// DeleteNetworkProfileRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteNetworkProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteNetworkProfile for more information on using the DeleteNetworkProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteNetworkProfileRequest method.
+//    req, resp := client.DeleteNetworkProfileRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteNetworkProfile
+func (c *AlexaForBusiness) DeleteNetworkProfileRequest(input *DeleteNetworkProfileInput) (req *request.Request, output *DeleteNetworkProfileOutput) {
+	op := &request.Operation{
+		Name:       opDeleteNetworkProfile,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteNetworkProfileInput{}
+	}
+
+	output = &DeleteNetworkProfileOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteNetworkProfile API operation for Alexa For Business.
+//
+// Deletes a network profile by the network profile ARN.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Alexa For Business's
+// API operation DeleteNetworkProfile for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeResourceInUseException "ResourceInUseException"
+//   The resource in the request is already in use.
+//
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   There is a concurrent modification of resources.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteNetworkProfile
+func (c *AlexaForBusiness) DeleteNetworkProfile(input *DeleteNetworkProfileInput) (*DeleteNetworkProfileOutput, error) {
+	req, out := c.DeleteNetworkProfileRequest(input)
+	return out, req.Send()
+}
+
+// DeleteNetworkProfileWithContext is the same as DeleteNetworkProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteNetworkProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AlexaForBusiness) DeleteNetworkProfileWithContext(ctx aws.Context, input *DeleteNetworkProfileInput, opts ...request.Option) (*DeleteNetworkProfileOutput, error) {
+	req, out := c.DeleteNetworkProfileRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3461,6 +3724,88 @@ func (c *AlexaForBusiness) GetInvitationConfiguration(input *GetInvitationConfig
 // for more information on using Contexts.
 func (c *AlexaForBusiness) GetInvitationConfigurationWithContext(ctx aws.Context, input *GetInvitationConfigurationInput, opts ...request.Option) (*GetInvitationConfigurationOutput, error) {
 	req, out := c.GetInvitationConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetNetworkProfile = "GetNetworkProfile"
+
+// GetNetworkProfileRequest generates a "aws/request.Request" representing the
+// client's request for the GetNetworkProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetNetworkProfile for more information on using the GetNetworkProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetNetworkProfileRequest method.
+//    req, resp := client.GetNetworkProfileRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetNetworkProfile
+func (c *AlexaForBusiness) GetNetworkProfileRequest(input *GetNetworkProfileInput) (req *request.Request, output *GetNetworkProfileOutput) {
+	op := &request.Operation{
+		Name:       opGetNetworkProfile,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetNetworkProfileInput{}
+	}
+
+	output = &GetNetworkProfileOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetNetworkProfile API operation for Alexa For Business.
+//
+// Gets the network profile details by the network profile ARN.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Alexa For Business's
+// API operation GetNetworkProfile for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource is not found.
+//
+//   * ErrCodeInvalidSecretsManagerResourceException "InvalidSecretsManagerResourceException"
+//   A password in SecretsManager is in an invalid state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetNetworkProfile
+func (c *AlexaForBusiness) GetNetworkProfile(input *GetNetworkProfileInput) (*GetNetworkProfileOutput, error) {
+	req, out := c.GetNetworkProfileRequest(input)
+	return out, req.Send()
+}
+
+// GetNetworkProfileWithContext is the same as GetNetworkProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetNetworkProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AlexaForBusiness) GetNetworkProfileWithContext(ctx aws.Context, input *GetNetworkProfileInput, opts ...request.Option) (*GetNetworkProfileOutput, error) {
+	req, out := c.GetNetworkProfileRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6161,6 +6506,137 @@ func (c *AlexaForBusiness) SearchDevicesPagesWithContext(ctx aws.Context, input 
 	return p.Err()
 }
 
+const opSearchNetworkProfiles = "SearchNetworkProfiles"
+
+// SearchNetworkProfilesRequest generates a "aws/request.Request" representing the
+// client's request for the SearchNetworkProfiles operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchNetworkProfiles for more information on using the SearchNetworkProfiles
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SearchNetworkProfilesRequest method.
+//    req, resp := client.SearchNetworkProfilesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchNetworkProfiles
+func (c *AlexaForBusiness) SearchNetworkProfilesRequest(input *SearchNetworkProfilesInput) (req *request.Request, output *SearchNetworkProfilesOutput) {
+	op := &request.Operation{
+		Name:       opSearchNetworkProfiles,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchNetworkProfilesInput{}
+	}
+
+	output = &SearchNetworkProfilesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchNetworkProfiles API operation for Alexa For Business.
+//
+// Searches network profiles and lists the ones that meet a set of filter and
+// sort criteria.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Alexa For Business's
+// API operation SearchNetworkProfiles for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SearchNetworkProfiles
+func (c *AlexaForBusiness) SearchNetworkProfiles(input *SearchNetworkProfilesInput) (*SearchNetworkProfilesOutput, error) {
+	req, out := c.SearchNetworkProfilesRequest(input)
+	return out, req.Send()
+}
+
+// SearchNetworkProfilesWithContext is the same as SearchNetworkProfiles with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchNetworkProfiles for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AlexaForBusiness) SearchNetworkProfilesWithContext(ctx aws.Context, input *SearchNetworkProfilesInput, opts ...request.Option) (*SearchNetworkProfilesOutput, error) {
+	req, out := c.SearchNetworkProfilesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchNetworkProfilesPages iterates over the pages of a SearchNetworkProfiles operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchNetworkProfiles method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a SearchNetworkProfiles operation.
+//    pageNum := 0
+//    err := client.SearchNetworkProfilesPages(params,
+//        func(page *SearchNetworkProfilesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *AlexaForBusiness) SearchNetworkProfilesPages(input *SearchNetworkProfilesInput, fn func(*SearchNetworkProfilesOutput, bool) bool) error {
+	return c.SearchNetworkProfilesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchNetworkProfilesPagesWithContext same as SearchNetworkProfilesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AlexaForBusiness) SearchNetworkProfilesPagesWithContext(ctx aws.Context, input *SearchNetworkProfilesInput, fn func(*SearchNetworkProfilesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchNetworkProfilesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchNetworkProfilesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*SearchNetworkProfilesOutput), !p.HasNextPage())
+	}
+	return p.Err()
+}
+
 const opSearchProfiles = "SearchProfiles"
 
 // SearchProfilesRequest generates a "aws/request.Request" representing the
@@ -6897,8 +7373,21 @@ func (c *AlexaForBusiness) StartDeviceSyncRequest(input *StartDeviceSyncInput) (
 
 // StartDeviceSync API operation for Alexa For Business.
 //
-// Resets a device and its account to the known default settings, by clearing
-// all information and settings set by previous users.
+// Resets a device and its account to the known default settings. This clears
+// all information and settings set by previous users in the following ways:
+//
+//    * Bluetooth - This unpairs all bluetooth devices paired with your echo
+//    device.
+//
+//    * Volume - This resets the echo device's volume to the default value.
+//
+//    * Notifications - This clears all notifications from your echo device.
+//
+//    * Lists - This clears all to-do items from your echo device.
+//
+//    * Settings - This internally syncs the room's profile (if the device is
+//    assigned to a room), contacts, address books, delegation access for account
+//    linking, and communications (if enabled on the room profile).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7763,6 +8252,98 @@ func (c *AlexaForBusiness) UpdateGatewayGroupWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opUpdateNetworkProfile = "UpdateNetworkProfile"
+
+// UpdateNetworkProfileRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateNetworkProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateNetworkProfile for more information on using the UpdateNetworkProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateNetworkProfileRequest method.
+//    req, resp := client.UpdateNetworkProfileRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateNetworkProfile
+func (c *AlexaForBusiness) UpdateNetworkProfileRequest(input *UpdateNetworkProfileInput) (req *request.Request, output *UpdateNetworkProfileOutput) {
+	op := &request.Operation{
+		Name:       opUpdateNetworkProfile,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateNetworkProfileInput{}
+	}
+
+	output = &UpdateNetworkProfileOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateNetworkProfile API operation for Alexa For Business.
+//
+// Updates a network profile by the network profile ARN.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Alexa For Business's
+// API operation UpdateNetworkProfile for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource is not found.
+//
+//   * ErrCodeNameInUseException "NameInUseException"
+//   The name sent in the request is already in use.
+//
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   There is a concurrent modification of resources.
+//
+//   * ErrCodeInvalidCertificateAuthorityException "InvalidCertificateAuthorityException"
+//   The Certificate Authority can't issue or revoke a certificate.
+//
+//   * ErrCodeInvalidSecretsManagerResourceException "InvalidSecretsManagerResourceException"
+//   A password in SecretsManager is in an invalid state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateNetworkProfile
+func (c *AlexaForBusiness) UpdateNetworkProfile(input *UpdateNetworkProfileInput) (*UpdateNetworkProfileOutput, error) {
+	req, out := c.UpdateNetworkProfileRequest(input)
+	return out, req.Send()
+}
+
+// UpdateNetworkProfileWithContext is the same as UpdateNetworkProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateNetworkProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AlexaForBusiness) UpdateNetworkProfileWithContext(ctx aws.Context, input *UpdateNetworkProfileInput, opts ...request.Option) (*UpdateNetworkProfileOutput, error) {
+	req, out := c.UpdateNetworkProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateProfile = "UpdateProfile"
 
 // UpdateProfileRequest generates a "aws/request.Request" representing the
@@ -8217,6 +8798,72 @@ func (s AssociateContactWithAddressBookOutput) String() string {
 
 // GoString returns the string representation
 func (s AssociateContactWithAddressBookOutput) GoString() string {
+	return s.String()
+}
+
+type AssociateDeviceWithNetworkProfileInput struct {
+	_ struct{} `type:"structure"`
+
+	// The device ARN.
+	//
+	// DeviceArn is a required field
+	DeviceArn *string `type:"string" required:"true"`
+
+	// The ARN of the network profile to associate with a device.
+	//
+	// NetworkProfileArn is a required field
+	NetworkProfileArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AssociateDeviceWithNetworkProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateDeviceWithNetworkProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateDeviceWithNetworkProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateDeviceWithNetworkProfileInput"}
+	if s.DeviceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceArn"))
+	}
+	if s.NetworkProfileArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("NetworkProfileArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeviceArn sets the DeviceArn field's value.
+func (s *AssociateDeviceWithNetworkProfileInput) SetDeviceArn(v string) *AssociateDeviceWithNetworkProfileInput {
+	s.DeviceArn = &v
+	return s
+}
+
+// SetNetworkProfileArn sets the NetworkProfileArn field's value.
+func (s *AssociateDeviceWithNetworkProfileInput) SetNetworkProfileArn(v string) *AssociateDeviceWithNetworkProfileInput {
+	s.NetworkProfileArn = &v
+	return s
+}
+
+type AssociateDeviceWithNetworkProfileOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s AssociateDeviceWithNetworkProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateDeviceWithNetworkProfileOutput) GoString() string {
 	return s.String()
 }
 
@@ -9597,6 +10244,179 @@ func (s *CreateGatewayGroupOutput) SetGatewayGroupArn(v string) *CreateGatewayGr
 	return s
 }
 
+type CreateNetworkProfileInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the Private Certificate Authority (PCA) created in AWS Certificate
+	// Manager (ACM). This is used to issue certificates to the devices.
+	CertificateAuthorityArn *string `type:"string"`
+
+	// A unique, user-specified identifier for the request that ensures idempotency.
+	ClientRequestToken *string `min:"10" type:"string" idempotencyToken:"true"`
+
+	// The current password of the Wi-Fi network.
+	CurrentPassword *string `min:"5" type:"string" sensitive:"true"`
+
+	// Detailed information about a device's network profile.
+	Description *string `type:"string"`
+
+	// The authentication standard that is used in the EAP framework. Currently,
+	// EAP_TLS is supported.
+	EapMethod *string `type:"string" enum:"NetworkEapMethod"`
+
+	// The name of the network profile associated with a device.
+	//
+	// NetworkProfileName is a required field
+	NetworkProfileName *string `min:"1" type:"string" required:"true"`
+
+	// The next, or subsequent, password of the Wi-Fi network. This password is
+	// asynchronously transmitted to the device and is used when the password of
+	// the network changes to NextPassword.
+	NextPassword *string `type:"string" sensitive:"true"`
+
+	// The security type of the Wi-Fi network. This can be WPA2_ENTERPRISE, WPA2_PSK,
+	// WPA_PSK, WEP, or OPEN.
+	//
+	// SecurityType is a required field
+	SecurityType *string `type:"string" required:"true" enum:"NetworkSecurityType"`
+
+	// The SSID of the Wi-Fi network.
+	//
+	// Ssid is a required field
+	Ssid *string `min:"1" type:"string" required:"true"`
+
+	// The root certificates of your authentication server that is installed on
+	// your devices and used to trust your authentication server during EAP negotiation.
+	TrustAnchors []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s CreateNetworkProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateNetworkProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateNetworkProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateNetworkProfileInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 10))
+	}
+	if s.CurrentPassword != nil && len(*s.CurrentPassword) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("CurrentPassword", 5))
+	}
+	if s.NetworkProfileName == nil {
+		invalidParams.Add(request.NewErrParamRequired("NetworkProfileName"))
+	}
+	if s.NetworkProfileName != nil && len(*s.NetworkProfileName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NetworkProfileName", 1))
+	}
+	if s.SecurityType == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityType"))
+	}
+	if s.Ssid == nil {
+		invalidParams.Add(request.NewErrParamRequired("Ssid"))
+	}
+	if s.Ssid != nil && len(*s.Ssid) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Ssid", 1))
+	}
+	if s.TrustAnchors != nil && len(s.TrustAnchors) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TrustAnchors", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCertificateAuthorityArn sets the CertificateAuthorityArn field's value.
+func (s *CreateNetworkProfileInput) SetCertificateAuthorityArn(v string) *CreateNetworkProfileInput {
+	s.CertificateAuthorityArn = &v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateNetworkProfileInput) SetClientRequestToken(v string) *CreateNetworkProfileInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetCurrentPassword sets the CurrentPassword field's value.
+func (s *CreateNetworkProfileInput) SetCurrentPassword(v string) *CreateNetworkProfileInput {
+	s.CurrentPassword = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateNetworkProfileInput) SetDescription(v string) *CreateNetworkProfileInput {
+	s.Description = &v
+	return s
+}
+
+// SetEapMethod sets the EapMethod field's value.
+func (s *CreateNetworkProfileInput) SetEapMethod(v string) *CreateNetworkProfileInput {
+	s.EapMethod = &v
+	return s
+}
+
+// SetNetworkProfileName sets the NetworkProfileName field's value.
+func (s *CreateNetworkProfileInput) SetNetworkProfileName(v string) *CreateNetworkProfileInput {
+	s.NetworkProfileName = &v
+	return s
+}
+
+// SetNextPassword sets the NextPassword field's value.
+func (s *CreateNetworkProfileInput) SetNextPassword(v string) *CreateNetworkProfileInput {
+	s.NextPassword = &v
+	return s
+}
+
+// SetSecurityType sets the SecurityType field's value.
+func (s *CreateNetworkProfileInput) SetSecurityType(v string) *CreateNetworkProfileInput {
+	s.SecurityType = &v
+	return s
+}
+
+// SetSsid sets the Ssid field's value.
+func (s *CreateNetworkProfileInput) SetSsid(v string) *CreateNetworkProfileInput {
+	s.Ssid = &v
+	return s
+}
+
+// SetTrustAnchors sets the TrustAnchors field's value.
+func (s *CreateNetworkProfileInput) SetTrustAnchors(v []*string) *CreateNetworkProfileInput {
+	s.TrustAnchors = v
+	return s
+}
+
+type CreateNetworkProfileOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the network profile associated with a device.
+	NetworkProfileArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateNetworkProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateNetworkProfileOutput) GoString() string {
+	return s.String()
+}
+
+// SetNetworkProfileArn sets the NetworkProfileArn field's value.
+func (s *CreateNetworkProfileOutput) SetNetworkProfileArn(v string) *CreateNetworkProfileOutput {
+	s.NetworkProfileArn = &v
+	return s
+}
+
 type CreateProfileInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10492,6 +11312,58 @@ func (s DeleteGatewayGroupOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteNetworkProfileInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the network profile associated with a device.
+	//
+	// NetworkProfileArn is a required field
+	NetworkProfileArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteNetworkProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteNetworkProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteNetworkProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteNetworkProfileInput"}
+	if s.NetworkProfileArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("NetworkProfileArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNetworkProfileArn sets the NetworkProfileArn field's value.
+func (s *DeleteNetworkProfileInput) SetNetworkProfileArn(v string) *DeleteNetworkProfileInput {
+	s.NetworkProfileArn = &v
+	return s
+}
+
+type DeleteNetworkProfileOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteNetworkProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteNetworkProfileOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteProfileInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10880,6 +11752,9 @@ type Device struct {
 	// The MAC address of a device.
 	MacAddress *string `type:"string"`
 
+	// Detailed information about a device's network profile.
+	NetworkProfileInfo *DeviceNetworkProfileInfo `type:"structure"`
+
 	// The room ARN of a device.
 	RoomArn *string `type:"string"`
 
@@ -10939,6 +11814,12 @@ func (s *Device) SetMacAddress(v string) *Device {
 	return s
 }
 
+// SetNetworkProfileInfo sets the NetworkProfileInfo field's value.
+func (s *Device) SetNetworkProfileInfo(v *DeviceNetworkProfileInfo) *Device {
+	s.NetworkProfileInfo = v
+	return s
+}
+
 // SetRoomArn sets the RoomArn field's value.
 func (s *Device) SetRoomArn(v string) *Device {
 	s.RoomArn = &v
@@ -10975,6 +11856,12 @@ type DeviceData struct {
 
 	// The MAC address of a device.
 	MacAddress *string `type:"string"`
+
+	// The ARN of the network profile associated with a device.
+	NetworkProfileArn *string `type:"string"`
+
+	// The name of the network profile associated with a device.
+	NetworkProfileName *string `min:"1" type:"string"`
 
 	// The room ARN associated with a device.
 	RoomArn *string `type:"string"`
@@ -11038,6 +11925,18 @@ func (s *DeviceData) SetMacAddress(v string) *DeviceData {
 	return s
 }
 
+// SetNetworkProfileArn sets the NetworkProfileArn field's value.
+func (s *DeviceData) SetNetworkProfileArn(v string) *DeviceData {
+	s.NetworkProfileArn = &v
+	return s
+}
+
+// SetNetworkProfileName sets the NetworkProfileName field's value.
+func (s *DeviceData) SetNetworkProfileName(v string) *DeviceData {
+	s.NetworkProfileName = &v
+	return s
+}
+
 // SetRoomArn sets the RoomArn field's value.
 func (s *DeviceData) SetRoomArn(v string) *DeviceData {
 	s.RoomArn = &v
@@ -11098,12 +11997,57 @@ func (s *DeviceEvent) SetValue(v string) *DeviceEvent {
 	return s
 }
 
+// Detailed information about a device's network profile.
+type DeviceNetworkProfileInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the certificate associated with a device.
+	CertificateArn *string `type:"string"`
+
+	// The time (in epoch) when the certificate expires.
+	CertificateExpirationTime *time.Time `type:"timestamp"`
+
+	// The ARN of the network profile associated with a device.
+	NetworkProfileArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DeviceNetworkProfileInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeviceNetworkProfileInfo) GoString() string {
+	return s.String()
+}
+
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *DeviceNetworkProfileInfo) SetCertificateArn(v string) *DeviceNetworkProfileInfo {
+	s.CertificateArn = &v
+	return s
+}
+
+// SetCertificateExpirationTime sets the CertificateExpirationTime field's value.
+func (s *DeviceNetworkProfileInfo) SetCertificateExpirationTime(v time.Time) *DeviceNetworkProfileInfo {
+	s.CertificateExpirationTime = &v
+	return s
+}
+
+// SetNetworkProfileArn sets the NetworkProfileArn field's value.
+func (s *DeviceNetworkProfileInfo) SetNetworkProfileArn(v string) *DeviceNetworkProfileInfo {
+	s.NetworkProfileArn = &v
+	return s
+}
+
 // Details of a device’s status.
 type DeviceStatusDetail struct {
 	_ struct{} `type:"structure"`
 
 	// The device status detail code.
 	Code *string `type:"string" enum:"DeviceStatusDetailCode"`
+
+	// The list of available features on the device.
+	Feature *string `type:"string" enum:"Feature"`
 }
 
 // String returns the string representation
@@ -11119,6 +12063,12 @@ func (s DeviceStatusDetail) GoString() string {
 // SetCode sets the Code field's value.
 func (s *DeviceStatusDetail) SetCode(v string) *DeviceStatusDetail {
 	s.Code = &v
+	return s
+}
+
+// SetFeature sets the Feature field's value.
+func (s *DeviceStatusDetail) SetFeature(v string) *DeviceStatusDetail {
+	s.Feature = &v
 	return s
 }
 
@@ -12174,6 +13124,67 @@ func (s *GetInvitationConfigurationOutput) SetOrganizationName(v string) *GetInv
 // SetPrivateSkillIds sets the PrivateSkillIds field's value.
 func (s *GetInvitationConfigurationOutput) SetPrivateSkillIds(v []*string) *GetInvitationConfigurationOutput {
 	s.PrivateSkillIds = v
+	return s
+}
+
+type GetNetworkProfileInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the network profile associated with a device.
+	//
+	// NetworkProfileArn is a required field
+	NetworkProfileArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetNetworkProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetNetworkProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetNetworkProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetNetworkProfileInput"}
+	if s.NetworkProfileArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("NetworkProfileArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNetworkProfileArn sets the NetworkProfileArn field's value.
+func (s *GetNetworkProfileInput) SetNetworkProfileArn(v string) *GetNetworkProfileInput {
+	s.NetworkProfileArn = &v
+	return s
+}
+
+type GetNetworkProfileOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The network profile associated with a device.
+	NetworkProfile *NetworkProfile `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetNetworkProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetNetworkProfileOutput) GoString() string {
+	return s.String()
+}
+
+// SetNetworkProfile sets the NetworkProfile field's value.
+func (s *GetNetworkProfileOutput) SetNetworkProfile(v *NetworkProfile) *GetNetworkProfileOutput {
+	s.NetworkProfile = v
 	return s
 }
 
@@ -13426,6 +14437,198 @@ func (s *MeetingSetting) Validate() error {
 // SetRequirePin sets the RequirePin field's value.
 func (s *MeetingSetting) SetRequirePin(v string) *MeetingSetting {
 	s.RequirePin = &v
+	return s
+}
+
+// The network profile associated with a device.
+type NetworkProfile struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the Private Certificate Authority (PCA) created in AWS Certificate
+	// Manager (ACM). This is used to issue certificates to the devices.
+	CertificateAuthorityArn *string `type:"string"`
+
+	// The current password of the Wi-Fi network.
+	CurrentPassword *string `min:"5" type:"string" sensitive:"true"`
+
+	// Detailed information about a device's network profile.
+	Description *string `type:"string"`
+
+	// The authentication standard that is used in the EAP framework. Currently,
+	// EAP_TLS is supported.
+	EapMethod *string `type:"string" enum:"NetworkEapMethod"`
+
+	// The ARN of the network profile associated with a device.
+	NetworkProfileArn *string `type:"string"`
+
+	// The name of the network profile associated with a device.
+	NetworkProfileName *string `min:"1" type:"string"`
+
+	// The next, or subsequent, password of the Wi-Fi network. This password is
+	// asynchronously transmitted to the device and is used when the password of
+	// the network changes to NextPassword.
+	NextPassword *string `type:"string" sensitive:"true"`
+
+	// The security type of the Wi-Fi network. This can be WPA2_ENTERPRISE, WPA2_PSK,
+	// WPA_PSK, WEP, or OPEN.
+	SecurityType *string `type:"string" enum:"NetworkSecurityType"`
+
+	// The SSID of the Wi-Fi network.
+	Ssid *string `min:"1" type:"string"`
+
+	// The root certificates of your authentication server, which is installed on
+	// your devices and used to trust your authentication server during EAP negotiation.
+	TrustAnchors []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s NetworkProfile) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NetworkProfile) GoString() string {
+	return s.String()
+}
+
+// SetCertificateAuthorityArn sets the CertificateAuthorityArn field's value.
+func (s *NetworkProfile) SetCertificateAuthorityArn(v string) *NetworkProfile {
+	s.CertificateAuthorityArn = &v
+	return s
+}
+
+// SetCurrentPassword sets the CurrentPassword field's value.
+func (s *NetworkProfile) SetCurrentPassword(v string) *NetworkProfile {
+	s.CurrentPassword = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *NetworkProfile) SetDescription(v string) *NetworkProfile {
+	s.Description = &v
+	return s
+}
+
+// SetEapMethod sets the EapMethod field's value.
+func (s *NetworkProfile) SetEapMethod(v string) *NetworkProfile {
+	s.EapMethod = &v
+	return s
+}
+
+// SetNetworkProfileArn sets the NetworkProfileArn field's value.
+func (s *NetworkProfile) SetNetworkProfileArn(v string) *NetworkProfile {
+	s.NetworkProfileArn = &v
+	return s
+}
+
+// SetNetworkProfileName sets the NetworkProfileName field's value.
+func (s *NetworkProfile) SetNetworkProfileName(v string) *NetworkProfile {
+	s.NetworkProfileName = &v
+	return s
+}
+
+// SetNextPassword sets the NextPassword field's value.
+func (s *NetworkProfile) SetNextPassword(v string) *NetworkProfile {
+	s.NextPassword = &v
+	return s
+}
+
+// SetSecurityType sets the SecurityType field's value.
+func (s *NetworkProfile) SetSecurityType(v string) *NetworkProfile {
+	s.SecurityType = &v
+	return s
+}
+
+// SetSsid sets the Ssid field's value.
+func (s *NetworkProfile) SetSsid(v string) *NetworkProfile {
+	s.Ssid = &v
+	return s
+}
+
+// SetTrustAnchors sets the TrustAnchors field's value.
+func (s *NetworkProfile) SetTrustAnchors(v []*string) *NetworkProfile {
+	s.TrustAnchors = v
+	return s
+}
+
+// The data associated with a network profile.
+type NetworkProfileData struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the Private Certificate Authority (PCA) created in AWS Certificate
+	// Manager (ACM). This is used to issue certificates to the devices.
+	CertificateAuthorityArn *string `type:"string"`
+
+	// Detailed information about a device's network profile.
+	Description *string `type:"string"`
+
+	// The authentication standard that is used in the EAP framework. Currently,
+	// EAP_TLS is supported.
+	EapMethod *string `type:"string" enum:"NetworkEapMethod"`
+
+	// The ARN of the network profile associated with a device.
+	NetworkProfileArn *string `type:"string"`
+
+	// The name of the network profile associated with a device.
+	NetworkProfileName *string `min:"1" type:"string"`
+
+	// The security type of the Wi-Fi network. This can be WPA2_ENTERPRISE, WPA2_PSK,
+	// WPA_PSK, WEP, or OPEN.
+	SecurityType *string `type:"string" enum:"NetworkSecurityType"`
+
+	// The SSID of the Wi-Fi network.
+	Ssid *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s NetworkProfileData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NetworkProfileData) GoString() string {
+	return s.String()
+}
+
+// SetCertificateAuthorityArn sets the CertificateAuthorityArn field's value.
+func (s *NetworkProfileData) SetCertificateAuthorityArn(v string) *NetworkProfileData {
+	s.CertificateAuthorityArn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *NetworkProfileData) SetDescription(v string) *NetworkProfileData {
+	s.Description = &v
+	return s
+}
+
+// SetEapMethod sets the EapMethod field's value.
+func (s *NetworkProfileData) SetEapMethod(v string) *NetworkProfileData {
+	s.EapMethod = &v
+	return s
+}
+
+// SetNetworkProfileArn sets the NetworkProfileArn field's value.
+func (s *NetworkProfileData) SetNetworkProfileArn(v string) *NetworkProfileData {
+	s.NetworkProfileArn = &v
+	return s
+}
+
+// SetNetworkProfileName sets the NetworkProfileName field's value.
+func (s *NetworkProfileData) SetNetworkProfileName(v string) *NetworkProfileData {
+	s.NetworkProfileName = &v
+	return s
+}
+
+// SetSecurityType sets the SecurityType field's value.
+func (s *NetworkProfileData) SetSecurityType(v string) *NetworkProfileData {
+	s.SecurityType = &v
+	return s
+}
+
+// SetSsid sets the Ssid field's value.
+func (s *NetworkProfileData) SetSsid(v string) *NetworkProfileData {
+	s.Ssid = &v
 	return s
 }
 
@@ -14793,7 +15996,8 @@ type SearchDevicesInput struct {
 
 	// The filters to use to list a specified set of devices. Supported filter keys
 	// are DeviceName, DeviceStatus, DeviceStatusDetailCode, RoomName, DeviceType,
-	// DeviceSerialNumber, UnassociatedOnly, and ConnectionStatus (ONLINE and OFFLINE).
+	// DeviceSerialNumber, UnassociatedOnly, ConnectionStatus (ONLINE and OFFLINE),
+	// NetworkProfileName, NetworkProfileArn, Feature, and FailureCode.
 	Filters []*Filter `type:"list"`
 
 	// The maximum number of results to include in the response. If more results
@@ -14808,7 +16012,7 @@ type SearchDevicesInput struct {
 
 	// The sort order to use in listing the specified set of devices. Supported
 	// sort keys are DeviceName, DeviceStatus, RoomName, DeviceType, DeviceSerialNumber,
-	// and ConnectionStatus.
+	// ConnectionStatus, NetworkProfileName, NetworkProfileArn, Feature, and FailureCode.
 	SortCriteria []*Sort `type:"list"`
 }
 
@@ -14919,6 +16123,142 @@ func (s *SearchDevicesOutput) SetNextToken(v string) *SearchDevicesOutput {
 
 // SetTotalCount sets the TotalCount field's value.
 func (s *SearchDevicesOutput) SetTotalCount(v int64) *SearchDevicesOutput {
+	s.TotalCount = &v
+	return s
+}
+
+type SearchNetworkProfilesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The filters to use to list a specified set of network profiles. Valid filters
+	// are NetworkProfileName, Ssid, and SecurityType.
+	Filters []*Filter `type:"list"`
+
+	// The maximum number of results to include in the response. If more results
+	// exist than the specified MaxResults value, a token is included in the response
+	// so that the remaining results can be retrieved.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// An optional token returned from a prior request. Use this token for pagination
+	// of results from this action. If this parameter is specified, the response
+	// includes only results beyond the token, up to the value specified by MaxResults.
+	NextToken *string `min:"1" type:"string"`
+
+	// The sort order to use to list the specified set of network profiles. Valid
+	// sort criteria includes NetworkProfileName, Ssid, and SecurityType.
+	SortCriteria []*Sort `type:"list"`
+}
+
+// String returns the string representation
+func (s SearchNetworkProfilesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SearchNetworkProfilesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchNetworkProfilesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchNetworkProfilesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.SortCriteria != nil {
+		for i, v := range s.SortCriteria {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SortCriteria", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *SearchNetworkProfilesInput) SetFilters(v []*Filter) *SearchNetworkProfilesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchNetworkProfilesInput) SetMaxResults(v int64) *SearchNetworkProfilesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchNetworkProfilesInput) SetNextToken(v string) *SearchNetworkProfilesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortCriteria sets the SortCriteria field's value.
+func (s *SearchNetworkProfilesInput) SetSortCriteria(v []*Sort) *SearchNetworkProfilesInput {
+	s.SortCriteria = v
+	return s
+}
+
+type SearchNetworkProfilesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The network profiles that meet the specified set of filter criteria, in sort
+	// order. It is a list of NetworkProfileData objects.
+	NetworkProfiles []*NetworkProfileData `type:"list"`
+
+	// An optional token returned from a prior request. Use this token for pagination
+	// of results from this action. If this parameter is specified, the response
+	// includes only results beyond the token, up to the value specified by MaxResults.
+	NextToken *string `min:"1" type:"string"`
+
+	// The total number of network profiles returned.
+	TotalCount *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s SearchNetworkProfilesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SearchNetworkProfilesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNetworkProfiles sets the NetworkProfiles field's value.
+func (s *SearchNetworkProfilesOutput) SetNetworkProfiles(v []*NetworkProfileData) *SearchNetworkProfilesOutput {
+	s.NetworkProfiles = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchNetworkProfilesOutput) SetNextToken(v string) *SearchNetworkProfilesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTotalCount sets the TotalCount field's value.
+func (s *SearchNetworkProfilesOutput) SetTotalCount(v int64) *SearchNetworkProfilesOutput {
 	s.TotalCount = &v
 	return s
 }
@@ -17071,6 +18411,125 @@ func (s UpdateGatewayOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateNetworkProfileInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the Private Certificate Authority (PCA) created in AWS Certificate
+	// Manager (ACM). This is used to issue certificates to the devices.
+	CertificateAuthorityArn *string `type:"string"`
+
+	// The current password of the Wi-Fi network.
+	CurrentPassword *string `min:"5" type:"string" sensitive:"true"`
+
+	// Detailed information about a device's network profile.
+	Description *string `type:"string"`
+
+	// The ARN of the network profile associated with a device.
+	//
+	// NetworkProfileArn is a required field
+	NetworkProfileArn *string `type:"string" required:"true"`
+
+	// The name of the network profile associated with a device.
+	NetworkProfileName *string `min:"1" type:"string"`
+
+	// The next, or subsequent, password of the Wi-Fi network. This password is
+	// asynchronously transmitted to the device and is used when the password of
+	// the network changes to NextPassword.
+	NextPassword *string `type:"string" sensitive:"true"`
+
+	// The root certificate(s) of your authentication server that will be installed
+	// on your devices and used to trust your authentication server during EAP negotiation.
+	TrustAnchors []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s UpdateNetworkProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateNetworkProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateNetworkProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateNetworkProfileInput"}
+	if s.CurrentPassword != nil && len(*s.CurrentPassword) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("CurrentPassword", 5))
+	}
+	if s.NetworkProfileArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("NetworkProfileArn"))
+	}
+	if s.NetworkProfileName != nil && len(*s.NetworkProfileName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NetworkProfileName", 1))
+	}
+	if s.TrustAnchors != nil && len(s.TrustAnchors) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TrustAnchors", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCertificateAuthorityArn sets the CertificateAuthorityArn field's value.
+func (s *UpdateNetworkProfileInput) SetCertificateAuthorityArn(v string) *UpdateNetworkProfileInput {
+	s.CertificateAuthorityArn = &v
+	return s
+}
+
+// SetCurrentPassword sets the CurrentPassword field's value.
+func (s *UpdateNetworkProfileInput) SetCurrentPassword(v string) *UpdateNetworkProfileInput {
+	s.CurrentPassword = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateNetworkProfileInput) SetDescription(v string) *UpdateNetworkProfileInput {
+	s.Description = &v
+	return s
+}
+
+// SetNetworkProfileArn sets the NetworkProfileArn field's value.
+func (s *UpdateNetworkProfileInput) SetNetworkProfileArn(v string) *UpdateNetworkProfileInput {
+	s.NetworkProfileArn = &v
+	return s
+}
+
+// SetNetworkProfileName sets the NetworkProfileName field's value.
+func (s *UpdateNetworkProfileInput) SetNetworkProfileName(v string) *UpdateNetworkProfileInput {
+	s.NetworkProfileName = &v
+	return s
+}
+
+// SetNextPassword sets the NextPassword field's value.
+func (s *UpdateNetworkProfileInput) SetNextPassword(v string) *UpdateNetworkProfileInput {
+	s.NextPassword = &v
+	return s
+}
+
+// SetTrustAnchors sets the TrustAnchors field's value.
+func (s *UpdateNetworkProfileInput) SetTrustAnchors(v []*string) *UpdateNetworkProfileInput {
+	s.TrustAnchors = v
+	return s
+}
+
+type UpdateNetworkProfileOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateNetworkProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateNetworkProfileOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateProfileInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17556,6 +19015,9 @@ const (
 
 	// DeviceStatusDeregistered is a DeviceStatus enum value
 	DeviceStatusDeregistered = "DEREGISTERED"
+
+	// DeviceStatusFailed is a DeviceStatus enum value
+	DeviceStatusFailed = "FAILED"
 )
 
 const (
@@ -17667,6 +19129,12 @@ const (
 	// FeatureSkills is a Feature enum value
 	FeatureSkills = "SKILLS"
 
+	// FeatureNetworkProfile is a Feature enum value
+	FeatureNetworkProfile = "NETWORK_PROFILE"
+
+	// FeatureSettings is a Feature enum value
+	FeatureSettings = "SETTINGS"
+
 	// FeatureAll is a Feature enum value
 	FeatureAll = "ALL"
 )
@@ -17674,6 +19142,28 @@ const (
 const (
 	// LocaleEnUs is a Locale enum value
 	LocaleEnUs = "en-US"
+)
+
+const (
+	// NetworkEapMethodEapTls is a NetworkEapMethod enum value
+	NetworkEapMethodEapTls = "EAP_TLS"
+)
+
+const (
+	// NetworkSecurityTypeOpen is a NetworkSecurityType enum value
+	NetworkSecurityTypeOpen = "OPEN"
+
+	// NetworkSecurityTypeWep is a NetworkSecurityType enum value
+	NetworkSecurityTypeWep = "WEP"
+
+	// NetworkSecurityTypeWpaPsk is a NetworkSecurityType enum value
+	NetworkSecurityTypeWpaPsk = "WPA_PSK"
+
+	// NetworkSecurityTypeWpa2Psk is a NetworkSecurityType enum value
+	NetworkSecurityTypeWpa2Psk = "WPA2_PSK"
+
+	// NetworkSecurityTypeWpa2Enterprise is a NetworkSecurityType enum value
+	NetworkSecurityTypeWpa2Enterprise = "WPA2_ENTERPRISE"
 )
 
 const (

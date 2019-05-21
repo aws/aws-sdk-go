@@ -4,6 +4,7 @@
   "operations": {
     "ApproveSkill": "<p>Associates a skill with the organization under the customer's AWS account. If a skill is private, the user implicitly accepts access to this skill during enablement.</p>",
     "AssociateContactWithAddressBook": "<p>Associates a contact with a given address book.</p>",
+    "AssociateDeviceWithNetworkProfile": "<p>Associates a device with the specified network profile.</p>",
     "AssociateDeviceWithRoom": "<p>Associates a device with a given room. This applies all the settings from the room profile to the device, and all the skills in any skill groups added to that room. This operation requires the device to be online, or else a manual sync is required. </p>",
     "AssociateSkillGroupWithRoom": "<p>Associates a skill group with a given room. This enables all skills in the associated skill group on all devices in the room.</p>",
     "AssociateSkillWithSkillGroup": "<p>Associates a skill with a skill group.</p>",
@@ -13,6 +14,7 @@
     "CreateConferenceProvider": "<p>Adds a new conference provider under the user's AWS account.</p>",
     "CreateContact": "<p>Creates a contact with the specified details.</p>",
     "CreateGatewayGroup": "<p>Creates a gateway group with the specified details.</p>",
+    "CreateNetworkProfile": "<p>Creates a network profile with the specified details.</p>",
     "CreateProfile": "<p>Creates a new room profile with the specified details.</p>",
     "CreateRoom": "<p>Creates a room with the specified details.</p>",
     "CreateSkillGroup": "<p>Creates a skill group with a specified name and description.</p>",
@@ -22,8 +24,9 @@
     "DeleteConferenceProvider": "<p>Deletes a conference provider.</p>",
     "DeleteContact": "<p>Deletes a contact by the contact ARN.</p>",
     "DeleteDevice": "<p>Removes a device from Alexa For Business.</p>",
-    "DeleteDeviceUsageData": "<p>When this action is called for a specified shared device, it allows authorized users to delete the device's entire previous history of voice input data and associated response data. This action can be called once every 24 hours for a specific shared device.</p>",
+    "DeleteDeviceUsageData": "<p>When this action is called for a specified shared device, it allows authorized users to delete the device's entire previous history of voice input data. This action can be called once every 24 hours for a specific shared device. </p>",
     "DeleteGatewayGroup": "<p>Deletes a gateway group.</p>",
+    "DeleteNetworkProfile": "<p>Deletes a network profile by the network profile ARN.</p>",
     "DeleteProfile": "<p>Deletes a room profile by the profile ARN.</p>",
     "DeleteRoom": "<p>Deletes a room by the room ARN.</p>",
     "DeleteRoomSkillParameter": "<p>Deletes room skill parameter details by room, skill, and parameter key ID.</p>",
@@ -44,6 +47,7 @@
     "GetGateway": "<p>Retrieves the details of a gateway.</p>",
     "GetGatewayGroup": "<p>Retrieves the details of a gateway group.</p>",
     "GetInvitationConfiguration": "<p>Retrieves the configured values for the user enrollment invitation email template.</p>",
+    "GetNetworkProfile": "<p>Gets the network profile details by the network profile ARN.</p>",
     "GetProfile": "<p>Gets the details of a room profile by profile ARN.</p>",
     "GetRoom": "<p>Gets room details by room ARN.</p>",
     "GetRoomSkillParameter": "<p>Gets room skill parameter details by room, skill, and parameter key ARN.</p>",
@@ -69,13 +73,14 @@
     "SearchAddressBooks": "<p>Searches address books and lists the ones that meet a set of filter and sort criteria.</p>",
     "SearchContacts": "<p>Searches contacts and lists the ones that meet a set of filter and sort criteria.</p>",
     "SearchDevices": "<p>Searches devices and lists the ones that meet a set of filter criteria.</p>",
+    "SearchNetworkProfiles": "<p>Searches network profiles and lists the ones that meet a set of filter and sort criteria.</p>",
     "SearchProfiles": "<p>Searches room profiles and lists the ones that meet a set of filter criteria.</p>",
     "SearchRooms": "<p>Searches rooms and lists the ones that meet a set of filter and sort criteria.</p>",
     "SearchSkillGroups": "<p>Searches skill groups and lists the ones that meet a set of filter and sort criteria.</p>",
     "SearchUsers": "<p>Searches users and lists the ones that meet a set of filter and sort criteria.</p>",
     "SendAnnouncement": "<p>Triggers an asynchronous flow to send text, SSML, or audio announcements to rooms that are identified by a search or filter. </p>",
     "SendInvitation": "<p>Sends an enrollment invitation email with a URL to a user. The URL is valid for 72 hours or until you call this operation again, whichever comes first. </p>",
-    "StartDeviceSync": "<p>Resets a device and its account to the known default settings, by clearing all information and settings set by previous users.</p>",
+    "StartDeviceSync": "<p>Resets a device and its account to the known default settings. This clears all information and settings set by previous users in the following ways:</p> <ul> <li> <p>Bluetooth - This unpairs all bluetooth devices paired with your echo device.</p> </li> <li> <p>Volume - This resets the echo device's volume to the default value.</p> </li> <li> <p>Notifications - This clears all notifications from your echo device.</p> </li> <li> <p>Lists - This clears all to-do items from your echo device.</p> </li> <li> <p>Settings - This internally syncs the room's profile (if the device is assigned to a room), contacts, address books, delegation access for account linking, and communications (if enabled on the room profile).</p> </li> </ul>",
     "StartSmartHomeApplianceDiscovery": "<p>Initiates the discovery of any smart home appliances associated with the room.</p>",
     "TagResource": "<p>Adds metadata tags to a specified resource.</p>",
     "UntagResource": "<p>Removes metadata tags from a specified resource.</p>",
@@ -86,6 +91,7 @@
     "UpdateDevice": "<p>Updates the device name by device ARN.</p>",
     "UpdateGateway": "<p>Updates the details of a gateway. If any optional field is not provided, the existing corresponding value is left unmodified.</p>",
     "UpdateGatewayGroup": "<p>Updates the details of a gateway group. If any optional field is not provided, the existing corresponding value is left unmodified.</p>",
+    "UpdateNetworkProfile": "<p>Updates a network profile by the network profile ARN.</p>",
     "UpdateProfile": "<p>Updates an existing room profile by room profile ARN.</p>",
     "UpdateRoom": "<p>Updates room details by room ARN.</p>",
     "UpdateSkillGroup": "<p>Updates skill group details by skill group ARN.</p>"
@@ -182,6 +188,8 @@
         "AddressBookData$AddressBookArn": "<p>The ARN of the address book.</p>",
         "AssociateContactWithAddressBookRequest$ContactArn": "<p>The ARN of the contact to associate with an address book.</p>",
         "AssociateContactWithAddressBookRequest$AddressBookArn": "<p>The ARN of the address book with which to associate the contact.</p>",
+        "AssociateDeviceWithNetworkProfileRequest$DeviceArn": "<p>The device ARN.</p>",
+        "AssociateDeviceWithNetworkProfileRequest$NetworkProfileArn": "<p>The ARN of the network profile to associate with a device.</p>",
         "AssociateDeviceWithRoomRequest$DeviceArn": "<p>The ARN of the device to associate to a room. Required.</p>",
         "AssociateDeviceWithRoomRequest$RoomArn": "<p>The ARN of the room with which to associate the device. Required.</p>",
         "AssociateSkillGroupWithRoomRequest$SkillGroupArn": "<p>The ARN of the skill group to associate with a room. Required.</p>",
@@ -197,6 +205,8 @@
         "CreateConferenceProviderResponse$ConferenceProviderArn": "<p>The ARN of the newly-created conference provider.</p>",
         "CreateContactResponse$ContactArn": "<p>The ARN of the newly created address book.</p>",
         "CreateGatewayGroupResponse$GatewayGroupArn": "<p>The ARN of the created gateway group.</p>",
+        "CreateNetworkProfileRequest$CertificateAuthorityArn": "<p>The ARN of the Private Certificate Authority (PCA) created in AWS Certificate Manager (ACM). This is used to issue certificates to the devices. </p>",
+        "CreateNetworkProfileResponse$NetworkProfileArn": "<p>The ARN of the network profile associated with a device.</p>",
         "CreateProfileResponse$ProfileArn": "<p>The ARN of the newly created room profile in the response.</p>",
         "CreateRoomRequest$ProfileArn": "<p>The profile ARN for the room.</p>",
         "CreateRoomResponse$RoomArn": "<p>The ARN of the newly created room in the response.</p>",
@@ -209,6 +219,7 @@
         "DeleteDeviceRequest$DeviceArn": "<p>The ARN of the device for which to request details.</p>",
         "DeleteDeviceUsageDataRequest$DeviceArn": "<p>The ARN of the device.</p>",
         "DeleteGatewayGroupRequest$GatewayGroupArn": "<p>The ARN of the gateway group to delete.</p>",
+        "DeleteNetworkProfileRequest$NetworkProfileArn": "<p>The ARN of the network profile associated with a device.</p>",
         "DeleteProfileRequest$ProfileArn": "<p>The ARN of the room profile to delete. Required.</p>",
         "DeleteRoomRequest$RoomArn": "<p>The ARN of the room to delete. Required.</p>",
         "DeleteRoomSkillParameterRequest$RoomArn": "<p>The ARN of the room from which to remove the room skill parameter details.</p>",
@@ -218,7 +229,10 @@
         "Device$DeviceArn": "<p>The ARN of a device.</p>",
         "Device$RoomArn": "<p>The room ARN of a device.</p>",
         "DeviceData$DeviceArn": "<p>The ARN of a device.</p>",
+        "DeviceData$NetworkProfileArn": "<p>The ARN of the network profile associated with a device.</p>",
         "DeviceData$RoomArn": "<p>The room ARN associated with a device.</p>",
+        "DeviceNetworkProfileInfo$NetworkProfileArn": "<p>The ARN of the network profile associated with a device.</p>",
+        "DeviceNetworkProfileInfo$CertificateArn": "<p>The ARN of the certificate associated with a device.</p>",
         "DisassociateContactFromAddressBookRequest$ContactArn": "<p>The ARN of the contact to disassociate from an address book.</p>",
         "DisassociateContactFromAddressBookRequest$AddressBookArn": "<p>The ARN of the address from which to disassociate the contact.</p>",
         "DisassociateDeviceFromRoomRequest$DeviceArn": "<p>The ARN of the device to disassociate from a room. Required.</p>",
@@ -238,6 +252,7 @@
         "GetDeviceRequest$DeviceArn": "<p>The ARN of the device for which to request details. Required.</p>",
         "GetGatewayGroupRequest$GatewayGroupArn": "<p>The ARN of the gateway group to get.</p>",
         "GetGatewayRequest$GatewayArn": "<p>The ARN of the gateway to get.</p>",
+        "GetNetworkProfileRequest$NetworkProfileArn": "<p>The ARN of the network profile associated with a device.</p>",
         "GetProfileRequest$ProfileArn": "<p>The ARN of the room profile for which to request details. Required.</p>",
         "GetRoomRequest$RoomArn": "<p>The ARN of the room for which to request details. Required.</p>",
         "GetRoomSkillParameterRequest$RoomArn": "<p>The ARN of the room from which to get the room skill parameter details. </p>",
@@ -247,6 +262,10 @@
         "ListSkillsRequest$SkillGroupArn": "<p>The ARN of the skill group for which to list enabled skills. Required.</p>",
         "ListSmartHomeAppliancesRequest$RoomArn": "<p>The room that the appliances are associated with.</p>",
         "ListTagsRequest$Arn": "<p>The ARN of the specified resource for which to list tags.</p>",
+        "NetworkProfile$NetworkProfileArn": "<p>The ARN of the network profile associated with a device.</p>",
+        "NetworkProfile$CertificateAuthorityArn": "<p>The ARN of the Private Certificate Authority (PCA) created in AWS Certificate Manager (ACM). This is used to issue certificates to the devices. </p>",
+        "NetworkProfileData$NetworkProfileArn": "<p>The ARN of the network profile associated with a device.</p>",
+        "NetworkProfileData$CertificateAuthorityArn": "<p>The ARN of the Private Certificate Authority (PCA) created in AWS Certificate Manager (ACM). This is used to issue certificates to the devices.</p>",
         "Profile$ProfileArn": "<p>The ARN of a room profile.</p>",
         "Profile$AddressBookArn": "<p>The ARN of the address book.</p>",
         "ProfileData$ProfileArn": "<p>The ARN of a room profile.</p>",
@@ -275,6 +294,8 @@
         "UpdateDeviceRequest$DeviceArn": "<p>The ARN of the device to update. Required.</p>",
         "UpdateGatewayGroupRequest$GatewayGroupArn": "<p>The ARN of the gateway group to update.</p>",
         "UpdateGatewayRequest$GatewayArn": "<p>The ARN of the gateway to update.</p>",
+        "UpdateNetworkProfileRequest$NetworkProfileArn": "<p>The ARN of the network profile associated with a device.</p>",
+        "UpdateNetworkProfileRequest$CertificateAuthorityArn": "<p>The ARN of the Private Certificate Authority (PCA) created in AWS Certificate Manager (ACM). This is used to issue certificates to the devices. </p>",
         "UpdateProfileRequest$ProfileArn": "<p>The ARN of the room profile to update. Required.</p>",
         "UpdateRoomRequest$RoomArn": "<p>The ARN of the room to update. </p>",
         "UpdateRoomRequest$ProfileArn": "<p>The updated profile ARN for the room.</p>",
@@ -288,6 +309,16 @@
       }
     },
     "AssociateContactWithAddressBookResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateDeviceWithNetworkProfileRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateDeviceWithNetworkProfileResponse": {
       "base": null,
       "refs": {
       }
@@ -499,6 +530,12 @@
         "Category$CategoryName": "<p>The name of the skill store category.</p>"
       }
     },
+    "CertificateTime": {
+      "base": null,
+      "refs": {
+        "DeviceNetworkProfileInfo$CertificateExpirationTime": "<p>The time (in epoch) when the certificate expires.</p>"
+      }
+    },
     "ClientId": {
       "base": null,
       "refs": {
@@ -513,6 +550,7 @@
         "CreateConferenceProviderRequest$ClientRequestToken": "<p>The request token of the client.</p>",
         "CreateContactRequest$ClientRequestToken": "<p>A unique, user-specified identifier for this request that ensures idempotency.</p>",
         "CreateGatewayGroupRequest$ClientRequestToken": "<p> A unique, user-specified identifier for the request that ensures idempotency.</p>",
+        "CreateNetworkProfileRequest$ClientRequestToken": null,
         "CreateProfileRequest$ClientRequestToken": "<p>The user-specified token that is used during the creation of a profile.</p>",
         "CreateRoomRequest$ClientRequestToken": "<p>A unique, user-specified identifier for this request that ensures idempotency. </p>",
         "CreateSkillGroupRequest$ClientRequestToken": "<p>A unique, user-specified identifier for this request that ensures idempotency. </p>",
@@ -670,6 +708,16 @@
       "refs": {
       }
     },
+    "CreateNetworkProfileRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateNetworkProfileResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateProfileRequest": {
       "base": null,
       "refs": {
@@ -708,6 +756,14 @@
     "CreateUserResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "CurrentWiFiPassword": {
+      "base": null,
+      "refs": {
+        "CreateNetworkProfileRequest$CurrentPassword": "<p>The current password of the Wi-Fi network.</p>",
+        "NetworkProfile$CurrentPassword": "<p>The current password of the Wi-Fi network.</p>",
+        "UpdateNetworkProfileRequest$CurrentPassword": "<p>The current password of the Wi-Fi network.</p>"
       }
     },
     "CustomerS3BucketName": {
@@ -791,6 +847,16 @@
       }
     },
     "DeleteGatewayGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteNetworkProfileRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteNetworkProfileResponse": {
       "base": null,
       "refs": {
       }
@@ -922,6 +988,12 @@
         "Device$DeviceName": "<p>The name of a device.</p>",
         "DeviceData$DeviceName": "<p>The name of a device.</p>",
         "UpdateDeviceRequest$DeviceName": "<p>The updated device name. Required.</p>"
+      }
+    },
+    "DeviceNetworkProfileInfo": {
+      "base": "<p>Detailed information about a device's network profile.</p>",
+      "refs": {
+        "Device$NetworkProfileInfo": "<p>Detailed information about a device's network profile.</p>"
       }
     },
     "DeviceNotRegisteredException": {
@@ -1111,6 +1183,8 @@
         "DeviceNotRegisteredException$Message": null,
         "InvalidCertificateAuthorityException$Message": null,
         "InvalidDeviceException$Message": null,
+        "InvalidSecretsManagerResourceException$Message": null,
+        "InvalidServiceLinkedRoleStateException$Message": null,
         "InvalidUserStatusException$Message": null,
         "LimitExceededException$Message": null,
         "NameInUseException$Message": null,
@@ -1124,6 +1198,7 @@
     "Feature": {
       "base": null,
       "refs": {
+        "DeviceStatusDetail$Feature": "<p>The list of available features on the device.</p>",
         "Features$member": null
       }
     },
@@ -1150,7 +1225,8 @@
       "refs": {
         "SearchAddressBooksRequest$Filters": "<p>The filters to use to list a specified set of address books. The supported filter key is AddressBookName.</p>",
         "SearchContactsRequest$Filters": "<p>The filters to use to list a specified set of address books. The supported filter keys are DisplayName, FirstName, LastName, and AddressBookArns.</p>",
-        "SearchDevicesRequest$Filters": "<p>The filters to use to list a specified set of devices. Supported filter keys are DeviceName, DeviceStatus, DeviceStatusDetailCode, RoomName, DeviceType, DeviceSerialNumber, UnassociatedOnly, and ConnectionStatus (ONLINE and OFFLINE).</p>",
+        "SearchDevicesRequest$Filters": "<p>The filters to use to list a specified set of devices. Supported filter keys are DeviceName, DeviceStatus, DeviceStatusDetailCode, RoomName, DeviceType, DeviceSerialNumber, UnassociatedOnly, ConnectionStatus (ONLINE and OFFLINE), NetworkProfileName, NetworkProfileArn, Feature, and FailureCode.</p>",
+        "SearchNetworkProfilesRequest$Filters": "<p>The filters to use to list a specified set of network profiles. Valid filters are NetworkProfileName, Ssid, and SecurityType.</p>",
         "SearchProfilesRequest$Filters": "<p>The filters to use to list a specified set of room profiles. Supported filter keys are ProfileName and Address. Required. </p>",
         "SearchRoomsRequest$Filters": "<p>The filters to use to list a specified set of rooms. The supported filter keys are RoomName and ProfileName.</p>",
         "SearchSkillGroupsRequest$Filters": "<p>The filters to use to list a specified set of skill groups. The supported filter key is SkillGroupName. </p>",
@@ -1350,6 +1426,16 @@
       "refs": {
       }
     },
+    "GetNetworkProfileRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetNetworkProfileResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetProfileRequest": {
       "base": null,
       "refs": {
@@ -1411,6 +1497,16 @@
     },
     "InvalidDeviceException": {
       "base": "<p>The device is in an invalid state.</p>",
+      "refs": {
+      }
+    },
+    "InvalidSecretsManagerResourceException": {
+      "base": "<p>A password in SecretsManager is in an invalid state.</p>",
+      "refs": {
+      }
+    },
+    "InvalidServiceLinkedRoleStateException": {
+      "base": "<p>The service linked role is locked for deletion. </p>",
       "refs": {
       }
     },
@@ -1565,6 +1661,7 @@
         "SearchAddressBooksRequest$MaxResults": "<p>The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.</p>",
         "SearchContactsRequest$MaxResults": "<p>The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.</p>",
         "SearchDevicesRequest$MaxResults": "<p>The maximum number of results to include in the response. If more results exist than the specified <code>MaxResults</code> value, a token is included in the response so that the remaining results can be retrieved.</p>",
+        "SearchNetworkProfilesRequest$MaxResults": "<p>The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved. </p>",
         "SearchProfilesRequest$MaxResults": "<p>The maximum number of results to include in the response. If more results exist than the specified <code>MaxResults</code> value, a token is included in the response so that the remaining results can be retrieved.</p>",
         "SearchRoomsRequest$MaxResults": "<p>The maximum number of results to include in the response. If more results exist than the specified <code>MaxResults</code> value, a token is included in the response so that the remaining results can be retrieved. </p>",
         "SearchSkillGroupsRequest$MaxResults": "<p>The maximum number of results to include in the response. If more results exist than the specified <code>MaxResults</code> value, a token is included in the response so that the remaining results can be retrieved. </p>",
@@ -1590,6 +1687,67 @@
     "NameInUseException": {
       "base": "<p>The name sent in the request is already in use.</p>",
       "refs": {
+      }
+    },
+    "NetworkEapMethod": {
+      "base": null,
+      "refs": {
+        "CreateNetworkProfileRequest$EapMethod": "<p>The authentication standard that is used in the EAP framework. Currently, EAP_TLS is supported.</p>",
+        "NetworkProfile$EapMethod": "<p>The authentication standard that is used in the EAP framework. Currently, EAP_TLS is supported. </p>",
+        "NetworkProfileData$EapMethod": "<p>The authentication standard that is used in the EAP framework. Currently, EAP_TLS is supported.</p>"
+      }
+    },
+    "NetworkProfile": {
+      "base": "<p>The network profile associated with a device.</p>",
+      "refs": {
+        "GetNetworkProfileResponse$NetworkProfile": "<p>The network profile associated with a device.</p>"
+      }
+    },
+    "NetworkProfileData": {
+      "base": "<p>The data associated with a network profile.</p>",
+      "refs": {
+        "NetworkProfileDataList$member": null
+      }
+    },
+    "NetworkProfileDataList": {
+      "base": null,
+      "refs": {
+        "SearchNetworkProfilesResponse$NetworkProfiles": "<p>The network profiles that meet the specified set of filter criteria, in sort order. It is a list of NetworkProfileData objects. </p>"
+      }
+    },
+    "NetworkProfileDescription": {
+      "base": null,
+      "refs": {
+        "CreateNetworkProfileRequest$Description": "<p>Detailed information about a device's network profile.</p>",
+        "NetworkProfile$Description": "<p>Detailed information about a device's network profile.</p>",
+        "NetworkProfileData$Description": "<p>Detailed information about a device's network profile.</p>",
+        "UpdateNetworkProfileRequest$Description": "<p>Detailed information about a device's network profile.</p>"
+      }
+    },
+    "NetworkProfileName": {
+      "base": null,
+      "refs": {
+        "CreateNetworkProfileRequest$NetworkProfileName": "<p>The name of the network profile associated with a device.</p>",
+        "DeviceData$NetworkProfileName": "<p>The name of the network profile associated with a device.</p>",
+        "NetworkProfile$NetworkProfileName": "<p>The name of the network profile associated with a device.</p>",
+        "NetworkProfileData$NetworkProfileName": "<p>The name of the network profile associated with a device.</p>",
+        "UpdateNetworkProfileRequest$NetworkProfileName": "<p>The name of the network profile associated with a device.</p>"
+      }
+    },
+    "NetworkSecurityType": {
+      "base": null,
+      "refs": {
+        "CreateNetworkProfileRequest$SecurityType": "<p>The security type of the Wi-Fi network. This can be WPA2_ENTERPRISE, WPA2_PSK, WPA_PSK, WEP, or OPEN.</p>",
+        "NetworkProfile$SecurityType": "<p>The security type of the Wi-Fi network. This can be WPA2_ENTERPRISE, WPA2_PSK, WPA_PSK, WEP, or OPEN.</p>",
+        "NetworkProfileData$SecurityType": "<p>The security type of the Wi-Fi network. This can be WPA2_ENTERPRISE, WPA2_PSK, WPA_PSK, WEP, or OPEN.</p>"
+      }
+    },
+    "NetworkSsid": {
+      "base": null,
+      "refs": {
+        "CreateNetworkProfileRequest$Ssid": "<p>The SSID of the Wi-Fi network.</p>",
+        "NetworkProfile$Ssid": "<p>The SSID of the Wi-Fi network.</p>",
+        "NetworkProfileData$Ssid": "<p>The SSID of the Wi-Fi network.</p>"
       }
     },
     "NewInThisVersionBulletPoints": {
@@ -1627,6 +1785,8 @@
         "SearchContactsResponse$NextToken": "<p>The token returned to indicate that there is more data available.</p>",
         "SearchDevicesRequest$NextToken": "<p>An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by <code>MaxResults</code>.</p>",
         "SearchDevicesResponse$NextToken": "<p>The token returned to indicate that there is more data available.</p>",
+        "SearchNetworkProfilesRequest$NextToken": "<p>An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by MaxResults. </p>",
+        "SearchNetworkProfilesResponse$NextToken": "<p>An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by MaxResults.</p>",
         "SearchProfilesRequest$NextToken": "<p>An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by <code>MaxResults</code>.</p>",
         "SearchProfilesResponse$NextToken": "<p>The token returned to indicate that there is more data available.</p>",
         "SearchRoomsRequest$NextToken": "<p>An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by <code>MaxResults</code>.</p>",
@@ -1635,6 +1795,14 @@
         "SearchSkillGroupsResponse$NextToken": "<p>The token returned to indicate that there is more data available.</p>",
         "SearchUsersRequest$NextToken": "<p>An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by <code>MaxResults</code>. Required.</p>",
         "SearchUsersResponse$NextToken": "<p>The token returned to indicate that there is more data available.</p>"
+      }
+    },
+    "NextWiFiPassword": {
+      "base": null,
+      "refs": {
+        "CreateNetworkProfileRequest$NextPassword": "<p>The next, or subsequent, password of the Wi-Fi network. This password is asynchronously transmitted to the device and is used when the password of the network changes to NextPassword. </p>",
+        "NetworkProfile$NextPassword": "<p>The next, or subsequent, password of the Wi-Fi network. This password is asynchronously transmitted to the device and is used when the password of the network changes to NextPassword. </p>",
+        "UpdateNetworkProfileRequest$NextPassword": "<p>The next, or subsequent, password of the Wi-Fi network. This password is asynchronously transmitted to the device and is used when the password of the network changes to NextPassword. </p>"
       }
     },
     "NotFoundException": {
@@ -1960,6 +2128,16 @@
       "refs": {
       }
     },
+    "SearchNetworkProfilesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchNetworkProfilesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "SearchProfilesRequest": {
       "base": null,
       "refs": {
@@ -2198,7 +2376,8 @@
       "refs": {
         "SearchAddressBooksRequest$SortCriteria": "<p>The sort order to use in listing the specified set of address books. The supported sort key is AddressBookName.</p>",
         "SearchContactsRequest$SortCriteria": "<p>The sort order to use in listing the specified set of contacts. The supported sort keys are DisplayName, FirstName, and LastName.</p>",
-        "SearchDevicesRequest$SortCriteria": "<p>The sort order to use in listing the specified set of devices. Supported sort keys are DeviceName, DeviceStatus, RoomName, DeviceType, DeviceSerialNumber, and ConnectionStatus.</p>",
+        "SearchDevicesRequest$SortCriteria": "<p>The sort order to use in listing the specified set of devices. Supported sort keys are DeviceName, DeviceStatus, RoomName, DeviceType, DeviceSerialNumber, ConnectionStatus, NetworkProfileName, NetworkProfileArn, Feature, and FailureCode.</p>",
+        "SearchNetworkProfilesRequest$SortCriteria": "<p>The sort order to use to list the specified set of network profiles. Valid sort criteria includes NetworkProfileName, Ssid, and SecurityType.</p>",
         "SearchProfilesRequest$SortCriteria": "<p>The sort order to use in listing the specified set of room profiles. Supported sort keys are ProfileName and Address.</p>",
         "SearchRoomsRequest$SortCriteria": "<p>The sort order to use in listing the specified set of rooms. The supported sort keys are RoomName and ProfileName.</p>",
         "SearchSkillGroupsRequest$SortCriteria": "<p>The sort order to use in listing the specified set of skill groups. The supported sort key is SkillGroupName. </p>",
@@ -2341,10 +2520,25 @@
         "SearchAddressBooksResponse$TotalCount": "<p>The total number of address books returned.</p>",
         "SearchContactsResponse$TotalCount": "<p>The total number of contacts returned.</p>",
         "SearchDevicesResponse$TotalCount": "<p>The total number of devices returned.</p>",
+        "SearchNetworkProfilesResponse$TotalCount": "<p>The total number of network profiles returned.</p>",
         "SearchProfilesResponse$TotalCount": "<p>The total number of room profiles returned.</p>",
         "SearchRoomsResponse$TotalCount": "<p>The total number of rooms returned.</p>",
         "SearchSkillGroupsResponse$TotalCount": "<p>The total number of skill groups returned.</p>",
         "SearchUsersResponse$TotalCount": "<p>The total number of users returned.</p>"
+      }
+    },
+    "TrustAnchor": {
+      "base": null,
+      "refs": {
+        "TrustAnchorList$member": null
+      }
+    },
+    "TrustAnchorList": {
+      "base": null,
+      "refs": {
+        "CreateNetworkProfileRequest$TrustAnchors": "<p>The root certificates of your authentication server that is installed on your devices and used to trust your authentication server during EAP negotiation. </p>",
+        "NetworkProfile$TrustAnchors": "<p>The root certificates of your authentication server, which is installed on your devices and used to trust your authentication server during EAP negotiation.</p>",
+        "UpdateNetworkProfileRequest$TrustAnchors": "<p>The root certificate(s) of your authentication server that will be installed on your devices and used to trust your authentication server during EAP negotiation. </p>"
       }
     },
     "UnauthorizedException": {
@@ -2428,6 +2622,16 @@
       }
     },
     "UpdateGatewayResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateNetworkProfileRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateNetworkProfileResponse": {
       "base": null,
       "refs": {
       }
