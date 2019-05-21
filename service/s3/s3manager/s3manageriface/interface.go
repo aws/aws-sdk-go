@@ -17,6 +17,11 @@ type DownloaderAPI interface {
 
 var _ DownloaderAPI = (*s3manager.Downloader)(nil)
 
+type DownloadWithIterator interface {
+	DownloadWithIterator(aws.Context, s3manager.BatchDownloadIterator, ...func(*s3manager.Downloader)) error
+}
+
+
 // UploaderAPI is the interface type for s3manager.Uploader.
 type UploaderAPI interface {
 	Upload(*s3manager.UploadInput, ...func(*s3manager.Uploader)) (*s3manager.UploadOutput, error)
@@ -24,3 +29,12 @@ type UploaderAPI interface {
 }
 
 var _ UploaderAPI = (*s3manager.Uploader)(nil)
+
+type UploadWithIterator interface {
+	UploadWithIterator(aws.Context, s3manager.BatchUploadIterator, ...func(*s3manager.Uploader)) error
+}
+
+
+type Deleter interface {
+	Delete(aws.Context, s3manager.BatchDeleteIterator) error
+}
