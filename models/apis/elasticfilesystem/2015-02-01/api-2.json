@@ -750,7 +750,7 @@
     },
     "ProvisionedThroughputInMibps":{
       "type":"double",
-      "min":0.0
+      "min":1.0
     },
     "PutLifecycleConfigurationRequest":{
       "type":"structure",

@@ -1030,6 +1030,20 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "UpdateProvisionedProductProperties":{
+      "name":"UpdateProvisionedProductProperties",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateProvisionedProductPropertiesInput"},
+      "output":{"shape":"UpdateProvisionedProductPropertiesOutput"},
+      "errors":[
+        {"shape":"InvalidParametersException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidStateException"}
+      ]
+    },
     "UpdateProvisioningArtifact":{
       "name":"UpdateProvisioningArtifact",
       "http":{
@@ -2710,7 +2724,18 @@
         "SupportUrl":{"shape":"SupportUrl"}
       }
     },
+    "PropertyKey":{
+      "type":"string",
+      "enum":["OWNER"],
+      "max":128,
+      "min":1
+    },
     "PropertyName":{"type":"string"},
+    "PropertyValue":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
     "ProviderName":{
       "type":"string",
       "max":50,
@@ -2858,6 +2883,13 @@
     "ProvisionedProductPlans":{
       "type":"list",
       "member":{"shape":"ProvisionedProductPlanSummary"}
+    },
+    "ProvisionedProductProperties":{
+      "type":"map",
+      "key":{"shape":"PropertyKey"},
+      "value":{"shape":"PropertyValue"},
+      "max":100,
+      "min":1
     },
     "ProvisionedProductStatus":{
       "type":"string",
@@ -3684,6 +3716,32 @@
       "type":"structure",
       "members":{
         "RecordDetail":{"shape":"RecordDetail"}
+      }
+    },
+    "UpdateProvisionedProductPropertiesInput":{
+      "type":"structure",
+      "required":[
+        "ProvisionedProductId",
+        "ProvisionedProductProperties",
+        "IdempotencyToken"
+      ],
+      "members":{
+        "AcceptLanguage":{"shape":"AcceptLanguage"},
+        "ProvisionedProductId":{"shape":"Id"},
+        "ProvisionedProductProperties":{"shape":"ProvisionedProductProperties"},
+        "IdempotencyToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "UpdateProvisionedProductPropertiesOutput":{
+      "type":"structure",
+      "members":{
+        "ProvisionedProductId":{"shape":"Id"},
+        "ProvisionedProductProperties":{"shape":"ProvisionedProductProperties"},
+        "RecordId":{"shape":"Id"},
+        "Status":{"shape":"RecordStatus"}
       }
     },
     "UpdateProvisioningArtifactInput":{

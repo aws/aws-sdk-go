@@ -69,7 +69,8 @@
         {"shape":"ArgumentException"},
         {"shape":"NotFoundException"},
         {"shape":"LimitExceededException"},
-        {"shape":"ServiceAccountException"}
+        {"shape":"ServiceAccountException"},
+        {"shape":"TagOperationException"}
       ]
     },
     "CreateRemoteAccessSession":{
@@ -719,6 +720,19 @@
         {"shape":"ServiceAccountException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"TagOperationException"}
+      ]
+    },
     "ListTests":{
       "name":"ListTests",
       "http":{
@@ -870,6 +884,34 @@
         {"shape":"ServiceAccountException"}
       ]
     },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"TagOperationException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"TagPolicyException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"TagOperationException"}
+      ]
+    },
     "UpdateDeviceInstance":{
       "name":"UpdateDeviceInstance",
       "http":{
@@ -998,6 +1040,7 @@
     "AccountsCleanup":{"type":"boolean"},
     "AmazonResourceName":{
       "type":"string",
+      "max":1011,
       "min":32
     },
     "AmazonResourceNames":{
@@ -1556,6 +1599,7 @@
       "member":{"shape":"Device"}
     },
     "Double":{"type":"double"},
+    "ExceptionMessage":{"type":"string"},
     "ExecutionConfiguration":{
       "type":"structure",
       "members":{
@@ -2159,6 +2203,19 @@
         "nextToken":{"shape":"PaginationToken"}
       }
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceARN"],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"}
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagList"}
+      }
+    },
     "ListTestsRequest":{
       "type":"structure",
       "required":["arn"],
@@ -2741,6 +2798,69 @@
       "type":"list",
       "member":{"shape":"Suite"}
     },
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"TagKey"},
+        "Value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":150
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"},
+      "max":150
+    },
+    "TagOperationException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"},
+        "resourceName":{"shape":"AmazonResourceName"}
+      },
+      "exception":true
+    },
+    "TagPolicyException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"},
+        "resourceName":{"shape":"AmazonResourceName"}
+      },
+      "exception":true
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "Tags"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
     "Test":{
       "type":"structure",
       "members":{
@@ -2792,6 +2912,14 @@
       "type":"list",
       "member":{"shape":"Test"}
     },
+    "TooManyTagsException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"},
+        "resourceName":{"shape":"AmazonResourceName"}
+      },
+      "exception":true
+    },
     "TransactionIdentifier":{
       "type":"string",
       "min":32
@@ -2823,6 +2951,22 @@
       "type":"map",
       "key":{"shape":"ExecutionResult"},
       "value":{"shape":"UniqueProblems"}
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "TagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateDeviceInstanceRequest":{
       "type":"structure",

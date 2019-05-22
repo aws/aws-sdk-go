@@ -3,6 +3,7 @@
   "service": "<p>Amazon WorkLink is a cloud-based service that provides secure access to internal websites and web apps from iOS phones. In a single step, your users, such as employees, can access internal websites as efficiently as they access any other public website. They enter a URL in their web browser, or choose a link to an internal website in an email. Amazon WorkLink authenticates the user's access and securely renders authorized internal web content in a secure rendering service in the AWS cloud. Amazon WorkLink doesn't download or store any internal web content on mobile devices.</p>",
   "operations": {
     "AssociateDomain": "<p>Specifies a domain to be associated to Amazon WorkLink.</p>",
+    "AssociateWebsiteAuthorizationProvider": "<p>Associates a website authorization provider with a specified fleet. This is used to authorize users against associated websites in the company network.</p>",
     "AssociateWebsiteCertificateAuthority": "<p>Imports the root certificate of a certificate authority (CA) used to obtain TLS certificates used by associated websites within the company network.</p>",
     "CreateFleet": "<p>Creates a fleet. A fleet consists of resources and the configuration that delivers associated websites to authorized users who download and set up the Amazon WorkLink app.</p>",
     "DeleteFleet": "<p>Deletes a fleet. Prevents users from accessing previously associated websites. </p>",
@@ -15,10 +16,12 @@
     "DescribeIdentityProviderConfiguration": "<p>Describes the identity provider configuration of the specified fleet.</p>",
     "DescribeWebsiteCertificateAuthority": "<p>Provides information about the certificate authority.</p>",
     "DisassociateDomain": "<p>Disassociates a domain from Amazon WorkLink. End users lose the ability to access the domain with Amazon WorkLink. </p>",
+    "DisassociateWebsiteAuthorizationProvider": "<p>Disassociates a website authorization provider from a specified fleet. After the disassociation, users can't load any associated websites that require this authorization provider.</p>",
     "DisassociateWebsiteCertificateAuthority": "<p>Removes a certificate authority (CA).</p>",
     "ListDevices": "<p>Retrieves a list of devices registered with the specified fleet.</p>",
     "ListDomains": "<p>Retrieves a list of domains associated to a specified fleet.</p>",
     "ListFleets": "<p>Retrieves a list of fleets for the current account and Region.</p>",
+    "ListWebsiteAuthorizationProviders": "<p>Retrieves a list of website authorization providers associated with a specified fleet.</p>",
     "ListWebsiteCertificateAuthorities": "<p>Retrieves a list of certificate authorities added for the current account and Region.</p>",
     "RestoreDomainAccess": "<p>Moves a domain to ACTIVE status if it was in the INACTIVE status.</p>",
     "RevokeDomainAccess": "<p>Moves a domain to INACTIVE status if it was in the ACTIVE status.</p>",
@@ -34,7 +37,8 @@
     "AcmCertificateArn": {
       "base": null,
       "refs": {
-        "AssociateDomainRequest$AcmCertificateArn": "<p>The ARN of an issued ACM certificate that is valid for the domain being associated. </p>"
+        "AssociateDomainRequest$AcmCertificateArn": "<p>The ARN of an issued ACM certificate that is valid for the domain being associated.</p>",
+        "DescribeDomainResponse$AcmCertificateArn": "<p>The ARN of an issued ACM certificate that is valid for the domain being associated.</p>"
       }
     },
     "AssociateDomainRequest": {
@@ -43,6 +47,16 @@
       }
     },
     "AssociateDomainResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateWebsiteAuthorizationProviderRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateWebsiteAuthorizationProviderResponse": {
       "base": null,
       "refs": {
       }
@@ -62,6 +76,13 @@
       "refs": {
         "DescribeAuditStreamConfigurationResponse$AuditStreamArn": "<p>The ARN of the Amazon Kinesis data stream that will receive the audit events.</p>",
         "UpdateAuditStreamConfigurationRequest$AuditStreamArn": "<p>The ARN of the Amazon Kinesis data stream that receives the audit events.</p>"
+      }
+    },
+    "AuthorizationProviderType": {
+      "base": null,
+      "refs": {
+        "AssociateWebsiteAuthorizationProviderRequest$AuthorizationProviderType": "<p>The authorization provider type.</p>",
+        "WebsiteAuthorizationProviderSummary$AuthorizationProviderType": "<p>The authorization provider type.</p>"
       }
     },
     "Boolean": {
@@ -115,6 +136,7 @@
         "DomainSummary$CreatedTime": "<p>The time that the domain was created.</p>",
         "FleetSummary$CreatedTime": "<p>The time when the fleet was created.</p>",
         "FleetSummary$LastUpdatedTime": "<p>The time when the fleet was last updated.</p>",
+        "WebsiteAuthorizationProviderSummary$CreatedTime": "<p>The time of creation.</p>",
         "WebsiteCaSummary$CreatedTime": "<p>The time when the CA was added.</p>"
       }
     },
@@ -267,6 +289,16 @@
       "refs": {
       }
     },
+    "DisassociateWebsiteAuthorizationProviderRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateWebsiteAuthorizationProviderResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DisassociateWebsiteCertificateAuthorityRequest": {
       "base": null,
       "refs": {
@@ -297,12 +329,15 @@
       "base": null,
       "refs": {
         "AssociateDomainRequest$DomainName": "<p>The fully qualified domain name (FQDN).</p>",
+        "AssociateWebsiteAuthorizationProviderRequest$DomainName": "<p>The domain name of the authorization provider. This applies only to SAML-based authorization providers.</p>",
         "DescribeDomainRequest$DomainName": "<p>The name of the domain.</p>",
+        "DescribeDomainResponse$DomainName": "<p>The name of the domain.</p>",
         "DisassociateDomainRequest$DomainName": "<p>The name of the domain.</p>",
         "DomainSummary$DomainName": "<p>The name of the domain.</p>",
         "RestoreDomainAccessRequest$DomainName": "<p>The name of the domain.</p>",
         "RevokeDomainAccessRequest$DomainName": "<p>The name of the domain.</p>",
-        "UpdateDomainMetadataRequest$DomainName": "<p>The name of the domain.</p>"
+        "UpdateDomainMetadataRequest$DomainName": "<p>The name of the domain.</p>",
+        "WebsiteAuthorizationProviderSummary$DomainName": "<p>The domain name of the authorization provider. This applies only to SAML-based authorization providers.</p>"
       }
     },
     "DomainStatus": {
@@ -339,6 +374,7 @@
       "base": null,
       "refs": {
         "AssociateDomainRequest$FleetArn": "<p>The Amazon Resource Name (ARN) of the fleet.</p>",
+        "AssociateWebsiteAuthorizationProviderRequest$FleetArn": "<p>The ARN of the fleet.</p>",
         "AssociateWebsiteCertificateAuthorityRequest$FleetArn": "<p>The ARN of the fleet.</p>",
         "CreateFleetResponse$FleetArn": "<p>The ARN of the fleet.</p>",
         "DeleteFleetRequest$FleetArn": "<p>The ARN of the fleet.</p>",
@@ -351,10 +387,12 @@
         "DescribeIdentityProviderConfigurationRequest$FleetArn": "<p>The ARN of the fleet.</p>",
         "DescribeWebsiteCertificateAuthorityRequest$FleetArn": "<p>The ARN of the fleet.</p>",
         "DisassociateDomainRequest$FleetArn": "<p>The ARN of the fleet.</p>",
+        "DisassociateWebsiteAuthorizationProviderRequest$FleetArn": "<p>The ARN of the fleet.</p>",
         "DisassociateWebsiteCertificateAuthorityRequest$FleetArn": "<p>The ARN of the fleet.</p>",
         "FleetSummary$FleetArn": "<p>The ARN of the fleet.</p>",
         "ListDevicesRequest$FleetArn": "<p>The ARN of the fleet.</p>",
         "ListDomainsRequest$FleetArn": "<p>The ARN of the fleet.</p>",
+        "ListWebsiteAuthorizationProvidersRequest$FleetArn": "<p>The ARN of the fleet.</p>",
         "ListWebsiteCertificateAuthoritiesRequest$FleetArn": "<p>The ARN of the fleet.</p>",
         "RestoreDomainAccessRequest$FleetArn": "<p>The ARN of the fleet.</p>",
         "RevokeDomainAccessRequest$FleetArn": "<p>The ARN of the fleet.</p>",
@@ -397,11 +435,14 @@
     "Id": {
       "base": null,
       "refs": {
+        "AssociateWebsiteAuthorizationProviderResponse$AuthorizationProviderId": "<p>A unique identifier for the authorization provider.</p>",
         "AssociateWebsiteCertificateAuthorityResponse$WebsiteCaId": "<p>A unique identifier for the CA.</p>",
         "DescribeDeviceRequest$DeviceId": "<p>A unique identifier for a registered user's device.</p>",
         "DescribeWebsiteCertificateAuthorityRequest$WebsiteCaId": "<p>A unique identifier for the certificate authority.</p>",
         "DeviceSummary$DeviceId": "<p>The ID of the device.</p>",
+        "DisassociateWebsiteAuthorizationProviderRequest$AuthorizationProviderId": "<p>A unique identifier for the authorization provider.</p>",
         "DisassociateWebsiteCertificateAuthorityRequest$WebsiteCaId": "<p>A unique identifier for the CA.</p>",
+        "WebsiteAuthorizationProviderSummary$AuthorizationProviderId": "<p>A unique identifier for the authorization provider.</p>",
         "WebsiteCaSummary$WebsiteCaId": "<p>A unique identifier for the CA.</p>"
       }
     },
@@ -452,6 +493,16 @@
       "refs": {
       }
     },
+    "ListWebsiteAuthorizationProvidersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWebsiteAuthorizationProvidersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListWebsiteCertificateAuthoritiesRequest": {
       "base": null,
       "refs": {
@@ -468,6 +519,7 @@
         "ListDevicesRequest$MaxResults": "<p>The maximum number of results to be included in the next page.</p>",
         "ListDomainsRequest$MaxResults": "<p>The maximum number of results to be included in the next page.</p>",
         "ListFleetsRequest$MaxResults": "<p>The maximum number of results to be included in the next page.</p>",
+        "ListWebsiteAuthorizationProvidersRequest$MaxResults": "<p>The maximum number of results to be included in the next page.</p>",
         "ListWebsiteCertificateAuthoritiesRequest$MaxResults": "<p>The maximum number of results to be included in the next page.</p>"
       }
     },
@@ -480,6 +532,8 @@
         "ListDomainsResponse$NextToken": "<p>The pagination token used to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
         "ListFleetsRequest$NextToken": "<p>The pagination token used to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
         "ListFleetsResponse$NextToken": "<p>The pagination token used to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
+        "ListWebsiteAuthorizationProvidersRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
+        "ListWebsiteAuthorizationProvidersResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
         "ListWebsiteCertificateAuthoritiesRequest$NextToken": "<p>The pagination token used to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
         "ListWebsiteCertificateAuthoritiesResponse$NextToken": "<p>The pagination token used to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>"
       }
@@ -640,6 +694,18 @@
       "refs": {
         "DescribeCompanyNetworkConfigurationResponse$VpcId": "<p>The VPC with connectivity to associated websites.</p>",
         "UpdateCompanyNetworkConfigurationRequest$VpcId": "<p>The VPC with connectivity to associated websites.</p>"
+      }
+    },
+    "WebsiteAuthorizationProviderSummary": {
+      "base": "<p>The summary of the website authorization provider.</p>",
+      "refs": {
+        "WebsiteAuthorizationProvidersSummaryList$member": null
+      }
+    },
+    "WebsiteAuthorizationProvidersSummaryList": {
+      "base": null,
+      "refs": {
+        "ListWebsiteAuthorizationProvidersResponse$WebsiteAuthorizationProviders": "<p>The website authorization providers.</p>"
       }
     },
     "WebsiteCaSummary": {

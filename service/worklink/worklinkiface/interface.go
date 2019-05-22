@@ -64,6 +64,10 @@ type WorkLinkAPI interface {
 	AssociateDomainWithContext(aws.Context, *worklink.AssociateDomainInput, ...request.Option) (*worklink.AssociateDomainOutput, error)
 	AssociateDomainRequest(*worklink.AssociateDomainInput) (*request.Request, *worklink.AssociateDomainOutput)
 
+	AssociateWebsiteAuthorizationProvider(*worklink.AssociateWebsiteAuthorizationProviderInput) (*worklink.AssociateWebsiteAuthorizationProviderOutput, error)
+	AssociateWebsiteAuthorizationProviderWithContext(aws.Context, *worklink.AssociateWebsiteAuthorizationProviderInput, ...request.Option) (*worklink.AssociateWebsiteAuthorizationProviderOutput, error)
+	AssociateWebsiteAuthorizationProviderRequest(*worklink.AssociateWebsiteAuthorizationProviderInput) (*request.Request, *worklink.AssociateWebsiteAuthorizationProviderOutput)
+
 	AssociateWebsiteCertificateAuthority(*worklink.AssociateWebsiteCertificateAuthorityInput) (*worklink.AssociateWebsiteCertificateAuthorityOutput, error)
 	AssociateWebsiteCertificateAuthorityWithContext(aws.Context, *worklink.AssociateWebsiteCertificateAuthorityInput, ...request.Option) (*worklink.AssociateWebsiteCertificateAuthorityOutput, error)
 	AssociateWebsiteCertificateAuthorityRequest(*worklink.AssociateWebsiteCertificateAuthorityInput) (*request.Request, *worklink.AssociateWebsiteCertificateAuthorityOutput)
@@ -112,6 +116,10 @@ type WorkLinkAPI interface {
 	DisassociateDomainWithContext(aws.Context, *worklink.DisassociateDomainInput, ...request.Option) (*worklink.DisassociateDomainOutput, error)
 	DisassociateDomainRequest(*worklink.DisassociateDomainInput) (*request.Request, *worklink.DisassociateDomainOutput)
 
+	DisassociateWebsiteAuthorizationProvider(*worklink.DisassociateWebsiteAuthorizationProviderInput) (*worklink.DisassociateWebsiteAuthorizationProviderOutput, error)
+	DisassociateWebsiteAuthorizationProviderWithContext(aws.Context, *worklink.DisassociateWebsiteAuthorizationProviderInput, ...request.Option) (*worklink.DisassociateWebsiteAuthorizationProviderOutput, error)
+	DisassociateWebsiteAuthorizationProviderRequest(*worklink.DisassociateWebsiteAuthorizationProviderInput) (*request.Request, *worklink.DisassociateWebsiteAuthorizationProviderOutput)
+
 	DisassociateWebsiteCertificateAuthority(*worklink.DisassociateWebsiteCertificateAuthorityInput) (*worklink.DisassociateWebsiteCertificateAuthorityOutput, error)
 	DisassociateWebsiteCertificateAuthorityWithContext(aws.Context, *worklink.DisassociateWebsiteCertificateAuthorityInput, ...request.Option) (*worklink.DisassociateWebsiteCertificateAuthorityOutput, error)
 	DisassociateWebsiteCertificateAuthorityRequest(*worklink.DisassociateWebsiteCertificateAuthorityInput) (*request.Request, *worklink.DisassociateWebsiteCertificateAuthorityOutput)
@@ -136,6 +144,13 @@ type WorkLinkAPI interface {
 
 	ListFleetsPages(*worklink.ListFleetsInput, func(*worklink.ListFleetsOutput, bool) bool) error
 	ListFleetsPagesWithContext(aws.Context, *worklink.ListFleetsInput, func(*worklink.ListFleetsOutput, bool) bool, ...request.Option) error
+
+	ListWebsiteAuthorizationProviders(*worklink.ListWebsiteAuthorizationProvidersInput) (*worklink.ListWebsiteAuthorizationProvidersOutput, error)
+	ListWebsiteAuthorizationProvidersWithContext(aws.Context, *worklink.ListWebsiteAuthorizationProvidersInput, ...request.Option) (*worklink.ListWebsiteAuthorizationProvidersOutput, error)
+	ListWebsiteAuthorizationProvidersRequest(*worklink.ListWebsiteAuthorizationProvidersInput) (*request.Request, *worklink.ListWebsiteAuthorizationProvidersOutput)
+
+	ListWebsiteAuthorizationProvidersPages(*worklink.ListWebsiteAuthorizationProvidersInput, func(*worklink.ListWebsiteAuthorizationProvidersOutput, bool) bool) error
+	ListWebsiteAuthorizationProvidersPagesWithContext(aws.Context, *worklink.ListWebsiteAuthorizationProvidersInput, func(*worklink.ListWebsiteAuthorizationProvidersOutput, bool) bool, ...request.Option) error
 
 	ListWebsiteCertificateAuthorities(*worklink.ListWebsiteCertificateAuthoritiesInput) (*worklink.ListWebsiteCertificateAuthoritiesOutput, error)
 	ListWebsiteCertificateAuthoritiesWithContext(aws.Context, *worklink.ListWebsiteCertificateAuthoritiesInput, ...request.Option) (*worklink.ListWebsiteCertificateAuthoritiesOutput, error)

@@ -49,6 +49,7 @@
     "ListRuns": "<p>Gets information about runs, given an AWS Device Farm project ARN.</p>",
     "ListSamples": "<p>Gets information about samples, given an AWS Device Farm job ARN.</p>",
     "ListSuites": "<p>Gets information about test suites for a given job.</p>",
+    "ListTagsForResource": "<p>List the tags for an AWS Device Farm resource.</p>",
     "ListTests": "<p>Gets information about tests in a given test suite.</p>",
     "ListUniqueProblems": "<p>Gets information about unique problems.</p>",
     "ListUploads": "<p>Gets information about uploads, given an AWS Device Farm project ARN.</p>",
@@ -59,6 +60,8 @@
     "StopJob": "<p>Initiates a stop request for the current job. AWS Device Farm will immediately stop the job on the device where tests have not started executing, and you will not be billed for this device. On the device where tests have started executing, Setup Suite and Teardown Suite tests will run to completion before stopping execution on the device. You will be billed for Setup, Teardown, and any tests that were in progress or already completed.</p>",
     "StopRemoteAccessSession": "<p>Ends a specified remote access session.</p>",
     "StopRun": "<p>Initiates a stop request for the current test run. AWS Device Farm will immediately stop the run on devices where tests have not started executing, and you will not be billed for these devices. On devices where tests have started executing, Setup Suite and Teardown Suite tests will run to completion before stopping execution on those devices. You will be billed for Setup, Teardown, and any tests that were in progress or already completed.</p>",
+    "TagResource": "<p>Associates the specified tags to a resource with the specified <code>resourceArn</code>. If existing tags on a resource are not specified in the request parameters, they are not changed. When a resource is deleted, the tags associated with that resource are deleted as well.</p>",
+    "UntagResource": "<p>Deletes the specified tags from a resource.</p>",
     "UpdateDeviceInstance": "<p>Updates information about an existing private device instance.</p>",
     "UpdateDevicePool": "<p>Modifies the name, description, and rules in a device pool given the attributes and the pool ARN. Rule updates are all-or-nothing, meaning they can only be updated as a whole (or not at all).</p>",
     "UpdateInstanceProfile": "<p>Updates information about an existing private device instance profile.</p>",
@@ -140,6 +143,7 @@
         "ListRunsRequest$arn": "<p>The Amazon Resource Name (ARN) of the project for which you want to list runs.</p>",
         "ListSamplesRequest$arn": "<p>The Amazon Resource Name (ARN) of the job used to list samples.</p>",
         "ListSuitesRequest$arn": "<p>The job's Amazon Resource Name (ARN).</p>",
+        "ListTagsForResourceRequest$ResourceARN": "<p>The Amazon Resource Name (ARN) of the resource(s) for which to list tags. You can associate tags with the following Device Farm resources: <code>PROJECT</code>, <code>RUN</code>, <code>NETWORK_PROFILE</code>, <code>INSTANCE_PROFILE</code>, <code>DEVICE_INSTANCE</code>, <code>SESSION</code>, <code>DEVICE_POOL</code>, <code>DEVICE</code>, and <code>VPCE_CONFIGURATION</code>.</p>",
         "ListTestsRequest$arn": "<p>The test suite's Amazon Resource Name (ARN).</p>",
         "ListUniqueProblemsRequest$arn": "<p>The unique problems' ARNs.</p>",
         "ListUploadsRequest$arn": "<p>The Amazon Resource Name (ARN) of the project for which you want to list uploads.</p>",
@@ -165,7 +169,12 @@
         "StopRemoteAccessSessionRequest$arn": "<p>The Amazon Resource Name (ARN) of the remote access session you wish to stop.</p>",
         "StopRunRequest$arn": "<p>Represents the Amazon Resource Name (ARN) of the Device Farm run you wish to stop.</p>",
         "Suite$arn": "<p>The suite's ARN.</p>",
+        "TagOperationException$resourceName": null,
+        "TagPolicyException$resourceName": null,
+        "TagResourceRequest$ResourceARN": "<p>The Amazon Resource Name (ARN) of the resource(s) to which to add tags. You can associate tags with the following Device Farm resources: <code>PROJECT</code>, <code>RUN</code>, <code>NETWORK_PROFILE</code>, <code>INSTANCE_PROFILE</code>, <code>DEVICE_INSTANCE</code>, <code>SESSION</code>, <code>DEVICE_POOL</code>, <code>DEVICE</code>, and <code>VPCE_CONFIGURATION</code>.</p>",
         "Test$arn": "<p>The test's ARN.</p>",
+        "TooManyTagsException$resourceName": null,
+        "UntagResourceRequest$ResourceARN": "<p>The Amazon Resource Name (ARN) of the resource(s) from which to delete tags. You can associate tags with the following Device Farm resources: <code>PROJECT</code>, <code>RUN</code>, <code>NETWORK_PROFILE</code>, <code>INSTANCE_PROFILE</code>, <code>DEVICE_INSTANCE</code>, <code>SESSION</code>, <code>DEVICE_POOL</code>, <code>DEVICE</code>, and <code>VPCE_CONFIGURATION</code>.</p>",
         "UpdateDeviceInstanceRequest$arn": "<p>The Amazon Resource Name (ARN) of the device instance.</p>",
         "UpdateDeviceInstanceRequest$profileArn": "<p>The Amazon Resource Name (ARN) of the profile that you want to associate with the device instance.</p>",
         "UpdateDevicePoolRequest$arn": "<p>The Amazon Resourc Name (ARN) of the Device Farm device pool you wish to update.</p>",
@@ -645,6 +654,14 @@
         "MonetaryAmount$amount": "<p>The numerical amount of an offering or transaction.</p>",
         "TrialMinutes$total": "<p>The total number of free trial minutes that the account started with.</p>",
         "TrialMinutes$remaining": "<p>The number of free trial minutes remaining in the account.</p>"
+      }
+    },
+    "ExceptionMessage": {
+      "base": null,
+      "refs": {
+        "TagOperationException$message": null,
+        "TagPolicyException$message": null,
+        "TooManyTagsException$message": null
       }
     },
     "ExecutionConfiguration": {
@@ -1137,6 +1154,16 @@
     },
     "ListSuitesResult": {
       "base": "<p>Represents the result of a list suites request.</p>",
+      "refs": {
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -1767,6 +1794,58 @@
         "ListSuitesResult$suites": "<p>Information about the suites.</p>"
       }
     },
+    "Tag": {
+      "base": "<p>The metadata that you apply to a resource to help you categorize and organize it. Each tag consists of a key and an optional value, both of which you define. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters. </p>",
+      "refs": {
+        "TagList$member": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "Tag$Key": "<p>One part of a key-value pair that make up a tag. A <code>key</code> is a general label that acts like a category for more specific tag values.</p>",
+        "TagKeyList$member": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": "<p>The keys of the tags to be removed.</p>"
+      }
+    },
+    "TagList": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceResponse$Tags": "<p>The tags to add to the resource. A tag is an array of key-value pairs. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.</p>",
+        "TagResourceRequest$Tags": "<p>The tags to add to the resource. A tag is an array of key-value pairs. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.</p>"
+      }
+    },
+    "TagOperationException": {
+      "base": "<p>The operation was not successful. Try again.</p>",
+      "refs": {
+      }
+    },
+    "TagPolicyException": {
+      "base": "<p>The request doesn't comply with the AWS Identity and Access Management (IAM) tag policy. Correct your request and then retry it.</p>",
+      "refs": {
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tag$Value": "<p>The optional part of a key-value pair that make up a tag. A <code>value</code> acts as a descriptor within a tag category (key).</p>"
+      }
+    },
     "Test": {
       "base": "<p>Represents a condition that is evaluated.</p>",
       "refs": {
@@ -1795,6 +1874,11 @@
       "base": null,
       "refs": {
         "ListTestsResult$tests": "<p>Information about the tests.</p>"
+      }
+    },
+    "TooManyTagsException": {
+      "base": "<p>The list of tags on the repository is over the limit. The maximum number of tags that can be applied to a repository is 50. </p>",
+      "refs": {
       }
     },
     "TransactionIdentifier": {
@@ -1833,6 +1917,16 @@
       "base": null,
       "refs": {
         "ListUniqueProblemsResult$uniqueProblems": "<p>Information about the unique problems.</p> <p>Allowed values include:</p> <ul> <li> <p>PENDING: A pending condition.</p> </li> <li> <p>PASSED: A passing condition.</p> </li> <li> <p>WARNED: A warning condition.</p> </li> <li> <p>FAILED: A failed condition.</p> </li> <li> <p>SKIPPED: A skipped condition.</p> </li> <li> <p>ERRORED: An error condition.</p> </li> <li> <p>STOPPED: A stopped condition.</p> </li> </ul>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateDeviceInstanceRequest": {

@@ -30,6 +30,23 @@
         {"shape":"TooManyRequestsException"}
       ]
     },
+    "AssociateWebsiteAuthorizationProvider":{
+      "name":"AssociateWebsiteAuthorizationProvider",
+      "http":{
+        "method":"POST",
+        "requestUri":"/associateWebsiteAuthorizationProvider"
+      },
+      "input":{"shape":"AssociateWebsiteAuthorizationProviderRequest"},
+      "output":{"shape":"AssociateWebsiteAuthorizationProviderResponse"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "AssociateWebsiteCertificateAuthority":{
       "name":"AssociateWebsiteCertificateAuthority",
       "http":{
@@ -224,6 +241,23 @@
         {"shape":"TooManyRequestsException"}
       ]
     },
+    "DisassociateWebsiteAuthorizationProvider":{
+      "name":"DisassociateWebsiteAuthorizationProvider",
+      "http":{
+        "method":"POST",
+        "requestUri":"/disassociateWebsiteAuthorizationProvider"
+      },
+      "input":{"shape":"DisassociateWebsiteAuthorizationProviderRequest"},
+      "output":{"shape":"DisassociateWebsiteAuthorizationProviderResponse"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "DisassociateWebsiteCertificateAuthority":{
       "name":"DisassociateWebsiteCertificateAuthority",
       "http":{
@@ -283,6 +317,22 @@
         {"shape":"UnauthorizedException"},
         {"shape":"InternalServerErrorException"},
         {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "ListWebsiteAuthorizationProviders":{
+      "name":"ListWebsiteAuthorizationProviders",
+      "http":{
+        "method":"POST",
+        "requestUri":"/listWebsiteAuthorizationProviders"
+      },
+      "input":{"shape":"ListWebsiteAuthorizationProvidersRequest"},
+      "output":{"shape":"ListWebsiteAuthorizationProvidersResponse"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -461,13 +511,31 @@
       "members":{
         "FleetArn":{"shape":"FleetArn"},
         "DomainName":{"shape":"DomainName"},
-        "AcmCertificateArn":{"shape":"AcmCertificateArn"},
-        "DisplayName":{"shape":"DisplayName"}
+        "DisplayName":{"shape":"DisplayName"},
+        "AcmCertificateArn":{"shape":"AcmCertificateArn"}
       }
     },
     "AssociateDomainResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "AssociateWebsiteAuthorizationProviderRequest":{
+      "type":"structure",
+      "required":[
+        "FleetArn",
+        "AuthorizationProviderType"
+      ],
+      "members":{
+        "FleetArn":{"shape":"FleetArn"},
+        "AuthorizationProviderType":{"shape":"AuthorizationProviderType"},
+        "DomainName":{"shape":"DomainName"}
+      }
+    },
+    "AssociateWebsiteAuthorizationProviderResponse":{
+      "type":"structure",
+      "members":{
+        "AuthorizationProviderId":{"shape":"Id"}
       }
     },
     "AssociateWebsiteCertificateAuthorityRequest":{
@@ -489,6 +557,10 @@
       }
     },
     "AuditStreamArn":{"type":"string"},
+    "AuthorizationProviderType":{
+      "type":"string",
+      "enum":["SAML"]
+    },
     "Boolean":{"type":"boolean"},
     "Certificate":{
       "type":"string",
@@ -615,9 +687,11 @@
     "DescribeDomainResponse":{
       "type":"structure",
       "members":{
+        "DomainName":{"shape":"DomainName"},
         "DisplayName":{"shape":"DisplayName"},
         "CreatedTime":{"shape":"DateTime"},
-        "DomainStatus":{"shape":"DomainStatus"}
+        "DomainStatus":{"shape":"DomainStatus"},
+        "AcmCertificateArn":{"shape":"AcmCertificateArn"}
       }
     },
     "DescribeFleetMetadataRequest":{
@@ -732,6 +806,22 @@
       "members":{
       }
     },
+    "DisassociateWebsiteAuthorizationProviderRequest":{
+      "type":"structure",
+      "required":[
+        "FleetArn",
+        "AuthorizationProviderId"
+      ],
+      "members":{
+        "FleetArn":{"shape":"FleetArn"},
+        "AuthorizationProviderId":{"shape":"Id"}
+      }
+    },
+    "DisassociateWebsiteAuthorizationProviderResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DisassociateWebsiteCertificateAuthorityRequest":{
       "type":"structure",
       "required":[
@@ -754,7 +844,7 @@
     },
     "DomainName":{
       "type":"string",
-      "max":64,
+      "max":253,
       "min":1,
       "pattern":"^[a-zA-Z0-9]?((?!-)([A-Za-z0-9-]*[A-Za-z0-9])\\.)+[a-zA-Z0-9]+$"
     },
@@ -780,9 +870,9 @@
       ],
       "members":{
         "DomainName":{"shape":"DomainName"},
+        "DisplayName":{"shape":"DisplayName"},
         "CreatedTime":{"shape":"DateTime"},
-        "DomainStatus":{"shape":"DomainStatus"},
-        "DisplayName":{"shape":"DisplayName"}
+        "DomainStatus":{"shape":"DomainStatus"}
       }
     },
     "DomainSummaryList":{
@@ -899,6 +989,22 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListWebsiteAuthorizationProvidersRequest":{
+      "type":"structure",
+      "required":["FleetArn"],
+      "members":{
+        "FleetArn":{"shape":"FleetArn"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListWebsiteAuthorizationProvidersResponse":{
+      "type":"structure",
+      "members":{
+        "WebsiteAuthorizationProviders":{"shape":"WebsiteAuthorizationProvidersSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListWebsiteCertificateAuthoritiesRequest":{
       "type":"structure",
       "required":["FleetArn"],
@@ -984,7 +1090,8 @@
     },
     "SecurityGroupIds":{
       "type":"list",
-      "member":{"shape":"SecurityGroupId"}
+      "member":{"shape":"SecurityGroupId"},
+      "max":5
     },
     "SignOutUserRequest":{
       "type":"structure",
@@ -1128,6 +1235,20 @@
     "VpcId":{
       "type":"string",
       "pattern":"^vpc-([0-9a-f]{8}|[0-9a-f]{17})$"
+    },
+    "WebsiteAuthorizationProviderSummary":{
+      "type":"structure",
+      "required":["AuthorizationProviderType"],
+      "members":{
+        "AuthorizationProviderId":{"shape":"Id"},
+        "AuthorizationProviderType":{"shape":"AuthorizationProviderType"},
+        "DomainName":{"shape":"DomainName"},
+        "CreatedTime":{"shape":"DateTime"}
+      }
+    },
+    "WebsiteAuthorizationProvidersSummaryList":{
+      "type":"list",
+      "member":{"shape":"WebsiteAuthorizationProviderSummary"}
     },
     "WebsiteCaSummary":{
       "type":"structure",
