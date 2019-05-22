@@ -1,3 +1,24 @@
+Release v1.19.36 (2019-05-22)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * This release adds support for tagging of Amazon API Gateway resources.
+* `service/budgets`: Updates service API and documentation
+  * Added new datatype PlannedBudgetLimits to Budget model, and updated examples for AWS Budgets API for UpdateBudget, CreateBudget, DescribeBudget, and DescribeBudgets
+* `service/devicefarm`: Updates service API and documentation
+  * This release introduces support for tagging, tag-based access control, and resource-based access control.
+* `service/ec2`: Updates service API and documentation
+  * This release adds idempotency support for associate, create route and authorization APIs for AWS Client VPN Endpoints.
+* `service/elasticfilesystem`: Updates service API and documentation
+  * AWS EFS documentation updated to reflect the minimum required value for ProvisionedThroughputInMibps is 1 from the previously documented 0. The service has always required a minimum value of 1, therefor service behavior is not changed.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/rds`: Updates service documentation
+  * Documentation updates for rds
+* `service/servicecatalog`: Updates service API and documentation
+  * Service Catalog UpdateProvisionedProductProperties API enables customers to manage provisioned product ownership. Administrators can now update the user associated to a provisioned product to another user within the same account allowing the new user to describe, update, terminate and execute service actions in that Service Catalog resource. New owner will also be able to list and describe all past records executed for that provisioned product.
+* `service/worklink`: Updates service API, documentation, and paginators
+
 Release v1.19.35 (2019-05-21)
 ===
 

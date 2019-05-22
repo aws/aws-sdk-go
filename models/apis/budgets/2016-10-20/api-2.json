@@ -242,6 +242,7 @@
       "members":{
         "BudgetName":{"shape":"BudgetName"},
         "BudgetLimit":{"shape":"Spend"},
+        "PlannedBudgetLimits":{"shape":"PlannedBudgetLimits"},
         "CostFilters":{"shape":"CostFilters"},
         "CostTypes":{"shape":"CostTypes"},
         "TimeUnit":{"shape":"TimeUnit"},
@@ -667,6 +668,11 @@
       "min":1,
       "pattern":"([0-9]*\\.)?[0-9]+"
     },
+    "PlannedBudgetLimits":{
+      "type":"map",
+      "key":{"shape":"GenericString"},
+      "value":{"shape":"Spend"}
+    },
     "Spend":{
       "type":"structure",
       "required":[
@@ -693,7 +699,7 @@
       "type":"string",
       "max":2147483647,
       "min":1,
-      "pattern":".*",
+      "pattern":"(?s).*",
       "sensitive":true
     },
     "Subscribers":{

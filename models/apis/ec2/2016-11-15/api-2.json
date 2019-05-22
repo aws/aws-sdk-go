@@ -3431,6 +3431,10 @@
       "members":{
         "ClientVpnEndpointId":{"shape":"String"},
         "SubnetId":{"shape":"String"},
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        },
         "DryRun":{"shape":"Boolean"}
       }
     },
@@ -3856,6 +3860,10 @@
         "AccessGroupId":{"shape":"String"},
         "AuthorizeAllGroups":{"shape":"Boolean"},
         "Description":{"shape":"String"},
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        },
         "DryRun":{"shape":"Boolean"}
       }
     },
@@ -5460,6 +5468,10 @@
         "DestinationCidrBlock":{"shape":"String"},
         "TargetVpcSubnetId":{"shape":"String"},
         "Description":{"shape":"String"},
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        },
         "DryRun":{"shape":"Boolean"}
       }
     },

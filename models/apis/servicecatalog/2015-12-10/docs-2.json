@@ -38,7 +38,7 @@
     "DescribeProvisionedProductPlan": "<p>Gets information about the resource changes for the specified plan.</p>",
     "DescribeProvisioningArtifact": "<p>Gets information about the specified provisioning artifact (also known as a version) for the specified product.</p>",
     "DescribeProvisioningParameters": "<p>Gets information about the configuration required to provision the specified product using the specified provisioning artifact.</p> <p>If the output contains a TagOption key with an empty list of values, there is a TagOption conflict for that key. The end user cannot take action to fix the conflict, and launch is not blocked. In subsequent calls to <a>ProvisionProduct</a>, do not include conflicted TagOption keys as tags, or this causes the error \"Parameter validation failed: Missing required parameter in Tags[<i>N</i>]:<i>Value</i>\". Tag the provisioned product with the value <code>sc-tagoption-conflict-portfolioId-productId</code>.</p>",
-    "DescribeRecord": "<p>Gets information about the specified request operation.</p> <p>Use this operation after calling a request operation (for example, <a>ProvisionProduct</a>, <a>TerminateProvisionedProduct</a>, or <a>UpdateProvisionedProduct</a>). </p>",
+    "DescribeRecord": "<p>Gets information about the specified request operation.</p> <p>Use this operation after calling a request operation (for example, <a>ProvisionProduct</a>, <a>TerminateProvisionedProduct</a>, or <a>UpdateProvisionedProduct</a>). </p> <note> <p>If a provisioned product was transferred to a new owner using <a>UpdateProvisionedProductProperties</a>, the new owner will be able to describe all past records for that product. The previous owner will no longer be able to describe the records, but will be able to use <a>ListRecordHistory</a> to see the product's history from when he was the owner.</p> </note>",
     "DescribeServiceAction": "<p>Describes a self-service action.</p>",
     "DescribeTagOption": "<p>Gets information about the specified TagOption.</p>",
     "DisableAWSOrganizationsAccess": "<p>Disable portfolio sharing through AWS Organizations feature. This feature will not delete your current shares but it will prevent you from creating new shares throughout your organization. Current shares will not be in sync with your organization structure if it changes after calling this API. This API can only be called by the master account in the organization.</p>",
@@ -79,6 +79,7 @@
     "UpdatePortfolio": "<p>Updates the specified portfolio.</p> <p>You cannot update a product that was shared with you.</p>",
     "UpdateProduct": "<p>Updates the specified product.</p>",
     "UpdateProvisionedProduct": "<p>Requests updates to the configuration of the specified provisioned product.</p> <p>If there are tags associated with the object, they cannot be updated or added. Depending on the specific updates requested, this operation can update with no interruption, with some interruption, or replace the provisioned product entirely.</p> <p>You can check the status of this request using <a>DescribeRecord</a>.</p>",
+    "UpdateProvisionedProductProperties": "<p>Requests updates to the properties of the specified provisioned product.</p>",
     "UpdateProvisioningArtifact": "<p>Updates the specified provisioning artifact (also known as a version) for the specified product.</p> <p>You cannot update a provisioning artifact for a product that was shared with you.</p>",
     "UpdateServiceAction": "<p>Updates a self-service action.</p>",
     "UpdateTagOption": "<p>Updates the specified TagOption.</p>"
@@ -151,6 +152,7 @@
         "UpdatePortfolioInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "UpdateProductInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "UpdateProvisionedProductInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
+        "UpdateProvisionedProductPropertiesInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "UpdateProvisioningArtifactInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "UpdateServiceActionInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>"
       }
@@ -1056,6 +1058,9 @@
         "UpdateProvisionedProductInput$ProductId": "<p>The identifier of the product.</p>",
         "UpdateProvisionedProductInput$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact.</p>",
         "UpdateProvisionedProductInput$PathId": "<p>The new path identifier. This value is optional if the product has a default path, and required if the product has more than one path.</p>",
+        "UpdateProvisionedProductPropertiesInput$ProvisionedProductId": "<p>The identifier of the provisioned product.</p>",
+        "UpdateProvisionedProductPropertiesOutput$ProvisionedProductId": "<p>The provisioned product identifier.</p>",
+        "UpdateProvisionedProductPropertiesOutput$RecordId": "<p>The identifier of the record.</p>",
         "UpdateProvisioningArtifactInput$ProductId": "<p>The product identifier.</p>",
         "UpdateProvisioningArtifactInput$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact.</p>",
         "UpdateServiceActionInput$Id": "<p>The self-service action identifier.</p>"
@@ -1077,7 +1082,8 @@
         "ProvisionedProductAttribute$IdempotencyToken": "<p>A unique identifier that you provide to ensure idempotency. If multiple requests differ only by the idempotency token, the same response is returned for each repeated request.</p>",
         "ProvisionedProductDetail$IdempotencyToken": "<p>A unique identifier that you provide to ensure idempotency. If multiple requests differ only by the idempotency token, the same response is returned for each repeated request.</p>",
         "TerminateProvisionedProductInput$TerminateToken": "<p>An idempotency token that uniquely identifies the termination request. This token is only valid during the termination process. After the provisioned product is terminated, subsequent requests to terminate the same provisioned product always return <b>ResourceNotFound</b>.</p>",
-        "UpdateProvisionedProductInput$UpdateToken": "<p>The idempotency token that uniquely identifies the provisioning update request.</p>"
+        "UpdateProvisionedProductInput$UpdateToken": "<p>The idempotency token that uniquely identifies the provisioning update request.</p>",
+        "UpdateProvisionedProductPropertiesInput$IdempotencyToken": "<p>The idempotency token that uniquely identifies the provisioning product update request.</p>"
       }
     },
     "IgnoreErrors": {
@@ -1729,10 +1735,22 @@
         "ProvisioningArtifactView$ProductViewSummary": "<p>Summary information about a product view.</p>"
       }
     },
+    "PropertyKey": {
+      "base": null,
+      "refs": {
+        "ProvisionedProductProperties$key": null
+      }
+    },
     "PropertyName": {
       "base": null,
       "refs": {
         "ResourceTargetDefinition$Name": "<p>If the attribute is <code>Properties</code>, the value is the name of the property. Otherwise, the value is null.</p>"
+      }
+    },
+    "PropertyValue": {
+      "base": null,
+      "refs": {
+        "ProvisionedProductProperties$value": null
       }
     },
     "ProviderName": {
@@ -1809,7 +1827,7 @@
         "ProvisionedProductDetail$Name": "<p>The user-friendly name of the provisioned product.</p>",
         "ProvisionedProductDetail$Arn": "<p>The ARN of the provisioned product.</p>",
         "TerminateProvisionedProductInput$ProvisionedProductName": "<p>The name of the provisioned product. You cannot specify both <code>ProvisionedProductName</code> and <code>ProvisionedProductId</code>.</p>",
-        "UpdateProvisionedProductInput$ProvisionedProductName": "<p>The updated name of the provisioned product. You cannot specify both <code>ProvisionedProductName</code> and <code>ProvisionedProductId</code>.</p>"
+        "UpdateProvisionedProductInput$ProvisionedProductName": "<p>The name of the provisioned product. You cannot specify both <code>ProvisionedProductName</code> and <code>ProvisionedProductId</code>.</p>"
       }
     },
     "ProvisionedProductPlanDetails": {
@@ -1851,6 +1869,13 @@
       "base": null,
       "refs": {
         "ListProvisionedProductPlansOutput$ProvisionedProductPlans": "<p>Information about the plans.</p>"
+      }
+    },
+    "ProvisionedProductProperties": {
+      "base": null,
+      "refs": {
+        "UpdateProvisionedProductPropertiesInput$ProvisionedProductProperties": "<p>A map that contains the provisioned product properties to be updated.</p> <p>The <code>OWNER</code> key only accepts user ARNs. The owner is the user that is allowed to see, update, terminate, and execute service actions in the provisioned product.</p> <p>The administrator can change the owner of a provisioned product to another IAM user within the same account. Both end user owners and administrators can see ownership history of the provisioned product using the <code>ListRecordHistory</code> API. The new owner can describe all past records for the provisioned product using the <code>DescribeRecord</code> API. The previous owner can no longer use <code>DescribeRecord</code>, but can still see the product's history from when he was an owner using <code>ListRecordHistory</code>.</p> <p>If a provisioned product ownership is assigned to an end user, they can see and perform any action through the API or Service Catalog console such as update, terminate, and execute service actions. If an end user provisions a product and the owner is updated to someone else, they will no longer be able to see or perform any actions through API or the Service Catalog console on that provisioned product.</p>",
+        "UpdateProvisionedProductPropertiesOutput$ProvisionedProductProperties": "<p>A map that contains the properties updated.</p>"
       }
     },
     "ProvisionedProductStatus": {
@@ -2110,7 +2135,8 @@
     "RecordStatus": {
       "base": null,
       "refs": {
-        "RecordDetail$Status": "<p>The status of the provisioned product.</p> <ul> <li> <p> <code>CREATED</code> - The request was created but the operation has not started.</p> </li> <li> <p> <code>IN_PROGRESS</code> - The requested operation is in progress.</p> </li> <li> <p> <code>IN_PROGRESS_IN_ERROR</code> - The provisioned product is under change but the requested operation failed and some remediation is occurring. For example, a rollback.</p> </li> <li> <p> <code>SUCCEEDED</code> - The requested operation has successfully completed.</p> </li> <li> <p> <code>FAILED</code> - The requested operation has unsuccessfully completed. Investigate using the error messages returned.</p> </li> </ul>"
+        "RecordDetail$Status": "<p>The status of the provisioned product.</p> <ul> <li> <p> <code>CREATED</code> - The request was created but the operation has not started.</p> </li> <li> <p> <code>IN_PROGRESS</code> - The requested operation is in progress.</p> </li> <li> <p> <code>IN_PROGRESS_IN_ERROR</code> - The provisioned product is under change but the requested operation failed and some remediation is occurring. For example, a rollback.</p> </li> <li> <p> <code>SUCCEEDED</code> - The requested operation has successfully completed.</p> </li> <li> <p> <code>FAILED</code> - The requested operation has unsuccessfully completed. Investigate using the error messages returned.</p> </li> </ul>",
+        "UpdateProvisionedProductPropertiesOutput$Status": "<p>The status of the request.</p>"
       }
     },
     "RecordTag": {
@@ -2763,6 +2789,16 @@
       }
     },
     "UpdateProvisionedProductOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProvisionedProductPropertiesInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProvisionedProductPropertiesOutput": {
       "base": null,
       "refs": {
       }
