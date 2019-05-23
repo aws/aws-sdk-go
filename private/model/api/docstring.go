@@ -155,7 +155,19 @@ func wrap(text string, length int) string {
 
 	s := bufio.NewScanner(strings.NewReader(text))
 	for s.Scan() {
-		splitLine(&b, strings.TrimRight(s.Text(), " \t"), length)
+		line := s.Text()
+
+		// cleanup the line's spaces
+		var i int
+		for i = 0; i < len(line); i++ {
+			c := line[i]
+			// Ignore leading spaces, e.g indents.
+			if !(c == ' ' || c == '\t') {
+				break
+			}
+		}
+		line = line[:i] + strings.Join(strings.Fields(line[i:]), " ")
+		splitLine(&b, line, length)
 	}
 
 	return strings.TrimRight(b.String(), "\n")
@@ -167,18 +179,24 @@ func splitLine(w stringWriter, line string, length int) {
 	line = line[len(leading):]
 	length -= len(leading)
 
+	const splitOn = " "
 	for len(line) > length {
-		// Find the next whitespace after the length
-		idx := strings.IndexAny(line[length:], " \t")
+		// Find the next whitespace to the length
+		idx := strings.Index(line[length:], splitOn)
 		if idx == -1 {
 			break
 		}
 		offset := length + idx
 
+		if v := line[offset+len(splitOn):]; len(v) == 1 && strings.ContainsAny(v, `,.!?'"`) {
+			// Workaround for long lines with space before the punctuation mark.
+			break
+		}
+
 		w.WriteString(leading)
 		w.WriteString(line[:offset])
 		w.WriteByte('\n')
-		line = line[offset+1:]
+		line = strings.TrimLeft(line[offset+len(splitOn):], " \t")
 	}
 
 	if len(line) > 0 {
