@@ -1,3 +1,12 @@
+Release v1.19.37 (2019-05-23)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * New APIs to enable EBS encryption by default feature. Once EBS encryption by default is enabled in a region within the account, all new EBS volumes and snapshot copies are always encrypted
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/waf-regional`: Updates service documentation
+
 Release v1.19.36 (2019-05-22)
 ===
 

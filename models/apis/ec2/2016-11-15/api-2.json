@@ -1984,6 +1984,15 @@
       },
       "input":{"shape":"DetachVpnGatewayRequest"}
     },
+    "DisableEbsEncryptionByDefault":{
+      "name":"DisableEbsEncryptionByDefault",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisableEbsEncryptionByDefaultRequest"},
+      "output":{"shape":"DisableEbsEncryptionByDefaultResult"}
+    },
     "DisableTransitGatewayRouteTablePropagation":{
       "name":"DisableTransitGatewayRouteTablePropagation",
       "http":{
@@ -2080,6 +2089,15 @@
       "input":{"shape":"DisassociateVpcCidrBlockRequest"},
       "output":{"shape":"DisassociateVpcCidrBlockResult"}
     },
+    "EnableEbsEncryptionByDefault":{
+      "name":"EnableEbsEncryptionByDefault",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EnableEbsEncryptionByDefaultRequest"},
+      "output":{"shape":"EnableEbsEncryptionByDefaultResult"}
+    },
     "EnableTransitGatewayRouteTablePropagation":{
       "name":"EnableTransitGatewayRouteTablePropagation",
       "http":{
@@ -2167,6 +2185,24 @@
       },
       "input":{"shape":"GetConsoleScreenshotRequest"},
       "output":{"shape":"GetConsoleScreenshotResult"}
+    },
+    "GetEbsDefaultKmsKeyId":{
+      "name":"GetEbsDefaultKmsKeyId",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetEbsDefaultKmsKeyIdRequest"},
+      "output":{"shape":"GetEbsDefaultKmsKeyIdResult"}
+    },
+    "GetEbsEncryptionByDefault":{
+      "name":"GetEbsEncryptionByDefault",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetEbsEncryptionByDefaultRequest"},
+      "output":{"shape":"GetEbsEncryptionByDefaultResult"}
     },
     "GetHostReservationPurchasePreview":{
       "name":"GetHostReservationPurchasePreview",
@@ -2302,6 +2338,15 @@
       },
       "input":{"shape":"ModifyClientVpnEndpointRequest"},
       "output":{"shape":"ModifyClientVpnEndpointResult"}
+    },
+    "ModifyEbsDefaultKmsKeyId":{
+      "name":"ModifyEbsDefaultKmsKeyId",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyEbsDefaultKmsKeyIdRequest"},
+      "output":{"shape":"ModifyEbsDefaultKmsKeyIdResult"}
     },
     "ModifyFleet":{
       "name":"ModifyFleet",
@@ -2738,6 +2783,15 @@
       },
       "input":{"shape":"RequestSpotInstancesRequest"},
       "output":{"shape":"RequestSpotInstancesResult"}
+    },
+    "ResetEbsDefaultKmsKeyId":{
+      "name":"ResetEbsDefaultKmsKeyId",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ResetEbsDefaultKmsKeyIdRequest"},
+      "output":{"shape":"ResetEbsDefaultKmsKeyIdResult"}
     },
     "ResetFpgaImageAttribute":{
       "name":"ResetFpgaImageAttribute",
@@ -10686,6 +10740,21 @@
         "DirectoryId":{"shape":"String"}
       }
     },
+    "DisableEbsEncryptionByDefaultRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DisableEbsEncryptionByDefaultResult":{
+      "type":"structure",
+      "members":{
+        "EbsEncryptionByDefault":{
+          "shape":"Boolean",
+          "locationName":"ebsEncryptionByDefault"
+        }
+      }
+    },
     "DisableTransitGatewayRouteTablePropagationRequest":{
       "type":"structure",
       "required":[
@@ -11271,6 +11340,21 @@
       "member":{
         "shape":"ElasticInferenceAccelerator",
         "locationName":"item"
+      }
+    },
+    "EnableEbsEncryptionByDefaultRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "EnableEbsEncryptionByDefaultResult":{
+      "type":"structure",
+      "members":{
+        "EbsEncryptionByDefault":{
+          "shape":"Boolean",
+          "locationName":"ebsEncryptionByDefault"
+        }
       }
     },
     "EnableTransitGatewayRouteTablePropagationRequest":{
@@ -12122,6 +12206,36 @@
         "InstanceId":{
           "shape":"String",
           "locationName":"instanceId"
+        }
+      }
+    },
+    "GetEbsDefaultKmsKeyIdRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "GetEbsDefaultKmsKeyIdResult":{
+      "type":"structure",
+      "members":{
+        "KmsKeyId":{
+          "shape":"String",
+          "locationName":"kmsKeyId"
+        }
+      }
+    },
+    "GetEbsEncryptionByDefaultRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "GetEbsEncryptionByDefaultResult":{
+      "type":"structure",
+      "members":{
+        "EbsEncryptionByDefault":{
+          "shape":"Boolean",
+          "locationName":"ebsEncryptionByDefault"
         }
       }
     },
@@ -15674,6 +15788,23 @@
         }
       }
     },
+    "ModifyEbsDefaultKmsKeyIdRequest":{
+      "type":"structure",
+      "required":["KmsKeyId"],
+      "members":{
+        "KmsKeyId":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "ModifyEbsDefaultKmsKeyIdResult":{
+      "type":"structure",
+      "members":{
+        "KmsKeyId":{
+          "shape":"String",
+          "locationName":"kmsKeyId"
+        }
+      }
+    },
     "ModifyFleetRequest":{
       "type":"structure",
       "required":[
@@ -18927,6 +19058,21 @@
       "member":{
         "shape":"ReservedInstancesId",
         "locationName":"item"
+      }
+    },
+    "ResetEbsDefaultKmsKeyIdRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "ResetEbsDefaultKmsKeyIdResult":{
+      "type":"structure",
+      "members":{
+        "KmsKeyId":{
+          "shape":"String",
+          "locationName":"kmsKeyId"
+        }
       }
     },
     "ResetFpgaImageAttributeName":{
