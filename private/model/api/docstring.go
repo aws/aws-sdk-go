@@ -256,8 +256,6 @@ func encodeHTMLToText(w stringWriter, z *xhtml.Tokenizer) error {
 			return err
 		}
 	}
-
-	return nil
 }
 
 type htmlTokenHandler interface {
