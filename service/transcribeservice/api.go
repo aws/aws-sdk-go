@@ -596,7 +596,7 @@ func (c *TranscribeService) ListTranscriptionJobsWithContext(ctx aws.Context, in
 //    // Example iterating over at most 3 pages of a ListTranscriptionJobs operation.
 //    pageNum := 0
 //    err := client.ListTranscriptionJobsPages(params,
-//        func(page *ListTranscriptionJobsOutput, lastPage bool) bool {
+//        func(page *transcribeservice.ListTranscriptionJobsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -743,7 +743,7 @@ func (c *TranscribeService) ListVocabulariesWithContext(ctx aws.Context, input *
 //    // Example iterating over at most 3 pages of a ListVocabularies operation.
 //    pageNum := 0
 //    err := client.ListVocabulariesPages(params,
-//        func(page *ListVocabulariesOutput, lastPage bool) bool {
+//        func(page *transcribeservice.ListVocabulariesOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -1437,8 +1437,8 @@ type ListTranscriptionJobsInput struct {
 
 	// When specified, returns only transcription jobs with the specified status.
 	// Jobs are ordered by creation date, with the newest jobs returned first. If
-	// you don’t specify a status, Amazon Transcribe returns all transcription jobs
-	// ordered by creation date.
+	// you don’t specify a status, Amazon Transcribe returns all transcription
+	// jobs ordered by creation date.
 	Status *string `type:"string" enum:"TranscriptionJobStatus"`
 }
 

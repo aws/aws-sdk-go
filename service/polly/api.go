@@ -567,7 +567,7 @@ func (c *Polly) ListSpeechSynthesisTasksWithContext(ctx aws.Context, input *List
 //    // Example iterating over at most 3 pages of a ListSpeechSynthesisTasks operation.
 //    pageNum := 0
 //    err := client.ListSpeechSynthesisTasksPages(params,
-//        func(page *ListSpeechSynthesisTasksOutput, lastPage bool) bool {
+//        func(page *polly.ListSpeechSynthesisTasksOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2082,15 +2082,14 @@ type SynthesizeSpeechOutput struct {
 	// Specifies the type audio stream. This should reflect the OutputFormat parameter
 	// in your request.
 	//
-	//    *  If you request mp3 as the OutputFormat, the ContentType returned is
+	//    * If you request mp3 as the OutputFormat, the ContentType returned is
 	//    audio/mpeg.
 	//
-	//    *  If you request ogg_vorbis as the OutputFormat, the ContentType returned
+	//    * If you request ogg_vorbis as the OutputFormat, the ContentType returned
 	//    is audio/ogg.
 	//
-	//    *  If you request pcm as the OutputFormat, the ContentType returned is
+	//    * If you request pcm as the OutputFormat, the ContentType returned is
 	//    audio/pcm in a signed 16-bit, 1 channel (mono), little-endian format.
-	//
 	//
 	//    * If you request json as the OutputFormat, the ContentType returned is
 	//    audio/json.

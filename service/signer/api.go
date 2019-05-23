@@ -473,7 +473,7 @@ func (c *Signer) ListSigningJobsWithContext(ctx aws.Context, input *ListSigningJ
 //    // Example iterating over at most 3 pages of a ListSigningJobs operation.
 //    pageNum := 0
 //    err := client.ListSigningJobsPages(params,
-//        func(page *ListSigningJobsOutput, lastPage bool) bool {
+//        func(page *signer.ListSigningJobsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -622,7 +622,7 @@ func (c *Signer) ListSigningPlatformsWithContext(ctx aws.Context, input *ListSig
 //    // Example iterating over at most 3 pages of a ListSigningPlatforms operation.
 //    pageNum := 0
 //    err := client.ListSigningPlatformsPages(params,
-//        func(page *ListSigningPlatformsOutput, lastPage bool) bool {
+//        func(page *signer.ListSigningPlatformsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -769,7 +769,7 @@ func (c *Signer) ListSigningProfilesWithContext(ctx aws.Context, input *ListSign
 //    // Example iterating over at most 3 pages of a ListSigningProfiles operation.
 //    pageNum := 0
 //    err := client.ListSigningProfilesPages(params,
-//        func(page *ListSigningProfilesOutput, lastPage bool) bool {
+//        func(page *signer.ListSigningProfilesOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -950,7 +950,7 @@ func (c *Signer) StartSigningJobRequest(input *StartSigningJobInput) (req *reque
 // are viewable by the ListSigningJobs operation for two years after they are
 // performed. Note the following requirements:
 //
-//    *  You must create an Amazon S3 source bucket. For more information, see
+//    * You must create an Amazon S3 source bucket. For more information, see
 //    Create a Bucket (http://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html)
 //    in the Amazon S3 Getting Started Guide.
 //

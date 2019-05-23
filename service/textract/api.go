@@ -948,7 +948,6 @@ type Block struct {
 	//    detected on a document page. Use the EntityType field to determine if
 	//    a KEY_VALUE_SET object is a KEY Block object or a VALUE Block object.
 	//
-	//
 	//    * WORD - A word detected on a document page. A word is one or more ISO
 	//    basic Latin script characters that aren't separated by spaces that's detected
 	//    on a document page.

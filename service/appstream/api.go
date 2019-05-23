@@ -2138,7 +2138,7 @@ func (c *AppStream) DescribeImagePermissionsWithContext(ctx aws.Context, input *
 //    // Example iterating over at most 3 pages of a DescribeImagePermissions operation.
 //    pageNum := 0
 //    err := client.DescribeImagePermissionsPages(params,
-//        func(page *DescribeImagePermissionsOutput, lastPage bool) bool {
+//        func(page *appstream.DescribeImagePermissionsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2278,7 +2278,7 @@ func (c *AppStream) DescribeImagesWithContext(ctx aws.Context, input *DescribeIm
 //    // Example iterating over at most 3 pages of a DescribeImages operation.
 //    pageNum := 0
 //    err := client.DescribeImagesPages(params,
-//        func(page *DescribeImagesOutput, lastPage bool) bool {
+//        func(page *appstream.DescribeImagesOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -4351,10 +4351,10 @@ type ApplicationSettingsResponse struct {
 	// their streaming sessions.
 	Enabled *bool `type:"boolean"`
 
-	// The S3 bucket where users’ persistent application settings are stored. When
-	// persistent application settings are enabled for the first time for an account
-	// in an AWS Region, an S3 bucket is created. The bucket is unique to the AWS
-	// account and the Region.
+	// The S3 bucket where users’ persistent application settings are stored.
+	// When persistent application settings are enabled for the first time for an
+	// account in an AWS Region, an S3 bucket is created. The bucket is unique to
+	// the AWS account and the Region.
 	S3BucketName *string `min:"1" type:"string"`
 
 	// The path prefix for the S3 bucket where users’ persistent application settings
@@ -4931,13 +4931,16 @@ type CreateFleetInput struct {
 
 	// The fleet type.
 	//
-	// ALWAYS_ONProvides users with instant-on access to their apps. You are charged
-	// for all running instances in your fleet, even if no users are streaming apps.
+	// ALWAYS_ON
 	//
-	// ON_DEMANDProvide users with access to applications after they connect, which
-	// takes one to two minutes. You are charged for instance streaming when users
-	// are connected and a small hourly fee for instances that are not streaming
-	// apps.
+	// Provides users with instant-on access to their apps. You are charged for
+	// all running instances in your fleet, even if no users are streaming apps.
+	//
+	// ON_DEMAND
+	//
+	// Provide users with access to applications after they connect, which takes
+	// one to two minutes. You are charged for instance streaming when users are
+	// connected and a small hourly fee for instances that are not streaming apps.
 	FleetType *string `type:"string" enum:"FleetType"`
 
 	// The amount of time that users can be idle (inactive) before they are disconnected
@@ -5862,8 +5865,8 @@ type CreateUserInput struct {
 	// user. If the value is null, the email is sent.
 	//
 	// The temporary password in the welcome email is valid for only 7 days. If
-	// users don’t set their passwords within 7 days, you must send them a new welcome
-	// email.
+	// users don’t set their passwords within 7 days, you must send them a new
+	// welcome email.
 	MessageAction *string `type:"string" enum:"MessageAction"`
 
 	// The email address of the user.
@@ -7787,13 +7790,16 @@ type Fleet struct {
 
 	// The fleet type.
 	//
-	// ALWAYS_ONProvides users with instant-on access to their apps. You are charged
-	// for all running instances in your fleet, even if no users are streaming apps.
+	// ALWAYS_ON
 	//
-	// ON_DEMANDProvide users with access to applications after they connect, which
-	// takes one to two minutes. You are charged for instance streaming when users
-	// are connected and a small hourly fee for instances that are not streaming
-	// apps.
+	// Provides users with instant-on access to their apps. You are charged for
+	// all running instances in your fleet, even if no users are streaming apps.
+	//
+	// ON_DEMAND
+	//
+	// Provide users with access to applications after they connect, which takes
+	// one to two minutes. You are charged for instance streaming when users are
+	// connected and a small hourly fee for instances that are not streaming apps.
 	FleetType *string `type:"string" enum:"FleetType"`
 
 	// The amount of time that users can be idle (inactive) before they are disconnected
@@ -10296,7 +10302,8 @@ type User struct {
 	//
 	//    * ARCHIVED – The user is no longer active.
 	//
-	//    * COMPROMISED – The user is disabled because of a potential security threat.
+	//    * COMPROMISED – The user is disabled because of a potential security
+	//    threat.
 	//
 	//    * UNKNOWN – The user status is not known.
 	Status *string `min:"1" type:"string"`

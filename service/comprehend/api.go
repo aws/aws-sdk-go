@@ -2194,7 +2194,7 @@ func (c *Comprehend) ListDocumentClassificationJobsWithContext(ctx aws.Context, 
 //    // Example iterating over at most 3 pages of a ListDocumentClassificationJobs operation.
 //    pageNum := 0
 //    err := client.ListDocumentClassificationJobsPages(params,
-//        func(page *ListDocumentClassificationJobsOutput, lastPage bool) bool {
+//        func(page *comprehend.ListDocumentClassificationJobsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2339,7 +2339,7 @@ func (c *Comprehend) ListDocumentClassifiersWithContext(ctx aws.Context, input *
 //    // Example iterating over at most 3 pages of a ListDocumentClassifiers operation.
 //    pageNum := 0
 //    err := client.ListDocumentClassifiersPages(params,
-//        func(page *ListDocumentClassifiersOutput, lastPage bool) bool {
+//        func(page *comprehend.ListDocumentClassifiersOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2484,7 +2484,7 @@ func (c *Comprehend) ListDominantLanguageDetectionJobsWithContext(ctx aws.Contex
 //    // Example iterating over at most 3 pages of a ListDominantLanguageDetectionJobs operation.
 //    pageNum := 0
 //    err := client.ListDominantLanguageDetectionJobsPages(params,
-//        func(page *ListDominantLanguageDetectionJobsOutput, lastPage bool) bool {
+//        func(page *comprehend.ListDominantLanguageDetectionJobsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2629,7 +2629,7 @@ func (c *Comprehend) ListEntitiesDetectionJobsWithContext(ctx aws.Context, input
 //    // Example iterating over at most 3 pages of a ListEntitiesDetectionJobs operation.
 //    pageNum := 0
 //    err := client.ListEntitiesDetectionJobsPages(params,
-//        func(page *ListEntitiesDetectionJobsOutput, lastPage bool) bool {
+//        func(page *comprehend.ListEntitiesDetectionJobsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2781,7 +2781,7 @@ func (c *Comprehend) ListEntityRecognizersWithContext(ctx aws.Context, input *Li
 //    // Example iterating over at most 3 pages of a ListEntityRecognizers operation.
 //    pageNum := 0
 //    err := client.ListEntityRecognizersPages(params,
-//        func(page *ListEntityRecognizersOutput, lastPage bool) bool {
+//        func(page *comprehend.ListEntityRecognizersOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2926,7 +2926,7 @@ func (c *Comprehend) ListKeyPhrasesDetectionJobsWithContext(ctx aws.Context, inp
 //    // Example iterating over at most 3 pages of a ListKeyPhrasesDetectionJobs operation.
 //    pageNum := 0
 //    err := client.ListKeyPhrasesDetectionJobsPages(params,
-//        func(page *ListKeyPhrasesDetectionJobsOutput, lastPage bool) bool {
+//        func(page *comprehend.ListKeyPhrasesDetectionJobsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -3071,7 +3071,7 @@ func (c *Comprehend) ListSentimentDetectionJobsWithContext(ctx aws.Context, inpu
 //    // Example iterating over at most 3 pages of a ListSentimentDetectionJobs operation.
 //    pageNum := 0
 //    err := client.ListSentimentDetectionJobsPages(params,
-//        func(page *ListSentimentDetectionJobsOutput, lastPage bool) bool {
+//        func(page *comprehend.ListSentimentDetectionJobsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -3302,7 +3302,7 @@ func (c *Comprehend) ListTopicsDetectionJobsWithContext(ctx aws.Context, input *
 //    // Example iterating over at most 3 pages of a ListTopicsDetectionJobs operation.
 //    pageNum := 0
 //    err := client.ListTopicsDetectionJobsPages(params,
-//        func(page *ListTopicsDetectionJobsOutput, lastPage bool) bool {
+//        func(page *comprehend.ListTopicsDetectionJobsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -11660,23 +11660,23 @@ func (s *SyntaxToken) SetTokenId(v int64) *SyntaxToken {
 }
 
 // A key-value pair that adds as a metadata to a resource used by Amazon Comprehend.
-// For example, a tag with the key-value pair ‘Department’:’Sales’ might be
-// added to a resource to indicate its use by a particular department.
+// For example, a tag with the key-value pair ‘Department’:’Sales’ might
+// be added to a resource to indicate its use by a particular department.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
 	// The initial part of a key-value pair that forms a tag associated with a given
 	// resource. For instance, if you want to show which resources are used by which
-	// departments, you might use “Department” as the key portion of the pair, with
-	// multiple possible values such as “sales,” “legal,” and “administration.”
+	// departments, you might use “Department” as the key portion of the pair,
+	// with multiple possible values such as “sales,” “legal,” and “administration.”
 	//
 	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
 	// The second part of a key-value pair that forms a tag associated with a given
 	// resource. For instance, if you want to show which resources are used by which
-	// departments, you might use “Department” as the initial (key) portion of the
-	// pair, with a value of “sales” to indicate the sales department.
+	// departments, you might use “Department” as the initial (key) portion
+	// of the pair, with a value of “sales” to indicate the sales department.
 	Value *string `type:"string"`
 }
 

@@ -1283,33 +1283,25 @@ func (s *ElastiCacheInstanceDetails) SetSizeFlexEligible(v bool) *ElastiCacheIns
 //    * Simple dimension values - You can set the dimension name and values
 //    for the filters that you plan to use. For example, you can filter for
 //    INSTANCE_TYPE==m4.xlarge OR INSTANCE_TYPE==c4.large. The Expression for
-//    that looks like this:
-//
-// { "Dimensions": { "Key": "INSTANCE_TYPE", "Values": [ "m4.xlarge", “c4.large”
-//    ] } }
-//
-// The list of dimension values are OR'd together to retrieve cost or usage
-//    data. You can create Expression and DimensionValues objects using either
-//    with* methods or set* methods in multiple lines.
+//    that looks like this: { "Dimensions": { "Key": "INSTANCE_TYPE", "Values":
+//    [ "m4.xlarge", “c4.large” ] } } The list of dimension values are OR'd
+//    together to retrieve cost or usage data. You can create Expression and
+//    DimensionValues objects using either with* methods or set* methods in
+//    multiple lines.
 //
 //    * Compound dimension values with logical operations - You can use multiple
 //    Expression types and the logical operators AND/OR/NOT to create a list
 //    of one or more Expression objects. This allows you to filter on more advanced
 //    options. For example, you can filter on ((INSTANCE_TYPE == m4.large OR
 //    INSTANCE_TYPE == m3.large) OR (TAG.Type == Type1)) AND (USAGE_TYPE !=
-//    DataTransfer). The Expression for that looks like this:
-//
-// { "And": [ {"Or": [ {"Dimensions": { "Key": "INSTANCE_TYPE", "Values": [
-//    "m4.x.large", "c4.large" ] }}, {"Tags": { "Key": "TagName", "Values":
-//    ["Value1"] } } ]}, {"Not": {"Dimensions": { "Key": "USAGE_TYPE", "Values":
-//    ["DataTransfer"] }}} ] }
-//
-// Because each Expression can have only one operator, the service returns an
-//    error if more than one is specified. The following example shows an Expression
-//    object that creates an error.
-//
-//  { "And": [ ... ], "DimensionValues": { "Dimension": "USAGE_TYPE", "Values":
-//    [ "DataTransfer" ] } }
+//    DataTransfer). The Expression for that looks like this: { "And": [ {"Or":
+//    [ {"Dimensions": { "Key": "INSTANCE_TYPE", "Values": [ "m4.x.large", "c4.large"
+//    ] }}, {"Tags": { "Key": "TagName", "Values": ["Value1"] } } ]}, {"Not":
+//    {"Dimensions": { "Key": "USAGE_TYPE", "Values": ["DataTransfer"] }}} ]
+//    } Because each Expression can have only one operator, the service returns
+//    an error if more than one is specified. The following example shows an
+//    Expression object that creates an error. { "And": [ ... ], "DimensionValues":
+//    { "Dimension": "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
 type Expression struct {
 	_ struct{} `type:"structure"`
 

@@ -1787,7 +1787,6 @@ func ExampleEC2_DeleteNetworkInterface_shared00() {
 // To delete a placement group
 //
 // This example deletes the specified placement group.
-//
 func ExampleEC2_DeletePlacementGroup_shared00() {
 	svc := ec2.New(session.New())
 	input := &ec2.DeletePlacementGroupInput{
@@ -2384,7 +2383,6 @@ func ExampleEC2_DescribeImages_shared00() {
 // To describe the instance type
 //
 // This example describes the instance type of the specified instance.
-//
 func ExampleEC2_DescribeInstanceAttribute_shared00() {
 	svc := ec2.New(session.New())
 	input := &ec2.DescribeInstanceAttributeInput{
@@ -2413,7 +2411,6 @@ func ExampleEC2_DescribeInstanceAttribute_shared00() {
 // To describe the disableApiTermination attribute
 //
 // This example describes the ``disableApiTermination`` attribute of the specified instance.
-//
 func ExampleEC2_DescribeInstanceAttribute_shared01() {
 	svc := ec2.New(session.New())
 	input := &ec2.DescribeInstanceAttributeInput{
@@ -2442,7 +2439,6 @@ func ExampleEC2_DescribeInstanceAttribute_shared01() {
 // To describe the block device mapping for an instance
 //
 // This example describes the ``blockDeviceMapping`` attribute of the specified instance.
-//
 func ExampleEC2_DescribeInstanceAttribute_shared02() {
 	svc := ec2.New(session.New())
 	input := &ec2.DescribeInstanceAttributeInput{

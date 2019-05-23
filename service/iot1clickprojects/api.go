@@ -872,7 +872,7 @@ func (c *IoT1ClickProjects) ListPlacementsWithContext(ctx aws.Context, input *Li
 //    // Example iterating over at most 3 pages of a ListPlacements operation.
 //    pageNum := 0
 //    err := client.ListPlacementsPages(params,
-//        func(page *ListPlacementsOutput, lastPage bool) bool {
+//        func(page *iot1clickprojects.ListPlacementsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -1009,7 +1009,7 @@ func (c *IoT1ClickProjects) ListProjectsWithContext(ctx aws.Context, input *List
 //    // Example iterating over at most 3 pages of a ListProjects operation.
 //    pageNum := 0
 //    err := client.ListProjectsPages(params,
-//        func(page *ListProjectsOutput, lastPage bool) bool {
+//        func(page *iot1clickprojects.ListProjectsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3

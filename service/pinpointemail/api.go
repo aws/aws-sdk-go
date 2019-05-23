@@ -1434,7 +1434,7 @@ func (c *PinpointEmail) GetDedicatedIpsWithContext(ctx aws.Context, input *GetDe
 //    // Example iterating over at most 3 pages of a GetDedicatedIps operation.
 //    pageNum := 0
 //    err := client.GetDedicatedIpsPages(params,
-//        func(page *GetDedicatedIpsOutput, lastPage bool) bool {
+//        func(page *pinpointemail.GetDedicatedIpsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -1931,7 +1931,7 @@ func (c *PinpointEmail) ListConfigurationSetsWithContext(ctx aws.Context, input 
 //    // Example iterating over at most 3 pages of a ListConfigurationSets operation.
 //    pageNum := 0
 //    err := client.ListConfigurationSetsPages(params,
-//        func(page *ListConfigurationSetsOutput, lastPage bool) bool {
+//        func(page *pinpointemail.ListConfigurationSetsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2070,7 +2070,7 @@ func (c *PinpointEmail) ListDedicatedIpPoolsWithContext(ctx aws.Context, input *
 //    // Example iterating over at most 3 pages of a ListDedicatedIpPools operation.
 //    pageNum := 0
 //    err := client.ListDedicatedIpPoolsPages(params,
-//        func(page *ListDedicatedIpPoolsOutput, lastPage bool) bool {
+//        func(page *pinpointemail.ListDedicatedIpPoolsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2214,7 +2214,7 @@ func (c *PinpointEmail) ListDeliverabilityTestReportsWithContext(ctx aws.Context
 //    // Example iterating over at most 3 pages of a ListDeliverabilityTestReports operation.
 //    pageNum := 0
 //    err := client.ListDeliverabilityTestReportsPages(params,
-//        func(page *ListDeliverabilityTestReportsOutput, lastPage bool) bool {
+//        func(page *pinpointemail.ListDeliverabilityTestReportsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2355,7 +2355,7 @@ func (c *PinpointEmail) ListEmailIdentitiesWithContext(ctx aws.Context, input *L
 //    // Example iterating over at most 3 pages of a ListEmailIdentities operation.
 //    pageNum := 0
 //    err := client.ListEmailIdentitiesPages(params,
-//        func(page *ListEmailIdentitiesOutput, lastPage bool) bool {
+//        func(page *pinpointemail.ListEmailIdentitiesOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2439,9 +2439,9 @@ func (c *PinpointEmail) ListTagsForResourceRequest(input *ListTagsForResourceInp
 // ListTagsForResource API operation for Amazon Pinpoint Email Service.
 //
 // Retrieve a list of the tags (keys and values) that are associated with a
-// specific resource. A tag is a label that you optionally define and associate
-// with a resource in Amazon Pinpoint. Each tag consists of a required tag key and
-// an optional associated tag value. A tag key is a general label that acts
+// specific resource. A tag is a label that you optionally define and associate
+// with a resource in Amazon Pinpoint. Each tag consists of a required tag key
+// and an optional associated tag value. A tag key is a general label that acts
 // as a category for more specific tag values. A tag value acts as a descriptor
 // within a tag key.
 //
@@ -3600,8 +3600,8 @@ func (c *PinpointEmail) SendEmailRequest(input *SendEmailInput) (req *request.Re
 //    you specify the sender, the recipient, and the message body, and Amazon
 //    Pinpoint assembles the message for you.
 //
-//    * Raw – A raw, MIME-formatted email message. When you send this type of
-//    email, you have to specify all of the message headers, as well as the
+//    * Raw – A raw, MIME-formatted email message. When you send this type
+//    of email, you have to specify all of the message headers, as well as the
 //    message body. You can use this message type to send messages that contain
 //    attachments. The message that you specify has to be a valid MIME message.
 //
@@ -3707,12 +3707,12 @@ func (c *PinpointEmail) TagResourceRequest(input *TagResourceInput) (req *reques
 // TagResource API operation for Amazon Pinpoint Email Service.
 //
 // Add one or more tags (keys and values) to one or more specified resources.
-// A tag is a label that you optionally define and associate with a resource
+// A tag is a label that you optionally define and associate with a resource
 // in Amazon Pinpoint. Tags can help you categorize and manage resources in
 // different ways, such as by purpose, owner, environment, or other criteria.
 // A resource can have as many as 50 tags.
 //
-// Each tag consists of a required tag key and an associated tag value, both
+// Each tag consists of a required tag key and an associated tag value, both
 // of which you define. A tag key is a general label that acts as a category
 // for more specific tag values. A tag value acts as a descriptor within a tag
 // key.
@@ -5296,14 +5296,14 @@ type DkimAttributes struct {
 	//    for the domain and determined that they're correct. Amazon Pinpoint can
 	//    now send DKIM-signed email from the identity.
 	//
-	//    * FAILED – Amazon Pinpoint was unable to locate the DKIM records in the
-	//    DNS settings for the domain, and won't continue to search for them.
+	//    * FAILED – Amazon Pinpoint was unable to locate the DKIM records in
+	//    the DNS settings for the domain, and won't continue to search for them.
 	//
 	//    * TEMPORARY_FAILURE – A temporary issue occurred, which prevented Amazon
 	//    Pinpoint from determining the DKIM status for the domain.
 	//
-	//    * NOT_STARTED – Amazon Pinpoint hasn't yet started searching for the DKIM
-	//    records in the DKIM records for the domain.
+	//    * NOT_STARTED – Amazon Pinpoint hasn't yet started searching for the
+	//    DKIM records in the DKIM records for the domain.
 	Status *string `type:"string" enum:"DkimStatus"`
 
 	// A set of unique strings that you use to create a set of CNAME records that
@@ -5722,9 +5722,9 @@ type GetAccountOutput struct {
 	//    * HEALTHY – There are no reputation-related issues that currently impact
 	//    your account.
 	//
-	//    * PROBATION – We've identified some issues with your Amazon Pinpoint account.
-	//    We're placing your account under review while you work on correcting these
-	//    issues.
+	//    * PROBATION – We've identified some issues with your Amazon Pinpoint
+	//    account. We're placing your account under review while you work on correcting
+	//    these issues.
 	//
 	//    * SHUTDOWN – Your account's ability to send email is currently paused
 	//    because of an issue with the email sent from your account. When you correct
@@ -7124,11 +7124,11 @@ type MailFromAttributes struct {
 	//    * PENDING – Amazon Pinpoint hasn't started searching for the MX record
 	//    yet.
 	//
-	//    * SUCCESS – Amazon Pinpoint detected the required MX record for the MAIL
-	//    FROM domain.
+	//    * SUCCESS – Amazon Pinpoint detected the required MX record for the
+	//    MAIL FROM domain.
 	//
-	//    * FAILED – Amazon Pinpoint can't find the required MX record, or the record
-	//    no longer exists.
+	//    * FAILED – Amazon Pinpoint can't find the required MX record, or the
+	//    record no longer exists.
 	//
 	//    * TEMPORARY_FAILURE – A temporary issue occurred, which prevented Amazon
 	//    Pinpoint from determining the status of the MAIL FROM domain.
@@ -8276,7 +8276,6 @@ type RawMessage struct {
 	//
 	//    * Attachments must be in a file format that Amazon Pinpoint supports.
 	//
-	//
 	//    * The entire message must be Base64 encoded.
 	//
 	//    * If any of the MIME parts in your message contain content that is outside
@@ -8624,19 +8623,19 @@ func (s *SnsDestination) SetTopicArn(v string) *SnsDestination {
 	return s
 }
 
-// An object that defines the tags that are associated with a resource. A tag is
-// a label that you optionally define and associate with a resource in Amazon
+// An object that defines the tags that are associated with a resource. A tag
+// is a label that you optionally define and associate with a resource in Amazon
 // Pinpoint. Tags can help you categorize and manage resources in different
 // ways, such as by purpose, owner, environment, or other criteria. A resource
 // can have as many as 50 tags.
 //
-// Each tag consists of a required tag key and an associated tag value, both
+// Each tag consists of a required tag key and an associated tag value, both
 // of which you define. A tag key is a general label that acts as a category
 // for a more specific tag value. A tag value acts as a descriptor within a
 // tag key. For example, if you have two versions of an Amazon Pinpoint project,
-// one for internal testing and another for external use, you might assign a Stack tag
-// key to both projects. The value of the Stack tag key might be Test for one
-// project and Production for the other project.
+// one for internal testing and another for external use, you might assign a
+// Stack tag key to both projects. The value of the Stack tag key might be Test
+// for one project and Production for the other project.
 //
 // A tag key can contain as many as 128 characters. A tag value can contain
 // as many as 256 characters. The characters can be Unicode letters, digits,
@@ -8648,7 +8647,7 @@ func (s *SnsDestination) SetTopicArn(v string) *SnsDestination {
 //    * For each associated resource, each tag key must be unique and it can
 //    have only one value.
 //
-//    * The aws: prefix is reserved for use by AWS; you can’t use it in any
+//    * The aws: prefix is reserved for use by AWS; you can’t use it in any
 //    tag keys or values that you define. In addition, you can't edit or remove
 //    tag keys or values that use this prefix. Tags that use this prefix don’t
 //    count against the limit of 50 tags per resource.
@@ -8668,8 +8667,9 @@ type Tag struct {
 
 	// The optional part of a key-value pair that defines a tag. The maximum length
 	// of a tag value is 256 characters. The minimum length is 0 characters. If
-	// you don’t want a resource to have a specific tag value, don’t specify a value
-	// for this parameter. Amazon Pinpoint will set the value to an empty string.
+	// you don’t want a resource to have a specific tag value, don’t specify
+	// a value for this parameter. Amazon Pinpoint will set the value to an empty
+	// string.
 	//
 	// Value is a required field
 	Value *string `type:"string" required:"true"`
@@ -9112,9 +9112,9 @@ const (
 // The DKIM authentication status of the identity. The status can be one of
 // the following:
 //
-//    * PENDING – The DKIM verification process was initiated, and Amazon Pinpoint
-//    is still waiting for the required CNAME records to appear in the DNS configuration
-//    for the domain.
+//    * PENDING – The DKIM verification process was initiated, and Amazon
+//    Pinpoint is still waiting for the required CNAME records to appear in
+//    the DNS configuration for the domain.
 //
 //    * SUCCESS – The DKIM authentication process completed successfully.
 //
@@ -9125,8 +9125,8 @@ const (
 //    * TEMPORARY_FAILURE – A temporary issue is preventing Amazon Pinpoint
 //    from determining the DKIM authentication status of the domain.
 //
-//    * NOT_STARTED – The DKIM verification process hasn't been initiated for
-//    the domain.
+//    * NOT_STARTED – The DKIM verification process hasn't been initiated
+//    for the domain.
 const (
 	// DkimStatusPending is a DkimStatus enum value
 	DkimStatusPending = "PENDING"
@@ -9193,11 +9193,11 @@ const (
 //    * PENDING – Amazon Pinpoint hasn't started searching for the MX record
 //    yet.
 //
-//    * SUCCESS – Amazon Pinpoint detected the required MX record for the MAIL
-//    FROM domain.
+//    * SUCCESS – Amazon Pinpoint detected the required MX record for the
+//    MAIL FROM domain.
 //
-//    * FAILED – Amazon Pinpoint can't find the required MX record, or the record
-//    no longer exists.
+//    * FAILED – Amazon Pinpoint can't find the required MX record, or the
+//    record no longer exists.
 //
 //    * TEMPORARY_FAILURE – A temporary issue occurred, which prevented Amazon
 //    Pinpoint from determining the status of the MAIL FROM domain.

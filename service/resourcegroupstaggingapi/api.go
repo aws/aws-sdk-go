@@ -123,7 +123,7 @@ func (c *ResourceGroupsTaggingAPI) GetResourcesWithContext(ctx aws.Context, inpu
 //    // Example iterating over at most 3 pages of a GetResources operation.
 //    pageNum := 0
 //    err := client.GetResourcesPages(params,
-//        func(page *GetResourcesOutput, lastPage bool) bool {
+//        func(page *resourcegroupstaggingapi.GetResourcesOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -270,7 +270,7 @@ func (c *ResourceGroupsTaggingAPI) GetTagKeysWithContext(ctx aws.Context, input 
 //    // Example iterating over at most 3 pages of a GetTagKeys operation.
 //    pageNum := 0
 //    err := client.GetTagKeysPages(params,
-//        func(page *GetTagKeysOutput, lastPage bool) bool {
+//        func(page *resourcegroupstaggingapi.GetTagKeysOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -418,7 +418,7 @@ func (c *ResourceGroupsTaggingAPI) GetTagValuesWithContext(ctx aws.Context, inpu
 //    // Example iterating over at most 3 pages of a GetTagValues operation.
 //    pageNum := 0
 //    err := client.GetTagValuesPages(params,
-//        func(page *GetTagValuesOutput, lastPage bool) bool {
+//        func(page *resourcegroupstaggingapi.GetTagValuesOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -760,7 +760,8 @@ type GetResourcesInput struct {
 	// 10 tags, and the third page displaying the remaining 2 resources, each with
 	// its 10 tags.
 	//
-	// You can set TagsPerPage
+	// You can set TagsPerPage to a minimum of 100 items and the maximum of 500
+	// items.
 	TagsPerPage *int64 `type:"integer"`
 }
 

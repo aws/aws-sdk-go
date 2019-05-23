@@ -2092,9 +2092,9 @@ type CreateServerInput struct {
 	// The specified time is in coordinated universal time (UTC). The default value
 	// is a random, daily start time.
 	//
-	// Example:08:00, which represents a daily start time of 08:00 UTC.
+	// Example: 08:00, which represents a daily start time of 08:00 UTC.
 	//
-	// Example:Mon:08:00, which represents a start time of every Monday at 08:00
+	// Example: Mon:08:00, which represents a start time of every Monday at 08:00
 	// UTC. (8:00 a.m.)
 	PreferredBackupWindow *string `type:"string"`
 
@@ -2104,7 +2104,7 @@ type CreateServerInput struct {
 	// time (UTC). The default value is a random one-hour period on Tuesday, Wednesday,
 	// or Friday. See TimeWindowDefinition for more information.
 	//
-	// Example:Mon:08:00, which represents a start time of every Monday at 08:00
+	// Example: Mon:08:00, which represents a start time of every Monday at 08:00
 	// UTC. (8:00 a.m.)
 	PreferredMaintenanceWindow *string `type:"string"`
 
@@ -2827,7 +2827,7 @@ type DescribeServersOutput struct {
 
 	// Contains the response to a DescribeServers request.
 	//
-	// For Puppet Server:DescribeServersResponse$Servers$EngineAttributes contains
+	// For Puppet Server: DescribeServersResponse$Servers$EngineAttributes contains
 	// PUPPET_API_CA_CERT. This is the PEM-encoded CA certificate that is used by
 	// the Puppet API over TCP port number 8140. The CA certificate is also used
 	// to sign node certificates.
