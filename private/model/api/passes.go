@@ -386,3 +386,23 @@ func (a *API) findEndpointDiscoveryOp() {
 		}
 	}
 }
+func (a *API) injectUnboundedOutputStreaming() {
+	for _, op := range a.Operations {
+		if op.AuthType != V4UnsignedBodyAuthType {
+			continue
+		}
+		for _, ref := range op.InputRef.Shape.MemberRefs {
+			if ref.Streaming || ref.Shape.Streaming {
+				if len(ref.Documentation) != 0 {
+					ref.Documentation += `
+//`
+				}
+				ref.Documentation += `
+// To use an non-seekable io.Reader for this request wrap the io.Reader with
+// "aws.ReadSeekCloser". The SDK will not retry request errors for non-seekable
+// readers. This will allow the SDK to send the reader's payload as chunked
+// transfer encoding.`
+			}
+		}
+	}
+}

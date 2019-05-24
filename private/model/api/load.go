@@ -181,6 +181,7 @@ func (a *API) Setup() {
 	a.updateTopLevelShapeReferences()
 	a.setupEventStreams()
 	a.findEndpointDiscoveryOp()
+	a.injectUnboundedOutputStreaming()
 	a.customizationPasses()
 
 	if !a.NoRemoveUnusedShapes {

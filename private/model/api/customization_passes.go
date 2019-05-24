@@ -61,13 +61,13 @@ func (a *API) customizationPasses() {
 
 		// Backfill the authentication type for cognito identity and sts.
 		// Removes the need for the customizations in these services.
-		"cognitoidentity": backfillAuthType("none",
+		"cognitoidentity": backfillAuthType(NoneAuthType,
 			"GetId",
 			"GetOpenIdToken",
 			"UnlinkIdentity",
 			"GetCredentialsForIdentity",
 		),
-		"sts": backfillAuthType("none",
+		"sts": backfillAuthType(NoneAuthType,
 			"AssumeRoleWithSAML",
 			"AssumeRoleWithWebIdentity",
 		),
@@ -248,7 +248,7 @@ func disableEndpointResolving(a *API) {
 	a.Metadata.NoResolveEndpoint = true
 }
 
-func backfillAuthType(typ string, opNames ...string) func(*API) {
+func backfillAuthType(typ AuthType, opNames ...string) func(*API) {
 	return func(a *API) {
 		for _, opName := range opNames {
 			op, ok := a.Operations[opName]
