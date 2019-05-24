@@ -1,3 +1,21 @@
+Release v1.19.38 (2019-05-24)
+===
+
+### Service Client Updates
+* `service/codedeploy`: Updates service API and documentation
+  * AWS CodeDeploy now supports tagging for the application and deployment group resources.
+* `service/mediastore-data`: Updates service API, documentation, and paginators
+* `service/opsworkscm`: Updates service documentation
+  * Documentation updates for OpsWorks for Chef Automate; attribute values updated for Chef Automate 2.0 release.
+
+### SDK Bugs
+* `service/dynamodb/expression`: Fix Builder with KeyCondition example ([#2618](https://github.com/aws/aws-sdk-go/pull/2618))
+  * Fixes the ExampleBuilder_WithKeyCondition example to include the ExpressionAttributeNames member being set.
+  * Related to [aws/aws-sdk-go-v2#285](https://github.com/aws/aws-sdk-go-v2/issues/285)
+* `private/model/api`: Improve SDK API reference doc generation ([#2617](https://github.com/aws/aws-sdk-go/pull/2617))
+  * Improves the SDK's generated documentation for API client, operation, and types. This fixes several bugs in the doc generation causing poor formatting, an difficult to read reference documentation.
+  * Fixes [#2572](https://github.com/aws/aws-sdk-go/pull/2572)
+  * Fixes [#2374](https://github.com/aws/aws-sdk-go/pull/2374)
 Release v1.19.37 (2019-05-23)
 ===
 
