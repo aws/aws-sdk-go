@@ -674,7 +674,7 @@ func (c *Connect) GetCurrentMetricDataWithContext(ctx aws.Context, input *GetCur
 //    // Example iterating over at most 3 pages of a GetCurrentMetricData operation.
 //    pageNum := 0
 //    err := client.GetCurrentMetricDataPages(params,
-//        func(page *GetCurrentMetricDataOutput, lastPage bool) bool {
+//        func(page *connect.GetCurrentMetricDataOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -919,7 +919,7 @@ func (c *Connect) GetMetricDataWithContext(ctx aws.Context, input *GetMetricData
 //    // Example iterating over at most 3 pages of a GetMetricData operation.
 //    pageNum := 0
 //    err := client.GetMetricDataPages(params,
-//        func(page *GetMetricDataOutput, lastPage bool) bool {
+//        func(page *connect.GetMetricDataOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2936,25 +2936,45 @@ type GetCurrentMetricDataInput struct {
 	//
 	// The following metrics are available:
 	//
-	// AGENTS_AVAILABLEUnit: COUNT
+	// AGENTS_AVAILABLE
 	//
-	// AGENTS_ONLINEUnit: COUNT
+	// Unit: COUNT
 	//
-	// AGENTS_ON_CALLUnit: COUNT
+	// AGENTS_ONLINE
 	//
-	// AGENTS_STAFFEDUnit: COUNT
+	// Unit: COUNT
 	//
-	// AGENTS_AFTER_CONTACT_WORKUnit: COUNT
+	// AGENTS_ON_CALL
 	//
-	// AGENTS_NON_PRODUCTIVEUnit: COUNT
+	// Unit: COUNT
 	//
-	// AGENTS_ERRORUnit: COUNT
+	// AGENTS_STAFFED
 	//
-	// CONTACTS_IN_QUEUEUnit: COUNT
+	// Unit: COUNT
 	//
-	// OLDEST_CONTACT_AGEUnit: SECONDS
+	// AGENTS_AFTER_CONTACT_WORK
 	//
-	// CONTACTS_SCHEDULEDUnit: COUNT
+	// Unit: COUNT
+	//
+	// AGENTS_NON_PRODUCTIVE
+	//
+	// Unit: COUNT
+	//
+	// AGENTS_ERROR
+	//
+	// Unit: COUNT
+	//
+	// CONTACTS_IN_QUEUE
+	//
+	// Unit: COUNT
+	//
+	// OLDEST_CONTACT_AGE
+	//
+	// Unit: SECONDS
+	//
+	// CONTACTS_SCHEDULED
+	//
+	// Unit: COUNT
 	//
 	// CurrentMetrics is a required field
 	CurrentMetrics []*CurrentMetric `type:"list" required:"true"`
@@ -3256,107 +3276,159 @@ type GetMetricDataInput struct {
 	//
 	// The following historical metrics are available:
 	//
-	// CONTACTS_QUEUEDUnit: COUNT
+	// CONTACTS_QUEUED
+	//
+	// Unit: COUNT
 	//
 	// Statistic: SUM
 	//
-	// CONTACTS_HANDLEDUnit: COUNT
+	// CONTACTS_HANDLED
+	//
+	// Unit: COUNT
 	//
 	// Statistics: SUM
 	//
-	// CONTACTS_ABANDONEDUnit: COUNT
+	// CONTACTS_ABANDONED
+	//
+	// Unit: COUNT
 	//
 	// Statistics: SUM
 	//
-	// CONTACTS_CONSULTEDUnit: COUNT
+	// CONTACTS_CONSULTED
+	//
+	// Unit: COUNT
 	//
 	// Statistics: SUM
 	//
-	// CONTACTS_AGENT_HUNG_UP_FIRSTUnit: COUNT
+	// CONTACTS_AGENT_HUNG_UP_FIRST
+	//
+	// Unit: COUNT
 	//
 	// Statistics: SUM
 	//
-	// CONTACTS_HANDLED_INCOMINGUnit: COUNT
+	// CONTACTS_HANDLED_INCOMING
+	//
+	// Unit: COUNT
 	//
 	// Statistics: SUM
 	//
-	// CONTACTS_HANDLED_OUTBOUNDUnit: COUNT
+	// CONTACTS_HANDLED_OUTBOUND
+	//
+	// Unit: COUNT
 	//
 	// Statistics: SUM
 	//
-	// CONTACTS_HOLD_ABANDONSUnit: COUNT
+	// CONTACTS_HOLD_ABANDONS
+	//
+	// Unit: COUNT
 	//
 	// Statistics: SUM
 	//
-	// CONTACTS_TRANSFERRED_INUnit: COUNT
+	// CONTACTS_TRANSFERRED_IN
+	//
+	// Unit: COUNT
 	//
 	// Statistics: SUM
 	//
-	// CONTACTS_TRANSFERRED_OUTUnit: COUNT
+	// CONTACTS_TRANSFERRED_OUT
+	//
+	// Unit: COUNT
 	//
 	// Statistics: SUM
 	//
-	// CONTACTS_TRANSFERRED_IN_FROM_QUEUEUnit: COUNT
+	// CONTACTS_TRANSFERRED_IN_FROM_QUEUE
+	//
+	// Unit: COUNT
 	//
 	// Statistics: SUM
 	//
-	// CONTACTS_TRANSFERRED_OUT_FROM_QUEUEUnit: COUNT
+	// CONTACTS_TRANSFERRED_OUT_FROM_QUEUE
+	//
+	// Unit: COUNT
 	//
 	// Statistics: SUM
 	//
-	// CALLBACK_CONTACTS_HANDLEDUnit: COUNT
+	// CALLBACK_CONTACTS_HANDLED
+	//
+	// Unit: COUNT
 	//
 	// Statistics: SUM
 	//
-	// CALLBACK_CONTACTS_HANDLEDUnit: COUNT
+	// CALLBACK_CONTACTS_HANDLED
+	//
+	// Unit: COUNT
 	//
 	// Statistics: SUM
 	//
-	// API_CONTACTS_HANDLEDUnit: COUNT
+	// API_CONTACTS_HANDLED
+	//
+	// Unit: COUNT
 	//
 	// Statistics: SUM
 	//
-	// CONTACTS_MISSEDUnit: COUNT
+	// CONTACTS_MISSED
+	//
+	// Unit: COUNT
 	//
 	// Statistics: SUM
 	//
-	// OCCUPANCYUnit: PERCENT
+	// OCCUPANCY
+	//
+	// Unit: PERCENT
 	//
 	// Statistics: AVG
 	//
-	// HANDLE_TIMEUnit: SECONDS
+	// HANDLE_TIME
+	//
+	// Unit: SECONDS
 	//
 	// Statistics: AVG
 	//
-	// AFTER_CONTACT_WORK_TIMEUnit: SECONDS
+	// AFTER_CONTACT_WORK_TIME
+	//
+	// Unit: SECONDS
 	//
 	// Statistics: AVG
 	//
-	// QUEUED_TIMEUnit: SECONDS
+	// QUEUED_TIME
+	//
+	// Unit: SECONDS
 	//
 	// Statistics: MAX
 	//
-	// ABANDON_TIMEUnit: COUNT
+	// ABANDON_TIME
+	//
+	// Unit: COUNT
 	//
 	// Statistics: SUM
 	//
-	// QUEUE_ANSWER_TIMEUnit: SECONDS
+	// QUEUE_ANSWER_TIME
+	//
+	// Unit: SECONDS
 	//
 	// Statistics: AVG
 	//
-	// HOLD_TIMEUnit: SECONDS
+	// HOLD_TIME
+	//
+	// Unit: SECONDS
 	//
 	// Statistics: AVG
 	//
-	// INTERACTION_TIMEUnit: SECONDS
+	// INTERACTION_TIME
+	//
+	// Unit: SECONDS
 	//
 	// Statistics: AVG
 	//
-	// INTERACTION_AND_HOLD_TIMEUnit: SECONDS
+	// INTERACTION_AND_HOLD_TIME
+	//
+	// Unit: SECONDS
 	//
 	// Statistics: AVG
 	//
-	// SERVICE_LEVELUnit: PERCENT
+	// SERVICE_LEVEL
+	//
+	// Unit: PERCENT
 	//
 	// Statistics: AVG
 	//

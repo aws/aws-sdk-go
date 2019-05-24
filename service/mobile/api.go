@@ -715,7 +715,7 @@ func (c *Mobile) ListBundlesWithContext(ctx aws.Context, input *ListBundlesInput
 //    // Example iterating over at most 3 pages of a ListBundles operation.
 //    pageNum := 0
 //    err := client.ListBundlesPages(params,
-//        func(page *ListBundlesOutput, lastPage bool) bool {
+//        func(page *mobile.ListBundlesOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -866,7 +866,7 @@ func (c *Mobile) ListProjectsWithContext(ctx aws.Context, input *ListProjectsInp
 //    // Example iterating over at most 3 pages of a ListProjects operation.
 //    pageNum := 0
 //    err := client.ListProjectsPages(params,
-//        func(page *ListProjectsOutput, lastPage bool) bool {
+//        func(page *mobile.ListProjectsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3

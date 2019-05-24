@@ -316,7 +316,7 @@ type StartSelector struct {
 	//    a fragment with the specified producer or server timestamp. You specify
 	//    the timestamp by adding StartTimestamp.
 	//
-	//    *  CONTINUATION_TOKEN - Read using the specified continuation token.
+	//    * CONTINUATION_TOKEN - Read using the specified continuation token.
 	//
 	// If you choose the NOW, EARLIEST, or CONTINUATION_TOKEN as the startSelectorType,
 	// you don't provide any additional information in the startSelector.

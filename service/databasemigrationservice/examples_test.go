@@ -319,7 +319,6 @@ func ExampleDatabaseMigrationService_DeleteCertificate_shared00() {
 //
 // Deletes the specified endpoint. All tasks associated with the endpoint must be deleted
 // before you can delete the endpoint.
-//
 func ExampleDatabaseMigrationService_DeleteEndpoint_shared00() {
 	svc := databasemigrationservice.New(session.New())
 	input := &databasemigrationservice.DeleteEndpointInput{
@@ -352,7 +351,6 @@ func ExampleDatabaseMigrationService_DeleteEndpoint_shared00() {
 //
 // Deletes the specified replication instance. You must delete any migration tasks that
 // are associated with the replication instance before you can delete it.
-//
 func ExampleDatabaseMigrationService_DeleteReplicationInstance_shared00() {
 	svc := databasemigrationservice.New(session.New())
 	input := &databasemigrationservice.DeleteReplicationInstanceInput{

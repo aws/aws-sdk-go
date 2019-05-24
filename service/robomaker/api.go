@@ -2071,7 +2071,7 @@ func (c *RoboMaker) ListDeploymentJobsWithContext(ctx aws.Context, input *ListDe
 //    // Example iterating over at most 3 pages of a ListDeploymentJobs operation.
 //    pageNum := 0
 //    err := client.ListDeploymentJobsPages(params,
-//        func(page *ListDeploymentJobsOutput, lastPage bool) bool {
+//        func(page *robomaker.ListDeploymentJobsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2218,7 +2218,7 @@ func (c *RoboMaker) ListFleetsWithContext(ctx aws.Context, input *ListFleetsInpu
 //    // Example iterating over at most 3 pages of a ListFleets operation.
 //    pageNum := 0
 //    err := client.ListFleetsPages(params,
-//        func(page *ListFleetsOutput, lastPage bool) bool {
+//        func(page *robomaker.ListFleetsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2362,7 +2362,7 @@ func (c *RoboMaker) ListRobotApplicationsWithContext(ctx aws.Context, input *Lis
 //    // Example iterating over at most 3 pages of a ListRobotApplications operation.
 //    pageNum := 0
 //    err := client.ListRobotApplicationsPages(params,
-//        func(page *ListRobotApplicationsOutput, lastPage bool) bool {
+//        func(page *robomaker.ListRobotApplicationsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2509,7 +2509,7 @@ func (c *RoboMaker) ListRobotsWithContext(ctx aws.Context, input *ListRobotsInpu
 //    // Example iterating over at most 3 pages of a ListRobots operation.
 //    pageNum := 0
 //    err := client.ListRobotsPages(params,
-//        func(page *ListRobotsOutput, lastPage bool) bool {
+//        func(page *robomaker.ListRobotsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2653,7 +2653,7 @@ func (c *RoboMaker) ListSimulationApplicationsWithContext(ctx aws.Context, input
 //    // Example iterating over at most 3 pages of a ListSimulationApplications operation.
 //    pageNum := 0
 //    err := client.ListSimulationApplicationsPages(params,
-//        func(page *ListSimulationApplicationsOutput, lastPage bool) bool {
+//        func(page *robomaker.ListSimulationApplicationsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2797,7 +2797,7 @@ func (c *RoboMaker) ListSimulationJobsWithContext(ctx aws.Context, input *ListSi
 //    // Example iterating over at most 3 pages of a ListSimulationJobs operation.
 //    pageNum := 0
 //    err := client.ListSimulationJobsPages(params,
-//        func(page *ListSimulationJobsOutput, lastPage bool) bool {
+//        func(page *robomaker.ListSimulationJobsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -3848,42 +3848,62 @@ type CreateDeploymentJobOutput struct {
 
 	// The failure code of the simulation job if it failed:
 	//
-	// BadPermissionErrorAWS Greengrass requires a service-level role permission
-	// to access other services. The role must include the AWSGreengrassResourceAccessRolePolicy
-	// (https://console.aws.amazon.com/iam/home?#/policies/arn:aws:iam::aws:policy/service-role/AWSGreengrassResourceAccessRolePolicy$jsonEditor)
-	// managed policy.
+	// BadPermissionError
 	//
-	// ExtractingBundleFailureThe robot application could not be extracted from
-	// the bundle.
+	// AWS Greengrass requires a service-level role permission to access other services.
+	// The role must include the AWSGreengrassResourceAccessRolePolicy managed policy
+	// (https://console.aws.amazon.com/iam/home?#/policies/arn:aws:iam::aws:policy/service-role/AWSGreengrassResourceAccessRolePolicy$jsonEditor).
 	//
-	// FailureThresholdBreachedThe percentage of robots that could not be updated
-	// exceeded the percentage set for the deployment.
+	// ExtractingBundleFailure
 	//
-	// GreengrassDeploymentFailedThe robot application could not be deployed to
-	// the robot.
+	// The robot application could not be extracted from the bundle.
 	//
-	// GreengrassGroupVersionDoesNotExistThe AWS Greengrass group or version associated
-	// with a robot is missing.
+	// FailureThresholdBreached
 	//
-	// InternalServerErrorAn internal error has occurred. Retry your request, but
-	// if the problem persists, contact us with details.
+	// The percentage of robots that could not be updated exceeded the percentage
+	// set for the deployment.
 	//
-	// MissingRobotApplicationArchitectureThe robot application does not have a
-	// source that matches the architecture of the robot.
+	// GreengrassDeploymentFailed
 	//
-	// MissingRobotDeploymentResourceOne or more of the resources specified for
-	// the robot application are missing. For example, does the robot application
-	// have the correct launch package and launch file?
+	// The robot application could not be deployed to the robot.
 	//
-	// PostLaunchFileFailureThe post-launch script failed.
+	// GreengrassGroupVersionDoesNotExist
 	//
-	// PreLaunchFileFailureThe pre-launch script failed.
+	// The AWS Greengrass group or version associated with a robot is missing.
 	//
-	// ResourceNotFoundOne or more deployment resources are missing. For example,
-	// do robot application source bundles still exist?
+	// InternalServerError
 	//
-	// RobotDeploymentNoResponseThere is no response from the robot. It might not
-	// be powered on or connected to the internet.
+	// An internal error has occurred. Retry your request, but if the problem persists,
+	// contact us with details.
+	//
+	// MissingRobotApplicationArchitecture
+	//
+	// The robot application does not have a source that matches the architecture
+	// of the robot.
+	//
+	// MissingRobotDeploymentResource
+	//
+	// One or more of the resources specified for the robot application are missing.
+	// For example, does the robot application have the correct launch package and
+	// launch file?
+	//
+	// PostLaunchFileFailure
+	//
+	// The post-launch script failed.
+	//
+	// PreLaunchFileFailure
+	//
+	// The pre-launch script failed.
+	//
+	// ResourceNotFound
+	//
+	// One or more deployment resources are missing. For example, do robot application
+	// source bundles still exist?
+	//
+	// RobotDeploymentNoResponse
+	//
+	// There is no response from the robot. It might not be powered on or connected
+	// to the internet.
 	FailureCode *string `locationName:"failureCode" type:"string" enum:"DeploymentJobErrorCode"`
 
 	// The failure reason of the deployment job if it failed.
@@ -4902,9 +4922,13 @@ type CreateSimulationJobInput struct {
 
 	// The failure behavior the simulation job.
 	//
-	// ContinueRestart the simulation job in the same host instance.
+	// Continue
 	//
-	// FailStop the simulation job and terminate the instance.
+	// Restart the simulation job in the same host instance.
+	//
+	// Fail
+	//
+	// Stop the simulation job and terminate the instance.
 	FailureBehavior *string `locationName:"failureBehavior" type:"string" enum:"FailureBehavior"`
 
 	// The IAM role name that allows the simulation instance to call the AWS APIs
@@ -5078,39 +5102,63 @@ type CreateSimulationJobOutput struct {
 
 	// The failure code of the simulation job if it failed:
 	//
-	// InternalServiceErrorInternal service error.
+	// InternalServiceError
 	//
-	// RobotApplicationCrashRobot application exited abnormally.
+	// Internal service error.
 	//
-	// SimulationApplicationCrash Simulation application exited abnormally.
+	// RobotApplicationCrash
 	//
-	// BadPermissionsRobotApplicationRobot application bundle could not be downloaded.
+	// Robot application exited abnormally.
 	//
-	// BadPermissionsSimulationApplicationSimulation application bundle could not
-	// be downloaded.
+	// SimulationApplicationCrash
 	//
-	// BadPermissionsS3OutputUnable to publish outputs to customer-provided S3 bucket.
+	// Simulation application exited abnormally.
 	//
-	// BadPermissionsCloudwatchLogsUnable to publish logs to customer-provided CloudWatch
-	// Logs resource.
+	// BadPermissionsRobotApplication
 	//
-	// SubnetIpLimitExceededSubnet IP limit exceeded.
+	// Robot application bundle could not be downloaded.
 	//
-	// ENILimitExceededENI limit exceeded.
+	// BadPermissionsSimulationApplication
 	//
-	// BadPermissionsUserCredentialsUnable to use the Role provided.
+	// Simulation application bundle could not be downloaded.
 	//
-	// InvalidBundleRobotApplicationRobot bundle cannot be extracted (invalid format,
-	// bundling error, or other issue).
+	// BadPermissionsS3Output
 	//
-	// InvalidBundleSimulationApplicationSimulation bundle cannot be extracted (invalid
-	// format, bundling error, or other issue).
+	// Unable to publish outputs to customer-provided S3 bucket.
 	//
-	// RobotApplicationVersionMismatchedEtagEtag for RobotApplication does not match
-	// value during version creation.
+	// BadPermissionsCloudwatchLogs
 	//
-	// SimulationApplicationVersionMismatchedEtagEtag for SimulationApplication
-	// does not match value during version creation.
+	// Unable to publish logs to customer-provided CloudWatch Logs resource.
+	//
+	// SubnetIpLimitExceeded
+	//
+	// Subnet IP limit exceeded.
+	//
+	// ENILimitExceeded
+	//
+	// ENI limit exceeded.
+	//
+	// BadPermissionsUserCredentials
+	//
+	// Unable to use the Role provided.
+	//
+	// InvalidBundleRobotApplication
+	//
+	// Robot bundle cannot be extracted (invalid format, bundling error, or other
+	// issue).
+	//
+	// InvalidBundleSimulationApplication
+	//
+	// Simulation bundle cannot be extracted (invalid format, bundling error, or
+	// other issue).
+	//
+	// RobotApplicationVersionMismatchedEtag
+	//
+	// Etag for RobotApplication does not match value during version creation.
+	//
+	// SimulationApplicationVersionMismatchedEtag
+	//
+	// Etag for SimulationApplication does not match value during version creation.
 	FailureCode *string `locationName:"failureCode" type:"string" enum:"SimulationJobErrorCode"`
 
 	// The IAM role that allows the simulation job to call the AWS APIs that are
@@ -6654,39 +6702,63 @@ type DescribeSimulationJobOutput struct {
 
 	// The failure code of the simulation job if it failed:
 	//
-	// InternalServiceErrorInternal service error.
+	// InternalServiceError
 	//
-	// RobotApplicationCrashRobot application exited abnormally.
+	// Internal service error.
 	//
-	// SimulationApplicationCrash Simulation application exited abnormally.
+	// RobotApplicationCrash
 	//
-	// BadPermissionsRobotApplicationRobot application bundle could not be downloaded.
+	// Robot application exited abnormally.
 	//
-	// BadPermissionsSimulationApplicationSimulation application bundle could not
-	// be downloaded.
+	// SimulationApplicationCrash
 	//
-	// BadPermissionsS3OutputUnable to publish outputs to customer-provided S3 bucket.
+	// Simulation application exited abnormally.
 	//
-	// BadPermissionsCloudwatchLogsUnable to publish logs to customer-provided CloudWatch
-	// Logs resource.
+	// BadPermissionsRobotApplication
 	//
-	// SubnetIpLimitExceededSubnet IP limit exceeded.
+	// Robot application bundle could not be downloaded.
 	//
-	// ENILimitExceededENI limit exceeded.
+	// BadPermissionsSimulationApplication
 	//
-	// BadPermissionsUserCredentialsUnable to use the Role provided.
+	// Simulation application bundle could not be downloaded.
 	//
-	// InvalidBundleRobotApplicationRobot bundle cannot be extracted (invalid format,
-	// bundling error, or other issue).
+	// BadPermissionsS3Output
 	//
-	// InvalidBundleSimulationApplicationSimulation bundle cannot be extracted (invalid
-	// format, bundling error, or other issue).
+	// Unable to publish outputs to customer-provided S3 bucket.
 	//
-	// RobotApplicationVersionMismatchedEtagEtag for RobotApplication does not match
-	// value during version creation.
+	// BadPermissionsCloudwatchLogs
 	//
-	// SimulationApplicationVersionMismatchedEtagEtag for SimulationApplication
-	// does not match value during version creation.
+	// Unable to publish logs to customer-provided CloudWatch Logs resource.
+	//
+	// SubnetIpLimitExceeded
+	//
+	// Subnet IP limit exceeded.
+	//
+	// ENILimitExceeded
+	//
+	// ENI limit exceeded.
+	//
+	// BadPermissionsUserCredentials
+	//
+	// Unable to use the Role provided.
+	//
+	// InvalidBundleRobotApplication
+	//
+	// Robot bundle cannot be extracted (invalid format, bundling error, or other
+	// issue).
+	//
+	// InvalidBundleSimulationApplication
+	//
+	// Simulation bundle cannot be extracted (invalid format, bundling error, or
+	// other issue).
+	//
+	// RobotApplicationVersionMismatchedEtag
+	//
+	// Etag for RobotApplication does not match value during version creation.
+	//
+	// SimulationApplicationVersionMismatchedEtag
+	//
+	// Etag for SimulationApplication does not match value during version creation.
 	FailureCode *string `locationName:"failureCode" type:"string" enum:"SimulationJobErrorCode"`
 
 	// Details about why the simulation job failed. For more information about troubleshooting,
@@ -7873,17 +7945,29 @@ type ProgressDetail struct {
 
 	// The current progress status.
 	//
-	// ValidatingValidating the deployment.
+	// Validating
 	//
-	// Downloading/ExtractingDownloading and extracting the bundle on the robot.
+	// Validating the deployment.
 	//
-	// Executing pre-launch script(s)Executing pre-launch script(s) if provided.
+	// Downloading/Extracting
 	//
-	// LaunchingLaunching the robot application.
+	// Downloading and extracting the bundle on the robot.
 	//
-	// Executing post-launch script(s)Executing post-launch script(s) if provided.
+	// Executing pre-launch script(s)
 	//
-	// FinishedDeployment is complete.
+	// Executing pre-launch script(s) if provided.
+	//
+	// Launching
+	//
+	// Launching the robot application.
+	//
+	// Executing post-launch script(s)
+	//
+	// Executing post-launch script(s) if provided.
+	//
+	// Finished
+	//
+	// Deployment is complete.
 	CurrentProgress *string `locationName:"currentProgress" type:"string" enum:"RobotDeploymentStep"`
 
 	// Estimated amount of time in seconds remaining in the step. This currently
@@ -8580,9 +8664,13 @@ type SimulationJob struct {
 
 	// The failure behavior the simulation job.
 	//
-	// ContinueRestart the simulation job in the same host instance.
+	// Continue
 	//
-	// FailStop the simulation job and terminate the instance.
+	// Restart the simulation job in the same host instance.
+	//
+	// Fail
+	//
+	// Stop the simulation job and terminate the instance.
 	FailureBehavior *string `locationName:"failureBehavior" type:"string" enum:"FailureBehavior"`
 
 	// The failure code of the simulation job if it failed.
@@ -9020,39 +9108,63 @@ type SyncDeploymentJobOutput struct {
 
 	// The failure code if the job fails:
 	//
-	// InternalServiceErrorInternal service error.
+	// InternalServiceError
 	//
-	// RobotApplicationCrashRobot application exited abnormally.
+	// Internal service error.
 	//
-	// SimulationApplicationCrash Simulation application exited abnormally.
+	// RobotApplicationCrash
 	//
-	// BadPermissionsRobotApplicationRobot application bundle could not be downloaded.
+	// Robot application exited abnormally.
 	//
-	// BadPermissionsSimulationApplicationSimulation application bundle could not
-	// be downloaded.
+	// SimulationApplicationCrash
 	//
-	// BadPermissionsS3OutputUnable to publish outputs to customer-provided S3 bucket.
+	// Simulation application exited abnormally.
 	//
-	// BadPermissionsCloudwatchLogsUnable to publish logs to customer-provided CloudWatch
-	// Logs resource.
+	// BadPermissionsRobotApplication
 	//
-	// SubnetIpLimitExceededSubnet IP limit exceeded.
+	// Robot application bundle could not be downloaded.
 	//
-	// ENILimitExceededENI limit exceeded.
+	// BadPermissionsSimulationApplication
 	//
-	// BadPermissionsUserCredentialsUnable to use the Role provided.
+	// Simulation application bundle could not be downloaded.
 	//
-	// InvalidBundleRobotApplicationRobot bundle cannot be extracted (invalid format,
-	// bundling error, or other issue).
+	// BadPermissionsS3Output
 	//
-	// InvalidBundleSimulationApplicationSimulation bundle cannot be extracted (invalid
-	// format, bundling error, or other issue).
+	// Unable to publish outputs to customer-provided S3 bucket.
 	//
-	// RobotApplicationVersionMismatchedEtagEtag for RobotApplication does not match
-	// value during version creation.
+	// BadPermissionsCloudwatchLogs
 	//
-	// SimulationApplicationVersionMismatchedEtagEtag for SimulationApplication
-	// does not match value during version creation.
+	// Unable to publish logs to customer-provided CloudWatch Logs resource.
+	//
+	// SubnetIpLimitExceeded
+	//
+	// Subnet IP limit exceeded.
+	//
+	// ENILimitExceeded
+	//
+	// ENI limit exceeded.
+	//
+	// BadPermissionsUserCredentials
+	//
+	// Unable to use the Role provided.
+	//
+	// InvalidBundleRobotApplication
+	//
+	// Robot bundle cannot be extracted (invalid format, bundling error, or other
+	// issue).
+	//
+	// InvalidBundleSimulationApplication
+	//
+	// Simulation bundle cannot be extracted (invalid format, bundling error, or
+	// other issue).
+	//
+	// RobotApplicationVersionMismatchedEtag
+	//
+	// Etag for RobotApplication does not match value during version creation.
+	//
+	// SimulationApplicationVersionMismatchedEtag
+	//
+	// Etag for SimulationApplication does not match value during version creation.
 	FailureCode *string `locationName:"failureCode" type:"string" enum:"DeploymentJobErrorCode"`
 
 	// The failure reason if the job fails.

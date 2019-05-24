@@ -2074,7 +2074,7 @@ func (c *WorkDocs) DescribeDocumentVersionsWithContext(ctx aws.Context, input *D
 //    // Example iterating over at most 3 pages of a DescribeDocumentVersions operation.
 //    pageNum := 0
 //    err := client.DescribeDocumentVersionsPages(params,
-//        func(page *DescribeDocumentVersionsOutput, lastPage bool) bool {
+//        func(page *workdocs.DescribeDocumentVersionsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2232,7 +2232,7 @@ func (c *WorkDocs) DescribeFolderContentsWithContext(ctx aws.Context, input *Des
 //    // Example iterating over at most 3 pages of a DescribeFolderContents operation.
 //    pageNum := 0
 //    err := client.DescribeFolderContentsPages(params,
-//        func(page *DescribeFolderContentsOutput, lastPage bool) bool {
+//        func(page *workdocs.DescribeFolderContentsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2760,7 +2760,7 @@ func (c *WorkDocs) DescribeUsersWithContext(ctx aws.Context, input *DescribeUser
 //    // Example iterating over at most 3 pages of a DescribeUsers operation.
 //    pageNum := 0
 //    err := client.DescribeUsersPages(params,
-//        func(page *DescribeUsersOutput, lastPage bool) bool {
+//        func(page *workdocs.DescribeUsersOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3

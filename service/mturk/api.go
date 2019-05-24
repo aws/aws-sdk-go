@@ -154,10 +154,10 @@ func (c *MTurk) ApproveAssignmentRequest(input *ApproveAssignmentInput) (req *re
 // Approving an assignment initiates two payments from the Requester's Amazon.com
 // account
 //
-//    *  The Worker who submitted the results is paid the reward specified in
+//    * The Worker who submitted the results is paid the reward specified in
 //    the HIT.
 //
-//    *  Amazon Mechanical Turk fees are debited.
+//    * Amazon Mechanical Turk fees are debited.
 //
 // If the Requester's account does not have adequate funds for these payments,
 // the call to ApproveAssignment returns an exception, and the approval is not
@@ -353,15 +353,15 @@ func (c *MTurk) CreateAdditionalAssignmentsForHITRequest(input *CreateAdditional
 // To extend the maximum number of assignments, specify the number of additional
 // assignments.
 //
-// HITs created with fewer than 10 assignments cannot be extended to have 10
-// or more assignments. Attempting to add assignments in a way that brings the
-// total number of assignments for a HIT from fewer than 10 assignments to 10
-// or more assignments will result in an AWS.MechanicalTurk.InvalidMaximumAssignmentsIncrease
-// exception.
+//    * HITs created with fewer than 10 assignments cannot be extended to have
+//    10 or more assignments. Attempting to add assignments in a way that brings
+//    the total number of assignments for a HIT from fewer than 10 assignments
+//    to 10 or more assignments will result in an AWS.MechanicalTurk.InvalidMaximumAssignmentsIncrease
+//    exception.
 //
-// HITs that were created before July 22, 2015 cannot be extended. Attempting
-// to extend HITs that were created before July 22, 2015 will result in an AWS.MechanicalTurk.HITTooOldForExtension
-// exception.
+//    * HITs that were created before July 22, 2015 cannot be extended. Attempting
+//    to extend HITs that were created before July 22, 2015 will result in an
+//    AWS.MechanicalTurk.HITTooOldForExtension exception.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -910,15 +910,15 @@ func (c *MTurk) DeleteHITRequest(input *DeleteHITInput) (req *request.Request, o
 // HIT that is Reviewable but without all of its submitted assignments already
 // approved or rejected, the service will return an error.
 //
-// HITs are automatically disposed of after 120 days.
+//    * HITs are automatically disposed of after 120 days.
 //
-//  After you dispose of a HIT, you can no longer approve the HIT's rejected
-// assignments.
+//    * After you dispose of a HIT, you can no longer approve the HIT's rejected
+//    assignments.
 //
-//  Disposed HITs are not returned in results for the ListHITs operation.
+//    * Disposed HITs are not returned in results for the ListHITs operation.
 //
-//  Disposing HITs can improve the performance of operations such as ListReviewableHITs
-// and ListHITs.
+//    * Disposing HITs can improve the performance of operations such as ListReviewableHITs
+//    and ListHITs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1868,7 +1868,7 @@ func (c *MTurk) ListAssignmentsForHITWithContext(ctx aws.Context, input *ListAss
 //    // Example iterating over at most 3 pages of a ListAssignmentsForHIT operation.
 //    pageNum := 0
 //    err := client.ListAssignmentsForHITPages(params,
-//        func(page *ListAssignmentsForHITOutput, lastPage bool) bool {
+//        func(page *mturk.ListAssignmentsForHITOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2008,7 +2008,7 @@ func (c *MTurk) ListBonusPaymentsWithContext(ctx aws.Context, input *ListBonusPa
 //    // Example iterating over at most 3 pages of a ListBonusPayments operation.
 //    pageNum := 0
 //    err := client.ListBonusPaymentsPages(params,
-//        func(page *ListBonusPaymentsOutput, lastPage bool) bool {
+//        func(page *mturk.ListBonusPaymentsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2149,7 +2149,7 @@ func (c *MTurk) ListHITsWithContext(ctx aws.Context, input *ListHITsInput, opts 
 //    // Example iterating over at most 3 pages of a ListHITs operation.
 //    pageNum := 0
 //    err := client.ListHITsPages(params,
-//        func(page *ListHITsOutput, lastPage bool) bool {
+//        func(page *mturk.ListHITsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2291,7 +2291,7 @@ func (c *MTurk) ListHITsForQualificationTypeWithContext(ctx aws.Context, input *
 //    // Example iterating over at most 3 pages of a ListHITsForQualificationType operation.
 //    pageNum := 0
 //    err := client.ListHITsForQualificationTypePages(params,
-//        func(page *ListHITsForQualificationTypeOutput, lastPage bool) bool {
+//        func(page *mturk.ListHITsForQualificationTypeOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2433,7 +2433,7 @@ func (c *MTurk) ListQualificationRequestsWithContext(ctx aws.Context, input *Lis
 //    // Example iterating over at most 3 pages of a ListQualificationRequests operation.
 //    pageNum := 0
 //    err := client.ListQualificationRequestsPages(params,
-//        func(page *ListQualificationRequestsOutput, lastPage bool) bool {
+//        func(page *mturk.ListQualificationRequestsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2573,7 +2573,7 @@ func (c *MTurk) ListQualificationTypesWithContext(ctx aws.Context, input *ListQu
 //    // Example iterating over at most 3 pages of a ListQualificationTypes operation.
 //    pageNum := 0
 //    err := client.ListQualificationTypesPages(params,
-//        func(page *ListQualificationTypesOutput, lastPage bool) bool {
+//        func(page *mturk.ListQualificationTypesOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2716,7 +2716,7 @@ func (c *MTurk) ListReviewPolicyResultsForHITWithContext(ctx aws.Context, input 
 //    // Example iterating over at most 3 pages of a ListReviewPolicyResultsForHIT operation.
 //    pageNum := 0
 //    err := client.ListReviewPolicyResultsForHITPages(params,
-//        func(page *ListReviewPolicyResultsForHITOutput, lastPage bool) bool {
+//        func(page *mturk.ListReviewPolicyResultsForHITOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2857,7 +2857,7 @@ func (c *MTurk) ListReviewableHITsWithContext(ctx aws.Context, input *ListReview
 //    // Example iterating over at most 3 pages of a ListReviewableHITs operation.
 //    pageNum := 0
 //    err := client.ListReviewableHITsPages(params,
-//        func(page *ListReviewableHITsOutput, lastPage bool) bool {
+//        func(page *mturk.ListReviewableHITsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2997,7 +2997,7 @@ func (c *MTurk) ListWorkerBlocksWithContext(ctx aws.Context, input *ListWorkerBl
 //    // Example iterating over at most 3 pages of a ListWorkerBlocks operation.
 //    pageNum := 0
 //    err := client.ListWorkerBlocksPages(params,
-//        func(page *ListWorkerBlocksOutput, lastPage bool) bool {
+//        func(page *mturk.ListWorkerBlocksOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -3137,7 +3137,7 @@ func (c *MTurk) ListWorkersWithQualificationTypeWithContext(ctx aws.Context, inp
 //    // Example iterating over at most 3 pages of a ListWorkersWithQualificationType operation.
 //    pageNum := 0
 //    err := client.ListWorkersWithQualificationTypePages(params,
-//        func(page *ListWorkersWithQualificationTypeOutput, lastPage bool) bool {
+//        func(page *mturk.ListWorkersWithQualificationTypeOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -9140,10 +9140,10 @@ type UpdateHITReviewStatusInput struct {
 
 	// Specifies how to update the HIT status. Default is False.
 	//
-	//    *  Setting this to false will only transition a HIT from Reviewable to
+	//    * Setting this to false will only transition a HIT from Reviewable to
 	//    Reviewing
 	//
-	//    *  Setting this to true will only transition a HIT from Reviewing to Reviewable
+	//    * Setting this to true will only transition a HIT from Reviewing to Reviewable
 	Revert *bool `type:"boolean"`
 }
 

@@ -1678,15 +1678,15 @@ func (c *MigrationHub) PutResourceAttributesRequest(input *PutResourceAttributes
 // be associated in the Application Discovery Service (ADS)'s repository. This
 // association occurs asynchronously after PutResourceAttributes returns.
 //
-// Keep in mind that subsequent calls to PutResourceAttributes will override
-// previously stored attributes. For example, if it is first called with a MAC
-// address, but later, it is desired to add an IP address, it will then be required
-// to call it with both the IP and MAC addresses to prevent overiding the MAC
-// address.
+//    * Keep in mind that subsequent calls to PutResourceAttributes will override
+//    previously stored attributes. For example, if it is first called with
+//    a MAC address, but later, it is desired to add an IP address, it will
+//    then be required to call it with both the IP and MAC addresses to prevent
+//    overiding the MAC address.
 //
-// Note the instructions regarding the special use case of the ResourceAttributeList
-// (https://docs.aws.amazon.com/migrationhub/latest/ug/API_PutResourceAttributes.html#migrationhub-PutResourceAttributes-request-ResourceAttributeList)
-// parameter when specifying any "VM" related value.
+//    * Note the instructions regarding the special use case of the ResourceAttributeList
+//    (https://docs.aws.amazon.com/migrationhub/latest/ug/API_PutResourceAttributes.html#migrationhub-PutResourceAttributes-request-ResourceAttributeList)
+//    parameter when specifying any "VM" related value.
 //
 // Because this is an asynchronous call, it will always return 200, whether
 // an association occurs or not. To confirm if an association was found based
@@ -3418,16 +3418,16 @@ type PutResourceAttributesInput struct {
 	// | MOTHERBOARD_SERIAL_NUMBER where the identifying value can be a string up
 	// to 256 characters.
 	//
-	// If any "VM" related value is set for a ResourceAttribute object, it is required
-	// that VM_MANAGER_ID, as a minimum, is always set. If VM_MANAGER_ID is not
-	// set, then all "VM" fields will be discarded and "VM" fields will not be used
-	// for matching the migration task to a server in Application Discovery Service
-	// (ADS)'s repository. See the Example (https://docs.aws.amazon.com/migrationhub/latest/ug/API_PutResourceAttributes.html#API_PutResourceAttributes_Examples)
-	// section below for a use case of specifying "VM" related values.
+	//    * If any "VM" related value is set for a ResourceAttribute object, it
+	//    is required that VM_MANAGER_ID, as a minimum, is always set. If VM_MANAGER_ID
+	//    is not set, then all "VM" fields will be discarded and "VM" fields will
+	//    not be used for matching the migration task to a server in Application
+	//    Discovery Service (ADS)'s repository. See the Example (https://docs.aws.amazon.com/migrationhub/latest/ug/API_PutResourceAttributes.html#API_PutResourceAttributes_Examples)
+	//    section below for a use case of specifying "VM" related values.
 	//
-	//  If a server you are trying to match has multiple IP or MAC addresses, you
-	// should provide as many as you know in separate type/value pairs passed to
-	// the ResourceAttributeList parameter to maximize the chances of matching.
+	//    * If a server you are trying to match has multiple IP or MAC addresses,
+	//    you should provide as many as you know in separate type/value pairs passed
+	//    to the ResourceAttributeList parameter to maximize the chances of matching.
 	//
 	// ResourceAttributeList is a required field
 	ResourceAttributeList []*ResourceAttribute `min:"1" type:"list" required:"true"`
@@ -3523,17 +3523,25 @@ func (s PutResourceAttributesOutput) GoString() string {
 //
 // Note the corresponding format required per type listed below:
 //
-// IPV4x.x.x.x
+// IPV4
+//
+// x.x.x.x
 //
 // where x is an integer in the range [0,255]
 //
-// IPV6y : y : y : y : y : y : y : y
+// IPV6
+//
+// y : y : y : y : y : y : y : y
 //
 // where y is a hexadecimal between 0 and FFFF. [0, FFFF]
 //
-// MAC_ADDRESS^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$
+// MAC_ADDRESS
 //
-// FQDN^[^<>{}\\\\/?,=\\p{Cntrl}]{1,256}$
+// ^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$
+//
+// FQDN
+//
+// ^[^<>{}\\\\/?,=\\p{Cntrl}]{1,256}$
 type ResourceAttribute struct {
 	_ struct{} `type:"structure"`
 

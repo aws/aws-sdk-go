@@ -36,7 +36,6 @@
 //    the AWS OpsWorks CM database. These attributes store information about
 //    configuration limits (servers, backups, etc.) and your customer account.
 //
-//
 // Endpoints
 //
 // AWS OpsWorks CM supports the following endpoints, all HTTPS. You must connect

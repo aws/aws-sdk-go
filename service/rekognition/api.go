@@ -1665,7 +1665,7 @@ func (c *Rekognition) GetCelebrityRecognitionWithContext(ctx aws.Context, input 
 //    // Example iterating over at most 3 pages of a GetCelebrityRecognition operation.
 //    pageNum := 0
 //    err := client.GetCelebrityRecognitionPages(params,
-//        func(page *GetCelebrityRecognitionOutput, lastPage bool) bool {
+//        func(page *rekognition.GetCelebrityRecognitionOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -1850,7 +1850,7 @@ func (c *Rekognition) GetContentModerationWithContext(ctx aws.Context, input *Ge
 //    // Example iterating over at most 3 pages of a GetContentModeration operation.
 //    pageNum := 0
 //    err := client.GetContentModerationPages(params,
-//        func(page *GetContentModerationOutput, lastPage bool) bool {
+//        func(page *rekognition.GetContentModerationOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2023,7 +2023,7 @@ func (c *Rekognition) GetFaceDetectionWithContext(ctx aws.Context, input *GetFac
 //    // Example iterating over at most 3 pages of a GetFaceDetection operation.
 //    pageNum := 0
 //    err := client.GetFaceDetectionPages(params,
-//        func(page *GetFaceDetectionOutput, lastPage bool) bool {
+//        func(page *rekognition.GetFaceDetectionOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2206,7 +2206,7 @@ func (c *Rekognition) GetFaceSearchWithContext(ctx aws.Context, input *GetFaceSe
 //    // Example iterating over at most 3 pages of a GetFaceSearch operation.
 //    pageNum := 0
 //    err := client.GetFaceSearchPages(params,
-//        func(page *GetFaceSearchOutput, lastPage bool) bool {
+//        func(page *rekognition.GetFaceSearchOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2388,7 +2388,7 @@ func (c *Rekognition) GetLabelDetectionWithContext(ctx aws.Context, input *GetLa
 //    // Example iterating over at most 3 pages of a GetLabelDetection operation.
 //    pageNum := 0
 //    err := client.GetLabelDetectionPages(params,
-//        func(page *GetLabelDetectionOutput, lastPage bool) bool {
+//        func(page *rekognition.GetLabelDetectionOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2573,7 +2573,7 @@ func (c *Rekognition) GetPersonTrackingWithContext(ctx aws.Context, input *GetPe
 //    // Example iterating over at most 3 pages of a GetPersonTracking operation.
 //    pageNum := 0
 //    err := client.GetPersonTrackingPages(params,
-//        func(page *GetPersonTrackingOutput, lastPage bool) bool {
+//        func(page *rekognition.GetPersonTrackingOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2695,8 +2695,8 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 // standing in the background.
 //
 // The QualityFilter input parameter allows you to filter out detected faces
-// that don’t meet the required quality bar chosen by Amazon Rekognition. The
-// quality bar is based on a variety of common use cases. By default, IndexFaces
+// that don’t meet the required quality bar chosen by Amazon Rekognition.
+// The quality bar is based on a variety of common use cases. By default, IndexFaces
 // filters detected faces. You can also explicitly filter detected faces by
 // specifying AUTO for the value of QualityFilter. If you do not want to filter
 // detected faces, specify NONE.
@@ -2746,6 +2746,7 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 // be formatted as a PNG or JPEG file.
 //
 // This operation requires permissions to perform the rekognition:IndexFaces
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2929,7 +2930,7 @@ func (c *Rekognition) ListCollectionsWithContext(ctx aws.Context, input *ListCol
 //    // Example iterating over at most 3 pages of a ListCollections operation.
 //    pageNum := 0
 //    err := client.ListCollectionsPages(params,
-//        func(page *ListCollectionsOutput, lastPage bool) bool {
+//        func(page *rekognition.ListCollectionsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -3088,7 +3089,7 @@ func (c *Rekognition) ListFacesWithContext(ctx aws.Context, input *ListFacesInpu
 //    // Example iterating over at most 3 pages of a ListFaces operation.
 //    pageNum := 0
 //    err := client.ListFacesPages(params,
-//        func(page *ListFacesOutput, lastPage bool) bool {
+//        func(page *rekognition.ListFacesOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -3238,7 +3239,7 @@ func (c *Rekognition) ListStreamProcessorsWithContext(ctx aws.Context, input *Li
 //    // Example iterating over at most 3 pages of a ListStreamProcessors operation.
 //    pageNum := 0
 //    err := client.ListStreamProcessorsPages(params,
-//        func(page *ListStreamProcessorsOutput, lastPage bool) bool {
+//        func(page *rekognition.ListStreamProcessorsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -3572,7 +3573,7 @@ func (c *Rekognition) SearchFacesByImageRequest(input *SearchFacesByImageInput) 
 // operation, and then use the face IDs returned in subsequent calls to the
 // SearchFaces operation.
 //
-//  You can also call the DetectFaces operation and use the bounding boxes in
+// You can also call the DetectFaces operation and use the bounding boxes in
 // the response to make face crops, which then you can pass in to the SearchFacesByImage
 // operation.
 //
@@ -5052,10 +5053,10 @@ type CompareFacesOutput struct {
 	// after the orientation information in the Exif metadata is used to correct
 	// the image orientation. Images in .png format don't contain Exif metadata.
 	//
-	// Amazon Rekognition doesn’t perform image correction for images in .png format
-	// and .jpeg images without orientation information in the image Exif metadata.
-	// The bounding box coordinates aren't translated and represent the object locations
-	// before the image is rotated.
+	// Amazon Rekognition doesn’t perform image correction for images in .png
+	// format and .jpeg images without orientation information in the image Exif
+	// metadata. The bounding box coordinates aren't translated and represent the
+	// object locations before the image is rotated.
 	SourceImageOrientationCorrection *string `type:"string" enum:"OrientationCorrection"`
 
 	// The value of TargetImageOrientationCorrection is always null.
@@ -5067,10 +5068,10 @@ type CompareFacesOutput struct {
 	// after the orientation information in the Exif metadata is used to correct
 	// the image orientation. Images in .png format don't contain Exif metadata.
 	//
-	// Amazon Rekognition doesn’t perform image correction for images in .png format
-	// and .jpeg images without orientation information in the image Exif metadata.
-	// The bounding box coordinates aren't translated and represent the object locations
-	// before the image is rotated.
+	// Amazon Rekognition doesn’t perform image correction for images in .png
+	// format and .jpeg images without orientation information in the image Exif
+	// metadata. The bounding box coordinates aren't translated and represent the
+	// object locations before the image is rotated.
 	TargetImageOrientationCorrection *string `type:"string" enum:"OrientationCorrection"`
 
 	// An array of faces in the target image that did not match the source image
@@ -5990,10 +5991,10 @@ type DetectFacesOutput struct {
 	// after the orientation information in the Exif metadata is used to correct
 	// the image orientation. Images in .png format don't contain Exif metadata.
 	//
-	// Amazon Rekognition doesn’t perform image correction for images in .png format
-	// and .jpeg images without orientation information in the image Exif metadata.
-	// The bounding box coordinates aren't translated and represent the object locations
-	// before the image is rotated.
+	// Amazon Rekognition doesn’t perform image correction for images in .png
+	// format and .jpeg images without orientation information in the image Exif
+	// metadata. The bounding box coordinates aren't translated and represent the
+	// object locations before the image is rotated.
 	OrientationCorrection *string `type:"string" enum:"OrientationCorrection"`
 }
 
@@ -6109,10 +6110,10 @@ type DetectLabelsOutput struct {
 	// after the orientation information in the Exif metadata is used to correct
 	// the image orientation. Images in .png format don't contain Exif metadata.
 	//
-	// Amazon Rekognition doesn’t perform image correction for images in .png format
-	// and .jpeg images without orientation information in the image Exif metadata.
-	// The bounding box coordinates aren't translated and represent the object locations
-	// before the image is rotated.
+	// Amazon Rekognition doesn’t perform image correction for images in .png
+	// format and .jpeg images without orientation information in the image Exif
+	// metadata. The bounding box coordinates aren't translated and represent the
+	// object locations before the image is rotated.
 	OrientationCorrection *string `type:"string" enum:"OrientationCorrection"`
 }
 
@@ -7982,11 +7983,11 @@ type IndexFacesInput struct {
 
 	// A filter that specifies how much filtering is done to identify faces that
 	// are detected with low quality. Filtered faces aren't indexed. If you specify
-	// AUTO, filtering prioritizes the identification of faces that don’t meet the
-	// required quality bar chosen by Amazon Rekognition. The quality bar is based
-	// on a variety of common use cases. Low-quality detections can occur for a
-	// number of reasons. Some examples are an object that's misidentified as a
-	// face, a face that's too blurry, or a face with a pose that's too extreme
+	// AUTO, filtering prioritizes the identification of faces that don’t meet
+	// the required quality bar chosen by Amazon Rekognition. The quality bar is
+	// based on a variety of common use cases. Low-quality detections can occur
+	// for a number of reasons. Some examples are an object that's misidentified
+	// as a face, a face that's too blurry, or a face with a pose that's too extreme
 	// to use. If you specify NONE, no filtering is performed. The default value
 	// is AUTO.
 	//

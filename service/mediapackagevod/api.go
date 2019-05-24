@@ -910,7 +910,7 @@ func (c *MediaPackageVod) ListAssetsWithContext(ctx aws.Context, input *ListAsse
 //    // Example iterating over at most 3 pages of a ListAssets operation.
 //    pageNum := 0
 //    err := client.ListAssetsPages(params,
-//        func(page *ListAssetsOutput, lastPage bool) bool {
+//        func(page *mediapackagevod.ListAssetsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -1054,7 +1054,7 @@ func (c *MediaPackageVod) ListPackagingConfigurationsWithContext(ctx aws.Context
 //    // Example iterating over at most 3 pages of a ListPackagingConfigurations operation.
 //    pageNum := 0
 //    err := client.ListPackagingConfigurationsPages(params,
-//        func(page *ListPackagingConfigurationsOutput, lastPage bool) bool {
+//        func(page *mediapackagevod.ListPackagingConfigurationsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -1198,7 +1198,7 @@ func (c *MediaPackageVod) ListPackagingGroupsWithContext(ctx aws.Context, input 
 //    // Example iterating over at most 3 pages of a ListPackagingGroups operation.
 //    pageNum := 0
 //    err := client.ListPackagingGroupsPages(params,
-//        func(page *ListPackagingGroupsOutput, lastPage bool) bool {
+//        func(page *mediapackagevod.ListPackagingGroupsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3

@@ -1786,7 +1786,7 @@ func (c *IoTAnalytics) ListChannelsWithContext(ctx aws.Context, input *ListChann
 //    // Example iterating over at most 3 pages of a ListChannels operation.
 //    pageNum := 0
 //    err := client.ListChannelsPages(params,
-//        func(page *ListChannelsOutput, lastPage bool) bool {
+//        func(page *iotanalytics.ListChannelsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -1933,7 +1933,7 @@ func (c *IoTAnalytics) ListDatasetContentsWithContext(ctx aws.Context, input *Li
 //    // Example iterating over at most 3 pages of a ListDatasetContents operation.
 //    pageNum := 0
 //    err := client.ListDatasetContentsPages(params,
-//        func(page *ListDatasetContentsOutput, lastPage bool) bool {
+//        func(page *iotanalytics.ListDatasetContentsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2077,7 +2077,7 @@ func (c *IoTAnalytics) ListDatasetsWithContext(ctx aws.Context, input *ListDatas
 //    // Example iterating over at most 3 pages of a ListDatasets operation.
 //    pageNum := 0
 //    err := client.ListDatasetsPages(params,
-//        func(page *ListDatasetsOutput, lastPage bool) bool {
+//        func(page *iotanalytics.ListDatasetsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2221,7 +2221,7 @@ func (c *IoTAnalytics) ListDatastoresWithContext(ctx aws.Context, input *ListDat
 //    // Example iterating over at most 3 pages of a ListDatastores operation.
 //    pageNum := 0
 //    err := client.ListDatastoresPages(params,
-//        func(page *ListDatastoresOutput, lastPage bool) bool {
+//        func(page *iotanalytics.ListDatastoresOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2365,7 +2365,7 @@ func (c *IoTAnalytics) ListPipelinesWithContext(ctx aws.Context, input *ListPipe
 //    // Example iterating over at most 3 pages of a ListPipelines operation.
 //    pageNum := 0
 //    err := client.ListPipelinesPages(params,
-//        func(page *ListPipelinesOutput, lastPage bool) bool {
+//        func(page *iotanalytics.ListPipelinesOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -3572,7 +3572,6 @@ type BatchPutMessageInput struct {
 	//    * Cannot contain hyphens (-).
 	//
 	//    * In regular expression terms: "^[A-Za-z_]([A-Za-z0-9]*|[A-Za-z0-9][A-Za-z0-9_]*)$".
-	//
 	//
 	//    * Cannot be greater than 255 characters.
 	//
@@ -5312,11 +5311,17 @@ type Datastore struct {
 
 	// The status of a data store:
 	//
-	// CREATINGThe data store is being created.
+	// CREATING
 	//
-	// ACTIVEThe data store has been created and can be used.
+	// The data store is being created.
 	//
-	// DELETINGThe data store is being deleted.
+	// ACTIVE
+	//
+	// The data store has been created and can be used.
+	//
+	// DELETING
+	//
+	// The data store is being deleted.
 	Status *string `locationName:"status" type:"string" enum:"DatastoreStatus"`
 }
 
@@ -8471,7 +8476,7 @@ type Schedule struct {
 	_ struct{} `type:"structure"`
 
 	// The expression that defines when to trigger an update. For more information,
-	// see  Schedule Expressions for Rules (https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html)
+	// see Schedule Expressions for Rules (https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html)
 	// in the Amazon CloudWatch Events User Guide.
 	Expression *string `locationName:"expression" type:"string"`
 }

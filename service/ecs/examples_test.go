@@ -900,7 +900,7 @@ func ExampleECS_ListTasks_shared00() {
 // To list the tasks on a particular container instance
 //
 // This example lists the tasks of a specified container instance. Specifying a ``containerInstance``
-// value limits  the  results  to  tasks  that belong to that container instance.
+// value limits the results to tasks that belong to that container instance.
 func ExampleECS_ListTasks_shared01() {
 	svc := ecs.New(session.New())
 	input := &ecs.ListTasksInput{
@@ -977,8 +977,8 @@ func ExampleECS_PutAccountSetting_shared00() {
 //
 // This example modifies the account setting for a specific IAM user or IAM role to
 // opt in to the new ARN and resource ID format for Amazon ECS container instances.
-// If you’re using this command as the root user, then changes apply to the entire AWS
-// account, unless an IAM user or role explicitly overrides these settings for themselves.
+// If you’re using this command as the root user, then changes apply to the entire
+// AWS account, unless an IAM user or role explicitly overrides these settings for themselves.
 func ExampleECS_PutAccountSetting_shared01() {
 	svc := ecs.New(session.New())
 	input := &ecs.PutAccountSettingInput{

@@ -258,7 +258,6 @@ func (c *Support) CreateCaseRequest(input *CreateCaseInput) (req *request.Reques
 //    * issueType. The type of issue for the case. You can specify either "customer-service"
 //    or "technical." If you do not indicate a value, the default is "technical."
 //
-//
 //    * serviceCode. The code for an AWS service. You obtain the serviceCode
 //    by calling DescribeServices.
 //
@@ -288,7 +287,6 @@ func (c *Support) CreateCaseRequest(input *CreateCaseInput) (req *request.Reques
 //    The account that opens the case is already identified by passing the AWS
 //    Credentials in the HTTP POST method or in a method or function call from
 //    one of the programming languages supported by an AWS SDK (http://aws.amazon.com/tools/).
-//
 //
 // To add additional communication or attachments to an existing case, use AddCommunicationToCase.
 //
@@ -541,7 +539,7 @@ func (c *Support) DescribeCasesWithContext(ctx aws.Context, input *DescribeCases
 //    // Example iterating over at most 3 pages of a DescribeCases operation.
 //    pageNum := 0
 //    err := client.DescribeCasesPages(params,
-//        func(page *DescribeCasesOutput, lastPage bool) bool {
+//        func(page *support.DescribeCasesOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -688,7 +686,7 @@ func (c *Support) DescribeCommunicationsWithContext(ctx aws.Context, input *Desc
 //    // Example iterating over at most 3 pages of a DescribeCommunications operation.
 //    pageNum := 0
 //    err := client.DescribeCommunicationsPages(params,
-//        func(page *DescribeCommunicationsOutput, lastPage bool) bool {
+//        func(page *support.DescribeCommunicationsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3

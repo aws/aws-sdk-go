@@ -4218,7 +4218,7 @@ func (c *AlexaForBusiness) ListBusinessReportSchedulesWithContext(ctx aws.Contex
 //    // Example iterating over at most 3 pages of a ListBusinessReportSchedules operation.
 //    pageNum := 0
 //    err := client.ListBusinessReportSchedulesPages(params,
-//        func(page *ListBusinessReportSchedulesOutput, lastPage bool) bool {
+//        func(page *alexaforbusiness.ListBusinessReportSchedulesOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -4348,7 +4348,7 @@ func (c *AlexaForBusiness) ListConferenceProvidersWithContext(ctx aws.Context, i
 //    // Example iterating over at most 3 pages of a ListConferenceProviders operation.
 //    pageNum := 0
 //    err := client.ListConferenceProvidersPages(params,
-//        func(page *ListConferenceProvidersOutput, lastPage bool) bool {
+//        func(page *alexaforbusiness.ListConferenceProvidersOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -4484,7 +4484,7 @@ func (c *AlexaForBusiness) ListDeviceEventsWithContext(ctx aws.Context, input *L
 //    // Example iterating over at most 3 pages of a ListDeviceEvents operation.
 //    pageNum := 0
 //    err := client.ListDeviceEventsPages(params,
-//        func(page *ListDeviceEventsOutput, lastPage bool) bool {
+//        func(page *alexaforbusiness.ListDeviceEventsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -4615,7 +4615,7 @@ func (c *AlexaForBusiness) ListGatewayGroupsWithContext(ctx aws.Context, input *
 //    // Example iterating over at most 3 pages of a ListGatewayGroups operation.
 //    pageNum := 0
 //    err := client.ListGatewayGroupsPages(params,
-//        func(page *ListGatewayGroupsOutput, lastPage bool) bool {
+//        func(page *alexaforbusiness.ListGatewayGroupsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -4748,7 +4748,7 @@ func (c *AlexaForBusiness) ListGatewaysWithContext(ctx aws.Context, input *ListG
 //    // Example iterating over at most 3 pages of a ListGateways operation.
 //    pageNum := 0
 //    err := client.ListGatewaysPages(params,
-//        func(page *ListGatewaysOutput, lastPage bool) bool {
+//        func(page *alexaforbusiness.ListGatewaysOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -4878,7 +4878,7 @@ func (c *AlexaForBusiness) ListSkillsWithContext(ctx aws.Context, input *ListSki
 //    // Example iterating over at most 3 pages of a ListSkills operation.
 //    pageNum := 0
 //    err := client.ListSkillsPages(params,
-//        func(page *ListSkillsOutput, lastPage bool) bool {
+//        func(page *alexaforbusiness.ListSkillsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -5008,7 +5008,7 @@ func (c *AlexaForBusiness) ListSkillsStoreCategoriesWithContext(ctx aws.Context,
 //    // Example iterating over at most 3 pages of a ListSkillsStoreCategories operation.
 //    pageNum := 0
 //    err := client.ListSkillsStoreCategoriesPages(params,
-//        func(page *ListSkillsStoreCategoriesOutput, lastPage bool) bool {
+//        func(page *alexaforbusiness.ListSkillsStoreCategoriesOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -5138,7 +5138,7 @@ func (c *AlexaForBusiness) ListSkillsStoreSkillsByCategoryWithContext(ctx aws.Co
 //    // Example iterating over at most 3 pages of a ListSkillsStoreSkillsByCategory operation.
 //    pageNum := 0
 //    err := client.ListSkillsStoreSkillsByCategoryPages(params,
-//        func(page *ListSkillsStoreSkillsByCategoryOutput, lastPage bool) bool {
+//        func(page *alexaforbusiness.ListSkillsStoreSkillsByCategoryOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -5273,7 +5273,7 @@ func (c *AlexaForBusiness) ListSmartHomeAppliancesWithContext(ctx aws.Context, i
 //    // Example iterating over at most 3 pages of a ListSmartHomeAppliances operation.
 //    pageNum := 0
 //    err := client.ListSmartHomeAppliancesPages(params,
-//        func(page *ListSmartHomeAppliancesOutput, lastPage bool) bool {
+//        func(page *alexaforbusiness.ListSmartHomeAppliancesOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -5408,7 +5408,7 @@ func (c *AlexaForBusiness) ListTagsWithContext(ctx aws.Context, input *ListTagsI
 //    // Example iterating over at most 3 pages of a ListTags operation.
 //    pageNum := 0
 //    err := client.ListTagsPages(params,
-//        func(page *ListTagsOutput, lastPage bool) bool {
+//        func(page *alexaforbusiness.ListTagsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -6207,7 +6207,7 @@ func (c *AlexaForBusiness) SearchAddressBooksWithContext(ctx aws.Context, input 
 //    // Example iterating over at most 3 pages of a SearchAddressBooks operation.
 //    pageNum := 0
 //    err := client.SearchAddressBooksPages(params,
-//        func(page *SearchAddressBooksOutput, lastPage bool) bool {
+//        func(page *alexaforbusiness.SearchAddressBooksOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -6337,7 +6337,7 @@ func (c *AlexaForBusiness) SearchContactsWithContext(ctx aws.Context, input *Sea
 //    // Example iterating over at most 3 pages of a SearchContacts operation.
 //    pageNum := 0
 //    err := client.SearchContactsPages(params,
-//        func(page *SearchContactsOutput, lastPage bool) bool {
+//        func(page *alexaforbusiness.SearchContactsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -6467,7 +6467,7 @@ func (c *AlexaForBusiness) SearchDevicesWithContext(ctx aws.Context, input *Sear
 //    // Example iterating over at most 3 pages of a SearchDevices operation.
 //    pageNum := 0
 //    err := client.SearchDevicesPages(params,
-//        func(page *SearchDevicesOutput, lastPage bool) bool {
+//        func(page *alexaforbusiness.SearchDevicesOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -6598,7 +6598,7 @@ func (c *AlexaForBusiness) SearchNetworkProfilesWithContext(ctx aws.Context, inp
 //    // Example iterating over at most 3 pages of a SearchNetworkProfiles operation.
 //    pageNum := 0
 //    err := client.SearchNetworkProfilesPages(params,
-//        func(page *SearchNetworkProfilesOutput, lastPage bool) bool {
+//        func(page *alexaforbusiness.SearchNetworkProfilesOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -6728,7 +6728,7 @@ func (c *AlexaForBusiness) SearchProfilesWithContext(ctx aws.Context, input *Sea
 //    // Example iterating over at most 3 pages of a SearchProfiles operation.
 //    pageNum := 0
 //    err := client.SearchProfilesPages(params,
-//        func(page *SearchProfilesOutput, lastPage bool) bool {
+//        func(page *alexaforbusiness.SearchProfilesOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -6858,7 +6858,7 @@ func (c *AlexaForBusiness) SearchRoomsWithContext(ctx aws.Context, input *Search
 //    // Example iterating over at most 3 pages of a SearchRooms operation.
 //    pageNum := 0
 //    err := client.SearchRoomsPages(params,
-//        func(page *SearchRoomsOutput, lastPage bool) bool {
+//        func(page *alexaforbusiness.SearchRoomsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -6989,7 +6989,7 @@ func (c *AlexaForBusiness) SearchSkillGroupsWithContext(ctx aws.Context, input *
 //    // Example iterating over at most 3 pages of a SearchSkillGroups operation.
 //    pageNum := 0
 //    err := client.SearchSkillGroupsPages(params,
-//        func(page *SearchSkillGroupsOutput, lastPage bool) bool {
+//        func(page *alexaforbusiness.SearchSkillGroupsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -7119,7 +7119,7 @@ func (c *AlexaForBusiness) SearchUsersWithContext(ctx aws.Context, input *Search
 //    // Example iterating over at most 3 pages of a SearchUsers operation.
 //    pageNum := 0
 //    err := client.SearchUsersPages(params,
-//        func(page *SearchUsersOutput, lastPage bool) bool {
+//        func(page *alexaforbusiness.SearchUsersOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3

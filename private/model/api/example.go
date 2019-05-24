@@ -54,9 +54,9 @@ var exampleCustomizations = map[string]template.FuncMap{}
 
 var exampleTmpls = template.Must(template.New("example").Funcs(exampleFuncMap).Parse(`
 {{ generateTypes . }}
-{{ commentify (wrap .Title 80 false) }}
+{{ commentify (wrap .Title 80) }}
 //
-{{ commentify (wrap .Description 80 false) }}
+{{ commentify (wrap .Description 80) }}
 func Example{{ .API.StructName }}_{{ .MethodName }}() {
 	svc := {{ .API.PackageName }}.New(session.New())
 	input := {{ generateExampleInput . }}

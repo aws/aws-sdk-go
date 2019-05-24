@@ -439,6 +439,7 @@ func (c *CodeDeploy) BatchGetDeploymentInstancesRequest(input *BatchGetDeploymen
 
 // BatchGetDeploymentInstances API operation for AWS CodeDeploy.
 //
+//
 // This method works, but is deprecated. Use BatchGetDeploymentTargets instead.
 //
 // Returns an array of instances associated with a deployment. This method works
@@ -2739,7 +2740,7 @@ func (c *CodeDeploy) ListApplicationRevisionsWithContext(ctx aws.Context, input 
 //    // Example iterating over at most 3 pages of a ListApplicationRevisions operation.
 //    pageNum := 0
 //    err := client.ListApplicationRevisionsPages(params,
-//        func(page *ListApplicationRevisionsOutput, lastPage bool) bool {
+//        func(page *codedeploy.ListApplicationRevisionsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2874,7 +2875,7 @@ func (c *CodeDeploy) ListApplicationsWithContext(ctx aws.Context, input *ListApp
 //    // Example iterating over at most 3 pages of a ListApplications operation.
 //    pageNum := 0
 //    err := client.ListApplicationsPages(params,
-//        func(page *ListApplicationsOutput, lastPage bool) bool {
+//        func(page *codedeploy.ListApplicationsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -3009,7 +3010,7 @@ func (c *CodeDeploy) ListDeploymentConfigsWithContext(ctx aws.Context, input *Li
 //    // Example iterating over at most 3 pages of a ListDeploymentConfigs operation.
 //    pageNum := 0
 //    err := client.ListDeploymentConfigsPages(params,
-//        func(page *ListDeploymentConfigsOutput, lastPage bool) bool {
+//        func(page *codedeploy.ListDeploymentConfigsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -3154,7 +3155,7 @@ func (c *CodeDeploy) ListDeploymentGroupsWithContext(ctx aws.Context, input *Lis
 //    // Example iterating over at most 3 pages of a ListDeploymentGroups operation.
 //    pageNum := 0
 //    err := client.ListDeploymentGroupsPages(params,
-//        func(page *ListDeploymentGroupsOutput, lastPage bool) bool {
+//        func(page *codedeploy.ListDeploymentGroupsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -3248,6 +3249,7 @@ func (c *CodeDeploy) ListDeploymentInstancesRequest(input *ListDeploymentInstanc
 
 // ListDeploymentInstances API operation for AWS CodeDeploy.
 //
+//
 // The newer BatchGetDeploymentTargets should be used instead because it works
 // with all compute types. ListDeploymentInstances throws an exception if it
 // is used with a compute platform other than EC2/On-premises or AWS Lambda.
@@ -3332,7 +3334,7 @@ func (c *CodeDeploy) ListDeploymentInstancesWithContext(ctx aws.Context, input *
 //    // Example iterating over at most 3 pages of a ListDeploymentInstances operation.
 //    pageNum := 0
 //    err := client.ListDeploymentInstancesPages(params,
-//        func(page *ListDeploymentInstancesOutput, lastPage bool) bool {
+//        func(page *codedeploy.ListDeploymentInstancesOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -3599,7 +3601,7 @@ func (c *CodeDeploy) ListDeploymentsWithContext(ctx aws.Context, input *ListDepl
 //    // Example iterating over at most 3 pages of a ListDeployments operation.
 //    pageNum := 0
 //    err := client.ListDeploymentsPages(params,
-//        func(page *ListDeploymentsOutput, lastPage bool) bool {
+//        func(page *codedeploy.ListDeploymentsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -5373,15 +5375,13 @@ type BatchGetDeploymentTargetsInput struct {
 	// The unique IDs of the deployment targets. The compute platform of the deployment
 	// determines the type of the targets and their formats.
 	//
-	//    *  For deployments that use the EC2/On-premises compute platform, the
-	//    target IDs are EC2 or on-premises instances IDs, and their target type
-	//    is instanceTarget.
+	//    * For deployments that use the EC2/On-premises compute platform, the target
+	//    IDs are EC2 or on-premises instances IDs, and their target type is instanceTarget.
 	//
-	//    *  For deployments that use the AWS Lambda compute platform, the target
+	//    * For deployments that use the AWS Lambda compute platform, the target
 	//    IDs are the names of Lambda functions, and their target type is instanceTarget.
 	//
-	//
-	//    *  For deployments that use the Amazon ECS compute platform, the target
+	//    * For deployments that use the Amazon ECS compute platform, the target
 	//    IDs are pairs of Amazon ECS clusters and services specified using the
 	//    format <clustername>:<servicename>. Their target type is ecsTarget.
 	TargetIds []*string `locationName:"targetIds" type:"list"`
@@ -5417,7 +5417,6 @@ type BatchGetDeploymentTargetsOutput struct {
 	// target objects depends on the deployment' compute platform.
 	//
 	//    * EC2/On-premises: Each target object is an EC2 or on-premises instance.
-	//
 	//
 	//    * AWS Lambda: The target object is a specific version of an AWS Lambda
 	//    function.

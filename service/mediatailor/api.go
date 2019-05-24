@@ -567,10 +567,10 @@ type CdnConfiguration struct {
 	AdSegmentUrlPrefix *string `type:"string"`
 
 	// A content delivery network (CDN) to cache content segments, so that content
-	// requests don’t always have to go to the origin server. First, create a rule
-	// in your CDN for the content segment origin server. Then specify the rule's
-	// name in this ContentSegmentUrlPrefix. When AWS Elemental MediaTailor serves
-	// a manifest, it reports your CDN as the source for content segments.
+	// requests don’t always have to go to the origin server. First, create a
+	// rule in your CDN for the content segment origin server. Then specify the
+	// rule's name in this ContentSegmentUrlPrefix. When AWS Elemental MediaTailor
+	// serves a manifest, it reports your CDN as the source for content segments.
 	ContentSegmentUrlPrefix *string `type:"string"`
 }
 

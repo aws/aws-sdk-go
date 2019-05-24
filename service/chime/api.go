@@ -3539,7 +3539,7 @@ func (c *Chime) ListAccountsWithContext(ctx aws.Context, input *ListAccountsInpu
 //    // Example iterating over at most 3 pages of a ListAccounts operation.
 //    pageNum := 0
 //    err := client.ListAccountsPages(params,
-//        func(page *ListAccountsOutput, lastPage bool) bool {
+//        func(page *chime.ListAccountsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -3786,7 +3786,7 @@ func (c *Chime) ListPhoneNumberOrdersWithContext(ctx aws.Context, input *ListPho
 //    // Example iterating over at most 3 pages of a ListPhoneNumberOrders operation.
 //    pageNum := 0
 //    err := client.ListPhoneNumberOrdersPages(params,
-//        func(page *ListPhoneNumberOrdersOutput, lastPage bool) bool {
+//        func(page *chime.ListPhoneNumberOrdersOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -3938,7 +3938,7 @@ func (c *Chime) ListPhoneNumbersWithContext(ctx aws.Context, input *ListPhoneNum
 //    // Example iterating over at most 3 pages of a ListPhoneNumbers operation.
 //    pageNum := 0
 //    err := client.ListPhoneNumbersPages(params,
-//        func(page *ListPhoneNumbersOutput, lastPage bool) bool {
+//        func(page *chime.ListPhoneNumbersOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -4094,7 +4094,7 @@ func (c *Chime) ListUsersWithContext(ctx aws.Context, input *ListUsersInput, opt
 //    // Example iterating over at most 3 pages of a ListUsers operation.
 //    pageNum := 0
 //    err := client.ListUsersPages(params,
-//        func(page *ListUsersOutput, lastPage bool) bool {
+//        func(page *chime.ListUsersOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -4343,7 +4343,7 @@ func (c *Chime) ListVoiceConnectorsWithContext(ctx aws.Context, input *ListVoice
 //    // Example iterating over at most 3 pages of a ListVoiceConnectors operation.
 //    pageNum := 0
 //    err := client.ListVoiceConnectorsPages(params,
-//        func(page *ListVoiceConnectorsOutput, lastPage bool) bool {
+//        func(page *chime.ListVoiceConnectorsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3

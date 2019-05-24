@@ -69,15 +69,15 @@ func (c *LexRuntimeService) PostContentRequest(input *PostContentInput) (req *re
 // In response, Amazon Lex returns the next message to convey to the user. Consider
 // the following example messages:
 //
-//    *  For a user input "I would like a pizza," Amazon Lex might return a
-//    response with a message eliciting slot data (for example, PizzaSize):
-//    "What size pizza would you like?".
+//    * For a user input "I would like a pizza," Amazon Lex might return a response
+//    with a message eliciting slot data (for example, PizzaSize): "What size
+//    pizza would you like?".
 //
-//    *  After the user provides all of the pizza order information, Amazon
-//    Lex might return a response with a message to get user confirmation: "Order
+//    * After the user provides all of the pizza order information, Amazon Lex
+//    might return a response with a message to get user confirmation: "Order
 //    the pizza?".
 //
-//    *  After the user replies "Yes" to the confirmation prompt, Amazon Lex
+//    * After the user replies "Yes" to the confirmation prompt, Amazon Lex
 //    might return a conclusion statement: "Thank you, your cheese pizza has
 //    been ordered.".
 //
@@ -88,28 +88,20 @@ func (c *LexRuntimeService) PostContentRequest(input *PostContentInput) (req *re
 // behavior, such as displaying the appropriate client user interface. Consider
 // the following examples:
 //
-//    *  If the message is to elicit slot data, Amazon Lex returns the following
-//    context information:
+//    * If the message is to elicit slot data, Amazon Lex returns the following
+//    context information: x-amz-lex-dialog-state header set to ElicitSlot x-amz-lex-intent-name
+//    header set to the intent name in the current context x-amz-lex-slot-to-elicit
+//    header set to the slot name for which the message is eliciting information
+//    x-amz-lex-slots header set to a map of slots configured for the intent
+//    with their current values
 //
-// x-amz-lex-dialog-state header set to ElicitSlot
-//
-// x-amz-lex-intent-name header set to the intent name in the current context
-//
-//
-// x-amz-lex-slot-to-elicit header set to the slot name for which the message
-//    is eliciting information
-//
-// x-amz-lex-slots header set to a map of slots configured for the intent with
-//    their current values
-//
-//    *  If the message is a confirmation prompt, the x-amz-lex-dialog-state
+//    * If the message is a confirmation prompt, the x-amz-lex-dialog-state
 //    header is set to Confirmation and the x-amz-lex-slot-to-elicit header
 //    is omitted.
 //
-//    *  If the message is a clarification prompt configured for the intent,
+//    * If the message is a clarification prompt configured for the intent,
 //    indicating that the user intent is not understood, the x-amz-dialog-state
 //    header is set to ElicitIntent and the x-amz-slot-to-elicit header is omitted.
-//
 //
 // In addition, Amazon Lex also returns your application-specific sessionAttributes.
 // For more information, see Managing Conversation Context (http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html).
@@ -240,15 +232,15 @@ func (c *LexRuntimeService) PostTextRequest(input *PostTextInput) (req *request.
 // In response, Amazon Lex returns the next message to convey to the user an
 // optional responseCard to display. Consider the following example messages:
 //
-//    *  For a user input "I would like a pizza", Amazon Lex might return a
-//    response with a message eliciting slot data (for example, PizzaSize):
-//    "What size pizza would you like?"
+//    * For a user input "I would like a pizza", Amazon Lex might return a response
+//    with a message eliciting slot data (for example, PizzaSize): "What size
+//    pizza would you like?"
 //
-//    *  After the user provides all of the pizza order information, Amazon
-//    Lex might return a response with a message to obtain user confirmation
-//    "Proceed with the pizza order?".
+//    * After the user provides all of the pizza order information, Amazon Lex
+//    might return a response with a message to obtain user confirmation "Proceed
+//    with the pizza order?".
 //
-//    *  After the user replies to a confirmation prompt with a "yes", Amazon
+//    * After the user replies to a confirmation prompt with a "yes", Amazon
 //    Lex might return a conclusion statement: "Thank you, your cheese pizza
 //    has been ordered.".
 //
@@ -261,20 +253,13 @@ func (c *LexRuntimeService) PostTextRequest(input *PostTextInput) (req *request.
 // the response. Consider the following examples:
 //
 //    * If the message is to elicit slot data, Amazon Lex returns the following
-//    context information:
+//    context information: dialogState set to ElicitSlot intentName set to the
+//    intent name in the current context slotToElicit set to the slot name for
+//    which the message is eliciting information slots set to a map of slots,
+//    configured for the intent, with currently known values
 //
-// dialogState set to ElicitSlot
-//
-// intentName set to the intent name in the current context
-//
-// slotToElicit set to the slot name for which the message is eliciting information
-//
-//
-// slots set to a map of slots, configured for the intent, with currently known
-//    values
-//
-//    *  If the message is a confirmation prompt, the dialogState is set to
-//    ConfirmIntent and SlotToElicit is set to null.
+//    * If the message is a confirmation prompt, the dialogState is set to ConfirmIntent
+//    and SlotToElicit is set to null.
 //
 //    * If the message is a clarification prompt (configured for the intent)
 //    that indicates that user intent is not understood, the dialogState is
@@ -458,25 +443,15 @@ type PostContentInput struct {
 	// The message Amazon Lex returns in the response can be either text or speech
 	// based on the Accept HTTP header value in the request.
 	//
-	//    *  If the value is text/plain; charset=utf-8, Amazon Lex returns text
-	//    in the response.
+	//    * If the value is text/plain; charset=utf-8, Amazon Lex returns text in
+	//    the response.
 	//
-	//    *  If the value begins with audio/, Amazon Lex returns speech in the response.
+	//    * If the value begins with audio/, Amazon Lex returns speech in the response.
 	//    Amazon Lex uses Amazon Polly to generate the speech (using the configuration
 	//    you specified in the Accept header). For example, if you specify audio/mpeg
-	//    as the value, Amazon Lex returns speech in the MPEG format.
-	//
-	// The following are the accepted values:
-	//
-	// audio/mpeg
-	//
-	// audio/ogg
-	//
-	// audio/pcm
-	//
-	// text/plain; charset=utf-8
-	//
-	// audio/* (defaults to mpeg)
+	//    as the value, Amazon Lex returns speech in the MPEG format. The following
+	//    are the accepted values: audio/mpeg audio/ogg audio/pcm text/plain; charset=utf-8
+	//    audio/* (defaults to mpeg)
 	Accept *string `location:"header" locationName:"Accept" type:"string"`
 
 	// Alias of the Amazon Lex bot.
@@ -494,22 +469,14 @@ type PostContentInput struct {
 	// Indicates the audio format or text. The header value must start with one
 	// of the following prefixes:
 	//
-	//    * PCM format, audio data must be in little-endian byte order.
+	//    * PCM format, audio data must be in little-endian byte order. audio/l16;
+	//    rate=16000; channels=1 audio/x-l16; sample-rate=16000; channel-count=1
+	//    audio/lpcm; sample-rate=8000; sample-size-bits=16; channel-count=1; is-big-endian=false
 	//
-	// audio/l16; rate=16000; channels=1
+	//    * Opus format audio/x-cbr-opus-with-preamble; preamble-size=0; bit-rate=256000;
+	//    frame-size-milliseconds=4
 	//
-	// audio/x-l16; sample-rate=16000; channel-count=1
-	//
-	// audio/lpcm; sample-rate=8000; sample-size-bits=16; channel-count=1; is-big-endian=false
-	//
-	//
-	//    * Opus format
-	//
-	// audio/x-cbr-opus-with-preamble; preamble-size=0; bit-rate=256000; frame-size-milliseconds=4
-	//
-	//    * Text format
-	//
-	// text/plain; charset=utf-8
+	//    * Text format text/plain; charset=utf-8
 	//
 	// ContentType is a required field
 	ContentType *string `location:"header" locationName:"Content-Type" type:"string" required:"true"`
@@ -687,15 +654,12 @@ type PostContentOutput struct {
 	// this information to customize the user interface.
 	//
 	//    * ElicitIntent - Amazon Lex wants to elicit the user's intent. Consider
-	//    the following examples:
+	//    the following examples: For example, a user might utter an intent ("I
+	//    want to order a pizza"). If Amazon Lex cannot infer the user intent from
+	//    this utterance, it will return this dialog state.
 	//
-	//  For example, a user might utter an intent ("I want to order a pizza"). If
-	//    Amazon Lex cannot infer the user intent from this utterance, it will return
-	//    this dialog state.
-	//
-	//    * ConfirmIntent - Amazon Lex is expecting a "yes" or "no" response.
-	//
-	// For example, Amazon Lex wants user confirmation before fulfilling an intent.
+	//    * ConfirmIntent - Amazon Lex is expecting a "yes" or "no" response. For
+	//    example, Amazon Lex wants user confirmation before fulfilling an intent.
 	//    Instead of a simple "yes" or "no" response, a user might respond with
 	//    additional information. For example, "yes, but make it a thick crust pizza"
 	//    or "no, I want to order a drink." Amazon Lex can process such additional
@@ -703,12 +667,10 @@ type PostContentOutput struct {
 	//    intent from OrderPizza to OrderDrink).
 	//
 	//    * ElicitSlot - Amazon Lex is expecting the value of a slot for the current
-	//    intent.
-	//
-	//  For example, suppose that in the response Amazon Lex sends this message:
-	//    "What size pizza would you like?". A user might reply with the slot value
-	//    (e.g., "medium"). The user might also provide additional information in
-	//    the response (e.g., "medium thick crust pizza"). Amazon Lex can process
+	//    intent. For example, suppose that in the response Amazon Lex sends this
+	//    message: "What size pizza would you like?". A user might reply with the
+	//    slot value (e.g., "medium"). The user might also provide additional information
+	//    in the response (e.g., "medium thick crust pizza"). Amazon Lex can process
 	//    such additional information appropriately.
 	//
 	//    * Fulfilled - Conveys that the Lambda function has successfully fulfilled
@@ -716,13 +678,11 @@ type PostContentOutput struct {
 	//
 	//    * ReadyForFulfillment - Conveys that the client has to fulfill the request.
 	//
-	//
-	//    * Failed - Conveys that the conversation with the user failed.
-	//
-	//  This can happen for various reasons, including that the user does not provide
-	//    an appropriate response to prompts from the service (you can configure
-	//    how many times Amazon Lex can prompt a user for specific information),
-	//    or if the Lambda function fails to fulfill the intent.
+	//    * Failed - Conveys that the conversation with the user failed. This can
+	//    happen for various reasons, including that the user does not provide an
+	//    appropriate response to prompts from the service (you can configure how
+	//    many times Amazon Lex can prompt a user for specific information), or
+	//    if the Lambda function fails to fulfill the intent.
 	DialogState *string `location:"header" locationName:"x-amz-lex-dialog-state" type:"string" enum:"DialogState"`
 
 	// The text used to process the request.
@@ -1006,27 +966,21 @@ type PostTextOutput struct {
 	// one of the following values as dialogState. The client can optionally use
 	// this information to customize the user interface.
 	//
-	//    * ElicitIntent - Amazon Lex wants to elicit user intent.
+	//    * ElicitIntent - Amazon Lex wants to elicit user intent. For example,
+	//    a user might utter an intent ("I want to order a pizza"). If Amazon Lex
+	//    cannot infer the user intent from this utterance, it will return this
+	//    dialogState.
 	//
-	// For example, a user might utter an intent ("I want to order a pizza"). If
-	//    Amazon Lex cannot infer the user intent from this utterance, it will return
-	//    this dialogState.
-	//
-	//    * ConfirmIntent - Amazon Lex is expecting a "yes" or "no" response.
-	//
-	//  For example, Amazon Lex wants user confirmation before fulfilling an intent.
-	//
-	//
-	// Instead of a simple "yes" or "no," a user might respond with additional information.
-	//    For example, "yes, but make it thick crust pizza" or "no, I want to order
-	//    a drink". Amazon Lex can process such additional information (in these
-	//    examples, update the crust type slot value, or change intent from OrderPizza
-	//    to OrderDrink).
+	//    * ConfirmIntent - Amazon Lex is expecting a "yes" or "no" response. For
+	//    example, Amazon Lex wants user confirmation before fulfilling an intent.
+	//    Instead of a simple "yes" or "no," a user might respond with additional
+	//    information. For example, "yes, but make it thick crust pizza" or "no,
+	//    I want to order a drink". Amazon Lex can process such additional information
+	//    (in these examples, update the crust type slot value, or change intent
+	//    from OrderPizza to OrderDrink).
 	//
 	//    * ElicitSlot - Amazon Lex is expecting a slot value for the current intent.
-	//
-	//
-	// For example, suppose that in the response Amazon Lex sends this message:
+	//    For example, suppose that in the response Amazon Lex sends this message:
 	//    "What size pizza would you like?". A user might reply with the slot value
 	//    (e.g., "medium"). The user might also provide additional information in
 	//    the response (e.g., "medium thick crust pizza"). Amazon Lex can process
@@ -1037,13 +991,11 @@ type PostTextOutput struct {
 	//
 	//    * ReadyForFulfillment - Conveys that the client has to fulfill the intent.
 	//
-	//
-	//    * Failed - Conveys that the conversation with the user failed.
-	//
-	//  This can happen for various reasons including that the user did not provide
-	//    an appropriate response to prompts from the service (you can configure
-	//    how many times Amazon Lex can prompt a user for specific information),
-	//    or the Lambda function failed to fulfill the intent.
+	//    * Failed - Conveys that the conversation with the user failed. This can
+	//    happen for various reasons including that the user did not provide an
+	//    appropriate response to prompts from the service (you can configure how
+	//    many times Amazon Lex can prompt a user for specific information), or
+	//    the Lambda function failed to fulfill the intent.
 	DialogState *string `locationName:"dialogState" type:"string" enum:"DialogState"`
 
 	// The current user intent that Amazon Lex is aware of.

@@ -1977,7 +1977,7 @@ func (c *WorkMail) ListAliasesWithContext(ctx aws.Context, input *ListAliasesInp
 //    // Example iterating over at most 3 pages of a ListAliases operation.
 //    pageNum := 0
 //    err := client.ListAliasesPages(params,
-//        func(page *ListAliasesOutput, lastPage bool) bool {
+//        func(page *workmail.ListAliasesOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2129,7 +2129,7 @@ func (c *WorkMail) ListGroupMembersWithContext(ctx aws.Context, input *ListGroup
 //    // Example iterating over at most 3 pages of a ListGroupMembers operation.
 //    pageNum := 0
 //    err := client.ListGroupMembersPages(params,
-//        func(page *ListGroupMembersOutput, lastPage bool) bool {
+//        func(page *workmail.ListGroupMembersOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2276,7 +2276,7 @@ func (c *WorkMail) ListGroupsWithContext(ctx aws.Context, input *ListGroupsInput
 //    // Example iterating over at most 3 pages of a ListGroups operation.
 //    pageNum := 0
 //    err := client.ListGroupsPages(params,
-//        func(page *ListGroupsOutput, lastPage bool) bool {
+//        func(page *workmail.ListGroupsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2424,7 +2424,7 @@ func (c *WorkMail) ListMailboxPermissionsWithContext(ctx aws.Context, input *Lis
 //    // Example iterating over at most 3 pages of a ListMailboxPermissions operation.
 //    pageNum := 0
 //    err := client.ListMailboxPermissionsPages(params,
-//        func(page *ListMailboxPermissionsOutput, lastPage bool) bool {
+//        func(page *workmail.ListMailboxPermissionsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2559,7 +2559,7 @@ func (c *WorkMail) ListOrganizationsWithContext(ctx aws.Context, input *ListOrga
 //    // Example iterating over at most 3 pages of a ListOrganizations operation.
 //    pageNum := 0
 //    err := client.ListOrganizationsPages(params,
-//        func(page *ListOrganizationsOutput, lastPage bool) bool {
+//        func(page *workmail.ListOrganizationsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2711,7 +2711,7 @@ func (c *WorkMail) ListResourceDelegatesWithContext(ctx aws.Context, input *List
 //    // Example iterating over at most 3 pages of a ListResourceDelegates operation.
 //    pageNum := 0
 //    err := client.ListResourceDelegatesPages(params,
-//        func(page *ListResourceDelegatesOutput, lastPage bool) bool {
+//        func(page *workmail.ListResourceDelegatesOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2854,7 +2854,7 @@ func (c *WorkMail) ListResourcesWithContext(ctx aws.Context, input *ListResource
 //    // Example iterating over at most 3 pages of a ListResources operation.
 //    pageNum := 0
 //    err := client.ListResourcesPages(params,
-//        func(page *ListResourcesOutput, lastPage bool) bool {
+//        func(page *workmail.ListResourcesOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -2997,7 +2997,7 @@ func (c *WorkMail) ListUsersWithContext(ctx aws.Context, input *ListUsersInput, 
 //    // Example iterating over at most 3 pages of a ListUsers operation.
 //    pageNum := 0
 //    err := client.ListUsersPages(params,
-//        func(page *ListUsersOutput, lastPage bool) bool {
+//        func(page *workmail.ListUsersOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
