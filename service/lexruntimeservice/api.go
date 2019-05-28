@@ -488,6 +488,11 @@ type PostContentInput struct {
 	// that captures all of the audio data before sending. In general, you get better
 	// performance if you stream audio data rather than buffering the data locally.
 	//
+	// To use an non-seekable io.Reader for this request wrap the io.Reader with
+	// "aws.ReadSeekCloser". The SDK will not retry request errors for non-seekable
+	// readers. This will allow the SDK to send the reader's payload as chunked
+	// transfer encoding.
+	//
 	// InputStream is a required field
 	InputStream io.ReadSeeker `locationName:"inputStream" type:"blob" required:"true"`
 
