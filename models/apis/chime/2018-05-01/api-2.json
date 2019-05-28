@@ -2196,6 +2196,7 @@
       "members":{
         "PhoneNumberId":{"shape":"String"},
         "E164PhoneNumber":{"shape":"E164PhoneNumber"},
+        "Type":{"shape":"PhoneNumberType"},
         "ProductType":{"shape":"PhoneNumberProductType"},
         "Status":{"shape":"PhoneNumberStatus"},
         "Capabilities":{"shape":"PhoneNumberCapabilities"},
@@ -2299,6 +2300,13 @@
         "DeleteInProgress",
         "ReleaseFailed",
         "DeleteFailed"
+      ]
+    },
+    "PhoneNumberType":{
+      "type":"string",
+      "enum":[
+        "Local",
+        "TollFree"
       ]
     },
     "Port":{
@@ -2504,6 +2512,11 @@
           "location":"querystring",
           "locationName":"state"
         },
+        "TollFreePrefix":{
+          "shape":"TollFreePrefix",
+          "location":"querystring",
+          "locationName":"toll-free-prefix"
+        },
         "MaxResults":{
           "shape":"PhoneNumberMaxResults",
           "location":"querystring",
@@ -2593,6 +2606,12 @@
       },
       "error":{"httpStatusCode":429},
       "exception":true
+    },
+    "TollFreePrefix":{
+      "type":"string",
+      "max":3,
+      "min":3,
+      "pattern":"^8(00|33|44|55|66|77|88)$"
     },
     "UnauthorizedClientException":{
       "type":"structure",

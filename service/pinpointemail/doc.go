@@ -7,17 +7,19 @@
 // Email API, version 1.0. This document is best used in conjunction with the
 // Amazon Pinpoint Developer Guide (https://docs.aws.amazon.com/pinpoint/latest/developerguide/welcome.html).
 //
-// The Amazon Pinpoint Email API is available in the US East (N. Virginia),
-// US West (Oregon), EU (Frankfurt), and EU (Ireland) Regions at the following
-// endpoints:
+// The Amazon Pinpoint Email API is available in several AWS Regions and it
+// provides an endpoint for each of these Regions. For a list of all the Regions
+// and endpoints where the API is currently available, see AWS Regions and Endpoints
+// (https://docs.aws.amazon.com/general/latest/gr/rande.html#pinpoint_region)
+// in the Amazon Web Services General Reference.
 //
-//    * US East (N. Virginia): email.us-east-1.amazonaws.com
-//
-//    * US West (Oregon): email.us-west-2.amazonaws.com
-//
-//    * EU (Frankfurt): email.eu-central-1.amazonaws.com
-//
-//    * EU (Ireland): email.eu-west-1.amazonaws.com
+// In each Region, AWS maintains multiple Availability Zones. These Availability
+// Zones are physically isolated from each other, but are united by private,
+// low-latency, high-throughput, and highly redundant network connections. These
+// Availability Zones enable us to provide very high levels of availability
+// and redundancy, while also minimizing latency. To learn more about the number
+// of Availability Zones that are available in each Region, see AWS Global Infrastructure
+// (http://aws.amazon.com/about-aws/global-infrastructure/).
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/pinpoint-email-2018-07-26 for more information on this service.
 //

@@ -103,6 +103,97 @@ func (c *RoboMaker) BatchDescribeSimulationJobWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opCancelDeploymentJob = "CancelDeploymentJob"
+
+// CancelDeploymentJobRequest generates a "aws/request.Request" representing the
+// client's request for the CancelDeploymentJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CancelDeploymentJob for more information on using the CancelDeploymentJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CancelDeploymentJobRequest method.
+//    req, resp := client.CancelDeploymentJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CancelDeploymentJob
+func (c *RoboMaker) CancelDeploymentJobRequest(input *CancelDeploymentJobInput) (req *request.Request, output *CancelDeploymentJobOutput) {
+	op := &request.Operation{
+		Name:       opCancelDeploymentJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/cancelDeploymentJob",
+	}
+
+	if input == nil {
+		input = &CancelDeploymentJobInput{}
+	}
+
+	output = &CancelDeploymentJobOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CancelDeploymentJob API operation for AWS RoboMaker.
+//
+// Cancels the specified deployment job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS RoboMaker's
+// API operation CancelDeploymentJob for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource does not exist.
+//
+//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   A parameter specified in a request is not valid, is unsupported, or cannot
+//   be used. The returned message provides an explanation of the error value.
+//
+//   * ErrCodeInternalServerException "InternalServerException"
+//   AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   * ErrCodeThrottlingException "ThrottlingException"
+//   AWS RoboMaker is temporarily unable to process the request. Try your call
+//   again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CancelDeploymentJob
+func (c *RoboMaker) CancelDeploymentJob(input *CancelDeploymentJobInput) (*CancelDeploymentJobOutput, error) {
+	req, out := c.CancelDeploymentJobRequest(input)
+	return out, req.Send()
+}
+
+// CancelDeploymentJobWithContext is the same as CancelDeploymentJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelDeploymentJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RoboMaker) CancelDeploymentJobWithContext(ctx aws.Context, input *CancelDeploymentJobInput, opts ...request.Option) (*CancelDeploymentJobOutput, error) {
+	req, out := c.CancelDeploymentJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCancelSimulationJob = "CancelSimulationJob"
 
 // CancelSimulationJobRequest generates a "aws/request.Request" representing the
@@ -3671,6 +3762,61 @@ func (s *BatchDescribeSimulationJobOutput) SetUnprocessedJobs(v []*string) *Batc
 	return s
 }
 
+type CancelDeploymentJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The deployment job ARN to cancel.
+	//
+	// Job is a required field
+	Job *string `locationName:"job" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CancelDeploymentJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CancelDeploymentJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelDeploymentJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelDeploymentJobInput"}
+	if s.Job == nil {
+		invalidParams.Add(request.NewErrParamRequired("Job"))
+	}
+	if s.Job != nil && len(*s.Job) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Job", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJob sets the Job field's value.
+func (s *CancelDeploymentJobInput) SetJob(v string) *CancelDeploymentJobInput {
+	s.Job = &v
+	return s
+}
+
+type CancelDeploymentJobOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelDeploymentJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CancelDeploymentJobOutput) GoString() string {
+	return s.String()
+}
+
 type CancelSimulationJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5166,6 +5312,10 @@ type CreateSimulationJobOutput struct {
 	IamRole *string `locationName:"iamRole" min:"1" type:"string"`
 
 	// The time, in milliseconds since the epoch, when the simulation job was last
+	// started.
+	LastStartedAt *time.Time `locationName:"lastStartedAt" type:"timestamp"`
+
+	// The time, in milliseconds since the epoch, when the simulation job was last
 	// updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
@@ -5231,6 +5381,12 @@ func (s *CreateSimulationJobOutput) SetFailureCode(v string) *CreateSimulationJo
 // SetIamRole sets the IamRole field's value.
 func (s *CreateSimulationJobOutput) SetIamRole(v string) *CreateSimulationJobOutput {
 	s.IamRole = &v
+	return s
+}
+
+// SetLastStartedAt sets the LastStartedAt field's value.
+func (s *CreateSimulationJobOutput) SetLastStartedAt(v time.Time) *CreateSimulationJobOutput {
+	s.LastStartedAt = &v
 	return s
 }
 
@@ -6770,6 +6926,10 @@ type DescribeSimulationJobOutput struct {
 	IamRole *string `locationName:"iamRole" min:"1" type:"string"`
 
 	// The time, in milliseconds since the epoch, when the simulation job was last
+	// started.
+	LastStartedAt *time.Time `locationName:"lastStartedAt" type:"timestamp"`
+
+	// The time, in milliseconds since the epoch, when the simulation job was last
 	// updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
@@ -6845,6 +7005,12 @@ func (s *DescribeSimulationJobOutput) SetFailureReason(v string) *DescribeSimula
 // SetIamRole sets the IamRole field's value.
 func (s *DescribeSimulationJobOutput) SetIamRole(v string) *DescribeSimulationJobOutput {
 	s.IamRole = &v
+	return s
+}
+
+// SetLastStartedAt sets the LastStartedAt field's value.
+func (s *DescribeSimulationJobOutput) SetLastStartedAt(v time.Time) *DescribeSimulationJobOutput {
+	s.LastStartedAt = &v
 	return s
 }
 
@@ -7949,11 +8115,11 @@ type ProgressDetail struct {
 	//
 	// Validating the deployment.
 	//
-	// Downloading/Extracting
+	// DownloadingExtracting
 	//
 	// Downloading and extracting the bundle on the robot.
 	//
-	// Executing pre-launch script(s)
+	// ExecutingPreLaunch
 	//
 	// Executing pre-launch script(s) if provided.
 	//
@@ -7961,7 +8127,7 @@ type ProgressDetail struct {
 	//
 	// Launching the robot application.
 	//
-	// Executing post-launch script(s)
+	// ExecutingPostLaunch
 	//
 	// Executing post-launch script(s) if provided.
 	//
@@ -8378,6 +8544,9 @@ type RobotApplicationSummary struct {
 	// The name of the robot application.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
+	// Information about a robot software suite.
+	RobotSoftwareSuite *RobotSoftwareSuite `locationName:"robotSoftwareSuite" type:"structure"`
+
 	// The version of the robot application.
 	Version *string `locationName:"version" min:"1" type:"string"`
 }
@@ -8407,6 +8576,12 @@ func (s *RobotApplicationSummary) SetLastUpdatedAt(v time.Time) *RobotApplicatio
 // SetName sets the Name field's value.
 func (s *RobotApplicationSummary) SetName(v string) *RobotApplicationSummary {
 	s.Name = &v
+	return s
+}
+
+// SetRobotSoftwareSuite sets the RobotSoftwareSuite field's value.
+func (s *RobotApplicationSummary) SetRobotSoftwareSuite(v *RobotSoftwareSuite) *RobotApplicationSummary {
+	s.RobotSoftwareSuite = v
 	return s
 }
 
@@ -8614,6 +8789,12 @@ type SimulationApplicationSummary struct {
 	// The name of the simulation application.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
+	// Information about a robot software suite.
+	RobotSoftwareSuite *RobotSoftwareSuite `locationName:"robotSoftwareSuite" type:"structure"`
+
+	// Information about a simulation software suite.
+	SimulationSoftwareSuite *SimulationSoftwareSuite `locationName:"simulationSoftwareSuite" type:"structure"`
+
 	// The version of the simulation application.
 	Version *string `locationName:"version" min:"1" type:"string"`
 }
@@ -8643,6 +8824,18 @@ func (s *SimulationApplicationSummary) SetLastUpdatedAt(v time.Time) *Simulation
 // SetName sets the Name field's value.
 func (s *SimulationApplicationSummary) SetName(v string) *SimulationApplicationSummary {
 	s.Name = &v
+	return s
+}
+
+// SetRobotSoftwareSuite sets the RobotSoftwareSuite field's value.
+func (s *SimulationApplicationSummary) SetRobotSoftwareSuite(v *RobotSoftwareSuite) *SimulationApplicationSummary {
+	s.RobotSoftwareSuite = v
+	return s
+}
+
+// SetSimulationSoftwareSuite sets the SimulationSoftwareSuite field's value.
+func (s *SimulationApplicationSummary) SetSimulationSoftwareSuite(v *SimulationSoftwareSuite) *SimulationApplicationSummary {
+	s.SimulationSoftwareSuite = v
 	return s
 }
 
@@ -8681,9 +8874,12 @@ type SimulationJob struct {
 
 	// The IAM role that allows the simulation instance to call the AWS APIs that
 	// are specified in its associated policies on your behalf. This is how credentials
-	// are passed in to your simulation job. See how to specify AWS security credentials
-	// for your application (https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/deployment-ecs-specify-credentials).
+	// are passed in to your simulation job.
 	IamRole *string `locationName:"iamRole" min:"1" type:"string"`
+
+	// The time, in milliseconds since the epoch, when the simulation job was last
+	// started.
+	LastStartedAt *time.Time `locationName:"lastStartedAt" type:"timestamp"`
 
 	// The time, in milliseconds since the epoch, when the simulation job was last
 	// updated.
@@ -8762,6 +8958,12 @@ func (s *SimulationJob) SetFailureReason(v string) *SimulationJob {
 // SetIamRole sets the IamRole field's value.
 func (s *SimulationJob) SetIamRole(v string) *SimulationJob {
 	s.IamRole = &v
+	return s
+}
+
+// SetLastStartedAt sets the LastStartedAt field's value.
+func (s *SimulationJob) SetLastStartedAt(v time.Time) *SimulationJob {
+	s.LastStartedAt = &v
 	return s
 }
 
@@ -9952,6 +10154,9 @@ const (
 
 	// DeploymentStatusSucceeded is a DeploymentStatus enum value
 	DeploymentStatusSucceeded = "Succeeded"
+
+	// DeploymentStatusCanceled is a DeploymentStatus enum value
+	DeploymentStatusCanceled = "Canceled"
 )
 
 const (

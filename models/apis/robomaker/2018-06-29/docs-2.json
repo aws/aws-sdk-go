@@ -3,6 +3,7 @@
   "service": "<p>This section provides documentation for the AWS RoboMaker API operations.</p>",
   "operations": {
     "BatchDescribeSimulationJob": "<p>Describes one or more simulation jobs.</p>",
+    "CancelDeploymentJob": "<p>Cancels the specified deployment job.</p>",
     "CancelSimulationJob": "<p>Cancels the specified simulation job.</p>",
     "CreateDeploymentJob": "<p>Deploys a specific version of a robot application to robots in a fleet.</p> <p>The robot application must have a numbered <code>applicationVersion</code> for consistency reasons. To create a new version, use <code>CreateRobotApplicationVersion</code> or see <a href=\"https://docs.aws.amazon.com/robomaker/latest/dg/create-robot-application-version.html\">Creating a Robot Application Version</a>. </p> <note> <p>After 90 days, deployment jobs expire and will be deleted. They will no longer be accessible. </p> </note>",
     "CreateFleet": "<p>Creates a fleet, a logical group of robots running the same robot application.</p>",
@@ -54,6 +55,7 @@
       "base": null,
       "refs": {
         "Arns$member": null,
+        "CancelDeploymentJobRequest$job": "<p>The deployment job ARN to cancel.</p>",
         "CancelSimulationJobRequest$job": "<p>The simulation job ARN to cancel.</p>",
         "CreateDeploymentJobRequest$fleet": "<p>The Amazon Resource Name (ARN) of the fleet to deploy.</p>",
         "CreateDeploymentJobResponse$arn": "<p>The Amazon Resource Name (ARN) of the deployment job.</p>",
@@ -145,6 +147,16 @@
       "refs": {
         "VPCConfig$assignPublicIp": "<p>A boolean indicating whether to assign a public IP address.</p>",
         "VPCConfigResponse$assignPublicIp": "<p>A boolean indicating if a public IP was assigned.</p>"
+      }
+    },
+    "CancelDeploymentJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelDeploymentJobResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "CancelSimulationJobRequest": {
@@ -555,7 +567,7 @@
         "CreateSimulationJobRequest$iamRole": "<p>The IAM role name that allows the simulation instance to call the AWS APIs that are specified in its associated policies on your behalf. This is how credentials are passed in to your simulation job. </p>",
         "CreateSimulationJobResponse$iamRole": "<p>The IAM role that allows the simulation job to call the AWS APIs that are specified in its associated policies on your behalf.</p>",
         "DescribeSimulationJobResponse$iamRole": "<p>The IAM role that allows the simulation instance to call the AWS APIs that are specified in its associated policies on your behalf.</p>",
-        "SimulationJob$iamRole": "<p>The IAM role that allows the simulation instance to call the AWS APIs that are specified in its associated policies on your behalf. This is how credentials are passed in to your simulation job. See how to <a href=\"https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/deployment-ecs-specify-credentials\">specify AWS security credentials for your application</a>. </p>"
+        "SimulationJob$iamRole": "<p>The IAM role that allows the simulation instance to call the AWS APIs that are specified in its associated policies on your behalf. This is how credentials are passed in to your simulation job. </p>"
       }
     },
     "Id": {
@@ -589,6 +601,14 @@
         "CreateSimulationJobResponse$maxJobDurationInSeconds": "<p>The maximum simulation job duration in seconds. </p>",
         "DescribeSimulationJobResponse$maxJobDurationInSeconds": "<p>The maximum job duration in seconds. The value must be 8 days (691,200 seconds) or less.</p>",
         "SimulationJob$maxJobDurationInSeconds": "<p>The maximum simulation job duration in seconds. The value must be 8 days (691,200 seconds) or less.</p>"
+      }
+    },
+    "LastStartedAt": {
+      "base": null,
+      "refs": {
+        "CreateSimulationJobResponse$lastStartedAt": "<p>The time, in milliseconds since the epoch, when the simulation job was last started.</p>",
+        "DescribeSimulationJobResponse$lastStartedAt": "<p>The time, in milliseconds since the epoch, when the simulation job was last started.</p>",
+        "SimulationJob$lastStartedAt": "<p>The time, in milliseconds since the epoch, when the simulation job was last started.</p>"
       }
     },
     "LastUpdatedAt": {
@@ -905,7 +925,7 @@
     "RobotDeploymentStep": {
       "base": null,
       "refs": {
-        "ProgressDetail$currentProgress": "<p>The current progress status.</p> <dl> <dt>Validating</dt> <dd> <p>Validating the deployment.</p> </dd> <dt>Downloading/Extracting</dt> <dd> <p>Downloading and extracting the bundle on the robot.</p> </dd> <dt>Executing pre-launch script(s)</dt> <dd> <p>Executing pre-launch script(s) if provided.</p> </dd> <dt>Launching</dt> <dd> <p>Launching the robot application.</p> </dd> <dt>Executing post-launch script(s)</dt> <dd> <p>Executing post-launch script(s) if provided.</p> </dd> <dt>Finished</dt> <dd> <p>Deployment is complete.</p> </dd> </dl>"
+        "ProgressDetail$currentProgress": "<p>The current progress status.</p> <dl> <dt>Validating</dt> <dd> <p>Validating the deployment.</p> </dd> <dt>DownloadingExtracting</dt> <dd> <p>Downloading and extracting the bundle on the robot.</p> </dd> <dt>ExecutingPreLaunch</dt> <dd> <p>Executing pre-launch script(s) if provided.</p> </dd> <dt>Launching</dt> <dd> <p>Launching the robot application.</p> </dd> <dt>ExecutingPostLaunch</dt> <dd> <p>Executing post-launch script(s) if provided.</p> </dd> <dt>Finished</dt> <dd> <p>Deployment is complete.</p> </dd> </dl>"
       }
     },
     "RobotDeploymentSummary": {
@@ -925,6 +945,8 @@
         "CreateSimulationApplicationVersionResponse$robotSoftwareSuite": "<p>Information about the robot software suite.</p>",
         "DescribeRobotApplicationResponse$robotSoftwareSuite": "<p>The robot software suite used by the robot application.</p>",
         "DescribeSimulationApplicationResponse$robotSoftwareSuite": "<p>Information about the robot software suite.</p>",
+        "RobotApplicationSummary$robotSoftwareSuite": "<p>Information about a robot software suite.</p>",
+        "SimulationApplicationSummary$robotSoftwareSuite": "<p>Information about a robot software suite.</p>",
         "UpdateRobotApplicationRequest$robotSoftwareSuite": "<p>The robot software suite used by the robot application.</p>",
         "UpdateRobotApplicationResponse$robotSoftwareSuite": "<p>The robot software suite used by the robot application.</p>",
         "UpdateSimulationApplicationRequest$robotSoftwareSuite": "<p>Information about the robot software suite.</p>",
@@ -1068,6 +1090,7 @@
         "CreateSimulationApplicationResponse$simulationSoftwareSuite": "<p>The simulation software suite used by the simulation application.</p>",
         "CreateSimulationApplicationVersionResponse$simulationSoftwareSuite": "<p>The simulation software suite used by the simulation application.</p>",
         "DescribeSimulationApplicationResponse$simulationSoftwareSuite": "<p>The simulation software suite used by the simulation application.</p>",
+        "SimulationApplicationSummary$simulationSoftwareSuite": "<p>Information about a simulation software suite.</p>",
         "UpdateSimulationApplicationRequest$simulationSoftwareSuite": "<p>The simulation software suite used by the simulation application.</p>",
         "UpdateSimulationApplicationResponse$simulationSoftwareSuite": "<p>The simulation software suite used by the simulation application.</p>"
       }

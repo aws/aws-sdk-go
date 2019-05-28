@@ -574,7 +574,8 @@ func (c *Chime) BatchUpdatePhoneNumberRequest(input *BatchUpdatePhoneNumberInput
 // BatchUpdatePhoneNumber API operation for Amazon Chime.
 //
 // Updates phone number product types. Choose from Amazon Chime Business Calling
-// and Amazon Chime Voice Connector product types.
+// and Amazon Chime Voice Connector product types. For toll-free numbers, you
+// can use only the Amazon Chime Voice Connector product type.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -972,7 +973,9 @@ func (c *Chime) CreatePhoneNumberOrderRequest(input *CreatePhoneNumberOrderInput
 // CreatePhoneNumberOrder API operation for Amazon Chime.
 //
 // Creates an order for phone numbers to be provisioned. Choose from Amazon
-// Chime Business Calling and Amazon Chime Voice Connector product types.
+// Chime Business Calling and Amazon Chime Voice Connector product types. For
+// toll-free numbers, you can use only the Amazon Chime Voice Connector product
+// type.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5707,7 +5710,8 @@ func (c *Chime) UpdatePhoneNumberRequest(input *UpdatePhoneNumberInput) (req *re
 // UpdatePhoneNumber API operation for Amazon Chime.
 //
 // Updates phone number details, such as product type, for the specified phone
-// number ID.
+// number ID. For toll-free numbers, you can use only the Amazon Chime Voice
+// Connector product type.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9707,6 +9711,9 @@ type PhoneNumber struct {
 	// The phone number status.
 	Status *string `type:"string" enum:"PhoneNumberStatus"`
 
+	// The phone number type.
+	Type *string `type:"string" enum:"PhoneNumberType"`
+
 	// The updated phone number timestamp, in ISO 8601 format.
 	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
@@ -9766,6 +9773,12 @@ func (s *PhoneNumber) SetProductType(v string) *PhoneNumber {
 // SetStatus sets the Status field's value.
 func (s *PhoneNumber) SetStatus(v string) *PhoneNumber {
 	s.Status = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *PhoneNumber) SetType(v string) *PhoneNumber {
+	s.Type = &v
 	return s
 }
 
@@ -10580,6 +10593,9 @@ type SearchAvailablePhoneNumbersInput struct {
 
 	// The state used to filter results.
 	State *string `location:"querystring" locationName:"state" type:"string"`
+
+	// The toll-free prefix that you use to filter results.
+	TollFreePrefix *string `location:"querystring" locationName:"toll-free-prefix" min:"3" type:"string"`
 }
 
 // String returns the string representation
@@ -10597,6 +10613,9 @@ func (s *SearchAvailablePhoneNumbersInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "SearchAvailablePhoneNumbersInput"}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.TollFreePrefix != nil && len(*s.TollFreePrefix) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("TollFreePrefix", 3))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -10638,6 +10657,12 @@ func (s *SearchAvailablePhoneNumbersInput) SetNextToken(v string) *SearchAvailab
 // SetState sets the State field's value.
 func (s *SearchAvailablePhoneNumbersInput) SetState(v string) *SearchAvailablePhoneNumbersInput {
 	s.State = &v
+	return s
+}
+
+// SetTollFreePrefix sets the TollFreePrefix field's value.
+func (s *SearchAvailablePhoneNumbersInput) SetTollFreePrefix(v string) *SearchAvailablePhoneNumbersInput {
+	s.TollFreePrefix = &v
 	return s
 }
 
@@ -12053,6 +12078,14 @@ const (
 
 	// PhoneNumberStatusDeleteFailed is a PhoneNumberStatus enum value
 	PhoneNumberStatusDeleteFailed = "DeleteFailed"
+)
+
+const (
+	// PhoneNumberTypeLocal is a PhoneNumberType enum value
+	PhoneNumberTypeLocal = "Local"
+
+	// PhoneNumberTypeTollFree is a PhoneNumberType enum value
+	PhoneNumberTypeTollFree = "TollFree"
 )
 
 const (

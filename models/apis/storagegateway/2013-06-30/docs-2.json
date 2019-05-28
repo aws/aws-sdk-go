@@ -7,6 +7,7 @@
     "AddTagsToResource": "<p>Adds one or more tags to the specified resource. You use tags to add metadata to resources, which you can use to categorize these resources. For example, you can categorize resources by purpose, owner, environment, or team. Each tag consists of a key and a value, which you define. You can add tags to the following AWS Storage Gateway resources:</p> <ul> <li> <p>Storage gateways of all types</p> </li> <li> <p>Storage volumes</p> </li> <li> <p>Virtual tapes</p> </li> <li> <p>NFS and SMB file shares</p> </li> </ul> <p>You can create a maximum of 50 tags for each resource. Virtual tapes and storage volumes that are recovered to a new gateway maintain their tags.</p>",
     "AddUploadBuffer": "<p>Configures one or more gateway local disks as upload buffer for a specified gateway. This operation is supported for the stored volume, cached volume and tape gateway types.</p> <p>In the request, you specify the gateway Amazon Resource Name (ARN) to which you want to add upload buffer, and one or more disk IDs that you want to configure as upload buffer.</p>",
     "AddWorkingStorage": "<p>Configures one or more gateway local disks as working storage for a gateway. This operation is only supported in the stored volume gateway type. This operation is deprecated in cached volume API version 20120630. Use <a>AddUploadBuffer</a> instead.</p> <note> <p>Working storage is also referred to as upload buffer. You can also use the <a>AddUploadBuffer</a> operation to add upload buffer to a stored volume gateway.</p> </note> <p>In the request, you specify the gateway Amazon Resource Name (ARN) to which you want to add working storage, and one or more disk IDs that you want to configure as working storage.</p>",
+    "AssignTapePool": "<p>Assigns a tape to a tape pool for archiving. The tape assigned to a pool is archived in the S3 storage class that is associated with the pool. When you use your backup application to eject the tape, the tape is archived directly into the S3 storage class (Glacier or Deep Archive) that corresponds to the pool.</p> <p>Valid values: \"GLACIER\", \"DEEP_ARCHIVE\"</p>",
     "AttachVolume": "<p>Connects a volume to an iSCSI connection and then attaches the volume to the specified gateway. Detaching and attaching a volume enables you to recover your data from one gateway to a different gateway without creating a snapshot. It also makes it easier to move your volumes from an on-premises gateway to a gateway hosted on an Amazon EC2 instance.</p>",
     "CancelArchival": "<p>Cancels archiving of a virtual tape to the virtual tape shelf (VTS) after the archiving process is initiated. This operation is only supported in the tape gateway type.</p>",
     "CancelRetrieval": "<p>Cancels retrieval of a virtual tape from the virtual tape shelf (VTS) to a gateway after the retrieval process is initiated. The virtual tape is returned to the VTS. This operation is only supported in the tape gateway type.</p>",
@@ -128,6 +129,16 @@
     },
     "AddWorkingStorageOutput": {
       "base": "<p>A JSON object containing the of the gateway for which working storage was configured.</p>",
+      "refs": {
+      }
+    },
+    "AssignTapePoolInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssignTapePoolOutput": {
+      "base": null,
       "refs": {
       }
     },
@@ -1335,6 +1346,7 @@
     "PoolId": {
       "base": null,
       "refs": {
+        "AssignTapePoolInput$PoolId": "<p>The ID of the pool that you want to add your tape to for archiving. The tape in this pool is archived in the S3 storage class that is associated with the pool. When you use your backup application to eject the tape, the tape is archived directly into the storage class (Glacier or Deep Archive) that corresponds to the pool.</p> <p>Valid values: \"GLACIER\", \"DEEP_ARCHIVE\"</p>",
         "CreateTapeWithBarcodeInput$PoolId": "<p>The ID of the pool that you want to add your tape to for archiving. The tape in this pool is archived in the S3 storage class that is associated with the pool. When you use your backup application to eject the tape, the tape is archived directly into the storage class (Glacier or Deep Archive) that corresponds to the pool.</p> <p>Valid values: \"GLACIER\", \"DEEP_ARCHIVE\"</p>",
         "CreateTapesInput$PoolId": "<p>The ID of the pool that you want to add your tape to for archiving. The tape in this pool is archived in the S3 storage class that is associated with the pool. When you use your backup application to eject the tape, the tape is archived directly into the storage class (Glacier or Deep Archive) that corresponds to the pool.</p> <p>Valid values: \"GLACIER\", \"DEEP_ARCHIVE\"</p>",
         "Tape$PoolId": "<p>The ID of the pool that contains tapes that will be archived. The tapes in this pool are archived in the S3 storage class that is associated with the pool. When you use your backup application to eject the tape, the tape is archived directly into the storage class (Glacier or Deep Archive) that corresponds to the pool.</p> <p>Valid values: \"GLACIER\", \"DEEP_ARCHIVE\"</p>",
@@ -1613,6 +1625,8 @@
     "TapeARN": {
       "base": null,
       "refs": {
+        "AssignTapePoolInput$TapeARN": "<p>The unique Amazon Resource Name (ARN) of the virtual tape that you want to add to the tape pool.</p>",
+        "AssignTapePoolOutput$TapeARN": "<p>The unique Amazon Resource Names (ARN) of the virtual tape that was added to the tape pool.</p>",
         "CancelArchivalInput$TapeARN": "<p>The Amazon Resource Name (ARN) of the virtual tape you want to cancel archiving for.</p>",
         "CancelArchivalOutput$TapeARN": "<p>The Amazon Resource Name (ARN) of the virtual tape for which archiving was canceled.</p>",
         "CancelRetrievalInput$TapeARN": "<p>The Amazon Resource Name (ARN) of the virtual tape you want to cancel retrieval for.</p>",

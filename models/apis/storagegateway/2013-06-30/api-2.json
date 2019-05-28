@@ -77,6 +77,19 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "AssignTapePool":{
+      "name":"AssignTapePool",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssignTapePoolInput"},
+      "output":{"shape":"AssignTapePoolOutput"},
+      "errors":[
+        {"shape":"InvalidGatewayRequestException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "AttachVolume":{
       "name":"AttachVolume",
       "http":{
@@ -1037,6 +1050,23 @@
         "GatewayARN":{"shape":"GatewayARN"}
       }
     },
+    "AssignTapePoolInput":{
+      "type":"structure",
+      "required":[
+        "TapeARN",
+        "PoolId"
+      ],
+      "members":{
+        "TapeARN":{"shape":"TapeARN"},
+        "PoolId":{"shape":"PoolId"}
+      }
+    },
+    "AssignTapePoolOutput":{
+      "type":"structure",
+      "members":{
+        "TapeARN":{"shape":"TapeARN"}
+      }
+    },
     "AttachVolumeInput":{
       "type":"structure",
       "required":[
@@ -1150,7 +1180,8 @@
     "ChapSecret":{
       "type":"string",
       "max":100,
-      "min":1
+      "min":1,
+      "sensitive":true
     },
     "ClientToken":{
       "type":"string",

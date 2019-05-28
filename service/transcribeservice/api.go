@@ -2447,6 +2447,9 @@ const (
 
 	// LanguageCodeHiIn is a LanguageCode enum value
 	LanguageCodeHiIn = "hi-IN"
+
+	// LanguageCodeArSa is a LanguageCode enum value
+	LanguageCodeArSa = "ar-SA"
 )
 
 const (
