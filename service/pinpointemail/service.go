@@ -64,8 +64,6 @@ func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
 				SigningRegion: signingRegion,
 				Endpoint:      endpoint,
 				APIVersion:    "2018-07-26",
-
-				TargetPrefix: "com.amazonaws.services.pinpoint.email",
 			},
 			handlers,
 		),
