@@ -268,6 +268,20 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "GetDomainDeliverabilityCampaign":{
+      "name":"GetDomainDeliverabilityCampaign",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v1/email/deliverability-dashboard/campaigns/{CampaignId}"
+      },
+      "input":{"shape":"GetDomainDeliverabilityCampaignRequest"},
+      "output":{"shape":"GetDomainDeliverabilityCampaignResponse"},
+      "errors":[
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
     "GetDomainStatisticsReport":{
       "name":"GetDomainStatisticsReport",
       "http":{
@@ -334,6 +348,20 @@
         {"shape":"TooManyRequestsException"},
         {"shape":"NotFoundException"},
         {"shape":"BadRequestException"}
+      ]
+    },
+    "ListDomainDeliverabilityCampaigns":{
+      "name":"ListDomainDeliverabilityCampaigns",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v1/email/deliverability-dashboard/domains/{SubscribedDomain}/campaigns"
+      },
+      "input":{"shape":"ListDomainDeliverabilityCampaignsRequest"},
+      "output":{"shape":"ListDomainDeliverabilityCampaignsResponse"},
+      "errors":[
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"}
       ]
     },
     "ListEmailIdentities":{
@@ -655,6 +683,7 @@
         "Html":{"shape":"Content"}
       }
     },
+    "CampaignId":{"type":"string"},
     "Charset":{"type":"string"},
     "CloudWatchDestination":{
       "type":"structure",
@@ -724,6 +753,7 @@
     },
     "CreateConfigurationSetRequest":{
       "type":"structure",
+      "required":["ConfigurationSetName"],
       "members":{
         "ConfigurationSetName":{"shape":"ConfigurationSetName"},
         "TrackingOptions":{"shape":"TrackingOptions"},
@@ -895,6 +925,14 @@
       "members":{
       }
     },
+    "DeliverabilityDashboardAccountStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "PENDING_EXPIRATION",
+        "DISABLED"
+      ]
+    },
     "DeliverabilityTestReport":{
       "type":"structure",
       "members":{
@@ -964,6 +1002,42 @@
       "type":"list",
       "member":{"shape":"DnsToken"}
     },
+    "Domain":{"type":"string"},
+    "DomainDeliverabilityCampaign":{
+      "type":"structure",
+      "members":{
+        "CampaignId":{"shape":"CampaignId"},
+        "ImageUrl":{"shape":"ImageUrl"},
+        "Subject":{"shape":"Subject"},
+        "FromAddress":{"shape":"Identity"},
+        "SendingIps":{"shape":"IpList"},
+        "FirstSeenDateTime":{"shape":"Timestamp"},
+        "LastSeenDateTime":{"shape":"Timestamp"},
+        "InboxCount":{"shape":"Volume"},
+        "SpamCount":{"shape":"Volume"},
+        "ReadRate":{"shape":"Percentage"},
+        "DeleteRate":{"shape":"Percentage"},
+        "ReadDeleteRate":{"shape":"Percentage"},
+        "ProjectedVolume":{"shape":"Volume"},
+        "Esps":{"shape":"Esps"}
+      }
+    },
+    "DomainDeliverabilityCampaignList":{
+      "type":"list",
+      "member":{"shape":"DomainDeliverabilityCampaign"}
+    },
+    "DomainDeliverabilityTrackingOption":{
+      "type":"structure",
+      "members":{
+        "Domain":{"shape":"Domain"},
+        "SubscriptionStartDate":{"shape":"Timestamp"},
+        "InboxPlacementTrackingOption":{"shape":"InboxPlacementTrackingOption"}
+      }
+    },
+    "DomainDeliverabilityTrackingOptions":{
+      "type":"list",
+      "member":{"shape":"DomainDeliverabilityTrackingOption"}
+    },
     "DomainIspPlacement":{
       "type":"structure",
       "members":{
@@ -991,6 +1065,11 @@
       }
     },
     "Enabled":{"type":"boolean"},
+    "Esp":{"type":"string"},
+    "Esps":{
+      "type":"list",
+      "member":{"shape":"Esp"}
+    },
     "EventDestination":{
       "type":"structure",
       "required":[
@@ -1060,7 +1139,11 @@
       "type":"structure",
       "required":["BlacklistItemNames"],
       "members":{
-        "BlacklistItemNames":{"shape":"BlacklistItemNames"}
+        "BlacklistItemNames":{
+          "shape":"BlacklistItemNames",
+          "location":"querystring",
+          "locationName":"BlacklistItemNames"
+        }
       }
     },
     "GetBlacklistReportsResponse":{
@@ -1105,7 +1188,8 @@
         "TrackingOptions":{"shape":"TrackingOptions"},
         "DeliveryOptions":{"shape":"DeliveryOptions"},
         "ReputationOptions":{"shape":"ReputationOptions"},
-        "SendingOptions":{"shape":"SendingOptions"}
+        "SendingOptions":{"shape":"SendingOptions"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "GetDedicatedIpRequest":{
@@ -1128,9 +1212,21 @@
     "GetDedicatedIpsRequest":{
       "type":"structure",
       "members":{
-        "PoolName":{"shape":"PoolName"},
-        "NextToken":{"shape":"NextToken"},
-        "PageSize":{"shape":"MaxItems"}
+        "PoolName":{
+          "shape":"PoolName",
+          "location":"querystring",
+          "locationName":"PoolName"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "PageSize":{
+          "shape":"MaxItems",
+          "location":"querystring",
+          "locationName":"PageSize"
+        }
       }
     },
     "GetDedicatedIpsResponse":{
@@ -1149,7 +1245,11 @@
       "type":"structure",
       "required":["DashboardEnabled"],
       "members":{
-        "DashboardEnabled":{"shape":"Enabled"}
+        "DashboardEnabled":{"shape":"Enabled"},
+        "SubscriptionExpiryDate":{"shape":"Timestamp"},
+        "AccountStatus":{"shape":"DeliverabilityDashboardAccountStatus"},
+        "ActiveSubscribedDomains":{"shape":"DomainDeliverabilityTrackingOptions"},
+        "PendingExpirationSubscribedDomains":{"shape":"DomainDeliverabilityTrackingOptions"}
       }
     },
     "GetDeliverabilityTestReportRequest":{
@@ -1174,7 +1274,26 @@
         "DeliverabilityTestReport":{"shape":"DeliverabilityTestReport"},
         "OverallPlacement":{"shape":"PlacementStatistics"},
         "IspPlacements":{"shape":"IspPlacements"},
-        "Message":{"shape":"MessageContent"}
+        "Message":{"shape":"MessageContent"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "GetDomainDeliverabilityCampaignRequest":{
+      "type":"structure",
+      "required":["CampaignId"],
+      "members":{
+        "CampaignId":{
+          "shape":"CampaignId",
+          "location":"uri",
+          "locationName":"CampaignId"
+        }
+      }
+    },
+    "GetDomainDeliverabilityCampaignResponse":{
+      "type":"structure",
+      "required":["DomainDeliverabilityCampaign"],
+      "members":{
+        "DomainDeliverabilityCampaign":{"shape":"DomainDeliverabilityCampaign"}
       }
     },
     "GetDomainStatisticsReportRequest":{
@@ -1190,8 +1309,16 @@
           "location":"uri",
           "locationName":"Domain"
         },
-        "StartDate":{"shape":"Timestamp"},
-        "EndDate":{"shape":"Timestamp"}
+        "StartDate":{
+          "shape":"Timestamp",
+          "location":"querystring",
+          "locationName":"StartDate"
+        },
+        "EndDate":{
+          "shape":"Timestamp",
+          "location":"querystring",
+          "locationName":"EndDate"
+        }
       }
     },
     "GetDomainStatisticsReportResponse":{
@@ -1223,7 +1350,8 @@
         "FeedbackForwardingStatus":{"shape":"Enabled"},
         "VerifiedForSendingStatus":{"shape":"Enabled"},
         "DkimAttributes":{"shape":"DkimAttributes"},
-        "MailFromAttributes":{"shape":"MailFromAttributes"}
+        "MailFromAttributes":{"shape":"MailFromAttributes"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "Identity":{"type":"string"},
@@ -1247,8 +1375,24 @@
         "MANAGED_DOMAIN"
       ]
     },
+    "ImageUrl":{"type":"string"},
+    "InboxPlacementTrackingOption":{
+      "type":"structure",
+      "members":{
+        "Global":{"shape":"Enabled"},
+        "TrackedIsps":{"shape":"IspNameList"}
+      }
+    },
     "Ip":{"type":"string"},
+    "IpList":{
+      "type":"list",
+      "member":{"shape":"Ip"}
+    },
     "IspName":{"type":"string"},
+    "IspNameList":{
+      "type":"list",
+      "member":{"shape":"IspName"}
+    },
     "IspPlacement":{
       "type":"structure",
       "members":{
@@ -1282,8 +1426,16 @@
     "ListConfigurationSetsRequest":{
       "type":"structure",
       "members":{
-        "NextToken":{"shape":"NextToken"},
-        "PageSize":{"shape":"MaxItems"}
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "PageSize":{
+          "shape":"MaxItems",
+          "location":"querystring",
+          "locationName":"PageSize"
+        }
       }
     },
     "ListConfigurationSetsResponse":{
@@ -1296,8 +1448,16 @@
     "ListDedicatedIpPoolsRequest":{
       "type":"structure",
       "members":{
-        "NextToken":{"shape":"NextToken"},
-        "PageSize":{"shape":"MaxItems"}
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "PageSize":{
+          "shape":"MaxItems",
+          "location":"querystring",
+          "locationName":"PageSize"
+        }
       }
     },
     "ListDedicatedIpPoolsResponse":{
@@ -1310,8 +1470,16 @@
     "ListDeliverabilityTestReportsRequest":{
       "type":"structure",
       "members":{
-        "NextToken":{"shape":"NextToken"},
-        "PageSize":{"shape":"MaxItems"}
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "PageSize":{
+          "shape":"MaxItems",
+          "location":"querystring",
+          "locationName":"PageSize"
+        }
       }
     },
     "ListDeliverabilityTestReportsResponse":{
@@ -1322,11 +1490,62 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListDomainDeliverabilityCampaignsRequest":{
+      "type":"structure",
+      "required":[
+        "StartDate",
+        "EndDate",
+        "SubscribedDomain"
+      ],
+      "members":{
+        "StartDate":{
+          "shape":"Timestamp",
+          "location":"querystring",
+          "locationName":"StartDate"
+        },
+        "EndDate":{
+          "shape":"Timestamp",
+          "location":"querystring",
+          "locationName":"EndDate"
+        },
+        "SubscribedDomain":{
+          "shape":"Domain",
+          "location":"uri",
+          "locationName":"SubscribedDomain"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "PageSize":{
+          "shape":"MaxItems",
+          "location":"querystring",
+          "locationName":"PageSize"
+        }
+      }
+    },
+    "ListDomainDeliverabilityCampaignsResponse":{
+      "type":"structure",
+      "required":["DomainDeliverabilityCampaigns"],
+      "members":{
+        "DomainDeliverabilityCampaigns":{"shape":"DomainDeliverabilityCampaignList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListEmailIdentitiesRequest":{
       "type":"structure",
       "members":{
-        "NextToken":{"shape":"NextToken"},
-        "PageSize":{"shape":"MaxItems"}
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "PageSize":{
+          "shape":"MaxItems",
+          "location":"querystring",
+          "locationName":"PageSize"
+        }
       }
     },
     "ListEmailIdentitiesResponse":{
@@ -1344,7 +1563,11 @@
       "type":"structure",
       "required":["ResourceArn"],
       "members":{
-        "ResourceArn":{"shape":"AmazonResourceName"}
+        "ResourceArn":{
+          "shape":"AmazonResourceName",
+          "location":"querystring",
+          "locationName":"ResourceArn"
+        }
       }
     },
     "ListTagsForResourceResponse":{
@@ -1594,7 +1817,8 @@
       "type":"structure",
       "required":["DashboardEnabled"],
       "members":{
-        "DashboardEnabled":{"shape":"Enabled"}
+        "DashboardEnabled":{"shape":"Enabled"},
+        "SubscribedDomains":{"shape":"DomainDeliverabilityTrackingOptions"}
       }
     },
     "PutDeliverabilityDashboardOptionResponse":{
@@ -1724,6 +1948,7 @@
         "TopicArn":{"shape":"AmazonResourceName"}
       }
     },
+    "Subject":{"type":"string"},
     "Tag":{
       "type":"structure",
       "required":[

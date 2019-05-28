@@ -3052,7 +3052,8 @@
         "SupportsLogExportsToCloudwatchLogs":{"shape":"Boolean"},
         "SupportsReadReplica":{"shape":"Boolean"},
         "SupportedEngineModes":{"shape":"EngineModeList"},
-        "SupportedFeatureNames":{"shape":"FeatureNameList"}
+        "SupportedFeatureNames":{"shape":"FeatureNameList"},
+        "Status":{"shape":"String"}
       }
     },
     "DBEngineVersionList":{
@@ -3919,7 +3920,8 @@
         "Marker":{"shape":"String"},
         "DefaultOnly":{"shape":"Boolean"},
         "ListSupportedCharacterSets":{"shape":"BooleanOptional"},
-        "ListSupportedTimezones":{"shape":"BooleanOptional"}
+        "ListSupportedTimezones":{"shape":"BooleanOptional"},
+        "IncludeAll":{"shape":"BooleanOptional"}
       }
     },
     "DescribeDBInstanceAutomatedBackupsMessage":{

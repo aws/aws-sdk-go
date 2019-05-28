@@ -28,6 +28,21 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "CancelDeploymentJob":{
+      "name":"CancelDeploymentJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/cancelDeploymentJob"
+      },
+      "input":{"shape":"CancelDeploymentJobRequest"},
+      "output":{"shape":"CancelDeploymentJobResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "CancelSimulationJob":{
       "name":"CancelSimulationJob",
       "http":{
@@ -587,6 +602,18 @@
       }
     },
     "Boolean":{"type":"boolean"},
+    "CancelDeploymentJobRequest":{
+      "type":"structure",
+      "required":["job"],
+      "members":{
+        "job":{"shape":"Arn"}
+      }
+    },
+    "CancelDeploymentJobResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "CancelSimulationJobRequest":{
       "type":"structure",
       "required":["job"],
@@ -821,6 +848,7 @@
       "members":{
         "arn":{"shape":"Arn"},
         "status":{"shape":"SimulationJobStatus"},
+        "lastStartedAt":{"shape":"LastStartedAt"},
         "lastUpdatedAt":{"shape":"LastUpdatedAt"},
         "failureBehavior":{"shape":"FailureBehavior"},
         "failureCode":{"shape":"SimulationJobErrorCode"},
@@ -973,7 +1001,8 @@
         "Preparing",
         "InProgress",
         "Failed",
-        "Succeeded"
+        "Succeeded",
+        "Canceled"
       ]
     },
     "DeploymentVersion":{
@@ -1121,6 +1150,7 @@
         "arn":{"shape":"Arn"},
         "name":{"shape":"Name"},
         "status":{"shape":"SimulationJobStatus"},
+        "lastStartedAt":{"shape":"LastStartedAt"},
         "lastUpdatedAt":{"shape":"LastUpdatedAt"},
         "failureBehavior":{"shape":"FailureBehavior"},
         "failureCode":{"shape":"SimulationJobErrorCode"},
@@ -1235,6 +1265,7 @@
       "exception":true
     },
     "JobDuration":{"type":"long"},
+    "LastStartedAt":{"type":"timestamp"},
     "LastUpdatedAt":{"type":"timestamp"},
     "LaunchConfig":{
       "type":"structure",
@@ -1527,7 +1558,8 @@
         "name":{"shape":"Name"},
         "arn":{"shape":"Arn"},
         "version":{"shape":"Version"},
-        "lastUpdatedAt":{"shape":"LastUpdatedAt"}
+        "lastUpdatedAt":{"shape":"LastUpdatedAt"},
+        "robotSoftwareSuite":{"shape":"RobotSoftwareSuite"}
       }
     },
     "RobotDeployment":{
@@ -1645,7 +1677,9 @@
         "name":{"shape":"Name"},
         "arn":{"shape":"Arn"},
         "version":{"shape":"Version"},
-        "lastUpdatedAt":{"shape":"LastUpdatedAt"}
+        "lastUpdatedAt":{"shape":"LastUpdatedAt"},
+        "robotSoftwareSuite":{"shape":"RobotSoftwareSuite"},
+        "simulationSoftwareSuite":{"shape":"SimulationSoftwareSuite"}
       }
     },
     "SimulationJob":{
@@ -1654,6 +1688,7 @@
         "arn":{"shape":"Arn"},
         "name":{"shape":"Name"},
         "status":{"shape":"SimulationJobStatus"},
+        "lastStartedAt":{"shape":"LastStartedAt"},
         "lastUpdatedAt":{"shape":"LastUpdatedAt"},
         "failureBehavior":{"shape":"FailureBehavior"},
         "failureCode":{"shape":"SimulationJobErrorCode"},

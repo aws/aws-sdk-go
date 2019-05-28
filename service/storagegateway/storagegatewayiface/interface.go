@@ -80,6 +80,10 @@ type StorageGatewayAPI interface {
 	AddWorkingStorageWithContext(aws.Context, *storagegateway.AddWorkingStorageInput, ...request.Option) (*storagegateway.AddWorkingStorageOutput, error)
 	AddWorkingStorageRequest(*storagegateway.AddWorkingStorageInput) (*request.Request, *storagegateway.AddWorkingStorageOutput)
 
+	AssignTapePool(*storagegateway.AssignTapePoolInput) (*storagegateway.AssignTapePoolOutput, error)
+	AssignTapePoolWithContext(aws.Context, *storagegateway.AssignTapePoolInput, ...request.Option) (*storagegateway.AssignTapePoolOutput, error)
+	AssignTapePoolRequest(*storagegateway.AssignTapePoolInput) (*request.Request, *storagegateway.AssignTapePoolOutput)
+
 	AttachVolume(*storagegateway.AttachVolumeInput) (*storagegateway.AttachVolumeOutput, error)
 	AttachVolumeWithContext(aws.Context, *storagegateway.AttachVolumeInput, ...request.Option) (*storagegateway.AttachVolumeOutput, error)
 	AttachVolumeRequest(*storagegateway.AttachVolumeInput) (*request.Request, *storagegateway.AttachVolumeOutput)

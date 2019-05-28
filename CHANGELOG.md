@@ -1,3 +1,22 @@
+Release v1.19.39 (2019-05-28)
+===
+
+### Service Client Updates
+* `service/chime`: Updates service API and documentation
+  * This release adds the ability to search and order toll free phone numbers for Voice Connectors.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/groundstation`: Adds new service
+* `service/pinpoint-email`: Updates service API, documentation, and paginators
+* `service/rds`: Updates service API and documentation
+  * Add a new output field Status to DBEngineVersion which shows the status of the engine version (either available or deprecated). Add a new parameter IncludeAll to DescribeDBEngineVersions to make it possible to return both available and deprecated engine versions. These changes enable a user to create a Read Replica of an DB instance on a deprecated engine version.
+* `service/robomaker`: Updates service API and documentation
+* `service/storagegateway`: Updates service API and documentation
+  * Introduce AssignTapePool operation to allow customers to migrate tapes between pools.
+* `service/sts`: Updates service documentation
+* `service/transcribe`: Updates service API
+* `service/waf`: Updates service documentation
+  * Documentation updates for waf
+
 Release v1.19.38 (2019-05-24)
 ===
 

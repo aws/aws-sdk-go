@@ -64,6 +64,10 @@ type RoboMakerAPI interface {
 	BatchDescribeSimulationJobWithContext(aws.Context, *robomaker.BatchDescribeSimulationJobInput, ...request.Option) (*robomaker.BatchDescribeSimulationJobOutput, error)
 	BatchDescribeSimulationJobRequest(*robomaker.BatchDescribeSimulationJobInput) (*request.Request, *robomaker.BatchDescribeSimulationJobOutput)
 
+	CancelDeploymentJob(*robomaker.CancelDeploymentJobInput) (*robomaker.CancelDeploymentJobOutput, error)
+	CancelDeploymentJobWithContext(aws.Context, *robomaker.CancelDeploymentJobInput, ...request.Option) (*robomaker.CancelDeploymentJobOutput, error)
+	CancelDeploymentJobRequest(*robomaker.CancelDeploymentJobInput) (*request.Request, *robomaker.CancelDeploymentJobOutput)
+
 	CancelSimulationJob(*robomaker.CancelSimulationJobInput) (*robomaker.CancelSimulationJobOutput, error)
 	CancelSimulationJobWithContext(aws.Context, *robomaker.CancelSimulationJobInput, ...request.Option) (*robomaker.CancelSimulationJobOutput, error)
 	CancelSimulationJobRequest(*robomaker.CancelSimulationJobInput) (*request.Request, *robomaker.CancelSimulationJobOutput)

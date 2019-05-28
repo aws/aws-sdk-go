@@ -7,11 +7,11 @@
     "BatchDeletePhoneNumber": "<p>Moves phone numbers into the <b>Deletion queue</b>. Phone numbers must be disassociated from any users or Amazon Chime Voice Connectors before they can be deleted.</p> <p>Phone numbers remain in the <b>Deletion queue</b> for 7 days before they are deleted permanently.</p>",
     "BatchSuspendUser": "<p>Suspends up to 50 users from a <code>Team</code> or <code>EnterpriseLWA</code> Amazon Chime account. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p>Users suspended from a <code>Team</code> account are dissasociated from the account, but they can continue to use Amazon Chime as free users. To remove the suspension from suspended <code>Team</code> account users, invite them to the <code>Team</code> account again. You can use the <a>InviteUsers</a> action to do so.</p> <p>Users suspended from an <code>EnterpriseLWA</code> account are immediately signed out of Amazon Chime and can no longer sign in. To remove the suspension from suspended <code>EnterpriseLWA</code> account users, use the <a>BatchUnsuspendUser</a> action. </p> <p>To sign out users without suspending them, use the <a>LogoutUser</a> action.</p>",
     "BatchUnsuspendUser": "<p>Removes the suspension from up to 50 previously suspended users for the specified Amazon Chime <code>EnterpriseLWA</code> account. Only users on <code>EnterpriseLWA</code> accounts can be unsuspended using this action. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p>Previously suspended users who are unsuspended using this action are returned to <code>Registered</code> status. Users who are not previously suspended are ignored.</p>",
-    "BatchUpdatePhoneNumber": "<p>Updates phone number product types. Choose from Amazon Chime Business Calling and Amazon Chime Voice Connector product types.</p>",
+    "BatchUpdatePhoneNumber": "<p>Updates phone number product types. Choose from Amazon Chime Business Calling and Amazon Chime Voice Connector product types. For toll-free numbers, you can use only the Amazon Chime Voice Connector product type.</p>",
     "BatchUpdateUser": "<p>Updates user details within the <a>UpdateUserRequestItem</a> object for up to 20 users for the specified Amazon Chime account. Currently, only <code>LicenseType</code> updates are supported for this action.</p>",
     "CreateAccount": "<p>Creates an Amazon Chime account under the administrator's AWS account. Only <code>Team</code> account types are currently supported for this action. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
     "CreateBot": "<p>Creates a bot for an Amazon Chime Enterprise account.</p>",
-    "CreatePhoneNumberOrder": "<p>Creates an order for phone numbers to be provisioned. Choose from Amazon Chime Business Calling and Amazon Chime Voice Connector product types.</p>",
+    "CreatePhoneNumberOrder": "<p>Creates an order for phone numbers to be provisioned. Choose from Amazon Chime Business Calling and Amazon Chime Voice Connector product types. For toll-free numbers, you can use only the Amazon Chime Voice Connector product type.</p>",
     "CreateVoiceConnector": "<p>Creates an Amazon Chime Voice Connector under the administrator's AWS account. Enabling <a>CreateVoiceConnectorRequest$RequireEncryption</a> configures your Amazon Chime Voice Connector to use TLS transport for SIP signaling and Secure RTP (SRTP) for media. Inbound calls use TLS transport, and unencrypted outbound calls are blocked.</p>",
     "DeleteAccount": "<p>Deletes the specified Amazon Chime account. You must suspend all users before deleting a <code>Team</code> account. You can use the <a>BatchSuspendUser</a> action to do so.</p> <p>For <code>EnterpriseLWA</code> and <code>EnterpriseAD</code> accounts, you must release the claimed domains for your Amazon Chime account before deletion. As soon as you release the domain, all users under that account are suspended.</p> <p>Deleted accounts appear in your <code>Disabled</code> accounts list for 90 days. To restore a deleted account from your <code>Disabled</code> accounts list, you must contact AWS Support.</p> <p>After 90 days, deleted accounts are permanently removed from your <code>Disabled</code> accounts list.</p>",
     "DeleteEventsConfiguration": "<p>Deletes the events configuration that allows a bot to receive outgoing events.</p>",
@@ -56,7 +56,7 @@
     "UpdateAccountSettings": "<p>Updates the settings for the specified Amazon Chime account. You can update settings for remote control of shared screens, or for the dial-out option. For more information about these settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/policies.html\">Use the Policies Page</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
     "UpdateBot": "<p>Updates the status of the specified bot, such as starting or stopping the bot from running in your Amazon Chime Enterprise account.</p>",
     "UpdateGlobalSettings": "<p>Updates global settings for the administrator's AWS account, such as Amazon Chime Business Calling and Amazon Chime Voice Connector settings.</p>",
-    "UpdatePhoneNumber": "<p>Updates phone number details, such as product type, for the specified phone number ID.</p>",
+    "UpdatePhoneNumber": "<p>Updates phone number details, such as product type, for the specified phone number ID. For toll-free numbers, you can use only the Amazon Chime Voice Connector product type.</p>",
     "UpdateUser": "<p>Updates user details for a specified user ID. Currently, only <code>LicenseType</code> updates are supported for this action.</p>",
     "UpdateUserSettings": "<p>Updates the settings for the specified user, such as phone number settings.</p>",
     "UpdateVoiceConnector": "<p>Updates details for the specified Amazon Chime Voice Connector.</p>"
@@ -931,6 +931,12 @@
         "PhoneNumber$Status": "<p>The phone number status.</p>"
       }
     },
+    "PhoneNumberType": {
+      "base": null,
+      "refs": {
+        "PhoneNumber$Type": "<p>The phone number type.</p>"
+      }
+    },
     "Port": {
       "base": null,
       "refs": {
@@ -1168,6 +1174,12 @@
     "ThrottledClientException": {
       "base": "<p>The client exceeded its request rate limit.</p>",
       "refs": {
+      }
+    },
+    "TollFreePrefix": {
+      "base": null,
+      "refs": {
+        "SearchAvailablePhoneNumbersRequest$TollFreePrefix": "<p>The toll-free prefix that you use to filter results.</p>"
       }
     },
     "UnauthorizedClientException": {
