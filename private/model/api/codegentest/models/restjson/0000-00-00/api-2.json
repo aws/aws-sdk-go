@@ -8,7 +8,6 @@
     "serviceFullName":"REST JSON Service",
     "serviceId":"RESTJSONService",
     "signatureVersion":"v4",
-    "targetPrefix":"RESTJSONService_00000000",
     "uid":"RESTJSONService-0000-00-00"
   },
   "operations":{

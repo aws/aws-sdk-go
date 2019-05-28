@@ -8,7 +8,6 @@
     "serviceFullName":"REST XML Service",
     "serviceId":"RESTXMLService",
     "signatureVersion":"v4",
-    "targetPrefix":"RESTXMLService_00000000",
     "uid":"RESTXMLService-0000-00-00"
   },
   "operations":{
