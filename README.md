@@ -9,6 +9,8 @@ information about the latest bug fixes, updates, and features added to the SDK.
 
 We [announced](https://aws.amazon.com/blogs/developer/aws-sdk-for-go-2-0-developer-preview/) the Developer Preview for the [v2 AWS SDK for Go](https://github.com/aws/aws-sdk-go-v2). The v2 SDK source is available at https://github.com/aws/aws-sdk-go-v2, and add it to your project with `go get github.com/aws/aws-sdk-go-v2`. Check out the v2 SDK's [changes and updates](https://github.com/aws/aws-sdk-go-v2/blob/master/CHANGELOG.md), and let us know what you think. We want your feedback.
 
+We have a pilot redesign of the [AWS SDK for Go API reference documentation](https://docs.aws.amazon.com/sdk-for-go/v1/api/gosdk-apiref.html). Let us know what you think.
+
 ## Installing
 
 Use `go get` to retrieve the SDK to add it to your `GOPATH` workspace, or
