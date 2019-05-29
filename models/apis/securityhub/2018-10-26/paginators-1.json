@@ -1,5 +1,10 @@
 {
   "pagination": {
+    "DescribeProducts": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
     "GetFindings": {
       "input_token": "NextToken",
       "output_token": "NextToken",
@@ -11,6 +16,11 @@
       "limit_key": "MaxResults"
     },
     "ListEnabledProductsForImport": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
+    "ListProductSubscribers": {
       "input_token": "NextToken",
       "output_token": "NextToken",
       "limit_key": "MaxResults"

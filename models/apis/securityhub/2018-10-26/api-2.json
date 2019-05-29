@@ -168,6 +168,21 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DescribeProducts":{
+      "name":"DescribeProducts",
+      "http":{
+        "method":"GET",
+        "requestUri":"/products"
+      },
+      "input":{"shape":"DescribeProductsRequest"},
+      "output":{"shape":"DescribeProductsResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"InvalidInputException"}
+      ]
+    },
     "DisableImportFindingsForProduct":{
       "name":"DisableImportFindingsForProduct",
       "http":{
@@ -430,6 +445,21 @@
         {"shape":"InvalidInputException"},
         {"shape":"InvalidAccessException"},
         {"shape":"LimitExceededException"}
+      ]
+    },
+    "ListProductSubscribers":{
+      "name":"ListProductSubscribers",
+      "http":{
+        "method":"GET",
+        "requestUri":"/productSubscribers/"
+      },
+      "input":{"shape":"ListProductSubscribersRequest"},
+      "output":{"shape":"ListProductSubscribersResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidAccessException"}
       ]
     },
     "UpdateFindings":{
@@ -728,6 +758,10 @@
       }
     },
     "Boolean":{"type":"boolean"},
+    "CategoryList":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"}
+    },
     "Compliance":{
       "type":"structure",
       "members":{
@@ -859,6 +893,29 @@
       "type":"structure",
       "members":{
         "UnprocessedAccounts":{"shape":"ResultList"}
+      }
+    },
+    "DescribeProductsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        }
+      }
+    },
+    "DescribeProductsResponse":{
+      "type":"structure",
+      "required":["Products"],
+      "members":{
+        "Products":{"shape":"ProductsList"},
+        "NextToken":{"shape":"NextToken"}
       }
     },
     "DisableImportFindingsForProductRequest":{
@@ -1256,6 +1313,33 @@
         "NextToken":{"shape":"NonEmptyString"}
       }
     },
+    "ListProductSubscribersRequest":{
+      "type":"structure",
+      "members":{
+        "ProductArn":{
+          "shape":"NonEmptyString",
+          "location":"querystring",
+          "locationName":"ProductArn"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        }
+      }
+    },
+    "ListProductSubscribersResponse":{
+      "type":"structure",
+      "members":{
+        "ProductSubscribers":{"shape":"ProductSubscribersList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "Malware":{
       "type":"structure",
       "required":["Name"],
@@ -1308,7 +1392,7 @@
     },
     "MapFilterComparison":{
       "type":"string",
-      "enum":["CONTAINS"]
+      "enum":["EQUALS"]
     },
     "MapFilterList":{
       "type":"list",
@@ -1417,9 +1501,31 @@
         "TerminatedAt":{"shape":"NonEmptyString"}
       }
     },
+    "Product":{
+      "type":"structure",
+      "required":["ProductArn"],
+      "members":{
+        "ProductArn":{"shape":"NonEmptyString"},
+        "ProductName":{"shape":"NonEmptyString"},
+        "CompanyName":{"shape":"NonEmptyString"},
+        "Description":{"shape":"NonEmptyString"},
+        "Categories":{"shape":"CategoryList"},
+        "MarketplaceUrl":{"shape":"NonEmptyString"},
+        "ActivationUrl":{"shape":"NonEmptyString"},
+        "ProductSubscriptionResourcePolicy":{"shape":"NonEmptyString"}
+      }
+    },
+    "ProductSubscribersList":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"}
+    },
     "ProductSubscriptionArnList":{
       "type":"list",
       "member":{"shape":"NonEmptyString"}
+    },
+    "ProductsList":{
+      "type":"list",
+      "member":{"shape":"Product"}
     },
     "Recommendation":{
       "type":"structure",
@@ -1551,7 +1657,8 @@
         "PENDING",
         "READY",
         "FAILED",
-        "DELETING"
+        "DELETING",
+        "INCOMPLETE"
       ]
     },
     "StandardsSubscription":{
@@ -1604,7 +1711,6 @@
       "type":"string",
       "enum":[
         "EQUALS",
-        "CONTAINS",
         "PREFIX"
       ]
     },

@@ -1586,6 +1586,13 @@ var awsPartition = partition{
 				"us-west-2":      endpoint{},
 			},
 		},
+		"groundstation": service{
+
+			Endpoints: endpoints{
+				"us-east-2": endpoint{},
+				"us-west-2": endpoint{},
+			},
+		},
 		"guardduty": service{
 			IsRegionalized: boxedTrue,
 			Defaults: endpoint{
