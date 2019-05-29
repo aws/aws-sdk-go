@@ -606,6 +606,15 @@
       "input":{"shape":"CreateSnapshotRequest"},
       "output":{"shape":"Snapshot"}
     },
+    "CreateSnapshots":{
+      "name":"CreateSnapshots",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateSnapshotsRequest"},
+      "output":{"shape":"CreateSnapshotsResult"}
+    },
     "CreateSpotDatafeedSubscription":{
       "name":"CreateSpotDatafeedSubscription",
       "http":{
@@ -5410,6 +5419,10 @@
         }
       }
     },
+    "CopyTagsFromSource":{
+      "type":"string",
+      "enum":["volume"]
+    },
     "CpuOptions":{
       "type":"structure",
       "members":{
@@ -6306,6 +6319,29 @@
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
+        }
+      }
+    },
+    "CreateSnapshotsRequest":{
+      "type":"structure",
+      "required":["InstanceSpecification"],
+      "members":{
+        "Description":{"shape":"String"},
+        "InstanceSpecification":{"shape":"InstanceSpecification"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        },
+        "DryRun":{"shape":"Boolean"},
+        "CopyTagsFromSource":{"shape":"CopyTagsFromSource"}
+      }
+    },
+    "CreateSnapshotsResult":{
+      "type":"structure",
+      "members":{
+        "Snapshots":{
+          "shape":"SnapshotSet",
+          "locationName":"snapshotSet"
         }
       }
     },
@@ -14298,6 +14334,13 @@
         "locationName":"item"
       }
     },
+    "InstanceSpecification":{
+      "type":"structure",
+      "members":{
+        "InstanceId":{"shape":"String"},
+        "ExcludeBootVolume":{"shape":"Boolean"}
+      }
+    },
     "InstanceState":{
       "type":"structure",
       "members":{
@@ -20512,10 +20555,62 @@
         "locationName":"SnapshotId"
       }
     },
+    "SnapshotInfo":{
+      "type":"structure",
+      "members":{
+        "Description":{
+          "shape":"String",
+          "locationName":"description"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        },
+        "Encrypted":{
+          "shape":"Boolean",
+          "locationName":"encrypted"
+        },
+        "VolumeId":{
+          "shape":"String",
+          "locationName":"volumeId"
+        },
+        "State":{
+          "shape":"SnapshotState",
+          "locationName":"state"
+        },
+        "VolumeSize":{
+          "shape":"Integer",
+          "locationName":"volumeSize"
+        },
+        "StartTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"startTime"
+        },
+        "Progress":{
+          "shape":"String",
+          "locationName":"progress"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
+        "SnapshotId":{
+          "shape":"String",
+          "locationName":"snapshotId"
+        }
+      }
+    },
     "SnapshotList":{
       "type":"list",
       "member":{
         "shape":"Snapshot",
+        "locationName":"item"
+      }
+    },
+    "SnapshotSet":{
+      "type":"list",
+      "member":{
+        "shape":"SnapshotInfo",
         "locationName":"item"
       }
     },

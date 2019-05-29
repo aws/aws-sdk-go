@@ -100,6 +100,13 @@ type SecurityHubAPI interface {
 	DeleteMembersWithContext(aws.Context, *securityhub.DeleteMembersInput, ...request.Option) (*securityhub.DeleteMembersOutput, error)
 	DeleteMembersRequest(*securityhub.DeleteMembersInput) (*request.Request, *securityhub.DeleteMembersOutput)
 
+	DescribeProducts(*securityhub.DescribeProductsInput) (*securityhub.DescribeProductsOutput, error)
+	DescribeProductsWithContext(aws.Context, *securityhub.DescribeProductsInput, ...request.Option) (*securityhub.DescribeProductsOutput, error)
+	DescribeProductsRequest(*securityhub.DescribeProductsInput) (*request.Request, *securityhub.DescribeProductsOutput)
+
+	DescribeProductsPages(*securityhub.DescribeProductsInput, func(*securityhub.DescribeProductsOutput, bool) bool) error
+	DescribeProductsPagesWithContext(aws.Context, *securityhub.DescribeProductsInput, func(*securityhub.DescribeProductsOutput, bool) bool, ...request.Option) error
+
 	DisableImportFindingsForProduct(*securityhub.DisableImportFindingsForProductInput) (*securityhub.DisableImportFindingsForProductOutput, error)
 	DisableImportFindingsForProductWithContext(aws.Context, *securityhub.DisableImportFindingsForProductInput, ...request.Option) (*securityhub.DisableImportFindingsForProductOutput, error)
 	DisableImportFindingsForProductRequest(*securityhub.DisableImportFindingsForProductInput) (*request.Request, *securityhub.DisableImportFindingsForProductOutput)
@@ -176,6 +183,13 @@ type SecurityHubAPI interface {
 	ListMembers(*securityhub.ListMembersInput) (*securityhub.ListMembersOutput, error)
 	ListMembersWithContext(aws.Context, *securityhub.ListMembersInput, ...request.Option) (*securityhub.ListMembersOutput, error)
 	ListMembersRequest(*securityhub.ListMembersInput) (*request.Request, *securityhub.ListMembersOutput)
+
+	ListProductSubscribers(*securityhub.ListProductSubscribersInput) (*securityhub.ListProductSubscribersOutput, error)
+	ListProductSubscribersWithContext(aws.Context, *securityhub.ListProductSubscribersInput, ...request.Option) (*securityhub.ListProductSubscribersOutput, error)
+	ListProductSubscribersRequest(*securityhub.ListProductSubscribersInput) (*request.Request, *securityhub.ListProductSubscribersOutput)
+
+	ListProductSubscribersPages(*securityhub.ListProductSubscribersInput, func(*securityhub.ListProductSubscribersOutput, bool) bool) error
+	ListProductSubscribersPagesWithContext(aws.Context, *securityhub.ListProductSubscribersInput, func(*securityhub.ListProductSubscribersOutput, bool) bool, ...request.Option) error
 
 	UpdateFindings(*securityhub.UpdateFindingsInput) (*securityhub.UpdateFindingsOutput, error)
 	UpdateFindingsWithContext(aws.Context, *securityhub.UpdateFindingsInput, ...request.Option) (*securityhub.UpdateFindingsOutput, error)

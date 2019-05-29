@@ -26,8 +26,8 @@
     "AttachVolume": "<p>Attaches an EBS volume to a running or stopped instance and exposes it to the instance with the specified device name.</p> <p>Encrypted EBS volumes may only be attached to instances that support Amazon EBS encryption. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>For a list of supported device names, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html\">Attaching an EBS Volume to an Instance</a>. Any device names that aren't reserved for instance store volumes can be used for EBS volumes. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html\">Amazon EC2 Instance Store</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>If a volume has an AWS Marketplace product code:</p> <ul> <li> <p>The volume can be attached only to a stopped instance.</p> </li> <li> <p>AWS Marketplace product codes are copied from the volume to the instance.</p> </li> <li> <p>You must be subscribed to the product.</p> </li> <li> <p>The instance type and operating system of the instance must support the product. For example, you can't detach a volume from a Windows instance and attach it to a Linux instance.</p> </li> </ul> <p>For more information about EBS volumes, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html\">Attaching Amazon EBS Volumes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "AttachVpnGateway": "<p>Attaches a virtual private gateway to a VPC. You can attach one virtual private gateway to one VPC at a time.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html\">AWS Site-to-Site VPN</a> in the <i>AWS Site-to-Site VPN User Guide</i>.</p>",
     "AuthorizeClientVpnIngress": "<p>Adds an ingress authorization rule to a Client VPN endpoint. Ingress authorization rules act as firewall rules that grant access to networks. You must configure ingress authorization rules to enable clients to access resources in AWS or on-premises networks.</p>",
-    "AuthorizeSecurityGroupEgress": "<p>[VPC only] Adds the specified egress rules to a security group for use with a VPC.</p> <p>An outbound rule permits instances to send traffic to the specified destination IPv4 or IPv6 CIDR address ranges, or to the specified destination security groups for the same VPC.</p> <p>You specify a protocol for each rule (for example, TCP). For the TCP and UDP protocols, you must also specify the destination port or port range. For the ICMP protocol, you must also specify the ICMP type and code. You can use -1 for the type or code to mean all types or all codes.</p> <p>Rule changes are propagated to affected instances as quickly as possible. However, a small delay might occur.</p> <p>For more information about VPC security group limits, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html\">Amazon VPC Limits</a>.</p>",
-    "AuthorizeSecurityGroupIngress": "<p>Adds the specified ingress rules to a security group.</p> <p>An inbound rule permits instances to receive traffic from the specified destination IPv4 or IPv6 CIDR address ranges, or from the specified destination security groups.</p> <p>You specify a protocol for each rule (for example, TCP). For TCP and UDP, you must also specify the destination port or port range. For ICMP/ICMPv6, you must also specify the ICMP/ICMPv6 type and code. You can use -1 to mean all types or all codes.</p> <p>Rule changes are propagated to instances within the security group as quickly as possible. However, a small delay might occur.</p> <p>For more information about VPC security group limits, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html\">Amazon VPC Limits</a>.</p>",
+    "AuthorizeSecurityGroupEgress": "<p>[VPC only] Adds the specified egress rules to a security group for use with a VPC.</p> <p>An outbound rule permits instances to send traffic to the specified IPv4 or IPv6 CIDR address ranges, or to the instances associated with the specified destination security groups.</p> <p>You specify a protocol for each rule (for example, TCP). For the TCP and UDP protocols, you must also specify the destination port or port range. For the ICMP protocol, you must also specify the ICMP type and code. You can use -1 for the type or code to mean all types or all codes.</p> <p>Rule changes are propagated to affected instances as quickly as possible. However, a small delay might occur.</p> <p>For more information about VPC security group limits, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html\">Amazon VPC Limits</a>.</p>",
+    "AuthorizeSecurityGroupIngress": "<p>Adds the specified ingress rules to a security group.</p> <p>An inbound rule permits instances to receive traffic from the specified IPv4 or IPv6 CIDR address ranges, or from the instances associated with the specified destination security groups.</p> <p>You specify a protocol for each rule (for example, TCP). For TCP and UDP, you must also specify the destination port or port range. For ICMP/ICMPv6, you must also specify the ICMP/ICMPv6 type and code. You can use -1 to mean all types or all codes.</p> <p>Rule changes are propagated to instances within the security group as quickly as possible. However, a small delay might occur.</p> <p>For more information about VPC security group limits, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html\">Amazon VPC Limits</a>.</p>",
     "BundleInstance": "<p>Bundles an Amazon instance store-backed Windows instance.</p> <p>During bundling, only the root device volume (C:\\) is bundled. Data on other instance store volumes is not preserved.</p> <note> <p>This action is not applicable for Linux/Unix instances or Windows instances that are backed by Amazon EBS.</p> </note>",
     "CancelBundleTask": "<p>Cancels a bundling operation for an instance store-backed Windows instance.</p>",
     "CancelCapacityReservation": "<p>Cancels the specified Capacity Reservation, releases the reserved capacity, and changes the Capacity Reservation's state to <code>cancelled</code>.</p> <p>Instances running in the reserved capacity continue running until you stop them. Stopped instances that target the Capacity Reservation can no longer launch. Modify these instances to either target a different Capacity Reservation, launch On-Demand Instance capacity, or run in any open Capacity Reservation that has matching attributes and sufficient capacity.</p>",
@@ -69,6 +69,7 @@
     "CreateRouteTable": "<p>Creates a route table for the specified VPC. After you create a route table, you can add routes and associate the table with a subnet.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html\">Route Tables</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "CreateSecurityGroup": "<p>Creates a security group.</p> <p>A security group acts as a virtual firewall for your instance to control inbound and outbound traffic. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html\">Amazon EC2 Security Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i> and <a href=\"https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html\">Security Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p> <p>When you create a security group, you specify a friendly name of your choice. You can have a security group for use in EC2-Classic with the same name as a security group for use in a VPC. However, you can't have two security groups for use in EC2-Classic with the same name or two security groups for use in a VPC with the same name.</p> <p>You have a default security group for use in EC2-Classic and a default security group for use in your VPC. If you don't specify a security group when you launch an instance, the instance is launched into the appropriate default security group. A default security group includes a default rule that grants instances unrestricted network access to each other.</p> <p>You can add or remove rules from your security groups using <a>AuthorizeSecurityGroupIngress</a>, <a>AuthorizeSecurityGroupEgress</a>, <a>RevokeSecurityGroupIngress</a>, and <a>RevokeSecurityGroupEgress</a>.</p> <p>For more information about VPC security group limits, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html\">Amazon VPC Limits</a>.</p>",
     "CreateSnapshot": "<p>Creates a snapshot of an EBS volume and stores it in Amazon S3. You can use snapshots for backups, to make copies of EBS volumes, and to save data before shutting down an instance.</p> <p>When a snapshot is created, any AWS Marketplace product codes that are associated with the source volume are propagated to the snapshot.</p> <p>You can take a snapshot of an attached volume that is in use. However, snapshots only capture data that has been written to your EBS volume at the time the snapshot command is issued; this may exclude any data that has been cached by any applications or the operating system. If you can pause any file systems on the volume long enough to take a snapshot, your snapshot should be complete. However, if you cannot pause all file writes to the volume, you should unmount the volume from within the instance, issue the snapshot command, and then remount the volume to ensure a consistent and complete snapshot. You may remount and use your volume while the snapshot status is <code>pending</code>.</p> <p>To create a snapshot for EBS volumes that serve as root devices, you should stop the instance before taking the snapshot.</p> <p>Snapshots that are taken from encrypted volumes are automatically encrypted. Volumes that are created from encrypted snapshots are also automatically encrypted. Your encrypted volumes and any associated snapshots always remain protected.</p> <p>You can tag your snapshots during creation. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">Tagging Your Amazon EC2 Resources</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html\">Amazon Elastic Block Store</a> and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "CreateSnapshots": "<p>Creates crash-consistent snapshots of multiple EBS volumes and stores the data in S3. Volumes are chosen by specifying an instance. Any attached volumes will produce one snapshot each that is crash-consistent across the instance. Boot volumes can be excluded by changing the paramaters. </p>",
     "CreateSpotDatafeedSubscription": "<p>Creates a data feed for Spot Instances, enabling you to view Spot Instance usage logs. You can create one data feed per AWS account. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html\">Spot Instance Data Feed</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p>",
     "CreateSubnet": "<p>Creates a subnet in an existing VPC.</p> <p>When you create each subnet, you provide the VPC ID and IPv4 CIDR block for the subnet. After you create a subnet, you can't change its CIDR block. The size of the subnet's IPv4 CIDR block can be the same as a VPC's IPv4 CIDR block, or a subset of a VPC's IPv4 CIDR block. If you create more than one subnet in a VPC, the subnets' CIDR blocks must not overlap. The smallest IPv4 subnet (and VPC) you can create uses a /28 netmask (16 IPv4 addresses), and the largest uses a /16 netmask (65,536 IPv4 addresses).</p> <p>If you've associated an IPv6 CIDR block with your VPC, you can create a subnet with an IPv6 CIDR block that uses a /64 prefix length. </p> <important> <p>AWS reserves both the first four and the last IPv4 address in each subnet's CIDR block. They're not available for use.</p> </important> <p>If you add more than one subnet to a VPC, they're set up in a star topology with a logical router in the middle.</p> <p>If you launch an instance in a VPC using an Amazon EBS-backed AMI, the IP address doesn't change if you stop and restart the instance (unlike a similar instance launched outside a VPC, which gets a new IP address when restarted). It's therefore possible to have a subnet with no running instances (they're all stopped), but no remaining IP addresses available.</p> <p>For more information about subnets, see <a href=\"https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html\">Your VPC and Subnets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "CreateTags": "<p>Adds or overwrites the specified tags for the specified Amazon EC2 resource or resources. Each resource can have a maximum of 50 tags. Each tag consists of a key and optional value. Tag keys must be unique per resource.</p> <p>For more information about tags, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">Tagging Your Resources</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. For more information about creating IAM policies that control users' access to resources based on tags, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-iam-actions-resources.html\">Supported Resource-Level Permissions for Amazon EC2 API Actions</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
@@ -237,7 +238,7 @@
     "DisassociateSubnetCidrBlock": "<p>Disassociates a CIDR block from a subnet. Currently, you can disassociate an IPv6 CIDR block only. You must detach or delete all gateways and resources that are associated with the CIDR block before you can disassociate it. </p>",
     "DisassociateTransitGatewayRouteTable": "<p>Disassociates a resource attachment from a transit gateway route table.</p>",
     "DisassociateVpcCidrBlock": "<p>Disassociates a CIDR block from a VPC. To disassociate the CIDR block, you must specify its association ID. You can get the association ID by using <a>DescribeVpcs</a>. You must detach or delete all gateways and resources that are associated with the CIDR block before you can disassociate it. </p> <p>You cannot disassociate the CIDR block with which you originally created the VPC (the primary CIDR block).</p>",
-    "EnableEbsEncryptionByDefault": "<p>Enables default encryption for EBS volumes that are created in your account in the current region.</p> <p>Once encryption is enabled with this action, EBS volumes that are created in your account will always be encrypted even if encryption is not specified at launch. This setting overrides the <i>encrypted</i> setting to <i>true</i> in all API calls that create EBS volumes in your account. A volume will be encrypted even if you specify <i>encryption</i> to be <i>false</i> in the API call that creates the volume.</p> <p>If you do not specify a customer master key (CMK) in the API call that creates the EBS volume, then the volume is encrypted to your AWS account's default CMK.</p> <p>You can specify a default CMK of your choice using <a>ModifyEbsDefaultKmsKeyId</a>.</p> <p>Enabling default encryption for EBS volumes has no effect on existing unencrypted volumes in your account. Encrypting the data in these requires manual action. You can either create an encrypted snapshot of an unencrypted volume, or encrypt a copy of an unencrypted snapshot. Any volume restored from an encrypted snapshot is also encrypted. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html\">Amazon EBS Snapshots</a>.</p> <p>Once EBS encryption by default is enabled, you can no longer launch older-generation instance types that do not support encryption. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances\">Supported Instance Types</a>.</p>",
+    "EnableEbsEncryptionByDefault": "<p>Enables default encryption for EBS volumes that are created in your account in the current region.</p> <p>Once encryption is enabled with this action, EBS volumes that are created in your account will always be encrypted even if encryption is not specified at launch. This setting overrides the <i>encrypted</i> setting to <i>true</i> in all API calls that create EBS volumes in your account. A volume will be encrypted even if you specify <i>encryption</i> to be <i>false</i> in the API call that creates the volume.</p> <p>If you do not specify a customer master key (CMK) in the API call that creates the EBS volume, then the volume is encrypted to your AWS account's default CMK.</p> <p>You can specify a default CMK of your choice using <a>ModifyEbsDefaultKmsKeyId</a>.</p> <p>Enabling default encryption for EBS volumes has no effect on existing unencrypted volumes in your account. Encrypting the data in these requires manual action. You can either create an encrypted snapshot of an unencrypted volume, or encrypt a copy of an unencrypted snapshot. Any volume restored from an encrypted snapshot is also encrypted. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html\">Amazon EBS Snapshots</a>.</p> <p>After EBS encryption by default is enabled, you can no longer launch older-generation instance types that do not support encryption. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances\">Supported Instance Types</a>.</p>",
     "EnableTransitGatewayRouteTablePropagation": "<p>Enables the specified attachment to propagate routes to the specified propagation route table.</p>",
     "EnableVgwRoutePropagation": "<p>Enables a virtual private gateway (VGW) to propagate routes to the specified route table of a VPC.</p>",
     "EnableVolumeIO": "<p>Enables I/O operations for a volume that had I/O operations disabled because the data on the volume was potentially inconsistent.</p>",
@@ -265,7 +266,7 @@
     "ImportVolume": "<p>Creates an import volume task using metadata from the specified disk image.For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/importing-your-volumes-into-amazon-ebs.html\">Importing Disks to Amazon EBS</a>.</p> <p>For information about the import manifest referenced by this API action, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html\">VM Import Manifest</a>.</p>",
     "ModifyCapacityReservation": "<p>Modifies a Capacity Reservation's capacity and the conditions under which it is to be released. You cannot change a Capacity Reservation's instance type, EBS optimization, instance store settings, platform, Availability Zone, or instance eligibility. If you need to modify any of these attributes, we recommend that you cancel the Capacity Reservation, and then create a new one with the required attributes.</p>",
     "ModifyClientVpnEndpoint": "<p>Modifies the specified Client VPN endpoint. You can only modify an endpoint's server certificate information, client connection logging information, DNS server, and description. Modifying the DNS server resets existing client connections.</p>",
-    "ModifyEbsDefaultKmsKeyId": "<p>Changes the default customer master key (CMK) that your account uses to encrypt EBS volumes if you don’t specify a CMK in the API call.</p> <p>Your account has an AWS-managed default CMK that is used for encrypting an EBS volume when no CMK is specified in the API call that creates the volume. By calling this API, you can specify a customer-managed CMK to use in place of the AWS-managed default CMK.</p> <p>Note: Deleting or disabling the custom CMK that you have specified to act as your default CMK will result in instance-launch failures.</p>",
+    "ModifyEbsDefaultKmsKeyId": "<p>Changes the default customer master key (CMK) that your account uses to encrypt EBS volumes if you don't specify a CMK in the API call.</p> <p>Your account has an AWS-managed default CMK that is used for encrypting an EBS volume when no CMK is specified in the API call that creates the volume. By calling this API, you can specify a customer-managed CMK to use in place of the AWS-managed default CMK.</p> <p>Note: Deleting or disabling the custom CMK that you have specified to act as your default CMK will result in instance-launch failures.</p>",
     "ModifyFleet": "<p>Modifies the specified EC2 Fleet.</p> <p>While the EC2 Fleet is being modified, it is in the <code>modifying</code> state.</p>",
     "ModifyFpgaImageAttribute": "<p>Modifies the specified attribute of the specified Amazon FPGA Image (AFI).</p>",
     "ModifyHosts": "<p>Modify the auto-placement setting of a Dedicated Host. When auto-placement is enabled, any instances that you launch with a tenancy of <code>host</code> but without a specific host ID are placed onto any available Dedicated Host in your account that has auto-placement enabled. When auto-placement is disabled, you need to provide a host ID to have the instance launch onto a specific host. If no host ID is provided, the instance is launched onto a suitable host with auto-placement enabled.</p>",
@@ -985,6 +986,7 @@
         "CreateRouteTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateSecurityGroupRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateSnapshotRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "CreateSnapshotsRequest$DryRun": "<p>Checks whether you have the required permissions for the action without actually making the request. Provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.</p>",
         "CreateSpotDatafeedSubscriptionRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateSubnetRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateTagsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -993,7 +995,7 @@
         "CreateTransitGatewayRouteRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateTransitGatewayRouteTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateTransitGatewayVpcAttachmentRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
-        "CreateVolumeRequest$Encrypted": "<p>Specifies the encryption state of the volume. The default effect of setting the <code>Encrypted</code> parameter to <code>true</code> through the console, API, or CLI depends on the volume's origin (new or from a snapshot), starting encryption state, ownership, and whether <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/account-level-encryption.html\">account-level encryption</a> is enabled. Each default case can be overridden by specifying a customer master key (CMK) with the <code>KmsKeyId</code> parameter in addition to setting <code>Encrypted</code> to <code>true</code>. For a complete list of possible encryption cases, see <a href=\"AWSEC2/latest/UserGuide/EBSEncryption.htm\">Amazon EBS Encryption</a>. </p> <p>Encrypted Amazon EBS volumes may only be attached to instances that support Amazon EBS encryption. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances\">Supported Instance Types</a>.</p>",
+        "CreateVolumeRequest$Encrypted": "<p>Specifies the encryption state of the volume. The default effect of setting the <code>Encrypted</code> parameter to <code>true</code> depends on the volume origin (new or from a snapshot), starting encryption state, ownership, and whether <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/account-level-encryption.html\">account-level encryption</a> is enabled. Each default case can be overridden by specifying a customer master key (CMK) using the <code>KmsKeyId</code> parameter, in addition to setting <code>Encrypted</code> to <code>true</code>. For a complete list of possible encryption cases, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS Encryption</a>.</p> <p>Encrypted Amazon EBS volumes may only be attached to instances that support Amazon EBS encryption. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances\">Supported Instance Types</a>.</p>",
         "CreateVolumeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateVpcEndpointConnectionNotificationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateVpcEndpointRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1211,6 +1213,7 @@
         "InstanceNetworkInterfaceSpecification$AssociatePublicIpAddress": "<p>Indicates whether to assign a public IPv4 address to an instance you launch in a VPC. The public IP address can only be assigned to a network interface for eth0, and can only be assigned to a new network interface, not an existing one. You cannot specify more than one network interface in the request. If launching into a default subnet, the default value is <code>true</code>.</p>",
         "InstanceNetworkInterfaceSpecification$DeleteOnTermination": "<p>If set to <code>true</code>, the interface is deleted when the instance is terminated. You can specify <code>true</code> only if creating a new network interface when launching an instance.</p>",
         "InstancePrivateIpAddress$Primary": "<p>Indicates whether this IPv4 address is the primary private IP address of the network interface.</p>",
+        "InstanceSpecification$ExcludeBootVolume": "<p>Excludes the root volume from being snapshotted.</p>",
         "LaunchSpecification$EbsOptimized": "<p>Indicates whether the instance is optimized for EBS I/O. This optimization provides dedicated throughput to Amazon EBS and an optimized configuration stack to provide optimal EBS I/O performance. This optimization isn't available with all instance types. Additional usage charges apply when using an EBS Optimized instance.</p> <p>Default: <code>false</code> </p>",
         "LaunchTemplateEbsBlockDevice$Encrypted": "<p>Indicates whether the EBS volume is encrypted.</p>",
         "LaunchTemplateEbsBlockDevice$DeleteOnTermination": "<p>Indicates whether the EBS volume is deleted on instance termination.</p>",
@@ -1347,6 +1350,7 @@
         "ServiceDetail$AcceptanceRequired": "<p>Indicates whether VPC endpoint connection requests to the service must be accepted by the service owner.</p>",
         "ServiceDetail$ManagesVpcEndpoints": "<p>Indicates whether the service manages it's VPC endpoints. Management of the service VPC endpoints using the VPC endpoint API is restricted.</p>",
         "Snapshot$Encrypted": "<p>Indicates whether the snapshot is encrypted.</p>",
+        "SnapshotInfo$Encrypted": "<p>Boolean that specifies whether or not this snapshot is encrypted.</p>",
         "SnapshotTaskDetail$Encrypted": "<p>Indicates whether the snapshot is encrypted.</p>",
         "SpotFleetLaunchSpecification$EbsOptimized": "<p>Indicates whether the instances are optimized for EBS I/O. This optimization provides dedicated throughput to Amazon EBS and an optimized configuration stack to provide optimal EBS I/O performance. This optimization isn't available with all instance types. Additional usage charges apply when using an EBS Optimized instance.</p> <p>Default: <code>false</code> </p>",
         "SpotFleetMonitoring$Enabled": "<p>Enables monitoring for the instance.</p> <p>Default: <code>false</code> </p>",
@@ -1969,6 +1973,12 @@
       "refs": {
       }
     },
+    "CopyTagsFromSource": {
+      "base": null,
+      "refs": {
+        "CreateSnapshotsRequest$CopyTagsFromSource": "<p>Copies the tags from the specified instance to all snapshots.</p>"
+      }
+    },
     "CpuOptions": {
       "base": "<p>The CPU options for the instance.</p>",
       "refs": {
@@ -2262,6 +2272,16 @@
     },
     "CreateSnapshotRequest": {
       "base": "<p>Contains the parameters for CreateSnapshot.</p>",
+      "refs": {
+      }
+    },
+    "CreateSnapshotsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSnapshotsResult": {
+      "base": null,
       "refs": {
       }
     },
@@ -5738,6 +5758,12 @@
         "InstanceNetworkInterface$PrivateIpAddresses": "<p>One or more private IPv4 addresses associated with the network interface.</p>"
       }
     },
+    "InstanceSpecification": {
+      "base": "<p>The instance details to specify which volumes should be snapshotted.</p>",
+      "refs": {
+        "CreateSnapshotsRequest$InstanceSpecification": "<p>The instance to specify which volumes should be included in the snapshots.</p>"
+      }
+    },
     "InstanceState": {
       "base": "<p>Describes the current state of an instance.</p>",
       "refs": {
@@ -6000,6 +6026,7 @@
         "ScheduledInstancesNetworkInterface$Ipv6AddressCount": "<p>The number of IPv6 addresses to assign to the network interface. The IPv6 addresses are automatically selected from the subnet range.</p>",
         "ScheduledInstancesNetworkInterface$SecondaryPrivateIpAddressCount": "<p>The number of secondary private IPv4 addresses.</p>",
         "Snapshot$VolumeSize": "<p>The size of the volume, in GiB.</p>",
+        "SnapshotInfo$VolumeSize": "<p>Size of the volume from which this snapshot was created.</p>",
         "SpotFleetRequestConfigData$TargetCapacity": "<p>The number of units to request for the Spot Fleet. You can choose to set the target capacity in terms of instances or a performance characteristic that is important to your application workload, such as vCPUs, memory, or I/O. If the request type is <code>maintain</code>, you can specify a target capacity of 0 and add capacity later.</p>",
         "SpotFleetRequestConfigData$OnDemandTargetCapacity": "<p>The number of On-Demand units to request. You can choose to set the target capacity in terms of instances or a performance characteristic that is important to your application workload, such as vCPUs, memory, or I/O. If the request type is <code>maintain</code>, you can specify a target capacity of 0 and add capacity later.</p>",
         "SpotFleetRequestConfigData$InstancePoolsToUseCount": "<p>The number of Spot pools across which to allocate your target Spot capacity. Valid only when Spot <b>AllocationStrategy</b> is set to <code>lowest-price</code>. Spot Fleet selects the cheapest Spot pools and evenly allocates your target Spot capacity across the number of Spot pools that you specify.</p>",
@@ -6656,6 +6683,7 @@
     "MillisecondDateTime": {
       "base": null,
       "refs": {
+        "SnapshotInfo$StartTime": "<p>Time this snapshot was started. This is the same for all snapshots initiated by the same request.</p>",
         "VpcEndpoint$CreationTimestamp": "<p>The date and time the VPC endpoint was created.</p>",
         "VpcEndpointConnection$CreationTimestamp": "<p>The date and time the VPC endpoint was created.</p>"
       }
@@ -8555,16 +8583,29 @@
         "DescribeSnapshotsRequest$SnapshotIds": "<p>The snapshot IDs.</p> <p>Default: Describes the snapshots for which you have create volume permissions.</p>"
       }
     },
+    "SnapshotInfo": {
+      "base": "<p>Object that contains information about a snapshot.</p>",
+      "refs": {
+        "SnapshotSet$member": null
+      }
+    },
     "SnapshotList": {
       "base": null,
       "refs": {
         "DescribeSnapshotsResult$Snapshots": "<p>Information about the snapshots.</p>"
       }
     },
+    "SnapshotSet": {
+      "base": null,
+      "refs": {
+        "CreateSnapshotsResult$Snapshots": "<p>List of snapshots.</p>"
+      }
+    },
     "SnapshotState": {
       "base": null,
       "refs": {
-        "Snapshot$State": "<p>The snapshot state.</p>"
+        "Snapshot$State": "<p>The snapshot state.</p>",
+        "SnapshotInfo$State": "<p>Current state of the snapshot.</p>"
       }
     },
     "SnapshotTaskDetail": {
@@ -9016,7 +9057,7 @@
         "CopyFpgaImageResult$FpgaImageId": "<p>The ID of the new AFI.</p>",
         "CopyImageRequest$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "CopyImageRequest$Description": "<p>A description for the new AMI in the destination Region.</p>",
-        "CopyImageRequest$KmsKeyId": "<p>An identifier for the AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted volume. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p> <p>The CMK identifier may be provided in any of the following formats: </p> <ul> <li> <p>Key ID</p> </li> <li> <p>ARN using key ID. The ID ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>key</code> namespace, and then the CMK ID. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>. </p> </li> <li> <p>ARN using key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>. </p> </li> </ul> <p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. This action will eventually report failure. </p> <p>The specified CMK must exist in the Region that the snapshot is being copied to. </p>",
+        "CopyImageRequest$KmsKeyId": "<p>An identifier for the AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted volume. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p> <p>To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name, or alias ARN. When using an alias name, prefix it with \"alias/\". For example:</p> <ul> <li> <p>Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Key ARN: <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Alias name: <code>alias/ExampleAlias</code> </p> </li> <li> <p>Alias ARN: <code>arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias</code> </p> </li> </ul> <p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. This action will eventually report failure. </p> <p>The specified CMK must exist in the Region that the snapshot is being copied to. </p>",
         "CopyImageRequest$Name": "<p>The name of the new AMI in the destination Region.</p>",
         "CopyImageRequest$SourceImageId": "<p>The ID of the AMI to copy.</p>",
         "CopyImageRequest$SourceRegion": "<p>The name of the Region that contains the AMI to copy.</p>",
@@ -9106,6 +9147,7 @@
         "CreateSecurityGroupResult$GroupId": "<p>The ID of the security group.</p>",
         "CreateSnapshotRequest$Description": "<p>A description for the snapshot.</p>",
         "CreateSnapshotRequest$VolumeId": "<p>The ID of the EBS volume.</p>",
+        "CreateSnapshotsRequest$Description": "<p> A description propagated to every snapshot specified by the instance.</p>",
         "CreateSpotDatafeedSubscriptionRequest$Bucket": "<p>The Amazon S3 bucket in which to store the Spot Instance data feed.</p>",
         "CreateSpotDatafeedSubscriptionRequest$Prefix": "<p>A prefix for the data feed file names.</p>",
         "CreateSubnetRequest$AvailabilityZone": "<p>The Availability Zone for the subnet.</p> <p>Default: AWS selects one for you. If you create more than one subnet in your VPC, we may not necessarily select a different zone for each subnet.</p>",
@@ -9651,9 +9693,10 @@
         "InstanceNetworkInterfaceSpecification$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "InstanceNetworkInterfaceSpecification$PrivateIpAddress": "<p>The private IPv4 address of the network interface. Applies only if creating a network interface when launching an instance. You cannot specify this option if you're launching more than one instance in a <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html\">RunInstances</a> request.</p>",
         "InstanceNetworkInterfaceSpecification$SubnetId": "<p>The ID of the subnet associated with the network string. Applies only if creating a network interface when launching an instance.</p>",
-        "InstanceNetworkInterfaceSpecification$InterfaceType": "<p>The type of network interface. To create an Elastic Fabric Adapter (EFA), specify <code>efa</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html\">Elastic Fabric Adapter</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>If you are not creating an EFA, specify <code>interface</code> or omit this parameter.</p> <p>Valide values: <code>interface</code> | <code>efa</code> </p>",
+        "InstanceNetworkInterfaceSpecification$InterfaceType": "<p>The type of network interface. To create an Elastic Fabric Adapter (EFA), specify <code>efa</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html\">Elastic Fabric Adapter</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>If you are not creating an EFA, specify <code>interface</code> or omit this parameter.</p> <p>Valid values: <code>interface</code> | <code>efa</code> </p>",
         "InstancePrivateIpAddress$PrivateDnsName": "<p>The private IPv4 DNS name.</p>",
         "InstancePrivateIpAddress$PrivateIpAddress": "<p>The private IPv4 address of the network interface.</p>",
+        "InstanceSpecification$InstanceId": "<p>The instance to specify which volumes should be snapshotted.</p>",
         "InstanceStateChange$InstanceId": "<p>The ID of the instance.</p>",
         "InstanceStatus$AvailabilityZone": "<p>The Availability Zone of the instance.</p>",
         "InstanceStatus$InstanceId": "<p>The ID of the instance.</p>",
@@ -9707,7 +9750,7 @@
         "LaunchTemplateInstanceNetworkInterfaceSpecification$PrivateIpAddress": "<p>The primary private IPv4 address of the network interface.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecification$SubnetId": "<p>The ID of the subnet for the network interface.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$Description": "<p>A description for the network interface.</p>",
-        "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$InterfaceType": "<p>The type of networking interface.</p>",
+        "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$InterfaceType": "<p>The type of network interface. To create an Elastic Fabric Adapter (EFA), specify <code>efa</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html\">Elastic Fabric Adapter</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>If you are not creating an EFA, specify <code>interface</code> or omit this parameter.</p> <p>Valid values: <code>interface</code> | <code>efa</code> </p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$PrivateIpAddress": "<p>The primary private IPv4 address of the network interface.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$SubnetId": "<p>The ID of the subnet for the network interface.</p>",
@@ -9888,7 +9931,7 @@
         "Region$Endpoint": "<p>The Region service endpoint.</p>",
         "Region$RegionName": "<p>The name of the Region.</p>",
         "RegionNameStringList$member": null,
-        "RegisterImageRequest$ImageLocation": "<p>The full path to your AMI manifest in Amazon S3 storage.</p>",
+        "RegisterImageRequest$ImageLocation": "<p>The full path to your AMI manifest in Amazon S3 storage. The specified bucket must have the <code>aws-exec-read</code> canned access control list (ACL) to ensure that it can be accessed by Amazon EC2. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl\">Canned ACLs</a> in the <i>Amazon S3 Service Developer Guide</i>.</p>",
         "RegisterImageRequest$Description": "<p>A description for your AMI.</p>",
         "RegisterImageRequest$KernelId": "<p>The ID of the kernel.</p>",
         "RegisterImageRequest$Name": "<p>A name for your AMI.</p> <p>Constraints: 3-128 alphanumeric characters, parentheses (()), square brackets ([]), spaces ( ), periods (.), slashes (/), dashes (-), single quotes ('), at-signs (@), or underscores(_)</p>",
@@ -10119,6 +10162,11 @@
         "SnapshotDiskContainer$Format": "<p>The format of the disk image being imported.</p> <p>Valid values: <code>VHD</code> | <code>VMDK</code> </p>",
         "SnapshotDiskContainer$Url": "<p>The URL to the Amazon S3-based disk image being imported. It can either be a https URL (https://..) or an Amazon S3 URL (s3://..).</p>",
         "SnapshotIdStringList$member": null,
+        "SnapshotInfo$Description": "<p>Description specified by the CreateSnapshotRequest that has been applied to all snapshots.</p>",
+        "SnapshotInfo$VolumeId": "<p>Source volume from which this snapshot was created.</p>",
+        "SnapshotInfo$Progress": "<p>Progress this snapshot has made towards completing.</p>",
+        "SnapshotInfo$OwnerId": "<p>Account id used when creating this snapshot.</p>",
+        "SnapshotInfo$SnapshotId": "<p>Snapshot id that can be used to describe this snapshot.</p>",
         "SnapshotTaskDetail$Description": "<p>The description of the snapshot.</p>",
         "SnapshotTaskDetail$Format": "<p>The format of the disk image from which the snapshot is created.</p>",
         "SnapshotTaskDetail$KmsKeyId": "<p>The identifier for the AWS Key Management Service (AWS KMS) customer master key (CMK) that was used to create the encrypted snapshot.</p>",
@@ -10448,6 +10496,7 @@
         "ServiceConfiguration$Tags": "<p>Any tags assigned to the service.</p>",
         "ServiceDetail$Tags": "<p>Any tags assigned to the service.</p>",
         "Snapshot$Tags": "<p>Any tags assigned to the snapshot.</p>",
+        "SnapshotInfo$Tags": "<p>Tags associated with this snapshot.</p>",
         "SpotFleetTagSpecification$Tags": "<p>The tags.</p>",
         "SpotInstanceRequest$Tags": "<p>Any tags assigned to the resource.</p>",
         "Subnet$Tags": "<p>Any tags assigned to the subnet.</p>",
@@ -10479,6 +10528,7 @@
         "CreateClientVpnEndpointRequest$TagSpecifications": "<p>The tags to apply to the Client VPN endpoint during creation.</p>",
         "CreateFleetRequest$TagSpecifications": "<p>The key-value pair for tagging the EC2 Fleet request on creation. The value for <code>ResourceType</code> must be <code>fleet</code>, otherwise the fleet request fails. To tag instances at launch, specify the tags in the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html#create-launch-template\">launch template</a>. For information about tagging after launch, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#tag-resources\">Tagging Your Resources</a>. </p>",
         "CreateSnapshotRequest$TagSpecifications": "<p>The tags to apply to the snapshot during creation.</p>",
+        "CreateSnapshotsRequest$TagSpecifications": "<p>Tags to apply to every snapshot specified by the instance.</p>",
         "CreateTransitGatewayRequest$TagSpecifications": "<p>The tags to apply to the transit gateway.</p>",
         "CreateTransitGatewayRouteTableRequest$TagSpecifications": "<p>The tags to apply to the transit gateway route table.</p>",
         "CreateTransitGatewayVpcAttachmentRequest$TagSpecifications": "<p>The tags to apply to the VPC attachment.</p>",
@@ -11051,13 +11101,13 @@
         "CreateVpcEndpointRequest$SubnetIds": "<p>(Interface endpoint) The ID of one or more subnets in which to create an endpoint network interface.</p>",
         "CreateVpcEndpointRequest$SecurityGroupIds": "<p>(Interface endpoint) The ID of one or more security groups to associate with the endpoint network interface.</p>",
         "CreateVpcEndpointServiceConfigurationRequest$NetworkLoadBalancerArns": "<p>The Amazon Resource Names (ARNs) of one or more Network Load Balancers for your service.</p>",
-        "DeleteFlowLogsRequest$FlowLogIds": "<p>One or more flow log IDs.</p>",
+        "DeleteFlowLogsRequest$FlowLogIds": "<p>One or more flow log IDs.</p> <p>Constraint: Maximum of 1000 flow log IDs.</p>",
         "DeleteVpcEndpointConnectionNotificationsRequest$ConnectionNotificationIds": "<p>One or more notification IDs.</p>",
         "DeleteVpcEndpointServiceConfigurationsRequest$ServiceIds": "<p>The IDs of one or more services.</p>",
         "DeleteVpcEndpointsRequest$VpcEndpointIds": "<p>One or more VPC endpoint IDs.</p>",
         "DescribeClientVpnEndpointsRequest$ClientVpnEndpointIds": "<p>The ID of the Client VPN endpoint.</p>",
         "DescribeClientVpnTargetNetworksRequest$AssociationIds": "<p>The IDs of the target network associations.</p>",
-        "DescribeFlowLogsRequest$FlowLogIds": "<p>One or more flow log IDs.</p>",
+        "DescribeFlowLogsRequest$FlowLogIds": "<p>One or more flow log IDs.</p> <p>Constraint: Maximum of 1000 flow log IDs.</p>",
         "DescribeInternetGatewaysRequest$InternetGatewayIds": "<p>One or more internet gateway IDs.</p> <p>Default: Describes all your internet gateways.</p>",
         "DescribeLaunchTemplatesRequest$LaunchTemplateIds": "<p>One or more launch template IDs.</p>",
         "DescribeMovingAddressesRequest$PublicIps": "<p>One or more Elastic IP addresses.</p>",

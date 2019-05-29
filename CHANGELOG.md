@@ -1,3 +1,29 @@
+Release v1.19.40 (2019-05-29)
+===
+
+### Service Client Updates
+* `service/dlm`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Customers can now simultaneously take snapshots of multiple EBS volumes attached to an EC2 instance. With this new capability, snapshots guarantee crash-consistency across multiple volumes by preserving the order of IO operations. This new feature is fully integrated with Amazon Data Lifecycle Manager (DLM) allowing customers to automatically manage snapshots by creating lifecycle policies.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/iotthingsgraph`: Adds new service
+* `service/rds`: Updates service documentation
+  * Documentation updates for rds
+* `service/securityhub`: Updates service API, documentation, and paginators
+* `service/ssm`: Updates service documentation
+  * Systems Manager - Documentation updates
+
+### SDK Enhancements
+* `service/mediastoredata`: Add support for nonseekable io.Reader ([#2622](https://github.com/aws/aws-sdk-go/pull/2622))
+  * Updates the SDK's documentation to clarify how you can use the SDK's `aws.ReadSeekCloser` utility function to wrap an io.Reader to be used with an API operation that allows streaming unsigned payload in the operation's request.
+  * Adds example using ReadSeekCloser with AWS Elemental MediaStore Data's PutObject API operation.
+* Update CI validation testing for Go module files ([#2626](https://github.com/aws/aws-sdk-go/pull/2626))
+  * Suppress changes to the Go module definition files during CI code generation validation testing.
+
+### SDK Bugs
+* `service/pinpointemail`: Fix client unable to make API requests ([#2625](https://github.com/aws/aws-sdk-go/pull/2625))
+  * Fixes the API client's code generation to ignore the `targetPrefix` modeled value. This value is not valid for the REST-JSON protocol.
+  * Updates the SDK's code generation to ignore the `targetPrefix` for all protocols other than RPCJSON.
 Release v1.19.39 (2019-05-28)
 ===
 

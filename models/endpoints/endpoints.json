@@ -1462,6 +1462,12 @@
         },
         "isRegionalized" : true
       },
+      "groundstation" : {
+        "endpoints" : {
+          "us-east-2" : { },
+          "us-west-2" : { }
+        }
+      },
       "guardduty" : {
         "defaults" : {
           "protocols" : [ "https" ]

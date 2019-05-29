@@ -328,6 +328,10 @@ type EC2API interface {
 	CreateSnapshotWithContext(aws.Context, *ec2.CreateSnapshotInput, ...request.Option) (*ec2.Snapshot, error)
 	CreateSnapshotRequest(*ec2.CreateSnapshotInput) (*request.Request, *ec2.Snapshot)
 
+	CreateSnapshots(*ec2.CreateSnapshotsInput) (*ec2.CreateSnapshotsOutput, error)
+	CreateSnapshotsWithContext(aws.Context, *ec2.CreateSnapshotsInput, ...request.Option) (*ec2.CreateSnapshotsOutput, error)
+	CreateSnapshotsRequest(*ec2.CreateSnapshotsInput) (*request.Request, *ec2.CreateSnapshotsOutput)
+
 	CreateSpotDatafeedSubscription(*ec2.CreateSpotDatafeedSubscriptionInput) (*ec2.CreateSpotDatafeedSubscriptionOutput, error)
 	CreateSpotDatafeedSubscriptionWithContext(aws.Context, *ec2.CreateSpotDatafeedSubscriptionInput, ...request.Option) (*ec2.CreateSpotDatafeedSubscriptionOutput, error)
 	CreateSpotDatafeedSubscriptionRequest(*ec2.CreateSpotDatafeedSubscriptionInput) (*request.Request, *ec2.CreateSpotDatafeedSubscriptionOutput)
