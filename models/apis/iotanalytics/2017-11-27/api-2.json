@@ -671,6 +671,7 @@
       "type":"structure",
       "members":{
         "name":{"shape":"ChannelName"},
+        "storage":{"shape":"ChannelStorage"},
         "arn":{"shape":"ChannelArn"},
         "status":{"shape":"ChannelStatus"},
         "retentionPeriod":{"shape":"RetentionPeriod"},
@@ -711,6 +712,20 @@
         "DELETING"
       ]
     },
+    "ChannelStorage":{
+      "type":"structure",
+      "members":{
+        "serviceManagedS3":{"shape":"ServiceManagedChannelS3Storage"},
+        "customerManagedS3":{"shape":"CustomerManagedChannelS3Storage"}
+      }
+    },
+    "ChannelStorageSummary":{
+      "type":"structure",
+      "members":{
+        "serviceManagedS3":{"shape":"ServiceManagedChannelS3StorageSummary"},
+        "customerManagedS3":{"shape":"CustomerManagedChannelS3StorageSummary"}
+      }
+    },
     "ChannelSummaries":{
       "type":"list",
       "member":{"shape":"ChannelSummary"}
@@ -719,6 +734,7 @@
       "type":"structure",
       "members":{
         "channelName":{"shape":"ChannelName"},
+        "channelStorage":{"shape":"ChannelStorageSummary"},
         "status":{"shape":"ChannelStatus"},
         "creationTime":{"shape":"Timestamp"},
         "lastUpdateTime":{"shape":"Timestamp"}
@@ -750,6 +766,7 @@
       "required":["channelName"],
       "members":{
         "channelName":{"shape":"ChannelName"},
+        "channelStorage":{"shape":"ChannelStorage"},
         "retentionPeriod":{"shape":"RetentionPeriod"},
         "tags":{"shape":"TagList"}
       }
@@ -808,6 +825,7 @@
       "required":["datastoreName"],
       "members":{
         "datastoreName":{"shape":"DatastoreName"},
+        "datastoreStorage":{"shape":"DatastoreStorage"},
         "retentionPeriod":{"shape":"RetentionPeriod"},
         "tags":{"shape":"TagList"}
       }
@@ -837,6 +855,46 @@
       "members":{
         "pipelineName":{"shape":"PipelineName"},
         "pipelineArn":{"shape":"PipelineArn"}
+      }
+    },
+    "CustomerManagedChannelS3Storage":{
+      "type":"structure",
+      "required":[
+        "bucket",
+        "roleArn"
+      ],
+      "members":{
+        "bucket":{"shape":"BucketName"},
+        "keyPrefix":{"shape":"S3KeyPrefix"},
+        "roleArn":{"shape":"RoleArn"}
+      }
+    },
+    "CustomerManagedChannelS3StorageSummary":{
+      "type":"structure",
+      "members":{
+        "bucket":{"shape":"BucketName"},
+        "keyPrefix":{"shape":"S3KeyPrefix"},
+        "roleArn":{"shape":"RoleArn"}
+      }
+    },
+    "CustomerManagedDatastoreS3Storage":{
+      "type":"structure",
+      "required":[
+        "bucket",
+        "roleArn"
+      ],
+      "members":{
+        "bucket":{"shape":"BucketName"},
+        "keyPrefix":{"shape":"S3KeyPrefix"},
+        "roleArn":{"shape":"RoleArn"}
+      }
+    },
+    "CustomerManagedDatastoreS3StorageSummary":{
+      "type":"structure",
+      "members":{
+        "bucket":{"shape":"BucketName"},
+        "keyPrefix":{"shape":"S3KeyPrefix"},
+        "roleArn":{"shape":"RoleArn"}
       }
     },
     "Dataset":{
@@ -1013,6 +1071,7 @@
       "type":"structure",
       "members":{
         "name":{"shape":"DatastoreName"},
+        "storage":{"shape":"DatastoreStorage"},
         "arn":{"shape":"DatastoreArn"},
         "status":{"shape":"DatastoreStatus"},
         "retentionPeriod":{"shape":"RetentionPeriod"},
@@ -1052,6 +1111,20 @@
         "DELETING"
       ]
     },
+    "DatastoreStorage":{
+      "type":"structure",
+      "members":{
+        "serviceManagedS3":{"shape":"ServiceManagedDatastoreS3Storage"},
+        "customerManagedS3":{"shape":"CustomerManagedDatastoreS3Storage"}
+      }
+    },
+    "DatastoreStorageSummary":{
+      "type":"structure",
+      "members":{
+        "serviceManagedS3":{"shape":"ServiceManagedDatastoreS3StorageSummary"},
+        "customerManagedS3":{"shape":"CustomerManagedDatastoreS3StorageSummary"}
+      }
+    },
     "DatastoreSummaries":{
       "type":"list",
       "member":{"shape":"DatastoreSummary"}
@@ -1060,6 +1133,7 @@
       "type":"structure",
       "members":{
         "datastoreName":{"shape":"DatastoreName"},
+        "datastoreStorage":{"shape":"DatastoreStorageSummary"},
         "status":{"shape":"DatastoreStatus"},
         "creationTime":{"shape":"Timestamp"},
         "lastUpdateTime":{"shape":"Timestamp"}
@@ -1827,6 +1901,12 @@
         "roleArn":{"shape":"RoleArn"}
       }
     },
+    "S3KeyPrefix":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9!_.*'()/{}:-]*/$"
+    },
     "SampleChannelDataRequest":{
       "type":"structure",
       "required":["channelName"],
@@ -1876,6 +1956,26 @@
         "name":{"shape":"ActivityName"},
         "attributes":{"shape":"AttributeNames"},
         "next":{"shape":"ActivityName"}
+      }
+    },
+    "ServiceManagedChannelS3Storage":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "ServiceManagedChannelS3StorageSummary":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "ServiceManagedDatastoreS3Storage":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "ServiceManagedDatastoreS3StorageSummary":{
+      "type":"structure",
+      "members":{
       }
     },
     "ServiceUnavailableException":{
@@ -2027,6 +2127,7 @@
           "location":"uri",
           "locationName":"channelName"
         },
+        "channelStorage":{"shape":"ChannelStorage"},
         "retentionPeriod":{"shape":"RetentionPeriod"}
       }
     },
@@ -2058,7 +2159,8 @@
           "location":"uri",
           "locationName":"datastoreName"
         },
-        "retentionPeriod":{"shape":"RetentionPeriod"}
+        "retentionPeriod":{"shape":"RetentionPeriod"},
+        "datastoreStorage":{"shape":"DatastoreStorage"}
       }
     },
     "UpdatePipelineRequest":{

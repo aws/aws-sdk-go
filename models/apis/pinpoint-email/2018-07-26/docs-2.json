@@ -1298,6 +1298,13 @@
         "ListDomainDeliverabilityCampaignsRequest$EndDate": "<p>The last day, in Unix time format, that you want to obtain deliverability data for. This value has to be less than or equal to 30 days after the value of the <code>StartDate</code> parameter.</p>"
       }
     },
+    "TlsPolicy": {
+      "base": "<p>Specifies whether Amazon Pinpoint should require that incoming email is delivered over a connection encrypted with Transport Layer Security (TLS). If this parameter is set to <code>Require</code>, Amazon Pinpoint rejects emails that weren't received over TLS. If the parameter is set to <code>Optional</code>, then Amazon Pinpoint accepts emails that weren't received over TLS. The default value is <code>Optional</code>.</p>",
+      "refs": {
+        "DeliveryOptions$TlsPolicy": "<p>Specifies whether Amazon Pinpoint should require that incoming email is delivered over a connection that’s encrypted by using Transport Layer Security (TLS). If this value is set to <code>Require</code>, Amazon Pinpoint will bounce email messages that cannot be delivered over TLS. The default value is <code>Optional</code>.</p>",
+        "PutConfigurationSetDeliveryOptionsRequest$TlsPolicy": "<p>Whether Amazon Pinpoint should require that incoming email is delivered over a connection encrypted with Transport Layer Security (TLS).</p>"
+      }
+    },
     "TooManyRequestsException": {
       "base": "<p>Too many requests have been made to the operation.</p>",
       "refs": {

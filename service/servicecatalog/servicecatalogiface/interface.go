@@ -356,6 +356,10 @@ type ServiceCatalogAPI interface {
 	ListServiceActionsForProvisioningArtifactPages(*servicecatalog.ListServiceActionsForProvisioningArtifactInput, func(*servicecatalog.ListServiceActionsForProvisioningArtifactOutput, bool) bool) error
 	ListServiceActionsForProvisioningArtifactPagesWithContext(aws.Context, *servicecatalog.ListServiceActionsForProvisioningArtifactInput, func(*servicecatalog.ListServiceActionsForProvisioningArtifactOutput, bool) bool, ...request.Option) error
 
+	ListStackInstancesForProvisionedProduct(*servicecatalog.ListStackInstancesForProvisionedProductInput) (*servicecatalog.ListStackInstancesForProvisionedProductOutput, error)
+	ListStackInstancesForProvisionedProductWithContext(aws.Context, *servicecatalog.ListStackInstancesForProvisionedProductInput, ...request.Option) (*servicecatalog.ListStackInstancesForProvisionedProductOutput, error)
+	ListStackInstancesForProvisionedProductRequest(*servicecatalog.ListStackInstancesForProvisionedProductInput) (*request.Request, *servicecatalog.ListStackInstancesForProvisionedProductOutput)
+
 	ListTagOptions(*servicecatalog.ListTagOptionsInput) (*servicecatalog.ListTagOptionsOutput, error)
 	ListTagOptionsWithContext(aws.Context, *servicecatalog.ListTagOptionsInput, ...request.Option) (*servicecatalog.ListTagOptionsOutput, error)
 	ListTagOptionsRequest(*servicecatalog.ListTagOptionsInput) (*request.Request, *servicecatalog.ListTagOptionsOutput)

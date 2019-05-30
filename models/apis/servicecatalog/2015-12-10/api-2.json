@@ -875,6 +875,19 @@
         {"shape":"InvalidParametersException"}
       ]
     },
+    "ListStackInstancesForProvisionedProduct":{
+      "name":"ListStackInstancesForProvisionedProduct",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListStackInstancesForProvisionedProductInput"},
+      "output":{"shape":"ListStackInstancesForProvisionedProductOutput"},
+      "errors":[
+        {"shape":"InvalidParametersException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "ListTagOptions":{
       "name":"ListTagOptions",
       "http":{
@@ -2458,6 +2471,23 @@
         "NextPageToken":{"shape":"PageToken"}
       }
     },
+    "ListStackInstancesForProvisionedProductInput":{
+      "type":"structure",
+      "required":["ProvisionedProductId"],
+      "members":{
+        "AcceptLanguage":{"shape":"AcceptLanguage"},
+        "ProvisionedProductId":{"shape":"Id"},
+        "PageToken":{"shape":"PageToken"},
+        "PageSize":{"shape":"PageSize"}
+      }
+    },
+    "ListStackInstancesForProvisionedProductOutput":{
+      "type":"structure",
+      "members":{
+        "StackInstances":{"shape":"StackInstances"},
+        "NextPageToken":{"shape":"PageToken"}
+      }
+    },
     "ListTagOptionsFilters":{
       "type":"structure",
       "members":{
@@ -3462,6 +3492,26 @@
       "type":"map",
       "key":{"shape":"ProvisioningArtifactPropertyName"},
       "value":{"shape":"ProvisioningArtifactPropertyValue"}
+    },
+    "StackInstance":{
+      "type":"structure",
+      "members":{
+        "Account":{"shape":"AccountId"},
+        "Region":{"shape":"Region"},
+        "StackInstanceStatus":{"shape":"StackInstanceStatus"}
+      }
+    },
+    "StackInstanceStatus":{
+      "type":"string",
+      "enum":[
+        "CURRENT",
+        "OUTDATED",
+        "INOPERABLE"
+      ]
+    },
+    "StackInstances":{
+      "type":"list",
+      "member":{"shape":"StackInstance"}
     },
     "StackSetAccounts":{
       "type":"list",

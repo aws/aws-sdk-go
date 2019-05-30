@@ -10,7 +10,6 @@
     "serviceId":"Pinpoint Email",
     "signatureVersion":"v4",
     "signingName":"ses",
-    "targetPrefix":"com.amazonaws.services.pinpoint.email",
     "uid":"pinpoint-email-2018-07-26"
   },
   "operations":{
@@ -959,6 +958,7 @@
     "DeliveryOptions":{
       "type":"structure",
       "members":{
+        "TlsPolicy":{"shape":"TlsPolicy"},
         "SendingPoolName":{"shape":"PoolName"}
       }
     },
@@ -1714,6 +1714,7 @@
           "location":"uri",
           "locationName":"ConfigurationSetName"
         },
+        "TlsPolicy":{"shape":"TlsPolicy"},
         "SendingPoolName":{"shape":"SendingPoolName"}
       }
     },
@@ -1987,6 +1988,13 @@
     },
     "TagValue":{"type":"string"},
     "Timestamp":{"type":"timestamp"},
+    "TlsPolicy":{
+      "type":"string",
+      "enum":[
+        "REQUIRE",
+        "OPTIONAL"
+      ]
+    },
     "TooManyRequestsException":{
       "type":"structure",
       "members":{

@@ -11085,6 +11085,102 @@ func (c *RDS) RevokeDBSecurityGroupIngressWithContext(ctx aws.Context, input *Re
 	return out, req.Send()
 }
 
+const opStartActivityStream = "StartActivityStream"
+
+// StartActivityStreamRequest generates a "aws/request.Request" representing the
+// client's request for the StartActivityStream operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartActivityStream for more information on using the StartActivityStream
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartActivityStreamRequest method.
+//    req, resp := client.StartActivityStreamRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/StartActivityStream
+func (c *RDS) StartActivityStreamRequest(input *StartActivityStreamInput) (req *request.Request, output *StartActivityStreamOutput) {
+	op := &request.Operation{
+		Name:       opStartActivityStream,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartActivityStreamInput{}
+	}
+
+	output = &StartActivityStreamOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartActivityStream API operation for Amazon Relational Database Service.
+//
+// Starts a database activity stream to monitor activity on the database. For
+// more information, see Database Activity Streams (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/DBActivityStreams.html)
+// in the Amazon Aurora User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation StartActivityStream for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidDBInstanceStateFault "InvalidDBInstanceState"
+//   The DB instance isn't in a valid state.
+//
+//   * ErrCodeInvalidDBClusterStateFault "InvalidDBClusterStateFault"
+//   The requested operation can't be performed while the cluster is in this state.
+//
+//   * ErrCodeResourceNotFoundFault "ResourceNotFoundFault"
+//   The specified resource ID was not found.
+//
+//   * ErrCodeDBClusterNotFoundFault "DBClusterNotFoundFault"
+//   DBClusterIdentifier doesn't refer to an existing DB cluster.
+//
+//   * ErrCodeDBInstanceNotFoundFault "DBInstanceNotFound"
+//   DBInstanceIdentifier doesn't refer to an existing DB instance.
+//
+//   * ErrCodeKMSKeyNotAccessibleFault "KMSKeyNotAccessibleFault"
+//   An error occurred accessing an AWS KMS key.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/StartActivityStream
+func (c *RDS) StartActivityStream(input *StartActivityStreamInput) (*StartActivityStreamOutput, error) {
+	req, out := c.StartActivityStreamRequest(input)
+	return out, req.Send()
+}
+
+// StartActivityStreamWithContext is the same as StartActivityStream with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartActivityStream for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) StartActivityStreamWithContext(ctx aws.Context, input *StartActivityStreamInput, opts ...request.Option) (*StartActivityStreamOutput, error) {
+	req, out := c.StartActivityStreamRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartDBCluster = "StartDBCluster"
 
 // StartDBClusterRequest generates a "aws/request.Request" representing the
@@ -11296,6 +11392,101 @@ func (c *RDS) StartDBInstance(input *StartDBInstanceInput) (*StartDBInstanceOutp
 // for more information on using Contexts.
 func (c *RDS) StartDBInstanceWithContext(ctx aws.Context, input *StartDBInstanceInput, opts ...request.Option) (*StartDBInstanceOutput, error) {
 	req, out := c.StartDBInstanceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopActivityStream = "StopActivityStream"
+
+// StopActivityStreamRequest generates a "aws/request.Request" representing the
+// client's request for the StopActivityStream operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopActivityStream for more information on using the StopActivityStream
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StopActivityStreamRequest method.
+//    req, resp := client.StopActivityStreamRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/StopActivityStream
+func (c *RDS) StopActivityStreamRequest(input *StopActivityStreamInput) (req *request.Request, output *StopActivityStreamOutput) {
+	op := &request.Operation{
+		Name:       opStopActivityStream,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopActivityStreamInput{}
+	}
+
+	output = &StopActivityStreamOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StopActivityStream API operation for Amazon Relational Database Service.
+//
+// Stops a database activity stream that was started using the AWS console,
+// the start-activity-stream AWS CLI command, or the StartActivityStream action.
+//
+// For more information, see Database Activity Streams (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/DBActivityStreams.html)
+// in the Amazon Aurora User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation StopActivityStream for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidDBInstanceStateFault "InvalidDBInstanceState"
+//   The DB instance isn't in a valid state.
+//
+//   * ErrCodeInvalidDBClusterStateFault "InvalidDBClusterStateFault"
+//   The requested operation can't be performed while the cluster is in this state.
+//
+//   * ErrCodeResourceNotFoundFault "ResourceNotFoundFault"
+//   The specified resource ID was not found.
+//
+//   * ErrCodeDBClusterNotFoundFault "DBClusterNotFoundFault"
+//   DBClusterIdentifier doesn't refer to an existing DB cluster.
+//
+//   * ErrCodeDBInstanceNotFoundFault "DBInstanceNotFound"
+//   DBInstanceIdentifier doesn't refer to an existing DB instance.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/StopActivityStream
+func (c *RDS) StopActivityStream(input *StopActivityStreamInput) (*StopActivityStreamOutput, error) {
+	req, out := c.StopActivityStreamRequest(input)
+	return out, req.Send()
+}
+
+// StopActivityStreamWithContext is the same as StopActivityStream with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopActivityStream for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) StopActivityStreamWithContext(ctx aws.Context, input *StopActivityStreamInput, opts ...request.Option) (*StopActivityStreamOutput, error) {
+	req, out := c.StopActivityStreamRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -16657,6 +16848,22 @@ func (s *CreateOptionGroupOutput) SetOptionGroup(v *OptionGroup) *CreateOptionGr
 type DBCluster struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the Amazon Kinesis data stream used for the database activity
+	// stream.
+	ActivityStreamKinesisStreamName *string `type:"string"`
+
+	// The AWS KMS key identifier used for encrypting messages in the database activity
+	// stream.
+	ActivityStreamKmsKeyId *string `type:"string"`
+
+	// The mode of the database activity stream. Database events such as a change
+	// or access generate an activity stream event. The database session can handle
+	// these events either synchronously or asynchronously.
+	ActivityStreamMode *string `type:"string" enum:"ActivityStreamMode"`
+
+	// The status of the database activity stream.
+	ActivityStreamStatus *string `type:"string" enum:"ActivityStreamStatus"`
+
 	// For all database engines except Amazon Aurora, AllocatedStorage specifies
 	// the allocated storage size in gibibytes (GiB). For Aurora, AllocatedStorage
 	// always returns 1, because Aurora DB cluster storage size is not fixed, but
@@ -16868,6 +17075,30 @@ func (s DBCluster) String() string {
 // GoString returns the string representation
 func (s DBCluster) GoString() string {
 	return s.String()
+}
+
+// SetActivityStreamKinesisStreamName sets the ActivityStreamKinesisStreamName field's value.
+func (s *DBCluster) SetActivityStreamKinesisStreamName(v string) *DBCluster {
+	s.ActivityStreamKinesisStreamName = &v
+	return s
+}
+
+// SetActivityStreamKmsKeyId sets the ActivityStreamKmsKeyId field's value.
+func (s *DBCluster) SetActivityStreamKmsKeyId(v string) *DBCluster {
+	s.ActivityStreamKmsKeyId = &v
+	return s
+}
+
+// SetActivityStreamMode sets the ActivityStreamMode field's value.
+func (s *DBCluster) SetActivityStreamMode(v string) *DBCluster {
+	s.ActivityStreamMode = &v
+	return s
+}
+
+// SetActivityStreamStatus sets the ActivityStreamStatus field's value.
+func (s *DBCluster) SetActivityStreamStatus(v string) *DBCluster {
+	s.ActivityStreamStatus = &v
+	return s
 }
 
 // SetAllocatedStorage sets the AllocatedStorage field's value.
@@ -33915,6 +34146,147 @@ func (s *SourceRegion) SetStatus(v string) *SourceRegion {
 	return s
 }
 
+type StartActivityStreamInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether or not the database activity stream is to start as soon
+	// as possible, regardless of the maintenance window for the database.
+	ApplyImmediately *bool `type:"boolean"`
+
+	// The AWS KMS key identifier for encrypting messages in the database activity
+	// stream. The key identifier can be either a key ID, a key ARN, or a key alias.
+	//
+	// KmsKeyId is a required field
+	KmsKeyId *string `type:"string" required:"true"`
+
+	// Specifies the mode of the database activity stream. Database events such
+	// as a change or access generate an activity stream event. The database session
+	// can handle these events either synchronously or asynchronously.
+	//
+	// Mode is a required field
+	Mode *string `type:"string" required:"true" enum:"ActivityStreamMode"`
+
+	// The Amazon Resource Name (ARN) of the DB cluster, for example arn:aws:rds:us-east-1:12345667890:cluster:das-cluster.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StartActivityStreamInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartActivityStreamInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartActivityStreamInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartActivityStreamInput"}
+	if s.KmsKeyId == nil {
+		invalidParams.Add(request.NewErrParamRequired("KmsKeyId"))
+	}
+	if s.Mode == nil {
+		invalidParams.Add(request.NewErrParamRequired("Mode"))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplyImmediately sets the ApplyImmediately field's value.
+func (s *StartActivityStreamInput) SetApplyImmediately(v bool) *StartActivityStreamInput {
+	s.ApplyImmediately = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *StartActivityStreamInput) SetKmsKeyId(v string) *StartActivityStreamInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *StartActivityStreamInput) SetMode(v string) *StartActivityStreamInput {
+	s.Mode = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *StartActivityStreamInput) SetResourceArn(v string) *StartActivityStreamInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type StartActivityStreamOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether or not the database activity stream will start as soon
+	// as possible, regardless of the maintenance window for the database.
+	ApplyImmediately *bool `type:"boolean"`
+
+	// The name of the Amazon Kinesis data stream to be used for the database activity
+	// stream.
+	KinesisStreamName *string `type:"string"`
+
+	// The AWS KMS key identifier for encryption of messages in the database activity
+	// stream.
+	KmsKeyId *string `type:"string"`
+
+	// The mode of the database activity stream.
+	Mode *string `type:"string" enum:"ActivityStreamMode"`
+
+	// The status of the database activity stream.
+	Status *string `type:"string" enum:"ActivityStreamStatus"`
+}
+
+// String returns the string representation
+func (s StartActivityStreamOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartActivityStreamOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplyImmediately sets the ApplyImmediately field's value.
+func (s *StartActivityStreamOutput) SetApplyImmediately(v bool) *StartActivityStreamOutput {
+	s.ApplyImmediately = &v
+	return s
+}
+
+// SetKinesisStreamName sets the KinesisStreamName field's value.
+func (s *StartActivityStreamOutput) SetKinesisStreamName(v string) *StartActivityStreamOutput {
+	s.KinesisStreamName = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *StartActivityStreamOutput) SetKmsKeyId(v string) *StartActivityStreamOutput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *StartActivityStreamOutput) SetMode(v string) *StartActivityStreamOutput {
+	s.Mode = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *StartActivityStreamOutput) SetStatus(v string) *StartActivityStreamOutput {
+	s.Status = &v
+	return s
+}
+
 type StartDBClusterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -34040,6 +34412,98 @@ func (s StartDBInstanceOutput) GoString() string {
 // SetDBInstance sets the DBInstance field's value.
 func (s *StartDBInstanceOutput) SetDBInstance(v *DBInstance) *StartDBInstanceOutput {
 	s.DBInstance = v
+	return s
+}
+
+type StopActivityStreamInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether or not the database activity stream is to stop as soon
+	// as possible, regardless of the maintenance window for the database.
+	ApplyImmediately *bool `type:"boolean"`
+
+	// The Amazon Resource Name (ARN) of the DB cluster for the database activity
+	// stream. For example, arn:aws:rds:us-east-1:12345667890:cluster:das-cluster.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StopActivityStreamInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopActivityStreamInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopActivityStreamInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopActivityStreamInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplyImmediately sets the ApplyImmediately field's value.
+func (s *StopActivityStreamInput) SetApplyImmediately(v bool) *StopActivityStreamInput {
+	s.ApplyImmediately = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *StopActivityStreamInput) SetResourceArn(v string) *StopActivityStreamInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type StopActivityStreamOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon Kinesis data stream used for the database activity
+	// stream.
+	KinesisStreamName *string `type:"string"`
+
+	// The AWS KMS key identifier used for encrypting messages in the database activity
+	// stream.
+	KmsKeyId *string `type:"string"`
+
+	// The status of the database activity stream.
+	Status *string `type:"string" enum:"ActivityStreamStatus"`
+}
+
+// String returns the string representation
+func (s StopActivityStreamOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopActivityStreamOutput) GoString() string {
+	return s.String()
+}
+
+// SetKinesisStreamName sets the KinesisStreamName field's value.
+func (s *StopActivityStreamOutput) SetKinesisStreamName(v string) *StopActivityStreamOutput {
+	s.KinesisStreamName = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *StopActivityStreamOutput) SetKmsKeyId(v string) *StopActivityStreamOutput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *StopActivityStreamOutput) SetStatus(v string) *StopActivityStreamOutput {
+	s.Status = &v
 	return s
 }
 
@@ -34476,6 +34940,28 @@ func (s *VpcSecurityGroupMembership) SetVpcSecurityGroupId(v string) *VpcSecurit
 	s.VpcSecurityGroupId = &v
 	return s
 }
+
+const (
+	// ActivityStreamModeSync is a ActivityStreamMode enum value
+	ActivityStreamModeSync = "sync"
+
+	// ActivityStreamModeAsync is a ActivityStreamMode enum value
+	ActivityStreamModeAsync = "async"
+)
+
+const (
+	// ActivityStreamStatusStopped is a ActivityStreamStatus enum value
+	ActivityStreamStatusStopped = "stopped"
+
+	// ActivityStreamStatusStarting is a ActivityStreamStatus enum value
+	ActivityStreamStatusStarting = "starting"
+
+	// ActivityStreamStatusStarted is a ActivityStreamStatus enum value
+	ActivityStreamStatusStarted = "started"
+
+	// ActivityStreamStatusStopping is a ActivityStreamStatus enum value
+	ActivityStreamStatusStopping = "stopping"
+)
 
 const (
 	// ApplyMethodImmediate is a ApplyMethod enum value

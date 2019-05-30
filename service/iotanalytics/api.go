@@ -3753,6 +3753,9 @@ type Channel struct {
 
 	// The status of the channel.
 	Status *string `locationName:"status" type:"string" enum:"ChannelStatus"`
+
+	// Where channel data is stored.
+	Storage *ChannelStorage `locationName:"storage" type:"structure"`
 }
 
 // String returns the string representation
@@ -3798,6 +3801,12 @@ func (s *Channel) SetRetentionPeriod(v *RetentionPeriod) *Channel {
 // SetStatus sets the Status field's value.
 func (s *Channel) SetStatus(v string) *Channel {
 	s.Status = &v
+	return s
+}
+
+// SetStorage sets the Storage field's value.
+func (s *Channel) SetStorage(v *ChannelStorage) *Channel {
+	s.Storage = v
 	return s
 }
 
@@ -3896,12 +3905,98 @@ func (s *ChannelStatistics) SetSize(v *EstimatedResourceSize) *ChannelStatistics
 	return s
 }
 
+// Where channel data is stored.
+type ChannelStorage struct {
+	_ struct{} `type:"structure"`
+
+	// Use this to store channel data in an S3 bucket that you manage.
+	CustomerManagedS3 *CustomerManagedChannelS3Storage `locationName:"customerManagedS3" type:"structure"`
+
+	// Use this to store channel data in an S3 bucket managed by the AWS IoT Analytics
+	// service.
+	ServiceManagedS3 *ServiceManagedChannelS3Storage `locationName:"serviceManagedS3" type:"structure"`
+}
+
+// String returns the string representation
+func (s ChannelStorage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ChannelStorage) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ChannelStorage) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ChannelStorage"}
+	if s.CustomerManagedS3 != nil {
+		if err := s.CustomerManagedS3.Validate(); err != nil {
+			invalidParams.AddNested("CustomerManagedS3", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomerManagedS3 sets the CustomerManagedS3 field's value.
+func (s *ChannelStorage) SetCustomerManagedS3(v *CustomerManagedChannelS3Storage) *ChannelStorage {
+	s.CustomerManagedS3 = v
+	return s
+}
+
+// SetServiceManagedS3 sets the ServiceManagedS3 field's value.
+func (s *ChannelStorage) SetServiceManagedS3(v *ServiceManagedChannelS3Storage) *ChannelStorage {
+	s.ServiceManagedS3 = v
+	return s
+}
+
+// Where channel data is stored.
+type ChannelStorageSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Used to store channel data in an S3 bucket that you manage.
+	CustomerManagedS3 *CustomerManagedChannelS3StorageSummary `locationName:"customerManagedS3" type:"structure"`
+
+	// Used to store channel data in an S3 bucket managed by the AWS IoT Analytics
+	// service.
+	ServiceManagedS3 *ServiceManagedChannelS3StorageSummary `locationName:"serviceManagedS3" type:"structure"`
+}
+
+// String returns the string representation
+func (s ChannelStorageSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ChannelStorageSummary) GoString() string {
+	return s.String()
+}
+
+// SetCustomerManagedS3 sets the CustomerManagedS3 field's value.
+func (s *ChannelStorageSummary) SetCustomerManagedS3(v *CustomerManagedChannelS3StorageSummary) *ChannelStorageSummary {
+	s.CustomerManagedS3 = v
+	return s
+}
+
+// SetServiceManagedS3 sets the ServiceManagedS3 field's value.
+func (s *ChannelStorageSummary) SetServiceManagedS3(v *ServiceManagedChannelS3StorageSummary) *ChannelStorageSummary {
+	s.ServiceManagedS3 = v
+	return s
+}
+
 // A summary of information about a channel.
 type ChannelSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the channel.
 	ChannelName *string `locationName:"channelName" min:"1" type:"string"`
+
+	// Where channel data is stored.
+	ChannelStorage *ChannelStorageSummary `locationName:"channelStorage" type:"structure"`
 
 	// When the channel was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
@@ -3926,6 +4021,12 @@ func (s ChannelSummary) GoString() string {
 // SetChannelName sets the ChannelName field's value.
 func (s *ChannelSummary) SetChannelName(v string) *ChannelSummary {
 	s.ChannelName = &v
+	return s
+}
+
+// SetChannelStorage sets the ChannelStorage field's value.
+func (s *ChannelSummary) SetChannelStorage(v *ChannelStorageSummary) *ChannelSummary {
+	s.ChannelStorage = v
 	return s
 }
 
@@ -4057,6 +4158,9 @@ type CreateChannelInput struct {
 	// ChannelName is a required field
 	ChannelName *string `locationName:"channelName" min:"1" type:"string" required:"true"`
 
+	// Where channel data is stored.
+	ChannelStorage *ChannelStorage `locationName:"channelStorage" type:"structure"`
+
 	// How long, in days, message data is kept for the channel.
 	RetentionPeriod *RetentionPeriod `locationName:"retentionPeriod" type:"structure"`
 
@@ -4086,6 +4190,11 @@ func (s *CreateChannelInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
+	if s.ChannelStorage != nil {
+		if err := s.ChannelStorage.Validate(); err != nil {
+			invalidParams.AddNested("ChannelStorage", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.RetentionPeriod != nil {
 		if err := s.RetentionPeriod.Validate(); err != nil {
 			invalidParams.AddNested("RetentionPeriod", err.(request.ErrInvalidParams))
@@ -4111,6 +4220,12 @@ func (s *CreateChannelInput) Validate() error {
 // SetChannelName sets the ChannelName field's value.
 func (s *CreateChannelInput) SetChannelName(v string) *CreateChannelInput {
 	s.ChannelName = &v
+	return s
+}
+
+// SetChannelStorage sets the ChannelStorage field's value.
+func (s *CreateChannelInput) SetChannelStorage(v *ChannelStorage) *CreateChannelInput {
+	s.ChannelStorage = v
 	return s
 }
 
@@ -4446,6 +4561,9 @@ type CreateDatastoreInput struct {
 	// DatastoreName is a required field
 	DatastoreName *string `locationName:"datastoreName" min:"1" type:"string" required:"true"`
 
+	// Where data store data is stored.
+	DatastoreStorage *DatastoreStorage `locationName:"datastoreStorage" type:"structure"`
+
 	// How long, in days, message data is kept for the data store.
 	RetentionPeriod *RetentionPeriod `locationName:"retentionPeriod" type:"structure"`
 
@@ -4475,6 +4593,11 @@ func (s *CreateDatastoreInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
+	if s.DatastoreStorage != nil {
+		if err := s.DatastoreStorage.Validate(); err != nil {
+			invalidParams.AddNested("DatastoreStorage", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.RetentionPeriod != nil {
 		if err := s.RetentionPeriod.Validate(); err != nil {
 			invalidParams.AddNested("RetentionPeriod", err.(request.ErrInvalidParams))
@@ -4500,6 +4623,12 @@ func (s *CreateDatastoreInput) Validate() error {
 // SetDatastoreName sets the DatastoreName field's value.
 func (s *CreateDatastoreInput) SetDatastoreName(v string) *CreateDatastoreInput {
 	s.DatastoreName = &v
+	return s
+}
+
+// SetDatastoreStorage sets the DatastoreStorage field's value.
+func (s *CreateDatastoreInput) SetDatastoreStorage(v *DatastoreStorage) *CreateDatastoreInput {
+	s.DatastoreStorage = v
 	return s
 }
 
@@ -4686,6 +4815,244 @@ func (s *CreatePipelineOutput) SetPipelineArn(v string) *CreatePipelineOutput {
 // SetPipelineName sets the PipelineName field's value.
 func (s *CreatePipelineOutput) SetPipelineName(v string) *CreatePipelineOutput {
 	s.PipelineName = &v
+	return s
+}
+
+// Use this to store channel data in an S3 bucket that you manage.
+type CustomerManagedChannelS3Storage struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon S3 bucket in which channel data is stored.
+	//
+	// Bucket is a required field
+	Bucket *string `locationName:"bucket" min:"3" type:"string" required:"true"`
+
+	// The prefix used to create the keys of the channel data objects. Each object
+	// in an Amazon S3 bucket has a key that is its unique identifier within the
+	// bucket (each object in a bucket has exactly one key).
+	KeyPrefix *string `locationName:"keyPrefix" min:"1" type:"string"`
+
+	// The ARN of the role which grants AWS IoT Analytics permission to interact
+	// with your Amazon S3 resources.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CustomerManagedChannelS3Storage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomerManagedChannelS3Storage) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomerManagedChannelS3Storage) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomerManagedChannelS3Storage"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+	if s.KeyPrefix != nil && len(*s.KeyPrefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KeyPrefix", 1))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *CustomerManagedChannelS3Storage) SetBucket(v string) *CustomerManagedChannelS3Storage {
+	s.Bucket = &v
+	return s
+}
+
+// SetKeyPrefix sets the KeyPrefix field's value.
+func (s *CustomerManagedChannelS3Storage) SetKeyPrefix(v string) *CustomerManagedChannelS3Storage {
+	s.KeyPrefix = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CustomerManagedChannelS3Storage) SetRoleArn(v string) *CustomerManagedChannelS3Storage {
+	s.RoleArn = &v
+	return s
+}
+
+// Used to store channel data in an S3 bucket that you manage.
+type CustomerManagedChannelS3StorageSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon S3 bucket in which channel data is stored.
+	Bucket *string `locationName:"bucket" min:"3" type:"string"`
+
+	// The prefix used to create the keys of the channel data objects. Each object
+	// in an Amazon S3 bucket has a key that is its unique identifier within the
+	// bucket (each object in a bucket has exactly one key).
+	KeyPrefix *string `locationName:"keyPrefix" min:"1" type:"string"`
+
+	// The ARN of the role which grants AWS IoT Analytics permission to interact
+	// with your Amazon S3 resources.
+	RoleArn *string `locationName:"roleArn" min:"20" type:"string"`
+}
+
+// String returns the string representation
+func (s CustomerManagedChannelS3StorageSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomerManagedChannelS3StorageSummary) GoString() string {
+	return s.String()
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *CustomerManagedChannelS3StorageSummary) SetBucket(v string) *CustomerManagedChannelS3StorageSummary {
+	s.Bucket = &v
+	return s
+}
+
+// SetKeyPrefix sets the KeyPrefix field's value.
+func (s *CustomerManagedChannelS3StorageSummary) SetKeyPrefix(v string) *CustomerManagedChannelS3StorageSummary {
+	s.KeyPrefix = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CustomerManagedChannelS3StorageSummary) SetRoleArn(v string) *CustomerManagedChannelS3StorageSummary {
+	s.RoleArn = &v
+	return s
+}
+
+// Use this to store data store data in an S3 bucket that you manage.
+type CustomerManagedDatastoreS3Storage struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon S3 bucket in which data store data is stored.
+	//
+	// Bucket is a required field
+	Bucket *string `locationName:"bucket" min:"3" type:"string" required:"true"`
+
+	// The prefix used to create the keys of the data store data objects. Each object
+	// in an Amazon S3 bucket has a key that is its unique identifier within the
+	// bucket (each object in a bucket has exactly one key).
+	KeyPrefix *string `locationName:"keyPrefix" min:"1" type:"string"`
+
+	// The ARN of the role which grants AWS IoT Analytics permission to interact
+	// with your Amazon S3 resources.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CustomerManagedDatastoreS3Storage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomerManagedDatastoreS3Storage) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomerManagedDatastoreS3Storage) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomerManagedDatastoreS3Storage"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+	if s.KeyPrefix != nil && len(*s.KeyPrefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KeyPrefix", 1))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *CustomerManagedDatastoreS3Storage) SetBucket(v string) *CustomerManagedDatastoreS3Storage {
+	s.Bucket = &v
+	return s
+}
+
+// SetKeyPrefix sets the KeyPrefix field's value.
+func (s *CustomerManagedDatastoreS3Storage) SetKeyPrefix(v string) *CustomerManagedDatastoreS3Storage {
+	s.KeyPrefix = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CustomerManagedDatastoreS3Storage) SetRoleArn(v string) *CustomerManagedDatastoreS3Storage {
+	s.RoleArn = &v
+	return s
+}
+
+// Used to store data store data in an S3 bucket that you manage.
+type CustomerManagedDatastoreS3StorageSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon S3 bucket in which data store data is stored.
+	Bucket *string `locationName:"bucket" min:"3" type:"string"`
+
+	// The prefix used to create the keys of the data store data objects. Each object
+	// in an Amazon S3 bucket has a key that is its unique identifier within the
+	// bucket (each object in a bucket has exactly one key).
+	KeyPrefix *string `locationName:"keyPrefix" min:"1" type:"string"`
+
+	// The ARN of the role which grants AWS IoT Analytics permission to interact
+	// with your Amazon S3 resources.
+	RoleArn *string `locationName:"roleArn" min:"20" type:"string"`
+}
+
+// String returns the string representation
+func (s CustomerManagedDatastoreS3StorageSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomerManagedDatastoreS3StorageSummary) GoString() string {
+	return s.String()
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *CustomerManagedDatastoreS3StorageSummary) SetBucket(v string) *CustomerManagedDatastoreS3StorageSummary {
+	s.Bucket = &v
+	return s
+}
+
+// SetKeyPrefix sets the KeyPrefix field's value.
+func (s *CustomerManagedDatastoreS3StorageSummary) SetKeyPrefix(v string) *CustomerManagedDatastoreS3StorageSummary {
+	s.KeyPrefix = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CustomerManagedDatastoreS3StorageSummary) SetRoleArn(v string) *CustomerManagedDatastoreS3StorageSummary {
+	s.RoleArn = &v
 	return s
 }
 
@@ -5323,6 +5690,9 @@ type Datastore struct {
 	//
 	// The data store is being deleted.
 	Status *string `locationName:"status" type:"string" enum:"DatastoreStatus"`
+
+	// Where data store data is stored.
+	Storage *DatastoreStorage `locationName:"storage" type:"structure"`
 }
 
 // String returns the string representation
@@ -5368,6 +5738,12 @@ func (s *Datastore) SetRetentionPeriod(v *RetentionPeriod) *Datastore {
 // SetStatus sets the Status field's value.
 func (s *Datastore) SetStatus(v string) *Datastore {
 	s.Status = &v
+	return s
+}
+
+// SetStorage sets the Storage field's value.
+func (s *Datastore) SetStorage(v *DatastoreStorage) *Datastore {
+	s.Storage = v
 	return s
 }
 
@@ -5454,6 +5830,89 @@ func (s *DatastoreStatistics) SetSize(v *EstimatedResourceSize) *DatastoreStatis
 	return s
 }
 
+// Where data store data is stored.
+type DatastoreStorage struct {
+	_ struct{} `type:"structure"`
+
+	// Use this to store data store data in an S3 bucket that you manage.
+	CustomerManagedS3 *CustomerManagedDatastoreS3Storage `locationName:"customerManagedS3" type:"structure"`
+
+	// Use this to store data store data in an S3 bucket managed by the AWS IoT
+	// Analytics service.
+	ServiceManagedS3 *ServiceManagedDatastoreS3Storage `locationName:"serviceManagedS3" type:"structure"`
+}
+
+// String returns the string representation
+func (s DatastoreStorage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DatastoreStorage) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatastoreStorage) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatastoreStorage"}
+	if s.CustomerManagedS3 != nil {
+		if err := s.CustomerManagedS3.Validate(); err != nil {
+			invalidParams.AddNested("CustomerManagedS3", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomerManagedS3 sets the CustomerManagedS3 field's value.
+func (s *DatastoreStorage) SetCustomerManagedS3(v *CustomerManagedDatastoreS3Storage) *DatastoreStorage {
+	s.CustomerManagedS3 = v
+	return s
+}
+
+// SetServiceManagedS3 sets the ServiceManagedS3 field's value.
+func (s *DatastoreStorage) SetServiceManagedS3(v *ServiceManagedDatastoreS3Storage) *DatastoreStorage {
+	s.ServiceManagedS3 = v
+	return s
+}
+
+// Where data store data is stored.
+type DatastoreStorageSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Used to store data store data in an S3 bucket that you manage.
+	CustomerManagedS3 *CustomerManagedDatastoreS3StorageSummary `locationName:"customerManagedS3" type:"structure"`
+
+	// Used to store data store data in an S3 bucket managed by the AWS IoT Analytics
+	// service.
+	ServiceManagedS3 *ServiceManagedDatastoreS3StorageSummary `locationName:"serviceManagedS3" type:"structure"`
+}
+
+// String returns the string representation
+func (s DatastoreStorageSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DatastoreStorageSummary) GoString() string {
+	return s.String()
+}
+
+// SetCustomerManagedS3 sets the CustomerManagedS3 field's value.
+func (s *DatastoreStorageSummary) SetCustomerManagedS3(v *CustomerManagedDatastoreS3StorageSummary) *DatastoreStorageSummary {
+	s.CustomerManagedS3 = v
+	return s
+}
+
+// SetServiceManagedS3 sets the ServiceManagedS3 field's value.
+func (s *DatastoreStorageSummary) SetServiceManagedS3(v *ServiceManagedDatastoreS3StorageSummary) *DatastoreStorageSummary {
+	s.ServiceManagedS3 = v
+	return s
+}
+
 // A summary of information about a data store.
 type DatastoreSummary struct {
 	_ struct{} `type:"structure"`
@@ -5463,6 +5922,9 @@ type DatastoreSummary struct {
 
 	// The name of the data store.
 	DatastoreName *string `locationName:"datastoreName" min:"1" type:"string"`
+
+	// Where data store data is stored.
+	DatastoreStorage *DatastoreStorageSummary `locationName:"datastoreStorage" type:"structure"`
 
 	// The last time the data store was updated.
 	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp"`
@@ -5490,6 +5952,12 @@ func (s *DatastoreSummary) SetCreationTime(v time.Time) *DatastoreSummary {
 // SetDatastoreName sets the DatastoreName field's value.
 func (s *DatastoreSummary) SetDatastoreName(v string) *DatastoreSummary {
 	s.DatastoreName = &v
+	return s
+}
+
+// SetDatastoreStorage sets the DatastoreStorage field's value.
+func (s *DatastoreSummary) SetDatastoreStorage(v *DatastoreStorageSummary) *DatastoreSummary {
+	s.DatastoreStorage = v
 	return s
 }
 
@@ -8569,6 +9037,70 @@ func (s *SelectAttributesActivity) SetNext(v string) *SelectAttributesActivity {
 	return s
 }
 
+// Use this to store channel data in an S3 bucket managed by the AWS IoT Analytics
+// service.
+type ServiceManagedChannelS3Storage struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s ServiceManagedChannelS3Storage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceManagedChannelS3Storage) GoString() string {
+	return s.String()
+}
+
+// Used to store channel data in an S3 bucket managed by the AWS IoT Analytics
+// service.
+type ServiceManagedChannelS3StorageSummary struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s ServiceManagedChannelS3StorageSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceManagedChannelS3StorageSummary) GoString() string {
+	return s.String()
+}
+
+// Use this to store data store data in an S3 bucket managed by the AWS IoT
+// Analytics service.
+type ServiceManagedDatastoreS3Storage struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s ServiceManagedDatastoreS3Storage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceManagedDatastoreS3Storage) GoString() string {
+	return s.String()
+}
+
+// Used to store data store data in an S3 bucket managed by the AWS IoT Analytics
+// service.
+type ServiceManagedDatastoreS3StorageSummary struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s ServiceManagedDatastoreS3StorageSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceManagedDatastoreS3StorageSummary) GoString() string {
+	return s.String()
+}
+
 // The SQL query to modify the message.
 type SqlQueryDatasetAction struct {
 	_ struct{} `type:"structure"`
@@ -8974,6 +9506,9 @@ type UpdateChannelInput struct {
 	// ChannelName is a required field
 	ChannelName *string `location:"uri" locationName:"channelName" min:"1" type:"string" required:"true"`
 
+	// Where channel data is stored.
+	ChannelStorage *ChannelStorage `locationName:"channelStorage" type:"structure"`
+
 	// How long, in days, message data is kept for the channel.
 	RetentionPeriod *RetentionPeriod `locationName:"retentionPeriod" type:"structure"`
 }
@@ -8997,6 +9532,11 @@ func (s *UpdateChannelInput) Validate() error {
 	if s.ChannelName != nil && len(*s.ChannelName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelName", 1))
 	}
+	if s.ChannelStorage != nil {
+		if err := s.ChannelStorage.Validate(); err != nil {
+			invalidParams.AddNested("ChannelStorage", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.RetentionPeriod != nil {
 		if err := s.RetentionPeriod.Validate(); err != nil {
 			invalidParams.AddNested("RetentionPeriod", err.(request.ErrInvalidParams))
@@ -9012,6 +9552,12 @@ func (s *UpdateChannelInput) Validate() error {
 // SetChannelName sets the ChannelName field's value.
 func (s *UpdateChannelInput) SetChannelName(v string) *UpdateChannelInput {
 	s.ChannelName = &v
+	return s
+}
+
+// SetChannelStorage sets the ChannelStorage field's value.
+func (s *UpdateChannelInput) SetChannelStorage(v *ChannelStorage) *UpdateChannelInput {
+	s.ChannelStorage = v
 	return s
 }
 
@@ -9196,6 +9742,9 @@ type UpdateDatastoreInput struct {
 	// DatastoreName is a required field
 	DatastoreName *string `location:"uri" locationName:"datastoreName" min:"1" type:"string" required:"true"`
 
+	// Where data store data is stored.
+	DatastoreStorage *DatastoreStorage `locationName:"datastoreStorage" type:"structure"`
+
 	// How long, in days, message data is kept for the data store.
 	RetentionPeriod *RetentionPeriod `locationName:"retentionPeriod" type:"structure"`
 }
@@ -9219,6 +9768,11 @@ func (s *UpdateDatastoreInput) Validate() error {
 	if s.DatastoreName != nil && len(*s.DatastoreName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DatastoreName", 1))
 	}
+	if s.DatastoreStorage != nil {
+		if err := s.DatastoreStorage.Validate(); err != nil {
+			invalidParams.AddNested("DatastoreStorage", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.RetentionPeriod != nil {
 		if err := s.RetentionPeriod.Validate(); err != nil {
 			invalidParams.AddNested("RetentionPeriod", err.(request.ErrInvalidParams))
@@ -9234,6 +9788,12 @@ func (s *UpdateDatastoreInput) Validate() error {
 // SetDatastoreName sets the DatastoreName field's value.
 func (s *UpdateDatastoreInput) SetDatastoreName(v string) *UpdateDatastoreInput {
 	s.DatastoreName = &v
+	return s
+}
+
+// SetDatastoreStorage sets the DatastoreStorage field's value.
+func (s *UpdateDatastoreInput) SetDatastoreStorage(v *DatastoreStorage) *UpdateDatastoreInput {
+	s.DatastoreStorage = v
 	return s
 }
 

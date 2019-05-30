@@ -159,7 +159,11 @@
         {"shape":"EncryptionKeyAccessDeniedException"},
         {"shape":"EncryptionKeyDisabledException"},
         {"shape":"EncryptionKeyNotFoundException"},
-        {"shape":"EncryptionKeyUnavailableException"}
+        {"shape":"EncryptionKeyUnavailableException"},
+        {"shape":"InvalidTagsMapException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"InvalidSystemTagUsageException"},
+        {"shape":"TagPolicyException"}
       ]
     },
     "DeleteBranch":{
@@ -626,6 +630,21 @@
         {"shape":"InvalidContinuationTokenException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceInput"},
+      "output":{"shape":"ListTagsForResourceOutput"},
+      "errors":[
+        {"shape":"RepositoryDoesNotExistException"},
+        {"shape":"InvalidRepositoryNameException"},
+        {"shape":"ResourceArnRequiredException"},
+        {"shape":"InvalidResourceArnException"}
+      ]
+    },
     "MergePullRequestByFastForward":{
       "name":"MergePullRequestByFastForward",
       "http":{
@@ -821,6 +840,25 @@
         {"shape":"EncryptionKeyUnavailableException"}
       ]
     },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceInput"},
+      "errors":[
+        {"shape":"RepositoryDoesNotExistException"},
+        {"shape":"InvalidRepositoryNameException"},
+        {"shape":"ResourceArnRequiredException"},
+        {"shape":"InvalidResourceArnException"},
+        {"shape":"TagsMapRequiredException"},
+        {"shape":"InvalidTagsMapException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"InvalidSystemTagUsageException"},
+        {"shape":"TagPolicyException"}
+      ]
+    },
     "TestRepositoryTriggers":{
       "name":"TestRepositoryTriggers",
       "http":{
@@ -851,6 +889,25 @@
         {"shape":"EncryptionKeyDisabledException"},
         {"shape":"EncryptionKeyNotFoundException"},
         {"shape":"EncryptionKeyUnavailableException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceInput"},
+      "errors":[
+        {"shape":"RepositoryDoesNotExistException"},
+        {"shape":"InvalidRepositoryNameException"},
+        {"shape":"ResourceArnRequiredException"},
+        {"shape":"InvalidResourceArnException"},
+        {"shape":"TagKeysListRequiredException"},
+        {"shape":"InvalidTagKeysListException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"InvalidSystemTagUsageException"},
+        {"shape":"TagPolicyException"}
       ]
     },
     "UpdateComment":{
@@ -1296,7 +1353,8 @@
       "required":["repositoryName"],
       "members":{
         "repositoryName":{"shape":"RepositoryName"},
-        "repositoryDescription":{"shape":"RepositoryDescription"}
+        "repositoryDescription":{"shape":"RepositoryDescription"},
+        "tags":{"shape":"TagsMap"}
       }
     },
     "CreateRepositoryOutput":{
@@ -2059,6 +2117,12 @@
       },
       "exception":true
     },
+    "InvalidResourceArnException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "InvalidSortByException":{
       "type":"structure",
       "members":{
@@ -2066,6 +2130,24 @@
       "exception":true
     },
     "InvalidSourceCommitSpecifierException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "InvalidSystemTagUsageException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "InvalidTagKeysListException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "InvalidTagsMapException":{
       "type":"structure",
       "members":{
       },
@@ -2145,6 +2227,21 @@
       "type":"structure",
       "members":{
         "repositories":{"shape":"RepositoryNameIdPairList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTagsForResourceInput":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{"shape":"ResourceArn"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTagsForResourceOutput":{
+      "type":"structure",
+      "members":{
+        "tags":{"shape":"TagsMap"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -2768,6 +2865,13 @@
       },
       "exception":true
     },
+    "ResourceArn":{"type":"string"},
+    "ResourceArnRequiredException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "RestrictedSourceFileException":{
       "type":"structure",
       "members":{
@@ -2853,6 +2957,54 @@
       "type":"list",
       "member":{"shape":"SymbolicLink"}
     },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeysList":{
+      "type":"list",
+      "member":{"shape":"TagKey"}
+    },
+    "TagKeysListRequiredException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "TagPolicyException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "TagResourceInput":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tags"
+      ],
+      "members":{
+        "resourceArn":{"shape":"ResourceArn"},
+        "tags":{"shape":"TagsMap"}
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
+    "TagsMap":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"}
+    },
+    "TagsMapRequiredException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "Target":{
       "type":"structure",
       "required":[
@@ -2920,6 +3072,23 @@
       "members":{
       },
       "exception":true
+    },
+    "TooManyTagsException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "UntagResourceInput":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tagKeys"
+      ],
+      "members":{
+        "resourceArn":{"shape":"ResourceArn"},
+        "tagKeys":{"shape":"TagKeysList"}
+      }
     },
     "UpdateCommentInput":{
       "type":"structure",

@@ -67,6 +67,7 @@
     "ListResourcesForTagOption": "<p>Lists the resources associated with the specified TagOption.</p>",
     "ListServiceActions": "<p>Lists all self-service actions.</p>",
     "ListServiceActionsForProvisioningArtifact": "<p>Returns a paginated list of self-service actions associated with the specified Product ID and Provisioning Artifact ID.</p>",
+    "ListStackInstancesForProvisionedProduct": "<p>Returns summary information about stack instances that are associated with the specified <code>CFN_STACKSET</code> type provisioned product. You can filter for stack instances that are associated with a specific AWS account name or region. </p>",
     "ListTagOptions": "<p>Lists the specified TagOptions or all TagOptions.</p>",
     "ProvisionProduct": "<p>Provisions the specified product.</p> <p>A provisioned product is a resourced instance of a product. For example, provisioning a product based on a CloudFormation template launches a CloudFormation stack and its underlying resources. You can check the status of this request using <a>DescribeRecord</a>.</p> <p>If the request contains a tag key with an empty list of values, there is a tag conflict for that key. Do not include conflicted keys as tags, or this causes the error \"Parameter validation failed: Missing required parameter in Tags[<i>N</i>]:<i>Value</i>\".</p>",
     "RejectPortfolioShare": "<p>Rejects an offer to share the specified portfolio.</p>",
@@ -141,6 +142,7 @@
         "ListRecordHistoryInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "ListServiceActionsForProvisioningArtifactInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "ListServiceActionsInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
+        "ListStackInstancesForProvisionedProductInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "ProvisionProductInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "RejectPortfolioShareInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "ScanProvisionedProductsInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
@@ -202,6 +204,7 @@
         "CreatePortfolioShareInput$AccountId": "<p>The AWS account ID. For example, <code>123456789012</code>.</p>",
         "DeletePortfolioShareInput$AccountId": "<p>The AWS account ID.</p>",
         "Namespaces$member": null,
+        "StackInstance$Account": "<p>The name of the AWS account that the stack instance is associated with.</p>",
         "StackSetAccounts$member": null,
         "SuccessfulShares$member": null
       }
@@ -1016,6 +1019,7 @@
         "ListProvisioningArtifactsInput$ProductId": "<p>The product identifier.</p>",
         "ListServiceActionsForProvisioningArtifactInput$ProductId": "<p>The product identifier. For example, <code>prod-abcdzk7xy33qa</code>.</p>",
         "ListServiceActionsForProvisioningArtifactInput$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact. For example, <code>pa-4abcdjnxjj6ne</code>.</p>",
+        "ListStackInstancesForProvisionedProductInput$ProvisionedProductId": "<p>The identifier of the provisioned product.</p>",
         "PortfolioDetail$Id": "<p>The portfolio identifier.</p>",
         "ProductViewSummary$Id": "<p>The product view identifier.</p>",
         "ProductViewSummary$ProductId": "<p>The product identifier.</p>",
@@ -1304,6 +1308,16 @@
       "refs": {
       }
     },
+    "ListStackInstancesForProvisionedProductInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListStackInstancesForProvisionedProductOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTagOptionsFilters": {
       "base": "<p>Filters to use when listing TagOptions.</p>",
       "refs": {
@@ -1422,6 +1436,7 @@
         "ListResourcesForTagOptionInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ListServiceActionsForProvisioningArtifactInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ListServiceActionsInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
+        "ListStackInstancesForProvisionedProductInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ListTagOptionsInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ScanProvisionedProductsInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "SearchProductsAsAdminInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
@@ -1465,6 +1480,8 @@
         "ListServiceActionsForProvisioningArtifactOutput$NextPageToken": "<p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>",
         "ListServiceActionsInput$PageToken": "<p>The page token for the next set of results. To retrieve the first set of results, use null.</p>",
         "ListServiceActionsOutput$NextPageToken": "<p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>",
+        "ListStackInstancesForProvisionedProductInput$PageToken": "<p>The page token for the next set of results. To retrieve the first set of results, use null.</p>",
+        "ListStackInstancesForProvisionedProductOutput$NextPageToken": "<p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>",
         "ListTagOptionsInput$PageToken": "<p>The page token for the next set of results. To retrieve the first set of results, use null.</p>",
         "ListTagOptionsOutput$PageToken": "<p>The page token for the next set of results. To retrieve the first set of results, use null.</p>",
         "ScanProvisionedProductsInput$PageToken": "<p>The page token for the next set of results. To retrieve the first set of results, use null.</p>",
@@ -2172,6 +2189,7 @@
     "Region": {
       "base": null,
       "refs": {
+        "StackInstance$Region": "<p>The name of the AWS region that the stack instance is associated with.</p>",
         "StackSetRegions$member": null
       }
     },
@@ -2508,6 +2526,24 @@
       "base": null,
       "refs": {
         "SourceProvisioningArtifactProperties$member": null
+      }
+    },
+    "StackInstance": {
+      "base": "<p>An AWS CloudFormation stack, in a specific account and region, that's part of a stack set operation. A stack instance is a reference to an attempted or actual stack in a given account within a given region. A stack instance can exist without a stack—for example, if the stack couldn't be created for some reason. A stack instance is associated with only one stack set. Each stack instance contains the ID of its associated stack set, as well as the ID of the actual stack and the stack status. </p>",
+      "refs": {
+        "StackInstances$member": null
+      }
+    },
+    "StackInstanceStatus": {
+      "base": null,
+      "refs": {
+        "StackInstance$StackInstanceStatus": "<p>The status of the stack instance, in terms of its synchronization with its associated stack set. </p> <ul> <li> <p> <code>INOPERABLE</code>: A <code>DeleteStackInstances</code> operation has failed and left the stack in an unstable state. Stacks in this state are excluded from further <code>UpdateStackSet</code> operations. You might need to perform a <code>DeleteStackInstances</code> operation, with <code>RetainStacks</code> set to true, to delete the stack instance, and then delete the stack manually. </p> </li> <li> <p> <code>OUTDATED</code>: The stack isn't currently up to date with the stack set because either the associated stack failed during a <code>CreateStackSet</code> or <code>UpdateStackSet</code> operation, or the stack was part of a <code>CreateStackSet</code> or <code>UpdateStackSet</code> operation that failed or was stopped before the stack was created or updated.</p> </li> <li> <p> <code>CURRENT</code>: The stack is currently up to date with the stack set.</p> </li> </ul>"
+      }
+    },
+    "StackInstances": {
+      "base": null,
+      "refs": {
+        "ListStackInstancesForProvisionedProductOutput$StackInstances": "<p>List of stack instances.</p>"
       }
     },
     "StackSetAccounts": {

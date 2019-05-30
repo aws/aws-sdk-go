@@ -540,6 +540,10 @@ type RDSAPI interface {
 	RevokeDBSecurityGroupIngressWithContext(aws.Context, *rds.RevokeDBSecurityGroupIngressInput, ...request.Option) (*rds.RevokeDBSecurityGroupIngressOutput, error)
 	RevokeDBSecurityGroupIngressRequest(*rds.RevokeDBSecurityGroupIngressInput) (*request.Request, *rds.RevokeDBSecurityGroupIngressOutput)
 
+	StartActivityStream(*rds.StartActivityStreamInput) (*rds.StartActivityStreamOutput, error)
+	StartActivityStreamWithContext(aws.Context, *rds.StartActivityStreamInput, ...request.Option) (*rds.StartActivityStreamOutput, error)
+	StartActivityStreamRequest(*rds.StartActivityStreamInput) (*request.Request, *rds.StartActivityStreamOutput)
+
 	StartDBCluster(*rds.StartDBClusterInput) (*rds.StartDBClusterOutput, error)
 	StartDBClusterWithContext(aws.Context, *rds.StartDBClusterInput, ...request.Option) (*rds.StartDBClusterOutput, error)
 	StartDBClusterRequest(*rds.StartDBClusterInput) (*request.Request, *rds.StartDBClusterOutput)
@@ -547,6 +551,10 @@ type RDSAPI interface {
 	StartDBInstance(*rds.StartDBInstanceInput) (*rds.StartDBInstanceOutput, error)
 	StartDBInstanceWithContext(aws.Context, *rds.StartDBInstanceInput, ...request.Option) (*rds.StartDBInstanceOutput, error)
 	StartDBInstanceRequest(*rds.StartDBInstanceInput) (*request.Request, *rds.StartDBInstanceOutput)
+
+	StopActivityStream(*rds.StopActivityStreamInput) (*rds.StopActivityStreamOutput, error)
+	StopActivityStreamWithContext(aws.Context, *rds.StopActivityStreamInput, ...request.Option) (*rds.StopActivityStreamOutput, error)
+	StopActivityStreamRequest(*rds.StopActivityStreamInput) (*request.Request, *rds.StopActivityStreamOutput)
 
 	StopDBCluster(*rds.StopDBClusterInput) (*rds.StopDBClusterOutput, error)
 	StopDBClusterWithContext(aws.Context, *rds.StopDBClusterInput, ...request.Option) (*rds.StopDBClusterOutput, error)
