@@ -131,6 +131,10 @@
     "BucketName": {
       "base": null,
       "refs": {
+        "CustomerManagedChannelS3Storage$bucket": "<p>The name of the Amazon S3 bucket in which channel data is stored.</p>",
+        "CustomerManagedChannelS3StorageSummary$bucket": "<p>The name of the Amazon S3 bucket in which channel data is stored.</p>",
+        "CustomerManagedDatastoreS3Storage$bucket": "<p>The name of the Amazon S3 bucket in which data store data is stored.</p>",
+        "CustomerManagedDatastoreS3StorageSummary$bucket": "<p>The name of the Amazon S3 bucket in which data store data is stored.</p>",
         "S3DestinationConfiguration$bucket": "<p>The name of the Amazon S3 bucket to which data set contents are delivered.</p>"
       }
     },
@@ -189,6 +193,20 @@
       "refs": {
         "Channel$status": "<p>The status of the channel.</p>",
         "ChannelSummary$status": "<p>The status of the channel.</p>"
+      }
+    },
+    "ChannelStorage": {
+      "base": "<p>Where channel data is stored.</p>",
+      "refs": {
+        "Channel$storage": "<p>Where channel data is stored.</p>",
+        "CreateChannelRequest$channelStorage": "<p>Where channel data is stored.</p>",
+        "UpdateChannelRequest$channelStorage": "<p>Where channel data is stored.</p>"
+      }
+    },
+    "ChannelStorageSummary": {
+      "base": "<p>Where channel data is stored.</p>",
+      "refs": {
+        "ChannelSummary$channelStorage": "<p>Where channel data is stored.</p>"
       }
     },
     "ChannelSummaries": {
@@ -263,6 +281,30 @@
     "CreatePipelineResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "CustomerManagedChannelS3Storage": {
+      "base": "<p>Use this to store channel data in an S3 bucket that you manage.</p>",
+      "refs": {
+        "ChannelStorage$customerManagedS3": "<p>Use this to store channel data in an S3 bucket that you manage.</p>"
+      }
+    },
+    "CustomerManagedChannelS3StorageSummary": {
+      "base": "<p>Used to store channel data in an S3 bucket that you manage.</p>",
+      "refs": {
+        "ChannelStorageSummary$customerManagedS3": "<p>Used to store channel data in an S3 bucket that you manage.</p>"
+      }
+    },
+    "CustomerManagedDatastoreS3Storage": {
+      "base": "<p>Use this to store data store data in an S3 bucket that you manage.</p>",
+      "refs": {
+        "DatastoreStorage$customerManagedS3": "<p>Use this to store data store data in an S3 bucket that you manage.</p>"
+      }
+    },
+    "CustomerManagedDatastoreS3StorageSummary": {
+      "base": "<p>Used to store data store data in an S3 bucket that you manage.</p>",
+      "refs": {
+        "DatastoreStorageSummary$customerManagedS3": "<p>Used to store data store data in an S3 bucket that you manage.</p>"
       }
     },
     "Dataset": {
@@ -484,6 +526,20 @@
       "refs": {
         "Datastore$status": "<p>The status of a data store:</p> <dl> <dt>CREATING</dt> <dd> <p>The data store is being created.</p> </dd> <dt>ACTIVE</dt> <dd> <p>The data store has been created and can be used.</p> </dd> <dt>DELETING</dt> <dd> <p>The data store is being deleted.</p> </dd> </dl>",
         "DatastoreSummary$status": "<p>The status of the data store.</p>"
+      }
+    },
+    "DatastoreStorage": {
+      "base": "<p>Where data store data is stored.</p>",
+      "refs": {
+        "CreateDatastoreRequest$datastoreStorage": "<p>Where data store data is stored.</p>",
+        "Datastore$storage": "<p>Where data store data is stored.</p>",
+        "UpdateDatastoreRequest$datastoreStorage": "<p>Where data store data is stored.</p>"
+      }
+    },
+    "DatastoreStorageSummary": {
+      "base": "<p>Where data store data is stored.</p>",
+      "refs": {
+        "DatastoreSummary$datastoreStorage": "<p>Where data store data is stored.</p>"
       }
     },
     "DatastoreSummaries": {
@@ -1075,6 +1131,10 @@
       "base": null,
       "refs": {
         "ContainerDatasetAction$executionRoleArn": "<p>The ARN of the role which gives permission to the system to access needed resources in order to run the \"containerAction\". This includes, at minimum, permission to retrieve the data set contents which are the input to the containerized application.</p>",
+        "CustomerManagedChannelS3Storage$roleArn": "<p>The ARN of the role which grants AWS IoT Analytics permission to interact with your Amazon S3 resources.</p>",
+        "CustomerManagedChannelS3StorageSummary$roleArn": "<p>The ARN of the role which grants AWS IoT Analytics permission to interact with your Amazon S3 resources.</p>",
+        "CustomerManagedDatastoreS3Storage$roleArn": "<p>The ARN of the role which grants AWS IoT Analytics permission to interact with your Amazon S3 resources.</p>",
+        "CustomerManagedDatastoreS3StorageSummary$roleArn": "<p>The ARN of the role which grants AWS IoT Analytics permission to interact with your Amazon S3 resources.</p>",
         "DeviceRegistryEnrichActivity$roleArn": "<p>The ARN of the role that allows access to the device's registry information.</p>",
         "DeviceShadowEnrichActivity$roleArn": "<p>The ARN of the role that allows access to the device's shadow.</p>",
         "IotEventsDestinationConfiguration$roleArn": "<p>The ARN of the role which grants AWS IoT Analytics permission to deliver data set contents to an AWS IoT Events input.</p>",
@@ -1096,6 +1156,15 @@
       "base": "<p>Configuration information for delivery of data set contents to Amazon S3.</p>",
       "refs": {
         "DatasetContentDeliveryDestination$s3DestinationConfiguration": "<p>Configuration information for delivery of data set contents to Amazon S3.</p>"
+      }
+    },
+    "S3KeyPrefix": {
+      "base": null,
+      "refs": {
+        "CustomerManagedChannelS3Storage$keyPrefix": "<p>The prefix used to create the keys of the channel data objects. Each object in an Amazon S3 bucket has a key that is its unique identifier within the bucket (each object in a bucket has exactly one key).</p>",
+        "CustomerManagedChannelS3StorageSummary$keyPrefix": "<p>The prefix used to create the keys of the channel data objects. Each object in an Amazon S3 bucket has a key that is its unique identifier within the bucket (each object in a bucket has exactly one key).</p>",
+        "CustomerManagedDatastoreS3Storage$keyPrefix": "<p>The prefix used to create the keys of the data store data objects. Each object in an Amazon S3 bucket has a key that is its unique identifier within the bucket (each object in a bucket has exactly one key).</p>",
+        "CustomerManagedDatastoreS3StorageSummary$keyPrefix": "<p>The prefix used to create the keys of the data store data objects. Each object in an Amazon S3 bucket has a key that is its unique identifier within the bucket (each object in a bucket has exactly one key).</p>"
       }
     },
     "SampleChannelDataRequest": {
@@ -1124,6 +1193,30 @@
       "base": "<p>Creates a new message using only the specified attributes from the original message.</p>",
       "refs": {
         "PipelineActivity$selectAttributes": "<p>Creates a new message using only the specified attributes from the original message. </p>"
+      }
+    },
+    "ServiceManagedChannelS3Storage": {
+      "base": "<p>Use this to store channel data in an S3 bucket managed by the AWS IoT Analytics service.</p>",
+      "refs": {
+        "ChannelStorage$serviceManagedS3": "<p>Use this to store channel data in an S3 bucket managed by the AWS IoT Analytics service.</p>"
+      }
+    },
+    "ServiceManagedChannelS3StorageSummary": {
+      "base": "<p>Used to store channel data in an S3 bucket managed by the AWS IoT Analytics service.</p>",
+      "refs": {
+        "ChannelStorageSummary$serviceManagedS3": "<p>Used to store channel data in an S3 bucket managed by the AWS IoT Analytics service.</p>"
+      }
+    },
+    "ServiceManagedDatastoreS3Storage": {
+      "base": "<p>Use this to store data store data in an S3 bucket managed by the AWS IoT Analytics service.</p>",
+      "refs": {
+        "DatastoreStorage$serviceManagedS3": "<p>Use this to store data store data in an S3 bucket managed by the AWS IoT Analytics service.</p>"
+      }
+    },
+    "ServiceManagedDatastoreS3StorageSummary": {
+      "base": "<p>Used to store data store data in an S3 bucket managed by the AWS IoT Analytics service.</p>",
+      "refs": {
+        "DatastoreStorageSummary$serviceManagedS3": "<p>Used to store data store data in an S3 bucket managed by the AWS IoT Analytics service.</p>"
       }
     },
     "ServiceUnavailableException": {

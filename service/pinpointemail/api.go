@@ -5449,6 +5449,12 @@ type DeliveryOptions struct {
 	// The name of the dedicated IP pool that you want to associate with the configuration
 	// set.
 	SendingPoolName *string `type:"string"`
+
+	// Specifies whether Amazon Pinpoint should require that incoming email is delivered
+	// over a connection that’s encrypted by using Transport Layer Security (TLS).
+	// If this value is set to Require, Amazon Pinpoint will bounce email messages
+	// that cannot be delivered over TLS. The default value is Optional.
+	TlsPolicy *string `type:"string" enum:"TlsPolicy"`
 }
 
 // String returns the string representation
@@ -5464,6 +5470,12 @@ func (s DeliveryOptions) GoString() string {
 // SetSendingPoolName sets the SendingPoolName field's value.
 func (s *DeliveryOptions) SetSendingPoolName(v string) *DeliveryOptions {
 	s.SendingPoolName = &v
+	return s
+}
+
+// SetTlsPolicy sets the TlsPolicy field's value.
+func (s *DeliveryOptions) SetTlsPolicy(v string) *DeliveryOptions {
+	s.TlsPolicy = &v
 	return s
 }
 
@@ -8312,6 +8324,10 @@ type PutConfigurationSetDeliveryOptionsInput struct {
 	// The name of the dedicated IP pool that you want to associate with the configuration
 	// set.
 	SendingPoolName *string `type:"string"`
+
+	// Whether Amazon Pinpoint should require that incoming email is delivered over
+	// a connection encrypted with Transport Layer Security (TLS).
+	TlsPolicy *string `type:"string" enum:"TlsPolicy"`
 }
 
 // String returns the string representation
@@ -8349,6 +8365,12 @@ func (s *PutConfigurationSetDeliveryOptionsInput) SetConfigurationSetName(v stri
 // SetSendingPoolName sets the SendingPoolName field's value.
 func (s *PutConfigurationSetDeliveryOptionsInput) SetSendingPoolName(v string) *PutConfigurationSetDeliveryOptionsInput {
 	s.SendingPoolName = &v
+	return s
+}
+
+// SetTlsPolicy sets the TlsPolicy field's value.
+func (s *PutConfigurationSetDeliveryOptionsInput) SetTlsPolicy(v string) *PutConfigurationSetDeliveryOptionsInput {
+	s.TlsPolicy = &v
 	return s
 }
 
@@ -10008,6 +10030,19 @@ const (
 
 	// MailFromDomainStatusTemporaryFailure is a MailFromDomainStatus enum value
 	MailFromDomainStatusTemporaryFailure = "TEMPORARY_FAILURE"
+)
+
+// Specifies whether Amazon Pinpoint should require that incoming email is delivered
+// over a connection encrypted with Transport Layer Security (TLS). If this
+// parameter is set to Require, Amazon Pinpoint rejects emails that weren't
+// received over TLS. If the parameter is set to Optional, then Amazon Pinpoint
+// accepts emails that weren't received over TLS. The default value is Optional.
+const (
+	// TlsPolicyRequire is a TlsPolicy enum value
+	TlsPolicyRequire = "REQUIRE"
+
+	// TlsPolicyOptional is a TlsPolicy enum value
+	TlsPolicyOptional = "OPTIONAL"
 )
 
 // The warmup status of a dedicated IP.

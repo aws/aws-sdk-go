@@ -1,3 +1,21 @@
+Release v1.19.41 (2019-05-30)
+===
+
+### Service Client Updates
+* `service/codecommit`: Updates service API and documentation
+  * This release adds APIs that allow adding and removing tags to a repository, and viewing tags for a repository. It also enables adding tags when creating a repository.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/iotanalytics`: Updates service API and documentation
+* `service/iotevents`: Adds new service
+* `service/iotevents-data`: Adds new service
+* `service/kafka`: Updates service API, documentation, and paginators
+* `service/pinpoint-email`: Updates service API and documentation
+* `service/rds`: Updates service API and documentation
+  * This release adds support for Activity Streams for database clusters.
+* `service/rds-data`: Updates service API, documentation, and examples
+* `service/servicecatalog`: Updates service API and documentation
+  * Service Catalog ListStackInstancesForProvisionedProduct API enables customers to get details of a provisioned product with type "CFN_STACKSET". By passing the provisioned product id, the API will list account, region and status of each stack instances that are associated with this provisioned product.
+
 Release v1.19.40 (2019-05-29)
 ===
 

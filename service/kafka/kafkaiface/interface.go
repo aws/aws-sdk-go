@@ -76,6 +76,10 @@ type KafkaAPI interface {
 	DescribeClusterWithContext(aws.Context, *kafka.DescribeClusterInput, ...request.Option) (*kafka.DescribeClusterOutput, error)
 	DescribeClusterRequest(*kafka.DescribeClusterInput) (*request.Request, *kafka.DescribeClusterOutput)
 
+	DescribeClusterOperation(*kafka.DescribeClusterOperationInput) (*kafka.DescribeClusterOperationOutput, error)
+	DescribeClusterOperationWithContext(aws.Context, *kafka.DescribeClusterOperationInput, ...request.Option) (*kafka.DescribeClusterOperationOutput, error)
+	DescribeClusterOperationRequest(*kafka.DescribeClusterOperationInput) (*request.Request, *kafka.DescribeClusterOperationOutput)
+
 	DescribeConfiguration(*kafka.DescribeConfigurationInput) (*kafka.DescribeConfigurationOutput, error)
 	DescribeConfigurationWithContext(aws.Context, *kafka.DescribeConfigurationInput, ...request.Option) (*kafka.DescribeConfigurationOutput, error)
 	DescribeConfigurationRequest(*kafka.DescribeConfigurationInput) (*request.Request, *kafka.DescribeConfigurationOutput)
@@ -88,12 +92,26 @@ type KafkaAPI interface {
 	GetBootstrapBrokersWithContext(aws.Context, *kafka.GetBootstrapBrokersInput, ...request.Option) (*kafka.GetBootstrapBrokersOutput, error)
 	GetBootstrapBrokersRequest(*kafka.GetBootstrapBrokersInput) (*request.Request, *kafka.GetBootstrapBrokersOutput)
 
+	ListClusterOperations(*kafka.ListClusterOperationsInput) (*kafka.ListClusterOperationsOutput, error)
+	ListClusterOperationsWithContext(aws.Context, *kafka.ListClusterOperationsInput, ...request.Option) (*kafka.ListClusterOperationsOutput, error)
+	ListClusterOperationsRequest(*kafka.ListClusterOperationsInput) (*request.Request, *kafka.ListClusterOperationsOutput)
+
+	ListClusterOperationsPages(*kafka.ListClusterOperationsInput, func(*kafka.ListClusterOperationsOutput, bool) bool) error
+	ListClusterOperationsPagesWithContext(aws.Context, *kafka.ListClusterOperationsInput, func(*kafka.ListClusterOperationsOutput, bool) bool, ...request.Option) error
+
 	ListClusters(*kafka.ListClustersInput) (*kafka.ListClustersOutput, error)
 	ListClustersWithContext(aws.Context, *kafka.ListClustersInput, ...request.Option) (*kafka.ListClustersOutput, error)
 	ListClustersRequest(*kafka.ListClustersInput) (*request.Request, *kafka.ListClustersOutput)
 
 	ListClustersPages(*kafka.ListClustersInput, func(*kafka.ListClustersOutput, bool) bool) error
 	ListClustersPagesWithContext(aws.Context, *kafka.ListClustersInput, func(*kafka.ListClustersOutput, bool) bool, ...request.Option) error
+
+	ListConfigurationRevisions(*kafka.ListConfigurationRevisionsInput) (*kafka.ListConfigurationRevisionsOutput, error)
+	ListConfigurationRevisionsWithContext(aws.Context, *kafka.ListConfigurationRevisionsInput, ...request.Option) (*kafka.ListConfigurationRevisionsOutput, error)
+	ListConfigurationRevisionsRequest(*kafka.ListConfigurationRevisionsInput) (*request.Request, *kafka.ListConfigurationRevisionsOutput)
+
+	ListConfigurationRevisionsPages(*kafka.ListConfigurationRevisionsInput, func(*kafka.ListConfigurationRevisionsOutput, bool) bool) error
+	ListConfigurationRevisionsPagesWithContext(aws.Context, *kafka.ListConfigurationRevisionsInput, func(*kafka.ListConfigurationRevisionsOutput, bool) bool, ...request.Option) error
 
 	ListConfigurations(*kafka.ListConfigurationsInput) (*kafka.ListConfigurationsOutput, error)
 	ListConfigurationsWithContext(aws.Context, *kafka.ListConfigurationsInput, ...request.Option) (*kafka.ListConfigurationsOutput, error)
@@ -120,6 +138,14 @@ type KafkaAPI interface {
 	UntagResource(*kafka.UntagResourceInput) (*kafka.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *kafka.UntagResourceInput, ...request.Option) (*kafka.UntagResourceOutput, error)
 	UntagResourceRequest(*kafka.UntagResourceInput) (*request.Request, *kafka.UntagResourceOutput)
+
+	UpdateBrokerStorage(*kafka.UpdateBrokerStorageInput) (*kafka.UpdateBrokerStorageOutput, error)
+	UpdateBrokerStorageWithContext(aws.Context, *kafka.UpdateBrokerStorageInput, ...request.Option) (*kafka.UpdateBrokerStorageOutput, error)
+	UpdateBrokerStorageRequest(*kafka.UpdateBrokerStorageInput) (*request.Request, *kafka.UpdateBrokerStorageOutput)
+
+	UpdateClusterConfiguration(*kafka.UpdateClusterConfigurationInput) (*kafka.UpdateClusterConfigurationOutput, error)
+	UpdateClusterConfigurationWithContext(aws.Context, *kafka.UpdateClusterConfigurationInput, ...request.Option) (*kafka.UpdateClusterConfigurationOutput, error)
+	UpdateClusterConfigurationRequest(*kafka.UpdateClusterConfigurationInput) (*request.Request, *kafka.UpdateClusterConfigurationOutput)
 }
 
 var _ KafkaAPI = (*kafka.Kafka)(nil)

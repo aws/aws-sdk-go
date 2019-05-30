@@ -8,6 +8,297 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 )
 
+const opBatchExecuteStatement = "BatchExecuteStatement"
+
+// BatchExecuteStatementRequest generates a "aws/request.Request" representing the
+// client's request for the BatchExecuteStatement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchExecuteStatement for more information on using the BatchExecuteStatement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the BatchExecuteStatementRequest method.
+//    req, resp := client.BatchExecuteStatementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/BatchExecuteStatement
+func (c *RDSDataService) BatchExecuteStatementRequest(input *BatchExecuteStatementInput) (req *request.Request, output *BatchExecuteStatementOutput) {
+	op := &request.Operation{
+		Name:       opBatchExecuteStatement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/BatchExecute",
+	}
+
+	if input == nil {
+		input = &BatchExecuteStatementInput{}
+	}
+
+	output = &BatchExecuteStatementOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchExecuteStatement API operation for AWS RDS DataService.
+//
+// Runs a batch SQL statement over an array of data.
+//
+// You can run bulk update and insert operations for multiple records using
+// a DML statement with different parameter sets. Bulk operations can provide
+// a significant performance improvement over individual insert and update operations.
+//
+// If a call isn't part of a transaction because it doesn't include the transactionID
+// parameter, changes that result from the call are committed automatically.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS RDS DataService's
+// API operation BatchExecuteStatement for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   There is an error in the call or in a SQL statement.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   There are insufficient privileges to make the call.
+//
+//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   An internal error occurred.
+//
+//   * ErrCodeServiceUnavailableError "ServiceUnavailableError"
+//   The service specified by the resourceArn parameter is not available.
+//
+//   * ErrCodeStatementTimeoutException "StatementTimeoutException"
+//   The execution of the SQL statement timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/BatchExecuteStatement
+func (c *RDSDataService) BatchExecuteStatement(input *BatchExecuteStatementInput) (*BatchExecuteStatementOutput, error) {
+	req, out := c.BatchExecuteStatementRequest(input)
+	return out, req.Send()
+}
+
+// BatchExecuteStatementWithContext is the same as BatchExecuteStatement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchExecuteStatement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDSDataService) BatchExecuteStatementWithContext(ctx aws.Context, input *BatchExecuteStatementInput, opts ...request.Option) (*BatchExecuteStatementOutput, error) {
+	req, out := c.BatchExecuteStatementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opBeginTransaction = "BeginTransaction"
+
+// BeginTransactionRequest generates a "aws/request.Request" representing the
+// client's request for the BeginTransaction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BeginTransaction for more information on using the BeginTransaction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the BeginTransactionRequest method.
+//    req, resp := client.BeginTransactionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/BeginTransaction
+func (c *RDSDataService) BeginTransactionRequest(input *BeginTransactionInput) (req *request.Request, output *BeginTransactionOutput) {
+	op := &request.Operation{
+		Name:       opBeginTransaction,
+		HTTPMethod: "POST",
+		HTTPPath:   "/BeginTransaction",
+	}
+
+	if input == nil {
+		input = &BeginTransactionInput{}
+	}
+
+	output = &BeginTransactionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BeginTransaction API operation for AWS RDS DataService.
+//
+// Starts a SQL transaction.
+//
+// A transaction can run for a maximum of 24 hours. A transaction is terminated
+// and rolled back automatically after 24 hours.
+//
+// A transaction times out if no calls use its transaction ID in three minutes.
+// If a transaction times out before it's committed, it's rolled back automatically.
+//
+// DDL statements inside a transaction cause an implicit commit. We recommend
+// that you run each DDL statement in a separate ExecuteStatement call with
+// continueAfterTimeout enabled.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS RDS DataService's
+// API operation BeginTransaction for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   There is an error in the call or in a SQL statement.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   There are insufficient privileges to make the call.
+//
+//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   An internal error occurred.
+//
+//   * ErrCodeServiceUnavailableError "ServiceUnavailableError"
+//   The service specified by the resourceArn parameter is not available.
+//
+//   * ErrCodeStatementTimeoutException "StatementTimeoutException"
+//   The execution of the SQL statement timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/BeginTransaction
+func (c *RDSDataService) BeginTransaction(input *BeginTransactionInput) (*BeginTransactionOutput, error) {
+	req, out := c.BeginTransactionRequest(input)
+	return out, req.Send()
+}
+
+// BeginTransactionWithContext is the same as BeginTransaction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BeginTransaction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDSDataService) BeginTransactionWithContext(ctx aws.Context, input *BeginTransactionInput, opts ...request.Option) (*BeginTransactionOutput, error) {
+	req, out := c.BeginTransactionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCommitTransaction = "CommitTransaction"
+
+// CommitTransactionRequest generates a "aws/request.Request" representing the
+// client's request for the CommitTransaction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CommitTransaction for more information on using the CommitTransaction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CommitTransactionRequest method.
+//    req, resp := client.CommitTransactionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/CommitTransaction
+func (c *RDSDataService) CommitTransactionRequest(input *CommitTransactionInput) (req *request.Request, output *CommitTransactionOutput) {
+	op := &request.Operation{
+		Name:       opCommitTransaction,
+		HTTPMethod: "POST",
+		HTTPPath:   "/CommitTransaction",
+	}
+
+	if input == nil {
+		input = &CommitTransactionInput{}
+	}
+
+	output = &CommitTransactionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CommitTransaction API operation for AWS RDS DataService.
+//
+// Ends a SQL transaction started with the BeginTransaction operation and commits
+// the changes.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS RDS DataService's
+// API operation CommitTransaction for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   There is an error in the call or in a SQL statement.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   There are insufficient privileges to make the call.
+//
+//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   An internal error occurred.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resourceArn, secretArn, or transactionId value can't be found.
+//
+//   * ErrCodeServiceUnavailableError "ServiceUnavailableError"
+//   The service specified by the resourceArn parameter is not available.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/CommitTransaction
+func (c *RDSDataService) CommitTransaction(input *CommitTransactionInput) (*CommitTransactionOutput, error) {
+	req, out := c.CommitTransactionRequest(input)
+	return out, req.Send()
+}
+
+// CommitTransactionWithContext is the same as CommitTransaction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CommitTransaction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDSDataService) CommitTransactionWithContext(ctx aws.Context, input *CommitTransactionInput, opts ...request.Option) (*CommitTransactionOutput, error) {
+	req, out := c.CommitTransactionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opExecuteSql = "ExecuteSql"
 
 // ExecuteSqlRequest generates a "aws/request.Request" representing the
@@ -34,7 +325,12 @@ const opExecuteSql = "ExecuteSql"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/ExecuteSql
+//
+// Deprecated: ExecuteSql has been deprecated
 func (c *RDSDataService) ExecuteSqlRequest(input *ExecuteSqlInput) (req *request.Request, output *ExecuteSqlOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, ExecuteSql, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opExecuteSql,
 		HTTPMethod: "POST",
@@ -52,7 +348,10 @@ func (c *RDSDataService) ExecuteSqlRequest(input *ExecuteSqlInput) (req *request
 
 // ExecuteSql API operation for AWS RDS DataService.
 //
-// Executes any SQL statement on the target database synchronously
+// Runs one or more SQL statements.
+//
+// This operation is deprecated. Use the BatchExecuteStatement or ExecuteStatement
+// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -63,18 +362,20 @@ func (c *RDSDataService) ExecuteSqlRequest(input *ExecuteSqlInput) (req *request
 //
 // Returned Error Codes:
 //   * ErrCodeBadRequestException "BadRequestException"
-//   Invalid Request exception
+//   There is an error in the call or in a SQL statement.
 //
 //   * ErrCodeForbiddenException "ForbiddenException"
-//   Access denied exception
+//   There are insufficient privileges to make the call.
 //
 //   * ErrCodeInternalServerErrorException "InternalServerErrorException"
-//   Internal service error
+//   An internal error occurred.
 //
 //   * ErrCodeServiceUnavailableError "ServiceUnavailableError"
-//   Internal service unavailable error
+//   The service specified by the resourceArn parameter is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/ExecuteSql
+//
+// Deprecated: ExecuteSql has been deprecated
 func (c *RDSDataService) ExecuteSql(input *ExecuteSqlInput) (*ExecuteSqlOutput, error) {
 	req, out := c.ExecuteSqlRequest(input)
 	return out, req.Send()
@@ -89,6 +390,8 @@ func (c *RDSDataService) ExecuteSql(input *ExecuteSqlInput) (*ExecuteSqlOutput, 
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: ExecuteSqlWithContext has been deprecated
 func (c *RDSDataService) ExecuteSqlWithContext(ctx aws.Context, input *ExecuteSqlInput, opts ...request.Option) (*ExecuteSqlOutput, error) {
 	req, out := c.ExecuteSqlRequest(input)
 	req.SetContext(ctx)
@@ -96,58 +399,467 @@ func (c *RDSDataService) ExecuteSqlWithContext(ctx aws.Context, input *ExecuteSq
 	return out, req.Send()
 }
 
-// Column Metadata
+const opExecuteStatement = "ExecuteStatement"
+
+// ExecuteStatementRequest generates a "aws/request.Request" representing the
+// client's request for the ExecuteStatement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ExecuteStatement for more information on using the ExecuteStatement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ExecuteStatementRequest method.
+//    req, resp := client.ExecuteStatementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/ExecuteStatement
+func (c *RDSDataService) ExecuteStatementRequest(input *ExecuteStatementInput) (req *request.Request, output *ExecuteStatementOutput) {
+	op := &request.Operation{
+		Name:       opExecuteStatement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/Execute",
+	}
+
+	if input == nil {
+		input = &ExecuteStatementInput{}
+	}
+
+	output = &ExecuteStatementOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ExecuteStatement API operation for AWS RDS DataService.
+//
+// Runs a SQL statement against a database.
+//
+// If a call isn't part of a transaction because it doesn't include the transactionID
+// parameter, changes that result from the call are committed automatically.
+//
+// The response size limit is 1 MB or 1,000 records. If the call returns more
+// than 1 MB of response data or over 1,000 records, the call is terminated.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS RDS DataService's
+// API operation ExecuteStatement for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   There is an error in the call or in a SQL statement.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   There are insufficient privileges to make the call.
+//
+//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   An internal error occurred.
+//
+//   * ErrCodeServiceUnavailableError "ServiceUnavailableError"
+//   The service specified by the resourceArn parameter is not available.
+//
+//   * ErrCodeStatementTimeoutException "StatementTimeoutException"
+//   The execution of the SQL statement timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/ExecuteStatement
+func (c *RDSDataService) ExecuteStatement(input *ExecuteStatementInput) (*ExecuteStatementOutput, error) {
+	req, out := c.ExecuteStatementRequest(input)
+	return out, req.Send()
+}
+
+// ExecuteStatementWithContext is the same as ExecuteStatement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ExecuteStatement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDSDataService) ExecuteStatementWithContext(ctx aws.Context, input *ExecuteStatementInput, opts ...request.Option) (*ExecuteStatementOutput, error) {
+	req, out := c.ExecuteStatementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRollbackTransaction = "RollbackTransaction"
+
+// RollbackTransactionRequest generates a "aws/request.Request" representing the
+// client's request for the RollbackTransaction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RollbackTransaction for more information on using the RollbackTransaction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RollbackTransactionRequest method.
+//    req, resp := client.RollbackTransactionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/RollbackTransaction
+func (c *RDSDataService) RollbackTransactionRequest(input *RollbackTransactionInput) (req *request.Request, output *RollbackTransactionOutput) {
+	op := &request.Operation{
+		Name:       opRollbackTransaction,
+		HTTPMethod: "POST",
+		HTTPPath:   "/RollbackTransaction",
+	}
+
+	if input == nil {
+		input = &RollbackTransactionInput{}
+	}
+
+	output = &RollbackTransactionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RollbackTransaction API operation for AWS RDS DataService.
+//
+// Performs a rollback of a transaction. Rolling back a transaction cancels
+// its changes.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS RDS DataService's
+// API operation RollbackTransaction for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   There is an error in the call or in a SQL statement.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   There are insufficient privileges to make the call.
+//
+//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   An internal error occurred.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resourceArn, secretArn, or transactionId value can't be found.
+//
+//   * ErrCodeServiceUnavailableError "ServiceUnavailableError"
+//   The service specified by the resourceArn parameter is not available.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/RollbackTransaction
+func (c *RDSDataService) RollbackTransaction(input *RollbackTransactionInput) (*RollbackTransactionOutput, error) {
+	req, out := c.RollbackTransactionRequest(input)
+	return out, req.Send()
+}
+
+// RollbackTransactionWithContext is the same as RollbackTransaction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RollbackTransaction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDSDataService) RollbackTransactionWithContext(ctx aws.Context, input *RollbackTransactionInput, opts ...request.Option) (*RollbackTransactionOutput, error) {
+	req, out := c.RollbackTransactionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// The request parameters represent the input of a SQL statement over an array
+// of data.
+type BatchExecuteStatementInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the database.
+	Database *string `locationName:"database" type:"string"`
+
+	// The parameter set for the batch operation.
+	ParameterSets [][]*SqlParameter `locationName:"parameterSets" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
+
+	// The name of the database schema.
+	Schema *string `locationName:"schema" type:"string"`
+
+	// The name or ARN of the secret that enables access to the DB cluster.
+	//
+	// SecretArn is a required field
+	SecretArn *string `locationName:"secretArn" type:"string" required:"true"`
+
+	// The SQL statement to run.
+	//
+	// Sql is a required field
+	Sql *string `locationName:"sql" type:"string" required:"true"`
+
+	// The identifier of a transaction that was started by using the BeginTransaction
+	// operation. Specify the transaction ID of the transaction that you want to
+	// include the SQL statement in.
+	//
+	// If the SQL statement is not part of a transaction, don't set this parameter.
+	TransactionId *string `locationName:"transactionId" type:"string"`
+}
+
+// String returns the string representation
+func (s BatchExecuteStatementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchExecuteStatementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchExecuteStatementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchExecuteStatementInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.SecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretArn"))
+	}
+	if s.Sql == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sql"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatabase sets the Database field's value.
+func (s *BatchExecuteStatementInput) SetDatabase(v string) *BatchExecuteStatementInput {
+	s.Database = &v
+	return s
+}
+
+// SetParameterSets sets the ParameterSets field's value.
+func (s *BatchExecuteStatementInput) SetParameterSets(v [][]*SqlParameter) *BatchExecuteStatementInput {
+	s.ParameterSets = v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *BatchExecuteStatementInput) SetResourceArn(v string) *BatchExecuteStatementInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetSchema sets the Schema field's value.
+func (s *BatchExecuteStatementInput) SetSchema(v string) *BatchExecuteStatementInput {
+	s.Schema = &v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *BatchExecuteStatementInput) SetSecretArn(v string) *BatchExecuteStatementInput {
+	s.SecretArn = &v
+	return s
+}
+
+// SetSql sets the Sql field's value.
+func (s *BatchExecuteStatementInput) SetSql(v string) *BatchExecuteStatementInput {
+	s.Sql = &v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *BatchExecuteStatementInput) SetTransactionId(v string) *BatchExecuteStatementInput {
+	s.TransactionId = &v
+	return s
+}
+
+// The response elements represent the output of a SQL statement over an array
+// of data.
+type BatchExecuteStatementOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The execution results of each batch entry.
+	UpdateResults []*UpdateResult `locationName:"updateResults" type:"list"`
+}
+
+// String returns the string representation
+func (s BatchExecuteStatementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchExecuteStatementOutput) GoString() string {
+	return s.String()
+}
+
+// SetUpdateResults sets the UpdateResults field's value.
+func (s *BatchExecuteStatementOutput) SetUpdateResults(v []*UpdateResult) *BatchExecuteStatementOutput {
+	s.UpdateResults = v
+	return s
+}
+
+// The request parameters represent the input of a request to start a SQL transaction.
+type BeginTransactionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the database.
+	Database *string `locationName:"database" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
+
+	// The name of the database schema.
+	Schema *string `locationName:"schema" type:"string"`
+
+	// The name or ARN of the secret that enables access to the DB cluster.
+	//
+	// SecretArn is a required field
+	SecretArn *string `locationName:"secretArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s BeginTransactionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BeginTransactionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BeginTransactionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BeginTransactionInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.SecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatabase sets the Database field's value.
+func (s *BeginTransactionInput) SetDatabase(v string) *BeginTransactionInput {
+	s.Database = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *BeginTransactionInput) SetResourceArn(v string) *BeginTransactionInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetSchema sets the Schema field's value.
+func (s *BeginTransactionInput) SetSchema(v string) *BeginTransactionInput {
+	s.Schema = &v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *BeginTransactionInput) SetSecretArn(v string) *BeginTransactionInput {
+	s.SecretArn = &v
+	return s
+}
+
+// The response elements represent the output of a request to start a SQL transaction.
+type BeginTransactionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The transaction ID of the transaction started by the call.
+	TransactionId *string `locationName:"transactionId" type:"string"`
+}
+
+// String returns the string representation
+func (s BeginTransactionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BeginTransactionOutput) GoString() string {
+	return s.String()
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *BeginTransactionOutput) SetTransactionId(v string) *BeginTransactionOutput {
+	s.TransactionId = &v
+	return s
+}
+
+// Contains the metadata for a column.
 type ColumnMetadata struct {
 	_ struct{} `type:"structure"`
 
-	// Homogenous array base SQL type from java.sql.Types.
+	// The type of the column.
 	ArrayBaseColumnType *int64 `locationName:"arrayBaseColumnType" type:"integer"`
 
-	// Whether the designated column is automatically numbered
+	// A value that indicates whether the column increments automatically.
 	IsAutoIncrement *bool `locationName:"isAutoIncrement" type:"boolean"`
 
-	// Whether values in the designated column's case matters
+	// A value that indicates whether the column is case-sensitive.
 	IsCaseSensitive *bool `locationName:"isCaseSensitive" type:"boolean"`
 
-	// Whether values in the designated column is a cash value
+	// A value that indicates whether the column contains currency values.
 	IsCurrency *bool `locationName:"isCurrency" type:"boolean"`
 
-	// Whether values in the designated column are signed numbers
+	// A value that indicates whether an integer column is signed.
 	IsSigned *bool `locationName:"isSigned" type:"boolean"`
 
-	// Usually specified by the SQL AS. If not specified, return column name.
+	// The label for the column.
 	Label *string `locationName:"label" type:"string"`
 
-	// Name of the column.
+	// The name of the column.
 	Name *string `locationName:"name" type:"string"`
 
-	// Indicates the nullability of values in the designated column. One of columnNoNulls
-	// (0), columnNullable (1), columnNullableUnknown (2)
+	// A value that indicates whether the column is nullable.
 	Nullable *int64 `locationName:"nullable" type:"integer"`
 
-	// Get the designated column's specified column size.For numeric data, this
-	// is the maximum precision. For character data, this is the length in characters.
-	// For datetime datatypes, this is the length in characters of the String representation
-	// (assuming the maximum allowed precision of the fractional seconds component).
-	// For binary data, this is the length in bytes. For the ROWID datatype, this
-	// is the length in bytes. 0 is returned for data types where the column size
-	// is not applicable.
+	// The precision value of a decimal number column.
 	Precision *int64 `locationName:"precision" type:"integer"`
 
-	// Designated column's number of digits to right of the decimal point. 0 is
-	// returned for data types where the scale is not applicable.
+	// The scale value of a decimal number column.
 	Scale *int64 `locationName:"scale" type:"integer"`
 
-	// Designated column's table's schema
+	// The name of the schema that owns the table that includes the column.
 	SchemaName *string `locationName:"schemaName" type:"string"`
 
-	// Designated column's table name
+	// The name of the table that includes the column.
 	TableName *string `locationName:"tableName" type:"string"`
 
-	// SQL type from java.sql.Types.
+	// The type of the column.
 	Type *int64 `locationName:"type" type:"integer"`
 
-	// Database-specific type name.
+	// The database-specific data type of the column.
 	TypeName *string `locationName:"typeName" type:"string"`
 }
 
@@ -245,27 +957,124 @@ func (s *ColumnMetadata) SetTypeName(v string) *ColumnMetadata {
 	return s
 }
 
-// Execute SQL Request
+// The request parameters represent the input of a commit transaction request.
+type CommitTransactionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
+
+	// The name or ARN of the secret that enables access to the DB cluster.
+	//
+	// SecretArn is a required field
+	SecretArn *string `locationName:"secretArn" type:"string" required:"true"`
+
+	// The identifier of the transaction to end and commit.
+	//
+	// TransactionId is a required field
+	TransactionId *string `locationName:"transactionId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CommitTransactionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CommitTransactionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CommitTransactionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CommitTransactionInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.SecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretArn"))
+	}
+	if s.TransactionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TransactionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *CommitTransactionInput) SetResourceArn(v string) *CommitTransactionInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *CommitTransactionInput) SetSecretArn(v string) *CommitTransactionInput {
+	s.SecretArn = &v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *CommitTransactionInput) SetTransactionId(v string) *CommitTransactionInput {
+	s.TransactionId = &v
+	return s
+}
+
+// The response elements represent the output of a commit transaction request.
+type CommitTransactionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the commit operation.
+	TransactionStatus *string `locationName:"transactionStatus" type:"string"`
+}
+
+// String returns the string representation
+func (s CommitTransactionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CommitTransactionOutput) GoString() string {
+	return s.String()
+}
+
+// SetTransactionStatus sets the TransactionStatus field's value.
+func (s *CommitTransactionOutput) SetTransactionStatus(v string) *CommitTransactionOutput {
+	s.TransactionStatus = &v
+	return s
+}
+
+// The request parameters represent the input of a request to run one or more
+// SQL statements.
 type ExecuteSqlInput struct {
 	_ struct{} `type:"structure"`
 
-	// ARN of the db credentials in AWS Secret Store or the friendly secret name
+	// The Amazon Resource Name (ARN) of the secret that enables access to the DB
+	// cluster.
 	//
 	// AwsSecretStoreArn is a required field
 	AwsSecretStoreArn *string `locationName:"awsSecretStoreArn" type:"string" required:"true"`
 
-	// Target DB name
+	// The name of the database.
 	Database *string `locationName:"database" type:"string"`
 
-	// ARN of the target db cluster or instance
+	// The ARN of the Aurora Serverless DB cluster.
 	//
 	// DbClusterOrInstanceArn is a required field
 	DbClusterOrInstanceArn *string `locationName:"dbClusterOrInstanceArn" type:"string" required:"true"`
 
-	// Target Schema name
+	// The name of the database schema.
 	Schema *string `locationName:"schema" type:"string"`
 
-	// SQL statement(s) to be executed. Statements can be chained by using semicolons
+	// One or more SQL statements to run on the DB cluster.
+	//
+	// You can separate SQL statements from each other with a semicolon (;). Any
+	// valid SQL statement is permitted, including data definition, data manipulation,
+	// and commit statements.
 	//
 	// SqlStatements is a required field
 	SqlStatements *string `locationName:"sqlStatements" type:"string" required:"true"`
@@ -330,14 +1139,13 @@ func (s *ExecuteSqlInput) SetSqlStatements(v string) *ExecuteSqlInput {
 	return s
 }
 
-// Execute SQL response
+// The response elements represent the output of a request to run one or more
+// SQL statements.
 type ExecuteSqlOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Results returned by executing the sql statement(s)
-	//
-	// SqlStatementResults is a required field
-	SqlStatementResults []*SqlStatementResult `locationName:"sqlStatementResults" type:"list" required:"true"`
+	// The results of the SQL statement or statements.
+	SqlStatementResults []*SqlStatementResult `locationName:"sqlStatementResults" type:"list"`
 }
 
 // String returns the string representation
@@ -356,11 +1164,266 @@ func (s *ExecuteSqlOutput) SetSqlStatementResults(v []*SqlStatementResult) *Exec
 	return s
 }
 
-// Row or Record
+// The request parameters represent the input of a request to run a SQL statement
+// against a database.
+type ExecuteStatementInput struct {
+	_ struct{} `type:"structure"`
+
+	// A value that indicates whether to continue running the statement after the
+	// call times out. By default, the statement stops running when the call times
+	// out.
+	//
+	// For DDL statements, we recommend continuing to run the statement after the
+	// call times out. When a DDL statement terminates before it is finished running,
+	// it can result in errors and possibly corrupted data structures.
+	ContinueAfterTimeout *bool `locationName:"continueAfterTimeout" type:"boolean"`
+
+	// The name of the database.
+	Database *string `locationName:"database" type:"string"`
+
+	// A value that indicates whether to include metadata in the results.
+	IncludeResultMetadata *bool `locationName:"includeResultMetadata" type:"boolean"`
+
+	// The parameters for the SQL statement.
+	Parameters []*SqlParameter `locationName:"parameters" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
+
+	// The name of the database schema.
+	Schema *string `locationName:"schema" type:"string"`
+
+	// The name or ARN of the secret that enables access to the DB cluster.
+	//
+	// SecretArn is a required field
+	SecretArn *string `locationName:"secretArn" type:"string" required:"true"`
+
+	// The SQL statement to run.
+	//
+	// Sql is a required field
+	Sql *string `locationName:"sql" type:"string" required:"true"`
+
+	// The identifier of a transaction that was started by using the BeginTransaction
+	// operation. Specify the transaction ID of the transaction that you want to
+	// include the SQL statement in.
+	//
+	// If the SQL statement is not part of a transaction, don't set this parameter.
+	TransactionId *string `locationName:"transactionId" type:"string"`
+}
+
+// String returns the string representation
+func (s ExecuteStatementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExecuteStatementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExecuteStatementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExecuteStatementInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.SecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretArn"))
+	}
+	if s.Sql == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sql"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContinueAfterTimeout sets the ContinueAfterTimeout field's value.
+func (s *ExecuteStatementInput) SetContinueAfterTimeout(v bool) *ExecuteStatementInput {
+	s.ContinueAfterTimeout = &v
+	return s
+}
+
+// SetDatabase sets the Database field's value.
+func (s *ExecuteStatementInput) SetDatabase(v string) *ExecuteStatementInput {
+	s.Database = &v
+	return s
+}
+
+// SetIncludeResultMetadata sets the IncludeResultMetadata field's value.
+func (s *ExecuteStatementInput) SetIncludeResultMetadata(v bool) *ExecuteStatementInput {
+	s.IncludeResultMetadata = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ExecuteStatementInput) SetParameters(v []*SqlParameter) *ExecuteStatementInput {
+	s.Parameters = v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ExecuteStatementInput) SetResourceArn(v string) *ExecuteStatementInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetSchema sets the Schema field's value.
+func (s *ExecuteStatementInput) SetSchema(v string) *ExecuteStatementInput {
+	s.Schema = &v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *ExecuteStatementInput) SetSecretArn(v string) *ExecuteStatementInput {
+	s.SecretArn = &v
+	return s
+}
+
+// SetSql sets the Sql field's value.
+func (s *ExecuteStatementInput) SetSql(v string) *ExecuteStatementInput {
+	s.Sql = &v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *ExecuteStatementInput) SetTransactionId(v string) *ExecuteStatementInput {
+	s.TransactionId = &v
+	return s
+}
+
+// The response elements represent the output of a request to run a SQL statement
+// against a database.
+type ExecuteStatementOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Metadata for the columns included in the results.
+	ColumnMetadata []*ColumnMetadata `locationName:"columnMetadata" type:"list"`
+
+	// Values for fields generated during the request.
+	GeneratedFields []*Field `locationName:"generatedFields" type:"list"`
+
+	// The number of records updated by the request.
+	NumberOfRecordsUpdated *int64 `locationName:"numberOfRecordsUpdated" type:"long"`
+
+	// The records returned by the SQL statement.
+	Records [][]*Field `locationName:"records" type:"list"`
+}
+
+// String returns the string representation
+func (s ExecuteStatementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExecuteStatementOutput) GoString() string {
+	return s.String()
+}
+
+// SetColumnMetadata sets the ColumnMetadata field's value.
+func (s *ExecuteStatementOutput) SetColumnMetadata(v []*ColumnMetadata) *ExecuteStatementOutput {
+	s.ColumnMetadata = v
+	return s
+}
+
+// SetGeneratedFields sets the GeneratedFields field's value.
+func (s *ExecuteStatementOutput) SetGeneratedFields(v []*Field) *ExecuteStatementOutput {
+	s.GeneratedFields = v
+	return s
+}
+
+// SetNumberOfRecordsUpdated sets the NumberOfRecordsUpdated field's value.
+func (s *ExecuteStatementOutput) SetNumberOfRecordsUpdated(v int64) *ExecuteStatementOutput {
+	s.NumberOfRecordsUpdated = &v
+	return s
+}
+
+// SetRecords sets the Records field's value.
+func (s *ExecuteStatementOutput) SetRecords(v [][]*Field) *ExecuteStatementOutput {
+	s.Records = v
+	return s
+}
+
+// Contains a value.
+type Field struct {
+	_ struct{} `type:"structure"`
+
+	// A value of BLOB data type.
+	//
+	// BlobValue is automatically base64 encoded/decoded by the SDK.
+	BlobValue []byte `locationName:"blobValue" type:"blob"`
+
+	// A value of Boolean data type.
+	BooleanValue *bool `locationName:"booleanValue" type:"boolean"`
+
+	// A value of double data type.
+	DoubleValue *float64 `locationName:"doubleValue" type:"double"`
+
+	// A NULL value.
+	IsNull *bool `locationName:"isNull" type:"boolean"`
+
+	// A value of long data type.
+	LongValue *int64 `locationName:"longValue" type:"long"`
+
+	// A value of string data type.
+	StringValue *string `locationName:"stringValue" type:"string"`
+}
+
+// String returns the string representation
+func (s Field) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Field) GoString() string {
+	return s.String()
+}
+
+// SetBlobValue sets the BlobValue field's value.
+func (s *Field) SetBlobValue(v []byte) *Field {
+	s.BlobValue = v
+	return s
+}
+
+// SetBooleanValue sets the BooleanValue field's value.
+func (s *Field) SetBooleanValue(v bool) *Field {
+	s.BooleanValue = &v
+	return s
+}
+
+// SetDoubleValue sets the DoubleValue field's value.
+func (s *Field) SetDoubleValue(v float64) *Field {
+	s.DoubleValue = &v
+	return s
+}
+
+// SetIsNull sets the IsNull field's value.
+func (s *Field) SetIsNull(v bool) *Field {
+	s.IsNull = &v
+	return s
+}
+
+// SetLongValue sets the LongValue field's value.
+func (s *Field) SetLongValue(v int64) *Field {
+	s.LongValue = &v
+	return s
+}
+
+// SetStringValue sets the StringValue field's value.
+func (s *Field) SetStringValue(v string) *Field {
+	s.StringValue = &v
+	return s
+}
+
+// A record returned by a call.
 type Record struct {
 	_ struct{} `type:"structure"`
 
-	// Record
+	// The values returned in the record.
 	Values []*Value `locationName:"values" type:"list"`
 }
 
@@ -380,14 +1443,14 @@ func (s *Record) SetValues(v []*Value) *Record {
 	return s
 }
 
-// Result Frame
+// The result set returned by a SQL statement.
 type ResultFrame struct {
 	_ struct{} `type:"structure"`
 
-	// ResultSet Metadata.
+	// The records in the result set.
 	Records []*Record `locationName:"records" type:"list"`
 
-	// ResultSet Metadata.
+	// The result-set metadata in the result set.
 	ResultSetMetadata *ResultSetMetadata `locationName:"resultSetMetadata" type:"structure"`
 }
 
@@ -413,14 +1476,14 @@ func (s *ResultFrame) SetResultSetMetadata(v *ResultSetMetadata) *ResultFrame {
 	return s
 }
 
-// List of columns and their types.
+// The metadata of the result set returned by a SQL statement.
 type ResultSetMetadata struct {
 	_ struct{} `type:"structure"`
 
-	// Number of columns
+	// The number of columns in the result set.
 	ColumnCount *int64 `locationName:"columnCount" type:"long"`
 
-	// List of columns and their types
+	// The metadata of the columns in the result set.
 	ColumnMetadata []*ColumnMetadata `locationName:"columnMetadata" type:"list"`
 }
 
@@ -446,14 +1509,140 @@ func (s *ResultSetMetadata) SetColumnMetadata(v []*ColumnMetadata) *ResultSetMet
 	return s
 }
 
-// SQL statement execution result
+// The request parameters represent the input of a request to perform a rollback
+// of a transaction.
+type RollbackTransactionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
+
+	// The name or ARN of the secret that enables access to the DB cluster.
+	//
+	// SecretArn is a required field
+	SecretArn *string `locationName:"secretArn" type:"string" required:"true"`
+
+	// The identifier of the transaction to roll back.
+	//
+	// TransactionId is a required field
+	TransactionId *string `locationName:"transactionId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RollbackTransactionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RollbackTransactionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RollbackTransactionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RollbackTransactionInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.SecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretArn"))
+	}
+	if s.TransactionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TransactionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *RollbackTransactionInput) SetResourceArn(v string) *RollbackTransactionInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *RollbackTransactionInput) SetSecretArn(v string) *RollbackTransactionInput {
+	s.SecretArn = &v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *RollbackTransactionInput) SetTransactionId(v string) *RollbackTransactionInput {
+	s.TransactionId = &v
+	return s
+}
+
+// The response elements represent the output of a request to perform a rollback
+// of a transaction.
+type RollbackTransactionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the rollback operation.
+	TransactionStatus *string `locationName:"transactionStatus" type:"string"`
+}
+
+// String returns the string representation
+func (s RollbackTransactionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RollbackTransactionOutput) GoString() string {
+	return s.String()
+}
+
+// SetTransactionStatus sets the TransactionStatus field's value.
+func (s *RollbackTransactionOutput) SetTransactionStatus(v string) *RollbackTransactionOutput {
+	s.TransactionStatus = &v
+	return s
+}
+
+// A parameter used in a SQL statement.
+type SqlParameter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the parameter.
+	Name *string `locationName:"name" type:"string"`
+
+	// The value of the parameter.
+	Value *Field `locationName:"value" type:"structure"`
+}
+
+// String returns the string representation
+func (s SqlParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SqlParameter) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *SqlParameter) SetName(v string) *SqlParameter {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *SqlParameter) SetValue(v *Field) *SqlParameter {
+	s.Value = v
+	return s
+}
+
+// The result of a SQL statement.
 type SqlStatementResult struct {
 	_ struct{} `type:"structure"`
 
-	// Number of rows updated.
+	// The number of records updated by a SQL statement.
 	NumberOfRecordsUpdated *int64 `locationName:"numberOfRecordsUpdated" type:"long"`
 
-	// ResultFrame returned by executing the sql statement
+	// The result set of the SQL statement.
 	ResultFrame *ResultFrame `locationName:"resultFrame" type:"structure"`
 }
 
@@ -479,11 +1668,11 @@ func (s *SqlStatementResult) SetResultFrame(v *ResultFrame) *SqlStatementResult 
 	return s
 }
 
-// User Defined Type
+// A structure value returned by a call.
 type StructValue struct {
 	_ struct{} `type:"structure"`
 
-	// Struct or UDT
+	// The attributes returned in the record.
 	Attributes []*Value `locationName:"attributes" type:"list"`
 }
 
@@ -503,40 +1692,64 @@ func (s *StructValue) SetAttributes(v []*Value) *StructValue {
 	return s
 }
 
-// Column value
+// The response elements represent the results of an update.
+type UpdateResult struct {
+	_ struct{} `type:"structure"`
+
+	// Values for fields generated during the request.
+	GeneratedFields []*Field `locationName:"generatedFields" type:"list"`
+}
+
+// String returns the string representation
+func (s UpdateResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateResult) GoString() string {
+	return s.String()
+}
+
+// SetGeneratedFields sets the GeneratedFields field's value.
+func (s *UpdateResult) SetGeneratedFields(v []*Field) *UpdateResult {
+	s.GeneratedFields = v
+	return s
+}
+
+// Contains the value of a column.
 type Value struct {
 	_ struct{} `type:"structure"`
 
-	// Arbitrarily nested arrays
+	// An array of column values.
 	ArrayValues []*Value `locationName:"arrayValues" type:"list"`
 
-	// Long value
+	// A value for a column of big integer data type.
 	BigIntValue *int64 `locationName:"bigIntValue" type:"long"`
 
-	// Bit value
+	// A value for a column of BIT data type.
 	BitValue *bool `locationName:"bitValue" type:"boolean"`
 
-	// Blob value
+	// A value for a column of BLOB data type.
 	//
 	// BlobValue is automatically base64 encoded/decoded by the SDK.
 	BlobValue []byte `locationName:"blobValue" type:"blob"`
 
-	// Double value
+	// A value for a column of double data type.
 	DoubleValue *float64 `locationName:"doubleValue" type:"double"`
 
-	// Integer value
+	// A value for a column of integer data type.
 	IntValue *int64 `locationName:"intValue" type:"integer"`
 
-	// Is column null
+	// A NULL value.
 	IsNull *bool `locationName:"isNull" type:"boolean"`
 
-	// Float value
+	// A value for a column of real data type.
 	RealValue *float64 `locationName:"realValue" type:"float"`
 
-	// String value
+	// A value for a column of string data type.
 	StringValue *string `locationName:"stringValue" type:"string"`
 
-	// Struct or UDT
+	// A value for a column of STRUCT data type.
 	StructValue *StructValue `locationName:"structValue" type:"structure"`
 }
 

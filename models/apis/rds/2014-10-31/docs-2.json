@@ -107,8 +107,10 @@
     "RestoreDBInstanceFromS3": "<p>Amazon Relational Database Service (Amazon RDS) supports importing MySQL databases by using backup files. You can create a backup of your on-premises database, store it on Amazon Simple Storage Service (Amazon S3), and then restore the backup file onto a new Amazon RDS DB instance running MySQL. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Procedural.Importing.html\">Importing Data into an Amazon RDS MySQL DB Instance</a> in the <i>Amazon RDS User Guide.</i> </p>",
     "RestoreDBInstanceToPointInTime": "<p>Restores a DB instance to an arbitrary point in time. You can restore to any point in time before the time identified by the LatestRestorableTime property. You can restore to a point up to the number of days specified by the BackupRetentionPeriod property.</p> <p>The target database is created with most of the original configuration, but in a system-selected Availability Zone, with the default security group, the default subnet group, and the default DB parameter group. By default, the new DB instance is created as a single-AZ deployment except when the instance is a SQL Server instance that has an option group that is associated with mirroring; in this case, the instance becomes a mirrored deployment and not a single-AZ deployment.</p> <note> <p>This command doesn't apply to Aurora MySQL and Aurora PostgreSQL. For Aurora, use <code>RestoreDBClusterToPointInTime</code>.</p> </note>",
     "RevokeDBSecurityGroupIngress": "<p>Revokes ingress from a DBSecurityGroup for previously authorized IP ranges or EC2 or VPC Security Groups. Required parameters for this API are one of CIDRIP, EC2SecurityGroupId for VPC, or (EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId).</p>",
+    "StartActivityStream": "<p>Starts a database activity stream to monitor activity on the database. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/DBActivityStreams.html\">Database Activity Streams</a> in the <i>Amazon Aurora User Guide</i>.</p>",
     "StartDBCluster": "<p>Starts an Amazon Aurora DB cluster that was stopped using the AWS console, the stop-db-cluster AWS CLI command, or the StopDBCluster action.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-cluster-stop-start.html\"> Stopping and Starting an Aurora Cluster</a> in the <i>Amazon Aurora User Guide.</i> </p> <note> <p>This action only applies to Aurora DB clusters.</p> </note>",
     "StartDBInstance": "<p> Starts an Amazon RDS DB instance that was stopped using the AWS console, the stop-db-instance AWS CLI command, or the StopDBInstance action. </p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_StartInstance.html\"> Starting an Amazon RDS DB instance That Was Previously Stopped</a> in the <i>Amazon RDS User Guide.</i> </p> <note> <p> This command doesn't apply to Aurora MySQL and Aurora PostgreSQL. For Aurora DB clusters, use <code>StartDBCluster</code> instead. </p> </note>",
+    "StopActivityStream": "<p>Stops a database activity stream that was started using the AWS console, the <code>start-activity-stream</code> AWS CLI command, or the <code>StartActivityStream</code> action.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/DBActivityStreams.html\">Database Activity Streams</a> in the <i>Amazon Aurora User Guide</i>.</p>",
     "StopDBCluster": "<p> Stops an Amazon Aurora DB cluster. When you stop a DB cluster, Aurora retains the DB cluster's metadata, including its endpoints and DB parameter groups. Aurora also retains the transaction logs so you can do a point-in-time restore if necessary. </p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-cluster-stop-start.html\"> Stopping and Starting an Aurora Cluster</a> in the <i>Amazon Aurora User Guide.</i> </p> <note> <p>This action only applies to Aurora DB clusters.</p> </note>",
     "StopDBInstance": "<p> Stops an Amazon RDS DB instance. When you stop a DB instance, Amazon RDS retains the DB instance's metadata, including its endpoint, DB parameter group, and option group membership. Amazon RDS also retains the transaction logs so you can do a point-in-time restore if necessary. </p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_StopInstance.html\"> Stopping an Amazon RDS DB Instance Temporarily</a> in the <i>Amazon RDS User Guide.</i> </p> <note> <p> This command doesn't apply to Aurora MySQL and Aurora PostgreSQL. For Aurora clusters, use <code>StopDBCluster</code> instead. </p> </note>"
   },
@@ -128,6 +130,22 @@
       "base": null,
       "refs": {
         "AccountAttributesMessage$AccountQuotas": "<p>A list of <code>AccountQuota</code> objects. Within this list, each quota has a name, a count of usage toward the quota maximum, and a maximum value for the quota.</p>"
+      }
+    },
+    "ActivityStreamMode": {
+      "base": null,
+      "refs": {
+        "DBCluster$ActivityStreamMode": "<p>The mode of the database activity stream. Database events such as a change or access generate an activity stream event. The database session can handle these events either synchronously or asynchronously. </p>",
+        "StartActivityStreamRequest$Mode": "<p>Specifies the mode of the database activity stream. Database events such as a change or access generate an activity stream event. The database session can handle these events either synchronously or asynchronously. </p>",
+        "StartActivityStreamResponse$Mode": "<p>The mode of the database activity stream.</p>"
+      }
+    },
+    "ActivityStreamStatus": {
+      "base": null,
+      "refs": {
+        "DBCluster$ActivityStreamStatus": "<p>The status of the database activity stream.</p>",
+        "StartActivityStreamResponse$Status": "<p>The status of the database activity stream.</p>",
+        "StopActivityStreamResponse$Status": "<p>The status of the database activity stream.</p>"
       }
     },
     "AddRoleToDBClusterMessage": {
@@ -321,6 +339,7 @@
         "ResetDBParameterGroupMessage$ResetAllParameters": "<p> A value that indicates whether to reset all parameters in the DB parameter group to default values. By default, all parameters in the DB parameter group are reset to default values. </p>",
         "RestoreDBClusterToPointInTimeMessage$UseLatestRestorableTime": "<p>A value that indicates whether to restore the DB cluster to the latest restorable backup time. By default, the DB cluster is not restored to the latest restorable backup time. </p> <p>Constraints: Can't be specified if <code>RestoreToTime</code> parameter is provided.</p>",
         "RestoreDBInstanceToPointInTimeMessage$UseLatestRestorableTime": "<p> A value that indicates whether the DB instance is restored from the latest backup time. By default, the DB instance is not restored from the latest backup time. </p> <p>Constraints: Can't be specified if the <code>RestoreTime</code> parameter is provided.</p>",
+        "StartActivityStreamResponse$ApplyImmediately": "<p>Indicates whether or not the database activity stream will start as soon as possible, regardless of the maintenance window for the database.</p>",
         "UpgradeTarget$AutoUpgrade": "<p>A value that indicates whether the target version is applied to any source DB instances that have <code>AutoMinorVersionUpgrade</code> set to true.</p>",
         "UpgradeTarget$IsMajorVersionUpgrade": "<p>A value that indicates whether a database engine is upgraded to a major version.</p>"
       }
@@ -416,7 +435,9 @@
         "RestoreDBInstanceToPointInTimeMessage$UseDefaultProcessorFeatures": "<p>A value that indicates whether the DB instance class of the DB instance uses its default processor features.</p>",
         "RestoreDBInstanceToPointInTimeMessage$DeletionProtection": "<p>A value that indicates whether the DB instance has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html\"> Deleting a DB Instance</a>. </p>",
         "ScalingConfiguration$AutoPause": "<p>A value that indicates whether to allow or disallow automatic pause for an Aurora DB cluster in <code>serverless</code> DB engine mode. A DB cluster can be paused only when it's idle (it has no connections).</p> <note> <p>If a DB cluster is paused for more than seven days, the DB cluster might be backed up with a snapshot. In this case, the DB cluster is restored when there is a request to connect to it. </p> </note>",
-        "ScalingConfigurationInfo$AutoPause": "<p>A value that indicates whether automatic pause is allowed for the Aurora DB cluster in <code>serverless</code> DB engine mode.</p> <p>When the value is set to false for an Aurora Serverless DB cluster, the DB cluster automatically resumes.</p>"
+        "ScalingConfigurationInfo$AutoPause": "<p>A value that indicates whether automatic pause is allowed for the Aurora DB cluster in <code>serverless</code> DB engine mode.</p> <p>When the value is set to false for an Aurora Serverless DB cluster, the DB cluster automatically resumes.</p>",
+        "StartActivityStreamRequest$ApplyImmediately": "<p>Specifies whether or not the database activity stream is to start as soon as possible, regardless of the maintenance window for the database.</p>",
+        "StopActivityStreamRequest$ApplyImmediately": "<p>Specifies whether or not the database activity stream is to stop as soon as possible, regardless of the maintenance window for the database.</p>"
       }
     },
     "Certificate": {
@@ -2837,6 +2858,16 @@
         "Event$SourceType": "<p>Specifies the source type for this event.</p>"
       }
     },
+    "StartActivityStreamRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartActivityStreamResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StartDBClusterMessage": {
       "base": null,
       "refs": {
@@ -2853,6 +2884,16 @@
       }
     },
     "StartDBInstanceResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopActivityStreamRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopActivityStreamResponse": {
       "base": null,
       "refs": {
       }
@@ -3043,6 +3084,8 @@
         "DBCluster$DBClusterArn": "<p>The Amazon Resource Name (ARN) for the DB cluster.</p>",
         "DBCluster$CloneGroupId": "<p>Identifies the clone group to which the DB cluster is associated.</p>",
         "DBCluster$EngineMode": "<p>The DB engine mode of the DB cluster, either <code>provisioned</code>, <code>serverless</code>, or <code>parallelquery</code>.</p>",
+        "DBCluster$ActivityStreamKmsKeyId": "<p>The AWS KMS key identifier used for encrypting messages in the database activity stream.</p>",
+        "DBCluster$ActivityStreamKinesisStreamName": "<p>The name of the Amazon Kinesis data stream used for the database activity stream.</p>",
         "DBClusterBacktrack$DBClusterIdentifier": "<p>Contains a user-supplied DB cluster identifier. This identifier is the unique key that identifies a DB cluster.</p>",
         "DBClusterBacktrack$BacktrackIdentifier": "<p>Contains the backtrack identifier.</p>",
         "DBClusterBacktrack$Status": "<p>The status of the backtrack. This property returns one of the following values:</p> <ul> <li> <p> <code>applying</code> - The backtrack is currently being applied to or rolled back from the DB cluster.</p> </li> <li> <p> <code>completed</code> - The backtrack has successfully been applied to or rolled back from the DB cluster.</p> </li> <li> <p> <code>failed</code> - An error occurred while the backtrack was applied to or rolled back from the DB cluster.</p> </li> <li> <p> <code>pending</code> - The backtrack is currently pending application to or rollback from the DB cluster.</p> </li> </ul>",
@@ -3601,8 +3644,15 @@
         "SourceRegion$Endpoint": "<p>The endpoint for the source AWS Region endpoint.</p>",
         "SourceRegion$Status": "<p>The status of the source AWS Region.</p>",
         "SourceRegionMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
+        "StartActivityStreamRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the DB cluster, for example <code>arn:aws:rds:us-east-1:12345667890:cluster:das-cluster</code>.</p>",
+        "StartActivityStreamRequest$KmsKeyId": "<p>The AWS KMS key identifier for encrypting messages in the database activity stream. The key identifier can be either a key ID, a key ARN, or a key alias.</p>",
+        "StartActivityStreamResponse$KmsKeyId": "<p>The AWS KMS key identifier for encryption of messages in the database activity stream.</p>",
+        "StartActivityStreamResponse$KinesisStreamName": "<p>The name of the Amazon Kinesis data stream to be used for the database activity stream.</p>",
         "StartDBClusterMessage$DBClusterIdentifier": "<p>The DB cluster identifier of the Amazon Aurora DB cluster to be started. This parameter is stored as a lowercase string.</p>",
         "StartDBInstanceMessage$DBInstanceIdentifier": "<p> The user-supplied instance identifier. </p>",
+        "StopActivityStreamRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the DB cluster for the database activity stream. For example, <code>arn:aws:rds:us-east-1:12345667890:cluster:das-cluster</code>. </p>",
+        "StopActivityStreamResponse$KmsKeyId": "<p>The AWS KMS key identifier used for encrypting messages in the database activity stream.</p>",
+        "StopActivityStreamResponse$KinesisStreamName": "<p>The name of the Amazon Kinesis data stream used for the database activity stream.</p>",
         "StopDBClusterMessage$DBClusterIdentifier": "<p>The DB cluster identifier of the Amazon Aurora DB cluster to be stopped. This parameter is stored as a lowercase string.</p>",
         "StopDBInstanceMessage$DBInstanceIdentifier": "<p> The user-supplied instance identifier. </p>",
         "StopDBInstanceMessage$DBSnapshotIdentifier": "<p> The user-supplied instance identifier of the DB Snapshot created immediately before the DB instance is stopped. </p>",

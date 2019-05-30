@@ -1824,6 +1824,26 @@
         {"shape":"InvalidDBSecurityGroupStateFault"}
       ]
     },
+    "StartActivityStream":{
+      "name":"StartActivityStream",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartActivityStreamRequest"},
+      "output":{
+        "shape":"StartActivityStreamResponse",
+        "resultWrapper":"StartActivityStreamResult"
+      },
+      "errors":[
+        {"shape":"InvalidDBInstanceStateFault"},
+        {"shape":"InvalidDBClusterStateFault"},
+        {"shape":"ResourceNotFoundFault"},
+        {"shape":"DBClusterNotFoundFault"},
+        {"shape":"DBInstanceNotFoundFault"},
+        {"shape":"KMSKeyNotAccessibleFault"}
+      ]
+    },
     "StartDBCluster":{
       "name":"StartDBCluster",
       "http":{
@@ -1864,6 +1884,25 @@
         {"shape":"DBClusterNotFoundFault"},
         {"shape":"AuthorizationNotFoundFault"},
         {"shape":"KMSKeyNotAccessibleFault"}
+      ]
+    },
+    "StopActivityStream":{
+      "name":"StopActivityStream",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopActivityStreamRequest"},
+      "output":{
+        "shape":"StopActivityStreamResponse",
+        "resultWrapper":"StopActivityStreamResult"
+      },
+      "errors":[
+        {"shape":"InvalidDBInstanceStateFault"},
+        {"shape":"InvalidDBClusterStateFault"},
+        {"shape":"ResourceNotFoundFault"},
+        {"shape":"DBClusterNotFoundFault"},
+        {"shape":"DBInstanceNotFoundFault"}
       ]
     },
     "StopDBCluster":{
@@ -1925,6 +1964,22 @@
         "shape":"AccountQuota",
         "locationName":"AccountQuota"
       }
+    },
+    "ActivityStreamMode":{
+      "type":"string",
+      "enum":[
+        "sync",
+        "async"
+      ]
+    },
+    "ActivityStreamStatus":{
+      "type":"string",
+      "enum":[
+        "stopped",
+        "starting",
+        "started",
+        "stopping"
+      ]
     },
     "AddRoleToDBClusterMessage":{
       "type":"structure",
@@ -2666,6 +2721,10 @@
         "ScalingConfigurationInfo":{"shape":"ScalingConfigurationInfo"},
         "DeletionProtection":{"shape":"Boolean"},
         "HttpEndpointEnabled":{"shape":"Boolean"},
+        "ActivityStreamMode":{"shape":"ActivityStreamMode"},
+        "ActivityStreamStatus":{"shape":"ActivityStreamStatus"},
+        "ActivityStreamKmsKeyId":{"shape":"String"},
+        "ActivityStreamKinesisStreamName":{"shape":"String"},
         "CopyTagsToSnapshot":{"shape":"Boolean"}
       },
       "wrapper":true
@@ -6214,6 +6273,30 @@
         "db-cluster-snapshot"
       ]
     },
+    "StartActivityStreamRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "Mode",
+        "KmsKeyId"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"String"},
+        "Mode":{"shape":"ActivityStreamMode"},
+        "KmsKeyId":{"shape":"String"},
+        "ApplyImmediately":{"shape":"BooleanOptional"}
+      }
+    },
+    "StartActivityStreamResponse":{
+      "type":"structure",
+      "members":{
+        "KmsKeyId":{"shape":"String"},
+        "KinesisStreamName":{"shape":"String"},
+        "Status":{"shape":"ActivityStreamStatus"},
+        "Mode":{"shape":"ActivityStreamMode"},
+        "ApplyImmediately":{"shape":"Boolean"}
+      }
+    },
     "StartDBClusterMessage":{
       "type":"structure",
       "required":["DBClusterIdentifier"],
@@ -6238,6 +6321,22 @@
       "type":"structure",
       "members":{
         "DBInstance":{"shape":"DBInstance"}
+      }
+    },
+    "StopActivityStreamRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"String"},
+        "ApplyImmediately":{"shape":"BooleanOptional"}
+      }
+    },
+    "StopActivityStreamResponse":{
+      "type":"structure",
+      "members":{
+        "KmsKeyId":{"shape":"String"},
+        "KinesisStreamName":{"shape":"String"},
+        "Status":{"shape":"ActivityStreamStatus"}
       }
     },
     "StopDBClusterMessage":{
