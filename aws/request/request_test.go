@@ -3,6 +3,7 @@ package request_test
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -27,6 +28,28 @@ import (
 	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/private/protocol/rest"
+)
+
+type tempNetworkError struct {
+	op     string
+	msg    string
+	isTemp bool
+}
+
+func (e *tempNetworkError) Temporary() bool { return e.isTemp }
+func (e *tempNetworkError) Error() string {
+	return fmt.Sprintf("%s: %s", e.op, e.msg)
+}
+
+var (
+	// net.OpError accept, are always temporary
+	errAcceptConnectionResetStub = &tempNetworkError{isTemp: true, op: "accept", msg: "connection reset"}
+
+	// net.OpError read for ECONNRESET is not temporary.
+	errReadConnectionResetStub = &tempNetworkError{isTemp: false, op: "read", msg: "connection reset"}
+
+	// Generic connection reset error
+	errConnectionResetStub = errors.New("connection reset")
 )
 
 type testData struct {
