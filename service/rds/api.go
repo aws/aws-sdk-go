@@ -16981,10 +16981,6 @@ type DBCluster struct {
 	// Specifies the ID that Amazon Route 53 assigns when you create a hosted zone.
 	HostedZoneId *string `type:"string"`
 
-	//
-	// HTTP endpoint functionality is in beta for Aurora Serverless and is subject
-	// to change.
-	//
 	// A value that indicates whether the HTTP endpoint for an Aurora Serverless
 	// DB cluster is enabled.
 	//
@@ -16992,8 +16988,7 @@ type DBCluster struct {
 	// for running SQL queries on the Aurora Serverless DB cluster. You can also
 	// query your database from inside the RDS console with the query editor.
 	//
-	// For more information about Aurora Serverless, see Using Amazon Aurora Serverless
-	// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html)
+	// For more information, see Using the Data API for Aurora Serverless (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
 	// in the Amazon Aurora User Guide.
 	HttpEndpointEnabled *bool `type:"boolean"`
 
@@ -26601,10 +26596,6 @@ type ModifyDBClusterInput struct {
 	// deletion protection is disabled.
 	DeletionProtection *bool `type:"boolean"`
 
-	//
-	// HTTP endpoint functionality is in beta for Aurora Serverless and is subject
-	// to change.
-	//
 	// A value that indicates whether to enable the HTTP endpoint for an Aurora
 	// Serverless DB cluster. By default, the HTTP endpoint is disabled.
 	//
@@ -26612,8 +26603,7 @@ type ModifyDBClusterInput struct {
 	// for running SQL queries on the Aurora Serverless DB cluster. You can also
 	// query your database from inside the RDS console with the query editor.
 	//
-	// For more information about Aurora Serverless, see Using Amazon Aurora Serverless
-	// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html)
+	// For more information, see Using the Data API for Aurora Serverless (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
 	// in the Amazon Aurora User Guide.
 	EnableHttpEndpoint *bool `type:"boolean"`
 

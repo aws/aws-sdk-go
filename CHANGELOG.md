@@ -1,3 +1,13 @@
+Release v1.19.42 (2019-06-03)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * Amazon EC2 I3en instances are the new storage-optimized instances offering up to 60 TB NVMe SSD instance storage and up to 100 Gbps of network bandwidth.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/rds`: Updates service documentation
+  * Amazon RDS Data API is generally available. Removing beta notes in the documentation.
+
 Release v1.19.41 (2019-05-30)
 ===
 

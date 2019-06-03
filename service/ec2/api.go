@@ -90433,6 +90433,27 @@ const (
 	// InstanceTypeI3Metal is a InstanceType enum value
 	InstanceTypeI3Metal = "i3.metal"
 
+	// InstanceTypeI3enLarge is a InstanceType enum value
+	InstanceTypeI3enLarge = "i3en.large"
+
+	// InstanceTypeI3enXlarge is a InstanceType enum value
+	InstanceTypeI3enXlarge = "i3en.xlarge"
+
+	// InstanceTypeI3en2xlarge is a InstanceType enum value
+	InstanceTypeI3en2xlarge = "i3en.2xlarge"
+
+	// InstanceTypeI3en3xlarge is a InstanceType enum value
+	InstanceTypeI3en3xlarge = "i3en.3xlarge"
+
+	// InstanceTypeI3en6xlarge is a InstanceType enum value
+	InstanceTypeI3en6xlarge = "i3en.6xlarge"
+
+	// InstanceTypeI3en12xlarge is a InstanceType enum value
+	InstanceTypeI3en12xlarge = "i3en.12xlarge"
+
+	// InstanceTypeI3en24xlarge is a InstanceType enum value
+	InstanceTypeI3en24xlarge = "i3en.24xlarge"
+
 	// InstanceTypeHi14xlarge is a InstanceType enum value
 	InstanceTypeHi14xlarge = "hi1.4xlarge"
 
