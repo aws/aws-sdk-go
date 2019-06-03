@@ -24,17 +24,6 @@ type DownloadWithIterator interface {
 	DownloadWithIterator(aws.Context, s3manager.BatchDownloadIterator, ...func(*s3manager.Downloader)) error
 }
 
-// NewDownloader is the interface type for the contained method of the same name.
-type NewDownloader interface {
-	NewDownloader(client.ConfigProvider, ...func(*s3manager.Downloader)) *s3manager.Downloader
-}
-
-// NewDownloaderWithClient is the interface type for the contained method of the same name.
-type NewDownloaderWithClient interface {
-	NewDownloaderWithClient(s3iface.S3API, ...func(*s3manager.Downloader)) *s3manager.Downloader
-}
-
-
 // UploaderAPI is the interface type for s3manager.Uploader.
 type UploaderAPI interface {
 	Upload(*s3manager.UploadInput, ...func(*s3manager.Uploader)) (*s3manager.UploadOutput, error)
@@ -47,17 +36,6 @@ var _ UploaderAPI = (*s3manager.Uploader)(nil)
 type UploadWithIterator interface {
 	UploadWithIterator(aws.Context, s3manager.BatchUploadIterator, ...func(*s3manager.Uploader)) error
 }
-
-// NewUploader is the interface type for the contained method of the same name.
-type NewUploader interface {
-	NewUploader(client.ConfigProvider, ...func(*s3manager.Uploader)) *s3manager.Uploader
-}
-
-// NewUploaderWithClient is the interface type for the contained method of the same name.
-type NewUploaderWithClient interface {
-	NewUploaderWithClient(s3iface.S3API, ...func(*s3manager.Uploader)) *s3manager.Uploader
-}
-
 
 // BatchDeleteAPI is the interface type for BatchDelete (separated for user to compose).
 type BatchDeleteAPI interface {
