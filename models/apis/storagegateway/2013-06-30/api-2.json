@@ -924,6 +924,19 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "UpdateSMBSecurityStrategy":{
+      "name":"UpdateSMBSecurityStrategy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateSMBSecurityStrategyInput"},
+      "output":{"shape":"UpdateSMBSecurityStrategyOutput"},
+      "errors":[
+        {"shape":"InvalidGatewayRequestException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "UpdateSnapshotSchedule":{
       "name":"UpdateSnapshotSchedule",
       "http":{
@@ -1610,7 +1623,8 @@
         "LastSoftwareUpdate":{"shape":"LastSoftwareUpdate"},
         "Ec2InstanceId":{"shape":"Ec2InstanceId"},
         "Ec2InstanceRegion":{"shape":"Ec2InstanceRegion"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "VPCEndpoint":{"shape":"string"}
       }
     },
     "DescribeMaintenanceStartTimeInput":{
@@ -1669,7 +1683,8 @@
       "members":{
         "GatewayARN":{"shape":"GatewayARN"},
         "DomainName":{"shape":"DomainName"},
-        "SMBGuestPasswordSet":{"shape":"Boolean"}
+        "SMBGuestPasswordSet":{"shape":"Boolean"},
+        "SMBSecurityStrategy":{"shape":"SMBSecurityStrategy"}
       }
     },
     "DescribeSnapshotScheduleInput":{
@@ -2581,6 +2596,14 @@
       "pattern":"^[ -~]+$",
       "sensitive":true
     },
+    "SMBSecurityStrategy":{
+      "type":"string",
+      "enum":[
+        "ClientSpecified",
+        "MandatorySigning",
+        "MandatoryEncryption"
+      ]
+    },
     "ServiceUnavailableError":{
       "type":"structure",
       "members":{
@@ -2969,6 +2992,23 @@
       "type":"structure",
       "members":{
         "FileShareARN":{"shape":"FileShareARN"}
+      }
+    },
+    "UpdateSMBSecurityStrategyInput":{
+      "type":"structure",
+      "required":[
+        "GatewayARN",
+        "SMBSecurityStrategy"
+      ],
+      "members":{
+        "GatewayARN":{"shape":"GatewayARN"},
+        "SMBSecurityStrategy":{"shape":"SMBSecurityStrategy"}
+      }
+    },
+    "UpdateSMBSecurityStrategyOutput":{
+      "type":"structure",
+      "members":{
+        "GatewayARN":{"shape":"GatewayARN"}
       }
     },
     "UpdateSnapshotScheduleInput":{
