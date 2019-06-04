@@ -3309,7 +3309,8 @@
         "TagSpecifications":{
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
-        }
+        },
+        "HostRecovery":{"shape":"HostRecovery"}
       }
     },
     "AllocateHostsResult":{
@@ -3335,7 +3336,8 @@
         "under-assessment",
         "permanent-failure",
         "released",
-        "released-permanent-failure"
+        "released-permanent-failure",
+        "pending"
       ]
     },
     "AllocationStrategy":{
@@ -12650,6 +12652,10 @@
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
+        },
+        "HostRecovery":{
+          "shape":"HostRecovery",
+          "locationName":"hostRecovery"
         }
       }
     },
@@ -12740,6 +12746,13 @@
           "locationName":"totalVCpus"
         }
       }
+    },
+    "HostRecovery":{
+      "type":"string",
+      "enum":[
+        "on",
+        "off"
+      ]
     },
     "HostReservation":{
       "type":"structure",
@@ -15913,10 +15926,7 @@
     },
     "ModifyHostsRequest":{
       "type":"structure",
-      "required":[
-        "AutoPlacement",
-        "HostIds"
-      ],
+      "required":["HostIds"],
       "members":{
         "AutoPlacement":{
           "shape":"AutoPlacement",
@@ -15925,7 +15935,8 @@
         "HostIds":{
           "shape":"RequestHostIdList",
           "locationName":"hostId"
-        }
+        },
+        "HostRecovery":{"shape":"HostRecovery"}
       }
     },
     "ModifyHostsResult":{

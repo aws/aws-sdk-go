@@ -267,7 +267,7 @@
     "CreateRole": [
       {
         "input": {
-          "AssumeRolePolicyDocument": "<URL-encoded-JSON>",
+          "AssumeRolePolicyDocument": "<Stringified-JSON>",
           "Path": "/",
           "RoleName": "Test-Role"
         },
@@ -287,7 +287,7 @@
           "output": {
           }
         },
-        "description": "The following command creates a role named Test-Role and attaches a trust policy to it that is provided as a URL-encoded JSON string.",
+        "description": "The following command creates a role named Test-Role and attaches a trust policy that you must convert from JSON to a string. Upon success, the response includes the same policy as a URL-encoded JSON string.",
         "id": "eaaa4b5f-51f1-4f73-b0d3-30127040eff8",
         "title": "To create an IAM role"
       }

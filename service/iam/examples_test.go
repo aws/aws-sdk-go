@@ -515,11 +515,12 @@ func ExampleIAM_CreateOpenIDConnectProvider_shared00() {
 // To create an IAM role
 //
 // The following command creates a role named Test-Role and attaches a trust policy
-// to it that is provided as a URL-encoded JSON string.
+// that you must convert from JSON to a string. Upon success, the response includes
+// the same policy as a URL-encoded JSON string.
 func ExampleIAM_CreateRole_shared00() {
 	svc := iam.New(session.New())
 	input := &iam.CreateRoleInput{
-		AssumeRolePolicyDocument: aws.String("<URL-encoded-JSON>"),
+		AssumeRolePolicyDocument: aws.String("<Stringified-JSON>"),
 		Path:                     aws.String("/"),
 		RoleName:                 aws.String("Test-Role"),
 	}

@@ -5432,6 +5432,8 @@
     },
     "policyPathType":{
       "type":"string",
+      "max":512,
+      "min":1,
       "pattern":"((/[A-Za-z0-9\\.,\\+@=_-]+)*)/"
     },
     "policyScopeType":{

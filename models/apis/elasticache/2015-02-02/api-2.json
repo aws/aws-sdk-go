@@ -48,6 +48,38 @@
         {"shape":"InvalidParameterCombinationException"}
       ]
     },
+    "BatchApplyUpdateAction":{
+      "name":"BatchApplyUpdateAction",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchApplyUpdateActionMessage"},
+      "output":{
+        "shape":"UpdateActionResultsMessage",
+        "resultWrapper":"BatchApplyUpdateActionResult"
+      },
+      "errors":[
+        {"shape":"ServiceUpdateNotFoundFault"},
+        {"shape":"InvalidParameterValueException"}
+      ]
+    },
+    "BatchStopUpdateAction":{
+      "name":"BatchStopUpdateAction",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchStopUpdateActionMessage"},
+      "output":{
+        "shape":"UpdateActionResultsMessage",
+        "resultWrapper":"BatchStopUpdateActionResult"
+      },
+      "errors":[
+        {"shape":"ServiceUpdateNotFoundFault"},
+        {"shape":"InvalidParameterValueException"}
+      ]
+    },
     "CopySnapshot":{
       "name":"CopySnapshot",
       "http":{
@@ -507,6 +539,23 @@
         {"shape":"InvalidParameterCombinationException"}
       ]
     },
+    "DescribeServiceUpdates":{
+      "name":"DescribeServiceUpdates",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeServiceUpdatesMessage"},
+      "output":{
+        "shape":"ServiceUpdatesMessage",
+        "resultWrapper":"DescribeServiceUpdatesResult"
+      },
+      "errors":[
+        {"shape":"ServiceUpdateNotFoundFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
+      ]
+    },
     "DescribeSnapshots":{
       "name":"DescribeSnapshots",
       "http":{
@@ -521,6 +570,22 @@
       "errors":[
         {"shape":"CacheClusterNotFoundFault"},
         {"shape":"SnapshotNotFoundFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
+      ]
+    },
+    "DescribeUpdateActions":{
+      "name":"DescribeUpdateActions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeUpdateActionsMessage"},
+      "output":{
+        "shape":"UpdateActionsMessage",
+        "resultWrapper":"DescribeUpdateActionsResult"
+      },
+      "errors":[
         {"shape":"InvalidParameterValueException"},
         {"shape":"InvalidParameterCombinationException"}
       ]
@@ -916,6 +981,28 @@
       }
     },
     "AwsQueryErrorMessage":{"type":"string"},
+    "BatchApplyUpdateActionMessage":{
+      "type":"structure",
+      "required":[
+        "ReplicationGroupIds",
+        "ServiceUpdateName"
+      ],
+      "members":{
+        "ReplicationGroupIds":{"shape":"ReplicationGroupIdList"},
+        "ServiceUpdateName":{"shape":"String"}
+      }
+    },
+    "BatchStopUpdateActionMessage":{
+      "type":"structure",
+      "required":[
+        "ReplicationGroupIds",
+        "ServiceUpdateName"
+      ],
+      "members":{
+        "ReplicationGroupIds":{"shape":"ReplicationGroupIdList"},
+        "ServiceUpdateName":{"shape":"String"}
+      }
+    },
     "Boolean":{"type":"boolean"},
     "BooleanOptional":{"type":"boolean"},
     "CacheCluster":{
@@ -1706,6 +1793,15 @@
         "Marker":{"shape":"String"}
       }
     },
+    "DescribeServiceUpdatesMessage":{
+      "type":"structure",
+      "members":{
+        "ServiceUpdateName":{"shape":"String"},
+        "ServiceUpdateStatus":{"shape":"ServiceUpdateStatusList"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
+      }
+    },
     "DescribeSnapshotsListMessage":{
       "type":"structure",
       "members":{
@@ -1723,6 +1819,19 @@
         "Marker":{"shape":"String"},
         "MaxRecords":{"shape":"IntegerOptional"},
         "ShowNodeGroupConfig":{"shape":"BooleanOptional"}
+      }
+    },
+    "DescribeUpdateActionsMessage":{
+      "type":"structure",
+      "members":{
+        "ServiceUpdateName":{"shape":"String"},
+        "ReplicationGroupIds":{"shape":"ReplicationGroupIdList"},
+        "ServiceUpdateStatus":{"shape":"ServiceUpdateStatusList"},
+        "ServiceUpdateTimeRange":{"shape":"TimeRangeFilter"},
+        "UpdateActionStatus":{"shape":"UpdateActionStatusList"},
+        "ShowNodeLevelUpdateStatus":{"shape":"BooleanOptional"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
       }
     },
     "Double":{"type":"double"},
@@ -2117,6 +2226,27 @@
         "locationName":"NodeGroupMember"
       }
     },
+    "NodeGroupMemberUpdateStatus":{
+      "type":"structure",
+      "members":{
+        "CacheClusterId":{"shape":"String"},
+        "CacheNodeId":{"shape":"String"},
+        "NodeUpdateStatus":{"shape":"NodeUpdateStatus"},
+        "NodeDeletionDate":{"shape":"TStamp"},
+        "NodeUpdateStartDate":{"shape":"TStamp"},
+        "NodeUpdateEndDate":{"shape":"TStamp"},
+        "NodeUpdateInitiatedBy":{"shape":"NodeUpdateInitiatedBy"},
+        "NodeUpdateInitiatedDate":{"shape":"TStamp"},
+        "NodeUpdateStatusModifiedDate":{"shape":"TStamp"}
+      }
+    },
+    "NodeGroupMemberUpdateStatusList":{
+      "type":"list",
+      "member":{
+        "shape":"NodeGroupMemberUpdateStatus",
+        "locationName":"NodeGroupMemberUpdateStatus"
+      }
+    },
     "NodeGroupNotFoundFault":{
       "type":"structure",
       "members":{
@@ -2127,6 +2257,20 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "NodeGroupUpdateStatus":{
+      "type":"structure",
+      "members":{
+        "NodeGroupId":{"shape":"String"},
+        "NodeGroupMemberUpdateStatus":{"shape":"NodeGroupMemberUpdateStatusList"}
+      }
+    },
+    "NodeGroupUpdateStatusList":{
+      "type":"list",
+      "member":{
+        "shape":"NodeGroupUpdateStatus",
+        "locationName":"NodeGroupUpdateStatus"
+      }
     },
     "NodeGroupsPerReplicationGroupQuotaExceededFault":{
       "type":"structure",
@@ -2199,6 +2343,24 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "NodeUpdateInitiatedBy":{
+      "type":"string",
+      "enum":[
+        "system",
+        "customer"
+      ]
+    },
+    "NodeUpdateStatus":{
+      "type":"string",
+      "enum":[
+        "not-applied",
+        "waiting-to-start",
+        "in-progress",
+        "stopping",
+        "stopped",
+        "complete"
+      ]
+    },
     "NotificationConfiguration":{
       "type":"structure",
       "members":{
@@ -2262,6 +2424,21 @@
       "member":{
         "shape":"String",
         "locationName":"PreferredAvailabilityZone"
+      }
+    },
+    "ProcessedUpdateAction":{
+      "type":"structure",
+      "members":{
+        "ReplicationGroupId":{"shape":"String"},
+        "ServiceUpdateName":{"shape":"String"},
+        "UpdateActionStatus":{"shape":"UpdateActionStatus"}
+      }
+    },
+    "ProcessedUpdateActionList":{
+      "type":"list",
+      "member":{
+        "shape":"ProcessedUpdateAction",
+        "locationName":"ProcessedUpdateAction"
       }
     },
     "PurchaseReservedCacheNodesOfferingMessage":{
@@ -2365,6 +2542,11 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "ReplicationGroupIdList":{
+      "type":"list",
+      "member":{"shape":"String"},
+      "max":20
     },
     "ReplicationGroupList":{
       "type":"list",
@@ -2581,6 +2763,82 @@
       },
       "exception":true
     },
+    "ServiceUpdate":{
+      "type":"structure",
+      "members":{
+        "ServiceUpdateName":{"shape":"String"},
+        "ServiceUpdateReleaseDate":{"shape":"TStamp"},
+        "ServiceUpdateEndDate":{"shape":"TStamp"},
+        "ServiceUpdateSeverity":{"shape":"ServiceUpdateSeverity"},
+        "ServiceUpdateRecommendedApplyByDate":{"shape":"TStamp"},
+        "ServiceUpdateStatus":{"shape":"ServiceUpdateStatus"},
+        "ServiceUpdateDescription":{"shape":"String"},
+        "ServiceUpdateType":{"shape":"ServiceUpdateType"},
+        "Engine":{"shape":"String"},
+        "EngineVersion":{"shape":"String"},
+        "AutoUpdateAfterRecommendedApplyByDate":{"shape":"BooleanOptional"},
+        "EstimatedUpdateTime":{"shape":"String"}
+      }
+    },
+    "ServiceUpdateList":{
+      "type":"list",
+      "member":{
+        "shape":"ServiceUpdate",
+        "locationName":"ServiceUpdate"
+      }
+    },
+    "ServiceUpdateNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ServiceUpdateNotFoundFault",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ServiceUpdateSeverity":{
+      "type":"string",
+      "enum":[
+        "critical",
+        "important",
+        "medium",
+        "low"
+      ]
+    },
+    "ServiceUpdateStatus":{
+      "type":"string",
+      "enum":[
+        "available",
+        "cancelled",
+        "expired"
+      ]
+    },
+    "ServiceUpdateStatusList":{
+      "type":"list",
+      "member":{"shape":"ServiceUpdateStatus"},
+      "max":3
+    },
+    "ServiceUpdateType":{
+      "type":"string",
+      "enum":["security-update"]
+    },
+    "ServiceUpdatesMessage":{
+      "type":"structure",
+      "members":{
+        "Marker":{"shape":"String"},
+        "ServiceUpdates":{"shape":"ServiceUpdateList"}
+      }
+    },
+    "SlaMet":{
+      "type":"string",
+      "enum":[
+        "yes",
+        "no",
+        "n/a"
+      ]
+    },
     "SlotMigration":{
       "type":"structure",
       "members":{
@@ -2787,6 +3045,85 @@
       "type":"structure",
       "members":{
         "ReplicationGroup":{"shape":"ReplicationGroup"}
+      }
+    },
+    "TimeRangeFilter":{
+      "type":"structure",
+      "members":{
+        "StartTime":{"shape":"TStamp"},
+        "EndTime":{"shape":"TStamp"}
+      }
+    },
+    "UnprocessedUpdateAction":{
+      "type":"structure",
+      "members":{
+        "ReplicationGroupId":{"shape":"String"},
+        "ServiceUpdateName":{"shape":"String"},
+        "ErrorType":{"shape":"String"},
+        "ErrorMessage":{"shape":"String"}
+      }
+    },
+    "UnprocessedUpdateActionList":{
+      "type":"list",
+      "member":{
+        "shape":"UnprocessedUpdateAction",
+        "locationName":"UnprocessedUpdateAction"
+      }
+    },
+    "UpdateAction":{
+      "type":"structure",
+      "members":{
+        "ReplicationGroupId":{"shape":"String"},
+        "ServiceUpdateName":{"shape":"String"},
+        "ServiceUpdateReleaseDate":{"shape":"TStamp"},
+        "ServiceUpdateSeverity":{"shape":"ServiceUpdateSeverity"},
+        "ServiceUpdateStatus":{"shape":"ServiceUpdateStatus"},
+        "ServiceUpdateRecommendedApplyByDate":{"shape":"TStamp"},
+        "ServiceUpdateType":{"shape":"ServiceUpdateType"},
+        "UpdateActionAvailableDate":{"shape":"TStamp"},
+        "UpdateActionStatus":{"shape":"UpdateActionStatus"},
+        "NodesUpdated":{"shape":"String"},
+        "UpdateActionStatusModifiedDate":{"shape":"TStamp"},
+        "SlaMet":{"shape":"SlaMet"},
+        "NodeGroupUpdateStatus":{"shape":"NodeGroupUpdateStatusList"},
+        "EstimatedUpdateTime":{"shape":"String"}
+      }
+    },
+    "UpdateActionList":{
+      "type":"list",
+      "member":{
+        "shape":"UpdateAction",
+        "locationName":"UpdateAction"
+      }
+    },
+    "UpdateActionResultsMessage":{
+      "type":"structure",
+      "members":{
+        "ProcessedUpdateActions":{"shape":"ProcessedUpdateActionList"},
+        "UnprocessedUpdateActions":{"shape":"UnprocessedUpdateActionList"}
+      }
+    },
+    "UpdateActionStatus":{
+      "type":"string",
+      "enum":[
+        "not-applied",
+        "waiting-to-start",
+        "in-progress",
+        "stopping",
+        "stopped",
+        "complete"
+      ]
+    },
+    "UpdateActionStatusList":{
+      "type":"list",
+      "member":{"shape":"UpdateActionStatus"},
+      "max":6
+    },
+    "UpdateActionsMessage":{
+      "type":"structure",
+      "members":{
+        "Marker":{"shape":"String"},
+        "UpdateActions":{"shape":"UpdateActionList"}
       }
     }
   }
