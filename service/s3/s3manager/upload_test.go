@@ -1,3 +1,5 @@
+// +build go1.7
+
 package s3manager_test
 
 import (
@@ -9,10 +11,13 @@ import (
 	"net/http/httptest"
 	"reflect"
 	"regexp"
+	"runtime"
 	"sort"
+	"strconv"
 	"strings"
 	"sync"
 	"testing"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
@@ -1030,3 +1035,257 @@ func TestUploadMaxPartsEOF(t *testing.T) {
 		t.Errorf("expect %v ops, got %v", e, a)
 	}
 }
+
+func TestUploadRetry(t *testing.T) {
+	if runtime.GOOS == "darwin" && strings.Contains(runtime.Version(), "go1.7") {
+		t.Skip("TestUploadRetry unstable for Go 1.7 on darwin, see #2636")
+	}
+
+	cases := map[string]struct {
+		Body         io.Reader
+		PartHandlers func(testing.TB) []http.Handler
+	}{
+		"success upload bytes.Buffer": {
+			Body: bytes.NewBuffer(make([]byte, s3manager.DefaultUploadPartSize*2)),
+			PartHandlers: func(tb testing.TB) []http.Handler {
+				return []http.Handler{
+					&failPartHandler{
+						tb:             tb,
+						failsRemaining: 10,
+						successHandler: successPartHandler{tb: tb},
+					},
+					&failPartHandler{
+						tb:             tb,
+						failsRemaining: 10,
+						successHandler: successPartHandler{tb: tb},
+					},
+				}
+			},
+		},
+		"success upload bytes.Reader": {
+			Body: bytes.NewReader(make([]byte, s3manager.DefaultUploadPartSize*2)),
+			PartHandlers: func(tb testing.TB) []http.Handler {
+				return []http.Handler{
+					&failPartHandler{
+						tb:             tb,
+						failsRemaining: 10,
+						successHandler: successPartHandler{tb: tb},
+					},
+					&failPartHandler{
+						tb:             tb,
+						failsRemaining: 10,
+						successHandler: successPartHandler{tb: tb},
+					},
+				}
+			},
+		},
+	}
+
+	for name, c := range cases {
+		t.Run(name, func(t *testing.T) {
+			mux := newMockS3UploadServer(t, c.PartHandlers(t))
+			server := httptest.NewServer(mux)
+			defer server.Close()
+
+			sess := unit.Session.Copy(&aws.Config{
+				Endpoint:         aws.String(server.URL),
+				S3ForcePathStyle: aws.Bool(true),
+				DisableSSL:       aws.Bool(true),
+				Logger:           t,
+				MaxRetries:       aws.Int(15),
+				SleepDelay:       func(time.Duration) {},
+
+				LogLevel: aws.LogLevel(
+					aws.LogDebugWithRequestErrors | aws.LogDebugWithRequestRetries,
+				),
+				//Credentials: credentials.AnonymousCredentials,
+			})
+
+			uploader := s3manager.NewUploader(sess, func(u *s3manager.Uploader) {
+				//				u.Concurrency = 1
+			})
+			_, err := uploader.Upload(&s3manager.UploadInput{
+				Bucket: aws.String("bucket"),
+				Key:    aws.String("key"),
+				Body:   c.Body,
+			})
+
+			if err != nil {
+				t.Fatalf("expect no error, got %v", err)
+			}
+		})
+	}
+}
+
+type mockS3UploadServer struct {
+	*http.ServeMux
+
+	tb          testing.TB
+	partHandler []http.Handler
+}
+
+func newMockS3UploadServer(tb testing.TB, partHandler []http.Handler) *mockS3UploadServer {
+	s := &mockS3UploadServer{
+		ServeMux:    http.NewServeMux(),
+		partHandler: partHandler,
+		tb:          tb,
+	}
+
+	s.HandleFunc("/", s.handleRequest)
+
+	return s
+}
+
+func (s mockS3UploadServer) handleRequest(w http.ResponseWriter, r *http.Request) {
+	defer r.Body.Close()
+
+	_, hasUploads := r.URL.Query()["uploads"]
+
+	switch {
+	case r.Method == "POST" && hasUploads:
+		// CreateMultipartUpload
+		w.Header().Set("Content-Length", strconv.Itoa(len(createUploadResp)))
+		w.Write([]byte(createUploadResp))
+
+	case r.Method == "PUT":
+		// UploadPart
+		partNumStr := r.URL.Query().Get("partNumber")
+		id, err := strconv.Atoi(partNumStr)
+		if err != nil {
+			failRequest(w, 400, "BadRequest",
+				fmt.Sprintf("unable to parse partNumber, %q, %v",
+					partNumStr, err))
+			return
+		}
+		id--
+		if id < 0 || id >= len(s.partHandler) {
+			failRequest(w, 400, "BadRequest",
+				fmt.Sprintf("invalid partNumber %v", id))
+			return
+		}
+		s.partHandler[id].ServeHTTP(w, r)
+
+	case r.Method == "POST":
+		// CompleteMultipartUpload
+		w.Header().Set("Content-Length", strconv.Itoa(len(completeUploadResp)))
+		w.Write([]byte(completeUploadResp))
+
+	case r.Method == "DELETE":
+		// AbortMultipartUpload
+		w.Header().Set("Content-Length", strconv.Itoa(len(abortUploadResp)))
+		w.WriteHeader(200)
+		w.Write([]byte(abortUploadResp))
+
+	default:
+		failRequest(w, 400, "BadRequest",
+			fmt.Sprintf("invalid request %v %v", r.Method, r.URL))
+	}
+}
+
+func failRequest(w http.ResponseWriter, status int, code, msg string) {
+	msg = fmt.Sprintf(baseRequestErrorResp, code, msg)
+	w.Header().Set("Content-Length", strconv.Itoa(len(msg)))
+	w.WriteHeader(status)
+	w.Write([]byte(msg))
+}
+
+type successPartHandler struct {
+	tb testing.TB
+}
+
+func (h successPartHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	defer r.Body.Close()
+
+	n, err := io.Copy(ioutil.Discard, r.Body)
+	if err != nil {
+		failRequest(w, 400, "BadRequest",
+			fmt.Sprintf("failed to read body, %v", err))
+		return
+	}
+
+	contLenStr := r.Header.Get("Content-Length")
+	expectLen, err := strconv.ParseInt(contLenStr, 10, 64)
+	if err != nil {
+		h.tb.Logf("expect content-length, got %q, %v", contLenStr, err)
+		failRequest(w, 400, "BadRequest",
+			fmt.Sprintf("unable to get content-length %v", err))
+		return
+	}
+	if e, a := expectLen, n; e != a {
+		h.tb.Logf("expect %v read, got %v", e, a)
+		failRequest(w, 400, "BadRequest",
+			fmt.Sprintf(
+				"content-length and body do not match, %v, %v", e, a))
+		return
+	}
+
+	w.Header().Set("Content-Length", strconv.Itoa(len(uploadPartResp)))
+	w.Write([]byte(uploadPartResp))
+}
+
+type failPartHandler struct {
+	tb testing.TB
+
+	failsRemaining int
+	successHandler http.Handler
+}
+
+func (h *failPartHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	defer r.Body.Close()
+
+	if h.failsRemaining == 0 && h.successHandler != nil {
+		h.successHandler.ServeHTTP(w, r)
+		return
+	}
+
+	contLenStr := r.Header.Get("Content-Length")
+	expectLen, err := strconv.ParseInt(contLenStr, 10, 64)
+	if err != nil {
+		h.tb.Logf("expect content-length, got %q, %v", contLenStr, err)
+		failRequest(w, 400, "BadRequest",
+			fmt.Sprintf("unable to get content-length %v", err))
+		return
+	}
+
+	io.Copy(ioutil.Discard, io.LimitReader(r.Body, expectLen/2))
+
+	failRequest(w, 500, "InternalException",
+		fmt.Sprintf("mock error, partNumber %v", r.URL.Query().Get("partNumber")))
+
+	h.failsRemaining--
+}
+
+const createUploadResp = `
+<CreateMultipartUploadResponse>
+  <Bucket>bucket</Bucket>
+  <Key>key</Key>
+  <UploadId>abc123</UploadId>
+</CreateMultipartUploadResponse>
+`
+const uploadPartResp = `
+<UploadPartResponse>
+  <ETag>key</ETag>
+</UploadPartResponse>
+`
+const baseRequestErrorResp = `
+<Error>
+  <Code>%s</Code>
+  <Message>%s</Message>
+  <RequestId>request-id</RequestId>
+  <HostId>host-id</HostId>
+</Error>
+`
+const completeUploadResp = `
+<CompleteMultipartUploadResponse>
+  <Bucket>bucket</Bucket>
+  <Key>key</Key>
+  <ETag>key</ETag>
+  <Location>https://bucket.us-west-2.amazonaws.com/key</Location>
+  <UploadId>abc123</UploadId>
+</CompleteMultipartUploadResponse>
+`
+
+const abortUploadResp = `
+<AbortMultipartUploadResponse>
+</AbortMultipartUploadResponse>
+`
