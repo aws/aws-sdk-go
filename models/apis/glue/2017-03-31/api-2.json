@@ -3587,7 +3587,8 @@
       "type":"structure",
       "members":{
         "Name":{"shape":"GenericString"},
-        "ScriptLocation":{"shape":"ScriptLocationString"}
+        "ScriptLocation":{"shape":"ScriptLocationString"},
+        "PythonVersion":{"shape":"PythonVersionString"}
       }
     },
     "JobList":{
@@ -4081,6 +4082,10 @@
       }
     },
     "PythonScript":{"type":"string"},
+    "PythonVersionString":{
+      "type":"string",
+      "pattern":"^[2-3]$"
+    },
     "ResetJobBookmarkRequest":{
       "type":"structure",
       "required":["JobName"],
