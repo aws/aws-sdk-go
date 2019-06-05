@@ -1,3 +1,10 @@
+Release v1.19.44 (2019-06-05)
+===
+
+### Service Client Updates
+* `service/glue`: Updates service API and documentation
+  * Support specifying python version for Python shell jobs. A new parameter PythonVersion is added to the JobCommand data type.
+
 Release v1.19.43 (2019-06-04)
 ===
 
