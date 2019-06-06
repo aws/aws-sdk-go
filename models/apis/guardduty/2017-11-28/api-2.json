@@ -1,3039 +1,3004 @@
 {
-  "metadata" : {
-    "apiVersion" : "2017-11-28",
-    "endpointPrefix" : "guardduty",
-    "signingName" : "guardduty",
-    "serviceFullName" : "Amazon GuardDuty",
-    "serviceId" : "GuardDuty",
-    "protocol" : "rest-json",
-    "jsonVersion" : "1.1",
-    "uid" : "guardduty-2017-11-28",
-    "signatureVersion" : "v4"
+  "version":"2.0",
+  "metadata":{
+    "apiVersion":"2017-11-28",
+    "endpointPrefix":"guardduty",
+    "jsonVersion":"1.1",
+    "protocol":"rest-json",
+    "serviceFullName":"Amazon GuardDuty",
+    "serviceId":"GuardDuty",
+    "signatureVersion":"v4",
+    "signingName":"guardduty",
+    "uid":"guardduty-2017-11-28"
   },
-  "operations" : {
-    "AcceptInvitation" : {
-      "name" : "AcceptInvitation",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector/{detectorId}/master",
-        "responseCode" : 200
+  "operations":{
+    "AcceptInvitation":{
+      "name":"AcceptInvitation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/master",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "AcceptInvitationRequest"
-      },
-      "output" : {
-        "shape" : "AcceptInvitationResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"AcceptInvitationRequest"},
+      "output":{"shape":"AcceptInvitationResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "ArchiveFindings" : {
-      "name" : "ArchiveFindings",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector/{detectorId}/findings/archive",
-        "responseCode" : 200
+    "ArchiveFindings":{
+      "name":"ArchiveFindings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/findings/archive",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "ArchiveFindingsRequest"
-      },
-      "output" : {
-        "shape" : "ArchiveFindingsResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"ArchiveFindingsRequest"},
+      "output":{"shape":"ArchiveFindingsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "CreateDetector" : {
-      "name" : "CreateDetector",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector",
-        "responseCode" : 200
+    "CreateDetector":{
+      "name":"CreateDetector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "CreateDetectorRequest"
-      },
-      "output" : {
-        "shape" : "CreateDetectorResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"CreateDetectorRequest"},
+      "output":{"shape":"CreateDetectorResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "CreateFilter" : {
-      "name" : "CreateFilter",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector/{detectorId}/filter",
-        "responseCode" : 200
+    "CreateFilter":{
+      "name":"CreateFilter",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/filter",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "CreateFilterRequest"
-      },
-      "output" : {
-        "shape" : "CreateFilterResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"CreateFilterRequest"},
+      "output":{"shape":"CreateFilterResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "CreateIPSet" : {
-      "name" : "CreateIPSet",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector/{detectorId}/ipset",
-        "responseCode" : 200
+    "CreateIPSet":{
+      "name":"CreateIPSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/ipset",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "CreateIPSetRequest"
-      },
-      "output" : {
-        "shape" : "CreateIPSetResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"CreateIPSetRequest"},
+      "output":{"shape":"CreateIPSetResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "CreateMembers" : {
-      "name" : "CreateMembers",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector/{detectorId}/member",
-        "responseCode" : 200
+    "CreateMembers":{
+      "name":"CreateMembers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/member",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "CreateMembersRequest"
-      },
-      "output" : {
-        "shape" : "CreateMembersResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"CreateMembersRequest"},
+      "output":{"shape":"CreateMembersResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "CreateSampleFindings" : {
-      "name" : "CreateSampleFindings",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector/{detectorId}/findings/create",
-        "responseCode" : 200
+    "CreateSampleFindings":{
+      "name":"CreateSampleFindings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/findings/create",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "CreateSampleFindingsRequest"
-      },
-      "output" : {
-        "shape" : "CreateSampleFindingsResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"CreateSampleFindingsRequest"},
+      "output":{"shape":"CreateSampleFindingsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "CreateThreatIntelSet" : {
-      "name" : "CreateThreatIntelSet",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector/{detectorId}/threatintelset",
-        "responseCode" : 200
+    "CreateThreatIntelSet":{
+      "name":"CreateThreatIntelSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/threatintelset",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "CreateThreatIntelSetRequest"
-      },
-      "output" : {
-        "shape" : "CreateThreatIntelSetResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"CreateThreatIntelSetRequest"},
+      "output":{"shape":"CreateThreatIntelSetResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "DeclineInvitations" : {
-      "name" : "DeclineInvitations",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/invitation/decline",
-        "responseCode" : 200
+    "DeclineInvitations":{
+      "name":"DeclineInvitations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/invitation/decline",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "DeclineInvitationsRequest"
-      },
-      "output" : {
-        "shape" : "DeclineInvitationsResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"DeclineInvitationsRequest"},
+      "output":{"shape":"DeclineInvitationsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "DeleteDetector" : {
-      "name" : "DeleteDetector",
-      "http" : {
-        "method" : "DELETE",
-        "requestUri" : "/detector/{detectorId}",
-        "responseCode" : 200
+    "DeleteDetector":{
+      "name":"DeleteDetector",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/detector/{detectorId}",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "DeleteDetectorRequest"
-      },
-      "output" : {
-        "shape" : "DeleteDetectorResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"DeleteDetectorRequest"},
+      "output":{"shape":"DeleteDetectorResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "DeleteFilter" : {
-      "name" : "DeleteFilter",
-      "http" : {
-        "method" : "DELETE",
-        "requestUri" : "/detector/{detectorId}/filter/{filterName}",
-        "responseCode" : 200
+    "DeleteFilter":{
+      "name":"DeleteFilter",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/detector/{detectorId}/filter/{filterName}",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "DeleteFilterRequest"
-      },
-      "output" : {
-        "shape" : "DeleteFilterResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"DeleteFilterRequest"},
+      "output":{"shape":"DeleteFilterResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "DeleteIPSet" : {
-      "name" : "DeleteIPSet",
-      "http" : {
-        "method" : "DELETE",
-        "requestUri" : "/detector/{detectorId}/ipset/{ipSetId}",
-        "responseCode" : 200
+    "DeleteIPSet":{
+      "name":"DeleteIPSet",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/detector/{detectorId}/ipset/{ipSetId}",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "DeleteIPSetRequest"
-      },
-      "output" : {
-        "shape" : "DeleteIPSetResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"DeleteIPSetRequest"},
+      "output":{"shape":"DeleteIPSetResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "DeleteInvitations" : {
-      "name" : "DeleteInvitations",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/invitation/delete",
-        "responseCode" : 200
+    "DeleteInvitations":{
+      "name":"DeleteInvitations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/invitation/delete",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "DeleteInvitationsRequest"
-      },
-      "output" : {
-        "shape" : "DeleteInvitationsResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"DeleteInvitationsRequest"},
+      "output":{"shape":"DeleteInvitationsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "DeleteMembers" : {
-      "name" : "DeleteMembers",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector/{detectorId}/member/delete",
-        "responseCode" : 200
+    "DeleteMembers":{
+      "name":"DeleteMembers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/member/delete",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "DeleteMembersRequest"
-      },
-      "output" : {
-        "shape" : "DeleteMembersResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"DeleteMembersRequest"},
+      "output":{"shape":"DeleteMembersResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "DeleteThreatIntelSet" : {
-      "name" : "DeleteThreatIntelSet",
-      "http" : {
-        "method" : "DELETE",
-        "requestUri" : "/detector/{detectorId}/threatintelset/{threatIntelSetId}",
-        "responseCode" : 200
+    "DeleteThreatIntelSet":{
+      "name":"DeleteThreatIntelSet",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/detector/{detectorId}/threatintelset/{threatIntelSetId}",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "DeleteThreatIntelSetRequest"
-      },
-      "output" : {
-        "shape" : "DeleteThreatIntelSetResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"DeleteThreatIntelSetRequest"},
+      "output":{"shape":"DeleteThreatIntelSetResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "DisassociateFromMasterAccount" : {
-      "name" : "DisassociateFromMasterAccount",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector/{detectorId}/master/disassociate",
-        "responseCode" : 200
+    "DisassociateFromMasterAccount":{
+      "name":"DisassociateFromMasterAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/master/disassociate",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "DisassociateFromMasterAccountRequest"
-      },
-      "output" : {
-        "shape" : "DisassociateFromMasterAccountResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"DisassociateFromMasterAccountRequest"},
+      "output":{"shape":"DisassociateFromMasterAccountResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "DisassociateMembers" : {
-      "name" : "DisassociateMembers",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector/{detectorId}/member/disassociate",
-        "responseCode" : 200
+    "DisassociateMembers":{
+      "name":"DisassociateMembers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/member/disassociate",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "DisassociateMembersRequest"
-      },
-      "output" : {
-        "shape" : "DisassociateMembersResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"DisassociateMembersRequest"},
+      "output":{"shape":"DisassociateMembersResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "GetDetector" : {
-      "name" : "GetDetector",
-      "http" : {
-        "method" : "GET",
-        "requestUri" : "/detector/{detectorId}",
-        "responseCode" : 200
+    "GetDetector":{
+      "name":"GetDetector",
+      "http":{
+        "method":"GET",
+        "requestUri":"/detector/{detectorId}",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "GetDetectorRequest"
-      },
-      "output" : {
-        "shape" : "GetDetectorResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"GetDetectorRequest"},
+      "output":{"shape":"GetDetectorResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "GetFilter" : {
-      "name" : "GetFilter",
-      "http" : {
-        "method" : "GET",
-        "requestUri" : "/detector/{detectorId}/filter/{filterName}",
-        "responseCode" : 200
+    "GetFilter":{
+      "name":"GetFilter",
+      "http":{
+        "method":"GET",
+        "requestUri":"/detector/{detectorId}/filter/{filterName}",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "GetFilterRequest"
-      },
-      "output" : {
-        "shape" : "GetFilterResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"GetFilterRequest"},
+      "output":{"shape":"GetFilterResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "GetFindings" : {
-      "name" : "GetFindings",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector/{detectorId}/findings/get",
-        "responseCode" : 200
+    "GetFindings":{
+      "name":"GetFindings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/findings/get",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "GetFindingsRequest"
-      },
-      "output" : {
-        "shape" : "GetFindingsResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"GetFindingsRequest"},
+      "output":{"shape":"GetFindingsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "GetFindingsStatistics" : {
-      "name" : "GetFindingsStatistics",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector/{detectorId}/findings/statistics",
-        "responseCode" : 200
+    "GetFindingsStatistics":{
+      "name":"GetFindingsStatistics",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/findings/statistics",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "GetFindingsStatisticsRequest"
-      },
-      "output" : {
-        "shape" : "GetFindingsStatisticsResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"GetFindingsStatisticsRequest"},
+      "output":{"shape":"GetFindingsStatisticsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "GetIPSet" : {
-      "name" : "GetIPSet",
-      "http" : {
-        "method" : "GET",
-        "requestUri" : "/detector/{detectorId}/ipset/{ipSetId}",
-        "responseCode" : 200
+    "GetIPSet":{
+      "name":"GetIPSet",
+      "http":{
+        "method":"GET",
+        "requestUri":"/detector/{detectorId}/ipset/{ipSetId}",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "GetIPSetRequest"
-      },
-      "output" : {
-        "shape" : "GetIPSetResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"GetIPSetRequest"},
+      "output":{"shape":"GetIPSetResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "GetInvitationsCount" : {
-      "name" : "GetInvitationsCount",
-      "http" : {
-        "method" : "GET",
-        "requestUri" : "/invitation/count",
-        "responseCode" : 200
+    "GetInvitationsCount":{
+      "name":"GetInvitationsCount",
+      "http":{
+        "method":"GET",
+        "requestUri":"/invitation/count",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "GetInvitationsCountRequest"
-      },
-      "output" : {
-        "shape" : "GetInvitationsCountResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"GetInvitationsCountRequest"},
+      "output":{"shape":"GetInvitationsCountResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "GetMasterAccount" : {
-      "name" : "GetMasterAccount",
-      "http" : {
-        "method" : "GET",
-        "requestUri" : "/detector/{detectorId}/master",
-        "responseCode" : 200
+    "GetMasterAccount":{
+      "name":"GetMasterAccount",
+      "http":{
+        "method":"GET",
+        "requestUri":"/detector/{detectorId}/master",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "GetMasterAccountRequest"
-      },
-      "output" : {
-        "shape" : "GetMasterAccountResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"GetMasterAccountRequest"},
+      "output":{"shape":"GetMasterAccountResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "GetMembers" : {
-      "name" : "GetMembers",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector/{detectorId}/member/get",
-        "responseCode" : 200
+    "GetMembers":{
+      "name":"GetMembers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/member/get",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "GetMembersRequest"
-      },
-      "output" : {
-        "shape" : "GetMembersResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"GetMembersRequest"},
+      "output":{"shape":"GetMembersResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "GetThreatIntelSet" : {
-      "name" : "GetThreatIntelSet",
-      "http" : {
-        "method" : "GET",
-        "requestUri" : "/detector/{detectorId}/threatintelset/{threatIntelSetId}",
-        "responseCode" : 200
+    "GetThreatIntelSet":{
+      "name":"GetThreatIntelSet",
+      "http":{
+        "method":"GET",
+        "requestUri":"/detector/{detectorId}/threatintelset/{threatIntelSetId}",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "GetThreatIntelSetRequest"
-      },
-      "output" : {
-        "shape" : "GetThreatIntelSetResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"GetThreatIntelSetRequest"},
+      "output":{"shape":"GetThreatIntelSetResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "InviteMembers" : {
-      "name" : "InviteMembers",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector/{detectorId}/member/invite",
-        "responseCode" : 200
+    "InviteMembers":{
+      "name":"InviteMembers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/member/invite",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "InviteMembersRequest"
-      },
-      "output" : {
-        "shape" : "InviteMembersResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"InviteMembersRequest"},
+      "output":{"shape":"InviteMembersResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "ListDetectors" : {
-      "name" : "ListDetectors",
-      "http" : {
-        "method" : "GET",
-        "requestUri" : "/detector",
-        "responseCode" : 200
+    "ListDetectors":{
+      "name":"ListDetectors",
+      "http":{
+        "method":"GET",
+        "requestUri":"/detector",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "ListDetectorsRequest"
-      },
-      "output" : {
-        "shape" : "ListDetectorsResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"ListDetectorsRequest"},
+      "output":{"shape":"ListDetectorsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "ListFilters" : {
-      "name" : "ListFilters",
-      "http" : {
-        "method" : "GET",
-        "requestUri" : "/detector/{detectorId}/filter",
-        "responseCode" : 200
+    "ListFilters":{
+      "name":"ListFilters",
+      "http":{
+        "method":"GET",
+        "requestUri":"/detector/{detectorId}/filter",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "ListFiltersRequest"
-      },
-      "output" : {
-        "shape" : "ListFiltersResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"ListFiltersRequest"},
+      "output":{"shape":"ListFiltersResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "ListFindings" : {
-      "name" : "ListFindings",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector/{detectorId}/findings",
-        "responseCode" : 200
+    "ListFindings":{
+      "name":"ListFindings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/findings",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "ListFindingsRequest"
-      },
-      "output" : {
-        "shape" : "ListFindingsResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"ListFindingsRequest"},
+      "output":{"shape":"ListFindingsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "ListIPSets" : {
-      "name" : "ListIPSets",
-      "http" : {
-        "method" : "GET",
-        "requestUri" : "/detector/{detectorId}/ipset",
-        "responseCode" : 200
+    "ListIPSets":{
+      "name":"ListIPSets",
+      "http":{
+        "method":"GET",
+        "requestUri":"/detector/{detectorId}/ipset",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "ListIPSetsRequest"
-      },
-      "output" : {
-        "shape" : "ListIPSetsResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"ListIPSetsRequest"},
+      "output":{"shape":"ListIPSetsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "ListInvitations" : {
-      "name" : "ListInvitations",
-      "http" : {
-        "method" : "GET",
-        "requestUri" : "/invitation",
-        "responseCode" : 200
+    "ListInvitations":{
+      "name":"ListInvitations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/invitation",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "ListInvitationsRequest"
-      },
-      "output" : {
-        "shape" : "ListInvitationsResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"ListInvitationsRequest"},
+      "output":{"shape":"ListInvitationsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "ListMembers" : {
-      "name" : "ListMembers",
-      "http" : {
-        "method" : "GET",
-        "requestUri" : "/detector/{detectorId}/member",
-        "responseCode" : 200
+    "ListMembers":{
+      "name":"ListMembers",
+      "http":{
+        "method":"GET",
+        "requestUri":"/detector/{detectorId}/member",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "ListMembersRequest"
-      },
-      "output" : {
-        "shape" : "ListMembersResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"ListMembersRequest"},
+      "output":{"shape":"ListMembersResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "ListThreatIntelSets" : {
-      "name" : "ListThreatIntelSets",
-      "http" : {
-        "method" : "GET",
-        "requestUri" : "/detector/{detectorId}/threatintelset",
-        "responseCode" : 200
+    "ListThreatIntelSets":{
+      "name":"ListThreatIntelSets",
+      "http":{
+        "method":"GET",
+        "requestUri":"/detector/{detectorId}/threatintelset",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "ListThreatIntelSetsRequest"
-      },
-      "output" : {
-        "shape" : "ListThreatIntelSetsResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"ListThreatIntelSetsRequest"},
+      "output":{"shape":"ListThreatIntelSetsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "StartMonitoringMembers" : {
-      "name" : "StartMonitoringMembers",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector/{detectorId}/member/start",
-        "responseCode" : 200
+    "StartMonitoringMembers":{
+      "name":"StartMonitoringMembers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/member/start",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "StartMonitoringMembersRequest"
-      },
-      "output" : {
-        "shape" : "StartMonitoringMembersResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"StartMonitoringMembersRequest"},
+      "output":{"shape":"StartMonitoringMembersResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "StopMonitoringMembers" : {
-      "name" : "StopMonitoringMembers",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector/{detectorId}/member/stop",
-        "responseCode" : 200
+    "StopMonitoringMembers":{
+      "name":"StopMonitoringMembers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/member/stop",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "StopMonitoringMembersRequest"
-      },
-      "output" : {
-        "shape" : "StopMonitoringMembersResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"StopMonitoringMembersRequest"},
+      "output":{"shape":"StopMonitoringMembersResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "UnarchiveFindings" : {
-      "name" : "UnarchiveFindings",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector/{detectorId}/findings/unarchive",
-        "responseCode" : 200
+    "UnarchiveFindings":{
+      "name":"UnarchiveFindings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/findings/unarchive",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "UnarchiveFindingsRequest"
-      },
-      "output" : {
-        "shape" : "UnarchiveFindingsResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"UnarchiveFindingsRequest"},
+      "output":{"shape":"UnarchiveFindingsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "UpdateDetector" : {
-      "name" : "UpdateDetector",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector/{detectorId}",
-        "responseCode" : 200
+    "UpdateDetector":{
+      "name":"UpdateDetector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "UpdateDetectorRequest"
-      },
-      "output" : {
-        "shape" : "UpdateDetectorResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"UpdateDetectorRequest"},
+      "output":{"shape":"UpdateDetectorResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "UpdateFilter" : {
-      "name" : "UpdateFilter",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector/{detectorId}/filter/{filterName}",
-        "responseCode" : 200
+    "UpdateFilter":{
+      "name":"UpdateFilter",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/filter/{filterName}",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "UpdateFilterRequest"
-      },
-      "output" : {
-        "shape" : "UpdateFilterResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"UpdateFilterRequest"},
+      "output":{"shape":"UpdateFilterResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "UpdateFindingsFeedback" : {
-      "name" : "UpdateFindingsFeedback",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector/{detectorId}/findings/feedback",
-        "responseCode" : 200
+    "UpdateFindingsFeedback":{
+      "name":"UpdateFindingsFeedback",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/findings/feedback",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "UpdateFindingsFeedbackRequest"
-      },
-      "output" : {
-        "shape" : "UpdateFindingsFeedbackResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"UpdateFindingsFeedbackRequest"},
+      "output":{"shape":"UpdateFindingsFeedbackResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "UpdateIPSet" : {
-      "name" : "UpdateIPSet",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector/{detectorId}/ipset/{ipSetId}",
-        "responseCode" : 200
+    "UpdateIPSet":{
+      "name":"UpdateIPSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/ipset/{ipSetId}",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "UpdateIPSetRequest"
-      },
-      "output" : {
-        "shape" : "UpdateIPSetResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"UpdateIPSetRequest"},
+      "output":{"shape":"UpdateIPSetResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     },
-    "UpdateThreatIntelSet" : {
-      "name" : "UpdateThreatIntelSet",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/detector/{detectorId}/threatintelset/{threatIntelSetId}",
-        "responseCode" : 200
+    "UpdateThreatIntelSet":{
+      "name":"UpdateThreatIntelSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/threatintelset/{threatIntelSetId}",
+        "responseCode":200
       },
-      "input" : {
-        "shape" : "UpdateThreatIntelSetRequest"
-      },
-      "output" : {
-        "shape" : "UpdateThreatIntelSetResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      }, {
-        "shape" : "InternalServerErrorException"
-      } ]
+      "input":{"shape":"UpdateThreatIntelSetRequest"},
+      "output":{"shape":"UpdateThreatIntelSetResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
     }
   },
-  "shapes" : {
-    "AcceptInvitationRequest" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
+  "shapes":{
+    "AcceptInvitationRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "MasterId",
+        "InvitationId"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
         },
-        "InvitationId" : {
-          "shape" : "InvitationId",
-          "locationName" : "invitationId"
+        "MasterId":{
+          "shape":"String",
+          "locationName":"masterId"
         },
-        "MasterId" : {
-          "shape" : "MasterId",
-          "locationName" : "masterId"
+        "InvitationId":{
+          "shape":"String",
+          "locationName":"invitationId"
+        }
+      }
+    },
+    "AcceptInvitationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "AccessKeyDetails":{
+      "type":"structure",
+      "members":{
+        "AccessKeyId":{
+          "shape":"String",
+          "locationName":"accessKeyId"
+        },
+        "PrincipalId":{
+          "shape":"String",
+          "locationName":"principalId"
+        },
+        "UserName":{
+          "shape":"String",
+          "locationName":"userName"
+        },
+        "UserType":{
+          "shape":"String",
+          "locationName":"userType"
+        }
+      }
+    },
+    "AccountDetail":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Email"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "locationName":"accountId"
+        },
+        "Email":{
+          "shape":"Email",
+          "locationName":"email"
+        }
+      }
+    },
+    "AccountDetails":{
+      "type":"list",
+      "member":{"shape":"AccountDetail"},
+      "max":50,
+      "min":1
+    },
+    "AccountId":{
+      "type":"string",
+      "max":12,
+      "min":12
+    },
+    "AccountIds":{
+      "type":"list",
+      "member":{"shape":"AccountId"},
+      "max":50,
+      "min":1
+    },
+    "Action":{
+      "type":"structure",
+      "members":{
+        "ActionType":{
+          "shape":"String",
+          "locationName":"actionType"
+        },
+        "AwsApiCallAction":{
+          "shape":"AwsApiCallAction",
+          "locationName":"awsApiCallAction"
+        },
+        "DnsRequestAction":{
+          "shape":"DnsRequestAction",
+          "locationName":"dnsRequestAction"
+        },
+        "NetworkConnectionAction":{
+          "shape":"NetworkConnectionAction",
+          "locationName":"networkConnectionAction"
+        },
+        "PortProbeAction":{
+          "shape":"PortProbeAction",
+          "locationName":"portProbeAction"
+        }
+      }
+    },
+    "ArchiveFindingsRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "FindingIds"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "FindingIds":{
+          "shape":"FindingIds",
+          "locationName":"findingIds"
+        }
+      }
+    },
+    "ArchiveFindingsResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "AwsApiCallAction":{
+      "type":"structure",
+      "members":{
+        "Api":{
+          "shape":"String",
+          "locationName":"api"
+        },
+        "CallerType":{
+          "shape":"String",
+          "locationName":"callerType"
+        },
+        "DomainDetails":{
+          "shape":"DomainDetails",
+          "locationName":"domainDetails"
+        },
+        "RemoteIpDetails":{
+          "shape":"RemoteIpDetails",
+          "locationName":"remoteIpDetails"
+        },
+        "ServiceName":{
+          "shape":"String",
+          "locationName":"serviceName"
+        }
+      }
+    },
+    "BadRequestException":{
+      "type":"structure",
+      "members":{
+        "Message":{
+          "shape":"String",
+          "locationName":"message"
+        },
+        "Type":{
+          "shape":"String",
+          "locationName":"__type"
         }
       },
-      "required" : [ "DetectorId", "MasterId", "InvitationId" ]
+      "error":{"httpStatusCode":400},
+      "exception":true
     },
-    "AcceptInvitationResponse" : {
-      "type" : "structure",
-      "members" : { }
-    },
-    "AccessKeyDetails" : {
-      "type" : "structure",
-      "members" : {
-        "AccessKeyId" : {
-          "shape" : "__string",
-          "locationName" : "accessKeyId"
-        },
-        "PrincipalId" : {
-          "shape" : "__string",
-          "locationName" : "principalId"
-        },
-        "UserName" : {
-          "shape" : "__string",
-          "locationName" : "userName"
-        },
-        "UserType" : {
-          "shape" : "__string",
-          "locationName" : "userType"
+    "Boolean":{"type":"boolean"},
+    "City":{
+      "type":"structure",
+      "members":{
+        "CityName":{
+          "shape":"String",
+          "locationName":"cityName"
         }
       }
     },
-    "AccountDetail" : {
-      "type" : "structure",
-      "members" : {
-        "AccountId" : {
-          "shape" : "AccountId",
-          "locationName" : "accountId"
-        },
-        "Email" : {
-          "shape" : "Email",
-          "locationName" : "email"
-        }
-      },
-      "required" : [ "Email", "AccountId" ]
+    "ClientToken":{
+      "type":"string",
+      "max":64,
+      "min":0
     },
-    "AccountDetails" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "AccountDetail"
-      }
-    },
-    "AccountId" : {
-      "type" : "string"
-    },
-    "AccountIds" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "__string"
-      }
-    },
-    "Action" : {
-      "type" : "structure",
-      "members" : {
-        "ActionType" : {
-          "shape" : "__string",
-          "locationName" : "actionType"
+    "Condition":{
+      "type":"structure",
+      "members":{
+        "Eq":{
+          "shape":"Eq",
+          "deprecated":true,
+          "locationName":"eq"
         },
-        "AwsApiCallAction" : {
-          "shape" : "AwsApiCallAction",
-          "locationName" : "awsApiCallAction"
+        "Neq":{
+          "shape":"Neq",
+          "deprecated":true,
+          "locationName":"neq"
         },
-        "DnsRequestAction" : {
-          "shape" : "DnsRequestAction",
-          "locationName" : "dnsRequestAction"
+        "Gt":{
+          "shape":"Integer",
+          "deprecated":true,
+          "locationName":"gt"
         },
-        "NetworkConnectionAction" : {
-          "shape" : "NetworkConnectionAction",
-          "locationName" : "networkConnectionAction"
+        "Gte":{
+          "shape":"Integer",
+          "deprecated":true,
+          "locationName":"gte"
         },
-        "PortProbeAction" : {
-          "shape" : "PortProbeAction",
-          "locationName" : "portProbeAction"
-        }
-      }
-    },
-    "Activate" : {
-      "type" : "boolean"
-    },
-    "ArchiveFindingsRequest" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
+        "Lt":{
+          "shape":"Integer",
+          "deprecated":true,
+          "locationName":"lt"
         },
-        "FindingIds" : {
-          "shape" : "FindingIds",
-          "locationName" : "findingIds"
-        }
-      },
-      "required" : [ "DetectorId", "FindingIds" ]
-    },
-    "ArchiveFindingsResponse" : {
-      "type" : "structure",
-      "members" : { }
-    },
-    "AwsApiCallAction" : {
-      "type" : "structure",
-      "members" : {
-        "Api" : {
-          "shape" : "__string",
-          "locationName" : "api"
+        "Lte":{
+          "shape":"Integer",
+          "deprecated":true,
+          "locationName":"lte"
         },
-        "CallerType" : {
-          "shape" : "__string",
-          "locationName" : "callerType"
+        "Equals":{
+          "shape":"Equals",
+          "locationName":"equals"
         },
-        "DomainDetails" : {
-          "shape" : "DomainDetails",
-          "locationName" : "domainDetails"
+        "NotEquals":{
+          "shape":"NotEquals",
+          "locationName":"notEquals"
         },
-        "RemoteIpDetails" : {
-          "shape" : "RemoteIpDetails",
-          "locationName" : "remoteIpDetails"
+        "GreaterThan":{
+          "shape":"Long",
+          "locationName":"greaterThan"
         },
-        "ServiceName" : {
-          "shape" : "__string",
-          "locationName" : "serviceName"
+        "GreaterThanOrEqual":{
+          "shape":"Long",
+          "locationName":"greaterThanOrEqual"
+        },
+        "LessThan":{
+          "shape":"Long",
+          "locationName":"lessThan"
+        },
+        "LessThanOrEqual":{
+          "shape":"Long",
+          "locationName":"lessThanOrEqual"
         }
       }
     },
-    "BadRequestException" : {
-      "type" : "structure",
-      "members" : {
-        "Message" : {
-          "shape" : "__string",
-          "locationName" : "message"
-        },
-        "Type" : {
-          "shape" : "__string",
-          "locationName" : "__type"
-        }
-      },
-      "exception" : true,
-      "error" : {
-        "httpStatusCode" : 400
-      }
+    "CountBySeverity":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"Integer"}
     },
-    "City" : {
-      "type" : "structure",
-      "members" : {
-        "CityName" : {
-          "shape" : "__string",
-          "locationName" : "cityName"
+    "Country":{
+      "type":"structure",
+      "members":{
+        "CountryCode":{
+          "shape":"String",
+          "locationName":"countryCode"
+        },
+        "CountryName":{
+          "shape":"String",
+          "locationName":"countryName"
         }
       }
     },
-    "Comments" : {
-      "type" : "string"
-    },
-    "Condition" : {
-      "type" : "structure",
-      "members" : {
-        "Eq" : {
-          "shape" : "Eq",
-          "locationName" : "eq"
+    "CreateDetectorRequest":{
+      "type":"structure",
+      "required":["Enable"],
+      "members":{
+        "Enable":{
+          "shape":"Boolean",
+          "locationName":"enable"
         },
-        "Gt" : {
-          "shape" : "__integer",
-          "locationName" : "gt"
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "locationName":"clientToken"
         },
-        "Gte" : {
-          "shape" : "__integer",
-          "locationName" : "gte"
-        },
-        "Lt" : {
-          "shape" : "__integer",
-          "locationName" : "lt"
-        },
-        "Lte" : {
-          "shape" : "__integer",
-          "locationName" : "lte"
-        },
-        "Neq" : {
-          "shape" : "Neq",
-          "locationName" : "neq"
+        "FindingPublishingFrequency":{
+          "shape":"FindingPublishingFrequency",
+          "locationName":"findingPublishingFrequency"
         }
       }
     },
-    "CountBySeverityFindingStatistic" : {
-      "type" : "integer"
-    },
-    "Country" : {
-      "type" : "structure",
-      "members" : {
-        "CountryCode" : {
-          "shape" : "__string",
-          "locationName" : "countryCode"
-        },
-        "CountryName" : {
-          "shape" : "__string",
-          "locationName" : "countryName"
+    "CreateDetectorResponse":{
+      "type":"structure",
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "locationName":"detectorId"
         }
       }
     },
-    "CreateDetectorRequest" : {
-      "type" : "structure",
-      "members" : {
-        "ClientToken" : {
-          "shape" : "__stringMin0Max64",
-          "locationName" : "clientToken",
-          "idempotencyToken" : true
+    "CreateFilterRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "Name",
+        "FindingCriteria"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
         },
-        "Enable" : {
-          "shape" : "Enable",
-          "locationName" : "enable"
+        "Name":{
+          "shape":"FilterName",
+          "locationName":"name"
         },
-        "FindingPublishingFrequency" : {
-          "shape" : "FindingPublishingFrequency",
-          "locationName" : "findingPublishingFrequency"
-        }
-      },
-      "required" : [ "Enable" ]
-    },
-    "CreateDetectorResponse" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorId" : {
-          "shape" : "DetectorId",
-          "locationName" : "detectorId"
-        }
-      }
-    },
-    "CreateFilterRequest" : {
-      "type" : "structure",
-      "members" : {
-        "Action" : {
-          "shape" : "FilterAction",
-          "locationName" : "action"
+        "Description":{
+          "shape":"FilterDescription",
+          "locationName":"description"
         },
-        "ClientToken" : {
-          "shape" : "__stringMin0Max64",
-          "locationName" : "clientToken",
-          "idempotencyToken" : true
+        "Action":{
+          "shape":"FilterAction",
+          "locationName":"action"
         },
-        "Description" : {
-          "shape" : "FilterDescription",
-          "locationName" : "description"
+        "Rank":{
+          "shape":"FilterRank",
+          "locationName":"rank"
         },
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
+        "FindingCriteria":{
+          "shape":"FindingCriteria",
+          "locationName":"findingCriteria"
         },
-        "FindingCriteria" : {
-          "shape" : "FindingCriteria",
-          "locationName" : "findingCriteria"
-        },
-        "Name" : {
-          "shape" : "FilterName",
-          "locationName" : "name"
-        },
-        "Rank" : {
-          "shape" : "FilterRank",
-          "locationName" : "rank"
-        }
-      },
-      "required" : [ "DetectorId", "FindingCriteria", "Name" ]
-    },
-    "CreateFilterResponse" : {
-      "type" : "structure",
-      "members" : {
-        "Name" : {
-          "shape" : "FilterName",
-          "locationName" : "name"
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "locationName":"clientToken"
         }
       }
     },
-    "CreateIPSetRequest" : {
-      "type" : "structure",
-      "members" : {
-        "Activate" : {
-          "shape" : "Activate",
-          "locationName" : "activate"
-        },
-        "ClientToken" : {
-          "shape" : "__stringMin0Max64",
-          "locationName" : "clientToken",
-          "idempotencyToken" : true
-        },
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
-        },
-        "Format" : {
-          "shape" : "IpSetFormat",
-          "locationName" : "format"
-        },
-        "Location" : {
-          "shape" : "Location",
-          "locationName" : "location"
-        },
-        "Name" : {
-          "shape" : "Name",
-          "locationName" : "name"
-        }
-      },
-      "required" : [ "DetectorId", "Format", "Activate", "Location", "Name" ]
-    },
-    "CreateIPSetResponse" : {
-      "type" : "structure",
-      "members" : {
-        "IpSetId" : {
-          "shape" : "IpSetId",
-          "locationName" : "ipSetId"
+    "CreateFilterResponse":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{
+          "shape":"FilterName",
+          "locationName":"name"
         }
       }
     },
-    "CreateMembersRequest" : {
-      "type" : "structure",
-      "members" : {
-        "AccountDetails" : {
-          "shape" : "AccountDetails",
-          "locationName" : "accountDetails"
+    "CreateIPSetRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "Name",
+        "Format",
+        "Location",
+        "Activate"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
         },
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
-        }
-      },
-      "required" : [ "DetectorId", "AccountDetails" ]
-    },
-    "CreateMembersResponse" : {
-      "type" : "structure",
-      "members" : {
-        "UnprocessedAccounts" : {
-          "shape" : "UnprocessedAccounts",
-          "locationName" : "unprocessedAccounts"
-        }
-      }
-    },
-    "CreateSampleFindingsRequest" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
+        "Name":{
+          "shape":"Name",
+          "locationName":"name"
         },
-        "FindingTypes" : {
-          "shape" : "FindingTypes",
-          "locationName" : "findingTypes"
-        }
-      },
-      "required" : [ "DetectorId" ]
-    },
-    "CreateSampleFindingsResponse" : {
-      "type" : "structure",
-      "members" : { }
-    },
-    "CreateThreatIntelSetRequest" : {
-      "type" : "structure",
-      "members" : {
-        "Activate" : {
-          "shape" : "Activate",
-          "locationName" : "activate"
+        "Format":{
+          "shape":"IpSetFormat",
+          "locationName":"format"
         },
-        "ClientToken" : {
-          "shape" : "__stringMin0Max64",
-          "locationName" : "clientToken",
-          "idempotencyToken" : true
+        "Location":{
+          "shape":"Location",
+          "locationName":"location"
         },
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
+        "Activate":{
+          "shape":"Boolean",
+          "locationName":"activate"
         },
-        "Format" : {
-          "shape" : "ThreatIntelSetFormat",
-          "locationName" : "format"
-        },
-        "Location" : {
-          "shape" : "Location",
-          "locationName" : "location"
-        },
-        "Name" : {
-          "shape" : "Name",
-          "locationName" : "name"
-        }
-      },
-      "required" : [ "DetectorId", "Format", "Activate", "Location", "Name" ]
-    },
-    "CreateThreatIntelSetResponse" : {
-      "type" : "structure",
-      "members" : {
-        "ThreatIntelSetId" : {
-          "shape" : "ThreatIntelSetId",
-          "locationName" : "threatIntelSetId"
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "locationName":"clientToken"
         }
       }
     },
-    "CreatedAt" : {
-      "type" : "string"
-    },
-    "DeclineInvitationsRequest" : {
-      "type" : "structure",
-      "members" : {
-        "AccountIds" : {
-          "shape" : "AccountIds",
-          "locationName" : "accountIds"
-        }
-      },
-      "required" : [ "AccountIds" ]
-    },
-    "DeclineInvitationsResponse" : {
-      "type" : "structure",
-      "members" : {
-        "UnprocessedAccounts" : {
-          "shape" : "UnprocessedAccounts",
-          "locationName" : "unprocessedAccounts"
+    "CreateIPSetResponse":{
+      "type":"structure",
+      "required":["IpSetId"],
+      "members":{
+        "IpSetId":{
+          "shape":"String",
+          "locationName":"ipSetId"
         }
       }
     },
-    "DeleteDetectorRequest" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
-        }
-      },
-      "required" : [ "DetectorId" ]
-    },
-    "DeleteDetectorResponse" : {
-      "type" : "structure",
-      "members" : { }
-    },
-    "DeleteFilterRequest" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
+    "CreateMembersRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "AccountDetails"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
         },
-        "FilterName" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "filterName"
-        }
-      },
-      "required" : [ "DetectorId", "FilterName" ]
-    },
-    "DeleteFilterResponse" : {
-      "type" : "structure",
-      "members" : { }
-    },
-    "DeleteIPSetRequest" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
-        },
-        "IpSetId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "ipSetId"
-        }
-      },
-      "required" : [ "DetectorId", "IpSetId" ]
-    },
-    "DeleteIPSetResponse" : {
-      "type" : "structure",
-      "members" : { }
-    },
-    "DeleteInvitationsRequest" : {
-      "type" : "structure",
-      "members" : {
-        "AccountIds" : {
-          "shape" : "AccountIds",
-          "locationName" : "accountIds"
-        }
-      },
-      "required" : [ "AccountIds" ]
-    },
-    "DeleteInvitationsResponse" : {
-      "type" : "structure",
-      "members" : {
-        "UnprocessedAccounts" : {
-          "shape" : "UnprocessedAccounts",
-          "locationName" : "unprocessedAccounts"
+        "AccountDetails":{
+          "shape":"AccountDetails",
+          "locationName":"accountDetails"
         }
       }
     },
-    "DeleteMembersRequest" : {
-      "type" : "structure",
-      "members" : {
-        "AccountIds" : {
-          "shape" : "AccountIds",
-          "locationName" : "accountIds"
-        },
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
-        }
-      },
-      "required" : [ "DetectorId", "AccountIds" ]
-    },
-    "DeleteMembersResponse" : {
-      "type" : "structure",
-      "members" : {
-        "UnprocessedAccounts" : {
-          "shape" : "UnprocessedAccounts",
-          "locationName" : "unprocessedAccounts"
+    "CreateMembersResponse":{
+      "type":"structure",
+      "required":["UnprocessedAccounts"],
+      "members":{
+        "UnprocessedAccounts":{
+          "shape":"UnprocessedAccounts",
+          "locationName":"unprocessedAccounts"
         }
       }
     },
-    "DeleteThreatIntelSetRequest" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
+    "CreateSampleFindingsRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
         },
-        "ThreatIntelSetId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "threatIntelSetId"
-        }
-      },
-      "required" : [ "ThreatIntelSetId", "DetectorId" ]
-    },
-    "DeleteThreatIntelSetResponse" : {
-      "type" : "structure",
-      "members" : { }
-    },
-    "DetectorId" : {
-      "type" : "string"
-    },
-    "DetectorIds" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "DetectorId"
-      }
-    },
-    "DetectorStatus" : {
-      "type" : "string",
-      "enum" : [ "ENABLED", "DISABLED" ]
-    },
-    "DisassociateFromMasterAccountRequest" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
-        }
-      },
-      "required" : [ "DetectorId" ]
-    },
-    "DisassociateFromMasterAccountResponse" : {
-      "type" : "structure",
-      "members" : { }
-    },
-    "DisassociateMembersRequest" : {
-      "type" : "structure",
-      "members" : {
-        "AccountIds" : {
-          "shape" : "AccountIds",
-          "locationName" : "accountIds"
-        },
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
-        }
-      },
-      "required" : [ "DetectorId", "AccountIds" ]
-    },
-    "DisassociateMembersResponse" : {
-      "type" : "structure",
-      "members" : {
-        "UnprocessedAccounts" : {
-          "shape" : "UnprocessedAccounts",
-          "locationName" : "unprocessedAccounts"
+        "FindingTypes":{
+          "shape":"FindingTypes",
+          "locationName":"findingTypes"
         }
       }
     },
-    "DnsRequestAction" : {
-      "type" : "structure",
-      "members" : {
-        "Domain" : {
-          "shape" : "Domain",
-          "locationName" : "domain"
+    "CreateSampleFindingsResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "CreateThreatIntelSetRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "Name",
+        "Format",
+        "Location",
+        "Activate"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "Name":{
+          "shape":"Name",
+          "locationName":"name"
+        },
+        "Format":{
+          "shape":"ThreatIntelSetFormat",
+          "locationName":"format"
+        },
+        "Location":{
+          "shape":"Location",
+          "locationName":"location"
+        },
+        "Activate":{
+          "shape":"Boolean",
+          "locationName":"activate"
+        },
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "locationName":"clientToken"
         }
       }
     },
-    "Domain" : {
-      "type" : "string"
-    },
-    "DomainDetails" : {
-      "type" : "structure",
-      "members" : { }
-    },
-    "Email" : {
-      "type" : "string"
-    },
-    "Enable" : {
-      "type" : "boolean"
-    },
-    "Eq" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "__string"
-      }
-    },
-    "ErrorResponse" : {
-      "type" : "structure",
-      "members" : {
-        "Message" : {
-          "shape" : "__string",
-          "locationName" : "message"
-        },
-        "Type" : {
-          "shape" : "__string",
-          "locationName" : "__type"
+    "CreateThreatIntelSetResponse":{
+      "type":"structure",
+      "required":["ThreatIntelSetId"],
+      "members":{
+        "ThreatIntelSetId":{
+          "shape":"String",
+          "locationName":"threatIntelSetId"
         }
       }
     },
-    "Feedback" : {
-      "type" : "string",
-      "enum" : [ "USEFUL", "NOT_USEFUL" ]
+    "Criterion":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"Condition"}
     },
-    "FilterAction" : {
-      "type" : "string",
-      "enum" : [ "NOOP", "ARCHIVE" ]
-    },
-    "FilterDescription" : {
-      "type" : "string"
-    },
-    "FilterName" : {
-      "type" : "string"
-    },
-    "FilterNames" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "FilterName"
-      }
-    },
-    "FilterRank" : {
-      "type" : "integer"
-    },
-    "Finding" : {
-      "type" : "structure",
-      "members" : {
-        "AccountId" : {
-          "shape" : "__string",
-          "locationName" : "accountId"
-        },
-        "Arn" : {
-          "shape" : "__string",
-          "locationName" : "arn"
-        },
-        "Confidence" : {
-          "shape" : "__double",
-          "locationName" : "confidence"
-        },
-        "CreatedAt" : {
-          "shape" : "CreatedAt",
-          "locationName" : "createdAt"
-        },
-        "Description" : {
-          "shape" : "__string",
-          "locationName" : "description"
-        },
-        "Id" : {
-          "shape" : "__string",
-          "locationName" : "id"
-        },
-        "Partition" : {
-          "shape" : "__string",
-          "locationName" : "partition"
-        },
-        "Region" : {
-          "shape" : "__string",
-          "locationName" : "region"
-        },
-        "Resource" : {
-          "shape" : "Resource",
-          "locationName" : "resource"
-        },
-        "SchemaVersion" : {
-          "shape" : "__string",
-          "locationName" : "schemaVersion"
-        },
-        "Service" : {
-          "shape" : "Service",
-          "locationName" : "service"
-        },
-        "Severity" : {
-          "shape" : "__double",
-          "locationName" : "severity"
-        },
-        "Title" : {
-          "shape" : "__string",
-          "locationName" : "title"
-        },
-        "Type" : {
-          "shape" : "__string",
-          "locationName" : "type"
-        },
-        "UpdatedAt" : {
-          "shape" : "UpdatedAt",
-          "locationName" : "updatedAt"
-        }
-      },
-      "required" : [ "AccountId", "SchemaVersion", "CreatedAt", "Resource", "Severity", "UpdatedAt", "Type", "Region", "Id", "Arn" ]
-    },
-    "FindingCriteria" : {
-      "type" : "structure",
-      "members" : {
-        "Criterion" : {
-          "shape" : "__mapOfCondition",
-          "locationName" : "criterion"
+    "DeclineInvitationsRequest":{
+      "type":"structure",
+      "required":["AccountIds"],
+      "members":{
+        "AccountIds":{
+          "shape":"AccountIds",
+          "locationName":"accountIds"
         }
       }
     },
-    "FindingId" : {
-      "type" : "string"
-    },
-    "FindingIds" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "FindingId"
-      }
-    },
-    "FindingPublishingFrequency" : {
-      "type" : "string",
-      "enum" : [ "FIFTEEN_MINUTES", "ONE_HOUR", "SIX_HOURS" ]
-    },
-    "FindingStatisticType" : {
-      "type" : "string",
-      "enum" : [ "COUNT_BY_SEVERITY" ]
-    },
-    "FindingStatisticTypes" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "FindingStatisticType"
-      }
-    },
-    "FindingStatistics" : {
-      "type" : "structure",
-      "members" : {
-        "CountBySeverity" : {
-          "shape" : "__mapOfCountBySeverityFindingStatistic",
-          "locationName" : "countBySeverity"
+    "DeclineInvitationsResponse":{
+      "type":"structure",
+      "required":["UnprocessedAccounts"],
+      "members":{
+        "UnprocessedAccounts":{
+          "shape":"UnprocessedAccounts",
+          "locationName":"unprocessedAccounts"
         }
       }
     },
-    "FindingType" : {
-      "type" : "string"
-    },
-    "FindingTypes" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "FindingType"
-      }
-    },
-    "Findings" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "Finding"
-      }
-    },
-    "GeoLocation" : {
-      "type" : "structure",
-      "members" : {
-        "Lat" : {
-          "shape" : "__double",
-          "locationName" : "lat"
-        },
-        "Lon" : {
-          "shape" : "__double",
-          "locationName" : "lon"
+    "DeleteDetectorRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
         }
       }
     },
-    "GetDetectorRequest" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
-        }
-      },
-      "required" : [ "DetectorId" ]
+    "DeleteDetectorResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
-    "GetDetectorResponse" : {
-      "type" : "structure",
-      "members" : {
-        "CreatedAt" : {
-          "shape" : "CreatedAt",
-          "locationName" : "createdAt"
+    "DeleteFilterRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "FilterName"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
         },
-        "FindingPublishingFrequency" : {
-          "shape" : "FindingPublishingFrequency",
-          "locationName" : "findingPublishingFrequency"
-        },
-        "ServiceRole" : {
-          "shape" : "ServiceRole",
-          "locationName" : "serviceRole"
-        },
-        "Status" : {
-          "shape" : "DetectorStatus",
-          "locationName" : "status"
-        },
-        "UpdatedAt" : {
-          "shape" : "UpdatedAt",
-          "locationName" : "updatedAt"
+        "FilterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"filterName"
         }
       }
     },
-    "GetFilterRequest" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
-        },
-        "FilterName" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "filterName"
-        }
-      },
-      "required" : [ "DetectorId", "FilterName" ]
+    "DeleteFilterResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
-    "GetFilterResponse" : {
-      "type" : "structure",
-      "members" : {
-        "Action" : {
-          "shape" : "FilterAction",
-          "locationName" : "action"
+    "DeleteIPSetRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "IpSetId"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
         },
-        "Description" : {
-          "shape" : "FilterDescription",
-          "locationName" : "description"
-        },
-        "FindingCriteria" : {
-          "shape" : "FindingCriteria",
-          "locationName" : "findingCriteria"
-        },
-        "Name" : {
-          "shape" : "FilterName",
-          "locationName" : "name"
-        },
-        "Rank" : {
-          "shape" : "FilterRank",
-          "locationName" : "rank"
+        "IpSetId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"ipSetId"
         }
       }
     },
-    "GetFindingsRequest" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
-        },
-        "FindingIds" : {
-          "shape" : "FindingIds",
-          "locationName" : "findingIds"
-        },
-        "SortCriteria" : {
-          "shape" : "SortCriteria",
-          "locationName" : "sortCriteria"
-        }
-      },
-      "required" : [ "DetectorId", "FindingIds" ]
+    "DeleteIPSetResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
-    "GetFindingsResponse" : {
-      "type" : "structure",
-      "members" : {
-        "Findings" : {
-          "shape" : "Findings",
-          "locationName" : "findings"
+    "DeleteInvitationsRequest":{
+      "type":"structure",
+      "required":["AccountIds"],
+      "members":{
+        "AccountIds":{
+          "shape":"AccountIds",
+          "locationName":"accountIds"
         }
       }
     },
-    "GetFindingsStatisticsRequest" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
-        },
-        "FindingCriteria" : {
-          "shape" : "FindingCriteria",
-          "locationName" : "findingCriteria"
-        },
-        "FindingStatisticTypes" : {
-          "shape" : "FindingStatisticTypes",
-          "locationName" : "findingStatisticTypes"
-        }
-      },
-      "required" : [ "DetectorId", "FindingStatisticTypes" ]
-    },
-    "GetFindingsStatisticsResponse" : {
-      "type" : "structure",
-      "members" : {
-        "FindingStatistics" : {
-          "shape" : "FindingStatistics",
-          "locationName" : "findingStatistics"
+    "DeleteInvitationsResponse":{
+      "type":"structure",
+      "required":["UnprocessedAccounts"],
+      "members":{
+        "UnprocessedAccounts":{
+          "shape":"UnprocessedAccounts",
+          "locationName":"unprocessedAccounts"
         }
       }
     },
-    "GetIPSetRequest" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
+    "DeleteMembersRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "AccountIds"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
         },
-        "IpSetId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "ipSetId"
-        }
-      },
-      "required" : [ "DetectorId", "IpSetId" ]
-    },
-    "GetIPSetResponse" : {
-      "type" : "structure",
-      "members" : {
-        "Format" : {
-          "shape" : "IpSetFormat",
-          "locationName" : "format"
-        },
-        "Location" : {
-          "shape" : "Location",
-          "locationName" : "location"
-        },
-        "Name" : {
-          "shape" : "Name",
-          "locationName" : "name"
-        },
-        "Status" : {
-          "shape" : "IpSetStatus",
-          "locationName" : "status"
+        "AccountIds":{
+          "shape":"AccountIds",
+          "locationName":"accountIds"
         }
       }
     },
-    "GetInvitationsCountRequest" : {
-      "type" : "structure",
-      "members" : { }
-    },
-    "GetInvitationsCountResponse" : {
-      "type" : "structure",
-      "members" : {
-        "InvitationsCount" : {
-          "shape" : "__integer",
-          "locationName" : "invitationsCount"
+    "DeleteMembersResponse":{
+      "type":"structure",
+      "required":["UnprocessedAccounts"],
+      "members":{
+        "UnprocessedAccounts":{
+          "shape":"UnprocessedAccounts",
+          "locationName":"unprocessedAccounts"
         }
       }
     },
-    "GetMasterAccountRequest" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
-        }
-      },
-      "required" : [ "DetectorId" ]
-    },
-    "GetMasterAccountResponse" : {
-      "type" : "structure",
-      "members" : {
-        "Master" : {
-          "shape" : "Master",
-          "locationName" : "master"
-        }
-      }
-    },
-    "GetMembersRequest" : {
-      "type" : "structure",
-      "members" : {
-        "AccountIds" : {
-          "shape" : "AccountIds",
-          "locationName" : "accountIds"
+    "DeleteThreatIntelSetRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "ThreatIntelSetId"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
         },
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
-        }
-      },
-      "required" : [ "DetectorId", "AccountIds" ]
-    },
-    "GetMembersResponse" : {
-      "type" : "structure",
-      "members" : {
-        "Members" : {
-          "shape" : "Members",
-          "locationName" : "members"
-        },
-        "UnprocessedAccounts" : {
-          "shape" : "UnprocessedAccounts",
-          "locationName" : "unprocessedAccounts"
+        "ThreatIntelSetId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"threatIntelSetId"
         }
       }
     },
-    "GetThreatIntelSetRequest" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
-        },
-        "ThreatIntelSetId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "threatIntelSetId"
-        }
-      },
-      "required" : [ "ThreatIntelSetId", "DetectorId" ]
-    },
-    "GetThreatIntelSetResponse" : {
-      "type" : "structure",
-      "members" : {
-        "Format" : {
-          "shape" : "ThreatIntelSetFormat",
-          "locationName" : "format"
-        },
-        "Location" : {
-          "shape" : "Location",
-          "locationName" : "location"
-        },
-        "Name" : {
-          "shape" : "Name",
-          "locationName" : "name"
-        },
-        "Status" : {
-          "shape" : "ThreatIntelSetStatus",
-          "locationName" : "status"
-        }
+    "DeleteThreatIntelSetResponse":{
+      "type":"structure",
+      "members":{
       }
     },
-    "IamInstanceProfile" : {
-      "type" : "structure",
-      "members" : {
-        "Arn" : {
-          "shape" : "__string",
-          "locationName" : "arn"
-        },
-        "Id" : {
-          "shape" : "__string",
-          "locationName" : "id"
+    "DetectorId":{
+      "type":"string",
+      "max":300,
+      "min":1
+    },
+    "DetectorIds":{
+      "type":"list",
+      "member":{"shape":"DetectorId"},
+      "max":50,
+      "min":0
+    },
+    "DetectorStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ],
+      "max":300,
+      "min":1
+    },
+    "DisassociateFromMasterAccountRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
         }
       }
     },
-    "InstanceDetails" : {
-      "type" : "structure",
-      "members" : {
-        "AvailabilityZone" : {
-          "shape" : "__string",
-          "locationName" : "availabilityZone"
+    "DisassociateFromMasterAccountResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DisassociateMembersRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "AccountIds"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
         },
-        "IamInstanceProfile" : {
-          "shape" : "IamInstanceProfile",
-          "locationName" : "iamInstanceProfile"
-        },
-        "ImageDescription" : {
-          "shape" : "__string",
-          "locationName" : "imageDescription"
-        },
-        "ImageId" : {
-          "shape" : "__string",
-          "locationName" : "imageId"
-        },
-        "InstanceId" : {
-          "shape" : "__string",
-          "locationName" : "instanceId"
-        },
-        "InstanceState" : {
-          "shape" : "__string",
-          "locationName" : "instanceState"
-        },
-        "InstanceType" : {
-          "shape" : "__string",
-          "locationName" : "instanceType"
-        },
-        "LaunchTime" : {
-          "shape" : "__string",
-          "locationName" : "launchTime"
-        },
-        "NetworkInterfaces" : {
-          "shape" : "NetworkInterfaces",
-          "locationName" : "networkInterfaces"
-        },
-        "Platform" : {
-          "shape" : "__string",
-          "locationName" : "platform"
-        },
-        "ProductCodes" : {
-          "shape" : "ProductCodes",
-          "locationName" : "productCodes"
-        },
-        "Tags" : {
-          "shape" : "Tags",
-          "locationName" : "tags"
+        "AccountIds":{
+          "shape":"AccountIds",
+          "locationName":"accountIds"
         }
       }
     },
-    "InternalServerErrorException" : {
-      "type" : "structure",
-      "members" : {
-        "Message" : {
-          "shape" : "__string",
-          "locationName" : "message"
-        },
-        "Type" : {
-          "shape" : "__string",
-          "locationName" : "__type"
-        }
-      },
-      "exception" : true,
-      "error" : {
-        "httpStatusCode" : 500
-      }
-    },
-    "Invitation" : {
-      "type" : "structure",
-      "members" : {
-        "AccountId" : {
-          "shape" : "__string",
-          "locationName" : "accountId"
-        },
-        "InvitationId" : {
-          "shape" : "InvitationId",
-          "locationName" : "invitationId"
-        },
-        "InvitedAt" : {
-          "shape" : "InvitedAt",
-          "locationName" : "invitedAt"
-        },
-        "RelationshipStatus" : {
-          "shape" : "__string",
-          "locationName" : "relationshipStatus"
+    "DisassociateMembersResponse":{
+      "type":"structure",
+      "required":["UnprocessedAccounts"],
+      "members":{
+        "UnprocessedAccounts":{
+          "shape":"UnprocessedAccounts",
+          "locationName":"unprocessedAccounts"
         }
       }
     },
-    "InvitationId" : {
-      "type" : "string"
-    },
-    "Invitations" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "Invitation"
+    "DnsRequestAction":{
+      "type":"structure",
+      "members":{
+        "Domain":{
+          "shape":"String",
+          "locationName":"domain"
+        }
       }
     },
-    "InviteMembersRequest" : {
-      "type" : "structure",
-      "members" : {
-        "AccountIds" : {
-          "shape" : "AccountIds",
-          "locationName" : "accountIds"
+    "DomainDetails":{
+      "type":"structure",
+      "members":{
+        "Domain":{
+          "shape":"String",
+          "locationName":"domain"
+        }
+      }
+    },
+    "Double":{"type":"double"},
+    "Email":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "Eq":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "Equals":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "Feedback":{
+      "type":"string",
+      "enum":[
+        "USEFUL",
+        "NOT_USEFUL"
+      ]
+    },
+    "FilterAction":{
+      "type":"string",
+      "enum":[
+        "NOOP",
+        "ARCHIVE"
+      ],
+      "max":300,
+      "min":1
+    },
+    "FilterDescription":{
+      "type":"string",
+      "max":512,
+      "min":0
+    },
+    "FilterName":{
+      "type":"string",
+      "max":64,
+      "min":3
+    },
+    "FilterNames":{
+      "type":"list",
+      "member":{"shape":"FilterName"},
+      "max":50,
+      "min":0
+    },
+    "FilterRank":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
+    "Finding":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Arn",
+        "CreatedAt",
+        "Id",
+        "Region",
+        "Resource",
+        "SchemaVersion",
+        "Severity",
+        "Type",
+        "UpdatedAt"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"String",
+          "locationName":"accountId"
         },
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
+        "Arn":{
+          "shape":"String",
+          "locationName":"arn"
         },
-        "DisableEmailNotification" : {
-          "shape" : "__boolean",
-          "locationName" : "disableEmailNotification"
+        "Confidence":{
+          "shape":"Double",
+          "locationName":"confidence"
         },
-        "Message" : {
-          "shape" : "Message",
-          "locationName" : "message"
+        "CreatedAt":{
+          "shape":"String",
+          "locationName":"createdAt"
+        },
+        "Description":{
+          "shape":"String",
+          "locationName":"description"
+        },
+        "Id":{
+          "shape":"String",
+          "locationName":"id"
+        },
+        "Partition":{
+          "shape":"String",
+          "locationName":"partition"
+        },
+        "Region":{
+          "shape":"String",
+          "locationName":"region"
+        },
+        "Resource":{
+          "shape":"Resource",
+          "locationName":"resource"
+        },
+        "SchemaVersion":{
+          "shape":"String",
+          "locationName":"schemaVersion"
+        },
+        "Service":{
+          "shape":"Service",
+          "locationName":"service"
+        },
+        "Severity":{
+          "shape":"Double",
+          "locationName":"severity"
+        },
+        "Title":{
+          "shape":"String",
+          "locationName":"title"
+        },
+        "Type":{
+          "shape":"FindingType",
+          "locationName":"type"
+        },
+        "UpdatedAt":{
+          "shape":"String",
+          "locationName":"updatedAt"
+        }
+      }
+    },
+    "FindingCriteria":{
+      "type":"structure",
+      "members":{
+        "Criterion":{
+          "shape":"Criterion",
+          "locationName":"criterion"
+        }
+      }
+    },
+    "FindingId":{
+      "type":"string",
+      "max":300,
+      "min":1
+    },
+    "FindingIds":{
+      "type":"list",
+      "member":{"shape":"FindingId"},
+      "max":50,
+      "min":0
+    },
+    "FindingPublishingFrequency":{
+      "type":"string",
+      "enum":[
+        "FIFTEEN_MINUTES",
+        "ONE_HOUR",
+        "SIX_HOURS"
+      ]
+    },
+    "FindingStatisticType":{
+      "type":"string",
+      "enum":["COUNT_BY_SEVERITY"]
+    },
+    "FindingStatisticTypes":{
+      "type":"list",
+      "member":{"shape":"FindingStatisticType"},
+      "max":10,
+      "min":0
+    },
+    "FindingStatistics":{
+      "type":"structure",
+      "members":{
+        "CountBySeverity":{
+          "shape":"CountBySeverity",
+          "locationName":"countBySeverity"
+        }
+      }
+    },
+    "FindingType":{
+      "type":"string",
+      "max":50,
+      "min":1
+    },
+    "FindingTypes":{
+      "type":"list",
+      "member":{"shape":"FindingType"},
+      "max":50,
+      "min":0
+    },
+    "Findings":{
+      "type":"list",
+      "member":{"shape":"Finding"},
+      "max":50,
+      "min":0
+    },
+    "GeoLocation":{
+      "type":"structure",
+      "members":{
+        "Lat":{
+          "shape":"Double",
+          "locationName":"lat"
+        },
+        "Lon":{
+          "shape":"Double",
+          "locationName":"lon"
+        }
+      }
+    },
+    "GetDetectorRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        }
+      }
+    },
+    "GetDetectorResponse":{
+      "type":"structure",
+      "required":[
+        "ServiceRole",
+        "Status"
+      ],
+      "members":{
+        "CreatedAt":{
+          "shape":"String",
+          "locationName":"createdAt"
+        },
+        "FindingPublishingFrequency":{
+          "shape":"FindingPublishingFrequency",
+          "locationName":"findingPublishingFrequency"
+        },
+        "ServiceRole":{
+          "shape":"String",
+          "locationName":"serviceRole"
+        },
+        "Status":{
+          "shape":"DetectorStatus",
+          "locationName":"status"
+        },
+        "UpdatedAt":{
+          "shape":"String",
+          "locationName":"updatedAt"
+        }
+      }
+    },
+    "GetFilterRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "FilterName"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "FilterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"filterName"
+        }
+      }
+    },
+    "GetFilterResponse":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Action",
+        "FindingCriteria"
+      ],
+      "members":{
+        "Name":{
+          "shape":"FilterName",
+          "locationName":"name"
+        },
+        "Description":{
+          "shape":"FilterDescription",
+          "locationName":"description"
+        },
+        "Action":{
+          "shape":"FilterAction",
+          "locationName":"action"
+        },
+        "Rank":{
+          "shape":"FilterRank",
+          "locationName":"rank"
+        },
+        "FindingCriteria":{
+          "shape":"FindingCriteria",
+          "locationName":"findingCriteria"
+        }
+      }
+    },
+    "GetFindingsRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "FindingIds"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "FindingIds":{
+          "shape":"FindingIds",
+          "locationName":"findingIds"
+        },
+        "SortCriteria":{
+          "shape":"SortCriteria",
+          "locationName":"sortCriteria"
+        }
+      }
+    },
+    "GetFindingsResponse":{
+      "type":"structure",
+      "required":["Findings"],
+      "members":{
+        "Findings":{
+          "shape":"Findings",
+          "locationName":"findings"
+        }
+      }
+    },
+    "GetFindingsStatisticsRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "FindingStatisticTypes"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "FindingStatisticTypes":{
+          "shape":"FindingStatisticTypes",
+          "locationName":"findingStatisticTypes"
+        },
+        "FindingCriteria":{
+          "shape":"FindingCriteria",
+          "locationName":"findingCriteria"
+        }
+      }
+    },
+    "GetFindingsStatisticsResponse":{
+      "type":"structure",
+      "required":["FindingStatistics"],
+      "members":{
+        "FindingStatistics":{
+          "shape":"FindingStatistics",
+          "locationName":"findingStatistics"
+        }
+      }
+    },
+    "GetIPSetRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "IpSetId"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "IpSetId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"ipSetId"
+        }
+      }
+    },
+    "GetIPSetResponse":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Format",
+        "Location",
+        "Status"
+      ],
+      "members":{
+        "Name":{
+          "shape":"Name",
+          "locationName":"name"
+        },
+        "Format":{
+          "shape":"IpSetFormat",
+          "locationName":"format"
+        },
+        "Location":{
+          "shape":"Location",
+          "locationName":"location"
+        },
+        "Status":{
+          "shape":"IpSetStatus",
+          "locationName":"status"
+        }
+      }
+    },
+    "GetInvitationsCountRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetInvitationsCountResponse":{
+      "type":"structure",
+      "members":{
+        "InvitationsCount":{
+          "shape":"Integer",
+          "locationName":"invitationsCount"
+        }
+      }
+    },
+    "GetMasterAccountRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        }
+      }
+    },
+    "GetMasterAccountResponse":{
+      "type":"structure",
+      "required":["Master"],
+      "members":{
+        "Master":{
+          "shape":"Master",
+          "locationName":"master"
+        }
+      }
+    },
+    "GetMembersRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "AccountIds"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "AccountIds":{
+          "shape":"AccountIds",
+          "locationName":"accountIds"
+        }
+      }
+    },
+    "GetMembersResponse":{
+      "type":"structure",
+      "required":[
+        "Members",
+        "UnprocessedAccounts"
+      ],
+      "members":{
+        "Members":{
+          "shape":"Members",
+          "locationName":"members"
+        },
+        "UnprocessedAccounts":{
+          "shape":"UnprocessedAccounts",
+          "locationName":"unprocessedAccounts"
+        }
+      }
+    },
+    "GetThreatIntelSetRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "ThreatIntelSetId"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "ThreatIntelSetId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"threatIntelSetId"
+        }
+      }
+    },
+    "GetThreatIntelSetResponse":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Format",
+        "Location",
+        "Status"
+      ],
+      "members":{
+        "Name":{
+          "shape":"Name",
+          "locationName":"name"
+        },
+        "Format":{
+          "shape":"ThreatIntelSetFormat",
+          "locationName":"format"
+        },
+        "Location":{
+          "shape":"Location",
+          "locationName":"location"
+        },
+        "Status":{
+          "shape":"ThreatIntelSetStatus",
+          "locationName":"status"
+        }
+      }
+    },
+    "IamInstanceProfile":{
+      "type":"structure",
+      "members":{
+        "Arn":{
+          "shape":"String",
+          "locationName":"arn"
+        },
+        "Id":{
+          "shape":"String",
+          "locationName":"id"
+        }
+      }
+    },
+    "InstanceDetails":{
+      "type":"structure",
+      "members":{
+        "AvailabilityZone":{
+          "shape":"String",
+          "locationName":"availabilityZone"
+        },
+        "IamInstanceProfile":{
+          "shape":"IamInstanceProfile",
+          "locationName":"iamInstanceProfile"
+        },
+        "ImageDescription":{
+          "shape":"String",
+          "locationName":"imageDescription"
+        },
+        "ImageId":{
+          "shape":"String",
+          "locationName":"imageId"
+        },
+        "InstanceId":{
+          "shape":"String",
+          "locationName":"instanceId"
+        },
+        "InstanceState":{
+          "shape":"String",
+          "locationName":"instanceState"
+        },
+        "InstanceType":{
+          "shape":"String",
+          "locationName":"instanceType"
+        },
+        "LaunchTime":{
+          "shape":"String",
+          "locationName":"launchTime"
+        },
+        "NetworkInterfaces":{
+          "shape":"NetworkInterfaces",
+          "locationName":"networkInterfaces"
+        },
+        "Platform":{
+          "shape":"String",
+          "locationName":"platform"
+        },
+        "ProductCodes":{
+          "shape":"ProductCodes",
+          "locationName":"productCodes"
+        },
+        "Tags":{
+          "shape":"Tags",
+          "locationName":"tags"
+        }
+      }
+    },
+    "Integer":{"type":"integer"},
+    "InternalServerErrorException":{
+      "type":"structure",
+      "members":{
+        "Message":{
+          "shape":"String",
+          "locationName":"message"
+        },
+        "Type":{
+          "shape":"String",
+          "locationName":"__type"
         }
       },
-      "required" : [ "DetectorId", "AccountIds" ]
+      "error":{"httpStatusCode":500},
+      "exception":true
     },
-    "InviteMembersResponse" : {
-      "type" : "structure",
-      "members" : {
-        "UnprocessedAccounts" : {
-          "shape" : "UnprocessedAccounts",
-          "locationName" : "unprocessedAccounts"
+    "Invitation":{
+      "type":"structure",
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "locationName":"accountId"
+        },
+        "InvitationId":{
+          "shape":"String",
+          "locationName":"invitationId"
+        },
+        "RelationshipStatus":{
+          "shape":"String",
+          "locationName":"relationshipStatus"
+        },
+        "InvitedAt":{
+          "shape":"String",
+          "locationName":"invitedAt"
         }
       }
     },
-    "InvitedAt" : {
-      "type" : "string"
+    "Invitations":{
+      "type":"list",
+      "member":{"shape":"Invitation"},
+      "max":50,
+      "min":0
     },
-    "IpSetFormat" : {
-      "type" : "string",
-      "enum" : [ "TXT", "STIX", "OTX_CSV", "ALIEN_VAULT", "PROOF_POINT", "FIRE_EYE" ]
-    },
-    "IpSetId" : {
-      "type" : "string"
-    },
-    "IpSetIds" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "IpSetId"
-      }
-    },
-    "IpSetStatus" : {
-      "type" : "string",
-      "enum" : [ "INACTIVE", "ACTIVATING", "ACTIVE", "DEACTIVATING", "ERROR", "DELETE_PENDING", "DELETED" ]
-    },
-    "Ipv6Address" : {
-      "type" : "string"
-    },
-    "Ipv6Addresses" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "Ipv6Address"
-      }
-    },
-    "ListDetectorsRequest" : {
-      "type" : "structure",
-      "members" : {
-        "MaxResults" : {
-          "shape" : "MaxResults",
-          "location" : "querystring",
-          "locationName" : "maxResults"
+    "InviteMembersRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "AccountIds"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
         },
-        "NextToken" : {
-          "shape" : "__string",
-          "location" : "querystring",
-          "locationName" : "nextToken"
+        "AccountIds":{
+          "shape":"AccountIds",
+          "locationName":"accountIds"
+        },
+        "DisableEmailNotification":{
+          "shape":"Boolean",
+          "locationName":"disableEmailNotification"
+        },
+        "Message":{
+          "shape":"String",
+          "locationName":"message"
         }
       }
     },
-    "ListDetectorsResponse" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorIds" : {
-          "shape" : "DetectorIds",
-          "locationName" : "detectorIds"
-        },
-        "NextToken" : {
-          "shape" : "NextToken",
-          "locationName" : "nextToken"
+    "InviteMembersResponse":{
+      "type":"structure",
+      "required":["UnprocessedAccounts"],
+      "members":{
+        "UnprocessedAccounts":{
+          "shape":"UnprocessedAccounts",
+          "locationName":"unprocessedAccounts"
         }
       }
     },
-    "ListFiltersRequest" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
-        },
-        "MaxResults" : {
-          "shape" : "MaxResults",
-          "location" : "querystring",
-          "locationName" : "maxResults"
-        },
-        "NextToken" : {
-          "shape" : "__string",
-          "location" : "querystring",
-          "locationName" : "nextToken"
-        }
-      },
-      "required" : [ "DetectorId" ]
+    "IpSetFormat":{
+      "type":"string",
+      "enum":[
+        "TXT",
+        "STIX",
+        "OTX_CSV",
+        "ALIEN_VAULT",
+        "PROOF_POINT",
+        "FIRE_EYE"
+      ],
+      "max":300,
+      "min":1
     },
-    "ListFiltersResponse" : {
-      "type" : "structure",
-      "members" : {
-        "FilterNames" : {
-          "shape" : "FilterNames",
-          "locationName" : "filterNames"
-        },
-        "NextToken" : {
-          "shape" : "NextToken",
-          "locationName" : "nextToken"
-        }
-      }
+    "IpSetIds":{
+      "type":"list",
+      "member":{"shape":"String"},
+      "max":50,
+      "min":0
     },
-    "ListFindingsRequest" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
-        },
-        "FindingCriteria" : {
-          "shape" : "FindingCriteria",
-          "locationName" : "findingCriteria"
-        },
-        "MaxResults" : {
-          "shape" : "MaxResults",
-          "locationName" : "maxResults"
-        },
-        "NextToken" : {
-          "shape" : "NextToken",
-          "locationName" : "nextToken"
-        },
-        "SortCriteria" : {
-          "shape" : "SortCriteria",
-          "locationName" : "sortCriteria"
-        }
-      },
-      "required" : [ "DetectorId" ]
+    "IpSetStatus":{
+      "type":"string",
+      "enum":[
+        "INACTIVE",
+        "ACTIVATING",
+        "ACTIVE",
+        "DEACTIVATING",
+        "ERROR",
+        "DELETE_PENDING",
+        "DELETED"
+      ],
+      "max":300,
+      "min":1
     },
-    "ListFindingsResponse" : {
-      "type" : "structure",
-      "members" : {
-        "FindingIds" : {
-          "shape" : "FindingIds",
-          "locationName" : "findingIds"
+    "Ipv6Addresses":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "ListDetectorsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
         },
-        "NextToken" : {
-          "shape" : "NextToken",
-          "locationName" : "nextToken"
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
         }
       }
     },
-    "ListIPSetsRequest" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
+    "ListDetectorsResponse":{
+      "type":"structure",
+      "required":["DetectorIds"],
+      "members":{
+        "DetectorIds":{
+          "shape":"DetectorIds",
+          "locationName":"detectorIds"
         },
-        "MaxResults" : {
-          "shape" : "MaxResults",
-          "location" : "querystring",
-          "locationName" : "maxResults"
-        },
-        "NextToken" : {
-          "shape" : "__string",
-          "location" : "querystring",
-          "locationName" : "nextToken"
-        }
-      },
-      "required" : [ "DetectorId" ]
-    },
-    "ListIPSetsResponse" : {
-      "type" : "structure",
-      "members" : {
-        "IpSetIds" : {
-          "shape" : "IpSetIds",
-          "locationName" : "ipSetIds"
-        },
-        "NextToken" : {
-          "shape" : "NextToken",
-          "locationName" : "nextToken"
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
-    "ListInvitationsRequest" : {
-      "type" : "structure",
-      "members" : {
-        "MaxResults" : {
-          "shape" : "MaxResults",
-          "location" : "querystring",
-          "locationName" : "maxResults"
+    "ListFiltersRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
         },
-        "NextToken" : {
-          "shape" : "__string",
-          "location" : "querystring",
-          "locationName" : "nextToken"
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
         }
       }
     },
-    "ListInvitationsResponse" : {
-      "type" : "structure",
-      "members" : {
-        "Invitations" : {
-          "shape" : "Invitations",
-          "locationName" : "invitations"
+    "ListFiltersResponse":{
+      "type":"structure",
+      "required":["FilterNames"],
+      "members":{
+        "FilterNames":{
+          "shape":"FilterNames",
+          "locationName":"filterNames"
         },
-        "NextToken" : {
-          "shape" : "NextToken",
-          "locationName" : "nextToken"
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
-    "ListMembersRequest" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
+    "ListFindingsRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
         },
-        "MaxResults" : {
-          "shape" : "MaxResults",
-          "location" : "querystring",
-          "locationName" : "maxResults"
+        "FindingCriteria":{
+          "shape":"FindingCriteria",
+          "locationName":"findingCriteria"
         },
-        "NextToken" : {
-          "shape" : "__string",
-          "location" : "querystring",
-          "locationName" : "nextToken"
+        "SortCriteria":{
+          "shape":"SortCriteria",
+          "locationName":"sortCriteria"
         },
-        "OnlyAssociated" : {
-          "shape" : "__string",
-          "location" : "querystring",
-          "locationName" : "onlyAssociated"
-        }
-      },
-      "required" : [ "DetectorId" ]
-    },
-    "ListMembersResponse" : {
-      "type" : "structure",
-      "members" : {
-        "Members" : {
-          "shape" : "Members",
-          "locationName" : "members"
+        "MaxResults":{
+          "shape":"MaxResults",
+          "locationName":"maxResults"
         },
-        "NextToken" : {
-          "shape" : "NextToken",
-          "locationName" : "nextToken"
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
-    "ListThreatIntelSetsRequest" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
+    "ListFindingsResponse":{
+      "type":"structure",
+      "required":["FindingIds"],
+      "members":{
+        "FindingIds":{
+          "shape":"FindingIds",
+          "locationName":"findingIds"
         },
-        "MaxResults" : {
-          "shape" : "MaxResults",
-          "location" : "querystring",
-          "locationName" : "maxResults"
-        },
-        "NextToken" : {
-          "shape" : "__string",
-          "location" : "querystring",
-          "locationName" : "nextToken"
-        }
-      },
-      "required" : [ "DetectorId" ]
-    },
-    "ListThreatIntelSetsResponse" : {
-      "type" : "structure",
-      "members" : {
-        "NextToken" : {
-          "shape" : "NextToken",
-          "locationName" : "nextToken"
-        },
-        "ThreatIntelSetIds" : {
-          "shape" : "ThreatIntelSetIds",
-          "locationName" : "threatIntelSetIds"
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
-    "LocalPortDetails" : {
-      "type" : "structure",
-      "members" : {
-        "Port" : {
-          "shape" : "__integer",
-          "locationName" : "port"
+    "ListIPSetsRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
         },
-        "PortName" : {
-          "shape" : "__string",
-          "locationName" : "portName"
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
         }
       }
     },
-    "Location" : {
-      "type" : "string"
-    },
-    "Master" : {
-      "type" : "structure",
-      "members" : {
-        "AccountId" : {
-          "shape" : "__string",
-          "locationName" : "accountId"
+    "ListIPSetsResponse":{
+      "type":"structure",
+      "required":["IpSetIds"],
+      "members":{
+        "IpSetIds":{
+          "shape":"IpSetIds",
+          "locationName":"ipSetIds"
         },
-        "InvitationId" : {
-          "shape" : "InvitationId",
-          "locationName" : "invitationId"
-        },
-        "InvitedAt" : {
-          "shape" : "InvitedAt",
-          "locationName" : "invitedAt"
-        },
-        "RelationshipStatus" : {
-          "shape" : "__string",
-          "locationName" : "relationshipStatus"
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
-    "MasterId" : {
-      "type" : "string"
-    },
-    "MaxResults" : {
-      "type" : "integer",
-      "min" : 1,
-      "max" : 50
-    },
-    "Member" : {
-      "type" : "structure",
-      "members" : {
-        "AccountId" : {
-          "shape" : "AccountId",
-          "locationName" : "accountId"
+    "ListInvitationsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
         },
-        "DetectorId" : {
-          "shape" : "DetectorId",
-          "locationName" : "detectorId"
-        },
-        "Email" : {
-          "shape" : "Email",
-          "locationName" : "email"
-        },
-        "InvitedAt" : {
-          "shape" : "InvitedAt",
-          "locationName" : "invitedAt"
-        },
-        "MasterId" : {
-          "shape" : "MasterId",
-          "locationName" : "masterId"
-        },
-        "RelationshipStatus" : {
-          "shape" : "__string",
-          "locationName" : "relationshipStatus"
-        },
-        "UpdatedAt" : {
-          "shape" : "UpdatedAt",
-          "locationName" : "updatedAt"
-        }
-      },
-      "required" : [ "Email", "AccountId", "MasterId", "UpdatedAt", "RelationshipStatus" ]
-    },
-    "Members" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "Member"
-      }
-    },
-    "Message" : {
-      "type" : "string"
-    },
-    "Name" : {
-      "type" : "string"
-    },
-    "Neq" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "__string"
-      }
-    },
-    "NetworkConnectionAction" : {
-      "type" : "structure",
-      "members" : {
-        "Blocked" : {
-          "shape" : "__boolean",
-          "locationName" : "blocked"
-        },
-        "ConnectionDirection" : {
-          "shape" : "__string",
-          "locationName" : "connectionDirection"
-        },
-        "LocalPortDetails" : {
-          "shape" : "LocalPortDetails",
-          "locationName" : "localPortDetails"
-        },
-        "Protocol" : {
-          "shape" : "__string",
-          "locationName" : "protocol"
-        },
-        "RemoteIpDetails" : {
-          "shape" : "RemoteIpDetails",
-          "locationName" : "remoteIpDetails"
-        },
-        "RemotePortDetails" : {
-          "shape" : "RemotePortDetails",
-          "locationName" : "remotePortDetails"
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
         }
       }
     },
-    "NetworkInterface" : {
-      "type" : "structure",
-      "members" : {
-        "Ipv6Addresses" : {
-          "shape" : "Ipv6Addresses",
-          "locationName" : "ipv6Addresses"
+    "ListInvitationsResponse":{
+      "type":"structure",
+      "members":{
+        "Invitations":{
+          "shape":"Invitations",
+          "locationName":"invitations"
         },
-        "NetworkInterfaceId" : {
-          "shape" : "NetworkInterfaceId",
-          "locationName" : "networkInterfaceId"
-        },
-        "PrivateDnsName" : {
-          "shape" : "PrivateDnsName",
-          "locationName" : "privateDnsName"
-        },
-        "PrivateIpAddress" : {
-          "shape" : "PrivateIpAddress",
-          "locationName" : "privateIpAddress"
-        },
-        "PrivateIpAddresses" : {
-          "shape" : "PrivateIpAddresses",
-          "locationName" : "privateIpAddresses"
-        },
-        "PublicDnsName" : {
-          "shape" : "__string",
-          "locationName" : "publicDnsName"
-        },
-        "PublicIp" : {
-          "shape" : "__string",
-          "locationName" : "publicIp"
-        },
-        "SecurityGroups" : {
-          "shape" : "SecurityGroups",
-          "locationName" : "securityGroups"
-        },
-        "SubnetId" : {
-          "shape" : "__string",
-          "locationName" : "subnetId"
-        },
-        "VpcId" : {
-          "shape" : "__string",
-          "locationName" : "vpcId"
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
-    "NetworkInterfaceId" : {
-      "type" : "string"
-    },
-    "NetworkInterfaces" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "NetworkInterface"
-      }
-    },
-    "NextToken" : {
-      "type" : "string"
-    },
-    "OrderBy" : {
-      "type" : "string",
-      "enum" : [ "ASC", "DESC" ]
-    },
-    "Organization" : {
-      "type" : "structure",
-      "members" : {
-        "Asn" : {
-          "shape" : "__string",
-          "locationName" : "asn"
+    "ListMembersRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
         },
-        "AsnOrg" : {
-          "shape" : "__string",
-          "locationName" : "asnOrg"
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
         },
-        "Isp" : {
-          "shape" : "__string",
-          "locationName" : "isp"
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
         },
-        "Org" : {
-          "shape" : "__string",
-          "locationName" : "org"
+        "OnlyAssociated":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"onlyAssociated"
         }
       }
     },
-    "PortProbeAction" : {
-      "type" : "structure",
-      "members" : {
-        "Blocked" : {
-          "shape" : "__boolean",
-          "locationName" : "blocked"
+    "ListMembersResponse":{
+      "type":"structure",
+      "members":{
+        "Members":{
+          "shape":"Members",
+          "locationName":"members"
         },
-        "PortProbeDetails" : {
-          "shape" : "__listOfPortProbeDetail",
-          "locationName" : "portProbeDetails"
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
-    "PortProbeDetail" : {
-      "type" : "structure",
-      "members" : {
-        "LocalPortDetails" : {
-          "shape" : "LocalPortDetails",
-          "locationName" : "localPortDetails"
+    "ListThreatIntelSetsRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
         },
-        "RemoteIpDetails" : {
-          "shape" : "RemoteIpDetails",
-          "locationName" : "remoteIpDetails"
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
         }
       }
     },
-    "PrivateDnsName" : {
-      "type" : "string"
-    },
-    "PrivateIpAddress" : {
-      "type" : "string"
-    },
-    "PrivateIpAddressDetails" : {
-      "type" : "structure",
-      "members" : {
-        "PrivateDnsName" : {
-          "shape" : "PrivateDnsName",
-          "locationName" : "privateDnsName"
+    "ListThreatIntelSetsResponse":{
+      "type":"structure",
+      "required":["ThreatIntelSetIds"],
+      "members":{
+        "ThreatIntelSetIds":{
+          "shape":"ThreatIntelSetIds",
+          "locationName":"threatIntelSetIds"
         },
-        "PrivateIpAddress" : {
-          "shape" : "PrivateIpAddress",
-          "locationName" : "privateIpAddress"
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
-    "PrivateIpAddresses" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "PrivateIpAddressDetails"
-      }
-    },
-    "ProductCode" : {
-      "type" : "structure",
-      "members" : {
-        "Code" : {
-          "shape" : "__string",
-          "locationName" : "code"
+    "LocalPortDetails":{
+      "type":"structure",
+      "members":{
+        "Port":{
+          "shape":"Integer",
+          "locationName":"port"
         },
-        "ProductType" : {
-          "shape" : "__string",
-          "locationName" : "productType"
+        "PortName":{
+          "shape":"String",
+          "locationName":"portName"
         }
       }
     },
-    "ProductCodes" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "ProductCode"
-      }
+    "Location":{
+      "type":"string",
+      "max":300,
+      "min":1
     },
-    "RemoteIpDetails" : {
-      "type" : "structure",
-      "members" : {
-        "City" : {
-          "shape" : "City",
-          "locationName" : "city"
+    "Long":{"type":"long"},
+    "Master":{
+      "type":"structure",
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "locationName":"accountId"
         },
-        "Country" : {
-          "shape" : "Country",
-          "locationName" : "country"
+        "InvitationId":{
+          "shape":"String",
+          "locationName":"invitationId"
         },
-        "GeoLocation" : {
-          "shape" : "GeoLocation",
-          "locationName" : "geoLocation"
+        "RelationshipStatus":{
+          "shape":"String",
+          "locationName":"relationshipStatus"
         },
-        "IpAddressV4" : {
-          "shape" : "__string",
-          "locationName" : "ipAddressV4"
-        },
-        "Organization" : {
-          "shape" : "Organization",
-          "locationName" : "organization"
+        "InvitedAt":{
+          "shape":"String",
+          "locationName":"invitedAt"
         }
       }
     },
-    "RemotePortDetails" : {
-      "type" : "structure",
-      "members" : {
-        "Port" : {
-          "shape" : "__integer",
-          "locationName" : "port"
+    "MaxResults":{
+      "type":"integer",
+      "max":50,
+      "min":1
+    },
+    "Member":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "MasterId",
+        "Email",
+        "RelationshipStatus",
+        "UpdatedAt"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "locationName":"accountId"
         },
-        "PortName" : {
-          "shape" : "__string",
-          "locationName" : "portName"
+        "DetectorId":{
+          "shape":"DetectorId",
+          "locationName":"detectorId"
+        },
+        "MasterId":{
+          "shape":"String",
+          "locationName":"masterId"
+        },
+        "Email":{
+          "shape":"Email",
+          "locationName":"email"
+        },
+        "RelationshipStatus":{
+          "shape":"String",
+          "locationName":"relationshipStatus"
+        },
+        "InvitedAt":{
+          "shape":"String",
+          "locationName":"invitedAt"
+        },
+        "UpdatedAt":{
+          "shape":"String",
+          "locationName":"updatedAt"
         }
       }
     },
-    "Resource" : {
-      "type" : "structure",
-      "members" : {
-        "AccessKeyDetails" : {
-          "shape" : "AccessKeyDetails",
-          "locationName" : "accessKeyDetails"
+    "Members":{
+      "type":"list",
+      "member":{"shape":"Member"},
+      "max":50,
+      "min":0
+    },
+    "Name":{
+      "type":"string",
+      "max":300,
+      "min":1
+    },
+    "Neq":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "NetworkConnectionAction":{
+      "type":"structure",
+      "members":{
+        "Blocked":{
+          "shape":"Boolean",
+          "locationName":"blocked"
         },
-        "InstanceDetails" : {
-          "shape" : "InstanceDetails",
-          "locationName" : "instanceDetails"
+        "ConnectionDirection":{
+          "shape":"String",
+          "locationName":"connectionDirection"
         },
-        "ResourceType" : {
-          "shape" : "__string",
-          "locationName" : "resourceType"
+        "LocalPortDetails":{
+          "shape":"LocalPortDetails",
+          "locationName":"localPortDetails"
+        },
+        "Protocol":{
+          "shape":"String",
+          "locationName":"protocol"
+        },
+        "RemoteIpDetails":{
+          "shape":"RemoteIpDetails",
+          "locationName":"remoteIpDetails"
+        },
+        "RemotePortDetails":{
+          "shape":"RemotePortDetails",
+          "locationName":"remotePortDetails"
         }
       }
     },
-    "SecurityGroup" : {
-      "type" : "structure",
-      "members" : {
-        "GroupId" : {
-          "shape" : "__string",
-          "locationName" : "groupId"
+    "NetworkInterface":{
+      "type":"structure",
+      "members":{
+        "Ipv6Addresses":{
+          "shape":"Ipv6Addresses",
+          "locationName":"ipv6Addresses"
         },
-        "GroupName" : {
-          "shape" : "__string",
-          "locationName" : "groupName"
+        "NetworkInterfaceId":{
+          "shape":"String",
+          "locationName":"networkInterfaceId"
+        },
+        "PrivateDnsName":{
+          "shape":"String",
+          "locationName":"privateDnsName"
+        },
+        "PrivateIpAddress":{
+          "shape":"String",
+          "locationName":"privateIpAddress"
+        },
+        "PrivateIpAddresses":{
+          "shape":"PrivateIpAddresses",
+          "locationName":"privateIpAddresses"
+        },
+        "PublicDnsName":{
+          "shape":"String",
+          "locationName":"publicDnsName"
+        },
+        "PublicIp":{
+          "shape":"String",
+          "locationName":"publicIp"
+        },
+        "SecurityGroups":{
+          "shape":"SecurityGroups",
+          "locationName":"securityGroups"
+        },
+        "SubnetId":{
+          "shape":"String",
+          "locationName":"subnetId"
+        },
+        "VpcId":{
+          "shape":"String",
+          "locationName":"vpcId"
         }
       }
     },
-    "SecurityGroups" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "SecurityGroup"
-      }
+    "NetworkInterfaces":{
+      "type":"list",
+      "member":{"shape":"NetworkInterface"}
     },
-    "Service" : {
-      "type" : "structure",
-      "members" : {
-        "Action" : {
-          "shape" : "Action",
-          "locationName" : "action"
+    "NotEquals":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "OrderBy":{
+      "type":"string",
+      "enum":[
+        "ASC",
+        "DESC"
+      ]
+    },
+    "Organization":{
+      "type":"structure",
+      "members":{
+        "Asn":{
+          "shape":"String",
+          "locationName":"asn"
         },
-        "Archived" : {
-          "shape" : "__boolean",
-          "locationName" : "archived"
+        "AsnOrg":{
+          "shape":"String",
+          "locationName":"asnOrg"
         },
-        "Count" : {
-          "shape" : "__integer",
-          "locationName" : "count"
+        "Isp":{
+          "shape":"String",
+          "locationName":"isp"
         },
-        "DetectorId" : {
-          "shape" : "DetectorId",
-          "locationName" : "detectorId"
-        },
-        "EventFirstSeen" : {
-          "shape" : "__string",
-          "locationName" : "eventFirstSeen"
-        },
-        "EventLastSeen" : {
-          "shape" : "__string",
-          "locationName" : "eventLastSeen"
-        },
-        "ResourceRole" : {
-          "shape" : "__string",
-          "locationName" : "resourceRole"
-        },
-        "ServiceName" : {
-          "shape" : "__string",
-          "locationName" : "serviceName"
-        },
-        "UserFeedback" : {
-          "shape" : "__string",
-          "locationName" : "userFeedback"
+        "Org":{
+          "shape":"String",
+          "locationName":"org"
         }
       }
     },
-    "ServiceRole" : {
-      "type" : "string"
-    },
-    "SortCriteria" : {
-      "type" : "structure",
-      "members" : {
-        "AttributeName" : {
-          "shape" : "__string",
-          "locationName" : "attributeName"
+    "PortProbeAction":{
+      "type":"structure",
+      "members":{
+        "Blocked":{
+          "shape":"Boolean",
+          "locationName":"blocked"
         },
-        "OrderBy" : {
-          "shape" : "OrderBy",
-          "locationName" : "orderBy"
+        "PortProbeDetails":{
+          "shape":"PortProbeDetails",
+          "locationName":"portProbeDetails"
         }
       }
     },
-    "StartMonitoringMembersRequest" : {
-      "type" : "structure",
-      "members" : {
-        "AccountIds" : {
-          "shape" : "AccountIds",
-          "locationName" : "accountIds"
+    "PortProbeDetail":{
+      "type":"structure",
+      "members":{
+        "LocalPortDetails":{
+          "shape":"LocalPortDetails",
+          "locationName":"localPortDetails"
         },
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
-        }
-      },
-      "required" : [ "DetectorId", "AccountIds" ]
-    },
-    "StartMonitoringMembersResponse" : {
-      "type" : "structure",
-      "members" : {
-        "UnprocessedAccounts" : {
-          "shape" : "UnprocessedAccounts",
-          "locationName" : "unprocessedAccounts"
+        "RemoteIpDetails":{
+          "shape":"RemoteIpDetails",
+          "locationName":"remoteIpDetails"
         }
       }
     },
-    "StopMonitoringMembersRequest" : {
-      "type" : "structure",
-      "members" : {
-        "AccountIds" : {
-          "shape" : "AccountIds",
-          "locationName" : "accountIds"
-        },
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
-        }
-      },
-      "required" : [ "DetectorId", "AccountIds" ]
+    "PortProbeDetails":{
+      "type":"list",
+      "member":{"shape":"PortProbeDetail"}
     },
-    "StopMonitoringMembersResponse" : {
-      "type" : "structure",
-      "members" : {
-        "UnprocessedAccounts" : {
-          "shape" : "UnprocessedAccounts",
-          "locationName" : "unprocessedAccounts"
+    "PrivateIpAddressDetails":{
+      "type":"structure",
+      "members":{
+        "PrivateDnsName":{
+          "shape":"String",
+          "locationName":"privateDnsName"
+        },
+        "PrivateIpAddress":{
+          "shape":"String",
+          "locationName":"privateIpAddress"
         }
       }
     },
-    "Tag" : {
-      "type" : "structure",
-      "members" : {
-        "Key" : {
-          "shape" : "__string",
-          "locationName" : "key"
+    "PrivateIpAddresses":{
+      "type":"list",
+      "member":{"shape":"PrivateIpAddressDetails"}
+    },
+    "ProductCode":{
+      "type":"structure",
+      "members":{
+        "Code":{
+          "shape":"String",
+          "locationName":"code"
         },
-        "Value" : {
-          "shape" : "__string",
-          "locationName" : "value"
+        "ProductType":{
+          "shape":"String",
+          "locationName":"productType"
         }
       }
     },
-    "Tags" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "Tag"
-      }
+    "ProductCodes":{
+      "type":"list",
+      "member":{"shape":"ProductCode"}
     },
-    "ThreatIntelSetFormat" : {
-      "type" : "string",
-      "enum" : [ "TXT", "STIX", "OTX_CSV", "ALIEN_VAULT", "PROOF_POINT", "FIRE_EYE" ]
-    },
-    "ThreatIntelSetId" : {
-      "type" : "string"
-    },
-    "ThreatIntelSetIds" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "ThreatIntelSetId"
-      }
-    },
-    "ThreatIntelSetStatus" : {
-      "type" : "string",
-      "enum" : [ "INACTIVE", "ACTIVATING", "ACTIVE", "DEACTIVATING", "ERROR", "DELETE_PENDING", "DELETED" ]
-    },
-    "UnarchiveFindingsRequest" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
+    "RemoteIpDetails":{
+      "type":"structure",
+      "members":{
+        "City":{
+          "shape":"City",
+          "locationName":"city"
         },
-        "FindingIds" : {
-          "shape" : "FindingIds",
-          "locationName" : "findingIds"
-        }
-      },
-      "required" : [ "DetectorId", "FindingIds" ]
-    },
-    "UnarchiveFindingsResponse" : {
-      "type" : "structure",
-      "members" : { }
-    },
-    "UnprocessedAccount" : {
-      "type" : "structure",
-      "members" : {
-        "AccountId" : {
-          "shape" : "__string",
-          "locationName" : "accountId"
+        "Country":{
+          "shape":"Country",
+          "locationName":"country"
         },
-        "Result" : {
-          "shape" : "__string",
-          "locationName" : "result"
-        }
-      },
-      "required" : [ "AccountId", "Result" ]
-    },
-    "UnprocessedAccounts" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "UnprocessedAccount"
-      }
-    },
-    "UpdateDetectorRequest" : {
-      "type" : "structure",
-      "members" : {
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
+        "GeoLocation":{
+          "shape":"GeoLocation",
+          "locationName":"geoLocation"
         },
-        "Enable" : {
-          "shape" : "Enable",
-          "locationName" : "enable"
+        "IpAddressV4":{
+          "shape":"String",
+          "locationName":"ipAddressV4"
         },
-        "FindingPublishingFrequency" : {
-          "shape" : "FindingPublishingFrequency",
-          "locationName" : "findingPublishingFrequency"
-        }
-      },
-      "required" : [ "DetectorId" ]
-    },
-    "UpdateDetectorResponse" : {
-      "type" : "structure",
-      "members" : { }
-    },
-    "UpdateFilterRequest" : {
-      "type" : "structure",
-      "members" : {
-        "Action" : {
-          "shape" : "FilterAction",
-          "locationName" : "action"
-        },
-        "Description" : {
-          "shape" : "FilterDescription",
-          "locationName" : "description"
-        },
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
-        },
-        "FilterName" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "filterName"
-        },
-        "FindingCriteria" : {
-          "shape" : "FindingCriteria",
-          "locationName" : "findingCriteria"
-        },
-        "Rank" : {
-          "shape" : "FilterRank",
-          "locationName" : "rank"
-        }
-      },
-      "required" : [ "DetectorId", "FilterName" ]
-    },
-    "UpdateFilterResponse" : {
-      "type" : "structure",
-      "members" : {
-        "Name" : {
-          "shape" : "FilterName",
-          "locationName" : "name"
+        "Organization":{
+          "shape":"Organization",
+          "locationName":"organization"
         }
       }
     },
-    "UpdateFindingsFeedbackRequest" : {
-      "type" : "structure",
-      "members" : {
-        "Comments" : {
-          "shape" : "Comments",
-          "locationName" : "comments"
+    "RemotePortDetails":{
+      "type":"structure",
+      "members":{
+        "Port":{
+          "shape":"Integer",
+          "locationName":"port"
         },
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
-        },
-        "Feedback" : {
-          "shape" : "Feedback",
-          "locationName" : "feedback"
-        },
-        "FindingIds" : {
-          "shape" : "FindingIds",
-          "locationName" : "findingIds"
+        "PortName":{
+          "shape":"String",
+          "locationName":"portName"
         }
-      },
-      "required" : [ "DetectorId", "Feedback", "FindingIds" ]
-    },
-    "UpdateFindingsFeedbackResponse" : {
-      "type" : "structure",
-      "members" : { }
-    },
-    "UpdateIPSetRequest" : {
-      "type" : "structure",
-      "members" : {
-        "Activate" : {
-          "shape" : "Activate",
-          "locationName" : "activate"
-        },
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
-        },
-        "IpSetId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "ipSetId"
-        },
-        "Location" : {
-          "shape" : "Location",
-          "locationName" : "location"
-        },
-        "Name" : {
-          "shape" : "Name",
-          "locationName" : "name"
-        }
-      },
-      "required" : [ "DetectorId", "IpSetId" ]
-    },
-    "UpdateIPSetResponse" : {
-      "type" : "structure",
-      "members" : { }
-    },
-    "UpdateThreatIntelSetRequest" : {
-      "type" : "structure",
-      "members" : {
-        "Activate" : {
-          "shape" : "Activate",
-          "locationName" : "activate"
-        },
-        "DetectorId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "detectorId"
-        },
-        "Location" : {
-          "shape" : "Location",
-          "locationName" : "location"
-        },
-        "Name" : {
-          "shape" : "Name",
-          "locationName" : "name"
-        },
-        "ThreatIntelSetId" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "threatIntelSetId"
-        }
-      },
-      "required" : [ "ThreatIntelSetId", "DetectorId" ]
-    },
-    "UpdateThreatIntelSetResponse" : {
-      "type" : "structure",
-      "members" : { }
-    },
-    "UpdatedAt" : {
-      "type" : "string"
-    },
-    "__boolean" : {
-      "type" : "boolean"
-    },
-    "__double" : {
-      "type" : "double"
-    },
-    "__integer" : {
-      "type" : "integer"
-    },
-    "__listOfPortProbeDetail" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "PortProbeDetail"
       }
     },
-    "__long" : {
-      "type" : "long"
-    },
-    "__mapOfCondition" : {
-      "type" : "map",
-      "key" : {
-        "shape" : "__string"
-      },
-      "value" : {
-        "shape" : "Condition"
+    "Resource":{
+      "type":"structure",
+      "members":{
+        "AccessKeyDetails":{
+          "shape":"AccessKeyDetails",
+          "locationName":"accessKeyDetails"
+        },
+        "InstanceDetails":{
+          "shape":"InstanceDetails",
+          "locationName":"instanceDetails"
+        },
+        "ResourceType":{
+          "shape":"String",
+          "locationName":"resourceType"
+        }
       }
     },
-    "__mapOfCountBySeverityFindingStatistic" : {
-      "type" : "map",
-      "key" : {
-        "shape" : "__string"
-      },
-      "value" : {
-        "shape" : "CountBySeverityFindingStatistic"
+    "SecurityGroup":{
+      "type":"structure",
+      "members":{
+        "GroupId":{
+          "shape":"String",
+          "locationName":"groupId"
+        },
+        "GroupName":{
+          "shape":"String",
+          "locationName":"groupName"
+        }
       }
     },
-    "__string" : {
-      "type" : "string"
+    "SecurityGroups":{
+      "type":"list",
+      "member":{"shape":"SecurityGroup"}
     },
-    "__stringMin0Max64" : {
-      "type" : "string",
-      "min" : 0,
-      "max" : 64
+    "Service":{
+      "type":"structure",
+      "members":{
+        "Action":{
+          "shape":"Action",
+          "locationName":"action"
+        },
+        "Archived":{
+          "shape":"Boolean",
+          "locationName":"archived"
+        },
+        "Count":{
+          "shape":"Integer",
+          "locationName":"count"
+        },
+        "DetectorId":{
+          "shape":"DetectorId",
+          "locationName":"detectorId"
+        },
+        "EventFirstSeen":{
+          "shape":"String",
+          "locationName":"eventFirstSeen"
+        },
+        "EventLastSeen":{
+          "shape":"String",
+          "locationName":"eventLastSeen"
+        },
+        "ResourceRole":{
+          "shape":"String",
+          "locationName":"resourceRole"
+        },
+        "ServiceName":{
+          "shape":"String",
+          "locationName":"serviceName"
+        },
+        "UserFeedback":{
+          "shape":"String",
+          "locationName":"userFeedback"
+        }
+      }
     },
-    "__timestamp" : {
-      "type" : "timestamp"
+    "SortCriteria":{
+      "type":"structure",
+      "members":{
+        "AttributeName":{
+          "shape":"String",
+          "locationName":"attributeName"
+        },
+        "OrderBy":{
+          "shape":"OrderBy",
+          "locationName":"orderBy"
+        }
+      }
+    },
+    "StartMonitoringMembersRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "AccountIds"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "AccountIds":{
+          "shape":"AccountIds",
+          "locationName":"accountIds"
+        }
+      }
+    },
+    "StartMonitoringMembersResponse":{
+      "type":"structure",
+      "required":["UnprocessedAccounts"],
+      "members":{
+        "UnprocessedAccounts":{
+          "shape":"UnprocessedAccounts",
+          "locationName":"unprocessedAccounts"
+        }
+      }
+    },
+    "StopMonitoringMembersRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "AccountIds"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "AccountIds":{
+          "shape":"AccountIds",
+          "locationName":"accountIds"
+        }
+      }
+    },
+    "StopMonitoringMembersResponse":{
+      "type":"structure",
+      "required":["UnprocessedAccounts"],
+      "members":{
+        "UnprocessedAccounts":{
+          "shape":"UnprocessedAccounts",
+          "locationName":"unprocessedAccounts"
+        }
+      }
+    },
+    "String":{"type":"string"},
+    "Tag":{
+      "type":"structure",
+      "members":{
+        "Key":{
+          "shape":"String",
+          "locationName":"key"
+        },
+        "Value":{
+          "shape":"String",
+          "locationName":"value"
+        }
+      }
+    },
+    "Tags":{
+      "type":"list",
+      "member":{"shape":"Tag"}
+    },
+    "ThreatIntelSetFormat":{
+      "type":"string",
+      "enum":[
+        "TXT",
+        "STIX",
+        "OTX_CSV",
+        "ALIEN_VAULT",
+        "PROOF_POINT",
+        "FIRE_EYE"
+      ],
+      "max":300,
+      "min":1
+    },
+    "ThreatIntelSetIds":{
+      "type":"list",
+      "member":{"shape":"String"},
+      "max":50,
+      "min":0
+    },
+    "ThreatIntelSetStatus":{
+      "type":"string",
+      "enum":[
+        "INACTIVE",
+        "ACTIVATING",
+        "ACTIVE",
+        "DEACTIVATING",
+        "ERROR",
+        "DELETE_PENDING",
+        "DELETED"
+      ],
+      "max":300,
+      "min":1
+    },
+    "UnarchiveFindingsRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "FindingIds"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "FindingIds":{
+          "shape":"FindingIds",
+          "locationName":"findingIds"
+        }
+      }
+    },
+    "UnarchiveFindingsResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UnprocessedAccount":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Result"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "locationName":"accountId"
+        },
+        "Result":{
+          "shape":"String",
+          "locationName":"result"
+        }
+      }
+    },
+    "UnprocessedAccounts":{
+      "type":"list",
+      "member":{"shape":"UnprocessedAccount"},
+      "max":50,
+      "min":0
+    },
+    "UpdateDetectorRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "Enable":{
+          "shape":"Boolean",
+          "locationName":"enable"
+        },
+        "FindingPublishingFrequency":{
+          "shape":"FindingPublishingFrequency",
+          "locationName":"findingPublishingFrequency"
+        }
+      }
+    },
+    "UpdateDetectorResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateFilterRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "FilterName"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "FilterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"filterName"
+        },
+        "Description":{
+          "shape":"FilterDescription",
+          "locationName":"description"
+        },
+        "Action":{
+          "shape":"FilterAction",
+          "locationName":"action"
+        },
+        "Rank":{
+          "shape":"FilterRank",
+          "locationName":"rank"
+        },
+        "FindingCriteria":{
+          "shape":"FindingCriteria",
+          "locationName":"findingCriteria"
+        }
+      }
+    },
+    "UpdateFilterResponse":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{
+          "shape":"FilterName",
+          "locationName":"name"
+        }
+      }
+    },
+    "UpdateFindingsFeedbackRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "FindingIds",
+        "Feedback"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "FindingIds":{
+          "shape":"FindingIds",
+          "locationName":"findingIds"
+        },
+        "Feedback":{
+          "shape":"Feedback",
+          "locationName":"feedback"
+        },
+        "Comments":{
+          "shape":"String",
+          "locationName":"comments"
+        }
+      }
+    },
+    "UpdateFindingsFeedbackResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateIPSetRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "IpSetId"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "IpSetId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"ipSetId"
+        },
+        "Name":{
+          "shape":"Name",
+          "locationName":"name"
+        },
+        "Location":{
+          "shape":"Location",
+          "locationName":"location"
+        },
+        "Activate":{
+          "shape":"Boolean",
+          "locationName":"activate"
+        }
+      }
+    },
+    "UpdateIPSetResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateThreatIntelSetRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "ThreatIntelSetId"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "ThreatIntelSetId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"threatIntelSetId"
+        },
+        "Name":{
+          "shape":"Name",
+          "locationName":"name"
+        },
+        "Location":{
+          "shape":"Location",
+          "locationName":"location"
+        },
+        "Activate":{
+          "shape":"Boolean",
+          "locationName":"activate"
+        }
+      }
+    },
+    "UpdateThreatIntelSetResponse":{
+      "type":"structure",
+      "members":{
+      }
     }
   }
 }
