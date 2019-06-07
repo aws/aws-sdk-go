@@ -2964,7 +2964,7 @@
       },
       "support" : {
         "endpoints" : {
-          "us-east-1" : { }
+          "aws-global" : { }
         }
       },
       "swf" : {
@@ -3396,6 +3396,18 @@
       },
       "kinesis" : {
         "endpoints" : {
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
+        }
+      },
+      "kms" : {
+        "endpoints" : {
+          "ProdFips" : {
+            "credentialScope" : {
+              "region" : "cn-northwest-1"
+            },
+            "hostname" : "kms-fips.cn-northwest-1.amazonaws.com.cn"
+          },
           "cn-north-1" : { },
           "cn-northwest-1" : { }
         }

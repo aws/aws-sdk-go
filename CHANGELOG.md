@@ -1,3 +1,11 @@
+Release v1.19.46 (2019-06-07)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Adds DNS entries and NLB ARNs to describe-vpc-endpoint-connections API response. Adds owner ID to describe-vpc-endpoints and create-vpc-endpoint API responses.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.19.45 (2019-06-06)
 ===
 
