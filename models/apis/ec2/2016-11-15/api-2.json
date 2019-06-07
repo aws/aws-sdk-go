@@ -22012,7 +22012,8 @@
       "type":"string",
       "enum":[
         "vpc",
-        "vpn"
+        "vpn",
+        "direct-connect-gateway"
       ]
     },
     "TransitGatewayAttachmentState":{
@@ -23308,6 +23309,10 @@
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
         }
       }
     },
@@ -23333,6 +23338,14 @@
         "CreationTimestamp":{
           "shape":"MillisecondDateTime",
           "locationName":"creationTimestamp"
+        },
+        "DnsEntries":{
+          "shape":"DnsEntrySet",
+          "locationName":"dnsEntrySet"
+        },
+        "NetworkLoadBalancerArns":{
+          "shape":"ValueStringList",
+          "locationName":"networkLoadBalancerArnSet"
         }
       }
     },

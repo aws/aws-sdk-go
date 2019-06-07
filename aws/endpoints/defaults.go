@@ -3146,7 +3146,7 @@ var awsPartition = partition{
 		"support": service{
 
 			Endpoints: endpoints{
-				"us-east-1": endpoint{},
+				"aws-global": endpoint{},
 			},
 		},
 		"swf": service{
@@ -3619,6 +3619,19 @@ var awscnPartition = partition{
 		"kinesis": service{
 
 			Endpoints: endpoints{
+				"cn-north-1":     endpoint{},
+				"cn-northwest-1": endpoint{},
+			},
+		},
+		"kms": service{
+
+			Endpoints: endpoints{
+				"ProdFips": endpoint{
+					Hostname: "kms-fips.cn-northwest-1.amazonaws.com.cn",
+					CredentialScope: credentialScope{
+						Region: "cn-northwest-1",
+					},
+				},
 				"cn-north-1":     endpoint{},
 				"cn-northwest-1": endpoint{},
 			},
