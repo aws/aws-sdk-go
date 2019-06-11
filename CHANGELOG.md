@@ -1,3 +1,10 @@
+Release v1.19.48 (2019-06-11)
+===
+
+### Service Client Updates
+* `service/sagemaker`: Updates service API and documentation
+  * The default TaskTimeLimitInSeconds of labeling job is increased to 8 hours. Batch Transform introduces a new DataProcessing field which supports input and output filtering and data joining. Training job increases the max allowed input channels from 8 to 20.
+
 Release v1.19.47 (2019-06-10)
 ===
 
