@@ -131,7 +131,7 @@ func TestLoadSharedConfig(t *testing.T) {
 			Expected: sharedConfig{
 				AssumeRole: assumeRoleConfig{
 					RoleARN:          "assume_role_with_credential_source_role_arn",
-					CredentialSource: "Ec2InstanceMetadata",
+					CredentialSource: credSourceEc2Metadata,
 				},
 			},
 		},
@@ -169,7 +169,7 @@ func TestLoadSharedConfig(t *testing.T) {
 				AssumeRoleSource: &sharedConfig{
 					AssumeRole: assumeRoleConfig{
 						RoleARN:          "assume_role_with_credential_source_role_arn",
-						CredentialSource: "Ec2InstanceMetadata",
+						CredentialSource: credSourceEc2Metadata,
 					},
 				},
 			},
@@ -190,7 +190,7 @@ func TestLoadSharedConfig(t *testing.T) {
 					AssumeRoleSource: &sharedConfig{
 						AssumeRole: assumeRoleConfig{
 							RoleARN:          "assume_role_with_credential_source_role_arn",
-							CredentialSource: "Ec2InstanceMetadata",
+							CredentialSource: credSourceEc2Metadata,
 						},
 					},
 				},
@@ -320,7 +320,7 @@ func TestLoadSharedConfigFromFile(t *testing.T) {
 		if err != nil {
 			t.Errorf("%d, expect nil, %v", i, err)
 		}
-		if e, a := c.Expected, cfg; e != a {
+		if e, a := c.Expected, cfg; !reflect.DeepEqual(e, a) {
 			t.Errorf("%d, expect %v, got %v", i, e, a)
 		}
 	}
