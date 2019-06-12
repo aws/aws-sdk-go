@@ -1981,6 +1981,14 @@
         "ListProvisioningArtifactsOutput$ProvisioningArtifactDetails": "<p>Information about the provisioning artifacts.</p>"
       }
     },
+    "ProvisioningArtifactGuidance": {
+      "base": null,
+      "refs": {
+        "ProvisioningArtifact$Guidance": "<p>Information set by the administrator to provide guidance to end users about which provisioning artifacts to use.</p>",
+        "ProvisioningArtifactDetail$Guidance": "<p>Information set by the administrator to provide guidance to end users about which provisioning artifacts to use.</p>",
+        "UpdateProvisioningArtifactInput$Guidance": "<p>Information set by the administrator to provide guidance to end users about which provisioning artifacts to use.</p> <p>The <code>DEFAULT</code> value indicates that the product version is active.</p> <p>The administrator can set the guidance to <code>DEPRECATED</code> to inform users that the product version is deprecated. Users are able to make updates to a provisioned product of a deprecated version but cannot launch new provisioned products using a deprecated version.</p>"
+      }
+    },
     "ProvisioningArtifactInfo": {
       "base": null,
       "refs": {
@@ -2761,7 +2769,7 @@
       "refs": {
         "CreatePortfolioOutput$Tags": "<p>Information about the tags associated with the portfolio.</p>",
         "CreateProductOutput$Tags": "<p>Information about the tags associated with the product.</p>",
-        "CreateProvisionedProductPlanInput$Tags": "<p>One or more tags.</p>",
+        "CreateProvisionedProductPlanInput$Tags": "<p>One or more tags.</p> <p>If the plan is for an existing provisioned product, the product must have a <code>RESOURCE_UPDATE</code> constraint with <code>TagUpdatesOnProvisionedProduct</code> set to <code>ALLOWED</code> to allow tag updates.</p>",
         "DescribePortfolioOutput$Tags": "<p>Information about the tags associated with the portfolio.</p>",
         "DescribeProductAsAdminOutput$Tags": "<p>Information about the tags associated with the product.</p>",
         "LaunchPathSummary$Tags": "<p>The tags associated with this product path.</p>",
