@@ -59,6 +59,7 @@ func (h *Handlers) Clear() {
 	h.Complete.Clear()
 }
 
+// IsEmpty returns if there are no handlers in any of the handlerlists.
 func (h *Handlers) IsEmpty() bool {
 	if h.Validate.Len() != 0 {
 		return false
