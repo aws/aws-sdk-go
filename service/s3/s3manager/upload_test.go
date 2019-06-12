@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"reflect"
 	"regexp"
 	"runtime"
@@ -1036,47 +1037,73 @@ func TestUploadMaxPartsEOF(t *testing.T) {
 	}
 }
 
+func createTempFile(t *testing.T, size int64) (*os.File, func(*testing.T), error) {
+	file, err := ioutil.TempFile(os.TempDir(), aws.SDKName+t.Name())
+	if err != nil {
+		return nil, nil, err
+	}
+	filename := file.Name()
+	if err := file.Truncate(size); err != nil {
+		return nil, nil, err
+	}
+
+	return file,
+		func(t *testing.T) {
+			if err := file.Close(); err != nil {
+				t.Errorf("failed to close temp file, %s, %v", filename, err)
+			}
+			if err := os.Remove(filename); err != nil {
+				t.Errorf("failed to remove temp file, %s, %v", filename, err)
+			}
+		},
+		nil
+}
+
+func buildFailHandlers(tb testing.TB, parts, retry int) []http.Handler {
+	handlers := make([]http.Handler, parts)
+	for i := 0; i < len(handlers); i++ {
+		handlers[i] = &failPartHandler{
+			tb:             tb,
+			failsRemaining: retry,
+			successHandler: successPartHandler{tb: tb},
+		}
+	}
+
+	return handlers
+}
+
 func TestUploadRetry(t *testing.T) {
 	if runtime.GOOS == "darwin" && strings.Contains(runtime.Version(), "go1.7") {
 		t.Skip("TestUploadRetry unstable for Go 1.7 on darwin, see #2636")
 	}
+	const numParts, retries = 3, 10
+
+	testFile, testFileCleanup, err := createTempFile(t, s3manager.DefaultUploadPartSize*numParts)
+	if err != nil {
+		t.Fatalf("failed to create test file, %v", err)
+	}
+	defer testFileCleanup(t)
 
 	cases := map[string]struct {
 		Body         io.Reader
 		PartHandlers func(testing.TB) []http.Handler
 	}{
-		"success upload bytes.Buffer": {
-			Body: bytes.NewBuffer(make([]byte, s3manager.DefaultUploadPartSize*2)),
+		"bytes.Buffer": {
+			Body: bytes.NewBuffer(make([]byte, s3manager.DefaultUploadPartSize*numParts)),
 			PartHandlers: func(tb testing.TB) []http.Handler {
-				return []http.Handler{
-					&failPartHandler{
-						tb:             tb,
-						failsRemaining: 10,
-						successHandler: successPartHandler{tb: tb},
-					},
-					&failPartHandler{
-						tb:             tb,
-						failsRemaining: 10,
-						successHandler: successPartHandler{tb: tb},
-					},
-				}
+				return buildFailHandlers(tb, numParts, retries)
 			},
 		},
-		"success upload bytes.Reader": {
-			Body: bytes.NewReader(make([]byte, s3manager.DefaultUploadPartSize*2)),
+		"bytes.Reader": {
+			Body: bytes.NewReader(make([]byte, s3manager.DefaultUploadPartSize*numParts)),
 			PartHandlers: func(tb testing.TB) []http.Handler {
-				return []http.Handler{
-					&failPartHandler{
-						tb:             tb,
-						failsRemaining: 10,
-						successHandler: successPartHandler{tb: tb},
-					},
-					&failPartHandler{
-						tb:             tb,
-						failsRemaining: 10,
-						successHandler: successPartHandler{tb: tb},
-					},
-				}
+				return buildFailHandlers(tb, numParts, retries)
+			},
+		},
+		"os.File": {
+			Body: testFile,
+			PartHandlers: func(tb testing.TB) []http.Handler {
+				return buildFailHandlers(tb, numParts, retries)
 			},
 		},
 	}
@@ -1092,7 +1119,7 @@ func TestUploadRetry(t *testing.T) {
 				S3ForcePathStyle: aws.Bool(true),
 				DisableSSL:       aws.Bool(true),
 				Logger:           t,
-				MaxRetries:       aws.Int(15),
+				MaxRetries:       aws.Int(retries + 1),
 				SleepDelay:       func(time.Duration) {},
 
 				LogLevel: aws.LogLevel(
