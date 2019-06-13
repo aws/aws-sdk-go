@@ -7,5 +7,7 @@
   * Fix [#2385](https://github.com/aws/aws-sdk-go/issue/2385)
 
 ### SDK Enhancements
+* `service/s3/s3manager/s3manageriface`: Add missing methods ([#2612](https://github.com/aws/aws-sdk-go/pull/2612))
+  * Adds the missing interface and methods from the `s3manager` Uploader, Downloader, and Batch Delete utilities.
 
 ### SDK Bugs
