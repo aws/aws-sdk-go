@@ -474,6 +474,20 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "ListThreatIntelSets":{
       "name":"ListThreatIntelSets",
       "http":{
@@ -516,6 +530,20 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":204
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "UnarchiveFindings":{
       "name":"UnarchiveFindings",
       "http":{
@@ -525,6 +553,20 @@
       },
       "input":{"shape":"UnarchiveFindingsRequest"},
       "output":{"shape":"UnarchiveFindingsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":204
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"InternalServerErrorException"}
@@ -881,6 +923,10 @@
         "FindingPublishingFrequency":{
           "shape":"FindingPublishingFrequency",
           "locationName":"findingPublishingFrequency"
+        },
+        "Tags":{
+          "shape":"TagMap",
+          "locationName":"tags"
         }
       }
     },
@@ -930,6 +976,10 @@
           "shape":"ClientToken",
           "idempotencyToken":true,
           "locationName":"clientToken"
+        },
+        "Tags":{
+          "shape":"TagMap",
+          "locationName":"tags"
         }
       }
     },
@@ -978,6 +1028,10 @@
           "shape":"ClientToken",
           "idempotencyToken":true,
           "locationName":"clientToken"
+        },
+        "Tags":{
+          "shape":"TagMap",
+          "locationName":"tags"
         }
       }
     },
@@ -1074,6 +1128,10 @@
           "shape":"ClientToken",
           "idempotencyToken":true,
           "locationName":"clientToken"
+        },
+        "Tags":{
+          "shape":"TagMap",
+          "locationName":"tags"
         }
       }
     },
@@ -1572,6 +1630,10 @@
         "UpdatedAt":{
           "shape":"String",
           "locationName":"updatedAt"
+        },
+        "Tags":{
+          "shape":"TagMap",
+          "locationName":"tags"
         }
       }
     },
@@ -1621,6 +1683,10 @@
         "FindingCriteria":{
           "shape":"FindingCriteria",
           "locationName":"findingCriteria"
+        },
+        "Tags":{
+          "shape":"TagMap",
+          "locationName":"tags"
         }
       }
     },
@@ -1731,6 +1797,10 @@
         "Status":{
           "shape":"IpSetStatus",
           "locationName":"status"
+        },
+        "Tags":{
+          "shape":"TagMap",
+          "locationName":"tags"
         }
       }
     },
@@ -1847,8 +1917,16 @@
         "Status":{
           "shape":"ThreatIntelSetStatus",
           "locationName":"status"
+        },
+        "Tags":{
+          "shape":"TagMap",
+          "locationName":"tags"
         }
       }
+    },
+    "GuardDutyArn":{
+      "type":"string",
+      "pattern":"^arn:[A-Za-z_.-]{1,20}:guardduty:[A-Za-z0-9_/.-]{0,63}:\\d+:detector/[A-Za-z0-9_/.-]{32,264}$"
     },
     "IamInstanceProfile":{
       "type":"structure",
@@ -2236,6 +2314,26 @@
         "NextToken":{
           "shape":"String",
           "locationName":"nextToken"
+        }
+      }
+    },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{
+          "shape":"GuardDutyArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        }
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{
+          "shape":"TagMap",
+          "locationName":"tags"
         }
       }
     },
@@ -2744,6 +2842,52 @@
         }
       }
     },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^(?!aws:)[a-zA-Z+-=._:/]+$"
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":200,
+      "min":1
+    },
+    "TagMap":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"},
+      "max":200,
+      "min":1
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "Tags"
+      ],
+      "members":{
+        "ResourceArn":{
+          "shape":"GuardDutyArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "Tags":{
+          "shape":"TagMap",
+          "locationName":"tags"
+        }
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256
+    },
     "Tags":{
       "type":"list",
       "member":{"shape":"Tag"}
@@ -2826,6 +2970,30 @@
       "member":{"shape":"UnprocessedAccount"},
       "max":50,
       "min":0
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceArn":{
+          "shape":"GuardDutyArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "TagKeys":{
+          "shape":"TagKeyList",
+          "location":"querystring",
+          "locationName":"tagKeys"
+        }
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateDetectorRequest":{
       "type":"structure",

@@ -35,10 +35,13 @@
     "ListIPSets": "<p>Lists the IPSets of the GuardDuty service specified by the detector ID.</p>",
     "ListInvitations": "<p>Lists all GuardDuty membership invitations that were sent to the current AWS account.</p>",
     "ListMembers": "<p>Lists details about all member accounts for the current GuardDuty master account.</p>",
+    "ListTagsForResource": "<p>Lists tags for a resource. Tagging is currently supported for detectors, finding filters, IP sets, and Threat Intel sets, with a limit of 50 tags per resource. When invoked, this operation returns all assigned tags for a given resource..</p>",
     "ListThreatIntelSets": "<p>Lists the ThreatIntelSets of the GuardDuty service specified by the detector ID.</p>",
     "StartMonitoringMembers": "<p>Re-enables GuardDuty to monitor findings of the member accounts specified by the account IDs. A master GuardDuty account can run this command after disabling GuardDuty from monitoring these members' findings by running StopMonitoringMembers.</p>",
     "StopMonitoringMembers": "<p>Disables GuardDuty from monitoring findings of the member accounts specified by the account IDs. After running this command, a master GuardDuty account can run StartMonitoringMembers to re-enable GuardDuty to monitor these members’ findings.</p>",
+    "TagResource": "<p>Adds tags to a resource.</p>",
     "UnarchiveFindings": "<p>Unarchives Amazon GuardDuty findings specified by the list of finding IDs.</p>",
+    "UntagResource": "<p>Removes tags from a resource.</p>",
     "UpdateDetector": "<p>Updates an Amazon GuardDuty detector specified by the detectorId.</p>",
     "UpdateFilter": "<p>Updates the filter specified by the filter name.</p>",
     "UpdateFindingsFeedback": "<p>Marks specified Amazon GuardDuty findings as useful or not useful.</p>",
@@ -645,6 +648,14 @@
       "refs": {
       }
     },
+    "GuardDutyArn": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) for the given GuardDuty resource </p>",
+        "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) for the given GuardDuty resource </p>",
+        "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) for the given GuardDuty resource </p>"
+      }
+    },
     "IamInstanceProfile": {
       "base": null,
       "refs": {
@@ -779,6 +790,16 @@
       }
     },
     "ListMembersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
       "base": null,
       "refs": {
       }
@@ -1143,6 +1164,50 @@
         "Tags$member": null
       }
     },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "TagKeyList$member": null,
+        "TagMap$key": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": "<p>The tag keys to remove from a resource.</p>"
+      }
+    },
+    "TagMap": {
+      "base": null,
+      "refs": {
+        "CreateDetectorRequest$Tags": "<p>The tags to be added to a new detector resource.</p>",
+        "CreateFilterRequest$Tags": "<p>The tags to be added to a new filter resource.</p>",
+        "CreateIPSetRequest$Tags": "<p>The tags to be added to a new IP set resource.</p>",
+        "CreateThreatIntelSetRequest$Tags": "<p>The tags to be added to a new Threat List resource.</p>",
+        "GetDetectorResponse$Tags": "<p>The tags of the detector resource.</p>",
+        "GetFilterResponse$Tags": "<p>The tags of the filter resource.</p>",
+        "GetIPSetResponse$Tags": "<p>The tags of the IP set resource.</p>",
+        "GetThreatIntelSetResponse$Tags": "<p>The tags of the Threat List resource.</p>",
+        "ListTagsForResourceResponse$Tags": null,
+        "TagResourceRequest$Tags": "<p>The tags to be added to a resource.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "TagMap$value": null
+      }
+    },
     "Tags": {
       "base": null,
       "refs": {
@@ -1196,6 +1261,16 @@
         "InviteMembersResponse$UnprocessedAccounts": "<p>A list of objects containing the unprocessed account and a result string explaining why it was unprocessed.</p>",
         "StartMonitoringMembersResponse$UnprocessedAccounts": "<p>A list of objects containing the unprocessed account and a result string explaining why it was unprocessed.</p>",
         "StopMonitoringMembersResponse$UnprocessedAccounts": "<p>A list of objects containing the unprocessed account and a result string explaining why it was unprocessed.</p>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateDetectorRequest": {
