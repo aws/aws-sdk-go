@@ -12,7 +12,6 @@ import (
 	"os"
 	"reflect"
 	"regexp"
-	"runtime"
 	"sort"
 	"strconv"
 	"strings"
@@ -1073,9 +1072,6 @@ func buildFailHandlers(tb testing.TB, parts, retry int) []http.Handler {
 }
 
 func TestUploadRetry(t *testing.T) {
-	if runtime.GOOS == "darwin" && strings.Contains(runtime.Version(), "go1.7") {
-		t.Skip("TestUploadRetry unstable for Go 1.7 on darwin, see #2636")
-	}
 	const numParts, retries = 3, 10
 
 	testFile, testFileCleanup, err := createTempFile(t, s3manager.DefaultUploadPartSize*numParts)
