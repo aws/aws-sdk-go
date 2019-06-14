@@ -1,7 +1,7 @@
 {
   "version":"2.0",
   "metadata":{
-    "apiVersion":"2018-11-05",
+    "apiVersion":"2019-03-26",
     "endpointPrefix":"cloudfront",
     "globalEndpoint":"cloudfront.amazonaws.com",
     "protocol":"rest-xml",
@@ -9,14 +9,14 @@
     "serviceFullName":"Amazon CloudFront",
     "serviceId":"CloudFront",
     "signatureVersion":"v4",
-    "uid":"cloudfront-2018-11-05"
+    "uid":"cloudfront-2019-03-26"
   },
   "operations":{
     "CreateCloudFrontOriginAccessIdentity":{
-      "name":"CreateCloudFrontOriginAccessIdentity2018_11_05",
+      "name":"CreateCloudFrontOriginAccessIdentity2019_03_26",
       "http":{
         "method":"POST",
-        "requestUri":"/2018-11-05/origin-access-identity/cloudfront",
+        "requestUri":"/2019-03-26/origin-access-identity/cloudfront",
         "responseCode":201
       },
       "input":{"shape":"CreateCloudFrontOriginAccessIdentityRequest"},
@@ -30,10 +30,10 @@
       ]
     },
     "CreateDistribution":{
-      "name":"CreateDistribution2018_11_05",
+      "name":"CreateDistribution2019_03_26",
       "http":{
         "method":"POST",
-        "requestUri":"/2018-11-05/distribution",
+        "requestUri":"/2019-03-26/distribution",
         "responseCode":201
       },
       "input":{"shape":"CreateDistributionRequest"},
@@ -86,10 +86,10 @@
       ]
     },
     "CreateDistributionWithTags":{
-      "name":"CreateDistributionWithTags2018_11_05",
+      "name":"CreateDistributionWithTags2019_03_26",
       "http":{
         "method":"POST",
-        "requestUri":"/2018-11-05/distribution?WithTags",
+        "requestUri":"/2019-03-26/distribution?WithTags",
         "responseCode":201
       },
       "input":{"shape":"CreateDistributionWithTagsRequest"},
@@ -143,10 +143,10 @@
       ]
     },
     "CreateFieldLevelEncryptionConfig":{
-      "name":"CreateFieldLevelEncryptionConfig2018_11_05",
+      "name":"CreateFieldLevelEncryptionConfig2019_03_26",
       "http":{
         "method":"POST",
-        "requestUri":"/2018-11-05/field-level-encryption",
+        "requestUri":"/2019-03-26/field-level-encryption",
         "responseCode":201
       },
       "input":{"shape":"CreateFieldLevelEncryptionConfigRequest"},
@@ -163,10 +163,10 @@
       ]
     },
     "CreateFieldLevelEncryptionProfile":{
-      "name":"CreateFieldLevelEncryptionProfile2018_11_05",
+      "name":"CreateFieldLevelEncryptionProfile2019_03_26",
       "http":{
         "method":"POST",
-        "requestUri":"/2018-11-05/field-level-encryption-profile",
+        "requestUri":"/2019-03-26/field-level-encryption-profile",
         "responseCode":201
       },
       "input":{"shape":"CreateFieldLevelEncryptionProfileRequest"},
@@ -183,10 +183,10 @@
       ]
     },
     "CreateInvalidation":{
-      "name":"CreateInvalidation2018_11_05",
+      "name":"CreateInvalidation2019_03_26",
       "http":{
         "method":"POST",
-        "requestUri":"/2018-11-05/distribution/{DistributionId}/invalidation",
+        "requestUri":"/2019-03-26/distribution/{DistributionId}/invalidation",
         "responseCode":201
       },
       "input":{"shape":"CreateInvalidationRequest"},
@@ -202,10 +202,10 @@
       ]
     },
     "CreatePublicKey":{
-      "name":"CreatePublicKey2018_11_05",
+      "name":"CreatePublicKey2019_03_26",
       "http":{
         "method":"POST",
-        "requestUri":"/2018-11-05/public-key",
+        "requestUri":"/2019-03-26/public-key",
         "responseCode":201
       },
       "input":{"shape":"CreatePublicKeyRequest"},
@@ -217,10 +217,10 @@
       ]
     },
     "CreateStreamingDistribution":{
-      "name":"CreateStreamingDistribution2018_11_05",
+      "name":"CreateStreamingDistribution2019_03_26",
       "http":{
         "method":"POST",
-        "requestUri":"/2018-11-05/streaming-distribution",
+        "requestUri":"/2019-03-26/streaming-distribution",
         "responseCode":201
       },
       "input":{"shape":"CreateStreamingDistributionRequest"},
@@ -241,10 +241,10 @@
       ]
     },
     "CreateStreamingDistributionWithTags":{
-      "name":"CreateStreamingDistributionWithTags2018_11_05",
+      "name":"CreateStreamingDistributionWithTags2019_03_26",
       "http":{
         "method":"POST",
-        "requestUri":"/2018-11-05/streaming-distribution?WithTags",
+        "requestUri":"/2019-03-26/streaming-distribution?WithTags",
         "responseCode":201
       },
       "input":{"shape":"CreateStreamingDistributionWithTagsRequest"},
@@ -266,10 +266,10 @@
       ]
     },
     "DeleteCloudFrontOriginAccessIdentity":{
-      "name":"DeleteCloudFrontOriginAccessIdentity2018_11_05",
+      "name":"DeleteCloudFrontOriginAccessIdentity2019_03_26",
       "http":{
         "method":"DELETE",
-        "requestUri":"/2018-11-05/origin-access-identity/cloudfront/{Id}",
+        "requestUri":"/2019-03-26/origin-access-identity/cloudfront/{Id}",
         "responseCode":204
       },
       "input":{"shape":"DeleteCloudFrontOriginAccessIdentityRequest"},
@@ -282,10 +282,10 @@
       ]
     },
     "DeleteDistribution":{
-      "name":"DeleteDistribution2018_11_05",
+      "name":"DeleteDistribution2019_03_26",
       "http":{
         "method":"DELETE",
-        "requestUri":"/2018-11-05/distribution/{Id}",
+        "requestUri":"/2019-03-26/distribution/{Id}",
         "responseCode":204
       },
       "input":{"shape":"DeleteDistributionRequest"},
@@ -298,10 +298,10 @@
       ]
     },
     "DeleteFieldLevelEncryptionConfig":{
-      "name":"DeleteFieldLevelEncryptionConfig2018_11_05",
+      "name":"DeleteFieldLevelEncryptionConfig2019_03_26",
       "http":{
         "method":"DELETE",
-        "requestUri":"/2018-11-05/field-level-encryption/{Id}",
+        "requestUri":"/2019-03-26/field-level-encryption/{Id}",
         "responseCode":204
       },
       "input":{"shape":"DeleteFieldLevelEncryptionConfigRequest"},
@@ -314,10 +314,10 @@
       ]
     },
     "DeleteFieldLevelEncryptionProfile":{
-      "name":"DeleteFieldLevelEncryptionProfile2018_11_05",
+      "name":"DeleteFieldLevelEncryptionProfile2019_03_26",
       "http":{
         "method":"DELETE",
-        "requestUri":"/2018-11-05/field-level-encryption-profile/{Id}",
+        "requestUri":"/2019-03-26/field-level-encryption-profile/{Id}",
         "responseCode":204
       },
       "input":{"shape":"DeleteFieldLevelEncryptionProfileRequest"},
@@ -330,10 +330,10 @@
       ]
     },
     "DeletePublicKey":{
-      "name":"DeletePublicKey2018_11_05",
+      "name":"DeletePublicKey2019_03_26",
       "http":{
         "method":"DELETE",
-        "requestUri":"/2018-11-05/public-key/{Id}",
+        "requestUri":"/2019-03-26/public-key/{Id}",
         "responseCode":204
       },
       "input":{"shape":"DeletePublicKeyRequest"},
@@ -346,10 +346,10 @@
       ]
     },
     "DeleteStreamingDistribution":{
-      "name":"DeleteStreamingDistribution2018_11_05",
+      "name":"DeleteStreamingDistribution2019_03_26",
       "http":{
         "method":"DELETE",
-        "requestUri":"/2018-11-05/streaming-distribution/{Id}",
+        "requestUri":"/2019-03-26/streaming-distribution/{Id}",
         "responseCode":204
       },
       "input":{"shape":"DeleteStreamingDistributionRequest"},
@@ -362,10 +362,10 @@
       ]
     },
     "GetCloudFrontOriginAccessIdentity":{
-      "name":"GetCloudFrontOriginAccessIdentity2018_11_05",
+      "name":"GetCloudFrontOriginAccessIdentity2019_03_26",
       "http":{
         "method":"GET",
-        "requestUri":"/2018-11-05/origin-access-identity/cloudfront/{Id}"
+        "requestUri":"/2019-03-26/origin-access-identity/cloudfront/{Id}"
       },
       "input":{"shape":"GetCloudFrontOriginAccessIdentityRequest"},
       "output":{"shape":"GetCloudFrontOriginAccessIdentityResult"},
@@ -375,10 +375,10 @@
       ]
     },
     "GetCloudFrontOriginAccessIdentityConfig":{
-      "name":"GetCloudFrontOriginAccessIdentityConfig2018_11_05",
+      "name":"GetCloudFrontOriginAccessIdentityConfig2019_03_26",
       "http":{
         "method":"GET",
-        "requestUri":"/2018-11-05/origin-access-identity/cloudfront/{Id}/config"
+        "requestUri":"/2019-03-26/origin-access-identity/cloudfront/{Id}/config"
       },
       "input":{"shape":"GetCloudFrontOriginAccessIdentityConfigRequest"},
       "output":{"shape":"GetCloudFrontOriginAccessIdentityConfigResult"},
@@ -388,10 +388,10 @@
       ]
     },
     "GetDistribution":{
-      "name":"GetDistribution2018_11_05",
+      "name":"GetDistribution2019_03_26",
       "http":{
         "method":"GET",
-        "requestUri":"/2018-11-05/distribution/{Id}"
+        "requestUri":"/2019-03-26/distribution/{Id}"
       },
       "input":{"shape":"GetDistributionRequest"},
       "output":{"shape":"GetDistributionResult"},
@@ -401,10 +401,10 @@
       ]
     },
     "GetDistributionConfig":{
-      "name":"GetDistributionConfig2018_11_05",
+      "name":"GetDistributionConfig2019_03_26",
       "http":{
         "method":"GET",
-        "requestUri":"/2018-11-05/distribution/{Id}/config"
+        "requestUri":"/2019-03-26/distribution/{Id}/config"
       },
       "input":{"shape":"GetDistributionConfigRequest"},
       "output":{"shape":"GetDistributionConfigResult"},
@@ -414,10 +414,10 @@
       ]
     },
     "GetFieldLevelEncryption":{
-      "name":"GetFieldLevelEncryption2018_11_05",
+      "name":"GetFieldLevelEncryption2019_03_26",
       "http":{
         "method":"GET",
-        "requestUri":"/2018-11-05/field-level-encryption/{Id}"
+        "requestUri":"/2019-03-26/field-level-encryption/{Id}"
       },
       "input":{"shape":"GetFieldLevelEncryptionRequest"},
       "output":{"shape":"GetFieldLevelEncryptionResult"},
@@ -427,10 +427,10 @@
       ]
     },
     "GetFieldLevelEncryptionConfig":{
-      "name":"GetFieldLevelEncryptionConfig2018_11_05",
+      "name":"GetFieldLevelEncryptionConfig2019_03_26",
       "http":{
         "method":"GET",
-        "requestUri":"/2018-11-05/field-level-encryption/{Id}/config"
+        "requestUri":"/2019-03-26/field-level-encryption/{Id}/config"
       },
       "input":{"shape":"GetFieldLevelEncryptionConfigRequest"},
       "output":{"shape":"GetFieldLevelEncryptionConfigResult"},
@@ -440,10 +440,10 @@
       ]
     },
     "GetFieldLevelEncryptionProfile":{
-      "name":"GetFieldLevelEncryptionProfile2018_11_05",
+      "name":"GetFieldLevelEncryptionProfile2019_03_26",
       "http":{
         "method":"GET",
-        "requestUri":"/2018-11-05/field-level-encryption-profile/{Id}"
+        "requestUri":"/2019-03-26/field-level-encryption-profile/{Id}"
       },
       "input":{"shape":"GetFieldLevelEncryptionProfileRequest"},
       "output":{"shape":"GetFieldLevelEncryptionProfileResult"},
@@ -453,10 +453,10 @@
       ]
     },
     "GetFieldLevelEncryptionProfileConfig":{
-      "name":"GetFieldLevelEncryptionProfileConfig2018_11_05",
+      "name":"GetFieldLevelEncryptionProfileConfig2019_03_26",
       "http":{
         "method":"GET",
-        "requestUri":"/2018-11-05/field-level-encryption-profile/{Id}/config"
+        "requestUri":"/2019-03-26/field-level-encryption-profile/{Id}/config"
       },
       "input":{"shape":"GetFieldLevelEncryptionProfileConfigRequest"},
       "output":{"shape":"GetFieldLevelEncryptionProfileConfigResult"},
@@ -466,10 +466,10 @@
       ]
     },
     "GetInvalidation":{
-      "name":"GetInvalidation2018_11_05",
+      "name":"GetInvalidation2019_03_26",
       "http":{
         "method":"GET",
-        "requestUri":"/2018-11-05/distribution/{DistributionId}/invalidation/{Id}"
+        "requestUri":"/2019-03-26/distribution/{DistributionId}/invalidation/{Id}"
       },
       "input":{"shape":"GetInvalidationRequest"},
       "output":{"shape":"GetInvalidationResult"},
@@ -480,10 +480,10 @@
       ]
     },
     "GetPublicKey":{
-      "name":"GetPublicKey2018_11_05",
+      "name":"GetPublicKey2019_03_26",
       "http":{
         "method":"GET",
-        "requestUri":"/2018-11-05/public-key/{Id}"
+        "requestUri":"/2019-03-26/public-key/{Id}"
       },
       "input":{"shape":"GetPublicKeyRequest"},
       "output":{"shape":"GetPublicKeyResult"},
@@ -493,10 +493,10 @@
       ]
     },
     "GetPublicKeyConfig":{
-      "name":"GetPublicKeyConfig2018_11_05",
+      "name":"GetPublicKeyConfig2019_03_26",
       "http":{
         "method":"GET",
-        "requestUri":"/2018-11-05/public-key/{Id}/config"
+        "requestUri":"/2019-03-26/public-key/{Id}/config"
       },
       "input":{"shape":"GetPublicKeyConfigRequest"},
       "output":{"shape":"GetPublicKeyConfigResult"},
@@ -506,10 +506,10 @@
       ]
     },
     "GetStreamingDistribution":{
-      "name":"GetStreamingDistribution2018_11_05",
+      "name":"GetStreamingDistribution2019_03_26",
       "http":{
         "method":"GET",
-        "requestUri":"/2018-11-05/streaming-distribution/{Id}"
+        "requestUri":"/2019-03-26/streaming-distribution/{Id}"
       },
       "input":{"shape":"GetStreamingDistributionRequest"},
       "output":{"shape":"GetStreamingDistributionResult"},
@@ -519,10 +519,10 @@
       ]
     },
     "GetStreamingDistributionConfig":{
-      "name":"GetStreamingDistributionConfig2018_11_05",
+      "name":"GetStreamingDistributionConfig2019_03_26",
       "http":{
         "method":"GET",
-        "requestUri":"/2018-11-05/streaming-distribution/{Id}/config"
+        "requestUri":"/2019-03-26/streaming-distribution/{Id}/config"
       },
       "input":{"shape":"GetStreamingDistributionConfigRequest"},
       "output":{"shape":"GetStreamingDistributionConfigResult"},
@@ -532,10 +532,10 @@
       ]
     },
     "ListCloudFrontOriginAccessIdentities":{
-      "name":"ListCloudFrontOriginAccessIdentities2018_11_05",
+      "name":"ListCloudFrontOriginAccessIdentities2019_03_26",
       "http":{
         "method":"GET",
-        "requestUri":"/2018-11-05/origin-access-identity/cloudfront"
+        "requestUri":"/2019-03-26/origin-access-identity/cloudfront"
       },
       "input":{"shape":"ListCloudFrontOriginAccessIdentitiesRequest"},
       "output":{"shape":"ListCloudFrontOriginAccessIdentitiesResult"},
@@ -544,10 +544,10 @@
       ]
     },
     "ListDistributions":{
-      "name":"ListDistributions2018_11_05",
+      "name":"ListDistributions2019_03_26",
       "http":{
         "method":"GET",
-        "requestUri":"/2018-11-05/distribution"
+        "requestUri":"/2019-03-26/distribution"
       },
       "input":{"shape":"ListDistributionsRequest"},
       "output":{"shape":"ListDistributionsResult"},
@@ -556,10 +556,10 @@
       ]
     },
     "ListDistributionsByWebACLId":{
-      "name":"ListDistributionsByWebACLId2018_11_05",
+      "name":"ListDistributionsByWebACLId2019_03_26",
       "http":{
         "method":"GET",
-        "requestUri":"/2018-11-05/distributionsByWebACLId/{WebACLId}"
+        "requestUri":"/2019-03-26/distributionsByWebACLId/{WebACLId}"
       },
       "input":{"shape":"ListDistributionsByWebACLIdRequest"},
       "output":{"shape":"ListDistributionsByWebACLIdResult"},
@@ -569,10 +569,10 @@
       ]
     },
     "ListFieldLevelEncryptionConfigs":{
-      "name":"ListFieldLevelEncryptionConfigs2018_11_05",
+      "name":"ListFieldLevelEncryptionConfigs2019_03_26",
       "http":{
         "method":"GET",
-        "requestUri":"/2018-11-05/field-level-encryption"
+        "requestUri":"/2019-03-26/field-level-encryption"
       },
       "input":{"shape":"ListFieldLevelEncryptionConfigsRequest"},
       "output":{"shape":"ListFieldLevelEncryptionConfigsResult"},
@@ -581,10 +581,10 @@
       ]
     },
     "ListFieldLevelEncryptionProfiles":{
-      "name":"ListFieldLevelEncryptionProfiles2018_11_05",
+      "name":"ListFieldLevelEncryptionProfiles2019_03_26",
       "http":{
         "method":"GET",
-        "requestUri":"/2018-11-05/field-level-encryption-profile"
+        "requestUri":"/2019-03-26/field-level-encryption-profile"
       },
       "input":{"shape":"ListFieldLevelEncryptionProfilesRequest"},
       "output":{"shape":"ListFieldLevelEncryptionProfilesResult"},
@@ -593,10 +593,10 @@
       ]
     },
     "ListInvalidations":{
-      "name":"ListInvalidations2018_11_05",
+      "name":"ListInvalidations2019_03_26",
       "http":{
         "method":"GET",
-        "requestUri":"/2018-11-05/distribution/{DistributionId}/invalidation"
+        "requestUri":"/2019-03-26/distribution/{DistributionId}/invalidation"
       },
       "input":{"shape":"ListInvalidationsRequest"},
       "output":{"shape":"ListInvalidationsResult"},
@@ -607,10 +607,10 @@
       ]
     },
     "ListPublicKeys":{
-      "name":"ListPublicKeys2018_11_05",
+      "name":"ListPublicKeys2019_03_26",
       "http":{
         "method":"GET",
-        "requestUri":"/2018-11-05/public-key"
+        "requestUri":"/2019-03-26/public-key"
       },
       "input":{"shape":"ListPublicKeysRequest"},
       "output":{"shape":"ListPublicKeysResult"},
@@ -619,10 +619,10 @@
       ]
     },
     "ListStreamingDistributions":{
-      "name":"ListStreamingDistributions2018_11_05",
+      "name":"ListStreamingDistributions2019_03_26",
       "http":{
         "method":"GET",
-        "requestUri":"/2018-11-05/streaming-distribution"
+        "requestUri":"/2019-03-26/streaming-distribution"
       },
       "input":{"shape":"ListStreamingDistributionsRequest"},
       "output":{"shape":"ListStreamingDistributionsResult"},
@@ -631,10 +631,10 @@
       ]
     },
     "ListTagsForResource":{
-      "name":"ListTagsForResource2018_11_05",
+      "name":"ListTagsForResource2019_03_26",
       "http":{
         "method":"GET",
-        "requestUri":"/2018-11-05/tagging"
+        "requestUri":"/2019-03-26/tagging"
       },
       "input":{"shape":"ListTagsForResourceRequest"},
       "output":{"shape":"ListTagsForResourceResult"},
@@ -646,10 +646,10 @@
       ]
     },
     "TagResource":{
-      "name":"TagResource2018_11_05",
+      "name":"TagResource2019_03_26",
       "http":{
         "method":"POST",
-        "requestUri":"/2018-11-05/tagging?Operation=Tag",
+        "requestUri":"/2019-03-26/tagging?Operation=Tag",
         "responseCode":204
       },
       "input":{"shape":"TagResourceRequest"},
@@ -661,10 +661,10 @@
       ]
     },
     "UntagResource":{
-      "name":"UntagResource2018_11_05",
+      "name":"UntagResource2019_03_26",
       "http":{
         "method":"POST",
-        "requestUri":"/2018-11-05/tagging?Operation=Untag",
+        "requestUri":"/2019-03-26/tagging?Operation=Untag",
         "responseCode":204
       },
       "input":{"shape":"UntagResourceRequest"},
@@ -676,10 +676,10 @@
       ]
     },
     "UpdateCloudFrontOriginAccessIdentity":{
-      "name":"UpdateCloudFrontOriginAccessIdentity2018_11_05",
+      "name":"UpdateCloudFrontOriginAccessIdentity2019_03_26",
       "http":{
         "method":"PUT",
-        "requestUri":"/2018-11-05/origin-access-identity/cloudfront/{Id}/config"
+        "requestUri":"/2019-03-26/origin-access-identity/cloudfront/{Id}/config"
       },
       "input":{"shape":"UpdateCloudFrontOriginAccessIdentityRequest"},
       "output":{"shape":"UpdateCloudFrontOriginAccessIdentityResult"},
@@ -695,10 +695,10 @@
       ]
     },
     "UpdateDistribution":{
-      "name":"UpdateDistribution2018_11_05",
+      "name":"UpdateDistribution2019_03_26",
       "http":{
         "method":"PUT",
-        "requestUri":"/2018-11-05/distribution/{Id}/config"
+        "requestUri":"/2019-03-26/distribution/{Id}/config"
       },
       "input":{"shape":"UpdateDistributionRequest"},
       "output":{"shape":"UpdateDistributionResult"},
@@ -750,10 +750,10 @@
       ]
     },
     "UpdateFieldLevelEncryptionConfig":{
-      "name":"UpdateFieldLevelEncryptionConfig2018_11_05",
+      "name":"UpdateFieldLevelEncryptionConfig2019_03_26",
       "http":{
         "method":"PUT",
-        "requestUri":"/2018-11-05/field-level-encryption/{Id}/config"
+        "requestUri":"/2019-03-26/field-level-encryption/{Id}/config"
       },
       "input":{"shape":"UpdateFieldLevelEncryptionConfigRequest"},
       "output":{"shape":"UpdateFieldLevelEncryptionConfigResult"},
@@ -772,10 +772,10 @@
       ]
     },
     "UpdateFieldLevelEncryptionProfile":{
-      "name":"UpdateFieldLevelEncryptionProfile2018_11_05",
+      "name":"UpdateFieldLevelEncryptionProfile2019_03_26",
       "http":{
         "method":"PUT",
-        "requestUri":"/2018-11-05/field-level-encryption-profile/{Id}/config"
+        "requestUri":"/2019-03-26/field-level-encryption-profile/{Id}/config"
       },
       "input":{"shape":"UpdateFieldLevelEncryptionProfileRequest"},
       "output":{"shape":"UpdateFieldLevelEncryptionProfileResult"},
@@ -795,10 +795,10 @@
       ]
     },
     "UpdatePublicKey":{
-      "name":"UpdatePublicKey2018_11_05",
+      "name":"UpdatePublicKey2019_03_26",
       "http":{
         "method":"PUT",
-        "requestUri":"/2018-11-05/public-key/{Id}/config"
+        "requestUri":"/2019-03-26/public-key/{Id}/config"
       },
       "input":{"shape":"UpdatePublicKeyRequest"},
       "output":{"shape":"UpdatePublicKeyResult"},
@@ -813,10 +813,10 @@
       ]
     },
     "UpdateStreamingDistribution":{
-      "name":"UpdateStreamingDistribution2018_11_05",
+      "name":"UpdateStreamingDistribution2019_03_26",
       "http":{
         "method":"PUT",
-        "requestUri":"/2018-11-05/streaming-distribution/{Id}/config"
+        "requestUri":"/2019-03-26/streaming-distribution/{Id}/config"
       },
       "input":{"shape":"UpdateStreamingDistributionRequest"},
       "output":{"shape":"UpdateStreamingDistributionResult"},
@@ -856,6 +856,20 @@
         "Enabled":{"shape":"boolean"},
         "Quantity":{"shape":"integer"},
         "Items":{"shape":"SignerList"}
+      }
+    },
+    "AliasICPRecordal":{
+      "type":"structure",
+      "members":{
+        "CNAME":{"shape":"string"},
+        "ICPRecordalStatus":{"shape":"ICPRecordalStatus"}
+      }
+    },
+    "AliasICPRecordals":{
+      "type":"list",
+      "member":{
+        "shape":"AliasICPRecordal",
+        "locationName":"AliasICPRecordal"
       }
     },
     "AliasList":{
@@ -1052,6 +1066,10 @@
         "locationName":"CloudFrontOriginAccessIdentitySummary"
       }
     },
+    "CommentType":{
+      "type":"string",
+      "sensitive":true
+    },
     "ContentTypeProfile":{
       "type":"structure",
       "required":[
@@ -1117,7 +1135,7 @@
         "CloudFrontOriginAccessIdentityConfig":{
           "shape":"CloudFrontOriginAccessIdentityConfig",
           "locationName":"CloudFrontOriginAccessIdentityConfig",
-          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2018-11-05/"}
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2019-03-26/"}
         }
       },
       "payload":"CloudFrontOriginAccessIdentityConfig"
@@ -1146,7 +1164,7 @@
         "DistributionConfig":{
           "shape":"DistributionConfig",
           "locationName":"DistributionConfig",
-          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2018-11-05/"}
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2019-03-26/"}
         }
       },
       "payload":"DistributionConfig"
@@ -1175,7 +1193,7 @@
         "DistributionConfigWithTags":{
           "shape":"DistributionConfigWithTags",
           "locationName":"DistributionConfigWithTags",
-          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2018-11-05/"}
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2019-03-26/"}
         }
       },
       "payload":"DistributionConfigWithTags"
@@ -1204,7 +1222,7 @@
         "FieldLevelEncryptionConfig":{
           "shape":"FieldLevelEncryptionConfig",
           "locationName":"FieldLevelEncryptionConfig",
-          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2018-11-05/"}
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2019-03-26/"}
         }
       },
       "payload":"FieldLevelEncryptionConfig"
@@ -1233,7 +1251,7 @@
         "FieldLevelEncryptionProfileConfig":{
           "shape":"FieldLevelEncryptionProfileConfig",
           "locationName":"FieldLevelEncryptionProfileConfig",
-          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2018-11-05/"}
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2019-03-26/"}
         }
       },
       "payload":"FieldLevelEncryptionProfileConfig"
@@ -1270,7 +1288,7 @@
         "InvalidationBatch":{
           "shape":"InvalidationBatch",
           "locationName":"InvalidationBatch",
-          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2018-11-05/"}
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2019-03-26/"}
         }
       },
       "payload":"InvalidationBatch"
@@ -1294,7 +1312,7 @@
         "PublicKeyConfig":{
           "shape":"PublicKeyConfig",
           "locationName":"PublicKeyConfig",
-          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2018-11-05/"}
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2019-03-26/"}
         }
       },
       "payload":"PublicKeyConfig"
@@ -1323,7 +1341,7 @@
         "StreamingDistributionConfig":{
           "shape":"StreamingDistributionConfig",
           "locationName":"StreamingDistributionConfig",
-          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2018-11-05/"}
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2019-03-26/"}
         }
       },
       "payload":"StreamingDistributionConfig"
@@ -1352,7 +1370,7 @@
         "StreamingDistributionConfigWithTags":{
           "shape":"StreamingDistributionConfigWithTags",
           "locationName":"StreamingDistributionConfigWithTags",
-          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2018-11-05/"}
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2019-03-26/"}
         }
       },
       "payload":"StreamingDistributionConfigWithTags"
@@ -1563,7 +1581,8 @@
         "InProgressInvalidationBatches":{"shape":"integer"},
         "DomainName":{"shape":"string"},
         "ActiveTrustedSigners":{"shape":"ActiveTrustedSigners"},
-        "DistributionConfig":{"shape":"DistributionConfig"}
+        "DistributionConfig":{"shape":"DistributionConfig"},
+        "AliasICPRecordals":{"shape":"AliasICPRecordals"}
       }
     },
     "DistributionAlreadyExists":{
@@ -1592,7 +1611,7 @@
         "DefaultCacheBehavior":{"shape":"DefaultCacheBehavior"},
         "CacheBehaviors":{"shape":"CacheBehaviors"},
         "CustomErrorResponses":{"shape":"CustomErrorResponses"},
-        "Comment":{"shape":"string"},
+        "Comment":{"shape":"CommentType"},
         "Logging":{"shape":"LoggingConfig"},
         "PriceClass":{"shape":"PriceClass"},
         "Enabled":{"shape":"boolean"},
@@ -1680,7 +1699,8 @@
         "Restrictions":{"shape":"Restrictions"},
         "WebACLId":{"shape":"string"},
         "HttpVersion":{"shape":"HttpVersion"},
-        "IsIPV6Enabled":{"shape":"boolean"}
+        "IsIPV6Enabled":{"shape":"boolean"},
+        "AliasICPRecordals":{"shape":"AliasICPRecordals"}
       }
     },
     "DistributionSummaryList":{
@@ -2261,6 +2281,14 @@
       "enum":[
         "http1.1",
         "http2"
+      ]
+    },
+    "ICPRecordalStatus":{
+      "type":"string",
+      "enum":[
+        "APPROVED",
+        "SUSPENDED",
+        "PENDING"
       ]
     },
     "IllegalFieldLevelEncryptionConfigAssociationWithCacheBehavior":{
@@ -3225,7 +3253,7 @@
     },
     "ResourceARN":{
       "type":"string",
-      "pattern":"arn:aws:cloudfront::[0-9]+:.*"
+      "pattern":"arn:aws(-cn)?:cloudfront::[0-9]+:.*"
     },
     "Restrictions":{
       "type":"structure",
@@ -3490,7 +3518,7 @@
         "Tags":{
           "shape":"Tags",
           "locationName":"Tags",
-          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2018-11-05/"}
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2019-03-26/"}
         }
       },
       "payload":"Tags"
@@ -3742,7 +3770,7 @@
         "TagKeys":{
           "shape":"TagKeys",
           "locationName":"TagKeys",
-          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2018-11-05/"}
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2019-03-26/"}
         }
       },
       "payload":"TagKeys"
@@ -3757,7 +3785,7 @@
         "CloudFrontOriginAccessIdentityConfig":{
           "shape":"CloudFrontOriginAccessIdentityConfig",
           "locationName":"CloudFrontOriginAccessIdentityConfig",
-          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2018-11-05/"}
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2019-03-26/"}
         },
         "Id":{
           "shape":"string",
@@ -3794,7 +3822,7 @@
         "DistributionConfig":{
           "shape":"DistributionConfig",
           "locationName":"DistributionConfig",
-          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2018-11-05/"}
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2019-03-26/"}
         },
         "Id":{
           "shape":"string",
@@ -3831,7 +3859,7 @@
         "FieldLevelEncryptionConfig":{
           "shape":"FieldLevelEncryptionConfig",
           "locationName":"FieldLevelEncryptionConfig",
-          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2018-11-05/"}
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2019-03-26/"}
         },
         "Id":{
           "shape":"string",
@@ -3868,7 +3896,7 @@
         "FieldLevelEncryptionProfileConfig":{
           "shape":"FieldLevelEncryptionProfileConfig",
           "locationName":"FieldLevelEncryptionProfileConfig",
-          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2018-11-05/"}
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2019-03-26/"}
         },
         "Id":{
           "shape":"string",
@@ -3905,7 +3933,7 @@
         "PublicKeyConfig":{
           "shape":"PublicKeyConfig",
           "locationName":"PublicKeyConfig",
-          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2018-11-05/"}
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2019-03-26/"}
         },
         "Id":{
           "shape":"string",
@@ -3942,7 +3970,7 @@
         "StreamingDistributionConfig":{
           "shape":"StreamingDistributionConfig",
           "locationName":"StreamingDistributionConfig",
-          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2018-11-05/"}
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2019-03-26/"}
         },
         "Id":{
           "shape":"string",

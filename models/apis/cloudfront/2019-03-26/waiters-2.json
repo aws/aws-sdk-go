@@ -4,7 +4,7 @@
     "DistributionDeployed": {
       "delay": 60,
       "operation": "GetDistribution",
-      "maxAttempts": 25,
+      "maxAttempts": 35,
       "description": "Wait until a distribution is deployed.",
       "acceptors": [
         {

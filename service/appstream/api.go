@@ -992,6 +992,9 @@ func (c *AppStream) CreateUsageReportSubscriptionRequest(input *CreateUsageRepor
 // API operation CreateUsageReportSubscription for usage and error information.
 //
 // Returned Error Codes:
+//   * ErrCodeInvalidRoleException "InvalidRoleException"
+//   The specified role is invalid.
+//
 //   * ErrCodeInvalidAccountStatusException "InvalidAccountStatusException"
 //   The resource cannot be created because your AWS account is suspended. For
 //   assistance, contact AWS Support.
@@ -10817,6 +10820,12 @@ const (
 const (
 	// PlatformTypeWindows is a PlatformType enum value
 	PlatformTypeWindows = "WINDOWS"
+
+	// PlatformTypeWindowsServer2016 is a PlatformType enum value
+	PlatformTypeWindowsServer2016 = "WINDOWS_SERVER_2016"
+
+	// PlatformTypeWindowsServer2019 is a PlatformType enum value
+	PlatformTypeWindowsServer2019 = "WINDOWS_SERVER_2019"
 )
 
 const (

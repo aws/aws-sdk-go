@@ -179,6 +179,7 @@
       "input":{"shape":"CreateUsageReportSubscriptionRequest"},
       "output":{"shape":"CreateUsageReportSubscriptionResult"},
       "errors":[
+        {"shape":"InvalidRoleException"},
         {"shape":"InvalidAccountStatusException"}
       ]
     },
@@ -1739,7 +1740,11 @@
     },
     "PlatformType":{
       "type":"string",
-      "enum":["WINDOWS"]
+      "enum":[
+        "WINDOWS",
+        "WINDOWS_SERVER_2016",
+        "WINDOWS_SERVER_2019"
+      ]
     },
     "RedirectURL":{
       "type":"string",

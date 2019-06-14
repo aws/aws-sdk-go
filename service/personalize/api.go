@@ -8442,7 +8442,7 @@ type Recipe struct {
 
 	// One of the following values:
 	//
-	//    * SEARCH_PERSONALIZATION
+	//    * PERSONALIZED_RANKING
 	//
 	//    * RELATED_ITEMS
 	//
