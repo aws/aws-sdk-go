@@ -1068,7 +1068,7 @@
     "RecipeType": {
       "base": null,
       "refs": {
-        "Recipe$recipeType": "<p>One of the following values:</p> <ul> <li> <p>SEARCH_PERSONALIZATION</p> </li> <li> <p>RELATED_ITEMS</p> </li> <li> <p>USER_PERSONALIZATION</p> </li> </ul>"
+        "Recipe$recipeType": "<p>One of the following values:</p> <ul> <li> <p>PERSONALIZED_RANKING</p> </li> <li> <p>RELATED_ITEMS</p> </li> <li> <p>USER_PERSONALIZATION</p> </li> </ul>"
       }
     },
     "Recipes": {
