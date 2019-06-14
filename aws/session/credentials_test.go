@@ -177,8 +177,7 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 
 				sess, err := NewSessionWithOptions(Options{
 					Config: aws.Config{
-						Logger: t,
-						//						LogLevel:         aws.LogLevel(aws.LogDebugWithHTTPBody),
+						Logger:           t,
 						EndpointResolver: endpointResolver,
 					},
 					Handlers: handlers,
@@ -261,10 +260,15 @@ func TestSessionAssumeRole(t *testing.T) {
 	os.Setenv("AWS_PROFILE", "assume_role_w_creds")
 
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(fmt.Sprintf(assumeRoleRespMsg, time.Now().Add(15*time.Minute).Format("2006-01-02T15:04:05Z"))))
+		w.Write([]byte(fmt.Sprintf(
+			assumeRoleRespMsg,
+			time.Now().Add(15*time.Minute).Format("2006-01-02T15:04:05Z"))))
 	}))
 
-	s, err := NewSession(&aws.Config{Endpoint: aws.String(server.URL), DisableSSL: aws.Bool(true)})
+	s, err := NewSession(&aws.Config{
+		Endpoint:   aws.String(server.URL),
+		DisableSSL: aws.Bool(true),
+	})
 
 	creds, err := s.Config.Credentials.Get()
 	if err != nil {
@@ -304,7 +308,9 @@ func TestSessionAssumeRole_WithMFA(t *testing.T) {
 			t.Errorf("expect %v, got %v", e, a)
 		}
 
-		w.Write([]byte(fmt.Sprintf(assumeRoleRespMsg, time.Now().Add(15*time.Minute).Format("2006-01-02T15:04:05Z"))))
+		w.Write([]byte(fmt.Sprintf(
+			assumeRoleRespMsg,
+			time.Now().Add(15*time.Minute).Format("2006-01-02T15:04:05Z"))))
 	}))
 
 	customProviderCalled := false
@@ -432,7 +438,9 @@ func TestSessionAssumeRole_ExtendedDuration(t *testing.T) {
 			t.Errorf("expect %v, got %v", e, a)
 		}
 
-		w.Write([]byte(fmt.Sprintf(assumeRoleRespMsg, time.Now().Add(15*time.Minute).Format("2006-01-02T15:04:05Z"))))
+		w.Write([]byte(fmt.Sprintf(
+			assumeRoleRespMsg,
+			time.Now().Add(15*time.Minute).Format("2006-01-02T15:04:05Z"))))
 	}))
 
 	s, err := NewSessionWithOptions(Options{
@@ -483,7 +491,9 @@ func TestSessionAssumeRole_WithMFA_ExtendedDuration(t *testing.T) {
 			t.Errorf("expect %v, got %v", e, a)
 		}
 
-		w.Write([]byte(fmt.Sprintf(assumeRoleRespMsg, time.Now().Add(30*time.Minute).Format("2006-01-02T15:04:05Z"))))
+		w.Write([]byte(fmt.Sprintf(
+			assumeRoleRespMsg,
+			time.Now().Add(30*time.Minute).Format("2006-01-02T15:04:05Z"))))
 	}))
 
 	customProviderCalled := false
