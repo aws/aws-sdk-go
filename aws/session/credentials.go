@@ -148,6 +148,7 @@ func credsFromAssumeRole(cfg aws.Config,
 		sharedCfg.AssumeRole.RoleARN,
 		func(opt *stscreds.AssumeRoleProvider) {
 			opt.RoleSessionName = sharedCfg.AssumeRole.RoleSessionName
+			opt.Duration = sessOpts.AssumeRoleDuration
 
 			// Assume role with external ID
 			if len(sharedCfg.AssumeRole.ExternalID) > 0 {
