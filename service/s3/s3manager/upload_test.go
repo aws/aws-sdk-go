@@ -1265,16 +1265,7 @@ func (h *failPartHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	contLenStr := r.Header.Get("Content-Length")
-	expectLen, err := strconv.ParseInt(contLenStr, 10, 64)
-	if err != nil {
-		h.tb.Logf("expect content-length, got %q, %v", contLenStr, err)
-		failRequest(w, 400, "BadRequest",
-			fmt.Sprintf("unable to get content-length %v", err))
-		return
-	}
-
-	io.Copy(ioutil.Discard, io.LimitReader(r.Body, expectLen/2))
+	io.Copy(ioutil.Discard, r.Body)
 
 	failRequest(w, 500, "InternalException",
 		fmt.Sprintf("mock error, partNumber %v", r.URL.Query().Get("partNumber")))
