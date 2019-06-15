@@ -21,6 +21,10 @@ import (
 // on Amazon S3.
 const MaxUploadParts = 10000
 
+// MinUploadPartSize is the maximum allowed part size when uploading a part to
+// Amazon S3.
+const MaxUploadPartSize int64 = 1024 * 1024 * 1024 * 5
+
 // MinUploadPartSize is the minimum allowed part size when uploading a part to
 // Amazon S3.
 const MinUploadPartSize int64 = 1024 * 1024 * 5
