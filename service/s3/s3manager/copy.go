@@ -23,6 +23,9 @@ const DefaultMultipartCopyThreshold = 10 * 1024 * 1024
 // using Copy().
 const DefaultCopyConcurrency = 10
 
+// Copier is a structure for calling Copy(). It is safe to call Copy() on this
+// structure for multiple objects and across concurrent goroutines. Mutating
+// the Copier's properties is not safe to be done concurrently.
 type Copier struct {
 	// MaxPartSize is the maximum multipart chunk size to use (in bytes). It
 	// must be at least 5 MB. The actual size of the chunks will vary, but
