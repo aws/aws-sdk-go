@@ -322,7 +322,7 @@ func (c *copier) multipartCopy() (*s3.CopyObjectOutput, error) {
 	wg := sync.WaitGroup{}
 	cctx, cancel := canceller(c.ctx)
 	firstErr := make(chan error, 1)
-	var lastPart *s3.UploadPartCopyOutput
+	var firstPart *s3.UploadPartCopyOutput
 
 	for i := int64(0); i < awsutil.MinInt64(c.partCount, int64(c.cfg.Concurrency)); i++ {
 		wg.Add(1)
@@ -357,7 +357,9 @@ func (c *copier) multipartCopy() (*s3.CopyObjectOutput, error) {
 						ETag:       out.CopyPartResult.ETag,
 					}
 
-					lastPart = out
+					if partNum == 1 {
+						firstPart = out
+					}
 				}
 			}
 		}()
@@ -405,11 +407,11 @@ func (c *copier) multipartCopy() (*s3.CopyObjectOutput, error) {
 	shouldAbortUpload = false
 
 	out := s3.CopyObjectOutput{}
-	awsutil.Copy(&out, lastPart)
+	awsutil.Copy(&out, firstPart)
 	awsutil.Copy(&out, completed)
 	out.CopyObjectResult = &s3.CopyObjectResult{
 		ETag:         completed.ETag,
-		LastModified: lastPart.CopyPartResult.LastModified,
+		LastModified: nil, // could use a part, but it wouldn't be exact
 	}
 
 	return &out, nil
