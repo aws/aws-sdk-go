@@ -4,16 +4,16 @@ package awsutil
 func MinInt64(a, b int64) int64 {
 	if a < b {
 		return a
-	} else {
-		return b
 	}
+
+	return b
 }
 
 // MaxInt64 returns the maximum of two int64 values.
 func MaxInt64(a, b int64) int64 {
 	if a > b {
 		return a
-	} else {
-		return b
 	}
+
+	return b
 }
