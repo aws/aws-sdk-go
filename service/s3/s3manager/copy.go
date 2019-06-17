@@ -148,7 +148,8 @@ func optimalPartSize(sourceSize int64, concurrency int) int64 {
 
 // copySourceRange produces a value appropriate for the CopySourceRange header
 // of a UploadPartCopy call. The result is "bytes=start-end", where start is
-// the first, and end is the last byte to be copied.
+// the first, and end is the last byte to be copied. The start and end are
+// inclusive byte indices into the source object.
 func copySourceRange(sourceSize, partSize, partNum int64) string {
 	rangeStart := (partNum - 1) * partSize
 	remainingBytes := sourceSize - rangeStart
@@ -290,7 +291,7 @@ func (c *copier) getSourceSize() (int64, error) {
 			Bucket:    &c.src.bucket,
 			Key:       &c.src.key,
 			VersionId: c.src.version,
-		})
+		}, c.cfg.RequestOptions...)
 
 	if err != nil {
 		return 0, err
@@ -300,7 +301,7 @@ func (c *copier) getSourceSize() (int64, error) {
 }
 
 func (c *copier) simpleCopy() (*s3.CopyObjectOutput, error) {
-	return c.cfg.S3.CopyObjectWithContext(c.ctx, c.in)
+	return c.cfg.S3.CopyObjectWithContext(c.ctx, c.in, c.cfg.RequestOptions...)
 }
 
 func (c *copier) multipartCopy() (*s3.CopyObjectOutput, error) {
@@ -420,14 +421,14 @@ func (c *copier) multipartCopy() (*s3.CopyObjectOutput, error) {
 func (c *copier) createUpload() (*s3.CreateMultipartUploadOutput, error) {
 	in := s3.CreateMultipartUploadInput{}
 	awsutil.Copy(&in, c.in)
-	return c.cfg.S3.CreateMultipartUploadWithContext(c.ctx, &in)
+	return c.cfg.S3.CreateMultipartUploadWithContext(c.ctx, &in, c.cfg.RequestOptions...)
 }
 
 func (c *copier) abortUpload(upload *s3.CreateMultipartUploadOutput) (*s3.AbortMultipartUploadOutput, error) {
 	in := s3.AbortMultipartUploadInput{}
 	awsutil.Copy(&in, c.in)
 	in.UploadId = upload.UploadId
-	return c.cfg.S3.AbortMultipartUploadWithContext(c.ctx, &in)
+	return c.cfg.S3.AbortMultipartUploadWithContext(c.ctx, &in, c.cfg.RequestOptions...)
 }
 
 func (c *copier) uploadPartCopy(
@@ -449,7 +450,7 @@ func (c *copier) uploadPartCopy(
 	in.PartNumber = &partNum
 	in.CopySourceRange = aws.String(copySourceRange(c.src.size, c.partSize, partNum))
 
-	out, err := c.cfg.S3.UploadPartCopyWithContext(ctx, &in)
+	out, err := c.cfg.S3.UploadPartCopyWithContext(ctx, &in, c.cfg.RequestOptions...)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -466,5 +467,5 @@ func (c *copier) completeUpload(
 	in.UploadId = upload.UploadId
 	completed := s3.CompletedMultipartUpload{Parts: parts}
 	in.MultipartUpload = &completed
-	return c.cfg.S3.CompleteMultipartUploadWithContext(c.ctx, &in)
+	return c.cfg.S3.CompleteMultipartUploadWithContext(c.ctx, &in, c.cfg.RequestOptions...)
 }
