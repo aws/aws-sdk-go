@@ -1,3 +1,14 @@
+Release v1.20.2 (2019-06-17)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/neptune`: Updates service API and documentation
+  * This release adds a feature to configure Amazon Neptune to publish audit logs to Amazon CloudWatch Logs.
+* `service/robomaker`: Updates service API and documentation
+* `service/servicecatalog`: Updates service API
+  * Restrict concurrent calls by a single customer account for CreatePortfolioShare and DeletePortfolioShare when sharing/unsharing to an Organization.
+
 Release v1.20.1 (2019-06-14)
 ===
 
