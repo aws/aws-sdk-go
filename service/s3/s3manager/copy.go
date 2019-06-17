@@ -340,7 +340,7 @@ func (c *copier) multipartCopy() (*s3.CopyObjectOutput, error) {
 						return
 					}
 
-					in, out, err := c.uploadPartCopy(c.ctx, upload, partNum)
+					in, out, err := c.uploadPartCopy(cctx, upload, partNum)
 					if err != nil {
 						select {
 						case firstErr <- err:
