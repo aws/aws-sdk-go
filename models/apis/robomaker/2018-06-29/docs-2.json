@@ -18,7 +18,7 @@
     "DeleteRobotApplication": "<p>Deletes a robot application.</p>",
     "DeleteSimulationApplication": "<p>Deletes a simulation application.</p>",
     "DeregisterRobot": "<p>Deregisters a robot.</p>",
-    "DescribeDeploymentJob": "<p>Describes a deployment job. [Does it work regardless of deployment status, e.g. Failed?]</p>",
+    "DescribeDeploymentJob": "<p>Describes a deployment job.</p>",
     "DescribeFleet": "<p>Describes a fleet.</p>",
     "DescribeRobot": "<p>Describes a robot.</p>",
     "DescribeRobotApplication": "<p>Describes a robot application.</p>",
@@ -1009,6 +1009,11 @@
         "VPCConfigResponse$securityGroups": "<p>A list of security group IDs associated with the simulation job.</p>"
       }
     },
+    "ServiceUnavailableException": {
+      "base": "<p>The request has failed due to a temporary failure of the server.</p>",
+      "refs": {
+      }
+    },
     "SimulationApplicationConfig": {
       "base": "<p>Information about a simulation application configuration.</p>",
       "refs": {
@@ -1308,6 +1313,7 @@
         "LimitExceededException$message": null,
         "ResourceAlreadyExistsException$message": null,
         "ResourceNotFoundException$message": null,
+        "ServiceUnavailableException$message": null,
         "ThrottlingException$message": null
       }
     }
