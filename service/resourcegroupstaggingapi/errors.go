@@ -4,6 +4,28 @@ package resourcegroupstaggingapi
 
 const (
 
+	// ErrCodeConcurrentModificationException for service response error code
+	// "ConcurrentModificationException".
+	//
+	// The target of the operation is currently being modified by a different request.
+	// Try again later.
+	ErrCodeConcurrentModificationException = "ConcurrentModificationException"
+
+	// ErrCodeConstraintViolationException for service response error code
+	// "ConstraintViolationException".
+	//
+	// The request was denied as performing this operation violates a constraint.
+	//
+	// Some of the reasons in the following list might not apply to this specific
+	// API or operation:
+	//
+	//    * Your account must be part of an organization, and you must enable all
+	//    features in AWS Organizations. Set Up Permissions (http://docs.aws.amazon.com/ARG/latest/userguide/gettingstarted-prereqs.html#rg-permissions)
+	//    in the AWS Resource Groups User Guide.
+	//
+	//    * The previous report expired.
+	ErrCodeConstraintViolationException = "ConstraintViolationException"
+
 	// ErrCodeInternalServiceException for service response error code
 	// "InternalServiceException".
 	//
@@ -14,8 +36,23 @@ const (
 	// ErrCodeInvalidParameterException for service response error code
 	// "InvalidParameterException".
 	//
-	// A parameter is missing or a malformed string or invalid or out-of-range value
-	// was supplied for the request parameter.
+	// This error indicates one of the following:
+	//
+	//    * A parameter is missing.
+	//
+	//    * A malformed string was supplied for the request parameter.
+	//
+	//    * An out-of-range value was supplied for the request parameter.
+	//
+	//    * The target ID is invalid, unsupported, or doesn't exist.
+	//
+	//    * There is an issue with the tag policy: It exceeds the maximum size limit,
+	//    is invalid, or doesn't use JSON syntax.
+	//
+	//    * You can't access the Amazon S3 bucket for report storage. For more information,
+	//    see Additional Requirements for Running Organization-Wide Tag Compliance
+	//    Report (http://docs.aws.amazon.com/ARG/latest/userguide/tag-policies-prereqs.html#bucket-policy-org-report)
+	//    in the AWS Resource Groups User Guide.
 	ErrCodeInvalidParameterException = "InvalidParameterException"
 
 	// ErrCodePaginationTokenExpiredException for service response error code

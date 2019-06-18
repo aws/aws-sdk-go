@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS Resource Groups Tagging API.
 //    func myFunc(svc resourcegroupstaggingapiiface.ResourceGroupsTaggingAPIAPI) bool {
-//        // Make svc.GetResources request
+//        // Make svc.DeleteTagPolicy request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockResourceGroupsTaggingAPIClient struct {
 //        resourcegroupstaggingapiiface.ResourceGroupsTaggingAPIAPI
 //    }
-//    func (m *mockResourceGroupsTaggingAPIClient) GetResources(input *resourcegroupstaggingapi.GetResourcesInput) (*resourcegroupstaggingapi.GetResourcesOutput, error) {
+//    func (m *mockResourceGroupsTaggingAPIClient) DeleteTagPolicy(input *resourcegroupstaggingapi.DeleteTagPolicyInput) (*resourcegroupstaggingapi.DeleteTagPolicyOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,33 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type ResourceGroupsTaggingAPIAPI interface {
+	DeleteTagPolicy(*resourcegroupstaggingapi.DeleteTagPolicyInput) (*resourcegroupstaggingapi.DeleteTagPolicyOutput, error)
+	DeleteTagPolicyWithContext(aws.Context, *resourcegroupstaggingapi.DeleteTagPolicyInput, ...request.Option) (*resourcegroupstaggingapi.DeleteTagPolicyOutput, error)
+	DeleteTagPolicyRequest(*resourcegroupstaggingapi.DeleteTagPolicyInput) (*request.Request, *resourcegroupstaggingapi.DeleteTagPolicyOutput)
+
+	DescribeReportCreation(*resourcegroupstaggingapi.DescribeReportCreationInput) (*resourcegroupstaggingapi.DescribeReportCreationOutput, error)
+	DescribeReportCreationWithContext(aws.Context, *resourcegroupstaggingapi.DescribeReportCreationInput, ...request.Option) (*resourcegroupstaggingapi.DescribeReportCreationOutput, error)
+	DescribeReportCreationRequest(*resourcegroupstaggingapi.DescribeReportCreationInput) (*request.Request, *resourcegroupstaggingapi.DescribeReportCreationOutput)
+
+	DisableTagPolicies(*resourcegroupstaggingapi.DisableTagPoliciesInput) (*resourcegroupstaggingapi.DisableTagPoliciesOutput, error)
+	DisableTagPoliciesWithContext(aws.Context, *resourcegroupstaggingapi.DisableTagPoliciesInput, ...request.Option) (*resourcegroupstaggingapi.DisableTagPoliciesOutput, error)
+	DisableTagPoliciesRequest(*resourcegroupstaggingapi.DisableTagPoliciesInput) (*request.Request, *resourcegroupstaggingapi.DisableTagPoliciesOutput)
+
+	EnableTagPolicies(*resourcegroupstaggingapi.EnableTagPoliciesInput) (*resourcegroupstaggingapi.EnableTagPoliciesOutput, error)
+	EnableTagPoliciesWithContext(aws.Context, *resourcegroupstaggingapi.EnableTagPoliciesInput, ...request.Option) (*resourcegroupstaggingapi.EnableTagPoliciesOutput, error)
+	EnableTagPoliciesRequest(*resourcegroupstaggingapi.EnableTagPoliciesInput) (*request.Request, *resourcegroupstaggingapi.EnableTagPoliciesOutput)
+
+	GetComplianceSummary(*resourcegroupstaggingapi.GetComplianceSummaryInput) (*resourcegroupstaggingapi.GetComplianceSummaryOutput, error)
+	GetComplianceSummaryWithContext(aws.Context, *resourcegroupstaggingapi.GetComplianceSummaryInput, ...request.Option) (*resourcegroupstaggingapi.GetComplianceSummaryOutput, error)
+	GetComplianceSummaryRequest(*resourcegroupstaggingapi.GetComplianceSummaryInput) (*request.Request, *resourcegroupstaggingapi.GetComplianceSummaryOutput)
+
+	GetComplianceSummaryPages(*resourcegroupstaggingapi.GetComplianceSummaryInput, func(*resourcegroupstaggingapi.GetComplianceSummaryOutput, bool) bool) error
+	GetComplianceSummaryPagesWithContext(aws.Context, *resourcegroupstaggingapi.GetComplianceSummaryInput, func(*resourcegroupstaggingapi.GetComplianceSummaryOutput, bool) bool, ...request.Option) error
+
+	GetEffectiveTagPolicy(*resourcegroupstaggingapi.GetEffectiveTagPolicyInput) (*resourcegroupstaggingapi.GetEffectiveTagPolicyOutput, error)
+	GetEffectiveTagPolicyWithContext(aws.Context, *resourcegroupstaggingapi.GetEffectiveTagPolicyInput, ...request.Option) (*resourcegroupstaggingapi.GetEffectiveTagPolicyOutput, error)
+	GetEffectiveTagPolicyRequest(*resourcegroupstaggingapi.GetEffectiveTagPolicyInput) (*request.Request, *resourcegroupstaggingapi.GetEffectiveTagPolicyOutput)
+
 	GetResources(*resourcegroupstaggingapi.GetResourcesInput) (*resourcegroupstaggingapi.GetResourcesOutput, error)
 	GetResourcesWithContext(aws.Context, *resourcegroupstaggingapi.GetResourcesInput, ...request.Option) (*resourcegroupstaggingapi.GetResourcesOutput, error)
 	GetResourcesRequest(*resourcegroupstaggingapi.GetResourcesInput) (*request.Request, *resourcegroupstaggingapi.GetResourcesOutput)
@@ -74,12 +101,24 @@ type ResourceGroupsTaggingAPIAPI interface {
 	GetTagKeysPages(*resourcegroupstaggingapi.GetTagKeysInput, func(*resourcegroupstaggingapi.GetTagKeysOutput, bool) bool) error
 	GetTagKeysPagesWithContext(aws.Context, *resourcegroupstaggingapi.GetTagKeysInput, func(*resourcegroupstaggingapi.GetTagKeysOutput, bool) bool, ...request.Option) error
 
+	GetTagPolicy(*resourcegroupstaggingapi.GetTagPolicyInput) (*resourcegroupstaggingapi.GetTagPolicyOutput, error)
+	GetTagPolicyWithContext(aws.Context, *resourcegroupstaggingapi.GetTagPolicyInput, ...request.Option) (*resourcegroupstaggingapi.GetTagPolicyOutput, error)
+	GetTagPolicyRequest(*resourcegroupstaggingapi.GetTagPolicyInput) (*request.Request, *resourcegroupstaggingapi.GetTagPolicyOutput)
+
 	GetTagValues(*resourcegroupstaggingapi.GetTagValuesInput) (*resourcegroupstaggingapi.GetTagValuesOutput, error)
 	GetTagValuesWithContext(aws.Context, *resourcegroupstaggingapi.GetTagValuesInput, ...request.Option) (*resourcegroupstaggingapi.GetTagValuesOutput, error)
 	GetTagValuesRequest(*resourcegroupstaggingapi.GetTagValuesInput) (*request.Request, *resourcegroupstaggingapi.GetTagValuesOutput)
 
 	GetTagValuesPages(*resourcegroupstaggingapi.GetTagValuesInput, func(*resourcegroupstaggingapi.GetTagValuesOutput, bool) bool) error
 	GetTagValuesPagesWithContext(aws.Context, *resourcegroupstaggingapi.GetTagValuesInput, func(*resourcegroupstaggingapi.GetTagValuesOutput, bool) bool, ...request.Option) error
+
+	PutTagPolicy(*resourcegroupstaggingapi.PutTagPolicyInput) (*resourcegroupstaggingapi.PutTagPolicyOutput, error)
+	PutTagPolicyWithContext(aws.Context, *resourcegroupstaggingapi.PutTagPolicyInput, ...request.Option) (*resourcegroupstaggingapi.PutTagPolicyOutput, error)
+	PutTagPolicyRequest(*resourcegroupstaggingapi.PutTagPolicyInput) (*request.Request, *resourcegroupstaggingapi.PutTagPolicyOutput)
+
+	StartReportCreation(*resourcegroupstaggingapi.StartReportCreationInput) (*resourcegroupstaggingapi.StartReportCreationOutput, error)
+	StartReportCreationWithContext(aws.Context, *resourcegroupstaggingapi.StartReportCreationInput, ...request.Option) (*resourcegroupstaggingapi.StartReportCreationOutput, error)
+	StartReportCreationRequest(*resourcegroupstaggingapi.StartReportCreationInput) (*request.Request, *resourcegroupstaggingapi.StartReportCreationOutput)
 
 	TagResources(*resourcegroupstaggingapi.TagResourcesInput) (*resourcegroupstaggingapi.TagResourcesOutput, error)
 	TagResourcesWithContext(aws.Context, *resourcegroupstaggingapi.TagResourcesInput, ...request.Option) (*resourcegroupstaggingapi.TagResourcesOutput, error)
