@@ -1,3 +1,12 @@
+Release v1.20.3 (2019-06-18)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * You can now launch new 12xlarge, 24xlarge, and metal instance sizes on the Amazon EC2 compute optimized C5 instance types featuring 2nd Gen Intel Xeon Scalable Processors.
+* `service/resourcegroupstaggingapi`: Updates service API, documentation, and paginators
+  * You can use tag policies to help standardize on tags across your organization's resources.
+
 Release v1.20.2 (2019-06-17)
 ===
 
