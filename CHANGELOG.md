@@ -1,3 +1,9 @@
+Release v1.20.4 (2019-06-19)
+===
+
+### Service Client Updates
+* `service/eks`: Updates service documentation
+
 Release v1.20.3 (2019-06-18)
 ===
 
