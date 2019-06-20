@@ -1,3 +1,19 @@
+Release v1.20.5 (2019-06-20)
+===
+
+### Service Client Updates
+* `service/acm-pca`: Updates service API and documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/glue`: Updates service API, documentation, and paginators
+  * Starting today, you can now use workflows in AWS Glue to author directed acyclic graphs (DAGs) of Glue triggers, crawlers and jobs. Workflows enable orchestration of your ETL workloads by building dependencies between Glue entities (triggers, crawlers and jobs).  You can visually track status of the different nodes in the workflows on the console making it easier to monitor progress and troubleshoot issues. Also, you can share parameters across entities in the workflow.
+* `service/health`: Updates service API and documentation
+  * API improvements for the AWS Health service.
+* `service/iotevents-data`: Updates service API and documentation
+* `service/opsworks`: Updates service documentation
+  * Documentation updates for OpsWorks Stacks.
+* `service/rds`: Updates service API and documentation
+  * This release adds support for RDS storage autoscaling
+
 Release v1.20.4 (2019-06-19)
 ===
 
