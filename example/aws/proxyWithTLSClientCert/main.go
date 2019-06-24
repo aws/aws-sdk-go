@@ -33,9 +33,10 @@ import (
 // go run $(go env GOROOT)/src/crypto/tls/generate_cert.go -host <hostname>
 func main() {
 	var clientCertFile, clientKeyFile, caFile string
-	flag.StringVar(&clientCertFile, "cert", "cert.pem", "The `certificate file` to load")
-	flag.StringVar(&clientKeyFile, "key", "key.pem", "The `key file` to load")
-	flag.StringVar(&caFile, "key", "ca.pem", "The `certificate file` to load")
+	flag.StringVar(&clientCertFile, "cert", "cert.pem", "The `certificate file` to load.")
+	flag.StringVar(&clientKeyFile, "key", "key.pem", "The `key file` to load.")
+	flag.StringVar(&caFile, "ca", "ca.pem", "The `root CA` to load.")
+	flag.Parse()
 
 	if len(clientCertFile) == 0 || len(clientKeyFile) == 0 {
 		flag.PrintDefaults()
@@ -85,7 +86,12 @@ func tlsConfigWithClientCert(clientCertFile, clientKeyFile, caFile string) (*tls
 			clientCertFile, clientKeyFile)
 	}
 
-	var caCertPool *x509.CertPool
+	tlsCfg := &tls.Config{
+		Certificates: []tls.Certificate{
+			clientCert,
+		},
+	}
+
 	if len(caFile) != 0 {
 		cert, err := ioutil.ReadFile(caFile)
 		if err != nil {
@@ -93,14 +99,9 @@ func tlsConfigWithClientCert(clientCertFile, clientKeyFile, caFile string) (*tls
 		}
 		caCertPool := x509.NewCertPool()
 		caCertPool.AppendCertsFromPEM(cert)
+		tlsCfg.RootCAs = caCertPool
 	}
 
-	tlsCfg := &tls.Config{
-		Certificates: []tls.Certificate{
-			clientCert,
-		},
-		RootCAs: caCertPool,
-	}
 	tlsCfg.BuildNameToCertificate()
 
 	return tlsCfg, nil
@@ -108,7 +109,6 @@ func tlsConfigWithClientCert(clientCertFile, clientKeyFile, caFile string) (*tls
 
 func defaultHTTPTransport() *http.Transport {
 	return &http.Transport{
-
 		Proxy: http.ProxyFromEnvironment,
 		DialContext: (&net.Dialer{
 			Timeout:   30 * time.Second,
