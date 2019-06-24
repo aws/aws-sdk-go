@@ -3837,6 +3837,11 @@
           "us-gov-west-1" : { }
         }
       },
+      "datasync" : {
+        "endpoints" : {
+          "us-gov-west-1" : { }
+        }
+      },
       "directconnect" : {
         "endpoints" : {
           "us-gov-east-1" : { },

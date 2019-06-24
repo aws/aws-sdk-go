@@ -1,3 +1,22 @@
+Release v1.20.7 (2019-06-24)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * Customers can pick different security policies (TLS version + cipher suite) for custom domains in API Gateway
+* `service/apigatewayv2`: Updates service API and documentation
+  * Customers can get information about security policies set on custom domain resources in API Gateway
+* `service/application-insights`: Adds new service
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/fsx`: Updates service API and documentation
+* `service/resourcegroupstaggingapi`: Updates service API, documentation, and paginators
+  * Updated service APIs and documentation.
+* `service/securityhub`: Updates service API, documentation, and paginators
+* `service/service-quotas`: Adds new service
+* `service/ssm`: Updates service API and documentation
+  * AWS Systems Manager now supports deleting a specific version of a SSM Document.
+
 Release v1.20.6 (2019-06-21)
 ===
 

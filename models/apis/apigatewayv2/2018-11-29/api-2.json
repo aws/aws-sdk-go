@@ -2754,6 +2754,18 @@
         "HostedZoneId" : {
           "shape" : "__string",
           "locationName" : "hostedZoneId"
+        },
+        "SecurityPolicy" : {
+          "shape" : "SecurityPolicy",
+          "locationName" : "securityPolicy"
+        },
+        "DomainNameStatus" : {
+          "shape" : "DomainNameStatus",
+          "locationName" : "domainNameStatus"
+        },
+        "DomainNameStatusMessage" : {
+          "shape" : "__string",
+          "locationName" : "domainNameStatusMessage"
         }
       }
     },
@@ -2779,6 +2791,14 @@
     "EndpointType" : {
       "type" : "string",
       "enum" : [ "REGIONAL", "EDGE" ]
+    },
+    "SecurityPolicy" : {
+      "type" : "string",
+      "enum" : [ "TLS_1_0", "TLS_1_2" ]
+    },
+    "DomainNameStatus" : {
+      "type" : "string",
+      "enum" : [ "AVAILABLE", "UPDATING" ]
     },
     "GetApiMappingRequest" : {
       "type" : "structure",

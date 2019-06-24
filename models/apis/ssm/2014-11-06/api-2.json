@@ -3126,7 +3126,9 @@
       "type":"structure",
       "required":["Name"],
       "members":{
-        "Name":{"shape":"DocumentName"}
+        "Name":{"shape":"DocumentName"},
+        "DocumentVersion":{"shape":"DocumentVersion"},
+        "VersionName":{"shape":"DocumentVersionName"}
       }
     },
     "DeleteDocumentResult":{
