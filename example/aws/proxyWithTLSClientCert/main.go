@@ -16,7 +16,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
-	"github.com/pkg/errors"
 	"golang.org/x/net/http2"
 )
 
@@ -81,9 +80,8 @@ func main() {
 func tlsConfigWithClientCert(clientCertFile, clientKeyFile, caFile string) (*tls.Config, error) {
 	clientCert, err := tls.LoadX509KeyPair(clientCertFile, clientKeyFile)
 	if err != nil {
-		return nil, errors.Wrapf(err,
-			"unable to load certificat files, %s, %s",
-			clientCertFile, clientKeyFile)
+		return nil, fmt.Errorf("unable to load certificat files, %s, %s, %v",
+			clientCertFile, clientKeyFile, err)
 	}
 
 	tlsCfg := &tls.Config{
@@ -95,7 +93,8 @@ func tlsConfigWithClientCert(clientCertFile, clientKeyFile, caFile string) (*tls
 	if len(caFile) != 0 {
 		cert, err := ioutil.ReadFile(caFile)
 		if err != nil {
-			return nil, errors.Wrapf(err, "unable to load root CA file, %s", caFile)
+			return nil, fmt.Errorf("unable to load root CA file, %s, %v",
+				caFile, err)
 		}
 		caCertPool := x509.NewCertPool()
 		caCertPool.AppendCertsFromPEM(cert)
