@@ -12,100 +12,6 @@
     "uid":"resourcegroupstaggingapi-2017-01-26"
   },
   "operations":{
-    "DeleteTagPolicy":{
-      "name":"DeleteTagPolicy",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"DeleteTagPolicyInput"},
-      "output":{"shape":"DeleteTagPolicyOutput"},
-      "errors":[
-        {"shape":"ConcurrentModificationException"},
-        {"shape":"ConstraintViolationException"},
-        {"shape":"InvalidParameterException"},
-        {"shape":"ThrottledException"},
-        {"shape":"InternalServiceException"}
-      ]
-    },
-    "DescribeReportCreation":{
-      "name":"DescribeReportCreation",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"DescribeReportCreationInput"},
-      "output":{"shape":"DescribeReportCreationOutput"},
-      "errors":[
-        {"shape":"ConstraintViolationException"},
-        {"shape":"InternalServiceException"},
-        {"shape":"InvalidParameterException"},
-        {"shape":"ThrottledException"}
-      ]
-    },
-    "DisableTagPolicies":{
-      "name":"DisableTagPolicies",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"DisableTagPoliciesInput"},
-      "output":{"shape":"DisableTagPoliciesOutput"},
-      "errors":[
-        {"shape":"ConcurrentModificationException"},
-        {"shape":"ConstraintViolationException"},
-        {"shape":"InvalidParameterException"},
-        {"shape":"ThrottledException"},
-        {"shape":"InternalServiceException"}
-      ]
-    },
-    "EnableTagPolicies":{
-      "name":"EnableTagPolicies",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"EnableTagPoliciesInput"},
-      "output":{"shape":"EnableTagPoliciesOutput"},
-      "errors":[
-        {"shape":"ConcurrentModificationException"},
-        {"shape":"ConstraintViolationException"},
-        {"shape":"InvalidParameterException"},
-        {"shape":"ThrottledException"},
-        {"shape":"InternalServiceException"}
-      ]
-    },
-    "GetComplianceSummary":{
-      "name":"GetComplianceSummary",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"GetComplianceSummaryInput"},
-      "output":{"shape":"GetComplianceSummaryOutput"},
-      "errors":[
-        {"shape":"ConstraintViolationException"},
-        {"shape":"InternalServiceException"},
-        {"shape":"InvalidParameterException"},
-        {"shape":"ThrottledException"}
-      ]
-    },
-    "GetEffectiveTagPolicy":{
-      "name":"GetEffectiveTagPolicy",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"GetEffectiveTagPolicyInput"},
-      "output":{"shape":"GetEffectiveTagPolicyOutput"},
-      "errors":[
-        {"shape":"ConcurrentModificationException"},
-        {"shape":"ConstraintViolationException"},
-        {"shape":"InvalidParameterException"},
-        {"shape":"ThrottledException"},
-        {"shape":"InternalServiceException"}
-      ]
-    },
     "GetResources":{
       "name":"GetResources",
       "http":{
@@ -136,21 +42,6 @@
         {"shape":"PaginationTokenExpiredException"}
       ]
     },
-    "GetTagPolicy":{
-      "name":"GetTagPolicy",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"GetTagPolicyInput"},
-      "output":{"shape":"GetTagPolicyOutput"},
-      "errors":[
-        {"shape":"ConstraintViolationException"},
-        {"shape":"InvalidParameterException"},
-        {"shape":"ThrottledException"},
-        {"shape":"InternalServiceException"}
-      ]
-    },
     "GetTagValues":{
       "name":"GetTagValues",
       "http":{
@@ -164,38 +55,6 @@
         {"shape":"ThrottledException"},
         {"shape":"InternalServiceException"},
         {"shape":"PaginationTokenExpiredException"}
-      ]
-    },
-    "PutTagPolicy":{
-      "name":"PutTagPolicy",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"PutTagPolicyInput"},
-      "output":{"shape":"PutTagPolicyOutput"},
-      "errors":[
-        {"shape":"ConcurrentModificationException"},
-        {"shape":"ConstraintViolationException"},
-        {"shape":"InvalidParameterException"},
-        {"shape":"ThrottledException"},
-        {"shape":"InternalServiceException"}
-      ]
-    },
-    "StartReportCreation":{
-      "name":"StartReportCreation",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"StartReportCreationInput"},
-      "output":{"shape":"StartReportCreationOutput"},
-      "errors":[
-        {"shape":"ConcurrentModificationException"},
-        {"shape":"ConstraintViolationException"},
-        {"shape":"InternalServiceException"},
-        {"shape":"InvalidParameterException"},
-        {"shape":"ThrottledException"}
       ]
     },
     "TagResources":{
@@ -233,77 +92,6 @@
       "max":256,
       "min":0
     },
-    "ComplianceDetails":{
-      "type":"structure",
-      "members":{
-        "MissingKeys":{"shape":"TagKeyList"},
-        "InvalidKeys":{"shape":"TagKeyList"},
-        "InvalidValues":{"shape":"TagKeyList"},
-        "ComplianceStatus":{"shape":"ComplianceStatus"}
-      }
-    },
-    "ComplianceStatus":{"type":"boolean"},
-    "ConcurrentModificationException":{
-      "type":"structure",
-      "members":{
-        "Message":{"shape":"ExceptionMessage"}
-      },
-      "exception":true
-    },
-    "ConstraintViolationException":{
-      "type":"structure",
-      "members":{
-        "Message":{"shape":"ExceptionMessage"}
-      },
-      "exception":true
-    },
-    "DeleteTagPolicyInput":{
-      "type":"structure",
-      "required":["TargetId"],
-      "members":{
-        "TargetId":{"shape":"TargetId"}
-      }
-    },
-    "DeleteTagPolicyOutput":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "DescribeReportCreationInput":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "DescribeReportCreationOutput":{
-      "type":"structure",
-      "members":{
-        "Status":{"shape":"Status"},
-        "S3Location":{"shape":"S3Location"},
-        "ErrorMessage":{"shape":"ErrorMessage"}
-      }
-    },
-    "DisableTagPoliciesInput":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "DisableTagPoliciesOutput":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "EnableTagPoliciesInput":{
-      "type":"structure",
-      "required":["RootId"],
-      "members":{
-        "RootId":{"shape":"RootId"}
-      }
-    },
-    "EnableTagPoliciesOutput":{
-      "type":"structure",
-      "members":{
-      }
-    },
     "ErrorCode":{
       "type":"string",
       "enum":[
@@ -317,7 +105,6 @@
       "max":2048,
       "min":0
     },
-    "ExcludeCompliantResources":{"type":"boolean"},
     "FailedResourcesMap":{
       "type":"map",
       "key":{"shape":"ResourceARN"},
@@ -331,38 +118,6 @@
         "ErrorMessage":{"shape":"ErrorMessage"}
       }
     },
-    "GetComplianceSummaryInput":{
-      "type":"structure",
-      "members":{
-        "TargetIdFilters":{"shape":"TargetIdFilterList"},
-        "RegionFilters":{"shape":"RegionFilterList"},
-        "ResourceTypeFilters":{"shape":"ResourceTypeFilterList"},
-        "TagKeyFilters":{"shape":"TagKeyFilterList"},
-        "GroupBy":{"shape":"GroupBy"},
-        "MaxResults":{"shape":"MaxResultsGetComplianceSummary"},
-        "PaginationToken":{"shape":"PaginationToken"}
-      }
-    },
-    "GetComplianceSummaryOutput":{
-      "type":"structure",
-      "members":{
-        "SummaryList":{"shape":"SummaryList"},
-        "PaginationToken":{"shape":"PaginationToken"}
-      }
-    },
-    "GetEffectiveTagPolicyInput":{
-      "type":"structure",
-      "members":{
-        "TargetId":{"shape":"TargetId"}
-      }
-    },
-    "GetEffectiveTagPolicyOutput":{
-      "type":"structure",
-      "members":{
-        "Policy":{"shape":"Policy"},
-        "LastUpdated":{"shape":"LastUpdated"}
-      }
-    },
     "GetResourcesInput":{
       "type":"structure",
       "members":{
@@ -370,10 +125,7 @@
         "TagFilters":{"shape":"TagFilterList"},
         "ResourcesPerPage":{"shape":"ResourcesPerPage"},
         "TagsPerPage":{"shape":"TagsPerPage"},
-        "ResourceTypeFilters":{"shape":"ResourceTypeFilterList"},
-        "IncludeComplianceDetails":{"shape":"IncludeComplianceDetails"},
-        "ExcludeCompliantResources":{"shape":"ExcludeCompliantResources"},
-        "Policy":{"shape":"Policy"}
+        "ResourceTypeFilters":{"shape":"ResourceTypeFilterList"}
       }
     },
     "GetResourcesOutput":{
@@ -386,8 +138,7 @@
     "GetTagKeysInput":{
       "type":"structure",
       "members":{
-        "PaginationToken":{"shape":"PaginationToken"},
-        "MaxResults":{"shape":"MaxResultTagsDS1"}
+        "PaginationToken":{"shape":"PaginationToken"}
       }
     },
     "GetTagKeysOutput":{
@@ -397,27 +148,12 @@
         "TagKeys":{"shape":"TagKeyList"}
       }
     },
-    "GetTagPolicyInput":{
-      "type":"structure",
-      "required":["TargetId"],
-      "members":{
-        "TargetId":{"shape":"TargetId"}
-      }
-    },
-    "GetTagPolicyOutput":{
-      "type":"structure",
-      "members":{
-        "Policy":{"shape":"Policy"},
-        "LastUpdated":{"shape":"LastUpdated"}
-      }
-    },
     "GetTagValuesInput":{
       "type":"structure",
       "required":["Key"],
       "members":{
         "PaginationToken":{"shape":"PaginationToken"},
-        "Key":{"shape":"TagKey"},
-        "MaxResults":{"shape":"MaxResultTagsDS1"}
+        "Key":{"shape":"TagKey"}
       }
     },
     "GetTagValuesOutput":{
@@ -427,19 +163,6 @@
         "TagValues":{"shape":"TagValuesOutputList"}
       }
     },
-    "GroupBy":{
-      "type":"list",
-      "member":{"shape":"GroupByAttribute"}
-    },
-    "GroupByAttribute":{
-      "type":"string",
-      "enum":[
-        "TARGET_ID",
-        "REGION",
-        "RESOURCE_TYPE"
-      ]
-    },
-    "IncludeComplianceDetails":{"type":"boolean"},
     "InternalServiceException":{
       "type":"structure",
       "members":{
@@ -455,21 +178,6 @@
       },
       "exception":true
     },
-    "LastUpdated":{
-      "type":"timestamp",
-      "timestampFormat":"iso8601"
-    },
-    "MaxResultTagsDS1":{
-      "type":"integer",
-      "max":50,
-      "min":1
-    },
-    "MaxResultsGetComplianceSummary":{
-      "type":"integer",
-      "max":1000,
-      "min":1
-    },
-    "NonCompliantResources":{"type":"long"},
     "PaginationToken":{
       "type":"string",
       "max":2048,
@@ -482,37 +190,9 @@
       },
       "exception":true
     },
-    "Policy":{
-      "type":"string",
-      "max":5000,
-      "min":34
-    },
-    "PutTagPolicyInput":{
-      "type":"structure",
-      "required":[
-        "TargetId",
-        "Policy"
-      ],
-      "members":{
-        "TargetId":{"shape":"TargetId"},
-        "Policy":{"shape":"Policy"}
-      }
-    },
-    "PutTagPolicyOutput":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "Region":{"type":"string"},
-    "RegionFilterList":{
-      "type":"list",
-      "member":{"shape":"Region"},
-      "max":100,
-      "min":1
-    },
     "ResourceARN":{
       "type":"string",
-      "max":1011,
+      "max":1600,
       "min":1
     },
     "ResourceARNList":{
@@ -525,8 +205,7 @@
       "type":"structure",
       "members":{
         "ResourceARN":{"shape":"ResourceARN"},
-        "Tags":{"shape":"TagList"},
-        "ComplianceDetails":{"shape":"ComplianceDetails"}
+        "Tags":{"shape":"TagList"}
       }
     },
     "ResourceTagMappingList":{
@@ -538,42 +217,7 @@
       "member":{"shape":"AmazonResourceType"}
     },
     "ResourcesPerPage":{"type":"integer"},
-    "RootId":{
-      "type":"string",
-      "max":34,
-      "min":6,
-      "pattern":"r-.*"
-    },
-    "S3Bucket":{"type":"string"},
-    "S3Location":{"type":"string"},
-    "StartReportCreationInput":{
-      "type":"structure",
-      "required":["S3Bucket"],
-      "members":{
-        "S3Bucket":{"shape":"S3Bucket"}
-      }
-    },
-    "StartReportCreationOutput":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "Status":{"type":"string"},
     "StatusCode":{"type":"integer"},
-    "Summary":{
-      "type":"structure",
-      "members":{
-        "LastUpdated":{"shape":"LastUpdated"},
-        "TargetId":{"shape":"TargetId"},
-        "Region":{"shape":"Region"},
-        "ResourceType":{"shape":"AmazonResourceType"},
-        "NonCompliantResources":{"shape":"NonCompliantResources"}
-      }
-    },
-    "SummaryList":{
-      "type":"list",
-      "member":{"shape":"Summary"}
-    },
     "Tag":{
       "type":"structure",
       "required":[
@@ -601,12 +245,6 @@
     "TagKey":{
       "type":"string",
       "max":128,
-      "min":1
-    },
-    "TagKeyFilterList":{
-      "type":"list",
-      "member":{"shape":"TagKey"},
-      "max":50,
       "min":1
     },
     "TagKeyList":{
@@ -663,17 +301,6 @@
       "member":{"shape":"TagValue"}
     },
     "TagsPerPage":{"type":"integer"},
-    "TargetId":{
-      "type":"string",
-      "max":68,
-      "min":6
-    },
-    "TargetIdFilterList":{
-      "type":"list",
-      "member":{"shape":"TargetId"},
-      "max":100,
-      "min":1
-    },
     "ThrottledException":{
       "type":"structure",
       "members":{
