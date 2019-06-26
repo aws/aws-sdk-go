@@ -1110,13 +1110,6 @@
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
-          "local" : {
-            "credentialScope" : {
-              "region" : "us-east-1"
-            },
-            "hostname" : "localhost:8000",
-            "protocols" : [ "http" ]
-          },
           "sa-east-1" : { },
           "us-east-1" : { },
           "us-east-1-fips" : {
@@ -1697,12 +1690,6 @@
       },
       "kms" : {
         "endpoints" : {
-          "ProdFips" : {
-            "credentialScope" : {
-              "region" : "ca-central-1"
-            },
-            "hostname" : "kms-fips.ca-central-1.amazonaws.com"
-          },
           "ap-east-1" : { },
           "ap-northeast-1" : { },
           "ap-northeast-2" : { },
@@ -2965,13 +2952,6 @@
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
-          "local" : {
-            "credentialScope" : {
-              "region" : "us-east-1"
-            },
-            "hostname" : "localhost:8000",
-            "protocols" : [ "http" ]
-          },
           "sa-east-1" : { },
           "us-east-1" : { },
           "us-east-1-fips" : {
@@ -3654,6 +3634,11 @@
         "endpoints" : {
           "cn-north-1" : { },
           "cn-northwest-1" : { }
+        }
+      },
+      "support" : {
+        "endpoints" : {
+          "aws-cn-global" : { }
         }
       },
       "swf" : {

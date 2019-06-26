@@ -1212,15 +1212,8 @@ var awsPartition = partition{
 				"eu-west-1":    endpoint{},
 				"eu-west-2":    endpoint{},
 				"eu-west-3":    endpoint{},
-				"local": endpoint{
-					Hostname:  "localhost:8000",
-					Protocols: []string{"http"},
-					CredentialScope: credentialScope{
-						Region: "us-east-1",
-					},
-				},
-				"sa-east-1": endpoint{},
-				"us-east-1": endpoint{},
+				"sa-east-1":    endpoint{},
+				"us-east-1":    endpoint{},
 				"us-east-1-fips": endpoint{
 					Hostname: "dynamodb-fips.us-east-1.amazonaws.com",
 					CredentialScope: credentialScope{
@@ -1833,12 +1826,6 @@ var awsPartition = partition{
 		"kms": service{
 
 			Endpoints: endpoints{
-				"ProdFips": endpoint{
-					Hostname: "kms-fips.ca-central-1.amazonaws.com",
-					CredentialScope: credentialScope{
-						Region: "ca-central-1",
-					},
-				},
 				"ap-east-1":      endpoint{},
 				"ap-northeast-1": endpoint{},
 				"ap-northeast-2": endpoint{},
@@ -3146,15 +3133,8 @@ var awsPartition = partition{
 				"eu-west-1":    endpoint{},
 				"eu-west-2":    endpoint{},
 				"eu-west-3":    endpoint{},
-				"local": endpoint{
-					Hostname:  "localhost:8000",
-					Protocols: []string{"http"},
-					CredentialScope: credentialScope{
-						Region: "us-east-1",
-					},
-				},
-				"sa-east-1": endpoint{},
-				"us-east-1": endpoint{},
+				"sa-east-1":    endpoint{},
+				"us-east-1":    endpoint{},
 				"us-east-1-fips": endpoint{
 					Hostname: "dynamodb-fips.us-east-1.amazonaws.com",
 					CredentialScope: credentialScope{
@@ -3890,6 +3870,12 @@ var awscnPartition = partition{
 			Endpoints: endpoints{
 				"cn-north-1":     endpoint{},
 				"cn-northwest-1": endpoint{},
+			},
+		},
+		"support": service{
+
+			Endpoints: endpoints{
+				"aws-cn-global": endpoint{},
 			},
 		},
 		"swf": service{
