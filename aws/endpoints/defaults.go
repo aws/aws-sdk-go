@@ -1212,8 +1212,15 @@ var awsPartition = partition{
 				"eu-west-1":    endpoint{},
 				"eu-west-2":    endpoint{},
 				"eu-west-3":    endpoint{},
-				"sa-east-1":    endpoint{},
-				"us-east-1":    endpoint{},
+				"local": endpoint{
+					Hostname:  "localhost:8000",
+					Protocols: []string{"http"},
+					CredentialScope: credentialScope{
+						Region: "us-east-1",
+					},
+				},
+				"sa-east-1": endpoint{},
+				"us-east-1": endpoint{},
 				"us-east-1-fips": endpoint{
 					Hostname: "dynamodb-fips.us-east-1.amazonaws.com",
 					CredentialScope: credentialScope{
@@ -3133,8 +3140,15 @@ var awsPartition = partition{
 				"eu-west-1":    endpoint{},
 				"eu-west-2":    endpoint{},
 				"eu-west-3":    endpoint{},
-				"sa-east-1":    endpoint{},
-				"us-east-1":    endpoint{},
+				"local": endpoint{
+					Hostname:  "localhost:8000",
+					Protocols: []string{"http"},
+					CredentialScope: credentialScope{
+						Region: "us-east-1",
+					},
+				},
+				"sa-east-1": endpoint{},
+				"us-east-1": endpoint{},
 				"us-east-1-fips": endpoint{
 					Hostname: "dynamodb-fips.us-east-1.amazonaws.com",
 					CredentialScope: credentialScope{
