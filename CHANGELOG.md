@@ -1,3 +1,16 @@
+Release v1.20.12 (2019-06-28)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * You can now launch 8xlarge and 16xlarge instance sizes on the general purpose M5 and memory optimized R5 instance types.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/redshift`: Updates service API and documentation
+  * ClusterAvailabilityStatus: The availability status of the cluster for queries. Possible values are the following: Available, Unavailable, Maintenance, Modifying, Failed.
+* `service/workspaces`: Updates service API and documentation
+  * Minor API fixes for WorkSpaces.
+
 Release v1.20.11 (2019-06-27)
 ===
 

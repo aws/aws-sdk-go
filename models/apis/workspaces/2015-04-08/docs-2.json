@@ -19,7 +19,6 @@
     "DescribeWorkspaceBundles": "<p>Retrieves a list that describes the available WorkSpace bundles.</p> <p>You can filter the results using either bundle ID or owner, but not both.</p>",
     "DescribeWorkspaceDirectories": "<p>Describes the available AWS Directory Service directories that are registered with Amazon WorkSpaces.</p>",
     "DescribeWorkspaceImages": "<p>Retrieves a list that describes one or more specified images, if the image identifiers are provided. Otherwise, all images in the account are described. </p>",
-    "DescribeWorkspaceSnapshots": "<p>Describes the snapshots for the specified WorkSpace.</p>",
     "DescribeWorkspaces": "<p>Describes the specified WorkSpaces.</p> <p>You can filter the results by using the bundle identifier, directory identifier, or owner, but you can specify only one filter at a time.</p>",
     "DescribeWorkspacesConnectionStatus": "<p>Describes the connection status of the specified WorkSpaces.</p>",
     "DisassociateIpGroups": "<p>Disassociates the specified IP access control group from the specified directory.</p>",
@@ -31,7 +30,6 @@
     "ModifyWorkspaceState": "<p>Sets the state of the specified WorkSpace.</p> <p>To maintain a WorkSpace without being interrupted, set the WorkSpace state to <code>ADMIN_MAINTENANCE</code>. WorkSpaces in this state do not respond to requests to reboot, stop, start, rebuild, or restore. An AutoStop WorkSpace in this state is not stopped. Users cannot log into a WorkSpace in the <code>ADMIN_MAINTENANCE</code> state.</p>",
     "RebootWorkspaces": "<p>Reboots the specified WorkSpaces.</p> <p>You cannot reboot a WorkSpace unless its state is <code>AVAILABLE</code> or <code>UNHEALTHY</code>.</p> <p>This operation is asynchronous and returns before the WorkSpaces have rebooted.</p>",
     "RebuildWorkspaces": "<p>Rebuilds the specified WorkSpace.</p> <p>You cannot rebuild a WorkSpace unless its state is <code>AVAILABLE</code>, <code>ERROR</code>, or <code>UNHEALTHY</code>.</p> <p>Rebuilding a WorkSpace is a potentially destructive action that can result in the loss of data. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/reset-workspace.html\">Rebuild a WorkSpace</a>.</p> <p>This operation is asynchronous and returns before the WorkSpaces have been completely rebuilt.</p>",
-    "RestoreWorkspace": "<p>Restores the specified WorkSpace to its last known healthy state.</p> <p>You cannot restore a WorkSpace unless its state is <code> AVAILABLE</code>, <code>ERROR</code>, or <code>UNHEALTHY</code>.</p> <p>Restoring a WorkSpace is a potentially destructive action that can result in the loss of data. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/restore-workspace.html\">Restore a WorkSpace</a>.</p> <p>This operation is asynchronous and returns before the WorkSpace is completely restored.</p>",
     "RevokeIpRules": "<p>Removes one or more rules from the specified IP access control group.</p>",
     "StartWorkspaces": "<p>Starts the specified WorkSpaces.</p> <p>You cannot start a WorkSpace unless it has a running mode of <code>AutoStop</code> and a state of <code>STOPPED</code>.</p>",
     "StopWorkspaces": "<p> Stops the specified WorkSpaces.</p> <p>You cannot stop a WorkSpace unless it has a running mode of <code>AutoStop</code> and a state of <code>AVAILABLE</code>, <code>IMPAIRED</code>, <code>UNHEALTHY</code>, or <code>ERROR</code>.</p>",
@@ -60,12 +58,6 @@
       "base": null,
       "refs": {
         "DescribeAccountModificationsResult$AccountModifications": "<p>The list of modifications to the configuration of BYOL.</p>"
-      }
-    },
-    "AdditionalInfo": {
-      "base": null,
-      "refs": {
-        "RebuildWorkspacesRequest$AdditionalInfo": "<p>Reserved.</p>"
       }
     },
     "Alias": {
@@ -100,7 +92,6 @@
         "DefaultWorkspaceCreationProperties$EnableWorkDocs": "<p>Specifies whether the directory is enabled for Amazon WorkDocs.</p>",
         "DefaultWorkspaceCreationProperties$EnableInternetAccess": "<p>The public IP address to attach to all WorkSpaces that are created or rebuilt.</p>",
         "DefaultWorkspaceCreationProperties$UserEnabledAsLocalAdministrator": "<p>Specifies whether the WorkSpace user is an administrator on the WorkSpace.</p>",
-        "RestoreWorkspaceRequest$SnapshotCurrentVolumes": "<p>Indicates whether to create snapshots of the root volume and user volume before restoring the WorkSpace.</p>",
         "Workspace$UserVolumeEncryptionEnabled": "<p>Indicates whether the data stored on the user volume is encrypted.</p>",
         "Workspace$RootVolumeEncryptionEnabled": "<p>Indicates whether the data stored on the root volume is encrypted.</p>",
         "WorkspaceRequest$UserVolumeEncryptionEnabled": "<p>Indicates whether the data stored on the user volume is encrypted.</p>",
@@ -372,16 +363,6 @@
       }
     },
     "DescribeWorkspaceImagesResult": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "DescribeWorkspaceSnapshotsRequest": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "DescribeWorkspaceSnapshotsResult": {
       "base": null,
       "refs": {
       }
@@ -893,16 +874,6 @@
       "refs": {
       }
     },
-    "RestoreWorkspaceRequest": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "RestoreWorkspaceResult": {
-      "base": null,
-      "refs": {
-      }
-    },
     "RevokeIpRulesRequest": {
       "base": null,
       "refs": {
@@ -942,19 +913,6 @@
       "refs": {
         "DefaultWorkspaceCreationProperties$CustomSecurityGroupId": "<p>The identifier of any security groups to apply to WorkSpaces when they are created.</p>",
         "WorkspaceDirectory$WorkspaceSecurityGroupId": "<p>The identifier of the security group that is assigned to new WorkSpaces.</p>"
-      }
-    },
-    "Snapshot": {
-      "base": "<p>Describes a snapshot.</p>",
-      "refs": {
-        "SnapshotList$member": null
-      }
-    },
-    "SnapshotList": {
-      "base": null,
-      "refs": {
-        "DescribeWorkspaceSnapshotsResult$RebuildSnapshots": "<p>Information about the snapshots that can be used to rebuild a WorkSpace. These snapshots include the root volume.</p>",
-        "DescribeWorkspaceSnapshotsResult$RestoreSnapshots": "<p>Information about the snapshots that can be used to restore a WorkSpace. These snapshots include both the root volume and the user volume.</p>"
       }
     },
     "StartRequest": {
@@ -1081,7 +1039,6 @@
       "base": null,
       "refs": {
         "AccountModification$StartTime": "<p>The timestamp when the modification of the BYOL configuration was started.</p>",
-        "Snapshot$SnapshotTime": "<p>The time when the snapshot was created.</p>",
         "WorkspaceConnectionStatus$ConnectionStateCheckTimestamp": "<p>The timestamp of the connection status check.</p>",
         "WorkspaceConnectionStatus$LastKnownUserConnectionTimestamp": "<p>The timestamp of the last known user connection.</p>"
       }
@@ -1181,13 +1138,11 @@
     "WorkspaceId": {
       "base": null,
       "refs": {
-        "DescribeWorkspaceSnapshotsRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "FailedWorkspaceChangeRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "ModifyWorkspacePropertiesRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "ModifyWorkspaceStateRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "RebootRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "RebuildRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
-        "RestoreWorkspaceRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "StartRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "StopRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",
         "TerminateRequest$WorkspaceId": "<p>The identifier of the WorkSpace.</p>",

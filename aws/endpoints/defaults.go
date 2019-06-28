@@ -3251,9 +3251,15 @@ var awsPartition = partition{
 			},
 		},
 		"support": service{
+			PartitionEndpoint: "aws-global",
 
 			Endpoints: endpoints{
-				"aws-global": endpoint{},
+				"aws-global": endpoint{
+					Hostname: "support.us-east-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-east-1",
+					},
+				},
 			},
 		},
 		"swf": service{
@@ -3896,9 +3902,15 @@ var awscnPartition = partition{
 			},
 		},
 		"support": service{
+			PartitionEndpoint: "aws-cn-global",
 
 			Endpoints: endpoints{
-				"aws-cn-global": endpoint{},
+				"aws-cn-global": endpoint{
+					Hostname: "support.cn-north-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "cn-north-1",
+					},
+				},
 			},
 		},
 		"swf": service{
