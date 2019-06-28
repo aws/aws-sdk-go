@@ -145,12 +145,38 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 				"assume_role_w_creds_role_arn_ec2",
 			},
 		},
+		{
+			name: "credential process with no ARN set",
+			profile: "cred_proc_no_arn_set",
+			expectedAccessKey: "accesskey",
+			expectedSecretKey: "secretkey",
+		},
+		{
+			name: "credential process with ARN set",
+			profile: "cred_proc_arn_set",
+			expectedAccessKey: "AKID",
+			expectedSecretKey: "SECRET",
+			expectedChain:[] string{
+				"assume_role_w_creds_proc_role_arn",
+			},
+		},
+		{
+			name: "chained assume role with credential process",
+			profile: "chained_cred_proc",
+			expectedAccessKey: "AKID",
+			expectedSecretKey: "SECRET",
+			expectedChain:[] string{
+				"assume_role_w_creds_proc_source_prof",
+			},
+		},
+
 	}
 
 	for i, c := range cases {
 		t.Run(fmt.Sprintf("%d %s", i, c.name),
 			func(t *testing.T) {
-				env := awstesting.StashEnv()
+				//Pass in arguments to retain certain environment variable values.
+				env := awstesting.StashEnv("PATH", "ComSpec", "SYSTEM32")
 				defer awstesting.PopEnv(env)
 
 				os.Setenv("AWS_REGION", "us-east-1")
@@ -167,7 +193,9 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 
 				var credChain []string
 				handlers := defaults.Handlers()
+
 				handlers.Sign.PushBack(func(r *request.Request) {
+
 					if r.Config.Credentials == credentials.AnonymousCredentials {
 						return
 					}
@@ -191,6 +219,7 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 				}
 
 				creds, err := sess.Config.Credentials.Get()
+
 				if err != nil {
 					t.Fatalf("expected no error, but received %v", err)
 				}
@@ -537,3 +566,4 @@ func TestSessionAssumeRole_WithMFA_ExtendedDuration(t *testing.T) {
 		t.Errorf("expect %v, to contain %v", e, a)
 	}
 }
+
