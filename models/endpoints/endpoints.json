@@ -3071,8 +3071,14 @@
       },
       "support" : {
         "endpoints" : {
-          "aws-global" : { }
-        }
+          "aws-global" : {
+            "credentialScope" : {
+              "region" : "us-east-1"
+            },
+            "hostname" : "support.us-east-1.amazonaws.com"
+          }
+        },
+        "partitionEndpoint" : "aws-global"
       },
       "swf" : {
         "endpoints" : {
@@ -3661,8 +3667,14 @@
       },
       "support" : {
         "endpoints" : {
-          "aws-cn-global" : { }
-        }
+          "aws-cn-global" : {
+            "credentialScope" : {
+              "region" : "cn-north-1"
+            },
+            "hostname" : "support.cn-north-1.amazonaws.com"
+          }
+        },
+        "partitionEndpoint" : "aws-cn-global"
       },
       "swf" : {
         "endpoints" : {
