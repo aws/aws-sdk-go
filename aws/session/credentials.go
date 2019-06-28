@@ -28,7 +28,6 @@ func resolveCredentials(cfg *aws.Config,
 ) (*credentials.Credentials, error) {
 	// Credentials from Assume Role with specific credentials source.
 	if envCfg.EnableSharedConfig && len(sharedCfg.AssumeRole.CredentialSource) > 0 {
-
 		return resolveCredsFromSource(cfg, envCfg, sharedCfg, handlers, sessOpts)
 	}
 
@@ -68,7 +67,6 @@ func resolveCredsFromProfile(cfg *aws.Config,
 		//Get credentials from CredentialProcess
 		cred := processcreds.NewCredentials(sharedCfg.CredentialProcess)
 		//if RoleARN is provided, so the obtained cred from the Credential Process to assume the role using RoleARN
-		fmt.Printf("Assume Role: %v",sharedCfg.AssumeRole)
 		if len(sharedCfg.AssumeRole.RoleARN) > 0 {
 			cfgCp := *cfg
 			cfgCp.Credentials = cred

@@ -51,7 +51,7 @@ func setupCredentialsEndpoints(t *testing.T) (endpoints.Resolver, func()) {
 			w.Write([]byte(fmt.Sprintf(
 				assumeRoleRespMsg,
 				time.Now().
-					Add(15*time.Minute).
+					Add(15 * time.Minute).
 					Format("2006-01-02T15:04:05Z"))))
 		}))
 
@@ -146,30 +146,29 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 			},
 		},
 		{
-			name: "credential process with no ARN set",
-			profile: "cred_proc_no_arn_set",
+			name:              "credential process with no ARN set",
+			profile:           "cred_proc_no_arn_set",
 			expectedAccessKey: "accesskey",
 			expectedSecretKey: "secretkey",
 		},
 		{
-			name: "credential process with ARN set",
-			profile: "cred_proc_arn_set",
+			name:              "credential process with ARN set",
+			profile:           "cred_proc_arn_set",
 			expectedAccessKey: "AKID",
 			expectedSecretKey: "SECRET",
-			expectedChain:[] string{
+			expectedChain: [] string{
 				"assume_role_w_creds_proc_role_arn",
 			},
 		},
 		{
-			name: "chained assume role with credential process",
-			profile: "chained_cred_proc",
+			name:              "chained assume role with credential process",
+			profile:           "chained_cred_proc",
 			expectedAccessKey: "AKID",
 			expectedSecretKey: "SECRET",
-			expectedChain:[] string{
+			expectedChain: [] string{
 				"assume_role_w_creds_proc_source_prof",
 			},
 		},
-
 	}
 
 	for i, c := range cases {
@@ -193,9 +192,7 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 
 				var credChain []string
 				handlers := defaults.Handlers()
-
 				handlers.Sign.PushBack(func(r *request.Request) {
-
 					if r.Config.Credentials == credentials.AnonymousCredentials {
 						return
 					}
@@ -219,7 +216,6 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 				}
 
 				creds, err := sess.Config.Credentials.Get()
-
 				if err != nil {
 					t.Fatalf("expected no error, but received %v", err)
 				}
@@ -291,7 +287,7 @@ func TestSessionAssumeRole(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(fmt.Sprintf(
 			assumeRoleRespMsg,
-			time.Now().Add(15*time.Minute).Format("2006-01-02T15:04:05Z"))))
+			time.Now().Add(15 * time.Minute).Format("2006-01-02T15:04:05Z"))))
 	}))
 
 	s, err := NewSession(&aws.Config{
@@ -339,7 +335,7 @@ func TestSessionAssumeRole_WithMFA(t *testing.T) {
 
 		w.Write([]byte(fmt.Sprintf(
 			assumeRoleRespMsg,
-			time.Now().Add(15*time.Minute).Format("2006-01-02T15:04:05Z"))))
+			time.Now().Add(15 * time.Minute).Format("2006-01-02T15:04:05Z"))))
 	}))
 
 	customProviderCalled := false
@@ -469,7 +465,7 @@ func TestSessionAssumeRole_ExtendedDuration(t *testing.T) {
 
 		w.Write([]byte(fmt.Sprintf(
 			assumeRoleRespMsg,
-			time.Now().Add(15*time.Minute).Format("2006-01-02T15:04:05Z"))))
+			time.Now().Add(15 * time.Minute).Format("2006-01-02T15:04:05Z"))))
 	}))
 
 	s, err := NewSessionWithOptions(Options{
@@ -522,7 +518,7 @@ func TestSessionAssumeRole_WithMFA_ExtendedDuration(t *testing.T) {
 
 		w.Write([]byte(fmt.Sprintf(
 			assumeRoleRespMsg,
-			time.Now().Add(30*time.Minute).Format("2006-01-02T15:04:05Z"))))
+			time.Now().Add(30 * time.Minute).Format("2006-01-02T15:04:05Z"))))
 	}))
 
 	customProviderCalled := false
@@ -566,4 +562,3 @@ func TestSessionAssumeRole_WithMFA_ExtendedDuration(t *testing.T) {
 		t.Errorf("expect %v, to contain %v", e, a)
 	}
 }
-
