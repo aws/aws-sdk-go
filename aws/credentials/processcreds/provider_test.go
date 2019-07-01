@@ -549,21 +549,11 @@ func BenchmarkProcessProvider(b *testing.B) {
 
 func preserveImportantStashEnv() []string {
 	envsToKeep := []string{"PATH"}
-
 	if runtime.GOOS == "windows" {
 		envsToKeep = append(envsToKeep, "ComSpec")
 		envsToKeep = append(envsToKeep, "SYSTEM32")
 	}
-
-	extraEnv := getEnvs(envsToKeep)
-
-	oldEnv := awstesting.StashEnv() //clear env
-
-	for key, val := range extraEnv {
-		os.Setenv(key, val)
-	}
-
-	return oldEnv
+	return awstesting.StashEnv(envsToKeep...)
 }
 
 func getEnvs(envs []string) map[string]string {

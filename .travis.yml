@@ -18,12 +18,15 @@ go:
 matrix:
     allow_failures:
         - go: tip
+        - os: windows
     exclude:
           # OSX 1.6.4 is not present in travis.
           # https://github.com/travis-ci/travis-ci/issues/10309
         - go: 1.6.x
           os: osx
     include:
+        - os: windows
+          go: 1.12.x
         - os: linux
           go: 1.5.x
           # Use Go 1.5's vendoring experiment for 1.5 tests.

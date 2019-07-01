@@ -51,7 +51,7 @@ func setupCredentialsEndpoints(t *testing.T) (endpoints.Resolver, func()) {
 			w.Write([]byte(fmt.Sprintf(
 				assumeRoleRespMsg,
 				time.Now().
-					Add(15 * time.Minute).
+					Add(15*time.Minute).
 					Format("2006-01-02T15:04:05Z"))))
 		}))
 
@@ -148,15 +148,15 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 		{
 			name:              "credential process with no ARN set",
 			profile:           "cred_proc_no_arn_set",
-			expectedAccessKey: "accesskey",
-			expectedSecretKey: "secretkey",
+			expectedAccessKey: "cred_proc_akid",
+			expectedSecretKey: "cred_proc_secret",
 		},
 		{
 			name:              "credential process with ARN set",
 			profile:           "cred_proc_arn_set",
 			expectedAccessKey: "AKID",
 			expectedSecretKey: "SECRET",
-			expectedChain: [] string{
+			expectedChain: []string{
 				"assume_role_w_creds_proc_role_arn",
 			},
 		},
@@ -165,7 +165,7 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 			profile:           "chained_cred_proc",
 			expectedAccessKey: "AKID",
 			expectedSecretKey: "SECRET",
-			expectedChain: [] string{
+			expectedChain: []string{
 				"assume_role_w_creds_proc_source_prof",
 			},
 		},
@@ -287,7 +287,7 @@ func TestSessionAssumeRole(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(fmt.Sprintf(
 			assumeRoleRespMsg,
-			time.Now().Add(15 * time.Minute).Format("2006-01-02T15:04:05Z"))))
+			time.Now().Add(15*time.Minute).Format("2006-01-02T15:04:05Z"))))
 	}))
 
 	s, err := NewSession(&aws.Config{
@@ -335,7 +335,7 @@ func TestSessionAssumeRole_WithMFA(t *testing.T) {
 
 		w.Write([]byte(fmt.Sprintf(
 			assumeRoleRespMsg,
-			time.Now().Add(15 * time.Minute).Format("2006-01-02T15:04:05Z"))))
+			time.Now().Add(15*time.Minute).Format("2006-01-02T15:04:05Z"))))
 	}))
 
 	customProviderCalled := false
@@ -465,7 +465,7 @@ func TestSessionAssumeRole_ExtendedDuration(t *testing.T) {
 
 		w.Write([]byte(fmt.Sprintf(
 			assumeRoleRespMsg,
-			time.Now().Add(15 * time.Minute).Format("2006-01-02T15:04:05Z"))))
+			time.Now().Add(15*time.Minute).Format("2006-01-02T15:04:05Z"))))
 	}))
 
 	s, err := NewSessionWithOptions(Options{
@@ -518,7 +518,7 @@ func TestSessionAssumeRole_WithMFA_ExtendedDuration(t *testing.T) {
 
 		w.Write([]byte(fmt.Sprintf(
 			assumeRoleRespMsg,
-			time.Now().Add(30 * time.Minute).Format("2006-01-02T15:04:05Z"))))
+			time.Now().Add(30*time.Minute).Format("2006-01-02T15:04:05Z"))))
 	}))
 
 	customProviderCalled := false

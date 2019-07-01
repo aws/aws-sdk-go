@@ -168,7 +168,7 @@ func (cfg *sharedConfig) setAssumeRoleSource(origProfile string, files []sharedC
 
 	if cfg.AssumeRole.SourceProfile == origProfile || len(assumeRoleSrc.AssumeRole.SourceProfile) == 0 {
 		//Check if at least either Credential Source, static creds, or credential process is set to retain credentials.
-		if len(assumeRoleSrc.AssumeRole.CredentialSource) == 0 && len(assumeRoleSrc.Creds.AccessKeyID) == 0 && len(assumeRoleSrc.CredentialProcess) == 0{
+		if len(assumeRoleSrc.AssumeRole.CredentialSource) == 0 && len(assumeRoleSrc.Creds.AccessKeyID) == 0 && len(assumeRoleSrc.CredentialProcess) == 0 {
 			return SharedConfigAssumeRoleError{RoleARN: cfg.AssumeRole.RoleARN}
 		}
 	}
@@ -229,7 +229,7 @@ func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile) e
 	credentialSource := section.String(credentialSourceKey)
 	credentialProcess := section.String(credentialProcessKey)
 	//Has source to make sure the Assume Role has at least either srcProfile, credential Source, or credential Process.
-	hasSource := len(srcProfile) > 0 || len(credentialSource) > 0 || len(credentialProcess) >0
+	hasSource := len(srcProfile) > 0 || len(credentialSource) > 0 || len(credentialProcess) > 0
 	if len(roleArn) > 0 && hasSource {
 		cfg.AssumeRole = assumeRoleConfig{
 			RoleARN:          roleArn,
