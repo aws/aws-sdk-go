@@ -53,8 +53,8 @@ cleanup-models:
 ###################
 
 unit-no-verify:
-    @echo "go test SDK and vendor packages with no linting"
-    go test -count=1 -tags ${UNIT_TEST_TAGS} ${SDK_ALL_PKGS}
+	@echo "go test SDK and vendor packages with no linting"
+	go test -count=1 -tags ${UNIT_TEST_TAGS} ${SDK_ALL_PKGS}
 
 unit: verify
 	@echo "go test SDK and vendor packages"

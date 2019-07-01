@@ -39,7 +39,7 @@ script:
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
       make unit-no-verify;
     else
-      [ $TRAVIS_GO_VERSION == "1.10.x" ] ||
+      if [ $TRAVIS_GO_VERSION == "1.10.x" ] ||
       [ $TRAVIS_GO_VERSION == "1.11.x" ] ||
       [ $TRAVIS_GO_VERSION == "1.12.x" ] ||
       [ $TRAVIS_GO_VERSION == "tip" ]; then
@@ -49,7 +49,7 @@ script:
           make get-deps-tests;
           make unit-old-go-race-cover;
       fi
-  fi
+    fi
 
 branches:
   only:
