@@ -3,6 +3,7 @@ package awstesting
 import (
 	"io"
 	"os"
+	"runtime"
 	"strings"
 	"time"
 
@@ -98,6 +99,11 @@ func (c *FakeContext) Value(key interface{}) interface{} {
 // StashEnv stashes the current environment variables except variables listed in envToKeep
 // Returns an array of all environment values as key=val strings.
 func StashEnv(envToKeep ...string) []string {
+
+	if runtime.GOOS == "windows" {
+		envToKeep = append(envToKeep, "ComSpec")
+		envToKeep = append(envToKeep, "SYSTEM32")
+	}
 
 	extraEnv := getEnvs(envToKeep)
 
