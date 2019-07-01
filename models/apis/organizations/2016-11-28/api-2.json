@@ -2192,6 +2192,10 @@
     },
     "Tag":{
       "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
       "members":{
         "Key":{"shape":"TagKey"},
         "Value":{"shape":"TagValue"}

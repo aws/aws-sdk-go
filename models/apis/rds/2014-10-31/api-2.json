@@ -4939,6 +4939,8 @@
         "BacktrackWindow":{"shape":"LongOptional"},
         "CloudwatchLogsExportConfiguration":{"shape":"CloudwatchLogsExportConfiguration"},
         "EngineVersion":{"shape":"String"},
+        "AllowMajorVersionUpgrade":{"shape":"Boolean"},
+        "DBInstanceParameterGroupName":{"shape":"String"},
         "ScalingConfiguration":{"shape":"ScalingConfiguration"},
         "DeletionProtection":{"shape":"BooleanOptional"},
         "EnableHttpEndpoint":{"shape":"BooleanOptional"},
