@@ -1,3 +1,17 @@
+Release v1.20.13 (2019-07-01)
+===
+
+### Service Client Updates
+* `service/docdb`: Updates service API and documentation
+  * This release provides support for cluster delete protection and the ability to stop and start clusters.
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for specifying a maximum hourly price for all On-Demand and Spot instances in both Spot Fleet and EC2 Fleet.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/organizations`: Updates service API and documentation
+  * Specifying the tag key and tag value is required for tagging requests.
+* `service/rds`: Updates service API and documentation
+  * This release adds support for RDS DB Cluster major version upgrade
+
 Release v1.20.12 (2019-06-28)
 ===
 

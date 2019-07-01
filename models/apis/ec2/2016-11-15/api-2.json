@@ -16822,7 +16822,8 @@
         "TargetCapacity":{
           "shape":"Integer",
           "locationName":"targetCapacity"
-        }
+        },
+        "OnDemandTargetCapacity":{"shape":"Integer"}
       }
     },
     "ModifySpotFleetRequestResponse":{
@@ -17852,6 +17853,10 @@
         "MinTargetCapacity":{
           "shape":"Integer",
           "locationName":"minTargetCapacity"
+        },
+        "MaxTotalPrice":{
+          "shape":"String",
+          "locationName":"maxTotalPrice"
         }
       }
     },
@@ -17861,7 +17866,8 @@
         "AllocationStrategy":{"shape":"FleetOnDemandAllocationStrategy"},
         "SingleInstanceType":{"shape":"Boolean"},
         "SingleAvailabilityZone":{"shape":"Boolean"},
-        "MinTargetCapacity":{"shape":"Integer"}
+        "MinTargetCapacity":{"shape":"Integer"},
+        "MaxTotalPrice":{"shape":"String"}
       }
     },
     "OperationType":{
@@ -21489,6 +21495,14 @@
           "shape":"Integer",
           "locationName":"onDemandTargetCapacity"
         },
+        "OnDemandMaxTotalPrice":{
+          "shape":"String",
+          "locationName":"onDemandMaxTotalPrice"
+        },
+        "SpotMaxTotalPrice":{
+          "shape":"String",
+          "locationName":"spotMaxTotalPrice"
+        },
         "TerminateInstancesWithExpiration":{
           "shape":"Boolean",
           "locationName":"terminateInstancesWithExpiration"
@@ -21736,6 +21750,10 @@
         "MinTargetCapacity":{
           "shape":"Integer",
           "locationName":"minTargetCapacity"
+        },
+        "MaxTotalPrice":{
+          "shape":"String",
+          "locationName":"maxTotalPrice"
         }
       }
     },
@@ -21747,7 +21765,8 @@
         "InstancePoolsToUseCount":{"shape":"Integer"},
         "SingleInstanceType":{"shape":"Boolean"},
         "SingleAvailabilityZone":{"shape":"Boolean"},
-        "MinTargetCapacity":{"shape":"Integer"}
+        "MinTargetCapacity":{"shape":"Integer"},
+        "MaxTotalPrice":{"shape":"String"}
       }
     },
     "SpotPlacement":{

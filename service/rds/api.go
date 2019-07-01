@@ -26553,6 +26553,13 @@ func (s *ModifyDBClusterEndpointOutput) SetStatus(v string) *ModifyDBClusterEndp
 type ModifyDBClusterInput struct {
 	_ struct{} `type:"structure"`
 
+	// A value that indicates whether major version upgrades are allowed.
+	//
+	// Constraints: You must allow major version upgrades when specifying a value
+	// for the EngineVersion parameter that is a different major version than the
+	// DB cluster's current version.
+	AllowMajorVersionUpgrade *bool `type:"boolean"`
+
 	// A value that indicates whether the modifications in this request and any
 	// pending modifications are asynchronously applied as soon as possible, regardless
 	// of the PreferredMaintenanceWindow setting for the DB cluster. If this parameter
@@ -26601,15 +26608,31 @@ type ModifyDBClusterInput struct {
 	// The DB cluster identifier for the cluster being modified. This parameter
 	// is not case-sensitive.
 	//
-	// Constraints:
-	//
-	//    * Must match the identifier of an existing DBCluster.
+	// Constraints: This identifier must match the identifier of an existing DB
+	// cluster.
 	//
 	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The name of the DB cluster parameter group to use for the DB cluster.
 	DBClusterParameterGroupName *string `type:"string"`
+
+	// The name of the DB parameter group to apply to all instances of the DB cluster.
+	//
+	// When you apply a parameter group using the DBInstanceParameterGroupName parameter,
+	// the DB cluster isn't rebooted automatically. Also, parameter changes aren't
+	// applied during the next maintenance window but instead are applied immediately.
+	//
+	// Default: The existing name setting
+	//
+	// Constraints:
+	//
+	//    * The DB parameter group must be in the same DB parameter group family
+	//    as this DB cluster.
+	//
+	//    * The DBInstanceParameterGroupName parameter is only valid in combination
+	//    with the AllowMajorVersionUpgrade parameter.
+	DBInstanceParameterGroupName *string `type:"string"`
 
 	// A value that indicates whether the DB cluster has deletion protection enabled.
 	// The database can't be deleted when deletion protection is enabled. By default,
@@ -26743,6 +26766,12 @@ func (s *ModifyDBClusterInput) Validate() error {
 	return nil
 }
 
+// SetAllowMajorVersionUpgrade sets the AllowMajorVersionUpgrade field's value.
+func (s *ModifyDBClusterInput) SetAllowMajorVersionUpgrade(v bool) *ModifyDBClusterInput {
+	s.AllowMajorVersionUpgrade = &v
+	return s
+}
+
 // SetApplyImmediately sets the ApplyImmediately field's value.
 func (s *ModifyDBClusterInput) SetApplyImmediately(v bool) *ModifyDBClusterInput {
 	s.ApplyImmediately = &v
@@ -26782,6 +26811,12 @@ func (s *ModifyDBClusterInput) SetDBClusterIdentifier(v string) *ModifyDBCluster
 // SetDBClusterParameterGroupName sets the DBClusterParameterGroupName field's value.
 func (s *ModifyDBClusterInput) SetDBClusterParameterGroupName(v string) *ModifyDBClusterInput {
 	s.DBClusterParameterGroupName = &v
+	return s
+}
+
+// SetDBInstanceParameterGroupName sets the DBInstanceParameterGroupName field's value.
+func (s *ModifyDBClusterInput) SetDBInstanceParameterGroupName(v string) *ModifyDBClusterInput {
+	s.DBInstanceParameterGroupName = &v
 	return s
 }
 
@@ -27171,8 +27206,8 @@ type ModifyDBInstanceInput struct {
 	// The name of the DB parameter group to apply to the DB instance. Changing
 	// this setting doesn't result in an outage. The parameter group name itself
 	// is changed immediately, but the actual parameter changes are not applied
-	// until you reboot the instance without failover. The DB instance will NOT
-	// be rebooted automatically and the parameter changes will NOT be applied during
+	// until you reboot the instance without failover. In this case, the DB instance
+	// isn't rebooted automatically and the parameter changes isn't applied during
 	// the next maintenance window.
 	//
 	// Default: Uses existing setting
