@@ -37,6 +37,7 @@ before_install:
 
 script:
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
+      make get-deps;
       make unit-no-verify;
     else
       if [ $TRAVIS_GO_VERSION == "1.10.x" ] ||
