@@ -1,7 +1,6 @@
 package awstesting
 
 import (
-	"fmt"
 	"io"
 	"os"
 	"runtime"
@@ -101,7 +100,6 @@ func (c *FakeContext) Value(key interface{}) interface{} {
 // Returns an array of all environment values as key=val strings.
 func StashEnv(envToKeep ...string) []string {
 	if runtime.GOOS == "windows" {
-		fmt.Printf(runtime.GOOS)
 		envToKeep = append(envToKeep, "ComSpec")
 		envToKeep = append(envToKeep, "SYSTEM32")
 		envToKeep = append(envToKeep, "SYSTEMROOT")
