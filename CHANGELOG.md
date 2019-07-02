@@ -1,3 +1,13 @@
+Release v1.20.14 (2019-07-02)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API and documentation
+  * Adding ImageBuilderName in Fleet API and Documentation updates for AppStream.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/mediastore`: Updates service API, documentation, and paginators
+  * This release adds support for tagging, untagging, and listing tags for AWS Elemental MediaStore containers.
+
 Release v1.20.13 (2019-07-01)
 ===
 
