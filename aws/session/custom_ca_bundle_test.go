@@ -41,6 +41,7 @@ func TestMain(m *testing.M) {
 	os.Exit(code)
 }
 
+// Todo: check if TLS issue is resolved with Travis
 // Skips the unit test on travis environment.
 func skipTravisTest(t *testing.T) {
 	// Travis windows environment fails with TLS error when trying to run the unit test.
@@ -52,8 +53,8 @@ func skipTravisTest(t *testing.T) {
 func TestNewSession_WithCustomCABundle_Env(t *testing.T) {
 	skipTravisTest(t)
 
-	oldEnv := initSessionTestEnv()
-	defer awstesting.PopEnv(oldEnv)
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
 
 	endpoint, err := awstesting.CreateTLSServer(TLSBundleCertFile, TLSBundleKeyFile, nil)
 	if err != nil {
@@ -86,8 +87,8 @@ func TestNewSession_WithCustomCABundle_Env(t *testing.T) {
 }
 
 func TestNewSession_WithCustomCABundle_EnvNotExists(t *testing.T) {
-	oldEnv := initSessionTestEnv()
-	defer awstesting.PopEnv(oldEnv)
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
 
 	os.Setenv("AWS_CA_BUNDLE", "file-not-exists")
 
@@ -106,8 +107,8 @@ func TestNewSession_WithCustomCABundle_EnvNotExists(t *testing.T) {
 func TestNewSession_WithCustomCABundle_Option(t *testing.T) {
 	skipTravisTest(t)
 
-	oldEnv := initSessionTestEnv()
-	defer awstesting.PopEnv(oldEnv)
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
 
 	endpoint, err := awstesting.CreateTLSServer(TLSBundleCertFile, TLSBundleKeyFile, nil)
 	if err != nil {
@@ -143,8 +144,8 @@ func TestNewSession_WithCustomCABundle_Option(t *testing.T) {
 func TestNewSession_WithCustomCABundle_HTTPProxyAvailable(t *testing.T) {
 	skipTravisTest(t)
 
-	oldEnv := initSessionTestEnv()
-	defer awstesting.PopEnv(oldEnv)
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
 
 	s, err := NewSessionWithOptions(Options{
 		Config: aws.Config{
@@ -173,8 +174,8 @@ func TestNewSession_WithCustomCABundle_HTTPProxyAvailable(t *testing.T) {
 func TestNewSession_WithCustomCABundle_OptionPriority(t *testing.T) {
 	skipTravisTest(t)
 
-	oldEnv := initSessionTestEnv()
-	defer awstesting.PopEnv(oldEnv)
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
 
 	endpoint, err := awstesting.CreateTLSServer(TLSBundleCertFile, TLSBundleKeyFile, nil)
 	if err != nil {
@@ -216,8 +217,8 @@ func (m *mockRoundTripper) RoundTrip(r *http.Request) (*http.Response, error) {
 }
 
 func TestNewSession_WithCustomCABundle_UnsupportedTransport(t *testing.T) {
-	oldEnv := initSessionTestEnv()
-	defer awstesting.PopEnv(oldEnv)
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
 
 	s, err := NewSessionWithOptions(Options{
 		Config: aws.Config{
@@ -245,8 +246,8 @@ func TestNewSession_WithCustomCABundle_UnsupportedTransport(t *testing.T) {
 func TestNewSession_WithCustomCABundle_TransportSet(t *testing.T) {
 	skipTravisTest(t)
 
-	oldEnv := initSessionTestEnv()
-	defer awstesting.PopEnv(oldEnv)
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
 
 	endpoint, err := awstesting.CreateTLSServer(TLSBundleCertFile, TLSBundleKeyFile, nil)
 	if err != nil {

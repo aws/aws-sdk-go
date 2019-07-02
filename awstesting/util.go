@@ -3,7 +3,6 @@ package awstesting
 import (
 	"io"
 	"os"
-	"runtime"
 	"strings"
 	"time"
 
@@ -96,31 +95,12 @@ func (c *FakeContext) Value(key interface{}) interface{} {
 	return nil
 }
 
-// StashEnv stashes the current environment variables except variables listed in envToKeep
-// Returns an array of all environment values as key=val strings.
-func StashEnv(envToKeep ...string) []string {
-	if runtime.GOOS == "windows" {
-		envToKeep = append(envToKeep, "ComSpec")
-		envToKeep = append(envToKeep, "SYSTEM32")
-		envToKeep = append(envToKeep, "SYSTEMROOT")
-	}
-	extraEnv := getEnvs(envToKeep)
-	originalEnv := os.Environ()
-	os.Clearenv() //clear env
-	for key, val := range extraEnv {
-		os.Setenv(key, val)
-	}
-	return originalEnv
-}
-
-func getEnvs(envs []string) map[string]string {
-	extraEnvs := make(map[string]string)
-	for _, env := range envs {
-		if val, ok := os.LookupEnv(env); ok && len(val) > 0 {
-			extraEnvs[env] = val
-		}
-	}
-	return extraEnvs
+// StashEnv stashes the current environment variables and returns an array of
+// all environment values as key=val strings.
+func StashEnv() []string {
+	env := os.Environ()
+	os.Clearenv()
+	return env
 }
 
 // PopEnv takes the list of the environment values and injects them into the

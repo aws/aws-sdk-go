@@ -3,10 +3,10 @@ package corehandlers_test
 import (
 	"bytes"
 	"fmt"
+	"github.com/aws/aws-sdk-go/internal/sdktesting"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
-	"os"
 	"strings"
 	"testing"
 	"time"
@@ -22,8 +22,9 @@ import (
 )
 
 func TestValidateEndpointHandler(t *testing.T) {
-	os.Clearenv()
-
+	// os.Clearenv()
+	restoreEnvFn := sdktesting.StashEnv()
+	restoreEnvFn()
 	svc := awstesting.NewClient(aws.NewConfig().WithRegion("us-west-2"))
 	svc.Handlers.Clear()
 	svc.Handlers.Validate.PushBackNamed(corehandlers.ValidateEndpointHandler)
@@ -37,8 +38,9 @@ func TestValidateEndpointHandler(t *testing.T) {
 }
 
 func TestValidateEndpointHandlerErrorRegion(t *testing.T) {
-	os.Clearenv()
-
+	// os.Clearenv()
+	restoreEnvFn := sdktesting.StashEnv()
+	restoreEnvFn()
 	svc := awstesting.NewClient()
 	svc.Handlers.Clear()
 	svc.Handlers.Validate.PushBackNamed(corehandlers.ValidateEndpointHandler)
@@ -69,7 +71,10 @@ func (m *mockCredsProvider) IsExpired() bool {
 }
 
 func TestAfterRetryRefreshCreds(t *testing.T) {
-	os.Clearenv()
+	// os.Clearenv()
+	restoreEnvFn := sdktesting.StashEnv()
+	restoreEnvFn()
+
 	credProvider := &mockCredsProvider{}
 
 	svc := awstesting.NewClient(&aws.Config{

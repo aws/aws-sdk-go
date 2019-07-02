@@ -5,14 +5,16 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/awstesting"
+	"github.com/aws/aws-sdk-go/internal/sdktesting"
+
+	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/internal/shareddefaults"
 )
 
 func TestLoadEnvConfig_Creds(t *testing.T) {
-	env := awstesting.StashEnv()
-	defer awstesting.PopEnv(env)
+	restoreEnvFn := sdktesting.StashEnv()
+	defer restoreEnvFn()
 
 	cases := []struct {
 		Env map[string]string
@@ -76,8 +78,8 @@ func TestLoadEnvConfig_Creds(t *testing.T) {
 	}
 
 	for _, c := range cases {
-		os.Clearenv()
-
+		// os.Clearenv()
+		sdktesting.StashEnv()
 		for k, v := range c.Env {
 			os.Setenv(k, v)
 		}
@@ -91,8 +93,9 @@ func TestLoadEnvConfig_Creds(t *testing.T) {
 }
 
 func TestLoadEnvConfig(t *testing.T) {
-	env := awstesting.StashEnv()
-	defer awstesting.PopEnv(env)
+	// os.Clearenv()
+	restoreEnvFn := sdktesting.StashEnv()
+	defer restoreEnvFn()
 
 	cases := []struct {
 		Env                 map[string]string
@@ -267,8 +270,8 @@ func TestLoadEnvConfig(t *testing.T) {
 	}
 
 	for _, c := range cases {
-		os.Clearenv()
-
+		// os.Clearenv()
+		sdktesting.StashEnv()
 		for k, v := range c.Env {
 			os.Setenv(k, v)
 		}
@@ -288,8 +291,8 @@ func TestLoadEnvConfig(t *testing.T) {
 }
 
 func TestSetEnvValue(t *testing.T) {
-	env := awstesting.StashEnv()
-	defer awstesting.PopEnv(env)
+	restoreEnvFn := sdktesting.StashEnv()
+	defer restoreEnvFn()
 
 	os.Setenv("empty_key", "")
 	os.Setenv("second_key", "2")

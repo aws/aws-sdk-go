@@ -4,10 +4,12 @@ package session
 
 import (
 	"fmt"
+	"github.com/aws/aws-sdk-go/internal/sdktesting"
 	"net/http"
 	"net/http/httptest"
 	"os"
 	"reflect"
+	"runtime"
 	"strings"
 	"testing"
 	"time"
@@ -17,7 +19,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/defaults"
 	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/internal/shareddefaults"
 	"github.com/aws/aws-sdk-go/service/sts"
 )
@@ -81,6 +82,7 @@ func setupCredentialsEndpoints(t *testing.T) (endpoints.Resolver, func()) {
 }
 
 func TestSharedConfigCredentialSource(t *testing.T) {
+	const configFileForWindows = "testdata/credential_source_config_for_windows"
 	const configFile = "testdata/credential_source_config"
 
 	cases := []struct {
@@ -91,6 +93,7 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 		expectedSecretKey string
 		expectedChain     []string
 		init              func()
+		dependentOnOS         bool
 	}{
 		{
 			name:          "credential source and source profile",
@@ -148,21 +151,25 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 		{
 			name:              "credential process with no ARN set",
 			profile:           "cred_proc_no_arn_set",
+			dependentOnOS: true,
 			expectedAccessKey: "cred_proc_akid",
 			expectedSecretKey: "cred_proc_secret",
 		},
 		{
 			name:              "credential process with ARN set",
 			profile:           "cred_proc_arn_set",
+			dependentOnOS: true,
 			expectedAccessKey: "AKID",
 			expectedSecretKey: "SECRET",
 			expectedChain: []string{
 				"assume_role_w_creds_proc_role_arn",
 			},
+
 		},
 		{
 			name:              "chained assume role with credential process",
 			profile:           "chained_cred_proc",
+			dependentOnOS: true,
 			expectedAccessKey: "AKID",
 			expectedSecretKey: "SECRET",
 			expectedChain: []string{
@@ -174,12 +181,16 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 	for i, c := range cases {
 		t.Run(fmt.Sprintf("%d %s", i, c.name),
 			func(t *testing.T) {
-				env := awstesting.StashEnv("PATH")
-				defer awstesting.PopEnv(env)
+				restoreEnvFn := sdktesting.StashEnv()
+				defer restoreEnvFn()
+				if c.dependentOnOS && runtime.GOOS == "windows" {
+					os.Setenv("AWS_CONFIG_FILE", configFileForWindows)
+				} else {
+					os.Setenv("AWS_CONFIG_FILE", configFile)
+				}
 
 				os.Setenv("AWS_REGION", "us-east-1")
 				os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
-				os.Setenv("AWS_CONFIG_FILE", configFile)
 				os.Setenv("AWS_PROFILE", c.profile)
 
 				endpointResolver, cleanupFn := setupCredentialsEndpoints(t)
@@ -275,8 +286,8 @@ const assumeRoleRespMsg = `
 `
 
 func TestSessionAssumeRole(t *testing.T) {
-	oldEnv := initSessionTestEnv()
-	defer awstesting.PopEnv(oldEnv)
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
 
 	os.Setenv("AWS_REGION", "us-east-1")
 	os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
@@ -313,8 +324,8 @@ func TestSessionAssumeRole(t *testing.T) {
 }
 
 func TestSessionAssumeRole_WithMFA(t *testing.T) {
-	oldEnv := initSessionTestEnv()
-	defer awstesting.PopEnv(oldEnv)
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
 
 	os.Setenv("AWS_REGION", "us-east-1")
 	os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
@@ -379,8 +390,8 @@ func TestSessionAssumeRole_WithMFA(t *testing.T) {
 }
 
 func TestSessionAssumeRole_WithMFA_NoTokenProvider(t *testing.T) {
-	oldEnv := initSessionTestEnv()
-	defer awstesting.PopEnv(oldEnv)
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
 
 	os.Setenv("AWS_REGION", "us-east-1")
 	os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
@@ -399,8 +410,8 @@ func TestSessionAssumeRole_WithMFA_NoTokenProvider(t *testing.T) {
 func TestSessionAssumeRole_DisableSharedConfig(t *testing.T) {
 	// Backwards compatibility with Shared config disabled
 	// assume role should not be built into the config.
-	oldEnv := initSessionTestEnv()
-	defer awstesting.PopEnv(oldEnv)
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
 
 	os.Setenv("AWS_SDK_LOAD_CONFIG", "0")
 	os.Setenv("AWS_SHARED_CREDENTIALS_FILE", testConfigFilename)
@@ -429,8 +440,8 @@ func TestSessionAssumeRole_DisableSharedConfig(t *testing.T) {
 func TestSessionAssumeRole_InvalidSourceProfile(t *testing.T) {
 	// Backwards compatibility with Shared config disabled
 	// assume role should not be built into the config.
-	oldEnv := initSessionTestEnv()
-	defer awstesting.PopEnv(oldEnv)
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
 
 	os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
 	os.Setenv("AWS_SHARED_CREDENTIALS_FILE", testConfigFilename)
@@ -449,8 +460,8 @@ func TestSessionAssumeRole_InvalidSourceProfile(t *testing.T) {
 }
 
 func TestSessionAssumeRole_ExtendedDuration(t *testing.T) {
-	oldEnv := initSessionTestEnv()
-	defer awstesting.PopEnv(oldEnv)
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
 
 	os.Setenv("AWS_REGION", "us-east-1")
 	os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
@@ -496,8 +507,8 @@ func TestSessionAssumeRole_ExtendedDuration(t *testing.T) {
 }
 
 func TestSessionAssumeRole_WithMFA_ExtendedDuration(t *testing.T) {
-	oldEnv := initSessionTestEnv()
-	defer awstesting.PopEnv(oldEnv)
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
 
 	os.Setenv("AWS_REGION", "us-east-1")
 	os.Setenv("AWS_SDK_LOAD_CONFIG", "1")

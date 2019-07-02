@@ -2,6 +2,7 @@ package defaults
 
 import (
 	"fmt"
+	"github.com/aws/aws-sdk-go/internal/sdktesting"
 	"os"
 	"testing"
 
@@ -52,7 +53,9 @@ func TestHTTPCredProvider(t *testing.T) {
 		{Host: "localhost", Fail: false, AuthToken: "Basic abc123"},
 	}
 
-	defer os.Clearenv()
+	// os.Clearenv()
+	restoreEnvFn := sdktesting.StashEnv()
+	defer restoreEnvFn()
 
 	for i, c := range cases {
 		u := fmt.Sprintf("http://%s/abc/123", c.Host)
@@ -90,7 +93,9 @@ func TestHTTPCredProvider(t *testing.T) {
 }
 
 func TestECSCredProvider(t *testing.T) {
-	defer os.Clearenv()
+	// os.Clearenv()
+	restoreEnvFn := sdktesting.StashEnv()
+	defer restoreEnvFn()
 	os.Setenv(shareddefaults.ECSCredsProviderEnvVar, "/abc/123")
 
 	provider := RemoteCredProvider(aws.Config{}, request.Handlers{})
