@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"runtime"
 	"strings"
 	"time"
 
@@ -99,16 +100,18 @@ func (c *FakeContext) Value(key interface{}) interface{} {
 // StashEnv stashes the current environment variables except variables listed in envToKeep
 // Returns an array of all environment values as key=val strings.
 func StashEnv(envToKeep ...string) []string {
-
+	if runtime.GOOS == "windows" {
+		fmt.Printf(runtime.GOOS)
+		envToKeep = append(envToKeep, "ComSpec")
+		envToKeep = append(envToKeep, "SYSTEM32")
+		envToKeep = append(envToKeep, "SYSTEMROOT")
+	}
 	extraEnv := getEnvs(envToKeep)
-
 	originalEnv := os.Environ()
 	os.Clearenv() //clear env
-
 	for key, val := range extraEnv {
 		os.Setenv(key, val)
 	}
-	fmt.Println(originalEnv)
 	return originalEnv
 }
 

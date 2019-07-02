@@ -174,9 +174,7 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 	for i, c := range cases {
 		t.Run(fmt.Sprintf("%d %s", i, c.name),
 			func(t *testing.T) {
-				//Pass in arguments to retain certain environment variable values.
-				env := awstesting.StashEnv("PATH", "ComSpec", "SYSTEM32", "SYSTEMROOT")
-
+				env := awstesting.StashEnv("PATH")
 				defer awstesting.PopEnv(env)
 
 				os.Setenv("AWS_REGION", "us-east-1")
