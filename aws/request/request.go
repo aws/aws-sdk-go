@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"net"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -594,7 +595,10 @@ func shouldRetryCancel(origErr error) bool {
 		// url.Error only wraps the error:
 		return shouldRetryCancel(err.Err)
 	case temporary:
-		// If the error is temporary, we want to allow continuation of the
+		if netErr, ok := err.(*net.OpError); ok && netErr.Op == "dial" {
+			return true
+		}
+			// If the error is temporary, we want to allow continuation of the
 		// retry process
 		return err.Temporary() || isErrConnectionReset(origErr)
 	case nil:
