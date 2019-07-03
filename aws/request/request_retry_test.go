@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"net/url"
-	"os"
 	"testing"
 	"time"
 )
@@ -98,16 +97,10 @@ func TestShouldRetryCancel_cancelled(t *testing.T) {
 
 func TestShouldRetry(t *testing.T) {
 
-	syscallError := os.SyscallError{
-		Err: ErrInvalidParams{},
-		Syscall:ErrCodeRead,
-	}
 
 	opError := net.OpError{
 		Op:"dial",
 		Net:"tcp",
-		Source:net.Addr(nil),
-		Err: &syscallError,
 	}
 
 	urlError := url.Error{

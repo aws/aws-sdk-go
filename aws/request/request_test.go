@@ -1105,11 +1105,6 @@ func TestRequestNoConnection(t *testing.T) {
 
 	awsError := err.(awserr.Error)
 	origError := awsError.OrigErr()
-	urlError := origError.(*url.Error)
-	opError := urlError.Err.(*net.OpError)
-
-	t.Logf("Operror : %+#v, Temporary error: %v, Timeout: %v", opError, opError.Temporary(), opError.Timeout())
-	t.Logf("url Error: %+#v, Temporary error: %v, Timeout: %v", urlError , urlError.Temporary(), urlError.Timeout())
 	t.Logf("Orig Error: %#v of type %T",origError, origError)
 
 	if e, a := 10, r.RetryCount; e != a {
