@@ -7,7 +7,6 @@ import (
 )
 
 func TestEnvProviderRetrieve(t *testing.T) {
-	//os.Clearenv()
 	sdktesting.StashEnv()
 	os.Setenv("AWS_ACCESS_KEY_ID", "access")
 	os.Setenv("AWS_SECRET_ACCESS_KEY", "secret")
@@ -31,7 +30,6 @@ func TestEnvProviderRetrieve(t *testing.T) {
 }
 
 func TestEnvProviderIsExpired(t *testing.T) {
-	//os.Clearenv()
 	sdktesting.StashEnv()
 
 	os.Setenv("AWS_ACCESS_KEY_ID", "access")
@@ -55,7 +53,6 @@ func TestEnvProviderIsExpired(t *testing.T) {
 }
 
 func TestEnvProviderNoAccessKeyID(t *testing.T) {
-	// os.Clearenv()
 	sdktesting.StashEnv()
 
 	os.Setenv("AWS_SECRET_ACCESS_KEY", "secret")
@@ -68,7 +65,6 @@ func TestEnvProviderNoAccessKeyID(t *testing.T) {
 }
 
 func TestEnvProviderNoSecretAccessKey(t *testing.T) {
-	// os.Clearenv()
 	sdktesting.StashEnv()
 
 	os.Setenv("AWS_ACCESS_KEY_ID", "access")
@@ -81,7 +77,6 @@ func TestEnvProviderNoSecretAccessKey(t *testing.T) {
 }
 
 func TestEnvProviderAlternateNames(t *testing.T) {
-	//os.Clearenv()
 	sdktesting.StashEnv()
 
 	os.Setenv("AWS_ACCESS_KEY", "access")

@@ -22,7 +22,6 @@ import (
 )
 
 func TestValidateEndpointHandler(t *testing.T) {
-	// os.Clearenv()
 	restoreEnvFn := sdktesting.StashEnv()
 	restoreEnvFn()
 	svc := awstesting.NewClient(aws.NewConfig().WithRegion("us-west-2"))
@@ -38,7 +37,6 @@ func TestValidateEndpointHandler(t *testing.T) {
 }
 
 func TestValidateEndpointHandlerErrorRegion(t *testing.T) {
-	// os.Clearenv()
 	restoreEnvFn := sdktesting.StashEnv()
 	restoreEnvFn()
 	svc := awstesting.NewClient()
@@ -71,7 +69,6 @@ func (m *mockCredsProvider) IsExpired() bool {
 }
 
 func TestAfterRetryRefreshCreds(t *testing.T) {
-	// os.Clearenv()
 	restoreEnvFn := sdktesting.StashEnv()
 	restoreEnvFn()
 

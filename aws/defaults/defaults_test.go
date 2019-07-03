@@ -53,7 +53,6 @@ func TestHTTPCredProvider(t *testing.T) {
 		{Host: "localhost", Fail: false, AuthToken: "Basic abc123"},
 	}
 
-	// os.Clearenv()
 	restoreEnvFn := sdktesting.StashEnv()
 	defer restoreEnvFn()
 
@@ -93,7 +92,6 @@ func TestHTTPCredProvider(t *testing.T) {
 }
 
 func TestECSCredProvider(t *testing.T) {
-	// os.Clearenv()
 	restoreEnvFn := sdktesting.StashEnv()
 	defer restoreEnvFn()
 	os.Setenv(shareddefaults.ECSCredsProviderEnvVar, "/abc/123")

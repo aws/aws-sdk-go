@@ -20,7 +20,6 @@ func TestAddHostExecEnvUserAgentHander(t *testing.T) {
 	}
 
 	for i, c := range cases {
-		// os.Clearenv()
 		restoreEnvFn := sdktesting.StashEnv()
 		restoreEnvFn()
 		os.Setenv(execEnvVar, c.ExecEnv)

@@ -1088,7 +1088,7 @@ func TestRequestNoConnection(t *testing.T) {
 	s := awstesting.NewClient(aws.NewConfig().
 		WithMaxRetries(10).
 		WithEndpoint("https://localhost:" + strconv.Itoa(port)).
-		WithSleepDelay(func(time.Duration) {}),
+		 WithSleepDelay(func(time.Duration) {}),
 	)
 	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
@@ -1100,6 +1100,17 @@ func TestRequestNoConnection(t *testing.T) {
 	if err = r.Send(); err == nil {
 		t.Fatal("expect error, but got none")
 	}
+
+	t.Log(err)
+
+	awsError := err.(awserr.Error)
+	origError := awsError.OrigErr()
+	urlError := origError.(*url.Error)
+	opError := urlError.Err.(*net.OpError)
+
+	t.Logf("Operror : %+#v, Temporary error: %v, Timeout: %v", opError, opError.Temporary(), opError.Timeout())
+	t.Logf("url Error: %+#v, Temporary error: %v, Timeout: %v", urlError , urlError.Temporary(), urlError.Timeout())
+	t.Logf("Orig Error: %#v of type %T",origError, origError)
 
 	if e, a := 10, r.RetryCount; e != a {
 		t.Errorf("expect %v retry count, got %v", e, a)

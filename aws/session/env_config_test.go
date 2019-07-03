@@ -78,7 +78,6 @@ func TestLoadEnvConfig_Creds(t *testing.T) {
 	}
 
 	for _, c := range cases {
-		// os.Clearenv()
 		sdktesting.StashEnv()
 		for k, v := range c.Env {
 			os.Setenv(k, v)
@@ -93,7 +92,6 @@ func TestLoadEnvConfig_Creds(t *testing.T) {
 }
 
 func TestLoadEnvConfig(t *testing.T) {
-	// os.Clearenv()
 	restoreEnvFn := sdktesting.StashEnv()
 	defer restoreEnvFn()
 
@@ -270,7 +268,6 @@ func TestLoadEnvConfig(t *testing.T) {
 	}
 
 	for _, c := range cases {
-		// os.Clearenv()
 		sdktesting.StashEnv()
 		for k, v := range c.Env {
 			os.Setenv(k, v)
