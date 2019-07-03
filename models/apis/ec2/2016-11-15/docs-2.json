@@ -563,6 +563,23 @@
       "refs": {
       }
     },
+    "AssignPrivateIpAddressesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssignedPrivateIpAddress": {
+      "base": "<p>Describes the private IP addresses assigned to a network interface.</p>",
+      "refs": {
+        "AssignedPrivateIpAddressList$member": null
+      }
+    },
+    "AssignedPrivateIpAddressList": {
+      "base": null,
+      "refs": {
+        "AssignPrivateIpAddressesResult$AssignedPrivateIpAddresses": "<p>The private IP addresses assigned to the network interface.</p>"
+      }
+    },
     "AssociateAddressRequest": {
       "base": null,
       "refs": {
@@ -966,7 +983,7 @@
         "CopyFpgaImageRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CopyImageRequest$Encrypted": "<p>Specifies whether the destination snapshots of the copied image should be encrypted. You can encrypt a copy of an unencrypted snapshot, but you cannot create an unencrypted copy of an encrypted snapshot. The default CMK for EBS is used unless you specify a non-default AWS Key Management Service (AWS KMS) CMK using <code>KmsKeyId</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "CopyImageRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
-        "CopySnapshotRequest$Encrypted": "<p>Specifies whether the destination snapshot should be encrypted. You can encrypt a copy of an unencrypted snapshot, but you cannot use it to create an unencrypted copy of an encrypted snapshot. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+        "CopySnapshotRequest$Encrypted": "<p>To encrypt a copy of an unencrypted snapshot if encryption by default is not enabled, enable encryption using this parameter. Otherwise, omit this parameter. Encrypted snapshots are encrypted, even if you omit this parameter and encryption by default is not enabled. You cannot set this parameter to false. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "CopySnapshotRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateCapacityReservationRequest$EbsOptimized": "<p>Indicates whether the Capacity Reservation supports EBS-optimized instances. This optimization provides dedicated throughput to Amazon EBS and an optimized configuration stack to provide optimal I/O performance. This optimization isn't available with all instance types. Additional usage charges apply when using an EBS- optimized instance.</p>",
         "CreateCapacityReservationRequest$EphemeralStorage": "<p>Indicates whether the Capacity Reservation supports instances with temporary, block-level storage.</p>",
@@ -7401,7 +7418,7 @@
     "NetworkInterfaceCreationType": {
       "base": null,
       "refs": {
-        "CreateNetworkInterfaceRequest$InterfaceType": "<p>Indicates the type of network interface. To create an Elastic Fabric Adapter (EFA), specify <code>efa</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html\"> Elastic Fabric Adapter</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>If you are not creating an EFA, specify <code>interface</code> or omit this parameter.</p>"
+        "CreateNetworkInterfaceRequest$InterfaceType": "<p>Indicates the type of network interface. To create an Elastic Fabric Adapter (EFA), specify <code>efa</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html\"> Elastic Fabric Adapter</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
       }
     },
     "NetworkInterfaceIdList": {
@@ -9182,6 +9199,8 @@
         "AssignIpv6AddressesRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "AssignIpv6AddressesResult$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "AssignPrivateIpAddressesRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
+        "AssignPrivateIpAddressesResult$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
+        "AssignedPrivateIpAddress$PrivateIpAddress": "<p>The private IP address assigned to the network interface.</p>",
         "AssociateAddressRequest$AllocationId": "<p>[EC2-VPC] The allocation ID. This is required for EC2-VPC.</p>",
         "AssociateAddressRequest$InstanceId": "<p>The ID of the instance. This is required for EC2-Classic. For EC2-VPC, you can specify either the instance ID or the network interface ID, but not both. The operation fails if you specify an instance ID unless exactly one network interface is attached.</p>",
         "AssociateAddressRequest$PublicIp": "<p>The Elastic IP address to associate with the instance. This is required for EC2-Classic.</p>",
