@@ -99,7 +99,8 @@
         "method":"POST",
         "requestUri":"/"
       },
-      "input":{"shape":"AssignPrivateIpAddressesRequest"}
+      "input":{"shape":"AssignPrivateIpAddressesRequest"},
+      "output":{"shape":"AssignPrivateIpAddressesResult"}
     },
     "AssociateAddress":{
       "name":"AssociateAddress",
@@ -3578,6 +3579,35 @@
           "shape":"Integer",
           "locationName":"secondaryPrivateIpAddressCount"
         }
+      }
+    },
+    "AssignPrivateIpAddressesResult":{
+      "type":"structure",
+      "members":{
+        "NetworkInterfaceId":{
+          "shape":"String",
+          "locationName":"networkInterfaceId"
+        },
+        "AssignedPrivateIpAddresses":{
+          "shape":"AssignedPrivateIpAddressList",
+          "locationName":"assignedPrivateIpAddressesSet"
+        }
+      }
+    },
+    "AssignedPrivateIpAddress":{
+      "type":"structure",
+      "members":{
+        "PrivateIpAddress":{
+          "shape":"String",
+          "locationName":"privateIpAddress"
+        }
+      }
+    },
+    "AssignedPrivateIpAddressList":{
+      "type":"list",
+      "member":{
+        "shape":"AssignedPrivateIpAddress",
+        "locationName":"item"
       }
     },
     "AssociateAddressRequest":{

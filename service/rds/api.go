@@ -16923,6 +16923,10 @@ type DBCluster struct {
 	// DB cluster.
 	CopyTagsToSnapshot *bool `type:"boolean"`
 
+	// Specifies whether the DB cluster is a clone of a DB cluster owned by a different
+	// AWS account.
+	CrossAccountClone *bool `type:"boolean"`
+
 	// Identifies all custom endpoints associated with the cluster.
 	CustomEndpoints []*string `type:"list"`
 
@@ -17169,6 +17173,12 @@ func (s *DBCluster) SetClusterCreateTime(v time.Time) *DBCluster {
 // SetCopyTagsToSnapshot sets the CopyTagsToSnapshot field's value.
 func (s *DBCluster) SetCopyTagsToSnapshot(v bool) *DBCluster {
 	s.CopyTagsToSnapshot = &v
+	return s
+}
+
+// SetCrossAccountClone sets the CrossAccountClone field's value.
+func (s *DBCluster) SetCrossAccountClone(v bool) *DBCluster {
+	s.CrossAccountClone = &v
 	return s
 }
 
@@ -21845,6 +21855,10 @@ type DescribeDBClustersInput struct {
 	//    about the DB clusters identified by these ARNs.
 	Filters []*Filter `locationNameList:"Filter" type:"list"`
 
+	// Optional Boolean parameter that specifies whether the output includes information
+	// about clusters shared from other AWS accounts.
+	IncludeShared *bool `type:"boolean"`
+
 	// An optional pagination token provided by a previous DescribeDBClusters request.
 	// If this parameter is specified, the response includes only records beyond
 	// the marker, up to the value specified by MaxRecords.
@@ -21899,6 +21913,12 @@ func (s *DescribeDBClustersInput) SetDBClusterIdentifier(v string) *DescribeDBCl
 // SetFilters sets the Filters field's value.
 func (s *DescribeDBClustersInput) SetFilters(v []*Filter) *DescribeDBClustersInput {
 	s.Filters = v
+	return s
+}
+
+// SetIncludeShared sets the IncludeShared field's value.
+func (s *DescribeDBClustersInput) SetIncludeShared(v bool) *DescribeDBClustersInput {
+	s.IncludeShared = &v
 	return s
 }
 
