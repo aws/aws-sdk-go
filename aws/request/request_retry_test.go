@@ -118,12 +118,6 @@ func TestShouldRetry(t *testing.T) {
 
 	awsError := awserr.New("ErrorTestShouldRetry", "Test should retry when error received", &urlError)
 	origError := awsError.OrigErr()
-	uError := origError.(*url.Error)
-	opErr := urlError.Err.(*net.OpError)
-
-	t.Logf("Operror : %+#v, Temporary error: %v, Timeout: %v", opErr, opErr.Temporary(), opErr.Timeout())
-	t.Logf("url Error: %+#v, Temporary error: %v, Timeout: %v", uError, uError.Temporary(), uError.Timeout())
-	t.Logf("Orig Error: %#v of type %T",origError, origError)
 
 	if e, a := true, shouldRetryError(origError);e!=a {
 		t.Errorf("Expected to return %v to retry when error occured, got %v instead", e, a)
