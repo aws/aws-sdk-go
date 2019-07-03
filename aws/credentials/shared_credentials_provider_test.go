@@ -11,8 +11,8 @@ import (
 
 func TestSharedCredentialsProvider(t *testing.T) {
 	// os.Clearenv()
-	restoreEnvFn := sdktesting.StashEnv()
-	restoreEnvFn()
+	sdktesting.StashEnv()
+
 	p := SharedCredentialsProvider{Filename: "example.ini", Profile: ""}
 	creds, err := p.Retrieve()
 	if err != nil {
@@ -32,8 +32,8 @@ func TestSharedCredentialsProvider(t *testing.T) {
 
 func TestSharedCredentialsProviderIsExpired(t *testing.T) {
 	// os.Clearenv()
-	restoreEnvFn := sdktesting.StashEnv()
-	restoreEnvFn()
+	sdktesting.StashEnv()
+
 	p := SharedCredentialsProvider{Filename: "example.ini", Profile: ""}
 
 	if !p.IsExpired() {
@@ -52,8 +52,8 @@ func TestSharedCredentialsProviderIsExpired(t *testing.T) {
 
 func TestSharedCredentialsProviderWithAWS_SHARED_CREDENTIALS_FILE(t *testing.T) {
 	// os.Clearenv()
-	restoreEnvFn := sdktesting.StashEnv()
-	restoreEnvFn()
+	sdktesting.StashEnv()
+
 	os.Setenv("AWS_SHARED_CREDENTIALS_FILE", "example.ini")
 	p := SharedCredentialsProvider{}
 	creds, err := p.Retrieve()
@@ -75,8 +75,8 @@ func TestSharedCredentialsProviderWithAWS_SHARED_CREDENTIALS_FILE(t *testing.T) 
 
 func TestSharedCredentialsProviderWithAWS_SHARED_CREDENTIALS_FILEAbsPath(t *testing.T) {
 	//os.Clearenv()
-	restoreEnvFn := sdktesting.StashEnv()
-	restoreEnvFn()
+	sdktesting.StashEnv()
+
 	wd, err := os.Getwd()
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
@@ -101,8 +101,8 @@ func TestSharedCredentialsProviderWithAWS_SHARED_CREDENTIALS_FILEAbsPath(t *test
 
 func TestSharedCredentialsProviderWithAWS_PROFILE(t *testing.T) {
 	//os.Clearenv()
-	restoreEnvFn := sdktesting.StashEnv()
-	restoreEnvFn()
+	sdktesting.StashEnv()
+
 	os.Setenv("AWS_PROFILE", "no_token")
 
 	p := SharedCredentialsProvider{Filename: "example.ini", Profile: ""}
@@ -124,8 +124,8 @@ func TestSharedCredentialsProviderWithAWS_PROFILE(t *testing.T) {
 
 func TestSharedCredentialsProviderWithoutTokenFromProfile(t *testing.T) {
 	//os.Clearenv()
-	restoreEnvFn := sdktesting.StashEnv()
-	restoreEnvFn()
+	sdktesting.StashEnv()
+
 	p := SharedCredentialsProvider{Filename: "example.ini", Profile: "no_token"}
 	creds, err := p.Retrieve()
 	if err != nil {
@@ -145,8 +145,8 @@ func TestSharedCredentialsProviderWithoutTokenFromProfile(t *testing.T) {
 
 func TestSharedCredentialsProviderColonInCredFile(t *testing.T) {
 	// os.Clearenv()
-	restoreEnvFn := sdktesting.StashEnv()
-	restoreEnvFn()
+	sdktesting.StashEnv()
+
 	p := SharedCredentialsProvider{Filename: "example.ini", Profile: "with_colon"}
 	creds, err := p.Retrieve()
 	if err != nil {
@@ -166,8 +166,8 @@ func TestSharedCredentialsProviderColonInCredFile(t *testing.T) {
 
 func TestSharedCredentialsProvider_DefaultFilename(t *testing.T) {
 	// os.Clearenv()
-	restoreEnvFn := sdktesting.StashEnv()
-	restoreEnvFn()
+	sdktesting.StashEnv()
+
 	os.Setenv("USERPROFILE", "profile_dir")
 	os.Setenv("HOME", "home_dir")
 
@@ -187,8 +187,7 @@ func TestSharedCredentialsProvider_DefaultFilename(t *testing.T) {
 
 func BenchmarkSharedCredentialsProvider(b *testing.B) {
 	// os.Clearenv()
-	restoreEnvFn := sdktesting.StashEnv()
-	restoreEnvFn()
+	sdktesting.StashEnv()
 
 	p := SharedCredentialsProvider{Filename: "example.ini", Profile: ""}
 	_, err := p.Retrieve()

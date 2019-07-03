@@ -3,10 +3,11 @@
 package shareddefaults_test
 
 import (
-	"github.com/aws/aws-sdk-go/internal/sdktesting"
 	"os"
 	"path/filepath"
 	"testing"
+
+	"github.com/aws/aws-sdk-go/internal/sdktesting"
 
 	"github.com/aws/aws-sdk-go/internal/shareddefaults"
 )
