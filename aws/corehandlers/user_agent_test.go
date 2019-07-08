@@ -1,12 +1,12 @@
 package corehandlers
 
 import (
-	"github.com/aws/aws-sdk-go/internal/sdktesting"
 	"net/http"
 	"os"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/internal/sdktesting"
 )
 
 func TestAddHostExecEnvUserAgentHander(t *testing.T) {
@@ -20,8 +20,7 @@ func TestAddHostExecEnvUserAgentHander(t *testing.T) {
 	}
 
 	for i, c := range cases {
-		restoreEnvFn := sdktesting.StashEnv()
-		restoreEnvFn()
+		sdktesting.StashEnv()
 		os.Setenv(execEnvVar, c.ExecEnv)
 
 		req := &request.Request{

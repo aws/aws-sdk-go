@@ -41,7 +41,6 @@ func TestMain(m *testing.M) {
 }
 
 func TestNewSession_WithCustomCABundle_Env(t *testing.T) {
-
 	restoreEnvFn := initSessionTestEnv()
 	defer restoreEnvFn()
 
@@ -94,7 +93,6 @@ func TestNewSession_WithCustomCABundle_EnvNotExists(t *testing.T) {
 }
 
 func TestNewSession_WithCustomCABundle_Option(t *testing.T) {
-
 	restoreEnvFn := initSessionTestEnv()
 	defer restoreEnvFn()
 
@@ -130,7 +128,6 @@ func TestNewSession_WithCustomCABundle_Option(t *testing.T) {
 }
 
 func TestNewSession_WithCustomCABundle_HTTPProxyAvailable(t *testing.T) {
-
 	restoreEnvFn := initSessionTestEnv()
 	defer restoreEnvFn()
 
@@ -159,7 +156,6 @@ func TestNewSession_WithCustomCABundle_HTTPProxyAvailable(t *testing.T) {
 }
 
 func TestNewSession_WithCustomCABundle_OptionPriority(t *testing.T) {
-
 	restoreEnvFn := initSessionTestEnv()
 	defer restoreEnvFn()
 
@@ -230,7 +226,6 @@ func TestNewSession_WithCustomCABundle_UnsupportedTransport(t *testing.T) {
 }
 
 func TestNewSession_WithCustomCABundle_TransportSet(t *testing.T) {
-
 	restoreEnvFn := initSessionTestEnv()
 	defer restoreEnvFn()
 

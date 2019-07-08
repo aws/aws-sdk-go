@@ -1,9 +1,10 @@
 package credentials
 
 import (
-	"github.com/aws/aws-sdk-go/internal/sdktesting"
 	"os"
 	"testing"
+
+	"github.com/aws/aws-sdk-go/internal/sdktesting"
 )
 
 func TestEnvProviderRetrieve(t *testing.T) {

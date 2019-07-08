@@ -3,7 +3,6 @@ package processcreds_test
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/aws/aws-sdk-go/internal/sdktesting"
 	"io/ioutil"
 	"os"
 	"os/exec"
@@ -16,6 +15,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/credentials/processcreds"
 	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/internal/sdktesting"
 )
 
 func TestProcessProviderFromSessionCfg(t *testing.T) {
@@ -546,7 +546,6 @@ func BenchmarkProcessProvider(b *testing.B) {
 		}
 	}
 }
-
 
 func getOSCat() string {
 	if runtime.GOOS == "windows" {

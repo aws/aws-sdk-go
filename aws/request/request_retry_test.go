@@ -2,7 +2,6 @@ package request
 
 import (
 	"fmt"
-	"github.com/aws/aws-sdk-go/aws/awserr"
 	"net"
 	"net/http"
 	"net/http/httptest"
@@ -10,6 +9,8 @@ import (
 	"os"
 	"testing"
 	"time"
+
+	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
 func newRequest(t *testing.T, url string) *http.Request {
@@ -99,27 +100,27 @@ func TestShouldRetryCancel_cancelled(t *testing.T) {
 func TestShouldRetry(t *testing.T) {
 
 	syscallError := os.SyscallError{
-		Err: ErrInvalidParams{},
-		Syscall:"open",
+		Err:     ErrInvalidParams{},
+		Syscall: "open",
 	}
 
 	opError := net.OpError{
-		Op:"dial",
-		Net:"tcp",
-		Source:net.Addr(nil),
-		Err: &syscallError,
+		Op:     "dial",
+		Net:    "tcp",
+		Source: net.Addr(nil),
+		Err:    &syscallError,
 	}
 
 	urlError := url.Error{
-		Op:"Post",
-		URL:"https://localhost:52398",
-		Err:&opError,
+		Op:  "Post",
+		URL: "https://localhost:52398",
+		Err: &opError,
 	}
 
 	awsError := awserr.New("ErrorTestShouldRetry", "Test should retry when error received", &urlError)
 	origError := awsError.OrigErr()
 
-	if e, a := true, shouldRetryError(origError);e!=a {
+	if e, a := true, shouldRetryError(origError); e != a {
 		t.Errorf("Expected to return %v to retry when error occured, got %v instead", e, a)
 	}
 
@@ -146,5 +147,3 @@ func debugerr(t *testing.T, err error) {
 		return
 	}
 }
-
-

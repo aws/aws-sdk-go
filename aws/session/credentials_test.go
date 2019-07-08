@@ -4,7 +4,6 @@ package session
 
 import (
 	"fmt"
-	"github.com/aws/aws-sdk-go/internal/sdktesting"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -19,6 +18,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/defaults"
 	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/internal/sdktesting"
 	"github.com/aws/aws-sdk-go/internal/shareddefaults"
 	"github.com/aws/aws-sdk-go/service/sts"
 )
@@ -93,7 +93,7 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 		expectedSecretKey string
 		expectedChain     []string
 		init              func()
-		dependentOnOS         bool
+		dependentOnOS     bool
 	}{
 		{
 			name:          "credential source and source profile",
@@ -151,25 +151,24 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 		{
 			name:              "credential process with no ARN set",
 			profile:           "cred_proc_no_arn_set",
-			dependentOnOS: true,
+			dependentOnOS:     true,
 			expectedAccessKey: "cred_proc_akid",
 			expectedSecretKey: "cred_proc_secret",
 		},
 		{
 			name:              "credential process with ARN set",
 			profile:           "cred_proc_arn_set",
-			dependentOnOS: true,
+			dependentOnOS:     true,
 			expectedAccessKey: "AKID",
 			expectedSecretKey: "SECRET",
 			expectedChain: []string{
 				"assume_role_w_creds_proc_role_arn",
 			},
-
 		},
 		{
 			name:              "chained assume role with credential process",
 			profile:           "chained_cred_proc",
-			dependentOnOS: true,
+			dependentOnOS:     true,
 			expectedAccessKey: "AKID",
 			expectedSecretKey: "SECRET",
 			expectedChain: []string{

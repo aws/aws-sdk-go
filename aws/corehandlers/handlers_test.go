@@ -3,7 +3,6 @@ package corehandlers_test
 import (
 	"bytes"
 	"fmt"
-	"github.com/aws/aws-sdk-go/internal/sdktesting"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
@@ -18,6 +17,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
+	"github.com/aws/aws-sdk-go/internal/sdktesting"
 	"github.com/aws/aws-sdk-go/service/s3"
 )
 

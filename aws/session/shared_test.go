@@ -1,8 +1,9 @@
 package session
 
 import (
-	"github.com/aws/aws-sdk-go/internal/sdktesting"
 	"os"
+
+	"github.com/aws/aws-sdk-go/internal/sdktesting"
 )
 
 func initSessionTestEnv() (oldEnv func()) {
