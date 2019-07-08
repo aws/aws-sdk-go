@@ -41,7 +41,6 @@ func AddressWithDefaults(host, port string) string {
 // start the metric listener once and will panic if a different
 // client ID or port is passed in.
 //
-//	Example:
 //		r, err := csm.Start("clientID", "127.0.0.1:31000")
 //		if err != nil {
 //			panic(fmt.Errorf("expected no error, but received %v", err))
