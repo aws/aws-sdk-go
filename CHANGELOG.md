@@ -1,3 +1,23 @@
+Release v1.20.17 (2019-07-09)
+===
+
+### Service Client Updates
+* `service/amplify`: Updates service API and documentation
+* `service/config`: Updates service API and documentation
+* `service/elasticfilesystem`: Updates service API and documentation
+  * EFS customers can now enable Lifecycle Management for all file systems. You can also now select from one of four Lifecycle Management policies (14, 30, 60 and 90 days), to automatically move files that have not been accessed for the period of time defined by the policy, from the EFS Standard storage class to the EFS Infrequent Access (IA) storage class. EFS IA provides price/performance that is cost-optimized for files that are not accessed every day.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/gamelift`: Updates service API and documentation
+  * GameLift FlexMatch now supports matchmaking of up to 200 players per game session, and FlexMatch can now automatically backfill your game sessions whenever there is an open slot.
+* `service/kinesis-video-archived-media`: Updates service API, documentation, and paginators
+* `service/kinesisvideo`: Updates service API and paginators
+  * Add "GET_DASH_STREAMING_SESSION_URL" as an API name to the GetDataEndpoint API.
+* `service/monitoring`: Updates service API and documentation
+  * This release adds three new APIs (PutAnomalyDetector, DeleteAnomalyDetector, and DescribeAnomalyDetectors) to support the new feature, CloudWatch Anomaly Detection. In addition, PutMetricAlarm and DescribeAlarms APIs are updated to support management of Anomaly Detection based alarms.
+* `service/waf`: Updates service API and documentation
+  * Updated SDK APIs to add tags to WAF Resources: WebACL, Rule, Rulegroup and RateBasedRule. Tags can also be added during creation of these resources.
+* `service/waf-regional`: Updates service API and documentation
+
 Release v1.20.16 (2019-07-08)
 ===
 
