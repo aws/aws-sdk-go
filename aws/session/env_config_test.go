@@ -5,6 +5,7 @@ package session
 import (
 	"os"
 	"reflect"
+	"strconv"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws/credentials"
@@ -75,8 +76,8 @@ func TestLoadEnvConfig_Creds(t *testing.T) {
 		},
 	}
 
-	for _, c := range cases {
-		t.Run("", func(t *testing.T) {
+	for i , c := range cases {
+		t.Run(strconv.Itoa(i), func(t *testing.T) {
 			restoreEnvFn := sdktesting.StashEnv()
 			defer restoreEnvFn()
 			for k, v := range c.Env {
@@ -269,8 +270,8 @@ func TestLoadEnvConfig(t *testing.T) {
 		},
 	}
 
-	for _, c := range cases {
-		t.Run("", func(t *testing.T) {
+	for i , c := range cases {
+		t.Run(strconv.Itoa(i), func(t *testing.T) {
 			restoreEnvFn = sdktesting.StashEnv()
 			defer restoreEnvFn()
 			for k, v := range c.Env {
