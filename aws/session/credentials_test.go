@@ -9,6 +9,7 @@ import (
 	"os"
 	"reflect"
 	"runtime"
+	"strconv"
 	"strings"
 	"testing"
 	"time"
@@ -178,69 +179,69 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 	}
 
 	for i, c := range cases {
-		t.Run(fmt.Sprintf("%d %s", i, c.name),
-			func(t *testing.T) {
-				restoreEnvFn := sdktesting.StashEnv()
-				defer restoreEnvFn()
-				if c.dependentOnOS && runtime.GOOS == "windows" {
-					os.Setenv("AWS_CONFIG_FILE", configFileForWindows)
-				} else {
-					os.Setenv("AWS_CONFIG_FILE", configFile)
-				}
+		t.Run(strconv.Itoa(i)+"_"+c.name, func(t *testing.T) {
+			restoreEnvFn := sdktesting.StashEnv()
+			defer restoreEnvFn()
 
-				os.Setenv("AWS_REGION", "us-east-1")
-				os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
-				os.Setenv("AWS_PROFILE", c.profile)
+			if c.dependentOnOS && runtime.GOOS == "windows" {
+				os.Setenv("AWS_CONFIG_FILE", configFileForWindows)
+			} else {
+				os.Setenv("AWS_CONFIG_FILE", configFile)
+			}
 
-				endpointResolver, cleanupFn := setupCredentialsEndpoints(t)
-				defer cleanupFn()
+			os.Setenv("AWS_REGION", "us-east-1")
+			os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
+			os.Setenv("AWS_PROFILE", c.profile)
 
-				if c.init != nil {
-					c.init()
-				}
+			endpointResolver, cleanupFn := setupCredentialsEndpoints(t)
+			defer cleanupFn()
 
-				var credChain []string
-				handlers := defaults.Handlers()
-				handlers.Sign.PushBack(func(r *request.Request) {
-					if r.Config.Credentials == credentials.AnonymousCredentials {
-						return
-					}
-					params := r.Params.(*sts.AssumeRoleInput)
-					credChain = append(credChain, *params.RoleArn)
-				})
+			if c.init != nil {
+				c.init()
+			}
 
-				sess, err := NewSessionWithOptions(Options{
-					Config: aws.Config{
-						Logger:           t,
-						EndpointResolver: endpointResolver,
-					},
-					Handlers: handlers,
-				})
-				if e, a := c.expectedError, err; e != a {
-					t.Errorf("expected %v, but received %v", e, a)
-				}
-
-				if c.expectedError != nil {
+			var credChain []string
+			handlers := defaults.Handlers()
+			handlers.Sign.PushBack(func(r *request.Request) {
+				if r.Config.Credentials == credentials.AnonymousCredentials {
 					return
 				}
-
-				creds, err := sess.Config.Credentials.Get()
-				if err != nil {
-					t.Fatalf("expected no error, but received %v", err)
-				}
-
-				if e, a := c.expectedChain, credChain; !reflect.DeepEqual(e, a) {
-					t.Errorf("expected %v, but received %v", e, a)
-				}
-
-				if e, a := c.expectedAccessKey, creds.AccessKeyID; e != a {
-					t.Errorf("expected %v, but received %v", e, a)
-				}
-
-				if e, a := c.expectedSecretKey, creds.SecretAccessKey; e != a {
-					t.Errorf("expected %v, but received %v", e, a)
-				}
+				params := r.Params.(*sts.AssumeRoleInput)
+				credChain = append(credChain, *params.RoleArn)
 			})
+
+			sess, err := NewSessionWithOptions(Options{
+				Config: aws.Config{
+					Logger:           t,
+					EndpointResolver: endpointResolver,
+				},
+				Handlers: handlers,
+			})
+			if e, a := c.expectedError, err; e != a {
+				t.Fatalf("expected %v, but received %v", e, a)
+			}
+
+			if c.expectedError != nil {
+				return
+			}
+
+			creds, err := sess.Config.Credentials.Get()
+			if err != nil {
+				t.Fatalf("expected no error, but received %v", err)
+			}
+
+			if e, a := c.expectedChain, credChain; !reflect.DeepEqual(e, a) {
+				t.Errorf("expected %v, but received %v", e, a)
+			}
+
+			if e, a := c.expectedAccessKey, creds.AccessKeyID; e != a {
+				t.Errorf("expected %v, but received %v", e, a)
+			}
+
+			if e, a := c.expectedSecretKey, creds.SecretAccessKey; e != a {
+				t.Errorf("expected %v, but received %v", e, a)
+			}
+		})
 	}
 }
 
@@ -303,10 +304,13 @@ func TestSessionAssumeRole(t *testing.T) {
 		Endpoint:   aws.String(server.URL),
 		DisableSSL: aws.Bool(true),
 	})
+	if err != nil {
+		t.Fatalf("expect no error, got %v", err)
+	}
 
 	creds, err := s.Config.Credentials.Get()
 	if err != nil {
-		t.Errorf("expect nil, %v", err)
+		t.Fatalf("expect no error, got %v", err)
 	}
 	if e, a := "AKID", creds.AccessKeyID; e != a {
 		t.Errorf("expect %v, got %v", e, a)
@@ -363,12 +367,12 @@ func TestSessionAssumeRole_WithMFA(t *testing.T) {
 		},
 	})
 	if err != nil {
-		t.Errorf("expect nil, %v", err)
+		t.Fatalf("expect no error, got %v", err)
 	}
 
 	creds, err := sess.Config.Credentials.Get()
 	if err != nil {
-		t.Errorf("expect nil, %v", err)
+		t.Fatalf("expect no error, got %v", err)
 	}
 	if !customProviderCalled {
 		t.Errorf("expect true")
@@ -416,14 +420,16 @@ func TestSessionAssumeRole_DisableSharedConfig(t *testing.T) {
 	os.Setenv("AWS_SHARED_CREDENTIALS_FILE", testConfigFilename)
 	os.Setenv("AWS_PROFILE", "assume_role_w_creds")
 
-	s, err := NewSession()
+	s, err := NewSession(&aws.Config{
+		CredentialsChainVerboseErrors: aws.Bool(true),
+	})
 	if err != nil {
-		t.Errorf("expect nil, %v", err)
+		t.Fatalf("expect no error, got %v", err)
 	}
 
 	creds, err := s.Config.Credentials.Get()
 	if err != nil {
-		t.Errorf("expect nil, %v", err)
+		t.Fatalf("expect no error, got %v", err)
 	}
 	if e, a := "assume_role_w_creds_akid", creds.AccessKeyID; e != a {
 		t.Errorf("expect %v, got %v", e, a)
@@ -450,6 +456,7 @@ func TestSessionAssumeRole_InvalidSourceProfile(t *testing.T) {
 	if err == nil {
 		t.Fatalf("expect error, got none")
 	}
+
 	expectMsg := "SharedConfigAssumeRoleError: failed to load assume role"
 	if e, a := expectMsg, err.Error(); !strings.Contains(a, e) {
 		t.Errorf("expect %v, to be in %v", e, a)
@@ -487,10 +494,13 @@ func TestSessionAssumeRole_ExtendedDuration(t *testing.T) {
 		SharedConfigState:  SharedConfigEnable,
 		AssumeRoleDuration: 30 * time.Minute,
 	})
+	if err != nil {
+		t.Fatalf("expect no error, got %v", err)
+	}
 
 	creds, err := s.Config.Credentials.Get()
 	if err != nil {
-		t.Errorf("expect nil, %v", err)
+		t.Fatalf("expect no error, got %v", err)
 	}
 	if e, a := "AKID", creds.AccessKeyID; e != a {
 		t.Errorf("expect %v, got %v", e, a)
@@ -548,12 +558,12 @@ func TestSessionAssumeRole_WithMFA_ExtendedDuration(t *testing.T) {
 		},
 	})
 	if err != nil {
-		t.Errorf("expect nil, %v", err)
+		t.Fatalf("expect no error, got %v", err)
 	}
 
 	creds, err := sess.Config.Credentials.Get()
 	if err != nil {
-		t.Errorf("expect nil, %v", err)
+		t.Fatalf("expect no error, got %v", err)
 	}
 	if !customProviderCalled {
 		t.Errorf("expect true")

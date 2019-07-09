@@ -12,6 +12,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/internal/ini"
+	"github.com/google/go-cmp/cmp"
 )
 
 var (
@@ -92,11 +93,6 @@ func TestLoadSharedConfig(t *testing.T) {
 			Filenames: []string{testConfigOtherFilename, testConfigFilename},
 			Profile:   "assume_role_w_creds",
 			Expected: sharedConfig{
-				Creds: credentials.Value{
-					AccessKeyID:     "assume_role_w_creds_akid",
-					SecretAccessKey: "assume_role_w_creds_secret",
-					ProviderName:    fmt.Sprintf("SharedConfigCredentials: %s", testConfigFilename),
-				},
 				RoleARN:           "assume_role_w_creds_role_arn",
 				ExternalID:        "1234",
 				RoleSessionName:   "assume_role_w_creds_session_name",
@@ -185,8 +181,8 @@ func TestLoadSharedConfig(t *testing.T) {
 	}
 
 	for i, c := range cases {
-		t.Run(strconv.Itoa(i), func(t *testing.T) {
-			cfg, err := loadSharedConfig(c.Profile, c.Filenames)
+		t.Run(strconv.Itoa(i)+"_"+c.Profile, func(t *testing.T) {
+			cfg, err := loadSharedConfig(c.Profile, c.Filenames, true)
 			if c.Err != nil {
 				if err == nil {
 					t.Fatalf("expect error, got none")
@@ -198,10 +194,11 @@ func TestLoadSharedConfig(t *testing.T) {
 			}
 
 			if err != nil {
-				t.Errorf("expect no error, got %v", err)
+				t.Fatalf("expect no error, got %v", err)
 			}
-			if e, a := c.Expected, cfg; !reflect.DeepEqual(e, a) {
-				t.Errorf("expect %v, got %v", e, a)
+			if diff := cmp.Diff(c.Expected, cfg); diff != "" {
+				//			if e, a := c.Expected, cfg; !reflect.DeepEqual(e, a) {
+				t.Errorf("(-want +got):\n%s", diff)
 			}
 		})
 	}
@@ -296,10 +293,10 @@ func TestLoadSharedConfigFromFile(t *testing.T) {
 	}
 
 	for i, c := range cases {
-		t.Run(strconv.Itoa(i), func(t *testing.T) {
+		t.Run(strconv.Itoa(i)+"_"+c.Profile, func(t *testing.T) {
 			cfg := sharedConfig{}
 
-			err := cfg.setFromIniFile(c.Profile, iniFile)
+			err := cfg.setFromIniFile(c.Profile, iniFile, true)
 			if c.Err != nil {
 				if err == nil {
 					t.Fatalf("expect error, got none")

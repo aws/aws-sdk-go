@@ -402,7 +402,7 @@ func newSession(opts Options, envCfg envConfig, cfgs ...*aws.Config) (*Session, 
 	}
 
 	// Load additional config from file(s)
-	sharedCfg, err := loadSharedConfig(envCfg.Profile, cfgFiles)
+	sharedCfg, err := loadSharedConfig(envCfg.Profile, cfgFiles, envCfg.EnableSharedConfig)
 	if err != nil {
 		if _, ok := err.(SharedConfigProfileNotExistsError); !ok {
 			return nil, err
