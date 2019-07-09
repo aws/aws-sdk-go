@@ -105,7 +105,7 @@ func loadSharedConfig(profile string, filenames []string, exOpts bool) (sharedCo
 	}
 
 	cfg := sharedConfig{}
-	profiles := map[string]int{}
+	profiles := map[string]struct{}{}
 	if err = cfg.setFromIniFiles(profiles, profile, files, exOpts); err != nil {
 		return sharedConfig{}, err
 	}
@@ -133,7 +133,7 @@ func loadSharedConfigIniFiles(filenames []string) ([]sharedConfigFile, error) {
 	return files, nil
 }
 
-func (cfg *sharedConfig) setFromIniFiles(profiles map[string]int, profile string, files []sharedConfigFile, exOpts bool) error {
+func (cfg *sharedConfig) setFromIniFiles(profiles map[string]struct{}, profile string, files []sharedConfigFile, exOpts bool) error {
 	// Trim files from the list that don't exist.
 	var skippedFiles int
 	var profileNotFoundErr error
@@ -168,7 +168,7 @@ func (cfg *sharedConfig) setFromIniFiles(profiles map[string]int, profile string
 			return err
 		}
 	}
-	profiles[profile]++
+	profiles[profile] = struct{}{}
 
 	if err := cfg.validateCredentialType(); err != nil {
 		return err

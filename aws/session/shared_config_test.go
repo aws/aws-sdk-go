@@ -12,7 +12,6 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/internal/ini"
-	"github.com/google/go-cmp/cmp"
 )
 
 var (
@@ -196,9 +195,8 @@ func TestLoadSharedConfig(t *testing.T) {
 			if err != nil {
 				t.Fatalf("expect no error, got %v", err)
 			}
-			if diff := cmp.Diff(c.Expected, cfg); diff != "" {
-				//			if e, a := c.Expected, cfg; !reflect.DeepEqual(e, a) {
-				t.Errorf("(-want +got):\n%s", diff)
+			if e, a := c.Expected, cfg; !reflect.DeepEqual(e, a) {
+				t.Errorf("expect %v, got %v", e, a)
 			}
 		})
 	}
