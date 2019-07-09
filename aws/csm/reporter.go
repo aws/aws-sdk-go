@@ -10,14 +10,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 )
 
-const (
-	// DefaultPort is used when no port is specified.
-	DefaultPort = "31000"
-
-	// DefaultHost is the host that will be used when none is specified.
-	DefaultHost = "127.0.0.1"
-)
-
 // Reporter will gather metrics of API requests made and
 // send those metrics to the CSM endpoint.
 type Reporter struct {
@@ -223,6 +215,12 @@ func (rep *Reporter) Continue() {
 
 	rep.metricsCh.Continue()
 }
+
+// Client side metric handler names
+const (
+	APICallMetricHandlerName        = "awscsm.SendAPICallMetric"
+	APICallAttemptMetricHandlerName = "awscsm.SendAPICallAttemptMetric"
+)
 
 // InjectHandlers will will enable client side metrics and inject the proper
 // handlers to handle how metrics are sent.
