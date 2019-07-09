@@ -14,9 +14,6 @@ import (
 )
 
 func TestLoadEnvConfig_Creds(t *testing.T) {
-	restoreEnvFn := sdktesting.StashEnv()
-	defer restoreEnvFn()
-
 	cases := []struct {
 		Env map[string]string
 		Val credentials.Value
@@ -80,7 +77,7 @@ func TestLoadEnvConfig_Creds(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run("", func(t *testing.T) {
-			restoreEnvFn = sdktesting.StashEnv()
+			restoreEnvFn := sdktesting.StashEnv()
 			defer restoreEnvFn()
 			for k, v := range c.Env {
 				os.Setenv(k, v)
@@ -274,7 +271,8 @@ func TestLoadEnvConfig(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run("", func(t *testing.T) {
-			sdktesting.StashEnv()
+			restoreEnvFn = sdktesting.StashEnv()
+			defer restoreEnvFn()
 			for k, v := range c.Env {
 				os.Setenv(k, v)
 			}
