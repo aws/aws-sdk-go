@@ -598,7 +598,7 @@ func shouldRetryError(origErr error) bool {
 		if netErr, ok := err.(*net.OpError); ok && netErr.Op == "dial" {
 			return true
 		}
-			// If the error is temporary, we want to allow continuation of the
+		// If the error is temporary, we want to allow continuation of the
 		// retry process
 		return err.Temporary() || isErrConnectionReset(origErr)
 	case nil:

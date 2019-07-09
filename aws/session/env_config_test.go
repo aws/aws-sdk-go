@@ -1,3 +1,5 @@
+// +build go1.7
+
 package session
 
 import (
@@ -77,16 +79,20 @@ func TestLoadEnvConfig_Creds(t *testing.T) {
 	}
 
 	for _, c := range cases {
-		sdktesting.StashEnv()
-		for k, v := range c.Env {
-			os.Setenv(k, v)
-		}
+		t.Run("", func(t *testing.T) {
+			restoreEnvFn = sdktesting.StashEnv()
+			defer restoreEnvFn()
+			for k, v := range c.Env {
+				os.Setenv(k, v)
+			}
 
-		cfg := loadEnvConfig()
-		if !reflect.DeepEqual(c.Val, cfg.Creds) {
-			t.Errorf("expect credentials to match.\n%s",
-				awstesting.SprintExpectActual(c.Val, cfg.Creds))
-		}
+			cfg := loadEnvConfig()
+			if !reflect.DeepEqual(c.Val, cfg.Creds) {
+				t.Errorf("expect credentials to match.\n%s",
+					awstesting.SprintExpectActual(c.Val, cfg.Creds))
+			}
+		})
+
 	}
 }
 
@@ -267,22 +273,24 @@ func TestLoadEnvConfig(t *testing.T) {
 	}
 
 	for _, c := range cases {
-		sdktesting.StashEnv()
-		for k, v := range c.Env {
-			os.Setenv(k, v)
-		}
+		t.Run("", func(t *testing.T) {
+			sdktesting.StashEnv()
+			for k, v := range c.Env {
+				os.Setenv(k, v)
+			}
 
-		var cfg envConfig
-		if c.UseSharedConfigCall {
-			cfg = loadSharedEnvConfig()
-		} else {
-			cfg = loadEnvConfig()
-		}
+			var cfg envConfig
+			if c.UseSharedConfigCall {
+				cfg = loadSharedEnvConfig()
+			} else {
+				cfg = loadEnvConfig()
+			}
 
-		if !reflect.DeepEqual(c.Config, cfg) {
-			t.Errorf("expect config to match.\n%s",
-				awstesting.SprintExpectActual(c.Config, cfg))
-		}
+			if !reflect.DeepEqual(c.Config, cfg) {
+				t.Errorf("expect config to match.\n%s",
+					awstesting.SprintExpectActual(c.Config, cfg))
+			}
+		})
 	}
 }
 

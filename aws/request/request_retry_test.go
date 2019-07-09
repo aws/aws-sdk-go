@@ -116,10 +116,7 @@ func TestShouldRetry(t *testing.T) {
 		URL: "https://localhost:52398",
 		Err: &opError,
 	}
-
-	awsError := awserr.New("ErrorTestShouldRetry", "Test should retry when error received", &urlError)
-	origError := awsError.OrigErr()
-
+	origError := awserr.New("ErrorTestShouldRetry", "Test should retry when error received", &urlError).OrigErr()
 	if e, a := true, shouldRetryError(origError); e != a {
 		t.Errorf("Expected to return %v to retry when error occured, got %v instead", e, a)
 	}

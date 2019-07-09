@@ -8,7 +8,8 @@ import (
 )
 
 func TestEnvProviderRetrieve(t *testing.T) {
-	sdktesting.StashEnv()
+	restoreEnvFn := sdktesting.StashEnv()
+	defer restoreEnvFn()
 	os.Setenv("AWS_ACCESS_KEY_ID", "access")
 	os.Setenv("AWS_SECRET_ACCESS_KEY", "secret")
 	os.Setenv("AWS_SESSION_TOKEN", "token")
@@ -31,7 +32,8 @@ func TestEnvProviderRetrieve(t *testing.T) {
 }
 
 func TestEnvProviderIsExpired(t *testing.T) {
-	sdktesting.StashEnv()
+	restoreEnvFn := sdktesting.StashEnv()
+	defer restoreEnvFn()
 
 	os.Setenv("AWS_ACCESS_KEY_ID", "access")
 	os.Setenv("AWS_SECRET_ACCESS_KEY", "secret")
@@ -54,7 +56,8 @@ func TestEnvProviderIsExpired(t *testing.T) {
 }
 
 func TestEnvProviderNoAccessKeyID(t *testing.T) {
-	sdktesting.StashEnv()
+	restoreEnvFn := sdktesting.StashEnv()
+	defer restoreEnvFn()
 
 	os.Setenv("AWS_SECRET_ACCESS_KEY", "secret")
 
@@ -66,7 +69,8 @@ func TestEnvProviderNoAccessKeyID(t *testing.T) {
 }
 
 func TestEnvProviderNoSecretAccessKey(t *testing.T) {
-	sdktesting.StashEnv()
+	restoreEnvFn := sdktesting.StashEnv()
+	defer restoreEnvFn()
 
 	os.Setenv("AWS_ACCESS_KEY_ID", "access")
 
@@ -78,7 +82,8 @@ func TestEnvProviderNoSecretAccessKey(t *testing.T) {
 }
 
 func TestEnvProviderAlternateNames(t *testing.T) {
-	sdktesting.StashEnv()
+	restoreEnvFn := sdktesting.StashEnv()
+	defer restoreEnvFn()
 
 	os.Setenv("AWS_ACCESS_KEY", "access")
 	os.Setenv("AWS_SECRET_KEY", "secret")
