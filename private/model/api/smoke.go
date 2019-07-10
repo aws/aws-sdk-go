@@ -34,7 +34,7 @@ func (c SmokeTestCase) BuildInputShape(ref *ShapeRef) string {
 	)
 }
 
-// AttachSmokeTests attaches the smoke test cases to the API model.
+	// AttachSmokeTests attaches the smoke test cases to the API model.
 func (a *API) AttachSmokeTests(filename string) {
 	f, err := os.Open(filename)
 	if err != nil {
@@ -54,7 +54,6 @@ func (a *API) AttachSmokeTests(filename string) {
 // APISmokeTestsGoCode returns the Go Code string for the smoke tests.
 func (a *API) APISmokeTestsGoCode() string {
 	w := bytes.NewBuffer(nil)
-
 	a.resetImports()
 	a.AddImport("context")
 	a.AddImport("testing")
@@ -87,6 +86,8 @@ func (a *API) APISmokeTestsGoCode() string {
 	return a.importsGoCode() + ignoreImports + w.String()
 }
 
+
+
 var smokeTestTmpl = template.Must(template.New(`smokeTestTmpl`).Parse(`
 {{- range $i, $testCase := $.TestCases }}
 	{{- $op := index $.API.Operations $testCase.OpName }}
@@ -97,6 +98,7 @@ var smokeTestTmpl = template.Must(template.New(`smokeTestTmpl`).Parse(`
 		sess := integration.SessionWithDefaultRegion("{{ $.DefaultRegion }}")
 		svc := {{ $.API.PackageName }}.New(sess)
 		params := {{ $testCase.BuildInputShape $op.InputRef }}
+	
 		_, err := svc.{{ $op.ExportedName }}WithContext(ctx, params)
 		{{- if $testCase.ExpectErr }}
 			if err == nil {
