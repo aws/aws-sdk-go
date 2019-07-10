@@ -1101,6 +1101,11 @@ func TestRequestNoConnection(t *testing.T) {
 		t.Fatal("expect error, but got none")
 	}
 
+	t.Logf("Error, %v", err)
+	awsError := err.(awserr.Error)
+	origError := awsError.OrigErr()
+	t.Logf("Orig Error: %#v of type %T", origError, origError)
+
 	if e, a := 10, r.RetryCount; e != a {
 		t.Errorf("expect %v retry count, got %v", e, a)
 	}
