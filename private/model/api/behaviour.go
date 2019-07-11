@@ -82,17 +82,19 @@ func (a *API) APIBehaviourTestsGoCode() string {
 	return a.importsGoCode() + ignoreImports + w.String()
 }
 
-var behaviourTestTmpl = template.Must(template.New(`behaviourTestTmpl`).Parse(`
-{{- range $i, $testCase := $.Tests.Cases }}
-	//{{printf "%s" $testCase.Description}}
-	func BehavTest_{{ printf "%02d" $i }}(t *testing.T) {
+var funcMap = template.FuncMap{"Map": templateMap}
 
-		env := awstesting.StashEnv() //Stashes the current environment variables
+var behaviourTestTmpl = template.Must(template.New(`behaviourTestTmpl`).Funcs(funcMap).Parse(`
 
-		{{- if len $testCase.LocalConfig }}
-			access_key="{{$testCase.LocalConfig.AWS_ACCESS_KEY}}"
-			secret_access_key="{{$.Tests.Defaults.Env.AWS_SECRET_ACCESS_KEY}}"
-			aws_region="{{$.Tests.Defaults.Env.AWS_REGION}}"
+{{define "StashCredentials"}}
+	env := awstesting.StashEnv() //Stashes the current environment variables
+{{end}}
+
+{{define "SessionSetup"}}
+		{{- if len $.testCase.LocalConfig }}
+			access_key="{{$.testCase.LocalConfig.AWS_ACCESS_KEY}}"
+			secret_access_key="{{$.testCase.LocalConfig.AWS_SECRET_ACCESS_KEY}}"
+			aws_region="{{$.testCase.LocalConfig.AWS_REGION}}"
 		{{- else}}
 			access_key:="{{$.Tests.Defaults.Env.AWS_ACCESS_KEY}}"
 			secret_access_key:="{{$.Tests.Defaults.Env.AWS_SECRET_ACCESS_KEY}}"
@@ -104,6 +106,16 @@ var behaviourTestTmpl = template.Must(template.New(`behaviourTestTmpl`).Parse(`
 				 Region: aws.String(aws_region),
 				 Credentials: credentials.NewStaticCredentials(access_key, secret_access_key, ""),
 			   }))
+{{end}}
+
+{{- range $i, $testCase := $.Tests.Cases }}
+	//{{printf "%s" $testCase.Description}}
+	func BehavTest_{{ printf "%02d" $i }}(t *testing.T) {
+
+		{{template "StashCredentials" .}}
+		{{- template "SessionSetup" Map "testCase" $testCase "Tests" $.Tests}}
+		
+		//Starts a new service using using sess
 		svc := {{$.API.PackageName}}.New(sess)
 
 		fmt.Println("Write behaviour tests here")
