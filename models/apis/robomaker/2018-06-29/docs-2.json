@@ -554,9 +554,7 @@
         "DescribeSimulationJobResponse$failureReason": "<p>Details about why the simulation job failed. For more information about troubleshooting, see <a href=\"https://docs.aws.amazon.com/robomaker/latest/dg/troubleshooting.html\">Troubleshooting</a>.</p>",
         "ProgressDetail$targetResource": "<p>The Amazon Resource Name (ARN) of the deployment job.</p>",
         "RobotDeployment$failureReason": "<p>A short description of the reason why the robot deployment failed.</p>",
-        "SecurityGroups$member": null,
         "SimulationJob$failureReason": "<p>The reason why the simulation job failed.</p>",
-        "Subnets$member": null,
         "SyncDeploymentJobResponse$failureReason": "<p>The failure reason if the job fails.</p>",
         "VPCConfigResponse$vpcId": "<p>The VPC ID associated with your simulation job.</p>"
       }
@@ -753,6 +751,13 @@
         "SimulationJobSummary$name": "<p>The name of the simulation job.</p>",
         "UpdateRobotApplicationResponse$name": "<p>The name of the robot application.</p>",
         "UpdateSimulationApplicationResponse$name": "<p>The name of the simulation application.</p>"
+      }
+    },
+    "NonEmptyString": {
+      "base": null,
+      "refs": {
+        "SecurityGroups$member": null,
+        "Subnets$member": null
       }
     },
     "OutputLocation": {
