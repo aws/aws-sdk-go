@@ -4686,6 +4686,10 @@
         "Warnings" : {
           "shape" : "__listOf__string",
           "locationName" : "warnings"
+        },
+        "Tags" : {
+          "shape" : "Tags",
+          "locationName" : "tags"
         }
       }
     },
@@ -4907,6 +4911,10 @@
         "DomainNameConfigurations" : {
           "shape" : "DomainNameConfigurations",
           "locationName" : "domainNameConfigurations"
+        },
+        "Tags" : {
+          "shape" : "Tags",
+          "locationName" : "tags"
         }
       }
     },
@@ -5637,6 +5645,10 @@
         "StageVariables" : {
           "shape" : "StageVariablesMap",
           "locationName" : "stageVariables"
+        },
+        "Tags" : {
+          "shape" : "Tags",
+          "locationName" : "tags"
         }
       }
     },
