@@ -25,11 +25,9 @@ func resolveCredentials(cfg *aws.Config,
 
 	switch {
 	case len(sharedCfg.RoleARN) != 0 && len(sharedCfg.CredentialSource) != 0:
-		// Customer explicitly provided an Profile, so load from shared config
-		// first.
 		return resolveCredsFromProfile(cfg, envCfg, sharedCfg, handlers, sessOpts)
 
-	case len(envCfg.Creds.AccessKeyID) != 0:
+	case envCfg.Creds.HasKeys():
 		// Environment credentials
 		return credentials.NewStaticCredentialsFromCreds(envCfg.Creds), nil
 
@@ -47,6 +45,14 @@ func resolveCredentials(cfg *aws.Config,
 		return resolveCredsFromProfile(cfg, envCfg, sharedCfg, handlers, sessOpts)
 	}
 }
+
+// WebIdentityEmptyRoleARNErr will occur if 'AWS_WEB_IDENTITY_TOKEN_FILE' was set but
+// 'AWS_IAM_ROLE_ARN' was not set.
+var WebIdentityEmptyRoleARNErr = awserr.New(stscreds.ErrCodeWebIdentity, "role ARN is not set", nil)
+
+// WebIdentityEmptyTokenFilePathErr will occur if 'AWS_IAM_ROLE_ARN' was set but
+// 'AWS_WEB_IDENTITY_TOKEN_FILE' was not set.
+var WebIdentityEmptyTokenFilePathErr = awserr.New(stscreds.ErrCodeWebIdentity, "token file path is not set", nil)
 
 func assumeWebIdentity(cfg *aws.Config, handlers request.Handlers,
 	filepath string,
@@ -87,7 +93,7 @@ func resolveCredsFromProfile(cfg *aws.Config,
 			*sharedCfg.SourceProfile, handlers, sessOpts,
 		)
 
-	case len(sharedCfg.Creds.AccessKeyID) != 0:
+	case sharedCfg.Creds.HasKeys():
 		// Static Credentials from Shared Config/Credentials file.
 		creds = credentials.NewStaticCredentialsFromCreds(
 			sharedCfg.Creds,

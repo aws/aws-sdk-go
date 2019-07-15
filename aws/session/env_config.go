@@ -208,9 +208,15 @@ func envConfigLoad(enableSharedConfig bool) envConfig {
 	cfg.EnableSharedConfig = enableSharedConfig
 
 	// Static environment credentials
-	setFromEnvVal(&cfg.Creds.AccessKeyID, credAccessEnvKey)
-	setFromEnvVal(&cfg.Creds.SecretAccessKey, credSecretEnvKey)
-	setFromEnvVal(&cfg.Creds.SessionToken, credSessionEnvKey)
+	var creds credentials.Value
+	setFromEnvVal(&creds.AccessKeyID, credAccessEnvKey)
+	setFromEnvVal(&creds.SecretAccessKey, credSecretEnvKey)
+	setFromEnvVal(&creds.SessionToken, credSessionEnvKey)
+	if creds.HasKeys() {
+		// Require logical grouping of credentials
+		creds.ProviderName = EnvProviderName
+		cfg.Creds = creds
+	}
 
 	// Role Metadata
 	setFromEnvVal(&cfg.RoleARN, roleARNEnvKey)
@@ -225,13 +231,6 @@ func envConfigLoad(enableSharedConfig bool) envConfig {
 	setFromEnvVal(&cfg.CSMPort, csmPortEnvKey)
 	setFromEnvVal(&cfg.CSMClientID, csmClientIDEnvKey)
 	cfg.CSMEnabled = len(cfg.csmEnabled) > 0
-
-	// Require logical grouping of credentials
-	if len(cfg.Creds.AccessKeyID) == 0 || len(cfg.Creds.SecretAccessKey) == 0 {
-		cfg.Creds = credentials.Value{}
-	} else {
-		cfg.Creds.ProviderName = EnvProviderName
-	}
 
 	regionKeys := regionEnvKeys
 	profileKeys := profileEnvKeys

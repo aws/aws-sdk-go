@@ -164,7 +164,7 @@ func (cfg *sharedConfig) setFromIniFiles(profiles map[string]struct{}, profile s
 		// First time a profile has been seen, It must either be a assume role
 		// or credentials. Assert if the credential type requires a role ARN,
 		// the ARN is also set.
-		if err := cfg.validateRoleARNWithCredentials(profile); err != nil {
+		if err := cfg.validateCredentialsRequireARN(profile); err != nil {
 			return err
 		}
 	}
@@ -175,7 +175,7 @@ func (cfg *sharedConfig) setFromIniFiles(profiles map[string]struct{}, profile s
 	}
 
 	// Link source profiles for assume roles
-	if len(cfg.RoleARN) != 0 && len(cfg.SourceProfileName) != 0 {
+	if len(cfg.SourceProfileName) != 0 {
 		// Linked profile via source_profile ignore credential provider
 		// options, the source profile must provide the credentials.
 		cfg.clearCredentialOptions()
@@ -240,15 +240,14 @@ func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile, e
 	updateString(&cfg.WebIdentityTokenFile, section, webIdentityTokenFileKey)
 
 	// Shared Credentials
-	akid := section.String(accessKeyIDKey)
-	secret := section.String(secretAccessKey)
-	if len(akid) > 0 && len(secret) > 0 {
-		cfg.Creds = credentials.Value{
-			AccessKeyID:     akid,
-			SecretAccessKey: secret,
-			SessionToken:    section.String(sessionTokenKey),
-			ProviderName:    fmt.Sprintf("SharedConfigCredentials: %s", file.Filename),
-		}
+	creds := credentials.Value{
+		AccessKeyID:     section.String(accessKeyIDKey),
+		SecretAccessKey: section.String(secretAccessKey),
+		SessionToken:    section.String(sessionTokenKey),
+		ProviderName:    fmt.Sprintf("SharedConfigCredentials: %s", file.Filename),
+	}
+	if creds.HasKeys() {
+		cfg.Creds = creds
 	}
 
 	// Endpoint discovery
@@ -260,7 +259,7 @@ func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile, e
 	return nil
 }
 
-func (cfg *sharedConfig) validateRoleARNWithCredentials(profile string) error {
+func (cfg *sharedConfig) validateCredentialsRequireARN(profile string) error {
 	var credSource string
 
 	switch {
