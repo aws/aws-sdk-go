@@ -5,14 +5,21 @@
 package codebuild_test
 
 import (
-	"context"
-	"testing"
-	"time"
-
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/service/codebuild"
+	"testing"
 )
+
+//Client for BehavTest_00
+type BehavTestClient_00 struct {
+	*client.Client
+}
+
+//Generates request for BehavTest_00
+func (c *BehavTestClient_00) RequestGenerator_00(input string) (req *request.Request, output string) {
+
+}
 
 //Can build empty PUT requests
 func BehavTest_00(t *testing.T) {
@@ -33,6 +40,16 @@ func BehavTest_00(t *testing.T) {
 	svc := codebuild.New(sess)
 
 	fmt.Println("Write behaviour tests here")
+}
+
+//Client for BehavTest_01
+type BehavTestClient_01 struct {
+	*client.Client
+}
+
+//Generates request for BehavTest_01
+func (c *BehavTestClient_01) RequestGenerator_01(input string) (req *request.Request, output string) {
+
 }
 
 //Can build empty POST requests

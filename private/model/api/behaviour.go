@@ -107,6 +107,16 @@ var behaviourTestTmpl = template.Must(template.New(`behaviourTestTmpl`).Funcs(fu
 {{end}}
 
 {{- range $i, $testCase := $.Tests.Cases }}
+	//Client for BehavTest_{{ printf "%02d" $i }}
+	type BehavTestClient_{{ printf "%02d" $i }} struct {
+		*client.Client
+	}
+
+	//Generates request for BehavTest_{{ printf "%02d" $i }}
+	func (c *BehavTestClient_{{ printf "%02d" $i }}) RequestGenerator_{{printf "%02d" $i }}(input string )(req *request.Request, output string ){
+
+	}
+
 	//{{printf "%s" $testCase.Description}}
 	func BehavTest_{{ printf "%02d" $i }}(t *testing.T) {
 
