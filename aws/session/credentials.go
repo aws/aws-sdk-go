@@ -19,12 +19,11 @@ func resolveCredentials(cfg *aws.Config,
 	handlers request.Handlers,
 	sessOpts Options,
 ) (*credentials.Credentials, error) {
-	// The resolveCredentials order of resolving credentials is wrong. It
-	// ignores the customer's provided profile if ENV credentials are also
-	// provided.
 
 	switch {
-	case len(sharedCfg.RoleARN) != 0 && len(sharedCfg.CredentialSource) != 0:
+	case len(envCfg.Profile) != 0:
+		// User explicitly provided an Profile, so load from shared config
+		// first.
 		return resolveCredsFromProfile(cfg, envCfg, sharedCfg, handlers, sessOpts)
 
 	case envCfg.Creds.HasKeys():

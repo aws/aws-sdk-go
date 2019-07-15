@@ -347,9 +347,9 @@ func TestNewSessionWithOptions_Overrides(t *testing.T) {
 			InProfile: "full_profile",
 			OutRegion: "env_region",
 			OutCreds: credentials.Value{
-				AccessKeyID:     "env_akid",
-				SecretAccessKey: "env_secret",
-				ProviderName:    "EnvConfigCredentials",
+				AccessKeyID:     "full_profile_akid",
+				SecretAccessKey: "full_profile_secret",
+				ProviderName:    "SharedConfigCredentials",
 			},
 		},
 		{
