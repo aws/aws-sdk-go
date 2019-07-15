@@ -5,10 +5,17 @@
 package codebuild_test
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/awstesting"
-	"github.com/aws/aws-sdk-go/service/codebuild"
+	"context"
 	"testing"
+	"time"
+
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/client"
+	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/awstesting"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/util"
+	"github.com/aws/aws-sdk-go/service/codebuild"
 )
 
 //Client for BehavTest_00
@@ -16,9 +23,21 @@ type BehavTestClient_00 struct {
 	*client.Client
 }
 
-//Generates request for BehavTest_00
-func (c *BehavTestClient_00) RequestGenerator_00(input string) (req *request.Request, output string) {
+//Output for request of BehavTest_00
+type BehavTestRequestOutput_00 struct {
+	_ struct{}
+}
 
+//Generates request for BehavTest_00
+func (c *BehavTestClient_00) BehavTestRequestGenerator_00(input string) (req *request.Request, output string) {
+	op := &request.Operation{
+		Name:       "EmptyPut",
+		HTTPMethod: "PUT",
+	}
+	output = &BehavTestRequestOutput_{}
+	req := c.NewRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
 }
 
 //Can build empty PUT requests
@@ -39,6 +58,12 @@ func BehavTest_00(t *testing.T) {
 	//Starts a new service using using sess
 	svc := codebuild.New(sess)
 
+	req, _ := svc.BehavTestRequestGenerator_00("")
+	r := req.HTTPRequest
+
+	// build request
+	req.Build()
+
 	fmt.Println("Write behaviour tests here")
 }
 
@@ -47,9 +72,21 @@ type BehavTestClient_01 struct {
 	*client.Client
 }
 
-//Generates request for BehavTest_01
-func (c *BehavTestClient_01) RequestGenerator_01(input string) (req *request.Request, output string) {
+//Output for request of BehavTest_01
+type BehavTestRequestOutput_01 struct {
+	_ struct{}
+}
 
+//Generates request for BehavTest_01
+func (c *BehavTestClient_01) BehavTestRequestGenerator_01(input string) (req *request.Request, output string) {
+	op := &request.Operation{
+		Name:       "EmptyPost",
+		HTTPMethod: "POST",
+	}
+	output = &BehavTestRequestOutput_{}
+	req := c.NewRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
 }
 
 //Can build empty POST requests
@@ -69,6 +106,12 @@ func BehavTest_01(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := codebuild.New(sess)
+
+	req, _ := svc.BehavTestRequestGenerator_01("")
+	r := req.HTTPRequest
+
+	// build request
+	req.Build()
 
 	fmt.Println("Write behaviour tests here")
 }

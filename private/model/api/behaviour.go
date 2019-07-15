@@ -61,6 +61,11 @@ func (a *API) APIBehaviourTestsGoCode() string {
 	a.AddImport("time")
 	a.AddSDKImport("aws")
 	a.AddSDKImport("awstesting")
+	a.AddSDKImport("aws/client")
+	a.AddSDKImport("private/protocol")
+	a.AddSDKImport("private/util")
+	a.AddSDKImport("aws/request")
+
 
 	a.AddImport(a.ImportPath())
 
@@ -112,9 +117,24 @@ var behaviourTestTmpl = template.Must(template.New(`behaviourTestTmpl`).Funcs(fu
 		*client.Client
 	}
 
+	//Output for request of BehavTest_{{ printf "%02d" $i }}
+	type BehavTestRequestOutput_{{ printf "%02d" $i }} struct {
+		_ struct{} 
+	}
 	//Generates request for BehavTest_{{ printf "%02d" $i }}
-	func (c *BehavTestClient_{{ printf "%02d" $i }}) RequestGenerator_{{printf "%02d" $i }}(input string )(req *request.Request, output string ){
-
+	func (c *BehavTestClient_{{ printf "%02d" $i }}) BehavTestRequestGenerator_{{printf "%02d" $i }}(input string )(req *request.Request, output string ){
+		op := &request.Operation{
+			Name:       "{{$testCase.Request.Operation}}",
+		{{- range $j, $expects := $testCase.Expect }}
+			{{- if eq $j 0 }}
+				HTTPMethod: "{{$expects.requestMethodEquals}}",
+			{{end}}
+		{{end}}
+		}
+		output = &BehavTestRequestOutput_{}
+		req := c.NewRequest(op, input, output)
+		req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+		return
 	}
 
 	//{{printf "%s" $testCase.Description}}
@@ -125,6 +145,12 @@ var behaviourTestTmpl = template.Must(template.New(`behaviourTestTmpl`).Funcs(fu
 		
 		//Starts a new service using using sess
 		svc := {{$.API.PackageName}}.New(sess)
+
+		req, _ := svc.BehavTestRequestGenerator_{{printf "%02d" $i }}("")
+		r := req.HTTPRequest
+	
+		// build request
+		req.Build()
 
 		fmt.Println("Write behaviour tests here")
 	}
