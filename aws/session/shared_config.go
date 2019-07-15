@@ -301,7 +301,7 @@ func (cfg *sharedConfig) hasCredentials() bool {
 	case len(cfg.CredentialSource) != 0:
 	case len(cfg.CredentialProcess) != 0:
 	case len(cfg.WebIdentityTokenFile) != 0:
-	case len(cfg.Creds.AccessKeyID) != 0:
+	case cfg.Creds.HasKeys():
 	default:
 		return false
 	}
