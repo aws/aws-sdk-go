@@ -76,10 +76,8 @@ func (a *API) APIBehaviourTestsGoCode() string {
 		panic(fmt.Sprintf("failed to create behaviour tests, %v", err))
 	}
 
-	ignoreImports := `
 
-	`
-	return a.importsGoCode() + ignoreImports + w.String()
+	return a.importsGoCode() + w.String()
 }
 
 var funcMap = template.FuncMap{"Map": templateMap}
