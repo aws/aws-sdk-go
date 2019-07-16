@@ -51,8 +51,8 @@ func loadAPI(modelPath, baseImport string) (*API, error) {
 		modelLoader{"waiters-2.json", a.AttachWaiters, false},
 		modelLoader{"examples-1.json", a.AttachExamples, false},
 		modelLoader{"smoke.json", a.AttachSmokeTests, false},
-		//Added line for behaviour
-		modelLoader{"behaviour.json",a.AttachBehaviourTests,false},
+		//Added line for behavior
+		modelLoader{"behavior.json",a.AttachBehaviorTests,false},
 
 	)
 	if err != nil {

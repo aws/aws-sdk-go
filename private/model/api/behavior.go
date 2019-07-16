@@ -10,7 +10,7 @@ import (
 	"text/template"
 )
 
-type BehaviourTestSuite struct {
+type BehaviorTestSuite struct {
 	Defaults Defaults `json:"defaults"`
 	Tests Tests `json:"tests"`
 }
@@ -38,22 +38,22 @@ type Request struct{
 	Input map[string]interface{} `json:"input"`
 }
 
-// AttachBehaviourTests attaches the Behaviour test cases to the API model.
-func (a *API) AttachBehaviourTests(filename string) {
+// AttachBehaviorTests attaches the Behavior test cases to the API model.
+func (a *API) AttachBehaviorTests(filename string) {
 	f, err := os.Open(filename)
 	if err != nil {
-		panic(fmt.Sprintf("failed to open behaviour tests %s, err: %v", filename, err))
+		panic(fmt.Sprintf("failed to open behavior tests %s, err: %v", filename, err))
 	}
 	defer f.Close()
 
-	if err := json.NewDecoder(f).Decode(&a.BehaviourTests); err != nil {
-		panic(fmt.Sprintf("failed to decode behaviour tests %s, err: %v", filename, err))
+	if err := json.NewDecoder(f).Decode(&a.BehaviorTests); err != nil {
+		panic(fmt.Sprintf("failed to decode behavior tests %s, err: %v", filename, err))
 	}
 
 }
 
-// APIBehaviourTestsGoCode returns the Go Code string for the Behaviour tests.
-func (a *API) APIBehaviourTestsGoCode() string {
+// APIBehaviorTestsGoCode returns the Go Code string for the Behavior tests.
+func (a *API) APIBehaviorTestsGoCode() string {
 	w := bytes.NewBuffer(nil)
 	a.resetImports()
 	a.AddImport("context")
@@ -69,16 +69,16 @@ func (a *API) APIBehaviourTestsGoCode() string {
 
 	a.AddImport(a.ImportPath())
 
-	behaviourTests := struct {
+	behaviorTests := struct {
 		API *API
-		BehaviourTestSuite
+		BehaviorTestSuite
 	}{
 		API:            a,
-		BehaviourTestSuite: a.BehaviourTests,
+		BehaviorTestSuite: a.BehaviorTests,
 	}
 
-	if err := behaviourTestTmpl.Execute(w, behaviourTests); err != nil {
-		panic(fmt.Sprintf("failed to create behaviour tests, %v", err))
+	if err := behaviorTestTmpl.Execute(w, behaviorTests); err != nil {
+		panic(fmt.Sprintf("failed to create behavior tests, %v", err))
 	}
 
 
@@ -87,7 +87,7 @@ func (a *API) APIBehaviourTestsGoCode() string {
 
 var funcMap = template.FuncMap{"Map": templateMap}
 
-var behaviourTestTmpl = template.Must(template.New(`behaviourTestTmpl`).Funcs(funcMap).Parse(`
+var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(funcMap).Parse(`
 
 {{define "StashCredentials"}}
 	env := awstesting.StashEnv() //Stashes the current environment variables
@@ -112,31 +112,6 @@ var behaviourTestTmpl = template.Must(template.New(`behaviourTestTmpl`).Funcs(fu
 {{end}}
 
 {{- range $i, $testCase := $.Tests.Cases }}
-	//Client for BehavTest_{{ printf "%02d" $i }}
-	type BehavTestClient_{{ printf "%02d" $i }} struct {
-		*client.Client
-	}
-
-	//Output for request of BehavTest_{{ printf "%02d" $i }}
-	type BehavTestRequestOutput_{{ printf "%02d" $i }} struct {
-		_ struct{} 
-	}
-	//Generates request for BehavTest_{{ printf "%02d" $i }}
-	func (c *BehavTestClient_{{ printf "%02d" $i }}) BehavTestRequestGenerator_{{printf "%02d" $i }}(input string )(req *request.Request, output string ){
-		op := &request.Operation{
-			Name:       "{{$testCase.Request.Operation}}",
-		{{- range $j, $expects := $testCase.Expect }}
-			{{- if eq $j 0 }}
-				HTTPMethod: "{{$expects.requestMethodEquals}}",
-			{{end}}
-		{{end}}
-		}
-		output = &BehavTestRequestOutput_{}
-		req := c.NewRequest(op, input, output)
-		req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-		return
-	}
-
 	//{{printf "%s" $testCase.Description}}
 	func BehavTest_{{ printf "%02d" $i }}(t *testing.T) {
 
@@ -152,8 +127,7 @@ var behaviourTestTmpl = template.Must(template.New(`behaviourTestTmpl`).Funcs(fu
 		// build request
 		req.Build()
 
-		fmt.Println("Write behaviour tests here")
+		fmt.Println("Write behavior tests here")
 	}
 {{- end }}
 `))
-
