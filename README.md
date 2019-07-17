@@ -470,7 +470,7 @@ response.
   	}
   	// Ensure the context is canceled to prevent leaking.
   	// See context package for more information, https://golang.org/pkg/context/
-	if cancelFn {
+	if cancelFn != nil {
   		defer cancelFn()
 	}
 
