@@ -1,9 +1,12 @@
+// +build go1.7
+
 package session
 
 import (
 	"fmt"
 	"path/filepath"
 	"reflect"
+	"strconv"
 	"strings"
 	"testing"
 
@@ -26,6 +29,7 @@ func TestLoadSharedConfig(t *testing.T) {
 		{
 			Filenames: []string{"file_not_exists"},
 			Profile:   "default",
+			Expected:  sharedConfig{},
 		},
 		{
 			Filenames: []string{testConfigFilename},
@@ -61,11 +65,9 @@ func TestLoadSharedConfig(t *testing.T) {
 			Filenames: []string{testConfigOtherFilename, testConfigFilename},
 			Profile:   "assume_role",
 			Expected: sharedConfig{
-				AssumeRole: assumeRoleConfig{
-					RoleARN:       "assume_role_role_arn",
-					SourceProfile: "complete_creds",
-				},
-				AssumeRoleSource: &sharedConfig{
+				RoleARN:           "assume_role_role_arn",
+				SourceProfileName: "complete_creds",
+				SourceProfile: &sharedConfig{
 					Creds: credentials.Value{
 						AccessKeyID:     "complete_creds_akid",
 						SecretAccessKey: "complete_creds_secret",
@@ -78,29 +80,23 @@ func TestLoadSharedConfig(t *testing.T) {
 			Filenames: []string{testConfigOtherFilename, testConfigFilename},
 			Profile:   "assume_role_invalid_source_profile",
 			Expected: sharedConfig{
-				AssumeRole: assumeRoleConfig{
-					RoleARN:       "assume_role_invalid_source_profile_role_arn",
-					SourceProfile: "profile_not_exists",
-				},
+				RoleARN:           "assume_role_invalid_source_profile_role_arn",
+				SourceProfileName: "profile_not_exists",
 			},
-			Err: SharedConfigAssumeRoleError{RoleARN: "assume_role_invalid_source_profile_role_arn"},
+			Err: SharedConfigAssumeRoleError{
+				RoleARN:       "assume_role_invalid_source_profile_role_arn",
+				SourceProfile: "profile_not_exists",
+			},
 		},
 		{
 			Filenames: []string{testConfigOtherFilename, testConfigFilename},
 			Profile:   "assume_role_w_creds",
 			Expected: sharedConfig{
-				Creds: credentials.Value{
-					AccessKeyID:     "assume_role_w_creds_akid",
-					SecretAccessKey: "assume_role_w_creds_secret",
-					ProviderName:    fmt.Sprintf("SharedConfigCredentials: %s", testConfigFilename),
-				},
-				AssumeRole: assumeRoleConfig{
-					RoleARN:         "assume_role_w_creds_role_arn",
-					SourceProfile:   "assume_role_w_creds",
-					ExternalID:      "1234",
-					RoleSessionName: "assume_role_w_creds_session_name",
-				},
-				AssumeRoleSource: &sharedConfig{
+				RoleARN:           "assume_role_w_creds_role_arn",
+				ExternalID:        "1234",
+				RoleSessionName:   "assume_role_w_creds_session_name",
+				SourceProfileName: "assume_role_w_creds",
+				SourceProfile: &sharedConfig{
 					Creds: credentials.Value{
 						AccessKeyID:     "assume_role_w_creds_akid",
 						SecretAccessKey: "assume_role_w_creds_secret",
@@ -113,12 +109,13 @@ func TestLoadSharedConfig(t *testing.T) {
 			Filenames: []string{testConfigOtherFilename, testConfigFilename},
 			Profile:   "assume_role_wo_creds",
 			Expected: sharedConfig{
-				AssumeRole: assumeRoleConfig{
-					RoleARN:       "assume_role_wo_creds_role_arn",
-					SourceProfile: "assume_role_wo_creds",
-				},
+				RoleARN:           "assume_role_wo_creds_role_arn",
+				SourceProfileName: "assume_role_wo_creds",
 			},
-			Err: SharedConfigAssumeRoleError{RoleARN: "assume_role_wo_creds_role_arn"},
+			Err: SharedConfigAssumeRoleError{
+				RoleARN:       "assume_role_wo_creds_role_arn",
+				SourceProfile: "assume_role_wo_creds",
+			},
 		},
 		{
 			Filenames: []string{filepath.Join("testdata", "shared_config_invalid_ini")},
@@ -129,26 +126,20 @@ func TestLoadSharedConfig(t *testing.T) {
 			Filenames: []string{testConfigOtherFilename, testConfigFilename},
 			Profile:   "assume_role_with_credential_source",
 			Expected: sharedConfig{
-				AssumeRole: assumeRoleConfig{
-					RoleARN:          "assume_role_with_credential_source_role_arn",
-					CredentialSource: credSourceEc2Metadata,
-				},
+				RoleARN:          "assume_role_with_credential_source_role_arn",
+				CredentialSource: credSourceEc2Metadata,
 			},
 		},
 		{
 			Filenames: []string{testConfigOtherFilename, testConfigFilename},
 			Profile:   "multiple_assume_role",
 			Expected: sharedConfig{
-				AssumeRole: assumeRoleConfig{
-					RoleARN:       "multiple_assume_role_role_arn",
-					SourceProfile: "assume_role",
-				},
-				AssumeRoleSource: &sharedConfig{
-					AssumeRole: assumeRoleConfig{
-						RoleARN:       "assume_role_role_arn",
-						SourceProfile: "complete_creds",
-					},
-					AssumeRoleSource: &sharedConfig{
+				RoleARN:           "multiple_assume_role_role_arn",
+				SourceProfileName: "assume_role",
+				SourceProfile: &sharedConfig{
+					RoleARN:           "assume_role_role_arn",
+					SourceProfileName: "complete_creds",
+					SourceProfile: &sharedConfig{
 						Creds: credentials.Value{
 							AccessKeyID:     "complete_creds_akid",
 							SecretAccessKey: "complete_creds_secret",
@@ -162,15 +153,11 @@ func TestLoadSharedConfig(t *testing.T) {
 			Filenames: []string{testConfigOtherFilename, testConfigFilename},
 			Profile:   "multiple_assume_role_with_credential_source",
 			Expected: sharedConfig{
-				AssumeRole: assumeRoleConfig{
-					RoleARN:       "multiple_assume_role_with_credential_source_role_arn",
-					SourceProfile: "assume_role_with_credential_source",
-				},
-				AssumeRoleSource: &sharedConfig{
-					AssumeRole: assumeRoleConfig{
-						RoleARN:          "assume_role_with_credential_source_role_arn",
-						CredentialSource: credSourceEc2Metadata,
-					},
+				RoleARN:           "multiple_assume_role_with_credential_source_role_arn",
+				SourceProfileName: "assume_role_with_credential_source",
+				SourceProfile: &sharedConfig{
+					RoleARN:          "assume_role_with_credential_source_role_arn",
+					CredentialSource: credSourceEc2Metadata,
 				},
 			},
 		},
@@ -178,20 +165,14 @@ func TestLoadSharedConfig(t *testing.T) {
 			Filenames: []string{testConfigOtherFilename, testConfigFilename},
 			Profile:   "multiple_assume_role_with_credential_source2",
 			Expected: sharedConfig{
-				AssumeRole: assumeRoleConfig{
-					RoleARN:       "multiple_assume_role_with_credential_source2_role_arn",
-					SourceProfile: "multiple_assume_role_with_credential_source",
-				},
-				AssumeRoleSource: &sharedConfig{
-					AssumeRole: assumeRoleConfig{
-						RoleARN:       "multiple_assume_role_with_credential_source_role_arn",
-						SourceProfile: "assume_role_with_credential_source",
-					},
-					AssumeRoleSource: &sharedConfig{
-						AssumeRole: assumeRoleConfig{
-							RoleARN:          "assume_role_with_credential_source_role_arn",
-							CredentialSource: credSourceEc2Metadata,
-						},
+				RoleARN:           "multiple_assume_role_with_credential_source2_role_arn",
+				SourceProfileName: "multiple_assume_role_with_credential_source",
+				SourceProfile: &sharedConfig{
+					RoleARN:           "multiple_assume_role_with_credential_source_role_arn",
+					SourceProfileName: "assume_role_with_credential_source",
+					SourceProfile: &sharedConfig{
+						RoleARN:          "assume_role_with_credential_source_role_arn",
+						CredentialSource: credSourceEc2Metadata,
 					},
 				},
 			},
@@ -199,20 +180,25 @@ func TestLoadSharedConfig(t *testing.T) {
 	}
 
 	for i, c := range cases {
-		cfg, err := loadSharedConfig(c.Profile, c.Filenames)
-		if c.Err != nil {
-			if e, a := c.Err.Error(), err.Error(); !strings.Contains(a, e) {
-				t.Errorf("%d, expect %v, to contain %v", i, e, a)
+		t.Run(strconv.Itoa(i)+"_"+c.Profile, func(t *testing.T) {
+			cfg, err := loadSharedConfig(c.Profile, c.Filenames, true)
+			if c.Err != nil {
+				if err == nil {
+					t.Fatalf("expect error, got none")
+				}
+				if e, a := c.Err.Error(), err.Error(); !strings.Contains(a, e) {
+					t.Errorf("expect %v, to be in %v", e, a)
+				}
+				return
 			}
-			continue
-		}
 
-		if err != nil {
-			t.Errorf("%d, expect nil, %v", i, err)
-		}
-		if e, a := c.Expected, cfg; !reflect.DeepEqual(e, a) {
-			t.Errorf("%d, expect %v, got %v", i, e, a)
-		}
+			if err != nil {
+				t.Fatalf("expect no error, got %v", err)
+			}
+			if e, a := c.Expected, cfg; !reflect.DeepEqual(e, a) {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
 	}
 }
 
@@ -278,26 +264,24 @@ func TestLoadSharedConfigFromFile(t *testing.T) {
 			},
 		},
 		{
-			Profile:  "partial_assume_role",
-			Expected: sharedConfig{},
+			Profile: "partial_assume_role",
+			Expected: sharedConfig{
+				RoleARN: "partial_assume_role_role_arn",
+			},
 		},
 		{
 			Profile: "assume_role",
 			Expected: sharedConfig{
-				AssumeRole: assumeRoleConfig{
-					RoleARN:       "assume_role_role_arn",
-					SourceProfile: "complete_creds",
-				},
+				RoleARN:           "assume_role_role_arn",
+				SourceProfileName: "complete_creds",
 			},
 		},
 		{
 			Profile: "assume_role_w_mfa",
 			Expected: sharedConfig{
-				AssumeRole: assumeRoleConfig{
-					RoleARN:       "assume_role_role_arn",
-					SourceProfile: "complete_creds",
-					MFASerial:     "0123456789",
-				},
+				RoleARN:           "assume_role_role_arn",
+				SourceProfileName: "complete_creds",
+				MFASerial:         "0123456789",
 			},
 		},
 		{
@@ -307,22 +291,27 @@ func TestLoadSharedConfigFromFile(t *testing.T) {
 	}
 
 	for i, c := range cases {
-		cfg := sharedConfig{}
+		t.Run(strconv.Itoa(i)+"_"+c.Profile, func(t *testing.T) {
+			cfg := sharedConfig{}
 
-		err := cfg.setFromIniFile(c.Profile, iniFile)
-		if c.Err != nil {
-			if e, a := c.Err.Error(), err.Error(); !strings.Contains(a, e) {
-				t.Errorf("%d, expect %v, to contain %v", i, e, a)
+			err := cfg.setFromIniFile(c.Profile, iniFile, true)
+			if c.Err != nil {
+				if err == nil {
+					t.Fatalf("expect error, got none")
+				}
+				if e, a := c.Err.Error(), err.Error(); !strings.Contains(a, e) {
+					t.Errorf("expect %v, to be in %v", e, a)
+				}
+				return
 			}
-			continue
-		}
 
-		if err != nil {
-			t.Errorf("%d, expect nil, %v", i, err)
-		}
-		if e, a := c.Expected, cfg; !reflect.DeepEqual(e, a) {
-			t.Errorf("%d, expect %v, got %v", i, e, a)
-		}
+			if err != nil {
+				t.Errorf("expect no error, got %v", err)
+			}
+			if e, a := c.Expected, cfg; !reflect.DeepEqual(e, a) {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
 	}
 }
 
@@ -347,18 +336,20 @@ func TestLoadSharedConfigIniFiles(t *testing.T) {
 	}
 
 	for i, c := range cases {
-		files, err := loadSharedConfigIniFiles(c.Filenames)
-		if err != nil {
-			t.Errorf("%d, expect nil, %v", i, err)
-		}
-		if e, a := len(c.Expected), len(files); e != a {
-			t.Errorf("expect %v, got %v", e, a)
-		}
-
-		for i, expectedFile := range c.Expected {
-			if e, a := expectedFile.Filename, files[i].Filename; e != a {
+		t.Run(strconv.Itoa(i), func(t *testing.T) {
+			files, err := loadSharedConfigIniFiles(c.Filenames)
+			if err != nil {
+				t.Fatalf("expect no error, got %v", err)
+			}
+			if e, a := len(c.Expected), len(files); e != a {
 				t.Errorf("expect %v, got %v", e, a)
 			}
-		}
+
+			for i, expectedFile := range c.Expected {
+				if e, a := expectedFile.Filename, files[i].Filename; e != a {
+					t.Errorf("expect %v, got %v", e, a)
+				}
+			}
+		})
 	}
 }
