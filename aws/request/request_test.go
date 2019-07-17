@@ -1111,6 +1111,43 @@ func TestRequestNoConnection(t *testing.T) {
 	}
 }
 
+func TestRequetBodySeekFails(t *testing.T) {
+	s := awstesting.NewClient()
+	s.Handlers.Validate.Clear()
+	s.Handlers.Build.Clear()
+
+	out := &testData{}
+	r := s.NewRequest(&request.Operation{Name: "Operation"}, nil, out)
+	r.SetReaderBody(&stubSeekFail{
+		Err: fmt.Errorf("failed to seek reader"),
+	})
+	err := r.Send()
+	if err == nil {
+		t.Fatal("expect error, but got none")
+	}
+	t.Log("Error:", err)
+
+	aerr := err.(awserr.Error)
+	if e, a := request.ErrCodeSerialization, aerr.Code(); e != a {
+		t.Errorf("expect %v error code, got %v", e, a)
+	}
+
+}
+
+type stubSeekFail struct {
+	Err error
+}
+
+func (f *stubSeekFail) Read(b []byte) (int, error) {
+	return len(b), nil
+}
+func (f *stubSeekFail) ReadAt(b []byte, offset int64) (int, error) {
+	return len(b), nil
+}
+func (f *stubSeekFail) Seek(offset int64, mode int) (int64, error) {
+	return 0, f.Err
+}
+
 func getFreePort() (int, error) {
 	l, err := net.Listen("tcp", ":0")
 	if err != nil {
