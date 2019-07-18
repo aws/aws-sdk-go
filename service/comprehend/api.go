@@ -168,8 +168,9 @@ func (c *Comprehend) BatchDetectEntitiesRequest(input *BatchDetectEntitiesInput)
 //   * ErrCodeUnsupportedLanguageException "UnsupportedLanguageException"
 //   Amazon Comprehend can't process the language of the input text. For all custom
 //   entity recognition APIs (such as CreateEntityRecognizer), only English is
-//   accepted. For most other APIs, Amazon Comprehend accepts only English or
-//   Spanish text.
+//   accepted. For most other APIs, such as those for Custom Classification, Amazon
+//   Comprehend accepts text in all supported languages. For a list of supported
+//   languages, see supported-languages.
 //
 //   * ErrCodeBatchSizeLimitExceededException "BatchSizeLimitExceededException"
 //   The number of documents in the request exceeds the limit of 25. Try your
@@ -263,8 +264,9 @@ func (c *Comprehend) BatchDetectKeyPhrasesRequest(input *BatchDetectKeyPhrasesIn
 //   * ErrCodeUnsupportedLanguageException "UnsupportedLanguageException"
 //   Amazon Comprehend can't process the language of the input text. For all custom
 //   entity recognition APIs (such as CreateEntityRecognizer), only English is
-//   accepted. For most other APIs, Amazon Comprehend accepts only English or
-//   Spanish text.
+//   accepted. For most other APIs, such as those for Custom Classification, Amazon
+//   Comprehend accepts text in all supported languages. For a list of supported
+//   languages, see supported-languages.
 //
 //   * ErrCodeBatchSizeLimitExceededException "BatchSizeLimitExceededException"
 //   The number of documents in the request exceeds the limit of 25. Try your
@@ -359,8 +361,9 @@ func (c *Comprehend) BatchDetectSentimentRequest(input *BatchDetectSentimentInpu
 //   * ErrCodeUnsupportedLanguageException "UnsupportedLanguageException"
 //   Amazon Comprehend can't process the language of the input text. For all custom
 //   entity recognition APIs (such as CreateEntityRecognizer), only English is
-//   accepted. For most other APIs, Amazon Comprehend accepts only English or
-//   Spanish text.
+//   accepted. For most other APIs, such as those for Custom Classification, Amazon
+//   Comprehend accepts text in all supported languages. For a list of supported
+//   languages, see supported-languages.
 //
 //   * ErrCodeBatchSizeLimitExceededException "BatchSizeLimitExceededException"
 //   The number of documents in the request exceeds the limit of 25. Try your
@@ -456,8 +459,9 @@ func (c *Comprehend) BatchDetectSyntaxRequest(input *BatchDetectSyntaxInput) (re
 //   * ErrCodeUnsupportedLanguageException "UnsupportedLanguageException"
 //   Amazon Comprehend can't process the language of the input text. For all custom
 //   entity recognition APIs (such as CreateEntityRecognizer), only English is
-//   accepted. For most other APIs, Amazon Comprehend accepts only English or
-//   Spanish text.
+//   accepted. For most other APIs, such as those for Custom Classification, Amazon
+//   Comprehend accepts text in all supported languages. For a list of supported
+//   languages, see supported-languages.
 //
 //   * ErrCodeBatchSizeLimitExceededException "BatchSizeLimitExceededException"
 //   The number of documents in the request exceeds the limit of 25. Try your
@@ -568,8 +572,9 @@ func (c *Comprehend) CreateDocumentClassifierRequest(input *CreateDocumentClassi
 //   * ErrCodeUnsupportedLanguageException "UnsupportedLanguageException"
 //   Amazon Comprehend can't process the language of the input text. For all custom
 //   entity recognition APIs (such as CreateEntityRecognizer), only English is
-//   accepted. For most other APIs, Amazon Comprehend accepts only English or
-//   Spanish text.
+//   accepted. For most other APIs, such as those for Custom Classification, Amazon
+//   Comprehend accepts text in all supported languages. For a list of supported
+//   languages, see supported-languages.
 //
 //   * ErrCodeKmsKeyValidationException "KmsKeyValidationException"
 //   The KMS customer managed key (CMK) entered cannot be validated. Verify the
@@ -677,8 +682,9 @@ func (c *Comprehend) CreateEntityRecognizerRequest(input *CreateEntityRecognizer
 //   * ErrCodeUnsupportedLanguageException "UnsupportedLanguageException"
 //   Amazon Comprehend can't process the language of the input text. For all custom
 //   entity recognition APIs (such as CreateEntityRecognizer), only English is
-//   accepted. For most other APIs, Amazon Comprehend accepts only English or
-//   Spanish text.
+//   accepted. For most other APIs, such as those for Custom Classification, Amazon
+//   Comprehend accepts text in all supported languages. For a list of supported
+//   languages, see supported-languages.
 //
 //   * ErrCodeKmsKeyValidationException "KmsKeyValidationException"
 //   The KMS customer managed key (CMK) entered cannot be validated. Verify the
@@ -1785,8 +1791,9 @@ func (c *Comprehend) DetectEntitiesRequest(input *DetectEntitiesInput) (req *req
 //   * ErrCodeUnsupportedLanguageException "UnsupportedLanguageException"
 //   Amazon Comprehend can't process the language of the input text. For all custom
 //   entity recognition APIs (such as CreateEntityRecognizer), only English is
-//   accepted. For most other APIs, Amazon Comprehend accepts only English or
-//   Spanish text.
+//   accepted. For most other APIs, such as those for Custom Classification, Amazon
+//   Comprehend accepts text in all supported languages. For a list of supported
+//   languages, see supported-languages.
 //
 //   * ErrCodeInternalServerException "InternalServerException"
 //   An internal server error occurred. Retry your request.
@@ -1876,8 +1883,9 @@ func (c *Comprehend) DetectKeyPhrasesRequest(input *DetectKeyPhrasesInput) (req 
 //   * ErrCodeUnsupportedLanguageException "UnsupportedLanguageException"
 //   Amazon Comprehend can't process the language of the input text. For all custom
 //   entity recognition APIs (such as CreateEntityRecognizer), only English is
-//   accepted. For most other APIs, Amazon Comprehend accepts only English or
-//   Spanish text.
+//   accepted. For most other APIs, such as those for Custom Classification, Amazon
+//   Comprehend accepts text in all supported languages. For a list of supported
+//   languages, see supported-languages.
 //
 //   * ErrCodeInternalServerException "InternalServerException"
 //   An internal server error occurred. Retry your request.
@@ -1968,8 +1976,9 @@ func (c *Comprehend) DetectSentimentRequest(input *DetectSentimentInput) (req *r
 //   * ErrCodeUnsupportedLanguageException "UnsupportedLanguageException"
 //   Amazon Comprehend can't process the language of the input text. For all custom
 //   entity recognition APIs (such as CreateEntityRecognizer), only English is
-//   accepted. For most other APIs, Amazon Comprehend accepts only English or
-//   Spanish text.
+//   accepted. For most other APIs, such as those for Custom Classification, Amazon
+//   Comprehend accepts text in all supported languages. For a list of supported
+//   languages, see supported-languages.
 //
 //   * ErrCodeInternalServerException "InternalServerException"
 //   An internal server error occurred. Retry your request.
@@ -2060,8 +2069,9 @@ func (c *Comprehend) DetectSyntaxRequest(input *DetectSyntaxInput) (req *request
 //   * ErrCodeUnsupportedLanguageException "UnsupportedLanguageException"
 //   Amazon Comprehend can't process the language of the input text. For all custom
 //   entity recognition APIs (such as CreateEntityRecognizer), only English is
-//   accepted. For most other APIs, Amazon Comprehend accepts only English or
-//   Spanish text.
+//   accepted. For most other APIs, such as those for Custom Classification, Amazon
+//   Comprehend accepts text in all supported languages. For a list of supported
+//   languages, see supported-languages.
 //
 //   * ErrCodeInternalServerException "InternalServerException"
 //   An internal server error occurred. Retry your request.
@@ -2155,8 +2165,7 @@ func (c *Comprehend) ListDocumentClassificationJobsRequest(input *ListDocumentCl
 //   The number of requests exceeds the limit. Resubmit your request later.
 //
 //   * ErrCodeInvalidFilterException "InvalidFilterException"
-//   The filter specified for the ListDocumentClassificationJobs operation is
-//   invalid. Specify a different filter.
+//   The filter specified for the operation is invalid. Specify a different filter.
 //
 //   * ErrCodeInternalServerException "InternalServerException"
 //   An internal server error occurred. Retry your request.
@@ -2300,8 +2309,7 @@ func (c *Comprehend) ListDocumentClassifiersRequest(input *ListDocumentClassifie
 //   The number of requests exceeds the limit. Resubmit your request later.
 //
 //   * ErrCodeInvalidFilterException "InvalidFilterException"
-//   The filter specified for the ListDocumentClassificationJobs operation is
-//   invalid. Specify a different filter.
+//   The filter specified for the operation is invalid. Specify a different filter.
 //
 //   * ErrCodeInternalServerException "InternalServerException"
 //   An internal server error occurred. Retry your request.
@@ -2445,8 +2453,7 @@ func (c *Comprehend) ListDominantLanguageDetectionJobsRequest(input *ListDominan
 //   The number of requests exceeds the limit. Resubmit your request later.
 //
 //   * ErrCodeInvalidFilterException "InvalidFilterException"
-//   The filter specified for the ListDocumentClassificationJobs operation is
-//   invalid. Specify a different filter.
+//   The filter specified for the operation is invalid. Specify a different filter.
 //
 //   * ErrCodeInternalServerException "InternalServerException"
 //   An internal server error occurred. Retry your request.
@@ -2590,8 +2597,7 @@ func (c *Comprehend) ListEntitiesDetectionJobsRequest(input *ListEntitiesDetecti
 //   The number of requests exceeds the limit. Resubmit your request later.
 //
 //   * ErrCodeInvalidFilterException "InvalidFilterException"
-//   The filter specified for the ListDocumentClassificationJobs operation is
-//   invalid. Specify a different filter.
+//   The filter specified for the operation is invalid. Specify a different filter.
 //
 //   * ErrCodeInternalServerException "InternalServerException"
 //   An internal server error occurred. Retry your request.
@@ -2742,8 +2748,7 @@ func (c *Comprehend) ListEntityRecognizersRequest(input *ListEntityRecognizersIn
 //   The number of requests exceeds the limit. Resubmit your request later.
 //
 //   * ErrCodeInvalidFilterException "InvalidFilterException"
-//   The filter specified for the ListDocumentClassificationJobs operation is
-//   invalid. Specify a different filter.
+//   The filter specified for the operation is invalid. Specify a different filter.
 //
 //   * ErrCodeInternalServerException "InternalServerException"
 //   An internal server error occurred. Retry your request.
@@ -2887,8 +2892,7 @@ func (c *Comprehend) ListKeyPhrasesDetectionJobsRequest(input *ListKeyPhrasesDet
 //   The number of requests exceeds the limit. Resubmit your request later.
 //
 //   * ErrCodeInvalidFilterException "InvalidFilterException"
-//   The filter specified for the ListDocumentClassificationJobs operation is
-//   invalid. Specify a different filter.
+//   The filter specified for the operation is invalid. Specify a different filter.
 //
 //   * ErrCodeInternalServerException "InternalServerException"
 //   An internal server error occurred. Retry your request.
@@ -3032,8 +3036,7 @@ func (c *Comprehend) ListSentimentDetectionJobsRequest(input *ListSentimentDetec
 //   The number of requests exceeds the limit. Resubmit your request later.
 //
 //   * ErrCodeInvalidFilterException "InvalidFilterException"
-//   The filter specified for the ListDocumentClassificationJobs operation is
-//   invalid. Specify a different filter.
+//   The filter specified for the operation is invalid. Specify a different filter.
 //
 //   * ErrCodeInternalServerException "InternalServerException"
 //   An internal server error occurred. Retry your request.
@@ -3263,8 +3266,7 @@ func (c *Comprehend) ListTopicsDetectionJobsRequest(input *ListTopicsDetectionJo
 //   The number of requests exceeds the limit. Resubmit your request later.
 //
 //   * ErrCodeInvalidFilterException "InvalidFilterException"
-//   The filter specified for the ListDocumentClassificationJobs operation is
-//   invalid. Specify a different filter.
+//   The filter specified for the operation is invalid. Specify a different filter.
 //
 //   * ErrCodeInternalServerException "InternalServerException"
 //   An internal server error occurred. Retry your request.
@@ -4792,8 +4794,10 @@ func (s *BatchDetectDominantLanguageOutput) SetResultList(v []*BatchDetectDomina
 type BatchDetectEntitiesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The language of the input documents. You can specify English ("en") or Spanish
-	// ("es"). All documents must be in the same language.
+	// The language of the input documents. You can specify any of the primary languages
+	// supported by Amazon Comprehend: German ("de"), English ("en"), Spanish ("es"),
+	// French ("fr"), Italian ("it"), or Portuguese ("pt"). All documents must be
+	// in the same language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -4923,8 +4927,10 @@ func (s *BatchDetectEntitiesOutput) SetResultList(v []*BatchDetectEntitiesItemRe
 type BatchDetectKeyPhrasesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The language of the input documents. You can specify English ("en") or Spanish
-	// ("es"). All documents must be in the same language.
+	// The language of the input documents. You can specify any of the primary languages
+	// supported by Amazon Comprehend: German ("de"), English ("en"), Spanish ("es"),
+	// French ("fr"), Italian ("it"), or Portuguese ("pt"). All documents must be
+	// in the same language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -5054,8 +5060,10 @@ func (s *BatchDetectKeyPhrasesOutput) SetResultList(v []*BatchDetectKeyPhrasesIt
 type BatchDetectSentimentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The language of the input documents. You can specify English ("en") or Spanish
-	// ("es"). All documents must be in the same language.
+	// The language of the input documents. You can specify any of the primary languages
+	// supported by Amazon Comprehend: German ("de"), English ("en"), Spanish ("es"),
+	// French ("fr"), Italian ("it"), or Portuguese ("pt"). All documents must be
+	// in the same language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -5195,8 +5203,10 @@ func (s *BatchDetectSentimentOutput) SetResultList(v []*BatchDetectSentimentItem
 type BatchDetectSyntaxInput struct {
 	_ struct{} `type:"structure"`
 
-	// The language of the input documents. You can specify English ("en") or Spanish
-	// ("es"). All documents must be in the same language.
+	// The language of the input documents. You can specify any of the primary languages
+	// supported by Amazon Comprehend: German ("de"), English ("en"), Spanish ("es"),
+	// French ("fr"), Italian ("it"), or Portuguese ("pt"). All documents must be
+	// in the same language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"SyntaxLanguageCode"`
@@ -5504,8 +5514,10 @@ type CreateDocumentClassifierInput struct {
 	// InputDataConfig is a required field
 	InputDataConfig *DocumentClassifierInputDataConfig `type:"structure" required:"true"`
 
-	// The language of the input documents. You can specify English ("en") or Spanish
-	// ("es"). All documents must be in the same language.
+	// The language of the input documents. You can specify any of the primary languages
+	// supported by Amazon Comprehend: German ("de"), English ("en"), Spanish ("es"),
+	// French ("fr"), Italian ("it"), or Portuguese ("pt"). All documents must be
+	// in the same language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -6548,8 +6560,10 @@ func (s *DetectDominantLanguageOutput) SetLanguages(v []*DominantLanguage) *Dete
 type DetectEntitiesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The language of the input documents. You can specify English ("en") or Spanish
-	// ("es"). All documents must be in the same language.
+	// The language of the input documents. You can specify any of the primary languages
+	// supported by Amazon Comprehend: German ("de"), English ("en"), Spanish ("es"),
+	// French ("fr"), Italian ("it"), or Portuguese ("pt"). All documents must be
+	// in the same language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -6631,8 +6645,10 @@ func (s *DetectEntitiesOutput) SetEntities(v []*Entity) *DetectEntitiesOutput {
 type DetectKeyPhrasesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The language of the input documents. You can specify English ("en") or Spanish
-	// ("es"). All documents must be in the same language.
+	// The language of the input documents. You can specify any of the primary languages
+	// supported by Amazon Comprehend: German ("de"), English ("en"), Spanish ("es"),
+	// French ("fr"), Italian ("it"), or Portuguese ("pt"). All documents must be
+	// in the same language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -6714,8 +6730,10 @@ func (s *DetectKeyPhrasesOutput) SetKeyPhrases(v []*KeyPhrase) *DetectKeyPhrases
 type DetectSentimentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The language of the input documents. You can specify English ("en") or Spanish
-	// ("es"). All documents must be in the same language.
+	// The language of the input documents. You can specify any of the primary languages
+	// supported by Amazon Comprehend: German ("de"), English ("en"), Spanish ("es"),
+	// French ("fr"), Italian ("it"), or Portuguese ("pt"). All documents must be
+	// in the same language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -6804,8 +6822,9 @@ func (s *DetectSentimentOutput) SetSentimentScore(v *SentimentScore) *DetectSent
 type DetectSyntaxInput struct {
 	_ struct{} `type:"structure"`
 
-	// The language code of the input documents. You can specify English ("en")
-	// or Spanish ("es").
+	// The language code of the input documents. You can specify any of the primary
+	// languages supported by Amazon Comprehend: German ("de"), English ("en"),
+	// Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt").
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"SyntaxLanguageCode"`
@@ -8148,7 +8167,8 @@ type EntityRecognizerInputDataConfig struct {
 	// S3 location of the entity list for an entity recognizer.
 	EntityList *EntityRecognizerEntityList `type:"structure"`
 
-	// The entity types in the input data for an entity recognizer.
+	// The entity types in the input data for an entity recognizer. A maximum of
+	// 12 entity types can be used at one time to train an entity recognizer.
 	//
 	// EntityTypes is a required field
 	EntityTypes []*EntityTypesListItem `type:"list" required:"true"`
@@ -8287,6 +8307,14 @@ func (s *EntityRecognizerMetadata) SetNumberOfTrainedDocuments(v int64) *EntityR
 type EntityRecognizerMetadataEntityTypesListItem struct {
 	_ struct{} `type:"structure"`
 
+	// Detailed information about the accuracy of the entity recognizer for a specific
+	// item on the list of entity types.
+	EvaluationMetrics *EntityTypesEvaluationMetrics `type:"structure"`
+
+	// indicates the number of times the given entity name was seen in the training
+	// data.
+	NumberOfTrainMentions *int64 `type:"integer"`
+
 	// Type of entity from the list of entity types in the metadata of an entity
 	// recognizer.
 	Type *string `type:"string"`
@@ -8300,6 +8328,18 @@ func (s EntityRecognizerMetadataEntityTypesListItem) String() string {
 // GoString returns the string representation
 func (s EntityRecognizerMetadataEntityTypesListItem) GoString() string {
 	return s.String()
+}
+
+// SetEvaluationMetrics sets the EvaluationMetrics field's value.
+func (s *EntityRecognizerMetadataEntityTypesListItem) SetEvaluationMetrics(v *EntityTypesEvaluationMetrics) *EntityRecognizerMetadataEntityTypesListItem {
+	s.EvaluationMetrics = v
+	return s
+}
+
+// SetNumberOfTrainMentions sets the NumberOfTrainMentions field's value.
+func (s *EntityRecognizerMetadataEntityTypesListItem) SetNumberOfTrainMentions(v int64) *EntityRecognizerMetadataEntityTypesListItem {
+	s.NumberOfTrainMentions = &v
+	return s
 }
 
 // SetType sets the Type field's value.
@@ -8448,6 +8488,56 @@ func (s *EntityRecognizerProperties) SetVolumeKmsKeyId(v string) *EntityRecogniz
 // SetVpcConfig sets the VpcConfig field's value.
 func (s *EntityRecognizerProperties) SetVpcConfig(v *VpcConfig) *EntityRecognizerProperties {
 	s.VpcConfig = v
+	return s
+}
+
+// Detailed information about the accuracy of an entity recognizer for a specific
+// entity type.
+type EntityTypesEvaluationMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// A measure of how accurate the recognizer results are for for a specific entity
+	// type in the test data. It is derived from the Precision and Recall values.
+	// The F1Score is the harmonic average of the two scores. The highest score
+	// is 1, and the worst score is 0.
+	F1Score *float64 `type:"double"`
+
+	// A measure of the usefulness of the recognizer results for a specific entity
+	// type in the test data. High precision means that the recognizer returned
+	// substantially more relevant results than irrelevant ones.
+	Precision *float64 `type:"double"`
+
+	// A measure of how complete the recognizer results are for a specific entity
+	// type in the test data. High recall means that the recognizer returned most
+	// of the relevant results.
+	Recall *float64 `type:"double"`
+}
+
+// String returns the string representation
+func (s EntityTypesEvaluationMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EntityTypesEvaluationMetrics) GoString() string {
+	return s.String()
+}
+
+// SetF1Score sets the F1Score field's value.
+func (s *EntityTypesEvaluationMetrics) SetF1Score(v float64) *EntityTypesEvaluationMetrics {
+	s.F1Score = &v
+	return s
+}
+
+// SetPrecision sets the Precision field's value.
+func (s *EntityTypesEvaluationMetrics) SetPrecision(v float64) *EntityTypesEvaluationMetrics {
+	s.Precision = &v
+	return s
+}
+
+// SetRecall sets the Recall field's value.
+func (s *EntityTypesEvaluationMetrics) SetRecall(v float64) *EntityTypesEvaluationMetrics {
+	s.Recall = &v
 	return s
 }
 
@@ -10630,8 +10720,10 @@ type StartKeyPhrasesDetectionJobInput struct {
 	// The identifier of the job.
 	JobName *string `min:"1" type:"string"`
 
-	// The language of the input documents. You can specify English ("en") or Spanish
-	// ("es"). All documents must be in the same language.
+	// The language of the input documents. You can specify any of the primary languages
+	// supported by Amazon Comprehend: German ("de"), English ("en"), Spanish ("es"),
+	// French ("fr"), Italian ("it"), or Portuguese ("pt"). All documents must be
+	// in the same language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -10825,8 +10917,10 @@ type StartSentimentDetectionJobInput struct {
 	// The identifier of the job.
 	JobName *string `min:"1" type:"string"`
 
-	// The language of the input documents. You can specify English ("en") or Spanish
-	// ("es"). All documents must be in the same language.
+	// The language of the input documents. You can specify any of the primary languages
+	// supported by Amazon Comprehend: German ("de"), English ("en"), Spanish ("es"),
+	// French ("fr"), Italian ("it"), or Portuguese ("pt"). All documents must be
+	// in the same language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`

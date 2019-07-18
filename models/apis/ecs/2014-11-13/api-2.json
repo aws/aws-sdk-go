@@ -823,7 +823,8 @@
         "pendingTasksCount":{"shape":"Integer"},
         "activeServicesCount":{"shape":"Integer"},
         "statistics":{"shape":"Statistics"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "settings":{"shape":"ClusterSettings"}
       }
     },
     "ClusterContainsContainerInstancesException":{
@@ -860,6 +861,21 @@
       "members":{
       },
       "exception":true
+    },
+    "ClusterSetting":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"ClusterSettingName"},
+        "value":{"shape":"String"}
+      }
+    },
+    "ClusterSettingName":{
+      "type":"string",
+      "enum":["containerInsights"]
+    },
+    "ClusterSettings":{
+      "type":"list",
+      "member":{"shape":"ClusterSetting"}
     },
     "Clusters":{
       "type":"list",
@@ -1052,7 +1068,8 @@
       "type":"structure",
       "members":{
         "clusterName":{"shape":"String"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "settings":{"shape":"ClusterSettings"}
       }
     },
     "CreateClusterResponse":{
@@ -2218,7 +2235,8 @@
         "serviceLongArnFormat",
         "taskLongArnFormat",
         "containerInstanceLongArnFormat",
-        "awsvpcTrunking"
+        "awsvpcTrunking",
+        "containerInsights"
       ]
     },
     "Settings":{
