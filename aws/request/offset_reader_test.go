@@ -33,6 +33,9 @@ func TestOffsetReaderRead(t *testing.T) {
 func TestOffsetReaderSeek(t *testing.T) {
 	buf := []byte("testData")
 	reader, err := newOffsetReader(bytes.NewReader(buf), 0)
+	if err != nil {
+		t.Fatalf("expect no error, got %v", err)
+	}
 
 	orig, err := reader.Seek(0, sdkio.SeekCurrent)
 	if err != nil {
