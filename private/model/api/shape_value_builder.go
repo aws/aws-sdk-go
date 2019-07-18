@@ -3,7 +3,9 @@
 package api
 
 import (
+	"github.com/aws/aws-sdk-go/aws"
 	"fmt"
+	"encoding/json"
 	"reflect"
 	"sort"
 	"strings"
@@ -42,13 +44,13 @@ func (b ShapeValueBuilder) BuildShape(ref *ShapeRef, shapes map[string]interface
 			memName = fmt.Sprintf("%q", memName)
 			passRef = &ref.Shape.ValueRef
 		}
-
 		switch v := shape.(type) {
 		case map[string]interface{}:
 			ret += b.BuildComplex(name, memName, passRef, v)
 		case []interface{}:
 			ret += b.BuildList(name, memName, passRef, v)
 		default:
+
 			ret += b.BuildScalar(name, memName, passRef, v, ref.Shape.Payload == name)
 		}
 	}
@@ -132,8 +134,13 @@ func (b ShapeValueBuilder) BuildScalar(name, memName string, ref *ShapeRef, shap
 		}
 		return convertToCorrectType(memName, ref.Shape.Type, fmt.Sprintf("%d", v))
 	case float64:
+
 		dataType := ref.Shape.Type
-		if dataType == "integer" || dataType == "int64" || dataType == "long" {
+
+		if dataType=="timestamp" {
+			return parseTimeString(ref, memName, fmt.Sprintf("%f", v))//fixed here
+		}
+		if dataType == "integer" || dataType == "int64" || dataType == "long"{
 			return convertToCorrectType(memName, ref.Shape.Type, fmt.Sprintf("%d", int(shape.(float64))))
 		}
 		return convertToCorrectType(memName, ref.Shape.Type, fmt.Sprintf("%f", v))
@@ -142,6 +149,10 @@ func (b ShapeValueBuilder) BuildScalar(name, memName string, ref *ShapeRef, shap
 		switch t {
 		case "timestamp":
 			return parseTimeString(ref, memName, fmt.Sprintf("%s", v))
+
+		case "jsonvalue":
+			return fmt.Sprintf("%s: %#v,\n",memName,parseJsonString(v))
+
 		case "blob":
 			if (ref.Streaming || ref.Shape.Streaming) && isPayload {
 				return fmt.Sprintf("%s: aws.ReadSeekCloser(strings.NewReader(%q)),\n", memName, v)
@@ -192,4 +203,12 @@ func (b ShapeValueBuilder) GoType(ref *ShapeRef, elem bool) string {
 		return prefix + ref.Shape.GoTypeWithPkgNameElem()
 	}
 	return prefix + ref.GoTypeWithPkgName()
+}
+
+func parseJsonString(input string) aws.JSONValue{
+	var v aws.JSONValue
+	if err := json.Unmarshal([]byte(input), &v); err != nil {
+		panic(fmt.Sprintf("unable to unmarshal JSONValue, %v", err))
+	}
+	return v
 }

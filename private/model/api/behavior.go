@@ -37,6 +37,13 @@ type Request struct{
 	Operation string `json:"operation"`
 	Input map[string]interface{} `json:"input"`
 }
+func (c Request) BuildInputShape(ref *ShapeRef) string {
+	var b ShapeValueBuilder
+	return fmt.Sprintf("&%s{\n%s\n}",
+		b.GoType(ref, true),
+		b.BuildShape(ref, c.Input, false),
+	)
+}
 
 // AttachBehaviorTests attaches the Behavior test cases to the API model.
 func (a *API) AttachBehaviorTests(filename string) {
@@ -85,6 +92,7 @@ func (a *API) APIBehaviorTestsGoCode() string {
 	return a.importsGoCode() + w.String()
 }
 
+//template map is defined in "eventstream.go"
 var funcMap = template.FuncMap{"Map": templateMap}
 
 var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(funcMap).Parse(`
@@ -113,21 +121,23 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 
 {{- range $i, $testCase := $.Tests.Cases }}
 	//{{printf "%s" $testCase.Description}}
+	{{- $op := index $.API.Operations $testCase.Request.Operation }}
 	func BehavTest_{{ printf "%02d" $i }}(t *testing.T) {
 
 		{{template "StashCredentials" .}}
 		{{- template "SessionSetup" Map "testCase" $testCase "Tests" $.Tests}}
-		
+
 		//Starts a new service using using sess
 		svc := {{$.API.PackageName}}.New(sess)
 
-		req, _ := svc.BehavTestRequestGenerator_{{printf "%02d" $i }}("")
-		r := req.HTTPRequest
-	
-		// build request
-		req.Build()
+		input := {{ $testCase.Request.BuildInputShape $op.InputRef }}
 
-		fmt.Println("Write behavior tests here")
+		req, resp := svc.{{$testCase.Request.Operation}}Request(input)
+	
+   		err := req.Send()
+		if err == nil { // resp is now filled
+			fmt.Println(resp)
+		}
 	}
 {{- end }}
 `))
