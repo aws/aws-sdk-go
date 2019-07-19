@@ -1,27 +1,27 @@
 {
   "version": "2.0",
-  "service": "<p>AWS IoT Events monitors your equipment or device fleets for failures or changes in operation, and triggers actions when such events occur.</p>",
+  "service": "<p>AWS IoT Events monitors your equipment or device fleets for failures or changes in operation, and triggers actions when such events occur. AWS IoT Events API commands enable you to create, read, update and delete inputs and detector models, and to list their versions.</p>",
   "operations": {
     "CreateDetectorModel": "<p>Creates a detector model.</p>",
     "CreateInput": "<p>Creates an input.</p>",
     "DeleteDetectorModel": "<p>Deletes a detector model. Any active instances of the detector model are also deleted.</p>",
     "DeleteInput": "<p>Deletes an input.</p>",
-    "DescribeDetectorModel": "<p>Describes a detector model. If the <code>version</code> parameter is not specified, information about the latest version is returned.</p>",
+    "DescribeDetectorModel": "<p>Describes a detector model. If the <code>\"version\"</code> parameter is not specified, information about the latest version is returned.</p>",
     "DescribeInput": "<p>Describes an input.</p>",
     "DescribeLoggingOptions": "<p>Retrieves the current settings of the AWS IoT Events logging options.</p>",
     "ListDetectorModelVersions": "<p>Lists all the versions of a detector model. Only the metadata associated with each detector model version is returned.</p>",
     "ListDetectorModels": "<p>Lists the detector models you have created. Only the metadata associated with each detector model is returned.</p>",
     "ListInputs": "<p>Lists the inputs you have created.</p>",
     "ListTagsForResource": "<p>Lists the tags (metadata) you have assigned to the resource.</p>",
-    "PutLoggingOptions": "<p>Sets or updates the AWS IoT Events logging options.</p> <p>Note that if you update the value of any <code>loggingOptions</code> field, it takes up to one minute for the change to take effect. Also, if you change the policy attached to the role you specified in the roleArn field (for example, to correct an invalid policy) it takes up to five minutes for that change to take effect.</p>",
-    "TagResource": "<p>Add to or modifies the tags of the given resource. Tags are metadata which can be used to manage a resource.</p>",
+    "PutLoggingOptions": "<p>Sets or updates the AWS IoT Events logging options.</p> <p>If you update the value of any <code>\"loggingOptions\"</code> field, it takes up to one minute for the change to take effect. Also, if you change the policy attached to the role you specified in the <code>\"roleArn\"</code> field (for example, to correct an invalid policy) it takes up to five minutes for that change to take effect.</p>",
+    "TagResource": "<p>Adds to or modifies the tags of the given resource. Tags are metadata that can be used to manage a resource.</p>",
     "UntagResource": "<p>Removes the given tags (metadata) from the resource.</p>",
-    "UpdateDetectorModel": "<p>Updates a detector model. Detectors (instances) spawned by the previous version will be deleted and re-created as new inputs arrive.</p>",
+    "UpdateDetectorModel": "<p>Updates a detector model. Detectors (instances) spawned by the previous version are deleted and then re-created as new inputs arrive.</p>",
     "UpdateInput": "<p>Updates an input.</p>"
   },
   "shapes": {
     "Action": {
-      "base": "<p>An action to be performed when the <code>condition</code> is TRUE.</p>",
+      "base": "<p>An action to be performed when the <code>\"condition\"</code> is TRUE.</p>",
       "refs": {
         "Actions$member": null
       }
@@ -39,9 +39,10 @@
         "CreateDetectorModelRequest$roleArn": "<p>The ARN of the role that grants permission to AWS IoT Events to perform its operations.</p>",
         "DetectorModelConfiguration$roleArn": "<p>The ARN of the role that grants permission to AWS IoT Events to perform its operations.</p>",
         "DetectorModelVersionSummary$roleArn": "<p>The ARN of the role that grants the detector model permission to perform its tasks.</p>",
+        "LambdaAction$functionArn": "<p>The ARN of the Lambda function which is executed.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The ARN of the resource.</p>",
         "LoggingOptions$roleArn": "<p>The ARN of the role that grants permission to AWS IoT Events to perform logging.</p>",
-        "SNSTopicPublishAction$targetArn": "<p>The ARN of the Amazon SNS target to which the message is sent.</p>",
+        "SNSTopicPublishAction$targetArn": "<p>The ARN of the Amazon SNS target where the message is sent.</p>",
         "TagResourceRequest$resourceArn": "<p>The ARN of the resource.</p>",
         "UntagResourceRequest$resourceArn": "<p>The ARN of the resource.</p>",
         "UpdateDetectorModelRequest$roleArn": "<p>The ARN of the role that grants permission to AWS IoT Events to perform its operations.</p>"
@@ -56,7 +57,7 @@
     "AttributeJsonPath": {
       "base": null,
       "refs": {
-        "Attribute$jsonPath": "<p>An expression that specifies an attribute-value pair in a JSON structure. Use this to specify an attribute from the JSON payload that is made available by the input. Inputs are derived from messages sent to the AWS IoT Events system (<code>BatchPutMessage</code>). Each such message contains a JSON payload, and the attribute (and its paired value) specified here are available for use in the <code>condition</code> expressions used by detectors. </p> <p>Syntax: <code>&lt;field-name&gt;.&lt;field-name&gt;...</code> </p>",
+        "Attribute$jsonPath": "<p>An expression that specifies an attribute-value pair in a JSON structure. Use this to specify an attribute from the JSON payload that is made available by the input. Inputs are derived from messages sent to the AWS IoT Events system (<code>BatchPutMessage</code>). Each such message contains a JSON payload, and the attribute (and its paired value) specified here are available for use in the <code>\"condition\"</code> expressions used by detectors. </p> <p>Syntax: <code>&lt;field-name&gt;.&lt;field-name&gt;...</code> </p>",
         "CreateDetectorModelRequest$key": "<p>The input attribute key used to identify a device or system in order to create a detector (an instance of the detector model) and then to route each input received to the appropriate detector (instance). This parameter uses a JSON-path expression to specify the attribute-value pair in the message payload of each input that is used to identify the device associated with the input.</p>",
         "DetectorModelConfiguration$key": "<p>The input attribute key used to identify a device or system in order to create a detector (an instance of the detector model) and then to route each input received to the appropriate detector (instance). This parameter uses a JSON-path expression to specify the attribute-value pair in the message payload of each input that is used to identify the device associated with the input.</p>"
       }
@@ -64,7 +65,7 @@
     "Attributes": {
       "base": null,
       "refs": {
-        "InputDefinition$attributes": "<p>The attributes from the JSON payload that are made available by the input. Inputs are derived from messages sent to the AWS IoT Events system using <code>BatchPutMessage</code>. Each such message contains a JSON payload, and those attributes (and their paired values) specified here is available for use in the <code>condition</code> expressions used by detectors that monitor this input. </p>"
+        "InputDefinition$attributes": "<p>The attributes from the JSON payload that are made available by the input. Inputs are derived from messages sent to the AWS IoT Events system using <code>BatchPutMessage</code>. Each such message contains a JSON payload, and those attributes (and their paired values) specified here are available for use in the <code>\"condition\"</code> expressions used by detectors that monitor this input. </p>"
       }
     },
     "ClearTimerAction": {
@@ -76,8 +77,8 @@
     "Condition": {
       "base": null,
       "refs": {
-        "Event$condition": "<p>[Optional] The Boolean expression that when TRUE causes the <code>actions</code> to be performed. If not present, the actions are performed (=TRUE); if the expression result is not a Boolean value the actions are NOT performed (=FALSE).</p>",
-        "TransitionEvent$condition": "<p>[Required] A Boolean expression that when TRUE causes the actions to be performed and the <code>nextState</code> to be entered.</p>"
+        "Event$condition": "<p>[Optional] The Boolean expression that when TRUE causes the <code>\"actions\"</code> to be performed. If not present, the actions are performed (=TRUE); if the expression result is not a Boolean value, the actions are NOT performed (=FALSE).</p>",
+        "TransitionEvent$condition": "<p>[Required] A Boolean expression that when TRUE causes the actions to be performed and the <code>\"nextState\"</code> to be entered.</p>"
       }
     },
     "CreateDetectorModelRequest": {
@@ -118,6 +119,12 @@
     "DeleteInputResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "DeliveryStreamName": {
+      "base": null,
+      "refs": {
+        "FirehoseAction$deliveryStreamName": "<p>The name of the Kinesis Data Firehose stream where the data is written.</p>"
       }
     },
     "DescribeDetectorModelRequest": {
@@ -211,7 +218,7 @@
         "DetectorModelSummary$detectorModelName": "<p>The name of the detector model.</p>",
         "DetectorModelVersionSummary$detectorModelName": "<p>The name of the detector model.</p>",
         "ListDetectorModelVersionsRequest$detectorModelName": "<p>The name of the detector model whose versions are returned.</p>",
-        "UpdateDetectorModelRequest$detectorModelName": "<p>The name of the detector model to be updated.</p>"
+        "UpdateDetectorModelRequest$detectorModelName": "<p>The name of the detector model that is updated.</p>"
       }
     },
     "DetectorModelSummaries": {
@@ -254,7 +261,7 @@
       }
     },
     "Event": {
-      "base": "<p>Specifies the <code>actions</code> to be performed when the <code>condition</code> evaluates to TRUE.</p>",
+      "base": "<p>Specifies the <code>\"actions\"</code> to be performed when the <code>\"condition\"</code> evaluates to TRUE.</p>",
       "refs": {
         "Events$member": null
       }
@@ -269,9 +276,21 @@
     "Events": {
       "base": null,
       "refs": {
-        "OnEnterLifecycle$events": "<p>Specifies the actions that are performed when the state is entered and the <code>condition</code> is TRUE.</p>",
-        "OnExitLifecycle$events": "<p>Specifies the actions that are performed when the state is exited and the <code>condition</code> is TRUE.</p>",
-        "OnInputLifecycle$events": "<p>Specifies the actions performed when the <code>condition</code> evaluates to TRUE.</p>"
+        "OnEnterLifecycle$events": "<p>Specifies the actions that are performed when the state is entered and the <code>\"condition\"</code> is TRUE.</p>",
+        "OnExitLifecycle$events": "<p>Specifies the <code>\"actions\"</code> that are performed when the state is exited and the <code>\"condition\"</code> is TRUE.</p>",
+        "OnInputLifecycle$events": "<p>Specifies the actions performed when the <code>\"condition\"</code> evaluates to TRUE.</p>"
+      }
+    },
+    "FirehoseAction": {
+      "base": "<p>Sends information about the detector model instance and the event which triggered the action to a Kinesis Data Firehose stream.</p>",
+      "refs": {
+        "Action$firehose": "<p>Sends information about the detector model instance and the event which triggered the action to a Kinesis Data Firehose stream.</p>"
+      }
+    },
+    "FirehoseSeparator": {
+      "base": null,
+      "refs": {
+        "FirehoseAction$separator": "<p>A character separator that is used to separate records written to the Kinesis Data Firehose stream. Valid values are: '\\n' (newline), '\\t' (tab), '\\r\\n' (Windows newline), ',' (comma).</p>"
       }
     },
     "Input": {
@@ -316,10 +335,11 @@
       "base": null,
       "refs": {
         "CreateInputRequest$inputName": "<p>The name you want to give to the input.</p>",
-        "DeleteInputRequest$inputName": "<p>The name of the input to be deleted.</p>",
+        "DeleteInputRequest$inputName": "<p>The name of the input to delete.</p>",
         "DescribeInputRequest$inputName": "<p>The name of the input.</p>",
         "InputConfiguration$inputName": "<p>The name of the input.</p>",
         "InputSummary$inputName": "<p>The name of the input.</p>",
+        "IotEventsAction$inputName": "<p>The name of the AWS IoT Events input where the data is sent.</p>",
         "UpdateInputRequest$inputName": "<p>The name of the input you want to update.</p>"
       }
     },
@@ -352,16 +372,28 @@
       "refs": {
       }
     },
-    "IotTopicPublishAction": {
-      "base": "<p>Information required to publish the MQTT message via the AWS IoT Message Broker.</p>",
+    "IotEventsAction": {
+      "base": "<p>Sends an IoT Events input, passing in information about the detector model instance and the event which triggered the action.</p>",
       "refs": {
-        "Action$iotTopicPublish": "<p>Publishes an MQTT message with the given topic to the AWS IoT Message Broker.</p>"
+        "Action$iotEvents": "<p>Sends an IoT Events input, passing in information about the detector model instance and the event which triggered the action.</p>"
+      }
+    },
+    "IotTopicPublishAction": {
+      "base": "<p>Information required to publish the MQTT message via the AWS IoT message broker.</p>",
+      "refs": {
+        "Action$iotTopicPublish": "<p>Publishes an MQTT message with the given topic to the AWS IoT message broker.</p>"
       }
     },
     "KeyValue": {
       "base": null,
       "refs": {
         "DetectorDebugOption$keyValue": "<p>The value of the input attribute key used to create the detector (the instance of the detector model).</p>"
+      }
+    },
+    "LambdaAction": {
+      "base": "<p>Calls a Lambda function, passing in information about the detector model instance and the event which triggered the action.</p>",
+      "refs": {
+        "Action$lambda": "<p>Calls a Lambda function, passing in information about the detector model instance and the event which triggered the action.</p>"
       }
     },
     "LimitExceededException": {
@@ -418,7 +450,7 @@
     "LoggingLevel": {
       "base": null,
       "refs": {
-        "LoggingOptions$level": "<p>The logging level. Currently, only \"ERROR\" is supported.</p>"
+        "LoggingOptions$level": "<p>The logging level.</p>"
       }
     },
     "LoggingOptions": {
@@ -456,24 +488,30 @@
     "OnEnterLifecycle": {
       "base": "<p>When entering this state, perform these <code>actions</code> if the <code>condition</code> is TRUE.</p>",
       "refs": {
-        "State$onEnter": "<p>When entering this state, perform these <code>actions</code> if the <code>condition</code> is TRUE.</p>"
+        "State$onEnter": "<p>When entering this state, perform these <code>\"actions\"</code> if the <code>\"condition\"</code> is TRUE.</p>"
       }
     },
     "OnExitLifecycle": {
-      "base": "<p>When exiting this state, perform these <code>actions</code> if the specified <code>condition</code> is TRUE.</p>",
+      "base": "<p>When exiting this state, perform these <code>\"actions\"</code> if the specified <code>\"condition\"</code> is TRUE.</p>",
       "refs": {
-        "State$onExit": "<p>When exiting this state, perform these <code>actions</code> if the specified <code>condition</code> is TRUE.</p>"
+        "State$onExit": "<p>When exiting this state, perform these <code>\"actions\"</code> if the specified <code>\"condition\"</code> is TRUE.</p>"
       }
     },
     "OnInputLifecycle": {
-      "base": "<p>Specifies the actions performed when the <code>condition</code> evaluates to TRUE.</p>",
+      "base": "<p>Specifies the actions performed when the <code>\"condition\"</code> evaluates to TRUE.</p>",
       "refs": {
-        "State$onInput": "<p>When an input is received and the <code>condition</code> is TRUE, perform the specified <code>actions</code>.</p>"
+        "State$onInput": "<p>When an input is received and the <code>\"condition\"</code> is TRUE, perform the specified <code>\"actions\"</code>.</p>"
       }
     },
     "PutLoggingOptionsRequest": {
       "base": null,
       "refs": {
+      }
+    },
+    "QueueUrl": {
+      "base": null,
+      "refs": {
+        "SqsAction$queueUrl": "<p>The URL of the SQS queue where the data is written.</p>"
       }
     },
     "ResetTimerAction": {
@@ -526,6 +564,12 @@
         "Action$setVariable": "<p>Sets a variable to a specified value.</p>"
       }
     },
+    "SqsAction": {
+      "base": "<p>Sends information about the detector model instance and the event which triggered the action to an AWS SQS queue.</p>",
+      "refs": {
+        "Action$sqs": "<p>Sends information about the detector model instance and the event which triggered the action to an AWS SQS queue.</p>"
+      }
+    },
     "State": {
       "base": "<p>Information that defines a state of a detector.</p>",
       "refs": {
@@ -547,7 +591,7 @@
       }
     },
     "Tag": {
-      "base": "<p>Metadata which can be used to manage the resource.</p>",
+      "base": "<p>Metadata that can be used to manage the resource.</p>",
       "refs": {
         "Tags$member": null
       }
@@ -584,8 +628,8 @@
     "Tags": {
       "base": null,
       "refs": {
-        "CreateDetectorModelRequest$tags": "<p>Metadata which can be used to manage the detector model.</p>",
-        "CreateInputRequest$tags": "<p>Metadata which can be used to manage the input.</p>",
+        "CreateDetectorModelRequest$tags": "<p>Metadata that can be used to manage the detector model.</p>",
+        "CreateInputRequest$tags": "<p>Metadata that can be used to manage the input.</p>",
         "ListTagsForResourceResponse$tags": "<p>The list of tags assigned to the resource.</p>",
         "TagResourceRequest$tags": "<p>The new or modified tags for the resource.</p>"
       }
@@ -618,7 +662,7 @@
       }
     },
     "TransitionEvent": {
-      "base": "<p>Specifies the actions performed and the next state entered when a <code>condition</code> evaluates to TRUE.</p>",
+      "base": "<p>Specifies the actions performed and the next state entered when a <code>\"condition\"</code> evaluates to TRUE.</p>",
       "refs": {
         "TransitionEvents$member": null
       }
@@ -626,7 +670,7 @@
     "TransitionEvents": {
       "base": null,
       "refs": {
-        "OnInputLifecycle$transitionEvents": "<p>Specifies the actions performed and the next state entered when a <code>condition</code> evaluates to TRUE.</p>"
+        "OnInputLifecycle$transitionEvents": "<p>Specifies the actions performed, and the next state entered, when a <code>\"condition\"</code> evaluates to TRUE.</p>"
       }
     },
     "UnsupportedOperationException": {
@@ -662,6 +706,12 @@
     "UpdateInputResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "UseBase64": {
+      "base": null,
+      "refs": {
+        "SqsAction$useBase64": "<p>Set this to TRUE if you want the data to be Base-64 encoded before it is written to the queue. Otherwise, set this to FALSE.</p>"
       }
     },
     "VariableName": {
