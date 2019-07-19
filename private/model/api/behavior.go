@@ -30,13 +30,23 @@ type Case struct{
 	Description string `json:"description"`
 	LocalConfig map[string]string `json:"localConfig"`
 	Request Request `json:"request"`
+	Response Response `json:"response"`
 	Expect []map[string]interface{}   `json:"expect"`
+}
+
+type Response struct{
+	StatusCode int `json:"statusCode"`
+	BodyContent string `json:"bodyContent"`
+	BodyType string `json: "bodyType"`
+	Headers map[string]string `json:"headers"`
+
 }
 
 type Request struct{
 	Operation string `json:"operation"`
 	Input map[string]interface{} `json:"input"`
 }
+
 func (c Request) BuildInputShape(ref *ShapeRef) string {
 	var b ShapeValueBuilder
 	return fmt.Sprintf("&%s{\n%s\n}",
@@ -65,14 +75,17 @@ func (a *API) APIBehaviorTestsGoCode() string {
 	a.resetImports()
 	a.AddImport("context")
 	a.AddImport("testing")
+	a.AddImport("net/http")
 	a.AddImport("time")
+	a.AddImport("io/ioutil")
+	a.AddImport("bytes")
+
 	a.AddSDKImport("aws")
 	a.AddSDKImport("awstesting")
 	a.AddSDKImport("aws/client")
 	a.AddSDKImport("private/protocol")
 	a.AddSDKImport("private/util")
 	a.AddSDKImport("aws/request")
-
 
 	a.AddImport(a.ImportPath())
 
@@ -133,11 +146,30 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 		input := {{ $testCase.Request.BuildInputShape $op.InputRef }}
 
 		req, resp := svc.{{$testCase.Request.Operation}}Request(input)
-	
+
    		err := req.Send()
 		if err == nil { // resp is now filled
 			fmt.Println(resp)
 		}
+		{{- if eq $testCase.Response.StatusCode 0}}
+			response := Response{StatusCode:200}
+		{{- else }}
+		  response := &http.Response{
+							StatusCode:{{$testCase.Response.StatusCode}},
+						{{- if ne (len $testCase.Response.Headers) 0}}
+							Header: http.Header{
+										{{- range $key,$val:=$testCase.Response.Headers}}
+											"{{$key}}":[]string{ "{{$val}}" },
+										{{- end}}	
+									},
+						{{- end}}
+						{{- if ne (len $testCase.Response.BodyContent) 0}}
+							Body: ioutil.NopCloser(bytes.NewBufferString({{printf "%q" $testCase.Response.BodyContent}})),
+						{{- end}}
+					}
+
+		{{- end}}	
+
 	}
 {{- end }}
 `))
