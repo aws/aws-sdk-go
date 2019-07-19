@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ed2d3696-b0f7-4ed1-97ce-3c111ab0f041" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/model/api/behavior.go" beforeDir="false" afterPath="$PROJECT_DIR$/private/model/api/behavior.go" afterDir="false" />
-    </list>
+    <list default="true" id="ed2d3696-b0f7-4ed1-97ce-3c111ab0f041" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,11 +33,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/models/behavior_tests/rest_xml_protocol/2019-07-16/behavior.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="1584" column="11" lean-forward="true" selection-start-line="1584" selection-start-column="11" selection-end-line="1584" selection-end-column="11" />
+            <state relative-caret-position="675">
+              <caret line="48" column="11" lean-forward="true" selection-start-line="48" selection-start-column="11" selection-end-line="48" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -48,7 +45,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/behav_test.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8597">
+            <state relative-caret-position="-125">
               <caret line="5048" column="33" lean-forward="true" selection-start-line="5048" selection-start-column="33" selection-end-line="5048" selection-end-column="33" />
               <folding>
                 <element signature="e#144#546#0" expanded="true" />
@@ -57,11 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/private/model/api/behavior.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+            <state relative-caret-position="450">
+              <caret line="30" column="51" lean-forward="true" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
               <folding>
                 <element signature="e#32#109#0" expanded="true" />
               </folding>
@@ -134,7 +131,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>headerJSon</find>
       <find>json</find>
       <find>uncomm</find>
       <find>uncomment</find>
@@ -164,6 +160,7 @@
       <find>&quot;statuscode&quot;</find>
       <find>&quot;body&quot;</find>
       <find>&quot;bodyContent&quot;</find>
+      <find>localconfig</find>
     </findStrings>
     <replaceStrings>
       <replace>Behaviour</replace>
@@ -211,8 +208,8 @@
         <option value="$PROJECT_DIR$/private/model/api/example.go" />
         <option value="$PROJECT_DIR$/private/model/api/shape_value_builder.go" />
         <option value="$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/behav_test.go" />
-        <option value="$PROJECT_DIR$/models/behavior_tests/rest_xml_protocol/2019-07-16/behavior.json" />
         <option value="$PROJECT_DIR$/private/model/api/behavior.go" />
+        <option value="$PROJECT_DIR$/models/behavior_tests/rest_xml_protocol/2019-07-16/behavior.json" />
       </list>
     </option>
   </component>
@@ -807,16 +804,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/behavior_tests/rest_xml_protocol/2019-07-16/behavior.json">
+    <entry file="file://$PROJECT_DIR$/private/model/api/behavior.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="1584" column="11" lean-forward="true" selection-start-line="1584" selection-start-column="11" selection-end-line="1584" selection-end-column="11" />
+        <state relative-caret-position="450">
+          <caret line="30" column="51" lean-forward="true" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
+          <folding>
+            <element signature="e#32#109#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/behav_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8597">
+        <state relative-caret-position="-125">
           <caret line="5048" column="33" lean-forward="true" selection-start-line="5048" selection-start-column="33" selection-end-line="5048" selection-end-column="33" />
           <folding>
             <element signature="e#144#546#0" expanded="true" />
@@ -824,13 +824,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/private/model/api/behavior.go">
+    <entry file="file://$PROJECT_DIR$/models/behavior_tests/rest_xml_protocol/2019-07-16/behavior.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
-          <folding>
-            <element signature="e#32#109#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="675">
+          <caret line="48" column="11" lean-forward="true" selection-start-line="48" selection-start-column="11" selection-end-line="48" selection-end-column="11" />
         </state>
       </provider>
     </entry>
