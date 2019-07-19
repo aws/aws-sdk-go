@@ -687,11 +687,11 @@ func (ctx *signingCtx) buildBodyDigest() error {
 			if !aws.IsReaderSeekable(ctx.Body) {
 				return fmt.Errorf("cannot use unseekable request body %T, for signed request with body", ctx.Body)
 			}
-			hasBytes, err := makeSha256Reader(ctx.Body)
+			hashBytes, err := makeSha256Reader(ctx.Body)
 			if err != nil {
 				return err
 			}
-			hash = hex.EncodeToString(hasBytes)
+			hash = hex.EncodeToString(hashBytes)
 		}
 
 		if includeSHA256Header {

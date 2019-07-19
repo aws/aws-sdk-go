@@ -1111,7 +1111,7 @@ func TestRequestNoConnection(t *testing.T) {
 	}
 }
 
-func TestRequetBodySeekFails(t *testing.T) {
+func TestRequestBodySeekFails(t *testing.T) {
 	s := awstesting.NewClient()
 	s.Handlers.Validate.Clear()
 	s.Handlers.Build.Clear()
