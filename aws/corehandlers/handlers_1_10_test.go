@@ -42,6 +42,9 @@ func TestSendHandler_HEADNoBody(t *testing.T) {
 			S3ForcePathStyle: aws.Bool(true),
 		},
 	})
+	if err != nil {
+		t.Fatalf("expect no error, got %v", err)
+	}
 
 	svc := s3.New(sess)
 
