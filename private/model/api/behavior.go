@@ -132,7 +132,7 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 									"{{$.Tests.Defaults.Env.AWS_SECRET_ACCESS_KEY}}",
 								{{- end}} ""),
 			   }))
-{{end}}
+{{end}}	
 
 {{- range $i, $testCase := $.Tests.Cases }}
 	//{{printf "%s" $testCase.Description}}
@@ -169,7 +169,6 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 							Body: ioutil.NopCloser(bytes.NewBufferString({{printf "%q" $testCase.Response.BodyContent}})),
 						{{- end}}
 					}
-
 		{{- end}}	
 
 	}

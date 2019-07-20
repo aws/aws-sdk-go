@@ -38,8 +38,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/behavior_tests/rest_xml_protocol/2019-07-16/behavior.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="2810" column="9" selection-start-line="2810" selection-start-column="9" selection-end-line="2810" selection-end-column="9" />
+            <state relative-caret-position="375">
+              <caret line="25" column="32" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -47,8 +47,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/behav_test.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="32030">
-              <caret line="4675" column="49" lean-forward="true" selection-start-line="4675" selection-start-column="49" selection-end-line="4675" selection-end-column="49" />
+            <state relative-caret-position="71814">
+              <caret line="4817" column="49" lean-forward="true" selection-start-line="4817" selection-start-column="49" selection-end-line="4817" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -56,8 +56,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/private/model/api/behavior.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="121" column="28" selection-start-line="121" selection-start-column="28" selection-end-line="121" selection-end-column="28" />
+            <state relative-caret-position="171">
+              <caret line="134" column="7" lean-forward="true" selection-start-line="134" selection-start-column="7" selection-end-line="134" selection-end-column="7" />
               <folding>
                 <element signature="e#32#98#0" expanded="true" />
               </folding>
@@ -803,24 +803,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/behavior_tests/rest_xml_protocol/2019-07-16/behavior.json">
+    <entry file="file://$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/behav_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="2810" column="9" selection-start-line="2810" selection-start-column="9" selection-end-line="2810" selection-end-column="9" />
+        <state relative-caret-position="71814">
+          <caret line="4817" column="49" lean-forward="true" selection-start-line="4817" selection-start-column="49" selection-end-line="4817" selection-end-column="49" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/behav_test.go">
+    <entry file="file://$PROJECT_DIR$/models/behavior_tests/rest_xml_protocol/2019-07-16/behavior.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32030">
-          <caret line="4675" column="49" lean-forward="true" selection-start-line="4675" selection-start-column="49" selection-end-line="4675" selection-end-column="49" />
+        <state relative-caret-position="375">
+          <caret line="25" column="32" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/private/model/api/behavior.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="121" column="28" selection-start-line="121" selection-start-column="28" selection-end-line="121" selection-end-column="28" />
+        <state relative-caret-position="171">
+          <caret line="134" column="7" lean-forward="true" selection-start-line="134" selection-start-column="7" selection-end-line="134" selection-end-column="7" />
           <folding>
             <element signature="e#32#98#0" expanded="true" />
           </folding>
