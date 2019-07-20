@@ -112,6 +112,7 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 
 {{define "StashCredentials"}}
 	env := awstesting.StashEnv() //Stashes the current environment variables
+	defer env()//Might need to comment this out
 {{end}}
 
 {{define "SessionSetup"}}
