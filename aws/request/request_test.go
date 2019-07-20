@@ -139,7 +139,7 @@ func TestRequestRecoverRetry5xx(t *testing.T) {
 	if err != nil {
 		t.Fatalf("expect no error, but got %v", err)
 	}
-	if e, a := 2, int(r.RetryCount); e != a {
+	if e, a := 2, r.RetryCount; e != a {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 	if e, a := "valid", out.Data; e != a {
@@ -172,7 +172,7 @@ func TestRequestRecoverRetry4xxRetryable(t *testing.T) {
 	if err != nil {
 		t.Fatalf("expect no error, but got %v", err)
 	}
-	if e, a := 3, int(r.RetryCount); e != a {
+	if e, a := 3, r.RetryCount; e != a {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 	if e, a := "valid", out.Data; e != a {
@@ -206,7 +206,7 @@ func TestRequest4xxUnretryable(t *testing.T) {
 	if e, a := "Signature does not match.", aerr.Message(); e != a {
 		t.Errorf("expect %q error message, got %q", e, a)
 	}
-	if e, a := 0, int(r.RetryCount); e != a {
+	if e, a := 0, r.RetryCount; e != a {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 }
@@ -249,7 +249,7 @@ func TestRequestExhaustRetries(t *testing.T) {
 	if e, a := "An error occurred.", aerr.Message(); e != a {
 		t.Errorf("expect %q error message, got %q", e, a)
 	}
-	if e, a := 3, int(r.RetryCount); e != a {
+	if e, a := 3, r.RetryCount; e != a {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 
@@ -310,7 +310,7 @@ func TestRequestRecoverExpiredCreds(t *testing.T) {
 		t.Errorf("Expect valid creds after cred expired recovery")
 	}
 
-	if e, a := 1, int(r.RetryCount); e != a {
+	if e, a := 1, r.RetryCount; e != a {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 	if e, a := "valid", out.Data; e != a {
@@ -394,7 +394,7 @@ func TestRequestThrottleRetries(t *testing.T) {
 	if e, a := "An error occurred.", aerr.Message(); e != a {
 		t.Errorf("expect %q error message, got %q", e, a)
 	}
-	if e, a := 3, int(r.RetryCount); e != a {
+	if e, a := 3, r.RetryCount; e != a {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 
@@ -444,7 +444,7 @@ func TestRequestRecoverTimeoutWithNilBody(t *testing.T) {
 	if err != nil {
 		t.Fatalf("expect no error, but got %v", err)
 	}
-	if e, a := 1, int(r.RetryCount); e != a {
+	if e, a := 1, r.RetryCount; e != a {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 	if e, a := "valid", out.Data; e != a {
@@ -487,7 +487,7 @@ func TestRequestRecoverTimeoutWithNilResponse(t *testing.T) {
 	if err != nil {
 		t.Fatalf("expect no error, but got %v", err)
 	}
-	if e, a := 1, int(r.RetryCount); e != a {
+	if e, a := 1, r.RetryCount; e != a {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 	if e, a := "valid", out.Data; e != a {
@@ -707,7 +707,7 @@ func TestEnforceShouldRetryCheck(t *testing.T) {
 	if err == nil {
 		t.Fatalf("expect error, but got nil")
 	}
-	if e, a := 3, int(r.RetryCount); e != a {
+	if e, a := 3, r.RetryCount; e != a {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 	if !retryer.shouldRetry {
@@ -1075,7 +1075,7 @@ func Test501NotRetrying(t *testing.T) {
 	if e, a := "NotImplemented", aerr.Code(); e != a {
 		t.Errorf("expected error code %q, but received %q", e, a)
 	}
-	if e, a := 1, int(r.RetryCount); e != a {
+	if e, a := 1, r.RetryCount; e != a {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 }
