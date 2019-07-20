@@ -115,20 +115,28 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 {{end}}
 
 {{define "SessionSetup"}}
-		{{- if len $.testCase.LocalConfig }}
-			access_key="{{$.testCase.LocalConfig.AWS_ACCESS_KEY}}"
-			secret_access_key="{{$.testCase.LocalConfig.AWS_SECRET_ACCESS_KEY}}"
-			aws_region="{{$.testCase.LocalConfig.AWS_REGION}}"
-		{{- else}}
-			access_key:="{{$.Tests.Defaults.Env.AWS_ACCESS_KEY}}"
-			secret_access_key:="{{$.Tests.Defaults.Env.AWS_SECRET_ACCESS_KEY}}"
-			aws_region:="{{$.Tests.Defaults.Env.AWS_REGION}}"
-		{{- end}}
-
 		//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 		sess := session.Must(session.NewSession(&aws.Config{
-				 Region: aws.String(aws_region),
-				 Credentials: credentials.NewStaticCredentials(access_key, secret_access_key, ""),
+				 Region: aws.String(
+						{{- if and (len $.testCase.LocalConfig) $.testCase.LocalConfig.AWS_REGION }}
+							"{{$.testCase.LocalConfig.AWS_REGION}}",							
+						{{- else}}
+							"{{$.Tests.Defaults.Env.AWS_REGION}}",
+						{{- end}}
+					),
+				 Credentials: credentials.NewStaticCredentials(
+								{{- if and (len $.testCase.LocalConfig) $.testCase.LocalConfig.AWS_ACCESS_KEY }}
+									"{{$.testCase.LocalConfig.AWS_ACCESS_KEY}}",							
+								{{- else}}
+									"{{$.Tests.Defaults.Env.AWS_ACCESS_KEY}}",
+								{{- end}}
+
+								{{- if and (len $.testCase.LocalConfig) $.testCase.LocalConfig.AWS_SECRET_ACCESS_KEY }}
+									"{{$.testCase.LocalConfig.AWS_SECRET_ACCESS_KEY}}",							
+								{{- else}}
+									"{{$.Tests.Defaults.Env.AWS_SECRET_ACCESS_KEY}}",
+								{{- end}}
+ 								""),
 			   }))
 {{end}}
 
