@@ -117,13 +117,7 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 {{define "SessionSetup"}}
 		//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 		sess := session.Must(session.NewSession(&aws.Config{
-				 Region: aws.String(
-						{{- if and (len $.testCase.LocalConfig) $.testCase.LocalConfig.AWS_REGION }}
-							"{{$.testCase.LocalConfig.AWS_REGION}}",							
-						{{- else}}
-							"{{$.Tests.Defaults.Env.AWS_REGION}}",
-						{{- end}}
-					),
+				 Region: aws.String( {{- if and (len $.testCase.LocalConfig) $.testCase.LocalConfig.AWS_REGION }} "{{$.testCase.LocalConfig.AWS_REGION}}" {{- else}} "{{$.Tests.Defaults.Env.AWS_REGION}}" {{- end}}),
 				 Credentials: credentials.NewStaticCredentials(
 								{{- if and (len $.testCase.LocalConfig) $.testCase.LocalConfig.AWS_ACCESS_KEY }}
 									"{{$.testCase.LocalConfig.AWS_ACCESS_KEY}}",							
@@ -135,8 +129,7 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 									"{{$.testCase.LocalConfig.AWS_SECRET_ACCESS_KEY}}",							
 								{{- else}}
 									"{{$.Tests.Defaults.Env.AWS_SECRET_ACCESS_KEY}}",
-								{{- end}}
- 								""),
+								{{- end}} ""),
 			   }))
 {{end}}
 
