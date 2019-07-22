@@ -26,9 +26,7 @@ const (
 // now is used to return a time.Time object representing
 // the current time. This can be used to easily test and
 // compare test values.
-var now = func() time.Time {
-	return time.Now()
-}
+var now = time.Now
 
 // WebIdentityRoleProvider is used to retrieve credentials using
 // an OIDC token.

@@ -562,7 +562,7 @@ func TestTimeValueSlice(t *testing.T) {
 		}
 		for i := range out2 {
 			if in[i] == nil {
-				if !(*(out2[i])).IsZero() {
+				if !(out2[i]).IsZero() {
 					t.Errorf("Unexpected value at idx %d", idx)
 				}
 			} else {
