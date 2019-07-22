@@ -566,6 +566,9 @@ func TestSignWithRequestBody(t *testing.T) {
 	}))
 
 	req, err := http.NewRequest("POST", server.URL, nil)
+	if err != nil {
+		t.Errorf("expect not no error, got %v", err)
+	}
 
 	_, err = signer.Sign(req, bytes.NewReader(expectBody), "service", "region", time.Now())
 	if err != nil {
@@ -600,6 +603,9 @@ func TestSignWithRequestBody_Overwrite(t *testing.T) {
 	}))
 
 	req, err := http.NewRequest("GET", server.URL, strings.NewReader("invalid body"))
+	if err != nil {
+		t.Errorf("expect not no error, got %v", err)
+	}
 
 	_, err = signer.Sign(req, nil, "service", "region", time.Now())
 	req.ContentLength = 0

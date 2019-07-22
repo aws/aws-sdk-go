@@ -169,6 +169,9 @@ func TestResolveEndpointForPartition(t *testing.T) {
 	enum := testPartitions.Partitions()[0]
 
 	expected, err := testPartitions.EndpointFor("service1", "us-east-1")
+	if err != nil {
+		t.Fatalf("unexpected error, %v", err)
+	}
 
 	actual, err := enum.EndpointFor("service1", "us-east-1")
 	if err != nil {
