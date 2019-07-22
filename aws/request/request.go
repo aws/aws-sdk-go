@@ -347,9 +347,7 @@ func getPresignedURL(r *Request, expire time.Duration) (string, http.Header, err
 }
 
 const (
-	willRetry   = "will retry"
 	notRetrying = "not retrying"
-	retryCount  = "retry %v/%v"
 )
 
 func debugLogReqError(r *Request, stage, retryStr string, err error) {

@@ -250,8 +250,6 @@ type credProviderError struct {
 	Err error
 }
 
-var emptyCreds = credentials.Value{}
-
 func (c credProviderError) Retrieve() (credentials.Value, error) {
 	return credentials.Value{}, c.Err
 }
