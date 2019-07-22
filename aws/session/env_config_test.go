@@ -76,7 +76,7 @@ func TestLoadEnvConfig_Creds(t *testing.T) {
 		},
 	}
 
-	for i , c := range cases {
+	for i, c := range cases {
 		t.Run(strconv.Itoa(i), func(t *testing.T) {
 			restoreEnvFn := sdktesting.StashEnv()
 			defer restoreEnvFn()
@@ -270,7 +270,7 @@ func TestLoadEnvConfig(t *testing.T) {
 		},
 	}
 
-	for i , c := range cases {
+	for i, c := range cases {
 		t.Run(strconv.Itoa(i), func(t *testing.T) {
 			restoreEnvFn = sdktesting.StashEnv()
 			defer restoreEnvFn()
