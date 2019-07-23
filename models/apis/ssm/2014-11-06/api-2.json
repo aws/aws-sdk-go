@@ -5517,7 +5517,7 @@
     "InventoryGroupList":{
       "type":"list",
       "member":{"shape":"InventoryGroup"},
-      "max":10,
+      "max":15,
       "min":1
     },
     "InventoryGroupName":{
@@ -6206,7 +6206,10 @@
     },
     "MaintenanceWindowResourceType":{
       "type":"string",
-      "enum":["INSTANCE"]
+      "enum":[
+        "INSTANCE",
+        "RESOURCE_GROUP"
+      ]
     },
     "MaintenanceWindowRunCommandParameters":{
       "type":"structure",
@@ -8411,9 +8414,9 @@
     },
     "TargetKey":{
       "type":"string",
-      "max":128,
+      "max":163,
       "min":1,
-      "pattern":"^[\\p{L}\\p{Z}\\p{N}_.:/=\\-@]*$"
+      "pattern":"^[\\p{L}\\p{Z}\\p{N}_.:/=\\-@]*$|resource-groups:ResourceTypeFilters|resource-groups:Name"
     },
     "TargetLocation":{
       "type":"structure",
