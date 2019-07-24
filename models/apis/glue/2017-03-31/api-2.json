@@ -2472,6 +2472,8 @@
         "PublicKey":{"shape":"GenericString"},
         "PublicKeys":{"shape":"PublicKeysList"},
         "NumberOfNodes":{"shape":"IntegerValue"},
+        "WorkerType":{"shape":"WorkerType"},
+        "NumberOfWorkers":{"shape":"NullableInteger"},
         "ExtraPythonLibsS3Path":{"shape":"GenericString"},
         "ExtraJarsS3Path":{"shape":"GenericString"},
         "SecurityConfiguration":{"shape":"NameString"},
@@ -2490,6 +2492,8 @@
         "YarnEndpointAddress":{"shape":"GenericString"},
         "ZeppelinRemoteSparkInterpreterPort":{"shape":"IntegerValue"},
         "NumberOfNodes":{"shape":"IntegerValue"},
+        "WorkerType":{"shape":"WorkerType"},
+        "NumberOfWorkers":{"shape":"NullableInteger"},
         "AvailabilityZone":{"shape":"GenericString"},
         "VpcId":{"shape":"GenericString"},
         "ExtraPythonLibsS3Path":{"shape":"GenericString"},
@@ -2541,8 +2545,9 @@
         "SecurityConfiguration":{"shape":"NameString"},
         "Tags":{"shape":"TagsMap"},
         "NotificationProperty":{"shape":"NotificationProperty"},
+        "GlueVersion":{"shape":"GlueVersionString"},
         "NumberOfWorkers":{"shape":"NullableInteger"},
-        "WorkerType":{"shape":"NameString"}
+        "WorkerType":{"shape":"WorkerType"}
       }
     },
     "CreateJobResponse":{
@@ -3023,6 +3028,8 @@
         "ZeppelinRemoteSparkInterpreterPort":{"shape":"IntegerValue"},
         "PublicAddress":{"shape":"GenericString"},
         "Status":{"shape":"GenericString"},
+        "WorkerType":{"shape":"WorkerType"},
+        "NumberOfWorkers":{"shape":"NullableInteger"},
         "NumberOfNodes":{"shape":"IntegerValue"},
         "AvailabilityZone":{"shape":"GenericString"},
         "VpcId":{"shape":"GenericString"},
@@ -3772,6 +3779,12 @@
       "min":1,
       "pattern":"arn:aws:glue:.*"
     },
+    "GlueVersionString":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^\\w+\\.\\w+$"
+    },
     "GrokClassifier":{
       "type":"structure",
       "required":[
@@ -3883,7 +3896,8 @@
         "WorkerType":{"shape":"WorkerType"},
         "NumberOfWorkers":{"shape":"NullableInteger"},
         "SecurityConfiguration":{"shape":"NameString"},
-        "NotificationProperty":{"shape":"NotificationProperty"}
+        "NotificationProperty":{"shape":"NotificationProperty"},
+        "GlueVersion":{"shape":"GlueVersionString"}
       }
     },
     "JobBookmarkEntry":{
@@ -3960,7 +3974,8 @@
         "NumberOfWorkers":{"shape":"NullableInteger"},
         "SecurityConfiguration":{"shape":"NameString"},
         "LogGroupName":{"shape":"GenericString"},
-        "NotificationProperty":{"shape":"NotificationProperty"}
+        "NotificationProperty":{"shape":"NotificationProperty"},
+        "GlueVersion":{"shape":"GlueVersionString"}
       }
     },
     "JobRunList":{
@@ -4000,7 +4015,8 @@
         "WorkerType":{"shape":"WorkerType"},
         "NumberOfWorkers":{"shape":"NullableInteger"},
         "SecurityConfiguration":{"shape":"NameString"},
-        "NotificationProperty":{"shape":"NotificationProperty"}
+        "NotificationProperty":{"shape":"NotificationProperty"},
+        "GlueVersion":{"shape":"GlueVersionString"}
       }
     },
     "JsonClassifier":{
@@ -4687,7 +4703,7 @@
         "MaxCapacity":{"shape":"NullableDouble"},
         "SecurityConfiguration":{"shape":"NameString"},
         "NotificationProperty":{"shape":"NotificationProperty"},
-        "WorkerType":{"shape":"NameString"},
+        "WorkerType":{"shape":"WorkerType"},
         "NumberOfWorkers":{"shape":"NullableInteger"}
       }
     },
