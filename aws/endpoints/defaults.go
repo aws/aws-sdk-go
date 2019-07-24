@@ -1797,13 +1797,48 @@ var awsPartition = partition{
 		"ioteventsdata": service{
 
 			Endpoints: endpoints{
-				"ap-northeast-1": endpoint{},
-				"ap-southeast-2": endpoint{},
-				"eu-central-1":   endpoint{},
-				"eu-west-1":      endpoint{},
-				"us-east-1":      endpoint{},
-				"us-east-2":      endpoint{},
-				"us-west-2":      endpoint{},
+				"ap-northeast-1": endpoint{
+					Hostname: "data.iotevents.ap-northeast-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "ap-northeast-1",
+					},
+				},
+				"ap-southeast-2": endpoint{
+					Hostname: "data.iotevents.ap-southeast-2.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "ap-southeast-2",
+					},
+				},
+				"eu-central-1": endpoint{
+					Hostname: "data.iotevents.eu-central-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "eu-central-1",
+					},
+				},
+				"eu-west-1": endpoint{
+					Hostname: "data.iotevents.eu-west-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "eu-west-1",
+					},
+				},
+				"us-east-1": endpoint{
+					Hostname: "data.iotevents.us-east-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-east-1",
+					},
+				},
+				"us-east-2": endpoint{
+					Hostname: "data.iotevents.us-east-2.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-east-2",
+					},
+				},
+				"us-west-2": endpoint{
+					Hostname: "data.iotevents.us-west-2.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-west-2",
+					},
+				},
 			},
 		},
 		"iotthingsgraph": service{

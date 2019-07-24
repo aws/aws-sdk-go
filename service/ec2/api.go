@@ -3744,9 +3744,9 @@ func (c *EC2) CreateDhcpOptionsRequest(input *CreateDhcpOptionsInput) (req *requ
 //    * domain-name-servers - The IP addresses of up to four domain name servers,
 //    or AmazonProvidedDNS. The default DHCP option set specifies AmazonProvidedDNS.
 //    If specifying more than one domain name server, specify the IP addresses
-//    in a single parameter, separated by commas. ITo have your instance to
-//    receive a custom DNS hostname as specified in domain-name, you must set
-//    domain-name-servers to a custom DNS server.
+//    in a single parameter, separated by commas. To have your instance receive
+//    a custom DNS hostname as specified in domain-name, you must set domain-name-servers
+//    to a custom DNS server.
 //
 //    * domain-name - If you're using AmazonProvidedDNS in us-east-1, specify
 //    ec2.internal. If you're using AmazonProvidedDNS in another Region, specify
@@ -16763,14 +16763,14 @@ func (c *EC2) DescribeRegionsRequest(input *DescribeRegionsInput) (req *request.
 
 // DescribeRegions API operation for Amazon Elastic Compute Cloud.
 //
-// Describes the Regions that are currently available to you. The API returns
-// a list of all the Regions, including Regions that are disabled for your account.
-// For information about enabling Regions for your account, see Enabling and
-// Disabling Regions (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-account-payment.html#manage-account-payment-enable-disable-regions)
-// in the AWS Billing and Cost Management User Guide.
+// Describes the Regions that are enabled for your account, or all Regions.
 //
 // For a list of the Regions supported by Amazon EC2, see Regions and Endpoints
 // (https://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region).
+//
+// For information about enabling and disabling Regions for your account, see
+// Managing AWS Regions (https://docs.aws.amazon.com/general/latest/gr/rande-manage.html)
+// in the AWS General Reference.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -37419,7 +37419,12 @@ type ClientVpnEndpoint struct {
 	// The ARN of the server certificate.
 	ServerCertificateArn *string `locationName:"serverCertificateArn" type:"string"`
 
-	// Indicates whether VPN split tunneling is supported.
+	// Indicates whether split-tunnel is enabled in the AWS Client VPN endpoint
+	// endpoint.
+	//
+	// For information about split-tunnel VPN endpoints, see Split-Tunnel AWS Client
+	// VPN Endpoint (https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/split-tunnel-vpn.html)
+	// in the AWS Client VPN Administrator Guide.
 	SplitTunnel *bool `locationName:"splitTunnel" type:"boolean"`
 
 	// The current state of the Client VPN endpoint.
@@ -38870,6 +38875,16 @@ type CreateClientVpnEndpointInput struct {
 	// ServerCertificateArn is a required field
 	ServerCertificateArn *string `type:"string" required:"true"`
 
+	// Indicates whether split-tunnel is enabled on the AWS Client VPN endpoint
+	// endpoint.
+	//
+	// By default, split-tunnel on a VPN endpoint is disabled.
+	//
+	// For information about split-tunnel VPN endpoints, see Split-Tunnel AWS Client
+	// VPN Endpoint (https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/split-tunnel-vpn.html)
+	// in the AWS Client VPN Administrator Guide.
+	SplitTunnel *bool `type:"boolean"`
+
 	// The tags to apply to the Client VPN endpoint during creation.
 	TagSpecifications []*TagSpecification `locationName:"TagSpecification" locationNameList:"item" type:"list"`
 
@@ -38956,6 +38971,12 @@ func (s *CreateClientVpnEndpointInput) SetDryRun(v bool) *CreateClientVpnEndpoin
 // SetServerCertificateArn sets the ServerCertificateArn field's value.
 func (s *CreateClientVpnEndpointInput) SetServerCertificateArn(v string) *CreateClientVpnEndpointInput {
 	s.ServerCertificateArn = &v
+	return s
+}
+
+// SetSplitTunnel sets the SplitTunnel field's value.
+func (s *CreateClientVpnEndpointInput) SetSplitTunnel(v bool) *CreateClientVpnEndpointInput {
+	s.SplitTunnel = &v
 	return s
 }
 
@@ -40585,6 +40606,9 @@ type CreateLaunchTemplateInput struct {
 	// LaunchTemplateName is a required field
 	LaunchTemplateName *string `min:"3" type:"string" required:"true"`
 
+	// The tags to apply to the launch template during creation.
+	TagSpecifications []*TagSpecification `locationName:"TagSpecification" locationNameList:"item" type:"list"`
+
 	// A description for the first version of the launch template.
 	VersionDescription *string `type:"string"`
 }
@@ -40644,6 +40668,12 @@ func (s *CreateLaunchTemplateInput) SetLaunchTemplateData(v *RequestLaunchTempla
 // SetLaunchTemplateName sets the LaunchTemplateName field's value.
 func (s *CreateLaunchTemplateInput) SetLaunchTemplateName(v string) *CreateLaunchTemplateInput {
 	s.LaunchTemplateName = &v
+	return s
+}
+
+// SetTagSpecifications sets the TagSpecifications field's value.
+func (s *CreateLaunchTemplateInput) SetTagSpecifications(v []*TagSpecification) *CreateLaunchTemplateInput {
+	s.TagSpecifications = v
 	return s
 }
 
@@ -42015,7 +42045,7 @@ func (s *CreateSnapshotInput) SetVolumeId(v string) *CreateSnapshotInput {
 type CreateSnapshotsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Copies the tags from the specified instance to all snapshots.
+	// Copies the tags from the specified volume to corresponding snapshot.
 	CopyTagsFromSource *string `type:"string" enum:"CopyTagsFromSource"`
 
 	// A description propagated to every snapshot specified by the instance.
@@ -53856,7 +53886,7 @@ type DescribeNetworkInterfacesInput struct {
 	//
 	//    * attachment.attachment-id - The ID of the interface attachment.
 	//
-	//    * attachment.attach.time - The time that the network interface was attached
+	//    * attachment.attach-time - The time that the network interface was attached
 	//    to an instance.
 	//
 	//    * attachment.delete-on-termination - Indicates whether the attachment
@@ -54406,6 +54436,10 @@ func (s *DescribePublicIpv4PoolsOutput) SetPublicIpv4Pools(v []*PublicIpv4Pool) 
 type DescribeRegionsInput struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether to display all Regions, including Regions that are disabled
+	// for your account.
+	AllRegions *bool `type:"boolean"`
+
 	// Checks whether you have the required permissions for the action, without
 	// actually making the request, and provides an error response. If you have
 	// the required permissions, the error response is DryRunOperation. Otherwise,
@@ -54419,7 +54453,8 @@ type DescribeRegionsInput struct {
 	//    * region-name - The name of the Region (for example, us-east-1).
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
-	// The names of the Regions.
+	// The names of the Regions. You can specify any Regions, whether they are enabled
+	// and disabled for your account.
 	RegionNames []*string `locationName:"RegionName" locationNameList:"RegionName" type:"list"`
 }
 
@@ -54431,6 +54466,12 @@ func (s DescribeRegionsInput) String() string {
 // GoString returns the string representation
 func (s DescribeRegionsInput) GoString() string {
 	return s.String()
+}
+
+// SetAllRegions sets the AllRegions field's value.
+func (s *DescribeRegionsInput) SetAllRegions(v bool) *DescribeRegionsInput {
+	s.AllRegions = &v
+	return s
 }
 
 // SetDryRun sets the DryRun field's value.
@@ -66175,7 +66216,7 @@ type Image struct {
 	// The AWS account ID of the image owner.
 	OwnerId *string `locationName:"imageOwnerId" type:"string"`
 
-	// This value is set for Windows AMIs; otherwise, it is blank.
+	// This value is set to windows for Windows AMIs; otherwise, it is blank.
 	Platform *string `locationName:"platform" type:"string" enum:"PlatformValues"`
 
 	// Any product codes associated with the AMI.
@@ -72124,6 +72165,13 @@ type ModifyClientVpnEndpointInput struct {
 	// The ARN of the server certificate to be used. The server certificate must
 	// be provisioned in AWS Certificate Manager (ACM).
 	ServerCertificateArn *string `type:"string"`
+
+	// Indicates whether the VPN is split-tunnel.
+	//
+	// For information about split-tunnel VPN endpoints, see Split-Tunnel AWS Client
+	// VPN Endpoint (https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/split-tunnel-vpn.html)
+	// in the AWS Client VPN Administrator Guide.
+	SplitTunnel *bool `type:"boolean"`
 }
 
 // String returns the string representation
@@ -72182,6 +72230,12 @@ func (s *ModifyClientVpnEndpointInput) SetDryRun(v bool) *ModifyClientVpnEndpoin
 // SetServerCertificateArn sets the ServerCertificateArn field's value.
 func (s *ModifyClientVpnEndpointInput) SetServerCertificateArn(v string) *ModifyClientVpnEndpointInput {
 	s.ServerCertificateArn = &v
+	return s
+}
+
+// SetSplitTunnel sets the SplitTunnel field's value.
+func (s *ModifyClientVpnEndpointInput) SetSplitTunnel(v bool) *ModifyClientVpnEndpointInput {
+	s.SplitTunnel = &v
 	return s
 }
 
@@ -78582,6 +78636,10 @@ type Region struct {
 	// The Region service endpoint.
 	Endpoint *string `locationName:"regionEndpoint" type:"string"`
 
+	// The Region opt-in status. The possible values are opt-in-not-required, opted-in,
+	// and not-opted-in.
+	OptInStatus *string `locationName:"optInStatus" type:"string"`
+
 	// The name of the Region.
 	RegionName *string `locationName:"regionName" type:"string"`
 }
@@ -78599,6 +78657,12 @@ func (s Region) GoString() string {
 // SetEndpoint sets the Endpoint field's value.
 func (s *Region) SetEndpoint(v string) *Region {
 	s.Endpoint = &v
+	return s
+}
+
+// SetOptInStatus sets the OptInStatus field's value.
+func (s *Region) SetOptInStatus(v string) *Region {
+	s.OptInStatus = &v
 	return s
 }
 
@@ -88103,8 +88167,11 @@ type TagSpecification struct {
 	_ struct{} `type:"structure"`
 
 	// The type of resource to tag. Currently, the resource types that support tagging
-	// on creation are fleet, dedicated-host, instance, snapshot, and volume. To
-	// tag a resource after it has been created, see CreateTags.
+	// on creation are: capacity-reservation | client-vpn-endpoint | dedicated-host
+	// | fleet | instance | launch-template | snapshot | transit-gateway | transit-gateway-attachment
+	// | transit-gateway-route-table | volume.
+	//
+	// To tag a resource after it has been created, see CreateTags.
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
 
 	// The tags to apply to the resource.

@@ -168,6 +168,10 @@ type PinpointAPI interface {
 	GetAppWithContext(aws.Context, *pinpoint.GetAppInput, ...request.Option) (*pinpoint.GetAppOutput, error)
 	GetAppRequest(*pinpoint.GetAppInput) (*request.Request, *pinpoint.GetAppOutput)
 
+	GetApplicationDateRangeKpi(*pinpoint.GetApplicationDateRangeKpiInput) (*pinpoint.GetApplicationDateRangeKpiOutput, error)
+	GetApplicationDateRangeKpiWithContext(aws.Context, *pinpoint.GetApplicationDateRangeKpiInput, ...request.Option) (*pinpoint.GetApplicationDateRangeKpiOutput, error)
+	GetApplicationDateRangeKpiRequest(*pinpoint.GetApplicationDateRangeKpiInput) (*request.Request, *pinpoint.GetApplicationDateRangeKpiOutput)
+
 	GetApplicationSettings(*pinpoint.GetApplicationSettingsInput) (*pinpoint.GetApplicationSettingsOutput, error)
 	GetApplicationSettingsWithContext(aws.Context, *pinpoint.GetApplicationSettingsInput, ...request.Option) (*pinpoint.GetApplicationSettingsOutput, error)
 	GetApplicationSettingsRequest(*pinpoint.GetApplicationSettingsInput) (*request.Request, *pinpoint.GetApplicationSettingsOutput)
@@ -187,6 +191,10 @@ type PinpointAPI interface {
 	GetCampaignActivities(*pinpoint.GetCampaignActivitiesInput) (*pinpoint.GetCampaignActivitiesOutput, error)
 	GetCampaignActivitiesWithContext(aws.Context, *pinpoint.GetCampaignActivitiesInput, ...request.Option) (*pinpoint.GetCampaignActivitiesOutput, error)
 	GetCampaignActivitiesRequest(*pinpoint.GetCampaignActivitiesInput) (*request.Request, *pinpoint.GetCampaignActivitiesOutput)
+
+	GetCampaignDateRangeKpi(*pinpoint.GetCampaignDateRangeKpiInput) (*pinpoint.GetCampaignDateRangeKpiOutput, error)
+	GetCampaignDateRangeKpiWithContext(aws.Context, *pinpoint.GetCampaignDateRangeKpiInput, ...request.Option) (*pinpoint.GetCampaignDateRangeKpiOutput, error)
+	GetCampaignDateRangeKpiRequest(*pinpoint.GetCampaignDateRangeKpiInput) (*request.Request, *pinpoint.GetCampaignDateRangeKpiOutput)
 
 	GetCampaignVersion(*pinpoint.GetCampaignVersionInput) (*pinpoint.GetCampaignVersionOutput, error)
 	GetCampaignVersionWithContext(aws.Context, *pinpoint.GetCampaignVersionInput, ...request.Option) (*pinpoint.GetCampaignVersionOutput, error)

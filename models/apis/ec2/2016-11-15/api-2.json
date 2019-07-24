@@ -5653,6 +5653,7 @@
         "DnsServers":{"shape":"ValueStringList"},
         "TransportProtocol":{"shape":"TransportProtocol"},
         "Description":{"shape":"String"},
+        "SplitTunnel":{"shape":"Boolean"},
         "DryRun":{"shape":"Boolean"},
         "ClientToken":{
           "shape":"String",
@@ -6094,7 +6095,11 @@
         "ClientToken":{"shape":"String"},
         "LaunchTemplateName":{"shape":"LaunchTemplateName"},
         "VersionDescription":{"shape":"VersionDescription"},
-        "LaunchTemplateData":{"shape":"RequestLaunchTemplateData"}
+        "LaunchTemplateData":{"shape":"RequestLaunchTemplateData"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        }
       }
     },
     "CreateLaunchTemplateResult":{
@@ -9687,7 +9692,8 @@
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
-        }
+        },
+        "AllRegions":{"shape":"Boolean"}
       }
     },
     "DescribeRegionsResult":{
@@ -16390,6 +16396,7 @@
         "ConnectionLogOptions":{"shape":"ConnectionLogOptions"},
         "DnsServers":{"shape":"DnsServersOptionsModifyStructure"},
         "Description":{"shape":"String"},
+        "SplitTunnel":{"shape":"Boolean"},
         "DryRun":{"shape":"Boolean"}
       }
     },
@@ -18651,6 +18658,10 @@
         "RegionName":{
           "shape":"String",
           "locationName":"regionName"
+        },
+        "OptInStatus":{
+          "shape":"String",
+          "locationName":"optInStatus"
         }
       }
     },
