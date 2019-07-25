@@ -2149,6 +2149,10 @@
           "shape": "__string",
           "locationName": "name"
         },
+        "PipelineDetails": {
+          "shape": "__listOfPipelineDetail",
+          "locationName": "pipelineDetails"
+        },
         "PipelinesRunningCount": {
           "shape": "__integer",
           "locationName": "pipelinesRunningCount"
@@ -2616,6 +2620,10 @@
           "shape": "__string",
           "locationName": "name"
         },
+        "PipelineDetails": {
+          "shape": "__listOfPipelineDetail",
+          "locationName": "pipelineDetails"
+        },
         "PipelinesRunningCount": {
           "shape": "__integer",
           "locationName": "pipelinesRunningCount"
@@ -2853,6 +2861,10 @@
           "shape": "__string",
           "locationName": "name"
         },
+        "PipelineDetails": {
+          "shape": "__listOfPipelineDetail",
+          "locationName": "pipelineDetails"
+        },
         "PipelinesRunningCount": {
           "shape": "__integer",
           "locationName": "pipelinesRunningCount"
@@ -2906,6 +2918,10 @@
         "InputClass": {
           "shape": "InputClass",
           "locationName": "inputClass"
+        },
+        "InputSourceType": {
+          "shape": "InputSourceType",
+          "locationName": "inputSourceType"
         },
         "MediaConnectFlows": {
           "shape": "__listOfMediaConnectFlow",
@@ -4668,6 +4684,11 @@
         "STANDARD"
       ]
     },
+    "ImmediateModeScheduleActionStartSettings": {
+      "type": "structure",
+      "members": {
+      }
+    },
     "Input": {
       "type": "structure",
       "members": {
@@ -4690,6 +4711,10 @@
         "InputClass": {
           "shape": "InputClass",
           "locationName": "inputClass"
+        },
+        "InputSourceType": {
+          "shape": "InputSourceType",
+          "locationName": "inputSourceType"
         },
         "MediaConnectFlows": {
           "shape": "__listOfMediaConnectFlow",
@@ -4764,6 +4789,26 @@
       "enum": [
         "STANDARD",
         "SINGLE_PIPELINE"
+      ]
+    },
+    "InputClippingSettings": {
+      "type": "structure",
+      "members": {
+        "InputTimecodeSource": {
+          "shape": "InputTimecodeSource",
+          "locationName": "inputTimecodeSource"
+        },
+        "StartTimecode": {
+          "shape": "StartTimecode",
+          "locationName": "startTimecode"
+        },
+        "StopTimecode": {
+          "shape": "StopTimecode",
+          "locationName": "stopTimecode"
+        }
+      },
+      "required": [
+        "InputTimecodeSource"
       ]
     },
     "InputCodec": {
@@ -5069,6 +5114,13 @@
         }
       }
     },
+    "InputSourceType": {
+      "type": "string",
+      "enum": [
+        "STATIC",
+        "DYNAMIC"
+      ]
+    },
     "InputSpecification": {
       "type": "structure",
       "members": {
@@ -5102,10 +5154,25 @@
         "InputAttachmentNameReference": {
           "shape": "__string",
           "locationName": "inputAttachmentNameReference"
+        },
+        "InputClippingSettings": {
+          "shape": "InputClippingSettings",
+          "locationName": "inputClippingSettings"
+        },
+        "UrlPath": {
+          "shape": "__listOf__string",
+          "locationName": "urlPath"
         }
       },
       "required": [
         "InputAttachmentNameReference"
+      ]
+    },
+    "InputTimecodeSource": {
+      "type": "string",
+      "enum": [
+        "ZEROBASED",
+        "EMBEDDED"
       ]
     },
     "InputType": {
@@ -5193,6 +5260,13 @@
           "locationName": "staticKeySettings"
         }
       }
+    },
+    "LastFrameClippingBehavior": {
+      "type": "string",
+      "enum": [
+        "EXCLUDE_LAST_FRAME",
+        "INCLUDE_LAST_FRAME"
+      ]
     },
     "LimitExceeded": {
       "type": "structure",
@@ -6370,6 +6444,23 @@
         }
       }
     },
+    "PipelineDetail": {
+      "type": "structure",
+      "members": {
+        "ActiveInputAttachmentName": {
+          "shape": "__string",
+          "locationName": "activeInputAttachmentName"
+        },
+        "ActiveInputSwitchActionName": {
+          "shape": "__string",
+          "locationName": "activeInputSwitchActionName"
+        },
+        "PipelineId": {
+          "shape": "__string",
+          "locationName": "pipelineId"
+        }
+      }
+    },
     "PipelineId": {
       "type": "string",
       "enum": [
@@ -6836,6 +6927,10 @@
         "FollowModeScheduleActionStartSettings": {
           "shape": "FollowModeScheduleActionStartSettings",
           "locationName": "followModeScheduleActionStartSettings"
+        },
+        "ImmediateModeScheduleActionStartSettings": {
+          "shape": "ImmediateModeScheduleActionStartSettings",
+          "locationName": "immediateModeScheduleActionStartSettings"
         }
       }
     },
@@ -6991,7 +7086,7 @@
       "type": "structure",
       "members": {
         "SpliceEventId": {
-          "shape": "__integerMin0Max4294967295",
+          "shape": "__longMin0Max4294967295",
           "locationName": "spliceEventId"
         }
       },
@@ -7022,11 +7117,11 @@
           "locationName": "segmentationCancelIndicator"
         },
         "SegmentationDuration": {
-          "shape": "__integerMin0Max1099511627775",
+          "shape": "__longMin0Max1099511627775",
           "locationName": "segmentationDuration"
         },
         "SegmentationEventId": {
-          "shape": "__integerMin0Max4294967295",
+          "shape": "__longMin0Max4294967295",
           "locationName": "segmentationEventId"
         },
         "SegmentationTypeId": {
@@ -7087,11 +7182,11 @@
       "type": "structure",
       "members": {
         "Duration": {
-          "shape": "__integerMin0Max8589934591",
+          "shape": "__longMin0Max8589934591",
           "locationName": "duration"
         },
         "SpliceEventId": {
-          "shape": "__integerMin0Max4294967295",
+          "shape": "__longMin0Max4294967295",
           "locationName": "spliceEventId"
         }
       },
@@ -7140,6 +7235,23 @@
       "enum": [
         "WEB_DELIVERY_NOT_ALLOWED",
         "WEB_DELIVERY_ALLOWED"
+      ]
+    },
+    "ServiceDescriptor": {
+      "type": "structure",
+      "members": {
+        "ProviderName": {
+          "shape": "__stringMax256",
+          "locationName": "providerName"
+        },
+        "ServiceName": {
+          "shape": "__stringMax256",
+          "locationName": "serviceName"
+        }
+      },
+      "required": [
+        "ProviderName",
+        "ServiceName"
       ]
     },
     "SmoothGroupAudioOnlyTimecodeControl": {
@@ -7276,6 +7388,10 @@
           "shape": "__string",
           "locationName": "name"
         },
+        "PipelineDetails": {
+          "shape": "__listOfPipelineDetail",
+          "locationName": "pipelineDetails"
+        },
         "PipelinesRunningCount": {
           "shape": "__integer",
           "locationName": "pipelinesRunningCount"
@@ -7291,6 +7407,15 @@
         "Tags": {
           "shape": "Tags",
           "locationName": "tags"
+        }
+      }
+    },
+    "StartTimecode": {
+      "type": "structure",
+      "members": {
+        "Timecode": {
+          "shape": "__string",
+          "locationName": "timecode"
         }
       }
     },
@@ -7427,6 +7552,10 @@
           "shape": "__string",
           "locationName": "name"
         },
+        "PipelineDetails": {
+          "shape": "__listOfPipelineDetail",
+          "locationName": "pipelineDetails"
+        },
         "PipelinesRunningCount": {
           "shape": "__integer",
           "locationName": "pipelinesRunningCount"
@@ -7442,6 +7571,19 @@
         "Tags": {
           "shape": "Tags",
           "locationName": "tags"
+        }
+      }
+    },
+    "StopTimecode": {
+      "type": "structure",
+      "members": {
+        "LastFrameClippingBehavior": {
+          "shape": "LastFrameClippingBehavior",
+          "locationName": "lastFrameClippingBehavior"
+        },
+        "Timecode": {
+          "shape": "__string",
+          "locationName": "timecode"
         }
       }
     },
@@ -8066,7 +8208,16 @@
     "__doubleMin0": {
       "type": "double"
     },
+    "__doubleMin0Max1000000000": {
+      "type": "double"
+    },
+    "__doubleMin0Max65535": {
+      "type": "double"
+    },
     "__doubleMin1": {
+      "type": "double"
+    },
+    "__doubleMin10000Max1000000000": {
       "type": "double"
     },
     "__doubleMinNegative59Max0": {
@@ -8104,11 +8255,6 @@
       "min": 0,
       "max": 1000000
     },
-    "__integerMin0Max1099511627775": {
-      "type": "long",
-      "min": 0,
-      "max": 1099511627775
-    },
     "__integerMin0Max128": {
       "type": "integer",
       "min": 0,
@@ -8133,11 +8279,6 @@
       "type": "integer",
       "min": 0,
       "max": 3600
-    },
-    "__integerMin0Max4294967295": {
-      "type": "long",
-      "min": 0,
-      "max": 4294967295
     },
     "__integerMin0Max500": {
       "type": "integer",
@@ -8169,11 +8310,6 @@
       "min": 0,
       "max": 8191
     },
-    "__integerMin0Max8589934591": {
-      "type": "long",
-      "min": 0,
-      "max": 8589934591
-    },
     "__integerMin1": {
       "type": "integer",
       "min": 1
@@ -8181,6 +8317,11 @@
     "__integerMin1000": {
       "type": "integer",
       "min": 1000
+    },
+    "__integerMin100000Max100000000": {
+      "type": "integer",
+      "min": 100000,
+      "max": 100000000
     },
     "__integerMin1000Max30000": {
       "type": "integer",
@@ -8447,6 +8588,12 @@
         "shape": "OutputGroup"
       }
     },
+    "__listOfPipelineDetail": {
+      "type": "list",
+      "member": {
+        "shape": "PipelineDetail"
+      }
+    },
     "__listOfPipelinePauseStateSettings": {
       "type": "list",
       "member": {
@@ -8492,8 +8639,27 @@
     "__long": {
       "type": "long"
     },
+    "__longMin0Max1099511627775": {
+      "type": "long",
+      "min": 0,
+      "max": 1099511627775
+    },
+    "__longMin0Max4294967295": {
+      "type": "long",
+      "min": 0,
+      "max": 4294967295
+    },
+    "__longMin0Max8589934591": {
+      "type": "long",
+      "min": 0,
+      "max": 8589934591
+    },
     "__string": {
       "type": "string"
+    },
+    "__stringMax256": {
+      "type": "string",
+      "max": 256
     },
     "__stringMax32": {
       "type": "string",

@@ -1,3 +1,15 @@
+Release v1.21.5 (2019-07-25)
+===
+
+### Service Client Updates
+* `service/ecr`: Updates service API and documentation
+  * This release adds support for immutable image tags.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert has added several features including support for: audio normalization using ITU BS.1770-3, 1770-4 algorithms, extension of job progress indicators, input cropping rectangle & output position rectangle filters per input, and dual SCC caption mapping to additional codecs and containers.
+* `service/medialive`: Updates service API and documentation
+  * AWS Elemental MediaLive is adding Input Clipping, Immediate Mode Input Switching, and Dynamic Inputs.
+
 Release v1.21.4 (2019-07-24)
 ===
 

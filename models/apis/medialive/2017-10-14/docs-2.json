@@ -717,13 +717,13 @@
     "FixedModeScheduleActionStartSettings": {
       "base": "Start time for the action.",
       "refs": {
-        "ScheduleActionStartSettings$FixedModeScheduleActionStartSettings": "Holds the start time for the action."
+        "ScheduleActionStartSettings$FixedModeScheduleActionStartSettings": "Option for specifying the start time for an action."
       }
     },
     "FollowModeScheduleActionStartSettings": {
       "base": "Settings to specify if an action follows another.",
       "refs": {
-        "ScheduleActionStartSettings$FollowModeScheduleActionStartSettings": "Specifies an action to follow for scheduling this action."
+        "ScheduleActionStartSettings$FollowModeScheduleActionStartSettings": "Option for specifying an action as relative to another action."
       }
     },
     "FollowPoint": {
@@ -1102,6 +1102,12 @@
         "HlsGroupSettings$IFrameOnlyPlaylists": "DISABLED: Do not create an I-frame-only manifest, but do create the master and media manifests (according to the Output Selection field).\n\nSTANDARD: Create an I-frame-only manifest for each output that contains video, as well as the other manifests (according to the Output Selection field). The I-frame manifest contains a #EXT-X-I-FRAMES-ONLY tag to indicate it is I-frame only, and one or more #EXT-X-BYTERANGE entries identifying the I-frame position. For example, #EXT-X-BYTERANGE:160364@1461888\""
       }
     },
+    "ImmediateModeScheduleActionStartSettings": {
+      "base": "Settings to configure an action so that it occurs immediately. This is only supported for input switch actions currently.",
+      "refs": {
+        "ScheduleActionStartSettings$ImmediateModeScheduleActionStartSettings": "Option for specifying an action that should be applied immediately."
+      }
+    },
     "Input": {
       "base": null,
       "refs": {
@@ -1126,6 +1132,12 @@
       "base": "A standard input has two sources and a single pipeline input only has one.",
       "refs": {
         "Input$InputClass": "STANDARD - MediaLive expects two sources to be connected to this input. If the channel is also STANDARD, both sources will be ingested. If the channel is SINGLE_PIPELINE, only the first source will be ingested; the second source will always be ignored, even if the first source fails.\nSINGLE_PIPELINE - You can connect only one source to this input. If the ChannelClass is also  SINGLE_PIPELINE, this value is valid. If the ChannelClass is STANDARD, this value is not valid because the channel requires two sources in the input.\n"
+      }
+    },
+    "InputClippingSettings": {
+      "base": "Settings to let you create a clip of the file input, in order to set up the input to ingest only a portion of the file.",
+      "refs": {
+        "InputSwitchScheduleActionSettings$InputClippingSettings": "Settings to let you create a clip of the file input, in order to set up the input to ingest only a portion of the file."
       }
     },
     "InputCodec": {
@@ -1275,6 +1287,12 @@
         "__listOfInputSourceRequest$member": null
       }
     },
+    "InputSourceType": {
+      "base": "There are two types of input sources, static and dynamic. If an input source is dynamic you can\nchange the source url of the input dynamically using an input switch action. However, the only input type\nto support a dynamic url at this time is MP4_FILE. By default all input sources are static.\n",
+      "refs": {
+        "Input$InputSourceType": "Certain pull input sources can be dynamic, meaning that they can have their URL's dynamically changes\nduring input switch actions. Presently, this functionality only works with MP4_FILE inputs.\n"
+      }
+    },
     "InputSpecification": {
       "base": null,
       "refs": {
@@ -1291,9 +1309,15 @@
       }
     },
     "InputSwitchScheduleActionSettings": {
-      "base": "Settings for the action to switch an input.",
+      "base": "Settings for the \"switch input\" action: to switch from ingesting one input to ingesting another input.",
       "refs": {
         "ScheduleActionSettings$InputSwitchSettings": "Action to switch the input"
+      }
+    },
+    "InputTimecodeSource": {
+      "base": "To clip the file, you must specify the timecode for the start and end of the clip. <br>Specify EMBEDDED to use the timecode embedded in the source content. The embedded timecode must exist in the source content, otherwise MediaLive will output black frames until it reaches the end of the source. <br>Specify ZEROBASED to use a timecode that assumes that the first frame in the file has the timestamp 00:00:00.00. <br> There is no default for this field, you must specify a value.",
+      "refs": {
+        "InputClippingSettings$InputTimecodeSource": "The source of the timecodes in the source being clipped."
       }
     },
     "InputType": {
@@ -1340,6 +1364,12 @@
       "base": "Key Provider Settings",
       "refs": {
         "HlsGroupSettings$KeyProviderSettings": "The key provider settings."
+      }
+    },
+    "LastFrameClippingBehavior": {
+      "base": "If you specify a StopTimecode in an input (in order to clip the file), you can specify if you want the clip to exclude (the default) or include the frame specified by the timecode.",
+      "refs": {
+        "StopTimecode$LastFrameClippingBehavior": "If you specify a StopTimecode in an input (in order to clip the file), you can specify if you want the clip to exclude (the default) or include the frame specified by the timecode."
       }
     },
     "LimitExceeded": {
@@ -1539,7 +1569,7 @@
       }
     },
     "MediaPackageOutputDestinationSettings": {
-      "base": "Media Package Output Destination Settings",
+      "base": "MediaPackage Output Destination Settings",
       "refs": {
         "__listOfMediaPackageOutputDestinationSettings$member": null
       }
@@ -1669,6 +1699,12 @@
       "base": "Settings for the action to set pause state of a channel.",
       "refs": {
         "ScheduleActionSettings$PauseStateSettings": "Action to pause or unpause one or both channel pipelines"
+      }
+    },
+    "PipelineDetail": {
+      "base": "Runtime details of a pipeline when a channel is running.",
+      "refs": {
+        "__listOfPipelineDetail$member": null
       }
     },
     "PipelineId": {
@@ -1821,7 +1857,7 @@
       }
     },
     "ScheduleActionStartSettings": {
-      "base": "Settings to specify the start time for an action.",
+      "base": "Settings to specify when an action should occur. Only one of the options must be selected.",
       "refs": {
         "ScheduleAction$ScheduleActionStartSettings": "The time for the action to start in the channel."
       }
@@ -2034,6 +2070,12 @@
         "HlsSettings$StandardHlsSettings": null
       }
     },
+    "StartTimecode": {
+      "base": "Settings to identify the start of the clip.",
+      "refs": {
+        "InputClippingSettings$StartTimecode": "Settings to identify the start of the clip."
+      }
+    },
     "StaticImageActivateScheduleActionSettings": {
       "base": "Settings for the action to activate a static image.",
       "refs": {
@@ -2050,6 +2092,12 @@
       "base": "Static Key Settings",
       "refs": {
         "KeyProviderSettings$StaticKeySettings": null
+      }
+    },
+    "StopTimecode": {
+      "base": "Settings to identify the end of the clip.",
+      "refs": {
+        "InputClippingSettings$StopTimecode": "Settings to identify the end of the clip."
       }
     },
     "Tags": {
@@ -2391,12 +2439,6 @@
         "InputLossBehavior$RepeatFrameMsec": "On input loss, the number of milliseconds to repeat the previous picture before substituting black into the output.  A value x, where 0 <= x <= 1,000,000 and a value of 1,000,000 will be interpreted as infinite."
       }
     },
-    "__integerMin0Max1099511627775": {
-      "base": null,
-      "refs": {
-        "Scte35SegmentationDescriptor$SegmentationDuration": "Corresponds to SCTE-35 segmentation_duration. Optional. The duration for the time_signal, in 90 KHz ticks. To convert seconds to ticks, multiple the seconds by 90,000. Enter time in 90 KHz clock ticks. If you do not enter a duration, the time_signal will continue until you insert a cancellation message."
-      }
-    },
     "__integerMin0Max128": {
       "base": null,
       "refs": {
@@ -2440,14 +2482,6 @@
       "base": null,
       "refs": {
         "HlsGroupSettings$ProgramDateTimePeriod": "Period of insertion of EXT-X-PROGRAM-DATE-TIME entry, in seconds."
-      }
-    },
-    "__integerMin0Max4294967295": {
-      "base": null,
-      "refs": {
-        "Scte35ReturnToNetworkScheduleActionSettings$SpliceEventId": "The splice_event_id for the SCTE-35 splice_insert, as defined in SCTE-35.",
-        "Scte35SegmentationDescriptor$SegmentationEventId": "Corresponds to SCTE-35 segmentation_event_id. ",
-        "Scte35SpliceInsertScheduleActionSettings$SpliceEventId": "The splice_event_id for the SCTE-35 splice_insert, as defined in SCTE-35."
       }
     },
     "__integerMin0Max500": {
@@ -2496,12 +2530,6 @@
       "refs": {
         "AudioPidSelection$Pid": "Selects a specific PID from within a source.",
         "VideoSelectorPid$Pid": "Selects a specific PID from within a video source."
-      }
-    },
-    "__integerMin0Max8589934591": {
-      "base": null,
-      "refs": {
-        "Scte35SpliceInsertScheduleActionSettings$Duration": "Optional, the duration for the splice_insert, in 90 KHz ticks. To convert seconds to ticks, multiple the seconds by 90,000. If you enter a duration, there is an expectation that the downstream system can read the duration and cue in at that time. If you do not enter a duration, the splice_insert will continue indefinitely and there is an expectation that you will enter a return_to_network to end the splice_insert at the appropriate time."
       }
     },
     "__integerMin1": {
@@ -2835,6 +2863,12 @@
         "EncoderSettings$OutputGroups": null
       }
     },
+    "__listOfPipelineDetail": {
+      "base": null,
+      "refs": {
+        "Channel$PipelineDetails": "Runtime details for the pipelines of a running channel."
+      }
+    },
     "__listOfPipelinePauseStateSettings": {
       "base": null,
       "refs": {
@@ -2882,11 +2916,32 @@
         "Input$AttachedChannels": "A list of channel IDs that that input is attached to (currently an input can only be attached to one channel).",
         "Input$SecurityGroups": "A list of IDs for all the Input Security Groups attached to the input.",
         "InputSecurityGroup$Inputs": "The list of inputs currently using this Input Security Group.",
+        "InputSwitchScheduleActionSettings$UrlPath": "The value for the variable portion of the URL for the dynamic input, for this instance of the input. Each time you use the same dynamic input in an input switch action, you can provide a different value, in order to connect the input to a different content source.",
         "InputVpcRequest$SecurityGroupIds": "A list of up to 5 EC2 VPC security group IDs to attach to the Input VPC network interfaces.\nRequires subnetIds. If none are specified then the VPC default security group will be used.\n",
         "InputVpcRequest$SubnetIds": "A list of 2 VPC subnet IDs from the same VPC.\nSubnet IDs must be mapped to two unique availability zones (AZ).\n",
         "Output$AudioDescriptionNames": "The names of the AudioDescriptions used as audio sources for this output.",
         "Output$CaptionDescriptionNames": "The names of the CaptionDescriptions used as caption sources for this output.",
         "UpdateInput$InputSecurityGroups": "A list of security groups referenced by IDs to attach to the input."
+      }
+    },
+    "__longMin0Max1099511627775": {
+      "base": null,
+      "refs": {
+        "Scte35SegmentationDescriptor$SegmentationDuration": "Corresponds to SCTE-35 segmentation_duration. Optional. The duration for the time_signal, in 90 KHz ticks. To convert seconds to ticks, multiple the seconds by 90,000. Enter time in 90 KHz clock ticks. If you do not enter a duration, the time_signal will continue until you insert a cancellation message."
+      }
+    },
+    "__longMin0Max4294967295": {
+      "base": null,
+      "refs": {
+        "Scte35ReturnToNetworkScheduleActionSettings$SpliceEventId": "The splice_event_id for the SCTE-35 splice_insert, as defined in SCTE-35.",
+        "Scte35SegmentationDescriptor$SegmentationEventId": "Corresponds to SCTE-35 segmentation_event_id. ",
+        "Scte35SpliceInsertScheduleActionSettings$SpliceEventId": "The splice_event_id for the SCTE-35 splice_insert, as defined in SCTE-35."
+      }
+    },
+    "__longMin0Max8589934591": {
+      "base": null,
+      "refs": {
+        "Scte35SpliceInsertScheduleActionSettings$Duration": "Optional, the duration for the splice_insert, in 90 KHz ticks. To convert seconds to ticks, multiple the seconds by 90,000. If you enter a duration, there is an expectation that the downstream system can read the duration and cue in at that time. If you do not enter a duration, the splice_insert will continue indefinitely and there is an expectation that you will enter a return_to_network to end the splice_insert at the appropriate time."
       }
     },
     "__string": {
@@ -2911,6 +2966,10 @@
         "Channel$Id": "The unique id of the channel.",
         "Channel$Name": "The name of the channel. (user-mutable)",
         "Channel$RoleArn": "The Amazon Resource Name (ARN) of the role assumed when running the Channel.",
+        "ChannelAlert$AlertType": null,
+        "ChannelAlert$Id": null,
+        "ChannelAlert$Message": null,
+        "ChannelAlert$PipelineId": null,
         "ChannelConfigurationValidationError$Message": null,
         "ChannelEgressEndpoint$SourceIp": "Public IP of where a channel's output comes from",
         "ChannelSummary$Arn": "The unique arn of the channel.",
@@ -2960,12 +3019,13 @@
         "InputSourceRequest$PasswordParam": "The key used to extract the password from EC2 Parameter store.",
         "InputSourceRequest$Url": "This represents the customer's source URL where stream is\npulled from.\n",
         "InputSourceRequest$Username": "The username for the input source.",
-        "InputSwitchScheduleActionSettings$InputAttachmentNameReference": "The name of the input attachment that should be switched to by this action.",
+        "InputSwitchScheduleActionSettings$InputAttachmentNameReference": "The name of the input attachment (not the name of the input!) to switch to. The name is specified in the channel configuration.",
         "InputWhitelistRule$Cidr": "The IPv4 CIDR that's whitelisted.",
         "InputWhitelistRuleCidr$Cidr": "The IPv4 CIDR to whitelist.",
         "InternalServiceError$Message": null,
         "InvalidRequest$Message": null,
         "LimitExceeded$Message": null,
+        "ListAlertsResultModel$NextToken": null,
         "ListChannelsResultModel$NextToken": null,
         "ListInputSecurityGroupsResultModel$NextToken": null,
         "ListInputsResultModel$NextToken": null,
@@ -3010,6 +3070,9 @@
         "OutputDestinationSettings$Url": "A URL specifying a destination",
         "OutputDestinationSettings$Username": "username for destination",
         "OutputLocationRef$DestinationRefId": null,
+        "PipelineDetail$ActiveInputAttachmentName": "The name of the active input attachment currently being ingested by this pipeline.",
+        "PipelineDetail$ActiveInputSwitchActionName": "The name of the input switch schedule action that occurred most recently and that resulted in the switch to the current input attachment for this pipeline.",
+        "PipelineDetail$PipelineId": "Pipeline ID",
         "PurchaseOffering$Name": "Name for the new reservation",
         "PurchaseOffering$RequestId": "Unique request ID to be specified. This is needed to prevent retries from creating multiple resources.",
         "PurchaseOffering$Start": "Requested reservation start time (UTC) in ISO-8601 format. The specified time must be between the first day of the current month and one year from now. If no value is given, the default is now.",
@@ -3028,6 +3091,8 @@
         "ScheduleDescribeResultModel$NextToken": "The next token; for use in pagination.",
         "Scte35SegmentationDescriptor$SegmentationUpid": "Corresponds to SCTE-35 segmentation_upid. Enter a string containing the hexadecimal representation of the characters that make up the SCTE-35 segmentation_upid value. Must contain an even number of hex characters. Do not include spaces between each hex pair. For example, the ASCII \"ADS Information\" becomes hex \"41445320496e666f726d6174696f6e.",
         "StandardHlsSettings$AudioRenditionSets": "List all the audio groups that are used with the video output stream. Input all the audio GROUP-IDs that are associated to the video, separate by ','.",
+        "StartTimecode$Timecode": "The timecode for the frame where you want to start the clip. Optional; if not specified, the clip starts at first frame in the file. Enter the timecode as HH:MM:SS:FF or HH:MM:SS;FF.",
+        "StopTimecode$Timecode": "The timecode for the frame where you want to stop the clip. Optional; if not specified, the clip continues to the end of the file. Enter the timecode as HH:MM:SS:FF or HH:MM:SS;FF.",
         "Tags$member": null,
         "TeletextSourceSettings$PageNumber": "Specifies the teletext page number within the data stream from which to extract captions. Range of 0x100 (256) to 0x8FF (2303). Unused for passthrough. Should be specified as a hexadecimal string with no \"0x\" prefix.",
         "UpdateChannel$Name": "The name of the channel.",
@@ -3039,6 +3104,13 @@
         "ValidationError$ErrorMessage": null,
         "VideoDescription$Name": "The name of this VideoDescription. Outputs will use this name to uniquely identify this Description.  Description names should be unique within this Live Event.",
         "__listOf__string$member": null
+      }
+    },
+    "__stringMax256": {
+      "base": null,
+      "refs": {
+        "ServiceDescriptor$ProviderName": "Name of provider",
+        "ServiceDescriptor$ServiceName": "Name of service"
       }
     },
     "__stringMax32": {
