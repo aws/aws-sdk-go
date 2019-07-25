@@ -145,6 +145,10 @@ type ECRAPI interface {
 	PutImageWithContext(aws.Context, *ecr.PutImageInput, ...request.Option) (*ecr.PutImageOutput, error)
 	PutImageRequest(*ecr.PutImageInput) (*request.Request, *ecr.PutImageOutput)
 
+	PutImageTagMutability(*ecr.PutImageTagMutabilityInput) (*ecr.PutImageTagMutabilityOutput, error)
+	PutImageTagMutabilityWithContext(aws.Context, *ecr.PutImageTagMutabilityInput, ...request.Option) (*ecr.PutImageTagMutabilityOutput, error)
+	PutImageTagMutabilityRequest(*ecr.PutImageTagMutabilityInput) (*request.Request, *ecr.PutImageTagMutabilityOutput)
+
 	PutLifecyclePolicy(*ecr.PutLifecyclePolicyInput) (*ecr.PutLifecyclePolicyOutput, error)
 	PutLifecyclePolicyWithContext(aws.Context, *ecr.PutLifecyclePolicyInput, ...request.Option) (*ecr.PutLifecyclePolicyOutput, error)
 	PutLifecyclePolicyRequest(*ecr.PutLifecyclePolicyInput) (*request.Request, *ecr.PutLifecyclePolicyOutput)
