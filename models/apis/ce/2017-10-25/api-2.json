@@ -101,6 +101,19 @@
         {"shape":"InvalidNextTokenException"}
       ]
     },
+    "GetRightsizingRecommendation":{
+      "name":"GetRightsizingRecommendation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetRightsizingRecommendationRequest"},
+      "output":{"shape":"GetRightsizingRecommendationResponse"},
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidNextTokenException"}
+      ]
+    },
     "GetTags":{
       "name":"GetTags",
       "http":{
@@ -209,6 +222,20 @@
       "type":"list",
       "member":{"shape":"CoverageByTime"}
     },
+    "CurrentInstance":{
+      "type":"structure",
+      "members":{
+        "ResourceId":{"shape":"GenericString"},
+        "Tags":{"shape":"TagValuesList"},
+        "ResourceDetails":{"shape":"ResourceDetails"},
+        "ResourceUtilization":{"shape":"ResourceUtilization"},
+        "ReservationCoveredHoursInLookbackPeriod":{"shape":"GenericString"},
+        "OnDemandHoursInLookbackPeriod":{"shape":"GenericString"},
+        "TotalRunningHoursInLookbackPeriod":{"shape":"GenericString"},
+        "MonthlyCost":{"shape":"GenericString"},
+        "CurrencyCode":{"shape":"GenericString"}
+      }
+    },
     "DataUnavailableException":{
       "type":"structure",
       "members":{
@@ -251,7 +278,8 @@
         "CACHE_ENGINE",
         "INSTANCE_TYPE_FAMILY",
         "BILLING_ENTITY",
-        "RESERVATION_ID"
+        "RESERVATION_ID",
+        "RIGHTSIZING_TYPE"
       ]
     },
     "DimensionValues":{
@@ -283,6 +311,28 @@
         "Tenancy":{"shape":"GenericString"},
         "CurrentGeneration":{"shape":"GenericBoolean"},
         "SizeFlexEligible":{"shape":"GenericBoolean"}
+      }
+    },
+    "EC2ResourceDetails":{
+      "type":"structure",
+      "members":{
+        "HourlyOnDemandRate":{"shape":"GenericString"},
+        "InstanceType":{"shape":"GenericString"},
+        "Platform":{"shape":"GenericString"},
+        "Region":{"shape":"GenericString"},
+        "Sku":{"shape":"GenericString"},
+        "Memory":{"shape":"GenericString"},
+        "NetworkPerformance":{"shape":"GenericString"},
+        "Storage":{"shape":"GenericString"},
+        "Vcpu":{"shape":"GenericString"}
+      }
+    },
+    "EC2ResourceUtilization":{
+      "type":"structure",
+      "members":{
+        "MaxCpuUtilizationPercentage":{"shape":"GenericString"},
+        "MaxMemoryUtilizationPercentage":{"shape":"GenericString"},
+        "MaxStorageUtilizationPercentage":{"shape":"GenericString"}
       }
     },
     "EC2Specification":{
@@ -478,6 +528,25 @@
         "NextPageToken":{"shape":"NextPageToken"}
       }
     },
+    "GetRightsizingRecommendationRequest":{
+      "type":"structure",
+      "required":["Service"],
+      "members":{
+        "Filter":{"shape":"Expression"},
+        "Service":{"shape":"GenericString"},
+        "PageSize":{"shape":"NonNegativeInteger"},
+        "NextPageToken":{"shape":"NextPageToken"}
+      }
+    },
+    "GetRightsizingRecommendationResponse":{
+      "type":"structure",
+      "members":{
+        "Metadata":{"shape":"RightsizingRecommendationMetadata"},
+        "Summary":{"shape":"RightsizingRecommendationSummary"},
+        "RightsizingRecommendations":{"shape":"RightsizingRecommendationList"},
+        "NextPageToken":{"shape":"NextPageToken"}
+      }
+    },
     "GetTagsRequest":{
       "type":"structure",
       "required":["TimePeriod"],
@@ -629,6 +698,12 @@
       "type":"map",
       "key":{"shape":"MetricName"},
       "value":{"shape":"MetricValue"}
+    },
+    "ModifyRecommendationDetail":{
+      "type":"structure",
+      "members":{
+        "TargetInstances":{"shape":"TargetInstancesList"}
+      }
     },
     "NetRISavings":{"type":"string"},
     "NextPageToken":{"type":"string"},
@@ -803,6 +878,18 @@
     },
     "ReservedHours":{"type":"string"},
     "ReservedNormalizedUnits":{"type":"string"},
+    "ResourceDetails":{
+      "type":"structure",
+      "members":{
+        "EC2ResourceDetails":{"shape":"EC2ResourceDetails"}
+      }
+    },
+    "ResourceUtilization":{
+      "type":"structure",
+      "members":{
+        "EC2ResourceUtilization":{"shape":"EC2ResourceUtilization"}
+      }
+    },
     "ResultByTime":{
       "type":"structure",
       "members":{
@@ -815,6 +902,44 @@
     "ResultsByTime":{
       "type":"list",
       "member":{"shape":"ResultByTime"}
+    },
+    "RightsizingRecommendation":{
+      "type":"structure",
+      "members":{
+        "AccountId":{"shape":"GenericString"},
+        "CurrentInstance":{"shape":"CurrentInstance"},
+        "RightsizingType":{"shape":"RightsizingType"},
+        "ModifyRecommendationDetail":{"shape":"ModifyRecommendationDetail"},
+        "TerminateRecommendationDetail":{"shape":"TerminateRecommendationDetail"}
+      }
+    },
+    "RightsizingRecommendationList":{
+      "type":"list",
+      "member":{"shape":"RightsizingRecommendation"}
+    },
+    "RightsizingRecommendationMetadata":{
+      "type":"structure",
+      "members":{
+        "RecommendationId":{"shape":"GenericString"},
+        "GenerationTimestamp":{"shape":"GenericString"},
+        "LookbackPeriodInDays":{"shape":"LookbackPeriodInDays"}
+      }
+    },
+    "RightsizingRecommendationSummary":{
+      "type":"structure",
+      "members":{
+        "TotalRecommendationCount":{"shape":"GenericString"},
+        "EstimatedTotalMonthlySavingsAmount":{"shape":"GenericString"},
+        "SavingsCurrencyCode":{"shape":"GenericString"},
+        "SavingsPercentage":{"shape":"GenericString"}
+      }
+    },
+    "RightsizingType":{
+      "type":"string",
+      "enum":[
+        "TERMINATE",
+        "MODIFY"
+      ]
     },
     "SearchString":{"type":"string"},
     "ServiceSpecification":{
@@ -835,12 +960,38 @@
         "Values":{"shape":"Values"}
       }
     },
+    "TagValuesList":{
+      "type":"list",
+      "member":{"shape":"TagValues"}
+    },
+    "TargetInstance":{
+      "type":"structure",
+      "members":{
+        "EstimatedMonthlyCost":{"shape":"GenericString"},
+        "EstimatedMonthlySavings":{"shape":"GenericString"},
+        "CurrencyCode":{"shape":"GenericString"},
+        "DefaultTargetInstance":{"shape":"GenericBoolean"},
+        "ResourceDetails":{"shape":"ResourceDetails"},
+        "ExpectedResourceUtilization":{"shape":"ResourceUtilization"}
+      }
+    },
+    "TargetInstancesList":{
+      "type":"list",
+      "member":{"shape":"TargetInstance"}
+    },
     "TermInYears":{
       "type":"string",
       "enum":[
         "ONE_YEAR",
         "THREE_YEARS"
       ]
+    },
+    "TerminateRecommendationDetail":{
+      "type":"structure",
+      "members":{
+        "EstimatedMonthlySavings":{"shape":"GenericString"},
+        "CurrencyCode":{"shape":"GenericString"}
+      }
     },
     "TotalActualHours":{"type":"string"},
     "TotalActualUnits":{"type":"string"},

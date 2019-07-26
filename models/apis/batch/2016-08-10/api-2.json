@@ -432,7 +432,8 @@
         "logStreamName":{"shape":"String"},
         "instanceType":{"shape":"String"},
         "networkInterfaces":{"shape":"NetworkInterfaceList"},
-        "resourceRequirements":{"shape":"ResourceRequirements"}
+        "resourceRequirements":{"shape":"ResourceRequirements"},
+        "linuxParameters":{"shape":"LinuxParameters"}
       }
     },
     "ContainerOverrides":{
@@ -462,7 +463,8 @@
         "ulimits":{"shape":"Ulimits"},
         "user":{"shape":"String"},
         "instanceType":{"shape":"String"},
-        "resourceRequirements":{"shape":"ResourceRequirements"}
+        "resourceRequirements":{"shape":"ResourceRequirements"},
+        "linuxParameters":{"shape":"LinuxParameters"}
       }
     },
     "ContainerSummary":{
@@ -614,6 +616,31 @@
       "members":{
         "jobs":{"shape":"JobDetailList"}
       }
+    },
+    "Device":{
+      "type":"structure",
+      "required":["hostPath"],
+      "members":{
+        "hostPath":{"shape":"String"},
+        "containerPath":{"shape":"String"},
+        "permissions":{"shape":"DeviceCgroupPermissions"}
+      }
+    },
+    "DeviceCgroupPermission":{
+      "type":"string",
+      "enum":[
+        "READ",
+        "WRITE",
+        "MKNOD"
+      ]
+    },
+    "DeviceCgroupPermissions":{
+      "type":"list",
+      "member":{"shape":"DeviceCgroupPermission"}
+    },
+    "DevicesList":{
+      "type":"list",
+      "member":{"shape":"Device"}
     },
     "EnvironmentVariables":{
       "type":"list",
@@ -799,6 +826,12 @@
         "launchTemplateId":{"shape":"String"},
         "launchTemplateName":{"shape":"String"},
         "version":{"shape":"String"}
+      }
+    },
+    "LinuxParameters":{
+      "type":"structure",
+      "members":{
+        "devices":{"shape":"DevicesList"}
       }
     },
     "ListJobsRequest":{

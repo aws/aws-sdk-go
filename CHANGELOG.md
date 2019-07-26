@@ -1,3 +1,20 @@
+Release v1.21.6 (2019-07-26)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API, documentation, and paginators
+  * AWS Batch now supports SDK auto-pagination and Job-level docker devices.
+* `service/ce`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * You can now create EC2 Capacity Reservations using Availability Zone ID or Availability Zone name. You can view usage of Amazon EC2 Capacity Reservations per AWS account.
+* `service/glue`: Updates service API, documentation, and paginators
+  * This release provides GetJobBookmark and GetJobBookmarks APIs. These APIs enable users to look at specific versions or all versions of the JobBookmark for a specific job. This release also enables resetting the job bookmark to a specific run via an enhancement of the ResetJobBookmark API.
+* `service/greengrass`: Updates service API and documentation
+  * Greengrass OTA service supports openwrt/aarch64 and openwrt/armv7l platforms.
+* `service/logs`: Updates service API and documentation
+  * Allow for specifying multiple log groups in an Insights query, and deprecate storedByte field for LogStreams and interleaved field for FilterLogEventsRequest.
+* `service/mediaconnect`: Updates service API and documentation
+
 Release v1.21.5 (2019-07-25)
 ===
 

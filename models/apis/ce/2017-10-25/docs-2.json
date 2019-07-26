@@ -8,6 +8,7 @@
     "GetReservationCoverage": "<p>Retrieves the reservation coverage for your account. This enables you to see how much of your Amazon Elastic Compute Cloud, Amazon ElastiCache, Amazon Relational Database Service, or Amazon Redshift usage is covered by a reservation. An organization's master account can see the coverage of the associated member accounts. For any time period, you can filter data about reservation usage by the following dimensions:</p> <ul> <li> <p>AZ</p> </li> <li> <p>CACHE_ENGINE</p> </li> <li> <p>DATABASE_ENGINE</p> </li> <li> <p>DEPLOYMENT_OPTION</p> </li> <li> <p>INSTANCE_TYPE</p> </li> <li> <p>LINKED_ACCOUNT</p> </li> <li> <p>OPERATING_SYSTEM</p> </li> <li> <p>PLATFORM</p> </li> <li> <p>REGION</p> </li> <li> <p>SERVICE</p> </li> <li> <p>TAG</p> </li> <li> <p>TENANCY</p> </li> </ul> <p>To determine valid values for a dimension, use the <code>GetDimensionValues</code> operation. </p>",
     "GetReservationPurchaseRecommendation": "<p>Gets recommendations for which reservations to purchase. These recommendations could help you reduce your costs. Reservations provide a discounted hourly rate (up to 75%) compared to On-Demand pricing.</p> <p>AWS generates your recommendations by identifying your On-Demand usage during a specific time period and collecting your usage into categories that are eligible for a reservation. After AWS has these categories, it simulates every combination of reservations in each category of usage to identify the best number of each type of RI to purchase to maximize your estimated savings. </p> <p>For example, AWS automatically aggregates your Amazon EC2 Linux, shared tenancy, and c4 family usage in the US West (Oregon) Region and recommends that you buy size-flexible regional reservations to apply to the c4 family usage. AWS recommends the smallest size instance in an instance family. This makes it easier to purchase a size-flexible RI. AWS also shows the equal number of normalized units so that you can purchase any instance size that you want. For this example, your RI recommendation would be for <code>c4.large</code> because that is the smallest size instance in the c4 instance family.</p>",
     "GetReservationUtilization": "<p>Retrieves the reservation utilization for your account. Master accounts in an organization have access to member accounts. You can filter data by dimensions in a time period. You can use <code>GetDimensionValues</code> to determine the possible dimension values. Currently, you can group only by <code>SUBSCRIPTION_ID</code>. </p>",
+    "GetRightsizingRecommendation": "<p>Creates recommendations that helps you save cost by identifying idle and underutilized Amazon EC2 instances.</p> <p>Recommendations are generated to either downsize or terminate instances, along with providing savings detail and metrics. For details on calculation and function, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-what-is.html\">Optimizing Your Cost with Rightsizing Recommendations</a>.</p>",
     "GetTags": "<p>Queries for available tag keys and tag values for a specified period. You can search the tag values for an arbitrary string. </p>",
     "GetUsageForecast": "<p>Retrieves a forecast for how much Amazon Web Services predicts that you will use over the forecast time period that you select, based on your past usage. </p>"
   },
@@ -112,6 +113,12 @@
         "GetReservationCoverageResponse$CoveragesByTime": "<p>The amount of time that your reservations covered.</p>"
       }
     },
+    "CurrentInstance": {
+      "base": "<p>Context about the current instance.</p>",
+      "refs": {
+        "RightsizingRecommendation$CurrentInstance": "<p> Context regarding the current instance.</p>"
+      }
+    },
     "DataUnavailableException": {
       "base": "<p>The requested data is unavailable.</p>",
       "refs": {
@@ -164,6 +171,18 @@
         "InstanceDetails$EC2InstanceDetails": "<p>The Amazon EC2 instances that AWS recommends that you purchase.</p>"
       }
     },
+    "EC2ResourceDetails": {
+      "base": "<p> Details on the Amazon EC2 Resource.</p>",
+      "refs": {
+        "ResourceDetails$EC2ResourceDetails": "<p>Details on the Amazon EC2 resource.</p>"
+      }
+    },
+    "EC2ResourceUtilization": {
+      "base": "<p> Utilization metrics of the instance. </p>",
+      "refs": {
+        "ResourceUtilization$EC2ResourceUtilization": "<p>Utilization of current Amazon EC2 Instance </p>"
+      }
+    },
     "EC2Specification": {
       "base": "<p>The Amazon EC2 hardware specifications that you want AWS to provide recommendations for.</p>",
       "refs": {
@@ -206,7 +225,7 @@
       }
     },
     "Expression": {
-      "base": "<p>Use <code>Expression</code> to filter by cost or by usage. There are two patterns: </p> <ul> <li> <p>Simple dimension values - You can set the dimension name and values for the filters that you plan to use. For example, you can filter for <code>INSTANCE_TYPE==m4.xlarge OR INSTANCE_TYPE==c4.large</code>. The <code>Expression</code> for that looks like this:</p> <p> <code>{ \"Dimensions\": { \"Key\": \"INSTANCE_TYPE\", \"Values\": [ \"m4.xlarge\", “c4.large” ] } }</code> </p> <p>The list of dimension values are OR'd together to retrieve cost or usage data. You can create <code>Expression</code> and <code>DimensionValues</code> objects using either <code>with*</code> methods or <code>set*</code> methods in multiple lines. </p> </li> <li> <p>Compound dimension values with logical operations - You can use multiple <code>Expression</code> types and the logical operators <code>AND/OR/NOT</code> to create a list of one or more <code>Expression</code> objects. This allows you to filter on more advanced options. For example, you can filter on <code>((INSTANCE_TYPE == m4.large OR INSTANCE_TYPE == m3.large) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer)</code>. The <code>Expression</code> for that looks like this:</p> <p> <code>{ \"And\": [ {\"Or\": [ {\"Dimensions\": { \"Key\": \"INSTANCE_TYPE\", \"Values\": [ \"m4.x.large\", \"c4.large\" ] }}, {\"Tags\": { \"Key\": \"TagName\", \"Values\": [\"Value1\"] } } ]}, {\"Not\": {\"Dimensions\": { \"Key\": \"USAGE_TYPE\", \"Values\": [\"DataTransfer\"] }}} ] } </code> </p> <note> <p>Because each <code>Expression</code> can have only one operator, the service returns an error if more than one is specified. The following example shows an <code>Expression</code> object that creates an error.</p> </note> <p> <code> { \"And\": [ ... ], \"DimensionValues\": { \"Dimension\": \"USAGE_TYPE\", \"Values\": [ \"DataTransfer\" ] } } </code> </p> </li> </ul>",
+      "base": "<p>Use <code>Expression</code> to filter by cost or by usage. There are two patterns: </p> <ul> <li> <p>Simple dimension values - You can set the dimension name and values for the filters that you plan to use. For example, you can filter for <code>REGION==us-east-1 OR REGION==us-west-1</code>. The <code>Expression</code> for that looks like this:</p> <p> <code>{ \"Dimensions\": { \"Key\": \"REGION\", \"Values\": [ \"us-east-1\", “us-west-1” ] } }</code> </p> <p>The list of dimension values are OR'd together to retrieve cost or usage data. You can create <code>Expression</code> and <code>DimensionValues</code> objects using either <code>with*</code> methods or <code>set*</code> methods in multiple lines. </p> </li> <li> <p>Compound dimension values with logical operations - You can use multiple <code>Expression</code> types and the logical operators <code>AND/OR/NOT</code> to create a list of one or more <code>Expression</code> objects. This allows you to filter on more advanced options. For example, you can filter on <code>((REGION == us-east-1 OR REGION == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer)</code>. The <code>Expression</code> for that looks like this:</p> <p> <code>{ \"And\": [ {\"Or\": [ {\"Dimensions\": { \"Key\": \"REGION\", \"Values\": [ \"us-east-1\", \"us-west-1\" ] }}, {\"Tags\": { \"Key\": \"TagName\", \"Values\": [\"Value1\"] } } ]}, {\"Not\": {\"Dimensions\": { \"Key\": \"USAGE_TYPE\", \"Values\": [\"DataTransfer\"] }}} ] } </code> </p> <note> <p>Because each <code>Expression</code> can have only one operator, the service returns an error if more than one is specified. The following example shows an <code>Expression</code> object that creates an error.</p> </note> <p> <code> { \"And\": [ ... ], \"DimensionValues\": { \"Dimension\": \"USAGE_TYPE\", \"Values\": [ \"DataTransfer\" ] } } </code> </p> </li> </ul> <note> <p>For <code>GetRightsizingRecommendation</code> action, a combination of OR and NOT is not supported. OR is not supported between different dimensions, or dimensions and tags. NOT operators aren't supported. Dimentions are also limited to <code>LINKED_ACCOUNT</code>, <code>REGION</code>, or <code>RIGHTSIZING_TYPE</code>.</p> </note>",
       "refs": {
         "Expression$Not": "<p>Return results that don't match a <code>Dimension</code> object.</p>",
         "Expressions$member": null,
@@ -214,6 +233,7 @@
         "GetCostForecastRequest$Filter": "<p>The filters that you want to use to filter your forecast. Cost Explorer API supports all of the Cost Explorer filters.</p>",
         "GetReservationCoverageRequest$Filter": "<p>Filters utilization data by dimensions. You can filter by the following dimensions:</p> <ul> <li> <p>AZ</p> </li> <li> <p>CACHE_ENGINE</p> </li> <li> <p>DATABASE_ENGINE</p> </li> <li> <p>DEPLOYMENT_OPTION</p> </li> <li> <p>INSTANCE_TYPE</p> </li> <li> <p>LINKED_ACCOUNT</p> </li> <li> <p>OPERATING_SYSTEM</p> </li> <li> <p>PLATFORM</p> </li> <li> <p>REGION</p> </li> <li> <p>SERVICE</p> </li> <li> <p>TAG</p> </li> <li> <p>TENANCY</p> </li> </ul> <p> <code>GetReservationCoverage</code> uses the same <a href=\"http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html\">Expression</a> object as the other operations, but only <code>AND</code> is supported among each dimension. You can nest only one level deep. If there are multiple values for a dimension, they are OR'd together.</p> <p>If you don't provide a <code>SERVICE</code> filter, Cost Explorer defaults to EC2.</p>",
         "GetReservationUtilizationRequest$Filter": "<p>Filters utilization data by dimensions. You can filter by the following dimensions:</p> <ul> <li> <p>AZ</p> </li> <li> <p>CACHE_ENGINE</p> </li> <li> <p>DATABASE_ENGINE</p> </li> <li> <p>DEPLOYMENT_OPTION</p> </li> <li> <p>INSTANCE_TYPE</p> </li> <li> <p>LINKED_ACCOUNT</p> </li> <li> <p>OPERATING_SYSTEM</p> </li> <li> <p>PLATFORM</p> </li> <li> <p>REGION</p> </li> <li> <p>SERVICE</p> </li> <li> <p>SCOPE</p> </li> <li> <p>TENANCY</p> </li> </ul> <p> <code>GetReservationUtilization</code> uses the same <a href=\"http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html\">Expression</a> object as the other operations, but only <code>AND</code> is supported among each dimension, and nesting is supported up to only one level deep. If there are multiple values for a dimension, they are OR'd together.</p>",
+        "GetRightsizingRecommendationRequest$Filter": null,
         "GetUsageForecastRequest$Filter": "<p>The filters that you want to use to filter your forecast. Cost Explorer API supports all of the Cost Explorer filters.</p>"
       }
     },
@@ -249,18 +269,37 @@
         "RDSInstanceDetails$CurrentGeneration": "<p>Whether the recommendation is for a current-generation instance. </p>",
         "RDSInstanceDetails$SizeFlexEligible": "<p>Whether the recommended reservation is size flexible.</p>",
         "RedshiftInstanceDetails$CurrentGeneration": "<p>Whether the recommendation is for a current-generation instance.</p>",
-        "RedshiftInstanceDetails$SizeFlexEligible": "<p>Whether the recommended reservation is size flexible.</p>"
+        "RedshiftInstanceDetails$SizeFlexEligible": "<p>Whether the recommended reservation is size flexible.</p>",
+        "TargetInstance$DefaultTargetInstance": "<p> Indicates whether or not this recommendation is the defaulted Amazon Web Services recommendation.</p>"
       }
     },
     "GenericString": {
       "base": null,
       "refs": {
+        "CurrentInstance$ResourceId": "<p>Resource ID of the current instance.</p>",
+        "CurrentInstance$ReservationCoveredHoursInLookbackPeriod": "<p> Number of hours during the lookback period covered by reservations.</p>",
+        "CurrentInstance$OnDemandHoursInLookbackPeriod": "<p> Number of hours during the lookback period billed at On Demand rates.</p>",
+        "CurrentInstance$TotalRunningHoursInLookbackPeriod": "<p> The total number of hours the instance ran during the lookback period.</p>",
+        "CurrentInstance$MonthlyCost": "<p> Current On Demand cost of operating this instance on a monthly basis.</p>",
+        "CurrentInstance$CurrencyCode": "<p> The currency code that Amazon Web Services used to calculate the costs for this instance.</p>",
         "EC2InstanceDetails$Family": "<p>The instance family of the recommended reservation.</p>",
         "EC2InstanceDetails$InstanceType": "<p>The type of instance that AWS recommends.</p>",
         "EC2InstanceDetails$Region": "<p>The AWS Region of the recommended reservation.</p>",
         "EC2InstanceDetails$AvailabilityZone": "<p>The Availability Zone of the recommended reservation.</p>",
         "EC2InstanceDetails$Platform": "<p>The platform of the recommended reservation. The platform is the specific combination of operating system, license model, and software on an instance.</p>",
         "EC2InstanceDetails$Tenancy": "<p>Whether the recommended reservation is dedicated or shared.</p>",
+        "EC2ResourceDetails$HourlyOnDemandRate": "<p> Hourly public On Demand rate for the instance type.</p>",
+        "EC2ResourceDetails$InstanceType": "<p> The type of Amazon Web Services instance.</p>",
+        "EC2ResourceDetails$Platform": "<p> The platform of the Amazon Web Services instance. The platform is the specific combination of operating system, license model, and software on an instance.</p>",
+        "EC2ResourceDetails$Region": "<p> The Amazon Web Services Region of the instance.</p>",
+        "EC2ResourceDetails$Sku": "<p> The SKU of the product.</p>",
+        "EC2ResourceDetails$Memory": "<p> Memory capacity of Amazon Web Services instance.</p>",
+        "EC2ResourceDetails$NetworkPerformance": "<p> Network performance capacity of the Amazon Web Services instance.</p>",
+        "EC2ResourceDetails$Storage": "<p> The disk storage of the Amazon Web Services instance (Not EBS storage).</p>",
+        "EC2ResourceDetails$Vcpu": "<p> Number of VCPU cores in the Amazon Web Services instance type.</p>",
+        "EC2ResourceUtilization$MaxCpuUtilizationPercentage": "<p> Maximum observed or expected CPU utilization of the instance.</p>",
+        "EC2ResourceUtilization$MaxMemoryUtilizationPercentage": "<p> Maximum observed or expected memory utilization of the instance.</p>",
+        "EC2ResourceUtilization$MaxStorageUtilizationPercentage": "<p> Maximum observed or expected storage utilization of the instance (does not measure EBS storage).</p>",
         "ESInstanceDetails$InstanceClass": "<p>The class of instance that AWS recommends.</p>",
         "ESInstanceDetails$InstanceSize": "<p>The size of instance that AWS recommends.</p>",
         "ESInstanceDetails$Region": "<p>The AWS Region of the recommended reservation.</p>",
@@ -273,6 +312,7 @@
         "ForecastResult$PredictionIntervalUpperBound": "<p>The upper limit for the prediction interval. </p>",
         "GetReservationPurchaseRecommendationRequest$AccountId": "<p>The account ID that is associated with the recommendation. </p>",
         "GetReservationPurchaseRecommendationRequest$Service": "<p>The specific service that you want recommendations for.</p>",
+        "GetRightsizingRecommendationRequest$Service": "<p>The specific service that you want recommendations for.</p>",
         "RDSInstanceDetails$Family": "<p>The instance family of the recommended reservation.</p>",
         "RDSInstanceDetails$InstanceType": "<p>The type of instance that AWS recommends.</p>",
         "RDSInstanceDetails$Region": "<p>The AWS Region of the recommended reservation.</p>",
@@ -305,7 +345,19 @@
         "ReservationPurchaseRecommendationMetadata$GenerationTimestamp": "<p>The time stamp for when AWS made this recommendation.</p>",
         "ReservationPurchaseRecommendationSummary$TotalEstimatedMonthlySavingsAmount": "<p>The total amount that AWS estimates that this recommendation could save you in a month.</p>",
         "ReservationPurchaseRecommendationSummary$TotalEstimatedMonthlySavingsPercentage": "<p>The total amount that AWS estimates that this recommendation could save you in a month, as a percentage of your costs.</p>",
-        "ReservationPurchaseRecommendationSummary$CurrencyCode": "<p>The currency code used for this recommendation.</p>"
+        "ReservationPurchaseRecommendationSummary$CurrencyCode": "<p>The currency code used for this recommendation.</p>",
+        "RightsizingRecommendation$AccountId": "<p>The account that this recommendation is for.</p>",
+        "RightsizingRecommendationMetadata$RecommendationId": "<p> The ID for this specific recommendation.</p>",
+        "RightsizingRecommendationMetadata$GenerationTimestamp": "<p> The time stamp for when Amazon Web Services made this recommendation.</p>",
+        "RightsizingRecommendationSummary$TotalRecommendationCount": "<p> Total number of instance recommendations.</p>",
+        "RightsizingRecommendationSummary$EstimatedTotalMonthlySavingsAmount": "<p> Estimated total savings resulting from modifications, on a monthly basis.</p>",
+        "RightsizingRecommendationSummary$SavingsCurrencyCode": "<p> The currency code that Amazon Web Services used to calculate the savings.</p>",
+        "RightsizingRecommendationSummary$SavingsPercentage": "<p> Savings percentage based on the recommended modifications, relative to the total On Demand costs associated with these instances.</p>",
+        "TargetInstance$EstimatedMonthlyCost": "<p> Expected cost to operate this instance type on a monthly basis.</p>",
+        "TargetInstance$EstimatedMonthlySavings": "<p> Estimated savings resulting from modification, on a monthly basis.</p>",
+        "TargetInstance$CurrencyCode": "<p> The currency code that Amazon Web Services used to calculate the costs for this instance.</p>",
+        "TerminateRecommendationDetail$EstimatedMonthlySavings": "<p> Estimated savings resulting from modification, on a monthly basis.</p>",
+        "TerminateRecommendationDetail$CurrencyCode": "<p> The currency code that Amazon Web Services used to calculate the costs for this instance.</p>"
       }
     },
     "GetCostAndUsageRequest": {
@@ -364,6 +416,16 @@
       }
     },
     "GetReservationUtilizationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetRightsizingRecommendationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetRightsizingRecommendationResponse": {
       "base": null,
       "refs": {
       }
@@ -469,7 +531,8 @@
       "base": null,
       "refs": {
         "GetReservationPurchaseRecommendationRequest$LookbackPeriodInDays": "<p>The number of previous days that you want AWS to consider when it calculates your recommendations.</p>",
-        "ReservationPurchaseRecommendation$LookbackPeriodInDays": "<p>How many days of previous usage that AWS considers when making this recommendation.</p>"
+        "ReservationPurchaseRecommendation$LookbackPeriodInDays": "<p>How many days of previous usage that AWS considers when making this recommendation.</p>",
+        "RightsizingRecommendationMetadata$LookbackPeriodInDays": "<p> How many days of previous usage that Amazon Web Services considers when making this recommendation.</p>"
       }
     },
     "Metric": {
@@ -520,6 +583,12 @@
         "ResultByTime$Total": "<p>The total amount of cost or usage accrued during the time period.</p>"
       }
     },
+    "ModifyRecommendationDetail": {
+      "base": "<p> Details on the modification recommendation.</p>",
+      "refs": {
+        "RightsizingRecommendation$ModifyRecommendationDetail": "<p> Details for modification recommendations. </p>"
+      }
+    },
     "NetRISavings": {
       "base": null,
       "refs": {
@@ -539,6 +608,8 @@
         "GetReservationPurchaseRecommendationResponse$NextPageToken": "<p>The pagination token for the next set of retrievable results.</p>",
         "GetReservationUtilizationRequest$NextPageToken": "<p>The token to retrieve the next set of results. AWS provides the token when the response from a previous call has more results than the maximum page size.</p>",
         "GetReservationUtilizationResponse$NextPageToken": "<p>The token for the next set of retrievable results. AWS provides the token when the response from a previous call has more results than the maximum page size.</p>",
+        "GetRightsizingRecommendationRequest$NextPageToken": "<p>The pagination token that indicates the next set of results that you want to retrieve.</p>",
+        "GetRightsizingRecommendationResponse$NextPageToken": "<p>The token to retrieve the next set of results.</p>",
         "GetTagsRequest$NextPageToken": "<p>The token to retrieve the next set of results. AWS provides the token when the response from a previous call has more results than the maximum page size.</p>",
         "GetTagsResponse$NextPageToken": "<p>The token for the next set of retrievable results. AWS provides the token when the response from a previous call has more results than the maximum page size.</p>"
       }
@@ -546,7 +617,8 @@
     "NonNegativeInteger": {
       "base": null,
       "refs": {
-        "GetReservationPurchaseRecommendationRequest$PageSize": "<p>The number of recommendations that you want returned in a single response object.</p>"
+        "GetReservationPurchaseRecommendationRequest$PageSize": "<p>The number of recommendations that you want returned in a single response object.</p>",
+        "GetRightsizingRecommendationRequest$PageSize": "<p>The number of recommendations that you want returned in a single response object.</p>"
       }
     },
     "OfferingClass": {
@@ -723,6 +795,20 @@
         "CoverageNormalizedUnits$ReservedNormalizedUnits": "<p>The number of normalized units that a reservation covers.</p>"
       }
     },
+    "ResourceDetails": {
+      "base": "<p>Details on the resource.</p>",
+      "refs": {
+        "CurrentInstance$ResourceDetails": "<p> Details about the resource and utilization.</p>",
+        "TargetInstance$ResourceDetails": "<p> Details on the target instance type. </p>"
+      }
+    },
+    "ResourceUtilization": {
+      "base": "<p>Resource utilization of current resource. </p>",
+      "refs": {
+        "CurrentInstance$ResourceUtilization": "<p> Utilization information of the current instance during the lookback period.</p>",
+        "TargetInstance$ExpectedResourceUtilization": "<p> Expected utilization metrics for target instance type.</p>"
+      }
+    },
     "ResultByTime": {
       "base": "<p>The result that is associated with a time period.</p>",
       "refs": {
@@ -733,6 +819,36 @@
       "base": null,
       "refs": {
         "GetCostAndUsageResponse$ResultsByTime": "<p>The time period that is covered by the results in the response.</p>"
+      }
+    },
+    "RightsizingRecommendation": {
+      "base": "<p>Recommendations to rightsize resources.</p>",
+      "refs": {
+        "RightsizingRecommendationList$member": null
+      }
+    },
+    "RightsizingRecommendationList": {
+      "base": null,
+      "refs": {
+        "GetRightsizingRecommendationResponse$RightsizingRecommendations": "<p>Recommendations to rightsize resources.</p>"
+      }
+    },
+    "RightsizingRecommendationMetadata": {
+      "base": "<p>Metadata for this recommendation set.</p>",
+      "refs": {
+        "GetRightsizingRecommendationResponse$Metadata": "<p>Information regarding this specific recommendation set.</p>"
+      }
+    },
+    "RightsizingRecommendationSummary": {
+      "base": "<p> Summary of rightsizing recommendations </p>",
+      "refs": {
+        "GetRightsizingRecommendationResponse$Summary": "<p>Summary of this recommendation set.</p>"
+      }
+    },
+    "RightsizingType": {
+      "base": null,
+      "refs": {
+        "RightsizingRecommendation$RightsizingType": "<p>Recommendation to either terminate or modify the resource.</p>"
       }
     },
     "SearchString": {
@@ -765,7 +881,26 @@
     "TagValues": {
       "base": "<p>The values that are available for a tag.</p>",
       "refs": {
-        "Expression$Tags": "<p>The specific <code>Tag</code> to use for <code>Expression</code>.</p>"
+        "Expression$Tags": "<p>The specific <code>Tag</code> to use for <code>Expression</code>.</p>",
+        "TagValuesList$member": null
+      }
+    },
+    "TagValuesList": {
+      "base": null,
+      "refs": {
+        "CurrentInstance$Tags": "<p>Cost allocation resource tags applied to the instance.</p>"
+      }
+    },
+    "TargetInstance": {
+      "base": "<p> Details on recommended instance.</p>",
+      "refs": {
+        "TargetInstancesList$member": null
+      }
+    },
+    "TargetInstancesList": {
+      "base": null,
+      "refs": {
+        "ModifyRecommendationDetail$TargetInstances": "<p> Identifies whether this instance type is the Amazon Web Services default recommendation.</p>"
       }
     },
     "TermInYears": {
@@ -773,6 +908,12 @@
       "refs": {
         "GetReservationPurchaseRecommendationRequest$TermInYears": "<p>The reservation term that you want recommendations for.</p>",
         "ReservationPurchaseRecommendation$TermInYears": "<p>The term of the reservation that you want recommendations for, in years.</p>"
+      }
+    },
+    "TerminateRecommendationDetail": {
+      "base": "<p> Details on termination recommendation. </p>",
+      "refs": {
+        "RightsizingRecommendation$TerminateRecommendationDetail": "<p>Details for termination recommendations.</p>"
       }
     },
     "TotalActualHours": {
@@ -812,7 +953,7 @@
       }
     },
     "UnresolvableUsageUnitException": {
-      "base": "<p>Cost Explorer was unable to identify the usage unit. Provide <code>UsageType/UsageTypeGroup</code> filter selections that contain matching units, for example: <code>hours</code>.(</p>",
+      "base": "<p>Cost Explorer was unable to identify the usage unit. Provide <code>UsageType/UsageTypeGroup</code> filter selections that contain matching units, for example: <code>hours</code>.</p>",
       "refs": {
       }
     },

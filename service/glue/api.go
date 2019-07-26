@@ -5184,6 +5184,242 @@ func (c *Glue) GetJobWithContext(ctx aws.Context, input *GetJobInput, opts ...re
 	return out, req.Send()
 }
 
+const opGetJobBookmark = "GetJobBookmark"
+
+// GetJobBookmarkRequest generates a "aws/request.Request" representing the
+// client's request for the GetJobBookmark operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetJobBookmark for more information on using the GetJobBookmark
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetJobBookmarkRequest method.
+//    req, resp := client.GetJobBookmarkRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetJobBookmark
+func (c *Glue) GetJobBookmarkRequest(input *GetJobBookmarkInput) (req *request.Request, output *GetJobBookmarkOutput) {
+	op := &request.Operation{
+		Name:       opGetJobBookmark,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetJobBookmarkInput{}
+	}
+
+	output = &GetJobBookmarkOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetJobBookmark API operation for AWS Glue.
+//
+// Returns information on a job bookmark entry.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation GetJobBookmark for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+//   A specified entity does not exist
+//
+//   * ErrCodeInvalidInputException "InvalidInputException"
+//   The input provided was not valid.
+//
+//   * ErrCodeInternalServiceException "InternalServiceException"
+//   An internal service error occurred.
+//
+//   * ErrCodeOperationTimeoutException "OperationTimeoutException"
+//   The operation timed out.
+//
+//   * ErrCodeValidationException "ValidationException"
+//   A value could not be validated.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetJobBookmark
+func (c *Glue) GetJobBookmark(input *GetJobBookmarkInput) (*GetJobBookmarkOutput, error) {
+	req, out := c.GetJobBookmarkRequest(input)
+	return out, req.Send()
+}
+
+// GetJobBookmarkWithContext is the same as GetJobBookmark with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetJobBookmark for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) GetJobBookmarkWithContext(ctx aws.Context, input *GetJobBookmarkInput, opts ...request.Option) (*GetJobBookmarkOutput, error) {
+	req, out := c.GetJobBookmarkRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetJobBookmarks = "GetJobBookmarks"
+
+// GetJobBookmarksRequest generates a "aws/request.Request" representing the
+// client's request for the GetJobBookmarks operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetJobBookmarks for more information on using the GetJobBookmarks
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetJobBookmarksRequest method.
+//    req, resp := client.GetJobBookmarksRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetJobBookmarks
+func (c *Glue) GetJobBookmarksRequest(input *GetJobBookmarksInput) (req *request.Request, output *GetJobBookmarksOutput) {
+	op := &request.Operation{
+		Name:       opGetJobBookmarks,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetJobBookmarksInput{}
+	}
+
+	output = &GetJobBookmarksOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetJobBookmarks API operation for AWS Glue.
+//
+// Returns information on the job bookmark entries. The list is ordered on decreasing
+// version numbers.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation GetJobBookmarks for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidInputException "InvalidInputException"
+//   The input provided was not valid.
+//
+//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+//   A specified entity does not exist
+//
+//   * ErrCodeInternalServiceException "InternalServiceException"
+//   An internal service error occurred.
+//
+//   * ErrCodeOperationTimeoutException "OperationTimeoutException"
+//   The operation timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetJobBookmarks
+func (c *Glue) GetJobBookmarks(input *GetJobBookmarksInput) (*GetJobBookmarksOutput, error) {
+	req, out := c.GetJobBookmarksRequest(input)
+	return out, req.Send()
+}
+
+// GetJobBookmarksWithContext is the same as GetJobBookmarks with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetJobBookmarks for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) GetJobBookmarksWithContext(ctx aws.Context, input *GetJobBookmarksInput, opts ...request.Option) (*GetJobBookmarksOutput, error) {
+	req, out := c.GetJobBookmarksRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetJobBookmarksPages iterates over the pages of a GetJobBookmarks operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetJobBookmarks method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetJobBookmarks operation.
+//    pageNum := 0
+//    err := client.GetJobBookmarksPages(params,
+//        func(page *glue.GetJobBookmarksOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Glue) GetJobBookmarksPages(input *GetJobBookmarksInput, fn func(*GetJobBookmarksOutput, bool) bool) error {
+	return c.GetJobBookmarksPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetJobBookmarksPagesWithContext same as GetJobBookmarksPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) GetJobBookmarksPagesWithContext(ctx aws.Context, input *GetJobBookmarksInput, fn func(*GetJobBookmarksOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetJobBookmarksInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetJobBookmarksRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*GetJobBookmarksOutput), !p.HasNextPage())
+	}
+	return p.Err()
+}
+
 const opGetJobRun = "GetJobRun"
 
 // GetJobRunRequest generates a "aws/request.Request" representing the
@@ -18637,6 +18873,166 @@ func (s *GetDevEndpointsOutput) SetNextToken(v string) *GetDevEndpointsOutput {
 	return s
 }
 
+type GetJobBookmarkInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the job in question.
+	//
+	// JobName is a required field
+	JobName *string `type:"string" required:"true"`
+
+	// The unique run identifier associated with this job run.
+	RunId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GetJobBookmarkInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetJobBookmarkInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetJobBookmarkInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetJobBookmarkInput"}
+	if s.JobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobName sets the JobName field's value.
+func (s *GetJobBookmarkInput) SetJobName(v string) *GetJobBookmarkInput {
+	s.JobName = &v
+	return s
+}
+
+// SetRunId sets the RunId field's value.
+func (s *GetJobBookmarkInput) SetRunId(v string) *GetJobBookmarkInput {
+	s.RunId = &v
+	return s
+}
+
+type GetJobBookmarkOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that defines a point that a job can resume processing.
+	JobBookmarkEntry *JobBookmarkEntry `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetJobBookmarkOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetJobBookmarkOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobBookmarkEntry sets the JobBookmarkEntry field's value.
+func (s *GetJobBookmarkOutput) SetJobBookmarkEntry(v *JobBookmarkEntry) *GetJobBookmarkOutput {
+	s.JobBookmarkEntry = v
+	return s
+}
+
+type GetJobBookmarksInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the job in question.
+	//
+	// JobName is a required field
+	JobName *string `type:"string" required:"true"`
+
+	// The maximum size of the response.
+	MaxResults *int64 `type:"integer"`
+
+	// A continuation token, if this is a continuation call.
+	NextToken *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s GetJobBookmarksInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetJobBookmarksInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetJobBookmarksInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetJobBookmarksInput"}
+	if s.JobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobName sets the JobName field's value.
+func (s *GetJobBookmarksInput) SetJobName(v string) *GetJobBookmarksInput {
+	s.JobName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetJobBookmarksInput) SetMaxResults(v int64) *GetJobBookmarksInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetJobBookmarksInput) SetNextToken(v int64) *GetJobBookmarksInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetJobBookmarksOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of job bookmark entries that defines a point that a job can resume
+	// processing.
+	JobBookmarkEntries []*JobBookmarkEntry `type:"list"`
+
+	// A continuation token, which has a value of 1 if all the entries are returned,
+	// or > 1 if not all requested job runs have been returned.
+	NextToken *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s GetJobBookmarksOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetJobBookmarksOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobBookmarkEntries sets the JobBookmarkEntries field's value.
+func (s *GetJobBookmarksOutput) SetJobBookmarkEntries(v []*JobBookmarkEntry) *GetJobBookmarksOutput {
+	s.JobBookmarkEntries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetJobBookmarksOutput) SetNextToken(v int64) *GetJobBookmarksOutput {
+	s.NextToken = &v
+	return s
+}
+
 type GetJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -21415,8 +21811,14 @@ type JobBookmarkEntry struct {
 	// The name of the job in question.
 	JobName *string `type:"string"`
 
+	// The unique run identifier associated with the previous job run..
+	PreviousRunId *string `type:"string"`
+
 	// The run ID number.
 	Run *int64 `type:"integer"`
+
+	// The unique run identifier associated with this job run.
+	RunId *string `type:"string"`
 
 	// The version of the job.
 	Version *int64 `type:"integer"`
@@ -21450,9 +21852,21 @@ func (s *JobBookmarkEntry) SetJobName(v string) *JobBookmarkEntry {
 	return s
 }
 
+// SetPreviousRunId sets the PreviousRunId field's value.
+func (s *JobBookmarkEntry) SetPreviousRunId(v string) *JobBookmarkEntry {
+	s.PreviousRunId = &v
+	return s
+}
+
 // SetRun sets the Run field's value.
 func (s *JobBookmarkEntry) SetRun(v int64) *JobBookmarkEntry {
 	s.Run = &v
+	return s
+}
+
+// SetRunId sets the RunId field's value.
+func (s *JobBookmarkEntry) SetRunId(v string) *JobBookmarkEntry {
+	s.RunId = &v
 	return s
 }
 
@@ -23616,6 +24030,9 @@ type ResetJobBookmarkInput struct {
 	//
 	// JobName is a required field
 	JobName *string `type:"string" required:"true"`
+
+	// The unique run identifier associated with this job run.
+	RunId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -23644,6 +24061,12 @@ func (s *ResetJobBookmarkInput) Validate() error {
 // SetJobName sets the JobName field's value.
 func (s *ResetJobBookmarkInput) SetJobName(v string) *ResetJobBookmarkInput {
 	s.JobName = &v
+	return s
+}
+
+// SetRunId sets the RunId field's value.
+func (s *ResetJobBookmarkInput) SetRunId(v string) *ResetJobBookmarkInput {
+	s.RunId = &v
 	return s
 }
 

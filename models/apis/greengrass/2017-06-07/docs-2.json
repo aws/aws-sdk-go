@@ -578,10 +578,11 @@
       }
     },
     "Tags" : {
-      "base" : null,
+      "base" : "The key-value pair for the resource tag.",
       "refs" : {
-        "DefinitionInformation$Tags" : null,
-        "GetBulkDeploymentStatusResponse$Tags" : null
+        "DefinitionInformation$Tags" : "Tag(s) attached to the resource arn.",
+        "GetBulkDeploymentStatusResponse$Tags" : "Tag(s) attached to the resource arn.",
+        "StartBulkDeploymentRequest$Tags" : "Tag(s) to add to the new resource."
       }
     },
     "UpdateAgentLogLevel" : {
@@ -746,7 +747,7 @@
     "__string" : {
       "base" : null,
       "refs" : {
-        "AssociateRoleToGroupRequest$RoleArn" : "The ARN of the role you wish to associate with this group.",
+        "AssociateRoleToGroupRequest$RoleArn" : "The ARN of the role you wish to associate with this group. The existence of the role is not validated.",
         "AssociateRoleToGroupResponse$AssociatedAt" : "The time, in milliseconds since the epoch, when the role ARN was associated with the group.",
         "AssociateServiceRoleToAccountRequest$RoleArn" : "The ARN of the service role you wish to associate with your account.",
         "AssociateServiceRoleToAccountResponse$AssociatedAt" : "The time when the service role was associated with the account.",
@@ -778,8 +779,8 @@
         "DefinitionInformation$CreationTimestamp" : "The time, in milliseconds since the epoch, when the definition was created.",
         "DefinitionInformation$Id" : "The ID of the definition.",
         "DefinitionInformation$LastUpdatedTimestamp" : "The time, in milliseconds since the epoch, when the definition was last updated.",
-        "DefinitionInformation$LatestVersion" : "The latest version of the definition.",
-        "DefinitionInformation$LatestVersionArn" : "The ARN of the latest version of the definition.",
+        "DefinitionInformation$LatestVersion" : "The ID of the latest version associated with the definition.",
+        "DefinitionInformation$LatestVersionArn" : "The ARN of the latest version associated with the definition.",
         "DefinitionInformation$Name" : "The name of the definition.",
         "Deployment$CreatedAt" : "The time, in milliseconds since the epoch, when the deployment was created.",
         "Deployment$DeploymentArn" : "The ARN of the deployment.",
@@ -856,8 +857,8 @@
         "GroupInformation$CreationTimestamp" : "The time, in milliseconds since the epoch, when the group was created.",
         "GroupInformation$Id" : "The ID of the group.",
         "GroupInformation$LastUpdatedTimestamp" : "The time, in milliseconds since the epoch, when the group was last updated.",
-        "GroupInformation$LatestVersion" : "The latest version of the group.",
-        "GroupInformation$LatestVersionArn" : "The ARN of the latest version of the group.",
+        "GroupInformation$LatestVersion" : "The ID of the latest version associated with the group.",
+        "GroupInformation$LatestVersionArn" : "The ARN of the latest version associated with the group.",
         "GroupInformation$Name" : "The name of the group.",
         "GroupOwnerSetting$GroupOwner" : "The name of the Linux OS group whose privileges will be added to the Lambda process. This field is optional.",
         "GroupVersion$ConnectorDefinitionVersionArn" : "The ARN of the connector definition version for this group.",
@@ -895,7 +896,7 @@
         "Subscription$Source" : "The source of the subscription. Can be a thing ARN, a Lambda function ARN, a connector ARN, 'cloud' (which represents the AWS IoT cloud), or 'GGShadowService'.",
         "Subscription$Subject" : "The MQTT topic used to route the message.",
         "Subscription$Target" : "Where the message is sent to. Can be a thing ARN, a Lambda function ARN, a connector ARN, 'cloud' (which represents the AWS IoT cloud), or 'GGShadowService'.",
-        "Tags$member" : "A map of the key-value pairs for the resource tag.",
+        "Tags$member" : null,
         "UpdateConnectivityInfoResponse$Message" : "A message about the connectivity info update request.",
         "UpdateConnectivityInfoResponse$Version" : "The new version of the connectivity info.",
         "UpdateGroupCertificateConfigurationRequest$CertificateExpiryInMilliseconds" : "The amount of time remaining before the certificate expires, in milliseconds.",
