@@ -24077,6 +24077,78 @@ func (c *EC2) ExportTransitGatewayRoutesWithContext(ctx aws.Context, input *Expo
 	return out, req.Send()
 }
 
+const opGetCapacityReservationUsage = "GetCapacityReservationUsage"
+
+// GetCapacityReservationUsageRequest generates a "aws/request.Request" representing the
+// client's request for the GetCapacityReservationUsage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCapacityReservationUsage for more information on using the GetCapacityReservationUsage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetCapacityReservationUsageRequest method.
+//    req, resp := client.GetCapacityReservationUsageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15/GetCapacityReservationUsage
+func (c *EC2) GetCapacityReservationUsageRequest(input *GetCapacityReservationUsageInput) (req *request.Request, output *GetCapacityReservationUsageOutput) {
+	op := &request.Operation{
+		Name:       opGetCapacityReservationUsage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetCapacityReservationUsageInput{}
+	}
+
+	output = &GetCapacityReservationUsageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCapacityReservationUsage API operation for Amazon Elastic Compute Cloud.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Compute Cloud's
+// API operation GetCapacityReservationUsage for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15/GetCapacityReservationUsage
+func (c *EC2) GetCapacityReservationUsage(input *GetCapacityReservationUsageInput) (*GetCapacityReservationUsageOutput, error) {
+	req, out := c.GetCapacityReservationUsageRequest(input)
+	return out, req.Send()
+}
+
+// GetCapacityReservationUsageWithContext is the same as GetCapacityReservationUsage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCapacityReservationUsage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EC2) GetCapacityReservationUsageWithContext(ctx aws.Context, input *GetCapacityReservationUsageInput, opts ...request.Option) (*GetCapacityReservationUsageOutput, error) {
+	req, out := c.GetCapacityReservationUsageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetConsoleOutput = "GetConsoleOutput"
 
 // GetConsoleOutputRequest generates a "aws/request.Request" representing the
@@ -36385,9 +36457,13 @@ type CapacityReservation struct {
 	// The Availability Zone in which the capacity is reserved.
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
 
+	AvailabilityZoneId *string `locationName:"availabilityZoneId" type:"string"`
+
 	// The remaining capacity. Indicates the number of instances that can be launched
 	// in the Capacity Reservation.
 	AvailableInstanceCount *int64 `locationName:"availableInstanceCount" type:"integer"`
+
+	CapacityReservationArn *string `locationName:"capacityReservationArn" type:"string"`
 
 	// The ID of the Capacity Reservation.
 	CapacityReservationId *string `locationName:"capacityReservationId" type:"string"`
@@ -36443,6 +36519,8 @@ type CapacityReservation struct {
 	// The type of instance for which the Capacity Reservation reserves capacity.
 	InstanceType *string `locationName:"instanceType" type:"string"`
 
+	OwnerId *string `locationName:"ownerId" type:"string"`
+
 	// The current state of the Capacity Reservation. A Capacity Reservation can
 	// be in one of the following states:
 	//
@@ -36497,9 +36575,21 @@ func (s *CapacityReservation) SetAvailabilityZone(v string) *CapacityReservation
 	return s
 }
 
+// SetAvailabilityZoneId sets the AvailabilityZoneId field's value.
+func (s *CapacityReservation) SetAvailabilityZoneId(v string) *CapacityReservation {
+	s.AvailabilityZoneId = &v
+	return s
+}
+
 // SetAvailableInstanceCount sets the AvailableInstanceCount field's value.
 func (s *CapacityReservation) SetAvailableInstanceCount(v int64) *CapacityReservation {
 	s.AvailableInstanceCount = &v
+	return s
+}
+
+// SetCapacityReservationArn sets the CapacityReservationArn field's value.
+func (s *CapacityReservation) SetCapacityReservationArn(v string) *CapacityReservation {
+	s.CapacityReservationArn = &v
 	return s
 }
 
@@ -36554,6 +36644,12 @@ func (s *CapacityReservation) SetInstancePlatform(v string) *CapacityReservation
 // SetInstanceType sets the InstanceType field's value.
 func (s *CapacityReservation) SetInstanceType(v string) *CapacityReservation {
 	s.InstanceType = &v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *CapacityReservation) SetOwnerId(v string) *CapacityReservation {
+	s.OwnerId = &v
 	return s
 }
 
@@ -38585,9 +38681,9 @@ type CreateCapacityReservationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Availability Zone in which to create the Capacity Reservation.
-	//
-	// AvailabilityZone is a required field
-	AvailabilityZone *string `type:"string" required:"true"`
+	AvailabilityZone *string `type:"string"`
+
+	AvailabilityZoneId *string `type:"string"`
 
 	// Unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request. For more information, see How to Ensure Idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
@@ -38697,9 +38793,6 @@ func (s CreateCapacityReservationInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateCapacityReservationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateCapacityReservationInput"}
-	if s.AvailabilityZone == nil {
-		invalidParams.Add(request.NewErrParamRequired("AvailabilityZone"))
-	}
 	if s.InstanceCount == nil {
 		invalidParams.Add(request.NewErrParamRequired("InstanceCount"))
 	}
@@ -38719,6 +38812,12 @@ func (s *CreateCapacityReservationInput) Validate() error {
 // SetAvailabilityZone sets the AvailabilityZone field's value.
 func (s *CreateCapacityReservationInput) SetAvailabilityZone(v string) *CreateCapacityReservationInput {
 	s.AvailabilityZone = &v
+	return s
+}
+
+// SetAvailabilityZoneId sets the AvailabilityZoneId field's value.
+func (s *CreateCapacityReservationInput) SetAvailabilityZoneId(v string) *CreateCapacityReservationInput {
+	s.AvailabilityZoneId = &v
 	return s
 }
 
@@ -64254,6 +64353,139 @@ func (s *FpgaImageState) SetMessage(v string) *FpgaImageState {
 	return s
 }
 
+type GetCapacityReservationUsageInput struct {
+	_ struct{} `type:"structure"`
+
+	// CapacityReservationId is a required field
+	CapacityReservationId *string `type:"string" required:"true"`
+
+	DryRun *bool `type:"boolean"`
+
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GetCapacityReservationUsageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetCapacityReservationUsageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCapacityReservationUsageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCapacityReservationUsageInput"}
+	if s.CapacityReservationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CapacityReservationId"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCapacityReservationId sets the CapacityReservationId field's value.
+func (s *GetCapacityReservationUsageInput) SetCapacityReservationId(v string) *GetCapacityReservationUsageInput {
+	s.CapacityReservationId = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *GetCapacityReservationUsageInput) SetDryRun(v bool) *GetCapacityReservationUsageInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetCapacityReservationUsageInput) SetMaxResults(v int64) *GetCapacityReservationUsageInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetCapacityReservationUsageInput) SetNextToken(v string) *GetCapacityReservationUsageInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetCapacityReservationUsageOutput struct {
+	_ struct{} `type:"structure"`
+
+	AvailableInstanceCount *int64 `locationName:"availableInstanceCount" type:"integer"`
+
+	CapacityReservationId *string `locationName:"capacityReservationId" type:"string"`
+
+	InstanceType *string `locationName:"instanceType" type:"string"`
+
+	InstanceUsages []*InstanceUsage `locationName:"instanceUsageSet" locationNameList:"item" type:"list"`
+
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	State *string `locationName:"state" type:"string" enum:"CapacityReservationState"`
+
+	TotalInstanceCount *int64 `locationName:"totalInstanceCount" type:"integer"`
+}
+
+// String returns the string representation
+func (s GetCapacityReservationUsageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetCapacityReservationUsageOutput) GoString() string {
+	return s.String()
+}
+
+// SetAvailableInstanceCount sets the AvailableInstanceCount field's value.
+func (s *GetCapacityReservationUsageOutput) SetAvailableInstanceCount(v int64) *GetCapacityReservationUsageOutput {
+	s.AvailableInstanceCount = &v
+	return s
+}
+
+// SetCapacityReservationId sets the CapacityReservationId field's value.
+func (s *GetCapacityReservationUsageOutput) SetCapacityReservationId(v string) *GetCapacityReservationUsageOutput {
+	s.CapacityReservationId = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *GetCapacityReservationUsageOutput) SetInstanceType(v string) *GetCapacityReservationUsageOutput {
+	s.InstanceType = &v
+	return s
+}
+
+// SetInstanceUsages sets the InstanceUsages field's value.
+func (s *GetCapacityReservationUsageOutput) SetInstanceUsages(v []*InstanceUsage) *GetCapacityReservationUsageOutput {
+	s.InstanceUsages = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetCapacityReservationUsageOutput) SetNextToken(v string) *GetCapacityReservationUsageOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *GetCapacityReservationUsageOutput) SetState(v string) *GetCapacityReservationUsageOutput {
+	s.State = &v
+	return s
+}
+
+// SetTotalInstanceCount sets the TotalInstanceCount field's value.
+func (s *GetCapacityReservationUsageOutput) SetTotalInstanceCount(v int64) *GetCapacityReservationUsageOutput {
+	s.TotalInstanceCount = &v
+	return s
+}
+
 type GetConsoleOutputInput struct {
 	_ struct{} `type:"structure"`
 
@@ -69505,6 +69737,36 @@ func (s *InstanceStatusSummary) SetDetails(v []*InstanceStatusDetails) *Instance
 // SetStatus sets the Status field's value.
 func (s *InstanceStatusSummary) SetStatus(v string) *InstanceStatusSummary {
 	s.Status = &v
+	return s
+}
+
+type InstanceUsage struct {
+	_ struct{} `type:"structure"`
+
+	AccountId *string `locationName:"accountId" type:"string"`
+
+	UsedInstanceCount *int64 `locationName:"usedInstanceCount" type:"integer"`
+}
+
+// String returns the string representation
+func (s InstanceUsage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InstanceUsage) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *InstanceUsage) SetAccountId(v string) *InstanceUsage {
+	s.AccountId = &v
+	return s
+}
+
+// SetUsedInstanceCount sets the UsedInstanceCount field's value.
+func (s *InstanceUsage) SetUsedInstanceCount(v int64) *InstanceUsage {
+	s.UsedInstanceCount = &v
 	return s
 }
 

@@ -3,6 +3,8 @@
 package greengrass
 
 import (
+	"fmt"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -7191,8 +7193,11 @@ type AssociateRoleToGroupInput struct {
 	// GroupId is a required field
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
 
-	// The ARN of the role you wish to associate with this group.
-	RoleArn *string `type:"string"`
+	// The ARN of the role you wish to associate with this group. The existence
+	// of the role is not validated.
+	//
+	// RoleArn is a required field
+	RoleArn *string `type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -7213,6 +7218,9 @@ func (s *AssociateRoleToGroupInput) Validate() error {
 	}
 	if s.GroupId != nil && len(*s.GroupId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("GroupId", 1))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7261,7 +7269,9 @@ type AssociateServiceRoleToAccountInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the service role you wish to associate with your account.
-	RoleArn *string `type:"string"`
+	//
+	// RoleArn is a required field
+	RoleArn *string `type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -7272,6 +7282,19 @@ func (s AssociateServiceRoleToAccountInput) String() string {
 // GoString returns the string representation
 func (s AssociateServiceRoleToAccountInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateServiceRoleToAccountInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateServiceRoleToAccountInput"}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetRoleArn sets the RoleArn field's value.
@@ -7541,12 +7564,16 @@ type Connector struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the connector.
-	ConnectorArn *string `type:"string"`
+	//
+	// ConnectorArn is a required field
+	ConnectorArn *string `type:"string" required:"true"`
 
 	// A descriptive or arbitrary ID for the connector. This value must be unique
 	// within the connector definition version. Max length is 128 characters with
 	// pattern [a-zA-Z0-9:_-]+.
-	Id *string `type:"string"`
+	//
+	// Id is a required field
+	Id *string `type:"string" required:"true"`
 
 	// The parameters or configuration that the connector uses.
 	Parameters map[string]*string `type:"map"`
@@ -7560,6 +7587,22 @@ func (s Connector) String() string {
 // GoString returns the string representation
 func (s Connector) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Connector) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Connector"}
+	if s.ConnectorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectorArn"))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetConnectorArn sets the ConnectorArn field's value.
@@ -7600,6 +7643,26 @@ func (s ConnectorDefinitionVersion) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConnectorDefinitionVersion) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConnectorDefinitionVersion"}
+	if s.Connectors != nil {
+		for i, v := range s.Connectors {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Connectors", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetConnectors sets the Connectors field's value.
 func (s *ConnectorDefinitionVersion) SetConnectors(v []*Connector) *ConnectorDefinitionVersion {
 	s.Connectors = v
@@ -7611,17 +7674,23 @@ type Core struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the certificate associated with the core.
-	CertificateArn *string `type:"string"`
+	//
+	// CertificateArn is a required field
+	CertificateArn *string `type:"string" required:"true"`
 
 	// A descriptive or arbitrary ID for the core. This value must be unique within
 	// the core definition version. Max length is 128 characters with pattern ''[a-zA-Z0-9:_-]+''.
-	Id *string `type:"string"`
+	//
+	// Id is a required field
+	Id *string `type:"string" required:"true"`
 
 	// If true, the core's local shadow is automatically synced with the cloud.
 	SyncShadow *bool `type:"boolean"`
 
 	// The ARN of the thing which is the core.
-	ThingArn *string `type:"string"`
+	//
+	// ThingArn is a required field
+	ThingArn *string `type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -7632,6 +7701,25 @@ func (s Core) String() string {
 // GoString returns the string representation
 func (s Core) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Core) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Core"}
+	if s.CertificateArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateArn"))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.ThingArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThingArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetCertificateArn sets the CertificateArn field's value.
@@ -7676,6 +7764,26 @@ func (s CoreDefinitionVersion) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CoreDefinitionVersion) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CoreDefinitionVersion"}
+	if s.Cores != nil {
+		for i, v := range s.Cores {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Cores", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetCores sets the Cores field's value.
 func (s *CoreDefinitionVersion) SetCores(v []*Core) *CoreDefinitionVersion {
 	s.Cores = v
@@ -7693,6 +7801,7 @@ type CreateConnectorDefinitionInput struct {
 
 	Name *string `type:"string"`
 
+	// The key-value pair for the resource tag.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -7704,6 +7813,21 @@ func (s CreateConnectorDefinitionInput) String() string {
 // GoString returns the string representation
 func (s CreateConnectorDefinitionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateConnectorDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateConnectorDefinitionInput"}
+	if s.InitialVersion != nil {
+		if err := s.InitialVersion.Validate(); err != nil {
+			invalidParams.AddNested("InitialVersion", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetAmznClientToken sets the AmznClientToken field's value.
@@ -7830,6 +7954,16 @@ func (s *CreateConnectorDefinitionVersionInput) Validate() error {
 	if s.ConnectorDefinitionId != nil && len(*s.ConnectorDefinitionId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ConnectorDefinitionId", 1))
 	}
+	if s.Connectors != nil {
+		for i, v := range s.Connectors {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Connectors", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7911,6 +8045,7 @@ type CreateCoreDefinitionInput struct {
 
 	Name *string `type:"string"`
 
+	// The key-value pair for the resource tag.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -7922,6 +8057,21 @@ func (s CreateCoreDefinitionInput) String() string {
 // GoString returns the string representation
 func (s CreateCoreDefinitionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCoreDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCoreDefinitionInput"}
+	if s.InitialVersion != nil {
+		if err := s.InitialVersion.Validate(); err != nil {
+			invalidParams.AddNested("InitialVersion", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetAmznClientToken sets the AmznClientToken field's value.
@@ -8048,6 +8198,16 @@ func (s *CreateCoreDefinitionVersionInput) Validate() error {
 	if s.CoreDefinitionId != nil && len(*s.CoreDefinitionId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("CoreDefinitionId", 1))
 	}
+	if s.Cores != nil {
+		for i, v := range s.Cores {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Cores", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8130,7 +8290,9 @@ type CreateDeploymentInput struct {
 
 	// The type of deployment. When used for ''CreateDeployment'', only ''NewDeployment''
 	// and ''Redeployment'' are valid.
-	DeploymentType *string `type:"string" enum:"DeploymentType"`
+	//
+	// DeploymentType is a required field
+	DeploymentType *string `type:"string" required:"true" enum:"DeploymentType"`
 
 	// GroupId is a required field
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
@@ -8152,6 +8314,9 @@ func (s CreateDeploymentInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateDeploymentInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateDeploymentInput"}
+	if s.DeploymentType == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeploymentType"))
+	}
 	if s.GroupId == nil {
 		invalidParams.Add(request.NewErrParamRequired("GroupId"))
 	}
@@ -8237,6 +8402,7 @@ type CreateDeviceDefinitionInput struct {
 
 	Name *string `type:"string"`
 
+	// The key-value pair for the resource tag.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -8248,6 +8414,21 @@ func (s CreateDeviceDefinitionInput) String() string {
 // GoString returns the string representation
 func (s CreateDeviceDefinitionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDeviceDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDeviceDefinitionInput"}
+	if s.InitialVersion != nil {
+		if err := s.InitialVersion.Validate(); err != nil {
+			invalidParams.AddNested("InitialVersion", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetAmznClientToken sets the AmznClientToken field's value.
@@ -8374,6 +8555,16 @@ func (s *CreateDeviceDefinitionVersionInput) Validate() error {
 	if s.DeviceDefinitionId != nil && len(*s.DeviceDefinitionId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DeviceDefinitionId", 1))
 	}
+	if s.Devices != nil {
+		for i, v := range s.Devices {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Devices", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8455,6 +8646,7 @@ type CreateFunctionDefinitionInput struct {
 
 	Name *string `type:"string"`
 
+	// The key-value pair for the resource tag.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -8466,6 +8658,21 @@ func (s CreateFunctionDefinitionInput) String() string {
 // GoString returns the string representation
 func (s CreateFunctionDefinitionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFunctionDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFunctionDefinitionInput"}
+	if s.InitialVersion != nil {
+		if err := s.InitialVersion.Validate(); err != nil {
+			invalidParams.AddNested("InitialVersion", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetAmznClientToken sets the AmznClientToken field's value.
@@ -8595,6 +8802,16 @@ func (s *CreateFunctionDefinitionVersionInput) Validate() error {
 	}
 	if s.FunctionDefinitionId != nil && len(*s.FunctionDefinitionId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FunctionDefinitionId", 1))
+	}
+	if s.Functions != nil {
+		for i, v := range s.Functions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Functions", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -8753,6 +8970,7 @@ type CreateGroupInput struct {
 
 	Name *string `type:"string"`
 
+	// The key-value pair for the resource tag.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -9019,6 +9237,7 @@ type CreateLoggerDefinitionInput struct {
 
 	Name *string `type:"string"`
 
+	// The key-value pair for the resource tag.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -9030,6 +9249,21 @@ func (s CreateLoggerDefinitionInput) String() string {
 // GoString returns the string representation
 func (s CreateLoggerDefinitionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLoggerDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLoggerDefinitionInput"}
+	if s.InitialVersion != nil {
+		if err := s.InitialVersion.Validate(); err != nil {
+			invalidParams.AddNested("InitialVersion", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetAmznClientToken sets the AmznClientToken field's value.
@@ -9156,6 +9390,16 @@ func (s *CreateLoggerDefinitionVersionInput) Validate() error {
 	if s.LoggerDefinitionId != nil && len(*s.LoggerDefinitionId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("LoggerDefinitionId", 1))
 	}
+	if s.Loggers != nil {
+		for i, v := range s.Loggers {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Loggers", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9237,6 +9481,7 @@ type CreateResourceDefinitionInput struct {
 
 	Name *string `type:"string"`
 
+	// The key-value pair for the resource tag.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -9248,6 +9493,21 @@ func (s CreateResourceDefinitionInput) String() string {
 // GoString returns the string representation
 func (s CreateResourceDefinitionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateResourceDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateResourceDefinitionInput"}
+	if s.InitialVersion != nil {
+		if err := s.InitialVersion.Validate(); err != nil {
+			invalidParams.AddNested("InitialVersion", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetAmznClientToken sets the AmznClientToken field's value.
@@ -9374,6 +9634,16 @@ func (s *CreateResourceDefinitionVersionInput) Validate() error {
 	if s.ResourceDefinitionId != nil && len(*s.ResourceDefinitionId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ResourceDefinitionId", 1))
 	}
+	if s.Resources != nil {
+		for i, v := range s.Resources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Resources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9453,10 +9723,14 @@ type CreateSoftwareUpdateJobInput struct {
 
 	// The IAM Role that Greengrass will use to create pre-signed URLs pointing
 	// towards the update artifact.
-	S3UrlSignerRole *string `type:"string"`
+	//
+	// S3UrlSignerRole is a required field
+	S3UrlSignerRole *string `type:"string" required:"true"`
 
 	// The piece of software on the Greengrass core that will be updated.
-	SoftwareToUpdate *string `type:"string" enum:"SoftwareToUpdate"`
+	//
+	// SoftwareToUpdate is a required field
+	SoftwareToUpdate *string `type:"string" required:"true" enum:"SoftwareToUpdate"`
 
 	// The minimum level of log statements that should be logged by the OTA Agent
 	// during an update.
@@ -9464,13 +9738,19 @@ type CreateSoftwareUpdateJobInput struct {
 
 	// The ARNs of the targets (IoT things or IoT thing groups) that this update
 	// will be applied to.
-	UpdateTargets []*string `type:"list"`
+	//
+	// UpdateTargets is a required field
+	UpdateTargets []*string `type:"list" required:"true"`
 
 	// The architecture of the cores which are the targets of an update.
-	UpdateTargetsArchitecture *string `type:"string" enum:"UpdateTargetsArchitecture"`
+	//
+	// UpdateTargetsArchitecture is a required field
+	UpdateTargetsArchitecture *string `type:"string" required:"true" enum:"UpdateTargetsArchitecture"`
 
 	// The operating system of the cores which are the targets of an update.
-	UpdateTargetsOperatingSystem *string `type:"string" enum:"UpdateTargetsOperatingSystem"`
+	//
+	// UpdateTargetsOperatingSystem is a required field
+	UpdateTargetsOperatingSystem *string `type:"string" required:"true" enum:"UpdateTargetsOperatingSystem"`
 }
 
 // String returns the string representation
@@ -9481,6 +9761,31 @@ func (s CreateSoftwareUpdateJobInput) String() string {
 // GoString returns the string representation
 func (s CreateSoftwareUpdateJobInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSoftwareUpdateJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSoftwareUpdateJobInput"}
+	if s.S3UrlSignerRole == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3UrlSignerRole"))
+	}
+	if s.SoftwareToUpdate == nil {
+		invalidParams.Add(request.NewErrParamRequired("SoftwareToUpdate"))
+	}
+	if s.UpdateTargets == nil {
+		invalidParams.Add(request.NewErrParamRequired("UpdateTargets"))
+	}
+	if s.UpdateTargetsArchitecture == nil {
+		invalidParams.Add(request.NewErrParamRequired("UpdateTargetsArchitecture"))
+	}
+	if s.UpdateTargetsOperatingSystem == nil {
+		invalidParams.Add(request.NewErrParamRequired("UpdateTargetsOperatingSystem"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetAmznClientToken sets the AmznClientToken field's value.
@@ -9567,6 +9872,7 @@ type CreateSubscriptionDefinitionInput struct {
 
 	Name *string `type:"string"`
 
+	// The key-value pair for the resource tag.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -9578,6 +9884,21 @@ func (s CreateSubscriptionDefinitionInput) String() string {
 // GoString returns the string representation
 func (s CreateSubscriptionDefinitionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSubscriptionDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSubscriptionDefinitionInput"}
+	if s.InitialVersion != nil {
+		if err := s.InitialVersion.Validate(); err != nil {
+			invalidParams.AddNested("InitialVersion", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetAmznClientToken sets the AmznClientToken field's value.
@@ -9704,6 +10025,16 @@ func (s *CreateSubscriptionDefinitionVersionInput) Validate() error {
 	if s.SubscriptionDefinitionId != nil && len(*s.SubscriptionDefinitionId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SubscriptionDefinitionId", 1))
 	}
+	if s.Subscriptions != nil {
+		for i, v := range s.Subscriptions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Subscriptions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9791,15 +10122,16 @@ type DefinitionInformation struct {
 	// The time, in milliseconds since the epoch, when the definition was last updated.
 	LastUpdatedTimestamp *string `type:"string"`
 
-	// The latest version of the definition.
+	// The ID of the latest version associated with the definition.
 	LatestVersion *string `type:"string"`
 
-	// The ARN of the latest version of the definition.
+	// The ARN of the latest version associated with the definition.
 	LatestVersionArn *string `type:"string"`
 
 	// The name of the definition.
 	Name *string `type:"string"`
 
+	// Tag(s) attached to the resource arn.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -10350,19 +10682,25 @@ type Device struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the certificate associated with the device.
-	CertificateArn *string `type:"string"`
+	//
+	// CertificateArn is a required field
+	CertificateArn *string `type:"string" required:"true"`
 
 	// A descriptive or arbitrary ID for the device. This value must be unique within
 	// the device definition version. Max length is 128 characters with pattern
 	// ''[a-zA-Z0-9:_-]+''.
-	Id *string `type:"string"`
+	//
+	// Id is a required field
+	Id *string `type:"string" required:"true"`
 
 	// If true, the device's local shadow will be automatically synced with the
 	// cloud.
 	SyncShadow *bool `type:"boolean"`
 
 	// The thing ARN of the device.
-	ThingArn *string `type:"string"`
+	//
+	// ThingArn is a required field
+	ThingArn *string `type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -10373,6 +10711,25 @@ func (s Device) String() string {
 // GoString returns the string representation
 func (s Device) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Device) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Device"}
+	if s.CertificateArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateArn"))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.ThingArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThingArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetCertificateArn sets the CertificateArn field's value.
@@ -10415,6 +10772,26 @@ func (s DeviceDefinitionVersion) String() string {
 // GoString returns the string representation
 func (s DeviceDefinitionVersion) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeviceDefinitionVersion) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeviceDefinitionVersion"}
+	if s.Devices != nil {
+		for i, v := range s.Devices {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Devices", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetDevices sets the Devices field's value.
@@ -10569,7 +10946,9 @@ type Function struct {
 	// A descriptive or arbitrary ID for the function. This value must be unique
 	// within the function definition version. Max length is 128 characters with
 	// pattern ''[a-zA-Z0-9:_-]+''.
-	Id *string `type:"string"`
+	//
+	// Id is a required field
+	Id *string `type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -10580,6 +10959,24 @@ func (s Function) String() string {
 // GoString returns the string representation
 func (s Function) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Function) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Function"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.FunctionConfiguration != nil {
+		if err := s.FunctionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("FunctionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetFunctionArn sets the FunctionArn field's value.
@@ -10640,6 +11037,21 @@ func (s FunctionConfiguration) String() string {
 // GoString returns the string representation
 func (s FunctionConfiguration) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FunctionConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FunctionConfiguration"}
+	if s.Environment != nil {
+		if err := s.Environment.Validate(); err != nil {
+			invalidParams.AddNested("Environment", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetEncodingType sets the EncodingType field's value.
@@ -10715,6 +11127,26 @@ func (s FunctionConfigurationEnvironment) String() string {
 // GoString returns the string representation
 func (s FunctionConfigurationEnvironment) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FunctionConfigurationEnvironment) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FunctionConfigurationEnvironment"}
+	if s.ResourceAccessPolicies != nil {
+		for i, v := range s.ResourceAccessPolicies {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ResourceAccessPolicies", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetAccessSysfs sets the AccessSysfs field's value.
@@ -10828,6 +11260,26 @@ func (s FunctionDefinitionVersion) String() string {
 // GoString returns the string representation
 func (s FunctionDefinitionVersion) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FunctionDefinitionVersion) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FunctionDefinitionVersion"}
+	if s.Functions != nil {
+		for i, v := range s.Functions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Functions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetDefaultConfig sets the DefaultConfig field's value.
@@ -11051,6 +11503,7 @@ type GetBulkDeploymentStatusOutput struct {
 	// Error message
 	ErrorMessage *string `type:"string"`
 
+	// The key-value pair for the resource tag.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -11228,6 +11681,7 @@ type GetConnectorDefinitionOutput struct {
 
 	Name *string `type:"string"`
 
+	// The key-value pair for the resource tag.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -11478,6 +11932,7 @@ type GetCoreDefinitionOutput struct {
 
 	Name *string `type:"string"`
 
+	// The key-value pair for the resource tag.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -11835,6 +12290,7 @@ type GetDeviceDefinitionOutput struct {
 
 	Name *string `type:"string"`
 
+	// The key-value pair for the resource tag.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -12084,6 +12540,7 @@ type GetFunctionDefinitionOutput struct {
 
 	Name *string `type:"string"`
 
+	// The key-value pair for the resource tag.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -12507,6 +12964,7 @@ type GetGroupOutput struct {
 
 	Name *string `type:"string"`
 
+	// The key-value pair for the resource tag.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -12738,6 +13196,7 @@ type GetLoggerDefinitionOutput struct {
 
 	Name *string `type:"string"`
 
+	// The key-value pair for the resource tag.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -12978,6 +13437,7 @@ type GetResourceDefinitionOutput struct {
 
 	Name *string `type:"string"`
 
+	// The key-value pair for the resource tag.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -13256,6 +13716,7 @@ type GetSubscriptionDefinitionOutput struct {
 
 	Name *string `type:"string"`
 
+	// The key-value pair for the resource tag.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -13499,10 +13960,10 @@ type GroupInformation struct {
 	// The time, in milliseconds since the epoch, when the group was last updated.
 	LastUpdatedTimestamp *string `type:"string"`
 
-	// The latest version of the group.
+	// The ID of the latest version associated with the group.
 	LatestVersion *string `type:"string"`
 
-	// The ARN of the latest version of the group.
+	// The ARN of the latest version associated with the group.
 	LatestVersionArn *string `type:"string"`
 
 	// The name of the group.
@@ -15181,7 +15642,8 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	Tags map[string]*string `type:"map"`
+	// The key-value pair for the resource tag.
+	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
 // String returns the string representation
@@ -15283,22 +15745,30 @@ type Logger struct {
 	_ struct{} `type:"structure"`
 
 	// The component that will be subject to logging.
-	Component *string `type:"string" enum:"LoggerComponent"`
+	//
+	// Component is a required field
+	Component *string `type:"string" required:"true" enum:"LoggerComponent"`
 
 	// A descriptive or arbitrary ID for the logger. This value must be unique within
 	// the logger definition version. Max length is 128 characters with pattern
 	// ''[a-zA-Z0-9:_-]+''.
-	Id *string `type:"string"`
+	//
+	// Id is a required field
+	Id *string `type:"string" required:"true"`
 
 	// The level of the logs.
-	Level *string `type:"string" enum:"LoggerLevel"`
+	//
+	// Level is a required field
+	Level *string `type:"string" required:"true" enum:"LoggerLevel"`
 
 	// The amount of file space, in KB, to use if the local file system is used
 	// for logging purposes.
 	Space *int64 `type:"integer"`
 
 	// The type of log output which will be used.
-	Type *string `type:"string" enum:"LoggerType"`
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"LoggerType"`
 }
 
 // String returns the string representation
@@ -15309,6 +15779,28 @@ func (s Logger) String() string {
 // GoString returns the string representation
 func (s Logger) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Logger) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Logger"}
+	if s.Component == nil {
+		invalidParams.Add(request.NewErrParamRequired("Component"))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Level == nil {
+		invalidParams.Add(request.NewErrParamRequired("Level"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetComponent sets the Component field's value.
@@ -15357,6 +15849,26 @@ func (s LoggerDefinitionVersion) String() string {
 // GoString returns the string representation
 func (s LoggerDefinitionVersion) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LoggerDefinitionVersion) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LoggerDefinitionVersion"}
+	if s.Loggers != nil {
+		for i, v := range s.Loggers {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Loggers", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetLoggers sets the Loggers field's value.
@@ -15461,15 +15973,21 @@ type Resource struct {
 	// The resource ID, used to refer to a resource in the Lambda function configuration.
 	// Max length is 128 characters with pattern ''[a-zA-Z0-9:_-]+''. This must
 	// be unique within a Greengrass group.
-	Id *string `type:"string"`
+	//
+	// Id is a required field
+	Id *string `type:"string" required:"true"`
 
 	// The descriptive resource name, which is displayed on the AWS IoT Greengrass
 	// console. Max length 128 characters with pattern ''[a-zA-Z0-9:_-]+''. This
 	// must be unique within a Greengrass group.
-	Name *string `type:"string"`
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
 
 	// A container of data for all resource types.
-	ResourceDataContainer *ResourceDataContainer `type:"structure"`
+	//
+	// ResourceDataContainer is a required field
+	ResourceDataContainer *ResourceDataContainer `type:"structure" required:"true"`
 }
 
 // String returns the string representation
@@ -15480,6 +15998,25 @@ func (s Resource) String() string {
 // GoString returns the string representation
 func (s Resource) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Resource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Resource"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.ResourceDataContainer == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceDataContainer"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetId sets the Id field's value.
@@ -15510,7 +16047,9 @@ type ResourceAccessPolicy struct {
 
 	// The ID of the resource. (This ID is assigned to the resource when you create
 	// the resource definiton.)
-	ResourceId *string `type:"string"`
+	//
+	// ResourceId is a required field
+	ResourceId *string `type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -15521,6 +16060,19 @@ func (s ResourceAccessPolicy) String() string {
 // GoString returns the string representation
 func (s ResourceAccessPolicy) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResourceAccessPolicy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResourceAccessPolicy"}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetPermission sets the Permission field's value.
@@ -15615,6 +16167,26 @@ func (s ResourceDefinitionVersion) String() string {
 // GoString returns the string representation
 func (s ResourceDefinitionVersion) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResourceDefinitionVersion) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResourceDefinitionVersion"}
+	if s.Resources != nil {
+		for i, v := range s.Resources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Resources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetResources sets the Resources field's value.
@@ -15740,7 +16312,9 @@ type StartBulkDeploymentInput struct {
 	// This IAM role must allow the ''greengrass:CreateDeployment'' action for all
 	// group versions that are listed in the input file. This IAM role must have
 	// access to the S3 bucket containing the input file.
-	ExecutionRoleArn *string `type:"string"`
+	//
+	// ExecutionRoleArn is a required field
+	ExecutionRoleArn *string `type:"string" required:"true"`
 
 	// The URI of the input file contained in the S3 bucket. The execution role
 	// must have ''getObject'' permissions on this bucket to access the input file.
@@ -15748,8 +16322,11 @@ type StartBulkDeploymentInput struct {
 	// that provides a list of group and version IDs and the deployment type. This
 	// file must be less than 100 MB. Currently, AWS IoT Greengrass supports only
 	// ''NewDeployment'' deployment types.
-	InputFileUri *string `type:"string"`
+	//
+	// InputFileUri is a required field
+	InputFileUri *string `type:"string" required:"true"`
 
+	// The key-value pair for the resource tag.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -15761,6 +16338,22 @@ func (s StartBulkDeploymentInput) String() string {
 // GoString returns the string representation
 func (s StartBulkDeploymentInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartBulkDeploymentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartBulkDeploymentInput"}
+	if s.ExecutionRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExecutionRoleArn"))
+	}
+	if s.InputFileUri == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputFileUri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetAmznClientToken sets the AmznClientToken field's value.
@@ -15879,18 +16472,26 @@ type Subscription struct {
 	// A descriptive or arbitrary ID for the subscription. This value must be unique
 	// within the subscription definition version. Max length is 128 characters
 	// with pattern ''[a-zA-Z0-9:_-]+''.
-	Id *string `type:"string"`
+	//
+	// Id is a required field
+	Id *string `type:"string" required:"true"`
 
 	// The source of the subscription. Can be a thing ARN, a Lambda function ARN,
 	// a connector ARN, 'cloud' (which represents the AWS IoT cloud), or 'GGShadowService'.
-	Source *string `type:"string"`
+	//
+	// Source is a required field
+	Source *string `type:"string" required:"true"`
 
 	// The MQTT topic used to route the message.
-	Subject *string `type:"string"`
+	//
+	// Subject is a required field
+	Subject *string `type:"string" required:"true"`
 
 	// Where the message is sent to. Can be a thing ARN, a Lambda function ARN,
 	// a connector ARN, 'cloud' (which represents the AWS IoT cloud), or 'GGShadowService'.
-	Target *string `type:"string"`
+	//
+	// Target is a required field
+	Target *string `type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -15901,6 +16502,28 @@ func (s Subscription) String() string {
 // GoString returns the string representation
 func (s Subscription) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Subscription) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Subscription"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Source == nil {
+		invalidParams.Add(request.NewErrParamRequired("Source"))
+	}
+	if s.Subject == nil {
+		invalidParams.Add(request.NewErrParamRequired("Subject"))
+	}
+	if s.Target == nil {
+		invalidParams.Add(request.NewErrParamRequired("Target"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetId sets the Id field's value.
@@ -15945,6 +16568,26 @@ func (s SubscriptionDefinitionVersion) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SubscriptionDefinitionVersion) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SubscriptionDefinitionVersion"}
+	if s.Subscriptions != nil {
+		for i, v := range s.Subscriptions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Subscriptions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetSubscriptions sets the Subscriptions field's value.
 func (s *SubscriptionDefinitionVersion) SetSubscriptions(v []*Subscription) *SubscriptionDefinitionVersion {
 	s.Subscriptions = v
@@ -15957,8 +16600,8 @@ type TagResourceInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
 
-	// Tags is a required field
-	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
+	// The key-value pair for the resource tag.
+	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
 // String returns the string representation
@@ -15979,9 +16622,6 @@ func (s *TagResourceInput) Validate() error {
 	}
 	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
-	}
-	if s.Tags == nil {
-		invalidParams.Add(request.NewErrParamRequired("Tags"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -16934,6 +17574,9 @@ const (
 
 	// UpdateTargetsArchitectureAarch64 is a UpdateTargetsArchitecture enum value
 	UpdateTargetsArchitectureAarch64 = "aarch64"
+
+	// UpdateTargetsArchitectureOpenwrt is a UpdateTargetsArchitecture enum value
+	UpdateTargetsArchitectureOpenwrt = "openwrt"
 )
 
 // The operating system of the cores which are the targets of an update.

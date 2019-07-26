@@ -39,6 +39,6 @@ const (
 	// "UnresolvableUsageUnitException".
 	//
 	// Cost Explorer was unable to identify the usage unit. Provide UsageType/UsageTypeGroup
-	// filter selections that contain matching units, for example: hours.(
+	// filter selections that contain matching units, for example: hours.
 	ErrCodeUnresolvableUsageUnitException = "UnresolvableUsageUnitException"
 )
