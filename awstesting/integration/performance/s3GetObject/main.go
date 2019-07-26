@@ -74,7 +74,7 @@ func main() {
 		defer timeoutFn()
 	}
 
-	logger := NewLogger(os.Stdout, config.LogMode)
+	logger := NewLogger(os.Stdout)
 
 	// Start making the requests.
 	svc := s3.New(sess)

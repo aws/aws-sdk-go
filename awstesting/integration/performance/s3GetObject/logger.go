@@ -13,14 +13,12 @@ import (
 )
 
 type Logger struct {
-	mode LogMode
-	out  *csv.Writer
+	out *csv.Writer
 }
 
-func NewLogger(writer io.Writer, mode LogMode) *Logger {
+func NewLogger(writer io.Writer) *Logger {
 	l := &Logger{
-		mode: mode,
-		out:  csv.NewWriter(writer),
+		out: csv.NewWriter(writer),
 	}
 
 	err := l.out.Write([]string{

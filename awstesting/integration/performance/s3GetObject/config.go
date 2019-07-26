@@ -10,48 +10,10 @@ import (
 	"time"
 )
 
-type LogMode int
-
-func NewLogMode() *LogMode {
-	return new(LogMode)
-}
-
-func (l *LogMode) Set(v string) error {
-	switch v {
-	case "aggergated":
-		*l = AggergatedLogMode
-	case "request":
-		*l = RequestLogMode
-	default:
-		return fmt.Errorf("unknown log mode, %v", v)
-	}
-	return nil
-}
-func (l *LogMode) String() string {
-	switch *l {
-	case AggergatedLogMode:
-		return "aggergated"
-	case RequestLogMode:
-		return "request"
-	default:
-		return "unknown log mode"
-	}
-}
-func (l *LogMode) Get() interface{} {
-	return l
-}
-
-const (
-	AggergatedLogMode LogMode = iota
-	RequestLogMode
-)
-
 type Config struct {
 	RequestDuration time.Duration
 	RequestCount    int64
 	RequestDelay    time.Duration
-
-	LogMode LogMode
 
 	Endpoint    string
 	Bucket, Key string
@@ -67,10 +29,6 @@ func (c *Config) SetupFlags(prefix string, flagset *flag.FlagSet) {
 		"The total `number` of requests to make. Use instead of duration for specific count.")
 	flagset.DurationVar(&c.RequestDelay, "delay", 0,
 		"The detail between sequential requests.")
-
-	//	flagset.Var(&c.LogMode, "log",
-	//		"The `mode` to log request latencies, (aggergated, or request).")
-
 	flagset.StringVar(&c.Endpoint, prefix+"endpoint", "",
 		"Optional overriden endpoint S3 client will connect to.")
 	flagset.StringVar(&c.Bucket, "bucket", "",
