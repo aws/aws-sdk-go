@@ -84,7 +84,7 @@
         "PullRequest$authorArn": "<p>The Amazon Resource Name (ARN) of the user who created the pull request.</p>",
         "PullRequestEvent$actorArn": "<p>The Amazon Resource Name (ARN) of the user whose actions resulted in the event. Examples include updating the pull request with additional commits or changing the status of a pull request.</p>",
         "RepositoryMetadata$Arn": "<p>The Amazon Resource Name (ARN) of the repository.</p>",
-        "RepositoryTrigger$destinationArn": "<p>The ARN of the resource that is the target for a trigger. For example, the ARN of a topic in Amazon Simple Notification Service (SNS).</p>"
+        "RepositoryTrigger$destinationArn": "<p>The ARN of the resource that is the target for a trigger. For example, the ARN of a topic in Amazon SNS.</p>"
       }
     },
     "AuthorDoesNotExistException": {
@@ -190,7 +190,7 @@
       "base": null,
       "refs": {
         "ListBranchesOutput$branches": "<p>The list of branch names.</p>",
-        "RepositoryTrigger$branches": "<p>The branches that will be included in the trigger configuration. If you specify an empty array, the trigger will apply to all branches.</p> <note> <p>While no content is required in the array, you must include the array itself.</p> </note>"
+        "RepositoryTrigger$branches": "<p>The branches that will be included in the trigger configuration. If you specify an empty array, the trigger will apply to all branches.</p> <note> <p>Although no content is required in the array, you must include the array itself.</p> </note>"
       }
     },
     "BranchNameRequiredException": {
@@ -417,6 +417,11 @@
     },
     "CommitRequiredException": {
       "base": "<p>A commit was not specified.</p>",
+      "refs": {
+      }
+    },
+    "ConcurrentReferenceUpdateException": {
+      "base": "<p>The merge cannot be completed because the target branch has been modified. Another user might have modified the target branch while the merge was in progress. Wait a few minutes, and then try again.</p>",
       "refs": {
       }
     },
@@ -2255,7 +2260,7 @@
     "RepositoryTriggerEventList": {
       "base": null,
       "refs": {
-        "RepositoryTrigger$events": "<p>The repository events that will cause the trigger to run actions in another service, such as sending a notification through Amazon Simple Notification Service (SNS). </p> <note> <p>The valid value \"all\" cannot be used with any other values.</p> </note>"
+        "RepositoryTrigger$events": "<p>The repository events that will cause the trigger to run actions in another service, such as sending a notification through Amazon SNS. </p> <note> <p>The valid value \"all\" cannot be used with any other values.</p> </note>"
       }
     },
     "RepositoryTriggerEventsListRequiredException": {

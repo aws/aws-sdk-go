@@ -232,6 +232,7 @@
         {"shape":"FolderContentSizeLimitExceededException"},
         {"shape":"MaximumFileContentToLoadExceededException"},
         {"shape":"MaximumItemsToCompareExceededException"},
+        {"shape":"ConcurrentReferenceUpdateException"},
         {"shape":"FileModeRequiredException"},
         {"shape":"InvalidFileModeException"},
         {"shape":"NameLengthExceededException"},
@@ -836,6 +837,7 @@
         {"shape":"BranchNameIsTagNameException"},
         {"shape":"BranchDoesNotExistException"},
         {"shape":"ManualMergeRequiredException"},
+        {"shape":"ConcurrentReferenceUpdateException"},
         {"shape":"EncryptionIntegrityChecksFailedException"},
         {"shape":"EncryptionKeyAccessDeniedException"},
         {"shape":"EncryptionKeyDisabledException"},
@@ -885,6 +887,7 @@
         {"shape":"NameLengthExceededException"},
         {"shape":"InvalidEmailException"},
         {"shape":"CommitMessageLengthExceededException"},
+        {"shape":"ConcurrentReferenceUpdateException"},
         {"shape":"EncryptionIntegrityChecksFailedException"},
         {"shape":"EncryptionKeyAccessDeniedException"},
         {"shape":"EncryptionKeyDisabledException"},
@@ -914,6 +917,7 @@
         {"shape":"BranchNameIsTagNameException"},
         {"shape":"BranchDoesNotExistException"},
         {"shape":"ManualMergeRequiredException"},
+        {"shape":"ConcurrentReferenceUpdateException"},
         {"shape":"InvalidConflictDetailLevelException"},
         {"shape":"InvalidConflictResolutionStrategyException"},
         {"shape":"InvalidConflictResolutionException"},
@@ -962,6 +966,7 @@
         {"shape":"RepositoryNameRequiredException"},
         {"shape":"InvalidRepositoryNameException"},
         {"shape":"RepositoryDoesNotExistException"},
+        {"shape":"ConcurrentReferenceUpdateException"},
         {"shape":"EncryptionIntegrityChecksFailedException"},
         {"shape":"EncryptionKeyAccessDeniedException"},
         {"shape":"EncryptionKeyDisabledException"},
@@ -997,6 +1002,7 @@
         {"shape":"MultipleConflictResolutionEntriesException"},
         {"shape":"ReplacementContentRequiredException"},
         {"shape":"MaximumConflictResolutionEntriesExceededException"},
+        {"shape":"ConcurrentReferenceUpdateException"},
         {"shape":"PathRequiredException"},
         {"shape":"InvalidPathException"},
         {"shape":"InvalidFileModeException"},
@@ -1056,6 +1062,7 @@
         {"shape":"InvalidRepositoryNameException"},
         {"shape":"RepositoryDoesNotExistException"},
         {"shape":"RepositoryNotAssociatedWithPullRequestException"},
+        {"shape":"ConcurrentReferenceUpdateException"},
         {"shape":"EncryptionIntegrityChecksFailedException"},
         {"shape":"EncryptionKeyAccessDeniedException"},
         {"shape":"EncryptionKeyDisabledException"},
@@ -1723,6 +1730,12 @@
     },
     "CommitName":{"type":"string"},
     "CommitRequiredException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "ConcurrentReferenceUpdateException":{
       "type":"structure",
       "members":{
       },

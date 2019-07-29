@@ -1,3 +1,11 @@
+Release v1.21.7 (2019-07-29)
+===
+
+### Service Client Updates
+* `service/codecommit`: Updates service API and documentation
+  * This release supports better exception handling for merges.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.21.6 (2019-07-26)
 ===
 
