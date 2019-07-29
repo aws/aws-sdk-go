@@ -99,7 +99,6 @@ func (c *FakeContext) Value(key interface{}) interface{} {
 // all environment values as key=val strings.
 //
 // Deprecated: StashEnv exists for backward compatibility and may be removed from the future iterations
-// This is an internal utility and is subject to have breaking changes.
 // It is not `internal` so that if you really need to use its functionality, and understand breaking changes will be made, you are able to.
 func StashEnv() []string {
 	env := os.Environ()
@@ -112,7 +111,6 @@ func StashEnv() []string {
 // that may already exist.
 //
 // Deprecated: PopEnv exists for backward compatibility and may be removed from the future iterations.
-// This is an internal utility and is subject to have breaking changes.
 // It is not `internal` so that if you really need to use its functionality, and understand breaking changes will be made, you are able to.
 func PopEnv(env []string) {
 	os.Clearenv()
