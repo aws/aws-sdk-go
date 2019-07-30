@@ -3132,6 +3132,16 @@
         "NoiseReducerSpatialFilterSettings$Speed": "The speed of the filter, from -2 (lower speed) to 3 (higher speed), with 0 being the nominal value."
       }
     },
+    "__integerMinNegative50Max50": {
+      "base": null,
+      "refs": {
+        "CreateJobRequest$Priority": "Specify the relative priority for this job. In any given queue, the service begins processing the job with the highest value first. When more than one job has the same priority, the service begins processing the job that you submitted first. If you don't specify a priority, the service uses the default value 0.",
+        "CreateJobTemplateRequest$Priority": "Specify the relative priority for this job. In any given queue, the service begins processing the job with the highest value first. When more than one job has the same priority, the service begins processing the job that you submitted first. If you don't specify a priority, the service uses the default value 0.",
+        "Job$Priority": "Relative priority on the job.",
+        "JobTemplate$Priority": "Relative priority on the job.",
+        "UpdateJobTemplateRequest$Priority": "Specify the relative priority for this job. In any given queue, the service begins processing the job with the highest value first. When more than one job has the same priority, the service begins processing the job that you submitted first. If you don't specify a priority, the service uses the default value 0."
+      }
+    },
     "__integerMinNegative5Max5": {
       "base": null,
       "refs": {

@@ -4,6 +4,14 @@ package polly
 
 const (
 
+	// ErrCodeEngineNotSupportedException for service response error code
+	// "EngineNotSupportedException".
+	//
+	// This engine is not compatible with the voice that you have designated. Choose
+	// a new voice that is compatible with the engine or change the engine and restart
+	// the operation.
+	ErrCodeEngineNotSupportedException = "EngineNotSupportedException"
+
 	// ErrCodeInvalidLexiconException for service response error code
 	// "InvalidLexiconException".
 	//
@@ -141,6 +149,6 @@ const (
 	// "UnsupportedPlsLanguageException".
 	//
 	// The language specified in the lexicon is unsupported. For a list of supported
-	// languages, see Lexicon Attributes (http://docs.aws.amazon.com/polly/latest/dg/API_LexiconAttributes.html).
+	// languages, see Lexicon Attributes (https://docs.aws.amazon.com/polly/latest/dg/API_LexiconAttributes.html).
 	ErrCodeUnsupportedPlsLanguageException = "UnsupportedPlsLanguageException"
 )
