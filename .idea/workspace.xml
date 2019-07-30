@@ -76,8 +76,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/private/model/api/behavior.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="330">
-                  <caret line="158" column="38" lean-forward="true" selection-start-line="158" selection-start-column="38" selection-end-line="158" selection-end-column="38" />
+                <state relative-caret-position="248">
+                  <caret line="143" column="4" lean-forward="true" selection-start-line="143" selection-start-column="4" selection-end-line="143" selection-end-column="4" />
                 </state>
               </provider>
             </entry>
@@ -137,20 +137,20 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/models/behavior_tests/rest_xml_protocol/2019-07-16/behavior.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="414">
-                  <caret line="2832" lean-forward="true" selection-start-line="2832" selection-end-line="2832" />
+                <state relative-caret-position="429">
+                  <caret line="2833" column="10" lean-forward="true" selection-start-line="2833" selection-start-column="10" selection-end-line="2833" selection-end-column="10" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/private/model/api/examples_builder.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
-                  <caret line="12" column="36" lean-forward="true" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+                <state relative-caret-position="240">
+                  <caret line="16" column="36" lean-forward="true" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
                 </state>
               </provider>
             </entry>
@@ -258,12 +258,12 @@
       <find>buil</find>
       <find>assertResponse</find>
       <find>AssertURL</find>
-      <find>&quot;key-4&quot;</find>
       <find>requestBodyMatchesXml</find>
       <find>requestBody</find>
       <find>handlers</find>
       <find>EmptyShapeBuilder</find>
       <find>responseData</find>
+      <find>&quot;key-4&quot;</find>
     </findStrings>
     <replaceStrings>
       <replace>Behaviour</replace>
@@ -810,13 +810,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/private/model/api/examples_builder.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="36" lean-forward="true" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/private/model/api/shape.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -865,13 +858,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/behavior_tests/rest_xml_protocol/2019-07-16/behavior.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="2832" lean-forward="true" selection-start-line="2832" selection-end-line="2832" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/api.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="557">
@@ -900,10 +886,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/models/behavior_tests/rest_xml_protocol/2019-07-16/behavior.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="2833" column="10" lean-forward="true" selection-start-line="2833" selection-start-column="10" selection-end-line="2833" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/private/model/api/examples_builder.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="36" lean-forward="true" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/private/model/api/behavior.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="158" column="38" lean-forward="true" selection-start-line="158" selection-start-column="38" selection-end-line="158" selection-end-column="38" />
+        <state relative-caret-position="248">
+          <caret line="143" column="4" lean-forward="true" selection-start-line="143" selection-start-column="4" selection-end-line="143" selection-end-column="4" />
         </state>
       </provider>
     </entry>

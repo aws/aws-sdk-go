@@ -139,8 +139,9 @@ func FormatAssertionName (val string) string{
 }
 
 func (c Case) AssertionStatement (op *Operation) string{
-	var val string
-	//Assertions start here
+	var val string = "//Assertions start here"
+	val += fmt.Sprintf("\n")
+	
 	for _, assertion := range  c.Expect{
 		for assertionName, assertionContext := range assertion{
 			val += fmt.Sprintf("\n")
