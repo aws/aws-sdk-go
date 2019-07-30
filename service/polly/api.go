@@ -62,7 +62,7 @@ func (c *Polly) DeleteLexiconRequest(input *DeleteLexiconInput) (req *request.Re
 // which has been deleted is not available for speech synthesis, nor is it possible
 // to retrieve it using either the GetLexicon or ListLexicon APIs.
 //
-// For more information, see Managing Lexicons (http://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html).
+// For more information, see Managing Lexicons (https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -249,7 +249,7 @@ func (c *Polly) GetLexiconRequest(input *GetLexiconInput) (req *request.Request,
 // GetLexicon API operation for Amazon Polly.
 //
 // Returns the content of the specified pronunciation lexicon stored in an AWS
-// Region. For more information, see Managing Lexicons (http://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html).
+// Region. For more information, see Managing Lexicons (https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -426,7 +426,7 @@ func (c *Polly) ListLexiconsRequest(input *ListLexiconsInput) (req *request.Requ
 // ListLexicons API operation for Amazon Polly.
 //
 // Returns a list of pronunciation lexicons stored in an AWS Region. For more
-// information, see Managing Lexicons (http://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html).
+// information, see Managing Lexicons (https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -656,7 +656,7 @@ func (c *Polly) PutLexiconRequest(input *PutLexiconInput) (req *request.Request,
 // Lexicon operations have eventual consistency, therefore, it might take some
 // time before the lexicon is available to the SynthesizeSpeech operation.
 //
-// For more information, see Managing Lexicons (http://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html).
+// For more information, see Managing Lexicons (https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -676,7 +676,7 @@ func (c *Polly) PutLexiconRequest(input *PutLexiconInput) (req *request.Request,
 //
 //   * ErrCodeUnsupportedPlsLanguageException "UnsupportedPlsLanguageException"
 //   The language specified in the lexicon is unsupported. For a list of supported
-//   languages, see Lexicon Attributes (http://docs.aws.amazon.com/polly/latest/dg/API_LexiconAttributes.html).
+//   languages, see Lexicon Attributes (https://docs.aws.amazon.com/polly/latest/dg/API_LexiconAttributes.html).
 //
 //   * ErrCodeLexiconSizeExceededException "LexiconSizeExceededException"
 //   The maximum size of the specified lexicon would be exceeded by this operation.
@@ -798,6 +798,11 @@ func (c *Polly) StartSpeechSynthesisTaskRequest(input *StartSpeechSynthesisTaskI
 //   The SSML you provided is invalid. Verify the SSML syntax, spelling of tags
 //   and values, and then try again.
 //
+//   * ErrCodeEngineNotSupportedException "EngineNotSupportedException"
+//   This engine is not compatible with the voice that you have designated. Choose
+//   a new voice that is compatible with the engine or change the engine and restart
+//   the operation.
+//
 //   * ErrCodeLexiconNotFoundException "LexiconNotFoundException"
 //   Amazon Polly can't find the specified lexicon. This could be caused by a
 //   lexicon that is missing, its name is misspelled or specifying a lexicon that
@@ -890,7 +895,7 @@ func (c *Polly) SynthesizeSpeechRequest(input *SynthesizeSpeechInput) (req *requ
 // must be valid, well-formed SSML. Some alphabets might not be available with
 // all the voices (for example, Cyrillic might not be read at all by English
 // voices) unless phoneme mapping is used. For more information, see How it
-// Works (http://docs.aws.amazon.com/polly/latest/dg/how-text-to-speech-works.html).
+// Works (https://docs.aws.amazon.com/polly/latest/dg/how-text-to-speech-works.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -935,6 +940,11 @@ func (c *Polly) SynthesizeSpeechRequest(input *SynthesizeSpeechInput) (req *requ
 //   * ErrCodeLanguageNotSupportedException "LanguageNotSupportedException"
 //   The language specified is not currently supported by Amazon Polly in this
 //   capacity.
+//
+//   * ErrCodeEngineNotSupportedException "EngineNotSupportedException"
+//   This engine is not compatible with the voice that you have designated. Choose
+//   a new voice that is compatible with the engine or change the engine and restart
+//   the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/SynthesizeSpeech
 func (c *Polly) SynthesizeSpeech(input *SynthesizeSpeechInput) (*SynthesizeSpeechOutput, error) {
@@ -1016,6 +1026,10 @@ func (s DeleteLexiconOutput) GoString() string {
 type DescribeVoicesInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the engine (standard or neural) used by Amazon Polly when processing
+	// input text for speech synthesis.
+	Engine *string `location:"querystring" locationName:"Engine" type:"string" enum:"Engine"`
+
 	// Boolean value indicating whether to return any bilingual voices that use
 	// the specified language as an additional language. For instance, if you request
 	// all languages that use US English (es-US), and there is an Italian voice
@@ -1041,6 +1055,12 @@ func (s DescribeVoicesInput) String() string {
 // GoString returns the string representation
 func (s DescribeVoicesInput) GoString() string {
 	return s.String()
+}
+
+// SetEngine sets the Engine field's value.
+func (s *DescribeVoicesInput) SetEngine(v string) *DescribeVoicesInput {
+	s.Engine = &v
+	return s
 }
 
 // SetIncludeAdditionalLanguageCodes sets the IncludeAdditionalLanguageCodes field's value.
@@ -1270,7 +1290,7 @@ func (s *Lexicon) SetName(v string) *Lexicon {
 }
 
 // Contains metadata describing the lexicon such as the number of lexemes, language
-// code, and so on. For more information, see Managing Lexicons (http://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html).
+// code, and so on. For more information, see Managing Lexicons (https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html).
 type LexiconAttributes struct {
 	_ struct{} `type:"structure"`
 
@@ -1595,6 +1615,11 @@ func (s PutLexiconOutput) GoString() string {
 type StartSpeechSynthesisTaskInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the engine (standard or neural) for Amazon Polly to use when processing
+	// input text for speech synthesis. Using a voice that is not supported for
+	// the engine selected will result in an error.
+	Engine *string `type:"string" enum:"Engine"`
+
 	// Optional language code for the Speech Synthesis request. This is only necessary
 	// if using a bilingual voice, such as Aditi, which can be used for either Indian
 	// English (en-IN) or Hindi (hi-IN).
@@ -1627,8 +1652,9 @@ type StartSpeechSynthesisTaskInput struct {
 
 	// The audio frequency specified in Hz.
 	//
-	// The valid values for mp3 and ogg_vorbis are "8000", "16000", and "22050".
-	// The default value is "22050".
+	// The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and
+	// "24000". The default value for standard voices is "22050". The default value
+	// for neural voices is "24000".
 	//
 	// Valid values for pcm are "8000" and "16000" The default value is "16000".
 	SampleRate *string `type:"string"`
@@ -1686,6 +1712,12 @@ func (s *StartSpeechSynthesisTaskInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEngine sets the Engine field's value.
+func (s *StartSpeechSynthesisTaskInput) SetEngine(v string) *StartSpeechSynthesisTaskInput {
+	s.Engine = &v
+	return s
 }
 
 // SetLanguageCode sets the LanguageCode field's value.
@@ -1785,6 +1817,11 @@ type SynthesisTask struct {
 	// Timestamp for the time the synthesis task was started.
 	CreationTime *time.Time `type:"timestamp"`
 
+	// Specifies the engine (standard or neural) for Amazon Polly to use when processing
+	// input text for speech synthesis. Using a voice that is not supported for
+	// the engine selected will result in an error.
+	Engine *string `type:"string" enum:"Engine"`
+
 	// Optional language code for a synthesis task. This is only necessary if using
 	// a bilingual voice, such as Aditi, which can be used for either Indian English
 	// (en-IN) or Hindi (hi-IN).
@@ -1813,8 +1850,9 @@ type SynthesisTask struct {
 
 	// The audio frequency specified in Hz.
 	//
-	// The valid values for mp3 and ogg_vorbis are "8000", "16000", and "22050".
-	// The default value is "22050".
+	// The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and
+	// "24000". The default value for standard voices is "22050". The default value
+	// for neural voices is "24000".
 	//
 	// Valid values for pcm are "8000" and "16000" The default value is "16000".
 	SampleRate *string `type:"string"`
@@ -1857,6 +1895,12 @@ func (s SynthesisTask) GoString() string {
 // SetCreationTime sets the CreationTime field's value.
 func (s *SynthesisTask) SetCreationTime(v time.Time) *SynthesisTask {
 	s.CreationTime = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *SynthesisTask) SetEngine(v string) *SynthesisTask {
+	s.Engine = &v
 	return s
 }
 
@@ -1941,6 +1985,11 @@ func (s *SynthesisTask) SetVoiceId(v string) *SynthesisTask {
 type SynthesizeSpeechInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the engine (standard or neural) for Amazon Polly to use when processing
+	// input text for speech synthesis. Using a voice that is not supported for
+	// the engine selected will result in an error.
+	Engine *string `type:"string" enum:"Engine"`
+
 	// Optional language code for the Synthesize Speech request. This is only necessary
 	// if using a bilingual voice, such as Aditi, which can be used for either Indian
 	// English (en-IN) or Hindi (hi-IN).
@@ -1955,7 +2004,7 @@ type SynthesizeSpeechInput struct {
 	// List of one or more pronunciation lexicon names you want the service to apply
 	// during synthesis. Lexicons are applied only if the language of the lexicon
 	// is the same as the language of the voice. For information about storing lexicons,
-	// see PutLexicon (http://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html).
+	// see PutLexicon (https://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html).
 	LexiconNames []*string `type:"list"`
 
 	// The format in which the returned output will be encoded. For audio stream,
@@ -1969,8 +2018,9 @@ type SynthesizeSpeechInput struct {
 
 	// The audio frequency specified in Hz.
 	//
-	// The valid values for mp3 and ogg_vorbis are "8000", "16000", and "22050".
-	// The default value is "22050".
+	// The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and
+	// "24000". The default value for standard voices is "22050". The default value
+	// for neural voices is "24000".
 	//
 	// Valid values for pcm are "8000" and "16000" The default value is "16000".
 	SampleRate *string `type:"string"`
@@ -1985,11 +2035,11 @@ type SynthesizeSpeechInput struct {
 	Text *string `type:"string" required:"true"`
 
 	// Specifies whether the input text is plain text or SSML. The default value
-	// is plain text. For more information, see Using SSML (http://docs.aws.amazon.com/polly/latest/dg/ssml.html).
+	// is plain text. For more information, see Using SSML (https://docs.aws.amazon.com/polly/latest/dg/ssml.html).
 	TextType *string `type:"string" enum:"TextType"`
 
 	// Voice ID to use for the synthesis. You can get a list of available voice
-	// IDs by calling the DescribeVoices (http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html)
+	// IDs by calling the DescribeVoices (https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html)
 	// operation.
 	//
 	// VoiceId is a required field
@@ -2023,6 +2073,12 @@ func (s *SynthesizeSpeechInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEngine sets the Engine field's value.
+func (s *SynthesizeSpeechInput) SetEngine(v string) *SynthesizeSpeechInput {
+	s.Engine = &v
+	return s
 }
 
 // SetLanguageCode sets the LanguageCode field's value.
@@ -2155,6 +2211,10 @@ type Voice struct {
 	// Name of the voice (for example, Salli, Kendra, etc.). This provides a human
 	// readable voice name that you might display in your application.
 	Name *string `type:"string"`
+
+	// Specifies which engines (standard or neural) that are supported by a given
+	// voice.
+	SupportedEngines []*string `type:"list"`
 }
 
 // String returns the string representation
@@ -2202,6 +2262,20 @@ func (s *Voice) SetName(v string) *Voice {
 	s.Name = &v
 	return s
 }
+
+// SetSupportedEngines sets the SupportedEngines field's value.
+func (s *Voice) SetSupportedEngines(v []*string) *Voice {
+	s.SupportedEngines = v
+	return s
+}
+
+const (
+	// EngineStandard is a Engine enum value
+	EngineStandard = "standard"
+
+	// EngineNeural is a Engine enum value
+	EngineNeural = "neural"
+)
 
 const (
 	// GenderFemale is a Gender enum value

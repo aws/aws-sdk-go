@@ -1,3 +1,15 @@
+Release v1.21.8 (2019-07-30)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/mediaconvert`: Updates service API and documentation
+  * MediaConvert adds support for specifying priority (-50 to 50) on jobs submitted to on demand or reserved queues
+* `service/polly`: Updates service API and documentation
+  * Amazon Polly adds support for Neural text-to-speech engine.
+* `service/route53`: Updates service API and documentation
+  * Amazon Route 53 now supports the Middle East (Bahrain) Region (me-south-1) for latency records, geoproximity records, and private DNS for Amazon VPCs in that region.
+
 Release v1.21.7 (2019-07-29)
 ===
 

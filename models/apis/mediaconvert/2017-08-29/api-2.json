@@ -2013,6 +2013,10 @@
           "shape": "__string",
           "locationName": "jobTemplate"
         },
+        "Priority": {
+          "shape": "__integerMinNegative50Max50",
+          "locationName": "priority"
+        },
         "Queue": {
           "shape": "__string",
           "locationName": "queue"
@@ -2066,6 +2070,10 @@
         "Name": {
           "shape": "__string",
           "locationName": "name"
+        },
+        "Priority": {
+          "shape": "__integerMinNegative50Max50",
+          "locationName": "priority"
         },
         "Queue": {
           "shape": "__string",
@@ -4686,6 +4694,10 @@
           "shape": "__listOfOutputGroupDetail",
           "locationName": "outputGroupDetails"
         },
+        "Priority": {
+          "shape": "__integerMinNegative50Max50",
+          "locationName": "priority"
+        },
         "Queue": {
           "shape": "__string",
           "locationName": "queue"
@@ -4813,6 +4825,10 @@
         "Name": {
           "shape": "__string",
           "locationName": "name"
+        },
+        "Priority": {
+          "shape": "__integerMinNegative50Max50",
+          "locationName": "priority"
         },
         "Queue": {
           "shape": "__string",
@@ -7053,6 +7069,10 @@
           "locationName": "name",
           "location": "uri"
         },
+        "Priority": {
+          "shape": "__integerMinNegative50Max50",
+          "locationName": "priority"
+        },
         "Queue": {
           "shape": "__string",
           "locationName": "queue"
@@ -7715,6 +7735,11 @@
       "min": -2,
       "max": 3
     },
+    "__integerMinNegative50Max50": {
+      "type": "integer",
+      "min": -50,
+      "max": 50
+    },
     "__integerMinNegative5Max5": {
       "type": "integer",
       "min": -5,
@@ -7891,9 +7916,6 @@
       "member": {
         "shape": "__stringPatternS3ASSETMAPXml"
       }
-    },
-    "__long": {
-      "type": "long"
     },
     "__mapOfAudioSelector": {
       "type": "map",
