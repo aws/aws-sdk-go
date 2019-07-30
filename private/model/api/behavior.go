@@ -58,10 +58,7 @@ func (c Request) BuildInputShape(ref *ShapeRef) string {
 
 func (c Request) EmptyShapeBuilder(ref *ShapeRef) string{
 	var b ShapeValueBuilder
-	return fmt.Sprintf("%s{\n%s\n}",
-		b.GoType(ref, true),
-		b.BuildShape(ref, map[string]interface{} {}, false),
-	)
+	return fmt.Sprintf("%s{}", b.GoType(ref, true))
 }
 
 // AttachBehaviorTests attaches the Behavior test cases to the API model.
@@ -93,12 +90,13 @@ func (a *API) APIBehaviorTestsGoCode() string {
 	a.AddImport("net/textproto")
 	a.AddImport("strings")
 	a.AddImport("encoding/base64")
+	a.AddImport("github.com/mitchellh/mapstructure") //Library to copy map to a struct
+	a.AddImport("reflect")
 
 	a.AddSDKImport("aws")
 	a.AddSDKImport("awstesting")
 	a.AddSDKImport("aws/session")
 	a.AddSDKImport("aws/credentials")
-
 	//a.AddSDKImport("aws/client")
 	//a.AddSDKImport("private/protocol")
 	a.AddSDKImport("private/util")
@@ -124,8 +122,15 @@ func (a *API) APIBehaviorTestsGoCode() string {
 	return a.importsGoCode() + ignoreImports + w.String()
 }
 
+// Changes the first character of val to upper case
+func FormatAssertionName (val string) string{
+	tempVal := []byte(val)
+	tempVal[0] -= 32 //First Letter to UpperCase
+	return string(tempVal)
+}
+
 //template map is defined in "eventstream.go"
-var funcMap = template.FuncMap{"Map": templateMap,"Contains": strings.Contains}
+var funcMap = template.FuncMap{"Map": templateMap,"Contains": strings.Contains,"FormatAssertionName": FormatAssertionName}
 
 //	defer env()//Might need to comment this out
 
@@ -161,17 +166,21 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 			{{- range $assertionName,$assertionContext:=$assertion}}
 				{{- if Contains $assertionName "request" }}
 					{{- if eq $assertionName "requestBodyMatchesXml"}}
-						if !{{$assertionName}}_assert(t , req, {{printf "%q" $assertionContext}}, {{ $.testCase.Request.EmptyShapeBuilder $.op.InputRef }} )
+						if !assert{{FormatAssertionName $assertionName}}(t , req, {{printf "%q" $assertionContext}}, {{ $.testCase.Request.EmptyShapeBuilder $.op.InputRef}} )
 					{{- else}} {{if eq $assertionName "requestHeadersMatch"}}
-						if !{{$assertionName}}_assert(t , req, {{printf "%#v" $assertionContext}})
+						if !assert{{ FormatAssertionName $assertionName}}(t , req, {{printf "%#v" $assertionContext}})
 					{{- else}} 
-						if !{{$assertionName}}_assert(t , req, "{{$assertionContext}}") 
+						if !assert{{FormatAssertionName $assertionName}}(t , req, "{{$assertionContext}}") 
 					{{- end}} {{- end}} {
-						t.Error("expect no error, got{{printf "%s" $assertionName}} assertion failed")
+						t.Error("expect no error, got {{printf "%s" $assertionName}} assertion failed")
 						}
 				{{- else}}
- 						if !{{$assertionName}}_assert(t , response, {{printf "%#v" $assertionContext}}){
-							t.Error("expect no error, got{{printf "%s" $assertionName}} assertion failed")
+					{{- if eq $assertionName "responseDataEquals"}}
+ 						if !assert{{FormatAssertionName $assertionName}}(t , response, {{printf "%#v" $assertionContext}},{{ $.testCase.Request.EmptyShapeBuilder $.op.OutputRef }})
+					{{- else}}
+						if !assert{{FormatAssertionName $assertionName}}(t , response, {{printf "%#v" $assertionContext}})
+					{{- end}}{
+							t.Error("expect no error, got {{printf "%s" $assertionName}} assertion failed")
 						}
 				{{- end}}
 
@@ -203,15 +212,16 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 {{end}}
 
 {{define "RequestBuild"}}
-
 		input := {{ $.testCase.Request.BuildInputShape $.op.InputRef }}
-		req, resp := svc.{{$.testCase.Request.Operation}}Request(input)
-		_ = resp
 
-   		err := req.Send()
-		if err != nil { 
-			t.Errorf("expect no error, got %v", err)
+		req, _ := svc.{{$.testCase.Request.Operation}}Request(input)
+
+
+		req.Build()
+		if req.Error != nil {
+			t.Errorf("expect no error, got %v", req.Error)
 		}
+
 		{{printf "\n"}}
 {{end}}
 
@@ -223,179 +233,132 @@ func parseTime(layout, value string) *time.Time {
 	return &t
 }
 
-func requestMethodEquals_assert(t *testing.T, req *request.Request,val string) bool{
-	if req.HTTPRequest.Method==val{
-		return true
-	}
-	return false
+func assertRequestMethodEquals(t *testing.T, req *request.Request,val string) bool{
+	return req.HTTPRequest.Method == val
 }
 
-func requestUrlMatches_assert(t *testing.T, req *request.Request,val string) bool{
-	if req.HTTPRequest.URL.String()==val{
-		return true
-	}
-	return false
+func assertRequestUrlMatches(t *testing.T, req *request.Request,val string) bool{
+	return req.HTTPRequest.URL.String() == val
 }
 
-func requestUrlPathMatches_assert(t *testing.T, req *request.Request,val string) bool{
-
-	if req.HTTPRequest.URL.RequestURI()==val{
-		return true
-	}
-	return false
+func assertRequestUrlPathMatches(t *testing.T, req *request.Request,val string) bool{
+	return req.HTTPRequest.URL.RequestURI() == val
 }
 
-func requestUrlQueryMatches_assert(t *testing.T, req *request.Request,val string) bool{
-	u, err := url.Parse(val) // parsed val into a structure
+func assertRequestUrlQueryMatches(t *testing.T, req *request.Request,val string) bool{
+	structExpect, err := url.Parse(val) // parsed val into a structure
 	if err!=nil{
 		t.Errorf("expect no error, got %v",err)
 	}
-	query_request := req.HTTPRequest.URL.Query() //parsed RawQuery of "req" to get the values inside
-	query_val := u.Query() //parsed RawQuery of "val" to get the values inside
-	
-	if query_request.Encode() == query_val.Encode(){
-		return true
-	}
-	return false
+	queryRequest := req.HTTPRequest.URL.Query() //parsed RawQuery of "req" to get the values inside
+	queryExpect := structExpect.Query() //parsed RawQuery of "val" to get the values inside
+
+	return queryRequest.Encode() == queryExpect.Encode()
 }
 
-func requestHeadersMatch_assert(t *testing.T, req *request.Request,header map[string]interface{}) bool{
-	for key, val_expect := range header{
-		if val_req, ok := req.HTTPRequest.Header[textproto.CanonicalMIMEHeaderKey(key)]; ok {
-			if val_req[0] != val_expect{
-				return false
-			}
-		} else{
+func assertRequestHeadersMatch(t *testing.T, req *request.Request,header map[string]interface{}) bool{
+	for key, valExpect := range header{
+		valReq := req.HTTPRequest.Header.Get(key)
+		if valReq == "" || valReq[0] != valExpect{
 			return false
 		}
 	}
 	return true
 }
 
-func requestBodyEqualsString_assert(t *testing.T, req *request.Request,val string) bool{
-
-	var bytes_req_body []byte
-	var err error
-	if req.HTTPRequest.Body!= nil {
-  		bytes_req_body, err  = ioutil.ReadAll(req.HTTPRequest.Body)
-		if err != nil {
-			t.Errorf("expect no error, got %v", err)
-		}
-	}
-
-	req.HTTPRequest.Body = ioutil.NopCloser(bytes.NewBuffer(bytes_req_body))
-	string_req_body := string(bytes_req_body)
-
-	if string_req_body == val{
-		return true
-	}
-	return false
-}
-
-func requestBodyEqualsBytes_assert(t *testing.T, req *request.Request,val string) bool{
-
-	var bytes_req_body []byte
-
-	bytes_expect, err := base64.StdEncoding.DecodeString(val)
+func assertRequestBodyEqualsBytes(t *testing.T, req *request.Request,val string) bool{
+	var bytesReqBody []byte
+	bytesExpect, err := base64.StdEncoding.DecodeString(val)
 
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	if req.HTTPRequest.Body!= nil {
-  		bytes_req_body, err = ioutil.ReadAll(req.HTTPRequest.Body)
+  		bytesReqBody, err = ioutil.ReadAll(req.HTTPRequest.Body)
 		if err != nil {
 			t.Errorf("expect no error, got %v", err)
 		}
 	}
 
-	req.HTTPRequest.Body = ioutil.NopCloser(bytes.NewBuffer(bytes_req_body))
+	req.HTTPRequest.Body = ioutil.NopCloser(bytes.NewBuffer(bytesReqBody))
 
-	if bytes.Compare(bytes_req_body, bytes_expect) == 0 {
-		return true
-	}
-	return false
+	return bytes.Compare(bytesReqBody, bytesExpect) == 0 
 }
 
-func requestBodyMatchesXml_assert(t *testing.T, req *request.Request,val string,container interface{}) bool{
-	var bytes_req_body []byte
-	var err error
-	if req.HTTPRequest.Body != nil {
-		bytes_req_body, err = ioutil.ReadAll(req.HTTPRequest.Body)
-		if err != nil {
-			t.Errorf("expect no error, got %v", err)
-		}
-	}
-	req.HTTPRequest.Body = ioutil.NopCloser(bytes.NewBuffer(bytes_req_body))
-
-	if !awstesting.AssertXML(t, val, util.Trim(string(bytes_req_body)),container ) {
-		return false
-	}
-
-	return true
-}
-
-func requestBodyEqualsJson(t *testing.T, req *request.Request,val string) bool{
-	
-	var bytes_req_body []byte
+func assertRequestBodyEqualsJson(t *testing.T, req *request.Request,val string) bool{
+	var bytesReqBody []byte
 	var err error
 	if req.HTTPRequest.Body!= nil {
-  		bytes_req_body, err  = ioutil.ReadAll(req.HTTPRequest.Body)
+  		bytesReqBody, err  = ioutil.ReadAll(req.HTTPRequest.Body)
 		if err != nil {
 			t.Errorf("expect no error, got %v", err)
 		}
 	}
 
-	req.HTTPRequest.Body = ioutil.NopCloser(bytes.NewBuffer(bytes_req_body))
-	string_req_body := string(bytes_req_body)
+	req.HTTPRequest.Body = ioutil.NopCloser(bytes.NewBuffer(bytesReqBody))
 
-	if ! awstesting.AssertJSON(t, string_req_body, val){
-		return false
+	return awstesting.AssertJSON(t, val, util.Trim(string(bytesReqBody)) )
+}
+
+func assertRequestBodyMatchesXml(t *testing.T, req *request.Request,val string,container interface{}) bool{
+	r := req.HTTPRequest
+
+	if r.Body == nil {
+		t.Errorf("expect body not to be nil")
+	}
+	body := util.SortXML(r.Body)
+
+	return awstesting.AssertXML(t, val, util.Trim(string(body)),container )
+}
+
+func assertRequestBodyEqualsString(t *testing.T, req *request.Request,val string) bool{
+	var bytesReqBody []byte
+	var err error
+	if req.HTTPRequest.Body!= nil {
+  		bytesReqBody, err  = ioutil.ReadAll(req.HTTPRequest.Body)
+		if err != nil {
+			t.Errorf("expect no error, got %v", err)
+		}
 	}
 
+	req.HTTPRequest.Body = ioutil.NopCloser(bytes.NewBuffer(bytesReqBody))
+	stringReqBody := string(bytesReqBody)
+
+	return stringReqBody == val
+}
+
+func assertRequestIdEquals(t *testing.T, req *request.Request,val string) bool{
+	return req.RequestID == val
+}
+
+func assertResponseDataEquals(t *testing.T, response *http.Response,expect map[string]interface{},container interface{}) bool{
 	return true
 }
 
-func requestIdEquals_assert(t *testing.T, req *request.Request,val string) bool{
-	if req.RequestID == val{
-		return true
-	}
-	return false
-}
-
-func responseDataEquals_assert(t *testing.T, req *request.Request,val map[string]interface{}) bool{
-    if testing.Short() {
-        t.Skip("skipping responseDataEquals assertion")
-    }
-	return true
-}
-
-func responseErrorIsKindOf_assert(t *testing.T, req *request.Request,val map[string]interface{}){
+func assertResponseErrorIsKindOf(t *testing.T, req *request.Request,val map[string]interface{}){
     if testing.Short() {
         t.Skip("skipping responseErrorIsKindOf assertion")
     }
 }
 
-
-func responseErrorMessageEquals_assert(t *testing.T, req *request.Request,val map[string]interface{}){
+func assertResponseErrorMessageEquals(t *testing.T, req *request.Request,val map[string]interface{}){
     if testing.Short() {
         t.Skip("skipping responseErrorMessageEquals assertion")
     }
 }
 
-
-func responseErrorDataEquals_assert(t *testing.T, req *request.Request,val map[string]interface{}){
+func assertResponseErrorDataEquals(t *testing.T, req *request.Request,val map[string]interface{}){
     if testing.Short() {
         t.Skip("skipping responseErrorDataEquals assertion")
     }
 }
 
-func responseErrorRequestIdEquals_assert(t *testing.T, req *request.Request,val map[string]interface{}){
+func assertResponseErrorRequestIdEquals(t *testing.T, req *request.Request,val map[string]interface{}){
     if testing.Short() {
         t.Skip("skipping responseErrorRequestIdEquals assertion")
     }
 }
-
 
 {{- range $i, $testCase := $.Tests.Cases }}
 	//{{printf "%s" $testCase.Description}}
