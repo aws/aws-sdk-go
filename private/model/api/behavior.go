@@ -32,7 +32,7 @@ type Case struct{
 	LocalConfig map[string]string `json:"localConfig"`
 	Request Request `json:"request"`
 	Response Response `json:"response"`
-	Expect []map[string]interface{}   `json:"expect"`
+	Expect []map[string]interface{} `json:"expect"`
 }
 
 type Response struct{
@@ -61,6 +61,14 @@ func (c Request) EmptyShapeBuilder(ref *ShapeRef) string{
 	return fmt.Sprintf("%s{}", b.GoType(ref, true))
 }
 
+func (c Case) BuildOutputShape(ref *ShapeRef) string{
+	var b ShapeValueBuilder
+	return fmt.Sprintf("%s{\n%s\n}",
+		b.GoType(ref, true),
+		b.BuildShape(ref, c.Expect[0]["responseDataEquals"].(map[string]interface{}), false),
+	)
+}
+
 // AttachBehaviorTests attaches the Behavior test cases to the API model.
 func (a *API) AttachBehaviorTests(filename string) {
 	f, err := os.Open(filename)
@@ -87,16 +95,17 @@ func (a *API) APIBehaviorTestsGoCode() string {
 	a.AddImport("io/ioutil")
 	a.AddImport("bytes")
 	a.AddImport("net/url")
-	a.AddImport("net/textproto")
+	//a.AddImport("net/textproto")
 	a.AddImport("strings")
 	a.AddImport("encoding/base64")
-	a.AddImport("github.com/mitchellh/mapstructure") //Library to copy map to a struct
 	a.AddImport("reflect")
+	a.AddImport("github.com/google/go-cmp/cmp")
 
 	a.AddSDKImport("aws")
 	a.AddSDKImport("awstesting")
 	a.AddSDKImport("aws/session")
 	a.AddSDKImport("aws/credentials")
+	a.AddSDKImport("aws/corehandlers")
 	//a.AddSDKImport("aws/client")
 	//a.AddSDKImport("private/protocol")
 	a.AddSDKImport("private/util")
@@ -129,10 +138,43 @@ func FormatAssertionName (val string) string{
 	return string(tempVal)
 }
 
+func (c Case) AssertionStatement (op *Operation) string{
+	var val string
+	//Assertions start here
+	for _, assertion := range  c.Expect{
+		for assertionName, assertionContext := range assertion{
+			val += fmt.Sprintf("\n")
+
+			val += "if !assert"
+			if strings.Contains(assertionName, "request"){
+				switch assertionName {
+				case "requestBodyMatchesXml":
+					val += fmt.Sprintf("%s(t, req, %q, %v)",FormatAssertionName(assertionName), assertionContext,c.Request.EmptyShapeBuilder(&op.InputRef))
+				case "requestHeadersMatch":
+					val += fmt.Sprintf("%s(t, req, %#v)",FormatAssertionName(assertionName),assertionContext)
+				default:
+					val += fmt.Sprintf("%s(t, req, %q)",FormatAssertionName(assertionName),assertionContext)
+				}
+			} else{
+				switch assertionName {
+				case "responseDataEquals":
+					val += fmt.Sprintf("%s(t, resp, %v)",FormatAssertionName(assertionName),c.BuildOutputShape(&op.OutputRef))
+				default:
+					val += fmt.Sprintf("%s(t, response, %#v)",FormatAssertionName(assertionName),assertionContext)
+				}
+			}
+			val += fmt.Sprintf(`{ 
+				t.Errorf("Expect no error, got %s assertion failed")
+			}`,assertionName)
+
+		}
+	}
+
+	return val
+}
+
 //template map is defined in "eventstream.go"
 var funcMap = template.FuncMap{"Map": templateMap,"Contains": strings.Contains,"FormatAssertionName": FormatAssertionName}
-
-//	defer env()//Might need to comment this out
 
 var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(funcMap).Parse(`
 
@@ -160,40 +202,11 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 			   }))
 {{end}}
 
-{{define "Assertions"}}
-		//Assertions start here
-		{{- range $k,$assertion :=$.testCase.Expect}}
-			{{- range $assertionName,$assertionContext:=$assertion}}
-				{{- if Contains $assertionName "request" }}
-					{{- if eq $assertionName "requestBodyMatchesXml"}}
-						if !assert{{FormatAssertionName $assertionName}}(t , req, {{printf "%q" $assertionContext}}, {{ $.testCase.Request.EmptyShapeBuilder $.op.InputRef}} )
-					{{- else}} {{if eq $assertionName "requestHeadersMatch"}}
-						if !assert{{ FormatAssertionName $assertionName}}(t , req, {{printf "%#v" $assertionContext}})
-					{{- else}} 
-						if !assert{{FormatAssertionName $assertionName}}(t , req, "{{$assertionContext}}") 
-					{{- end}} {{- end}} {
-						t.Error("expect no error, got {{printf "%s" $assertionName}} assertion failed")
-						}
-				{{- else}}
-					{{- if eq $assertionName "responseDataEquals"}}
- 						if !assert{{FormatAssertionName $assertionName}}(t , response, {{printf "%#v" $assertionContext}},{{ $.testCase.Request.EmptyShapeBuilder $.op.OutputRef }})
-					{{- else}}
-						if !assert{{FormatAssertionName $assertionName}}(t , response, {{printf "%#v" $assertionContext}})
-					{{- end}}{
-							t.Error("expect no error, got {{printf "%s" $assertionName}} assertion failed")
-						}
-				{{- end}}
-
-			{{- end}}
-			{{printf "\n"}}
-		{{- end}}
-{{end}}
-
 {{define "ResponseBuild"}}
 		{{- if eq $.testCase.Response.StatusCode 0}}
-			response := &http.Response{StatusCode:200}
+			r.HTTPResponse = &http.Response{StatusCode:200}
 		{{- else }}
-		  response := &http.Response{
+			r.HTTPResponse = &http.Response{
 							StatusCode:{{$.testCase.Response.StatusCode}},
 						{{- if ne (len $.testCase.Response.Headers) 0}}
 							Header: http.Header{
@@ -206,24 +219,28 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 							Body: ioutil.NopCloser(bytes.NewBufferString({{printf "%q" $.testCase.Response.BodyContent}})),
 						{{- end}}
 					}
-		{{- end}}	
-		_ = response
-		{{printf "\n"}}
+		{{- end}}
 {{end}}
 
 {{define "RequestBuild"}}
 		input := {{ $.testCase.Request.BuildInputShape $.op.InputRef }}
 
-		req, _ := svc.{{$.testCase.Request.Operation}}Request(input)
+		req, resp := svc.{{$.testCase.Request.Operation}}Request(input)
 
+		MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func (r *request.Request){ 
+			{{- template "ResponseBuild" Map "testCase" $.testCase}}	
+		}}
+		req.Handlers.Send.Swap( corehandlers.SendHandler.Name, MockHTTPResponseHandler )
 
-		req.Build()
-		if req.Error != nil {
-			t.Errorf("expect no error, got %v", req.Error)
+		err := req.Send()
+
+		if err != nil {
+			t.Errorf("expect no error, got %v", err)
 		}
 
 		{{printf "\n"}}
 {{end}}
+
 
 func parseTime(layout, value string) *time.Time {
 	t, err := time.Parse(layout, value)
@@ -238,7 +255,7 @@ func assertRequestMethodEquals(t *testing.T, req *request.Request,val string) bo
 }
 
 func assertRequestUrlMatches(t *testing.T, req *request.Request,val string) bool{
-	return req.HTTPRequest.URL.String() == val
+	return awstesting.AssertURL(t, val, req.HTTPRequest.URL.String())
 }
 
 func assertRequestUrlPathMatches(t *testing.T, req *request.Request,val string) bool{
@@ -332,8 +349,11 @@ func assertRequestIdEquals(t *testing.T, req *request.Request,val string) bool{
 	return req.RequestID == val
 }
 
-func assertResponseDataEquals(t *testing.T, response *http.Response,expect map[string]interface{},container interface{}) bool{
-	return true
+func assertResponseDataEquals(t *testing.T, response interface{}, expectResponse interface{}) bool{
+	if response == nil || expectResponse == nil {
+		return response == expectResponse
+	}
+	return cmp.Equal(expectResponse, response)
 }
 
 func assertResponseErrorIsKindOf(t *testing.T, req *request.Request,val map[string]interface{}){
@@ -373,10 +393,8 @@ func assertResponseErrorRequestIdEquals(t *testing.T, req *request.Request,val m
 		svc := {{$.API.PackageName}}.New(sess)
 
 		{{- template "RequestBuild" Map "testCase" $testCase "op" $op}}
-
-		{{- template "ResponseBuild" Map "testCase" $testCase}}
-
-		{{- template "Assertions" Map "testCase" $testCase "op" $op}}
+		
+		{{$testCase.AssertionStatement $op}}
 
 	}
 {{- end }}

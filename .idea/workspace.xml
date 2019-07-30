@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ed2d3696-b0f7-4ed1-97ce-3c111ab0f041" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/private/model/api/behavior.go" beforeDir="false" afterPath="$PROJECT_DIR$/private/model/api/behavior.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,89 +25,32 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.51588565">
+    <splitter split-orientation="horizontal" split-proportion="0.5486409">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../../../../go1.13beta1/src/net/http/response.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-296">
-                  <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-                  <folding>
-                    <element signature="e#213#363#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/aws/request/request.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="336">
-                  <caret line="51" column="34" lean-forward="true" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/private/model/api/behavior.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="334">
-                  <caret line="343" lean-forward="true" selection-start-line="343" selection-end-line="343" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/behav_test.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-3965">
-                  <caret line="343" column="30" lean-forward="true" selection-start-line="343" selection-start-column="30" selection-end-line="343" selection-end-column="30" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/private/model/api/shape_value_builder.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="262">
-                  <caret line="169" column="30" selection-start-line="169" selection-start-column="30" selection-end-line="169" selection-end-column="30" />
+                <state relative-caret-position="175">
+                  <caret line="156" column="68" lean-forward="true" selection-start-line="156" selection-start-column="68" selection-end-line="156" selection-end-column="68" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/private/model/api/example.go">
+            <entry file="file://$PROJECT_DIR$/private/model/api/operation.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="283">
-                  <caret line="308" column="40" lean-forward="true" selection-start-line="308" selection-start-column="40" selection-end-line="308" selection-end-column="40" />
+                <state relative-caret-position="210">
+                  <caret line="21" column="32" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="32" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../../../../go1.13beta1/src/net/textproto/reader.go">
+            <entry file="file://$PROJECT_DIR$/private/model/api/shape.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="8430">
-                  <caret line="570" column="60" selection-start-line="570" selection-start-column="50" selection-end-line="570" selection-end-column="60" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../../../../go1.13beta1/src/net/http/request.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="5589">
-                  <caret line="447" column="23" selection-start-line="447" selection-start-column="20" selection-end-line="447" selection-end-column="23" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../../../../go1.13beta1/src/net/http/header.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="360">
-                  <caret line="45" column="16" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
+                <state relative-caret-position="132">
+                  <caret line="61" column="24" selection-start-line="61" selection-start-column="15" selection-end-line="61" selection-end-column="24" />
                 </state>
               </provider>
             </entry>
@@ -116,8 +58,65 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/api.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="17640">
-                  <caret line="1185" column="1" lean-forward="true" selection-start-line="1185" selection-start-column="1" selection-end-line="1185" selection-end-column="1" />
+                <state relative-caret-position="557">
+                  <caret line="52" column="75" selection-start-line="52" selection-start-column="75" selection-end-line="52" selection-end-column="75" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/private/protocol/unmarshal.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="120">
+                  <caret line="13" column="31" lean-forward="true" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/private/model/api/behavior.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="330">
+                  <caret line="158" column="38" lean-forward="true" selection-start-line="158" selection-start-column="38" selection-end-line="158" selection-end-column="38" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/private/model/api/api.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="195">
+                  <caret line="22" column="39" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="39" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/behav_test.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-1734">
+                  <caret line="4162" column="26" selection-start-line="4162" selection-start-column="26" selection-end-line="4162" selection-end-column="26" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/awstesting/assert.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state>
+                  <caret column="18" lean-forward="true" selection-start-column="18" selection-end-column="18" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/awstesting/assert_test.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="255">
+                  <caret line="17" column="26" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="26" />
+                  <folding>
+                    <element signature="e#25#103#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -129,8 +128,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/models/behavior_tests/rest_xml_protocol/2019-07-16/api-2.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3646">
-                  <caret line="383" column="22" selection-start-line="383" selection-start-column="18" selection-end-line="383" selection-end-column="22" />
+                <state relative-caret-position="299">
+                  <caret line="478" column="22" selection-start-line="478" selection-start-column="5" selection-end-line="478" selection-end-column="22" />
                   <folding>
                     <element signature="n#!!block;n#operations#0;n#!!top" />
                   </folding>
@@ -141,8 +140,17 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/models/behavior_tests/rest_xml_protocol/2019-07-16/behavior.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="375">
-                  <caret line="339" column="47" lean-forward="true" selection-start-line="339" selection-start-column="47" selection-end-line="339" selection-end-column="47" />
+                <state relative-caret-position="414">
+                  <caret line="2832" lean-forward="true" selection-start-line="2832" selection-end-line="2832" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/private/model/api/examples_builder.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="180">
+                  <caret line="12" column="36" lean-forward="true" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
                 </state>
               </provider>
             </entry>
@@ -150,17 +158,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/private/protocol/timestamp.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-234">
+                <state relative-caret-position="-83">
                   <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/models/protocol_tests/input/rest-xml.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="253">
-                  <caret line="33" column="25" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="25" />
                 </state>
               </provider>
             </entry>
@@ -168,8 +167,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/private/protocol/restxml/build_test.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="337">
-                  <caret line="6737" column="45" lean-forward="true" selection-start-line="6737" selection-start-column="45" selection-end-line="6737" selection-end-column="45" />
+                <state relative-caret-position="313">
+                  <caret line="6005" lean-forward="true" selection-start-line="6005" selection-end-line="6005" />
                   <folding>
                     <element signature="e#22#645#0" expanded="true" />
                   </folding>
@@ -180,8 +179,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/aws/corehandlers/handlers_test.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="380">
-                  <caret line="234" column="26" selection-start-line="234" selection-start-column="26" selection-end-line="234" selection-end-column="26" />
+                <state relative-caret-position="243">
+                  <caret line="245" column="55" lean-forward="true" selection-start-line="245" selection-start-column="55" selection-end-line="245" selection-end-column="55" />
                 </state>
               </provider>
             </entry>
@@ -189,20 +188,26 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/aws/request/handlers.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="183">
-                  <caret line="48" column="10" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="10" />
+                <state relative-caret-position="252">
+                  <caret line="227" column="22" selection-start-line="227" selection-start-column="22" selection-end-line="227" selection-end-column="22" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/private/protocol/restjson/build_test.go">
+            <entry file="file://$PROJECT_DIR$/aws/corehandlers/handlers.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="61">
-                  <caret line="1421" column="49" lean-forward="true" selection-start-line="1421" selection-start-column="49" selection-end-line="1421" selection-end-column="49" />
-                  <folding>
-                    <element signature="e#23#647#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="-82">
+                  <caret line="2" selection-start-line="2" selection-end-line="2" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/aws/corehandlers/handlers_1_10_test.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="30">
+                  <caret line="2" column="19" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="19" />
                 </state>
               </provider>
             </entry>
@@ -210,20 +215,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/awstesting/assert.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="211">
-                  <caret line="71" column="29" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="29" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/awstesting/assert_test.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="377">
-                  <caret line="29" column="18" selection-start-line="29" selection-start-column="15" selection-end-line="29" selection-end-column="18" />
-                  <folding>
-                    <element signature="e#25#103#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="210">
+                  <caret line="138" column="7" lean-forward="true" selection-start-line="138" selection-start-column="7" selection-end-line="138" selection-end-column="7" />
                 </state>
               </provider>
             </entry>
@@ -241,36 +234,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>requestHeaders</find>
-      <find>decode</find>
-      <find>map</find>
-      <find>Serializes header string values with jsonvalue trait</find>
-      <find>struct</find>
-      <find>requestHeadersMatch</find>
-      <find>requestBodyEqualsJson</find>
-      <find>requestHeadersMatch_assert</find>
-      <find>requestHeadersMatch</find>
-      <find>assertRequestBodyMatchesXml</find>
-      <find>timeFormats</find>
-      <find>json</find>
-      <find>assertRequestBodyEqualsJs</find>
-      <find>URL</find>
-      <find>responseD</find>
-      <find>statuscode</find>
-      <find>body</find>
-      <find>responseData</find>
-      <find>get</find>
-      <find>params</find>
-      <find>Parses header strings with jsonvalue trait</find>
-      <find>Serializes httpdate format timestamp query params</find>
-      <find>Serializes recursive structures</find>
-      <find>ResponseDataEquals</find>
       <find>handler`</find>
-      <find>handlers</find>
-      <find>Send</find>
       <find>BuildInputShape</find>
       <find>header</find>
       <find>responseDataEquals</find>
+      <find>params</find>
+      <find>Send</find>
+      <find>corehand</find>
+      <find>coreHand</find>
+      <find>co</find>
+      <find>corehandler</find>
+      <find>Serializes recursive structures</find>
+      <find>assertResponseDataEquals</find>
+      <find>body</find>
+      <find>ResponseDataEquals</find>
+      <find>esponseDataEquals</find>
+      <find>textproto</find>
+      <find>Serializes maps of maps</find>
+      <find>MapOfMaps</find>
+      <find>MapOfMapOfStrings</find>
+      <find>&quot;key-1&quot;</find>
+      <find>BuildComplex</find>
+      <find>buil</find>
+      <find>assertResponse</find>
+      <find>AssertURL</find>
+      <find>&quot;key-4&quot;</find>
+      <find>requestBodyMatchesXml</find>
+      <find>requestBody</find>
+      <find>handlers</find>
+      <find>EmptyShapeBuilder</find>
+      <find>responseData</find>
     </findStrings>
     <replaceStrings>
       <replace>Behaviour</replace>
@@ -315,9 +308,10 @@
         <option value="$PROJECT_DIR$/models/protocol_tests/input/rest-json.json" />
         <option value="$PROJECT_DIR$/service/applicationautoscaling/examples_test.go" />
         <option value="$PROJECT_DIR$/private/model/api/example.go" />
-        <option value="$PROJECT_DIR$/private/model/api/shape_value_builder.go" />
         <option value="$PROJECT_DIR$/models/behavior_tests/rest_xml_protocol/2019-07-16/api-2.json" />
         <option value="$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/behav_test.go" />
+        <option value="$PROJECT_DIR$/private/model/api/shape_value_builder.go" />
+        <option value="$PROJECT_DIR$/private/model/api/examples_builder.go" />
         <option value="$PROJECT_DIR$/models/behavior_tests/rest_xml_protocol/2019-07-16/behavior.json" />
         <option value="$PROJECT_DIR$/private/model/api/behavior.go" />
       </list>
@@ -527,7 +521,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/private/model/api/behavior.go</url>
-          <line>107</line>
+          <line>116</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
@@ -539,65 +533,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/private/model/api/smoke.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="85" column="44" selection-start-line="85" selection-start-column="31" selection-end-line="85" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../go1.13beta1/src/io/io.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="76" column="5" selection-start-line="76" selection-start-column="5" selection-end-line="76" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/private/model/api/param_filler.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="36" column="5" lean-forward="true" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/private/model/api/api.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="28" column="25" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../go1.13beta1/src/io/ioutil/ioutil.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="117" column="5" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../go1.13beta1/src/bytes/buffer.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="581">
-          <caret line="457" column="5" selection-start-line="457" selection-start-column="5" selection-end-line="457" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/private/protocol/query/unmarshal_error.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
-          <folding>
-            <element signature="e#15#188#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../go1.13beta1/src/net/http/server.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="1113" column="19" selection-start-line="1113" selection-start-column="19" selection-end-line="1113" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../../go1.13beta1/src/builtin/builtin.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -672,20 +607,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="245">
           <caret line="139" column="5" selection-start-line="139" selection-start-column="5" selection-end-line="139" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/private/model/api/operation.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="21" column="32" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/private/model/api/shape.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="883" column="25" lean-forward="true" selection-start-line="883" selection-start-column="25" selection-end-line="883" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -784,51 +705,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/awstesting/assert_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="29" column="18" selection-start-line="29" selection-start-column="15" selection-end-line="29" selection-end-column="18" />
-          <folding>
-            <element signature="e#25#103#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/behavior_tests/rest_xml_protocol/2019-07-16/api-2.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3646">
-          <caret line="383" column="22" selection-start-line="383" selection-start-column="18" selection-end-line="383" selection-end-column="22" />
-          <folding>
-            <element signature="n#!!block;n#operations#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/private/protocol/timestamp.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-234">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../../go1.13beta1/src/net/http/request.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5589">
           <caret line="447" column="23" selection-start-line="447" selection-start-column="20" selection-end-line="447" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/api.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17640">
-          <caret line="1185" column="1" lean-forward="true" selection-start-line="1185" selection-start-column="1" selection-end-line="1185" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aws/request/request.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="51" column="34" lean-forward="true" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -842,13 +722,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/private/model/api/example.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="308" column="40" lean-forward="true" selection-start-line="308" selection-start-column="40" selection-end-line="308" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/private/protocol/restjson/build_test.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="61">
@@ -859,62 +732,178 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/awstesting/assert.go">
+    <entry file="file://$PROJECT_DIR$/service/codebuild/integ_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="71" column="29" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="29" />
+        <state relative-caret-position="150">
+          <caret line="20" column="21" lean-forward="true" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/private/model/api/smoke.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1130" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aws/corehandlers/handlers_1_10_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aws/corehandlers/handlers_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="245" column="55" lean-forward="true" selection-start-line="245" selection-start-column="55" selection-end-line="245" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aws/request/handlers.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="227" column="22" selection-start-line="227" selection-start-column="22" selection-end-line="227" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/private/model/api/example.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="308" column="40" lean-forward="true" selection-start-line="308" selection-start-column="40" selection-end-line="308" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aws/corehandlers/handlers.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-82">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aws/request/request.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="58" column="11" selection-start-line="58" selection-start-column="9" selection-end-line="58" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/private/protocol/timestamp.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-83">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/behavior_tests/rest_xml_protocol/2019-07-16/api-2.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="478" column="22" selection-start-line="478" selection-start-column="5" selection-end-line="478" selection-end-column="22" />
+          <folding>
+            <element signature="n#!!block;n#operations#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aws/request/handlers_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="44" column="26" lean-forward="true" selection-start-line="44" selection-start-column="26" selection-end-line="44" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/private/model/api/examples_builder.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="36" lean-forward="true" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/private/model/api/shape.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="61" column="24" selection-start-line="61" selection-start-column="15" selection-end-line="61" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/awstesting/assert_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="26" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="26" />
+          <folding>
+            <element signature="e#25#103#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/private/protocol/restxml/build_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="6737" column="45" lean-forward="true" selection-start-line="6737" selection-start-column="45" selection-end-line="6737" selection-end-column="45" />
+        <state relative-caret-position="313">
+          <caret line="6005" lean-forward="true" selection-start-line="6005" selection-end-line="6005" />
           <folding>
             <element signature="e#22#645#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/aws/corehandlers/handlers_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="234" column="26" selection-start-line="234" selection-start-column="26" selection-end-line="234" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aws/request/handlers.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="48" column="10" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/private/model/api/shape_value_builder.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="169" column="30" selection-start-line="169" selection-start-column="30" selection-end-line="169" selection-end-column="30" />
+        <state relative-caret-position="175">
+          <caret line="156" column="68" lean-forward="true" selection-start-line="156" selection-start-column="68" selection-end-line="156" selection-end-column="68" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/behav_test.go">
+    <entry file="file://$PROJECT_DIR$/private/model/api/operation.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3965">
-          <caret line="343" column="30" lean-forward="true" selection-start-line="343" selection-start-column="30" selection-end-line="343" selection-end-column="30" />
+        <state relative-caret-position="210">
+          <caret line="21" column="32" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/private/model/api/api.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="22" column="39" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/behavior_tests/rest_xml_protocol/2019-07-16/behavior.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="339" column="47" lean-forward="true" selection-start-line="339" selection-start-column="47" selection-end-line="339" selection-end-column="47" />
+        <state relative-caret-position="414">
+          <caret line="2832" lean-forward="true" selection-start-line="2832" selection-end-line="2832" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/api.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="557">
+          <caret line="52" column="75" selection-start-line="52" selection-start-column="75" selection-end-line="52" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/private/protocol/unmarshal.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="13" column="31" lean-forward="true" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/behav_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1734">
+          <caret line="4162" column="26" selection-start-line="4162" selection-start-column="26" selection-end-line="4162" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/awstesting/assert.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="18" lean-forward="true" selection-start-column="18" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/private/model/api/behavior.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="343" lean-forward="true" selection-start-line="343" selection-end-line="343" />
+        <state relative-caret-position="330">
+          <caret line="158" column="38" lean-forward="true" selection-start-line="158" selection-start-column="38" selection-end-line="158" selection-end-column="38" />
         </state>
       </provider>
     </entry>
