@@ -56,10 +56,12 @@ func (c Request) BuildInputShape(ref *ShapeRef) string {
 	)
 }
 
+//Outputs the string to define an empty shape
 func (c Request) EmptyShapeBuilder(ref *ShapeRef) string{
 	var b ShapeValueBuilder
 	return fmt.Sprintf("%s{}", b.GoType(ref, true))
 }
+
 
 func (c Case) BuildOutputShape(ref *ShapeRef) string{
 	var b ShapeValueBuilder
@@ -87,7 +89,6 @@ func (a *API) AttachBehaviorTests(filename string) {
 func (a *API) APIBehaviorTestsGoCode() string {
 	w := bytes.NewBuffer(nil)
 	a.resetImports()
-	//a.AddImport("context")
 	a.AddImport("testing")
 	a.AddImport("net/http")
 	a.AddImport("fmt")
@@ -95,10 +96,8 @@ func (a *API) APIBehaviorTestsGoCode() string {
 	a.AddImport("io/ioutil")
 	a.AddImport("bytes")
 	a.AddImport("net/url")
-	//a.AddImport("net/textproto")
 	a.AddImport("strings")
 	a.AddImport("encoding/base64")
-	//a.AddImport("reflect")
 	a.AddImport("github.com/google/go-cmp/cmp")
 
 	a.AddSDKImport("aws")
@@ -107,8 +106,6 @@ func (a *API) APIBehaviorTestsGoCode() string {
 	a.AddSDKImport("aws/credentials")
 	a.AddSDKImport("aws/awserr")
 	a.AddSDKImport("aws/corehandlers")
-	//a.AddSDKImport("aws/client")
-	//a.AddSDKImport("private/protocol")
 	a.AddSDKImport("private/util")
 	a.AddSDKImport("aws/request")
 
@@ -126,10 +123,7 @@ func (a *API) APIBehaviorTestsGoCode() string {
 		panic(fmt.Sprintf("failed to create behavior tests, %v", err))
 	}
 
-	ignoreImports := `
-
-	`
-	return a.importsGoCode() + ignoreImports + w.String()
+	return a.importsGoCode()  + w.String()
 }
 
 // Changes the first character of val to upper case
@@ -139,7 +133,8 @@ func FormatAssertionName (val string) string{
 	return string(tempVal)
 }
 
-func (c Case) AssertionStatement (op *Operation) string{
+//Generates assertions
+func (c Case) GenerateAssertions (op *Operation) string{
 	var val string = "//Assertions start here"
 	val += fmt.Sprintf("\n")
 
@@ -176,7 +171,7 @@ func (c Case) AssertionStatement (op *Operation) string{
 }
 
 //template map is defined in "eventstream.go"
-var funcMap = template.FuncMap{"Map": templateMap,"Contains": strings.Contains,"FormatAssertionName": FormatAssertionName}
+var funcMap = template.FuncMap{"Map": templateMap,"FormatAssertionName": FormatAssertionName}
 
 var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(funcMap).Parse(`
 
@@ -227,9 +222,10 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 {{define "RequestBuild"}}
 		input := {{ $.testCase.Request.BuildInputShape $.op.InputRef }}
 
+		//request is defines
 		req, resp := svc.{{$.testCase.Request.Operation}}Request(input)
 		_ = resp
-	
+
 		MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func (r *request.Request){ 
 			{{- template "ResponseBuild" Map "testCase" $.testCase}}	
 		}}
@@ -400,7 +396,7 @@ func assertResponseErrorRequestIdEquals(t *testing.T, err error,val string) bool
 
 		{{- template "RequestBuild" Map "testCase" $testCase "op" $op}}
 		
-		{{$testCase.AssertionStatement $op}}
+		{{$testCase.GenerateAssertions $op}}
 
 	}
 {{- end }}

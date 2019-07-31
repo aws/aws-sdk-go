@@ -176,7 +176,6 @@ func writeServiceFiles(g *generateInfo, pkgDir string) {
 	}
 
 	if len(g.API.BehaviorTests.Tests.Cases) > 0 {
-		fmt.Println("This line executed")
 		Must(writeAPIBehaviorTestsFile(g))
 	}
 }

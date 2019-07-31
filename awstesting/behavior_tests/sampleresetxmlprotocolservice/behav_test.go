@@ -186,6 +186,7 @@ func BehavTest_00(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.EmptyPutInput{}
 
+	//request is defines
 	req, resp := svc.EmptyPutRequest(input)
 	_ = resp
 
@@ -233,6 +234,7 @@ func BehavTest_01(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.EmptyPostInput{}
 
+	//request is defines
 	req, resp := svc.EmptyPostRequest(input)
 	_ = resp
 
@@ -280,6 +282,7 @@ func BehavTest_02(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.EmptyPatchInput{}
 
+	//request is defines
 	req, resp := svc.EmptyPatchRequest(input)
 	_ = resp
 
@@ -327,6 +330,7 @@ func BehavTest_03(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.EmptyGetInput{}
 
+	//request is defines
 	req, resp := svc.EmptyGetRequest(input)
 	_ = resp
 
@@ -374,6 +378,7 @@ func BehavTest_04(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.EmptyHeadInput{}
 
+	//request is defines
 	req, resp := svc.EmptyHeadRequest(input)
 	_ = resp
 
@@ -421,6 +426,7 @@ func BehavTest_05(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.EmptyDeleteInput{}
 
+	//request is defines
 	req, resp := svc.EmptyDeleteRequest(input)
 	_ = resp
 
@@ -471,6 +477,7 @@ func BehavTest_06(t *testing.T) {
 		UriPathSegment: aws.String("param-1"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -518,6 +525,7 @@ func BehavTest_07(t *testing.T) {
 		UriPathSegment: aws.String("path/segment abc~"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -562,6 +570,7 @@ func BehavTest_08(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -607,6 +616,7 @@ func BehavTest_09(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -652,6 +662,7 @@ func BehavTest_10(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -697,6 +708,7 @@ func BehavTest_11(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -742,6 +754,7 @@ func BehavTest_12(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -787,6 +800,7 @@ func BehavTest_13(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -832,6 +846,7 @@ func BehavTest_14(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -877,6 +892,7 @@ func BehavTest_15(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -922,6 +938,7 @@ func BehavTest_16(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -967,6 +984,7 @@ func BehavTest_17(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -1012,6 +1030,7 @@ func BehavTest_18(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -1057,6 +1076,7 @@ func BehavTest_19(t *testing.T) {
 		UriPathSegment:     aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -1102,6 +1122,7 @@ func BehavTest_20(t *testing.T) {
 		UriPathSegment:        aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -1146,6 +1167,7 @@ func BehavTest_21(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -1195,6 +1217,7 @@ func BehavTest_22(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -1243,6 +1266,7 @@ func BehavTest_23(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -1291,6 +1315,7 @@ func BehavTest_24(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -1345,6 +1370,7 @@ func BehavTest_25(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -1390,6 +1416,7 @@ func BehavTest_26(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -1435,6 +1462,7 @@ func BehavTest_27(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -1480,6 +1508,7 @@ func BehavTest_28(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -1525,6 +1554,7 @@ func BehavTest_29(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -1570,6 +1600,7 @@ func BehavTest_30(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -1615,6 +1646,7 @@ func BehavTest_31(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -1660,6 +1692,7 @@ func BehavTest_32(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -1705,6 +1738,7 @@ func BehavTest_33(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -1750,6 +1784,7 @@ func BehavTest_34(t *testing.T) {
 		UriPathSegment:  aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -1795,6 +1830,7 @@ func BehavTest_35(t *testing.T) {
 		UriPathSegment:  aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -1840,6 +1876,7 @@ func BehavTest_36(t *testing.T) {
 		UriPathSegment:      aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -1885,6 +1922,7 @@ func BehavTest_37(t *testing.T) {
 		UriPathSegment:         aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -1929,6 +1967,7 @@ func BehavTest_38(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -1978,6 +2017,7 @@ func BehavTest_39(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -2027,6 +2067,7 @@ func BehavTest_40(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -2072,6 +2113,7 @@ func BehavTest_41(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -2116,6 +2158,7 @@ func BehavTest_42(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -2161,6 +2204,7 @@ func BehavTest_43(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.OperationWithPayloadStructureMemberRequest(input)
 	_ = resp
 
@@ -2204,6 +2248,7 @@ func BehavTest_44(t *testing.T) {
 		Data: &sampleresetxmlprotocolservice.SimpleStruct{},
 	}
 
+	//request is defines
 	req, resp := svc.OperationWithPayloadStructureMemberRequest(input)
 	_ = resp
 
@@ -2247,6 +2292,7 @@ func BehavTest_45(t *testing.T) {
 		Data: &sampleresetxmlprotocolservice.SimpleStruct{},
 	}
 
+	//request is defines
 	req, resp := svc.OperationWithPayloadStructureMemberRequest(input)
 	_ = resp
 
@@ -2293,6 +2339,7 @@ func BehavTest_46(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.OperationMembersWithoutLocationRequest(input)
 	_ = resp
 
@@ -2339,6 +2386,7 @@ func BehavTest_47(t *testing.T) {
 		Header: aws.String("value 1"),
 	}
 
+	//request is defines
 	req, resp := svc.OperationMembersWithoutLocationRequest(input)
 	_ = resp
 
@@ -2380,6 +2428,7 @@ func BehavTest_48(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -2421,6 +2470,7 @@ func BehavTest_49(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -2464,6 +2514,7 @@ func BehavTest_50(t *testing.T) {
 		JsonValue: aws.JSONValue{"key": "value"},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -2507,6 +2558,7 @@ func BehavTest_51(t *testing.T) {
 		Integer: aws.Int64(123456),
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -2550,6 +2602,7 @@ func BehavTest_52(t *testing.T) {
 		Long: aws.Int64(999999999999),
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -2593,6 +2646,7 @@ func BehavTest_53(t *testing.T) {
 		Float: aws.Float64(123.456000),
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -2636,6 +2690,7 @@ func BehavTest_54(t *testing.T) {
 		Double: aws.Float64(123.456000),
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -2679,6 +2734,7 @@ func BehavTest_55(t *testing.T) {
 		Blob: []byte("YmluYXJ5LXZhbHVl"),
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -2722,6 +2778,7 @@ func BehavTest_56(t *testing.T) {
 		Boolean: aws.Bool(true),
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -2765,6 +2822,7 @@ func BehavTest_57(t *testing.T) {
 		Boolean: aws.Bool(false),
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -2808,6 +2866,7 @@ func BehavTest_58(t *testing.T) {
 		Iso8601Timestamp: parseTime("2006-01-02T15:04:05Z", "946845296.000000"),
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -2851,6 +2910,7 @@ func BehavTest_59(t *testing.T) {
 		Timestamp: parseTime("2006-01-02T15:04:05Z", "946845296.000000"),
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -2892,6 +2952,7 @@ func BehavTest_60(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -2935,6 +2996,7 @@ func BehavTest_61(t *testing.T) {
 		UnixTimestamp: parseTime("2006-01-02T15:04:05Z", "946845296.123000"),
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -2981,6 +3043,7 @@ func BehavTest_62(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -3032,6 +3095,7 @@ func BehavTest_63(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -3085,6 +3149,7 @@ func BehavTest_64(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -3144,6 +3209,7 @@ func BehavTest_65(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -3194,6 +3260,7 @@ func BehavTest_66(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -3244,6 +3311,7 @@ func BehavTest_67(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -3294,6 +3362,7 @@ func BehavTest_68(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -3344,6 +3413,7 @@ func BehavTest_69(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -3394,6 +3464,7 @@ func BehavTest_70(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -3444,6 +3515,7 @@ func BehavTest_71(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -3494,6 +3566,7 @@ func BehavTest_72(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -3544,6 +3617,7 @@ func BehavTest_73(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -3590,6 +3664,7 @@ func BehavTest_74(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -3641,6 +3716,7 @@ func BehavTest_75(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -3692,6 +3768,7 @@ func BehavTest_76(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -3742,6 +3819,7 @@ func BehavTest_77(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -3792,6 +3870,7 @@ func BehavTest_78(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -3842,6 +3921,7 @@ func BehavTest_79(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -3892,6 +3972,7 @@ func BehavTest_80(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -3942,6 +4023,7 @@ func BehavTest_81(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -3992,6 +4074,7 @@ func BehavTest_82(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -4042,6 +4125,7 @@ func BehavTest_83(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -4092,6 +4176,7 @@ func BehavTest_84(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -4142,6 +4227,7 @@ func BehavTest_85(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -4195,6 +4281,7 @@ func BehavTest_86(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -4240,6 +4327,7 @@ func BehavTest_87(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -4285,6 +4373,7 @@ func BehavTest_88(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -4328,6 +4417,7 @@ func BehavTest_89(t *testing.T) {
 		EmptyStruct: &sampleresetxmlprotocolservice.EmptyStruct{},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -4375,6 +4465,7 @@ func BehavTest_90(t *testing.T) {
 		},
 	}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -4419,6 +4510,7 @@ func BehavTest_91(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -4469,6 +4561,7 @@ func BehavTest_92(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -4519,6 +4612,7 @@ func BehavTest_93(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -4573,6 +4667,7 @@ func BehavTest_94(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -4627,6 +4722,7 @@ func BehavTest_95(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -4681,6 +4777,7 @@ func BehavTest_96(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -4735,6 +4832,7 @@ func BehavTest_97(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -4789,6 +4887,7 @@ func BehavTest_98(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -4843,6 +4942,7 @@ func BehavTest_99(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -4897,6 +4997,7 @@ func BehavTest_100(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -4951,6 +5052,7 @@ func BehavTest_101(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -5005,6 +5107,7 @@ func BehavTest_102(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -5059,6 +5162,7 @@ func BehavTest_103(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -5113,6 +5217,7 @@ func BehavTest_104(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -5167,6 +5272,7 @@ func BehavTest_105(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
+	//request is defines
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -5219,6 +5325,7 @@ func BehavTest_106(t *testing.T) {
 		Path: aws.String("path"),
 	}
 
+	//request is defines
 	req, resp := svc.SimpleHttpOperationRequest(input)
 	_ = resp
 
@@ -5274,6 +5381,7 @@ func BehavTest_107(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5318,6 +5426,7 @@ func BehavTest_108(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5364,6 +5473,7 @@ func BehavTest_109(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5410,6 +5520,7 @@ func BehavTest_110(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5456,6 +5567,7 @@ func BehavTest_111(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5502,6 +5614,7 @@ func BehavTest_112(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5548,6 +5661,7 @@ func BehavTest_113(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5594,6 +5708,7 @@ func BehavTest_114(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5640,6 +5755,7 @@ func BehavTest_115(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5686,6 +5802,7 @@ func BehavTest_116(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5732,6 +5849,7 @@ func BehavTest_117(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5778,6 +5896,7 @@ func BehavTest_118(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5822,6 +5941,7 @@ func BehavTest_119(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5868,6 +5988,7 @@ func BehavTest_120(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5917,6 +6038,7 @@ func BehavTest_121(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5971,6 +6093,7 @@ func BehavTest_122(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6023,6 +6146,7 @@ func BehavTest_123(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6076,6 +6200,7 @@ func BehavTest_124(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6129,6 +6254,7 @@ func BehavTest_125(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6182,6 +6308,7 @@ func BehavTest_126(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6235,6 +6362,7 @@ func BehavTest_127(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6288,6 +6416,7 @@ func BehavTest_128(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6341,6 +6470,7 @@ func BehavTest_129(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6394,6 +6524,7 @@ func BehavTest_130(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6443,6 +6574,7 @@ func BehavTest_131(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6497,6 +6629,7 @@ func BehavTest_132(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6551,6 +6684,7 @@ func BehavTest_133(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6607,6 +6741,7 @@ func BehavTest_134(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6660,6 +6795,7 @@ func BehavTest_135(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6713,6 +6849,7 @@ func BehavTest_136(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6766,6 +6903,7 @@ func BehavTest_137(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6819,6 +6957,7 @@ func BehavTest_138(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6872,6 +7011,7 @@ func BehavTest_139(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6925,6 +7065,7 @@ func BehavTest_140(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6978,6 +7119,7 @@ func BehavTest_141(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -7031,6 +7173,7 @@ func BehavTest_142(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -7079,6 +7222,7 @@ func BehavTest_143(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -7127,6 +7271,7 @@ func BehavTest_144(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -7173,6 +7318,7 @@ func BehavTest_145(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
+	//request is defines
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
