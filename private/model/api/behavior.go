@@ -98,13 +98,14 @@ func (a *API) APIBehaviorTestsGoCode() string {
 	//a.AddImport("net/textproto")
 	a.AddImport("strings")
 	a.AddImport("encoding/base64")
-	a.AddImport("reflect")
+	//a.AddImport("reflect")
 	a.AddImport("github.com/google/go-cmp/cmp")
 
 	a.AddSDKImport("aws")
 	a.AddSDKImport("awstesting")
 	a.AddSDKImport("aws/session")
 	a.AddSDKImport("aws/credentials")
+	a.AddSDKImport("aws/awserr")
 	a.AddSDKImport("aws/corehandlers")
 	//a.AddSDKImport("aws/client")
 	//a.AddSDKImport("private/protocol")
@@ -141,7 +142,7 @@ func FormatAssertionName (val string) string{
 func (c Case) AssertionStatement (op *Operation) string{
 	var val string = "//Assertions start here"
 	val += fmt.Sprintf("\n")
-	
+
 	for _, assertion := range  c.Expect{
 		for assertionName, assertionContext := range assertion{
 			val += fmt.Sprintf("\n")
@@ -161,7 +162,7 @@ func (c Case) AssertionStatement (op *Operation) string{
 				case "responseDataEquals":
 					val += fmt.Sprintf("%s(t, resp, %v)",FormatAssertionName(assertionName),c.BuildOutputShape(&op.OutputRef))
 				default:
-					val += fmt.Sprintf("%s(t, response, %#v)",FormatAssertionName(assertionName),assertionContext)
+					val += fmt.Sprintf("%s(t, err, %q)",FormatAssertionName(assertionName),assertionContext)
 				}
 			}
 			val += fmt.Sprintf(`{ 
@@ -227,7 +228,8 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 		input := {{ $.testCase.Request.BuildInputShape $.op.InputRef }}
 
 		req, resp := svc.{{$.testCase.Request.Operation}}Request(input)
-
+		_ = resp
+	
 		MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func (r *request.Request){ 
 			{{- template "ResponseBuild" Map "testCase" $.testCase}}	
 		}}
@@ -357,28 +359,31 @@ func assertResponseDataEquals(t *testing.T, response interface{}, expectResponse
 	return cmp.Equal(expectResponse, response)
 }
 
-func assertResponseErrorIsKindOf(t *testing.T, req *request.Request,val map[string]interface{}){
-    if testing.Short() {
-        t.Skip("skipping responseErrorIsKindOf assertion")
-    }
+func assertResponseErrorIsKindOf(t *testing.T, err error,val string) bool{
+	if awsErr, ok := err.(awserr.Error); ok{
+		return awsErr.Code() == val
+	}
+	return true
 }
 
-func assertResponseErrorMessageEquals(t *testing.T, req *request.Request,val map[string]interface{}){
-    if testing.Short() {
-        t.Skip("skipping responseErrorMessageEquals assertion")
-    }
+func assertResponseErrorMessageEquals(t *testing.T, err error,val string) bool{
+	if awsErr, ok := err.(awserr.Error); ok{
+		return awsErr.Message() == val
+	}
+	return true
 }
 
-func assertResponseErrorDataEquals(t *testing.T, req *request.Request,val map[string]interface{}){
+func assertResponseErrorDataEquals(t *testing.T, err error,val map[string]interface{}){
     if testing.Short() {
         t.Skip("skipping responseErrorDataEquals assertion")
     }
 }
 
-func assertResponseErrorRequestIdEquals(t *testing.T, req *request.Request,val map[string]interface{}){
-    if testing.Short() {
-        t.Skip("skipping responseErrorRequestIdEquals assertion")
-    }
+func assertResponseErrorRequestIdEquals(t *testing.T, err error,val string) bool{
+	if reqErr, ok := err.(awserr.RequestFailure); ok{
+		return reqErr.RequestID() == val
+	}
+	return true
 }
 
 {{- range $i, $testCase := $.Tests.Cases }}

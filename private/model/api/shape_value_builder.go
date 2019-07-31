@@ -39,14 +39,13 @@ func (b ShapeValueBuilder) BuildShape(ref *ShapeRef, shapes map[string]interface
 
 		memName := name
 		passRef := ref.Shape.MemberRefs[name]
-
 		if isMap {
 			memName = fmt.Sprintf("%q", memName)
 			passRef = &ref.Shape.ValueRef
 		}
 		switch v := shape.(type) {
 		case map[string]interface{}:
-			ret += b.BuildComplex(name, memName, passRef, v)
+			ret += b.BuildComplex(name, memName, passRef, ref.Shape, v)
 		case []interface{}:
 			ret += b.BuildList(name, memName, passRef, v)
 		default:
@@ -169,18 +168,33 @@ func (b ShapeValueBuilder) BuildScalar(name, memName string, ref *ShapeRef, shap
 
 // BuildComplex will build the shape's value for complex types such as structs,
 // and maps.
-func (b ShapeValueBuilder) BuildComplex(name, memName string, ref *ShapeRef, v map[string]interface{}) string {
-	switch ref.Shape.Type {
+func (b ShapeValueBuilder) BuildComplex(name, memName string, ref *ShapeRef, parent *Shape, v map[string]interface{}) string {
+	switch parent.Type {
 	case "structure":
-		return fmt.Sprintf(`%s: &%s{
+		if ref.Shape.Type == "map" {
+			return fmt.Sprintf(`%s: %s{
+				%s
+			},
+			`, memName, b.GoType(ref, true), b.BuildShape(ref, v, true))
+		} else{
+			return fmt.Sprintf(`%s: &%s{
 				%s
 			},
 			`, memName, b.GoType(ref, true), b.BuildShape(ref, v, false))
+		}
 	case "map":
-		return fmt.Sprintf(`%s: %s{
+		if ref.Shape.Type == "map" {
+			return fmt.Sprintf(`%q: %s{
 				%s
 			},
 			`, name, b.GoType(ref, false), b.BuildShape(ref, v, true))
+		} else{
+			return fmt.Sprintf(`%q: &%s{
+				%s
+			},
+			`, memName, b.GoType(ref, true), b.BuildShape(ref, v, false))
+		}
+
 	default:
 		panic(fmt.Sprintf("Expected complex type but received %q", ref.Shape.Type))
 	}
@@ -188,6 +202,7 @@ func (b ShapeValueBuilder) BuildComplex(name, memName string, ref *ShapeRef, v m
 
 // GoType returns the string of the shape's Go type identifier.
 func (b ShapeValueBuilder) GoType(ref *ShapeRef, elem bool) string {
+
 	if ref.Shape.Type != "structure" && ref.Shape.Type != "list" && ref.Shape.Type != "map" {
 		// Scalars are always pointers.
 		return ref.GoTypeWithPkgName()
