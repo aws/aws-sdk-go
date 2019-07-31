@@ -2,10 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ed2d3696-b0f7-4ed1-97ce-3c111ab0f041" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/awstesting/behavior_tests/samplejson11protocolservice/api.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/awstesting/behavior_tests/samplejson11protocolservice/behav_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/awstesting/behavior_tests/samplejson11protocolservice/doc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/awstesting/behavior_tests/samplejson11protocolservice/errors.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/awstesting/behavior_tests/samplejson11protocolservice/samplejson11protocolserviceiface/interface.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/awstesting/behavior_tests/samplejson11protocolservice/service.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/api.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/behav_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/doc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/errors.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/sampleresetxmlprotocolserviceiface/interface.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/service.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/behavior_tests/generate.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/behavior_tests/rest_xml_protocol/2019-07-16/api-2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/behavior_tests/rest_xml_protocol/2019-07-16/behavior.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/model/api/behavior.go" beforeDir="false" afterPath="$PROJECT_DIR$/private/model/api/behavior.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/model/api/examples_builder.go" beforeDir="false" afterPath="$PROJECT_DIR$/private/model/api/examples_builder.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/model/api/shape_value_builder.go" beforeDir="false" afterPath="$PROJECT_DIR$/private/model/api/shape_value_builder.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,16 +65,16 @@
             <entry file="file://$PROJECT_DIR$/aws/awserr/error.go">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="1305">
-                  <caret line="87" column="1" lean-forward="true" selection-start-line="87" selection-start-column="1" selection-end-line="87" selection-end-column="1" />
+                  <caret line="87" column="1" selection-start-line="87" selection-start-column="1" selection-end-line="87" selection-end-column="1" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/private/model/api/behavior.go">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="230">
-                  <caret line="214" column="90" lean-forward="true" selection-start-line="214" selection-start-column="90" selection-end-line="214" selection-end-column="90" />
+                  <caret line="214" column="90" selection-start-line="214" selection-start-column="90" selection-end-line="214" selection-end-column="90" />
                 </state>
               </provider>
             </entry>
@@ -71,7 +83,7 @@
             <entry file="file://$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/behav_test.go">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="16170">
-                  <caret line="1236" column="58" lean-forward="true" selection-start-line="1236" selection-start-column="58" selection-end-line="1236" selection-end-column="58" />
+                  <caret line="1236" column="58" selection-start-line="1236" selection-start-column="58" selection-end-line="1236" selection-end-column="58" />
                   <folding>
                     <element signature="e#144#701#0" expanded="true" />
                   </folding>
@@ -88,11 +100,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/private/model/api/shape_value_builder.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="486">
-                  <caret line="191" column="40" lean-forward="true" selection-start-line="191" selection-start-column="40" selection-end-line="191" selection-end-column="40" />
+                <state relative-caret-position="1079">
+                  <caret line="191" column="40" selection-start-line="191" selection-start-column="40" selection-end-line="191" selection-end-column="40" />
                 </state>
               </provider>
             </entry>
@@ -122,7 +134,7 @@
             <entry file="file://$PROJECT_DIR$/aws/awserr/types.go">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="245">
-                  <caret line="84" column="45" lean-forward="true" selection-start-line="84" selection-start-column="45" selection-end-line="84" selection-end-column="45" />
+                  <caret line="84" column="45" selection-start-line="84" selection-start-column="45" selection-end-line="84" selection-end-column="45" />
                 </state>
               </provider>
             </entry>
@@ -147,7 +159,7 @@
             <entry file="file://$PROJECT_DIR$/models/behavior_tests/rest_xml_protocol/2019-07-16/behavior.json">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="398">
-                  <caret line="2830" column="28" lean-forward="true" selection-start-line="2830" selection-start-column="28" selection-end-line="2830" selection-end-column="28" />
+                  <caret line="2830" column="28" selection-start-line="2830" selection-start-column="28" selection-end-line="2830" selection-end-column="28" />
                 </state>
               </provider>
             </entry>
@@ -156,7 +168,7 @@
             <entry file="file://$PROJECT_DIR$/private/model/api/examples_builder.go">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="375">
-                  <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+                  <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
                 </state>
               </provider>
             </entry>
@@ -882,7 +894,7 @@
     <entry file="file://$PROJECT_DIR$/aws/awserr/types.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="245">
-          <caret line="84" column="45" lean-forward="true" selection-start-line="84" selection-start-column="45" selection-end-line="84" selection-end-column="45" />
+          <caret line="84" column="45" selection-start-line="84" selection-start-column="45" selection-end-line="84" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -896,28 +908,21 @@
     <entry file="file://$PROJECT_DIR$/private/model/api/examples_builder.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
-          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/aws/awserr/error.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1305">
-          <caret line="87" column="1" lean-forward="true" selection-start-line="87" selection-start-column="1" selection-end-line="87" selection-end-column="1" />
+          <caret line="87" column="1" selection-start-line="87" selection-start-column="1" selection-end-line="87" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/behavior_tests/rest_xml_protocol/2019-07-16/behavior.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="398">
-          <caret line="2830" column="28" lean-forward="true" selection-start-line="2830" selection-start-column="28" selection-end-line="2830" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/private/model/api/shape_value_builder.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="191" column="40" lean-forward="true" selection-start-line="191" selection-start-column="40" selection-end-line="191" selection-end-column="40" />
+          <caret line="2830" column="28" selection-start-line="2830" selection-start-column="28" selection-end-line="2830" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -928,20 +933,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/private/model/api/behavior.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="214" column="90" selection-start-line="214" selection-start-column="90" selection-end-line="214" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/behav_test.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="16170">
-          <caret line="1236" column="58" lean-forward="true" selection-start-line="1236" selection-start-column="58" selection-end-line="1236" selection-end-column="58" />
+          <caret line="1236" column="58" selection-start-line="1236" selection-start-column="58" selection-end-line="1236" selection-end-column="58" />
           <folding>
             <element signature="e#144#701#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/private/model/api/behavior.go">
+    <entry file="file://$PROJECT_DIR$/private/model/api/shape_value_builder.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="214" column="90" lean-forward="true" selection-start-line="214" selection-start-column="90" selection-end-line="214" selection-end-column="90" />
+        <state relative-caret-position="1079">
+          <caret line="191" column="40" selection-start-line="191" selection-start-column="40" selection-end-line="191" selection-end-column="40" />
         </state>
       </provider>
     </entry>

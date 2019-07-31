@@ -1,0 +1,562 @@
+{
+  "metadata":{
+    "serviceId":"Rest Xml Protocol Service",
+    "protocol":"rest-xml",
+    "endpointPrefix":"rest-xml-svc",
+    "signatureVersion":"v4",
+    "serviceFullName": "Sample Reset Xml Protocol Service"
+  },
+  "operations": {
+    "EmptyPut": {
+      "http": {
+        "method": "PUT",
+        "requestUri": "/"
+      }
+    },
+    "EmptyPost": {
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      }
+    },
+    "EmptyPatch": {
+      "http": {
+        "method": "PATCH",
+        "requestUri": "/"
+      }
+    },
+    "EmptyGet": {
+      "http": {
+        "method": "GET",
+        "requestUri": "/"
+      }
+    },
+    "EmptyHead": {
+      "http": {
+        "method": "HEAD",
+        "requestUri": "/"
+      }
+    },
+    "EmptyDelete": {
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/"
+      }
+    },
+    "PutWithRestBindings": {
+      "http": {
+        "method": "PUT",
+        "requestUri": "/{first}/{second+}"
+      },
+      "input": { "shape": "RestfulInput" },
+      "output": { "shape": "RestfulOutput" }
+    },
+    "SimpleHttpOperation": {
+      "http": {
+        "method": "POST",
+        "requestUri": "/{path+}"
+      },
+      "input": { "shape": "SimpleHttpOperationInput" },
+      "output": { "shape": "SimpleHttpOperationOutput" }
+    },
+    "OperationWithPayloadStructureMember": {
+      "http": {
+        "method": "PUT",
+        "requestUri": "/"
+      },
+      "input": { "shape": "OperationWithPayloadStructureMemberInput" }
+    },
+    "OperationMembersWithoutLocation": {
+      "http": {
+        "method": "PUT",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "OperationMembersWithoutLocationInput",
+        "locationName": "RootNode",
+        "xmlNamespace": { "uri": "http://xml/ns" }
+      }
+    },
+    "KitchenSink": {
+      "http": {
+        "method": "PUT",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "KitchenSink",
+        "locationName": "KitchenSink",
+        "xmlNamespace": { "uri": "http://xml/ns" }
+      },
+      "output": { "shape": "KitchenSink" }
+    }
+  },
+  "shapes": {
+    "RestfulInput": {
+      "type": "structure",
+      "required": [
+        "UriPathSegment",
+        "UriPath"
+      ],
+      "members": {
+        "UriPathSegment": {
+          "shape": "String",
+          "location": "uri",
+          "locationName": "first"
+        },
+        "UriPath": {
+          "shape": "String",
+          "location": "uri",
+          "locationName": "second"
+        },
+        "QueryString": {
+          "shape": "String",
+          "location": "querystring",
+          "locationName": "string"
+        },
+        "QueryInteger": {
+          "shape": "Integer",
+          "location": "querystring",
+          "locationName": "integer"
+        },
+        "QueryLong": {
+          "shape": "Long",
+          "location": "querystring",
+          "locationName": "long"
+        },
+        "QueryFloat": {
+          "shape": "Float",
+          "location": "querystring",
+          "locationName": "float"
+        },
+        "QueryDouble": {
+          "shape": "Double",
+          "location": "querystring",
+          "locationName": "double"
+        },
+        "QueryBoolean": {
+          "shape": "Boolean",
+          "location": "querystring",
+          "locationName": "boolean-value"
+        },
+        "QueryBlob": {
+          "shape": "Blob",
+          "location": "querystring",
+          "locationName": "binary-value"
+        },
+        "QueryTimestamp": {
+          "shape": "Timestamp",
+          "location": "querystring",
+          "locationName": "unixTimestamp"
+        },
+        "QueryUnixTimestamp": {
+          "shape": "Timestamp",
+          "location": "querystring",
+          "locationName": "unix-timestamp",
+          "timestampFormat": "unixTimestamp"
+        },
+        "QueryIso8601Timestamp": {
+          "shape": "Timestamp",
+          "location": "querystring",
+          "locationName": "iso8601-timestamp",
+          "timestampFormat": "iso8601"
+        },
+        "Queryiso8601Timestamp": {
+          "shape": "Timestamp",
+          "location": "querystring",
+          "locationName": "iso8601-timestamp",
+          "timestampFormat": "iso8601"
+        },
+        "QueryListOfStrings": {
+          "shape": "ListOfStrings",
+          "location": "querystring",
+          "locationName": "list"
+        },
+        "QueryMapOfStrings": {
+          "shape": "MapOfStrings",
+          "location": "querystring",
+          "locationName": "map"
+        },
+        "QueryMapOfListsOfStrings": {
+          "shape": "MapOfListsOfStrings",
+          "location": "querystring",
+          "locationName": "map-list"
+        },
+        "HeaderString": {
+          "shape": "String",
+          "location": "header",
+          "locationName": "Header-String"
+        },
+        "HeaderInteger": {
+          "shape": "Integer",
+          "location": "header",
+          "locationName": "Header-Integer"
+        },
+        "HeaderLong": {
+          "shape": "Long",
+          "location": "header",
+          "locationName": "Header-Long"
+        },
+        "HeaderFloat": {
+          "shape": "Float",
+          "location": "header",
+          "locationName": "Header-Float"
+        },
+        "HeaderDouble": {
+          "shape": "Double",
+          "location": "header",
+          "locationName": "Header-Double"
+        },
+        "HeaderBoolean": {
+          "shape": "Boolean",
+          "location": "header",
+          "locationName": "Header-Boolean"
+        },
+        "HeaderBlob": {
+          "shape": "Blob",
+          "location": "header",
+          "locationName": "Header-Binary"
+        },
+        "HeaderJsonValue": {
+          "shape": "String",
+          "jsonvalue": true,
+          "location": "header",
+          "locationName": "Header-Json-Value"
+        },
+        "HeaderTimestamp": {
+          "shape": "Timestamp",
+          "location": "header",
+          "locationName": "Header-Timestamp"
+        },
+        "HeaderUnixTimestamp": {
+          "shape": "Timestamp",
+          "location": "header",
+          "locationName": "Header-Unix-Timestamp",
+          "timestampFormat": "unixTimestamp"
+        },
+        "HeaderIso8601Timestamp": {
+          "shape": "Timestamp",
+          "location": "header",
+          "locationName": "Header-Iso8601-Timestamp",
+          "timestampFormat": "iso8601"
+        },
+        "Headeriso8601Timestamp": {
+          "shape": "Timestamp",
+          "location": "header",
+          "locationName": "Header-iso8601-Timestamp",
+          "timestampFormat": "iso8601"
+        },
+        "HeaderMap": {
+          "shape": "MapOfStrings",
+          "location": "headers"
+        },
+        "HeaderMapWithPrefix": {
+          "shape": "MapOfStrings",
+          "location": "headers",
+          "locationName": "Prefix-"
+        },
+        "BodyStream": {
+          "shape": "Blob",
+          "streaming": true
+        }
+      },
+      "payload": "BodyStream"
+    },
+    "RestfulOutput": {
+      "type": "structure",
+      "members": {
+        "HttpStatusCode": {
+          "shape": "Integer",
+          "location": "statusCode"
+        },
+        "HeaderString": {
+          "shape": "String",
+          "location": "header",
+          "locationName": "Header-String"
+        },
+        "HeaderJsonValue": {
+          "shape": "String",
+          "jsonvalue": true,
+          "location": "header",
+          "locationName": "Header-Json-Value"
+        },
+        "HeaderInteger": {
+          "shape": "Integer",
+          "location": "header",
+          "locationName": "Header-Integer"
+        },
+        "HeaderLong": {
+          "shape": "Long",
+          "location": "header",
+          "locationName": "Header-Long"
+        },
+        "HeaderFloat": {
+          "shape": "Float",
+          "location": "header",
+          "locationName": "Header-Float"
+        },
+        "HeaderDouble": {
+          "shape": "Double",
+          "location": "header",
+          "locationName": "Header-Double"
+        },
+        "HeaderBoolean": {
+          "shape": "Boolean",
+          "location": "header",
+          "locationName": "Header-Boolean"
+        },
+        "HeaderBlob": {
+          "shape": "Blob",
+          "location": "header",
+          "locationName": "Header-Binary"
+        },
+        "HeaderTimestamp": {
+          "shape": "Timestamp",
+          "location": "header",
+          "locationName": "Header-Timestamp"
+        },
+        "HeaderUnixTimestamp": {
+          "shape": "Timestamp",
+          "location": "header",
+          "locationName": "Header-Unix-Timestamp",
+          "timestampFormat": "unixTimestamp"
+        },
+        "HeaderIso8601Timestamp": {
+          "shape": "Timestamp",
+          "location": "header",
+          "locationName": "Header-Iso8601-Timestamp",
+          "timestampFormat": "unixTimestamp"
+        },
+        "Headeriso8601Timestamp": {
+          "shape": "Timestamp",
+          "location": "header",
+          "locationName": "Header-iso8601-Timestamp",
+          "timestampFormat": "iso8601"
+        },
+        "HeaderMapWithPrefix": {
+          "shape": "MapOfStrings",
+          "location": "headers",
+          "locationName": "Prefix-"
+        },
+        "KitchenSink": {
+          "shape": "KitchenSink"
+        }
+      },
+      "payload":"KitchenSink"
+    },
+    "SimpleHttpOperationInput": {
+      "type": "structure",
+      "members": {
+        "Path": {
+          "shape": "String",
+          "location": "uri",
+          "locationName": "path"
+        },
+        "Query": {
+          "shape": "MapOfListsOfStrings",
+          "location": "querystring"
+        },
+        "Headers": {
+          "shape": "MapOfStrings",
+          "location": "headers"
+        },
+        "Body": {
+          "shape": "Blob"
+        }
+      },
+      "payload": "Body"
+    },
+    "SimpleHttpOperationOutput": {
+      "type": "structure",
+      "members": {
+        "StatusCode": {
+          "shape": "Integer",
+          "location": "statusCode"
+        },
+        "Headers": {
+          "shape": "MapOfStrings",
+          "location": "headers"
+        },
+        "Body": {
+          "shape": "Blob",
+          "streaming": true
+        }
+      },
+      "payload": "Body"
+    },
+    "KitchenSink": {
+      "type": "structure",
+      "members": {
+        "String": { "shape": "String" },
+        "JsonValue": { "shape": "String", "jsonvalue": true },
+        "Integer": { "shape": "Integer" },
+        "Long": { "shape": "Long" },
+        "Float": { "shape": "Float" },
+        "Double": { "shape": "Double" },
+        "Boolean": { "shape": "Boolean" },
+        "Blob": { "shape": "Blob" },
+        "Timestamp": { "shape": "Timestamp" },
+        "Iso8601Timestamp": { "shape": "Timestamp", "timestampFormat": "iso8601" },
+        "iso8601Timestamp": { "shape": "Timestamp", "timestampFormat": "iso8601" },
+        "UnixTimestamp": { "shape": "Timestamp", "timestampFormat": "unixTimestamp" },
+
+        "ListOfStrings": { "shape": "ListOfStrings"},
+        "ListOfMapsOfStrings": { "shape": "ListOfMapsOfStrings"},
+        "RecursiveList": { "shape": "ListOfKitchenSinks"},
+
+        "List": { "shape": "ListOfStructs"},
+        "ListWithName": { "shape": "ListOfStructs", "locationName": "list-name" },
+        "ListWithMemberName": { "shape": "ListWithMemberName" },
+        "ListWithBothNames": { "shape": "ListWithMemberName", "locationName": "list-name" },
+
+        "FlatList": { "shape": "ListOfStructs", "flattened": true },
+        "FlatListWithName": { "shape": "ListOfStructs", "flattened": true, "locationName": "item-name" },
+        "FlatListWithMemberName": { "shape": "ListWithMemberName", "flattened": true },
+        "FlatListWithBothNames": { "shape": "OtherListWithMemberName", "locationName": "list-name", "flattened": true },
+
+        "MapOfStrings": { "shape": "MapOfStrings"},
+        "MapOfListsOfStrings": { "shape": "MapOfListsOfStrings"},
+        "MapOfMaps": { "shape": "MapOfMapOfStrings"},
+        "RecursiveMap": { "shape": "MapOfKitchenSinks"},
+
+        "Map": { "shape": "MapOfStructs" },
+        "MapWithName": { "shape": "MapOfStructs", "locationName": "map-with-name" },
+        "MapWithMemberNames": { "shape": "MapWithMemberNames" },
+        "MapWithBothNames": { "shape": "MapWithMemberNames", "locationName": "map-name" },
+
+        "FlatMap": { "shape": "MapOfStructs", "flattened": true },
+        "FlatMapWithName": { "shape": "MapOfStructs", "locationName": "flat-map-with-name", "flattened": true },
+        "FlatMapWithMemberNames": { "shape": "MapWithMemberNames", "flattened": true },
+        "FlatMapWithBothNames": { "shape": "MapWithMemberNames", "locationName": "flat-map", "flattened": true },
+
+        "SimpleStruct": { "shape": "SimpleStruct" },
+        "StructWithMemberWithName": { "shape": "StructWithMemberWithName" },
+        "EmptyStruct": { "shape": "EmptyStruct" },
+        "RecursiveStruct": { "shape": "KitchenSink" }
+      }
+    },
+    "String": { "type": "string" },
+    "Integer": { "type": "integer" },
+    "Long": { "type": "long" },
+    "Float": { "type": "float" },
+    "Double": { "type": "double" },
+    "Boolean": { "type": "boolean" },
+    "Blob": { "type": "blob" },
+    "Timestamp": { "type": "timestamp" },
+    "ListOfStrings": {
+      "type": "list",
+      "member": { "shape": "String" }
+    },
+    "ListOfMapsOfStrings": {
+      "type": "list",
+      "member": { "shape": "MapOfStrings" }
+    },
+    "ListOfStructs": {
+      "type": "list",
+      "member": { "shape": "SimpleStruct" }
+    },
+    "ListWithMemberName": {
+      "type": "list",
+      "member": { "shape": "SimpleStruct", "locationName": "list-member-name" }
+    },
+    "OtherListWithMemberName": {
+      "type": "list",
+      "member": { "shape": "SimpleStruct", "locationName": "other-member-name" }
+    },
+    "ListOfKitchenSinks": {
+      "type": "list",
+      "member": { "shape": "KitchenSink" }
+    },
+    "MapOfStrings": {
+      "type": "map",
+      "key": { "shape": "String" },
+      "value": { "shape": "String" }
+    },
+    "MapOfListsOfStrings": {
+      "type": "map",
+      "key": { "shape": "String" },
+      "value": { "shape": "ListOfStrings" }
+    },
+    "MapOfMapOfStrings": {
+      "type": "map",
+      "key": { "shape": "String" },
+      "value": { "shape": "MapOfStrings" }
+    },
+    "MapOfStructs": {
+      "type": "map",
+      "key": { "shape": "String" },
+      "value": { "shape": "SimpleStruct" }
+    },
+    "MapWithMemberNames": {
+      "type": "map",
+      "key": { "shape": "String", "locationName": "key-name" },
+      "value": { "shape": "SimpleStruct", "locationName": "value-name" }
+    },
+    "MapOfKitchenSinks": {
+      "type": "map",
+      "key": { "shape": "String" },
+      "value": { "shape": "KitchenSink" }
+    },
+    "SimpleStruct": {
+      "type": "structure",
+      "members": {
+        "Value": { "shape": "String" }
+      }
+    },
+    "StructWithMemberWithName": {
+      "type": "structure",
+      "members": {
+        "Value": { "shape": "String", "locationName": "member-with-name" }
+      }
+    },
+    "EmptyStruct": {
+      "type": "structure",
+      "members": {}
+    },
+    "ErrorWithoutMembers": {
+      "type": "structure",
+      "members": {},
+      "exception": true,
+      "fault": true
+    },
+    "ErrorWithMembers": {
+      "type":"structure",
+      "members": {
+        "Code": { "shape": "String" },
+        "Message": { "shape": "String" },
+        "StringField":  { "shape": "String", "documentation": "abc" },
+        "IntegerField":  { "shape": "Integer" },
+        "ListField":  { "shape": "ListOfStrings" },
+        "MapField":  { "shape": "MapOfStrings" },
+        "ComplexData":  { "shape": "KitchenSink" }
+      },
+      "exception": true
+    },
+    "OperationWithPayloadStructureMemberInput": {
+      "type": "structure",
+      "members": {
+        "Data": {
+          "shape": "SimpleStruct",
+          "locationName": "DataNode",
+          "xmlNamespace": { "uri": "http://xml/ns" }
+        }
+      },
+      "payload": "Data"
+    },
+    "OperationMembersWithoutLocationInput": {
+      "type": "structure",
+      "members": {
+        "Header": {
+          "shape": "String",
+          "location": "header",
+          "locationName": "Some-Header"
+        },
+        "String": { "shape": "String" },
+        "Struct": { "shape": "SimpleStruct" }
+      }
+    },
+    "EmptyStructure": {
+      "type": "structure",
+      "members": {}
+    }
+  }
+}

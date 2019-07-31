@@ -1,0 +1,2851 @@
+{
+  "tests": {
+    "defaults": {
+      "env": {
+        "AWS_REGION": "us-west-2",
+        "AWS_ACCESS_KEY": "akid",
+        "AWS_SECRET_ACCESS_KEY": "secret"
+      },
+      "files": {},
+      "config": {}
+    },
+    "cases": [
+      {
+        "description": "Can build empty PUT requests",
+        "request": {
+          "operation": "EmptyPut",
+          "input": {}
+        },
+        "expect": [
+          {
+            "requestMethodEquals": "PUT"
+          },
+          {
+            "requestUrlMatches": "https://rest-xml-svc.us-west-2.amazonaws.com/"
+          },
+          {
+            "requestBodyEqualsString": ""
+          }
+        ]
+      },
+      {
+        "description": "Can build empty POST requests",
+        "request": {
+          "operation": "EmptyPost",
+          "input": {}
+        },
+        "expect": [
+          {
+            "requestMethodEquals": "POST"
+          },
+          {
+            "requestUrlMatches": "https://rest-xml-svc.us-west-2.amazonaws.com/"
+          },
+          {
+            "requestBodyEqualsString": ""
+          }
+        ]
+      },
+      {
+        "description": "Can build empty PATCH requests",
+        "request": {
+          "operation": "EmptyPatch",
+          "input": {}
+        },
+        "expect": [
+          {
+            "requestMethodEquals": "PATCH"
+          },
+          {
+            "requestUrlMatches": "https://rest-xml-svc.us-west-2.amazonaws.com/"
+          },
+          {
+            "requestBodyEqualsString": ""
+          }
+        ]
+      },
+      {
+        "description": "Can build empty GET requests",
+        "request": {
+          "operation": "EmptyGet",
+          "input": {}
+        },
+        "expect": [
+          {
+            "requestMethodEquals": "GET"
+          },
+          {
+            "requestUrlMatches": "https://rest-xml-svc.us-west-2.amazonaws.com/"
+          },
+          {
+            "requestBodyEqualsString": ""
+          }
+        ]
+      },
+      {
+        "description": "Can build empty HEAD requests",
+        "request": {
+          "operation": "EmptyHead",
+          "input": {}
+        },
+        "expect": [
+          {
+            "requestMethodEquals": "HEAD"
+          },
+          {
+            "requestUrlMatches": "https://rest-xml-svc.us-west-2.amazonaws.com/"
+          },
+          {
+            "requestBodyEqualsString": ""
+          }
+        ]
+      },
+      {
+        "description": "Can build empty DELETE requests",
+        "request": {
+          "operation": "EmptyDelete",
+          "input": {}
+        },
+        "expect": [
+          {
+            "requestMethodEquals": "DELETE"
+          },
+          {
+            "requestUrlMatches": "https://rest-xml-svc.us-west-2.amazonaws.com/"
+          },
+          {
+            "requestBodyEqualsString": ""
+          }
+        ]
+      },
+      {
+        "description": "Supports location uri members",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "param-1",
+            "UriPath": "param-2"
+          }
+        },
+        "expect": [
+          {
+            "requestMethodEquals": "PUT"
+          },
+          {
+            "requestUrlPathMatches": "/param-1/param-2"
+          }
+        ]
+      },
+      {
+        "description": "Escapes path segments",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "path/segment abc~",
+            "UriPath": "%20uri path?"
+          }
+        },
+        "expect": [
+          {
+            "requestUrlPathMatches": "/path%2Fsegment%20abc~/%2520uri%20path%3F"
+          }
+        ]
+      },
+      {
+        "description": "Performs path-safe escaping for uri path params with placeholders containing a plus-sign",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "greedy path/with/slashes"
+          }
+        },
+        "expect": [
+          {
+            "requestUrlPathMatches": "/segment/greedy%20path/with/slashes"
+          }
+        ]
+      },
+      {
+        "description": "Serializes query parameter serialization",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "QueryString": "string-value"
+          }
+        },
+        "expect": [
+          {
+            "requestUrlQueryMatches": "string=string-value"
+          }
+        ]
+      },
+      {
+        "description": "Serializes query params are URI escaped",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "QueryString": "string value"
+          }
+        },
+        "expect": [
+          {
+            "requestUrlQueryMatches": "string=string%20value"
+          }
+        ]
+      },
+      {
+        "description": "Serializes integer query params",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "QueryInteger": 123456
+          }
+        },
+        "expect": [
+          {
+            "requestUrlQueryMatches": "integer=123456"
+          }
+        ]
+      },
+      {
+        "description": "Serializes long query params",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "QueryLong": 123456
+          }
+        },
+        "expect": [
+          {
+            "requestUrlQueryMatches": "long=123456"
+          }
+        ]
+      },
+      {
+        "description": "Serializes float query params",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "QueryFloat": 123.456
+          }
+        },
+        "expect": [
+          {
+            "requestUrlQueryMatches": "float=123.456"
+          }
+        ]
+      },
+      {
+        "description": "Serializes double query params",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "QueryDouble": 123.456
+          }
+        },
+        "expect": [
+          {
+            "requestUrlQueryMatches": "double=123.456"
+          }
+        ]
+      },
+      {
+        "description": "Serializes boolean true query params",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "QueryBoolean": true
+          }
+        },
+        "expect": [
+          {
+            "requestUrlQueryMatches": "boolean-value=true"
+          }
+        ]
+      },
+      {
+        "description": "Serializes boolean false query params",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "QueryBoolean": false
+          }
+        },
+        "expect": [
+          {
+            "requestUrlQueryMatches": "boolean-value=false"
+          }
+        ]
+      },
+      {
+        "description": "Serializes blob query params",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "QueryBlob": "YmluYXJ5LXZhbHVl"
+          }
+        },
+        "expect": [
+          {
+            "requestUrlQueryMatches": "binary-value=YmluYXJ5LXZhbHVl"
+          }
+        ]
+      },
+      {
+        "description": "Serializes timestamp query params",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "QueryTimestamp": 946845296.123
+          }
+        },
+        "expect": [
+          {
+            "requestUrlQueryMatches": "timestamp=2000-01-02T20%3A34%3A56.123Z"
+          }
+        ]
+      },
+      {
+        "description": "Serializes unixTimestamp format timestamp query params",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "QueryUnixTimestamp": 946845296.123
+          }
+        },
+        "expect": [
+          {
+            "requestUrlQueryMatches": "unix-timestamp=946845296.123"
+          }
+        ]
+      },
+      {
+        "description": "Serializes iso8601 format timestamp query params",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "QueryIso8601Timestamp": 946845296.123
+          }
+        },
+        "expect": [
+          {
+            "requestUrlQueryMatches": "iso8601-timestamp=2000-01-02T20%3A34%3A56.123Z"
+          }
+        ]
+      },
+      {
+        "description": "Serializes httpdate format timestamp query params",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "QueryHttpdateTimestamp": 946845296.123
+          }
+        },
+        "expect": [
+          {
+            "requestUrlQueryMatches": "httpdate-timestamp=Sun%2C%2002%20Jan%202000%2020%3A34%3A56%20GMT"
+          }
+        ]
+      },
+      {
+        "description": "Serializes list of string query params",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "QueryListOfStrings": [
+              "abc",
+              "mno",
+              "xyz"
+            ]
+          }
+        },
+        "expect": [
+          {
+            "requestUrlQueryMatches": "list=abc&list=mno&list=xyz"
+          }
+        ]
+      },
+      {
+        "description": "Serializes map of string query params",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "QueryMapOfStrings": {
+              "size": "large",
+              "color": "red"
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestUrlQueryMatches": "color=red&size=large"
+          }
+        ]
+      },
+      {
+        "description": "Serializes and escapes query map of string keys and values",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "QueryMapOfStrings": {
+              "a b": "x:z",
+              "a&b": "x/z"
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestUrlQueryMatches": "a%20b=x%3Az&a%26b=x%2Fz"
+          }
+        ]
+      },
+      {
+        "description": "Serializes map of lists of strings query params",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "QueryMapOfListsOfStrings": {
+              "key 1": ["value 1", "value 2"],
+              "key 2": ["value 3", "value 4"]
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestUrlQueryMatches": "key%201=value%201&key%201=value%202&key%202=value%203&key%202=value%204"
+          }
+        ]
+      },
+      {
+        "description": "Serializes header strings",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "HeaderString": "header string value"
+          }
+        },
+        "expect": [
+          {
+            "requestHeadersMatch": {
+              "Header-String": "header string value"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes header integers",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "HeaderInteger": 123456
+          }
+        },
+        "expect": [
+          {
+            "requestHeadersMatch": {
+              "Header-Integer": "123456"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes header longs",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "HeaderLong": 123456
+          }
+        },
+        "expect": [
+          {
+            "requestHeadersMatch": {
+              "Header-Long": "123456"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes header floats",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "HeaderFloat": 123.456
+          }
+        },
+        "expect": [
+          {
+            "requestHeadersMatch": {
+              "Header-Float": "123.456"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes header doubles",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "HeaderDouble": 123.456
+          }
+        },
+        "expect": [
+          {
+            "requestHeadersMatch": {
+              "Header-Double": "123.456"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes true boolean values",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "HeaderBoolean": true
+          }
+        },
+        "expect": [
+          {
+            "requestHeadersMatch": {
+              "Header-Boolean": "true"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes false boolean values",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "HeaderBoolean": false
+          }
+        },
+        "expect": [
+          {
+            "requestHeadersMatch": {
+              "Header-Boolean": "false"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes header binary values",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "HeaderBlob": "YmluYXJ5LXZhbHVl"
+          }
+        },
+        "expect": [
+          {
+            "requestHeadersMatch": {
+              "Header-Binary": "YmluYXJ5LXZhbHVl"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes header string values with jsonvalue trait",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "HeaderJsonValue": "{\"string\":\"value\",\"number\":1234.5,\"boolTrue\":true,\"boolFalse\":false,\"array\":[1,2,3,4],\"object\":{\"key\":\"value\"},\"null\":null}"
+          }
+        },
+        "expect": [
+          {
+            "requestHeadersMatch": {
+              "Header-Json-Value": "eyJzdHJpbmciOiJ2YWx1ZSIsIm51bWJlciI6MTIzNC41LCJib29sVHJ1ZSI6dHJ1ZSwiYm9vbEZhbHNlIjpmYWxzZSwiYXJyYXkiOlsxLDIsMyw0XSwib2JqZWN0Ijp7ImtleSI6InZhbHVlIn0sIm51bGwiOm51bGx9"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes header timestamp values",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "HeaderTimestamp": 946845296.123
+          }
+        },
+        "expect": [
+          {
+            "requestHeadersMatch": {
+              "Header-Timestamp": "946845296.123"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes unixTimestamp format header timestamps",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "HeaderUnixTimestamp": 946845296.123
+          }
+        },
+        "expect": [
+          {
+            "requestHeadersMatch": {
+              "Header-Unix-Timestamp": "946845296.123"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes iso8601 format header timestamp",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "HeaderIso8601Timestamp": 946845296.123
+          }
+        },
+        "expect": [
+          {
+            "requestHeadersMatch": {
+              "Header-Iso8601-Timestamp": "2000-01-02T20:34:56.123Z"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes httpdate format header timestamps",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "HeaderHttpdateTimestamp": 946845296.123
+          }
+        },
+        "expect": [
+          {
+            "requestHeadersMatch": {
+              "Header-Httpdate-Timestamp": "Sun, 02 Jan 2000 20:34:56 GMT"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes header maps",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "HeaderMap": {
+              "Key-1": "map value 1",
+              "Key-2": "map value 2",
+              "Key-3": "map value 3"
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestHeadersMatch": {
+              "Key-1": "map value 1",
+              "Key-2": "map value 2",
+              "Key-3": "map value 3"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes header maps with prefixes",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "HeaderMapWithPrefix": {
+              "Key-1": "prefix map value 1",
+              "Key-2": "prefix map value 2",
+              "Key-3": "prefix map value 3"
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestHeadersMatch": {
+              "Prefix-Key-1": "prefix map value 1",
+              "Prefix-Key-2": "prefix map value 2",
+              "Prefix-Key-3": "prefix map value 3"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes payload blob members to the body as raw bytes",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path",
+            "BodyStream": "YmluYXJ5LXZhbHVl"
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsBytes": "YmluYXJ5LXZhbHVl"
+          }
+        ]
+      },
+      {
+        "description": "Omits the HTTP body when payload blob member is not set",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path"
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsString": ""
+          }
+        ]
+      },
+      {
+        "description": "Serializes payload structure members to the body as XML",
+        "request": {
+          "operation": "OperationWithPayloadStructureMember",
+          "input": {
+            "Data": {
+              "Value": "string value"
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<DataNode xmlns=\"http://xml/ns\"><Value>string value</Value></DataNode>"
+          }
+        ]
+      },
+      {
+        "description": "Can serialize an empty structure to XML",
+        "request": {
+          "operation": "OperationWithPayloadStructureMember",
+          "input": {
+            "Data": {}
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<DataNode xmlns=\"http://xml/ns\"/>"
+          }
+        ]
+      },
+      {
+        "description": "Can serialize an empty structure to XML",
+        "request": {
+          "operation": "OperationWithPayloadStructureMember",
+          "input": {
+            "Data": {}
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<DataNode xmlns=\"http://xml/ns\"/>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes members without locations to the body XML document",
+        "request": {
+          "operation": "OperationMembersWithoutLocation",
+          "input": {
+            "Header": "value 1",
+            "String": "value 2",
+            "Struct": {
+              "Value": "value 3"
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestHeadersMatch": {
+              "Some-Header": "value 1"
+            }
+          },
+          {
+            "requestBodyMatchesXml": "<RootNode xmlns=\"http://xml/ns\"><String>value 2</String><Struct><Value>value 3</Value></Struct></RootNode>"
+          }
+        ]
+      },
+      {
+        "description": "Omits the body when all body members are not present",
+        "request": {
+          "operation": "OperationMembersWithoutLocation",
+          "input": {
+            "Header": "value 1"
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsString": ""
+          }
+        ]
+      },
+      {
+        "description": "Serializes string XML members",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "String": "string value"
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><String>string value</String></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes and escapes string XML members",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "String": "a&b"
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><String>a&amp;b</String></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes string XML members with jsonvalue trait",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "JsonValue": "{\"key\":\"value\"}"
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><JsonValue>{\"key\":\"value\"}</JsonValue></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes integer XML members",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "Integer": 123456
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><Integer>123456</Integer></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes long XML members",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "Long": 999999999999
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><Long>999999999999</Long></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes float XML members",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "Float": 123.456
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><Float>123.456</Float></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes double XML members",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "Double": 123.456
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><Double>123.456</Double></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes blob XML members",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "Blob": "YmluYXJ5LXZhbHVl"
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><Blob>YmluYXJ5LXZhbHVl</Blob></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes boolean true XML members",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "Boolean": true
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><Boolean>true</Boolean></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes boolean false XML members",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "Boolean": false
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><Boolean>false</Boolean></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes iso8601 timestamp XML members",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "Iso8601Timestamp": 946845296.000
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><Iso8601Timestamp>2000-01-02T20:34:56.000Z</Iso8601Timestamp></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes timestamp XML members",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "Timestamp": 946845296.000
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><Timestamp>2000-01-02T20:34:56.000Z</Timestamp></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes httpdate timestamp XML members",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "HttpdateTimestamp": 946845296.000
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><HttpdateTimestamp>Sun, 02 Jan 2000 20:34:56 GMT</HttpdateTimestamp></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes unix timestamp XML members",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "UnixTimestamp": 946845296.123
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><UnixTimestamp>946845296.123</UnixTimestamp></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes list of string XML members",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "ListOfStrings": ["abc", "xyz"]
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><ListOfStrings><member>abc</member><member>xyz</member></ListOfStrings></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes list of maps of strings XML members",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "ListOfMapsOfStrings": [
+              {
+                "size": "small",
+                "label": "extra"
+              },
+              {
+                "color": "red"
+              }
+            ]
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><ListOfMapsOfStrings><member><entry><key>size</key><value>small</value></entry><entry><key>label</key><value>extra</value></entry></member><member><entry><key>color</key><value>red</value></entry></member></ListOfMapsOfStrings></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes lists with member locationName traits",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "ListWithMemberName": [
+              { "Value": "value-1" },
+              { "Value": "value-2" },
+              { "Value": "value-3" }
+            ]
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><ListWithMemberName><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name><list-member-name><Value>value-3</Value></list-member-name></ListWithMemberName></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes lists of recursive shapes",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "RecursiveList": [
+              {
+                "RecursiveList": [
+                  {
+                    "RecursiveList": [
+                      { "String": "value-1" },
+                      { "String": "value-2" }
+                    ]
+                  },
+                  {
+                    "RecursiveList": [
+                      { "String": "value-3" }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveList><member><RecursiveList><member><RecursiveList><member><String>value-1</String></member><member><String>value-2</String></member></RecursiveList></member><member><RecursiveList><member><String>value-3</String></member></RecursiveList></member></RecursiveList></member></RecursiveList></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes lists",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "List": [
+              { "Value": "value-1" },
+              { "Value": "value-2" }
+            ]
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><List><member><Value>value-1</Value></member><member><Value>value-2</Value></member></List></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes lists with locationName traits",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "ListWithName": [
+              { "Value": "value-1" },
+              { "Value": "value-2" }
+            ]
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><list-name><member><Value>value-1</Value></member><member><Value>value-2</Value></member></list-name></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes lists with member locationName traits",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "ListWithMemberName": [
+              { "Value": "value-1" },
+              { "Value": "value-2" }
+            ]
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><ListWithMemberName><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name></ListWithMemberName></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes lists which have both locationName and memberLocationName traits",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "ListWithBothNames": [
+              { "Value": "value-1" },
+              { "Value": "value-2" }
+            ]
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><list-name><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name></list-name></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes flat lists",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "FlatList": [
+              { "Value": "value-1" },
+              { "Value": "value-2" }
+            ]
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><FlatList><Value>value-1</Value></FlatList><FlatList><Value>value-2</Value></FlatList></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes flat lists with locationName traits",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "FlatListWithName": [
+              { "Value": "value-1" },
+              { "Value": "value-2" }
+            ]
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><item-name><Value>value-1</Value></item-name><item-name><Value>value-2</Value></item-name></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes flat lists with member locationName traits",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "FlatListWithMemberName": [
+              { "Value": "value-1" },
+              { "Value": "value-2" }
+            ]
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes flat lists with locationName traits and member locationName traits",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "FlatListWithBothNames": [
+              { "Value": "value-1" },
+              { "Value": "value-2" }
+            ]
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><other-member-name><Value>value-1</Value></other-member-name><other-member-name><Value>value-2</Value></other-member-name></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes maps of strings",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "MapOfStrings": {
+              "size": "large",
+              "color": "red"
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><MapOfStrings><entry><key>size</key><value>large</value></entry><entry><key>color</key><value>red</value></entry></MapOfStrings></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes maps of lists of strings",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "MapOfListsOfStrings": {
+              "sizes": ["large", "small"],
+              "colors": ["red"]
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><MapOfListsOfStrings><entry><key>sizes</key><value><member>large</member><member>small</member></value></entry><entry><key>colors</key><value><member>red</member></value></entry></MapOfListsOfStrings></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes maps of maps",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "MapOfMaps": {
+              "key-1": {
+                "key-2": "value-1",
+                "key-3": "value-2"
+              },
+              "key-4": {
+                "key-5": "value-3"
+              }
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><MapOfMaps><entry><key>key-1</key><value><entry><key>key-2</key><value>value-1</value></entry><entry><key>key-3</key><value>value-2</value></entry></value></entry><entry><key>key-4</key><value><entry><key>key-5</key><value>value-3</value></entry></value></entry></MapOfMaps></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes maps of structs",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "Map": {
+              "key-1": { "Value": "value-1" },
+              "key-2": { "Value": "value-2" }
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><Map><entry><key>key-1</key><value><Value>value-1</Value></value></entry><entry><key>key-2</key><value><Value>value-2</Value></value></entry></Map></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes maps",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "Map": {
+              "key-1": { "Value": "value-1" },
+              "key-2": { "Value": "value-2" }
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><Map><entry><key>key-1</key><value><Value>value-1</Value></value></entry><entry><key>key-2</key><value><Value>value-2</Value></value></entry></Map></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes maps with locationName traits",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "MapWithName": {
+              "key-1": { "Value": "value-1" },
+              "key-2": { "Value": "value-2" }
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><map-with-name><entry><key>key-1</key><value><Value>value-1</Value></value></entry><entry><key>key-2</key><value><Value>value-2</Value></value></entry></map-with-name></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes maps with member locationName traits",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "MapWithMemberNames": {
+              "key-1": { "Value": "value-1" },
+              "key-2": { "Value": "value-2" }
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><MapWithMemberNames><entry><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></entry><entry><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></entry></MapWithMemberNames></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes maps with member locationName traits",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "MapWithBothNames": {
+              "key-1": { "Value": "value-1" },
+              "key-2": { "Value": "value-2" }
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><map-name><entry><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></entry><entry><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></entry></map-name></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes flat maps",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "FlatMap": {
+              "key-1": { "Value": "value-1" },
+              "key-2": { "Value": "value-2" }
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><FlatMap><key>key-1</key><value><Value>value-1</Value></value></FlatMap><FlatMap><key>key-2</key><value><Value>value-2</Value></value></FlatMap></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes flat maps with locationName traits",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "FlatMapWithName": {
+              "key-1": { "Value": "value-1" },
+              "key-2": { "Value": "value-2" }
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><flat-map-with-name><key>key-1</key><value><Value>value-1</Value></value></flat-map-with-name><flat-map-with-name><key>key-2</key><value><Value>value-2</Value></value></flat-map-with-name></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes flat maps with member locationName traits",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "FlatMapWithMemberNames": {
+              "key-1": { "Value": "value-1" },
+              "key-2": { "Value": "value-2" }
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><FlatMapWithMemberNames><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></FlatMapWithMemberNames><FlatMapWithMemberNames><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></FlatMapWithMemberNames></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes flat maps with member locationName traits",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "FlatMapWithBothNames": {
+              "key-1": { "Value": "value-1" },
+              "key-2": { "Value": "value-2" }
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><flat-map><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></flat-map><flat-map><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></flat-map></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes recursive maps",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "RecursiveMap": {
+              "key-1": {
+                "RecursiveMap": {
+                  "key-2": {
+                    "RecursiveMap": {
+                      "key-3": {
+                        "String": "value-1"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveMap><entry><key>key-1</key><value><RecursiveMap><entry><key>key-2</key><value><RecursiveMap><entry><key>key-3</key><value><String>value-1</String></value></entry></RecursiveMap></value></entry></RecursiveMap></value></entry></RecursiveMap></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes structs",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "SimpleStruct": {
+              "Value": "value"
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><SimpleStruct><Value>value</Value></SimpleStruct></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes structs with locationName traits",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "StructWithMemberWithName": {
+              "Value": "value"
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><StructWithMemberWithName><member-with-name>value</member-with-name></StructWithMemberWithName></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes structures with no members",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "EmptyStruct": {}
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><EmptyStruct/></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Serializes recursive structures",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "RecursiveStruct": {
+              "RecursiveStruct": {
+                "RecursiveStruct": {
+                  "String": "value"
+                }
+              }
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveStruct><RecursiveStruct><RecursiveStruct><String>value</String></RecursiveStruct></RecursiveStruct></RecursiveStruct></KitchenSink>"
+          }
+        ]
+      },
+      {
+        "description": "Parses status codes as output members",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path"
+          }
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "HttpStatusCode": 200,
+              "KitchenSink": {}
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses other 2XX status codes",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path"
+          }
+        },
+        "response": {
+          "statusCode": 202,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "HttpStatusCode": 202,
+              "KitchenSink": {}
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses header strings",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path"
+          }
+        },
+        "response": {
+          "statusCode": 200,
+          "headers": {
+            "Header-String": "value"
+          },
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "HttpStatusCode": 200,
+              "HeaderString": "value",
+              "KitchenSink": {}
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses header strings with jsonvalue trait",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path"
+          }
+        },
+        "response": {
+          "statusCode": 200,
+          "headers": {
+            "Header-Json-Value": "eyJmb28iOiJiYXIifQ=="
+          },
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "HttpStatusCode": 200,
+              "HeaderJsonValue": "{\"foo\":\"bar\"}",
+              "KitchenSink": {}
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses header integers",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path"
+          }
+        },
+        "response": {
+          "statusCode": 200,
+          "headers": {
+            "Header-Integer": "123456"
+          },
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "HttpStatusCode": 200,
+              "HeaderInteger": 123456,
+              "KitchenSink": {}
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses header longs",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path"
+          }
+        },
+        "response": {
+          "statusCode": 200,
+          "headers": {
+            "Header-Long": "123456"
+          },
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "HttpStatusCode": 200,
+              "HeaderLong": 123456,
+              "KitchenSink": {}
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses header floats",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path"
+          }
+        },
+        "response": {
+          "statusCode": 200,
+          "headers": {
+            "Header-Float": "123.456"
+          },
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "HttpStatusCode": 200,
+              "HeaderFloat": 123.456,
+              "KitchenSink": {}
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses header doubles",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path"
+          }
+        },
+        "response": {
+          "statusCode": 200,
+          "headers": {
+            "Header-Double": "123.456"
+          },
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "HttpStatusCode": 200,
+              "HeaderDouble": 123.456,
+              "KitchenSink": {}
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses header boolean true values",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path"
+          }
+        },
+        "response": {
+          "statusCode": 200,
+          "headers": {
+            "Header-Boolean": "true"
+          },
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "HttpStatusCode": 200,
+              "HeaderBoolean": true,
+              "KitchenSink": {}
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses header boolean false values",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path"
+          }
+        },
+        "response": {
+          "statusCode": 200,
+          "headers": {
+            "Header-Boolean": "false"
+          },
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "HttpStatusCode": 200,
+              "HeaderBoolean": false,
+              "KitchenSink": {}
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses header blobs",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path"
+          }
+        },
+        "response": {
+          "statusCode": 200,
+          "headers": {
+            "Header-Binary": "YmluYXJ5LXZhbHVl"
+          },
+          "bodyType": "xml",
+          "bodyContent":  "<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "HttpStatusCode": 200,
+              "HeaderBlob": "YmluYXJ5LXZhbHVl",
+              "KitchenSink": {}
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses header timestamps",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path"
+          }
+        },
+        "response": {
+          "statusCode": 200,
+          "headers": {
+            "Header-Timestamp": "Sun, 02 Jan 2000 20:34:56 GMT"
+          },
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "HttpStatusCode": 200,
+              "HeaderTimestamp": 946845296,
+              "KitchenSink": {}
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses header unix timestamps",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path"
+          }
+        },
+        "response": {
+          "statusCode": 200,
+          "headers": {
+            "Header-Unix-Timestamp": "946845296.000"
+          },
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "HttpStatusCode": 200,
+              "HeaderUnixTimestamp": 946845296.000,
+              "KitchenSink": {}
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses header iso8601 timestamps",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path"
+          }
+        },
+        "response": {
+          "statusCode": 200,
+          "headers": {
+            "Header-Iso8601-Timestamp": "2000-01-02T20:34:56.123Z"
+          },
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "HttpStatusCode": 200,
+              "HeaderIso8601Timestamp": 946845296.123,
+              "KitchenSink": {}
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses header httpdate timestamps",
+        "request": {
+          "operation": "PutWithRestBindings",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path"
+          }
+        },
+        "response": {
+          "statusCode": 200,
+          "headers": {
+            "Header-Httpdate-Timestamp": "Sun, 02 Jan 2000 20:34:56 GMT"
+          },
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "HttpStatusCode": 200,
+              "HeaderHttpdateTimestamp": 946845296,
+              "KitchenSink": {}
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses HTTP header maps, status codes, and bodies",
+        "request": {
+          "operation": "SimpleHttpOperation",
+          "input": {
+            "Path": "path"
+          }
+        },
+        "response": {
+          "statusCode": 200,
+          "headers": {
+            "Header-1": "value-1",
+            "Header-2": "value-2",
+            "Header-3": "value-3"
+          }
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "StatusCode": 200,
+              "Headers": {
+                "Header-1": "value-1",
+                "Header-2": "value-2",
+                "Header-3": "value-3"
+              },
+              "bodyType": "xml",
+              "bodyContent": ""
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML string members",
+        "request": {
+          "operation": "KitchenSink",
+          "input": {
+            "UriPathSegment": "segment",
+            "UriPath": "path"
+          }
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><String>value</String></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "String": "value"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML jsonvalue string members",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><JsonValue>{\"foo\":\"bar\"}</JsonValue></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "JsonValue": "{\"foo\":\"bar\"}"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML integer members",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent":  "<KitchenSink xmlns=\"http://xml/ns\"><Integer>123456</Integer></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "Integer": 123456
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML long members",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><Long>123456</Long></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "Long": 123456
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML float members",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><Float>123.456</Float></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "Float": 123.456
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML double members",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><Double>123.456</Double></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "Double": 123.456
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML boolean true members",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><Boolean>true</Boolean></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "Boolean": true
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML boolean false members",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><Boolean>false</Boolean></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "Boolean": false
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML blob members",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><Blob>YmluYXJ5LXZhbHVl</Blob></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "Blob": "YmluYXJ5LXZhbHVl"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML timestamp members",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><Timestamp>2000-01-02T20:34:56.123Z</Timestamp></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "Timestamp": 946845296.123
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML iso8601 timestamp members",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><Iso8601Timestamp>2000-01-02T20:34:56.123Z</Iso8601Timestamp></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "Iso8601Timestamp": 946845296.123
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML httpdate timestamp members",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><HttpdateTimestamp>Sun, 02 Jan 2000 20:34:56 GMT</HttpdateTimestamp></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "HttpdateTimestamp": 946845296.0
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML unix timestamp members",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><UnixTimestamp>946845296</UnixTimestamp></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "UnixTimestamp": 946845296.000
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML lists of string members",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent":  "<KitchenSink xmlns=\"http://xml/ns\"><ListOfStrings><member>abc</member><member>xyz</member></ListOfStrings></KitchenSink>"
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "ListOfStrings": ["abc", "xyz"]
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML lists of maps of string members",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><ListOfMapsOfStrings><member><entry><key>size</key><value>large</value></entry><entry><key>color</key><value>red</value></entry></member><member><entry><key>abc</key><value>xyz</value></entry></member></ListOfMapsOfStrings></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "ListOfMapsOfStrings": [
+                {
+                  "size": "large",
+                  "color": "red"
+                },
+                {
+                  "abc": "xyz"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML lists of recursive struct members",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveList><member><RecursiveList><member><String>value</String></member></RecursiveList></member></RecursiveList></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "RecursiveList": [
+                {
+                  "RecursiveList": [
+                    {
+                      "String": "value"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML lists",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><List><member><Value>value-1</Value></member><member><Value>value-2</Value></member></List></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "List": [
+                {
+                  "Value": "value-1"
+                },
+                {
+                  "Value": "value-2"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML lists with locationName traits",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><list-name><member><Value>value-1</Value></member><member><Value>value-2</Value></member></list-name></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "ListWithName": [
+                {
+                  "Value": "value-1"
+                },
+                {
+                  "Value": "value-2"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML lists with member locationName traits",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent":  "<KitchenSink xmlns=\"http://xml/ns\"><ListWithMemberName><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name></ListWithMemberName></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "ListWithMemberName": [
+                {
+                  "Value": "value-1"
+                },
+                {
+                  "Value": "value-2"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML lists with locationName traits and member locationName traits",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><list-name><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name></list-name></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "ListWithBothNames": [
+                {
+                  "Value": "value-1"
+                },
+                {
+                  "Value": "value-2"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML flat lists",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><FlatList><Value>value-1</Value></FlatList><FlatList><Value>value-2</Value></FlatList></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "FlatList": [
+                {
+                  "Value": "value-1"
+                },
+                {
+                  "Value": "value-2"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML flat lists with locationName traits",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><item-name><Value>value-1</Value></item-name><item-name><Value>value-2</Value></item-name></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "FlatListWithName": [
+                {
+                  "Value": "value-1"
+                },
+                {
+                  "Value": "value-2"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML flat lists with locationName traits",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><other-member-name><Value>value-1</Value></other-member-name><other-member-name><Value>value-2</Value></other-member-name></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "FlatListWithBothNames": [
+                {
+                  "Value": "value-1"
+                },
+                {
+                  "Value": "value-2"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML maps of strings",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><MapOfStrings><entry><key>key-1</key><value>value-1</value></entry><entry><key>key-2</key><value>value-2</value></entry></MapOfStrings></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "MapOfStrings": {
+                "key-1": "value-1",
+                "key-2": "value-2"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML maps of lists of strings",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><MapOfListsOfStrings><entry><key>key-1</key><value><member>value-1</member><member>value-2</member></value></entry><entry><key>key-2</key><value><member>value-3</member></value></entry></MapOfListsOfStrings></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "MapOfListsOfStrings": {
+                "key-1": ["value-1", "value-2"],
+                "key-2": ["value-3"]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML maps of maps of strings",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><MapOfMaps><entry><key>key-1</key><value><entry><key>key-2</key><value>value-1</value></entry><entry><key>key-3</key><value>value-2</value></entry></value></entry><entry><key>key-4</key><value><entry><key>key-5</key><value>value-3</value></entry></value></entry></MapOfMaps></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "MapOfMaps": {
+                "key-1": {
+                  "key-2": "value-1",
+                  "key-3": "value-2"
+                },
+                "key-4": {
+                  "key-5": "value-3"
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML recursive maps",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveMap><entry><key>key-1</key><value><RecursiveMap><entry><key>key-2</key><value><RecursiveMap><entry><key>key-3</key><value><String>value-1</String></value></entry></RecursiveMap></value></entry></RecursiveMap></value></entry></RecursiveMap></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "RecursiveMap": {
+                "key-1": {
+                  "RecursiveMap": {
+                    "key-2": {
+                      "RecursiveMap": {
+                        "key-3": {
+                          "String": "value-1"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML maps",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><Map><entry><key>key-1</key><value><Value>value-1</Value></value></entry><entry><key>key-2</key><value><Value>value-2</Value></value></entry></Map></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "Map": {
+                "key-1": { "Value": "value-1" },
+                "key-2": { "Value": "value-2" }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML maps with locationName traits",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><map-with-name><entry><key>key-1</key><value><Value>value-1</Value></value></entry><entry><key>key-2</key><value><Value>value-2</Value></value></entry></map-with-name></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "MapWithName": {
+                "key-1": { "Value": "value-1" },
+                "key-2": { "Value": "value-2" }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML maps with key and value locationName traits",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><MapWithMemberNames><entry><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></entry><entry><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></entry></MapWithMemberNames></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "MapWithMemberNames": {
+                "key-1": { "Value": "value-1" },
+                "key-2": { "Value": "value-2" }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML maps with locationName traits and key and value locationName traits",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><map-name><entry><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></entry><entry><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></entry></map-name></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "MapWithBothNames": {
+                "key-1": { "Value": "value-1" },
+                "key-2": { "Value": "value-2" }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML flat maps",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><FlatMap><key>key-1</key><value><Value>value-1</Value></value></FlatMap><FlatMap><key>key-2</key><value><Value>value-2</Value></value></FlatMap></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "FlatMap": {
+                "key-1": { "Value": "value-1" },
+                "key-2": { "Value": "value-2" }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML flat maps with locationName traits",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><flat-map-with-name><key>key-1</key><value><Value>value-1</Value></value></flat-map-with-name><flat-map-with-name><key>key-2</key><value><Value>value-2</Value></value></flat-map-with-name></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "FlatMapWithName": {
+                "key-1": { "Value": "value-1" },
+                "key-2": { "Value": "value-2" }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML flat maps with key and value locationName traits",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><FlatMapWithMemberNames><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></FlatMapWithMemberNames><FlatMapWithMemberNames><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></FlatMapWithMemberNames></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "FlatMapWithMemberNames": {
+                "key-1": { "Value": "value-1" },
+                "key-2": { "Value": "value-2" }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML flat maps with locationName triat and key and value locationName traits",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><flat-map><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></flat-map><flat-map><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></flat-map></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "FlatMapWithBothNames": {
+                "key-1": { "Value": "value-1" },
+                "key-2": { "Value": "value-2" }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML structures",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><SimpleStruct><Value>value</Value></SimpleStruct></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "SimpleStruct": {
+                "Value": "value"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML structures with members with locationName traits",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><StructWithMemberWithName><member-with-name>value</member-with-name></StructWithMemberWithName></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "StructWithMemberWithName": {
+                "Value": "value"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML structures which have no members",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><EmptyStruct></EmptyStruct></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "EmptyStruct": {}
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses XML recursive structures",
+        "request": {
+          "operation": "KitchenSink"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "xml",
+          "bodyContent":  "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveStruct><RecursiveStruct><RecursiveStruct><String>value</String></RecursiveStruct></RecursiveStruct></RecursiveStruct></KitchenSink>"
+
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "RecursiveStruct": {
+                "RecursiveStruct": {
+                  "RecursiveStruct": {
+                    "String": "value"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
