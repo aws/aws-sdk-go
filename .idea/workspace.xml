@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ed2d3696-b0f7-4ed1-97ce-3c111ab0f041" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/private/model/api/behavior.go" beforeDir="false" afterPath="$PROJECT_DIR$/private/model/api/behavior.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/model/cli/gen-api/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/private/model/cli/gen-api/main.go" afterDir="false" />
-    </list>
+    <list default="true" id="ed2d3696-b0f7-4ed1-97ce-3c111ab0f041" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +56,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/private/model/api/behavior.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="492">
+                <state relative-caret-position="363">
                   <caret line="239" column="23" lean-forward="true" selection-start-line="239" selection-start-column="23" selection-end-line="239" selection-end-column="23" />
                 </state>
               </provider>
@@ -68,8 +65,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/behav_test.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="15314">
-                  <caret line="1236" column="58" selection-start-line="1236" selection-start-column="58" selection-end-line="1236" selection-end-column="58" />
+                <state relative-caret-position="15659">
+                  <caret line="1259" column="58" selection-start-line="1259" selection-start-column="58" selection-end-line="1259" selection-end-column="58" />
                   <folding>
                     <element signature="e#144#701#0" expanded="true" />
                   </folding>
@@ -141,7 +138,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/private/model/api/load.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="547">
+                <state relative-caret-position="178">
                   <caret line="135" column="23" selection-start-line="135" selection-start-column="23" selection-end-line="135" selection-end-column="23" />
                 </state>
               </provider>
@@ -912,7 +909,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/private/model/api/load.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
+        <state relative-caret-position="178">
           <caret line="135" column="23" selection-start-line="135" selection-start-column="23" selection-end-line="135" selection-end-column="23" />
         </state>
       </provider>
@@ -926,8 +923,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/awstesting/behavior_tests/sampleresetxmlprotocolservice/behav_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15314">
-          <caret line="1236" column="58" selection-start-line="1236" selection-start-column="58" selection-end-line="1236" selection-end-column="58" />
+        <state relative-caret-position="15659">
+          <caret line="1259" column="58" selection-start-line="1259" selection-start-column="58" selection-end-line="1259" selection-end-column="58" />
           <folding>
             <element signature="e#144#701#0" expanded="true" />
           </folding>
@@ -936,7 +933,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/private/model/api/behavior.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
+        <state relative-caret-position="363">
           <caret line="239" column="23" lean-forward="true" selection-start-line="239" selection-start-column="23" selection-end-line="239" selection-end-column="23" />
         </state>
       </provider>
