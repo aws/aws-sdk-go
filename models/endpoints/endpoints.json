@@ -8,7 +8,7 @@
     "dnsSuffix" : "amazonaws.com",
     "partition" : "aws",
     "partitionName" : "AWS Standard",
-    "regionRegex" : "^(us|eu|ap|sa|ca)\\-\\w+\\-\\d+$",
+    "regionRegex" : "^(us|eu|ap|sa|ca|me)\\-\\w+\\-\\d+$",
     "regions" : {
       "ap-east-1" : {
         "description" : "Asia Pacific (Hong Kong)"
@@ -671,6 +671,7 @@
       },
       "codebuild" : {
         "endpoints" : {
+          "ap-east-1" : { },
           "ap-northeast-1" : { },
           "ap-northeast-2" : { },
           "ap-south-1" : { },
@@ -682,6 +683,7 @@
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
+          "me-south-1" : { },
           "sa-east-1" : { },
           "us-east-1" : { },
           "us-east-1-fips" : {
@@ -722,6 +724,7 @@
           "ap-southeast-2" : { },
           "ca-central-1" : { },
           "eu-central-1" : { },
+          "eu-north-1" : { },
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
@@ -1761,6 +1764,8 @@
       "kafka" : {
         "endpoints" : {
           "ap-northeast-1" : { },
+          "ap-northeast-2" : { },
+          "ap-south-1" : { },
           "ap-southeast-1" : { },
           "ap-southeast-2" : { },
           "eu-central-1" : { },
@@ -2757,6 +2762,7 @@
       },
       "securityhub" : {
         "endpoints" : {
+          "ap-east-1" : { },
           "ap-northeast-1" : { },
           "ap-northeast-2" : { },
           "ap-south-1" : { },
@@ -4252,6 +4258,7 @@
           }
         },
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
