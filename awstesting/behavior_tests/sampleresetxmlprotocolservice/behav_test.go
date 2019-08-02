@@ -7,7 +7,6 @@ package sampleresetxmlprotocolservice_test
 import (
 	"bytes"
 	"encoding/base64"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -172,7 +171,7 @@ func assertResponseErrorRequestIdEquals(t *testing.T, err error, val string) boo
 func BehavTest_00(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -220,7 +219,7 @@ func BehavTest_00(t *testing.T) {
 func BehavTest_01(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -268,7 +267,7 @@ func BehavTest_01(t *testing.T) {
 func BehavTest_02(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -316,7 +315,7 @@ func BehavTest_02(t *testing.T) {
 func BehavTest_03(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -364,7 +363,7 @@ func BehavTest_03(t *testing.T) {
 func BehavTest_04(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -412,7 +411,7 @@ func BehavTest_04(t *testing.T) {
 func BehavTest_05(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -460,7 +459,7 @@ func BehavTest_05(t *testing.T) {
 func BehavTest_06(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -508,7 +507,7 @@ func BehavTest_06(t *testing.T) {
 func BehavTest_07(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -553,7 +552,7 @@ func BehavTest_07(t *testing.T) {
 func BehavTest_08(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -598,7 +597,7 @@ func BehavTest_08(t *testing.T) {
 func BehavTest_09(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -644,7 +643,7 @@ func BehavTest_09(t *testing.T) {
 func BehavTest_10(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -690,7 +689,7 @@ func BehavTest_10(t *testing.T) {
 func BehavTest_11(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -736,7 +735,7 @@ func BehavTest_11(t *testing.T) {
 func BehavTest_12(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -782,7 +781,7 @@ func BehavTest_12(t *testing.T) {
 func BehavTest_13(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -828,7 +827,7 @@ func BehavTest_13(t *testing.T) {
 func BehavTest_14(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -874,7 +873,7 @@ func BehavTest_14(t *testing.T) {
 func BehavTest_15(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -920,7 +919,7 @@ func BehavTest_15(t *testing.T) {
 func BehavTest_16(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -966,7 +965,7 @@ func BehavTest_16(t *testing.T) {
 func BehavTest_17(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -1012,7 +1011,7 @@ func BehavTest_17(t *testing.T) {
 func BehavTest_18(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -1058,7 +1057,7 @@ func BehavTest_18(t *testing.T) {
 func BehavTest_19(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -1104,7 +1103,7 @@ func BehavTest_19(t *testing.T) {
 func BehavTest_20(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -1150,7 +1149,7 @@ func BehavTest_20(t *testing.T) {
 func BehavTest_21(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -1195,7 +1194,7 @@ func BehavTest_21(t *testing.T) {
 func BehavTest_22(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -1245,7 +1244,7 @@ func BehavTest_22(t *testing.T) {
 func BehavTest_23(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -1294,7 +1293,7 @@ func BehavTest_23(t *testing.T) {
 func BehavTest_24(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -1343,7 +1342,7 @@ func BehavTest_24(t *testing.T) {
 func BehavTest_25(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -1398,7 +1397,7 @@ func BehavTest_25(t *testing.T) {
 func BehavTest_26(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -1444,7 +1443,7 @@ func BehavTest_26(t *testing.T) {
 func BehavTest_27(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -1490,7 +1489,7 @@ func BehavTest_27(t *testing.T) {
 func BehavTest_28(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -1536,7 +1535,7 @@ func BehavTest_28(t *testing.T) {
 func BehavTest_29(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -1582,7 +1581,7 @@ func BehavTest_29(t *testing.T) {
 func BehavTest_30(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -1628,7 +1627,7 @@ func BehavTest_30(t *testing.T) {
 func BehavTest_31(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -1674,7 +1673,7 @@ func BehavTest_31(t *testing.T) {
 func BehavTest_32(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -1720,7 +1719,7 @@ func BehavTest_32(t *testing.T) {
 func BehavTest_33(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -1766,7 +1765,7 @@ func BehavTest_33(t *testing.T) {
 func BehavTest_34(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -1812,7 +1811,7 @@ func BehavTest_34(t *testing.T) {
 func BehavTest_35(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -1858,7 +1857,7 @@ func BehavTest_35(t *testing.T) {
 func BehavTest_36(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -1904,7 +1903,7 @@ func BehavTest_36(t *testing.T) {
 func BehavTest_37(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -1950,7 +1949,7 @@ func BehavTest_37(t *testing.T) {
 func BehavTest_38(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -1995,7 +1994,7 @@ func BehavTest_38(t *testing.T) {
 func BehavTest_39(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -2045,7 +2044,7 @@ func BehavTest_39(t *testing.T) {
 func BehavTest_40(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -2095,7 +2094,7 @@ func BehavTest_40(t *testing.T) {
 func BehavTest_41(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -2141,7 +2140,7 @@ func BehavTest_41(t *testing.T) {
 func BehavTest_42(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -2186,7 +2185,7 @@ func BehavTest_42(t *testing.T) {
 func BehavTest_43(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -2232,7 +2231,7 @@ func BehavTest_43(t *testing.T) {
 func BehavTest_44(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -2276,7 +2275,7 @@ func BehavTest_44(t *testing.T) {
 func BehavTest_45(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -2320,7 +2319,7 @@ func BehavTest_45(t *testing.T) {
 func BehavTest_46(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -2370,7 +2369,7 @@ func BehavTest_46(t *testing.T) {
 func BehavTest_47(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -2414,7 +2413,7 @@ func BehavTest_47(t *testing.T) {
 func BehavTest_48(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -2456,7 +2455,7 @@ func BehavTest_48(t *testing.T) {
 func BehavTest_49(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -2498,7 +2497,7 @@ func BehavTest_49(t *testing.T) {
 func BehavTest_50(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -2542,7 +2541,7 @@ func BehavTest_50(t *testing.T) {
 func BehavTest_51(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -2586,7 +2585,7 @@ func BehavTest_51(t *testing.T) {
 func BehavTest_52(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -2630,7 +2629,7 @@ func BehavTest_52(t *testing.T) {
 func BehavTest_53(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -2674,7 +2673,7 @@ func BehavTest_53(t *testing.T) {
 func BehavTest_54(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -2718,7 +2717,7 @@ func BehavTest_54(t *testing.T) {
 func BehavTest_55(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -2762,7 +2761,7 @@ func BehavTest_55(t *testing.T) {
 func BehavTest_56(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -2806,7 +2805,7 @@ func BehavTest_56(t *testing.T) {
 func BehavTest_57(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -2850,7 +2849,7 @@ func BehavTest_57(t *testing.T) {
 func BehavTest_58(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -2894,7 +2893,7 @@ func BehavTest_58(t *testing.T) {
 func BehavTest_59(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -2938,7 +2937,7 @@ func BehavTest_59(t *testing.T) {
 func BehavTest_60(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -2980,7 +2979,7 @@ func BehavTest_60(t *testing.T) {
 func BehavTest_61(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -3024,7 +3023,7 @@ func BehavTest_61(t *testing.T) {
 func BehavTest_62(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -3071,7 +3070,7 @@ func BehavTest_62(t *testing.T) {
 func BehavTest_63(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -3123,7 +3122,7 @@ func BehavTest_63(t *testing.T) {
 func BehavTest_64(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -3177,7 +3176,7 @@ func BehavTest_64(t *testing.T) {
 func BehavTest_65(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -3237,7 +3236,7 @@ func BehavTest_65(t *testing.T) {
 func BehavTest_66(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -3288,7 +3287,7 @@ func BehavTest_66(t *testing.T) {
 func BehavTest_67(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -3339,7 +3338,7 @@ func BehavTest_67(t *testing.T) {
 func BehavTest_68(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -3390,7 +3389,7 @@ func BehavTest_68(t *testing.T) {
 func BehavTest_69(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -3441,7 +3440,7 @@ func BehavTest_69(t *testing.T) {
 func BehavTest_70(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -3492,7 +3491,7 @@ func BehavTest_70(t *testing.T) {
 func BehavTest_71(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -3543,7 +3542,7 @@ func BehavTest_71(t *testing.T) {
 func BehavTest_72(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -3594,7 +3593,7 @@ func BehavTest_72(t *testing.T) {
 func BehavTest_73(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -3645,7 +3644,7 @@ func BehavTest_73(t *testing.T) {
 func BehavTest_74(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -3692,7 +3691,7 @@ func BehavTest_74(t *testing.T) {
 func BehavTest_75(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -3744,7 +3743,7 @@ func BehavTest_75(t *testing.T) {
 func BehavTest_76(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -3796,7 +3795,7 @@ func BehavTest_76(t *testing.T) {
 func BehavTest_77(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -3847,7 +3846,7 @@ func BehavTest_77(t *testing.T) {
 func BehavTest_78(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -3898,7 +3897,7 @@ func BehavTest_78(t *testing.T) {
 func BehavTest_79(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -3949,7 +3948,7 @@ func BehavTest_79(t *testing.T) {
 func BehavTest_80(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -4000,7 +3999,7 @@ func BehavTest_80(t *testing.T) {
 func BehavTest_81(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -4051,7 +4050,7 @@ func BehavTest_81(t *testing.T) {
 func BehavTest_82(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -4102,7 +4101,7 @@ func BehavTest_82(t *testing.T) {
 func BehavTest_83(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -4153,7 +4152,7 @@ func BehavTest_83(t *testing.T) {
 func BehavTest_84(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -4204,7 +4203,7 @@ func BehavTest_84(t *testing.T) {
 func BehavTest_85(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -4255,7 +4254,7 @@ func BehavTest_85(t *testing.T) {
 func BehavTest_86(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -4309,7 +4308,7 @@ func BehavTest_86(t *testing.T) {
 func BehavTest_87(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -4355,7 +4354,7 @@ func BehavTest_87(t *testing.T) {
 func BehavTest_88(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -4401,7 +4400,7 @@ func BehavTest_88(t *testing.T) {
 func BehavTest_89(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -4445,7 +4444,7 @@ func BehavTest_89(t *testing.T) {
 func BehavTest_90(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -4493,7 +4492,7 @@ func BehavTest_90(t *testing.T) {
 func BehavTest_91(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -4544,7 +4543,7 @@ func BehavTest_91(t *testing.T) {
 func BehavTest_92(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -4595,7 +4594,7 @@ func BehavTest_92(t *testing.T) {
 func BehavTest_93(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -4650,7 +4649,7 @@ func BehavTest_93(t *testing.T) {
 func BehavTest_94(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -4705,7 +4704,7 @@ func BehavTest_94(t *testing.T) {
 func BehavTest_95(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -4760,7 +4759,7 @@ func BehavTest_95(t *testing.T) {
 func BehavTest_96(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -4815,7 +4814,7 @@ func BehavTest_96(t *testing.T) {
 func BehavTest_97(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -4870,7 +4869,7 @@ func BehavTest_97(t *testing.T) {
 func BehavTest_98(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -4925,7 +4924,7 @@ func BehavTest_98(t *testing.T) {
 func BehavTest_99(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -4980,7 +4979,7 @@ func BehavTest_99(t *testing.T) {
 func BehavTest_100(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -5035,7 +5034,7 @@ func BehavTest_100(t *testing.T) {
 func BehavTest_101(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -5090,7 +5089,7 @@ func BehavTest_101(t *testing.T) {
 func BehavTest_102(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -5145,7 +5144,7 @@ func BehavTest_102(t *testing.T) {
 func BehavTest_103(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -5200,7 +5199,7 @@ func BehavTest_103(t *testing.T) {
 func BehavTest_104(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -5255,7 +5254,7 @@ func BehavTest_104(t *testing.T) {
 func BehavTest_105(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -5309,7 +5308,7 @@ func BehavTest_105(t *testing.T) {
 func BehavTest_106(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -5367,7 +5366,7 @@ func BehavTest_106(t *testing.T) {
 func BehavTest_107(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -5412,7 +5411,7 @@ func BehavTest_107(t *testing.T) {
 func BehavTest_108(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -5459,7 +5458,7 @@ func BehavTest_108(t *testing.T) {
 func BehavTest_109(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -5506,7 +5505,7 @@ func BehavTest_109(t *testing.T) {
 func BehavTest_110(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -5553,7 +5552,7 @@ func BehavTest_110(t *testing.T) {
 func BehavTest_111(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -5600,7 +5599,7 @@ func BehavTest_111(t *testing.T) {
 func BehavTest_112(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -5647,7 +5646,7 @@ func BehavTest_112(t *testing.T) {
 func BehavTest_113(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -5694,7 +5693,7 @@ func BehavTest_113(t *testing.T) {
 func BehavTest_114(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -5741,7 +5740,7 @@ func BehavTest_114(t *testing.T) {
 func BehavTest_115(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -5788,7 +5787,7 @@ func BehavTest_115(t *testing.T) {
 func BehavTest_116(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -5835,7 +5834,7 @@ func BehavTest_116(t *testing.T) {
 func BehavTest_117(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -5882,7 +5881,7 @@ func BehavTest_117(t *testing.T) {
 func BehavTest_118(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -5927,7 +5926,7 @@ func BehavTest_118(t *testing.T) {
 func BehavTest_119(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -5974,7 +5973,7 @@ func BehavTest_119(t *testing.T) {
 func BehavTest_120(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -6024,7 +6023,7 @@ func BehavTest_120(t *testing.T) {
 func BehavTest_121(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -6079,7 +6078,7 @@ func BehavTest_121(t *testing.T) {
 func BehavTest_122(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -6132,7 +6131,7 @@ func BehavTest_122(t *testing.T) {
 func BehavTest_123(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -6186,7 +6185,7 @@ func BehavTest_123(t *testing.T) {
 func BehavTest_124(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -6240,7 +6239,7 @@ func BehavTest_124(t *testing.T) {
 func BehavTest_125(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -6294,7 +6293,7 @@ func BehavTest_125(t *testing.T) {
 func BehavTest_126(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -6348,7 +6347,7 @@ func BehavTest_126(t *testing.T) {
 func BehavTest_127(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -6402,7 +6401,7 @@ func BehavTest_127(t *testing.T) {
 func BehavTest_128(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -6456,7 +6455,7 @@ func BehavTest_128(t *testing.T) {
 func BehavTest_129(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -6510,7 +6509,7 @@ func BehavTest_129(t *testing.T) {
 func BehavTest_130(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -6560,7 +6559,7 @@ func BehavTest_130(t *testing.T) {
 func BehavTest_131(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -6615,7 +6614,7 @@ func BehavTest_131(t *testing.T) {
 func BehavTest_132(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -6670,7 +6669,7 @@ func BehavTest_132(t *testing.T) {
 func BehavTest_133(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -6727,7 +6726,7 @@ func BehavTest_133(t *testing.T) {
 func BehavTest_134(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -6781,7 +6780,7 @@ func BehavTest_134(t *testing.T) {
 func BehavTest_135(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -6835,7 +6834,7 @@ func BehavTest_135(t *testing.T) {
 func BehavTest_136(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -6889,7 +6888,7 @@ func BehavTest_136(t *testing.T) {
 func BehavTest_137(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -6943,7 +6942,7 @@ func BehavTest_137(t *testing.T) {
 func BehavTest_138(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -6997,7 +6996,7 @@ func BehavTest_138(t *testing.T) {
 func BehavTest_139(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -7051,7 +7050,7 @@ func BehavTest_139(t *testing.T) {
 func BehavTest_140(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -7105,7 +7104,7 @@ func BehavTest_140(t *testing.T) {
 func BehavTest_141(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -7159,7 +7158,7 @@ func BehavTest_141(t *testing.T) {
 func BehavTest_142(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -7208,7 +7207,7 @@ func BehavTest_142(t *testing.T) {
 func BehavTest_143(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -7257,7 +7256,7 @@ func BehavTest_143(t *testing.T) {
 func BehavTest_144(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
@@ -7304,7 +7303,7 @@ func BehavTest_144(t *testing.T) {
 func BehavTest_145(t *testing.T) {
 
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{

@@ -38,7 +38,7 @@ type Case struct{
 type Response struct{
 	StatusCode int `json:"statusCode"`
 	BodyContent string `json:"bodyContent"`
-	BodyType string `json: "bodyType"`
+	BodyType string `json:"bodyType"`
 	Headers map[string]string `json:"headers"`
 
 }
@@ -91,7 +91,6 @@ func (a *API) APIBehaviorTestsGoCode() string {
 	a.resetImports()
 	a.AddImport("testing")
 	a.AddImport("net/http")
-	a.AddImport("fmt")
 	a.AddImport("time")
 	a.AddImport("io/ioutil")
 	a.AddImport("bytes")
@@ -177,7 +176,7 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 
 {{define "StashCredentials"}}
 	env := awstesting.StashEnv() //Stashes the current environment variables
-	fmt.Println(env)
+	_ = env
 {{end}}
 
 {{define "SessionSetup"}}
