@@ -27,7 +27,6 @@ func TestInteg_00_ListBuilds(t *testing.T) {
 	sess := integration.SessionWithDefaultRegion("us-west-2")
 	svc := codebuild.New(sess)
 	params := &codebuild.ListBuildsInput{}
-
 	_, err := svc.ListBuildsWithContext(ctx, params)
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)

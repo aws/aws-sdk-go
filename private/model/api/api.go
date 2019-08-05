@@ -26,7 +26,6 @@ type API struct {
 	Documentation string
 	Examples      Examples
 	SmokeTests    SmokeTestSuite
-	//Added line for Behavior tests
 	BehaviorTests BehaviorTestSuite
 
 	// Set to true to avoid removing unused shapes

@@ -6,24 +6,19 @@ package sampleresetxmlprotocolservice_test
 
 import (
 	"bytes"
-	"encoding/base64"
 	"io/ioutil"
 	"net/http"
-	"net/url"
 	"strings"
 	"testing"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/corehandlers"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/awstesting"
-	"github.com/aws/aws-sdk-go/awstesting/behavior_tests/sampleresetxmlprotocolservice"
-	"github.com/aws/aws-sdk-go/private/util"
-	"github.com/google/go-cmp/cmp"
+	"github.com/aws/aws-sdk-go/awstesting/behavior/sampleresetxmlprotocolservice"
 )
 
 func parseTime(layout, value string) *time.Time {
@@ -34,439 +29,286 @@ func parseTime(layout, value string) *time.Time {
 	return &t
 }
 
-func assertRequestMethodEquals(t *testing.T, req *request.Request, val string) bool {
-	return req.HTTPRequest.Method == val
-}
-
-func assertRequestUrlMatches(t *testing.T, req *request.Request, val string) bool {
-	return awstesting.AssertURL(t, val, req.HTTPRequest.URL.String())
-}
-
-func assertRequestUrlPathMatches(t *testing.T, req *request.Request, val string) bool {
-	return req.HTTPRequest.URL.RequestURI() == val
-}
-
-func assertRequestUrlQueryMatches(t *testing.T, req *request.Request, val string) bool {
-	structExpect, err := url.Parse(val) // parsed val into a structure
-	if err != nil {
-		t.Errorf("expect no error, got %v", err)
-	}
-	queryRequest := req.HTTPRequest.URL.Query() //parsed RawQuery of "req" to get the values inside
-	queryExpect := structExpect.Query()         //parsed RawQuery of "val" to get the values inside
-
-	return queryRequest.Encode() == queryExpect.Encode()
-}
-
-func assertRequestHeadersMatch(t *testing.T, req *request.Request, header map[string]interface{}) bool {
-	for key, valExpect := range header {
-		valReq := req.HTTPRequest.Header.Get(key)
-		if valReq == "" || valReq[0] != valExpect {
-			return false
-		}
-	}
-	return true
-}
-
-func assertRequestBodyEqualsBytes(t *testing.T, req *request.Request, val string) bool {
-	var bytesReqBody []byte
-	bytesExpect, err := base64.StdEncoding.DecodeString(val)
-
-	if err != nil {
-		t.Errorf("expect no error, got %v", err)
-	}
-
-	if req.HTTPRequest.Body != nil {
-		bytesReqBody, err = ioutil.ReadAll(req.HTTPRequest.Body)
-		if err != nil {
-			t.Errorf("expect no error, got %v", err)
-		}
-	}
-
-	req.HTTPRequest.Body = ioutil.NopCloser(bytes.NewBuffer(bytesReqBody))
-
-	return bytes.Compare(bytesReqBody, bytesExpect) == 0
-}
-
-func assertRequestBodyEqualsJson(t *testing.T, req *request.Request, val string) bool {
-	var bytesReqBody []byte
-	var err error
-	if req.HTTPRequest.Body != nil {
-		bytesReqBody, err = ioutil.ReadAll(req.HTTPRequest.Body)
-		if err != nil {
-			t.Errorf("expect no error, got %v", err)
-		}
-	}
-
-	req.HTTPRequest.Body = ioutil.NopCloser(bytes.NewBuffer(bytesReqBody))
-
-	return awstesting.AssertJSON(t, val, util.Trim(string(bytesReqBody)))
-}
-
-func assertRequestBodyMatchesXml(t *testing.T, req *request.Request, val string, container interface{}) bool {
-	r := req.HTTPRequest
-
-	if r.Body == nil {
-		t.Errorf("expect body not to be nil")
-	}
-	body := util.SortXML(r.Body)
-
-	return awstesting.AssertXML(t, val, util.Trim(string(body)), container)
-}
-
-func assertRequestBodyEqualsString(t *testing.T, req *request.Request, val string) bool {
-	var bytesReqBody []byte
-	var err error
-	if req.HTTPRequest.Body != nil {
-		bytesReqBody, err = ioutil.ReadAll(req.HTTPRequest.Body)
-		if err != nil {
-			t.Errorf("expect no error, got %v", err)
-		}
-	}
-
-	req.HTTPRequest.Body = ioutil.NopCloser(bytes.NewBuffer(bytesReqBody))
-	stringReqBody := string(bytesReqBody)
-
-	return stringReqBody == val
-}
-
-func assertRequestIdEquals(t *testing.T, req *request.Request, val string) bool {
-	return req.RequestID == val
-}
-
-func assertResponseDataEquals(t *testing.T, response interface{}, expectResponse interface{}) bool {
-	if response == nil || expectResponse == nil {
-		return response == expectResponse
-	}
-	return cmp.Equal(expectResponse, response)
-}
-
-func assertResponseErrorIsKindOf(t *testing.T, err error, val string) bool {
-	if awsErr, ok := err.(awserr.Error); ok {
-		return awsErr.Code() == val
-	}
-	return true
-}
-
-func assertResponseErrorMessageEquals(t *testing.T, err error, val string) bool {
-	if awsErr, ok := err.(awserr.Error); ok {
-		return awsErr.Message() == val
-	}
-	return true
-}
-
-func assertResponseErrorDataEquals(t *testing.T, err error, val map[string]interface{}) {
-	if testing.Short() {
-		t.Skip("skipping responseErrorDataEquals assertion")
-	}
-}
-
-func assertResponseErrorRequestIdEquals(t *testing.T, err error, val string) bool {
-	if reqErr, ok := err.(awserr.RequestFailure); ok {
-		return reqErr.RequestID() == val
-	}
-	return true
-}
-
 //Can build empty PUT requests
-func BehavTest_00(t *testing.T) {
+func TestBehavior_00(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.EmptyPutInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.EmptyPutRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestMethodEquals(t, req, "PUT") {
+	if !awstesting.AssertRequestMethodEquals(t, req, "PUT") {
 		t.Errorf("Expect no error, got requestMethodEquals assertion failed")
 	}
-	if !assertRequestUrlMatches(t, req, "https://rest-xml-svc.us-west-2.amazonaws.com/") {
+	if !awstesting.AssertRequestUrlMatches(t, req, "https://rest-xml-svc.us-west-2.amazonaws.com/") {
 		t.Errorf("Expect no error, got requestUrlMatches assertion failed")
 	}
-	if !assertRequestBodyEqualsString(t, req, "") {
+	if !awstesting.AssertRequestBodyEqualsString(t, req, "") {
 		t.Errorf("Expect no error, got requestBodyEqualsString assertion failed")
 	}
 
 }
 
 //Can build empty POST requests
-func BehavTest_01(t *testing.T) {
+func TestBehavior_01(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.EmptyPostInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.EmptyPostRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestMethodEquals(t, req, "POST") {
+	if !awstesting.AssertRequestMethodEquals(t, req, "POST") {
 		t.Errorf("Expect no error, got requestMethodEquals assertion failed")
 	}
-	if !assertRequestUrlMatches(t, req, "https://rest-xml-svc.us-west-2.amazonaws.com/") {
+	if !awstesting.AssertRequestUrlMatches(t, req, "https://rest-xml-svc.us-west-2.amazonaws.com/") {
 		t.Errorf("Expect no error, got requestUrlMatches assertion failed")
 	}
-	if !assertRequestBodyEqualsString(t, req, "") {
+	if !awstesting.AssertRequestBodyEqualsString(t, req, "") {
 		t.Errorf("Expect no error, got requestBodyEqualsString assertion failed")
 	}
 
 }
 
 //Can build empty PATCH requests
-func BehavTest_02(t *testing.T) {
+func TestBehavior_02(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.EmptyPatchInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.EmptyPatchRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestMethodEquals(t, req, "PATCH") {
+	if !awstesting.AssertRequestMethodEquals(t, req, "PATCH") {
 		t.Errorf("Expect no error, got requestMethodEquals assertion failed")
 	}
-	if !assertRequestUrlMatches(t, req, "https://rest-xml-svc.us-west-2.amazonaws.com/") {
+	if !awstesting.AssertRequestUrlMatches(t, req, "https://rest-xml-svc.us-west-2.amazonaws.com/") {
 		t.Errorf("Expect no error, got requestUrlMatches assertion failed")
 	}
-	if !assertRequestBodyEqualsString(t, req, "") {
+	if !awstesting.AssertRequestBodyEqualsString(t, req, "") {
 		t.Errorf("Expect no error, got requestBodyEqualsString assertion failed")
 	}
 
 }
 
 //Can build empty GET requests
-func BehavTest_03(t *testing.T) {
+func TestBehavior_03(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.EmptyGetInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.EmptyGetRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestMethodEquals(t, req, "GET") {
+	if !awstesting.AssertRequestMethodEquals(t, req, "GET") {
 		t.Errorf("Expect no error, got requestMethodEquals assertion failed")
 	}
-	if !assertRequestUrlMatches(t, req, "https://rest-xml-svc.us-west-2.amazonaws.com/") {
+	if !awstesting.AssertRequestUrlMatches(t, req, "https://rest-xml-svc.us-west-2.amazonaws.com/") {
 		t.Errorf("Expect no error, got requestUrlMatches assertion failed")
 	}
-	if !assertRequestBodyEqualsString(t, req, "") {
+	if !awstesting.AssertRequestBodyEqualsString(t, req, "") {
 		t.Errorf("Expect no error, got requestBodyEqualsString assertion failed")
 	}
 
 }
 
 //Can build empty HEAD requests
-func BehavTest_04(t *testing.T) {
+func TestBehavior_04(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.EmptyHeadInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.EmptyHeadRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestMethodEquals(t, req, "HEAD") {
+	if !awstesting.AssertRequestMethodEquals(t, req, "HEAD") {
 		t.Errorf("Expect no error, got requestMethodEquals assertion failed")
 	}
-	if !assertRequestUrlMatches(t, req, "https://rest-xml-svc.us-west-2.amazonaws.com/") {
+	if !awstesting.AssertRequestUrlMatches(t, req, "https://rest-xml-svc.us-west-2.amazonaws.com/") {
 		t.Errorf("Expect no error, got requestUrlMatches assertion failed")
 	}
-	if !assertRequestBodyEqualsString(t, req, "") {
+	if !awstesting.AssertRequestBodyEqualsString(t, req, "") {
 		t.Errorf("Expect no error, got requestBodyEqualsString assertion failed")
 	}
 
 }
 
 //Can build empty DELETE requests
-func BehavTest_05(t *testing.T) {
+func TestBehavior_05(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.EmptyDeleteInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.EmptyDeleteRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestMethodEquals(t, req, "DELETE") {
+	if !awstesting.AssertRequestMethodEquals(t, req, "DELETE") {
 		t.Errorf("Expect no error, got requestMethodEquals assertion failed")
 	}
-	if !assertRequestUrlMatches(t, req, "https://rest-xml-svc.us-west-2.amazonaws.com/") {
+	if !awstesting.AssertRequestUrlMatches(t, req, "https://rest-xml-svc.us-west-2.amazonaws.com/") {
 		t.Errorf("Expect no error, got requestUrlMatches assertion failed")
 	}
-	if !assertRequestBodyEqualsString(t, req, "") {
+	if !awstesting.AssertRequestBodyEqualsString(t, req, "") {
 		t.Errorf("Expect no error, got requestBodyEqualsString assertion failed")
 	}
 
 }
 
 //Supports location uri members
-func BehavTest_06(t *testing.T) {
+func TestBehavior_06(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -476,45 +318,42 @@ func BehavTest_06(t *testing.T) {
 		UriPathSegment: aws.String("param-1"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestMethodEquals(t, req, "PUT") {
+	if !awstesting.AssertRequestMethodEquals(t, req, "PUT") {
 		t.Errorf("Expect no error, got requestMethodEquals assertion failed")
 	}
-	if !assertRequestUrlPathMatches(t, req, "/param-1/param-2") {
+	if !awstesting.AssertRequestUrlPathMatches(t, req, "/param-1/param-2") {
 		t.Errorf("Expect no error, got requestUrlPathMatches assertion failed")
 	}
 
 }
 
 //Escapes path segments
-func BehavTest_07(t *testing.T) {
+func TestBehavior_07(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -524,42 +363,39 @@ func BehavTest_07(t *testing.T) {
 		UriPathSegment: aws.String("path/segment abc~"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestUrlPathMatches(t, req, "/path%2Fsegment%20abc~/%2520uri%20path%3F") {
+	if !awstesting.AssertRequestUrlPathMatches(t, req, "/path%2Fsegment%20abc~/%2520uri%20path%3F") {
 		t.Errorf("Expect no error, got requestUrlPathMatches assertion failed")
 	}
 
 }
 
 //Performs path-safe escaping for uri path params with placeholders containing a plus-sign
-func BehavTest_08(t *testing.T) {
+func TestBehavior_08(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -569,42 +405,39 @@ func BehavTest_08(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestUrlPathMatches(t, req, "/segment/greedy%20path/with/slashes") {
+	if !awstesting.AssertRequestUrlPathMatches(t, req, "/segment/greedy%20path/with/slashes") {
 		t.Errorf("Expect no error, got requestUrlPathMatches assertion failed")
 	}
 
 }
 
 //Serializes query parameter serialization
-func BehavTest_09(t *testing.T) {
+func TestBehavior_09(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -615,42 +448,39 @@ func BehavTest_09(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestUrlQueryMatches(t, req, "string=string-value") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, req, "string=string-value") {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
 }
 
 //Serializes query params are URI escaped
-func BehavTest_10(t *testing.T) {
+func TestBehavior_10(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -661,42 +491,39 @@ func BehavTest_10(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestUrlQueryMatches(t, req, "string=string%20value") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, req, "string=string%20value") {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
 }
 
 //Serializes integer query params
-func BehavTest_11(t *testing.T) {
+func TestBehavior_11(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -707,42 +534,39 @@ func BehavTest_11(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestUrlQueryMatches(t, req, "integer=123456") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, req, "integer=123456") {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
 }
 
 //Serializes long query params
-func BehavTest_12(t *testing.T) {
+func TestBehavior_12(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -753,42 +577,39 @@ func BehavTest_12(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestUrlQueryMatches(t, req, "long=123456") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, req, "long=123456") {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
 }
 
 //Serializes float query params
-func BehavTest_13(t *testing.T) {
+func TestBehavior_13(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -799,42 +620,39 @@ func BehavTest_13(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestUrlQueryMatches(t, req, "float=123.456") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, req, "float=123.456") {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
 }
 
 //Serializes double query params
-func BehavTest_14(t *testing.T) {
+func TestBehavior_14(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -845,42 +663,39 @@ func BehavTest_14(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestUrlQueryMatches(t, req, "double=123.456") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, req, "double=123.456") {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
 }
 
 //Serializes boolean true query params
-func BehavTest_15(t *testing.T) {
+func TestBehavior_15(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -891,42 +706,39 @@ func BehavTest_15(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestUrlQueryMatches(t, req, "boolean-value=true") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, req, "boolean-value=true") {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
 }
 
 //Serializes boolean false query params
-func BehavTest_16(t *testing.T) {
+func TestBehavior_16(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -937,42 +749,39 @@ func BehavTest_16(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestUrlQueryMatches(t, req, "boolean-value=false") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, req, "boolean-value=false") {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
 }
 
 //Serializes blob query params
-func BehavTest_17(t *testing.T) {
+func TestBehavior_17(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -983,42 +792,39 @@ func BehavTest_17(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestUrlQueryMatches(t, req, "binary-value=YmluYXJ5LXZhbHVl") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, req, "binary-value=YmluYXJ5LXZhbHVl") {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
 }
 
 //Serializes timestamp query params
-func BehavTest_18(t *testing.T) {
+func TestBehavior_18(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -1029,42 +835,39 @@ func BehavTest_18(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestUrlQueryMatches(t, req, "timestamp=2000-01-02T20%3A34%3A56.123Z") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, req, "timestamp=2000-01-02T20%3A34%3A56.123Z") {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
 }
 
 //Serializes unixTimestamp format timestamp query params
-func BehavTest_19(t *testing.T) {
+func TestBehavior_19(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -1075,42 +878,39 @@ func BehavTest_19(t *testing.T) {
 		UriPathSegment:     aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestUrlQueryMatches(t, req, "unix-timestamp=946845296.123") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, req, "unix-timestamp=946845296.123") {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
 }
 
 //Serializes iso8601 format timestamp query params
-func BehavTest_20(t *testing.T) {
+func TestBehavior_20(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -1121,42 +921,39 @@ func BehavTest_20(t *testing.T) {
 		UriPathSegment:        aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestUrlQueryMatches(t, req, "iso8601-timestamp=2000-01-02T20%3A34%3A56.123Z") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, req, "iso8601-timestamp=2000-01-02T20%3A34%3A56.123Z") {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
 }
 
 //Serializes httpdate format timestamp query params
-func BehavTest_21(t *testing.T) {
+func TestBehavior_21(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -1166,42 +963,39 @@ func BehavTest_21(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestUrlQueryMatches(t, req, "httpdate-timestamp=Sun%2C%2002%20Jan%202000%2020%3A34%3A56%20GMT") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, req, "httpdate-timestamp=Sun%2C%2002%20Jan%202000%2020%3A34%3A56%20GMT") {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
 }
 
 //Serializes list of string query params
-func BehavTest_22(t *testing.T) {
+func TestBehavior_22(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -1216,42 +1010,39 @@ func BehavTest_22(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestUrlQueryMatches(t, req, "list=abc&list=mno&list=xyz") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, req, "list=abc&list=mno&list=xyz") {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
 }
 
 //Serializes map of string query params
-func BehavTest_23(t *testing.T) {
+func TestBehavior_23(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -1265,42 +1056,39 @@ func BehavTest_23(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestUrlQueryMatches(t, req, "color=red&size=large") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, req, "color=red&size=large") {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
 }
 
 //Serializes and escapes query map of string keys and values
-func BehavTest_24(t *testing.T) {
+func TestBehavior_24(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -1314,42 +1102,39 @@ func BehavTest_24(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestUrlQueryMatches(t, req, "a%20b=x%3Az&a%26b=x%2Fz") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, req, "a%20b=x%3Az&a%26b=x%2Fz") {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
 }
 
 //Serializes map of lists of strings query params
-func BehavTest_25(t *testing.T) {
+func TestBehavior_25(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -1369,42 +1154,39 @@ func BehavTest_25(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestUrlQueryMatches(t, req, "key%201=value%201&key%201=value%202&key%202=value%203&key%202=value%204") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, req, "key%201=value%201&key%201=value%202&key%202=value%203&key%202=value%204") {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
 }
 
 //Serializes header strings
-func BehavTest_26(t *testing.T) {
+func TestBehavior_26(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -1415,42 +1197,39 @@ func BehavTest_26(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestHeadersMatch(t, req, map[string]interface{}{"Header-String": "header string value"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-String": "header string value"}) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
 }
 
 //Serializes header integers
-func BehavTest_27(t *testing.T) {
+func TestBehavior_27(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -1461,42 +1240,39 @@ func BehavTest_27(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Integer": "123456"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Integer": "123456"}) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
 }
 
 //Serializes header longs
-func BehavTest_28(t *testing.T) {
+func TestBehavior_28(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -1507,42 +1283,39 @@ func BehavTest_28(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Long": "123456"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Long": "123456"}) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
 }
 
 //Serializes header floats
-func BehavTest_29(t *testing.T) {
+func TestBehavior_29(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -1553,42 +1326,39 @@ func BehavTest_29(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Float": "123.456"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Float": "123.456"}) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
 }
 
 //Serializes header doubles
-func BehavTest_30(t *testing.T) {
+func TestBehavior_30(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -1599,42 +1369,39 @@ func BehavTest_30(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Double": "123.456"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Double": "123.456"}) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
 }
 
 //Serializes true boolean values
-func BehavTest_31(t *testing.T) {
+func TestBehavior_31(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -1645,42 +1412,39 @@ func BehavTest_31(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Boolean": "true"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Boolean": "true"}) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
 }
 
 //Serializes false boolean values
-func BehavTest_32(t *testing.T) {
+func TestBehavior_32(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -1691,42 +1455,39 @@ func BehavTest_32(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Boolean": "false"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Boolean": "false"}) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
 }
 
 //Serializes header binary values
-func BehavTest_33(t *testing.T) {
+func TestBehavior_33(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -1737,42 +1498,39 @@ func BehavTest_33(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Binary": "YmluYXJ5LXZhbHVl"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Binary": "YmluYXJ5LXZhbHVl"}) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
 }
 
 //Serializes header string values with jsonvalue trait
-func BehavTest_34(t *testing.T) {
+func TestBehavior_34(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -1783,42 +1541,39 @@ func BehavTest_34(t *testing.T) {
 		UriPathSegment:  aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Json-Value": "eyJzdHJpbmciOiJ2YWx1ZSIsIm51bWJlciI6MTIzNC41LCJib29sVHJ1ZSI6dHJ1ZSwiYm9vbEZhbHNlIjpmYWxzZSwiYXJyYXkiOlsxLDIsMyw0XSwib2JqZWN0Ijp7ImtleSI6InZhbHVlIn0sIm51bGwiOm51bGx9"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Json-Value": "eyJzdHJpbmciOiJ2YWx1ZSIsIm51bWJlciI6MTIzNC41LCJib29sVHJ1ZSI6dHJ1ZSwiYm9vbEZhbHNlIjpmYWxzZSwiYXJyYXkiOlsxLDIsMyw0XSwib2JqZWN0Ijp7ImtleSI6InZhbHVlIn0sIm51bGwiOm51bGx9"}) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
 }
 
 //Serializes header timestamp values
-func BehavTest_35(t *testing.T) {
+func TestBehavior_35(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -1829,42 +1584,39 @@ func BehavTest_35(t *testing.T) {
 		UriPathSegment:  aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Timestamp": "946845296.123"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Timestamp": "946845296.123"}) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
 }
 
 //Serializes unixTimestamp format header timestamps
-func BehavTest_36(t *testing.T) {
+func TestBehavior_36(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -1875,42 +1627,39 @@ func BehavTest_36(t *testing.T) {
 		UriPathSegment:      aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Unix-Timestamp": "946845296.123"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Unix-Timestamp": "946845296.123"}) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
 }
 
 //Serializes iso8601 format header timestamp
-func BehavTest_37(t *testing.T) {
+func TestBehavior_37(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -1921,42 +1670,39 @@ func BehavTest_37(t *testing.T) {
 		UriPathSegment:         aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Iso8601-Timestamp": "2000-01-02T20:34:56.123Z"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Iso8601-Timestamp": "2000-01-02T20:34:56.123Z"}) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
 }
 
 //Serializes httpdate format header timestamps
-func BehavTest_38(t *testing.T) {
+func TestBehavior_38(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -1966,42 +1712,39 @@ func BehavTest_38(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Httpdate-Timestamp": "Sun, 02 Jan 2000 20:34:56 GMT"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Httpdate-Timestamp": "Sun, 02 Jan 2000 20:34:56 GMT"}) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
 }
 
 //Serializes header maps
-func BehavTest_39(t *testing.T) {
+func TestBehavior_39(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -2016,42 +1759,39 @@ func BehavTest_39(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestHeadersMatch(t, req, map[string]interface{}{"Key-1": "map value 1", "Key-2": "map value 2", "Key-3": "map value 3"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Key-1": "map value 1", "Key-2": "map value 2", "Key-3": "map value 3"}) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
 }
 
 //Serializes header maps with prefixes
-func BehavTest_40(t *testing.T) {
+func TestBehavior_40(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -2066,42 +1806,39 @@ func BehavTest_40(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestHeadersMatch(t, req, map[string]interface{}{"Prefix-Key-1": "prefix map value 1", "Prefix-Key-2": "prefix map value 2", "Prefix-Key-3": "prefix map value 3"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Prefix-Key-1": "prefix map value 1", "Prefix-Key-2": "prefix map value 2", "Prefix-Key-3": "prefix map value 3"}) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
 }
 
 //Serializes payload blob members to the body as raw bytes
-func BehavTest_41(t *testing.T) {
+func TestBehavior_41(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -2112,42 +1849,39 @@ func BehavTest_41(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyEqualsBytes(t, req, "YmluYXJ5LXZhbHVl") {
+	if !awstesting.AssertRequestBodyEqualsBytes(t, req, "YmluYXJ5LXZhbHVl") {
 		t.Errorf("Expect no error, got requestBodyEqualsBytes assertion failed")
 	}
 
 }
 
 //Omits the HTTP body when payload blob member is not set
-func BehavTest_42(t *testing.T) {
+func TestBehavior_42(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -2157,42 +1891,39 @@ func BehavTest_42(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyEqualsString(t, req, "") {
+	if !awstesting.AssertRequestBodyEqualsString(t, req, "") {
 		t.Errorf("Expect no error, got requestBodyEqualsString assertion failed")
 	}
 
 }
 
 //Serializes payload structure members to the body as XML
-func BehavTest_43(t *testing.T) {
+func TestBehavior_43(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -2203,42 +1934,39 @@ func BehavTest_43(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.OperationWithPayloadStructureMemberRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<DataNode xmlns=\"http://xml/ns\"><Value>string value</Value></DataNode>", sampleresetxmlprotocolservice.OperationWithPayloadStructureMemberInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<DataNode xmlns=\"http://xml/ns\"><Value>string value</Value></DataNode>", sampleresetxmlprotocolservice.OperationWithPayloadStructureMemberInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Can serialize an empty structure to XML
-func BehavTest_44(t *testing.T) {
+func TestBehavior_44(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -2247,42 +1975,39 @@ func BehavTest_44(t *testing.T) {
 		Data: &sampleresetxmlprotocolservice.SimpleStruct{},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.OperationWithPayloadStructureMemberRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<DataNode xmlns=\"http://xml/ns\"/>", sampleresetxmlprotocolservice.OperationWithPayloadStructureMemberInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<DataNode xmlns=\"http://xml/ns\"/>", sampleresetxmlprotocolservice.OperationWithPayloadStructureMemberInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Can serialize an empty structure to XML
-func BehavTest_45(t *testing.T) {
+func TestBehavior_45(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -2291,42 +2016,39 @@ func BehavTest_45(t *testing.T) {
 		Data: &sampleresetxmlprotocolservice.SimpleStruct{},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.OperationWithPayloadStructureMemberRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<DataNode xmlns=\"http://xml/ns\"/>", sampleresetxmlprotocolservice.OperationWithPayloadStructureMemberInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<DataNode xmlns=\"http://xml/ns\"/>", sampleresetxmlprotocolservice.OperationWithPayloadStructureMemberInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes members without locations to the body XML document
-func BehavTest_46(t *testing.T) {
+func TestBehavior_46(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -2338,45 +2060,42 @@ func BehavTest_46(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.OperationMembersWithoutLocationRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestHeadersMatch(t, req, map[string]interface{}{"Some-Header": "value 1"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Some-Header": "value 1"}) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
-	if !assertRequestBodyMatchesXml(t, req, "<RootNode xmlns=\"http://xml/ns\"><String>value 2</String><Struct><Value>value 3</Value></Struct></RootNode>", sampleresetxmlprotocolservice.OperationMembersWithoutLocationInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<RootNode xmlns=\"http://xml/ns\"><String>value 2</String><Struct><Value>value 3</Value></Struct></RootNode>", sampleresetxmlprotocolservice.OperationMembersWithoutLocationInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Omits the body when all body members are not present
-func BehavTest_47(t *testing.T) {
+func TestBehavior_47(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -2385,126 +2104,117 @@ func BehavTest_47(t *testing.T) {
 		Header: aws.String("value 1"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.OperationMembersWithoutLocationRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyEqualsString(t, req, "") {
+	if !awstesting.AssertRequestBodyEqualsString(t, req, "") {
 		t.Errorf("Expect no error, got requestBodyEqualsString assertion failed")
 	}
 
 }
 
 //Serializes string XML members
-func BehavTest_48(t *testing.T) {
+func TestBehavior_48(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><String>string value</String></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><String>string value</String></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes and escapes string XML members
-func BehavTest_49(t *testing.T) {
+func TestBehavior_49(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><String>a&amp;b</String></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><String>a&amp;b</String></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes string XML members with jsonvalue trait
-func BehavTest_50(t *testing.T) {
+func TestBehavior_50(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -2513,42 +2223,39 @@ func BehavTest_50(t *testing.T) {
 		JsonValue: aws.JSONValue{"key": "value"},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><JsonValue>{\"key\":\"value\"}</JsonValue></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><JsonValue>{\"key\":\"value\"}</JsonValue></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes integer XML members
-func BehavTest_51(t *testing.T) {
+func TestBehavior_51(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -2557,42 +2264,39 @@ func BehavTest_51(t *testing.T) {
 		Integer: aws.Int64(123456),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Integer>123456</Integer></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Integer>123456</Integer></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes long XML members
-func BehavTest_52(t *testing.T) {
+func TestBehavior_52(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -2601,42 +2305,39 @@ func BehavTest_52(t *testing.T) {
 		Long: aws.Int64(999999999999),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Long>999999999999</Long></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Long>999999999999</Long></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes float XML members
-func BehavTest_53(t *testing.T) {
+func TestBehavior_53(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -2645,42 +2346,39 @@ func BehavTest_53(t *testing.T) {
 		Float: aws.Float64(123.456000),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Float>123.456</Float></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Float>123.456</Float></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes double XML members
-func BehavTest_54(t *testing.T) {
+func TestBehavior_54(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -2689,42 +2387,39 @@ func BehavTest_54(t *testing.T) {
 		Double: aws.Float64(123.456000),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Double>123.456</Double></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Double>123.456</Double></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes blob XML members
-func BehavTest_55(t *testing.T) {
+func TestBehavior_55(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -2733,42 +2428,39 @@ func BehavTest_55(t *testing.T) {
 		Blob: []byte("YmluYXJ5LXZhbHVl"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Blob>YmluYXJ5LXZhbHVl</Blob></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Blob>YmluYXJ5LXZhbHVl</Blob></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes boolean true XML members
-func BehavTest_56(t *testing.T) {
+func TestBehavior_56(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -2777,42 +2469,39 @@ func BehavTest_56(t *testing.T) {
 		Boolean: aws.Bool(true),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Boolean>true</Boolean></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Boolean>true</Boolean></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes boolean false XML members
-func BehavTest_57(t *testing.T) {
+func TestBehavior_57(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -2821,42 +2510,39 @@ func BehavTest_57(t *testing.T) {
 		Boolean: aws.Bool(false),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Boolean>false</Boolean></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Boolean>false</Boolean></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes iso8601 timestamp XML members
-func BehavTest_58(t *testing.T) {
+func TestBehavior_58(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -2865,42 +2551,39 @@ func BehavTest_58(t *testing.T) {
 		Iso8601Timestamp: parseTime("2006-01-02T15:04:05Z", "946845296.000000"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Iso8601Timestamp>2000-01-02T20:34:56.000Z</Iso8601Timestamp></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Iso8601Timestamp>2000-01-02T20:34:56.000Z</Iso8601Timestamp></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes timestamp XML members
-func BehavTest_59(t *testing.T) {
+func TestBehavior_59(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -2909,84 +2592,78 @@ func BehavTest_59(t *testing.T) {
 		Timestamp: parseTime("2006-01-02T15:04:05Z", "946845296.000000"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Timestamp>2000-01-02T20:34:56.000Z</Timestamp></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Timestamp>2000-01-02T20:34:56.000Z</Timestamp></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes httpdate timestamp XML members
-func BehavTest_60(t *testing.T) {
+func TestBehavior_60(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><HttpdateTimestamp>Sun, 02 Jan 2000 20:34:56 GMT</HttpdateTimestamp></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><HttpdateTimestamp>Sun, 02 Jan 2000 20:34:56 GMT</HttpdateTimestamp></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes unix timestamp XML members
-func BehavTest_61(t *testing.T) {
+func TestBehavior_61(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -2995,42 +2672,39 @@ func BehavTest_61(t *testing.T) {
 		UnixTimestamp: parseTime("2006-01-02T15:04:05Z", "946845296.123000"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><UnixTimestamp>946845296.123</UnixTimestamp></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><UnixTimestamp>946845296.123</UnixTimestamp></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes list of string XML members
-func BehavTest_62(t *testing.T) {
+func TestBehavior_62(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -3042,42 +2716,39 @@ func BehavTest_62(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><ListOfStrings><member>abc</member><member>xyz</member></ListOfStrings></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><ListOfStrings><member>abc</member><member>xyz</member></ListOfStrings></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes list of maps of strings XML members
-func BehavTest_63(t *testing.T) {
+func TestBehavior_63(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -3094,42 +2765,39 @@ func BehavTest_63(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><ListOfMapsOfStrings><member><entry><key>size</key><value>small</value></entry><entry><key>label</key><value>extra</value></entry></member><member><entry><key>color</key><value>red</value></entry></member></ListOfMapsOfStrings></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><ListOfMapsOfStrings><member><entry><key>size</key><value>small</value></entry><entry><key>label</key><value>extra</value></entry></member><member><entry><key>color</key><value>red</value></entry></member></ListOfMapsOfStrings></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes lists with member locationName traits
-func BehavTest_64(t *testing.T) {
+func TestBehavior_64(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -3148,42 +2816,39 @@ func BehavTest_64(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><ListWithMemberName><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name><list-member-name><Value>value-3</Value></list-member-name></ListWithMemberName></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><ListWithMemberName><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name><list-member-name><Value>value-3</Value></list-member-name></ListWithMemberName></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes lists of recursive shapes
-func BehavTest_65(t *testing.T) {
+func TestBehavior_65(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -3208,42 +2873,39 @@ func BehavTest_65(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveList><member><RecursiveList><member><RecursiveList><member><String>value-1</String></member><member><String>value-2</String></member></RecursiveList></member><member><RecursiveList><member><String>value-3</String></member></RecursiveList></member></RecursiveList></member></RecursiveList></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveList><member><RecursiveList><member><RecursiveList><member><String>value-1</String></member><member><String>value-2</String></member></RecursiveList></member><member><RecursiveList><member><String>value-3</String></member></RecursiveList></member></RecursiveList></member></RecursiveList></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes lists
-func BehavTest_66(t *testing.T) {
+func TestBehavior_66(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -3259,42 +2921,39 @@ func BehavTest_66(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><List><member><Value>value-1</Value></member><member><Value>value-2</Value></member></List></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><List><member><Value>value-1</Value></member><member><Value>value-2</Value></member></List></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes lists with locationName traits
-func BehavTest_67(t *testing.T) {
+func TestBehavior_67(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -3310,42 +2969,39 @@ func BehavTest_67(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><list-name><member><Value>value-1</Value></member><member><Value>value-2</Value></member></list-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><list-name><member><Value>value-1</Value></member><member><Value>value-2</Value></member></list-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes lists with member locationName traits
-func BehavTest_68(t *testing.T) {
+func TestBehavior_68(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -3361,42 +3017,39 @@ func BehavTest_68(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><ListWithMemberName><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name></ListWithMemberName></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><ListWithMemberName><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name></ListWithMemberName></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes lists which have both locationName and memberLocationName traits
-func BehavTest_69(t *testing.T) {
+func TestBehavior_69(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -3412,42 +3065,39 @@ func BehavTest_69(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><list-name><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name></list-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><list-name><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name></list-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes flat lists
-func BehavTest_70(t *testing.T) {
+func TestBehavior_70(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -3463,42 +3113,39 @@ func BehavTest_70(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><FlatList><Value>value-1</Value></FlatList><FlatList><Value>value-2</Value></FlatList></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><FlatList><Value>value-1</Value></FlatList><FlatList><Value>value-2</Value></FlatList></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes flat lists with locationName traits
-func BehavTest_71(t *testing.T) {
+func TestBehavior_71(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -3514,42 +3161,39 @@ func BehavTest_71(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><item-name><Value>value-1</Value></item-name><item-name><Value>value-2</Value></item-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><item-name><Value>value-1</Value></item-name><item-name><Value>value-2</Value></item-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes flat lists with member locationName traits
-func BehavTest_72(t *testing.T) {
+func TestBehavior_72(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -3565,42 +3209,39 @@ func BehavTest_72(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes flat lists with locationName traits and member locationName traits
-func BehavTest_73(t *testing.T) {
+func TestBehavior_73(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -3616,42 +3257,39 @@ func BehavTest_73(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><other-member-name><Value>value-1</Value></other-member-name><other-member-name><Value>value-2</Value></other-member-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><other-member-name><Value>value-1</Value></other-member-name><other-member-name><Value>value-2</Value></other-member-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes maps of strings
-func BehavTest_74(t *testing.T) {
+func TestBehavior_74(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -3663,42 +3301,39 @@ func BehavTest_74(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><MapOfStrings><entry><key>size</key><value>large</value></entry><entry><key>color</key><value>red</value></entry></MapOfStrings></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><MapOfStrings><entry><key>size</key><value>large</value></entry><entry><key>color</key><value>red</value></entry></MapOfStrings></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes maps of lists of strings
-func BehavTest_75(t *testing.T) {
+func TestBehavior_75(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -3715,42 +3350,39 @@ func BehavTest_75(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><MapOfListsOfStrings><entry><key>sizes</key><value><member>large</member><member>small</member></value></entry><entry><key>colors</key><value><member>red</member></value></entry></MapOfListsOfStrings></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><MapOfListsOfStrings><entry><key>sizes</key><value><member>large</member><member>small</member></value></entry><entry><key>colors</key><value><member>red</member></value></entry></MapOfListsOfStrings></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes maps of maps
-func BehavTest_76(t *testing.T) {
+func TestBehavior_76(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -3767,42 +3399,39 @@ func BehavTest_76(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><MapOfMaps><entry><key>key-1</key><value><entry><key>key-2</key><value>value-1</value></entry><entry><key>key-3</key><value>value-2</value></entry></value></entry><entry><key>key-4</key><value><entry><key>key-5</key><value>value-3</value></entry></value></entry></MapOfMaps></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><MapOfMaps><entry><key>key-1</key><value><entry><key>key-2</key><value>value-1</value></entry><entry><key>key-3</key><value>value-2</value></entry></value></entry><entry><key>key-4</key><value><entry><key>key-5</key><value>value-3</value></entry></value></entry></MapOfMaps></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes maps of structs
-func BehavTest_77(t *testing.T) {
+func TestBehavior_77(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -3818,42 +3447,39 @@ func BehavTest_77(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Map><entry><key>key-1</key><value><Value>value-1</Value></value></entry><entry><key>key-2</key><value><Value>value-2</Value></value></entry></Map></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Map><entry><key>key-1</key><value><Value>value-1</Value></value></entry><entry><key>key-2</key><value><Value>value-2</Value></value></entry></Map></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes maps
-func BehavTest_78(t *testing.T) {
+func TestBehavior_78(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -3869,42 +3495,39 @@ func BehavTest_78(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Map><entry><key>key-1</key><value><Value>value-1</Value></value></entry><entry><key>key-2</key><value><Value>value-2</Value></value></entry></Map></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Map><entry><key>key-1</key><value><Value>value-1</Value></value></entry><entry><key>key-2</key><value><Value>value-2</Value></value></entry></Map></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes maps with locationName traits
-func BehavTest_79(t *testing.T) {
+func TestBehavior_79(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -3920,42 +3543,39 @@ func BehavTest_79(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><map-with-name><entry><key>key-1</key><value><Value>value-1</Value></value></entry><entry><key>key-2</key><value><Value>value-2</Value></value></entry></map-with-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><map-with-name><entry><key>key-1</key><value><Value>value-1</Value></value></entry><entry><key>key-2</key><value><Value>value-2</Value></value></entry></map-with-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes maps with member locationName traits
-func BehavTest_80(t *testing.T) {
+func TestBehavior_80(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -3971,42 +3591,39 @@ func BehavTest_80(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><MapWithMemberNames><entry><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></entry><entry><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></entry></MapWithMemberNames></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><MapWithMemberNames><entry><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></entry><entry><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></entry></MapWithMemberNames></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes maps with member locationName traits
-func BehavTest_81(t *testing.T) {
+func TestBehavior_81(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -4022,42 +3639,39 @@ func BehavTest_81(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><map-name><entry><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></entry><entry><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></entry></map-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><map-name><entry><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></entry><entry><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></entry></map-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes flat maps
-func BehavTest_82(t *testing.T) {
+func TestBehavior_82(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -4073,42 +3687,39 @@ func BehavTest_82(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><FlatMap><key>key-1</key><value><Value>value-1</Value></value></FlatMap><FlatMap><key>key-2</key><value><Value>value-2</Value></value></FlatMap></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><FlatMap><key>key-1</key><value><Value>value-1</Value></value></FlatMap><FlatMap><key>key-2</key><value><Value>value-2</Value></value></FlatMap></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes flat maps with locationName traits
-func BehavTest_83(t *testing.T) {
+func TestBehavior_83(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -4124,42 +3735,39 @@ func BehavTest_83(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><flat-map-with-name><key>key-1</key><value><Value>value-1</Value></value></flat-map-with-name><flat-map-with-name><key>key-2</key><value><Value>value-2</Value></value></flat-map-with-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><flat-map-with-name><key>key-1</key><value><Value>value-1</Value></value></flat-map-with-name><flat-map-with-name><key>key-2</key><value><Value>value-2</Value></value></flat-map-with-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes flat maps with member locationName traits
-func BehavTest_84(t *testing.T) {
+func TestBehavior_84(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -4175,42 +3783,39 @@ func BehavTest_84(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><FlatMapWithMemberNames><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></FlatMapWithMemberNames><FlatMapWithMemberNames><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></FlatMapWithMemberNames></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><FlatMapWithMemberNames><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></FlatMapWithMemberNames><FlatMapWithMemberNames><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></FlatMapWithMemberNames></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes flat maps with member locationName traits
-func BehavTest_85(t *testing.T) {
+func TestBehavior_85(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -4226,42 +3831,39 @@ func BehavTest_85(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><flat-map><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></flat-map><flat-map><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></flat-map></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><flat-map><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></flat-map><flat-map><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></flat-map></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes recursive maps
-func BehavTest_86(t *testing.T) {
+func TestBehavior_86(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -4280,42 +3882,39 @@ func BehavTest_86(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveMap><entry><key>key-1</key><value><RecursiveMap><entry><key>key-2</key><value><RecursiveMap><entry><key>key-3</key><value><String>value-1</String></value></entry></RecursiveMap></value></entry></RecursiveMap></value></entry></RecursiveMap></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveMap><entry><key>key-1</key><value><RecursiveMap><entry><key>key-2</key><value><RecursiveMap><entry><key>key-3</key><value><String>value-1</String></value></entry></RecursiveMap></value></entry></RecursiveMap></value></entry></RecursiveMap></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes structs
-func BehavTest_87(t *testing.T) {
+func TestBehavior_87(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -4326,42 +3925,39 @@ func BehavTest_87(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><SimpleStruct><Value>value</Value></SimpleStruct></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><SimpleStruct><Value>value</Value></SimpleStruct></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes structs with locationName traits
-func BehavTest_88(t *testing.T) {
+func TestBehavior_88(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -4372,42 +3968,39 @@ func BehavTest_88(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><StructWithMemberWithName><member-with-name>value</member-with-name></StructWithMemberWithName></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><StructWithMemberWithName><member-with-name>value</member-with-name></StructWithMemberWithName></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes structures with no members
-func BehavTest_89(t *testing.T) {
+func TestBehavior_89(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -4416,42 +4009,39 @@ func BehavTest_89(t *testing.T) {
 		EmptyStruct: &sampleresetxmlprotocolservice.EmptyStruct{},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><EmptyStruct/></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><EmptyStruct/></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Serializes recursive structures
-func BehavTest_90(t *testing.T) {
+func TestBehavior_90(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -4464,42 +4054,39 @@ func BehavTest_90(t *testing.T) {
 		},
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200}
+		r.HTTPResponse = &http.Response{StatusCode: 200,
+			Header: http.Header{}}
 
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveStruct><RecursiveStruct><RecursiveStruct><String>value</String></RecursiveStruct></RecursiveStruct></RecursiveStruct></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveStruct><RecursiveStruct><RecursiveStruct><String>value</String></RecursiveStruct></RecursiveStruct></RecursiveStruct></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
 }
 
 //Parses status codes as output members
-func BehavTest_91(t *testing.T) {
+func TestBehavior_91(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -4509,7 +4096,7 @@ func BehavTest_91(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -4523,14 +4110,12 @@ func BehavTest_91(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
 	}) {
@@ -4540,17 +4125,15 @@ func BehavTest_91(t *testing.T) {
 }
 
 //Parses other 2XX status codes
-func BehavTest_92(t *testing.T) {
+func TestBehavior_92(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -4560,7 +4143,7 @@ func BehavTest_92(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -4574,14 +4157,12 @@ func BehavTest_92(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HttpStatusCode: aws.Int64(202),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
 	}) {
@@ -4591,17 +4172,15 @@ func BehavTest_92(t *testing.T) {
 }
 
 //Parses header strings
-func BehavTest_93(t *testing.T) {
+func TestBehavior_93(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -4611,7 +4190,7 @@ func BehavTest_93(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -4628,14 +4207,12 @@ func BehavTest_93(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderString:   aws.String("value"),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4646,17 +4223,15 @@ func BehavTest_93(t *testing.T) {
 }
 
 //Parses header strings with jsonvalue trait
-func BehavTest_94(t *testing.T) {
+func TestBehavior_94(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -4666,7 +4241,7 @@ func BehavTest_94(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -4683,14 +4258,12 @@ func BehavTest_94(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderJsonValue: aws.JSONValue{"foo": "bar"},
 		HttpStatusCode:  aws.Int64(200),
 		KitchenSink:     &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4701,17 +4274,15 @@ func BehavTest_94(t *testing.T) {
 }
 
 //Parses header integers
-func BehavTest_95(t *testing.T) {
+func TestBehavior_95(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -4721,7 +4292,7 @@ func BehavTest_95(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -4738,14 +4309,12 @@ func BehavTest_95(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderInteger:  aws.Int64(123456),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4756,17 +4325,15 @@ func BehavTest_95(t *testing.T) {
 }
 
 //Parses header longs
-func BehavTest_96(t *testing.T) {
+func TestBehavior_96(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -4776,7 +4343,7 @@ func BehavTest_96(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -4793,14 +4360,12 @@ func BehavTest_96(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderLong:     aws.Int64(123456),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4811,17 +4376,15 @@ func BehavTest_96(t *testing.T) {
 }
 
 //Parses header floats
-func BehavTest_97(t *testing.T) {
+func TestBehavior_97(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -4831,7 +4394,7 @@ func BehavTest_97(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -4848,14 +4411,12 @@ func BehavTest_97(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderFloat:    aws.Float64(123.456000),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4866,17 +4427,15 @@ func BehavTest_97(t *testing.T) {
 }
 
 //Parses header doubles
-func BehavTest_98(t *testing.T) {
+func TestBehavior_98(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -4886,7 +4445,7 @@ func BehavTest_98(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -4903,14 +4462,12 @@ func BehavTest_98(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderDouble:   aws.Float64(123.456000),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4921,17 +4478,15 @@ func BehavTest_98(t *testing.T) {
 }
 
 //Parses header boolean true values
-func BehavTest_99(t *testing.T) {
+func TestBehavior_99(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -4941,7 +4496,7 @@ func BehavTest_99(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -4958,14 +4513,12 @@ func BehavTest_99(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderBoolean:  aws.Bool(true),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4976,17 +4529,15 @@ func BehavTest_99(t *testing.T) {
 }
 
 //Parses header boolean false values
-func BehavTest_100(t *testing.T) {
+func TestBehavior_100(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -4996,7 +4547,7 @@ func BehavTest_100(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -5013,14 +4564,12 @@ func BehavTest_100(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderBoolean:  aws.Bool(false),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -5031,17 +4580,15 @@ func BehavTest_100(t *testing.T) {
 }
 
 //Parses header blobs
-func BehavTest_101(t *testing.T) {
+func TestBehavior_101(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -5051,7 +4598,7 @@ func BehavTest_101(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -5068,14 +4615,12 @@ func BehavTest_101(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderBlob:     []byte("YmluYXJ5LXZhbHVl"),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -5086,17 +4631,15 @@ func BehavTest_101(t *testing.T) {
 }
 
 //Parses header timestamps
-func BehavTest_102(t *testing.T) {
+func TestBehavior_102(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -5106,7 +4649,7 @@ func BehavTest_102(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -5123,14 +4666,12 @@ func BehavTest_102(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderTimestamp: parseTime("Mon, 2 Jan 2006 15:04:05 GMT", "946845296.000000"),
 		HttpStatusCode:  aws.Int64(200),
 		KitchenSink:     &sampleresetxmlprotocolservice.KitchenSink{},
@@ -5141,17 +4682,15 @@ func BehavTest_102(t *testing.T) {
 }
 
 //Parses header unix timestamps
-func BehavTest_103(t *testing.T) {
+func TestBehavior_103(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -5161,7 +4700,7 @@ func BehavTest_103(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -5178,14 +4717,12 @@ func BehavTest_103(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderUnixTimestamp: parseTime("Mon, 2 Jan 2006 15:04:05 GMT", "946845296.000000"),
 		HttpStatusCode:      aws.Int64(200),
 		KitchenSink:         &sampleresetxmlprotocolservice.KitchenSink{},
@@ -5196,17 +4733,15 @@ func BehavTest_103(t *testing.T) {
 }
 
 //Parses header iso8601 timestamps
-func BehavTest_104(t *testing.T) {
+func TestBehavior_104(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -5216,7 +4751,7 @@ func BehavTest_104(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -5233,14 +4768,12 @@ func BehavTest_104(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderIso8601Timestamp: parseTime("Mon, 2 Jan 2006 15:04:05 GMT", "946845296.123000"),
 		HttpStatusCode:         aws.Int64(200),
 		KitchenSink:            &sampleresetxmlprotocolservice.KitchenSink{},
@@ -5251,17 +4784,15 @@ func BehavTest_104(t *testing.T) {
 }
 
 //Parses header httpdate timestamps
-func BehavTest_105(t *testing.T) {
+func TestBehavior_105(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -5271,7 +4802,7 @@ func BehavTest_105(t *testing.T) {
 		UriPathSegment: aws.String("segment"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
@@ -5288,14 +4819,12 @@ func BehavTest_105(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
 	}) {
@@ -5305,17 +4834,15 @@ func BehavTest_105(t *testing.T) {
 }
 
 //Parses HTTP header maps, status codes, and bodies
-func BehavTest_106(t *testing.T) {
+func TestBehavior_106(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
@@ -5324,7 +4851,7 @@ func BehavTest_106(t *testing.T) {
 		Path: aws.String("path"),
 	}
 
-	//request is defines
+	//Build request
 	req, resp := svc.SimpleHttpOperationRequest(input)
 	_ = resp
 
@@ -5342,14 +4869,12 @@ func BehavTest_106(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.SimpleHttpOperationOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.SimpleHttpOperationOutput{
 		Headers: map[string]*string{
 			"Header-1": aws.String("value-1"),
 			"Header-2": aws.String("value-2"),
@@ -5363,24 +4888,22 @@ func BehavTest_106(t *testing.T) {
 }
 
 //Parses XML string members
-func BehavTest_107(t *testing.T) {
+func TestBehavior_107(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5394,38 +4917,34 @@ func BehavTest_107(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{}) {
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
 }
 
 //Parses XML jsonvalue string members
-func BehavTest_108(t *testing.T) {
+func TestBehavior_108(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5439,14 +4958,12 @@ func BehavTest_108(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		JsonValue: aws.JSONValue{"foo": "bar"},
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
@@ -5455,24 +4972,22 @@ func BehavTest_108(t *testing.T) {
 }
 
 //Parses XML integer members
-func BehavTest_109(t *testing.T) {
+func TestBehavior_109(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5486,14 +5001,12 @@ func BehavTest_109(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Integer: aws.Int64(123456),
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
@@ -5502,24 +5015,22 @@ func BehavTest_109(t *testing.T) {
 }
 
 //Parses XML long members
-func BehavTest_110(t *testing.T) {
+func TestBehavior_110(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5533,14 +5044,12 @@ func BehavTest_110(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Long: aws.Int64(123456),
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
@@ -5549,24 +5058,22 @@ func BehavTest_110(t *testing.T) {
 }
 
 //Parses XML float members
-func BehavTest_111(t *testing.T) {
+func TestBehavior_111(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5580,14 +5087,12 @@ func BehavTest_111(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Float: aws.Float64(123.456000),
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
@@ -5596,24 +5101,22 @@ func BehavTest_111(t *testing.T) {
 }
 
 //Parses XML double members
-func BehavTest_112(t *testing.T) {
+func TestBehavior_112(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5627,14 +5130,12 @@ func BehavTest_112(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Double: aws.Float64(123.456000),
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
@@ -5643,24 +5144,22 @@ func BehavTest_112(t *testing.T) {
 }
 
 //Parses XML boolean true members
-func BehavTest_113(t *testing.T) {
+func TestBehavior_113(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5674,14 +5173,12 @@ func BehavTest_113(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Boolean: aws.Bool(true),
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
@@ -5690,24 +5187,22 @@ func BehavTest_113(t *testing.T) {
 }
 
 //Parses XML boolean false members
-func BehavTest_114(t *testing.T) {
+func TestBehavior_114(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5721,14 +5216,12 @@ func BehavTest_114(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Boolean: aws.Bool(false),
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
@@ -5737,24 +5230,22 @@ func BehavTest_114(t *testing.T) {
 }
 
 //Parses XML blob members
-func BehavTest_115(t *testing.T) {
+func TestBehavior_115(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5768,14 +5259,12 @@ func BehavTest_115(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Blob: []byte("YmluYXJ5LXZhbHVl"),
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
@@ -5784,24 +5273,22 @@ func BehavTest_115(t *testing.T) {
 }
 
 //Parses XML timestamp members
-func BehavTest_116(t *testing.T) {
+func TestBehavior_116(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5815,14 +5302,12 @@ func BehavTest_116(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Timestamp: parseTime("2006-01-02T15:04:05Z", "946845296.123000"),
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
@@ -5831,24 +5316,22 @@ func BehavTest_116(t *testing.T) {
 }
 
 //Parses XML iso8601 timestamp members
-func BehavTest_117(t *testing.T) {
+func TestBehavior_117(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5862,14 +5345,12 @@ func BehavTest_117(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Iso8601Timestamp: parseTime("2006-01-02T15:04:05Z", "946845296.123000"),
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
@@ -5878,24 +5359,22 @@ func BehavTest_117(t *testing.T) {
 }
 
 //Parses XML httpdate timestamp members
-func BehavTest_118(t *testing.T) {
+func TestBehavior_118(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5909,38 +5388,34 @@ func BehavTest_118(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{}) {
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
 }
 
 //Parses XML unix timestamp members
-func BehavTest_119(t *testing.T) {
+func TestBehavior_119(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -5954,14 +5429,12 @@ func BehavTest_119(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		UnixTimestamp: parseTime("2006-01-02T15:04:05Z", "946845296.000000"),
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
@@ -5970,24 +5443,22 @@ func BehavTest_119(t *testing.T) {
 }
 
 //Parses XML lists of string members
-func BehavTest_120(t *testing.T) {
+func TestBehavior_120(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6001,14 +5472,12 @@ func BehavTest_120(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		ListOfStrings: []*string{
 			aws.String("abc"),
 			aws.String("xyz"),
@@ -6020,24 +5489,22 @@ func BehavTest_120(t *testing.T) {
 }
 
 //Parses XML lists of maps of string members
-func BehavTest_121(t *testing.T) {
+func TestBehavior_121(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6051,14 +5518,12 @@ func BehavTest_121(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		ListOfMapsOfStrings: []map[string]*string{
 			{
 				"color": aws.String("red"),
@@ -6075,24 +5540,22 @@ func BehavTest_121(t *testing.T) {
 }
 
 //Parses XML lists of recursive struct members
-func BehavTest_122(t *testing.T) {
+func TestBehavior_122(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6106,14 +5569,12 @@ func BehavTest_122(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		RecursiveList: []*sampleresetxmlprotocolservice.KitchenSink{
 			{
 				RecursiveList: []*sampleresetxmlprotocolservice.KitchenSink{
@@ -6128,24 +5589,22 @@ func BehavTest_122(t *testing.T) {
 }
 
 //Parses XML lists
-func BehavTest_123(t *testing.T) {
+func TestBehavior_123(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6159,14 +5618,12 @@ func BehavTest_123(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		List: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -6182,24 +5639,22 @@ func BehavTest_123(t *testing.T) {
 }
 
 //Parses XML lists with locationName traits
-func BehavTest_124(t *testing.T) {
+func TestBehavior_124(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6213,14 +5668,12 @@ func BehavTest_124(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		ListWithName: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -6236,24 +5689,22 @@ func BehavTest_124(t *testing.T) {
 }
 
 //Parses XML lists with member locationName traits
-func BehavTest_125(t *testing.T) {
+func TestBehavior_125(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6267,14 +5718,12 @@ func BehavTest_125(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		ListWithMemberName: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -6290,24 +5739,22 @@ func BehavTest_125(t *testing.T) {
 }
 
 //Parses XML lists with locationName traits and member locationName traits
-func BehavTest_126(t *testing.T) {
+func TestBehavior_126(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6321,14 +5768,12 @@ func BehavTest_126(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		ListWithBothNames: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -6344,24 +5789,22 @@ func BehavTest_126(t *testing.T) {
 }
 
 //Parses XML flat lists
-func BehavTest_127(t *testing.T) {
+func TestBehavior_127(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6375,14 +5818,12 @@ func BehavTest_127(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatList: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -6398,24 +5839,22 @@ func BehavTest_127(t *testing.T) {
 }
 
 //Parses XML flat lists with locationName traits
-func BehavTest_128(t *testing.T) {
+func TestBehavior_128(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6429,14 +5868,12 @@ func BehavTest_128(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatListWithName: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -6452,24 +5889,22 @@ func BehavTest_128(t *testing.T) {
 }
 
 //Parses XML flat lists with locationName traits
-func BehavTest_129(t *testing.T) {
+func TestBehavior_129(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6483,14 +5918,12 @@ func BehavTest_129(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatListWithBothNames: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -6506,24 +5939,22 @@ func BehavTest_129(t *testing.T) {
 }
 
 //Parses XML maps of strings
-func BehavTest_130(t *testing.T) {
+func TestBehavior_130(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6537,14 +5968,12 @@ func BehavTest_130(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapOfStrings: map[string]*string{
 			"key-1": aws.String("value-1"),
 			"key-2": aws.String("value-2"),
@@ -6556,24 +5985,22 @@ func BehavTest_130(t *testing.T) {
 }
 
 //Parses XML maps of lists of strings
-func BehavTest_131(t *testing.T) {
+func TestBehavior_131(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6587,14 +6014,12 @@ func BehavTest_131(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapOfListsOfStrings: map[string][]*string{
 			"key-1": {
 				aws.String("value-1"),
@@ -6611,24 +6036,22 @@ func BehavTest_131(t *testing.T) {
 }
 
 //Parses XML maps of maps of strings
-func BehavTest_132(t *testing.T) {
+func TestBehavior_132(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6642,14 +6065,12 @@ func BehavTest_132(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapOfMaps: map[string]map[string]*string{
 			"key-1": {
 				"key-2": aws.String("value-1"),
@@ -6666,24 +6087,22 @@ func BehavTest_132(t *testing.T) {
 }
 
 //Parses XML recursive maps
-func BehavTest_133(t *testing.T) {
+func TestBehavior_133(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6697,14 +6116,12 @@ func BehavTest_133(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		RecursiveMap: map[string]*sampleresetxmlprotocolservice.KitchenSink{
 			"\"key-1\"": {
 				RecursiveMap: map[string]*sampleresetxmlprotocolservice.KitchenSink{
@@ -6723,24 +6140,22 @@ func BehavTest_133(t *testing.T) {
 }
 
 //Parses XML maps
-func BehavTest_134(t *testing.T) {
+func TestBehavior_134(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6754,14 +6169,12 @@ func BehavTest_134(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Map: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"\"key-1\"": {
 				Value: aws.String("value-1"),
@@ -6777,24 +6190,22 @@ func BehavTest_134(t *testing.T) {
 }
 
 //Parses XML maps with locationName traits
-func BehavTest_135(t *testing.T) {
+func TestBehavior_135(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6808,14 +6219,12 @@ func BehavTest_135(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapWithName: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"\"key-1\"": {
 				Value: aws.String("value-1"),
@@ -6831,24 +6240,22 @@ func BehavTest_135(t *testing.T) {
 }
 
 //Parses XML maps with key and value locationName traits
-func BehavTest_136(t *testing.T) {
+func TestBehavior_136(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6862,14 +6269,12 @@ func BehavTest_136(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapWithMemberNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"\"key-1\"": {
 				Value: aws.String("value-1"),
@@ -6885,24 +6290,22 @@ func BehavTest_136(t *testing.T) {
 }
 
 //Parses XML maps with locationName traits and key and value locationName traits
-func BehavTest_137(t *testing.T) {
+func TestBehavior_137(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6916,14 +6319,12 @@ func BehavTest_137(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapWithBothNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"\"key-1\"": {
 				Value: aws.String("value-1"),
@@ -6939,24 +6340,22 @@ func BehavTest_137(t *testing.T) {
 }
 
 //Parses XML flat maps
-func BehavTest_138(t *testing.T) {
+func TestBehavior_138(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -6970,14 +6369,12 @@ func BehavTest_138(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatMap: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"\"key-1\"": {
 				Value: aws.String("value-1"),
@@ -6993,24 +6390,22 @@ func BehavTest_138(t *testing.T) {
 }
 
 //Parses XML flat maps with locationName traits
-func BehavTest_139(t *testing.T) {
+func TestBehavior_139(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -7024,14 +6419,12 @@ func BehavTest_139(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatMapWithName: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"\"key-1\"": {
 				Value: aws.String("value-1"),
@@ -7047,24 +6440,22 @@ func BehavTest_139(t *testing.T) {
 }
 
 //Parses XML flat maps with key and value locationName traits
-func BehavTest_140(t *testing.T) {
+func TestBehavior_140(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -7078,14 +6469,12 @@ func BehavTest_140(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatMapWithMemberNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"\"key-1\"": {
 				Value: aws.String("value-1"),
@@ -7101,24 +6490,22 @@ func BehavTest_140(t *testing.T) {
 }
 
 //Parses XML flat maps with locationName triat and key and value locationName traits
-func BehavTest_141(t *testing.T) {
+func TestBehavior_141(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -7132,14 +6519,12 @@ func BehavTest_141(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatMapWithBothNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"\"key-1\"": {
 				Value: aws.String("value-1"),
@@ -7155,24 +6540,22 @@ func BehavTest_141(t *testing.T) {
 }
 
 //Parses XML structures
-func BehavTest_142(t *testing.T) {
+func TestBehavior_142(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -7186,14 +6569,12 @@ func BehavTest_142(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		SimpleStruct: &sampleresetxmlprotocolservice.SimpleStruct{
 			Value: aws.String("value"),
 		},
@@ -7204,24 +6585,22 @@ func BehavTest_142(t *testing.T) {
 }
 
 //Parses XML structures with members with locationName traits
-func BehavTest_143(t *testing.T) {
+func TestBehavior_143(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -7235,14 +6614,12 @@ func BehavTest_143(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		StructWithMemberWithName: &sampleresetxmlprotocolservice.StructWithMemberWithName{
 			Value: aws.String("value"),
 		},
@@ -7253,24 +6630,22 @@ func BehavTest_143(t *testing.T) {
 }
 
 //Parses XML structures which have no members
-func BehavTest_144(t *testing.T) {
+func TestBehavior_144(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -7284,14 +6659,12 @@ func BehavTest_144(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		EmptyStruct: &sampleresetxmlprotocolservice.EmptyStruct{},
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
@@ -7300,24 +6673,22 @@ func BehavTest_144(t *testing.T) {
 }
 
 //Parses XML recursive structures
-func BehavTest_145(t *testing.T) {
+func TestBehavior_145(t *testing.T) {
 
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials(
-			"akid",
-			"secret", ""),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
 	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
-	//request is defines
+	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
@@ -7331,14 +6702,12 @@ func BehavTest_145(t *testing.T) {
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
-
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
 
 	//Assertions start here
-
-	if !assertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
 		RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{
 			RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{
 				RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{},

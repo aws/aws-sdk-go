@@ -34,7 +34,7 @@ func (c SmokeTestCase) BuildInputShape(ref *ShapeRef) string {
 	)
 }
 
-	// AttachSmokeTests attaches the smoke test cases to the API model.
+// AttachSmokeTests attaches the smoke test cases to the API model.
 func (a *API) AttachSmokeTests(filename string) {
 	f, err := os.Open(filename)
 	if err != nil {

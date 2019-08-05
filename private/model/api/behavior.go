@@ -89,23 +89,19 @@ func (a *API) AttachBehaviorTests(filename string) {
 func (a *API) APIBehaviorTestsGoCode() string {
 	w := bytes.NewBuffer(nil)
 	a.resetImports()
+
 	a.AddImport("testing")
 	a.AddImport("net/http")
 	a.AddImport("time")
 	a.AddImport("io/ioutil")
 	a.AddImport("bytes")
-	a.AddImport("net/url")
 	a.AddImport("strings")
-	a.AddImport("encoding/base64")
-	a.AddImport("github.com/google/go-cmp/cmp")
 
 	a.AddSDKImport("aws")
 	a.AddSDKImport("awstesting")
 	a.AddSDKImport("aws/session")
 	a.AddSDKImport("aws/credentials")
-	a.AddSDKImport("aws/awserr")
 	a.AddSDKImport("aws/corehandlers")
-	a.AddSDKImport("private/util")
 	a.AddSDKImport("aws/request")
 
 	a.AddImport(a.ImportPath())
@@ -135,13 +131,12 @@ func FormatAssertionName (val string) string{
 //Generates assertions
 func (c Case) GenerateAssertions (op *Operation) string{
 	var val string = "//Assertions start here"
-	val += fmt.Sprintf("\n")
 
 	for _, assertion := range  c.Expect{
 		for assertionName, assertionContext := range assertion{
 			val += fmt.Sprintf("\n")
 
-			val += "if !assert"
+			val += "if !awstesting.Assert"
 			if strings.Contains(assertionName, "request"){
 				switch assertionName {
 				case "requestBodyMatchesXml":
@@ -175,32 +170,33 @@ var funcMap = template.FuncMap{"Map": templateMap,"FormatAssertionName": FormatA
 var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(funcMap).Parse(`
 
 {{define "StashCredentials"}}
-	env := awstesting.StashEnv() //Stashes the current environment variables
-	_ = env
+	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+	defer restoreEnv()
 {{end}}
 
 {{define "SessionSetup"}}
-		//Starts a new session with credentials and region parsed from "defaults" in the Json file'
-		sess := session.Must(session.NewSession(&aws.Config{
-				 Region: aws.String( {{- if and (len $.testCase.LocalConfig) $.testCase.LocalConfig.AWS_REGION }} "{{$.testCase.LocalConfig.AWS_REGION}}" {{- else}} "{{$.Tests.Defaults.Env.AWS_REGION}}" {{- end}}),
-				 Credentials: credentials.NewStaticCredentials(
-								{{- if and (len $.testCase.LocalConfig) $.testCase.LocalConfig.AWS_ACCESS_KEY }}
-									"{{$.testCase.LocalConfig.AWS_ACCESS_KEY}}",							
-								{{- else}}
-									"{{$.Tests.Defaults.Env.AWS_ACCESS_KEY}}",
-								{{- end}}
+	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	sess := session.Must(session.NewSession(&aws.Config{
+			 Region: aws.String( {{- if and (len $.testCase.LocalConfig) $.testCase.LocalConfig.AWS_REGION }} "{{$.testCase.LocalConfig.AWS_REGION}}" {{- else}} "{{$.Tests.Defaults.Env.AWS_REGION}}" {{- end}}),
+			 Credentials: credentials.NewStaticCredentials(
+							{{- if and (len $.testCase.LocalConfig) $.testCase.LocalConfig.AWS_ACCESS_KEY -}}
+								"{{$.testCase.LocalConfig.AWS_ACCESS_KEY}}",							
+							{{- else -}}
+								"{{$.Tests.Defaults.Env.AWS_ACCESS_KEY}}",
+							{{- end -}}
 
-								{{- if and (len $.testCase.LocalConfig) $.testCase.LocalConfig.AWS_SECRET_ACCESS_KEY }}
-									"{{$.testCase.LocalConfig.AWS_SECRET_ACCESS_KEY}}",							
-								{{- else}}
-									"{{$.Tests.Defaults.Env.AWS_SECRET_ACCESS_KEY}}",
-								{{- end}} ""),
-			   }))
+							{{- if and (len $.testCase.LocalConfig) $.testCase.LocalConfig.AWS_SECRET_ACCESS_KEY -}}
+								"{{$.testCase.LocalConfig.AWS_SECRET_ACCESS_KEY}}",							
+							{{- else -}}
+								"{{$.Tests.Defaults.Env.AWS_SECRET_ACCESS_KEY}}",
+							{{- end -}} ""),
+		   }))
 {{end}}
 
 {{define "ResponseBuild"}}
 		{{- if eq $.testCase.Response.StatusCode 0}}
-			r.HTTPResponse = &http.Response{StatusCode:200}
+			r.HTTPResponse = &http.Response{StatusCode:200,
+											Header: http.Header{},}
 		{{- else }}
 			r.HTTPResponse = &http.Response{
 							StatusCode:{{$.testCase.Response.StatusCode}},
@@ -221,7 +217,7 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 {{define "RequestBuild"}}
 		input := {{ $.testCase.Request.BuildInputShape $.op.InputRef }}
 
-		//request is defines
+		//Build request
 		req, resp := svc.{{$.testCase.Request.Operation}}Request(input)
 		_ = resp
 
@@ -231,14 +227,11 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 		req.Handlers.Send.Swap( corehandlers.SendHandler.Name, MockHTTPResponseHandler )
 
 		err := req.Send()
-
 		if err != nil {
 			t.Errorf("expect no error, got %v", err)
 		}
-
 		{{printf "\n"}}
 {{end}}
-
 
 func parseTime(layout, value string) *time.Time {
 	t, err := time.Parse(layout, value)
@@ -248,143 +241,10 @@ func parseTime(layout, value string) *time.Time {
 	return &t
 }
 
-func assertRequestMethodEquals(t *testing.T, req *request.Request,val string) bool{
-	return req.HTTPRequest.Method == val
-}
-
-func assertRequestUrlMatches(t *testing.T, req *request.Request,val string) bool{
-	return awstesting.AssertURL(t, val, req.HTTPRequest.URL.String())
-}
-
-func assertRequestUrlPathMatches(t *testing.T, req *request.Request,val string) bool{
-	return req.HTTPRequest.URL.RequestURI() == val
-}
-
-func assertRequestUrlQueryMatches(t *testing.T, req *request.Request,val string) bool{
-	structExpect, err := url.Parse(val) // parsed val into a structure
-	if err!=nil{
-		t.Errorf("expect no error, got %v",err)
-	}
-	queryRequest := req.HTTPRequest.URL.Query() //parsed RawQuery of "req" to get the values inside
-	queryExpect := structExpect.Query() //parsed RawQuery of "val" to get the values inside
-
-	return queryRequest.Encode() == queryExpect.Encode()
-}
-
-func assertRequestHeadersMatch(t *testing.T, req *request.Request,header map[string]interface{}) bool{
-	for key, valExpect := range header{
-		valReq := req.HTTPRequest.Header.Get(key)
-		if valReq == "" || valReq[0] != valExpect{
-			return false
-		}
-	}
-	return true
-}
-
-func assertRequestBodyEqualsBytes(t *testing.T, req *request.Request,val string) bool{
-	var bytesReqBody []byte
-	bytesExpect, err := base64.StdEncoding.DecodeString(val)
-
-	if err != nil {
-		t.Errorf("expect no error, got %v", err)
-	}
-
-	if req.HTTPRequest.Body!= nil {
-  		bytesReqBody, err = ioutil.ReadAll(req.HTTPRequest.Body)
-		if err != nil {
-			t.Errorf("expect no error, got %v", err)
-		}
-	}
-
-	req.HTTPRequest.Body = ioutil.NopCloser(bytes.NewBuffer(bytesReqBody))
-
-	return bytes.Compare(bytesReqBody, bytesExpect) == 0 
-}
-
-func assertRequestBodyEqualsJson(t *testing.T, req *request.Request,val string) bool{
-	var bytesReqBody []byte
-	var err error
-	if req.HTTPRequest.Body!= nil {
-  		bytesReqBody, err  = ioutil.ReadAll(req.HTTPRequest.Body)
-		if err != nil {
-			t.Errorf("expect no error, got %v", err)
-		}
-	}
-
-	req.HTTPRequest.Body = ioutil.NopCloser(bytes.NewBuffer(bytesReqBody))
-
-	return awstesting.AssertJSON(t, val, util.Trim(string(bytesReqBody)) )
-}
-
-func assertRequestBodyMatchesXml(t *testing.T, req *request.Request,val string,container interface{}) bool{
-	r := req.HTTPRequest
-
-	if r.Body == nil {
-		t.Errorf("expect body not to be nil")
-	}
-	body := util.SortXML(r.Body)
-
-	return awstesting.AssertXML(t, val, util.Trim(string(body)),container )
-}
-
-func assertRequestBodyEqualsString(t *testing.T, req *request.Request,val string) bool{
-	var bytesReqBody []byte
-	var err error
-	if req.HTTPRequest.Body!= nil {
-  		bytesReqBody, err  = ioutil.ReadAll(req.HTTPRequest.Body)
-		if err != nil {
-			t.Errorf("expect no error, got %v", err)
-		}
-	}
-
-	req.HTTPRequest.Body = ioutil.NopCloser(bytes.NewBuffer(bytesReqBody))
-	stringReqBody := string(bytesReqBody)
-
-	return stringReqBody == val
-}
-
-func assertRequestIdEquals(t *testing.T, req *request.Request,val string) bool{
-	return req.RequestID == val
-}
-
-func assertResponseDataEquals(t *testing.T, response interface{}, expectResponse interface{}) bool{
-	if response == nil || expectResponse == nil {
-		return response == expectResponse
-	}
-	return cmp.Equal(expectResponse, response)
-}
-
-func assertResponseErrorIsKindOf(t *testing.T, err error,val string) bool{
-	if awsErr, ok := err.(awserr.Error); ok{
-		return awsErr.Code() == val
-	}
-	return true
-}
-
-func assertResponseErrorMessageEquals(t *testing.T, err error,val string) bool{
-	if awsErr, ok := err.(awserr.Error); ok{
-		return awsErr.Message() == val
-	}
-	return true
-}
-
-func assertResponseErrorDataEquals(t *testing.T, err error,val map[string]interface{}){
-    if testing.Short() {
-        t.Skip("skipping responseErrorDataEquals assertion")
-    }
-}
-
-func assertResponseErrorRequestIdEquals(t *testing.T, err error,val string) bool{
-	if reqErr, ok := err.(awserr.RequestFailure); ok{
-		return reqErr.RequestID() == val
-	}
-	return true
-}
-
 {{- range $i, $testCase := $.Tests.Cases }}
 	//{{printf "%s" $testCase.Description}}
 	{{- $op := index $.API.Operations $testCase.Request.Operation }}
-	func BehavTest_{{ printf "%02d" $i }}(t *testing.T) {
+	func TestBehavior_{{ printf "%02d" $i }}(t *testing.T) {
 
 		{{template "StashCredentials" .}}
 

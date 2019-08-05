@@ -3,12 +3,13 @@
 package api
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
 	"fmt"
 	"encoding/json"
 	"reflect"
 	"sort"
 	"strings"
+
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 // ShapeValueBuilder provides the logic to build the nested values for a shape.
@@ -137,7 +138,7 @@ func (b ShapeValueBuilder) BuildScalar(name, memName string, ref *ShapeRef, shap
 		dataType := ref.Shape.Type
 
 		if dataType=="timestamp" {
-			return parseTimeString(ref, memName, fmt.Sprintf("%f", v))//fixed here
+			return parseTimeString(ref, memName, fmt.Sprintf("%f", v))
 		}
 		if dataType == "integer" || dataType == "int64" || dataType == "long"{
 			return convertToCorrectType(memName, ref.Shape.Type, fmt.Sprintf("%d", int(shape.(float64))))
