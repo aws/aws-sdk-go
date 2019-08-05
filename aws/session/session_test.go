@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"strconv"
 	"strings"
 	"testing"
 
@@ -315,13 +314,13 @@ func TestNewSessionWithOptions_OverrideSharedConfigFiles(t *testing.T) {
 }
 
 func TestNewSessionWithOptions_Overrides(t *testing.T) {
-	cases := []struct {
+	cases := map[string]struct {
 		InEnvs    map[string]string
 		InProfile string
 		OutRegion string
 		OutCreds  credentials.Value
 	}{
-		{
+		"env profile with opt profile": {
 			InEnvs: map[string]string{
 				"AWS_SDK_LOAD_CONFIG":         "0",
 				"AWS_SHARED_CREDENTIALS_FILE": testConfigFilename,
@@ -335,7 +334,23 @@ func TestNewSessionWithOptions_Overrides(t *testing.T) {
 				ProviderName:    "SharedConfigCredentials",
 			},
 		},
-		{
+		"env creds with env profile": {
+			InEnvs: map[string]string{
+				"AWS_SDK_LOAD_CONFIG":         "0",
+				"AWS_SHARED_CREDENTIALS_FILE": testConfigFilename,
+				"AWS_REGION":                  "env_region",
+				"AWS_ACCESS_KEY":              "env_akid",
+				"AWS_SECRET_ACCESS_KEY":       "env_secret",
+				"AWS_PROFILE":                 "other_profile",
+			},
+			OutRegion: "env_region",
+			OutCreds: credentials.Value{
+				AccessKeyID:     "env_akid",
+				SecretAccessKey: "env_secret",
+				ProviderName:    "EnvConfigCredentials",
+			},
+		},
+		"env creds with opt profile": {
 			InEnvs: map[string]string{
 				"AWS_SDK_LOAD_CONFIG":         "0",
 				"AWS_SHARED_CREDENTIALS_FILE": testConfigFilename,
@@ -352,12 +367,12 @@ func TestNewSessionWithOptions_Overrides(t *testing.T) {
 				ProviderName:    "SharedConfigCredentials",
 			},
 		},
-		{
+		"cfg and cred file with opt profile": {
 			InEnvs: map[string]string{
 				"AWS_SDK_LOAD_CONFIG":         "0",
 				"AWS_SHARED_CREDENTIALS_FILE": testConfigFilename,
 				"AWS_CONFIG_FILE":             testConfigOtherFilename,
-				"AWS_PROFILE":                 "shared_profile",
+				"AWS_PROFILE":                 "other_profile",
 			},
 			InProfile: "config_file_load_order",
 			OutRegion: "shared_config_region",
@@ -369,8 +384,8 @@ func TestNewSessionWithOptions_Overrides(t *testing.T) {
 		},
 	}
 
-	for i, c := range cases {
-		t.Run(strconv.Itoa(i), func(t *testing.T) {
+	for name, c := range cases {
+		t.Run(name, func(t *testing.T) {
 			restoreEnvFn := initSessionTestEnv()
 			defer restoreEnvFn()
 
@@ -383,12 +398,12 @@ func TestNewSessionWithOptions_Overrides(t *testing.T) {
 				SharedConfigState: SharedConfigEnable,
 			})
 			if err != nil {
-				t.Errorf("expect nil, %v", err)
+				t.Fatalf("expect no error, got %v", err)
 			}
 
 			creds, err := s.Config.Credentials.Get()
 			if err != nil {
-				t.Errorf("expect nil, %v", err)
+				t.Fatalf("expect no error, got %v", err)
 			}
 			if e, a := c.OutRegion, *s.Config.Region; e != a {
 				t.Errorf("expect %v, got %v", e, a)

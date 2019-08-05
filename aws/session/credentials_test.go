@@ -89,6 +89,7 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 	cases := []struct {
 		name              string
 		profile           string
+		sessOptProfile    string
 		expectedError     error
 		expectedAccessKey string
 		expectedSecretKey string
@@ -107,7 +108,7 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 		},
 		{
 			name:              "env var credential source",
-			profile:           "env_var_credential_source",
+			sessOptProfile:    "env_var_credential_source",
 			expectedAccessKey: "AKID",
 			expectedSecretKey: "SECRET",
 			expectedChain: []string{
@@ -191,7 +192,9 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 
 			os.Setenv("AWS_REGION", "us-east-1")
 			os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
-			os.Setenv("AWS_PROFILE", c.profile)
+			if len(c.profile) != 0 {
+				os.Setenv("AWS_PROFILE", c.profile)
+			}
 
 			endpointResolver, cleanupFn := setupCredentialsEndpoints(t)
 			defer cleanupFn()
@@ -211,6 +214,7 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 			})
 
 			sess, err := NewSessionWithOptions(Options{
+				Profile: c.sessOptProfile,
 				Config: aws.Config{
 					Logger:           t,
 					EndpointResolver: endpointResolver,
