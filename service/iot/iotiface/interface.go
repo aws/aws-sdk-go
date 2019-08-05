@@ -92,6 +92,10 @@ type IoTAPI interface {
 	AttachThingPrincipalWithContext(aws.Context, *iot.AttachThingPrincipalInput, ...request.Option) (*iot.AttachThingPrincipalOutput, error)
 	AttachThingPrincipalRequest(*iot.AttachThingPrincipalInput) (*request.Request, *iot.AttachThingPrincipalOutput)
 
+	CancelAuditMitigationActionsTask(*iot.CancelAuditMitigationActionsTaskInput) (*iot.CancelAuditMitigationActionsTaskOutput, error)
+	CancelAuditMitigationActionsTaskWithContext(aws.Context, *iot.CancelAuditMitigationActionsTaskInput, ...request.Option) (*iot.CancelAuditMitigationActionsTaskOutput, error)
+	CancelAuditMitigationActionsTaskRequest(*iot.CancelAuditMitigationActionsTaskInput) (*request.Request, *iot.CancelAuditMitigationActionsTaskOutput)
+
 	CancelAuditTask(*iot.CancelAuditTaskInput) (*iot.CancelAuditTaskOutput, error)
 	CancelAuditTaskWithContext(aws.Context, *iot.CancelAuditTaskInput, ...request.Option) (*iot.CancelAuditTaskOutput, error)
 	CancelAuditTaskRequest(*iot.CancelAuditTaskInput) (*request.Request, *iot.CancelAuditTaskOutput)
@@ -135,6 +139,10 @@ type IoTAPI interface {
 	CreateKeysAndCertificate(*iot.CreateKeysAndCertificateInput) (*iot.CreateKeysAndCertificateOutput, error)
 	CreateKeysAndCertificateWithContext(aws.Context, *iot.CreateKeysAndCertificateInput, ...request.Option) (*iot.CreateKeysAndCertificateOutput, error)
 	CreateKeysAndCertificateRequest(*iot.CreateKeysAndCertificateInput) (*request.Request, *iot.CreateKeysAndCertificateOutput)
+
+	CreateMitigationAction(*iot.CreateMitigationActionInput) (*iot.CreateMitigationActionOutput, error)
+	CreateMitigationActionWithContext(aws.Context, *iot.CreateMitigationActionInput, ...request.Option) (*iot.CreateMitigationActionOutput, error)
+	CreateMitigationActionRequest(*iot.CreateMitigationActionInput) (*request.Request, *iot.CreateMitigationActionOutput)
 
 	CreateOTAUpdate(*iot.CreateOTAUpdateInput) (*iot.CreateOTAUpdateOutput, error)
 	CreateOTAUpdateWithContext(aws.Context, *iot.CreateOTAUpdateInput, ...request.Option) (*iot.CreateOTAUpdateOutput, error)
@@ -212,6 +220,10 @@ type IoTAPI interface {
 	DeleteJobExecutionWithContext(aws.Context, *iot.DeleteJobExecutionInput, ...request.Option) (*iot.DeleteJobExecutionOutput, error)
 	DeleteJobExecutionRequest(*iot.DeleteJobExecutionInput) (*request.Request, *iot.DeleteJobExecutionOutput)
 
+	DeleteMitigationAction(*iot.DeleteMitigationActionInput) (*iot.DeleteMitigationActionOutput, error)
+	DeleteMitigationActionWithContext(aws.Context, *iot.DeleteMitigationActionInput, ...request.Option) (*iot.DeleteMitigationActionOutput, error)
+	DeleteMitigationActionRequest(*iot.DeleteMitigationActionInput) (*request.Request, *iot.DeleteMitigationActionOutput)
+
 	DeleteOTAUpdate(*iot.DeleteOTAUpdateInput) (*iot.DeleteOTAUpdateOutput, error)
 	DeleteOTAUpdateWithContext(aws.Context, *iot.DeleteOTAUpdateInput, ...request.Option) (*iot.DeleteOTAUpdateOutput, error)
 	DeleteOTAUpdateRequest(*iot.DeleteOTAUpdateInput) (*request.Request, *iot.DeleteOTAUpdateOutput)
@@ -272,6 +284,14 @@ type IoTAPI interface {
 	DescribeAccountAuditConfigurationWithContext(aws.Context, *iot.DescribeAccountAuditConfigurationInput, ...request.Option) (*iot.DescribeAccountAuditConfigurationOutput, error)
 	DescribeAccountAuditConfigurationRequest(*iot.DescribeAccountAuditConfigurationInput) (*request.Request, *iot.DescribeAccountAuditConfigurationOutput)
 
+	DescribeAuditFinding(*iot.DescribeAuditFindingInput) (*iot.DescribeAuditFindingOutput, error)
+	DescribeAuditFindingWithContext(aws.Context, *iot.DescribeAuditFindingInput, ...request.Option) (*iot.DescribeAuditFindingOutput, error)
+	DescribeAuditFindingRequest(*iot.DescribeAuditFindingInput) (*request.Request, *iot.DescribeAuditFindingOutput)
+
+	DescribeAuditMitigationActionsTask(*iot.DescribeAuditMitigationActionsTaskInput) (*iot.DescribeAuditMitigationActionsTaskOutput, error)
+	DescribeAuditMitigationActionsTaskWithContext(aws.Context, *iot.DescribeAuditMitigationActionsTaskInput, ...request.Option) (*iot.DescribeAuditMitigationActionsTaskOutput, error)
+	DescribeAuditMitigationActionsTaskRequest(*iot.DescribeAuditMitigationActionsTaskInput) (*request.Request, *iot.DescribeAuditMitigationActionsTaskOutput)
+
 	DescribeAuditTask(*iot.DescribeAuditTaskInput) (*iot.DescribeAuditTaskOutput, error)
 	DescribeAuditTaskWithContext(aws.Context, *iot.DescribeAuditTaskInput, ...request.Option) (*iot.DescribeAuditTaskOutput, error)
 	DescribeAuditTaskRequest(*iot.DescribeAuditTaskInput) (*request.Request, *iot.DescribeAuditTaskOutput)
@@ -315,6 +335,10 @@ type IoTAPI interface {
 	DescribeJobExecution(*iot.DescribeJobExecutionInput) (*iot.DescribeJobExecutionOutput, error)
 	DescribeJobExecutionWithContext(aws.Context, *iot.DescribeJobExecutionInput, ...request.Option) (*iot.DescribeJobExecutionOutput, error)
 	DescribeJobExecutionRequest(*iot.DescribeJobExecutionInput) (*request.Request, *iot.DescribeJobExecutionOutput)
+
+	DescribeMitigationAction(*iot.DescribeMitigationActionInput) (*iot.DescribeMitigationActionOutput, error)
+	DescribeMitigationActionWithContext(aws.Context, *iot.DescribeMitigationActionInput, ...request.Option) (*iot.DescribeMitigationActionOutput, error)
+	DescribeMitigationActionRequest(*iot.DescribeMitigationActionInput) (*request.Request, *iot.DescribeMitigationActionOutput)
 
 	DescribeRoleAlias(*iot.DescribeRoleAliasInput) (*iot.DescribeRoleAliasOutput, error)
 	DescribeRoleAliasWithContext(aws.Context, *iot.DescribeRoleAliasInput, ...request.Option) (*iot.DescribeRoleAliasOutput, error)
@@ -428,6 +452,14 @@ type IoTAPI interface {
 	ListAuditFindingsWithContext(aws.Context, *iot.ListAuditFindingsInput, ...request.Option) (*iot.ListAuditFindingsOutput, error)
 	ListAuditFindingsRequest(*iot.ListAuditFindingsInput) (*request.Request, *iot.ListAuditFindingsOutput)
 
+	ListAuditMitigationActionsExecutions(*iot.ListAuditMitigationActionsExecutionsInput) (*iot.ListAuditMitigationActionsExecutionsOutput, error)
+	ListAuditMitigationActionsExecutionsWithContext(aws.Context, *iot.ListAuditMitigationActionsExecutionsInput, ...request.Option) (*iot.ListAuditMitigationActionsExecutionsOutput, error)
+	ListAuditMitigationActionsExecutionsRequest(*iot.ListAuditMitigationActionsExecutionsInput) (*request.Request, *iot.ListAuditMitigationActionsExecutionsOutput)
+
+	ListAuditMitigationActionsTasks(*iot.ListAuditMitigationActionsTasksInput) (*iot.ListAuditMitigationActionsTasksOutput, error)
+	ListAuditMitigationActionsTasksWithContext(aws.Context, *iot.ListAuditMitigationActionsTasksInput, ...request.Option) (*iot.ListAuditMitigationActionsTasksOutput, error)
+	ListAuditMitigationActionsTasksRequest(*iot.ListAuditMitigationActionsTasksInput) (*request.Request, *iot.ListAuditMitigationActionsTasksOutput)
+
 	ListAuditTasks(*iot.ListAuditTasksInput) (*iot.ListAuditTasksOutput, error)
 	ListAuditTasksWithContext(aws.Context, *iot.ListAuditTasksInput, ...request.Option) (*iot.ListAuditTasksOutput, error)
 	ListAuditTasksRequest(*iot.ListAuditTasksInput) (*request.Request, *iot.ListAuditTasksOutput)
@@ -467,6 +499,10 @@ type IoTAPI interface {
 	ListJobs(*iot.ListJobsInput) (*iot.ListJobsOutput, error)
 	ListJobsWithContext(aws.Context, *iot.ListJobsInput, ...request.Option) (*iot.ListJobsOutput, error)
 	ListJobsRequest(*iot.ListJobsInput) (*request.Request, *iot.ListJobsOutput)
+
+	ListMitigationActions(*iot.ListMitigationActionsInput) (*iot.ListMitigationActionsOutput, error)
+	ListMitigationActionsWithContext(aws.Context, *iot.ListMitigationActionsInput, ...request.Option) (*iot.ListMitigationActionsOutput, error)
+	ListMitigationActionsRequest(*iot.ListMitigationActionsInput) (*request.Request, *iot.ListMitigationActionsOutput)
 
 	ListOTAUpdates(*iot.ListOTAUpdatesInput) (*iot.ListOTAUpdatesOutput, error)
 	ListOTAUpdatesWithContext(aws.Context, *iot.ListOTAUpdatesInput, ...request.Option) (*iot.ListOTAUpdatesOutput, error)
@@ -628,6 +664,10 @@ type IoTAPI interface {
 	SetV2LoggingOptionsWithContext(aws.Context, *iot.SetV2LoggingOptionsInput, ...request.Option) (*iot.SetV2LoggingOptionsOutput, error)
 	SetV2LoggingOptionsRequest(*iot.SetV2LoggingOptionsInput) (*request.Request, *iot.SetV2LoggingOptionsOutput)
 
+	StartAuditMitigationActionsTask(*iot.StartAuditMitigationActionsTaskInput) (*iot.StartAuditMitigationActionsTaskOutput, error)
+	StartAuditMitigationActionsTaskWithContext(aws.Context, *iot.StartAuditMitigationActionsTaskInput, ...request.Option) (*iot.StartAuditMitigationActionsTaskOutput, error)
+	StartAuditMitigationActionsTaskRequest(*iot.StartAuditMitigationActionsTaskInput) (*request.Request, *iot.StartAuditMitigationActionsTaskOutput)
+
 	StartOnDemandAuditTask(*iot.StartOnDemandAuditTaskInput) (*iot.StartOnDemandAuditTaskOutput, error)
 	StartOnDemandAuditTaskWithContext(aws.Context, *iot.StartOnDemandAuditTaskInput, ...request.Option) (*iot.StartOnDemandAuditTaskOutput, error)
 	StartOnDemandAuditTaskRequest(*iot.StartOnDemandAuditTaskInput) (*request.Request, *iot.StartOnDemandAuditTaskOutput)
@@ -695,6 +735,10 @@ type IoTAPI interface {
 	UpdateJob(*iot.UpdateJobInput) (*iot.UpdateJobOutput, error)
 	UpdateJobWithContext(aws.Context, *iot.UpdateJobInput, ...request.Option) (*iot.UpdateJobOutput, error)
 	UpdateJobRequest(*iot.UpdateJobInput) (*request.Request, *iot.UpdateJobOutput)
+
+	UpdateMitigationAction(*iot.UpdateMitigationActionInput) (*iot.UpdateMitigationActionOutput, error)
+	UpdateMitigationActionWithContext(aws.Context, *iot.UpdateMitigationActionInput, ...request.Option) (*iot.UpdateMitigationActionOutput, error)
+	UpdateMitigationActionRequest(*iot.UpdateMitigationActionInput) (*request.Request, *iot.UpdateMitigationActionOutput)
 
 	UpdateRoleAlias(*iot.UpdateRoleAliasInput) (*iot.UpdateRoleAliasOutput, error)
 	UpdateRoleAliasWithContext(aws.Context, *iot.UpdateRoleAliasInput, ...request.Option) (*iot.UpdateRoleAliasOutput, error)
