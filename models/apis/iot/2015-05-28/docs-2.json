@@ -8,8 +8,9 @@
     "AssociateTargetsWithJob": "<p>Associates a group with a continuous job. The following criteria must be met: </p> <ul> <li> <p>The job must have been created with the <code>targetSelection</code> field set to \"CONTINUOUS\".</p> </li> <li> <p>The job status must currently be \"IN_PROGRESS\".</p> </li> <li> <p>The total number of targets associated with a job must not exceed 100.</p> </li> </ul>",
     "AttachPolicy": "<p>Attaches a policy to the specified target.</p>",
     "AttachPrincipalPolicy": "<p>Attaches the specified policy to the specified principal (certificate or other credential).</p> <p> <b>Note:</b> This API is deprecated. Please use <a>AttachPolicy</a> instead.</p>",
-    "AttachSecurityProfile": "<p>Associates a Device Defender security profile with a thing group or with this account. Each thing group or account can have up to five security profiles associated with it.</p>",
+    "AttachSecurityProfile": "<p>Associates a Device Defender security profile with a thing group or this account. Each thing group or account can have up to five security profiles associated with it.</p>",
     "AttachThingPrincipal": "<p>Attaches the specified principal to the specified thing. A principal can be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities or federated identities.</p>",
+    "CancelAuditMitigationActionsTask": "<p>Cancels a mitigation action task that is in progress. If the task is not in progress, an InvalidRequestException occurs.</p>",
     "CancelAuditTask": "<p>Cancels an audit that is in progress. The audit can be either scheduled or on-demand. If the audit is not in progress, an \"InvalidRequestException\" occurs.</p>",
     "CancelCertificateTransfer": "<p>Cancels a pending transfer for the specified certificate.</p> <p> <b>Note</b> Only the transfer source account can use this operation to cancel a transfer. (Transfer destinations can use <a>RejectCertificateTransfer</a> instead.) After transfer, AWS IoT returns the certificate to the source account in the INACTIVE state. After the destination account has accepted the transfer, the transfer cannot be cancelled.</p> <p>After a certificate transfer is cancelled, the status of the certificate changes from PENDING_TRANSFER to INACTIVE.</p>",
     "CancelJob": "<p>Cancels a job.</p>",
@@ -21,6 +22,7 @@
     "CreateDynamicThingGroup": "<p>Creates a dynamic thing group.</p>",
     "CreateJob": "<p>Creates a job.</p>",
     "CreateKeysAndCertificate": "<p>Creates a 2048-bit RSA key pair and issues an X.509 certificate using the issued public key.</p> <p> <b>Note</b> This is the only time AWS IoT issues the private key for this certificate, so it is important to keep it in a secure location.</p>",
+    "CreateMitigationAction": "<p>Defines an action that can be applied to audit findings by using StartAuditMitigationActionsTask. Each mitigation action can apply only one type of change.</p>",
     "CreateOTAUpdate": "<p>Creates an AWS IoT OTAUpdate on a target group of things or groups.</p>",
     "CreatePolicy": "<p>Creates an AWS IoT policy.</p> <p>The created policy is the default version for the policy. This operation creates a policy version with a version identifier of <b>1</b> and sets <b>1</b> as the policy's default version.</p>",
     "CreatePolicyVersion": "<p>Creates a new version of the specified AWS IoT policy. To update a policy, create a new policy version. A managed policy can have up to five versions. If the policy has five versions, you must use <a>DeletePolicyVersion</a> to delete an existing version before you create a new one.</p> <p>Optionally, you can set the new version as the policy's default version. The default version is the operative version (that is, the version that is in effect for the certificates to which the policy is attached).</p>",
@@ -36,10 +38,11 @@
     "DeleteAuthorizer": "<p>Deletes an authorizer.</p>",
     "DeleteBillingGroup": "<p>Deletes the billing group.</p>",
     "DeleteCACertificate": "<p>Deletes a registered CA certificate.</p>",
-    "DeleteCertificate": "<p>Deletes the specified certificate.</p> <p>A certificate cannot be deleted if it has a policy attached to it or if its status is set to ACTIVE. To delete a certificate, first use the <a>DetachPrincipalPolicy</a> API to detach all policies. Next, use the <a>UpdateCertificate</a> API to set the certificate to the INACTIVE status.</p>",
+    "DeleteCertificate": "<p>Deletes the specified certificate.</p> <p>A certificate cannot be deleted if it has a policy or IoT thing attached to it or if its status is set to ACTIVE. To delete a certificate, first use the <a>DetachPrincipalPolicy</a> API to detach all policies. Next, use the <a>UpdateCertificate</a> API to set the certificate to the INACTIVE status.</p>",
     "DeleteDynamicThingGroup": "<p>Deletes a dynamic thing group.</p>",
     "DeleteJob": "<p>Deletes a job and its related job executions.</p> <p>Deleting a job may take time, depending on the number of job executions created for the job and various other factors. While the job is being deleted, the status of the job will be shown as \"DELETION_IN_PROGRESS\". Attempting to delete or cancel a job whose status is already \"DELETION_IN_PROGRESS\" will result in an error.</p> <p>Only 10 jobs may have status \"DELETION_IN_PROGRESS\" at the same time, or a LimitExceededException will occur.</p>",
     "DeleteJobExecution": "<p>Deletes a job execution.</p>",
+    "DeleteMitigationAction": "<p>Deletes a defined mitigation action from your AWS account.</p>",
     "DeleteOTAUpdate": "<p>Delete an OTA update.</p>",
     "DeletePolicy": "<p>Deletes the specified policy.</p> <p>A policy cannot be deleted if it has non-default versions or it is attached to any certificate.</p> <p>To delete a policy, use the DeletePolicyVersion API to delete all non-default versions of the policy; use the DetachPrincipalPolicy API to detach the policy from any certificate; and then use the DeletePolicy API to delete the policy.</p> <p>When a policy is deleted using DeletePolicy, its default version is deleted with it.</p>",
     "DeletePolicyVersion": "<p>Deletes the specified version of the specified policy. You cannot delete the default version of a policy using this API. To delete the default version of a policy, use <a>DeletePolicy</a>. To find out which version of a policy is marked as the default version, use ListPolicyVersions.</p>",
@@ -55,6 +58,8 @@
     "DeleteV2LoggingLevel": "<p>Deletes a logging level.</p>",
     "DeprecateThingType": "<p>Deprecates a thing type. You can not associate new things with deprecated thing type.</p>",
     "DescribeAccountAuditConfiguration": "<p>Gets information about the Device Defender audit settings for this account. Settings include how audit notifications are sent and which audit checks are enabled or disabled.</p>",
+    "DescribeAuditFinding": "<p>Gets information about a single audit finding. Properties include the reason for noncompliance, the severity of the issue, and when the audit that returned the finding was started.</p>",
+    "DescribeAuditMitigationActionsTask": "<p>Gets information about an audit mitigation task that is used to apply mitigation actions to a set of audit findings. Properties include the actions being applied, the audit checks to which they're being applied, the task status, and aggregated task statistics.</p>",
     "DescribeAuditTask": "<p>Gets information about a Device Defender audit.</p>",
     "DescribeAuthorizer": "<p>Describes an authorizer.</p>",
     "DescribeBillingGroup": "<p>Returns information about a billing group.</p>",
@@ -66,6 +71,7 @@
     "DescribeIndex": "<p>Describes a search index.</p>",
     "DescribeJob": "<p>Describes a job.</p>",
     "DescribeJobExecution": "<p>Describes a job execution.</p>",
+    "DescribeMitigationAction": "<p>Gets information about a mitigation action.</p>",
     "DescribeRoleAlias": "<p>Describes a role alias.</p>",
     "DescribeScheduledAudit": "<p>Gets information about a scheduled audit.</p>",
     "DescribeSecurityProfile": "<p>Gets information about a Device Defender security profile.</p>",
@@ -94,6 +100,8 @@
     "ListActiveViolations": "<p>Lists the active violations for a given Device Defender security profile.</p>",
     "ListAttachedPolicies": "<p>Lists the policies attached to the specified thing group.</p>",
     "ListAuditFindings": "<p>Lists the findings (results) of a Device Defender audit or of the audits performed during a specified time period. (Findings are retained for 180 days.)</p>",
+    "ListAuditMitigationActionsExecutions": "<p>Gets the status of audit mitigation action tasks that were executed.</p>",
+    "ListAuditMitigationActionsTasks": "<p>Gets a list of audit mitigation action tasks that match the specified filters.</p>",
     "ListAuditTasks": "<p>Lists the Device Defender audits that have been performed during a given time period.</p>",
     "ListAuthorizers": "<p>Lists the authorizers registered in your account.</p>",
     "ListBillingGroups": "<p>Lists the billing groups you have created.</p>",
@@ -104,6 +112,7 @@
     "ListJobExecutionsForJob": "<p>Lists the job executions for a job.</p>",
     "ListJobExecutionsForThing": "<p>Lists the job executions for the specified thing.</p>",
     "ListJobs": "<p>Lists jobs.</p>",
+    "ListMitigationActions": "<p>Gets a list of all mitigation actions that match the specified filter criteria.</p>",
     "ListOTAUpdates": "<p>Lists OTA updates.</p>",
     "ListOutgoingCertificates": "<p>Lists certificates that are being transferred but not yet accepted.</p>",
     "ListPolicies": "<p>Lists your policies.</p>",
@@ -130,7 +139,7 @@
     "ListThingsInThingGroup": "<p>Lists the things in the specified group.</p>",
     "ListTopicRules": "<p>Lists the rules for the specific topic.</p>",
     "ListV2LoggingLevels": "<p>Lists logging levels.</p>",
-    "ListViolationEvents": "<p>Lists the Device Defender security profile violations discovered during the given time period. You can use filters to limit the results to those alerts issued for a particular security profile, behavior or thing (device).</p>",
+    "ListViolationEvents": "<p>Lists the Device Defender security profile violations discovered during the given time period. You can use filters to limit the results to those alerts issued for a particular security profile, behavior, or thing (device).</p>",
     "RegisterCACertificate": "<p>Registers a CA certificate with AWS IoT. This CA certificate can then be used to sign device certificates, which can be then registered with AWS IoT. You can register up to 10 CA certificates per AWS account that have the same subject field. This enables you to have up to 10 certificate authorities sign your device certificates. If you have more than one CA certificate registered, make sure you pass the CA certificate when you register your device certificates with the RegisterCertificate API.</p>",
     "RegisterCertificate": "<p>Registers a device certificate with AWS IoT. If you have more than one CA certificate that has the same subject field, you must specify the CA certificate that was used to sign the device certificate being registered.</p>",
     "RegisterThing": "<p>Provisions a thing.</p>",
@@ -144,6 +153,7 @@
     "SetLoggingOptions": "<p>Sets the logging options.</p> <p>NOTE: use of this command is not recommended. Use <code>SetV2LoggingOptions</code> instead.</p>",
     "SetV2LoggingLevel": "<p>Sets the logging level.</p>",
     "SetV2LoggingOptions": "<p>Sets the logging options for the V2 logging service.</p>",
+    "StartAuditMitigationActionsTask": "<p>Starts a task that applies a set of mitigation actions to the specified target.</p>",
     "StartOnDemandAuditTask": "<p>Starts an on-demand Device Defender audit.</p>",
     "StartThingRegistrationTask": "<p>Creates a bulk thing provisioning task.</p>",
     "StopThingRegistrationTask": "<p>Cancels a bulk thing provisioning task.</p>",
@@ -161,8 +171,9 @@
     "UpdateEventConfigurations": "<p>Updates the event configurations.</p>",
     "UpdateIndexingConfiguration": "<p>Updates the search configuration.</p>",
     "UpdateJob": "<p>Updates supported fields of the specified job.</p>",
+    "UpdateMitigationAction": "<p>Updates the definition for the specified mitigation action.</p>",
     "UpdateRoleAlias": "<p>Updates a role alias.</p>",
-    "UpdateScheduledAudit": "<p>Updates a scheduled audit, including what checks are performed and how often the audit takes place.</p>",
+    "UpdateScheduledAudit": "<p>Updates a scheduled audit, including which checks are performed and how often the audit takes place.</p>",
     "UpdateSecurityProfile": "<p>Updates a Device Defender security profile.</p>",
     "UpdateStream": "<p>Updates an existing stream. The stream version will be incremented by one.</p>",
     "UpdateThing": "<p>Updates the data for a thing.</p>",
@@ -261,13 +272,19 @@
       "refs": {
       }
     },
+    "AddThingsToThingGroupParams": {
+      "base": "<p>Parameters used when defining a mitigation action that move a set of things to a thing group.</p>",
+      "refs": {
+        "MitigationActionParams$addThingsToThingGroupParams": "<p>Parameters to define a mitigation action that moves devices associated with a certificate to one or more specified thing groups, typically for quarantine.</p>"
+      }
+    },
     "AdditionalMetricsToRetainList": {
       "base": null,
       "refs": {
-        "CreateSecurityProfileRequest$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's <code>behaviors</code> but it is also retained for any metric specified here.</p>",
-        "DescribeSecurityProfileResponse$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's <code>behaviors</code> but it is also retained for any metric specified here.</p>",
-        "UpdateSecurityProfileRequest$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's <code>behaviors</code> but it is also retained for any metric specified here.</p>",
-        "UpdateSecurityProfileResponse$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the security profile's <code>behaviors</code> but it is also retained for any metric specified here.</p>"
+        "CreateSecurityProfileRequest$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's <code>behaviors</code>, but it is also retained for any metric specified here.</p>",
+        "DescribeSecurityProfileResponse$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's <code>behaviors</code>, but it is also retained for any metric specified here.</p>",
+        "UpdateSecurityProfileRequest$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's <code>behaviors</code>, but it is also retained for any metric specified here.</p>",
+        "UpdateSecurityProfileResponse$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the security profile's <code>behaviors</code>, but it is also retained for any metric specified here.</p>"
       }
     },
     "AdditionalParameterMap": {
@@ -445,7 +462,7 @@
       "base": null,
       "refs": {
         "DescribeAccountAuditConfigurationResponse$auditCheckConfigurations": "<p>Which audit checks are enabled and disabled for this account.</p>",
-        "UpdateAccountAuditConfigurationRequest$auditCheckConfigurations": "<p>Specifies which audit checks are enabled and disabled for this account. Use <code>DescribeAccountAuditConfiguration</code> to see the list of all checks including those that are currently enabled.</p> <p>Note that some data collection may begin immediately when certain checks are enabled. When a check is disabled, any data collected so far in relation to the check is deleted.</p> <p>You cannot disable a check if it is used by any scheduled audit. You must first delete the check from the scheduled audit or delete the scheduled audit itself.</p> <p>On the first call to <code>UpdateAccountAuditConfiguration</code> this parameter is required and must specify at least one enabled check.</p>"
+        "UpdateAccountAuditConfigurationRequest$auditCheckConfigurations": "<p>Specifies which audit checks are enabled and disabled for this account. Use <code>DescribeAccountAuditConfiguration</code> to see the list of all checks, including those that are currently enabled.</p> <p>Some data collection might start immediately when certain checks are enabled. When a check is disabled, any data collected so far in relation to the check is deleted.</p> <p>You cannot disable a check if it is used by any scheduled audit. You must first delete the check from the scheduled audit or delete the scheduled audit itself.</p> <p>On the first call to <code>UpdateAccountAuditConfiguration</code>, this parameter is required and must specify at least one enabled check.</p>"
       }
     },
     "AuditCheckDetails": {
@@ -455,11 +472,14 @@
       }
     },
     "AuditCheckName": {
-      "base": "<p>An audit check name. Checks must be enabled for your account. (Use <code>DescribeAccountAuditConfiguration</code> to see the list of all checks including those that are enabled or <code>UpdateAccountAuditConfiguration</code> to select which checks are enabled.)</p>",
+      "base": "<p>An audit check name. Checks must be enabled for your account. (Use <code>DescribeAccountAuditConfiguration</code> to see the list of all checks, including those that are enabled or use <code>UpdateAccountAuditConfiguration</code> to select which checks are enabled.)</p>",
       "refs": {
         "AuditCheckConfigurations$key": null,
+        "AuditCheckToActionsMapping$key": null,
+        "AuditCheckToReasonCodeFilter$key": null,
         "AuditDetails$key": null,
         "AuditFinding$checkName": "<p>The audit check that generated this result.</p>",
+        "AuditMitigationActionsTaskStatistics$key": null,
         "ListAuditFindingsRequest$checkName": "<p>A filter to limit results to the findings for the specified audit check.</p>",
         "TargetAuditCheckNames$member": null
       }
@@ -467,7 +487,20 @@
     "AuditCheckRunStatus": {
       "base": null,
       "refs": {
-        "AuditCheckDetails$checkRunStatus": "<p>The completion status of this check, one of \"IN_PROGRESS\", \"WAITING_FOR_DATA_COLLECTION\", \"CANCELED\", \"COMPLETED_COMPLIANT\", \"COMPLETED_NON_COMPLIANT\", or \"FAILED\".</p>"
+        "AuditCheckDetails$checkRunStatus": "<p>The completion status of this check. One of \"IN_PROGRESS\", \"WAITING_FOR_DATA_COLLECTION\", \"CANCELED\", \"COMPLETED_COMPLIANT\", \"COMPLETED_NON_COMPLIANT\", or \"FAILED\".</p>"
+      }
+    },
+    "AuditCheckToActionsMapping": {
+      "base": null,
+      "refs": {
+        "DescribeAuditMitigationActionsTaskResponse$auditCheckToActionsMapping": "<p>Specifies the mitigation actions that should be applied to specific audit checks.</p>",
+        "StartAuditMitigationActionsTaskRequest$auditCheckToActionsMapping": "<p>For an audit check, specifies which mitigation actions to apply. Those actions must be defined in your AWS account.</p>"
+      }
+    },
+    "AuditCheckToReasonCodeFilter": {
+      "base": null,
+      "refs": {
+        "AuditMitigationActionsTaskTarget$auditCheckToReasonCodeFilter": "<p>Specifies a filter in the form of an audit check and set of reason codes that identify the findings from the audit to which the audit mitigation actions task apply.</p>"
       }
     },
     "AuditDetails": {
@@ -479,7 +512,8 @@
     "AuditFinding": {
       "base": "<p>The findings (results) of the audit.</p>",
       "refs": {
-        "AuditFindings$member": null
+        "AuditFindings$member": null,
+        "DescribeAuditFindingResponse$finding": null
       }
     },
     "AuditFindingSeverity": {
@@ -497,10 +531,74 @@
     "AuditFrequency": {
       "base": null,
       "refs": {
-        "CreateScheduledAuditRequest$frequency": "<p>How often the scheduled audit takes place. Can be one of \"DAILY\", \"WEEKLY\", \"BIWEEKLY\" or \"MONTHLY\". The actual start time of each audit is determined by the system.</p>",
-        "DescribeScheduledAuditResponse$frequency": "<p>How often the scheduled audit takes place. One of \"DAILY\", \"WEEKLY\", \"BIWEEKLY\" or \"MONTHLY\". The actual start time of each audit is determined by the system.</p>",
-        "ScheduledAuditMetadata$frequency": "<p>How often the scheduled audit takes place.</p>",
-        "UpdateScheduledAuditRequest$frequency": "<p>How often the scheduled audit takes place. Can be one of \"DAILY\", \"WEEKLY\", \"BIWEEKLY\" or \"MONTHLY\". The actual start time of each audit is determined by the system.</p>"
+        "CreateScheduledAuditRequest$frequency": "<p>How often the scheduled audit takes place. Can be one of \"DAILY\", \"WEEKLY\", \"BIWEEKLY\" or \"MONTHLY\". The start time of each audit is determined by the system.</p>",
+        "DescribeScheduledAuditResponse$frequency": "<p>How often the scheduled audit takes place. One of \"DAILY\", \"WEEKLY\", \"BIWEEKLY\", or \"MONTHLY\". The start time of each audit is determined by the system.</p>",
+        "ScheduledAuditMetadata$frequency": "<p>How often the scheduled audit occurs.</p>",
+        "UpdateScheduledAuditRequest$frequency": "<p>How often the scheduled audit takes place. Can be one of \"DAILY\", \"WEEKLY\", \"BIWEEKLY\", or \"MONTHLY\". The start time of each audit is determined by the system.</p>"
+      }
+    },
+    "AuditMitigationActionExecutionMetadata": {
+      "base": "<p>Returned by ListAuditMitigationActionsTask, this object contains information that describes a mitigation action that has been started.</p>",
+      "refs": {
+        "AuditMitigationActionExecutionMetadataList$member": null
+      }
+    },
+    "AuditMitigationActionExecutionMetadataList": {
+      "base": null,
+      "refs": {
+        "ListAuditMitigationActionsExecutionsResponse$actionsExecutions": "<p>A set of task execution results based on the input parameters. Details include the mitigation action applied, start time, and task status.</p>"
+      }
+    },
+    "AuditMitigationActionsExecutionStatus": {
+      "base": null,
+      "refs": {
+        "AuditMitigationActionExecutionMetadata$status": "<p>The current status of the task being executed.</p>",
+        "ListAuditMitigationActionsExecutionsRequest$actionStatus": "<p>Specify this filter to limit results to those with a specific status.</p>"
+      }
+    },
+    "AuditMitigationActionsTaskId": {
+      "base": null,
+      "refs": {
+        "AuditMitigationActionExecutionMetadata$taskId": "<p>The unique identifier for the task that applies the mitigation action.</p>",
+        "AuditMitigationActionsTaskMetadata$taskId": "<p>The unique identifier for the task.</p>",
+        "CancelAuditMitigationActionsTaskRequest$taskId": "<p>The unique identifier for the task that you want to cancel. </p>",
+        "DescribeAuditMitigationActionsTaskRequest$taskId": "<p>The unique identifier for the audit mitigation task.</p>",
+        "ListAuditMitigationActionsExecutionsRequest$taskId": "<p>Specify this filter to limit results to actions for a specific audit mitigation actions task.</p>",
+        "StartAuditMitigationActionsTaskRequest$taskId": "<p>A unique identifier for the task. You can use this identifier to check the status of the task or to cancel it.</p>",
+        "StartAuditMitigationActionsTaskResponse$taskId": "<p>The unique identifier for the audit mitigation task. This matches the <code>taskId</code> that you specified in the request.</p>"
+      }
+    },
+    "AuditMitigationActionsTaskMetadata": {
+      "base": "<p>Information about an audit mitigation actions task that is returned by <code>ListAuditMitigationActionsTasks</code>.</p>",
+      "refs": {
+        "AuditMitigationActionsTaskMetadataList$member": null
+      }
+    },
+    "AuditMitigationActionsTaskMetadataList": {
+      "base": null,
+      "refs": {
+        "ListAuditMitigationActionsTasksResponse$tasks": "<p>The collection of audit mitigation tasks that matched the filter criteria.</p>"
+      }
+    },
+    "AuditMitigationActionsTaskStatistics": {
+      "base": null,
+      "refs": {
+        "DescribeAuditMitigationActionsTaskResponse$taskStatistics": "<p>Aggregate counts of the results when the mitigation tasks were applied to the findings for this audit mitigation actions task.</p>"
+      }
+    },
+    "AuditMitigationActionsTaskStatus": {
+      "base": null,
+      "refs": {
+        "AuditMitigationActionsTaskMetadata$taskStatus": "<p>The current state of the audit mitigation actions task.</p>",
+        "DescribeAuditMitigationActionsTaskResponse$taskStatus": "<p>The current status of the task.</p>",
+        "ListAuditMitigationActionsTasksRequest$taskStatus": "<p>Specify this filter to limit results to tasks that are in a specific state.</p>"
+      }
+    },
+    "AuditMitigationActionsTaskTarget": {
+      "base": "<p>Used in MitigationActionParams, this information identifies the target findings to which the mitigation actions are applied. Only one entry appears.</p>",
+      "refs": {
+        "DescribeAuditMitigationActionsTaskResponse$target": "<p>Identifies the findings to which the mitigation actions are applied. This can be by audit checks, by audit task, or a set of findings.</p>",
+        "StartAuditMitigationActionsTaskRequest$target": "<p>Specifies the audit findings to which the mitigation actions are applied. You can apply them to a type of audit check, to all findings from an audit, or to a speecific set of findings.</p>"
       }
     },
     "AuditNotificationTarget": {
@@ -525,11 +623,13 @@
     "AuditTaskId": {
       "base": null,
       "refs": {
-        "AuditFinding$taskId": "<p>The ID of the audit that generated this result (finding)</p>",
+        "AuditFinding$taskId": "<p>The ID of the audit that generated this result (finding).</p>",
+        "AuditMitigationActionsTaskTarget$auditTaskId": "<p>If the task will apply a mitigation action to findings from a specific audit, this value uniquely identifies the audit.</p>",
         "AuditTaskMetadata$taskId": "<p>The ID of this audit.</p>",
         "CancelAuditTaskRequest$taskId": "<p>The ID of the audit you want to cancel. You can only cancel an audit that is \"IN_PROGRESS\".</p>",
         "DescribeAuditTaskRequest$taskId": "<p>The ID of the audit whose information you want to get.</p>",
         "ListAuditFindingsRequest$taskId": "<p>A filter to limit results to the audit with the specified ID. You must specify either the taskId or the startTime and endTime, but not both.</p>",
+        "ListAuditMitigationActionsTasksRequest$auditTaskId": "<p>Specify this filter to limit results to tasks that were applied to results for a specific audit.</p>",
         "StartOnDemandAuditTaskResponse$taskId": "<p>The ID of the on-demand audit you started.</p>"
       }
     },
@@ -548,15 +648,15 @@
     "AuditTaskStatus": {
       "base": null,
       "refs": {
-        "AuditTaskMetadata$taskStatus": "<p>The status of this audit: one of \"IN_PROGRESS\", \"COMPLETED\", \"FAILED\" or \"CANCELED\".</p>",
+        "AuditTaskMetadata$taskStatus": "<p>The status of this audit. One of \"IN_PROGRESS\", \"COMPLETED\", \"FAILED\", or \"CANCELED\".</p>",
         "DescribeAuditTaskResponse$taskStatus": "<p>The status of the audit: one of \"IN_PROGRESS\", \"COMPLETED\", \"FAILED\", or \"CANCELED\".</p>",
-        "ListAuditTasksRequest$taskStatus": "<p>A filter to limit the output to audits with the specified completion status: can be one of \"IN_PROGRESS\", \"COMPLETED\", \"FAILED\" or \"CANCELED\".</p>"
+        "ListAuditTasksRequest$taskStatus": "<p>A filter to limit the output to audits with the specified completion status: can be one of \"IN_PROGRESS\", \"COMPLETED\", \"FAILED\", or \"CANCELED\".</p>"
       }
     },
     "AuditTaskType": {
       "base": null,
       "refs": {
-        "AuditTaskMetadata$taskType": "<p>The type of this audit: one of \"ON_DEMAND_AUDIT_TASK\" or \"SCHEDULED_AUDIT_TASK\".</p>",
+        "AuditTaskMetadata$taskType": "<p>The type of this audit. One of \"ON_DEMAND_AUDIT_TASK\" or \"SCHEDULED_AUDIT_TASK\".</p>",
         "DescribeAuditTaskResponse$taskType": "<p>The type of audit: \"ON_DEMAND_AUDIT_TASK\" or \"SCHEDULED_AUDIT_TASK\".</p>",
         "ListAuditTasksRequest$taskType": "<p>A filter to limit the output to the specified type of audit: can be one of \"ON_DEMAND_AUDIT_TASK\" or \"SCHEDULED__AUDIT_TASK\".</p>"
       }
@@ -855,10 +955,26 @@
         "UpdateCACertificateRequest$newStatus": "<p>The updated status of the CA certificate.</p> <p> <b>Note:</b> The status value REGISTER_INACTIVE is deprecated and should not be used.</p>"
       }
     },
+    "CACertificateUpdateAction": {
+      "base": null,
+      "refs": {
+        "UpdateCACertificateParams$action": "<p>The action that you want to apply to the CA cerrtificate. The only supported value is <code>DEACTIVATE</code>.</p>"
+      }
+    },
     "CACertificates": {
       "base": null,
       "refs": {
         "ListCACertificatesResponse$certificates": "<p>The CA certificates registered in your AWS account.</p>"
+      }
+    },
+    "CancelAuditMitigationActionsTaskRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelAuditMitigationActionsTaskResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "CancelAuditTaskRequest": {
@@ -895,6 +1011,12 @@
       "base": null,
       "refs": {
         "TaskStatistics$canceledChecks": "<p>The number of checks that did not run because the audit was canceled.</p>"
+      }
+    },
+    "CanceledFindingsCount": {
+      "base": null,
+      "refs": {
+        "TaskStatisticsForAuditCheck$canceledFindingsCount": "<p>The number of findings to which the mitigation action task was canceled when applied.</p>"
       }
     },
     "CanceledThings": {
@@ -1044,7 +1166,7 @@
     "CheckCompliant": {
       "base": null,
       "refs": {
-        "AuditCheckDetails$checkCompliant": "<p>True if the check completed and found all resources compliant.</p>"
+        "AuditCheckDetails$checkCompliant": "<p>True if the check is complete and found all resources compliant.</p>"
       }
     },
     "Cidr": {
@@ -1075,6 +1197,12 @@
         "DescribeThingResponse$defaultClientId": "<p>The default client ID.</p>",
         "ResourceIdentifier$clientId": "<p>The client ID.</p>",
         "TestAuthorizationRequest$clientId": "<p>The MQTT client ID.</p>"
+      }
+    },
+    "ClientRequestToken": {
+      "base": null,
+      "refs": {
+        "StartAuditMitigationActionsTaskRequest$clientRequestToken": "<p>Each audit mitigation task must have a unique client request token. If you try to start a new task with the same token as a task that already exists, an exception occurs. If you omit this value, a unique client request token is generated automatically.</p>"
       }
     },
     "CloudwatchAlarmAction": {
@@ -1117,7 +1245,7 @@
       "base": null,
       "refs": {
         "GetEffectivePoliciesRequest$cognitoIdentityPoolId": "<p>The Cognito identity pool ID.</p>",
-        "ResourceIdentifier$cognitoIdentityPoolId": "<p>The ID of the Cognito Identity Pool.</p>",
+        "ResourceIdentifier$cognitoIdentityPoolId": "<p>The ID of the Amazon Cognito identity pool.</p>",
         "TestAuthorizationRequest$cognitoIdentityPoolId": "<p>The Cognito identity pool ID.</p>"
       }
     },
@@ -1235,6 +1363,16 @@
     },
     "CreateKeysAndCertificateResponse": {
       "base": "<p>The output of the CreateKeysAndCertificate operation.</p>",
+      "refs": {
+      }
+    },
+    "CreateMitigationActionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateMitigationActionResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -1437,10 +1575,10 @@
     "DayOfWeek": {
       "base": null,
       "refs": {
-        "CreateScheduledAuditRequest$dayOfWeek": "<p>The day of the week on which the scheduled audit takes place. Can be one of \"SUN\", \"MON\", \"TUE\", \"WED\", \"THU\", \"FRI\" or \"SAT\". This field is required if the \"frequency\" parameter is set to \"WEEKLY\" or \"BIWEEKLY\".</p>",
-        "DescribeScheduledAuditResponse$dayOfWeek": "<p>The day of the week on which the scheduled audit takes place. One of \"SUN\", \"MON\", \"TUE\", \"WED\", \"THU\", \"FRI\" or \"SAT\".</p>",
+        "CreateScheduledAuditRequest$dayOfWeek": "<p>The day of the week on which the scheduled audit takes place. Can be one of \"SUN\", \"MON\", \"TUE\", \"WED\", \"THU\", \"FRI\", or \"SAT\". This field is required if the \"frequency\" parameter is set to \"WEEKLY\" or \"BIWEEKLY\".</p>",
+        "DescribeScheduledAuditResponse$dayOfWeek": "<p>The day of the week on which the scheduled audit takes place. One of \"SUN\", \"MON\", \"TUE\", \"WED\", \"THU\", \"FRI\", or \"SAT\".</p>",
         "ScheduledAuditMetadata$dayOfWeek": "<p>The day of the week on which the scheduled audit is run (if the <code>frequency</code> is \"WEEKLY\" or \"BIWEEKLY\").</p>",
-        "UpdateScheduledAuditRequest$dayOfWeek": "<p>The day of the week on which the scheduled audit takes place. Can be one of \"SUN\", \"MON\", \"TUE\", \"WED\", \"THU\", \"FRI\" or \"SAT\". This field is required if the \"frequency\" parameter is set to \"WEEKLY\" or \"BIWEEKLY\".</p>"
+        "UpdateScheduledAuditRequest$dayOfWeek": "<p>The day of the week on which the scheduled audit takes place. Can be one of \"SUN\", \"MON\", \"TUE\", \"WED\", \"THU\", \"FRI\", or \"SAT\". This field is required if the \"frequency\" parameter is set to \"WEEKLY\" or \"BIWEEKLY\".</p>"
       }
     },
     "DeleteAccountAuditConfigurationRequest": {
@@ -1456,13 +1594,13 @@
     "DeleteAdditionalMetricsToRetain": {
       "base": null,
       "refs": {
-        "UpdateSecurityProfileRequest$deleteAdditionalMetricsToRetain": "<p>If true, delete all <code>additionalMetricsToRetain</code> defined for this security profile. If any <code>additionalMetricsToRetain</code> are defined in the current invocation an exception occurs.</p>"
+        "UpdateSecurityProfileRequest$deleteAdditionalMetricsToRetain": "<p>If true, delete all <code>additionalMetricsToRetain</code> defined for this security profile. If any <code>additionalMetricsToRetain</code> are defined in the current invocation, an exception occurs.</p>"
       }
     },
     "DeleteAlertTargets": {
       "base": null,
       "refs": {
-        "UpdateSecurityProfileRequest$deleteAlertTargets": "<p>If true, delete all <code>alertTargets</code> defined for this security profile. If any <code>alertTargets</code> are defined in the current invocation an exception occurs.</p>"
+        "UpdateSecurityProfileRequest$deleteAlertTargets": "<p>If true, delete all <code>alertTargets</code> defined for this security profile. If any <code>alertTargets</code> are defined in the current invocation, an exception occurs.</p>"
       }
     },
     "DeleteAuthorizerRequest": {
@@ -1478,7 +1616,7 @@
     "DeleteBehaviors": {
       "base": null,
       "refs": {
-        "UpdateSecurityProfileRequest$deleteBehaviors": "<p>If true, delete all <code>behaviors</code> defined for this security profile. If any <code>behaviors</code> are defined in the current invocation an exception occurs.</p>"
+        "UpdateSecurityProfileRequest$deleteBehaviors": "<p>If true, delete all <code>behaviors</code> defined for this security profile. If any <code>behaviors</code> are defined in the current invocation, an exception occurs.</p>"
       }
     },
     "DeleteBillingGroupRequest": {
@@ -1527,6 +1665,16 @@
       }
     },
     "DeleteJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteMitigationActionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteMitigationActionResponse": {
       "base": null,
       "refs": {
       }
@@ -1691,6 +1839,26 @@
       "refs": {
       }
     },
+    "DescribeAuditFindingRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAuditFindingResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAuditMitigationActionsTaskRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAuditMitigationActionsTaskResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeAuditTaskRequest": {
       "base": null,
       "refs": {
@@ -1797,6 +1965,16 @@
       }
     },
     "DescribeJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeMitigationActionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeMitigationActionResponse": {
       "base": null,
       "refs": {
       }
@@ -1943,6 +2121,21 @@
         "DetailsMap$value": null
       }
     },
+    "DeviceCertificateUpdateAction": {
+      "base": null,
+      "refs": {
+        "UpdateDeviceCertificateParams$action": "<p>The action that you want to apply to the device cerrtificate. The only supported value is <code>DEACTIVATE</code>.</p>"
+      }
+    },
+    "DeviceDefenderThingName": {
+      "base": null,
+      "refs": {
+        "ActiveViolation$thingName": "<p>The name of the thing responsible for the active violation.</p>",
+        "ListActiveViolationsRequest$thingName": "<p>The name of the thing whose active violations are listed.</p>",
+        "ListViolationEventsRequest$thingName": "<p>A filter to limit results to those alerts caused by the specified thing.</p>",
+        "ViolationEvent$thingName": "<p>The name of the thing responsible for the violation event.</p>"
+      }
+    },
     "DisableAllLogs": {
       "base": null,
       "refs": {
@@ -2034,6 +2227,12 @@
         "ElasticsearchAction$type": "<p>The type of document you are storing.</p>"
       }
     },
+    "EnableIoTLoggingParams": {
+      "base": "<p>Parameters used when defining a mitigation action that enable AWS IoT logging.</p>",
+      "refs": {
+        "MitigationActionParams$enableIoTLoggingParams": "<p>Parameters to define a mitigation action that enables AWS IoT logging at a specified level of detail.</p>"
+      }
+    },
     "EnableTopicRuleRequest": {
       "base": "<p>The input for the EnableTopicRuleRequest operation.</p>",
       "refs": {
@@ -2062,7 +2261,8 @@
     "ErrorCode": {
       "base": null,
       "refs": {
-        "AuditCheckDetails$errorCode": "<p>The code of any error encountered when performing this check during this audit. One of \"INSUFFICIENT_PERMISSIONS\", or \"AUDIT_CHECK_DISABLED\".</p>"
+        "AuditCheckDetails$errorCode": "<p>The code of any error encountered when this check is performed during this audit. One of \"INSUFFICIENT_PERMISSIONS\" or \"AUDIT_CHECK_DISABLED\".</p>",
+        "AuditMitigationActionExecutionMetadata$errorCode": "<p>If an error occurred, the code that indicates which type of error occurred.</p>"
       }
     },
     "ErrorInfo": {
@@ -2074,7 +2274,8 @@
     "ErrorMessage": {
       "base": null,
       "refs": {
-        "AuditCheckDetails$message": "<p>The message associated with any error encountered when performing this check during this audit.</p>",
+        "AuditCheckDetails$message": "<p>The message associated with any error encountered when this check is performed during this audit.</p>",
+        "AuditMitigationActionExecutionMetadata$message": "<p>If an error occurred, a message that describes the error.</p>",
         "DescribeThingRegistrationTaskResponse$message": "<p>The message.</p>",
         "ValidationError$errorMessage": "<p>The description of an error found in the behaviors.</p>"
       }
@@ -2140,7 +2341,13 @@
     "FailedChecksCount": {
       "base": null,
       "refs": {
-        "TaskStatistics$failedChecks": "<p>The number of checks </p>"
+        "TaskStatistics$failedChecks": "<p>The number of checks.</p>"
+      }
+    },
+    "FailedFindingsCount": {
+      "base": null,
+      "refs": {
+        "TaskStatisticsForAuditCheck$failedFindingsCount": "<p>The number of findings for which at least one of the actions failed when applied.</p>"
       }
     },
     "FailedThings": {
@@ -2168,6 +2375,23 @@
         "OTAUpdateFile$fileName": "<p>The name of the file.</p>"
       }
     },
+    "FindingId": {
+      "base": null,
+      "refs": {
+        "AuditFinding$findingId": "<p>A unique identifier for this set of audit findings. This identifier is used to apply mitigation tasks to one or more sets of findings.</p>",
+        "AuditMitigationActionExecutionMetadata$findingId": "<p>The unique identifier for the findings to which the task and associated mitigation action are applied.</p>",
+        "DescribeAuditFindingRequest$findingId": "<p>A unique identifier for a single audit finding. You can use this identifier to apply mitigation actions to the finding.</p>",
+        "FindingIds$member": null,
+        "ListAuditMitigationActionsExecutionsRequest$findingId": "<p>Specify this filter to limit results to those that were applied to a specific audit finding.</p>",
+        "ListAuditMitigationActionsTasksRequest$findingId": "<p>Specify this filter to limit results to tasks that were applied to a specific audit finding.</p>"
+      }
+    },
+    "FindingIds": {
+      "base": null,
+      "refs": {
+        "AuditMitigationActionsTaskTarget$findingIds": "<p>If the task will apply a mitigation action to one or more listed findings, this value uniquely identifies those findings.</p>"
+      }
+    },
     "FirehoseAction": {
       "base": "<p>Describes an action that writes data to an Amazon Kinesis Firehose stream.</p>",
       "refs": {
@@ -2189,7 +2413,7 @@
     "ForceDelete": {
       "base": null,
       "refs": {
-        "DeleteCertificateRequest$forceDelete": "<p>Forces a certificate request to be deleted.</p>"
+        "DeleteCertificateRequest$forceDelete": "<p>Forces the deletion of a certificate if it is inactive and is not attached to an IoT thing.</p>"
       }
     },
     "ForceDeleteAWSJob": {
@@ -2485,7 +2709,7 @@
       }
     },
     "IotAnalyticsAction": {
-      "base": "<p>Sends messge data to an AWS IoT Analytics channel.</p>",
+      "base": "<p>Sends message data to an AWS IoT Analytics channel.</p>",
       "refs": {
         "Action$iotAnalytics": "<p>Sends message data to an AWS IoT Analytics channel.</p>"
       }
@@ -2775,6 +2999,26 @@
       "refs": {
       }
     },
+    "ListAuditMitigationActionsExecutionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAuditMitigationActionsExecutionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAuditMitigationActionsTasksRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAuditMitigationActionsTasksResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListAuditTasksRequest": {
       "base": null,
       "refs": {
@@ -2871,6 +3115,16 @@
       }
     },
     "ListJobsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListMitigationActionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListMitigationActionsResponse": {
       "base": null,
       "refs": {
       }
@@ -3148,6 +3402,7 @@
     "LogLevel": {
       "base": null,
       "refs": {
+        "EnableIoTLoggingParams$logLevel": "<p>Specifies the types of information to be logged.</p>",
         "GetLoggingOptionsResponse$logLevel": "<p>The logging level.</p>",
         "GetV2LoggingOptionsResponse$defaultLogLevel": "<p>The default log level.</p>",
         "LogTargetConfiguration$logLevel": "<p>The logging level.</p>",
@@ -3239,7 +3494,10 @@
       "refs": {
         "ListActiveViolationsRequest$maxResults": "<p>The maximum number of results to return at one time.</p>",
         "ListAuditFindingsRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p>",
+        "ListAuditMitigationActionsExecutionsRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p>",
+        "ListAuditMitigationActionsTasksRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p>",
         "ListAuditTasksRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p>",
+        "ListMitigationActionsRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p>",
         "ListOTAUpdatesRequest$maxResults": "<p>The maximum number of results to return at one time.</p>",
         "ListScheduledAuditsRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p>",
         "ListSecurityProfilesForTargetRequest$maxResults": "<p>The maximum number of results to return at one time.</p>",
@@ -3303,6 +3561,85 @@
         "AuthResult$missingContextValues": "<p>Contains any missing context values found while evaluating policy.</p>"
       }
     },
+    "MitigationAction": {
+      "base": "<p>Describes which changes should be applied as part of a mitigation action.</p>",
+      "refs": {
+        "MitigationActionList$member": null
+      }
+    },
+    "MitigationActionArn": {
+      "base": null,
+      "refs": {
+        "CreateMitigationActionResponse$actionArn": "<p>The ARN for the new mitigation action.</p>",
+        "DescribeMitigationActionResponse$actionArn": "<p>The ARN that identifies this migration action.</p>",
+        "MitigationActionIdentifier$actionArn": "<p>The IAM role ARN used to apply this mitigation action.</p>",
+        "UpdateMitigationActionResponse$actionArn": "<p>The ARN for the new mitigation action.</p>"
+      }
+    },
+    "MitigationActionId": {
+      "base": null,
+      "refs": {
+        "AuditMitigationActionExecutionMetadata$actionId": "<p>The unique identifier for the mitigation action being applied by the task.</p>",
+        "CreateMitigationActionResponse$actionId": "<p>A unique identifier for the new mitigation action.</p>",
+        "DescribeMitigationActionResponse$actionId": "<p>A unique identifier for this action.</p>",
+        "MitigationAction$id": "<p>A unique identifier for the mitigation action.</p>",
+        "UpdateMitigationActionResponse$actionId": "<p>A unique identifier for the mitigation action.</p>"
+      }
+    },
+    "MitigationActionIdentifier": {
+      "base": "<p>Information that identifies a mitigation action. This information is returned by ListMitigationActions.</p>",
+      "refs": {
+        "MitigationActionIdentifierList$member": null
+      }
+    },
+    "MitigationActionIdentifierList": {
+      "base": null,
+      "refs": {
+        "ListMitigationActionsResponse$actionIdentifiers": "<p>A set of actions that matched the specified filter criteria.</p>"
+      }
+    },
+    "MitigationActionList": {
+      "base": null,
+      "refs": {
+        "DescribeAuditMitigationActionsTaskResponse$actionsDefinition": "<p>Specifies the mitigation actions and their parameters that are applied as part of this task.</p>"
+      }
+    },
+    "MitigationActionName": {
+      "base": null,
+      "refs": {
+        "AuditMitigationActionExecutionMetadata$actionName": "<p>The friendly name of the mitigation action being applied by the task.</p>",
+        "CreateMitigationActionRequest$actionName": "<p>A friendly name for the action. Choose a friendly name that accurately describes the action (for example, <code>EnableLoggingAction</code>).</p>",
+        "DeleteMitigationActionRequest$actionName": "<p>The name of the mitigation action that you want to delete.</p>",
+        "DescribeMitigationActionRequest$actionName": "<p>The friendly name that uniquely identifies the mitigation action.</p>",
+        "DescribeMitigationActionResponse$actionName": "<p>The friendly name that uniquely identifies the mitigation action.</p>",
+        "MitigationAction$name": "<p>A user-friendly name for the mitigation action.</p>",
+        "MitigationActionIdentifier$actionName": "<p>The friendly name of the mitigation action.</p>",
+        "MitigationActionNameList$member": null,
+        "UpdateMitigationActionRequest$actionName": "<p>The friendly name for the mitigation action. You can't change the name by using <code>UpdateMitigationAction</code>. Instead, you must delete and re-create the mitigation action with the new name.</p>"
+      }
+    },
+    "MitigationActionNameList": {
+      "base": null,
+      "refs": {
+        "AuditCheckToActionsMapping$value": null
+      }
+    },
+    "MitigationActionParams": {
+      "base": "<p>The set of parameters for this mitigation action. You can specify only one type of parameter (in other words, you can apply only one action for each defined mitigation action).</p>",
+      "refs": {
+        "CreateMitigationActionRequest$actionParams": "<p>Defines the type of action and the parameters for that action.</p>",
+        "DescribeMitigationActionResponse$actionParams": "<p>Parameters that control how the mitigation action is applied, specific to the type of mitigation action.</p>",
+        "MitigationAction$actionParams": "<p>The set of parameters for this mitigation action. The parameters vary, depending on the kind of action you apply.</p>",
+        "UpdateMitigationActionRequest$actionParams": "<p>Defines the type of action and the parameters for that action.</p>"
+      }
+    },
+    "MitigationActionType": {
+      "base": null,
+      "refs": {
+        "DescribeMitigationActionResponse$actionType": "<p>The type of mitigation action.</p>",
+        "ListMitigationActionsRequest$actionType": "<p>Specify a value to limit the result to mitigation actions with a specific action type.</p>"
+      }
+    },
     "NextToken": {
       "base": null,
       "refs": {
@@ -3310,6 +3647,10 @@
         "ListActiveViolationsResponse$nextToken": "<p>A token that can be used to retrieve the next set of results, or <code>null</code> if there are no additional results.</p>",
         "ListAuditFindingsRequest$nextToken": "<p>The token for the next set of results.</p>",
         "ListAuditFindingsResponse$nextToken": "<p>A token that can be used to retrieve the next set of results, or <code>null</code> if there are no additional results.</p>",
+        "ListAuditMitigationActionsExecutionsRequest$nextToken": "<p>The token for the next set of results.</p>",
+        "ListAuditMitigationActionsExecutionsResponse$nextToken": "<p>The token for the next set of results.</p>",
+        "ListAuditMitigationActionsTasksRequest$nextToken": "<p>The token for the next set of results.</p>",
+        "ListAuditMitigationActionsTasksResponse$nextToken": "<p>The token for the next set of results.</p>",
         "ListAuditTasksRequest$nextToken": "<p>The token for the next set of results.</p>",
         "ListAuditTasksResponse$nextToken": "<p>A token that can be used to retrieve the next set of results, or <code>null</code> if there are no additional results.</p>",
         "ListBillingGroupsRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
@@ -3322,6 +3663,8 @@
         "ListJobExecutionsForThingResponse$nextToken": "<p>The token for the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListJobsRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
         "ListJobsResponse$nextToken": "<p>The token for the next set of results, or <b>null</b> if there are no additional results.</p>",
+        "ListMitigationActionsRequest$nextToken": "<p>The token for the next set of results.</p>",
+        "ListMitigationActionsResponse$nextToken": "<p>The token for the next set of results.</p>",
         "ListOTAUpdatesRequest$nextToken": "<p>A token used to retrieve the next set of results.</p>",
         "ListOTAUpdatesResponse$nextToken": "<p>A token to use to get the next set of results.</p>",
         "ListPrincipalThingsRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
@@ -3367,19 +3710,19 @@
     "NonCompliantChecksCount": {
       "base": null,
       "refs": {
-        "TaskStatistics$nonCompliantChecks": "<p>The number of checks that found non-compliant resources.</p>"
+        "TaskStatistics$nonCompliantChecks": "<p>The number of checks that found noncompliant resources.</p>"
       }
     },
     "NonCompliantResource": {
-      "base": "<p>Information about the resource that was non-compliant with the audit check.</p>",
+      "base": "<p>Information about the resource that was noncompliant with the audit check.</p>",
       "refs": {
-        "AuditFinding$nonCompliantResource": "<p>The resource that was found to be non-compliant with the audit check.</p>"
+        "AuditFinding$nonCompliantResource": "<p>The resource that was found to be noncompliant with the audit check.</p>"
       }
     },
     "NonCompliantResourcesCount": {
       "base": null,
       "refs": {
-        "AuditCheckDetails$nonCompliantResourcesCount": "<p>The number of resources that the check found non-compliant.</p>"
+        "AuditCheckDetails$nonCompliantResourcesCount": "<p>The number of resources that were found noncompliant during the check.</p>"
       }
     },
     "NotConfiguredException": {
@@ -3476,12 +3819,12 @@
       "refs": {
         "DeleteBillingGroupRequest$expectedVersion": "<p>The expected version of the billing group. If the version of the billing group does not match the expected version specified in the request, the <code>DeleteBillingGroup</code> request is rejected with a <code>VersionConflictException</code>.</p>",
         "DeleteDynamicThingGroupRequest$expectedVersion": "<p>The expected version of the dynamic thing group to delete.</p>",
-        "DeleteSecurityProfileRequest$expectedVersion": "<p>The expected version of the security profile. A new version is generated whenever the security profile is updated. If you specify a value that is different than the actual version, a <code>VersionConflictException</code> is thrown.</p>",
+        "DeleteSecurityProfileRequest$expectedVersion": "<p>The expected version of the security profile. A new version is generated whenever the security profile is updated. If you specify a value that is different from the actual version, a <code>VersionConflictException</code> is thrown.</p>",
         "DeleteThingGroupRequest$expectedVersion": "<p>The expected version of the thing group to delete.</p>",
         "DeleteThingRequest$expectedVersion": "<p>The expected version of the thing record in the registry. If the version of the record in the registry does not match the expected version specified in the request, the <code>DeleteThing</code> request is rejected with a <code>VersionConflictException</code>.</p>",
         "UpdateBillingGroupRequest$expectedVersion": "<p>The expected version of the billing group. If the version of the billing group does not match the expected version specified in the request, the <code>UpdateBillingGroup</code> request is rejected with a <code>VersionConflictException</code>.</p>",
         "UpdateDynamicThingGroupRequest$expectedVersion": "<p>The expected version of the dynamic thing group to update.</p>",
-        "UpdateSecurityProfileRequest$expectedVersion": "<p>The expected version of the security profile. A new version is generated whenever the security profile is updated. If you specify a value that is different than the actual version, a <code>VersionConflictException</code> is thrown.</p>",
+        "UpdateSecurityProfileRequest$expectedVersion": "<p>The expected version of the security profile. A new version is generated whenever the security profile is updated. If you specify a value that is different from the actual version, a <code>VersionConflictException</code> is thrown.</p>",
         "UpdateThingGroupRequest$expectedVersion": "<p>The expected version of the thing group. If this does not match the version of the thing group being updated, the update will fail.</p>",
         "UpdateThingRequest$expectedVersion": "<p>The expected version of the thing record in the registry. If the version of the record in the registry does not match the expected version specified in the request, the <code>UpdateThing</code> request is rejected with a <code>VersionConflictException</code>.</p>"
       }
@@ -3502,6 +3845,7 @@
       "base": null,
       "refs": {
         "AddThingToThingGroupRequest$overrideDynamicGroups": "<p>Override dynamic thing groups with static thing groups when 10-group limit is reached. If a thing belongs to 10 thing groups, and one or more of those groups are dynamic thing groups, adding a thing to a static group removes the thing from the last dynamic group.</p>",
+        "AddThingsToThingGroupParams$overrideDynamicGroups": "<p>Specifies if this mitigation action can move the things that triggered the mitigation action even if they are part of one or more dynamic things groups.</p>",
         "UpdateThingGroupsForThingRequest$overrideDynamicGroups": "<p>Override dynamic thing groups with static thing groups when 10-group limit is reached. If a thing belongs to 10 thing groups, and one or more of those groups are dynamic thing groups, adding a thing to a static group removes the thing from the last dynamic group.</p>"
       }
     },
@@ -3652,6 +3996,12 @@
         "ListTargetsForPolicyResponse$targets": "<p>The policy targets.</p>"
       }
     },
+    "PolicyTemplateName": {
+      "base": null,
+      "refs": {
+        "ReplaceDefaultPolicyVersionParams$templateName": "<p>The name of the template to be applied. The only supported value is <code>BLANK_POLICY</code>.</p>"
+      }
+    },
     "PolicyVersion": {
       "base": "<p>Describes a policy version.</p>",
       "refs": {
@@ -3774,6 +4124,12 @@
         "UpdateAuthorizerRequest$tokenSigningPublicKeys": "<p>The public keys used to verify the token signature.</p>"
       }
     },
+    "PublishFindingToSnsParams": {
+      "base": "<p>Parameters to define a mitigation action that publishes findings to Amazon SNS. You can implement your own custom actions in response to the Amazon SNS messages.</p>",
+      "refs": {
+        "MitigationActionParams$publishFindingToSnsParams": "<p>Parameters to define a mitigation action that publishes findings to Amazon SNS. You can implement your own custom actions in response to the Amazon SNS messages.</p>"
+      }
+    },
     "PutItemInput": {
       "base": "<p>The input for the DynamoActionVS action that specifies the DynamoDB table to which the message data will be written.</p>",
       "refs": {
@@ -3849,20 +4205,27 @@
     "ReasonForNonCompliance": {
       "base": null,
       "refs": {
-        "AuditFinding$reasonForNonCompliance": "<p>The reason the resource was non-compliant.</p>"
+        "AuditFinding$reasonForNonCompliance": "<p>The reason the resource was noncompliant.</p>"
       }
     },
     "ReasonForNonComplianceCode": {
       "base": null,
       "refs": {
-        "AuditFinding$reasonForNonComplianceCode": "<p>A code which indicates the reason that the resource was non-compliant.</p>"
+        "AuditFinding$reasonForNonComplianceCode": "<p>A code that indicates the reason that the resource was noncompliant.</p>",
+        "ReasonForNonComplianceCodes$member": null
+      }
+    },
+    "ReasonForNonComplianceCodes": {
+      "base": null,
+      "refs": {
+        "AuditCheckToReasonCodeFilter$value": null
       }
     },
     "Recursive": {
       "base": null,
       "refs": {
         "ListAttachedPoliciesRequest$recursive": "<p>When true, recursively list attached policies.</p>",
-        "ListSecurityProfilesForTargetRequest$recursive": "<p>If true, return child groups as well.</p>",
+        "ListSecurityProfilesForTargetRequest$recursive": "<p>If true, return child groups too.</p>",
         "ListThingsInThingGroupRequest$recursive": "<p>When true, list things in this thing group and in all child groups as well.</p>"
       }
     },
@@ -3976,7 +4339,7 @@
     "RemoveAutoRegistration": {
       "base": null,
       "refs": {
-        "UpdateCACertificateRequest$removeAutoRegistration": "<p>If true, remove auto registration.</p>"
+        "UpdateCACertificateRequest$removeAutoRegistration": "<p>If true, removes auto registration.</p>"
       }
     },
     "RemoveThingFromBillingGroupRequest": {
@@ -4009,6 +4372,12 @@
       "base": null,
       "refs": {
         "JobProcessDetails$numberOfRemovedThings": "<p>The number of things that are no longer scheduled to execute the job because they have been deleted or have been removed from the group that was a target of the job.</p>"
+      }
+    },
+    "ReplaceDefaultPolicyVersionParams": {
+      "base": "<p>Parameters to define a mitigation action that adds a blank policy to restrict permissions.</p>",
+      "refs": {
+        "MitigationActionParams$replaceDefaultPolicyVersionParams": "<p>Parameters to define a mitigation action that adds a blank policy to restrict permissions.</p>"
       }
     },
     "ReplaceTopicRuleRequest": {
@@ -4056,11 +4425,11 @@
       }
     },
     "ResourceIdentifier": {
-      "base": "<p>Information identifying the non-compliant resource.</p>",
+      "base": "<p>Information that identifies the noncompliant resource.</p>",
       "refs": {
-        "ListAuditFindingsRequest$resourceIdentifier": "<p>Information identifying the non-compliant resource.</p>",
-        "NonCompliantResource$resourceIdentifier": "<p>Information identifying the non-compliant resource.</p>",
-        "RelatedResource$resourceIdentifier": "<p>Information identifying the resource.</p>"
+        "ListAuditFindingsRequest$resourceIdentifier": "<p>Information identifying the noncompliant resource.</p>",
+        "NonCompliantResource$resourceIdentifier": "<p>Information that identifies the noncompliant resource.</p>",
+        "RelatedResource$resourceIdentifier": "<p>Information that identifies the resource.</p>"
       }
     },
     "ResourceLogicalId": {
@@ -4082,7 +4451,7 @@
     "ResourceType": {
       "base": null,
       "refs": {
-        "NonCompliantResource$resourceType": "<p>The type of the non-compliant resource.</p>",
+        "NonCompliantResource$resourceType": "<p>The type of the noncompliant resource.</p>",
         "RelatedResource$resourceType": "<p>The type of resource.</p>"
       }
     },
@@ -4130,17 +4499,22 @@
       "refs": {
         "AlertTarget$roleArn": "<p>The ARN of the role that grants permission to send alerts to the notification target.</p>",
         "AuditNotificationTarget$roleArn": "<p>The ARN of the role that grants permission to send notifications to the target.</p>",
+        "CreateMitigationActionRequest$roleArn": "<p>The ARN of the IAM role that is used to apply the mitigation action.</p>",
         "CreateOTAUpdateRequest$roleArn": "<p>The IAM role that allows access to the AWS IoT Jobs service.</p>",
         "CreateRoleAliasRequest$roleArn": "<p>The role ARN.</p>",
         "CreateStreamRequest$roleArn": "<p>An IAM role that allows the IoT service principal assumes to access your S3 files.</p>",
-        "DescribeAccountAuditConfigurationResponse$roleArn": "<p>The ARN of the role that grants permission to AWS IoT to access information about your devices, policies, certificates and other items as necessary when performing an audit.</p> <p>On the first call to <code>UpdateAccountAuditConfiguration</code> this parameter is required.</p>",
+        "DescribeAccountAuditConfigurationResponse$roleArn": "<p>The ARN of the role that grants permission to AWS IoT to access information about your devices, policies, certificates, and other items as required when performing an audit.</p> <p>On the first call to <code>UpdateAccountAuditConfiguration</code>, this parameter is required.</p>",
+        "DescribeMitigationActionResponse$roleArn": "<p>The ARN of the IAM role used to apply this action.</p>",
         "DescribeThingRegistrationTaskResponse$roleArn": "<p>The role ARN that grants access to the input file bucket.</p>",
+        "EnableIoTLoggingParams$roleArnForLogging": "<p>The ARN of the IAM role used for logging.</p>",
+        "MitigationAction$roleArn": "<p>The IAM role ARN used to apply this mitigation action.</p>",
         "PresignedUrlConfig$roleArn": "<p>The ARN of an IAM role that grants grants permission to download files from the S3 bucket where the job data/updates are stored. The role must also grant permission for IoT to download the files.</p>",
         "RegistrationConfig$roleArn": "<p>The ARN of the role.</p>",
         "RoleAliasDescription$roleArn": "<p>The role ARN.</p>",
         "StartThingRegistrationTaskRequest$roleArn": "<p>The IAM role ARN that grants permission the input file.</p>",
         "StreamInfo$roleArn": "<p>An IAM role AWS IoT assumes to access your S3 files.</p>",
-        "UpdateAccountAuditConfigurationRequest$roleArn": "<p>The ARN of the role that grants permission to AWS IoT to access information about your devices, policies, certificates and other items as necessary when performing an audit.</p>",
+        "UpdateAccountAuditConfigurationRequest$roleArn": "<p>The ARN of the role that grants permission to AWS IoT to access information about your devices, policies, certificates and other items as required when performing an audit.</p>",
+        "UpdateMitigationActionRequest$roleArn": "<p>The ARN of the IAM role that is used to apply the mitigation action.</p>",
         "UpdateRoleAliasRequest$roleArn": "<p>The role ARN.</p>",
         "UpdateStreamRequest$roleArn": "<p>An IAM role that allows the IoT service principal assumes to access your S3 files.</p>"
       }
@@ -4473,6 +4847,12 @@
         "StartSigningJobParameter$signingProfileParameter": "<p>Describes the code-signing profile.</p>"
       }
     },
+    "SkippedFindingsCount": {
+      "base": null,
+      "refs": {
+        "TaskStatisticsForAuditCheck$skippedFindingsCount": "<p>The number of findings skipped because of filter conditions provided in the parameters to the command.</p>"
+      }
+    },
     "SkyfallMaxResults": {
       "base": null,
       "refs": {
@@ -4485,6 +4865,12 @@
         "Action$sns": "<p>Publish to an Amazon SNS topic.</p>"
       }
     },
+    "SnsTopicArn": {
+      "base": null,
+      "refs": {
+        "PublishFindingToSnsParams$topicArn": "<p>The ARN of the topic to which you want to publish the findings.</p>"
+      }
+    },
     "SqlParseException": {
       "base": "<p>The Rule-SQL expression can't be parsed correctly.</p>",
       "refs": {
@@ -4494,6 +4880,16 @@
       "base": "<p>Describes an action to publish data to an Amazon SQS queue.</p>",
       "refs": {
         "Action$sqs": "<p>Publish to an Amazon SQS queue.</p>"
+      }
+    },
+    "StartAuditMitigationActionsTaskRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartAuditMitigationActionsTaskResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "StartOnDemandAuditTaskRequest": {
@@ -4678,8 +5074,14 @@
     "StringMap": {
       "base": null,
       "refs": {
-        "NonCompliantResource$additionalInfo": "<p>Additional information about the non-compliant resource.</p>",
-        "RelatedResource$additionalInfo": "<p>Additional information about the resource.</p>"
+        "NonCompliantResource$additionalInfo": "<p>Other information about the noncompliant resource.</p>",
+        "RelatedResource$additionalInfo": "<p>Other information about the resource.</p>"
+      }
+    },
+    "SucceededFindingsCount": {
+      "base": null,
+      "refs": {
+        "TaskStatisticsForAuditCheck$succeededFindingsCount": "<p>The number of findings for which all mitigation actions succeeded when applied.</p>"
       }
     },
     "SucceededThings": {
@@ -4692,7 +5094,7 @@
       "base": null,
       "refs": {
         "DynamoDBAction$tableName": "<p>The name of the DynamoDB table.</p>",
-        "PutItemInput$tableName": "<p>The table where the message data will be written</p>"
+        "PutItemInput$tableName": "<p>The table where the message data will be written.</p>"
       }
     },
     "Tag": {
@@ -4720,9 +5122,10 @@
         "CreateBillingGroupRequest$tags": "<p>Metadata which can be used to manage the billing group.</p>",
         "CreateDynamicThingGroupRequest$tags": "<p>Metadata which can be used to manage the dynamic thing group.</p>",
         "CreateJobRequest$tags": "<p>Metadata which can be used to manage the job.</p>",
+        "CreateMitigationActionRequest$tags": "<p>Metadata that can be used to manage the mitigation action.</p>",
         "CreateOTAUpdateRequest$tags": "<p>Metadata which can be used to manage updates.</p>",
-        "CreateScheduledAuditRequest$tags": "<p>Metadata which can be used to manage the scheduled audit.</p>",
-        "CreateSecurityProfileRequest$tags": "<p>Metadata which can be used to manage the security profile.</p>",
+        "CreateScheduledAuditRequest$tags": "<p>Metadata that can be used to manage the scheduled audit.</p>",
+        "CreateSecurityProfileRequest$tags": "<p>Metadata that can be used to manage the security profile.</p>",
         "CreateStreamRequest$tags": "<p>Metadata which can be used to manage streams.</p>",
         "CreateThingGroupRequest$tags": "<p>Metadata which can be used to manage the thing group.</p>",
         "CreateThingTypeRequest$tags": "<p>Metadata which can be used to manage the thing type.</p>",
@@ -4762,10 +5165,10 @@
     "TargetAuditCheckNames": {
       "base": null,
       "refs": {
-        "CreateScheduledAuditRequest$targetCheckNames": "<p>Which checks are performed during the scheduled audit. Checks must be enabled for your account. (Use <code>DescribeAccountAuditConfiguration</code> to see the list of all checks including those that are enabled or <code>UpdateAccountAuditConfiguration</code> to select which checks are enabled.)</p>",
-        "DescribeScheduledAuditResponse$targetCheckNames": "<p>Which checks are performed during the scheduled audit. (Note that checks must be enabled for your account. (Use <code>DescribeAccountAuditConfiguration</code> to see the list of all checks including those that are enabled or <code>UpdateAccountAuditConfiguration</code> to select which checks are enabled.)</p>",
-        "StartOnDemandAuditTaskRequest$targetCheckNames": "<p>Which checks are performed during the audit. The checks you specify must be enabled for your account or an exception occurs. Use <code>DescribeAccountAuditConfiguration</code> to see the list of all checks including those that are enabled or <code>UpdateAccountAuditConfiguration</code> to select which checks are enabled.</p>",
-        "UpdateScheduledAuditRequest$targetCheckNames": "<p>Which checks are performed during the scheduled audit. Checks must be enabled for your account. (Use <code>DescribeAccountAuditConfiguration</code> to see the list of all checks including those that are enabled or <code>UpdateAccountAuditConfiguration</code> to select which checks are enabled.)</p>"
+        "CreateScheduledAuditRequest$targetCheckNames": "<p>Which checks are performed during the scheduled audit. Checks must be enabled for your account. (Use <code>DescribeAccountAuditConfiguration</code> to see the list of all checks, including those that are enabled or use <code>UpdateAccountAuditConfiguration</code> to select which checks are enabled.)</p>",
+        "DescribeScheduledAuditResponse$targetCheckNames": "<p>Which checks are performed during the scheduled audit. Checks must be enabled for your account. (Use <code>DescribeAccountAuditConfiguration</code> to see the list of all checks, including those that are enabled or use <code>UpdateAccountAuditConfiguration</code> to select which checks are enabled.)</p>",
+        "StartOnDemandAuditTaskRequest$targetCheckNames": "<p>Which checks are performed during the audit. The checks you specify must be enabled for your account or an exception occurs. Use <code>DescribeAccountAuditConfiguration</code> to see the list of all checks, including those that are enabled or <code>UpdateAccountAuditConfiguration</code> to select which checks are enabled.</p>",
+        "UpdateScheduledAuditRequest$targetCheckNames": "<p>Which checks are performed during the scheduled audit. Checks must be enabled for your account. (Use <code>DescribeAccountAuditConfiguration</code> to see the list of all checks, including those that are enabled or use <code>UpdateAccountAuditConfiguration</code> to select which checks are enabled.)</p>"
       }
     },
     "TargetSelection": {
@@ -4784,6 +5187,11 @@
       "refs": {
         "CreateOTAUpdateRequest$targets": "<p>The targeted devices to receive OTA updates.</p>",
         "OTAUpdateInfo$targets": "<p>The targets of the OTA update.</p>"
+      }
+    },
+    "TaskAlreadyExistsException": {
+      "base": "<p>This exception occurs if you attempt to start a task with the same task-id as an existing task but with a different clientRequestToken.</p>",
+      "refs": {
       }
     },
     "TaskId": {
@@ -4807,6 +5215,12 @@
       "base": "<p>Statistics for the checks performed during the audit.</p>",
       "refs": {
         "DescribeAuditTaskResponse$taskStatistics": "<p>Statistical information about the audit.</p>"
+      }
+    },
+    "TaskStatisticsForAuditCheck": {
+      "base": "<p>Provides summary counts of how many tasks for findings are in a particular state. This information is included in the response from DescribeAuditMitigationActionsTask.</p>",
+      "refs": {
+        "AuditMitigationActionsTaskStatistics$value": null
       }
     },
     "TemplateBody": {
@@ -4978,6 +5392,7 @@
         "ThingGroupList$member": null,
         "ThingGroupMetadata$parentGroupName": "<p>The parent thing group name.</p>",
         "ThingGroupNameList$member": null,
+        "ThingGroupNames$member": null,
         "UpdateDynamicThingGroupRequest$thingGroupName": "<p>The name of the dynamic thing group to update.</p>",
         "UpdateThingGroupRequest$thingGroupName": "<p>The thing group to update.</p>"
       }
@@ -4995,6 +5410,12 @@
       "refs": {
         "ThingDocument$thingGroupNames": "<p>Thing group names.</p>",
         "ThingGroupDocument$parentGroupNames": "<p>Parent group names.</p>"
+      }
+    },
+    "ThingGroupNames": {
+      "base": null,
+      "refs": {
+        "AddThingsToThingGroupParams$thingGroupNames": "<p>The list of groups to which you want to add the things that triggered the mitigation action. You can add a thing to a maximum of 10 groups, but you cannot add a thing to more than one group in the same hierarchy.</p>"
       }
     },
     "ThingGroupProperties": {
@@ -5031,7 +5452,6 @@
     "ThingName": {
       "base": null,
       "refs": {
-        "ActiveViolation$thingName": "<p>The name of the thing responsible for the active violation.</p>",
         "AddThingToBillingGroupRequest$thingName": "<p>The name of the thing to be added to the billing group.</p>",
         "AddThingToThingGroupRequest$thingName": "<p>The name of the thing to add to a group.</p>",
         "AttachThingPrincipalRequest$thingName": "<p>The name of the thing.</p>",
@@ -5045,19 +5465,16 @@
         "DescribeThingResponse$thingName": "<p>The name of the thing.</p>",
         "DetachThingPrincipalRequest$thingName": "<p>The name of the thing.</p>",
         "GetEffectivePoliciesRequest$thingName": "<p>The thing name.</p>",
-        "ListActiveViolationsRequest$thingName": "<p>The name of the thing whose active violations are listed.</p>",
         "ListJobExecutionsForThingRequest$thingName": "<p>The thing name.</p>",
         "ListThingGroupsForThingRequest$thingName": "<p>The thing name.</p>",
         "ListThingPrincipalsRequest$thingName": "<p>The name of the thing.</p>",
-        "ListViolationEventsRequest$thingName": "<p>A filter to limit results to those alerts caused by the specified thing.</p>",
         "RemoveThingFromBillingGroupRequest$thingName": "<p>The name of the thing to be removed from the billing group.</p>",
         "RemoveThingFromThingGroupRequest$thingName": "<p>The name of the thing to remove from the group.</p>",
         "ThingAttribute$thingName": "<p>The name of the thing.</p>",
         "ThingDocument$thingName": "<p>The thing name.</p>",
         "ThingNameList$member": null,
         "UpdateThingGroupsForThingRequest$thingName": "<p>The thing whose group memberships will be updated.</p>",
-        "UpdateThingRequest$thingName": "<p>The name of the thing to update.</p>",
-        "ViolationEvent$thingName": "<p>The name of the thing responsible for the violation event.</p>"
+        "UpdateThingRequest$thingName": "<p>The name of the thing to update.</p>"
       }
     },
     "ThingNameList": {
@@ -5161,15 +5578,25 @@
         "ActiveViolation$violationStartTime": "<p>The time the violation started.</p>",
         "AuditFinding$taskStartTime": "<p>The time the audit started.</p>",
         "AuditFinding$findingTime": "<p>The time the result (finding) was discovered.</p>",
+        "AuditMitigationActionExecutionMetadata$startTime": "<p>The date and time when the task was started.</p>",
+        "AuditMitigationActionExecutionMetadata$endTime": "<p>The date and time when the task was completed or canceled. Blank if the task is still running.</p>",
+        "AuditMitigationActionsTaskMetadata$startTime": "<p>The time at which the audit mitigation actions task was started.</p>",
+        "DescribeAuditMitigationActionsTaskResponse$startTime": "<p>The date and time when the task was started.</p>",
+        "DescribeAuditMitigationActionsTaskResponse$endTime": "<p>The date and time when the task was completed or canceled.</p>",
         "DescribeAuditTaskResponse$taskStartTime": "<p>The time the audit started.</p>",
+        "DescribeMitigationActionResponse$creationDate": "<p>The date and time when the mitigation action was added to your AWS account.</p>",
+        "DescribeMitigationActionResponse$lastModifiedDate": "<p>The date and time when the mitigation action was last changed.</p>",
         "DescribeSecurityProfileResponse$creationDate": "<p>The time the security profile was created.</p>",
         "DescribeSecurityProfileResponse$lastModifiedDate": "<p>The time the security profile was last modified.</p>",
         "ListAuditFindingsRequest$startTime": "<p>A filter to limit results to those found after the specified time. You must specify either the startTime and endTime or the taskId, but not both.</p>",
         "ListAuditFindingsRequest$endTime": "<p>A filter to limit results to those found before the specified time. You must specify either the startTime and endTime or the taskId, but not both.</p>",
-        "ListAuditTasksRequest$startTime": "<p>The beginning of the time period. Note that audit information is retained for a limited time (180 days). Requesting a start time prior to what is retained results in an \"InvalidRequestException\".</p>",
+        "ListAuditMitigationActionsTasksRequest$startTime": "<p>Specify this filter to limit results to tasks that began on or after a specific date and time.</p>",
+        "ListAuditMitigationActionsTasksRequest$endTime": "<p>Specify this filter to limit results to tasks that were completed or canceled on or before a specific date and time.</p>",
+        "ListAuditTasksRequest$startTime": "<p>The beginning of the time period. Audit information is retained for a limited time (180 days). Requesting a start time prior to what is retained results in an \"InvalidRequestException\".</p>",
         "ListAuditTasksRequest$endTime": "<p>The end of the time period.</p>",
         "ListViolationEventsRequest$startTime": "<p>The start time for the alerts to be listed.</p>",
         "ListViolationEventsRequest$endTime": "<p>The end time for the alerts to be listed.</p>",
+        "MitigationActionIdentifier$creationDate": "<p>The date when this mitigation action was created.</p>",
         "UpdateSecurityProfileResponse$creationDate": "<p>The time the security profile was created.</p>",
         "UpdateSecurityProfileResponse$lastModifiedDate": "<p>The time the security profile was last modified.</p>",
         "ViolationEvent$violationEventTime": "<p>The time the violation event occurred.</p>"
@@ -5237,6 +5664,12 @@
       "base": null,
       "refs": {
         "TaskStatistics$totalChecks": "<p>The number of checks in this audit.</p>"
+      }
+    },
+    "TotalFindingsCount": {
+      "base": null,
+      "refs": {
+        "TaskStatisticsForAuditCheck$totalFindingsCount": "<p>The total number of findings to which a task is being applied.</p>"
       }
     },
     "TotalResourcesCount": {
@@ -5328,6 +5761,12 @@
       "refs": {
       }
     },
+    "UpdateCACertificateParams": {
+      "base": "<p>Parameters to define a mitigation action that changes the state of the CA certificate to inactive.</p>",
+      "refs": {
+        "MitigationActionParams$updateCACertificateParams": "<p>Parameters to define a mitigation action that changes the state of the CA certificate to inactive.</p>"
+      }
+    },
     "UpdateCACertificateRequest": {
       "base": "<p>The input to the UpdateCACertificate operation.</p>",
       "refs": {
@@ -5336,6 +5775,12 @@
     "UpdateCertificateRequest": {
       "base": "<p>The input for the UpdateCertificate operation.</p>",
       "refs": {
+      }
+    },
+    "UpdateDeviceCertificateParams": {
+      "base": "<p>Parameters to define a mitigation action that changes the state of the device certificate to inactive.</p>",
+      "refs": {
+        "MitigationActionParams$updateDeviceCertificateParams": "<p>Parameters to define a mitigation action that changes the state of the device certificate to inactive.</p>"
       }
     },
     "UpdateDynamicThingGroupRequest": {
@@ -5369,6 +5814,16 @@
       }
     },
     "UpdateJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateMitigationActionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateMitigationActionResponse": {
       "base": null,
       "refs": {
       }
@@ -5530,7 +5985,7 @@
     "ViolationEvents": {
       "base": null,
       "refs": {
-        "ListViolationEventsResponse$violationEvents": "<p>The security profile violation alerts issued for this account during the given time frame, potentially filtered by security profile, behavior violated, or thing (device) violating.</p>"
+        "ListViolationEventsResponse$violationEvents": "<p>The security profile violation alerts issued for this account during the given time period, potentially filtered by security profile, behavior violated, or thing (device) violating.</p>"
       }
     },
     "ViolationId": {
@@ -5571,6 +6026,7 @@
         "ResourceRegistrationFailureException$message": "<p>The message for the exception.</p>",
         "ServiceUnavailableException$message": "<p>The message for the exception.</p>",
         "SqlParseException$message": "<p>The message for the exception.</p>",
+        "TaskAlreadyExistsException$message": null,
         "ThrottlingException$message": "<p>The message for the exception.</p>",
         "TransferAlreadyCompletedException$message": "<p>The message for the exception.</p>",
         "TransferConflictException$message": "<p>The message for the exception.</p>",
