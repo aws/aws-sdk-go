@@ -1405,7 +1405,9 @@
     "EntityRecognizerMetadataEntityTypesListItem":{
       "type":"structure",
       "members":{
-        "Type":{"shape":"AnyLengthString"}
+        "Type":{"shape":"AnyLengthString"},
+        "EvaluationMetrics":{"shape":"EntityTypesEvaluationMetrics"},
+        "NumberOfTrainMentions":{"shape":"Integer"}
       }
     },
     "EntityRecognizerProperties":{
@@ -1448,6 +1450,14 @@
       "type":"string",
       "max":64,
       "pattern":"[_A-Z0-9]+"
+    },
+    "EntityTypesEvaluationMetrics":{
+      "type":"structure",
+      "members":{
+        "Precision":{"shape":"Double"},
+        "Recall":{"shape":"Double"},
+        "F1Score":{"shape":"Double"}
+      }
     },
     "EntityTypesList":{
       "type":"list",

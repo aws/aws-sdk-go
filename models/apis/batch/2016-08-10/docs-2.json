@@ -278,6 +278,30 @@
       "refs": {
       }
     },
+    "Device": {
+      "base": "<p>An object representing a container instance host device.</p>",
+      "refs": {
+        "DevicesList$member": null
+      }
+    },
+    "DeviceCgroupPermission": {
+      "base": null,
+      "refs": {
+        "DeviceCgroupPermissions$member": null
+      }
+    },
+    "DeviceCgroupPermissions": {
+      "base": null,
+      "refs": {
+        "Device$permissions": "<p>The explicit permissions to provide to the container for the device. By default, the container has permissions for <code>read</code>, <code>write</code>, and <code>mknod</code> for the device.</p>"
+      }
+    },
+    "DevicesList": {
+      "base": null,
+      "refs": {
+        "LinuxParameters$devices": "<p>Any host devices to expose to the container. This parameter maps to <code>Devices</code> in the <a href=\"https://docs.docker.com/engine/api/v1.23/#create-a-container\">Create a container</a> section of the <a href=\"https://docs.docker.com/engine/api/v1.23/\">Docker Remote API</a> and the <code>--device</code> option to <a href=\"https://docs.docker.com/engine/reference/run/\">docker run</a>.</p>"
+      }
+    },
     "EnvironmentVariables": {
       "base": null,
       "refs": {
@@ -411,7 +435,7 @@
     "JobStatus": {
       "base": null,
       "refs": {
-        "JobDetail$status": "<p>The current status for the job. </p> <note> <p>If your jobs do not progress to <code>STARTING</code>, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/troubleshooting.html#job_stuck_in_runnable\">Jobs Stuck in <code>RUNNABLE</code> Status</a> in the troubleshooting section of the <i>AWS Batch User Guide</i>.</p> </note>",
+        "JobDetail$status": "<p>The current status for the job. </p> <note> <p>If your jobs do not progress to <code>STARTING</code>, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/troubleshooting.html#job_stuck_in_runnable\">Jobs Stuck in RUNNABLE Status</a> in the troubleshooting section of the <i>AWS Batch User Guide</i>.</p> </note>",
         "JobSummary$status": "<p>The current status for the job.</p>",
         "ListJobsRequest$jobStatus": "<p>The job status with which to filter jobs in the specified queue. If you do not specify a status, only <code>RUNNING</code> jobs are returned.</p>"
       }
@@ -447,6 +471,13 @@
       "base": "<p>An object representing a launch template associated with a compute resource. You must specify either the launch template ID or launch template name in the request, but not both. </p>",
       "refs": {
         "ComputeResource$launchTemplate": "<p>The launch template to use for your compute resources. Any other compute resource parameters that you specify in a <a>CreateComputeEnvironment</a> API operation override the same parameters in the launch template. You must specify either the launch template ID or launch template name in the request, but not both. For more information, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/launch-templates.html\">Launch Template Support</a> in the <i>AWS Batch User Guide</i>.</p>"
+      }
+    },
+    "LinuxParameters": {
+      "base": "<p>Linux-specific modifications that are applied to the container, such as Linux kernel capabilities.</p>",
+      "refs": {
+        "ContainerDetail$linuxParameters": "<p>Linux-specific modifications that are applied to the container, such as Linux kernel capabilities.</p>",
+        "ContainerProperties$linuxParameters": "<p>Linux-specific modifications that are applied to the container, such as Linux kernel capabilities.</p>"
       }
     },
     "ListJobsRequest": {
@@ -656,6 +687,8 @@
         "DescribeJobDefinitionsResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>DescribeJobDefinitions</code> request. When the results of a <code>DescribeJobDefinitions</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeJobQueuesRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>DescribeJobQueues</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. This value is <code>null</code> when there are no more results to return.</p> <note> <p>This token should be treated as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
         "DescribeJobQueuesResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>DescribeJobQueues</code> request. When the results of a <code>DescribeJobQueues</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "Device$hostPath": "<p>The path for the device on the host container instance.</p>",
+        "Device$containerPath": "<p>The path inside the container at which to expose the host device.</p>",
         "Host$sourcePath": "<p>The path on the host container instance that is presented to the container. If this parameter is empty, then the Docker daemon has assigned a host path for you. If this parameter contains a file location, then the data volume persists at the specified location on the host container instance until you delete it manually. If the source path location does not exist on the host container instance, the Docker daemon creates it. If the location does exist, the contents of the source path folder are exported.</p>",
         "JobDefinition$jobDefinitionName": "<p>The name of the job definition. </p>",
         "JobDefinition$jobDefinitionArn": "<p>The Amazon Resource Name (ARN) for the job definition. </p>",
@@ -722,7 +755,7 @@
       "base": null,
       "refs": {
         "ComputeResource$instanceTypes": "<p>The instances types that may be launched. You can specify instance families to launch any instance type within those families (for example, <code>c4</code> or <code>p3</code>), or you can specify specific sizes within a family (such as <code>c4.8xlarge</code>). You can also choose <code>optimal</code> to pick instance types (from the C, M, and R instance families) on the fly that match the demand of your job queues.</p>",
-        "ComputeResource$subnets": "<p>The VPC subnets into which the compute resources are launched. </p>",
+        "ComputeResource$subnets": "<p>The VPC subnets into which the compute resources are launched. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html\">VPCs and Subnets</a> in the <i>Amazon VPC User Guide</i>.</p>",
         "ComputeResource$securityGroupIds": "<p>The EC2 security group that is associated with instances launched in the compute environment. </p>",
         "ContainerDetail$command": "<p>The command that is passed to the container. </p>",
         "ContainerOverrides$command": "<p>The command to send to the container that overrides the default command from the Docker image or the job definition.</p>",

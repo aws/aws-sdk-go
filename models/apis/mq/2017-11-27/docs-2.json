@@ -168,6 +168,13 @@
       "base" : "Returns information about an ActiveMQ user.",
       "refs" : { }
     },
+    "EncryptionOptions" : {
+      "base" : "Encryption options for the broker.",
+      "refs" : {
+        "CreateBrokerInput$EncryptionOptions" : "Encryption options for the broker.",
+        "DescribeBrokerOutput$EncryptionOptions" : "Encryption options for the broker."
+      }
+    },
     "EngineType" : {
       "base" : "The type of broker engine. Note: Currently, Amazon MQ supports only ActiveMQ.",
       "refs" : {
@@ -311,6 +318,7 @@
         "DescribeBrokerOutput$AutoMinorVersionUpgrade" : "Required. Enables automatic upgrades to new minor versions for brokers, as Apache releases the versions. The automatic upgrades occur during the maintenance window of the broker or after a manual broker reboot.",
         "DescribeBrokerOutput$PubliclyAccessible" : "Required. Enables connections from applications outside of the VPC that hosts the broker's subnets.",
         "DescribeUserOutput$ConsoleAccess" : "Enables access to the the ActiveMQ Web Console for the ActiveMQ user.",
+        "EncryptionOptions$UseAwsOwnedKey" : "Enables the use of an AWS owned CMK using AWS Key Management Service (KMS).",
         "Logs$Audit" : "Enables audit logging. Every user management action made using JMX or the ActiveMQ Web Console is logged.",
         "Logs$General" : "Enables general logging.",
         "LogsSummary$Audit" : "Enables audit logging. Every user management action made using JMX or the ActiveMQ Web Console is logged.",
@@ -484,6 +492,7 @@
         "DescribeConfigurationRevisionOutput$Description" : "The description of the configuration.",
         "DescribeUserOutput$BrokerId" : "Required. The unique ID that Amazon MQ generates for the broker.",
         "DescribeUserOutput$Username" : "Required. The username of the ActiveMQ user. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
+        "EncryptionOptions$KmsKeyId" : "The customer master key (CMK) to use for the AWS Key Management Service (KMS). This key is used to encrypt your data at rest. If not provided, Amazon MQ will use a default CMK to encrypt your data.",
         "EngineVersion$Name" : "Id for the version.",
         "Error$ErrorAttribute" : "The attribute which caused the error.",
         "Error$Message" : "The explanation of the error.",

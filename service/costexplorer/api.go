@@ -588,6 +588,93 @@ func (c *CostExplorer) GetReservationUtilizationWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opGetRightsizingRecommendation = "GetRightsizingRecommendation"
+
+// GetRightsizingRecommendationRequest generates a "aws/request.Request" representing the
+// client's request for the GetRightsizingRecommendation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetRightsizingRecommendation for more information on using the GetRightsizingRecommendation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetRightsizingRecommendationRequest method.
+//    req, resp := client.GetRightsizingRecommendationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetRightsizingRecommendation
+func (c *CostExplorer) GetRightsizingRecommendationRequest(input *GetRightsizingRecommendationInput) (req *request.Request, output *GetRightsizingRecommendationOutput) {
+	op := &request.Operation{
+		Name:       opGetRightsizingRecommendation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetRightsizingRecommendationInput{}
+	}
+
+	output = &GetRightsizingRecommendationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetRightsizingRecommendation API operation for AWS Cost Explorer Service.
+//
+// Creates recommendations that helps you save cost by identifying idle and
+// underutilized Amazon EC2 instances.
+//
+// Recommendations are generated to either downsize or terminate instances,
+// along with providing savings detail and metrics. For details on calculation
+// and function, see Optimizing Your Cost with Rightsizing Recommendations (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-what-is.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cost Explorer Service's
+// API operation GetRightsizingRecommendation for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   You made too many calls in a short period of time. Try again later.
+//
+//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   The pagination token is invalid. Try again without a pagination token.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetRightsizingRecommendation
+func (c *CostExplorer) GetRightsizingRecommendation(input *GetRightsizingRecommendationInput) (*GetRightsizingRecommendationOutput, error) {
+	req, out := c.GetRightsizingRecommendationRequest(input)
+	return out, req.Send()
+}
+
+// GetRightsizingRecommendationWithContext is the same as GetRightsizingRecommendation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetRightsizingRecommendation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) GetRightsizingRecommendationWithContext(ctx aws.Context, input *GetRightsizingRecommendationInput, opts ...request.Option) (*GetRightsizingRecommendationOutput, error) {
+	req, out := c.GetRightsizingRecommendationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetTags = "GetTags"
 
 // GetTagsRequest generates a "aws/request.Request" representing the
@@ -676,6 +763,93 @@ func (c *CostExplorer) GetTags(input *GetTagsInput) (*GetTagsOutput, error) {
 // for more information on using Contexts.
 func (c *CostExplorer) GetTagsWithContext(ctx aws.Context, input *GetTagsInput, opts ...request.Option) (*GetTagsOutput, error) {
 	req, out := c.GetTagsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetUsageForecast = "GetUsageForecast"
+
+// GetUsageForecastRequest generates a "aws/request.Request" representing the
+// client's request for the GetUsageForecast operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetUsageForecast for more information on using the GetUsageForecast
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetUsageForecastRequest method.
+//    req, resp := client.GetUsageForecastRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetUsageForecast
+func (c *CostExplorer) GetUsageForecastRequest(input *GetUsageForecastInput) (req *request.Request, output *GetUsageForecastOutput) {
+	op := &request.Operation{
+		Name:       opGetUsageForecast,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetUsageForecastInput{}
+	}
+
+	output = &GetUsageForecastOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetUsageForecast API operation for AWS Cost Explorer Service.
+//
+// Retrieves a forecast for how much Amazon Web Services predicts that you will
+// use over the forecast time period that you select, based on your past usage.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cost Explorer Service's
+// API operation GetUsageForecast for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   You made too many calls in a short period of time. Try again later.
+//
+//   * ErrCodeDataUnavailableException "DataUnavailableException"
+//   The requested data is unavailable.
+//
+//   * ErrCodeUnresolvableUsageUnitException "UnresolvableUsageUnitException"
+//   Cost Explorer was unable to identify the usage unit. Provide UsageType/UsageTypeGroup
+//   filter selections that contain matching units, for example: hours.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetUsageForecast
+func (c *CostExplorer) GetUsageForecast(input *GetUsageForecastInput) (*GetUsageForecastOutput, error) {
+	req, out := c.GetUsageForecastRequest(input)
+	return out, req.Send()
+}
+
+// GetUsageForecastWithContext is the same as GetUsageForecast with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetUsageForecast for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) GetUsageForecastWithContext(ctx aws.Context, input *GetUsageForecastInput, opts ...request.Option) (*GetUsageForecastOutput, error) {
+	req, out := c.GetUsageForecastRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -904,6 +1078,103 @@ func (s *CoverageNormalizedUnits) SetTotalRunningNormalizedUnits(v string) *Cove
 	return s
 }
 
+// Context about the current instance.
+type CurrentInstance struct {
+	_ struct{} `type:"structure"`
+
+	// The currency code that Amazon Web Services used to calculate the costs for
+	// this instance.
+	CurrencyCode *string `type:"string"`
+
+	// Current On Demand cost of operating this instance on a monthly basis.
+	MonthlyCost *string `type:"string"`
+
+	// Number of hours during the lookback period billed at On Demand rates.
+	OnDemandHoursInLookbackPeriod *string `type:"string"`
+
+	// Number of hours during the lookback period covered by reservations.
+	ReservationCoveredHoursInLookbackPeriod *string `type:"string"`
+
+	// Details about the resource and utilization.
+	ResourceDetails *ResourceDetails `type:"structure"`
+
+	// Resource ID of the current instance.
+	ResourceId *string `type:"string"`
+
+	// Utilization information of the current instance during the lookback period.
+	ResourceUtilization *ResourceUtilization `type:"structure"`
+
+	// Cost allocation resource tags applied to the instance.
+	Tags []*TagValues `type:"list"`
+
+	// The total number of hours the instance ran during the lookback period.
+	TotalRunningHoursInLookbackPeriod *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CurrentInstance) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CurrentInstance) GoString() string {
+	return s.String()
+}
+
+// SetCurrencyCode sets the CurrencyCode field's value.
+func (s *CurrentInstance) SetCurrencyCode(v string) *CurrentInstance {
+	s.CurrencyCode = &v
+	return s
+}
+
+// SetMonthlyCost sets the MonthlyCost field's value.
+func (s *CurrentInstance) SetMonthlyCost(v string) *CurrentInstance {
+	s.MonthlyCost = &v
+	return s
+}
+
+// SetOnDemandHoursInLookbackPeriod sets the OnDemandHoursInLookbackPeriod field's value.
+func (s *CurrentInstance) SetOnDemandHoursInLookbackPeriod(v string) *CurrentInstance {
+	s.OnDemandHoursInLookbackPeriod = &v
+	return s
+}
+
+// SetReservationCoveredHoursInLookbackPeriod sets the ReservationCoveredHoursInLookbackPeriod field's value.
+func (s *CurrentInstance) SetReservationCoveredHoursInLookbackPeriod(v string) *CurrentInstance {
+	s.ReservationCoveredHoursInLookbackPeriod = &v
+	return s
+}
+
+// SetResourceDetails sets the ResourceDetails field's value.
+func (s *CurrentInstance) SetResourceDetails(v *ResourceDetails) *CurrentInstance {
+	s.ResourceDetails = v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *CurrentInstance) SetResourceId(v string) *CurrentInstance {
+	s.ResourceId = &v
+	return s
+}
+
+// SetResourceUtilization sets the ResourceUtilization field's value.
+func (s *CurrentInstance) SetResourceUtilization(v *ResourceUtilization) *CurrentInstance {
+	s.ResourceUtilization = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CurrentInstance) SetTags(v []*TagValues) *CurrentInstance {
+	s.Tags = v
+	return s
+}
+
+// SetTotalRunningHoursInLookbackPeriod sets the TotalRunningHoursInLookbackPeriod field's value.
+func (s *CurrentInstance) SetTotalRunningHoursInLookbackPeriod(v string) *CurrentInstance {
+	s.TotalRunningHoursInLookbackPeriod = &v
+	return s
+}
+
 // The time period that you want the usage and costs for.
 type DateInterval struct {
 	_ struct{} `type:"structure"`
@@ -1123,6 +1394,146 @@ func (s *EC2InstanceDetails) SetTenancy(v string) *EC2InstanceDetails {
 	return s
 }
 
+// Details on the Amazon EC2 Resource.
+type EC2ResourceDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Hourly public On Demand rate for the instance type.
+	HourlyOnDemandRate *string `type:"string"`
+
+	// The type of Amazon Web Services instance.
+	InstanceType *string `type:"string"`
+
+	// Memory capacity of Amazon Web Services instance.
+	Memory *string `type:"string"`
+
+	// Network performance capacity of the Amazon Web Services instance.
+	NetworkPerformance *string `type:"string"`
+
+	// The platform of the Amazon Web Services instance. The platform is the specific
+	// combination of operating system, license model, and software on an instance.
+	Platform *string `type:"string"`
+
+	// The Amazon Web Services Region of the instance.
+	Region *string `type:"string"`
+
+	// The SKU of the product.
+	Sku *string `type:"string"`
+
+	// The disk storage of the Amazon Web Services instance (Not EBS storage).
+	Storage *string `type:"string"`
+
+	// Number of VCPU cores in the Amazon Web Services instance type.
+	Vcpu *string `type:"string"`
+}
+
+// String returns the string representation
+func (s EC2ResourceDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EC2ResourceDetails) GoString() string {
+	return s.String()
+}
+
+// SetHourlyOnDemandRate sets the HourlyOnDemandRate field's value.
+func (s *EC2ResourceDetails) SetHourlyOnDemandRate(v string) *EC2ResourceDetails {
+	s.HourlyOnDemandRate = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *EC2ResourceDetails) SetInstanceType(v string) *EC2ResourceDetails {
+	s.InstanceType = &v
+	return s
+}
+
+// SetMemory sets the Memory field's value.
+func (s *EC2ResourceDetails) SetMemory(v string) *EC2ResourceDetails {
+	s.Memory = &v
+	return s
+}
+
+// SetNetworkPerformance sets the NetworkPerformance field's value.
+func (s *EC2ResourceDetails) SetNetworkPerformance(v string) *EC2ResourceDetails {
+	s.NetworkPerformance = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *EC2ResourceDetails) SetPlatform(v string) *EC2ResourceDetails {
+	s.Platform = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *EC2ResourceDetails) SetRegion(v string) *EC2ResourceDetails {
+	s.Region = &v
+	return s
+}
+
+// SetSku sets the Sku field's value.
+func (s *EC2ResourceDetails) SetSku(v string) *EC2ResourceDetails {
+	s.Sku = &v
+	return s
+}
+
+// SetStorage sets the Storage field's value.
+func (s *EC2ResourceDetails) SetStorage(v string) *EC2ResourceDetails {
+	s.Storage = &v
+	return s
+}
+
+// SetVcpu sets the Vcpu field's value.
+func (s *EC2ResourceDetails) SetVcpu(v string) *EC2ResourceDetails {
+	s.Vcpu = &v
+	return s
+}
+
+// Utilization metrics of the instance.
+type EC2ResourceUtilization struct {
+	_ struct{} `type:"structure"`
+
+	// Maximum observed or expected CPU utilization of the instance.
+	MaxCpuUtilizationPercentage *string `type:"string"`
+
+	// Maximum observed or expected memory utilization of the instance.
+	MaxMemoryUtilizationPercentage *string `type:"string"`
+
+	// Maximum observed or expected storage utilization of the instance (does not
+	// measure EBS storage).
+	MaxStorageUtilizationPercentage *string `type:"string"`
+}
+
+// String returns the string representation
+func (s EC2ResourceUtilization) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EC2ResourceUtilization) GoString() string {
+	return s.String()
+}
+
+// SetMaxCpuUtilizationPercentage sets the MaxCpuUtilizationPercentage field's value.
+func (s *EC2ResourceUtilization) SetMaxCpuUtilizationPercentage(v string) *EC2ResourceUtilization {
+	s.MaxCpuUtilizationPercentage = &v
+	return s
+}
+
+// SetMaxMemoryUtilizationPercentage sets the MaxMemoryUtilizationPercentage field's value.
+func (s *EC2ResourceUtilization) SetMaxMemoryUtilizationPercentage(v string) *EC2ResourceUtilization {
+	s.MaxMemoryUtilizationPercentage = &v
+	return s
+}
+
+// SetMaxStorageUtilizationPercentage sets the MaxStorageUtilizationPercentage field's value.
+func (s *EC2ResourceUtilization) SetMaxStorageUtilizationPercentage(v string) *EC2ResourceUtilization {
+	s.MaxStorageUtilizationPercentage = &v
+	return s
+}
+
 // The Amazon EC2 hardware specifications that you want AWS to provide recommendations
 // for.
 type EC2Specification struct {
@@ -1282,26 +1693,30 @@ func (s *ElastiCacheInstanceDetails) SetSizeFlexEligible(v bool) *ElastiCacheIns
 //
 //    * Simple dimension values - You can set the dimension name and values
 //    for the filters that you plan to use. For example, you can filter for
-//    INSTANCE_TYPE==m4.xlarge OR INSTANCE_TYPE==c4.large. The Expression for
-//    that looks like this: { "Dimensions": { "Key": "INSTANCE_TYPE", "Values":
-//    [ "m4.xlarge", “c4.large” ] } } The list of dimension values are OR'd
-//    together to retrieve cost or usage data. You can create Expression and
-//    DimensionValues objects using either with* methods or set* methods in
-//    multiple lines.
+//    REGION==us-east-1 OR REGION==us-west-1. The Expression for that looks
+//    like this: { "Dimensions": { "Key": "REGION", "Values": [ "us-east-1",
+//    “us-west-1” ] } } The list of dimension values are OR'd together to
+//    retrieve cost or usage data. You can create Expression and DimensionValues
+//    objects using either with* methods or set* methods in multiple lines.
 //
 //    * Compound dimension values with logical operations - You can use multiple
 //    Expression types and the logical operators AND/OR/NOT to create a list
 //    of one or more Expression objects. This allows you to filter on more advanced
-//    options. For example, you can filter on ((INSTANCE_TYPE == m4.large OR
-//    INSTANCE_TYPE == m3.large) OR (TAG.Type == Type1)) AND (USAGE_TYPE !=
-//    DataTransfer). The Expression for that looks like this: { "And": [ {"Or":
-//    [ {"Dimensions": { "Key": "INSTANCE_TYPE", "Values": [ "m4.x.large", "c4.large"
-//    ] }}, {"Tags": { "Key": "TagName", "Values": ["Value1"] } } ]}, {"Not":
-//    {"Dimensions": { "Key": "USAGE_TYPE", "Values": ["DataTransfer"] }}} ]
-//    } Because each Expression can have only one operator, the service returns
-//    an error if more than one is specified. The following example shows an
-//    Expression object that creates an error. { "And": [ ... ], "DimensionValues":
-//    { "Dimension": "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
+//    options. For example, you can filter on ((REGION == us-east-1 OR REGION
+//    == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
+//    The Expression for that looks like this: { "And": [ {"Or": [ {"Dimensions":
+//    { "Key": "REGION", "Values": [ "us-east-1", "us-west-1" ] }}, {"Tags":
+//    { "Key": "TagName", "Values": ["Value1"] } } ]}, {"Not": {"Dimensions":
+//    { "Key": "USAGE_TYPE", "Values": ["DataTransfer"] }}} ] } Because each
+//    Expression can have only one operator, the service returns an error if
+//    more than one is specified. The following example shows an Expression
+//    object that creates an error. { "And": [ ... ], "DimensionValues": { "Dimension":
+//    "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
+//
+// For GetRightsizingRecommendation action, a combination of OR and NOT is not
+// supported. OR is not supported between different dimensions, or dimensions
+// and tags. NOT operators aren't supported. Dimentions are also limited to
+// LINKED_ACCOUNT, REGION, or RIGHTSIZING_TYPE.
 type Expression struct {
 	_ struct{} `type:"structure"`
 
@@ -1596,15 +2011,15 @@ type GetCostForecastInput struct {
 	//
 	// Valid values for a GetCostForecast call are the following:
 	//
-	//    * AmortizedCost
+	//    * AMORTIZED_COST
 	//
-	//    * BlendedCost
+	//    * BLENDED_COST
 	//
-	//    * NetAmortizedCost
+	//    * NET_AMORTIZED_COST
 	//
-	//    * NetUnblendedCost
+	//    * NET_UNBLENDED_COST
 	//
-	//    * UnblendedCost
+	//    * UNBLENDED_COST
 	//
 	// Metric is a required field
 	Metric *string `type:"string" required:"true" enum:"Metric"`
@@ -2542,6 +2957,150 @@ func (s *GetReservationUtilizationOutput) SetUtilizationsByTime(v []*Utilization
 	return s
 }
 
+type GetRightsizingRecommendationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Use Expression to filter by cost or by usage. There are two patterns:
+	//
+	//    * Simple dimension values - You can set the dimension name and values
+	//    for the filters that you plan to use. For example, you can filter for
+	//    REGION==us-east-1 OR REGION==us-west-1. The Expression for that looks
+	//    like this: { "Dimensions": { "Key": "REGION", "Values": [ "us-east-1",
+	//    “us-west-1” ] } } The list of dimension values are OR'd together to
+	//    retrieve cost or usage data. You can create Expression and DimensionValues
+	//    objects using either with* methods or set* methods in multiple lines.
+	//
+	//    * Compound dimension values with logical operations - You can use multiple
+	//    Expression types and the logical operators AND/OR/NOT to create a list
+	//    of one or more Expression objects. This allows you to filter on more advanced
+	//    options. For example, you can filter on ((REGION == us-east-1 OR REGION
+	//    == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
+	//    The Expression for that looks like this: { "And": [ {"Or": [ {"Dimensions":
+	//    { "Key": "REGION", "Values": [ "us-east-1", "us-west-1" ] }}, {"Tags":
+	//    { "Key": "TagName", "Values": ["Value1"] } } ]}, {"Not": {"Dimensions":
+	//    { "Key": "USAGE_TYPE", "Values": ["DataTransfer"] }}} ] } Because each
+	//    Expression can have only one operator, the service returns an error if
+	//    more than one is specified. The following example shows an Expression
+	//    object that creates an error. { "And": [ ... ], "DimensionValues": { "Dimension":
+	//    "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
+	//
+	// For GetRightsizingRecommendation action, a combination of OR and NOT is not
+	// supported. OR is not supported between different dimensions, or dimensions
+	// and tags. NOT operators aren't supported. Dimentions are also limited to
+	// LINKED_ACCOUNT, REGION, or RIGHTSIZING_TYPE.
+	Filter *Expression `type:"structure"`
+
+	// The pagination token that indicates the next set of results that you want
+	// to retrieve.
+	NextPageToken *string `type:"string"`
+
+	// The number of recommendations that you want returned in a single response
+	// object.
+	PageSize *int64 `type:"integer"`
+
+	// The specific service that you want recommendations for.
+	//
+	// Service is a required field
+	Service *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetRightsizingRecommendationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetRightsizingRecommendationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetRightsizingRecommendationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetRightsizingRecommendationInput"}
+	if s.Service == nil {
+		invalidParams.Add(request.NewErrParamRequired("Service"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *GetRightsizingRecommendationInput) SetFilter(v *Expression) *GetRightsizingRecommendationInput {
+	s.Filter = v
+	return s
+}
+
+// SetNextPageToken sets the NextPageToken field's value.
+func (s *GetRightsizingRecommendationInput) SetNextPageToken(v string) *GetRightsizingRecommendationInput {
+	s.NextPageToken = &v
+	return s
+}
+
+// SetPageSize sets the PageSize field's value.
+func (s *GetRightsizingRecommendationInput) SetPageSize(v int64) *GetRightsizingRecommendationInput {
+	s.PageSize = &v
+	return s
+}
+
+// SetService sets the Service field's value.
+func (s *GetRightsizingRecommendationInput) SetService(v string) *GetRightsizingRecommendationInput {
+	s.Service = &v
+	return s
+}
+
+type GetRightsizingRecommendationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information regarding this specific recommendation set.
+	Metadata *RightsizingRecommendationMetadata `type:"structure"`
+
+	// The token to retrieve the next set of results.
+	NextPageToken *string `type:"string"`
+
+	// Recommendations to rightsize resources.
+	RightsizingRecommendations []*RightsizingRecommendation `type:"list"`
+
+	// Summary of this recommendation set.
+	Summary *RightsizingRecommendationSummary `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetRightsizingRecommendationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetRightsizingRecommendationOutput) GoString() string {
+	return s.String()
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *GetRightsizingRecommendationOutput) SetMetadata(v *RightsizingRecommendationMetadata) *GetRightsizingRecommendationOutput {
+	s.Metadata = v
+	return s
+}
+
+// SetNextPageToken sets the NextPageToken field's value.
+func (s *GetRightsizingRecommendationOutput) SetNextPageToken(v string) *GetRightsizingRecommendationOutput {
+	s.NextPageToken = &v
+	return s
+}
+
+// SetRightsizingRecommendations sets the RightsizingRecommendations field's value.
+func (s *GetRightsizingRecommendationOutput) SetRightsizingRecommendations(v []*RightsizingRecommendation) *GetRightsizingRecommendationOutput {
+	s.RightsizingRecommendations = v
+	return s
+}
+
+// SetSummary sets the Summary field's value.
+func (s *GetRightsizingRecommendationOutput) SetSummary(v *RightsizingRecommendationSummary) *GetRightsizingRecommendationOutput {
+	s.Summary = v
+	return s
+}
+
 type GetTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2672,6 +3231,149 @@ func (s *GetTagsOutput) SetTags(v []*string) *GetTagsOutput {
 // SetTotalSize sets the TotalSize field's value.
 func (s *GetTagsOutput) SetTotalSize(v int64) *GetTagsOutput {
 	s.TotalSize = &v
+	return s
+}
+
+type GetUsageForecastInput struct {
+	_ struct{} `type:"structure"`
+
+	// The filters that you want to use to filter your forecast. Cost Explorer API
+	// supports all of the Cost Explorer filters.
+	Filter *Expression `type:"structure"`
+
+	// How granular you want the forecast to be. You can get 3 months of DAILY forecasts
+	// or 12 months of MONTHLY forecasts.
+	//
+	// The GetUsageForecast operation supports only DAILY and MONTHLY granularities.
+	//
+	// Granularity is a required field
+	Granularity *string `type:"string" required:"true" enum:"Granularity"`
+
+	// Which metric Cost Explorer uses to create your forecast.
+	//
+	// Valid values for a GetUsageForecast call are the following:
+	//
+	//    * USAGE_QUANTITY
+	//
+	//    * NORMALIZED_USAGE_AMOUNT
+	//
+	// Metric is a required field
+	Metric *string `type:"string" required:"true" enum:"Metric"`
+
+	// Cost Explorer always returns the mean forecast as a single point. You can
+	// request a prediction interval around the mean by specifying a confidence
+	// level. The higher the confidence level, the more confident Cost Explorer
+	// is about the actual value falling in the prediction interval. Higher confidence
+	// levels result in wider prediction intervals.
+	PredictionIntervalLevel *int64 `min:"51" type:"integer"`
+
+	// The start and end dates of the period that you want to retrieve usage forecast
+	// for. The start date is inclusive, but the end date is exclusive. For example,
+	// if start is 2017-01-01 and end is 2017-05-01, then the cost and usage data
+	// is retrieved from 2017-01-01 up to and including 2017-04-30 but not including
+	// 2017-05-01.
+	//
+	// TimePeriod is a required field
+	TimePeriod *DateInterval `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GetUsageForecastInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetUsageForecastInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetUsageForecastInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetUsageForecastInput"}
+	if s.Granularity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Granularity"))
+	}
+	if s.Metric == nil {
+		invalidParams.Add(request.NewErrParamRequired("Metric"))
+	}
+	if s.PredictionIntervalLevel != nil && *s.PredictionIntervalLevel < 51 {
+		invalidParams.Add(request.NewErrParamMinValue("PredictionIntervalLevel", 51))
+	}
+	if s.TimePeriod == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimePeriod"))
+	}
+	if s.TimePeriod != nil {
+		if err := s.TimePeriod.Validate(); err != nil {
+			invalidParams.AddNested("TimePeriod", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *GetUsageForecastInput) SetFilter(v *Expression) *GetUsageForecastInput {
+	s.Filter = v
+	return s
+}
+
+// SetGranularity sets the Granularity field's value.
+func (s *GetUsageForecastInput) SetGranularity(v string) *GetUsageForecastInput {
+	s.Granularity = &v
+	return s
+}
+
+// SetMetric sets the Metric field's value.
+func (s *GetUsageForecastInput) SetMetric(v string) *GetUsageForecastInput {
+	s.Metric = &v
+	return s
+}
+
+// SetPredictionIntervalLevel sets the PredictionIntervalLevel field's value.
+func (s *GetUsageForecastInput) SetPredictionIntervalLevel(v int64) *GetUsageForecastInput {
+	s.PredictionIntervalLevel = &v
+	return s
+}
+
+// SetTimePeriod sets the TimePeriod field's value.
+func (s *GetUsageForecastInput) SetTimePeriod(v *DateInterval) *GetUsageForecastInput {
+	s.TimePeriod = v
+	return s
+}
+
+type GetUsageForecastOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The forecasts for your query, in order. For DAILY forecasts, this is a list
+	// of days. For MONTHLY forecasts, this is a list of months.
+	ForecastResultsByTime []*ForecastResult `type:"list"`
+
+	// How much you're forecasted to use over the forecast period.
+	Total *MetricValue `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetUsageForecastOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetUsageForecastOutput) GoString() string {
+	return s.String()
+}
+
+// SetForecastResultsByTime sets the ForecastResultsByTime field's value.
+func (s *GetUsageForecastOutput) SetForecastResultsByTime(v []*ForecastResult) *GetUsageForecastOutput {
+	s.ForecastResultsByTime = v
+	return s
+}
+
+// SetTotal sets the Total field's value.
+func (s *GetUsageForecastOutput) SetTotal(v *MetricValue) *GetUsageForecastOutput {
+	s.Total = v
 	return s
 }
 
@@ -2832,6 +3534,31 @@ func (s *MetricValue) SetAmount(v string) *MetricValue {
 // SetUnit sets the Unit field's value.
 func (s *MetricValue) SetUnit(v string) *MetricValue {
 	s.Unit = &v
+	return s
+}
+
+// Details on the modification recommendation.
+type ModifyRecommendationDetail struct {
+	_ struct{} `type:"structure"`
+
+	// Identifies whether this instance type is the Amazon Web Services default
+	// recommendation.
+	TargetInstances []*TargetInstance `type:"list"`
+}
+
+// String returns the string representation
+func (s ModifyRecommendationDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyRecommendationDetail) GoString() string {
+	return s.String()
+}
+
+// SetTargetInstances sets the TargetInstances field's value.
+func (s *ModifyRecommendationDetail) SetTargetInstances(v []*TargetInstance) *ModifyRecommendationDetail {
+	s.TargetInstances = v
 	return s
 }
 
@@ -3587,6 +4314,54 @@ func (s *ReservationUtilizationGroup) SetValue(v string) *ReservationUtilization
 	return s
 }
 
+// Details on the resource.
+type ResourceDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Details on the Amazon EC2 resource.
+	EC2ResourceDetails *EC2ResourceDetails `type:"structure"`
+}
+
+// String returns the string representation
+func (s ResourceDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceDetails) GoString() string {
+	return s.String()
+}
+
+// SetEC2ResourceDetails sets the EC2ResourceDetails field's value.
+func (s *ResourceDetails) SetEC2ResourceDetails(v *EC2ResourceDetails) *ResourceDetails {
+	s.EC2ResourceDetails = v
+	return s
+}
+
+// Resource utilization of current resource.
+type ResourceUtilization struct {
+	_ struct{} `type:"structure"`
+
+	// Utilization of current Amazon EC2 Instance
+	EC2ResourceUtilization *EC2ResourceUtilization `type:"structure"`
+}
+
+// String returns the string representation
+func (s ResourceUtilization) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceUtilization) GoString() string {
+	return s.String()
+}
+
+// SetEC2ResourceUtilization sets the EC2ResourceUtilization field's value.
+func (s *ResourceUtilization) SetEC2ResourceUtilization(v *EC2ResourceUtilization) *ResourceUtilization {
+	s.EC2ResourceUtilization = v
+	return s
+}
+
 // The result that is associated with a time period.
 type ResultByTime struct {
 	_ struct{} `type:"structure"`
@@ -3635,6 +4410,161 @@ func (s *ResultByTime) SetTimePeriod(v *DateInterval) *ResultByTime {
 // SetTotal sets the Total field's value.
 func (s *ResultByTime) SetTotal(v map[string]*MetricValue) *ResultByTime {
 	s.Total = v
+	return s
+}
+
+// Recommendations to rightsize resources.
+type RightsizingRecommendation struct {
+	_ struct{} `type:"structure"`
+
+	// The account that this recommendation is for.
+	AccountId *string `type:"string"`
+
+	// Context regarding the current instance.
+	CurrentInstance *CurrentInstance `type:"structure"`
+
+	// Details for modification recommendations.
+	ModifyRecommendationDetail *ModifyRecommendationDetail `type:"structure"`
+
+	// Recommendation to either terminate or modify the resource.
+	RightsizingType *string `type:"string" enum:"RightsizingType"`
+
+	// Details for termination recommendations.
+	TerminateRecommendationDetail *TerminateRecommendationDetail `type:"structure"`
+}
+
+// String returns the string representation
+func (s RightsizingRecommendation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RightsizingRecommendation) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *RightsizingRecommendation) SetAccountId(v string) *RightsizingRecommendation {
+	s.AccountId = &v
+	return s
+}
+
+// SetCurrentInstance sets the CurrentInstance field's value.
+func (s *RightsizingRecommendation) SetCurrentInstance(v *CurrentInstance) *RightsizingRecommendation {
+	s.CurrentInstance = v
+	return s
+}
+
+// SetModifyRecommendationDetail sets the ModifyRecommendationDetail field's value.
+func (s *RightsizingRecommendation) SetModifyRecommendationDetail(v *ModifyRecommendationDetail) *RightsizingRecommendation {
+	s.ModifyRecommendationDetail = v
+	return s
+}
+
+// SetRightsizingType sets the RightsizingType field's value.
+func (s *RightsizingRecommendation) SetRightsizingType(v string) *RightsizingRecommendation {
+	s.RightsizingType = &v
+	return s
+}
+
+// SetTerminateRecommendationDetail sets the TerminateRecommendationDetail field's value.
+func (s *RightsizingRecommendation) SetTerminateRecommendationDetail(v *TerminateRecommendationDetail) *RightsizingRecommendation {
+	s.TerminateRecommendationDetail = v
+	return s
+}
+
+// Metadata for this recommendation set.
+type RightsizingRecommendationMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The time stamp for when Amazon Web Services made this recommendation.
+	GenerationTimestamp *string `type:"string"`
+
+	// How many days of previous usage that Amazon Web Services considers when making
+	// this recommendation.
+	LookbackPeriodInDays *string `type:"string" enum:"LookbackPeriodInDays"`
+
+	// The ID for this specific recommendation.
+	RecommendationId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s RightsizingRecommendationMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RightsizingRecommendationMetadata) GoString() string {
+	return s.String()
+}
+
+// SetGenerationTimestamp sets the GenerationTimestamp field's value.
+func (s *RightsizingRecommendationMetadata) SetGenerationTimestamp(v string) *RightsizingRecommendationMetadata {
+	s.GenerationTimestamp = &v
+	return s
+}
+
+// SetLookbackPeriodInDays sets the LookbackPeriodInDays field's value.
+func (s *RightsizingRecommendationMetadata) SetLookbackPeriodInDays(v string) *RightsizingRecommendationMetadata {
+	s.LookbackPeriodInDays = &v
+	return s
+}
+
+// SetRecommendationId sets the RecommendationId field's value.
+func (s *RightsizingRecommendationMetadata) SetRecommendationId(v string) *RightsizingRecommendationMetadata {
+	s.RecommendationId = &v
+	return s
+}
+
+// Summary of rightsizing recommendations
+type RightsizingRecommendationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Estimated total savings resulting from modifications, on a monthly basis.
+	EstimatedTotalMonthlySavingsAmount *string `type:"string"`
+
+	// The currency code that Amazon Web Services used to calculate the savings.
+	SavingsCurrencyCode *string `type:"string"`
+
+	// Savings percentage based on the recommended modifications, relative to the
+	// total On Demand costs associated with these instances.
+	SavingsPercentage *string `type:"string"`
+
+	// Total number of instance recommendations.
+	TotalRecommendationCount *string `type:"string"`
+}
+
+// String returns the string representation
+func (s RightsizingRecommendationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RightsizingRecommendationSummary) GoString() string {
+	return s.String()
+}
+
+// SetEstimatedTotalMonthlySavingsAmount sets the EstimatedTotalMonthlySavingsAmount field's value.
+func (s *RightsizingRecommendationSummary) SetEstimatedTotalMonthlySavingsAmount(v string) *RightsizingRecommendationSummary {
+	s.EstimatedTotalMonthlySavingsAmount = &v
+	return s
+}
+
+// SetSavingsCurrencyCode sets the SavingsCurrencyCode field's value.
+func (s *RightsizingRecommendationSummary) SetSavingsCurrencyCode(v string) *RightsizingRecommendationSummary {
+	s.SavingsCurrencyCode = &v
+	return s
+}
+
+// SetSavingsPercentage sets the SavingsPercentage field's value.
+func (s *RightsizingRecommendationSummary) SetSavingsPercentage(v string) *RightsizingRecommendationSummary {
+	s.SavingsPercentage = &v
+	return s
+}
+
+// SetTotalRecommendationCount sets the TotalRecommendationCount field's value.
+func (s *RightsizingRecommendationSummary) SetTotalRecommendationCount(v string) *RightsizingRecommendationSummary {
+	s.TotalRecommendationCount = &v
 	return s
 }
 
@@ -3693,6 +4623,111 @@ func (s *TagValues) SetKey(v string) *TagValues {
 // SetValues sets the Values field's value.
 func (s *TagValues) SetValues(v []*string) *TagValues {
 	s.Values = v
+	return s
+}
+
+// Details on recommended instance.
+type TargetInstance struct {
+	_ struct{} `type:"structure"`
+
+	// The currency code that Amazon Web Services used to calculate the costs for
+	// this instance.
+	CurrencyCode *string `type:"string"`
+
+	// Indicates whether or not this recommendation is the defaulted Amazon Web
+	// Services recommendation.
+	DefaultTargetInstance *bool `type:"boolean"`
+
+	// Expected cost to operate this instance type on a monthly basis.
+	EstimatedMonthlyCost *string `type:"string"`
+
+	// Estimated savings resulting from modification, on a monthly basis.
+	EstimatedMonthlySavings *string `type:"string"`
+
+	// Expected utilization metrics for target instance type.
+	ExpectedResourceUtilization *ResourceUtilization `type:"structure"`
+
+	// Details on the target instance type.
+	ResourceDetails *ResourceDetails `type:"structure"`
+}
+
+// String returns the string representation
+func (s TargetInstance) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TargetInstance) GoString() string {
+	return s.String()
+}
+
+// SetCurrencyCode sets the CurrencyCode field's value.
+func (s *TargetInstance) SetCurrencyCode(v string) *TargetInstance {
+	s.CurrencyCode = &v
+	return s
+}
+
+// SetDefaultTargetInstance sets the DefaultTargetInstance field's value.
+func (s *TargetInstance) SetDefaultTargetInstance(v bool) *TargetInstance {
+	s.DefaultTargetInstance = &v
+	return s
+}
+
+// SetEstimatedMonthlyCost sets the EstimatedMonthlyCost field's value.
+func (s *TargetInstance) SetEstimatedMonthlyCost(v string) *TargetInstance {
+	s.EstimatedMonthlyCost = &v
+	return s
+}
+
+// SetEstimatedMonthlySavings sets the EstimatedMonthlySavings field's value.
+func (s *TargetInstance) SetEstimatedMonthlySavings(v string) *TargetInstance {
+	s.EstimatedMonthlySavings = &v
+	return s
+}
+
+// SetExpectedResourceUtilization sets the ExpectedResourceUtilization field's value.
+func (s *TargetInstance) SetExpectedResourceUtilization(v *ResourceUtilization) *TargetInstance {
+	s.ExpectedResourceUtilization = v
+	return s
+}
+
+// SetResourceDetails sets the ResourceDetails field's value.
+func (s *TargetInstance) SetResourceDetails(v *ResourceDetails) *TargetInstance {
+	s.ResourceDetails = v
+	return s
+}
+
+// Details on termination recommendation.
+type TerminateRecommendationDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The currency code that Amazon Web Services used to calculate the costs for
+	// this instance.
+	CurrencyCode *string `type:"string"`
+
+	// Estimated savings resulting from modification, on a monthly basis.
+	EstimatedMonthlySavings *string `type:"string"`
+}
+
+// String returns the string representation
+func (s TerminateRecommendationDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TerminateRecommendationDetail) GoString() string {
+	return s.String()
+}
+
+// SetCurrencyCode sets the CurrencyCode field's value.
+func (s *TerminateRecommendationDetail) SetCurrencyCode(v string) *TerminateRecommendationDetail {
+	s.CurrencyCode = &v
+	return s
+}
+
+// SetEstimatedMonthlySavings sets the EstimatedMonthlySavings field's value.
+func (s *TerminateRecommendationDetail) SetEstimatedMonthlySavings(v string) *TerminateRecommendationDetail {
+	s.EstimatedMonthlySavings = &v
 	return s
 }
 
@@ -3820,6 +4855,9 @@ const (
 
 	// DimensionReservationId is a Dimension enum value
 	DimensionReservationId = "RESERVATION_ID"
+
+	// DimensionRightsizingType is a Dimension enum value
+	DimensionRightsizingType = "RIGHTSIZING_TYPE"
 )
 
 const (
@@ -3901,6 +4939,14 @@ const (
 
 	// PaymentOptionHeavyUtilization is a PaymentOption enum value
 	PaymentOptionHeavyUtilization = "HEAVY_UTILIZATION"
+)
+
+const (
+	// RightsizingTypeTerminate is a RightsizingType enum value
+	RightsizingTypeTerminate = "TERMINATE"
+
+	// RightsizingTypeModify is a RightsizingType enum value
+	RightsizingTypeModify = "MODIFY"
 )
 
 const (

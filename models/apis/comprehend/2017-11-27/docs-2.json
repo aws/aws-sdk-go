@@ -478,7 +478,10 @@
         "ClassifierEvaluationMetrics$F1Score": "<p>A measure of how accurate the classifier results are for the test data. It is derived from the <code>Precision</code> and <code>Recall</code> values. The <code>F1Score</code> is the harmonic average of the two scores. The highest score is 1, and the worst score is 0. </p>",
         "EntityRecognizerEvaluationMetrics$Precision": "<p>A measure of the usefulness of the recognizer results in the test data. High precision means that the recognizer returned substantially more relevant results than irrelevant ones. </p>",
         "EntityRecognizerEvaluationMetrics$Recall": "<p>A measure of how complete the recognizer results are for the test data. High recall means that the recognizer returned most of the relevant results.</p>",
-        "EntityRecognizerEvaluationMetrics$F1Score": "<p>A measure of how accurate the recognizer results are for the test data. It is derived from the <code>Precision</code> and <code>Recall</code> values. The <code>F1Score</code> is the harmonic average of the two scores. The highest score is 1, and the worst score is 0. </p>"
+        "EntityRecognizerEvaluationMetrics$F1Score": "<p>A measure of how accurate the recognizer results are for the test data. It is derived from the <code>Precision</code> and <code>Recall</code> values. The <code>F1Score</code> is the harmonic average of the two scores. The highest score is 1, and the worst score is 0. </p>",
+        "EntityTypesEvaluationMetrics$Precision": "<p>A measure of the usefulness of the recognizer results for a specific entity type in the test data. High precision means that the recognizer returned substantially more relevant results than irrelevant ones. </p>",
+        "EntityTypesEvaluationMetrics$Recall": "<p>A measure of how complete the recognizer results are for a specific entity type in the test data. High recall means that the recognizer returned most of the relevant results.</p>",
+        "EntityTypesEvaluationMetrics$F1Score": "<p>A measure of how accurate the recognizer results are for for a specific entity type in the test data. It is derived from the <code>Precision</code> and <code>Recall</code> values. The <code>F1Score</code> is the harmonic average of the two scores. The highest score is 1, and the worst score is 0. </p>"
       }
     },
     "EntitiesDetectionJobFilter": {
@@ -537,9 +540,9 @@
       }
     },
     "EntityRecognizerEvaluationMetrics": {
-      "base": "<p> Detailed information about the accuracy of an entity recognizer. </p>",
+      "base": "<p>Detailed information about the accuracy of an entity recognizer. </p>",
       "refs": {
-        "EntityRecognizerMetadata$EvaluationMetrics": "<p> Detailed information about the accuracy of an entity recognizer.</p>"
+        "EntityRecognizerMetadata$EvaluationMetrics": "<p>Detailed information about the accuracy of an entity recognizer.</p>"
       }
     },
     "EntityRecognizerFilter": {
@@ -598,10 +601,16 @@
         "EntityTypesListItem$Type": "<p>Entity type of an item on an entity type list.</p>"
       }
     },
+    "EntityTypesEvaluationMetrics": {
+      "base": "<p>Detailed information about the accuracy of an entity recognizer for a specific entity type. </p>",
+      "refs": {
+        "EntityRecognizerMetadataEntityTypesListItem$EvaluationMetrics": "<p>Detailed information about the accuracy of the entity recognizer for a specific item on the list of entity types. </p>"
+      }
+    },
     "EntityTypesList": {
       "base": null,
       "refs": {
-        "EntityRecognizerInputDataConfig$EntityTypes": "<p>The entity types in the input data for an entity recognizer.</p>"
+        "EntityRecognizerInputDataConfig$EntityTypes": "<p>The entity types in the input data for an entity recognizer. A maximum of 12 entity types can be used at one time to train an entity recognizer.</p>"
       }
     },
     "EntityTypesListItem": {
@@ -683,6 +692,7 @@
         "Entity$EndOffset": "<p>A character offset in the input text that shows where the entity ends. The offset returns the position of each UTF-8 code point in the string. A <i>code point</i> is the abstract character from a particular graphical representation. For example, a multi-byte UTF-8 character maps to a single code point. </p>",
         "EntityRecognizerMetadata$NumberOfTrainedDocuments": "<p> The number of documents in the input data that were used to train the entity recognizer. Typically this is 80 to 90 percent of the input documents.</p>",
         "EntityRecognizerMetadata$NumberOfTestDocuments": "<p> The number of documents in the input data that were used to test the entity recognizer. Typically this is 10 to 20 percent of the input documents.</p>",
+        "EntityRecognizerMetadataEntityTypesListItem$NumberOfTrainMentions": "<p>indicates the number of times the given entity name was seen in the training data. </p>",
         "KeyPhrase$BeginOffset": "<p>A character offset in the input text that shows where the key phrase begins (the first character is at position 0). The offset returns the position of each UTF-8 code point in the string. A <i>code point</i> is the abstract character from a particular graphical representation. For example, a multi-byte UTF-8 character maps to a single code point.</p>",
         "KeyPhrase$EndOffset": "<p>A character offset in the input text where the key phrase ends. The offset returns the position of each UTF-8 code point in the string. A <code>code point</code> is the abstract character from a particular graphical representation. For example, a multi-byte UTF-8 character maps to a single code point.</p>",
         "SyntaxToken$TokenId": "<p>A unique identifier for a token.</p>",
@@ -697,7 +707,7 @@
       }
     },
     "InvalidFilterException": {
-      "base": "<p>The filter specified for the <code>ListDocumentClassificationJobs</code> operation is invalid. Specify a different filter.</p>",
+      "base": "<p>The filter specified for the operation is invalid. Specify a different filter.</p>",
       "refs": {
       }
     },
@@ -848,22 +858,22 @@
     "LanguageCode": {
       "base": null,
       "refs": {
-        "BatchDetectEntitiesRequest$LanguageCode": "<p>The language of the input documents. You can specify English (\"en\") or Spanish (\"es\"). All documents must be in the same language.</p>",
-        "BatchDetectKeyPhrasesRequest$LanguageCode": "<p>The language of the input documents. You can specify English (\"en\") or Spanish (\"es\"). All documents must be in the same language.</p>",
-        "BatchDetectSentimentRequest$LanguageCode": "<p>The language of the input documents. You can specify English (\"en\") or Spanish (\"es\"). All documents must be in the same language.</p>",
-        "CreateDocumentClassifierRequest$LanguageCode": "<p>The language of the input documents. You can specify English (\"en\") or Spanish (\"es\"). All documents must be in the same language.</p>",
+        "BatchDetectEntitiesRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend: German (\"de\"), English (\"en\"), Spanish (\"es\"), French (\"fr\"), Italian (\"it\"), or Portuguese (\"pt\"). All documents must be in the same language.</p>",
+        "BatchDetectKeyPhrasesRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend: German (\"de\"), English (\"en\"), Spanish (\"es\"), French (\"fr\"), Italian (\"it\"), or Portuguese (\"pt\"). All documents must be in the same language.</p>",
+        "BatchDetectSentimentRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend: German (\"de\"), English (\"en\"), Spanish (\"es\"), French (\"fr\"), Italian (\"it\"), or Portuguese (\"pt\"). All documents must be in the same language.</p>",
+        "CreateDocumentClassifierRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend: German (\"de\"), English (\"en\"), Spanish (\"es\"), French (\"fr\"), Italian (\"it\"), or Portuguese (\"pt\"). All documents must be in the same language.</p>",
         "CreateEntityRecognizerRequest$LanguageCode": "<p> The language of the input documents. All documents must be in the same language. Only English (\"en\") is currently supported. </p>",
-        "DetectEntitiesRequest$LanguageCode": "<p>The language of the input documents. You can specify English (\"en\") or Spanish (\"es\"). All documents must be in the same language.</p>",
-        "DetectKeyPhrasesRequest$LanguageCode": "<p>The language of the input documents. You can specify English (\"en\") or Spanish (\"es\"). All documents must be in the same language.</p>",
-        "DetectSentimentRequest$LanguageCode": "<p>The language of the input documents. You can specify English (\"en\") or Spanish (\"es\"). All documents must be in the same language.</p>",
+        "DetectEntitiesRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend: German (\"de\"), English (\"en\"), Spanish (\"es\"), French (\"fr\"), Italian (\"it\"), or Portuguese (\"pt\"). All documents must be in the same language.</p>",
+        "DetectKeyPhrasesRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend: German (\"de\"), English (\"en\"), Spanish (\"es\"), French (\"fr\"), Italian (\"it\"), or Portuguese (\"pt\"). All documents must be in the same language.</p>",
+        "DetectSentimentRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend: German (\"de\"), English (\"en\"), Spanish (\"es\"), French (\"fr\"), Italian (\"it\"), or Portuguese (\"pt\"). All documents must be in the same language.</p>",
         "DocumentClassifierProperties$LanguageCode": "<p>The language code for the language of the documents that the classifier was trained on.</p>",
         "EntitiesDetectionJobProperties$LanguageCode": "<p>The language code of the input documents.</p>",
         "EntityRecognizerProperties$LanguageCode": "<p> The language of the input documents. All documents must be in the same language. Only English (\"en\") is currently supported.</p>",
         "KeyPhrasesDetectionJobProperties$LanguageCode": "<p>The language code of the input documents.</p>",
         "SentimentDetectionJobProperties$LanguageCode": "<p>The language code of the input documents.</p>",
         "StartEntitiesDetectionJobRequest$LanguageCode": "<p>The language of the input documents. All documents must be in the same language. You can specify any of the languages supported by Amazon Comprehend: English (\"en\"), Spanish (\"es\"), French (\"fr\"), German (\"de\"), Italian (\"it\"), or Portuguese (\"pt\"). If custom entities recognition is used, this parameter is ignored and the language used for training the model is used instead.</p>",
-        "StartKeyPhrasesDetectionJobRequest$LanguageCode": "<p>The language of the input documents. You can specify English (\"en\") or Spanish (\"es\"). All documents must be in the same language.</p>",
-        "StartSentimentDetectionJobRequest$LanguageCode": "<p>The language of the input documents. You can specify English (\"en\") or Spanish (\"es\"). All documents must be in the same language.</p>"
+        "StartKeyPhrasesDetectionJobRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend: German (\"de\"), English (\"en\"), Spanish (\"es\"), French (\"fr\"), Italian (\"it\"), or Portuguese (\"pt\"). All documents must be in the same language.</p>",
+        "StartSentimentDetectionJobRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend: German (\"de\"), English (\"en\"), Spanish (\"es\"), French (\"fr\"), Italian (\"it\"), or Portuguese (\"pt\"). All documents must be in the same language.</p>"
       }
     },
     "ListDocumentClassificationJobsRequest": {
@@ -1342,8 +1352,8 @@
     "SyntaxLanguageCode": {
       "base": null,
       "refs": {
-        "BatchDetectSyntaxRequest$LanguageCode": "<p>The language of the input documents. You can specify English (\"en\") or Spanish (\"es\"). All documents must be in the same language.</p>",
-        "DetectSyntaxRequest$LanguageCode": "<p>The language code of the input documents. You can specify English (\"en\") or Spanish (\"es\").</p>"
+        "BatchDetectSyntaxRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend: German (\"de\"), English (\"en\"), Spanish (\"es\"), French (\"fr\"), Italian (\"it\"), or Portuguese (\"pt\"). All documents must be in the same language.</p>",
+        "DetectSyntaxRequest$LanguageCode": "<p>The language code of the input documents. You can specify any of the primary languages supported by Amazon Comprehend: German (\"de\"), English (\"en\"), Spanish (\"es\"), French (\"fr\"), Italian (\"it\"), or Portuguese (\"pt\").</p>"
       }
     },
     "SyntaxToken": {
@@ -1477,7 +1487,7 @@
       }
     },
     "UnsupportedLanguageException": {
-      "base": "<p>Amazon Comprehend can't process the language of the input text. For all custom entity recognition APIs (such as <code>CreateEntityRecognizer</code>), only English is accepted. For most other APIs, Amazon Comprehend accepts only English or Spanish text. </p>",
+      "base": "<p>Amazon Comprehend can't process the language of the input text. For all custom entity recognition APIs (such as <code>CreateEntityRecognizer</code>), only English is accepted. For most other APIs, such as those for Custom Classification, Amazon Comprehend accepts text in all supported languages. For a list of supported languages, see <a>supported-languages</a>. </p>",
       "refs": {
       }
     },

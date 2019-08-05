@@ -988,7 +988,8 @@
     "DescribeAccountAttributesResponse":{
       "type":"structure",
       "members":{
-        "AccountQuotas":{"shape":"AccountQuotaList"}
+        "AccountQuotas":{"shape":"AccountQuotaList"},
+        "UniqueAccountIdentifier":{"shape":"String"}
       }
     },
     "DescribeCertificatesMessage":{
@@ -1679,7 +1680,8 @@
         "MaxAllocatedStorage":{"shape":"Integer"},
         "DefaultAllocatedStorage":{"shape":"Integer"},
         "IncludedAllocatedStorage":{"shape":"Integer"},
-        "AvailabilityZones":{"shape":"AvailabilityZonesList"}
+        "AvailabilityZones":{"shape":"AvailabilityZonesList"},
+        "ReleaseStatus":{"shape":"ReleaseStatusValues"}
       }
     },
     "OrderableReplicationInstanceList":{
@@ -1790,6 +1792,10 @@
         "failed",
         "refreshing"
       ]
+    },
+    "ReleaseStatusValues":{
+      "type":"string",
+      "enum":["beta"]
     },
     "ReloadOptionValue":{
       "type":"string",
@@ -2029,7 +2035,9 @@
         "DataPageSize":{"shape":"IntegerOptional"},
         "ParquetVersion":{"shape":"ParquetVersionValue"},
         "EnableStatistics":{"shape":"BooleanOptional"},
-        "CdcInsertsOnly":{"shape":"BooleanOptional"}
+        "IncludeOpForFullLoad":{"shape":"BooleanOptional"},
+        "CdcInsertsOnly":{"shape":"BooleanOptional"},
+        "TimestampColumnName":{"shape":"String"}
       }
     },
     "SNSInvalidTopicFault":{

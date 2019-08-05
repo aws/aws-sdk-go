@@ -99,7 +99,8 @@
         "method":"POST",
         "requestUri":"/"
       },
-      "input":{"shape":"AssignPrivateIpAddressesRequest"}
+      "input":{"shape":"AssignPrivateIpAddressesRequest"},
+      "output":{"shape":"AssignPrivateIpAddressesResult"}
     },
     "AssociateAddress":{
       "name":"AssociateAddress",
@@ -2276,6 +2277,15 @@
       "input":{"shape":"ExportTransitGatewayRoutesRequest"},
       "output":{"shape":"ExportTransitGatewayRoutesResult"}
     },
+    "GetCapacityReservationUsage":{
+      "name":"GetCapacityReservationUsage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetCapacityReservationUsageRequest"},
+      "output":{"shape":"GetCapacityReservationUsageResult"}
+    },
     "GetConsoleOutput":{
       "name":"GetConsoleOutput",
       "http":{
@@ -3470,7 +3480,8 @@
       "type":"string",
       "enum":[
         "lowestPrice",
-        "diversified"
+        "diversified",
+        "capacityOptimized"
       ]
     },
     "AllowedPrincipal":{
@@ -3578,6 +3589,35 @@
           "shape":"Integer",
           "locationName":"secondaryPrivateIpAddressCount"
         }
+      }
+    },
+    "AssignPrivateIpAddressesResult":{
+      "type":"structure",
+      "members":{
+        "NetworkInterfaceId":{
+          "shape":"String",
+          "locationName":"networkInterfaceId"
+        },
+        "AssignedPrivateIpAddresses":{
+          "shape":"AssignedPrivateIpAddressList",
+          "locationName":"assignedPrivateIpAddressesSet"
+        }
+      }
+    },
+    "AssignedPrivateIpAddress":{
+      "type":"structure",
+      "members":{
+        "PrivateIpAddress":{
+          "shape":"String",
+          "locationName":"privateIpAddress"
+        }
+      }
+    },
+    "AssignedPrivateIpAddressList":{
+      "type":"list",
+      "member":{
+        "shape":"AssignedPrivateIpAddress",
+        "locationName":"item"
       }
     },
     "AssociateAddressRequest":{
@@ -4692,6 +4732,18 @@
           "shape":"String",
           "locationName":"capacityReservationId"
         },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
+        "CapacityReservationArn":{
+          "shape":"String",
+          "locationName":"capacityReservationArn"
+        },
+        "AvailabilityZoneId":{
+          "shape":"String",
+          "locationName":"availabilityZoneId"
+        },
         "InstanceType":{
           "shape":"String",
           "locationName":"instanceType"
@@ -5576,7 +5628,6 @@
       "required":[
         "InstanceType",
         "InstancePlatform",
-        "AvailabilityZone",
         "InstanceCount"
       ],
       "members":{
@@ -5584,6 +5635,7 @@
         "InstanceType":{"shape":"String"},
         "InstancePlatform":{"shape":"CapacityReservationInstancePlatform"},
         "AvailabilityZone":{"shape":"String"},
+        "AvailabilityZoneId":{"shape":"String"},
         "Tenancy":{"shape":"CapacityReservationTenancy"},
         "InstanceCount":{"shape":"Integer"},
         "EbsOptimized":{"shape":"Boolean"},
@@ -5623,6 +5675,7 @@
         "DnsServers":{"shape":"ValueStringList"},
         "TransportProtocol":{"shape":"TransportProtocol"},
         "Description":{"shape":"String"},
+        "SplitTunnel":{"shape":"Boolean"},
         "DryRun":{"shape":"Boolean"},
         "ClientToken":{
           "shape":"String",
@@ -6064,7 +6117,11 @@
         "ClientToken":{"shape":"String"},
         "LaunchTemplateName":{"shape":"LaunchTemplateName"},
         "VersionDescription":{"shape":"VersionDescription"},
-        "LaunchTemplateData":{"shape":"RequestLaunchTemplateData"}
+        "LaunchTemplateData":{"shape":"RequestLaunchTemplateData"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        }
       }
     },
     "CreateLaunchTemplateResult":{
@@ -8101,12 +8158,17 @@
         }
       }
     },
+    "DescribeByoipCidrsMaxResults":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
     "DescribeByoipCidrsRequest":{
       "type":"structure",
       "required":["MaxResults"],
       "members":{
         "DryRun":{"shape":"Boolean"},
-        "MaxResults":{"shape":"MaxResults"},
+        "MaxResults":{"shape":"DescribeByoipCidrsMaxResults"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -8157,6 +8219,11 @@
         }
       }
     },
+    "DescribeClassicLinkInstancesMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
     "DescribeClassicLinkInstancesRequest":{
       "type":"structure",
       "members":{
@@ -8173,7 +8240,7 @@
           "locationName":"InstanceId"
         },
         "MaxResults":{
-          "shape":"Integer",
+          "shape":"DescribeClassicLinkInstancesMaxResults",
           "locationName":"maxResults"
         },
         "NextToken":{
@@ -8195,6 +8262,11 @@
         }
       }
     },
+    "DescribeClientVpnAuthorizationRulesMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
     "DescribeClientVpnAuthorizationRulesRequest":{
       "type":"structure",
       "required":["ClientVpnEndpointId"],
@@ -8206,7 +8278,7 @@
           "shape":"FilterList",
           "locationName":"Filter"
         },
-        "MaxResults":{"shape":"MaxResults"}
+        "MaxResults":{"shape":"DescribeClientVpnAuthorizationRulesMaxResults"}
       }
     },
     "DescribeClientVpnAuthorizationRulesResult":{
@@ -8222,6 +8294,11 @@
         }
       }
     },
+    "DescribeClientVpnConnectionsMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
     "DescribeClientVpnConnectionsRequest":{
       "type":"structure",
       "required":["ClientVpnEndpointId"],
@@ -8232,7 +8309,7 @@
           "locationName":"Filter"
         },
         "NextToken":{"shape":"NextToken"},
-        "MaxResults":{"shape":"MaxResults"},
+        "MaxResults":{"shape":"DescribeClientVpnConnectionsMaxResults"},
         "DryRun":{"shape":"Boolean"}
       }
     },
@@ -8249,6 +8326,11 @@
         }
       }
     },
+    "DescribeClientVpnEndpointMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
     "DescribeClientVpnEndpointsRequest":{
       "type":"structure",
       "members":{
@@ -8256,7 +8338,7 @@
           "shape":"ValueStringList",
           "locationName":"ClientVpnEndpointId"
         },
-        "MaxResults":{"shape":"MaxResults"},
+        "MaxResults":{"shape":"DescribeClientVpnEndpointMaxResults"},
         "NextToken":{"shape":"NextToken"},
         "Filters":{
           "shape":"FilterList",
@@ -8278,6 +8360,11 @@
         }
       }
     },
+    "DescribeClientVpnRoutesMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
     "DescribeClientVpnRoutesRequest":{
       "type":"structure",
       "required":["ClientVpnEndpointId"],
@@ -8287,7 +8374,7 @@
           "shape":"FilterList",
           "locationName":"Filter"
         },
-        "MaxResults":{"shape":"MaxResults"},
+        "MaxResults":{"shape":"DescribeClientVpnRoutesMaxResults"},
         "NextToken":{"shape":"NextToken"},
         "DryRun":{"shape":"Boolean"}
       }
@@ -8305,13 +8392,18 @@
         }
       }
     },
+    "DescribeClientVpnTargetNetworksMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
     "DescribeClientVpnTargetNetworksRequest":{
       "type":"structure",
       "required":["ClientVpnEndpointId"],
       "members":{
         "ClientVpnEndpointId":{"shape":"String"},
         "AssociationIds":{"shape":"ValueStringList"},
-        "MaxResults":{"shape":"MaxResults"},
+        "MaxResults":{"shape":"DescribeClientVpnTargetNetworksMaxResults"},
         "NextToken":{"shape":"NextToken"},
         "Filters":{
           "shape":"FilterList",
@@ -8425,6 +8517,11 @@
         }
       }
     },
+    "DescribeEgressOnlyInternetGatewaysMaxResults":{
+      "type":"integer",
+      "max":255,
+      "min":5
+    },
     "DescribeEgressOnlyInternetGatewaysRequest":{
       "type":"structure",
       "members":{
@@ -8433,7 +8530,7 @@
           "shape":"EgressOnlyInternetGatewayIdList",
           "locationName":"EgressOnlyInternetGatewayId"
         },
-        "MaxResults":{"shape":"Integer"},
+        "MaxResults":{"shape":"DescribeEgressOnlyInternetGatewaysMaxResults"},
         "NextToken":{"shape":"String"}
       }
     },
@@ -8713,6 +8810,11 @@
         }
       }
     },
+    "DescribeFpgaImagesMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
     "DescribeFpgaImagesRequest":{
       "type":"structure",
       "members":{
@@ -8730,7 +8832,7 @@
           "locationName":"Filter"
         },
         "NextToken":{"shape":"NextToken"},
-        "MaxResults":{"shape":"MaxResults"}
+        "MaxResults":{"shape":"DescribeFpgaImagesMaxResults"}
       }
     },
     "DescribeFpgaImagesResult":{
@@ -8831,6 +8933,11 @@
         }
       }
     },
+    "DescribeIamInstanceProfileAssociationsMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
     "DescribeIamInstanceProfileAssociationsRequest":{
       "type":"structure",
       "members":{
@@ -8842,7 +8949,7 @@
           "shape":"FilterList",
           "locationName":"Filter"
         },
-        "MaxResults":{"shape":"MaxResults"},
+        "MaxResults":{"shape":"DescribeIamInstanceProfileAssociationsMaxResults"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -9261,6 +9368,11 @@
         }
       }
     },
+    "DescribeMovingAddressesMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
     "DescribeMovingAddressesRequest":{
       "type":"structure",
       "members":{
@@ -9273,7 +9385,7 @@
           "locationName":"dryRun"
         },
         "MaxResults":{
-          "shape":"Integer",
+          "shape":"DescribeMovingAddressesMaxResults",
           "locationName":"maxResults"
         },
         "NextToken":{
@@ -9299,11 +9411,16 @@
         }
       }
     },
+    "DescribeNatGatewaysMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
     "DescribeNatGatewaysRequest":{
       "type":"structure",
       "members":{
         "Filter":{"shape":"FilterList"},
-        "MaxResults":{"shape":"Integer"},
+        "MaxResults":{"shape":"DescribeNatGatewaysMaxResults"},
         "NatGatewayIds":{
           "shape":"ValueStringList",
           "locationName":"NatGatewayId"
@@ -9529,6 +9646,11 @@
         }
       }
     },
+    "DescribePrincipalIdFormatMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
     "DescribePrincipalIdFormatRequest":{
       "type":"structure",
       "members":{
@@ -9537,7 +9659,7 @@
           "shape":"ResourceList",
           "locationName":"Resource"
         },
-        "MaxResults":{"shape":"Integer"},
+        "MaxResults":{"shape":"DescribePrincipalIdFormatMaxResults"},
         "NextToken":{"shape":"String"}
       }
     },
@@ -9592,7 +9714,8 @@
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
-        }
+        },
+        "AllRegions":{"shape":"Boolean"}
       }
     },
     "DescribeRegionsResult":{
@@ -9782,6 +9905,11 @@
         }
       }
     },
+    "DescribeScheduledInstanceAvailabilityMaxResults":{
+      "type":"integer",
+      "max":300,
+      "min":5
+    },
     "DescribeScheduledInstanceAvailabilityRequest":{
       "type":"structure",
       "required":[
@@ -9795,7 +9923,7 @@
           "locationName":"Filter"
         },
         "FirstSlotStartTimeRange":{"shape":"SlotDateTimeRangeRequest"},
-        "MaxResults":{"shape":"Integer"},
+        "MaxResults":{"shape":"DescribeScheduledInstanceAvailabilityMaxResults"},
         "MaxSlotDurationInHours":{"shape":"Integer"},
         "MinSlotDurationInHours":{"shape":"Integer"},
         "NextToken":{"shape":"String"},
@@ -9993,6 +10121,11 @@
         }
       }
     },
+    "DescribeSpotFleetInstancesMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
     "DescribeSpotFleetInstancesRequest":{
       "type":"structure",
       "required":["SpotFleetRequestId"],
@@ -10002,7 +10135,7 @@
           "locationName":"dryRun"
         },
         "MaxResults":{
-          "shape":"Integer",
+          "shape":"DescribeSpotFleetInstancesMaxResults",
           "locationName":"maxResults"
         },
         "NextToken":{
@@ -10032,6 +10165,11 @@
         }
       }
     },
+    "DescribeSpotFleetRequestHistoryMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
     "DescribeSpotFleetRequestHistoryRequest":{
       "type":"structure",
       "required":[
@@ -10048,7 +10186,7 @@
           "locationName":"eventType"
         },
         "MaxResults":{
-          "shape":"Integer",
+          "shape":"DescribeSpotFleetRequestHistoryMaxResults",
           "locationName":"maxResults"
         },
         "NextToken":{
@@ -10668,15 +10806,25 @@
         }
       }
     },
+    "DescribeVpcClassicLinkDnsSupportMaxResults":{
+      "type":"integer",
+      "max":255,
+      "min":5
+    },
+    "DescribeVpcClassicLinkDnsSupportNextToken":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
     "DescribeVpcClassicLinkDnsSupportRequest":{
       "type":"structure",
       "members":{
         "MaxResults":{
-          "shape":"MaxResults",
+          "shape":"DescribeVpcClassicLinkDnsSupportMaxResults",
           "locationName":"maxResults"
         },
         "NextToken":{
-          "shape":"NextToken",
+          "shape":"DescribeVpcClassicLinkDnsSupportNextToken",
           "locationName":"nextToken"
         },
         "VpcIds":{"shape":"VpcClassicLinkIdList"}
@@ -10686,7 +10834,7 @@
       "type":"structure",
       "members":{
         "NextToken":{
-          "shape":"NextToken",
+          "shape":"DescribeVpcClassicLinkDnsSupportNextToken",
           "locationName":"nextToken"
         },
         "Vpcs":{
@@ -11945,7 +12093,8 @@
       "enum":[
         "instanceChange",
         "fleetRequestChange",
-        "error"
+        "error",
+        "information"
       ]
     },
     "ExcessCapacityTerminationPolicy":{
@@ -12615,6 +12764,54 @@
     "GatewayType":{
       "type":"string",
       "enum":["ipsec.1"]
+    },
+    "GetCapacityReservationUsageRequest":{
+      "type":"structure",
+      "required":["CapacityReservationId"],
+      "members":{
+        "CapacityReservationId":{"shape":"String"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"GetCapacityReservationUsageRequestMaxResults"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "GetCapacityReservationUsageRequestMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
+    "GetCapacityReservationUsageResult":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        },
+        "CapacityReservationId":{
+          "shape":"String",
+          "locationName":"capacityReservationId"
+        },
+        "InstanceType":{
+          "shape":"String",
+          "locationName":"instanceType"
+        },
+        "TotalInstanceCount":{
+          "shape":"Integer",
+          "locationName":"totalInstanceCount"
+        },
+        "AvailableInstanceCount":{
+          "shape":"Integer",
+          "locationName":"availableInstanceCount"
+        },
+        "State":{
+          "shape":"CapacityReservationState",
+          "locationName":"state"
+        },
+        "InstanceUsages":{
+          "shape":"InstanceUsageSet",
+          "locationName":"instanceUsageSet"
+        }
+      }
     },
     "GetConsoleOutputRequest":{
       "type":"structure",
@@ -14989,20 +15186,26 @@
         "r5.xlarge",
         "r5.2xlarge",
         "r5.4xlarge",
+        "r5.8xlarge",
         "r5.12xlarge",
+        "r5.16xlarge",
         "r5.24xlarge",
         "r5.metal",
         "r5a.large",
         "r5a.xlarge",
         "r5a.2xlarge",
         "r5a.4xlarge",
+        "r5a.8xlarge",
         "r5a.12xlarge",
+        "r5a.16xlarge",
         "r5a.24xlarge",
         "r5d.large",
         "r5d.xlarge",
         "r5d.2xlarge",
         "r5d.4xlarge",
+        "r5d.8xlarge",
         "r5d.12xlarge",
+        "r5d.16xlarge",
         "r5d.24xlarge",
         "r5d.metal",
         "r5ad.large",
@@ -15061,6 +15264,7 @@
         "c5.12xlarge",
         "c5.18xlarge",
         "c5.24xlarge",
+        "c5.metal",
         "c5d.large",
         "c5d.xlarge",
         "c5d.2xlarge",
@@ -15100,20 +15304,26 @@
         "m5.xlarge",
         "m5.2xlarge",
         "m5.4xlarge",
+        "m5.8xlarge",
         "m5.12xlarge",
+        "m5.16xlarge",
         "m5.24xlarge",
         "m5.metal",
         "m5a.large",
         "m5a.xlarge",
         "m5a.2xlarge",
         "m5a.4xlarge",
+        "m5a.8xlarge",
         "m5a.12xlarge",
+        "m5a.16xlarge",
         "m5a.24xlarge",
         "m5d.large",
         "m5d.xlarge",
         "m5d.2xlarge",
         "m5d.4xlarge",
+        "m5d.8xlarge",
         "m5d.12xlarge",
+        "m5d.16xlarge",
         "m5d.24xlarge",
         "m5d.metal",
         "m5ad.large",
@@ -15148,6 +15358,26 @@
     "InstanceTypeList":{
       "type":"list",
       "member":{"shape":"InstanceType"}
+    },
+    "InstanceUsage":{
+      "type":"structure",
+      "members":{
+        "AccountId":{
+          "shape":"String",
+          "locationName":"accountId"
+        },
+        "UsedInstanceCount":{
+          "shape":"Integer",
+          "locationName":"usedInstanceCount"
+        }
+      }
+    },
+    "InstanceUsageSet":{
+      "type":"list",
+      "member":{
+        "shape":"InstanceUsage",
+        "locationName":"item"
+      }
     },
     "Integer":{"type":"integer"},
     "InterfacePermissionType":{
@@ -16226,11 +16456,6 @@
       "type":"string",
       "enum":["spot"]
     },
-    "MaxResults":{
-      "type":"integer",
-      "max":255,
-      "min":5
-    },
     "MillisecondDateTime":{"type":"timestamp"},
     "ModifyCapacityReservationRequest":{
       "type":"structure",
@@ -16261,6 +16486,7 @@
         "ConnectionLogOptions":{"shape":"ConnectionLogOptions"},
         "DnsServers":{"shape":"DnsServersOptionsModifyStructure"},
         "Description":{"shape":"String"},
+        "SplitTunnel":{"shape":"Boolean"},
         "DryRun":{"shape":"Boolean"}
       }
     },
@@ -16723,7 +16949,8 @@
         "TargetCapacity":{
           "shape":"Integer",
           "locationName":"targetCapacity"
-        }
+        },
+        "OnDemandTargetCapacity":{"shape":"Integer"}
       }
     },
     "ModifySpotFleetRequestResponse":{
@@ -17695,11 +17922,7 @@
         "locationName":"item"
       }
     },
-    "NextToken":{
-      "type":"string",
-      "max":1024,
-      "min":1
-    },
+    "NextToken":{"type":"string"},
     "OccurrenceDayRequestSet":{
       "type":"list",
       "member":{
@@ -17757,6 +17980,10 @@
         "MinTargetCapacity":{
           "shape":"Integer",
           "locationName":"minTargetCapacity"
+        },
+        "MaxTotalPrice":{
+          "shape":"String",
+          "locationName":"maxTotalPrice"
         }
       }
     },
@@ -17766,7 +17993,8 @@
         "AllocationStrategy":{"shape":"FleetOnDemandAllocationStrategy"},
         "SingleInstanceType":{"shape":"Boolean"},
         "SingleAvailabilityZone":{"shape":"Boolean"},
-        "MinTargetCapacity":{"shape":"Integer"}
+        "MinTargetCapacity":{"shape":"Integer"},
+        "MaxTotalPrice":{"shape":"String"}
       }
     },
     "OperationType":{
@@ -18520,6 +18748,10 @@
         "RegionName":{
           "shape":"String",
           "locationName":"regionName"
+        },
+        "OptInStatus":{
+          "shape":"String",
+          "locationName":"optInStatus"
         }
       }
     },
@@ -21200,7 +21432,8 @@
       "type":"string",
       "enum":[
         "lowest-price",
-        "diversified"
+        "diversified",
+        "capacity-optimized"
       ]
     },
     "SpotDatafeedSubscription":{
@@ -21393,6 +21626,14 @@
         "OnDemandTargetCapacity":{
           "shape":"Integer",
           "locationName":"onDemandTargetCapacity"
+        },
+        "OnDemandMaxTotalPrice":{
+          "shape":"String",
+          "locationName":"onDemandMaxTotalPrice"
+        },
+        "SpotMaxTotalPrice":{
+          "shape":"String",
+          "locationName":"spotMaxTotalPrice"
         },
         "TerminateInstancesWithExpiration":{
           "shape":"Boolean",
@@ -21641,6 +21882,10 @@
         "MinTargetCapacity":{
           "shape":"Integer",
           "locationName":"minTargetCapacity"
+        },
+        "MaxTotalPrice":{
+          "shape":"String",
+          "locationName":"maxTotalPrice"
         }
       }
     },
@@ -21652,7 +21897,8 @@
         "InstancePoolsToUseCount":{"shape":"Integer"},
         "SingleInstanceType":{"shape":"Boolean"},
         "SingleAvailabilityZone":{"shape":"Boolean"},
-        "MinTargetCapacity":{"shape":"Integer"}
+        "MinTargetCapacity":{"shape":"Integer"},
+        "MaxTotalPrice":{"shape":"String"}
       }
     },
     "SpotPlacement":{

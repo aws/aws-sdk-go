@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>Amazon Elastic Container Registry (Amazon ECR) is a managed Docker registry service. Customers can use the familiar Docker CLI to push, pull, and manage images. Amazon ECR provides a secure, scalable, and reliable registry. Amazon ECR supports private Docker repositories with resource-based permissions using IAM so that specific users or Amazon EC2 instances can access repositories and images. Developers can use the Docker CLI to author and manage images.</p>",
+  "service": "<fullname>Amazon Elastic Container Registry</fullname> <p>Amazon Elastic Container Registry (Amazon ECR) is a managed Docker registry service. Customers can use the familiar Docker CLI to push, pull, and manage images. Amazon ECR provides a secure, scalable, and reliable registry. Amazon ECR supports private Docker repositories with resource-based permissions using IAM so that specific users or Amazon EC2 instances can access repositories and images. Developers can use the Docker CLI to author and manage images.</p>",
   "operations": {
     "BatchCheckLayerAvailability": "<p>Check the availability of multiple image layers in a specified registry and repository.</p> <note> <p>This operation is used by the Amazon ECR proxy, and it is not intended for general use by customers for pulling and pushing images. In most cases, you should use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
     "BatchDeleteImage": "<p>Deletes a list of specified images within a specified repository. Images are specified with either <code>imageTag</code> or <code>imageDigest</code>.</p> <p>You can remove a tag from an image by specifying the image's tag in your request. When you remove the last tag from an image, the image is deleted from your repository.</p> <p>You can completely delete an image (and all of its tags) by specifying the image's digest in your request.</p>",
@@ -21,8 +21,9 @@
     "ListImages": "<p>Lists all the image IDs for a given repository.</p> <p>You can filter images based on whether or not they are tagged by setting the <code>tagStatus</code> parameter to <code>TAGGED</code> or <code>UNTAGGED</code>. For example, you can filter your results to return only <code>UNTAGGED</code> images and then pipe that result to a <a>BatchDeleteImage</a> operation to delete them. Or, you can filter your results to return only <code>TAGGED</code> images to list all of the tags in your repository.</p>",
     "ListTagsForResource": "<p>List the tags for an Amazon ECR resource.</p>",
     "PutImage": "<p>Creates or updates the image manifest and tags associated with an image.</p> <note> <p>This operation is used by the Amazon ECR proxy, and it is not intended for general use by customers for pulling and pushing images. In most cases, you should use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
-    "PutLifecyclePolicy": "<p>Creates or updates a lifecycle policy. For information about lifecycle policy syntax, see <a href=\"http://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html\">Lifecycle Policy Template</a>.</p>",
-    "SetRepositoryPolicy": "<p>Applies a repository policy on a specified repository to control access permissions.</p>",
+    "PutImageTagMutability": "<p>Updates the image tag mutability settings for a repository.</p>",
+    "PutLifecyclePolicy": "<p>Creates or updates a lifecycle policy. For information about lifecycle policy syntax, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html\">Lifecycle Policy Template</a>.</p>",
+    "SetRepositoryPolicy": "<p>Applies a repository policy on a specified repository to control access permissions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/RepositoryPolicies.html\">Amazon ECR Repository Policies</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
     "StartLifecyclePolicyPreview": "<p>Starts a preview of the specified lifecycle policy. This allows you to see the results before creating the lifecycle policy.</p>",
     "TagResource": "<p>Adds specified tags to a resource with the specified ARN. Existing tags on a resource are not changed if they are not specified in the request parameters.</p>",
     "UntagResource": "<p>Deletes specified tags from a resource.</p>",
@@ -199,6 +200,7 @@
         "EmptyUploadException$message": "<p>The error message associated with the exception.</p>",
         "ImageAlreadyExistsException$message": "<p>The error message associated with the exception.</p>",
         "ImageNotFoundException$message": null,
+        "ImageTagAlreadyExistsException$message": null,
         "InvalidLayerException$message": "<p>The error message associated with the exception.</p>",
         "InvalidLayerPartException$message": "<p>The error message associated with the exception.</p>",
         "InvalidParameterException$message": "<p>The error message associated with the exception.</p>",
@@ -409,11 +411,25 @@
         "PutImageRequest$imageTag": "<p>The tag to associate with the image. This parameter is required for images that use the Docker Image Manifest V2 Schema 2 or OCI formats.</p>"
       }
     },
+    "ImageTagAlreadyExistsException": {
+      "base": "<p>The specified image is tagged with a tag that already exists. The repository is configured for tag immutability.</p>",
+      "refs": {
+      }
+    },
     "ImageTagList": {
       "base": null,
       "refs": {
         "ImageDetail$imageTags": "<p>The list of tags associated with this image.</p>",
         "LifecyclePolicyPreviewResult$imageTags": "<p>The list of tags associated with this image.</p>"
+      }
+    },
+    "ImageTagMutability": {
+      "base": null,
+      "refs": {
+        "CreateRepositoryRequest$imageTagMutability": "<p>The tag mutability setting for the repository. If this parameter is omitted, the default setting of <code>MUTABLE</code> will be used which will allow image tags to be overwritten. If <code>IMMUTABLE</code> is specified, all image tags within the repository will be immutable which will prevent them from being overwritten.</p>",
+        "PutImageTagMutabilityRequest$imageTagMutability": "<p>The tag mutability setting for the repository. If <code>MUTABLE</code> is specified, image tags can be overwritten. If <code>IMMUTABLE</code> is specified, all image tags within the repository will be immutable which will prevent them from being overwritten.</p>",
+        "PutImageTagMutabilityResponse$imageTagMutability": "<p>The image tag mutability setting for the repository.</p>",
+        "Repository$imageTagMutability": "<p>The tag mutability setting for the repository.</p>"
       }
     },
     "InitiateLayerUploadRequest": {
@@ -613,7 +629,7 @@
       }
     },
     "LimitExceededException": {
-      "base": "<p>The operation did not succeed because it would have exceeded a service limit for your account. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonECR/latest/userguide/service_limits.html\">Amazon ECR Default Service Limits</a> in the Amazon Elastic Container Registry User Guide.</p>",
+      "base": "<p>The operation did not succeed because it would have exceeded a service limit for your account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/service_limits.html\">Amazon ECR Default Service Limits</a> in the Amazon Elastic Container Registry User Guide.</p>",
       "refs": {
       }
     },
@@ -710,6 +726,16 @@
       "refs": {
       }
     },
+    "PutImageTagMutabilityRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutImageTagMutabilityResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "PutLifecyclePolicyRequest": {
       "base": null,
       "refs": {
@@ -749,6 +775,8 @@
         "InvalidLayerPartException$registryId": "<p>The registry ID associated with the exception.</p>",
         "ListImagesRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository in which to list images. If you do not specify a registry, the default registry is assumed.</p>",
         "PutImageRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository in which to put the image. If you do not specify a registry, the default registry is assumed.</p>",
+        "PutImageTagMutabilityRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository in which to update the image tag mutability settings. If you do not specify a registry, the default registry is assumed.</p>",
+        "PutImageTagMutabilityResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "PutLifecyclePolicyRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository. If you do&#x2028; not specify a registry, the default registry is assumed.</p>",
         "PutLifecyclePolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "Repository$registryId": "<p>The AWS account ID associated with the registry that contains the repository.</p>",
@@ -793,7 +821,7 @@
         "DeleteRepositoryPolicyRequest$repositoryName": "<p>The name of the repository that is associated with the repository policy to delete.</p>",
         "DeleteRepositoryPolicyResponse$repositoryName": "<p>The repository name associated with the request.</p>",
         "DeleteRepositoryRequest$repositoryName": "<p>The name of the repository to delete.</p>",
-        "DescribeImagesRequest$repositoryName": "<p>A list of repositories to describe.</p>",
+        "DescribeImagesRequest$repositoryName": "<p>The repository that contains the images to describe.</p>",
         "GetDownloadUrlForLayerRequest$repositoryName": "<p>The name of the repository that is associated with the image layer to download.</p>",
         "GetLifecyclePolicyPreviewRequest$repositoryName": "<p>The name of the repository.</p>",
         "GetLifecyclePolicyPreviewResponse$repositoryName": "<p>The repository name associated with the request.</p>",
@@ -807,6 +835,8 @@
         "InvalidLayerPartException$repositoryName": "<p>The repository name associated with the exception.</p>",
         "ListImagesRequest$repositoryName": "<p>The repository with image IDs to be listed.</p>",
         "PutImageRequest$repositoryName": "<p>The name of the repository in which to put the image.</p>",
+        "PutImageTagMutabilityRequest$repositoryName": "<p>The name of the repository in which to update the image tag mutability settings.</p>",
+        "PutImageTagMutabilityResponse$repositoryName": "<p>The repository name associated with the request.</p>",
         "PutLifecyclePolicyRequest$repositoryName": "<p>The name of the repository to receive the policy.</p>",
         "PutLifecyclePolicyResponse$repositoryName": "<p>The repository name associated with the request.</p>",
         "Repository$repositoryName": "<p>The name of the repository.</p>",
@@ -845,7 +875,7 @@
       "refs": {
         "DeleteRepositoryPolicyResponse$policyText": "<p>The JSON repository policy that was deleted from the repository.</p>",
         "GetRepositoryPolicyResponse$policyText": "<p>The JSON repository policy text associated with the repository.</p>",
-        "SetRepositoryPolicyRequest$policyText": "<p>The JSON repository policy text to apply to the repository.</p>",
+        "SetRepositoryPolicyRequest$policyText": "<p>The JSON repository policy text to apply to the repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/RepositoryPolicyExamples.html\">Amazon ECR Repository Policy Examples</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
         "SetRepositoryPolicyResponse$policyText": "<p>The JSON repository policy text applied to the repository.</p>"
       }
     },
@@ -896,7 +926,7 @@
     "TagList": {
       "base": null,
       "refs": {
-        "CreateRepositoryRequest$tags": "<p/>",
+        "CreateRepositoryRequest$tags": "<p>The metadata that you apply to the repository to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.</p>",
         "ListTagsForResourceResponse$tags": "<p>The tags for the resource.</p>",
         "TagResourceRequest$tags": "<p>The tags to add to the resource. A tag is an array of key-value pairs. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.</p>"
       }

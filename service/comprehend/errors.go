@@ -27,8 +27,7 @@ const (
 	// ErrCodeInvalidFilterException for service response error code
 	// "InvalidFilterException".
 	//
-	// The filter specified for the ListDocumentClassificationJobs operation is
-	// invalid. Specify a different filter.
+	// The filter specified for the operation is invalid. Specify a different filter.
 	ErrCodeInvalidFilterException = "InvalidFilterException"
 
 	// ErrCodeInvalidRequestException for service response error code
@@ -110,7 +109,8 @@ const (
 	//
 	// Amazon Comprehend can't process the language of the input text. For all custom
 	// entity recognition APIs (such as CreateEntityRecognizer), only English is
-	// accepted. For most other APIs, Amazon Comprehend accepts only English or
-	// Spanish text.
+	// accepted. For most other APIs, such as those for Custom Classification, Amazon
+	// Comprehend accepts text in all supported languages. For a list of supported
+	// languages, see supported-languages.
 	ErrCodeUnsupportedLanguageException = "UnsupportedLanguageException"
 )

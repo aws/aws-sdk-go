@@ -405,7 +405,10 @@
       "members":{
         "ActivationKey":{"shape":"ActivationKey"},
         "AgentName":{"shape":"TagValue"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "VpcEndpointId":{"shape":"VpcEndpointId"},
+        "SubnetArns":{"shape":"PLSubnetArnList"},
+        "SecurityGroupArns":{"shape":"PLSecurityGroupArnList"}
       }
     },
     "CreateAgentResponse":{
@@ -546,7 +549,7 @@
         "Status":{"shape":"AgentStatus"},
         "LastConnectionTime":{"shape":"Time"},
         "CreationTime":{"shape":"Time"},
-        "EndpointOptions":{"shape":"EndpointOptions"},
+        "EndpointType":{"shape":"EndpointType"},
         "PrivateLinkConfig":{"shape":"PrivateLinkConfig"}
       }
     },
@@ -640,12 +643,18 @@
         "SourceLocationArn":{"shape":"LocationArn"},
         "DestinationLocationArn":{"shape":"LocationArn"},
         "CloudWatchLogGroupArn":{"shape":"LogGroupArn"},
+        "SourceNetworkInterfaceArns":{"shape":"SourceNetworkInterfaceArns"},
+        "DestinationNetworkInterfaceArns":{"shape":"DestinationNetworkInterfaceArns"},
         "Options":{"shape":"Options"},
         "Excludes":{"shape":"FilterList"},
         "ErrorCode":{"shape":"string"},
         "ErrorDetail":{"shape":"string"},
         "CreationTime":{"shape":"Time"}
       }
+    },
+    "DestinationNetworkInterfaceArns":{
+      "type":"list",
+      "member":{"shape":"NetworkInterfaceArn"}
     },
     "Duration":{
       "type":"long",
@@ -683,12 +692,18 @@
       "max":128,
       "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):elasticfilesystem:[a-z\\-0-9]*:[0-9]{12}:file-system/fs-.*$"
     },
-    "EndpointOptions":{
-      "type":"structure",
-      "members":{
-        "Fips":{"shape":"boolean"},
-        "PrivateLink":{"shape":"boolean"}
-      }
+    "Endpoint":{
+      "type":"string",
+      "max":15,
+      "min":7,
+      "pattern":"\\A(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)(\\.(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}\\z"
+    },
+    "EndpointType":{
+      "type":"string",
+      "enum":[
+        "PUBLIC",
+        "PRIVATE_LINK"
+      ]
     },
     "FilterList":{
       "type":"list",
@@ -855,6 +870,11 @@
         "PRESERVE"
       ]
     },
+    "NetworkInterfaceArn":{
+      "type":"string",
+      "max":128,
+      "pattern":"^arn:aws[\\-a-z]{0,}:ec2:[a-z\\-0-9]*:[0-9]{12}:network-interface/eni-[0-9a-f]+$"
+    },
     "NextToken":{
       "type":"string",
       "max":65535,
@@ -946,7 +966,8 @@
     "PrivateLinkConfig":{
       "type":"structure",
       "members":{
-        "PrivateLinkEndpoint":{"shape":"string"},
+        "VpcEndpointId":{"shape":"VpcEndpointId"},
+        "PrivateLinkEndpoint":{"shape":"Endpoint"},
         "SubnetArns":{"shape":"PLSubnetArnList"},
         "SecurityGroupArns":{"shape":"PLSecurityGroupArnList"}
       }
@@ -967,6 +988,10 @@
       "type":"string",
       "max":255,
       "pattern":"^(([a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9\\-]*[A-Za-z0-9])$"
+    },
+    "SourceNetworkInterfaceArns":{
+      "type":"list",
+      "member":{"shape":"NetworkInterfaceArn"}
     },
     "StartTaskExecutionRequest":{
       "type":"structure",
@@ -1169,7 +1194,10 @@
         "NONE"
       ]
     },
-    "boolean":{"type":"boolean"},
+    "VpcEndpointId":{
+      "type":"string",
+      "pattern":"^vpce-[0-9a-f]{17}$"
+    },
     "long":{"type":"long"},
     "string":{"type":"string"}
   }

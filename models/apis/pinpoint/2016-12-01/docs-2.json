@@ -29,11 +29,13 @@
     "GetApnsVoipChannel" : "<p>Retrieves information about the status and settings of the APNs VoIP channel for an application.</p>",
     "GetApnsVoipSandboxChannel" : "<p>Retrieves information about the status and settings of the APNs VoIP sandbox channel for an application.</p>",
     "GetApp" : "<p>Retrieves information about an application.</p>",
+    "GetApplicationDateRangeKpi" : " <p>Retrieves (queries) pre-aggregated data for a standard metric that applies to an application.</p>",
     "GetApplicationSettings" : "<p>Retrieves information about the settings for an application.</p>",
     "GetApps" : "<p>Retrieves information about all of your applications.</p>",
     "GetBaiduChannel" : "<p>Retrieves information about the status and settings of the Baidu Cloud Push channel for an application.</p>",
     "GetCampaign" : "<p>Retrieves information about the status, configuration, and other settings for a campaign.</p>",
     "GetCampaignActivities" : "<p>Retrieves information about the activity performed by a campaign.</p>",
+    "GetCampaignDateRangeKpi" : " <p>Retrieves (queries) pre-aggregated data for a standard metric that applies to a campaign.</p>",
     "GetCampaignVersion" : "<p>Retrieves information about the status, configuration, and other settings for a specific version of a campaign.</p>",
     "GetCampaignVersions" : "<p>Retrieves information about the status, configuration, and other settings for all versions of a specific campaign.</p>",
     "GetCampaigns" : "<p>Retrieves information about the status, configuration, and other settings for all the campaigns that are associated with an application.</p>",
@@ -160,6 +162,10 @@
         "MapOfAddressConfiguration$member" : null
       }
     },
+    "ApplicationDateRangeKpiResponse" : {
+      "base" : "<p>Provides the results of a query that retrieved the data for a standard metric that applies to an application, and provides information about that query.</p>",
+      "refs" : { }
+    },
     "ApplicationResponse" : {
       "base" : "<p>Provides information about an application.</p>",
       "refs" : {
@@ -207,6 +213,17 @@
       "refs" : {
         "DirectMessageConfiguration$BaiduMessage" : "<p>The default push notification message for the Baidu (Baidu Cloud Push) channel. This message overrides the default push notification message (DefaultPushNotificationMessage).</p>"
       }
+    },
+    "BaseKpiResult" : {
+      "base" : "<p>Provides the results of a query that retrieved the data for a standard metric that applies to an application or campaign.</p>",
+      "refs" : {
+        "ApplicationDateRangeKpiResponse$KpiResult" : "<p>An array of objects that contains the results of the query. Each object contains the value for the metric and metadata about that value.</p>",
+        "CampaignDateRangeKpiResponse$KpiResult" : "<p>An array of objects that contains the results of the query. Each object contains the value for the metric and metadata about that value.</p>"
+      }
+    },
+    "CampaignDateRangeKpiResponse" : {
+      "base" : "<p>Provides the results of a query that retrieved the data for a standard metric that applies to a campaign, and provides information about that query.</p>",
+      "refs" : { }
     },
     "CampaignEmailMessage" : {
       "base" : "<p>Specifies the content and \"From\" address for an email message that's sent to recipients of a campaign.</p>",
@@ -666,6 +683,18 @@
         "RecencyDimension$RecencyType" : "<p>The type of recency dimension to use for the segment. Valid values are: ACTIVE, endpoints that were active within the specified duration are included in the segment; and, INACTIVE, endpoints that weren't active within the specified duration are included in the segment.</p>"
       }
     },
+    "ResultRow" : {
+      "base" : "<p>Provides the results of a query that retrieved the data for a standard metric that applies to an application or campaign.</p>",
+      "refs" : {
+        "ListOfResultRow$member" : null
+      }
+    },
+    "ResultRowValue" : {
+      "base" : " <p>Provides a single value and metadata about that value as part of an array of query results for a standard metric that applies to an application or campaign.</p>",
+      "refs" : {
+        "ListOfResultRowValue$member" : null
+      }
+    },
     "SMSChannelRequest" : {
       "base" : "<p>Specifies the status and settings of the SMS channel for an application.</p>",
       "refs" : { }
@@ -1044,6 +1073,19 @@
         "ImportJobsResponse$Item" : "<p>An array of responses, one for each import job that's associated with the application (Import Jobs resource) or segment (Segment Import Jobs resource).</p>"
       }
     },
+    "ListOfResultRow" : {
+      "base" : null,
+      "refs" : {
+        "BaseKpiResult$Rows" : "<p>An array of objects that provides the results of a query that retrieved the data for a standard metric that applies to an application or campaign.</p>"
+      }
+    },
+    "ListOfResultRowValue" : {
+      "base" : null,
+      "refs" : {
+        "ResultRow$GroupedBys" : " <p>An array of objects that defines the field and field values that were used to group data in a result set that contains multiple results. This value is null if the data in a result set isn’t grouped.</p>",
+        "ResultRow$Values" : " <p>An array of objects that provides pre-aggregated values for a standard metric that applies to an application or campaign.</p>"
+      }
+    },
     "ListOfSegmentDimensions" : {
       "base" : null,
       "refs" : {
@@ -1332,6 +1374,11 @@
         "AddressConfiguration$BodyOverride" : "<p>The message body to use instead of the default message body. This value overrides the default message body.</p>",
         "AddressConfiguration$RawContent" : "<p>The raw, JSON-formatted string to use as the payload for the notification message. This value overrides the message.</p>",
         "AddressConfiguration$TitleOverride" : "<p>The message title to use instead of the default message title. This value overrides the default message title.</p>",
+        "ApplicationDateRangeKpiResponse$ApplicationId" : "<p>The unique identifier for the application that the metric applies to.</p>",
+        "ApplicationDateRangeKpiResponse$EndTime" : "<p>The last date or date and time of the date range that was used to filter the query results, in ISO 8601 format. The date range is inclusive.</p>",
+        "ApplicationDateRangeKpiResponse$KpiName" : "<p>The name of the metric, also referred to as a <i>key performance indicator (KPI)</i>, that the data was retrieved for. This value describes the associated metric and consists of two or more terms, which are comprised of lowercase alphanumeric characters, separated by a hyphen. For a list of valid values, see the <a href=\"developerguide.html\">Amazon Pinpoint Developer Guide</a>.</p>",
+        "ApplicationDateRangeKpiResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null for the App Metrics resource. The App Metrics resource returns all results in a single page.</p>",
+        "ApplicationDateRangeKpiResponse$StartTime" : "<p>The first date or date and time of the date range that was used to filter the query results, in ISO 8601 format. The date range is inclusive.</p>",
         "ApplicationResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the application.</p>",
         "ApplicationResponse$Id" : "<p>The unique identifier for the application. This identifier is displayed as the <b>Project ID</b> on the Amazon Pinpoint console.</p>",
         "ApplicationResponse$Name" : "<p>The display name of the application. This name is displayed as the <b>Project name</b> on the Amazon Pinpoint console.</p>",
@@ -1358,6 +1405,12 @@
         "BaiduMessage$Sound" : "<p>The sound to play when the recipient receives the push notification. You can use the default stream or specify the file name of a sound resource that's bundled in your app. On an Android platform, the sound file must reside in /res/raw/.</p>",
         "BaiduMessage$Title" : "<p>The title to display above the notification message on the recipient's device.</p>",
         "BaiduMessage$Url" : "<p>The URL to open in the recipient's default mobile browser, if a recipient taps the push notification and the value of the Action property is URL.</p>",
+        "CampaignDateRangeKpiResponse$ApplicationId" : "<p>The unique identifier for the application that the metric applies to.</p>",
+        "CampaignDateRangeKpiResponse$CampaignId" : "<p>The unique identifier for the campaign that the metric applies to.</p>",
+        "CampaignDateRangeKpiResponse$EndTime" : "<p>The last date or date and time of the date range that was used to filter the query results, in ISO 8601 format. The date range is inclusive.</p>",
+        "CampaignDateRangeKpiResponse$KpiName" : "<p>The name of the metric, also referred to as a <i>key performance indicator (KPI)</i>, that the data was retrieved for. This value describes the associated metric and consists of two or more terms, which are comprised of lowercase alphanumeric characters, separated by a hyphen. For a list of valid values, see the <a href=\"developerguide.html\">Amazon Pinpoint Developer Guide</a>.</p>",
+        "CampaignDateRangeKpiResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null for the Campaign Metrics resource. The Campaign Metrics resource returns all results in a single page.</p>",
+        "CampaignDateRangeKpiResponse$StartTime" : "<p>The first date or date and time of the date range that was used to filter the query results, in ISO 8601 format. The date range is inclusive.</p>",
         "CampaignEmailMessage$Body" : "<p>The body of the email for recipients whose email clients don't support HTML content.</p>",
         "CampaignEmailMessage$FromAddress" : "<p>The verified email address to send the email from. The default address is the FromAddress specified for the email channel for the application.</p>",
         "CampaignEmailMessage$HtmlBody" : "<p>The body of the email, in HTML format, for recipients whose email clients support HTML content.</p>",
@@ -1527,7 +1580,7 @@
         "MetricDimension$ComparisonOperator" : "<p>The operator to use when comparing metric values. Valid values are: GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN_OR_EQUAL, and EQUAL.</p>",
         "NumberValidateRequest$IsoCountryCode" : "<p>The two-character code, in ISO 3166-1 alpha-2 format, for the country or region where the phone number was originally registered.</p>",
         "NumberValidateRequest$PhoneNumber" : "<p>The phone number to retrieve information about. The phone number that you provide should include a valid numeric country code. Otherwise, the operation might result in an error.</p>",
-        "NumberValidateResponse$Carrier" : "<p>The carrier or service provider that the phone number is currently registered with.</p>",
+        "NumberValidateResponse$Carrier" : "<p>The carrier or service provider that the phone number is currently registered with. In some countries and regions, this value may be the carrier or service provider that the phone number was originally registered with.</p>",
         "NumberValidateResponse$City" : "<p>The name of the city where the phone number was originally registered.</p>",
         "NumberValidateResponse$CleansedPhoneNumberE164" : "<p>The cleansed phone number, in E.164 format, for the location where the phone number was originally registered.</p>",
         "NumberValidateResponse$CleansedPhoneNumberNational" : "<p>The cleansed phone number, in the format for the location where the phone number was originally registered.</p>",
@@ -1548,6 +1601,9 @@
         "QuietTime$End" : "<p>The specific time when quiet time ends. This value has to use 24-hour notation and be in HH:MM format, where HH is the hour (with a leading zero, if applicable) and MM is the minutes. For example, use 02:30 to represent 2:30 AM, or 14:30 to represent 2:30 PM.</p>",
         "QuietTime$Start" : "<p>The specific time when quiet time begins. This value has to use 24-hour notation and be in HH:MM format, where HH is the hour (with a leading zero, if applicable) and MM is the minutes. For example, use 02:30 to represent 2:30 AM, or 14:30 to represent 2:30 PM.</p>",
         "RawEmail$Data" : "<p>The email message, represented as a raw MIME message. The entire message must be base64 encoded.</p>",
+        "ResultRowValue$Key" : " <p>The name of the field that Amazon Pinpoint uses to store the value specified by the Value property.</p>",
+        "ResultRowValue$Type" : " <p>The data type of the value specified by the Value property.</p>",
+        "ResultRowValue$Value" : " <p>In a Values object, the value for the metric that the query retrieved data for. In a GroupedBys object, the value for the field that was used to group data in a result set that contains multiple results (Values objects).</p>",
         "SMSChannelRequest$SenderId" : "<p>The identity that you want to display on recipients' devices when they receive messages from the SMS channel.</p>",
         "SMSChannelRequest$ShortCode" : "<p>The registered short code that you want to use when you send messages through the SMS channel.</p>",
         "SMSChannelResponse$ApplicationId" : "<p>The unique identifier for the application that the SMS channel applies to.</p>",

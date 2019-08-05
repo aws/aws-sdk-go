@@ -143,6 +143,21 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "CancelAuditMitigationActionsTask":{
+      "name":"CancelAuditMitigationActionsTask",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/audit/mitigationactions/tasks/{taskId}/cancel"
+      },
+      "input":{"shape":"CancelAuditMitigationActionsTaskRequest"},
+      "output":{"shape":"CancelAuditMitigationActionsTaskResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "CancelAuditTask":{
       "name":"CancelAuditTask",
       "http":{
@@ -323,6 +338,22 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "CreateMitigationAction":{
+      "name":"CreateMitigationAction",
+      "http":{
+        "method":"POST",
+        "requestUri":"/mitigationactions/actions/{actionName}"
+      },
+      "input":{"shape":"CreateMitigationActionRequest"},
+      "output":{"shape":"CreateMitigationActionResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "CreateOTAUpdate":{
       "name":"CreateOTAUpdate",
       "http":{
@@ -407,6 +438,7 @@
       "output":{"shape":"CreateScheduledAuditResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
+        {"shape":"ResourceAlreadyExistsException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalFailureException"},
         {"shape":"LimitExceededException"}
@@ -640,6 +672,20 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "DeleteMitigationAction":{
+      "name":"DeleteMitigationAction",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/mitigationactions/actions/{actionName}"
+      },
+      "input":{"shape":"DeleteMitigationActionRequest"},
+      "output":{"shape":"DeleteMitigationActionResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"}
       ]
     },
     "DeleteOTAUpdate":{
@@ -884,6 +930,36 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "DescribeAuditFinding":{
+      "name":"DescribeAuditFinding",
+      "http":{
+        "method":"GET",
+        "requestUri":"/audit/findings/{findingId}"
+      },
+      "input":{"shape":"DescribeAuditFindingRequest"},
+      "output":{"shape":"DescribeAuditFindingResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "DescribeAuditMitigationActionsTask":{
+      "name":"DescribeAuditMitigationActionsTask",
+      "http":{
+        "method":"GET",
+        "requestUri":"/audit/mitigationactions/tasks/{taskId}"
+      },
+      "input":{"shape":"DescribeAuditMitigationActionsTaskRequest"},
+      "output":{"shape":"DescribeAuditMitigationActionsTaskResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "DescribeAuditTask":{
       "name":"DescribeAuditTask",
       "http":{
@@ -1055,6 +1131,21 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "DescribeMitigationAction":{
+      "name":"DescribeMitigationAction",
+      "http":{
+        "method":"GET",
+        "requestUri":"/mitigationactions/actions/{actionName}"
+      },
+      "input":{"shape":"DescribeMitigationActionRequest"},
+      "output":{"shape":"DescribeMitigationActionResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"}
       ]
     },
     "DescribeRoleAlias":{
@@ -1507,6 +1598,34 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "ListAuditMitigationActionsExecutions":{
+      "name":"ListAuditMitigationActionsExecutions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/audit/mitigationactions/executions"
+      },
+      "input":{"shape":"ListAuditMitigationActionsExecutionsRequest"},
+      "output":{"shape":"ListAuditMitigationActionsExecutionsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "ListAuditMitigationActionsTasks":{
+      "name":"ListAuditMitigationActionsTasks",
+      "http":{
+        "method":"GET",
+        "requestUri":"/audit/mitigationactions/tasks"
+      },
+      "input":{"shape":"ListAuditMitigationActionsTasksRequest"},
+      "output":{"shape":"ListAuditMitigationActionsTasksResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "ListAuditTasks":{
       "name":"ListAuditTasks",
       "http":{
@@ -1659,6 +1778,20 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "ListMitigationActions":{
+      "name":"ListMitigationActions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/mitigationactions/actions"
+      },
+      "input":{"shape":"ListMitigationActionsRequest"},
+      "output":{"shape":"ListMitigationActionsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"}
       ]
     },
     "ListOTAUpdates":{
@@ -2295,6 +2428,22 @@
         {"shape":"ServiceUnavailableException"}
       ]
     },
+    "StartAuditMitigationActionsTask":{
+      "name":"StartAuditMitigationActionsTask",
+      "http":{
+        "method":"POST",
+        "requestUri":"/audit/mitigationactions/tasks/{taskId}"
+      },
+      "input":{"shape":"StartAuditMitigationActionsTaskRequest"},
+      "output":{"shape":"StartAuditMitigationActionsTaskResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TaskAlreadyExistsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "StartOnDemandAuditTask":{
       "name":"StartOnDemandAuditTask",
       "http":{
@@ -2569,6 +2718,21 @@
         {"shape":"ServiceUnavailableException"}
       ]
     },
+    "UpdateMitigationAction":{
+      "name":"UpdateMitigationAction",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/mitigationactions/actions/{actionName}"
+      },
+      "input":{"shape":"UpdateMitigationActionRequest"},
+      "output":{"shape":"UpdateMitigationActionResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "UpdateRoleAlias":{
       "name":"UpdateRoleAlias",
       "http":{
@@ -2790,7 +2954,7 @@
       "type":"structure",
       "members":{
         "violationId":{"shape":"ViolationId"},
-        "thingName":{"shape":"ThingName"},
+        "thingName":{"shape":"DeviceDefenderThingName"},
         "securityProfileName":{"shape":"SecurityProfileName"},
         "behavior":{"shape":"Behavior"},
         "lastViolationValue":{"shape":"MetricValue"},
@@ -2829,6 +2993,14 @@
     "AddThingToThingGroupResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "AddThingsToThingGroupParams":{
+      "type":"structure",
+      "required":["thingGroupNames"],
+      "members":{
+        "thingGroupNames":{"shape":"ThingGroupNames"},
+        "overrideDynamicGroups":{"shape":"OverrideDynamicGroups"}
       }
     },
     "AdditionalMetricsToRetainList":{
@@ -3043,6 +3215,16 @@
         "FAILED"
       ]
     },
+    "AuditCheckToActionsMapping":{
+      "type":"map",
+      "key":{"shape":"AuditCheckName"},
+      "value":{"shape":"MitigationActionNameList"}
+    },
+    "AuditCheckToReasonCodeFilter":{
+      "type":"map",
+      "key":{"shape":"AuditCheckName"},
+      "value":{"shape":"ReasonForNonComplianceCodes"}
+    },
     "AuditDetails":{
       "type":"map",
       "key":{"shape":"AuditCheckName"},
@@ -3051,6 +3233,7 @@
     "AuditFinding":{
       "type":"structure",
       "members":{
+        "findingId":{"shape":"FindingId"},
         "taskId":{"shape":"AuditTaskId"},
         "checkName":{"shape":"AuditCheckName"},
         "taskStartTime":{"shape":"Timestamp"},
@@ -3083,6 +3266,75 @@
         "BIWEEKLY",
         "MONTHLY"
       ]
+    },
+    "AuditMitigationActionExecutionMetadata":{
+      "type":"structure",
+      "members":{
+        "taskId":{"shape":"AuditMitigationActionsTaskId"},
+        "findingId":{"shape":"FindingId"},
+        "actionName":{"shape":"MitigationActionName"},
+        "actionId":{"shape":"MitigationActionId"},
+        "status":{"shape":"AuditMitigationActionsExecutionStatus"},
+        "startTime":{"shape":"Timestamp"},
+        "endTime":{"shape":"Timestamp"},
+        "errorCode":{"shape":"ErrorCode"},
+        "message":{"shape":"ErrorMessage"}
+      }
+    },
+    "AuditMitigationActionExecutionMetadataList":{
+      "type":"list",
+      "member":{"shape":"AuditMitigationActionExecutionMetadata"}
+    },
+    "AuditMitigationActionsExecutionStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "COMPLETED",
+        "FAILED",
+        "CANCELED",
+        "SKIPPED",
+        "PENDING"
+      ]
+    },
+    "AuditMitigationActionsTaskId":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_-]+"
+    },
+    "AuditMitigationActionsTaskMetadata":{
+      "type":"structure",
+      "members":{
+        "taskId":{"shape":"AuditMitigationActionsTaskId"},
+        "startTime":{"shape":"Timestamp"},
+        "taskStatus":{"shape":"AuditMitigationActionsTaskStatus"}
+      }
+    },
+    "AuditMitigationActionsTaskMetadataList":{
+      "type":"list",
+      "member":{"shape":"AuditMitigationActionsTaskMetadata"}
+    },
+    "AuditMitigationActionsTaskStatistics":{
+      "type":"map",
+      "key":{"shape":"AuditCheckName"},
+      "value":{"shape":"TaskStatisticsForAuditCheck"}
+    },
+    "AuditMitigationActionsTaskStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "COMPLETED",
+        "FAILED",
+        "CANCELED"
+      ]
+    },
+    "AuditMitigationActionsTaskTarget":{
+      "type":"structure",
+      "members":{
+        "auditTaskId":{"shape":"AuditTaskId"},
+        "findingIds":{"shape":"FindingIds"},
+        "auditCheckToReasonCodeFilter":{"shape":"AuditCheckToReasonCodeFilter"}
+      }
     },
     "AuditNotificationTarget":{
       "type":"structure",
@@ -3332,9 +3584,29 @@
         "INACTIVE"
       ]
     },
+    "CACertificateUpdateAction":{
+      "type":"string",
+      "enum":["DEACTIVATE"]
+    },
     "CACertificates":{
       "type":"list",
       "member":{"shape":"CACertificate"}
+    },
+    "CancelAuditMitigationActionsTaskRequest":{
+      "type":"structure",
+      "required":["taskId"],
+      "members":{
+        "taskId":{
+          "shape":"AuditMitigationActionsTaskId",
+          "location":"uri",
+          "locationName":"taskId"
+        }
+      }
+    },
+    "CancelAuditMitigationActionsTaskResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "CancelAuditTaskRequest":{
       "type":"structure",
@@ -3416,6 +3688,7 @@
       }
     },
     "CanceledChecksCount":{"type":"integer"},
+    "CanceledFindingsCount":{"type":"long"},
     "CanceledThings":{"type":"integer"},
     "CannedAccessControlList":{
       "type":"string",
@@ -3544,6 +3817,12 @@
       }
     },
     "ClientId":{"type":"string"},
+    "ClientRequestToken":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9-_]+$"
+    },
     "CloudwatchAlarmAction":{
       "type":"structure",
       "required":[
@@ -3794,6 +4073,31 @@
         "keyPair":{"shape":"KeyPair"}
       }
     },
+    "CreateMitigationActionRequest":{
+      "type":"structure",
+      "required":[
+        "actionName",
+        "roleArn",
+        "actionParams"
+      ],
+      "members":{
+        "actionName":{
+          "shape":"MitigationActionName",
+          "location":"uri",
+          "locationName":"actionName"
+        },
+        "roleArn":{"shape":"RoleArn"},
+        "actionParams":{"shape":"MitigationActionParams"},
+        "tags":{"shape":"TagList"}
+      }
+    },
+    "CreateMitigationActionResponse":{
+      "type":"structure",
+      "members":{
+        "actionArn":{"shape":"MitigationActionArn"},
+        "actionId":{"shape":"MitigationActionId"}
+      }
+    },
     "CreateOTAUpdateRequest":{
       "type":"structure",
       "required":[
@@ -3916,12 +4220,12 @@
         "dayOfMonth":{"shape":"DayOfMonth"},
         "dayOfWeek":{"shape":"DayOfWeek"},
         "targetCheckNames":{"shape":"TargetAuditCheckNames"},
-        "tags":{"shape":"TagList"},
         "scheduledAuditName":{
           "shape":"ScheduledAuditName",
           "location":"uri",
           "locationName":"scheduledAuditName"
-        }
+        },
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateScheduledAuditResponse":{
@@ -4266,6 +4570,22 @@
         }
       }
     },
+    "DeleteMitigationActionRequest":{
+      "type":"structure",
+      "required":["actionName"],
+      "members":{
+        "actionName":{
+          "shape":"MitigationActionName",
+          "location":"uri",
+          "locationName":"actionName"
+        }
+      }
+    },
+    "DeleteMitigationActionResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteOTAUpdateRequest":{
       "type":"structure",
       "required":["otaUpdateId"],
@@ -4530,6 +4850,46 @@
         "auditCheckConfigurations":{"shape":"AuditCheckConfigurations"}
       }
     },
+    "DescribeAuditFindingRequest":{
+      "type":"structure",
+      "required":["findingId"],
+      "members":{
+        "findingId":{
+          "shape":"FindingId",
+          "location":"uri",
+          "locationName":"findingId"
+        }
+      }
+    },
+    "DescribeAuditFindingResponse":{
+      "type":"structure",
+      "members":{
+        "finding":{"shape":"AuditFinding"}
+      }
+    },
+    "DescribeAuditMitigationActionsTaskRequest":{
+      "type":"structure",
+      "required":["taskId"],
+      "members":{
+        "taskId":{
+          "shape":"AuditMitigationActionsTaskId",
+          "location":"uri",
+          "locationName":"taskId"
+        }
+      }
+    },
+    "DescribeAuditMitigationActionsTaskResponse":{
+      "type":"structure",
+      "members":{
+        "taskStatus":{"shape":"AuditMitigationActionsTaskStatus"},
+        "startTime":{"shape":"Timestamp"},
+        "endTime":{"shape":"Timestamp"},
+        "taskStatistics":{"shape":"AuditMitigationActionsTaskStatistics"},
+        "target":{"shape":"AuditMitigationActionsTaskTarget"},
+        "auditCheckToActionsMapping":{"shape":"AuditCheckToActionsMapping"},
+        "actionsDefinition":{"shape":"MitigationActionList"}
+      }
+    },
     "DescribeAuditTaskRequest":{
       "type":"structure",
       "required":["taskId"],
@@ -4731,6 +5091,30 @@
       "members":{
         "documentSource":{"shape":"JobDocumentSource"},
         "job":{"shape":"Job"}
+      }
+    },
+    "DescribeMitigationActionRequest":{
+      "type":"structure",
+      "required":["actionName"],
+      "members":{
+        "actionName":{
+          "shape":"MitigationActionName",
+          "location":"uri",
+          "locationName":"actionName"
+        }
+      }
+    },
+    "DescribeMitigationActionResponse":{
+      "type":"structure",
+      "members":{
+        "actionName":{"shape":"MitigationActionName"},
+        "actionType":{"shape":"MitigationActionType"},
+        "actionArn":{"shape":"MitigationActionArn"},
+        "actionId":{"shape":"MitigationActionId"},
+        "roleArn":{"shape":"RoleArn"},
+        "actionParams":{"shape":"MitigationActionParams"},
+        "creationDate":{"shape":"Timestamp"},
+        "lastModifiedDate":{"shape":"Timestamp"}
       }
     },
     "DescribeRoleAliasRequest":{
@@ -5019,6 +5403,15 @@
       "min":1,
       "pattern":"[^\\p{C}]*+"
     },
+    "DeviceCertificateUpdateAction":{
+      "type":"string",
+      "enum":["DEACTIVATE"]
+    },
+    "DeviceDefenderThingName":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
     "DisableAllLogs":{"type":"boolean"},
     "DisableTopicRuleRequest":{
       "type":"structure",
@@ -5116,6 +5509,17 @@
     "ElasticsearchId":{"type":"string"},
     "ElasticsearchIndex":{"type":"string"},
     "ElasticsearchType":{"type":"string"},
+    "EnableIoTLoggingParams":{
+      "type":"structure",
+      "required":[
+        "roleArnForLogging",
+        "logLevel"
+      ],
+      "members":{
+        "roleArnForLogging":{"shape":"RoleArn"},
+        "logLevel":{"shape":"LogLevel"}
+      }
+    },
     "EnableTopicRuleRequest":{
       "type":"structure",
       "required":["ruleName"],
@@ -5195,6 +5599,7 @@
       }
     },
     "FailedChecksCount":{"type":"integer"},
+    "FailedFindingsCount":{"type":"long"},
     "FailedThings":{"type":"integer"},
     "FileId":{
       "type":"integer",
@@ -5209,6 +5614,18 @@
       }
     },
     "FileName":{"type":"string"},
+    "FindingId":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_-]+"
+    },
+    "FindingIds":{
+      "type":"list",
+      "member":{"shape":"FindingId"},
+      "max":25,
+      "min":1
+    },
     "FirehoseAction":{
       "type":"structure",
       "required":[
@@ -5791,7 +6208,7 @@
       "type":"structure",
       "members":{
         "thingName":{
-          "shape":"ThingName",
+          "shape":"DeviceDefenderThingName",
           "location":"querystring",
           "locationName":"thingName"
         },
@@ -5868,6 +6285,98 @@
       "type":"structure",
       "members":{
         "findings":{"shape":"AuditFindings"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAuditMitigationActionsExecutionsRequest":{
+      "type":"structure",
+      "required":[
+        "taskId",
+        "findingId"
+      ],
+      "members":{
+        "taskId":{
+          "shape":"AuditMitigationActionsTaskId",
+          "location":"querystring",
+          "locationName":"taskId"
+        },
+        "actionStatus":{
+          "shape":"AuditMitigationActionsExecutionStatus",
+          "location":"querystring",
+          "locationName":"actionStatus"
+        },
+        "findingId":{
+          "shape":"FindingId",
+          "location":"querystring",
+          "locationName":"findingId"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListAuditMitigationActionsExecutionsResponse":{
+      "type":"structure",
+      "members":{
+        "actionsExecutions":{"shape":"AuditMitigationActionExecutionMetadataList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAuditMitigationActionsTasksRequest":{
+      "type":"structure",
+      "required":[
+        "startTime",
+        "endTime"
+      ],
+      "members":{
+        "auditTaskId":{
+          "shape":"AuditTaskId",
+          "location":"querystring",
+          "locationName":"auditTaskId"
+        },
+        "findingId":{
+          "shape":"FindingId",
+          "location":"querystring",
+          "locationName":"findingId"
+        },
+        "taskStatus":{
+          "shape":"AuditMitigationActionsTaskStatus",
+          "location":"querystring",
+          "locationName":"taskStatus"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "startTime":{
+          "shape":"Timestamp",
+          "location":"querystring",
+          "locationName":"startTime"
+        },
+        "endTime":{
+          "shape":"Timestamp",
+          "location":"querystring",
+          "locationName":"endTime"
+        }
+      }
+    },
+    "ListAuditMitigationActionsTasksResponse":{
+      "type":"structure",
+      "members":{
+        "tasks":{"shape":"AuditMitigationActionsTaskMetadataList"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -6190,6 +6699,33 @@
       "type":"structure",
       "members":{
         "jobs":{"shape":"JobSummaryList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListMitigationActionsRequest":{
+      "type":"structure",
+      "members":{
+        "actionType":{
+          "shape":"MitigationActionType",
+          "location":"querystring",
+          "locationName":"actionType"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListMitigationActionsResponse":{
+      "type":"structure",
+      "members":{
+        "actionIdentifiers":{"shape":"MitigationActionIdentifierList"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -6943,7 +7479,7 @@
           "locationName":"endTime"
         },
         "thingName":{
-          "shape":"ThingName",
+          "shape":"DeviceDefenderThingName",
           "location":"querystring",
           "locationName":"thingName"
         },
@@ -7073,6 +7609,66 @@
     "MissingContextValues":{
       "type":"list",
       "member":{"shape":"MissingContextValue"}
+    },
+    "MitigationAction":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"MitigationActionName"},
+        "id":{"shape":"MitigationActionId"},
+        "roleArn":{"shape":"RoleArn"},
+        "actionParams":{"shape":"MitigationActionParams"}
+      }
+    },
+    "MitigationActionArn":{"type":"string"},
+    "MitigationActionId":{"type":"string"},
+    "MitigationActionIdentifier":{
+      "type":"structure",
+      "members":{
+        "actionName":{"shape":"MitigationActionName"},
+        "actionArn":{"shape":"MitigationActionArn"},
+        "creationDate":{"shape":"Timestamp"}
+      }
+    },
+    "MitigationActionIdentifierList":{
+      "type":"list",
+      "member":{"shape":"MitigationActionIdentifier"}
+    },
+    "MitigationActionList":{
+      "type":"list",
+      "member":{"shape":"MitigationAction"}
+    },
+    "MitigationActionName":{
+      "type":"string",
+      "max":128,
+      "pattern":"[a-zA-Z0-9_-]+"
+    },
+    "MitigationActionNameList":{
+      "type":"list",
+      "member":{"shape":"MitigationActionName"},
+      "max":5,
+      "min":1
+    },
+    "MitigationActionParams":{
+      "type":"structure",
+      "members":{
+        "updateDeviceCertificateParams":{"shape":"UpdateDeviceCertificateParams"},
+        "updateCACertificateParams":{"shape":"UpdateCACertificateParams"},
+        "addThingsToThingGroupParams":{"shape":"AddThingsToThingGroupParams"},
+        "replaceDefaultPolicyVersionParams":{"shape":"ReplaceDefaultPolicyVersionParams"},
+        "enableIoTLoggingParams":{"shape":"EnableIoTLoggingParams"},
+        "publishFindingToSnsParams":{"shape":"PublishFindingToSnsParams"}
+      }
+    },
+    "MitigationActionType":{
+      "type":"string",
+      "enum":[
+        "UPDATE_DEVICE_CERTIFICATE",
+        "UPDATE_CA_CERTIFICATE",
+        "ADD_THINGS_TO_THING_GROUP",
+        "REPLACE_DEFAULT_POLICY_VERSION",
+        "ENABLE_IOT_LOGGING",
+        "PUBLISH_FINDING_TO_SNS"
+      ]
     },
     "NextToken":{"type":"string"},
     "NonCompliantChecksCount":{"type":"integer"},
@@ -7235,6 +7831,10 @@
       "type":"list",
       "member":{"shape":"PolicyTarget"}
     },
+    "PolicyTemplateName":{
+      "type":"string",
+      "enum":["BLANK_POLICY"]
+    },
     "PolicyVersion":{
       "type":"structure",
       "members":{
@@ -7306,6 +7906,13 @@
       "key":{"shape":"KeyName"},
       "value":{"shape":"KeyValue"}
     },
+    "PublishFindingToSnsParams":{
+      "type":"structure",
+      "required":["topicArn"],
+      "members":{
+        "topicArn":{"shape":"SnsTopicArn"}
+      }
+    },
     "PutItemInput":{
       "type":"structure",
       "required":["tableName"],
@@ -7341,6 +7948,12 @@
     },
     "ReasonForNonCompliance":{"type":"string"},
     "ReasonForNonComplianceCode":{"type":"string"},
+    "ReasonForNonComplianceCodes":{
+      "type":"list",
+      "member":{"shape":"ReasonForNonComplianceCode"},
+      "max":25,
+      "min":1
+    },
     "Recursive":{"type":"boolean"},
     "RecursiveWithoutDefault":{"type":"boolean"},
     "RegisterCACertificateRequest":{
@@ -7503,6 +8116,13 @@
     },
     "RemoveThingType":{"type":"boolean"},
     "RemovedThings":{"type":"integer"},
+    "ReplaceDefaultPolicyVersionParams":{
+      "type":"structure",
+      "required":["templateName"],
+      "members":{
+        "templateName":{"shape":"PolicyTemplateName"}
+      }
+    },
     "ReplaceTopicRuleRequest":{
       "type":"structure",
       "required":[
@@ -7883,6 +8503,7 @@
         "certificatePathOnDevice":{"shape":"CertificatePathOnDevice"}
       }
     },
+    "SkippedFindingsCount":{"type":"long"},
     "SkyfallMaxResults":{
       "type":"integer",
       "max":250,
@@ -7899,6 +8520,10 @@
         "roleArn":{"shape":"AwsArn"},
         "messageFormat":{"shape":"MessageFormat"}
       }
+    },
+    "SnsTopicArn":{
+      "type":"string",
+      "max":350
     },
     "SqlParseException":{
       "type":"structure",
@@ -7918,6 +8543,34 @@
         "roleArn":{"shape":"AwsArn"},
         "queueUrl":{"shape":"QueueUrl"},
         "useBase64":{"shape":"UseBase64"}
+      }
+    },
+    "StartAuditMitigationActionsTaskRequest":{
+      "type":"structure",
+      "required":[
+        "taskId",
+        "target",
+        "auditCheckToActionsMapping",
+        "clientRequestToken"
+      ],
+      "members":{
+        "taskId":{
+          "shape":"AuditMitigationActionsTaskId",
+          "location":"uri",
+          "locationName":"taskId"
+        },
+        "target":{"shape":"AuditMitigationActionsTaskTarget"},
+        "auditCheckToActionsMapping":{"shape":"AuditCheckToActionsMapping"},
+        "clientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "StartAuditMitigationActionsTaskResponse":{
+      "type":"structure",
+      "members":{
+        "taskId":{"shape":"AuditMitigationActionsTaskId"}
       }
     },
     "StartOnDemandAuditTaskRequest":{
@@ -8085,6 +8738,7 @@
       "key":{"shape":"String"},
       "value":{"shape":"String"}
     },
+    "SucceededFindingsCount":{"type":"long"},
     "SucceededThings":{"type":"integer"},
     "TableName":{"type":"string"},
     "Tag":{
@@ -8138,6 +8792,14 @@
       "member":{"shape":"Target"},
       "min":1
     },
+    "TaskAlreadyExistsException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"errorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "TaskId":{
       "type":"string",
       "max":40
@@ -8156,6 +8818,16 @@
         "nonCompliantChecks":{"shape":"NonCompliantChecksCount"},
         "failedChecks":{"shape":"FailedChecksCount"},
         "canceledChecks":{"shape":"CanceledChecksCount"}
+      }
+    },
+    "TaskStatisticsForAuditCheck":{
+      "type":"structure",
+      "members":{
+        "totalFindingsCount":{"shape":"TotalFindingsCount"},
+        "failedFindingsCount":{"shape":"FailedFindingsCount"},
+        "succeededFindingsCount":{"shape":"SucceededFindingsCount"},
+        "skippedFindingsCount":{"shape":"SkippedFindingsCount"},
+        "canceledFindingsCount":{"shape":"CanceledFindingsCount"}
       }
     },
     "TemplateBody":{"type":"string"},
@@ -8319,6 +8991,12 @@
       "type":"list",
       "member":{"shape":"ThingGroupName"}
     },
+    "ThingGroupNames":{
+      "type":"list",
+      "member":{"shape":"ThingGroupName"},
+      "max":10,
+      "min":1
+    },
     "ThingGroupProperties":{
       "type":"structure",
       "members":{
@@ -8472,6 +9150,7 @@
       }
     },
     "TotalChecksCount":{"type":"integer"},
+    "TotalFindingsCount":{"type":"long"},
     "TotalResourcesCount":{"type":"long"},
     "TransferAlreadyCompletedException":{
       "type":"structure",
@@ -8611,6 +9290,13 @@
         "version":{"shape":"Version"}
       }
     },
+    "UpdateCACertificateParams":{
+      "type":"structure",
+      "required":["action"],
+      "members":{
+        "action":{"shape":"CACertificateUpdateAction"}
+      }
+    },
     "UpdateCACertificateRequest":{
       "type":"structure",
       "required":["certificateId"],
@@ -8651,6 +9337,13 @@
           "location":"querystring",
           "locationName":"newStatus"
         }
+      }
+    },
+    "UpdateDeviceCertificateParams":{
+      "type":"structure",
+      "required":["action"],
+      "members":{
+        "action":{"shape":"DeviceCertificateUpdateAction"}
       }
     },
     "UpdateDynamicThingGroupRequest":{
@@ -8715,6 +9408,26 @@
         "jobExecutionsRolloutConfig":{"shape":"JobExecutionsRolloutConfig"},
         "abortConfig":{"shape":"AbortConfig"},
         "timeoutConfig":{"shape":"TimeoutConfig"}
+      }
+    },
+    "UpdateMitigationActionRequest":{
+      "type":"structure",
+      "required":["actionName"],
+      "members":{
+        "actionName":{
+          "shape":"MitigationActionName",
+          "location":"uri",
+          "locationName":"actionName"
+        },
+        "roleArn":{"shape":"RoleArn"},
+        "actionParams":{"shape":"MitigationActionParams"}
+      }
+    },
+    "UpdateMitigationActionResponse":{
+      "type":"structure",
+      "members":{
+        "actionArn":{"shape":"MitigationActionArn"},
+        "actionId":{"shape":"MitigationActionId"}
       }
     },
     "UpdateRoleAliasRequest":{
@@ -8923,7 +9636,7 @@
       "type":"structure",
       "members":{
         "violationId":{"shape":"ViolationId"},
-        "thingName":{"shape":"ThingName"},
+        "thingName":{"shape":"DeviceDefenderThingName"},
         "securityProfileName":{"shape":"SecurityProfileName"},
         "behavior":{"shape":"Behavior"},
         "metricValue":{"shape":"MetricValue"},

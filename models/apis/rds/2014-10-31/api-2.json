@@ -2691,7 +2691,7 @@
         "Endpoint":{"shape":"String"},
         "ReaderEndpoint":{"shape":"String"},
         "CustomEndpoints":{"shape":"StringList"},
-        "MultiAZ":{"shape":"Boolean"},
+        "MultiAZ":{"shape":"BooleanOptional"},
         "Engine":{"shape":"String"},
         "EngineVersion":{"shape":"String"},
         "LatestRestorableTime":{"shape":"TStamp"},
@@ -2710,7 +2710,7 @@
         "DbClusterResourceId":{"shape":"String"},
         "DBClusterArn":{"shape":"String"},
         "AssociatedRoles":{"shape":"DBClusterRoles"},
-        "IAMDatabaseAuthenticationEnabled":{"shape":"Boolean"},
+        "IAMDatabaseAuthenticationEnabled":{"shape":"BooleanOptional"},
         "CloneGroupId":{"shape":"String"},
         "ClusterCreateTime":{"shape":"TStamp"},
         "EarliestBacktrackTime":{"shape":"TStamp"},
@@ -2720,13 +2720,14 @@
         "Capacity":{"shape":"IntegerOptional"},
         "EngineMode":{"shape":"String"},
         "ScalingConfigurationInfo":{"shape":"ScalingConfigurationInfo"},
-        "DeletionProtection":{"shape":"Boolean"},
-        "HttpEndpointEnabled":{"shape":"Boolean"},
+        "DeletionProtection":{"shape":"BooleanOptional"},
+        "HttpEndpointEnabled":{"shape":"BooleanOptional"},
         "ActivityStreamMode":{"shape":"ActivityStreamMode"},
         "ActivityStreamStatus":{"shape":"ActivityStreamStatus"},
         "ActivityStreamKmsKeyId":{"shape":"String"},
         "ActivityStreamKinesisStreamName":{"shape":"String"},
-        "CopyTagsToSnapshot":{"shape":"Boolean"}
+        "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
+        "CrossAccountClone":{"shape":"BooleanOptional"}
       },
       "wrapper":true
     },
@@ -3967,7 +3968,8 @@
         "DBClusterIdentifier":{"shape":"String"},
         "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
-        "Marker":{"shape":"String"}
+        "Marker":{"shape":"String"},
+        "IncludeShared":{"shape":"Boolean"}
       }
     },
     "DescribeDBEngineVersionsMessage":{
@@ -4939,6 +4941,8 @@
         "BacktrackWindow":{"shape":"LongOptional"},
         "CloudwatchLogsExportConfiguration":{"shape":"CloudwatchLogsExportConfiguration"},
         "EngineVersion":{"shape":"String"},
+        "AllowMajorVersionUpgrade":{"shape":"Boolean"},
+        "DBInstanceParameterGroupName":{"shape":"String"},
         "ScalingConfiguration":{"shape":"ScalingConfiguration"},
         "DeletionProtection":{"shape":"BooleanOptional"},
         "EnableHttpEndpoint":{"shape":"BooleanOptional"},

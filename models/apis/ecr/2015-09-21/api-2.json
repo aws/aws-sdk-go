@@ -296,7 +296,22 @@
         {"shape":"RepositoryNotFoundException"},
         {"shape":"ImageAlreadyExistsException"},
         {"shape":"LayersNotFoundException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"ImageTagAlreadyExistsException"}
+      ]
+    },
+    "PutImageTagMutability":{
+      "name":"PutImageTagMutability",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutImageTagMutabilityRequest"},
+      "output":{"shape":"PutImageTagMutabilityResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"RepositoryNotFoundException"}
       ]
     },
     "PutLifecyclePolicy":{
@@ -508,7 +523,8 @@
       "required":["repositoryName"],
       "members":{
         "repositoryName":{"shape":"RepositoryName"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "imageTagMutability":{"shape":"ImageTagMutability"}
       }
     },
     "CreateRepositoryResponse":{
@@ -801,10 +817,28 @@
       "exception":true
     },
     "ImageSizeInBytes":{"type":"long"},
-    "ImageTag":{"type":"string"},
+    "ImageTag":{
+      "type":"string",
+      "max":300,
+      "min":1
+    },
+    "ImageTagAlreadyExistsException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
     "ImageTagList":{
       "type":"list",
       "member":{"shape":"ImageTag"}
+    },
+    "ImageTagMutability":{
+      "type":"string",
+      "enum":[
+        "MUTABLE",
+        "IMMUTABLE"
+      ]
     },
     "InitiateLayerUploadRequest":{
       "type":"structure",
@@ -1091,6 +1125,26 @@
         "image":{"shape":"Image"}
       }
     },
+    "PutImageTagMutabilityRequest":{
+      "type":"structure",
+      "required":[
+        "repositoryName",
+        "imageTagMutability"
+      ],
+      "members":{
+        "registryId":{"shape":"RegistryId"},
+        "repositoryName":{"shape":"RepositoryName"},
+        "imageTagMutability":{"shape":"ImageTagMutability"}
+      }
+    },
+    "PutImageTagMutabilityResponse":{
+      "type":"structure",
+      "members":{
+        "registryId":{"shape":"RegistryId"},
+        "repositoryName":{"shape":"RepositoryName"},
+        "imageTagMutability":{"shape":"ImageTagMutability"}
+      }
+    },
     "PutLifecyclePolicyRequest":{
       "type":"structure",
       "required":[
@@ -1122,7 +1176,8 @@
         "registryId":{"shape":"RegistryId"},
         "repositoryName":{"shape":"RepositoryName"},
         "repositoryUri":{"shape":"Url"},
-        "createdAt":{"shape":"CreationTimestamp"}
+        "createdAt":{"shape":"CreationTimestamp"},
+        "imageTagMutability":{"shape":"ImageTagMutability"}
       }
     },
     "RepositoryAlreadyExistsException":{

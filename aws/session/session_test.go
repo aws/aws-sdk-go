@@ -15,13 +15,12 @@ import (
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/defaults"
 	"github.com/aws/aws-sdk-go/aws/endpoints"
-	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/service/s3"
 )
 
 func TestNewDefaultSession(t *testing.T) {
-	oldEnv := initSessionTestEnv()
-	defer awstesting.PopEnv(oldEnv)
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
 
 	s := New(&aws.Config{Region: aws.String("region")})
 
@@ -40,8 +39,8 @@ func TestNewDefaultSession(t *testing.T) {
 }
 
 func TestNew_WithCustomCreds(t *testing.T) {
-	oldEnv := initSessionTestEnv()
-	defer awstesting.PopEnv(oldEnv)
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
 
 	customCreds := credentials.NewStaticCredentials("AKID", "SECRET", "TOKEN")
 	s := New(&aws.Config{Credentials: customCreds})
@@ -60,8 +59,8 @@ func (w mockLogger) Log(args ...interface{}) {
 }
 
 func TestNew_WithSessionLoadError(t *testing.T) {
-	oldEnv := initSessionTestEnv()
-	defer awstesting.PopEnv(oldEnv)
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
 
 	os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
 	os.Setenv("AWS_CONFIG_FILE", testConfigFilename)
@@ -81,18 +80,21 @@ func TestNew_WithSessionLoadError(t *testing.T) {
 		t.Errorf("expect not nil")
 	}
 	if e, a := "ERROR: failed to create session with AWS_SDK_LOAD_CONFIG enabled", logger.String(); !strings.Contains(a, e) {
-		t.Errorf("expect %v, to contain %v", e, a)
+		t.Errorf("expect %v, to be in %v", e, a)
 	}
-	if e, a := (SharedConfigAssumeRoleError{
-		RoleARN: "assume_role_invalid_source_profile_role_arn",
-	}).Error(), err.Error(); !strings.Contains(a, e) {
-		t.Errorf("expect %v, to contain %v", e, a)
+
+	expectErr := SharedConfigAssumeRoleError{
+		RoleARN:       "assume_role_invalid_source_profile_role_arn",
+		SourceProfile: "profile_not_exists",
+	}
+	if e, a := expectErr.Error(), err.Error(); !strings.Contains(a, e) {
+		t.Errorf("expect %v, to be in %v", e, a)
 	}
 }
 
 func TestSessionCopy(t *testing.T) {
-	oldEnv := initSessionTestEnv()
-	defer awstesting.PopEnv(oldEnv)
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
 
 	os.Setenv("AWS_REGION", "orig_region")
 
@@ -148,8 +150,8 @@ func TestSessionClientConfig(t *testing.T) {
 }
 
 func TestNewSession_NoCredentials(t *testing.T) {
-	oldEnv := initSessionTestEnv()
-	defer awstesting.PopEnv(oldEnv)
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
 
 	s, err := NewSession()
 	if err != nil {
@@ -165,8 +167,8 @@ func TestNewSession_NoCredentials(t *testing.T) {
 }
 
 func TestNewSessionWithOptions_OverrideProfile(t *testing.T) {
-	oldEnv := initSessionTestEnv()
-	defer awstesting.PopEnv(oldEnv)
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
 
 	os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
 	os.Setenv("AWS_SHARED_CREDENTIALS_FILE", testConfigFilename)
@@ -197,13 +199,13 @@ func TestNewSessionWithOptions_OverrideProfile(t *testing.T) {
 		t.Errorf("expect empty, got %v", v)
 	}
 	if e, a := "SharedConfigCredentials", creds.ProviderName; !strings.Contains(a, e) {
-		t.Errorf("expect %v, to contain %v", e, a)
+		t.Errorf("expect %v, to be in %v", e, a)
 	}
 }
 
 func TestNewSessionWithOptions_OverrideSharedConfigEnable(t *testing.T) {
-	oldEnv := initSessionTestEnv()
-	defer awstesting.PopEnv(oldEnv)
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
 
 	os.Setenv("AWS_SDK_LOAD_CONFIG", "0")
 	os.Setenv("AWS_SHARED_CREDENTIALS_FILE", testConfigFilename)
@@ -234,13 +236,13 @@ func TestNewSessionWithOptions_OverrideSharedConfigEnable(t *testing.T) {
 		t.Errorf("expect empty, got %v", v)
 	}
 	if e, a := "SharedConfigCredentials", creds.ProviderName; !strings.Contains(a, e) {
-		t.Errorf("expect %v, to contain %v", e, a)
+		t.Errorf("expect %v, to be in %v", e, a)
 	}
 }
 
 func TestNewSessionWithOptions_OverrideSharedConfigDisable(t *testing.T) {
-	oldEnv := initSessionTestEnv()
-	defer awstesting.PopEnv(oldEnv)
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
 
 	os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
 	os.Setenv("AWS_SHARED_CREDENTIALS_FILE", testConfigFilename)
@@ -271,13 +273,13 @@ func TestNewSessionWithOptions_OverrideSharedConfigDisable(t *testing.T) {
 		t.Errorf("expect empty, got %v", v)
 	}
 	if e, a := "SharedConfigCredentials", creds.ProviderName; !strings.Contains(a, e) {
-		t.Errorf("expect %v, to contain %v", e, a)
+		t.Errorf("expect %v, to be in %v", e, a)
 	}
 }
 
 func TestNewSessionWithOptions_OverrideSharedConfigFiles(t *testing.T) {
-	oldEnv := initSessionTestEnv()
-	defer awstesting.PopEnv(oldEnv)
+	restoreEnvFn := initSessionTestEnv()
+	defer restoreEnvFn()
 
 	os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
 	os.Setenv("AWS_SHARED_CREDENTIALS_FILE", testConfigFilename)
@@ -308,7 +310,7 @@ func TestNewSessionWithOptions_OverrideSharedConfigFiles(t *testing.T) {
 		t.Errorf("expect empty, got %v", v)
 	}
 	if e, a := "SharedConfigCredentials", creds.ProviderName; !strings.Contains(a, e) {
-		t.Errorf("expect %v, to contain %v", e, a)
+		t.Errorf("expect %v, to be in %v", e, a)
 	}
 }
 
@@ -345,9 +347,9 @@ func TestNewSessionWithOptions_Overrides(t *testing.T) {
 			InProfile: "full_profile",
 			OutRegion: "env_region",
 			OutCreds: credentials.Value{
-				AccessKeyID:     "env_akid",
-				SecretAccessKey: "env_secret",
-				ProviderName:    "EnvConfigCredentials",
+				AccessKeyID:     "full_profile_akid",
+				SecretAccessKey: "full_profile_secret",
+				ProviderName:    "SharedConfigCredentials",
 			},
 		},
 		{
@@ -369,8 +371,8 @@ func TestNewSessionWithOptions_Overrides(t *testing.T) {
 
 	for i, c := range cases {
 		t.Run(strconv.Itoa(i), func(t *testing.T) {
-			oldEnv := initSessionTestEnv()
-			defer awstesting.PopEnv(oldEnv)
+			restoreEnvFn := initSessionTestEnv()
+			defer restoreEnvFn()
 
 			for k, v := range c.InEnvs {
 				os.Setenv(k, v)
@@ -401,7 +403,7 @@ func TestNewSessionWithOptions_Overrides(t *testing.T) {
 				t.Errorf("expect %v, got %v", e, a)
 			}
 			if e, a := c.OutCreds.ProviderName, creds.ProviderName; !strings.Contains(a, e) {
-				t.Errorf("expect %v, to contain %v", e, a)
+				t.Errorf("expect %v, to be in %v", e, a)
 			}
 		})
 	}

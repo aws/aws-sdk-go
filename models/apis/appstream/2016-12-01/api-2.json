@@ -1497,6 +1497,7 @@
         "State":{"shape":"ImageState"},
         "Visibility":{"shape":"VisibilityType"},
         "ImageBuilderSupported":{"shape":"Boolean"},
+        "ImageBuilderName":{"shape":"String"},
         "Platform":{"shape":"PlatformType"},
         "Description":{"shape":"String"},
         "StateChangeReason":{"shape":"ImageStateChangeReason"},
@@ -1524,6 +1525,7 @@
         "CreatedTime":{"shape":"Timestamp"},
         "EnableDefaultInternetAccess":{"shape":"BooleanObject"},
         "DomainJoinInfo":{"shape":"DomainJoinInfo"},
+        "NetworkAccessConfiguration":{"shape":"NetworkAccessConfiguration"},
         "ImageBuilderErrors":{"shape":"ResourceErrors"},
         "AppstreamAgentVersion":{"shape":"AppstreamAgentVersion"}
       }

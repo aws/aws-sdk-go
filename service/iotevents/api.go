@@ -436,8 +436,8 @@ func (c *IoTEvents) DescribeDetectorModelRequest(input *DescribeDetectorModelInp
 
 // DescribeDetectorModel API operation for AWS IoT Events.
 //
-// Describes a detector model. If the version parameter is not specified, information
-// about the latest version is returned.
+// Describes a detector model. If the "version" parameter is not specified,
+// information about the latest version is returned.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1076,11 +1076,10 @@ func (c *IoTEvents) PutLoggingOptionsRequest(input *PutLoggingOptionsInput) (req
 //
 // Sets or updates the AWS IoT Events logging options.
 //
-// Note that if you update the value of any loggingOptions field, it takes up
-// to one minute for the change to take effect. Also, if you change the policy
-// attached to the role you specified in the roleArn field (for example, to
-// correct an invalid policy) it takes up to five minutes for that change to
-// take effect.
+// If you update the value of any "loggingOptions" field, it takes up to one
+// minute for the change to take effect. Also, if you change the policy attached
+// to the role you specified in the "roleArn" field (for example, to correct
+// an invalid policy) it takes up to five minutes for that change to take effect.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1175,7 +1174,7 @@ func (c *IoTEvents) TagResourceRequest(input *TagResourceInput) (req *request.Re
 
 // TagResource API operation for AWS IoT Events.
 //
-// Add to or modifies the tags of the given resource. Tags are metadata which
+// Adds to or modifies the tags of the given resource. Tags are metadata that
 // can be used to manage a resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1363,7 +1362,7 @@ func (c *IoTEvents) UpdateDetectorModelRequest(input *UpdateDetectorModelInput) 
 // UpdateDetectorModel API operation for AWS IoT Events.
 //
 // Updates a detector model. Detectors (instances) spawned by the previous version
-// will be deleted and re-created as new inputs arrive.
+// are deleted and then re-created as new inputs arrive.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1507,27 +1506,15 @@ func (c *IoTEvents) UpdateInputWithContext(ctx aws.Context, input *UpdateInputIn
 	return out, req.Send()
 }
 
-// An action to be performed when the condition is TRUE.
+// Sends an IoT Events input, passing in information about the detector model
+// instance and the event which triggered the action.
 type Action struct {
 	_ struct{} `type:"structure"`
 
-	// Information needed to clear the timer.
-	ClearTimer *ClearTimerAction `locationName:"clearTimer" type:"structure"`
-
-	// Publishes an MQTT message with the given topic to the AWS IoT Message Broker.
-	IotTopicPublish *IotTopicPublishAction `locationName:"iotTopicPublish" type:"structure"`
-
-	// Information needed to reset the timer.
-	ResetTimer *ResetTimerAction `locationName:"resetTimer" type:"structure"`
-
-	// Information needed to set the timer.
-	SetTimer *SetTimerAction `locationName:"setTimer" type:"structure"`
-
-	// Sets a variable to a specified value.
-	SetVariable *SetVariableAction `locationName:"setVariable" type:"structure"`
-
-	// Sends an Amazon SNS message.
-	Sns *SNSTopicPublishAction `locationName:"sns" type:"structure"`
+	// The name of the AWS IoT Events input where the data is sent.
+	//
+	// InputName is a required field
+	InputName *string `locationName:"inputName" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -1543,35 +1530,11 @@ func (s Action) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Action) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Action"}
-	if s.ClearTimer != nil {
-		if err := s.ClearTimer.Validate(); err != nil {
-			invalidParams.AddNested("ClearTimer", err.(request.ErrInvalidParams))
-		}
+	if s.InputName == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputName"))
 	}
-	if s.IotTopicPublish != nil {
-		if err := s.IotTopicPublish.Validate(); err != nil {
-			invalidParams.AddNested("IotTopicPublish", err.(request.ErrInvalidParams))
-		}
-	}
-	if s.ResetTimer != nil {
-		if err := s.ResetTimer.Validate(); err != nil {
-			invalidParams.AddNested("ResetTimer", err.(request.ErrInvalidParams))
-		}
-	}
-	if s.SetTimer != nil {
-		if err := s.SetTimer.Validate(); err != nil {
-			invalidParams.AddNested("SetTimer", err.(request.ErrInvalidParams))
-		}
-	}
-	if s.SetVariable != nil {
-		if err := s.SetVariable.Validate(); err != nil {
-			invalidParams.AddNested("SetVariable", err.(request.ErrInvalidParams))
-		}
-	}
-	if s.Sns != nil {
-		if err := s.Sns.Validate(); err != nil {
-			invalidParams.AddNested("Sns", err.(request.ErrInvalidParams))
-		}
+	if s.InputName != nil && len(*s.InputName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InputName", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -1580,39 +1543,9 @@ func (s *Action) Validate() error {
 	return nil
 }
 
-// SetClearTimer sets the ClearTimer field's value.
-func (s *Action) SetClearTimer(v *ClearTimerAction) *Action {
-	s.ClearTimer = v
-	return s
-}
-
-// SetIotTopicPublish sets the IotTopicPublish field's value.
-func (s *Action) SetIotTopicPublish(v *IotTopicPublishAction) *Action {
-	s.IotTopicPublish = v
-	return s
-}
-
-// SetResetTimer sets the ResetTimer field's value.
-func (s *Action) SetResetTimer(v *ResetTimerAction) *Action {
-	s.ResetTimer = v
-	return s
-}
-
-// SetSetTimer sets the SetTimer field's value.
-func (s *Action) SetSetTimer(v *SetTimerAction) *Action {
-	s.SetTimer = v
-	return s
-}
-
-// SetSetVariable sets the SetVariable field's value.
-func (s *Action) SetSetVariable(v *SetVariableAction) *Action {
-	s.SetVariable = v
-	return s
-}
-
-// SetSns sets the Sns field's value.
-func (s *Action) SetSns(v *SNSTopicPublishAction) *Action {
-	s.Sns = v
+// SetInputName sets the InputName field's value.
+func (s *Action) SetInputName(v string) *Action {
+	s.InputName = &v
 	return s
 }
 
@@ -1629,7 +1562,7 @@ type Attribute struct {
 	// by the input. Inputs are derived from messages sent to the AWS IoT Events
 	// system (BatchPutMessage). Each such message contains a JSON payload, and
 	// the attribute (and its paired value) specified here are available for use
-	// in the condition expressions used by detectors.
+	// in the "condition" expressions used by detectors.
 	//
 	// Syntax: <field-name>.<field-name>...
 	//
@@ -1740,7 +1673,7 @@ type CreateDetectorModelInput struct {
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string" required:"true"`
 
-	// Metadata which can be used to manage the detector model.
+	// Metadata that can be used to manage the detector model.
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
@@ -1872,7 +1805,7 @@ type CreateInputInput struct {
 	// InputName is a required field
 	InputName *string `locationName:"inputName" min:"1" type:"string" required:"true"`
 
-	// Metadata which can be used to manage the input.
+	// Metadata that can be used to manage the input.
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
@@ -2025,7 +1958,7 @@ func (s DeleteDetectorModelOutput) GoString() string {
 type DeleteInputInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the input to be deleted.
+	// The name of the input to delete.
 	//
 	// InputName is a required field
 	InputName *string `location:"uri" locationName:"inputName" min:"1" type:"string" required:"true"`
@@ -2634,16 +2567,17 @@ func (s *DetectorModelVersionSummary) SetStatus(v string) *DetectorModelVersionS
 	return s
 }
 
-// Specifies the actions to be performed when the condition evaluates to TRUE.
+// Specifies the "actions" to be performed when the "condition" evaluates to
+// TRUE.
 type Event struct {
 	_ struct{} `type:"structure"`
 
 	// The actions to be performed.
 	Actions []*Action `locationName:"actions" type:"list"`
 
-	// [Optional] The Boolean expression that when TRUE causes the actions to be
-	// performed. If not present, the actions are performed (=TRUE); if the expression
-	// result is not a Boolean value the actions are NOT performed (=FALSE).
+	// [Optional] The Boolean expression that when TRUE causes the "actions" to
+	// be performed. If not present, the actions are performed (=TRUE); if the expression
+	// result is not a Boolean value, the actions are NOT performed (=FALSE).
 	Condition *string `locationName:"condition" type:"string"`
 
 	// The name of the event.
@@ -2700,6 +2634,57 @@ func (s *Event) SetCondition(v string) *Event {
 // SetEventName sets the EventName field's value.
 func (s *Event) SetEventName(v string) *Event {
 	s.EventName = &v
+	return s
+}
+
+// Sends information about the detector model instance and the event which triggered
+// the action to a Kinesis Data Firehose stream.
+type FirehoseAction struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Kinesis Data Firehose stream where the data is written.
+	//
+	// DeliveryStreamName is a required field
+	DeliveryStreamName *string `locationName:"deliveryStreamName" type:"string" required:"true"`
+
+	// A character separator that is used to separate records written to the Kinesis
+	// Data Firehose stream. Valid values are: '\n' (newline), '\t' (tab), '\r\n'
+	// (Windows newline), ',' (comma).
+	Separator *string `locationName:"separator" type:"string"`
+}
+
+// String returns the string representation
+func (s FirehoseAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FirehoseAction) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FirehoseAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FirehoseAction"}
+	if s.DeliveryStreamName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeliveryStreamName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeliveryStreamName sets the DeliveryStreamName field's value.
+func (s *FirehoseAction) SetDeliveryStreamName(v string) *FirehoseAction {
+	s.DeliveryStreamName = &v
+	return s
+}
+
+// SetSeparator sets the Separator field's value.
+func (s *FirehoseAction) SetSeparator(v string) *FirehoseAction {
+	s.Separator = &v
 	return s
 }
 
@@ -2822,7 +2807,7 @@ type InputDefinition struct {
 	// The attributes from the JSON payload that are made available by the input.
 	// Inputs are derived from messages sent to the AWS IoT Events system using
 	// BatchPutMessage. Each such message contains a JSON payload, and those attributes
-	// (and their paired values) specified here is available for use in the condition
+	// (and their paired values) specified here are available for use in the "condition"
 	// expressions used by detectors that monitor this input.
 	//
 	// Attributes is a required field
@@ -2940,8 +2925,8 @@ func (s *InputSummary) SetStatus(v string) *InputSummary {
 	return s
 }
 
-// Information required to publish the MQTT message via the AWS IoT Message
-// Broker.
+// Information required to publish the MQTT message via the AWS IoT message
+// broker.
 type IotTopicPublishAction struct {
 	_ struct{} `type:"structure"`
 
@@ -2980,6 +2965,49 @@ func (s *IotTopicPublishAction) Validate() error {
 // SetMqttTopic sets the MqttTopic field's value.
 func (s *IotTopicPublishAction) SetMqttTopic(v string) *IotTopicPublishAction {
 	s.MqttTopic = &v
+	return s
+}
+
+// Calls a Lambda function, passing in information about the detector model
+// instance and the event which triggered the action.
+type LambdaAction struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the Lambda function which is executed.
+	//
+	// FunctionArn is a required field
+	FunctionArn *string `locationName:"functionArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s LambdaAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LambdaAction) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LambdaAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LambdaAction"}
+	if s.FunctionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FunctionArn"))
+	}
+	if s.FunctionArn != nil && len(*s.FunctionArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FunctionArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFunctionArn sets the FunctionArn field's value.
+func (s *LambdaAction) SetFunctionArn(v string) *LambdaAction {
+	s.FunctionArn = &v
 	return s
 }
 
@@ -3311,7 +3339,7 @@ type LoggingOptions struct {
 	// Enabled is a required field
 	Enabled *bool `locationName:"enabled" type:"boolean" required:"true"`
 
-	// The logging level. Currently, only "ERROR" is supported.
+	// The logging level.
 	//
 	// Level is a required field
 	Level *string `locationName:"level" type:"string" required:"true" enum:"LoggingLevel"`
@@ -3396,7 +3424,7 @@ type OnEnterLifecycle struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the actions that are performed when the state is entered and the
-	// condition is TRUE.
+	// "condition" is TRUE.
 	Events []*Event `locationName:"events" type:"list"`
 }
 
@@ -3436,13 +3464,13 @@ func (s *OnEnterLifecycle) SetEvents(v []*Event) *OnEnterLifecycle {
 	return s
 }
 
-// When exiting this state, perform these actions if the specified condition
+// When exiting this state, perform these "actions" if the specified "condition"
 // is TRUE.
 type OnExitLifecycle struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the actions that are performed when the state is exited and the
-	// condition is TRUE.
+	// Specifies the "actions" that are performed when the state is exited and the
+	// "condition" is TRUE.
 	Events []*Event `locationName:"events" type:"list"`
 }
 
@@ -3482,14 +3510,14 @@ func (s *OnExitLifecycle) SetEvents(v []*Event) *OnExitLifecycle {
 	return s
 }
 
-// Specifies the actions performed when the condition evaluates to TRUE.
+// Specifies the actions performed when the "condition" evaluates to TRUE.
 type OnInputLifecycle struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the actions performed when the condition evaluates to TRUE.
+	// Specifies the actions performed when the "condition" evaluates to TRUE.
 	Events []*Event `locationName:"events" type:"list"`
 
-	// Specifies the actions performed and the next state entered when a condition
+	// Specifies the actions performed, and the next state entered, when a "condition"
 	// evaluates to TRUE.
 	TransitionEvents []*TransitionEvent `locationName:"transitionEvents" type:"list"`
 }
@@ -3649,7 +3677,7 @@ func (s *ResetTimerAction) SetTimerName(v string) *ResetTimerAction {
 type SNSTopicPublishAction struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon SNS target to which the message is sent.
+	// The ARN of the Amazon SNS target where the message is sent.
 	//
 	// TargetArn is a required field
 	TargetArn *string `locationName:"targetArn" min:"1" type:"string" required:"true"`
@@ -3803,19 +3831,69 @@ func (s *SetVariableAction) SetVariableName(v string) *SetVariableAction {
 	return s
 }
 
+// Sends information about the detector model instance and the event which triggered
+// the action to an AWS SQS queue.
+type SqsAction struct {
+	_ struct{} `type:"structure"`
+
+	// The URL of the SQS queue where the data is written.
+	//
+	// QueueUrl is a required field
+	QueueUrl *string `locationName:"queueUrl" type:"string" required:"true"`
+
+	// Set this to TRUE if you want the data to be Base-64 encoded before it is
+	// written to the queue. Otherwise, set this to FALSE.
+	UseBase64 *bool `locationName:"useBase64" type:"boolean"`
+}
+
+// String returns the string representation
+func (s SqsAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SqsAction) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SqsAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SqsAction"}
+	if s.QueueUrl == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueueUrl"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetQueueUrl sets the QueueUrl field's value.
+func (s *SqsAction) SetQueueUrl(v string) *SqsAction {
+	s.QueueUrl = &v
+	return s
+}
+
+// SetUseBase64 sets the UseBase64 field's value.
+func (s *SqsAction) SetUseBase64(v bool) *SqsAction {
+	s.UseBase64 = &v
+	return s
+}
+
 // Information that defines a state of a detector.
 type State struct {
 	_ struct{} `type:"structure"`
 
-	// When entering this state, perform these actions if the condition is TRUE.
+	// When entering this state, perform these "actions" if the "condition" is TRUE.
 	OnEnter *OnEnterLifecycle `locationName:"onEnter" type:"structure"`
 
-	// When exiting this state, perform these actions if the specified condition
+	// When exiting this state, perform these "actions" if the specified "condition"
 	// is TRUE.
 	OnExit *OnExitLifecycle `locationName:"onExit" type:"structure"`
 
-	// When an input is received and the condition is TRUE, perform the specified
-	// actions.
+	// When an input is received and the "condition" is TRUE, perform the specified
+	// "actions".
 	OnInput *OnInputLifecycle `locationName:"onInput" type:"structure"`
 
 	// The name of the state.
@@ -3889,7 +3967,7 @@ func (s *State) SetStateName(v string) *State {
 	return s
 }
 
-// Metadata which can be used to manage the resource.
+// Metadata that can be used to manage the resource.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -4024,7 +4102,7 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// Specifies the actions performed and the next state entered when a condition
+// Specifies the actions performed and the next state entered when a "condition"
 // evaluates to TRUE.
 type TransitionEvent struct {
 	_ struct{} `type:"structure"`
@@ -4033,7 +4111,7 @@ type TransitionEvent struct {
 	Actions []*Action `locationName:"actions" type:"list"`
 
 	// [Required] A Boolean expression that when TRUE causes the actions to be performed
-	// and the nextState to be entered.
+	// and the "nextState" to be entered.
 	//
 	// Condition is a required field
 	Condition *string `locationName:"condition" type:"string" required:"true"`
@@ -4195,7 +4273,7 @@ type UpdateDetectorModelInput struct {
 	// A brief description of the detector model.
 	DetectorModelDescription *string `locationName:"detectorModelDescription" type:"string"`
 
-	// The name of the detector model to be updated.
+	// The name of the detector model that is updated.
 	//
 	// DetectorModelName is a required field
 	DetectorModelName *string `location:"uri" locationName:"detectorModelName" min:"1" type:"string" required:"true"`
