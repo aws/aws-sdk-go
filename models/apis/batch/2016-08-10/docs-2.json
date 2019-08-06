@@ -474,10 +474,10 @@
       }
     },
     "LinuxParameters": {
-      "base": "<p>Linux-specific modifications that are applied to the container, such as Linux kernel capabilities.</p>",
+      "base": "<p>Linux-specific modifications that are applied to the container, such as details for device mappings.</p>",
       "refs": {
-        "ContainerDetail$linuxParameters": "<p>Linux-specific modifications that are applied to the container, such as Linux kernel capabilities.</p>",
-        "ContainerProperties$linuxParameters": "<p>Linux-specific modifications that are applied to the container, such as Linux kernel capabilities.</p>"
+        "ContainerDetail$linuxParameters": "<p>Linux-specific modifications that are applied to the container, such as details for device mappings.</p>",
+        "ContainerProperties$linuxParameters": "<p>Linux-specific modifications that are applied to the container, such as details for device mappings.</p>"
       }
     },
     "ListJobsRequest": {
@@ -688,7 +688,7 @@
         "DescribeJobQueuesRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>DescribeJobQueues</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. This value is <code>null</code> when there are no more results to return.</p> <note> <p>This token should be treated as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
         "DescribeJobQueuesResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>DescribeJobQueues</code> request. When the results of a <code>DescribeJobQueues</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "Device$hostPath": "<p>The path for the device on the host container instance.</p>",
-        "Device$containerPath": "<p>The path inside the container at which to expose the host device.</p>",
+        "Device$containerPath": "<p>The path inside the container at which to expose the host device. By default the <code>hostPath</code> value is used.</p>",
         "Host$sourcePath": "<p>The path on the host container instance that is presented to the container. If this parameter is empty, then the Docker daemon has assigned a host path for you. If this parameter contains a file location, then the data volume persists at the specified location on the host container instance until you delete it manually. If the source path location does not exist on the host container instance, the Docker daemon creates it. If the location does exist, the contents of the source path folder are exported.</p>",
         "JobDefinition$jobDefinitionName": "<p>The name of the job definition. </p>",
         "JobDefinition$jobDefinitionArn": "<p>The Amazon Resource Name (ARN) for the job definition. </p>",
