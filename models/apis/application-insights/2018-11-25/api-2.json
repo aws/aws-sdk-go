@@ -212,6 +212,20 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "UpdateApplication":{
+      "name":"UpdateApplication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateApplicationRequest"},
+      "output":{"shape":"UpdateApplicationResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "UpdateComponent":{
       "name":"UpdateComponent",
       "http":{
@@ -262,6 +276,8 @@
       "members":{
         "ResourceGroupName":{"shape":"ResourceGroupName"},
         "LifeCycle":{"shape":"LifeCycle"},
+        "OpsItemSNSTopicArn":{"shape":"OpsItemSNSTopicArn"},
+        "OpsCenterEnabled":{"shape":"OpsCenterEnabled"},
         "Remarks":{"shape":"Remarks"}
       }
     },
@@ -282,7 +298,9 @@
       "type":"structure",
       "required":["ResourceGroupName"],
       "members":{
-        "ResourceGroupName":{"shape":"ResourceGroupName"}
+        "ResourceGroupName":{"shape":"ResourceGroupName"},
+        "OpsCenterEnabled":{"shape":"OpsCenterEnabled"},
+        "OpsItemSNSTopicArn":{"shape":"OpsItemSNSTopicArn"}
       }
     },
     "CreateApplicationResponse":{
@@ -564,6 +582,8 @@
       "type":"list",
       "member":{"shape":"Observation"}
     },
+    "OpsCenterEnabled":{"type":"boolean"},
+    "OpsItemSNSTopicArn":{"type":"string"},
     "PaginationToken":{"type":"string"},
     "Problem":{
       "type":"structure",
@@ -592,6 +612,7 @@
       }
     },
     "Remarks":{"type":"string"},
+    "RemoveSNSTopic":{"type":"boolean"},
     "ResourceARN":{"type":"string"},
     "ResourceGroupName":{"type":"string"},
     "ResourceInUseException":{
@@ -635,6 +656,22 @@
     "Tier":{"type":"string"},
     "Title":{"type":"string"},
     "Unit":{"type":"string"},
+    "UpdateApplicationRequest":{
+      "type":"structure",
+      "required":["ResourceGroupName"],
+      "members":{
+        "ResourceGroupName":{"shape":"ResourceGroupName"},
+        "OpsCenterEnabled":{"shape":"OpsCenterEnabled"},
+        "OpsItemSNSTopicArn":{"shape":"OpsItemSNSTopicArn"},
+        "RemoveSNSTopic":{"shape":"RemoveSNSTopic"}
+      }
+    },
+    "UpdateApplicationResponse":{
+      "type":"structure",
+      "members":{
+        "ApplicationInfo":{"shape":"ApplicationInfo"}
+      }
+    },
     "UpdateComponentConfigurationRequest":{
       "type":"structure",
       "required":[

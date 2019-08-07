@@ -125,6 +125,10 @@ type ApplicationInsightsAPI interface {
 	ListProblemsPages(*applicationinsights.ListProblemsInput, func(*applicationinsights.ListProblemsOutput, bool) bool) error
 	ListProblemsPagesWithContext(aws.Context, *applicationinsights.ListProblemsInput, func(*applicationinsights.ListProblemsOutput, bool) bool, ...request.Option) error
 
+	UpdateApplication(*applicationinsights.UpdateApplicationInput) (*applicationinsights.UpdateApplicationOutput, error)
+	UpdateApplicationWithContext(aws.Context, *applicationinsights.UpdateApplicationInput, ...request.Option) (*applicationinsights.UpdateApplicationOutput, error)
+	UpdateApplicationRequest(*applicationinsights.UpdateApplicationInput) (*request.Request, *applicationinsights.UpdateApplicationOutput)
+
 	UpdateComponent(*applicationinsights.UpdateComponentInput) (*applicationinsights.UpdateComponentOutput, error)
 	UpdateComponentWithContext(aws.Context, *applicationinsights.UpdateComponentInput, ...request.Option) (*applicationinsights.UpdateComponentOutput, error)
 	UpdateComponentRequest(*applicationinsights.UpdateComponentInput) (*request.Request, *applicationinsights.UpdateComponentOutput)

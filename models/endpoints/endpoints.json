@@ -978,6 +978,30 @@
           "ap-southeast-2" : { },
           "eu-central-1" : { },
           "eu-west-1" : { },
+          "fips-us-east-1" : {
+            "credentialScope" : {
+              "region" : "us-east-1"
+            },
+            "hostname" : "datasync-fips.us-east-1.amazonaws.com"
+          },
+          "fips-us-east-2" : {
+            "credentialScope" : {
+              "region" : "us-east-2"
+            },
+            "hostname" : "datasync-fips.us-east-2.amazonaws.com"
+          },
+          "fips-us-west-1" : {
+            "credentialScope" : {
+              "region" : "us-west-1"
+            },
+            "hostname" : "datasync-fips.us-west-1.amazonaws.com"
+          },
+          "fips-us-west-2" : {
+            "credentialScope" : {
+              "region" : "us-west-2"
+            },
+            "hostname" : "datasync-fips.us-west-2.amazonaws.com"
+          },
           "us-east-1" : { },
           "us-east-2" : { },
           "us-west-1" : { },
@@ -3413,6 +3437,7 @@
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
+          "me-south-1" : { },
           "sa-east-1" : { },
           "us-east-1" : { },
           "us-east-2" : { },
@@ -4036,6 +4061,12 @@
       },
       "datasync" : {
         "endpoints" : {
+          "fips-us-gov-west-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "datasync-fips.us-gov-west-1.amazonaws.com"
+          },
           "us-gov-west-1" : { }
         }
       },
