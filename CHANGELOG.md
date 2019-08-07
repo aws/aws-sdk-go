@@ -1,3 +1,10 @@
+Release v1.22.1 (2019-08-07)
+===
+
+### Service Client Updates
+* `service/application-insights`: Updates service API and documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.22.0 (2019-08-06)
 ===
 

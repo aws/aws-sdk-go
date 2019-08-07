@@ -16,6 +16,7 @@
     "ListApplications": "<p>Lists the IDs of the applications that you are monitoring. </p>",
     "ListComponents": "<p>Lists the auto-grouped, standalone, and custom components of the application.</p>",
     "ListProblems": "<p>Lists the problems with your application.</p>",
+    "UpdateApplication": "<p>Updates the application.</p>",
     "UpdateComponent": "<p>Updates the custom component name and/or the list of resources that make up the component.</p>",
     "UpdateComponentConfiguration": "<p>Updates the monitoring configurations for the component. The configuration input parameter is an escaped JSON of the configuration and should match the schema of what is returned by <code>DescribeComponentConfigurationRecommendation</code>.</p>"
   },
@@ -44,7 +45,8 @@
       "refs": {
         "ApplicationInfoList$member": null,
         "CreateApplicationResponse$ApplicationInfo": "<p>Information about the application.</p>",
-        "DescribeApplicationResponse$ApplicationInfo": "<p>Information about the application.</p>"
+        "DescribeApplicationResponse$ApplicationInfo": "<p>Information about the application.</p>",
+        "UpdateApplicationResponse$ApplicationInfo": "<p>Information about the application. </p>"
       }
     },
     "ApplicationInfoList": {
@@ -350,6 +352,22 @@
         "RelatedObservations$ObservationList": "<p>The list of observations related to the problem.</p>"
       }
     },
+    "OpsCenterEnabled": {
+      "base": null,
+      "refs": {
+        "ApplicationInfo$OpsCenterEnabled": "<p> Indicates whether Application Insights will create opsItems for any problem detected by Application Insights for an application. </p>",
+        "CreateApplicationRequest$OpsCenterEnabled": "<p> When set to <code>true</code>, creates opsItems for any problems detected on an application. </p>",
+        "UpdateApplicationRequest$OpsCenterEnabled": "<p> When set to <code>true</code>, creates opsItems for any problems detected on an application. </p>"
+      }
+    },
+    "OpsItemSNSTopicArn": {
+      "base": null,
+      "refs": {
+        "ApplicationInfo$OpsItemSNSTopicArn": "<p> The SNS topic provided to Application Insights that is associated to the created opsItems to receive SNS notifications for opsItem updates. </p>",
+        "CreateApplicationRequest$OpsItemSNSTopicArn": "<p> The SNS topic provided to Application Insights that is associated to the created opsItem. Allows you to receive notifications for updates to the opsItem. </p>",
+        "UpdateApplicationRequest$OpsItemSNSTopicArn": "<p> The SNS topic provided to Application Insights that is associated to the created opsItem. Allows you to receive notifications for updates to the opsItem.</p>"
+      }
+    },
     "PaginationToken": {
       "base": null,
       "refs": {
@@ -391,7 +409,13 @@
     "Remarks": {
       "base": null,
       "refs": {
-        "ApplicationInfo$Remarks": "<p>The issues on the user side that are blocking Application Insights from fully monitoring the application.</p>"
+        "ApplicationInfo$Remarks": "<p>The issues on the user side that block Application Insights from successfully monitoring an application.</p>"
+      }
+    },
+    "RemoveSNSTopic": {
+      "base": null,
+      "refs": {
+        "UpdateApplicationRequest$RemoveSNSTopic": "<p> Disassociates the SNS topic from the opsItem created for detected problems.</p>"
       }
     },
     "ResourceARN": {
@@ -415,6 +439,7 @@
         "ListComponentsRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "ListProblemsRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "Problem$ResourceGroupName": "<p>The name of the resource group affected by the problem.</p>",
+        "UpdateApplicationRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "UpdateComponentConfigurationRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "UpdateComponentRequest$ResourceGroupName": "<p>The name of the resource group.</p>"
       }
@@ -479,9 +504,9 @@
       "base": null,
       "refs": {
         "ApplicationComponent$Tier": "<p>The stack tier of the application component.</p>",
-        "DescribeComponentConfigurationRecommendationRequest$Tier": "<p>The tier of the application component. Supported tiers include <code>DOT_NET_WORKER</code>, <code>DOT_NET_WEB_TIER</code>, <code>SQL_SERVER</code>, and <code>DEFAULT</code>.</p>",
-        "DescribeComponentConfigurationResponse$Tier": "<p>The tier of the application component. Supported tiers include <code>DOT_NET_WORKER</code>, <code>DOT_NET_WEB_TIER</code>, <code>SQL_SERVER</code>, and <code>DEFAULT</code> </p>",
-        "UpdateComponentConfigurationRequest$Tier": "<p>The tier of the application component. Supported tiers include <code>DOT_NET_WORKER</code>, <code>DOT_NET_WEB_TIER</code>, <code>SQL_SERVER</code>, and <code>DEFAULT</code>.</p>"
+        "DescribeComponentConfigurationRecommendationRequest$Tier": "<p>The tier of the application component. Supported tiers include <code>DOT_NET_WORKER</code>, <code>DOT_NET_WEB</code>, <code>SQL_SERVER</code>, and <code>DEFAULT</code>.</p>",
+        "DescribeComponentConfigurationResponse$Tier": "<p>The tier of the application component. Supported tiers include <code>DOT_NET_WORKER</code>, <code>DOT_NET_WEB</code>, <code>SQL_SERVER</code>, and <code>DEFAULT</code> </p>",
+        "UpdateComponentConfigurationRequest$Tier": "<p>The tier of the application component. Supported tiers include <code>DOT_NET_WORKER</code>, <code>DOT_NET_WEB</code>, <code>SQL_SERVER</code>, and <code>DEFAULT</code>.</p>"
       }
     },
     "Title": {
@@ -494,6 +519,16 @@
       "base": null,
       "refs": {
         "Observation$Unit": "<p>The unit of the source observation metric.</p>"
+      }
+    },
+    "UpdateApplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateApplicationResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateComponentConfigurationRequest": {
