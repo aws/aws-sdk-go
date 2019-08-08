@@ -31,12 +31,12 @@ func TestShouldRetryError_timeout(t *testing.T) {
 
 	tr := &http.Transport{}
 	defer tr.CloseIdleConnections()
-	cli := http.Client{
+	client := http.Client{
 		Timeout:   time.Nanosecond,
 		Transport: tr,
 	}
 
-	resp, err := cli.Do(newRequest(t, "https://179.179.179.179/no/such/host"))
+	resp, err := client.Do(newRequest(t, "https://179.179.179.179/no/such/host"))
 	if resp != nil {
 		resp.Body.Close()
 	}
@@ -53,7 +53,7 @@ func TestShouldRetryError_timeout(t *testing.T) {
 func TestShouldRetryError_cancelled(t *testing.T) {
 	tr := &http.Transport{}
 	defer tr.CloseIdleConnections()
-	cli := http.Client{
+	client := http.Client{
 		Transport: tr,
 	}
 
@@ -82,7 +82,7 @@ func TestShouldRetryError_cancelled(t *testing.T) {
 		close(ch) // request is cancelled before anything
 	}()
 
-	resp, err := cli.Do(r)
+	resp, err := client.Do(r)
 	if resp != nil {
 		resp.Body.Close()
 	}

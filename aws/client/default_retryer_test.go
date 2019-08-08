@@ -60,7 +60,7 @@ func TestRetryThrottleStatusCodes(t *testing.T) {
 
 	d := DefaultRetryer{NumMaxRetries: 10}
 	for i, c := range cases {
-		throttle := d.shouldThrottle(&c.r)
+		throttle := c.r.IsErrorThrottle()
 		retry := d.ShouldRetry(&c.r)
 
 		if e, a := c.expectThrottle, throttle; e != a {
