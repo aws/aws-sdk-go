@@ -5,7 +5,7 @@
     "BatchCreatePartition": "<p>Creates one or more partitions in a batch operation.</p>",
     "BatchDeleteConnection": "<p>Deletes a list of connection definitions from the Data Catalog.</p>",
     "BatchDeletePartition": "<p>Deletes one or more partitions in a batch operation.</p>",
-    "BatchDeleteTable": "<p>Deletes multiple tables at once.</p> <note> <p>After completing this operation, you will no longer have access to the table versions and partitions that belong to the deleted table. AWS Glue deletes these \"orphaned\" resources asynchronously in a timely manner, at the discretion of the service.</p> <p>To ensure immediate deletion of all related resources, before calling <code>BatchDeleteTable</code>, use <code>DeleteTableVersion</code> or <code>BatchDeleteTableVersion</code>, and <code>DeletePartition</code> or <code>BatchDeletePartition</code>, to delete any resources that belong to the table.</p> </note>",
+    "BatchDeleteTable": "<p>Deletes multiple tables at once.</p> <note> <p>After completing this operation, you no longer have access to the table versions and partitions that belong to the deleted table. AWS Glue deletes these \"orphaned\" resources asynchronously in a timely manner, at the discretion of the service.</p> <p>To ensure the immediate deletion of all related resources, before calling <code>BatchDeleteTable</code>, use <code>DeleteTableVersion</code> or <code>BatchDeleteTableVersion</code>, and <code>DeletePartition</code> or <code>BatchDeletePartition</code>, to delete any resources that belong to the table.</p> </note>",
     "BatchDeleteTableVersion": "<p>Deletes a specified batch of versions of a table.</p>",
     "BatchGetCrawlers": "<p>Returns a list of resource metadata for a given list of crawler names. After calling the <code>ListCrawlers</code> operation, you can call this operation to access the data to which you have been granted permissions. This operation supports all IAM permissions, including permission conditions that uses tags.</p>",
     "BatchGetDevEndpoints": "<p>Returns a list of resource metadata for a given list of development endpoint names. After calling the <code>ListDevEndpoints</code> operation, you can call this operation to access the data to which you have been granted permissions. This operation supports all IAM permissions, including permission conditions that uses tags.</p>",
@@ -14,12 +14,14 @@
     "BatchGetTriggers": "<p>Returns a list of resource metadata for a given list of trigger names. After calling the <code>ListTriggers</code> operation, you can call this operation to access the data to which you have been granted permissions. This operation supports all IAM permissions, including permission conditions that uses tags.</p>",
     "BatchGetWorkflows": "<p>Returns a list of resource metadata for a given list of workflow names. After calling the <code>ListWorkflows</code> operation, you can call this operation to access the data to which you have been granted permissions. This operation supports all IAM permissions, including permission conditions that uses tags.</p>",
     "BatchStopJobRun": "<p>Stops one or more job runs for a specified job definition.</p>",
+    "CancelMLTaskRun": "<p>Cancels (stops) a task run. Machine learning task runs are asynchronous tasks that AWS Glue runs on your behalf as part of various machine learning workflows. You can cancel a machine learning task run at any time by calling <code>CancelMLTaskRun</code> with a task run's parent transform's <code>TransformID</code> and the task run's <code>TaskRunId</code>. </p>",
     "CreateClassifier": "<p>Creates a classifier in the user's account. This can be a <code>GrokClassifier</code>, an <code>XMLClassifier</code>, a <code>JsonClassifier</code>, or a <code>CsvClassifier</code>, depending on which field of the request is present.</p>",
     "CreateConnection": "<p>Creates a connection definition in the Data Catalog.</p>",
     "CreateCrawler": "<p>Creates a new crawler with specified targets, role, configuration, and optional schedule. At least one crawl target must be specified, in the <code>s3Targets</code> field, the <code>jdbcTargets</code> field, or the <code>DynamoDBTargets</code> field.</p>",
     "CreateDatabase": "<p>Creates a new database in a Data Catalog.</p>",
     "CreateDevEndpoint": "<p>Creates a new development endpoint.</p>",
     "CreateJob": "<p>Creates a new job definition.</p>",
+    "CreateMLTransform": "<p>Creates an AWS Glue machine learning transform. This operation creates the transform and all the necessary parameters to train it.</p> <p>Call this operation as the first step in the process of using a machine learning transform (such as the <code>FindMatches</code> transform) for deduplicating data. You can provide an optional <code>Description</code>, in addition to the parameters that you want to use for your algorithm.</p> <p>You must also specify certain parameters for the tasks that AWS Glue runs on your behalf as part of learning from your data and creating a high-quality machine learning transform. These parameters include <code>Role</code>, and optionally, <code>AllocatedCapacity</code>, <code>Timeout</code>, and <code>MaxRetries</code>. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-jobs-job.html\">Jobs</a>.</p>",
     "CreatePartition": "<p>Creates a new partition.</p>",
     "CreateScript": "<p>Transforms a directed acyclic graph (DAG) into code.</p>",
     "CreateSecurityConfiguration": "<p>Creates a new security configuration. A security configuration is a set of security properties that can be used by AWS Glue. You can use a security configuration to encrypt data at rest. For information about using security configurations in AWS Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/encryption-security-configuration.html\">Encrypting Data Written by Crawlers, Jobs, and Development Endpoints</a>.</p>",
@@ -30,13 +32,14 @@
     "DeleteClassifier": "<p>Removes a classifier from the Data Catalog.</p>",
     "DeleteConnection": "<p>Deletes a connection from the Data Catalog.</p>",
     "DeleteCrawler": "<p>Removes a specified crawler from the AWS Glue Data Catalog, unless the crawler state is <code>RUNNING</code>.</p>",
-    "DeleteDatabase": "<p>Removes a specified Database from a Data Catalog.</p> <note> <p>After completing this operation, you will no longer have access to the tables (and all table versions and partitions that might belong to the tables) and the user-defined functions in the deleted database. AWS Glue deletes these \"orphaned\" resources asynchronously in a timely manner, at the discretion of the service.</p> <p>To ensure immediate deletion of all related resources, before calling <code>DeleteDatabase</code>, use <code>DeleteTableVersion</code> or <code>BatchDeleteTableVersion</code>, <code>DeletePartition</code> or <code>BatchDeletePartition</code>, <code>DeleteUserDefinedFunction</code>, and <code>DeleteTable</code> or <code>BatchDeleteTable</code>, to delete any resources that belong to the database.</p> </note>",
+    "DeleteDatabase": "<p>Removes a specified database from a Data Catalog.</p> <note> <p>After completing this operation, you no longer have access to the tables (and all table versions and partitions that might belong to the tables) and the user-defined functions in the deleted database. AWS Glue deletes these \"orphaned\" resources asynchronously in a timely manner, at the discretion of the service.</p> <p>To ensure the immediate deletion of all related resources, before calling <code>DeleteDatabase</code>, use <code>DeleteTableVersion</code> or <code>BatchDeleteTableVersion</code>, <code>DeletePartition</code> or <code>BatchDeletePartition</code>, <code>DeleteUserDefinedFunction</code>, and <code>DeleteTable</code> or <code>BatchDeleteTable</code>, to delete any resources that belong to the database.</p> </note>",
     "DeleteDevEndpoint": "<p>Deletes a specified development endpoint.</p>",
     "DeleteJob": "<p>Deletes a specified job definition. If the job definition is not found, no exception is thrown.</p>",
+    "DeleteMLTransform": "<p>Deletes an AWS Glue machine learning transform. Machine learning transforms are a special type of transform that use machine learning to learn the details of the transformation to be performed by learning from examples provided by humans. These transformations are then saved by AWS Glue. If you no longer need a transform, you can delete it by calling <code>DeleteMLTransforms</code>. However, any AWS Glue jobs that still reference the deleted transform will no longer succeed.</p>",
     "DeletePartition": "<p>Deletes a specified partition.</p>",
     "DeleteResourcePolicy": "<p>Deletes a specified policy.</p>",
     "DeleteSecurityConfiguration": "<p>Deletes a specified security configuration.</p>",
-    "DeleteTable": "<p>Removes a table definition from the Data Catalog.</p> <note> <p>After completing this operation, you will no longer have access to the table versions and partitions that belong to the deleted table. AWS Glue deletes these \"orphaned\" resources asynchronously in a timely manner, at the discretion of the service.</p> <p>To ensure immediate deletion of all related resources, before calling <code>DeleteTable</code>, use <code>DeleteTableVersion</code> or <code>BatchDeleteTableVersion</code>, and <code>DeletePartition</code> or <code>BatchDeletePartition</code>, to delete any resources that belong to the table.</p> </note>",
+    "DeleteTable": "<p>Removes a table definition from the Data Catalog.</p> <note> <p>After completing this operation, you no longer have access to the table versions and partitions that belong to the deleted table. AWS Glue deletes these \"orphaned\" resources asynchronously in a timely manner, at the discretion of the service.</p> <p>To ensure the immediate deletion of all related resources, before calling <code>DeleteTable</code>, use <code>DeleteTableVersion</code> or <code>BatchDeleteTableVersion</code>, and <code>DeletePartition</code> or <code>BatchDeletePartition</code>, to delete any resources that belong to the table.</p> </note>",
     "DeleteTableVersion": "<p>Deletes a specified version of a table.</p>",
     "DeleteTrigger": "<p>Deletes a specified trigger. If the trigger is not found, no exception is thrown.</p>",
     "DeleteUserDefinedFunction": "<p>Deletes an existing function definition from the Data Catalog.</p>",
@@ -51,7 +54,7 @@
     "GetCrawlers": "<p>Retrieves metadata for all crawlers defined in the customer account.</p>",
     "GetDataCatalogEncryptionSettings": "<p>Retrieves the security configuration for a specified catalog.</p>",
     "GetDatabase": "<p>Retrieves the definition of a specified database.</p>",
-    "GetDatabases": "<p>Retrieves all Databases defined in a given Data Catalog.</p>",
+    "GetDatabases": "<p>Retrieves all databases defined in a given Data Catalog.</p>",
     "GetDataflowGraph": "<p>Transforms a Python script into a directed acyclic graph (DAG). </p>",
     "GetDevEndpoint": "<p>Retrieves information about a specified development endpoint.</p> <note> <p>When you create a development endpoint in a virtual private cloud (VPC), AWS Glue returns only a private IP address, and the public IP address field is not populated. When you create a non-VPC development endpoint, AWS Glue returns only a public IP address.</p> </note>",
     "GetDevEndpoints": "<p>Retrieves all the development endpoints in this AWS account.</p> <note> <p>When you create a development endpoint in a virtual private cloud (VPC), AWS Glue returns only a private IP address and the public IP address field is not populated. When you create a non-VPC development endpoint, AWS Glue returns only a public IP address.</p> </note>",
@@ -61,6 +64,10 @@
     "GetJobRun": "<p>Retrieves the metadata for a given job run.</p>",
     "GetJobRuns": "<p>Retrieves metadata for all runs of a given job definition.</p>",
     "GetJobs": "<p>Retrieves all current job definitions.</p>",
+    "GetMLTaskRun": "<p>Gets details for a specific task run on a machine learning transform. Machine learning task runs are asynchronous tasks that AWS Glue runs on your behalf as part of various machine learning workflows. You can check the stats of any task run by calling <code>GetMLTaskRun</code> with the <code>TaskRunID</code> and its parent transform's <code>TransformID</code>.</p>",
+    "GetMLTaskRuns": "<p>Gets a list of runs for a machine learning transform. Machine learning task runs are asynchronous tasks that AWS Glue runs on your behalf as part of various machine learning workflows. You can get a sortable, filterable list of machine learning task runs by calling <code>GetMLTaskRuns</code> with their parent transform's <code>TransformID</code> and other optional parameters as documented in this section.</p> <p>This operation returns a list of historic runs and must be paginated.</p>",
+    "GetMLTransform": "<p>Gets an AWS Glue machine learning transform artifact and all its corresponding metadata. Machine learning transforms are a special type of transform that use machine learning to learn the details of the transformation to be performed by learning from examples provided by humans. These transformations are then saved by AWS Glue. You can retrieve their metadata by calling <code>GetMLTransform</code>.</p>",
+    "GetMLTransforms": "<p>Gets a sortable, filterable list of existing AWS Glue machine learning transforms. Machine learning transforms are a special type of transform that use machine learning to learn the details of the transformation to be performed by learning from examples provided by humans. These transformations are then saved by AWS Glue, and you can retrieve their metadata by calling <code>GetMLTransforms</code>.</p>",
     "GetMapping": "<p>Creates mappings.</p>",
     "GetPartition": "<p>Retrieves information about a specified partition.</p>",
     "GetPartitions": "<p>Retrieves information about the partitions in a table.</p>",
@@ -76,12 +83,12 @@
     "GetTrigger": "<p>Retrieves the definition of a trigger.</p>",
     "GetTriggers": "<p>Gets all the triggers associated with a job.</p>",
     "GetUserDefinedFunction": "<p>Retrieves a specified function definition from the Data Catalog.</p>",
-    "GetUserDefinedFunctions": "<p>Retrieves a multiple function definitions from the Data Catalog.</p>",
+    "GetUserDefinedFunctions": "<p>Retrieves multiple function definitions from the Data Catalog.</p>",
     "GetWorkflow": "<p>Retrieves resource metadata for a workflow.</p>",
     "GetWorkflowRun": "<p>Retrieves the metadata for a given workflow run. </p>",
     "GetWorkflowRunProperties": "<p>Retrieves the workflow run properties which were set during the run.</p>",
     "GetWorkflowRuns": "<p>Retrieves metadata for all runs of a given workflow.</p>",
-    "ImportCatalogToGlue": "<p>Imports an existing Athena Data Catalog to AWS Glue</p>",
+    "ImportCatalogToGlue": "<p>Imports an existing Amazon Athena Data Catalog to AWS Glue</p>",
     "ListCrawlers": "<p>Retrieves the names of all crawler resources in this AWS account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.</p> <p>This operation takes the optional <code>Tags</code> field, which you can use as a filter on the response so that tagged resources can be retrieved as a group. If you choose to use tags filtering, only resources with the tag are retrieved.</p>",
     "ListDevEndpoints": "<p>Retrieves the names of all <code>DevEndpoint</code> resources in this AWS account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.</p> <p>This operation takes the optional <code>Tags</code> field, which you can use as a filter on the response so that tagged resources can be retrieved as a group. If you choose to use tags filtering, only resources with the tag are retrieved.</p>",
     "ListJobs": "<p>Retrieves the names of all job resources in this AWS account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.</p> <p>This operation takes the optional <code>Tags</code> field, which you can use as a filter on the response so that tagged resources can be retrieved as a group. If you choose to use tags filtering, only resources with the tag are retrieved.</p>",
@@ -91,9 +98,14 @@
     "PutResourcePolicy": "<p>Sets the Data Catalog resource policy for access control.</p>",
     "PutWorkflowRunProperties": "<p>Puts the specified workflow run properties for the given workflow run. If a property already exists for the specified run, then it overrides the value otherwise adds the property to existing properties.</p>",
     "ResetJobBookmark": "<p>Resets a bookmark entry.</p>",
+    "SearchTables": "<p>Searches a set of tables based on properties in the table metadata as well as on the parent database. You can search against text or filter conditions. </p> <p>You can only get tables that you have access to based on the security policies defined in Lake Formation. You need at least a read-only access to the table for it to be returned. If you do not have access to all the columns in the table, these columns will not be searched against when returning the list of tables back to you. If you have access to the columns but not the data in the columns, those columns and the associated metadata for those columns will be included in the search. </p>",
     "StartCrawler": "<p>Starts a crawl using the specified crawler, regardless of what is scheduled. If the crawler is already running, returns a <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-exceptions.html#aws-glue-api-exceptions-CrawlerRunningException\">CrawlerRunningException</a>.</p>",
     "StartCrawlerSchedule": "<p>Changes the schedule state of the specified crawler to <code>SCHEDULED</code>, unless the crawler is already running or the schedule state is already <code>SCHEDULED</code>.</p>",
+    "StartExportLabelsTaskRun": "<p>Begins an asynchronous task to export all labeled data for a particular transform. This task is the only label-related API call that is not part of the typical active learning workflow. You typically use <code>StartExportLabelsTaskRun</code> when you want to work with all of your existing labels at the same time, such as when you want to remove or change labels that were previously submitted as truth. This API operation accepts the <code>TransformId</code> whose labels you want to export and an Amazon Simple Storage Service (Amazon S3) path to export the labels to. The operation returns a <code>TaskRunId</code>. You can check on the status of your task run by calling the <code>GetMLTaskRun</code> API.</p>",
+    "StartImportLabelsTaskRun": "<p>Enables you to provide additional labels (examples of truth) to be used to teach the machine learning transform and improve its quality. This API operation is generally used as part of the active learning workflow that starts with the <code>StartMLLabelingSetGenerationTaskRun</code> call and that ultimately results in improving the quality of your machine learning transform. </p> <p>After the <code>StartMLLabelingSetGenerationTaskRun</code> finishes, AWS Glue machine learning will have generated a series of questions for humans to answer. (Answering these questions is often called 'labeling' in the machine learning workflows). In the case of the <code>FindMatches</code> transform, these questions are of the form, “What is the correct way to group these rows together into groups composed entirely of matching records?” After the labeling process is finished, users upload their answers/labels with a call to <code>StartImportLabelsTaskRun</code>. After <code>StartImportLabelsTaskRun</code> finishes, all future runs of the machine learning transform use the new and improved labels and perform a higher-quality transformation.</p> <p>By default, <code>StartMLLabelingSetGenerationTaskRun</code> continually learns from and combines all labels that you upload unless you set <code>Replace</code> to true. If you set <code>Replace</code> to true, <code>StartImportLabelsTaskRun</code> deletes and forgets all previously uploaded labels and learns only from the exact set that you upload. Replacing labels can be helpful if you realize that you previously uploaded incorrect labels, and you believe that they are having a negative effect on your transform quality.</p> <p>You can check on the status of your task run by calling the <code>GetMLTaskRun</code> operation. </p>",
     "StartJobRun": "<p>Starts a job run using a job definition.</p>",
+    "StartMLEvaluationTaskRun": "<p>Starts a task to estimate the quality of the transform. </p> <p>When you provide label sets as examples of truth, AWS Glue machine learning uses some of those examples to learn from them. The rest of the labels are used as a test to estimate quality.</p> <p>Returns a unique identifier for the run. You can call <code>GetMLTaskRun</code> to get more information about the stats of the <code>EvaluationTaskRun</code>.</p>",
+    "StartMLLabelingSetGenerationTaskRun": "<p>Starts the active learning workflow for your machine learning transform to improve the transform's quality by generating label sets and adding labels.</p> <p>When the <code>StartMLLabelingSetGenerationTaskRun</code> finishes, AWS Glue will have generated a \"labeling set\" or a set of questions for humans to answer.</p> <p>In the case of the <code>FindMatches</code> transform, these questions are of the form, “What is the correct way to group these rows together into groups composed entirely of matching records?” </p> <p>After the labeling process is finished, you can upload your labels with a call to <code>StartImportLabelsTaskRun</code>. After <code>StartImportLabelsTaskRun</code> finishes, all future runs of the machine learning transform will use the new and improved labels and perform a higher-quality transformation.</p>",
     "StartTrigger": "<p>Starts an existing trigger. See <a href=\"https://docs.aws.amazon.com/glue/latest/dg/trigger-job.html\">Triggering Jobs</a> for information about how different types of trigger are started.</p>",
     "StartWorkflowRun": "<p>Starts a new run of the specified workflow.</p>",
     "StopCrawler": "<p>If the specified crawler is running, stops the crawl.</p>",
@@ -108,6 +120,7 @@
     "UpdateDatabase": "<p>Updates an existing database definition in a Data Catalog.</p>",
     "UpdateDevEndpoint": "<p>Updates a specified development endpoint.</p>",
     "UpdateJob": "<p>Updates an existing job definition.</p>",
+    "UpdateMLTransform": "<p>Updates an existing machine learning transform. Call this operation to tune the algorithm parameters to achieve better results.</p> <p>After calling this operation, you can call the <code>StartMLEvaluationTaskRun</code> operation to assess how well your new parameters achieved your goals (such as improving the quality of your machine learning transform, or making it more cost-effective).</p>",
     "UpdatePartition": "<p>Updates a partition.</p>",
     "UpdateTable": "<p>Updates a metadata table in the Data Catalog.</p>",
     "UpdateTrigger": "<p>Updates a trigger definition.</p>",
@@ -257,7 +270,7 @@
       "base": null,
       "refs": {
         "BatchGetPartitionRequest$PartitionsToGet": "<p>A list of partition values identifying the partitions to retrieve.</p>",
-        "BatchGetPartitionResponse$UnprocessedKeys": "<p>A list of the partition values in the request for which partions were not returned.</p>"
+        "BatchGetPartitionResponse$UnprocessedKeys": "<p>A list of the partition values in the request for which partitions were not returned.</p>"
       }
     },
     "BatchGetTriggersRequest": {
@@ -323,20 +336,21 @@
     "Boolean": {
       "base": null,
       "refs": {
-        "CatalogImportStatus$ImportCompleted": "<p>True if the migration has completed, or False otherwise.</p>",
+        "CatalogImportStatus$ImportCompleted": "<p> <code>True</code> if the migration has completed, or <code>False</code> otherwise.</p>",
         "CodeGenNodeArg$Param": "<p>True if the value is used as a parameter.</p>",
         "ConnectionPasswordEncryption$ReturnConnectionPasswordEncrypted": "<p>When the <code>ReturnConnectionPasswordEncrypted</code> flag is set to \"true\", passwords remain encrypted in the responses of <code>GetConnection</code> and <code>GetConnections</code>. This encryption takes effect independently from catalog encryption. </p>",
         "CrawlerMetrics$StillEstimating": "<p>True if the crawler is still estimating how long it will take to complete this run.</p>",
-        "GetConnectionRequest$HidePassword": "<p>Allows you to retrieve the connection metadata without returning the password. For instance, the AWS Glue console uses this flag to retrieve the connection, and does not display the password. Set this parameter when the caller might not have permission to use the AWS KMS key to decrypt the password, but does have permission to access the rest of the connection properties.</p>",
-        "GetConnectionsRequest$HidePassword": "<p>Allows you to retrieve the connection metadata without returning the password. For instance, the AWS Glue console uses this flag to retrieve the connection, and does not display the password. Set this parameter when the caller might not have permission to use the AWS KMS key to decrypt the password, but does have permission to access the rest of the connection properties.</p>",
-        "StorageDescriptor$Compressed": "<p>True if the data in the table is compressed, or False if not.</p>",
-        "StorageDescriptor$StoredAsSubDirectories": "<p>True if the table data is stored in subdirectories, or False if not.</p>"
+        "GetConnectionRequest$HidePassword": "<p>Allows you to retrieve the connection metadata without returning the password. For instance, the AWS Glue console uses this flag to retrieve the connection, and does not display the password. Set this parameter when the caller might not have permission to use the AWS KMS key to decrypt the password, but it does have permission to access the rest of the connection properties.</p>",
+        "GetConnectionsRequest$HidePassword": "<p>Allows you to retrieve the connection metadata without returning the password. For instance, the AWS Glue console uses this flag to retrieve the connection, and does not display the password. Set this parameter when the caller might not have permission to use the AWS KMS key to decrypt the password, but it does have permission to access the rest of the connection properties.</p>",
+        "StorageDescriptor$Compressed": "<p> <code>True</code> if the data in the table is compressed, or <code>False</code> if not.</p>",
+        "StorageDescriptor$StoredAsSubDirectories": "<p> <code>True</code> if the table data is stored in subdirectories, or <code>False</code> if not.</p>",
+        "Table$IsRegisteredWithLakeFormation": "<p>Indicates whether the table has been registered with AWS Lake Formation.</p>"
       }
     },
     "BooleanNullable": {
       "base": null,
       "refs": {
-        "UpdateTableRequest$SkipArchive": "<p>By default, <code>UpdateTable</code> always creates an archived version of the table before updating it. If <code>skipArchive</code> is set to true, however, <code>UpdateTable</code> does not create the archived version.</p>"
+        "UpdateTableRequest$SkipArchive": "<p>By default, <code>UpdateTable</code> always creates an archived version of the table before updating it. However, if <code>skipArchive</code> is set to true, <code>UpdateTable</code> does not create the archived version.</p>"
       }
     },
     "BooleanValue": {
@@ -351,6 +365,16 @@
       "base": null,
       "refs": {
         "UpdatePartitionRequest$PartitionValueList": "<p>A list of the values defining the partition.</p>"
+      }
+    },
+    "CancelMLTaskRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelMLTaskRunResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "CatalogEncryptionMode": {
@@ -377,44 +401,45 @@
     "CatalogIdString": {
       "base": null,
       "refs": {
-        "BatchCreatePartitionRequest$CatalogId": "<p>The ID of the catalog in which the partion is to be created. Currently, this should be the AWS account ID.</p>",
+        "BatchCreatePartitionRequest$CatalogId": "<p>The ID of the catalog in which the partition is to be created. Currently, this should be the AWS account ID.</p>",
         "BatchDeleteConnectionRequest$CatalogId": "<p>The ID of the Data Catalog in which the connections reside. If none is provided, the AWS account ID is used by default.</p>",
-        "BatchDeletePartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partition to be deleted resides. If none is supplied, the AWS account ID is used by default.</p>",
-        "BatchDeleteTableRequest$CatalogId": "<p>The ID of the Data Catalog where the table resides. If none is supplied, the AWS account ID is used by default.</p>",
-        "BatchDeleteTableVersionRequest$CatalogId": "<p>The ID of the Data Catalog where the tables reside. If none is supplied, the AWS account ID is used by default.</p>",
+        "BatchDeletePartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partition to be deleted resides. If none is provided, the AWS account ID is used by default.</p>",
+        "BatchDeleteTableRequest$CatalogId": "<p>The ID of the Data Catalog where the table resides. If none is provided, the AWS account ID is used by default.</p>",
+        "BatchDeleteTableVersionRequest$CatalogId": "<p>The ID of the Data Catalog where the tables reside. If none is provided, the AWS account ID is used by default.</p>",
         "BatchGetPartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partitions in question reside. If none is supplied, the AWS account ID is used by default.</p>",
         "CreateConnectionRequest$CatalogId": "<p>The ID of the Data Catalog in which to create the connection. If none is provided, the AWS account ID is used by default.</p>",
-        "CreateDatabaseRequest$CatalogId": "<p>The ID of the Data Catalog in which to create the database. If none is supplied, the AWS account ID is used by default.</p>",
-        "CreatePartitionRequest$CatalogId": "<p>The ID of the catalog in which the partion is to be created. Currently, this should be the AWS account ID.</p>",
+        "CreateDatabaseRequest$CatalogId": "<p>The ID of the Data Catalog in which to create the database. If none is provided, the AWS account ID is used by default.</p>",
+        "CreatePartitionRequest$CatalogId": "<p>The AWS account ID of the catalog in which the partition is to be created.</p>",
         "CreateTableRequest$CatalogId": "<p>The ID of the Data Catalog in which to create the <code>Table</code>. If none is supplied, the AWS account ID is used by default.</p>",
-        "CreateUserDefinedFunctionRequest$CatalogId": "<p>The ID of the Data Catalog in which to create the function. If none is supplied, the AWS account ID is used by default.</p>",
+        "CreateUserDefinedFunctionRequest$CatalogId": "<p>The ID of the Data Catalog in which to create the function. If none is provided, the AWS account ID is used by default.</p>",
         "DeleteConnectionRequest$CatalogId": "<p>The ID of the Data Catalog in which the connection resides. If none is provided, the AWS account ID is used by default.</p>",
-        "DeleteDatabaseRequest$CatalogId": "<p>The ID of the Data Catalog in which the database resides. If none is supplied, the AWS account ID is used by default.</p>",
-        "DeletePartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partition to be deleted resides. If none is supplied, the AWS account ID is used by default.</p>",
-        "DeleteTableRequest$CatalogId": "<p>The ID of the Data Catalog where the table resides. If none is supplied, the AWS account ID is used by default.</p>",
-        "DeleteTableVersionRequest$CatalogId": "<p>The ID of the Data Catalog where the tables reside. If none is supplied, the AWS account ID is used by default.</p>",
+        "DeleteDatabaseRequest$CatalogId": "<p>The ID of the Data Catalog in which the database resides. If none is provided, the AWS account ID is used by default.</p>",
+        "DeletePartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partition to be deleted resides. If none is provided, the AWS account ID is used by default.</p>",
+        "DeleteTableRequest$CatalogId": "<p>The ID of the Data Catalog where the table resides. If none is provided, the AWS account ID is used by default.</p>",
+        "DeleteTableVersionRequest$CatalogId": "<p>The ID of the Data Catalog where the tables reside. If none is provided, the AWS account ID is used by default.</p>",
         "DeleteUserDefinedFunctionRequest$CatalogId": "<p>The ID of the Data Catalog where the function to be deleted is located. If none is supplied, the AWS account ID is used by default.</p>",
         "GetCatalogImportStatusRequest$CatalogId": "<p>The ID of the catalog to migrate. Currently, this should be the AWS account ID.</p>",
         "GetConnectionRequest$CatalogId": "<p>The ID of the Data Catalog in which the connection resides. If none is provided, the AWS account ID is used by default.</p>",
         "GetConnectionsRequest$CatalogId": "<p>The ID of the Data Catalog in which the connections reside. If none is provided, the AWS account ID is used by default.</p>",
-        "GetDataCatalogEncryptionSettingsRequest$CatalogId": "<p>The ID of the Data Catalog for which to retrieve the security configuration. If none is provided, the AWS account ID is used by default.</p>",
-        "GetDatabaseRequest$CatalogId": "<p>The ID of the Data Catalog in which the database resides. If none is supplied, the AWS account ID is used by default.</p>",
-        "GetDatabasesRequest$CatalogId": "<p>The ID of the Data Catalog from which to retrieve <code>Databases</code>. If none is supplied, the AWS account ID is used by default.</p>",
-        "GetPartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partition in question resides. If none is supplied, the AWS account ID is used by default.</p>",
-        "GetPartitionsRequest$CatalogId": "<p>The ID of the Data Catalog where the partitions in question reside. If none is supplied, the AWS account ID is used by default.</p>",
-        "GetTableRequest$CatalogId": "<p>The ID of the Data Catalog where the table resides. If none is supplied, the AWS account ID is used by default.</p>",
-        "GetTableVersionRequest$CatalogId": "<p>The ID of the Data Catalog where the tables reside. If none is supplied, the AWS account ID is used by default.</p>",
-        "GetTableVersionsRequest$CatalogId": "<p>The ID of the Data Catalog where the tables reside. If none is supplied, the AWS account ID is used by default.</p>",
-        "GetTablesRequest$CatalogId": "<p>The ID of the Data Catalog where the tables reside. If none is supplied, the AWS account ID is used by default.</p>",
-        "GetUserDefinedFunctionRequest$CatalogId": "<p>The ID of the Data Catalog where the function to be retrieved is located. If none is supplied, the AWS account ID is used by default.</p>",
-        "GetUserDefinedFunctionsRequest$CatalogId": "<p>The ID of the Data Catalog where the functions to be retrieved are located. If none is supplied, the AWS account ID is used by default.</p>",
+        "GetDataCatalogEncryptionSettingsRequest$CatalogId": "<p>The ID of the Data Catalog to retrieve the security configuration for. If none is provided, the AWS account ID is used by default.</p>",
+        "GetDatabaseRequest$CatalogId": "<p>The ID of the Data Catalog in which the database resides. If none is provided, the AWS account ID is used by default.</p>",
+        "GetDatabasesRequest$CatalogId": "<p>The ID of the Data Catalog from which to retrieve <code>Databases</code>. If none is provided, the AWS account ID is used by default.</p>",
+        "GetPartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partition in question resides. If none is provided, the AWS account ID is used by default.</p>",
+        "GetPartitionsRequest$CatalogId": "<p>The ID of the Data Catalog where the partitions in question reside. If none is provided, the AWS account ID is used by default.</p>",
+        "GetTableRequest$CatalogId": "<p>The ID of the Data Catalog where the table resides. If none is provided, the AWS account ID is used by default.</p>",
+        "GetTableVersionRequest$CatalogId": "<p>The ID of the Data Catalog where the tables reside. If none is provided, the AWS account ID is used by default.</p>",
+        "GetTableVersionsRequest$CatalogId": "<p>The ID of the Data Catalog where the tables reside. If none is provided, the AWS account ID is used by default.</p>",
+        "GetTablesRequest$CatalogId": "<p>The ID of the Data Catalog where the tables reside. If none is provided, the AWS account ID is used by default.</p>",
+        "GetUserDefinedFunctionRequest$CatalogId": "<p>The ID of the Data Catalog where the function to be retrieved is located. If none is provided, the AWS account ID is used by default.</p>",
+        "GetUserDefinedFunctionsRequest$CatalogId": "<p>The ID of the Data Catalog where the functions to be retrieved are located. If none is provided, the AWS account ID is used by default.</p>",
         "ImportCatalogToGlueRequest$CatalogId": "<p>The ID of the catalog to import. Currently, this should be the AWS account ID.</p>",
-        "PutDataCatalogEncryptionSettingsRequest$CatalogId": "<p>The ID of the Data Catalog for which to set the security configuration. If none is provided, the AWS account ID is used by default.</p>",
+        "PutDataCatalogEncryptionSettingsRequest$CatalogId": "<p>The ID of the Data Catalog to set the security configuration for. If none is provided, the AWS account ID is used by default.</p>",
+        "SearchTablesRequest$CatalogId": "<p>A unique identifier, consisting of <code> <i>account_id</i>/datalake</code>.</p>",
         "UpdateConnectionRequest$CatalogId": "<p>The ID of the Data Catalog in which the connection resides. If none is provided, the AWS account ID is used by default.</p>",
-        "UpdateDatabaseRequest$CatalogId": "<p>The ID of the Data Catalog in which the metadata database resides. If none is supplied, the AWS account ID is used by default.</p>",
-        "UpdatePartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partition to be updated resides. If none is supplied, the AWS account ID is used by default.</p>",
-        "UpdateTableRequest$CatalogId": "<p>The ID of the Data Catalog where the table resides. If none is supplied, the AWS account ID is used by default.</p>",
-        "UpdateUserDefinedFunctionRequest$CatalogId": "<p>The ID of the Data Catalog where the function to be updated is located. If none is supplied, the AWS account ID is used by default.</p>"
+        "UpdateDatabaseRequest$CatalogId": "<p>The ID of the Data Catalog in which the metadata database resides. If none is provided, the AWS account ID is used by default.</p>",
+        "UpdatePartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partition to be updated resides. If none is provided, the AWS account ID is used by default.</p>",
+        "UpdateTableRequest$CatalogId": "<p>The ID of the Data Catalog where the table resides. If none is provided, the AWS account ID is used by default.</p>",
+        "UpdateUserDefinedFunctionRequest$CatalogId": "<p>The ID of the Data Catalog where the function to be updated is located. If none is provided, the AWS account ID is used by default.</p>"
       }
     },
     "CatalogImportStatus": {
@@ -549,14 +574,22 @@
       "base": null,
       "refs": {
         "StorageDescriptor$Columns": "<p>A list of the <code>Columns</code> in the table.</p>",
-        "Table$PartitionKeys": "<p>A list of columns by which the table is partitioned. Only primitive types are supported as partition keys.</p> <p>When creating a table used by Athena, and you do not specify any <code>partitionKeys</code>, you must at least set the value of <code>partitionKeys</code> to an empty list. For example:</p> <p> <code>\"PartitionKeys\": []</code> </p>",
-        "TableInput$PartitionKeys": "<p>A list of columns by which the table is partitioned. Only primitive types are supported as partition keys.</p> <p>When creating a table used by Athena, and you do not specify any <code>partitionKeys</code>, you must at least set the value of <code>partitionKeys</code> to an empty list. For example:</p> <p> <code>\"PartitionKeys\": []</code> </p>"
+        "Table$PartitionKeys": "<p>A list of columns by which the table is partitioned. Only primitive types are supported as partition keys.</p> <p>When you create a table used by Amazon Athena, and you do not specify any <code>partitionKeys</code>, you must at least set the value of <code>partitionKeys</code> to an empty list. For example:</p> <p> <code>\"PartitionKeys\": []</code> </p>",
+        "TableInput$PartitionKeys": "<p>A list of columns by which the table is partitioned. Only primitive types are supported as partition keys.</p> <p>When you create a table used by Amazon Athena, and you do not specify any <code>partitionKeys</code>, you must at least set the value of <code>partitionKeys</code> to an empty list. For example:</p> <p> <code>\"PartitionKeys\": []</code> </p>"
+      }
+    },
+    "ColumnNameString": {
+      "base": null,
+      "refs": {
+        "FindMatchesParameters$PrimaryKeyColumnName": "<p>The name of a column that uniquely identifies rows in the source table. Used to help identify matching records.</p>",
+        "SchemaColumn$Name": "<p>The name of the column.</p>"
       }
     },
     "ColumnTypeString": {
       "base": null,
       "refs": {
-        "Column$Type": "<p>The datatype of data in the <code>Column</code>.</p>"
+        "Column$Type": "<p>The data type of the <code>Column</code>.</p>",
+        "SchemaColumn$DataType": "<p>The type of data in the column.</p>"
       }
     },
     "ColumnValueStringList": {
@@ -576,7 +609,13 @@
     "CommentString": {
       "base": null,
       "refs": {
-        "Column$Comment": "<p>Free-form text comment.</p>"
+        "Column$Comment": "<p>A free-form text comment.</p>"
+      }
+    },
+    "Comparator": {
+      "base": null,
+      "refs": {
+        "PropertyPredicate$Comparator": "<p>The comparator used to compare this property to others.</p>"
       }
     },
     "ConcurrentModificationException": {
@@ -606,6 +645,12 @@
         "Predicate$Conditions": "<p>A list of the conditions that determine when the trigger will fire.</p>"
       }
     },
+    "ConfusionMatrix": {
+      "base": "<p>The confusion matrix shows you what your transform is predicting accurately and what types of errors it is making.</p> <p>For more information, see <a href=\"https://en.wikipedia.org/wiki/Confusion_matrix\">Confusion matrix</a> in Wikipedia.</p>",
+      "refs": {
+        "FindMatchesMetrics$ConfusionMatrix": "<p>The confusion matrix shows you what your transform is predicting accurately and what types of errors it is making.</p> <p>For more information, see <a href=\"https://en.wikipedia.org/wiki/Confusion_matrix\">Confusion matrix</a> in Wikipedia.</p>"
+      }
+    },
     "Connection": {
       "base": "<p>Defines a connection to a data source.</p>",
       "refs": {
@@ -633,7 +678,7 @@
       }
     },
     "ConnectionPasswordEncryption": {
-      "base": "<p>The data structure used by the Data Catalog to encrypt the password as part of <code>CreateConnection</code> or <code>UpdateConnection</code> and store it in the <code>ENCRYPTED_PASSWORD</code> field in the connection properties. You can enable catalog encryption or only password encryption.</p> <p>When a <code>CreationConnection</code> request arrives containing a password, the Data Catalog first encrypts the password using your AWS KMS key. It then encrypts the whole connection object again if catalog encryption is also enabled.</p> <p>This encryption requires that you set AWS KMS key permissions to enable or restrict access on the password key according to your security requirements. For example, you might want only admin users to have decrypt permission on the password key.</p>",
+      "base": "<p>The data structure used by the Data Catalog to encrypt the password as part of <code>CreateConnection</code> or <code>UpdateConnection</code> and store it in the <code>ENCRYPTED_PASSWORD</code> field in the connection properties. You can enable catalog encryption or only password encryption.</p> <p>When a <code>CreationConnection</code> request arrives containing a password, the Data Catalog first encrypts the password using your AWS KMS key. It then encrypts the whole connection object again if catalog encryption is also enabled.</p> <p>This encryption requires that you set AWS KMS key permissions to enable or restrict access on the password key according to your security requirements. For example, you might want only administrators to have decrypt permission on the password key.</p>",
       "refs": {
         "DataCatalogEncryptionSettings$ConnectionPasswordEncryption": "<p>When connection password protection is enabled, the Data Catalog uses a customer-provided key to encrypt the password as part of <code>CreateConnection</code> or <code>UpdateConnection</code> and store it in the <code>ENCRYPTED_PASSWORD</code> field in the connection properties. You can enable catalog encryption or only password encryption.</p>"
       }
@@ -641,7 +686,7 @@
     "ConnectionProperties": {
       "base": null,
       "refs": {
-        "Connection$ConnectionProperties": "<p>These key-value pairs define parameters for the connection:</p> <ul> <li> <p> <code>HOST</code> - The host URI: either the fully qualified domain name (FQDN) or the IPv4 address of the database host.</p> </li> <li> <p> <code>PORT</code> - The port number, between 1024 and 65535, of the port on which the database host is listening for database connections.</p> </li> <li> <p> <code>USER_NAME</code> - The name under which to log in to the database. The value string for <code>USER_NAME</code> is \"<code>USERNAME</code>\".</p> </li> <li> <p> <code>PASSWORD</code> - A password, if one is used, for the user name.</p> </li> <li> <p> <code>ENCRYPTED_PASSWORD</code> - When you enable connection password protection by setting <code>ConnectionPasswordEncryption</code> in the Data Catalog encryption settings, this field stores the encrypted password.</p> </li> <li> <p> <code>JDBC_DRIVER_JAR_URI</code> - The Amazon S3 path of the JAR file that contains the JDBC driver to use.</p> </li> <li> <p> <code>JDBC_DRIVER_CLASS_NAME</code> - The class name of the JDBC driver to use.</p> </li> <li> <p> <code>JDBC_ENGINE</code> - The name of the JDBC engine to use.</p> </li> <li> <p> <code>JDBC_ENGINE_VERSION</code> - The version of the JDBC engine to use.</p> </li> <li> <p> <code>CONFIG_FILES</code> - (Reserved for future use).</p> </li> <li> <p> <code>INSTANCE_ID</code> - The instance ID to use.</p> </li> <li> <p> <code>JDBC_CONNECTION_URL</code> - The URL for the JDBC connection.</p> </li> <li> <p> <code>JDBC_ENFORCE_SSL</code> - A Boolean string (true, false) specifying whether Secure Sockets Layer (SSL) with hostname matching will be enforced for the JDBC connection on the client. The default is false.</p> </li> </ul>",
+        "Connection$ConnectionProperties": "<p>These key-value pairs define parameters for the connection:</p> <ul> <li> <p> <code>HOST</code> - The host URI: either the fully qualified domain name (FQDN) or the IPv4 address of the database host.</p> </li> <li> <p> <code>PORT</code> - The port number, between 1024 and 65535, of the port on which the database host is listening for database connections.</p> </li> <li> <p> <code>USER_NAME</code> - The name under which to log in to the database. The value string for <code>USER_NAME</code> is \"<code>USERNAME</code>\".</p> </li> <li> <p> <code>PASSWORD</code> - A password, if one is used, for the user name.</p> </li> <li> <p> <code>ENCRYPTED_PASSWORD</code> - When you enable connection password protection by setting <code>ConnectionPasswordEncryption</code> in the Data Catalog encryption settings, this field stores the encrypted password.</p> </li> <li> <p> <code>JDBC_DRIVER_JAR_URI</code> - The Amazon Simple Storage Service (Amazon S3) path of the JAR file that contains the JDBC driver to use.</p> </li> <li> <p> <code>JDBC_DRIVER_CLASS_NAME</code> - The class name of the JDBC driver to use.</p> </li> <li> <p> <code>JDBC_ENGINE</code> - The name of the JDBC engine to use.</p> </li> <li> <p> <code>JDBC_ENGINE_VERSION</code> - The version of the JDBC engine to use.</p> </li> <li> <p> <code>CONFIG_FILES</code> - (Reserved for future use.)</p> </li> <li> <p> <code>INSTANCE_ID</code> - The instance ID to use.</p> </li> <li> <p> <code>JDBC_CONNECTION_URL</code> - The URL for the JDBC connection.</p> </li> <li> <p> <code>JDBC_ENFORCE_SSL</code> - A Boolean string (true, false) specifying whether Secure Sockets Layer (SSL) with hostname matching is enforced for the JDBC connection on the client. The default is false.</p> </li> </ul>",
         "ConnectionInput$ConnectionProperties": "<p>These key-value pairs define parameters for the connection.</p>"
       }
     },
@@ -850,6 +895,16 @@
         "CreateClassifierRequest$JsonClassifier": "<p>A <code>JsonClassifier</code> object specifying the classifier to create.</p>"
       }
     },
+    "CreateMLTransformRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateMLTransformResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreatePartitionRequest": {
       "base": null,
       "refs": {
@@ -1002,17 +1057,29 @@
         "PutDataCatalogEncryptionSettingsRequest$DataCatalogEncryptionSettings": "<p>The security configuration to set.</p>"
       }
     },
+    "DataLakePrincipal": {
+      "base": "<p>The AWS Lake Formation principal.</p>",
+      "refs": {
+        "PrincipalPermissions$Principal": "<p>The principal who is granted permissions.</p>"
+      }
+    },
+    "DataLakePrincipalString": {
+      "base": null,
+      "refs": {
+        "DataLakePrincipal$DataLakePrincipalIdentifier": "<p>An identifier for the AWS Lake Formation principal.</p>"
+      }
+    },
     "Database": {
-      "base": "<p>The <code>Database</code> object represents a logical grouping of tables that may reside in a Hive metastore or an RDBMS.</p>",
+      "base": "<p>The <code>Database</code> object represents a logical grouping of tables that might reside in a Hive metastore or an RDBMS.</p>",
       "refs": {
         "DatabaseList$member": null,
-        "GetDatabaseResponse$Database": "<p>The definition of the specified database in the catalog.</p>"
+        "GetDatabaseResponse$Database": "<p>The definition of the specified database in the Data Catalog.</p>"
       }
     },
     "DatabaseInput": {
       "base": "<p>The structure used to create or update a database.</p>",
       "refs": {
-        "CreateDatabaseRequest$DatabaseInput": "<p>A <code>DatabaseInput</code> object defining the metadata database to create in the catalog.</p>",
+        "CreateDatabaseRequest$DatabaseInput": "<p>The metadata for the database.</p>",
         "UpdateDatabaseRequest$DatabaseInput": "<p>A <code>DatabaseInput</code> object specifying the new definition of the metadata database in the catalog.</p>"
       }
     },
@@ -1098,6 +1165,16 @@
       }
     },
     "DeleteJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteMLTransformRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteMLTransformResponse": {
       "base": null,
       "refs": {
       }
@@ -1191,17 +1268,21 @@
         "Crawler$Description": "<p>A description of the crawler.</p>",
         "CreateCrawlerRequest$Description": "<p>A description of the new crawler.</p>",
         "CreateJobRequest$Description": "<p>Description of the job being defined.</p>",
+        "CreateMLTransformRequest$Description": "<p>A description of the machine learning transform that is being defined. The default is an empty string.</p>",
         "CreateTriggerRequest$Description": "<p>A description of the new trigger.</p>",
-        "Database$Description": "<p>Description of the database.</p>",
-        "DatabaseInput$Description": "<p>Description of the database</p>",
+        "Database$Description": "<p>A description of the database.</p>",
+        "DatabaseInput$Description": "<p>A description of the database.</p>",
         "ErrorDetail$ErrorMessage": "<p>A message describing the error.</p>",
+        "GetMLTransformResponse$Description": "<p>A description of the transform.</p>",
         "Job$Description": "<p>A description of the job.</p>",
         "JobUpdate$Description": "<p>Description of the job being defined.</p>",
         "LastCrawlInfo$ErrorMessage": "<p>If an error occurred, the error information about the last crawl.</p>",
-        "Table$Description": "<p>Description of the table.</p>",
-        "TableInput$Description": "<p>Description of the table.</p>",
+        "MLTransform$Description": "<p>A user-defined, long-form description text for the machine learning transform. Descriptions are not guaranteed to be unique and can be changed at any time.</p>",
+        "Table$Description": "<p>A description of the table.</p>",
+        "TableInput$Description": "<p>A description of the table.</p>",
         "Trigger$Description": "<p>A description of this trigger.</p>",
-        "TriggerUpdate$Description": "<p>A description of this trigger.</p>"
+        "TriggerUpdate$Description": "<p>A description of this trigger.</p>",
+        "UpdateMLTransformRequest$Description": "<p>A description of the transform. The default is an empty string.</p>"
       }
     },
     "DescriptionStringRemovable": {
@@ -1296,15 +1377,22 @@
       "refs": {
         "BatchStopJobRunError$ErrorDetail": "<p>Specifies details about the error that was encountered.</p>",
         "ErrorByName$value": null,
-        "PartitionError$ErrorDetail": "<p>Details about the partition error.</p>",
-        "TableError$ErrorDetail": "<p>Detail about the error.</p>",
-        "TableVersionError$ErrorDetail": "<p>Detail about the error.</p>"
+        "PartitionError$ErrorDetail": "<p>The details about the partition error.</p>",
+        "TableError$ErrorDetail": "<p>The details about the error.</p>",
+        "TableVersionError$ErrorDetail": "<p>The details about the error.</p>"
       }
     },
     "ErrorString": {
       "base": null,
       "refs": {
         "JobRun$ErrorMessage": "<p>An error message associated with this job run.</p>"
+      }
+    },
+    "EvaluationMetrics": {
+      "base": "<p>Evaluation metrics provide an estimate of the quality of your machine learning transform.</p>",
+      "refs": {
+        "GetMLTransformResponse$EvaluationMetrics": "<p>The latest evaluation metrics.</p>",
+        "MLTransform$EvaluationMetrics": "<p>An <code>EvaluationMetrics</code> object. Evaluation metrics provide an estimate of the quality of your machine learning transform.</p>"
       }
     },
     "ExecutionProperty": {
@@ -1318,13 +1406,21 @@
     "ExecutionTime": {
       "base": null,
       "refs": {
-        "JobRun$ExecutionTime": "<p>The amount of time (in seconds) that the job run consumed resources.</p>"
+        "GetMLTaskRunResponse$ExecutionTime": "<p>The amount of time (in seconds) that the task run consumed resources.</p>",
+        "JobRun$ExecutionTime": "<p>The amount of time (in seconds) that the job run consumed resources.</p>",
+        "TaskRun$ExecutionTime": "<p>The amount of time (in seconds) that the task run consumed resources.</p>"
       }
     },
     "ExistCondition": {
       "base": null,
       "refs": {
         "PutResourcePolicyRequest$PolicyExistsCondition": "<p>A value of <code>MUST_EXIST</code> is used to update a policy. A value of <code>NOT_EXIST</code> is used to create a new policy. If a value of <code>NONE</code> or a null value is used, the call will not depend on the existence of a policy.</p>"
+      }
+    },
+    "ExportLabelsTaskRunProperties": {
+      "base": "<p>Specifies configuration properties for an exporting labels task run.</p>",
+      "refs": {
+        "TaskRunProperties$ExportLabelsTaskRunProperties": "<p>The configuration properties for an exporting labels task run.</p>"
       }
     },
     "FieldType": {
@@ -1340,11 +1436,40 @@
         "GetTablesRequest$Expression": "<p>A regular expression pattern. If present, only those tables whose names match the pattern are returned.</p>"
       }
     },
+    "FindMatchesMetrics": {
+      "base": "<p>The evaluation metrics for the find matches algorithm. The quality of your machine learning transform is measured by getting your transform to predict some matches and comparing the results to known matches from the same dataset. The quality metrics are based on a subset of your data, so they are not precise.</p>",
+      "refs": {
+        "EvaluationMetrics$FindMatchesMetrics": "<p>The evaluation metrics for the find matches algorithm.</p>"
+      }
+    },
+    "FindMatchesParameters": {
+      "base": "<p>The parameters to configure the find matches transform.</p>",
+      "refs": {
+        "TransformParameters$FindMatchesParameters": "<p>The parameters for the find matches algorithm.</p>"
+      }
+    },
+    "FindMatchesTaskRunProperties": {
+      "base": "<p>Specifies configuration properties for a Find Matches task run.</p>",
+      "refs": {
+        "TaskRunProperties$FindMatchesTaskRunProperties": "<p>The configuration properties for a find matches task run.</p>"
+      }
+    },
     "FormatString": {
       "base": null,
       "refs": {
         "StorageDescriptor$InputFormat": "<p>The input format: <code>SequenceFileInputFormat</code> (binary), or <code>TextInputFormat</code>, or a custom format.</p>",
         "StorageDescriptor$OutputFormat": "<p>The output format: <code>SequenceFileOutputFormat</code> (binary), or <code>IgnoreKeyTextOutputFormat</code>, or a custom format.</p>"
+      }
+    },
+    "GenericBoundedDouble": {
+      "base": null,
+      "refs": {
+        "FindMatchesMetrics$AreaUnderPRCurve": "<p>The area under the precision/recall curve (AUPRC) is a single number measuring the overall quality of the transform, that is independent of the choice made for precision vs. recall. Higher values indicate that you have a more attractive precision vs. recall tradeoff.</p> <p>For more information, see <a href=\"https://en.wikipedia.org/wiki/Precision_and_recall\">Precision and recall</a> in Wikipedia.</p>",
+        "FindMatchesMetrics$Precision": "<p>The precision metric indicates when often your transform is correct when it predicts a match. Specifically, it measures how well the transform finds true positives from the total true positives possible.</p> <p>For more information, see <a href=\"https://en.wikipedia.org/wiki/Precision_and_recall\">Precision and recall</a> in Wikipedia.</p>",
+        "FindMatchesMetrics$Recall": "<p>The recall metric indicates that for an actual match, how often your transform predicts the match. Specifically, it measures how well the transform finds true positives from the total records in the source data.</p> <p>For more information, see <a href=\"https://en.wikipedia.org/wiki/Precision_and_recall\">Precision and recall</a> in Wikipedia.</p>",
+        "FindMatchesMetrics$F1": "<p>The maximum F1 metric indicates the transform's accuracy between 0 and 1, where 1 is the best accuracy.</p> <p>For more information, see <a href=\"https://en.wikipedia.org/wiki/F1_score\">F1 score</a> in Wikipedia.</p>",
+        "FindMatchesParameters$PrecisionRecallTradeoff": "<p>The value selected when tuning your transform for a balance between precision and recall. A value of 0.5 means no preference; a value of 1.0 means a bias purely for precision, and a value of 0.0 means a bias for recall. Because this is a tradeoff, choosing values close to 1.0 means very low recall, and choosing values close to 0.0 results in very low precision.</p> <p>The precision metric indicates how often your model is correct when it predicts a match. </p> <p>The recall metric indicates that for an actual match, how often your model predicts the match.</p>",
+        "FindMatchesParameters$AccuracyCostTradeoff": "<p>The value that is selected when tuning your transform for a balance between accuracy and cost. A value of 0.5 means that the system balances accuracy and cost concerns. A value of 1.0 means a bias purely for accuracy, which typically results in a higher cost, sometimes substantially higher. A value of 0.0 means a bias purely for cost, which results in a less accurate <code>FindMatches</code> transform, sometimes with unacceptable accuracy.</p> <p>Accuracy measures how well the transform finds true positives and true negatives. Increasing accuracy requires more machine resources and cost. But it also results in increased recall. </p> <p>Cost measures how many compute resources, and thus money, are consumed to run the transform.</p>"
       }
     },
     "GenericMap": {
@@ -1403,6 +1528,8 @@
         "GetJobRunsResponse$NextToken": "<p>A continuation token, if not all requested job runs have been returned.</p>",
         "GetJobsRequest$NextToken": "<p>A continuation token, if this is a continuation call.</p>",
         "GetJobsResponse$NextToken": "<p>A continuation token, if not all job definitions have yet been returned.</p>",
+        "GetMLTaskRunResponse$LogGroupName": "<p>The names of the log groups that are associated with the task run.</p>",
+        "GetMLTaskRunResponse$ErrorString": "<p>The error strings that are associated with the task run.</p>",
         "GetSecurityConfigurationsRequest$NextToken": "<p>A continuation token, if this is a continuation call.</p>",
         "GetSecurityConfigurationsResponse$NextToken": "<p>A continuation token, if there are more security configurations to return.</p>",
         "GetTriggersRequest$NextToken": "<p>A continuation token, if this is a continuation call.</p>",
@@ -1424,6 +1551,8 @@
         "OrchestrationStringList$member": null,
         "PublicKeysList$member": null,
         "StringList$member": null,
+        "TaskRun$LogGroupName": "<p>The names of the log group for secure logging, associated with this task run.</p>",
+        "TaskRun$ErrorString": "<p>The list of error strings associated with this task run.</p>",
         "Trigger$Schedule": "<p>A <code>cron</code> expression used to specify the schedule (see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html\">Time-Based Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15 UTC, you would specify: <code>cron(15 12 * * ? *)</code>.</p>",
         "TriggerUpdate$Schedule": "<p>A <code>cron</code> expression used to specify the schedule (see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html\">Time-Based Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15 UTC, you would specify: <code>cron(15 12 * * ? *)</code>.</p>",
         "UpdateDevEndpointRequest$EndpointName": "<p>The name of the <code>DevEndpoint</code> to be updated.</p>",
@@ -1476,7 +1605,7 @@
     "GetConnectionsFilter": {
       "base": "<p>Filters the connection definitions that are returned by the <code>GetConnections</code> API operation.</p>",
       "refs": {
-        "GetConnectionsRequest$Filter": "<p>A filter that controls which connections will be returned.</p>"
+        "GetConnectionsRequest$Filter": "<p>A filter that controls which connections are returned.</p>"
       }
     },
     "GetConnectionsRequest": {
@@ -1635,6 +1764,46 @@
       }
     },
     "GetJobsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMLTaskRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMLTaskRunResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMLTaskRunsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMLTaskRunsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMLTransformRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMLTransformResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMLTransformsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMLTransformsResponse": {
       "base": null,
       "refs": {
       }
@@ -1858,6 +2027,20 @@
         "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource from which to remove the tags.</p>"
       }
     },
+    "GlueTable": {
+      "base": "<p>The database and table in the AWS Glue Data Catalog that is used for input or output data.</p>",
+      "refs": {
+        "GlueTables$member": null
+      }
+    },
+    "GlueTables": {
+      "base": null,
+      "refs": {
+        "CreateMLTransformRequest$InputRecordTables": "<p>A list of AWS Glue table definitions used by the transform.</p>",
+        "GetMLTransformResponse$InputRecordTables": "<p>A list of AWS Glue table definitions used by the transform.</p>",
+        "MLTransform$InputRecordTables": "<p>A list of AWS Glue table definitions used by the transform.</p>"
+      }
+    },
     "GlueVersionString": {
       "base": null,
       "refs": {
@@ -1884,10 +2067,39 @@
     "HashString": {
       "base": null,
       "refs": {
+        "CancelMLTaskRunRequest$TransformId": "<p>The unique identifier of the machine learning transform.</p>",
+        "CancelMLTaskRunRequest$TaskRunId": "<p>A unique identifier for the task run.</p>",
+        "CancelMLTaskRunResponse$TransformId": "<p>The unique identifier of the machine learning transform.</p>",
+        "CancelMLTaskRunResponse$TaskRunId": "<p>The unique identifier for the task run.</p>",
+        "CreateMLTransformResponse$TransformId": "<p>A unique identifier that is generated for the transform.</p>",
+        "DeleteMLTransformRequest$TransformId": "<p>The unique identifier of the transform to delete.</p>",
+        "DeleteMLTransformResponse$TransformId": "<p>The unique identifier of the transform that was deleted.</p>",
         "DeleteResourcePolicyRequest$PolicyHashCondition": "<p>The hash value returned when this policy was set.</p>",
+        "FindMatchesTaskRunProperties$JobId": "<p>The job ID for the Find Matches task run.</p>",
+        "FindMatchesTaskRunProperties$JobRunId": "<p>The job run ID for the Find Matches task run.</p>",
+        "GetMLTaskRunRequest$TransformId": "<p>The unique identifier of the machine learning transform.</p>",
+        "GetMLTaskRunRequest$TaskRunId": "<p>The unique identifier of the task run.</p>",
+        "GetMLTaskRunResponse$TransformId": "<p>The unique identifier of the task run.</p>",
+        "GetMLTaskRunResponse$TaskRunId": "<p>The unique run identifier associated with this run.</p>",
+        "GetMLTaskRunsRequest$TransformId": "<p>The unique identifier of the machine learning transform.</p>",
+        "GetMLTransformRequest$TransformId": "<p>The unique identifier of the transform, generated at the time that the transform was created.</p>",
+        "GetMLTransformResponse$TransformId": "<p>The unique identifier of the transform, generated at the time that the transform was created.</p>",
         "GetResourcePolicyResponse$PolicyHash": "<p>Contains the hash value associated with this policy.</p>",
+        "MLTransform$TransformId": "<p>The unique transform ID that is generated for the machine learning transform. The ID is guaranteed to be unique and does not change.</p>",
         "PutResourcePolicyRequest$PolicyHashCondition": "<p>The hash value returned when the previous policy was set using <code>PutResourcePolicy</code>. Its purpose is to prevent concurrent modifications of a policy. Do not use this parameter if no previous policy has been set.</p>",
-        "PutResourcePolicyResponse$PolicyHash": "<p>A hash of the policy that has just been set. This must be included in a subsequent call that overwrites or updates this policy.</p>"
+        "PutResourcePolicyResponse$PolicyHash": "<p>A hash of the policy that has just been set. This must be included in a subsequent call that overwrites or updates this policy.</p>",
+        "StartExportLabelsTaskRunRequest$TransformId": "<p>The unique identifier of the machine learning transform.</p>",
+        "StartExportLabelsTaskRunResponse$TaskRunId": "<p>The unique identifier for the task run.</p>",
+        "StartImportLabelsTaskRunRequest$TransformId": "<p>The unique identifier of the machine learning transform.</p>",
+        "StartImportLabelsTaskRunResponse$TaskRunId": "<p>The unique identifier for the task run.</p>",
+        "StartMLEvaluationTaskRunRequest$TransformId": "<p>The unique identifier of the machine learning transform.</p>",
+        "StartMLEvaluationTaskRunResponse$TaskRunId": "<p>The unique identifier associated with this run.</p>",
+        "StartMLLabelingSetGenerationTaskRunRequest$TransformId": "<p>The unique identifier of the machine learning transform.</p>",
+        "StartMLLabelingSetGenerationTaskRunResponse$TaskRunId": "<p>The unique run identifier that is associated with this task run.</p>",
+        "TaskRun$TransformId": "<p>The unique identifier for the transform.</p>",
+        "TaskRun$TaskRunId": "<p>The unique identifier for this task run.</p>",
+        "UpdateMLTransformRequest$TransformId": "<p>A unique identifier that was generated when the transform was created.</p>",
+        "UpdateMLTransformResponse$TransformId": "<p>The unique identifier for the transform that was updated.</p>"
       }
     },
     "IdString": {
@@ -1924,6 +2136,12 @@
     "ImportCatalogToGlueResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "ImportLabelsTaskRunProperties": {
+      "base": "<p>Specifies configuration properties for an importing labels task run.</p>",
+      "refs": {
+        "TaskRunProperties$ImportLabelsTaskRunProperties": "<p>The configuration properties for an importing labels task run.</p>"
       }
     },
     "Integer": {
@@ -2120,6 +2338,19 @@
         "S3Encryption$KmsKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key to be used to encrypt the data.</p>"
       }
     },
+    "LabelCount": {
+      "base": null,
+      "refs": {
+        "GetMLTransformResponse$LabelCount": "<p>The number of labels available for this transform.</p>",
+        "MLTransform$LabelCount": "<p>A count identifier for the labeling files generated by AWS Glue for this transform. As you create a better transform, you can iteratively download, label, and upload the labeling file.</p>"
+      }
+    },
+    "LabelingSetGenerationTaskRunProperties": {
+      "base": "<p>Specifies configuration properties for a labeling set generation task run.</p>",
+      "refs": {
+        "TaskRunProperties$LabelingSetGenerationTaskRunProperties": "<p>The configuration properties for a labeling set generation task run.</p>"
+      }
+    },
     "Language": {
       "base": null,
       "refs": {
@@ -2205,7 +2436,7 @@
     "LocationString": {
       "base": null,
       "refs": {
-        "StorageDescriptor$Location": "<p>The physical location of the table. By default this takes the form of the warehouse location, followed by the database location in the warehouse, followed by the table name.</p>"
+        "StorageDescriptor$Location": "<p>The physical location of the table. By default, this takes the form of the warehouse location, followed by the database location in the warehouse, followed by the table name.</p>"
       }
     },
     "LogGroup": {
@@ -2232,6 +2463,17 @@
       "base": null,
       "refs": {
         "Condition$LogicalOperator": "<p>A logical operator.</p>"
+      }
+    },
+    "MLTransform": {
+      "base": "<p>A structure for a machine learning transform.</p>",
+      "refs": {
+        "TransformList$member": null
+      }
+    },
+    "MLTransformNotReadyException": {
+      "base": "<p>The machine learning transform is not ready to run.</p>",
+      "refs": {
       }
     },
     "MapValue": {
@@ -2300,6 +2542,7 @@
         "IdempotentParameterMismatchException$Message": "<p>A message describing the problem.</p>",
         "InternalServiceException$Message": "<p>A message describing the problem.</p>",
         "InvalidInputException$Message": "<p>A message describing the problem.</p>",
+        "MLTransformNotReadyException$Message": "<p>A message describing the problem.</p>",
         "NoScheduleException$Message": "<p>A message describing the problem.</p>",
         "OperationTimeoutException$Message": "<p>A message describing the problem.</p>",
         "ResourceNumberLimitExceededException$Message": "<p>A message describing the problem.</p>",
@@ -2325,9 +2568,9 @@
         "BatchCreatePartitionRequest$DatabaseName": "<p>The name of the metadata database in which the partition is to be created.</p>",
         "BatchCreatePartitionRequest$TableName": "<p>The name of the metadata table in which the partition is to be created.</p>",
         "BatchDeletePartitionRequest$DatabaseName": "<p>The name of the catalog database in which the table in question resides.</p>",
-        "BatchDeletePartitionRequest$TableName": "<p>The name of the table where the partitions to be deleted is located.</p>",
+        "BatchDeletePartitionRequest$TableName": "<p>The name of the table that contains the partitions to be deleted.</p>",
         "BatchDeleteTableNameList$member": null,
-        "BatchDeleteTableRequest$DatabaseName": "<p>The name of the catalog database where the tables to delete reside. For Hive compatibility, this name is entirely lowercase.</p>",
+        "BatchDeleteTableRequest$DatabaseName": "<p>The name of the catalog database in which the tables to delete reside. For Hive compatibility, this name is entirely lowercase.</p>",
         "BatchDeleteTableVersionRequest$DatabaseName": "<p>The database in the catalog in which the table resides. For Hive compatibility, this name is entirely lowercase.</p>",
         "BatchDeleteTableVersionRequest$TableName": "<p>The name of the table. For Hive compatibility, this name is entirely lowercase.</p>",
         "BatchGetPartitionRequest$DatabaseName": "<p>The name of the catalog database where the partitions reside.</p>",
@@ -2360,6 +2603,7 @@
         "CreateJobRequest$SecurityConfiguration": "<p>The name of the <code>SecurityConfiguration</code> structure to be used with this job.</p>",
         "CreateJobResponse$Name": "<p>The unique name that was provided for this job definition.</p>",
         "CreateJsonClassifierRequest$Name": "<p>The name of the classifier.</p>",
+        "CreateMLTransformRequest$Name": "<p>The unique name that you give the transform when you create it.</p>",
         "CreatePartitionRequest$DatabaseName": "<p>The name of the metadata database in which the partition is to be created.</p>",
         "CreatePartitionRequest$TableName": "<p>The name of the metadata table in which the partition is to be created.</p>",
         "CreateSecurityConfigurationRequest$Name": "<p>The name for the new security configuration.</p>",
@@ -2374,17 +2618,17 @@
         "CreateXMLClassifierRequest$Name": "<p>The name of the classifier.</p>",
         "CsvClassifier$Name": "<p>The name of the classifier.</p>",
         "CsvHeader$member": null,
-        "Database$Name": "<p>Name of the database. For Hive compatibility, this is folded to lowercase when it is stored.</p>",
-        "DatabaseInput$Name": "<p>Name of the database. For Hive compatibility, this is folded to lowercase when it is stored.</p>",
+        "Database$Name": "<p>The name of the database. For Hive compatibility, this is folded to lowercase when it is stored.</p>",
+        "DatabaseInput$Name": "<p>The name of the database. For Hive compatibility, this is folded to lowercase when it is stored.</p>",
         "DeleteClassifierRequest$Name": "<p>Name of the classifier to remove.</p>",
         "DeleteConnectionNameList$member": null,
         "DeleteConnectionRequest$ConnectionName": "<p>The name of the connection to delete.</p>",
         "DeleteCrawlerRequest$Name": "<p>The name of the crawler to remove.</p>",
-        "DeleteDatabaseRequest$Name": "<p>The name of the Database to delete. For Hive compatibility, this must be all lowercase.</p>",
+        "DeleteDatabaseRequest$Name": "<p>The name of the database to delete. For Hive compatibility, this must be all lowercase.</p>",
         "DeleteJobRequest$JobName": "<p>The name of the job definition to delete.</p>",
         "DeleteJobResponse$JobName": "<p>The name of the job definition that was deleted.</p>",
         "DeletePartitionRequest$DatabaseName": "<p>The name of the catalog database in which the table in question resides.</p>",
-        "DeletePartitionRequest$TableName": "<p>The name of the table where the partition to be deleted is located.</p>",
+        "DeletePartitionRequest$TableName": "<p>The name of the table that contains the partition to be deleted.</p>",
         "DeleteSecurityConfigurationRequest$Name": "<p>The name of the security configuration to delete.</p>",
         "DeleteTableRequest$DatabaseName": "<p>The name of the catalog database in which the table resides. For Hive compatibility, this name is entirely lowercase.</p>",
         "DeleteTableRequest$Name": "<p>The name of the table to be deleted. For Hive compatibility, this name is entirely lowercase.</p>",
@@ -2403,6 +2647,7 @@
         "EncryptionAtRest$SseAwsKmsKeyId": "<p>The ID of the AWS KMS key to use for encryption at rest.</p>",
         "ErrorByName$key": null,
         "ErrorDetail$ErrorCode": "<p>The code associated with this error.</p>",
+        "FindMatchesTaskRunProperties$JobName": "<p>The name assigned to the job for the Find Matches task run.</p>",
         "GetClassifierRequest$Name": "<p>Name of the classifier to retrieve.</p>",
         "GetConnectionRequest$Name": "<p>The name of the connection definition to retrieve.</p>",
         "GetCrawlerRequest$Name": "<p>The name of the crawler to retrieve metadata for.</p>",
@@ -2410,6 +2655,7 @@
         "GetJobRequest$JobName": "<p>The name of the job definition to retrieve.</p>",
         "GetJobRunRequest$JobName": "<p>Name of the job definition being run.</p>",
         "GetJobRunsRequest$JobName": "<p>The name of the job definition for which to retrieve all job runs.</p>",
+        "GetMLTransformResponse$Name": "<p>The unique name given to the transform when it was created.</p>",
         "GetPartitionRequest$DatabaseName": "<p>The name of the catalog database where the partition resides.</p>",
         "GetPartitionRequest$TableName": "<p>The name of the partition's table.</p>",
         "GetPartitionsRequest$DatabaseName": "<p>The name of the catalog database where the partitions reside.</p>",
@@ -2432,6 +2678,10 @@
         "GetWorkflowRunPropertiesRequest$Name": "<p>Name of the workflow which was run.</p>",
         "GetWorkflowRunRequest$Name": "<p>Name of the workflow being run.</p>",
         "GetWorkflowRunsRequest$Name": "<p>Name of the workflow whose metadata of runs should be returned.</p>",
+        "GlueTable$DatabaseName": "<p>A database name in the AWS Glue Data Catalog.</p>",
+        "GlueTable$TableName": "<p>A table name in the AWS Glue Data Catalog.</p>",
+        "GlueTable$CatalogId": "<p>A unique identifier for the AWS Glue Data Catalog.</p>",
+        "GlueTable$ConnectionName": "<p>The name of the connection to the AWS Glue Data Catalog.</p>",
         "GrokClassifier$Name": "<p>The name of the classifier.</p>",
         "Job$Name": "<p>The name you assign to this job definition.</p>",
         "Job$SecurityConfiguration": "<p>The name of the <code>SecurityConfiguration</code> structure to be used with this job.</p>",
@@ -2442,13 +2692,14 @@
         "JobUpdate$SecurityConfiguration": "<p>The name of the <code>SecurityConfiguration</code> structure to be used with this job.</p>",
         "JsonClassifier$Name": "<p>The name of the classifier.</p>",
         "ListTriggersRequest$DependentJobName": "<p> The name of the job for which to retrieve triggers. The trigger that can start this job is returned. If there is no such trigger, all triggers are returned.</p>",
+        "MLTransform$Name": "<p>A user-defined name for the machine learning transform. Names are not guaranteed unique and can be changed at any time.</p>",
         "MatchCriteria$member": null,
         "NameStringList$member": null,
         "Node$Name": "<p>The name of the AWS Glue component represented by the node.</p>",
         "Node$UniqueId": "<p>The unique Id assigned to the node within the workflow.</p>",
         "Order$Column": "<p>The name of the column.</p>",
-        "Partition$DatabaseName": "<p>The name of the catalog database where the table in question is located.</p>",
-        "Partition$TableName": "<p>The name of the table in question.</p>",
+        "Partition$DatabaseName": "<p>The name of the catalog database in which to create the partition.</p>",
+        "Partition$TableName": "<p>The name of the database table in which to create the partition.</p>",
         "PhysicalConnectionRequirements$SubnetId": "<p>The subnet ID used by the connection.</p>",
         "PhysicalConnectionRequirements$AvailabilityZone": "<p>The connection's Availability Zone. This field is redundant because the specified subnet implies the Availability Zone to be used. Currently the field must be populated, but it will be deprecated in the future.</p>",
         "Predecessor$JobName": "<p>The name of the job definition used by the predecessor job run.</p>",
@@ -2456,7 +2707,7 @@
         "SecurityConfiguration$Name": "<p>The name of the security configuration.</p>",
         "SecurityGroupIdList$member": null,
         "SerDeInfo$Name": "<p>Name of the SerDe.</p>",
-        "SerDeInfo$SerializationLibrary": "<p>Usually the class that implements the SerDe. An example is: <code>org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe</code>.</p>",
+        "SerDeInfo$SerializationLibrary": "<p>Usually the class that implements the SerDe. An example is <code>org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe</code>.</p>",
         "StartCrawlerRequest$Name": "<p>Name of the crawler to start.</p>",
         "StartCrawlerScheduleRequest$CrawlerName": "<p>Name of the crawler to schedule.</p>",
         "StartJobRunRequest$JobName": "<p>The name of the job definition to use.</p>",
@@ -2468,14 +2719,15 @@
         "StopCrawlerScheduleRequest$CrawlerName": "<p>Name of the crawler whose schedule state to set.</p>",
         "StopTriggerRequest$Name": "<p>The name of the trigger to stop.</p>",
         "StopTriggerResponse$Name": "<p>The name of the trigger that was stopped.</p>",
-        "Table$Name": "<p>Name of the table. For Hive compatibility, this must be entirely lowercase.</p>",
-        "Table$DatabaseName": "<p>Name of the metadata database where the table metadata resides. For Hive compatibility, this must be all lowercase.</p>",
-        "Table$Owner": "<p>Owner of the table.</p>",
-        "Table$CreatedBy": "<p>Person or entity who created the table.</p>",
-        "TableError$TableName": "<p>Name of the table. For Hive compatibility, this must be entirely lowercase.</p>",
-        "TableInput$Name": "<p>Name of the table. For Hive compatibility, this is folded to lowercase when it is stored.</p>",
-        "TableInput$Owner": "<p>Owner of the table.</p>",
+        "Table$Name": "<p>The table name. For Hive compatibility, this must be entirely lowercase.</p>",
+        "Table$DatabaseName": "<p>The name of the database where the table metadata resides. For Hive compatibility, this must be all lowercase.</p>",
+        "Table$Owner": "<p>The owner of the table.</p>",
+        "Table$CreatedBy": "<p>The person or entity who created the table.</p>",
+        "TableError$TableName": "<p>The name of the table. For Hive compatibility, this must be entirely lowercase.</p>",
+        "TableInput$Name": "<p>The table name. For Hive compatibility, this is folded to lowercase when it is stored.</p>",
+        "TableInput$Owner": "<p>The table owner.</p>",
         "TableVersionError$TableName": "<p>The name of the table in question.</p>",
+        "TransformFilterCriteria$Name": "<p>A unique transform name that is used to filter the machine learning transforms.</p>",
         "Trigger$Name": "<p>The name of the trigger.</p>",
         "Trigger$WorkflowName": "<p>The name of the workflow associated with the trigger.</p>",
         "TriggerNameList$member": null,
@@ -2489,8 +2741,9 @@
         "UpdateJobRequest$JobName": "<p>The name of the job definition to update.</p>",
         "UpdateJobResponse$JobName": "<p>Returns the name of the updated job definition.</p>",
         "UpdateJsonClassifierRequest$Name": "<p>The name of the classifier.</p>",
+        "UpdateMLTransformRequest$Name": "<p>The unique name that you gave the transform when you created it.</p>",
         "UpdatePartitionRequest$DatabaseName": "<p>The name of the catalog database in which the table in question resides.</p>",
-        "UpdatePartitionRequest$TableName": "<p>The name of the table where the partition to be updated is located.</p>",
+        "UpdatePartitionRequest$TableName": "<p>The name of the table in which the partition to be updated is located.</p>",
         "UpdateTableRequest$DatabaseName": "<p>The name of the catalog database in which the table resides. For Hive compatibility, this name is entirely lowercase.</p>",
         "UpdateTriggerRequest$Name": "<p>The name of the trigger to update.</p>",
         "UpdateUserDefinedFunctionRequest$DatabaseName": "<p>The name of the catalog database where the function to be updated is located.</p>",
@@ -2555,9 +2808,9 @@
         "CrawlerMetrics$TablesCreated": "<p>The number of tables created by this crawler.</p>",
         "CrawlerMetrics$TablesUpdated": "<p>The number of tables updated by this crawler.</p>",
         "CrawlerMetrics$TablesDeleted": "<p>The number of tables deleted by this crawler.</p>",
-        "Segment$SegmentNumber": "<p>The zero-based index number of the this segment. For example, if the total number of segments is 4, SegmentNumber values will range from zero through three.</p>",
-        "Table$Retention": "<p>Retention time for this table.</p>",
-        "TableInput$Retention": "<p>Retention time for this table.</p>"
+        "Segment$SegmentNumber": "<p>The zero-based index number of the segment. For example, if the total number of segments is 4, <code>SegmentNumber</code> values range from 0 through 3.</p>",
+        "Table$Retention": "<p>The retention time for this table.</p>",
+        "TableInput$Retention": "<p>The retention time for this table.</p>"
       }
     },
     "NotificationProperty": {
@@ -2585,6 +2838,7 @@
         "CreateCsvClassifierRequest$AllowSingleColumn": "<p>Enables the processing of files that contain only one column.</p>",
         "CsvClassifier$DisableValueTrimming": "<p>Specifies not to trim values before identifying the type of column values. The default value is <code>true</code>.</p>",
         "CsvClassifier$AllowSingleColumn": "<p>Enables the processing of files that contain only one column.</p>",
+        "FindMatchesParameters$EnforceProvidedLabels": "<p>The value to switch on or off to force the output to match the provided labels from users. If the value is <code>True</code>, the <code>find matches</code> transform forces the output to match the provided labels. The results override the normal conflation results. If the value is <code>False</code>, the <code>find matches</code> transform does not ensure all the labels provided are respected, and the results rely on the trained model.</p> <p>Note that setting this value to true may increase the conflation execution time.</p>",
         "GetWorkflowRequest$IncludeGraph": "<p>Specifies whether to include a graph when returning the workflow resource metadata.</p>",
         "GetWorkflowRunRequest$IncludeGraph": "<p>Specifies whether to include the workflow graph in response or not.</p>",
         "GetWorkflowRunsRequest$IncludeGraph": "<p>Specifies whether to include the workflow graph in response or not.</p>",
@@ -2596,10 +2850,14 @@
       "base": null,
       "refs": {
         "CreateJobRequest$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job or an Apache Spark ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul>",
+        "CreateMLTransformRequest$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that are allocated to task runs for this transform. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>. </p> <p>When the <code>WorkerType</code> field is set to a value other than <code>Standard</code>, the <code>MaxCapacity</code> field is set automatically and becomes read-only.</p>",
+        "GetMLTransformResponse$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that are allocated to task runs for this transform. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>. </p> <p>When the <code>WorkerType</code> field is set to a value other than <code>Standard</code>, the <code>MaxCapacity</code> field is set automatically and becomes read-only.</p>",
         "Job$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job or an Apache Spark ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul>",
         "JobRun$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://docs.aws.amazon.com/https:/aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job or an Apache Spark ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul>",
         "JobUpdate$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job or an Apache Spark ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul>",
-        "StartJobRunRequest$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://docs.aws.amazon.com/https:/aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job, or an Apache Spark ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul>"
+        "MLTransform$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that are allocated to task runs for this transform. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>. </p> <p>When the <code>WorkerType</code> field is set to a value other than <code>Standard</code>, the <code>MaxCapacity</code> field is set automatically and becomes read-only.</p>",
+        "StartJobRunRequest$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://docs.aws.amazon.com/https:/aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job, or an Apache Spark ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul>",
+        "UpdateMLTransformRequest$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that are allocated to task runs for this transform. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>. </p> <p>When the <code>WorkerType</code> field is set to a value other than <code>Standard</code>, the <code>MaxCapacity</code> field is set automatically and becomes read-only.</p>"
       }
     },
     "NullableInteger": {
@@ -2608,11 +2866,19 @@
         "CreateDevEndpointRequest$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated to the development endpoint.</p> <p>The maximum number of workers you can define are 299 for <code>G.1X</code>, and 149 for <code>G.2X</code>. </p>",
         "CreateDevEndpointResponse$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated to the development endpoint.</p>",
         "CreateJobRequest$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when a job runs.</p> <p>The maximum number of workers you can define are 299 for <code>G.1X</code>, and 149 for <code>G.2X</code>. </p>",
+        "CreateMLTransformRequest$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when this task runs.</p>",
+        "CreateMLTransformRequest$MaxRetries": "<p>The maximum number of times to retry a task for this transform after a task run fails.</p>",
         "DevEndpoint$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated to the development endpoint.</p> <p>The maximum number of workers you can define are 299 for <code>G.1X</code>, and 149 for <code>G.2X</code>. </p>",
+        "GetMLTransformResponse$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when this task runs.</p>",
+        "GetMLTransformResponse$MaxRetries": "<p>The maximum number of times to retry a task for this transform after a task run fails.</p>",
         "Job$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when a job runs.</p> <p>The maximum number of workers you can define are 299 for <code>G.1X</code>, and 149 for <code>G.2X</code>. </p>",
         "JobRun$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when a job runs.</p> <p>The maximum number of workers you can define are 299 for <code>G.1X</code>, and 149 for <code>G.2X</code>. </p>",
         "JobUpdate$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when a job runs.</p> <p>The maximum number of workers you can define are 299 for <code>G.1X</code>, and 149 for <code>G.2X</code>. </p>",
-        "StartJobRunRequest$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when a job runs.</p> <p>The maximum number of workers you can define are 299 for <code>G.1X</code>, and 149 for <code>G.2X</code>. </p>"
+        "MLTransform$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when a task of the transform runs.</p>",
+        "MLTransform$MaxRetries": "<p>The maximum number of times to retry after an <code>MLTaskRun</code> of the machine learning transform fails.</p>",
+        "StartJobRunRequest$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when a job runs.</p> <p>The maximum number of workers you can define are 299 for <code>G.1X</code>, and 149 for <code>G.2X</code>. </p>",
+        "UpdateMLTransformRequest$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when this task runs.</p>",
+        "UpdateMLTransformRequest$MaxRetries": "<p>The maximum number of times to retry a task for this transform after a task run fails.</p>"
       }
     },
     "OperationTimeoutException": {
@@ -2649,6 +2915,8 @@
         "GetDevEndpointsRequest$MaxResults": "<p>The maximum size of information to return.</p>",
         "GetJobRunsRequest$MaxResults": "<p>The maximum size of the response.</p>",
         "GetJobsRequest$MaxResults": "<p>The maximum size of the response.</p>",
+        "GetMLTaskRunsRequest$MaxResults": "<p>The maximum number of results to return. </p>",
+        "GetMLTransformsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "GetPartitionsRequest$MaxResults": "<p>The maximum number of partitions to return in a single response.</p>",
         "GetSecurityConfigurationsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "GetTableVersionsRequest$MaxResults": "<p>The maximum number of table versions to return in one response.</p>",
@@ -2660,18 +2928,29 @@
         "ListDevEndpointsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "ListJobsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "ListTriggersRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
-        "ListWorkflowsRequest$MaxResults": "<p>The maximum size of a list to return.</p>"
+        "ListWorkflowsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
+        "SearchTablesRequest$MaxResults": "<p>The maximum number of tables to return in a single response.</p>"
+      }
+    },
+    "PaginationToken": {
+      "base": null,
+      "refs": {
+        "GetMLTaskRunsRequest$NextToken": "<p>A token for pagination of the results. The default is empty.</p>",
+        "GetMLTaskRunsResponse$NextToken": "<p>A pagination token, if more results are available.</p>",
+        "GetMLTransformsRequest$NextToken": "<p>A paginated token to offset the results.</p>",
+        "GetMLTransformsResponse$NextToken": "<p>A pagination token, if more results are available.</p>"
       }
     },
     "ParametersMap": {
       "base": null,
       "refs": {
+        "Column$Parameters": "<p>These key-value pairs define properties associated with the column.</p>",
         "Database$Parameters": "<p>These key-value pairs define parameters and properties of the database.</p>",
-        "DatabaseInput$Parameters": "<p>Thes key-value pairs define parameters and properties of the database.</p>",
+        "DatabaseInput$Parameters": "<p>These key-value pairs define parameters and properties of the database.</p> <p>These key-value pairs define parameters and properties of the database.</p>",
         "Partition$Parameters": "<p>These key-value pairs define partition parameters.</p>",
         "PartitionInput$Parameters": "<p>These key-value pairs define partition parameters.</p>",
         "SerDeInfo$Parameters": "<p>These key-value pairs define initialization parameters for the SerDe.</p>",
-        "StorageDescriptor$Parameters": "<p>User-supplied properties in key-value form.</p>",
+        "StorageDescriptor$Parameters": "<p>The user-supplied properties in key-value form.</p>",
         "Table$Parameters": "<p>These key-value pairs define properties associated with the table.</p>",
         "TableInput$Parameters": "<p>These key-value pairs define properties associated with the table.</p>"
       }
@@ -2698,16 +2977,16 @@
     "PartitionErrors": {
       "base": null,
       "refs": {
-        "BatchCreatePartitionResponse$Errors": "<p>Errors encountered when trying to create the requested partitions.</p>",
-        "BatchDeletePartitionResponse$Errors": "<p>Errors encountered when trying to delete the requested partitions.</p>"
+        "BatchCreatePartitionResponse$Errors": "<p>The errors encountered when trying to create the requested partitions.</p>",
+        "BatchDeletePartitionResponse$Errors": "<p>The errors encountered when trying to delete the requested partitions.</p>"
       }
     },
     "PartitionInput": {
-      "base": "<p>The structure used to create and update a partion.</p>",
+      "base": "<p>The structure used to create and update a partition.</p>",
       "refs": {
         "CreatePartitionRequest$PartitionInput": "<p>A <code>PartitionInput</code> structure defining the partition to be created.</p>",
         "PartitionInputList$member": null,
-        "UpdatePartitionRequest$PartitionInput": "<p>The new partition object to which to update the partition.</p>"
+        "UpdatePartitionRequest$PartitionInput": "<p>The new partition object to update the partition to.</p>"
       }
     },
     "PartitionInputList": {
@@ -2744,6 +3023,18 @@
       "refs": {
         "JdbcTarget$Exclusions": "<p>A list of glob patterns used to exclude from the crawl. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/add-crawler.html\">Catalog Tables with a Crawler</a>.</p>",
         "S3Target$Exclusions": "<p>A list of glob patterns used to exclude from the crawl. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/add-crawler.html\">Catalog Tables with a Crawler</a>.</p>"
+      }
+    },
+    "Permission": {
+      "base": null,
+      "refs": {
+        "PermissionList$member": null
+      }
+    },
+    "PermissionList": {
+      "base": null,
+      "refs": {
+        "PrincipalPermissions$Permissions": "<p>The permissions that are granted to the principal.</p>"
       }
     },
     "PhysicalConnectionRequirements": {
@@ -2783,7 +3074,20 @@
     "PredicateString": {
       "base": null,
       "refs": {
-        "GetPartitionsRequest$Expression": "<p>An expression filtering the partitions to be returned.</p> <p>The expression uses SQL syntax similar to the SQL <code>WHERE</code> filter clause. The SQL statement parser <a href=\"http://jsqlparser.sourceforge.net/home.php\">JSQLParser</a> parses the expression. </p> <p> <i>Operators</i>: The following are the operators that you can use in the <code>Expression</code> API call:</p> <dl> <dt>=</dt> <dd> <p>Checks if the values of the two operands are equal or not; if yes, then the condition becomes true.</p> <p>Example: Assume 'variable a' holds 10 and 'variable b' holds 20. </p> <p>(a = b) is not true.</p> </dd> <dt>&lt; &gt;</dt> <dd> <p>Checks if the values of two operands are equal or not; if the values are not equal, then the condition becomes true.</p> <p>Example: (a &lt; &gt; b) is true.</p> </dd> <dt>&gt;</dt> <dd> <p>Checks if the value of the left operand is greater than the value of the right operand; if yes, then the condition becomes true.</p> <p>Example: (a &gt; b) is not true.</p> </dd> <dt>&lt;</dt> <dd> <p>Checks if the value of the left operand is less than the value of the right operand; if yes, then the condition becomes true.</p> <p>Example: (a &lt; b) is true.</p> </dd> <dt>&gt;=</dt> <dd> <p>Checks if the value of the left operand is greater than or equal to the value of the right operand; if yes, then the condition becomes true.</p> <p>Example: (a &gt;= b) is not true.</p> </dd> <dt>&lt;=</dt> <dd> <p>Checks if the value of the left operand is less than or equal to the value of the right operand; if yes, then the condition becomes true.</p> <p>Example: (a &lt;= b) is true.</p> </dd> <dt>AND, OR, IN, BETWEEN, LIKE, NOT, IS NULL</dt> <dd> <p>Logical operators.</p> </dd> </dl> <p> <i>Supported Partition Key Types</i>: The following are the the supported partition keys.</p> <ul> <li> <p> <code>string</code> </p> </li> <li> <p> <code>date</code> </p> </li> <li> <p> <code>timestamp</code> </p> </li> <li> <p> <code>int</code> </p> </li> <li> <p> <code>bigint</code> </p> </li> <li> <p> <code>long</code> </p> </li> <li> <p> <code>tinyint</code> </p> </li> <li> <p> <code>smallint</code> </p> </li> <li> <p> <code>decimal</code> </p> </li> </ul> <p>If an invalid type is encountered, an exception is thrown. </p> <p>The following list shows the valid operators on each type. When you define a crawler, the <code>partitionKey</code> type is created as a <code>STRING</code>, to be compatible with the catalog partitions. </p> <p> <i>Sample API Call</i>: </p>"
+        "GetPartitionsRequest$Expression": "<p>An expression that filters the partitions to be returned.</p> <p>The expression uses SQL syntax similar to the SQL <code>WHERE</code> filter clause. The SQL statement parser <a href=\"http://jsqlparser.sourceforge.net/home.php\">JSQLParser</a> parses the expression. </p> <p> <i>Operators</i>: The following are the operators that you can use in the <code>Expression</code> API call:</p> <dl> <dt>=</dt> <dd> <p>Checks whether the values of the two operands are equal; if yes, then the condition becomes true.</p> <p>Example: Assume 'variable a' holds 10 and 'variable b' holds 20. </p> <p>(a = b) is not true.</p> </dd> <dt>&lt; &gt;</dt> <dd> <p>Checks whether the values of two operands are equal; if the values are not equal, then the condition becomes true.</p> <p>Example: (a &lt; &gt; b) is true.</p> </dd> <dt>&gt;</dt> <dd> <p>Checks whether the value of the left operand is greater than the value of the right operand; if yes, then the condition becomes true.</p> <p>Example: (a &gt; b) is not true.</p> </dd> <dt>&lt;</dt> <dd> <p>Checks whether the value of the left operand is less than the value of the right operand; if yes, then the condition becomes true.</p> <p>Example: (a &lt; b) is true.</p> </dd> <dt>&gt;=</dt> <dd> <p>Checks whether the value of the left operand is greater than or equal to the value of the right operand; if yes, then the condition becomes true.</p> <p>Example: (a &gt;= b) is not true.</p> </dd> <dt>&lt;=</dt> <dd> <p>Checks whether the value of the left operand is less than or equal to the value of the right operand; if yes, then the condition becomes true.</p> <p>Example: (a &lt;= b) is true.</p> </dd> <dt>AND, OR, IN, BETWEEN, LIKE, NOT, IS NULL</dt> <dd> <p>Logical operators.</p> </dd> </dl> <p> <i>Supported Partition Key Types</i>: The following are the supported partition keys.</p> <ul> <li> <p> <code>string</code> </p> </li> <li> <p> <code>date</code> </p> </li> <li> <p> <code>timestamp</code> </p> </li> <li> <p> <code>int</code> </p> </li> <li> <p> <code>bigint</code> </p> </li> <li> <p> <code>long</code> </p> </li> <li> <p> <code>tinyint</code> </p> </li> <li> <p> <code>smallint</code> </p> </li> <li> <p> <code>decimal</code> </p> </li> </ul> <p>If an invalid type is encountered, an exception is thrown. </p> <p>The following list shows the valid operators on each type. When you define a crawler, the <code>partitionKey</code> type is created as a <code>STRING</code>, to be compatible with the catalog partitions. </p> <p> <i>Sample API Call</i>: </p>"
+      }
+    },
+    "PrincipalPermissions": {
+      "base": "<p>Permissions granted to a principal.</p>",
+      "refs": {
+        "PrincipalPermissionsList$member": null
+      }
+    },
+    "PrincipalPermissionsList": {
+      "base": null,
+      "refs": {
+        "Database$CreateTableDefaultPermissions": "<p>Creates a set of default permissions on the table for principals. </p>",
+        "DatabaseInput$CreateTableDefaultPermissions": "<p>Creates a set of default permissions on the table for principals. </p>"
       }
     },
     "PrincipalType": {
@@ -2791,6 +3095,12 @@
       "refs": {
         "UserDefinedFunction$OwnerType": "<p>The owner type.</p>",
         "UserDefinedFunctionInput$OwnerType": "<p>The owner type.</p>"
+      }
+    },
+    "PropertyPredicate": {
+      "base": "<p>Defines a property predicate.</p>",
+      "refs": {
+        "SearchPropertyPredicates$member": null
       }
     },
     "PublicKeysList": {
@@ -2846,6 +3156,22 @@
         "JobCommand$PythonVersion": "<p>The Python version being used to execute a Python shell job. Allowed values are 2 or 3.</p>"
       }
     },
+    "RecordsCount": {
+      "base": null,
+      "refs": {
+        "ConfusionMatrix$NumTruePositives": "<p>The number of matches in the data that the transform correctly found, in the confusion matrix for your transform.</p>",
+        "ConfusionMatrix$NumFalsePositives": "<p>The number of nonmatches in the data that the transform incorrectly classified as a match, in the confusion matrix for your transform.</p>",
+        "ConfusionMatrix$NumTrueNegatives": "<p>The number of nonmatches in the data that the transform correctly rejected, in the confusion matrix for your transform.</p>",
+        "ConfusionMatrix$NumFalseNegatives": "<p>The number of matches in the data that the transform didn't find, in the confusion matrix for your transform.</p>"
+      }
+    },
+    "ReplaceBoolean": {
+      "base": null,
+      "refs": {
+        "ImportLabelsTaskRunProperties$Replace": "<p>Indicates whether to overwrite your existing labels.</p>",
+        "StartImportLabelsTaskRunRequest$ReplaceAllLabels": "<p>Indicates whether to overwrite your existing labels.</p>"
+      }
+    },
     "ResetJobBookmarkRequest": {
       "base": null,
       "refs": {
@@ -2868,7 +3194,7 @@
       }
     },
     "ResourceUri": {
-      "base": "<p>URIs for function resources.</p>",
+      "base": "<p>The URIs for function resources.</p>",
       "refs": {
         "ResourceUriList$member": null
       }
@@ -2900,8 +3226,12 @@
       "base": null,
       "refs": {
         "CreateJobRequest$Role": "<p>The name or Amazon Resource Name (ARN) of the IAM role associated with this job.</p>",
+        "CreateMLTransformRequest$Role": "<p>The name or Amazon Resource Name (ARN) of the IAM role with the required permissions. Ensure that this role has permission to your Amazon Simple Storage Service (Amazon S3) sources, targets, temporary directory, scripts, and any libraries that are used by the task run for this transform.</p>",
+        "GetMLTransformResponse$Role": "<p>The name or Amazon Resource Name (ARN) of the IAM role with the required permissions.</p>",
         "Job$Role": "<p>The name or Amazon Resource Name (ARN) of the IAM role associated with this job.</p>",
-        "JobUpdate$Role": "<p>The name or Amazon Resource Name (ARN) of the IAM role associated with this job (required).</p>"
+        "JobUpdate$Role": "<p>The name or Amazon Resource Name (ARN) of the IAM role associated with this job (required).</p>",
+        "MLTransform$Role": "<p>The name or Amazon Resource Name (ARN) of the IAM role with the required permissions. This role needs permission to your Amazon Simple Storage Service (Amazon S3) sources, targets, temporary directory, scripts, and any libraries used by the task run for this transform.</p>",
+        "UpdateMLTransformRequest$Role": "<p>The name or Amazon Resource Name (ARN) of the IAM role with the required permissions.</p>"
       }
     },
     "RowTag": {
@@ -2916,8 +3246,8 @@
       "base": null,
       "refs": {
         "GetJobBookmarkRequest$RunId": "<p>The unique run identifier associated with this job run.</p>",
-        "JobBookmarkEntry$PreviousRunId": "<p>The unique run identifier associated with the previous job run..</p>",
-        "JobBookmarkEntry$RunId": "<p>The unique run identifier associated with this job run.</p>",
+        "JobBookmarkEntry$PreviousRunId": "<p>The unique run identifier associated with the previous job run.</p>",
+        "JobBookmarkEntry$RunId": "<p>The run ID number.</p>",
         "ResetJobBookmarkRequest$RunId": "<p>The unique run identifier associated with this job run.</p>"
       }
     },
@@ -2993,6 +3323,12 @@
         "UpdateCrawlerRequest$SchemaChangePolicy": "<p>The policy for the crawler's update and deletion behavior.</p>"
       }
     },
+    "SchemaColumn": {
+      "base": "<p>A key-value pair representing a column and data type that this transform can run against. The <code>Schema</code> parameter of the <code>MLTransform</code> may contain up to 100 of these structures.</p>",
+      "refs": {
+        "TransformSchema$member": null
+      }
+    },
     "SchemaPathString": {
       "base": null,
       "refs": {
@@ -3004,6 +3340,22 @@
       "base": null,
       "refs": {
         "JobCommand$ScriptLocation": "<p>Specifies the Amazon Simple Storage Service (Amazon S3) path to a script that executes a job.</p>"
+      }
+    },
+    "SearchPropertyPredicates": {
+      "base": null,
+      "refs": {
+        "SearchTablesRequest$Filters": "<p>A list of key-value pairs, and a comparator used to filter the search results. Returns all entities matching the predicate.</p>"
+      }
+    },
+    "SearchTablesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchTablesResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "SecurityConfiguration": {
@@ -3032,15 +3384,40 @@
       }
     },
     "SerDeInfo": {
-      "base": "<p>Information about a serialization/deserialization program (SerDe) which serves as an extractor and loader.</p>",
+      "base": "<p>Information about a serialization/deserialization program (SerDe) that serves as an extractor and loader.</p>",
       "refs": {
-        "StorageDescriptor$SerdeInfo": "<p>Serialization/deserialization (SerDe) information.</p>"
+        "StorageDescriptor$SerdeInfo": "<p>The serialization/deserialization (SerDe) information.</p>"
       }
     },
     "SkewedInfo": {
-      "base": "<p>Specifies skewed values in a table. Skewed are ones that occur with very high frequency.</p>",
+      "base": "<p>Specifies skewed values in a table. Skewed values are those that occur with very high frequency.</p>",
       "refs": {
-        "StorageDescriptor$SkewedInfo": "<p>Information about values that appear very frequently in a column (skewed values).</p>"
+        "StorageDescriptor$SkewedInfo": "<p>The information about values that appear frequently in a column (skewed values).</p>"
+      }
+    },
+    "Sort": {
+      "base": null,
+      "refs": {
+        "SortCriterion$Sort": null
+      }
+    },
+    "SortCriteria": {
+      "base": null,
+      "refs": {
+        "SearchTablesRequest$SortCriteria": "<p>A list of criteria for sorting the results by a field name, in an ascending or descending order.</p>"
+      }
+    },
+    "SortCriterion": {
+      "base": null,
+      "refs": {
+        "SortCriteria$member": null
+      }
+    },
+    "SortDirectionType": {
+      "base": null,
+      "refs": {
+        "TaskRunSortCriteria$SortDirection": "<p>The sort direction to be used to sort the list of task runs for the machine learning transform.</p>",
+        "TransformSortCriteria$SortDirection": "<p>The sort direction to be used in the sorting criteria that are associated with the machine learning transform.</p>"
       }
     },
     "StartCrawlerRequest": {
@@ -3063,12 +3440,52 @@
       "refs": {
       }
     },
+    "StartExportLabelsTaskRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartExportLabelsTaskRunResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartImportLabelsTaskRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartImportLabelsTaskRunResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StartJobRunRequest": {
       "base": null,
       "refs": {
       }
     },
     "StartJobRunResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartMLEvaluationTaskRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartMLEvaluationTaskRunResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartMLLabelingSetGenerationTaskRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartMLLabelingSetGenerationTaskRunResponse": {
       "base": null,
       "refs": {
       }
@@ -3146,7 +3563,7 @@
       "refs": {
         "GetTableResponse$Table": "<p>The <code>Table</code> object that defines the specified table.</p>",
         "TableList$member": null,
-        "TableVersion$Table": "<p>The table in question</p>"
+        "TableVersion$Table": "<p>The table in question.</p>"
       }
     },
     "TableError": {
@@ -3162,7 +3579,7 @@
       }
     },
     "TableInput": {
-      "base": "<p>Structure used to create or update the table.</p>",
+      "base": "<p>A structure used to define a table.</p>",
       "refs": {
         "CreateTableRequest$TableInput": "<p>The <code>TableInput</code> object that defines the metadata table to create in the catalog.</p>",
         "UpdateTableRequest$TableInput": "<p>An updated <code>TableInput</code> object to define the metadata table in the catalog.</p>"
@@ -3171,7 +3588,8 @@
     "TableList": {
       "base": null,
       "refs": {
-        "GetTablesResponse$TableList": "<p>A list of the requested <code>Table</code> objects.</p>"
+        "GetTablesResponse$TableList": "<p>A list of the requested <code>Table</code> objects.</p>",
+        "SearchTablesResponse$TableList": "<p>A list of the requested <code>Table</code> objects. The <code>SearchTables</code> response returns only the tables that you have access to.</p>"
       }
     },
     "TableName": {
@@ -3260,15 +3678,72 @@
         "TagResourceRequest$TagsToAdd": "<p>Tags to add to this resource.</p>"
       }
     },
+    "TaskRun": {
+      "base": "<p>The sampling parameters that are associated with the machine learning transform.</p>",
+      "refs": {
+        "TaskRunList$member": null
+      }
+    },
+    "TaskRunFilterCriteria": {
+      "base": "<p>The criteria that are used to filter the task runs for the machine learning transform.</p>",
+      "refs": {
+        "GetMLTaskRunsRequest$Filter": "<p>The filter criteria, in the <code>TaskRunFilterCriteria</code> structure, for the task run.</p>"
+      }
+    },
+    "TaskRunList": {
+      "base": null,
+      "refs": {
+        "GetMLTaskRunsResponse$TaskRuns": "<p>A list of task runs that are associated with the transform.</p>"
+      }
+    },
+    "TaskRunProperties": {
+      "base": "<p>The configuration properties for the task run.</p>",
+      "refs": {
+        "GetMLTaskRunResponse$Properties": "<p>The list of properties that are associated with the task run.</p>",
+        "TaskRun$Properties": "<p>Specifies configuration properties associated with this task run.</p>"
+      }
+    },
+    "TaskRunSortColumnType": {
+      "base": null,
+      "refs": {
+        "TaskRunSortCriteria$Column": "<p>The column to be used to sort the list of task runs for the machine learning transform.</p>"
+      }
+    },
+    "TaskRunSortCriteria": {
+      "base": "<p>The sorting criteria that are used to sort the list of task runs for the machine learning transform.</p>",
+      "refs": {
+        "GetMLTaskRunsRequest$Sort": "<p>The sorting criteria, in the <code>TaskRunSortCriteria</code> structure, for the task run.</p>"
+      }
+    },
+    "TaskStatusType": {
+      "base": null,
+      "refs": {
+        "CancelMLTaskRunResponse$Status": "<p>The status for this run.</p>",
+        "GetMLTaskRunResponse$Status": "<p>The status for this task run.</p>",
+        "TaskRun$Status": "<p>The current status of the requested task run.</p>",
+        "TaskRunFilterCriteria$Status": "<p>The current status of the task run.</p>"
+      }
+    },
+    "TaskType": {
+      "base": null,
+      "refs": {
+        "TaskRunFilterCriteria$TaskRunType": "<p>The type of task run.</p>",
+        "TaskRunProperties$TaskType": "<p>The type of task run.</p>"
+      }
+    },
     "Timeout": {
       "base": null,
       "refs": {
         "Action$Timeout": "<p>The <code>JobRun</code> timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours). This overrides the timeout value set in the parent job.</p>",
         "CreateJobRequest$Timeout": "<p>The job timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
+        "CreateMLTransformRequest$Timeout": "<p>The timeout of the task run for this transform in minutes. This is the maximum time that a task run for this transform can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
+        "GetMLTransformResponse$Timeout": "<p>The timeout for a task run for this transform in minutes. This is the maximum time that a task run for this transform can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
         "Job$Timeout": "<p>The job timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
         "JobRun$Timeout": "<p>The <code>JobRun</code> timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours). This overrides the timeout value set in the parent job.</p>",
         "JobUpdate$Timeout": "<p>The job timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
-        "StartJobRunRequest$Timeout": "<p>The <code>JobRun</code> timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours). This overrides the timeout value set in the parent job.</p>"
+        "MLTransform$Timeout": "<p>The timeout in minutes of the machine learning transform.</p>",
+        "StartJobRunRequest$Timeout": "<p>The <code>JobRun</code> timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours). This overrides the timeout value set in the parent job.</p>",
+        "UpdateMLTransformRequest$Timeout": "<p>The timeout for a task run for this transform in minutes. This is the maximum time that a task run for this transform can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>"
       }
     },
     "Timestamp": {
@@ -3282,6 +3757,11 @@
         "CsvClassifier$CreationTime": "<p>The time that this classifier was registered.</p>",
         "CsvClassifier$LastUpdated": "<p>The time that this classifier was last updated.</p>",
         "Database$CreateTime": "<p>The time at which the metadata database was created in the catalog.</p>",
+        "GetMLTaskRunResponse$StartedOn": "<p>The date and time when this task run started.</p>",
+        "GetMLTaskRunResponse$LastModifiedOn": "<p>The date and time when this task run was last modified.</p>",
+        "GetMLTaskRunResponse$CompletedOn": "<p>The date and time when this task run was completed.</p>",
+        "GetMLTransformResponse$CreatedOn": "<p>The date and time when the transform was created.</p>",
+        "GetMLTransformResponse$LastModifiedOn": "<p>The date and time when the transform was last modified.</p>",
         "GetResourcePolicyResponse$CreateTime": "<p>The date and time at which the policy was created.</p>",
         "GetResourcePolicyResponse$UpdateTime": "<p>The date and time at which the policy was last updated.</p>",
         "GrokClassifier$CreationTime": "<p>The time that this classifier was registered.</p>",
@@ -3289,17 +3769,28 @@
         "JsonClassifier$CreationTime": "<p>The time that this classifier was registered.</p>",
         "JsonClassifier$LastUpdated": "<p>The time that this classifier was last updated.</p>",
         "LastCrawlInfo$StartTime": "<p>The time at which the crawl started.</p>",
+        "MLTransform$CreatedOn": "<p>A timestamp. The time and date that this machine learning transform was created.</p>",
+        "MLTransform$LastModifiedOn": "<p>A timestamp. The last point in time when this machine learning transform was modified.</p>",
         "Partition$CreationTime": "<p>The time at which the partition was created.</p>",
         "Partition$LastAccessTime": "<p>The last time at which the partition was accessed.</p>",
         "Partition$LastAnalyzedTime": "<p>The last time at which column statistics were computed for this partition.</p>",
         "PartitionInput$LastAccessTime": "<p>The last time at which the partition was accessed.</p>",
         "PartitionInput$LastAnalyzedTime": "<p>The last time at which column statistics were computed for this partition.</p>",
-        "Table$CreateTime": "<p>Time when the table definition was created in the Data Catalog.</p>",
-        "Table$UpdateTime": "<p>Last time the table was updated.</p>",
-        "Table$LastAccessTime": "<p>Last time the table was accessed. This is usually taken from HDFS, and may not be reliable.</p>",
-        "Table$LastAnalyzedTime": "<p>Last time column statistics were computed for this table.</p>",
-        "TableInput$LastAccessTime": "<p>Last time the table was accessed.</p>",
-        "TableInput$LastAnalyzedTime": "<p>Last time column statistics were computed for this table.</p>",
+        "Table$CreateTime": "<p>The time when the table definition was created in the Data Catalog.</p>",
+        "Table$UpdateTime": "<p>The last time that the table was updated.</p>",
+        "Table$LastAccessTime": "<p>The last time that the table was accessed. This is usually taken from HDFS, and might not be reliable.</p>",
+        "Table$LastAnalyzedTime": "<p>The last time that column statistics were computed for this table.</p>",
+        "TableInput$LastAccessTime": "<p>The last time that the table was accessed.</p>",
+        "TableInput$LastAnalyzedTime": "<p>The last time that column statistics were computed for this table.</p>",
+        "TaskRun$StartedOn": "<p>The date and time that this task run started.</p>",
+        "TaskRun$LastModifiedOn": "<p>The last point in time that the requested task run was updated.</p>",
+        "TaskRun$CompletedOn": "<p>The last point in time that the requested task run was completed.</p>",
+        "TaskRunFilterCriteria$StartedBefore": "<p>Filter on task runs started before this date.</p>",
+        "TaskRunFilterCriteria$StartedAfter": "<p>Filter on task runs started after this date.</p>",
+        "TransformFilterCriteria$CreatedBefore": "<p>The time and date before which the transforms were created.</p>",
+        "TransformFilterCriteria$CreatedAfter": "<p>The time and date after which the transforms were created.</p>",
+        "TransformFilterCriteria$LastModifiedBefore": "<p>Filter on transforms last modified before this date.</p>",
+        "TransformFilterCriteria$LastModifiedAfter": "<p>Filter on transforms last modified after this date.</p>",
         "UserDefinedFunction$CreateTime": "<p>The time at which the function was created.</p>",
         "XMLClassifier$CreationTime": "<p>The time that this classifier was registered.</p>",
         "XMLClassifier$LastUpdated": "<p>The time that this classifier was last updated.</p>"
@@ -3340,7 +3831,7 @@
         "GetDatabasesRequest$NextToken": "<p>A continuation token, if this is a continuation call.</p>",
         "GetDatabasesResponse$NextToken": "<p>A continuation token for paginating the returned list of tokens, returned if the current segment of the list is not the last.</p>",
         "GetPartitionsRequest$NextToken": "<p>A continuation token, if this is not the first call to retrieve these partitions.</p>",
-        "GetPartitionsResponse$NextToken": "<p>A continuation token, if the returned list of partitions does not does not include the last one.</p>",
+        "GetPartitionsResponse$NextToken": "<p>A continuation token, if the returned list of partitions does not include the last one.</p>",
         "GetTableVersionsRequest$NextToken": "<p>A continuation token, if this is not the first call.</p>",
         "GetTableVersionsResponse$NextToken": "<p>A continuation token, if the list of available versions does not include the last one.</p>",
         "GetTablesRequest$NextToken": "<p>A continuation token, included if this is a continuation call.</p>",
@@ -3348,13 +3839,72 @@
         "GetUserDefinedFunctionsRequest$NextToken": "<p>A continuation token, if this is a continuation call.</p>",
         "GetUserDefinedFunctionsResponse$NextToken": "<p>A continuation token, if the list of functions returned does not include the last requested function.</p>",
         "ListCrawlersRequest$NextToken": "<p>A continuation token, if this is a continuation request.</p>",
-        "ListCrawlersResponse$NextToken": "<p>A continuation token, if the returned list does not contain the last metric available.</p>"
+        "ListCrawlersResponse$NextToken": "<p>A continuation token, if the returned list does not contain the last metric available.</p>",
+        "SearchTablesRequest$NextToken": "<p>A continuation token, included if this is a continuation call.</p>",
+        "SearchTablesResponse$NextToken": "<p>A continuation token, present if the current list segment is not the last.</p>"
       }
     },
     "TotalSegmentsInteger": {
       "base": null,
       "refs": {
-        "Segment$TotalSegments": "<p>The total numer of segments.</p>"
+        "Segment$TotalSegments": "<p>The total number of segments.</p>"
+      }
+    },
+    "TransformFilterCriteria": {
+      "base": "<p>The criteria used to filter the machine learning transforms.</p>",
+      "refs": {
+        "GetMLTransformsRequest$Filter": "<p>The filter transformation criteria.</p>"
+      }
+    },
+    "TransformList": {
+      "base": null,
+      "refs": {
+        "GetMLTransformsResponse$Transforms": "<p>A list of machine learning transforms.</p>"
+      }
+    },
+    "TransformParameters": {
+      "base": "<p>The algorithm-specific parameters that are associated with the machine learning transform.</p>",
+      "refs": {
+        "CreateMLTransformRequest$Parameters": "<p>The algorithmic parameters that are specific to the transform type used. Conditionally dependent on the transform type.</p>",
+        "GetMLTransformResponse$Parameters": "<p>The configuration parameters that are specific to the algorithm used.</p>",
+        "MLTransform$Parameters": "<p>A <code>TransformParameters</code> object. You can use parameters to tune (customize) the behavior of the machine learning transform by specifying what data it learns from and your preference on various tradeoffs (such as precious vs. recall, or accuracy vs. cost).</p>",
+        "UpdateMLTransformRequest$Parameters": "<p>The configuration parameters that are specific to the transform type (algorithm) used. Conditionally dependent on the transform type.</p>"
+      }
+    },
+    "TransformSchema": {
+      "base": null,
+      "refs": {
+        "GetMLTransformResponse$Schema": "<p>The <code>Map&lt;Column, Type&gt;</code> object that represents the schema that this transform accepts. Has an upper bound of 100 columns.</p>",
+        "MLTransform$Schema": "<p>A map of key-value pairs representing the columns and data types that this transform can run against. Has an upper bound of 100 columns.</p>",
+        "TransformFilterCriteria$Schema": "<p>Filters on datasets with a specific schema. The <code>Map&lt;Column, Type&gt;</code> object is an array of key-value pairs representing the schema this transform accepts, where <code>Column</code> is the name of a column, and <code>Type</code> is the type of the data such as an integer or string. Has an upper bound of 100 columns.</p>"
+      }
+    },
+    "TransformSortColumnType": {
+      "base": null,
+      "refs": {
+        "TransformSortCriteria$Column": "<p>The column to be used in the sorting criteria that are associated with the machine learning transform.</p>"
+      }
+    },
+    "TransformSortCriteria": {
+      "base": "<p>The sorting criteria that are associated with the machine learning transform.</p>",
+      "refs": {
+        "GetMLTransformsRequest$Sort": "<p>The sorting criteria.</p>"
+      }
+    },
+    "TransformStatusType": {
+      "base": null,
+      "refs": {
+        "GetMLTransformResponse$Status": "<p>The last known status of the transform (to indicate whether it can be used or not). One of \"NOT_READY\", \"READY\", or \"DELETING\".</p>",
+        "MLTransform$Status": "<p>The current status of the machine learning transform.</p>",
+        "TransformFilterCriteria$Status": "<p>Filters the list of machine learning transforms by the last known status of the transforms (to indicate whether a transform can be used or not). One of \"NOT_READY\", \"READY\", or \"DELETING\".</p>"
+      }
+    },
+    "TransformType": {
+      "base": null,
+      "refs": {
+        "EvaluationMetrics$TransformType": "<p>The type of machine learning transform.</p>",
+        "TransformFilterCriteria$TransformType": "<p>The type of machine learning transform that is used to filter the machine learning transforms.</p>",
+        "TransformParameters$TransformType": "<p>The type of machine learning transform.</p> <p>For information about the types of machine learning transforms, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/add-job-machine-learning-transform.html\">Creating Machine Learning Transforms</a>.</p>"
       }
     },
     "Trigger": {
@@ -3410,7 +3960,7 @@
       "base": null,
       "refs": {
         "Database$LocationUri": "<p>The location of the database (for example, an HDFS path).</p>",
-        "DatabaseInput$LocationUri": "<p>The location of the database (for example, an HDFS path).</p>",
+        "DatabaseInput$LocationUri": "<p>The location of the database (for example, an HDFS path). </p>",
         "ResourceUri$Uri": "<p>The URI for accessing the resource.</p>"
       }
     },
@@ -3518,6 +4068,16 @@
         "UpdateClassifierRequest$JsonClassifier": "<p>A <code>JsonClassifier</code> object with updated fields.</p>"
       }
     },
+    "UpdateMLTransformRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateMLTransformResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdatePartitionRequest": {
       "base": null,
       "refs": {
@@ -3578,8 +4138,14 @@
       "base": null,
       "refs": {
         "CreateJobRequest$LogUri": "<p>This field is reserved for future use.</p>",
+        "ExportLabelsTaskRunProperties$OutputS3Path": "<p>The Amazon Simple Storage Service (Amazon S3) path where you will export the labels.</p>",
+        "ImportLabelsTaskRunProperties$InputS3Path": "<p>The Amazon Simple Storage Service (Amazon S3) path from where you will import the labels.</p>",
         "Job$LogUri": "<p>This field is reserved for future use.</p>",
-        "JobUpdate$LogUri": "<p>This field is reserved for future use.</p>"
+        "JobUpdate$LogUri": "<p>This field is reserved for future use.</p>",
+        "LabelingSetGenerationTaskRunProperties$OutputS3Path": "<p>The Amazon Simple Storage Service (Amazon S3) path where you will generate the labeling set.</p>",
+        "StartExportLabelsTaskRunRequest$OutputS3Path": "<p>The Amazon S3 path where you export the labels.</p>",
+        "StartImportLabelsTaskRunRequest$InputS3Path": "<p>The Amazon Simple Storage Service (Amazon S3) path from where you import the labels.</p>",
+        "StartMLLabelingSetGenerationTaskRunRequest$OutputS3Path": "<p>The Amazon Simple Storage Service (Amazon S3) path where you generate the labeling set.</p>"
       }
     },
     "UserDefinedFunction": {
@@ -3590,10 +4156,10 @@
       }
     },
     "UserDefinedFunctionInput": {
-      "base": "<p>A structure used to create or updata a user-defined function.</p>",
+      "base": "<p>A structure used to create or update a user-defined function.</p>",
       "refs": {
         "CreateUserDefinedFunctionRequest$FunctionInput": "<p>A <code>FunctionInput</code> object that defines the function to create in the Data Catalog.</p>",
-        "UpdateUserDefinedFunctionRequest$FunctionInput": "<p>A <code>FunctionInput</code> object that re-defines the function in the Data Catalog.</p>"
+        "UpdateUserDefinedFunctionRequest$FunctionInput": "<p>A <code>FunctionInput</code> object that redefines the function in the Data Catalog.</p>"
       }
     },
     "UserDefinedFunctionList": {
@@ -3612,6 +4178,10 @@
       "refs": {
         "BoundedPartitionValueList$member": null,
         "ConnectionProperties$value": null,
+        "PropertyPredicate$Key": "<p>The key of the property.</p>",
+        "PropertyPredicate$Value": "<p>The value of the property.</p>",
+        "SearchTablesRequest$SearchText": "<p>A string used for a text search.</p> <p>Specifying a value in quotes filters based on an exact match to the value.</p>",
+        "SortCriterion$FieldName": null,
         "ValueStringList$member": null
       }
     },
@@ -3663,14 +4233,18 @@
     "WorkerType": {
       "base": null,
       "refs": {
-        "CreateDevEndpointRequest$WorkerType": "<p>The type of predefined worker that is allocated to the development endpoint. Accepts a value of Standard, G.1X, or G.2X.</p> <ul> <li> <p>For the <code>Standard</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 50GB disk, and 2 executors per worker.</p> </li> <li> <p>For the <code>G.1X</code> worker type, each worker maps to 1 DPU (4 vCPU, 16 GB of memory, 64 GB disk), and provides 1 executor per worker. We recommend this worker type for memory-intensive jobs.</p> </li> <li> <p>For the <code>G.2X</code> worker type, each worker maps to 2 DPU (8 vCPU, 32 GB of memory, 128 GB disk), and provides 1 executor per worker. We recommend this worker type for memory-intensive jobs.</p> </li> </ul>",
+        "CreateDevEndpointRequest$WorkerType": "<p>The type of predefined worker that is allocated to the development endpoint. Accepts a value of Standard, G.1X, or G.2X.</p> <ul> <li> <p>For the <code>Standard</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 50GB disk, and 2 executors per worker.</p> </li> <li> <p>For the <code>G.1X</code> worker type, each worker maps to 1 DPU (4 vCPU, 16 GB of memory, 64 GB disk), and provides 1 executor per worker. We recommend this worker type for memory-intensive jobs.</p> </li> <li> <p>For the <code>G.2X</code> worker type, each worker maps to 2 DPU (8 vCPU, 32 GB of memory, 128 GB disk), and provides 1 executor per worker. We recommend this worker type for memory-intensive jobs.</p> </li> </ul> <p>Known issue: when a development endpoint is created with the <code>G.2X</code> <code>WorkerType</code> configuration, the Spark drivers for the development endpoint will run on 4 vCPU, 16 GB of memory, and a 64 GB disk. </p>",
         "CreateDevEndpointResponse$WorkerType": "<p>The type of predefined worker that is allocated to the development endpoint. May be a value of Standard, G.1X, or G.2X.</p>",
         "CreateJobRequest$WorkerType": "<p>The type of predefined worker that is allocated when a job runs. Accepts a value of Standard, G.1X, or G.2X.</p> <ul> <li> <p>For the <code>Standard</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 50GB disk, and 2 executors per worker.</p> </li> <li> <p>For the <code>G.1X</code> worker type, each worker maps to 1 DPU (4 vCPU, 16 GB of memory, 64 GB disk), and provides 1 executor per worker. We recommend this worker type for memory-intensive jobs.</p> </li> <li> <p>For the <code>G.2X</code> worker type, each worker maps to 2 DPU (8 vCPU, 32 GB of memory, 128 GB disk), and provides 1 executor per worker. We recommend this worker type for memory-intensive jobs.</p> </li> </ul>",
-        "DevEndpoint$WorkerType": "<p>The type of predefined worker that is allocated to the development endpoint. Accepts a value of Standard, G.1X, or G.2X.</p> <ul> <li> <p>For the <code>Standard</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 50GB disk, and 2 executors per worker.</p> </li> <li> <p>For the <code>G.1X</code> worker type, each worker maps to 1 DPU (4 vCPU, 16 GB of memory, 64 GB disk), and provides 1 executor per worker. We recommend this worker type for memory-intensive jobs.</p> </li> <li> <p>For the <code>G.2X</code> worker type, each worker maps to 2 DPU (8 vCPU, 32 GB of memory, 128 GB disk), and provides 1 executor per worker. We recommend this worker type for memory-intensive jobs.</p> </li> </ul>",
+        "CreateMLTransformRequest$WorkerType": "<p>The type of predefined worker that is allocated when this task runs. Accepts a value of Standard, G.1X, or G.2X.</p> <ul> <li> <p>For the <code>Standard</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 50GB disk, and 2 executors per worker.</p> </li> <li> <p>For the <code>G.1X</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 64GB disk, and 1 executor per worker.</p> </li> <li> <p>For the <code>G.2X</code> worker type, each worker provides 8 vCPU, 32 GB of memory and a 128GB disk, and 1 executor per worker.</p> </li> </ul>",
+        "DevEndpoint$WorkerType": "<p>The type of predefined worker that is allocated to the development endpoint. Accepts a value of Standard, G.1X, or G.2X.</p> <ul> <li> <p>For the <code>Standard</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 50GB disk, and 2 executors per worker.</p> </li> <li> <p>For the <code>G.1X</code> worker type, each worker maps to 1 DPU (4 vCPU, 16 GB of memory, 64 GB disk), and provides 1 executor per worker. We recommend this worker type for memory-intensive jobs.</p> </li> <li> <p>For the <code>G.2X</code> worker type, each worker maps to 2 DPU (8 vCPU, 32 GB of memory, 128 GB disk), and provides 1 executor per worker. We recommend this worker type for memory-intensive jobs.</p> </li> </ul> <p>Known issue: when a development endpoint is created with the <code>G.2X</code> <code>WorkerType</code> configuration, the Spark drivers for the development endpoint will run on 4 vCPU, 16 GB of memory, and a 64 GB disk. </p>",
+        "GetMLTransformResponse$WorkerType": "<p>The type of predefined worker that is allocated when this task runs. Accepts a value of Standard, G.1X, or G.2X.</p> <ul> <li> <p>For the <code>Standard</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 50GB disk, and 2 executors per worker.</p> </li> <li> <p>For the <code>G.1X</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 64GB disk, and 1 executor per worker.</p> </li> <li> <p>For the <code>G.2X</code> worker type, each worker provides 8 vCPU, 32 GB of memory and a 128GB disk, and 1 executor per worker.</p> </li> </ul>",
         "Job$WorkerType": "<p>The type of predefined worker that is allocated when a job runs. Accepts a value of Standard, G.1X, or G.2X.</p> <ul> <li> <p>For the <code>Standard</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 50GB disk, and 2 executors per worker.</p> </li> <li> <p>For the <code>G.1X</code> worker type, each worker maps to 1 DPU (4 vCPU, 16 GB of memory, 64 GB disk), and provides 1 executor per worker. We recommend this worker type for memory-intensive jobs.</p> </li> <li> <p>For the <code>G.2X</code> worker type, each worker maps to 2 DPU (8 vCPU, 32 GB of memory, 128 GB disk), and provides 1 executor per worker. We recommend this worker type for memory-intensive jobs.</p> </li> </ul>",
         "JobRun$WorkerType": "<p>The type of predefined worker that is allocated when a job runs. Accepts a value of Standard, G.1X, or G.2X.</p> <ul> <li> <p>For the <code>Standard</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 50GB disk, and 2 executors per worker.</p> </li> <li> <p>For the <code>G.1X</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 64GB disk, and 1 executor per worker.</p> </li> <li> <p>For the <code>G.2X</code> worker type, each worker provides 8 vCPU, 32 GB of memory and a 128GB disk, and 1 executor per worker.</p> </li> </ul>",
         "JobUpdate$WorkerType": "<p>The type of predefined worker that is allocated when a job runs. Accepts a value of Standard, G.1X, or G.2X.</p> <ul> <li> <p>For the <code>Standard</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 50GB disk, and 2 executors per worker.</p> </li> <li> <p>For the <code>G.1X</code> worker type, each worker maps to 1 DPU (4 vCPU, 16 GB of memory, 64 GB disk), and provides 1 executor per worker. We recommend this worker type for memory-intensive jobs.</p> </li> <li> <p>For the <code>G.2X</code> worker type, each worker maps to 2 DPU (8 vCPU, 32 GB of memory, 128 GB disk), and provides 1 executor per worker. We recommend this worker type for memory-intensive jobs.</p> </li> </ul>",
-        "StartJobRunRequest$WorkerType": "<p>The type of predefined worker that is allocated when a job runs. Accepts a value of Standard, G.1X, or G.2X.</p> <ul> <li> <p>For the <code>Standard</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 50GB disk, and 2 executors per worker.</p> </li> <li> <p>For the <code>G.1X</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 64GB disk, and 1 executor per worker.</p> </li> <li> <p>For the <code>G.2X</code> worker type, each worker provides 8 vCPU, 32 GB of memory and a 128GB disk, and 1 executor per worker.</p> </li> </ul>"
+        "MLTransform$WorkerType": "<p>The type of predefined worker that is allocated when a task of this transform runs. Accepts a value of Standard, G.1X, or G.2X.</p> <ul> <li> <p>For the <code>Standard</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 50GB disk, and 2 executors per worker.</p> </li> <li> <p>For the <code>G.1X</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 64GB disk, and 1 executor per worker.</p> </li> <li> <p>For the <code>G.2X</code> worker type, each worker provides 8 vCPU, 32 GB of memory and a 128GB disk, and 1 executor per worker.</p> </li> </ul>",
+        "StartJobRunRequest$WorkerType": "<p>The type of predefined worker that is allocated when a job runs. Accepts a value of Standard, G.1X, or G.2X.</p> <ul> <li> <p>For the <code>Standard</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 50GB disk, and 2 executors per worker.</p> </li> <li> <p>For the <code>G.1X</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 64GB disk, and 1 executor per worker.</p> </li> <li> <p>For the <code>G.2X</code> worker type, each worker provides 8 vCPU, 32 GB of memory and a 128GB disk, and 1 executor per worker.</p> </li> </ul>",
+        "UpdateMLTransformRequest$WorkerType": "<p>The type of predefined worker that is allocated when this task runs. Accepts a value of Standard, G.1X, or G.2X.</p> <ul> <li> <p>For the <code>Standard</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 50GB disk, and 2 executors per worker.</p> </li> <li> <p>For the <code>G.1X</code> worker type, each worker provides 4 vCPU, 16 GB of memory and a 64GB disk, and 1 executor per worker.</p> </li> <li> <p>For the <code>G.2X</code> worker type, each worker provides 8 vCPU, 32 GB of memory and a 128GB disk, and 1 executor per worker.</p> </li> </ul>"
       }
     },
     "Workflow": {

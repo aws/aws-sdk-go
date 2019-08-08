@@ -126,7 +126,8 @@
       "output":{"shape":"ImportSourceCredentialsOutput"},
       "errors":[
         {"shape":"InvalidInputException"},
-        {"shape":"AccountLimitExceededException"}
+        {"shape":"AccountLimitExceededException"},
+        {"shape":"ResourceAlreadyExistsException"}
       ]
     },
     "InvalidateProjectCache":{
@@ -662,7 +663,8 @@
         "username":{"shape":"NonEmptyString"},
         "token":{"shape":"SensitiveNonEmptyString"},
         "serverType":{"shape":"ServerType"},
-        "authType":{"shape":"AuthType"}
+        "authType":{"shape":"AuthType"},
+        "shouldOverwrite":{"shape":"WrapperBoolean"}
       }
     },
     "ImportSourceCredentialsOutput":{
