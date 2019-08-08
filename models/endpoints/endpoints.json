@@ -627,6 +627,7 @@
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
+          "me-south-1" : { },
           "us-east-1" : { },
           "us-east-2" : { },
           "us-west-1" : { },
@@ -4416,6 +4417,9 @@
           "protocols" : [ "https" ]
         },
         "endpoints" : {
+          "us-gov-east-1" : {
+            "protocols" : [ "https" ]
+          },
           "us-gov-west-1" : {
             "protocols" : [ "https" ]
           }

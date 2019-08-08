@@ -46,6 +46,16 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken"
     },
+    "GetMLTaskRuns": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
+    "GetMLTransforms": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
     "GetPartitions": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -103,6 +113,11 @@
       "output_token": "NextToken"
     },
     "ListWorkflows": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
+    "SearchTables": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
       "output_token": "NextToken"

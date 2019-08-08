@@ -54,7 +54,7 @@ func (c *OpsWorksCM) AssociateNodeRequest(input *AssociateNodeInput) (req *reque
 	return
 }
 
-// AssociateNode API operation for AWS OpsWorks for Chef Automate.
+// AssociateNode API operation for AWS OpsWorks CM.
 //
 // Associates a new node with the server. For more information about how to
 // disassociate a node, see DisassociateNode.
@@ -82,7 +82,7 @@ func (c *OpsWorksCM) AssociateNodeRequest(input *AssociateNodeInput) (req *reque
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation AssociateNode for usage and error information.
 //
 // Returned Error Codes:
@@ -160,7 +160,7 @@ func (c *OpsWorksCM) CreateBackupRequest(input *CreateBackupInput) (req *request
 	return
 }
 
-// CreateBackup API operation for AWS OpsWorks for Chef Automate.
+// CreateBackup API operation for AWS OpsWorks CM.
 //
 // Creates an application-level backup of a server. While the server is in the
 // BACKING_UP state, the server cannot be changed, and no additional backup
@@ -181,7 +181,7 @@ func (c *OpsWorksCM) CreateBackupRequest(input *CreateBackupInput) (req *request
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation CreateBackup for usage and error information.
 //
 // Returned Error Codes:
@@ -262,7 +262,7 @@ func (c *OpsWorksCM) CreateServerRequest(input *CreateServerInput) (req *request
 	return
 }
 
-// CreateServer API operation for AWS OpsWorks for Chef Automate.
+// CreateServer API operation for AWS OpsWorks CM.
 //
 // Creates and immedately starts a new server. The server is ready to use when
 // it is in the HEALTHY state. By default, you can create a maximum of 10 servers.
@@ -296,7 +296,7 @@ func (c *OpsWorksCM) CreateServerRequest(input *CreateServerInput) (req *request
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation CreateServer for usage and error information.
 //
 // Returned Error Codes:
@@ -377,7 +377,7 @@ func (c *OpsWorksCM) DeleteBackupRequest(input *DeleteBackupInput) (req *request
 	return
 }
 
-// DeleteBackup API operation for AWS OpsWorks for Chef Automate.
+// DeleteBackup API operation for AWS OpsWorks CM.
 //
 // Deletes a backup. You can delete both manual and automated backups. This
 // operation is asynchronous.
@@ -390,7 +390,7 @@ func (c *OpsWorksCM) DeleteBackupRequest(input *DeleteBackupInput) (req *request
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation DeleteBackup for usage and error information.
 //
 // Returned Error Codes:
@@ -469,7 +469,7 @@ func (c *OpsWorksCM) DeleteServerRequest(input *DeleteServerInput) (req *request
 	return
 }
 
-// DeleteServer API operation for AWS OpsWorks for Chef Automate.
+// DeleteServer API operation for AWS OpsWorks CM.
 //
 // Deletes the server and the underlying AWS CloudFormation stacks (including
 // the server's EC2 instance). When you run this command, the server state is
@@ -487,7 +487,7 @@ func (c *OpsWorksCM) DeleteServerRequest(input *DeleteServerInput) (req *request
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation DeleteServer for usage and error information.
 //
 // Returned Error Codes:
@@ -565,7 +565,7 @@ func (c *OpsWorksCM) DescribeAccountAttributesRequest(input *DescribeAccountAttr
 	return
 }
 
-// DescribeAccountAttributes API operation for AWS OpsWorks for Chef Automate.
+// DescribeAccountAttributes API operation for AWS OpsWorks CM.
 //
 // Describes your OpsWorks-CM account attributes.
 //
@@ -575,7 +575,7 @@ func (c *OpsWorksCM) DescribeAccountAttributesRequest(input *DescribeAccountAttr
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation DescribeAccountAttributes for usage and error information.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeAccountAttributes
 func (c *OpsWorksCM) DescribeAccountAttributes(input *DescribeAccountAttributesInput) (*DescribeAccountAttributesOutput, error) {
@@ -641,7 +641,7 @@ func (c *OpsWorksCM) DescribeBackupsRequest(input *DescribeBackupsInput) (req *r
 	return
 }
 
-// DescribeBackups API operation for AWS OpsWorks for Chef Automate.
+// DescribeBackups API operation for AWS OpsWorks CM.
 //
 // Describes backups. The results are ordered by time, with newest backups first.
 // If you do not specify a BackupId or ServerName, the command returns all backups.
@@ -655,7 +655,7 @@ func (c *OpsWorksCM) DescribeBackupsRequest(input *DescribeBackupsInput) (req *r
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation DescribeBackups for usage and error information.
 //
 // Returned Error Codes:
@@ -732,7 +732,7 @@ func (c *OpsWorksCM) DescribeEventsRequest(input *DescribeEventsInput) (req *req
 	return
 }
 
-// DescribeEvents API operation for AWS OpsWorks for Chef Automate.
+// DescribeEvents API operation for AWS OpsWorks CM.
 //
 // Describes events for a specified server. Results are ordered by time, with
 // newest events first.
@@ -746,7 +746,7 @@ func (c *OpsWorksCM) DescribeEventsRequest(input *DescribeEventsInput) (req *req
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation DescribeEvents for usage and error information.
 //
 // Returned Error Codes:
@@ -823,7 +823,7 @@ func (c *OpsWorksCM) DescribeNodeAssociationStatusRequest(input *DescribeNodeAss
 	return
 }
 
-// DescribeNodeAssociationStatus API operation for AWS OpsWorks for Chef Automate.
+// DescribeNodeAssociationStatus API operation for AWS OpsWorks CM.
 //
 // Returns the current status of an existing association or disassociation request.
 //
@@ -835,7 +835,7 @@ func (c *OpsWorksCM) DescribeNodeAssociationStatusRequest(input *DescribeNodeAss
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation DescribeNodeAssociationStatus for usage and error information.
 //
 // Returned Error Codes:
@@ -909,7 +909,7 @@ func (c *OpsWorksCM) DescribeServersRequest(input *DescribeServersInput) (req *r
 	return
 }
 
-// DescribeServers API operation for AWS OpsWorks for Chef Automate.
+// DescribeServers API operation for AWS OpsWorks CM.
 //
 // Lists all configuration management servers that are identified with your
 // account. Only the stored results from Amazon DynamoDB are returned. AWS OpsWorks
@@ -924,7 +924,7 @@ func (c *OpsWorksCM) DescribeServersRequest(input *DescribeServersInput) (req *r
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation DescribeServers for usage and error information.
 //
 // Returned Error Codes:
@@ -1001,7 +1001,7 @@ func (c *OpsWorksCM) DisassociateNodeRequest(input *DisassociateNodeInput) (req 
 	return
 }
 
-// DisassociateNode API operation for AWS OpsWorks for Chef Automate.
+// DisassociateNode API operation for AWS OpsWorks CM.
 //
 // Disassociates a node from an AWS OpsWorks CM server, and removes the node
 // from the server's managed nodes. After a node is disassociated, the node
@@ -1017,7 +1017,7 @@ func (c *OpsWorksCM) DisassociateNodeRequest(input *DisassociateNodeInput) (req 
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation DisassociateNode for usage and error information.
 //
 // Returned Error Codes:
@@ -1095,7 +1095,7 @@ func (c *OpsWorksCM) ExportServerEngineAttributeRequest(input *ExportServerEngin
 	return
 }
 
-// ExportServerEngineAttribute API operation for AWS OpsWorks for Chef Automate.
+// ExportServerEngineAttribute API operation for AWS OpsWorks CM.
 //
 // Exports a specified server engine attribute as a base64-encoded string. For
 // example, you can export user data that you can use in EC2 to associate nodes
@@ -1112,7 +1112,7 @@ func (c *OpsWorksCM) ExportServerEngineAttributeRequest(input *ExportServerEngin
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation ExportServerEngineAttribute for usage and error information.
 //
 // Returned Error Codes:
@@ -1191,7 +1191,7 @@ func (c *OpsWorksCM) RestoreServerRequest(input *RestoreServerInput) (req *reque
 	return
 }
 
-// RestoreServer API operation for AWS OpsWorks for Chef Automate.
+// RestoreServer API operation for AWS OpsWorks CM.
 //
 // Restores a backup to a server that is in a CONNECTION_LOST, HEALTHY, RUNNING,
 // UNHEALTHY, or TERMINATED state. When you run RestoreServer, the server's
@@ -1209,7 +1209,7 @@ func (c *OpsWorksCM) RestoreServerRequest(input *RestoreServerInput) (req *reque
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation RestoreServer for usage and error information.
 //
 // Returned Error Codes:
@@ -1287,7 +1287,7 @@ func (c *OpsWorksCM) StartMaintenanceRequest(input *StartMaintenanceInput) (req 
 	return
 }
 
-// StartMaintenance API operation for AWS OpsWorks for Chef Automate.
+// StartMaintenance API operation for AWS OpsWorks CM.
 //
 // Manually starts server maintenance. This command can be useful if an earlier
 // maintenance attempt failed, and the underlying cause of maintenance failure
@@ -1303,7 +1303,7 @@ func (c *OpsWorksCM) StartMaintenanceRequest(input *StartMaintenanceInput) (req 
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation StartMaintenance for usage and error information.
 //
 // Returned Error Codes:
@@ -1381,7 +1381,7 @@ func (c *OpsWorksCM) UpdateServerRequest(input *UpdateServerInput) (req *request
 	return
 }
 
-// UpdateServer API operation for AWS OpsWorks for Chef Automate.
+// UpdateServer API operation for AWS OpsWorks CM.
 //
 // Updates settings for a server.
 //
@@ -1391,7 +1391,7 @@ func (c *OpsWorksCM) UpdateServerRequest(input *UpdateServerInput) (req *request
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation UpdateServer for usage and error information.
 //
 // Returned Error Codes:
@@ -1469,7 +1469,7 @@ func (c *OpsWorksCM) UpdateServerEngineAttributesRequest(input *UpdateServerEngi
 	return
 }
 
-// UpdateServerEngineAttributes API operation for AWS OpsWorks for Chef Automate.
+// UpdateServerEngineAttributes API operation for AWS OpsWorks CM.
 //
 // Updates engine-specific attributes on a specified server. The server enters
 // the MODIFYING state when this operation is in progress. Only one update can
@@ -1487,7 +1487,7 @@ func (c *OpsWorksCM) UpdateServerEngineAttributesRequest(input *UpdateServerEngi
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation UpdateServerEngineAttributes for usage and error information.
 //
 // Returned Error Codes:

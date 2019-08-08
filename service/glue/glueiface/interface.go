@@ -108,6 +108,10 @@ type GlueAPI interface {
 	BatchStopJobRunWithContext(aws.Context, *glue.BatchStopJobRunInput, ...request.Option) (*glue.BatchStopJobRunOutput, error)
 	BatchStopJobRunRequest(*glue.BatchStopJobRunInput) (*request.Request, *glue.BatchStopJobRunOutput)
 
+	CancelMLTaskRun(*glue.CancelMLTaskRunInput) (*glue.CancelMLTaskRunOutput, error)
+	CancelMLTaskRunWithContext(aws.Context, *glue.CancelMLTaskRunInput, ...request.Option) (*glue.CancelMLTaskRunOutput, error)
+	CancelMLTaskRunRequest(*glue.CancelMLTaskRunInput) (*request.Request, *glue.CancelMLTaskRunOutput)
+
 	CreateClassifier(*glue.CreateClassifierInput) (*glue.CreateClassifierOutput, error)
 	CreateClassifierWithContext(aws.Context, *glue.CreateClassifierInput, ...request.Option) (*glue.CreateClassifierOutput, error)
 	CreateClassifierRequest(*glue.CreateClassifierInput) (*request.Request, *glue.CreateClassifierOutput)
@@ -131,6 +135,10 @@ type GlueAPI interface {
 	CreateJob(*glue.CreateJobInput) (*glue.CreateJobOutput, error)
 	CreateJobWithContext(aws.Context, *glue.CreateJobInput, ...request.Option) (*glue.CreateJobOutput, error)
 	CreateJobRequest(*glue.CreateJobInput) (*request.Request, *glue.CreateJobOutput)
+
+	CreateMLTransform(*glue.CreateMLTransformInput) (*glue.CreateMLTransformOutput, error)
+	CreateMLTransformWithContext(aws.Context, *glue.CreateMLTransformInput, ...request.Option) (*glue.CreateMLTransformOutput, error)
+	CreateMLTransformRequest(*glue.CreateMLTransformInput) (*request.Request, *glue.CreateMLTransformOutput)
 
 	CreatePartition(*glue.CreatePartitionInput) (*glue.CreatePartitionOutput, error)
 	CreatePartitionWithContext(aws.Context, *glue.CreatePartitionInput, ...request.Option) (*glue.CreatePartitionOutput, error)
@@ -183,6 +191,10 @@ type GlueAPI interface {
 	DeleteJob(*glue.DeleteJobInput) (*glue.DeleteJobOutput, error)
 	DeleteJobWithContext(aws.Context, *glue.DeleteJobInput, ...request.Option) (*glue.DeleteJobOutput, error)
 	DeleteJobRequest(*glue.DeleteJobInput) (*request.Request, *glue.DeleteJobOutput)
+
+	DeleteMLTransform(*glue.DeleteMLTransformInput) (*glue.DeleteMLTransformOutput, error)
+	DeleteMLTransformWithContext(aws.Context, *glue.DeleteMLTransformInput, ...request.Option) (*glue.DeleteMLTransformOutput, error)
+	DeleteMLTransformRequest(*glue.DeleteMLTransformInput) (*request.Request, *glue.DeleteMLTransformOutput)
 
 	DeletePartition(*glue.DeletePartitionInput) (*glue.DeletePartitionOutput, error)
 	DeletePartitionWithContext(aws.Context, *glue.DeletePartitionInput, ...request.Option) (*glue.DeletePartitionOutput, error)
@@ -322,6 +334,28 @@ type GlueAPI interface {
 
 	GetJobsPages(*glue.GetJobsInput, func(*glue.GetJobsOutput, bool) bool) error
 	GetJobsPagesWithContext(aws.Context, *glue.GetJobsInput, func(*glue.GetJobsOutput, bool) bool, ...request.Option) error
+
+	GetMLTaskRun(*glue.GetMLTaskRunInput) (*glue.GetMLTaskRunOutput, error)
+	GetMLTaskRunWithContext(aws.Context, *glue.GetMLTaskRunInput, ...request.Option) (*glue.GetMLTaskRunOutput, error)
+	GetMLTaskRunRequest(*glue.GetMLTaskRunInput) (*request.Request, *glue.GetMLTaskRunOutput)
+
+	GetMLTaskRuns(*glue.GetMLTaskRunsInput) (*glue.GetMLTaskRunsOutput, error)
+	GetMLTaskRunsWithContext(aws.Context, *glue.GetMLTaskRunsInput, ...request.Option) (*glue.GetMLTaskRunsOutput, error)
+	GetMLTaskRunsRequest(*glue.GetMLTaskRunsInput) (*request.Request, *glue.GetMLTaskRunsOutput)
+
+	GetMLTaskRunsPages(*glue.GetMLTaskRunsInput, func(*glue.GetMLTaskRunsOutput, bool) bool) error
+	GetMLTaskRunsPagesWithContext(aws.Context, *glue.GetMLTaskRunsInput, func(*glue.GetMLTaskRunsOutput, bool) bool, ...request.Option) error
+
+	GetMLTransform(*glue.GetMLTransformInput) (*glue.GetMLTransformOutput, error)
+	GetMLTransformWithContext(aws.Context, *glue.GetMLTransformInput, ...request.Option) (*glue.GetMLTransformOutput, error)
+	GetMLTransformRequest(*glue.GetMLTransformInput) (*request.Request, *glue.GetMLTransformOutput)
+
+	GetMLTransforms(*glue.GetMLTransformsInput) (*glue.GetMLTransformsOutput, error)
+	GetMLTransformsWithContext(aws.Context, *glue.GetMLTransformsInput, ...request.Option) (*glue.GetMLTransformsOutput, error)
+	GetMLTransformsRequest(*glue.GetMLTransformsInput) (*request.Request, *glue.GetMLTransformsOutput)
+
+	GetMLTransformsPages(*glue.GetMLTransformsInput, func(*glue.GetMLTransformsOutput, bool) bool) error
+	GetMLTransformsPagesWithContext(aws.Context, *glue.GetMLTransformsInput, func(*glue.GetMLTransformsOutput, bool) bool, ...request.Option) error
 
 	GetMapping(*glue.GetMappingInput) (*glue.GetMappingOutput, error)
 	GetMappingWithContext(aws.Context, *glue.GetMappingInput, ...request.Option) (*glue.GetMappingOutput, error)
@@ -479,6 +513,13 @@ type GlueAPI interface {
 	ResetJobBookmarkWithContext(aws.Context, *glue.ResetJobBookmarkInput, ...request.Option) (*glue.ResetJobBookmarkOutput, error)
 	ResetJobBookmarkRequest(*glue.ResetJobBookmarkInput) (*request.Request, *glue.ResetJobBookmarkOutput)
 
+	SearchTables(*glue.SearchTablesInput) (*glue.SearchTablesOutput, error)
+	SearchTablesWithContext(aws.Context, *glue.SearchTablesInput, ...request.Option) (*glue.SearchTablesOutput, error)
+	SearchTablesRequest(*glue.SearchTablesInput) (*request.Request, *glue.SearchTablesOutput)
+
+	SearchTablesPages(*glue.SearchTablesInput, func(*glue.SearchTablesOutput, bool) bool) error
+	SearchTablesPagesWithContext(aws.Context, *glue.SearchTablesInput, func(*glue.SearchTablesOutput, bool) bool, ...request.Option) error
+
 	StartCrawler(*glue.StartCrawlerInput) (*glue.StartCrawlerOutput, error)
 	StartCrawlerWithContext(aws.Context, *glue.StartCrawlerInput, ...request.Option) (*glue.StartCrawlerOutput, error)
 	StartCrawlerRequest(*glue.StartCrawlerInput) (*request.Request, *glue.StartCrawlerOutput)
@@ -487,9 +528,25 @@ type GlueAPI interface {
 	StartCrawlerScheduleWithContext(aws.Context, *glue.StartCrawlerScheduleInput, ...request.Option) (*glue.StartCrawlerScheduleOutput, error)
 	StartCrawlerScheduleRequest(*glue.StartCrawlerScheduleInput) (*request.Request, *glue.StartCrawlerScheduleOutput)
 
+	StartExportLabelsTaskRun(*glue.StartExportLabelsTaskRunInput) (*glue.StartExportLabelsTaskRunOutput, error)
+	StartExportLabelsTaskRunWithContext(aws.Context, *glue.StartExportLabelsTaskRunInput, ...request.Option) (*glue.StartExportLabelsTaskRunOutput, error)
+	StartExportLabelsTaskRunRequest(*glue.StartExportLabelsTaskRunInput) (*request.Request, *glue.StartExportLabelsTaskRunOutput)
+
+	StartImportLabelsTaskRun(*glue.StartImportLabelsTaskRunInput) (*glue.StartImportLabelsTaskRunOutput, error)
+	StartImportLabelsTaskRunWithContext(aws.Context, *glue.StartImportLabelsTaskRunInput, ...request.Option) (*glue.StartImportLabelsTaskRunOutput, error)
+	StartImportLabelsTaskRunRequest(*glue.StartImportLabelsTaskRunInput) (*request.Request, *glue.StartImportLabelsTaskRunOutput)
+
 	StartJobRun(*glue.StartJobRunInput) (*glue.StartJobRunOutput, error)
 	StartJobRunWithContext(aws.Context, *glue.StartJobRunInput, ...request.Option) (*glue.StartJobRunOutput, error)
 	StartJobRunRequest(*glue.StartJobRunInput) (*request.Request, *glue.StartJobRunOutput)
+
+	StartMLEvaluationTaskRun(*glue.StartMLEvaluationTaskRunInput) (*glue.StartMLEvaluationTaskRunOutput, error)
+	StartMLEvaluationTaskRunWithContext(aws.Context, *glue.StartMLEvaluationTaskRunInput, ...request.Option) (*glue.StartMLEvaluationTaskRunOutput, error)
+	StartMLEvaluationTaskRunRequest(*glue.StartMLEvaluationTaskRunInput) (*request.Request, *glue.StartMLEvaluationTaskRunOutput)
+
+	StartMLLabelingSetGenerationTaskRun(*glue.StartMLLabelingSetGenerationTaskRunInput) (*glue.StartMLLabelingSetGenerationTaskRunOutput, error)
+	StartMLLabelingSetGenerationTaskRunWithContext(aws.Context, *glue.StartMLLabelingSetGenerationTaskRunInput, ...request.Option) (*glue.StartMLLabelingSetGenerationTaskRunOutput, error)
+	StartMLLabelingSetGenerationTaskRunRequest(*glue.StartMLLabelingSetGenerationTaskRunInput) (*request.Request, *glue.StartMLLabelingSetGenerationTaskRunOutput)
 
 	StartTrigger(*glue.StartTriggerInput) (*glue.StartTriggerOutput, error)
 	StartTriggerWithContext(aws.Context, *glue.StartTriggerInput, ...request.Option) (*glue.StartTriggerOutput, error)
@@ -546,6 +603,10 @@ type GlueAPI interface {
 	UpdateJob(*glue.UpdateJobInput) (*glue.UpdateJobOutput, error)
 	UpdateJobWithContext(aws.Context, *glue.UpdateJobInput, ...request.Option) (*glue.UpdateJobOutput, error)
 	UpdateJobRequest(*glue.UpdateJobInput) (*request.Request, *glue.UpdateJobOutput)
+
+	UpdateMLTransform(*glue.UpdateMLTransformInput) (*glue.UpdateMLTransformOutput, error)
+	UpdateMLTransformWithContext(aws.Context, *glue.UpdateMLTransformInput, ...request.Option) (*glue.UpdateMLTransformOutput, error)
+	UpdateMLTransformRequest(*glue.UpdateMLTransformInput) (*request.Request, *glue.UpdateMLTransformOutput)
 
 	UpdatePartition(*glue.UpdatePartitionInput) (*glue.UpdatePartitionOutput, error)
 	UpdatePartitionWithContext(aws.Context, *glue.UpdatePartitionInput, ...request.Option) (*glue.UpdatePartitionOutput, error)

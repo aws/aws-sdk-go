@@ -188,6 +188,21 @@
         {"shape":"OperationTimeoutException"}
       ]
     },
+    "CancelMLTaskRun":{
+      "name":"CancelMLTaskRun",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CancelMLTaskRunRequest"},
+      "output":{"shape":"CancelMLTaskRunResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "CreateClassifier":{
       "name":"CreateClassifier",
       "http":{
@@ -285,6 +300,24 @@
         {"shape":"OperationTimeoutException"},
         {"shape":"ResourceNumberLimitExceededException"},
         {"shape":"ConcurrentModificationException"}
+      ]
+    },
+    "CreateMLTransform":{
+      "name":"CreateMLTransform",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateMLTransformRequest"},
+      "output":{"shape":"CreateMLTransformResponse"},
+      "errors":[
+        {"shape":"AlreadyExistsException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNumberLimitExceededException"},
+        {"shape":"IdempotentParameterMismatchException"}
       ]
     },
     "CreatePartition":{
@@ -490,6 +523,21 @@
         {"shape":"InvalidInputException"},
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"}
+      ]
+    },
+    "DeleteMLTransform":{
+      "name":"DeleteMLTransform",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteMLTransformRequest"},
+      "output":{"shape":"DeleteMLTransformResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InternalServiceException"}
       ]
     },
     "DeletePartition":{
@@ -896,6 +944,66 @@
         {"shape":"EntityNotFoundException"},
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"}
+      ]
+    },
+    "GetMLTaskRun":{
+      "name":"GetMLTaskRun",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetMLTaskRunRequest"},
+      "output":{"shape":"GetMLTaskRunResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "GetMLTaskRuns":{
+      "name":"GetMLTaskRuns",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetMLTaskRunsRequest"},
+      "output":{"shape":"GetMLTaskRunsResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "GetMLTransform":{
+      "name":"GetMLTransform",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetMLTransformRequest"},
+      "output":{"shape":"GetMLTransformResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "GetMLTransforms":{
+      "name":"GetMLTransforms",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetMLTransformsRequest"},
+      "output":{"shape":"GetMLTransformsResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InternalServiceException"}
       ]
     },
     "GetMapping":{
@@ -1352,6 +1460,20 @@
         {"shape":"OperationTimeoutException"}
       ]
     },
+    "SearchTables":{
+      "name":"SearchTables",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SearchTablesRequest"},
+      "output":{"shape":"SearchTablesResponse"},
+      "errors":[
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"}
+      ]
+    },
     "StartCrawler":{
       "name":"StartCrawler",
       "http":{
@@ -1382,6 +1504,37 @@
         {"shape":"OperationTimeoutException"}
       ]
     },
+    "StartExportLabelsTaskRun":{
+      "name":"StartExportLabelsTaskRun",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartExportLabelsTaskRunRequest"},
+      "output":{"shape":"StartExportLabelsTaskRunResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "StartImportLabelsTaskRun":{
+      "name":"StartImportLabelsTaskRun",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartImportLabelsTaskRunRequest"},
+      "output":{"shape":"StartImportLabelsTaskRunResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"ResourceNumberLimitExceededException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "StartJobRun":{
       "name":"StartJobRun",
       "http":{
@@ -1396,6 +1549,39 @@
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"ResourceNumberLimitExceededException"},
+        {"shape":"ConcurrentRunsExceededException"}
+      ]
+    },
+    "StartMLEvaluationTaskRun":{
+      "name":"StartMLEvaluationTaskRun",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartMLEvaluationTaskRunRequest"},
+      "output":{"shape":"StartMLEvaluationTaskRunResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ConcurrentRunsExceededException"},
+        {"shape":"MLTransformNotReadyException"}
+      ]
+    },
+    "StartMLLabelingSetGenerationTaskRun":{
+      "name":"StartMLLabelingSetGenerationTaskRun",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartMLLabelingSetGenerationTaskRunRequest"},
+      "output":{"shape":"StartMLLabelingSetGenerationTaskRunResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InternalServiceException"},
         {"shape":"ConcurrentRunsExceededException"}
       ]
     },
@@ -1618,6 +1804,22 @@
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"ConcurrentModificationException"}
+      ]
+    },
+    "UpdateMLTransform":{
+      "name":"UpdateMLTransform",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateMLTransformRequest"},
+      "output":{"shape":"UpdateMLTransformResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "UpdatePartition":{
@@ -1999,6 +2201,25 @@
       "max":100,
       "min":0
     },
+    "CancelMLTaskRunRequest":{
+      "type":"structure",
+      "required":[
+        "TransformId",
+        "TaskRunId"
+      ],
+      "members":{
+        "TransformId":{"shape":"HashString"},
+        "TaskRunId":{"shape":"HashString"}
+      }
+    },
+    "CancelMLTaskRunResponse":{
+      "type":"structure",
+      "members":{
+        "TransformId":{"shape":"HashString"},
+        "TaskRunId":{"shape":"HashString"},
+        "Status":{"shape":"TaskStatusType"}
+      }
+    },
     "CatalogEncryptionMode":{
       "type":"string",
       "enum":[
@@ -2146,12 +2367,19 @@
       "members":{
         "Name":{"shape":"NameString"},
         "Type":{"shape":"ColumnTypeString"},
-        "Comment":{"shape":"CommentString"}
+        "Comment":{"shape":"CommentString"},
+        "Parameters":{"shape":"ParametersMap"}
       }
     },
     "ColumnList":{
       "type":"list",
       "member":{"shape":"Column"}
+    },
+    "ColumnNameString":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
     },
     "ColumnTypeString":{
       "type":"string",
@@ -2169,6 +2397,16 @@
       "max":255,
       "min":0,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
+    },
+    "Comparator":{
+      "type":"string",
+      "enum":[
+        "EQUALS",
+        "GREATER_THAN",
+        "LESS_THAN",
+        "GREATER_THAN_EQUALS",
+        "LESS_THAN_EQUALS"
+      ]
     },
     "ConcurrentModificationException":{
       "type":"structure",
@@ -2204,6 +2442,15 @@
     "ConditionList":{
       "type":"list",
       "member":{"shape":"Condition"}
+    },
+    "ConfusionMatrix":{
+      "type":"structure",
+      "members":{
+        "NumTruePositives":{"shape":"RecordsCount"},
+        "NumFalsePositives":{"shape":"RecordsCount"},
+        "NumTrueNegatives":{"shape":"RecordsCount"},
+        "NumFalseNegatives":{"shape":"RecordsCount"}
+      }
     },
     "Connection":{
       "type":"structure",
@@ -2598,6 +2845,33 @@
         "JsonPath":{"shape":"JsonPath"}
       }
     },
+    "CreateMLTransformRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "InputRecordTables",
+        "Parameters",
+        "Role"
+      ],
+      "members":{
+        "Name":{"shape":"NameString"},
+        "Description":{"shape":"DescriptionString"},
+        "InputRecordTables":{"shape":"GlueTables"},
+        "Parameters":{"shape":"TransformParameters"},
+        "Role":{"shape":"RoleString"},
+        "MaxCapacity":{"shape":"NullableDouble"},
+        "WorkerType":{"shape":"WorkerType"},
+        "NumberOfWorkers":{"shape":"NullableInteger"},
+        "Timeout":{"shape":"Timeout"},
+        "MaxRetries":{"shape":"NullableInteger"}
+      }
+    },
+    "CreateMLTransformResponse":{
+      "type":"structure",
+      "members":{
+        "TransformId":{"shape":"HashString"}
+      }
+    },
     "CreatePartitionRequest":{
       "type":"structure",
       "required":[
@@ -2799,6 +3073,17 @@
         "ConnectionPasswordEncryption":{"shape":"ConnectionPasswordEncryption"}
       }
     },
+    "DataLakePrincipal":{
+      "type":"structure",
+      "members":{
+        "DataLakePrincipalIdentifier":{"shape":"DataLakePrincipalString"}
+      }
+    },
+    "DataLakePrincipalString":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
     "Database":{
       "type":"structure",
       "required":["Name"],
@@ -2807,7 +3092,8 @@
         "Description":{"shape":"DescriptionString"},
         "LocationUri":{"shape":"URI"},
         "Parameters":{"shape":"ParametersMap"},
-        "CreateTime":{"shape":"Timestamp"}
+        "CreateTime":{"shape":"Timestamp"},
+        "CreateTableDefaultPermissions":{"shape":"PrincipalPermissionsList"}
       }
     },
     "DatabaseInput":{
@@ -2817,7 +3103,8 @@
         "Name":{"shape":"NameString"},
         "Description":{"shape":"DescriptionString"},
         "LocationUri":{"shape":"URI"},
-        "Parameters":{"shape":"ParametersMap"}
+        "Parameters":{"shape":"ParametersMap"},
+        "CreateTableDefaultPermissions":{"shape":"PrincipalPermissionsList"}
       }
     },
     "DatabaseList":{
@@ -2912,6 +3199,19 @@
       "type":"structure",
       "members":{
         "JobName":{"shape":"NameString"}
+      }
+    },
+    "DeleteMLTransformRequest":{
+      "type":"structure",
+      "required":["TransformId"],
+      "members":{
+        "TransformId":{"shape":"HashString"}
+      }
+    },
+    "DeleteMLTransformResponse":{
+      "type":"structure",
+      "members":{
+        "TransformId":{"shape":"HashString"}
       }
     },
     "DeletePartitionRequest":{
@@ -3154,6 +3454,14 @@
       }
     },
     "ErrorString":{"type":"string"},
+    "EvaluationMetrics":{
+      "type":"structure",
+      "required":["TransformType"],
+      "members":{
+        "TransformType":{"shape":"TransformType"},
+        "FindMatchesMetrics":{"shape":"FindMatchesMetrics"}
+      }
+    },
     "ExecutionProperty":{
       "type":"structure",
       "members":{
@@ -3169,6 +3477,12 @@
         "NONE"
       ]
     },
+    "ExportLabelsTaskRunProperties":{
+      "type":"structure",
+      "members":{
+        "OutputS3Path":{"shape":"UriString"}
+      }
+    },
     "FieldType":{"type":"string"},
     "FilterString":{
       "type":"string",
@@ -3176,10 +3490,43 @@
       "min":0,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
     },
+    "FindMatchesMetrics":{
+      "type":"structure",
+      "members":{
+        "AreaUnderPRCurve":{"shape":"GenericBoundedDouble"},
+        "Precision":{"shape":"GenericBoundedDouble"},
+        "Recall":{"shape":"GenericBoundedDouble"},
+        "F1":{"shape":"GenericBoundedDouble"},
+        "ConfusionMatrix":{"shape":"ConfusionMatrix"}
+      }
+    },
+    "FindMatchesParameters":{
+      "type":"structure",
+      "members":{
+        "PrimaryKeyColumnName":{"shape":"ColumnNameString"},
+        "PrecisionRecallTradeoff":{"shape":"GenericBoundedDouble"},
+        "AccuracyCostTradeoff":{"shape":"GenericBoundedDouble"},
+        "EnforceProvidedLabels":{"shape":"NullableBoolean"}
+      }
+    },
+    "FindMatchesTaskRunProperties":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"HashString"},
+        "JobName":{"shape":"NameString"},
+        "JobRunId":{"shape":"HashString"}
+      }
+    },
     "FormatString":{
       "type":"string",
       "max":128,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
+    },
+    "GenericBoundedDouble":{
+      "type":"double",
+      "box":true,
+      "max":1.0,
+      "min":0.0
     },
     "GenericMap":{
       "type":"map",
@@ -3478,6 +3825,96 @@
       "members":{
         "Jobs":{"shape":"JobList"},
         "NextToken":{"shape":"GenericString"}
+      }
+    },
+    "GetMLTaskRunRequest":{
+      "type":"structure",
+      "required":[
+        "TransformId",
+        "TaskRunId"
+      ],
+      "members":{
+        "TransformId":{"shape":"HashString"},
+        "TaskRunId":{"shape":"HashString"}
+      }
+    },
+    "GetMLTaskRunResponse":{
+      "type":"structure",
+      "members":{
+        "TransformId":{"shape":"HashString"},
+        "TaskRunId":{"shape":"HashString"},
+        "Status":{"shape":"TaskStatusType"},
+        "LogGroupName":{"shape":"GenericString"},
+        "Properties":{"shape":"TaskRunProperties"},
+        "ErrorString":{"shape":"GenericString"},
+        "StartedOn":{"shape":"Timestamp"},
+        "LastModifiedOn":{"shape":"Timestamp"},
+        "CompletedOn":{"shape":"Timestamp"},
+        "ExecutionTime":{"shape":"ExecutionTime"}
+      }
+    },
+    "GetMLTaskRunsRequest":{
+      "type":"structure",
+      "required":["TransformId"],
+      "members":{
+        "TransformId":{"shape":"HashString"},
+        "NextToken":{"shape":"PaginationToken"},
+        "MaxResults":{"shape":"PageSize"},
+        "Filter":{"shape":"TaskRunFilterCriteria"},
+        "Sort":{"shape":"TaskRunSortCriteria"}
+      }
+    },
+    "GetMLTaskRunsResponse":{
+      "type":"structure",
+      "members":{
+        "TaskRuns":{"shape":"TaskRunList"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "GetMLTransformRequest":{
+      "type":"structure",
+      "required":["TransformId"],
+      "members":{
+        "TransformId":{"shape":"HashString"}
+      }
+    },
+    "GetMLTransformResponse":{
+      "type":"structure",
+      "members":{
+        "TransformId":{"shape":"HashString"},
+        "Name":{"shape":"NameString"},
+        "Description":{"shape":"DescriptionString"},
+        "Status":{"shape":"TransformStatusType"},
+        "CreatedOn":{"shape":"Timestamp"},
+        "LastModifiedOn":{"shape":"Timestamp"},
+        "InputRecordTables":{"shape":"GlueTables"},
+        "Parameters":{"shape":"TransformParameters"},
+        "EvaluationMetrics":{"shape":"EvaluationMetrics"},
+        "LabelCount":{"shape":"LabelCount"},
+        "Schema":{"shape":"TransformSchema"},
+        "Role":{"shape":"RoleString"},
+        "MaxCapacity":{"shape":"NullableDouble"},
+        "WorkerType":{"shape":"WorkerType"},
+        "NumberOfWorkers":{"shape":"NullableInteger"},
+        "Timeout":{"shape":"Timeout"},
+        "MaxRetries":{"shape":"NullableInteger"}
+      }
+    },
+    "GetMLTransformsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"PaginationToken"},
+        "MaxResults":{"shape":"PageSize"},
+        "Filter":{"shape":"TransformFilterCriteria"},
+        "Sort":{"shape":"TransformSortCriteria"}
+      }
+    },
+    "GetMLTransformsResponse":{
+      "type":"structure",
+      "required":["Transforms"],
+      "members":{
+        "Transforms":{"shape":"TransformList"},
+        "NextToken":{"shape":"PaginationToken"}
       }
     },
     "GetMappingRequest":{
@@ -3840,6 +4277,25 @@
       "min":1,
       "pattern":"arn:aws:glue:.*"
     },
+    "GlueTable":{
+      "type":"structure",
+      "required":[
+        "DatabaseName",
+        "TableName"
+      ],
+      "members":{
+        "DatabaseName":{"shape":"NameString"},
+        "TableName":{"shape":"NameString"},
+        "CatalogId":{"shape":"NameString"},
+        "ConnectionName":{"shape":"NameString"}
+      }
+    },
+    "GlueTables":{
+      "type":"list",
+      "member":{"shape":"GlueTable"},
+      "max":10,
+      "min":0
+    },
     "GlueVersionString":{
       "type":"string",
       "max":255,
@@ -3897,6 +4353,13 @@
     "ImportCatalogToGlueResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "ImportLabelsTaskRunProperties":{
+      "type":"structure",
+      "members":{
+        "InputS3Path":{"shape":"UriString"},
+        "Replace":{"shape":"ReplaceBoolean"}
       }
     },
     "Integer":{"type":"integer"},
@@ -4112,6 +4575,13 @@
       "type":"string",
       "pattern":"arn:aws:kms:.*"
     },
+    "LabelCount":{"type":"integer"},
+    "LabelingSetGenerationTaskRunProperties":{
+      "type":"structure",
+      "members":{
+        "OutputS3Path":{"shape":"UriString"}
+      }
+    },
     "Language":{
       "type":"string",
       "enum":[
@@ -4254,6 +4724,35 @@
       "type":"string",
       "enum":["EQUALS"]
     },
+    "MLTransform":{
+      "type":"structure",
+      "members":{
+        "TransformId":{"shape":"HashString"},
+        "Name":{"shape":"NameString"},
+        "Description":{"shape":"DescriptionString"},
+        "Status":{"shape":"TransformStatusType"},
+        "CreatedOn":{"shape":"Timestamp"},
+        "LastModifiedOn":{"shape":"Timestamp"},
+        "InputRecordTables":{"shape":"GlueTables"},
+        "Parameters":{"shape":"TransformParameters"},
+        "EvaluationMetrics":{"shape":"EvaluationMetrics"},
+        "LabelCount":{"shape":"LabelCount"},
+        "Schema":{"shape":"TransformSchema"},
+        "Role":{"shape":"RoleString"},
+        "MaxCapacity":{"shape":"NullableDouble"},
+        "WorkerType":{"shape":"WorkerType"},
+        "NumberOfWorkers":{"shape":"NullableInteger"},
+        "Timeout":{"shape":"Timeout"},
+        "MaxRetries":{"shape":"NullableInteger"}
+      }
+    },
+    "MLTransformNotReadyException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"MessageString"}
+      },
+      "exception":true
+    },
     "MapValue":{
       "type":"map",
       "key":{"shape":"GenericString"},
@@ -4395,6 +4894,7 @@
       "max":1000,
       "min":1
     },
+    "PaginationToken":{"type":"string"},
     "ParametersMap":{
       "type":"map",
       "key":{"shape":"KeyString"},
@@ -4460,6 +4960,24 @@
       "type":"list",
       "member":{"shape":"Path"}
     },
+    "Permission":{
+      "type":"string",
+      "enum":[
+        "ALL",
+        "SELECT",
+        "ALTER",
+        "DROP",
+        "DELETE",
+        "INSERT",
+        "CREATE_DATABASE",
+        "CREATE_TABLE",
+        "DATA_LOCATION_ACCESS"
+      ]
+    },
+    "PermissionList":{
+      "type":"list",
+      "member":{"shape":"Permission"}
+    },
     "PhysicalConnectionRequirements":{
       "type":"structure",
       "members":{
@@ -4497,6 +5015,17 @@
       "min":0,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
+    "PrincipalPermissions":{
+      "type":"structure",
+      "members":{
+        "Principal":{"shape":"DataLakePrincipal"},
+        "Permissions":{"shape":"PermissionList"}
+      }
+    },
+    "PrincipalPermissionsList":{
+      "type":"list",
+      "member":{"shape":"PrincipalPermissions"}
+    },
     "PrincipalType":{
       "type":"string",
       "enum":[
@@ -4504,6 +5033,14 @@
         "ROLE",
         "GROUP"
       ]
+    },
+    "PropertyPredicate":{
+      "type":"structure",
+      "members":{
+        "Key":{"shape":"ValueString"},
+        "Value":{"shape":"ValueString"},
+        "Comparator":{"shape":"Comparator"}
+      }
     },
     "PublicKeysList":{
       "type":"list",
@@ -4561,6 +5098,11 @@
       "type":"string",
       "pattern":"^[2-3]$"
     },
+    "RecordsCount":{
+      "type":"long",
+      "box":true
+    },
+    "ReplaceBoolean":{"type":"boolean"},
     "ResetJobBookmarkRequest":{
       "type":"structure",
       "required":["JobName"],
@@ -4685,8 +5227,37 @@
         "DeleteBehavior":{"shape":"DeleteBehavior"}
       }
     },
+    "SchemaColumn":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"ColumnNameString"},
+        "DataType":{"shape":"ColumnTypeString"}
+      }
+    },
     "SchemaPathString":{"type":"string"},
     "ScriptLocationString":{"type":"string"},
+    "SearchPropertyPredicates":{
+      "type":"list",
+      "member":{"shape":"PropertyPredicate"}
+    },
+    "SearchTablesRequest":{
+      "type":"structure",
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "NextToken":{"shape":"Token"},
+        "Filters":{"shape":"SearchPropertyPredicates"},
+        "SearchText":{"shape":"ValueString"},
+        "SortCriteria":{"shape":"SortCriteria"},
+        "MaxResults":{"shape":"PageSize"}
+      }
+    },
+    "SearchTablesResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"Token"},
+        "TableList":{"shape":"TableList"}
+      }
+    },
     "SecurityConfiguration":{
       "type":"structure",
       "members":{
@@ -4732,6 +5303,33 @@
         "SkewedColumnValueLocationMaps":{"shape":"LocationMap"}
       }
     },
+    "Sort":{
+      "type":"string",
+      "enum":[
+        "ASC",
+        "DESC"
+      ]
+    },
+    "SortCriteria":{
+      "type":"list",
+      "member":{"shape":"SortCriterion"},
+      "max":1,
+      "min":0
+    },
+    "SortCriterion":{
+      "type":"structure",
+      "members":{
+        "FieldName":{"shape":"ValueString"},
+        "Sort":{"shape":"Sort"}
+      }
+    },
+    "SortDirectionType":{
+      "type":"string",
+      "enum":[
+        "DESCENDING",
+        "ASCENDING"
+      ]
+    },
     "StartCrawlerRequest":{
       "type":"structure",
       "required":["Name"],
@@ -4754,6 +5352,41 @@
     "StartCrawlerScheduleResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "StartExportLabelsTaskRunRequest":{
+      "type":"structure",
+      "required":[
+        "TransformId",
+        "OutputS3Path"
+      ],
+      "members":{
+        "TransformId":{"shape":"HashString"},
+        "OutputS3Path":{"shape":"UriString"}
+      }
+    },
+    "StartExportLabelsTaskRunResponse":{
+      "type":"structure",
+      "members":{
+        "TaskRunId":{"shape":"HashString"}
+      }
+    },
+    "StartImportLabelsTaskRunRequest":{
+      "type":"structure",
+      "required":[
+        "TransformId",
+        "InputS3Path"
+      ],
+      "members":{
+        "TransformId":{"shape":"HashString"},
+        "InputS3Path":{"shape":"UriString"},
+        "ReplaceAllLabels":{"shape":"ReplaceBoolean"}
+      }
+    },
+    "StartImportLabelsTaskRunResponse":{
+      "type":"structure",
+      "members":{
+        "TaskRunId":{"shape":"HashString"}
       }
     },
     "StartJobRunRequest":{
@@ -4780,6 +5413,36 @@
       "type":"structure",
       "members":{
         "JobRunId":{"shape":"IdString"}
+      }
+    },
+    "StartMLEvaluationTaskRunRequest":{
+      "type":"structure",
+      "required":["TransformId"],
+      "members":{
+        "TransformId":{"shape":"HashString"}
+      }
+    },
+    "StartMLEvaluationTaskRunResponse":{
+      "type":"structure",
+      "members":{
+        "TaskRunId":{"shape":"HashString"}
+      }
+    },
+    "StartMLLabelingSetGenerationTaskRunRequest":{
+      "type":"structure",
+      "required":[
+        "TransformId",
+        "OutputS3Path"
+      ],
+      "members":{
+        "TransformId":{"shape":"HashString"},
+        "OutputS3Path":{"shape":"UriString"}
+      }
+    },
+    "StartMLLabelingSetGenerationTaskRunResponse":{
+      "type":"structure",
+      "members":{
+        "TaskRunId":{"shape":"HashString"}
       }
     },
     "StartTriggerRequest":{
@@ -4885,7 +5548,8 @@
         "ViewExpandedText":{"shape":"ViewTextString"},
         "TableType":{"shape":"TableTypeString"},
         "Parameters":{"shape":"ParametersMap"},
-        "CreatedBy":{"shape":"NameString"}
+        "CreatedBy":{"shape":"NameString"},
+        "IsRegisteredWithLakeFormation":{"shape":"Boolean"}
       }
     },
     "TableError":{
@@ -4989,6 +5653,85 @@
       "max":50,
       "min":0
     },
+    "TaskRun":{
+      "type":"structure",
+      "members":{
+        "TransformId":{"shape":"HashString"},
+        "TaskRunId":{"shape":"HashString"},
+        "Status":{"shape":"TaskStatusType"},
+        "LogGroupName":{"shape":"GenericString"},
+        "Properties":{"shape":"TaskRunProperties"},
+        "ErrorString":{"shape":"GenericString"},
+        "StartedOn":{"shape":"Timestamp"},
+        "LastModifiedOn":{"shape":"Timestamp"},
+        "CompletedOn":{"shape":"Timestamp"},
+        "ExecutionTime":{"shape":"ExecutionTime"}
+      }
+    },
+    "TaskRunFilterCriteria":{
+      "type":"structure",
+      "members":{
+        "TaskRunType":{"shape":"TaskType"},
+        "Status":{"shape":"TaskStatusType"},
+        "StartedBefore":{"shape":"Timestamp"},
+        "StartedAfter":{"shape":"Timestamp"}
+      }
+    },
+    "TaskRunList":{
+      "type":"list",
+      "member":{"shape":"TaskRun"}
+    },
+    "TaskRunProperties":{
+      "type":"structure",
+      "members":{
+        "TaskType":{"shape":"TaskType"},
+        "ImportLabelsTaskRunProperties":{"shape":"ImportLabelsTaskRunProperties"},
+        "ExportLabelsTaskRunProperties":{"shape":"ExportLabelsTaskRunProperties"},
+        "LabelingSetGenerationTaskRunProperties":{"shape":"LabelingSetGenerationTaskRunProperties"},
+        "FindMatchesTaskRunProperties":{"shape":"FindMatchesTaskRunProperties"}
+      }
+    },
+    "TaskRunSortColumnType":{
+      "type":"string",
+      "enum":[
+        "TASK_RUN_TYPE",
+        "STATUS",
+        "STARTED"
+      ]
+    },
+    "TaskRunSortCriteria":{
+      "type":"structure",
+      "required":[
+        "Column",
+        "SortDirection"
+      ],
+      "members":{
+        "Column":{"shape":"TaskRunSortColumnType"},
+        "SortDirection":{"shape":"SortDirectionType"}
+      }
+    },
+    "TaskStatusType":{
+      "type":"string",
+      "enum":[
+        "STARTING",
+        "RUNNING",
+        "STOPPING",
+        "STOPPED",
+        "SUCCEEDED",
+        "FAILED",
+        "TIMEOUT"
+      ]
+    },
+    "TaskType":{
+      "type":"string",
+      "enum":[
+        "EVALUATION",
+        "LABELING_SET_GENERATION",
+        "IMPORT_LABELS",
+        "EXPORT_LABELS",
+        "FIND_MATCHES"
+      ]
+    },
     "Timeout":{
       "type":"integer",
       "box":true,
@@ -5001,6 +5744,69 @@
       "type":"integer",
       "max":10,
       "min":1
+    },
+    "TransformFilterCriteria":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NameString"},
+        "TransformType":{"shape":"TransformType"},
+        "Status":{"shape":"TransformStatusType"},
+        "CreatedBefore":{"shape":"Timestamp"},
+        "CreatedAfter":{"shape":"Timestamp"},
+        "LastModifiedBefore":{"shape":"Timestamp"},
+        "LastModifiedAfter":{"shape":"Timestamp"},
+        "Schema":{"shape":"TransformSchema"}
+      }
+    },
+    "TransformList":{
+      "type":"list",
+      "member":{"shape":"MLTransform"}
+    },
+    "TransformParameters":{
+      "type":"structure",
+      "required":["TransformType"],
+      "members":{
+        "TransformType":{"shape":"TransformType"},
+        "FindMatchesParameters":{"shape":"FindMatchesParameters"}
+      }
+    },
+    "TransformSchema":{
+      "type":"list",
+      "member":{"shape":"SchemaColumn"},
+      "max":100
+    },
+    "TransformSortColumnType":{
+      "type":"string",
+      "enum":[
+        "NAME",
+        "TRANSFORM_TYPE",
+        "STATUS",
+        "CREATED",
+        "LAST_MODIFIED"
+      ]
+    },
+    "TransformSortCriteria":{
+      "type":"structure",
+      "required":[
+        "Column",
+        "SortDirection"
+      ],
+      "members":{
+        "Column":{"shape":"TransformSortColumnType"},
+        "SortDirection":{"shape":"SortDirectionType"}
+      }
+    },
+    "TransformStatusType":{
+      "type":"string",
+      "enum":[
+        "NOT_READY",
+        "READY",
+        "DELETING"
+      ]
+    },
+    "TransformType":{
+      "type":"string",
+      "enum":["FIND_MATCHES"]
     },
     "Trigger":{
       "type":"structure",
@@ -5238,6 +6044,28 @@
       "members":{
         "Name":{"shape":"NameString"},
         "JsonPath":{"shape":"JsonPath"}
+      }
+    },
+    "UpdateMLTransformRequest":{
+      "type":"structure",
+      "required":["TransformId"],
+      "members":{
+        "TransformId":{"shape":"HashString"},
+        "Name":{"shape":"NameString"},
+        "Description":{"shape":"DescriptionString"},
+        "Parameters":{"shape":"TransformParameters"},
+        "Role":{"shape":"RoleString"},
+        "MaxCapacity":{"shape":"NullableDouble"},
+        "WorkerType":{"shape":"WorkerType"},
+        "NumberOfWorkers":{"shape":"NullableInteger"},
+        "Timeout":{"shape":"Timeout"},
+        "MaxRetries":{"shape":"NullableInteger"}
+      }
+    },
+    "UpdateMLTransformResponse":{
+      "type":"structure",
+      "members":{
+        "TransformId":{"shape":"HashString"}
       }
     },
     "UpdatePartitionRequest":{
