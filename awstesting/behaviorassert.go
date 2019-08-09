@@ -7,133 +7,152 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/util"
 	"github.com/google/go-cmp/cmp"
-
+	"github.com/google/go-cmp/cmp/cmpopts"
 	"io/ioutil"
 	"net/url"
 	"testing"
 )
 
-func AssertRequestMethodEquals(t *testing.T, req *request.Request, val string) bool {
-	return req.HTTPRequest.Method == val
+func AssertRequestMethodEquals(t *testing.T, req *request.Request, val string, msgAndArgs ...interface{}) bool {
+	return equal(t, val, req.HTTPRequest.Method, msgAndArgs)
 }
 
-func AssertRequestUrlMatches(t *testing.T, req *request.Request, val string) bool {
-	return AssertURL(t, val, req.HTTPRequest.URL.String())
+func AssertRequestUrlMatches(t *testing.T, req *request.Request, val string, msgAndArgs ...interface{}) bool {
+	return AssertURL(t, val, req.HTTPRequest.URL.String(), msgAndArgs)
 }
 
-func AssertRequestUrlPathMatches(t *testing.T, req *request.Request, val string) bool {
-	return req.HTTPRequest.URL.RequestURI() == val
+func AssertRequestUrlPathMatches(t *testing.T, req *request.Request, val string, msgAndArgs ...interface{}) bool {
+	return equal(t, val, req.HTTPRequest.URL.EscapedPath(), msgAndArgs)
 }
 
-func AssertRequestUrlQueryMatches(t *testing.T, req *request.Request, val string) bool {
-	structExpect, err := url.Parse(val) // parsed val into a structure
-	if err != nil {
-		t.Errorf("expect no error, got %v", err)
-	}
+func AssertRequestUrlQueryMatches(t *testing.T, req *request.Request, val string, msgAndArgs ...interface{}) bool {
+
 	queryRequest := req.HTTPRequest.URL.Query() //parsed RawQuery of "req" to get the values inside
-	queryExpect := structExpect.Query()         //parsed RawQuery of "val" to get the values inside
+	expectQ, err := url.ParseQuery(val)
 
-	return queryRequest.Encode() == queryExpect.Encode()
-}
-
-func AssertRequestHeadersMatch(t *testing.T, req *request.Request, header map[string]interface{}) bool {
-	for key, valExpect := range header {
-		valReq := req.HTTPRequest.Header.Get(key)
-		if valReq == "" || valReq[0] != valExpect {
+	if err != nil {
+		t.Errorf(errMsg("unable to parse query from expect", err, msgAndArgs))
+		return false
+	}
+	for expectKey, expectVal := range expectQ{
+		if expectKey == "timestamp" {
+			expectKey = "unixTimestamp"
+		}
+		reqVal := queryRequest.Get(expectKey)
+		if expectKey == "binary-value"{
+			temp, err  := base64.StdEncoding.DecodeString(reqVal)
+			if err != nil {
+				t.Errorf(errMsg("unable to decode string for binary-value parameter of expect", err, msgAndArgs))
+				return false
+			}
+			reqVal = string(temp)
+		}
+		if  reqVal != expectVal[0] {
+			t.Errorf(errMsg("query values inside request and expect don't match", nil))
 			return false
 		}
 	}
 	return true
 }
 
-func AssertRequestBodyEqualsBytes(t *testing.T, req *request.Request, val string) bool {
-	var bytesReqBody []byte
-	bytesExpect, err := base64.StdEncoding.DecodeString(val)
-
-	if err != nil {
-		t.Errorf("expect no error, got %v", err)
-	}
-
-	if req.HTTPRequest.Body != nil {
-		bytesReqBody, err = ioutil.ReadAll(req.HTTPRequest.Body)
-		if err != nil {
-			t.Errorf("expect no error, got %v", err)
+func AssertRequestHeadersMatch(t *testing.T, req *request.Request, header map[string]interface{}, msgAndArgs ...interface{}) bool {
+	for key, valExpect := range header {
+		valReq := req.HTTPRequest.Header.Get(key)
+		if key == "Header-Binary" {
+			temp, err  := base64.StdEncoding.DecodeString(valReq)
+			if err != nil {
+				t.Errorf(errMsg("unable to decode string for Header-Binary parameter of expect", err, msgAndArgs))
+				return false
+			}
+			valReq = string(temp)
+		}
+		if valReq == "" || valReq != valExpect {
+			t.Errorf(errMsg("header values inside request and expect don't match", nil))
+			return false
 		}
 	}
-
-	req.HTTPRequest.Body = ioutil.NopCloser(bytes.NewBuffer(bytesReqBody))
-
-	return bytes.Compare(bytesReqBody, bytesExpect) == 0
+	return true
 }
 
-func AssertRequestBodyEqualsJson(t *testing.T, req *request.Request, val string) bool {
+func AssertRequestBodyEqualsBytes(t *testing.T, req *request.Request, val string, msgAndArgs ...interface{}) bool {
 	var bytesReqBody []byte
 	var err error
 	if req.HTTPRequest.Body != nil {
 		bytesReqBody, err = ioutil.ReadAll(req.HTTPRequest.Body)
 		if err != nil {
-			t.Errorf("expect no error, got %v", err)
+			t.Errorf(errMsg("unable to read body from request", err, msgAndArgs))
+			return false
 		}
 	}
+	req.HTTPRequest.Body = ioutil.NopCloser(bytes.NewBuffer(bytesReqBody))
 
+	return equal(t, val, string(bytesReqBody), msgAndArgs)
+}
+
+func AssertRequestBodyEqualsJson(t *testing.T, req *request.Request, val string, msgAndArgs ...interface{}) bool {
+	var bytesReqBody []byte
+	var err error
+	if req.HTTPRequest.Body != nil {
+		bytesReqBody, err = ioutil.ReadAll(req.HTTPRequest.Body)
+		if err != nil {
+			t.Errorf(errMsg("unable to read body from request", err, msgAndArgs))
+			return false
+		}
+	}
 	req.HTTPRequest.Body = ioutil.NopCloser(bytes.NewBuffer(bytesReqBody))
 
 	return AssertJSON(t, val, util.Trim(string(bytesReqBody)))
 }
 
-func AssertRequestBodyMatchesXml(t *testing.T, req *request.Request, val string, container interface{}) bool {
+func AssertRequestBodyMatchesXml(t *testing.T, req *request.Request, val string, container interface{}, msgAndArgs ...interface{}) bool {
 	r := req.HTTPRequest
-
 	if r.Body == nil {
-		t.Errorf("expect body not to be nil")
+		t.Errorf(errMsg("request body is nil", nil, msgAndArgs))
+		return false
 	}
 	body := util.SortXML(r.Body)
 
 	return AssertXML(t, val, util.Trim(string(body)), container)
 }
 
-func AssertRequestBodyEqualsString(t *testing.T, req *request.Request, val string) bool {
-	var bytesReqBody []byte
-	var err error
-	if req.HTTPRequest.Body != nil {
-		bytesReqBody, err = ioutil.ReadAll(req.HTTPRequest.Body)
-		if err != nil {
-			t.Errorf("expect no error, got %v", err)
-		}
+func AssertRequestBodyEqualsString(t *testing.T, req *request.Request, val string, msgAndArgs ...interface{}) bool {
+	buf := new(bytes.Buffer)
+	ReqBody, err := req.HTTPRequest.GetBody()
+	if err != nil {
+		t.Errorf(errMsg("unable to read body from request", err, msgAndArgs))
+		return false
 	}
+	buf.ReadFrom(ReqBody)
 
-	req.HTTPRequest.Body = ioutil.NopCloser(bytes.NewBuffer(bytesReqBody))
-	stringReqBody := string(bytesReqBody)
-
-	return stringReqBody == val
+	return buf.String() == val
 }
 
-func AssertRequestIdEquals(t *testing.T, req *request.Request, val string) bool {
+func AssertRequestIdEquals(t *testing.T, req *request.Request, val string, msgAndArgs ...interface{}) bool {
 	return req.RequestID == val
 }
 
-func AssertResponseDataEquals(t *testing.T, response interface{}, expectResponse interface{}) bool {
+func AssertResponseDataEquals(t *testing.T, response interface{}, expectResponse interface{}, msgAndArgs ...interface{}) bool {
 	if response == nil || expectResponse == nil {
-		return response == expectResponse
+		return equal(t, expectResponse, response, msgAndArgs)
 	}
-	return cmp.Equal(expectResponse, response)
+	return cmp.Equal(response, expectResponse, cmpopts.EquateEmpty())
 }
 
-func AssertResponseErrorIsKindOf(t *testing.T, err error, val string) bool {
+func AssertResponseErrorIsKindOf(t *testing.T, err error, val string, msgAndArgs ...interface{}) bool {
 	if awsErr, ok := err.(awserr.Error); ok {
 		return awsErr.Code() == val
 	}
 	return true
 }
 
-func AssertResponseErrorMessageEquals(t *testing.T, err error, val string) bool {
+func AssertResponseErrorMessageEquals(t *testing.T, err error, val string, msgAndArgs ...interface{}) bool {
 	if awsErr, ok := err.(awserr.Error); ok {
 		return awsErr.Message() == val
 	}
 	return true
 }
 
-func AssertResponseErrorDataEquals(t *testing.T, err error, val map[string]interface{}) {
+func AssertResponseErrorDataEquals(t *testing.T, err error, val map[string]interface{}, msgAndArgs ...interface{}) {
 	if testing.Short() {
 		t.Skip("skipping responseErrorDataEquals assertion")
 	}

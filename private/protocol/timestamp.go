@@ -1,6 +1,7 @@
 package protocol
 
 import (
+	"math"
 	"strconv"
 	"time"
 )
@@ -46,7 +47,7 @@ func FormatTime(name string, t time.Time) string {
 	case ISO8601TimeFormatName:
 		return t.Format(ISO8601TimeFormat)
 	case UnixTimeFormatName:
-		return strconv.FormatInt(t.Unix(), 10)
+		return strconv.FormatFloat(float64(t.UnixNano())/(1e9),'f', 3, 64)
 	default:
 		panic("unknown timestamp format name, " + name)
 	}
@@ -62,10 +63,12 @@ func ParseTime(formatName, value string) (time.Time, error) {
 		return time.Parse(ISO8601TimeFormat, value)
 	case UnixTimeFormatName:
 		v, err := strconv.ParseFloat(value, 64)
+		_, dec := math.Modf(v)
+		dec = math.Round(dec*1000)/1000
 		if err != nil {
 			return time.Time{}, err
 		}
-		return time.Unix(int64(v), 0), nil
+		return time.Unix(int64(v), int64(dec*(1e9))), nil
 	default:
 		panic("unknown timestamp format name, " + formatName)
 	}

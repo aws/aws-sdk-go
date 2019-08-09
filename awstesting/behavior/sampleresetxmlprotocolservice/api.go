@@ -996,8 +996,6 @@ type KitchenSink struct {
 
 	Iso8601Timestamp *time.Time `locationName:"iso8601Timestamp" type:"timestamp" timestampFormat:"iso8601"`
 
-	JsonValue aws.JSONValue `type:"jsonvalue"`
-
 	List []*SimpleStruct `type:"list"`
 
 	ListOfMapsOfStrings []map[string]*string `type:"list"`
@@ -1140,12 +1138,6 @@ func (s *KitchenSink) SetInteger(v int64) *KitchenSink {
 // SetIso8601Timestamp sets the Iso8601Timestamp field's value.
 func (s *KitchenSink) SetIso8601Timestamp(v time.Time) *KitchenSink {
 	s.Iso8601Timestamp = &v
-	return s
-}
-
-// SetJsonValue sets the JsonValue field's value.
-func (s *KitchenSink) SetJsonValue(v aws.JSONValue) *KitchenSink {
-	s.JsonValue = v
 	return s
 }
 
@@ -1315,8 +1307,6 @@ type KitchenSinkInput struct {
 
 	Iso8601Timestamp *time.Time `locationName:"iso8601Timestamp" type:"timestamp" timestampFormat:"iso8601"`
 
-	JsonValue aws.JSONValue `type:"jsonvalue"`
-
 	List []*SimpleStruct `type:"list"`
 
 	ListOfMapsOfStrings []map[string]*string `type:"list"`
@@ -1459,12 +1449,6 @@ func (s *KitchenSinkInput) SetInteger(v int64) *KitchenSinkInput {
 // SetIso8601Timestamp sets the Iso8601Timestamp field's value.
 func (s *KitchenSinkInput) SetIso8601Timestamp(v time.Time) *KitchenSinkInput {
 	s.Iso8601Timestamp = &v
-	return s
-}
-
-// SetJsonValue sets the JsonValue field's value.
-func (s *KitchenSinkInput) SetJsonValue(v aws.JSONValue) *KitchenSinkInput {
-	s.JsonValue = v
 	return s
 }
 
@@ -1634,8 +1618,6 @@ type KitchenSinkOutput struct {
 
 	Iso8601Timestamp *time.Time `locationName:"iso8601Timestamp" type:"timestamp" timestampFormat:"iso8601"`
 
-	JsonValue aws.JSONValue `type:"jsonvalue"`
-
 	List []*SimpleStruct `type:"list"`
 
 	ListOfMapsOfStrings []map[string]*string `type:"list"`
@@ -1778,12 +1760,6 @@ func (s *KitchenSinkOutput) SetInteger(v int64) *KitchenSinkOutput {
 // SetIso8601Timestamp sets the Iso8601Timestamp field's value.
 func (s *KitchenSinkOutput) SetIso8601Timestamp(v time.Time) *KitchenSinkOutput {
 	s.Iso8601Timestamp = &v
-	return s
-}
-
-// SetJsonValue sets the JsonValue field's value.
-func (s *KitchenSinkOutput) SetJsonValue(v aws.JSONValue) *KitchenSinkOutput {
-	s.JsonValue = v
 	return s
 }
 
@@ -2309,7 +2285,7 @@ type PutWithRestBindingsOutput struct {
 
 	HeaderInteger *int64 `location:"header" locationName:"Header-Integer" type:"integer"`
 
-	HeaderIso8601Timestamp *time.Time `location:"header" locationName:"Header-Iso8601-Timestamp" type:"timestamp" timestampFormat:"unixTimestamp"`
+	HeaderIso8601Timestamp *time.Time `location:"header" locationName:"Header-Iso8601-Timestamp" type:"timestamp" timestampFormat:"iso8601"`
 
 	HeaderJsonValue aws.JSONValue `location:"header" locationName:"Header-Json-Value" type:"jsonvalue"`
 

@@ -146,6 +146,9 @@ func unmarshalStatusCode(v reflect.Value, statusCode int) {
 }
 
 func unmarshalHeaderMap(r reflect.Value, headers http.Header, prefix string) error {
+	if headers == nil {
+		return nil
+	}
 	switch r.Interface().(type) {
 	case map[string]*string: // we only support string map value types
 		out := map[string]*string{}
@@ -161,13 +164,19 @@ func unmarshalHeaderMap(r reflect.Value, headers http.Header, prefix string) err
 }
 
 func unmarshalHeader(v reflect.Value, header string, tag reflect.StructTag) error {
-	isJSONValue := tag.Get("type") == "jsonvalue"
-	if isJSONValue {
+	switch tag.Get("type"){
+	case "jsonvalue":
 		if len(header) == 0 {
 			return nil
 		}
-	} else if !v.IsValid() || (header == "" && v.Elem().Kind() != reflect.String) {
-		return nil
+	case "blob":
+		if len(header) == 0 {
+			return nil
+		}
+	default:
+		if !v.IsValid() || (header == "" && v.Elem().Kind() != reflect.String) {
+			return nil
+		}
 	}
 
 	switch v.Interface().(type) {
@@ -178,7 +187,7 @@ func unmarshalHeader(v reflect.Value, header string, tag reflect.StructTag) erro
 		if err != nil {
 			return err
 		}
-		v.Set(reflect.ValueOf(&b))
+		v.Set(reflect.ValueOf(b))
 	case *bool:
 		b, err := strconv.ParseBool(header)
 		if err != nil {

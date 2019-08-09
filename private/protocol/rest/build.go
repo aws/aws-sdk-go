@@ -287,7 +287,10 @@ func convertType(v reflect.Value, tag reflect.StructTag) (str string, err error)
 			format = protocol.RFC822TimeFormatName
 			if tag.Get("location") == "querystring" {
 				format = protocol.ISO8601TimeFormatName
+			} else if tag.Get("location") == "header" {
+				format = protocol.UnixTimeFormatName
 			}
+
 		}
 		str = protocol.FormatTime(format, value)
 	case aws.JSONValue:

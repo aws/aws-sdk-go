@@ -324,7 +324,7 @@
           "shape": "Timestamp",
           "location": "header",
           "locationName": "Header-Iso8601-Timestamp",
-          "timestampFormat": "unixTimestamp"
+          "timestampFormat": "iso8601"
         },
         "Headeriso8601Timestamp": {
           "shape": "Timestamp",
@@ -387,7 +387,6 @@
       "type": "structure",
       "members": {
         "String": { "shape": "String" },
-        "JsonValue": { "shape": "String", "jsonvalue": true },
         "Integer": { "shape": "Integer" },
         "Long": { "shape": "Long" },
         "Float": { "shape": "Float" },

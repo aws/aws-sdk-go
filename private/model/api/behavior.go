@@ -65,7 +65,7 @@ func (c Request) EmptyShapeBuilder(ref *ShapeRef) string{
 
 func (c Case) BuildOutputShape(ref *ShapeRef) string{
 	var b ShapeValueBuilder
-	return fmt.Sprintf("%s{\n%s\n}",
+	return fmt.Sprintf("&%s{\n%s\n}",
 		b.GoType(ref, true),
 		b.BuildShape(ref, c.Expect[0]["responseDataEquals"].(map[string]interface{}), false),
 	)
@@ -103,6 +103,8 @@ func (a *API) APIBehaviorTestsGoCode() string {
 	a.AddSDKImport("aws/credentials")
 	a.AddSDKImport("aws/corehandlers")
 	a.AddSDKImport("aws/request")
+	a.AddSDKImport("private/protocol")
+	a.AddSDKImport("internal/sdktesting")
 
 	a.AddImport(a.ImportPath())
 
@@ -196,7 +198,9 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 {{define "ResponseBuild"}}
 		{{- if eq $.testCase.Response.StatusCode 0}}
 			r.HTTPResponse = &http.Response{StatusCode:200,
-											Header: http.Header{},}
+											Header: http.Header{},
+											Body: ioutil.NopCloser(&bytes.Buffer{}),
+											}
 		{{- else }}
 			r.HTTPResponse = &http.Response{
 							StatusCode:{{$.testCase.Response.StatusCode}},
@@ -206,11 +210,16 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 											"{{$key}}":[]string{ "{{$val}}" },
 										{{- end}}	
 									},
+						{{- else}}
+							Header: http.Header{},
 						{{- end}}
+
 						{{- if ne (len $.testCase.Response.BodyContent) 0}}
 							Body: ioutil.NopCloser(bytes.NewBufferString({{printf "%q" $.testCase.Response.BodyContent}})),
+						{{- else}}
+							Body: ioutil.NopCloser(&bytes.Buffer{}),
 						{{- end}}
-					}
+						}
 		{{- end}}
 {{end}}
 
@@ -221,8 +230,8 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 		req, resp := svc.{{$.testCase.Request.Operation}}Request(input)
 		_ = resp
 
-		MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func (r *request.Request){ 
-			{{- template "ResponseBuild" Map "testCase" $.testCase}}	
+		MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func (r *request.Request){ 
+			{{- template "ResponseBuild" Map "testCase" $.testCase -}}	
 		}}
 		req.Handlers.Send.Swap( corehandlers.SendHandler.Name, MockHTTPResponseHandler )
 
@@ -232,14 +241,6 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 		}
 		{{printf "\n"}}
 {{end}}
-
-func parseTime(layout, value string) *time.Time {
-	t, err := time.Parse(layout, value)
-	if err != nil {
-		panic(err)
-	}
-	return &t
-}
 
 {{- range $i, $testCase := $.Tests.Cases }}
 	//{{printf "%s" $testCase.Description}}

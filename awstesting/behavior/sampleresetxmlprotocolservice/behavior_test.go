@@ -19,15 +19,9 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/awstesting/behavior/sampleresetxmlprotocolservice"
+	"github.com/aws/aws-sdk-go/internal/sdktesting"
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
-
-func parseTime(layout, value string) *time.Time {
-	t, err := time.Parse(layout, value)
-	if err != nil {
-		panic(err)
-	}
-	return &t
-}
 
 //Can build empty PUT requests
 func TestBehavior_00(t *testing.T) {
@@ -49,10 +43,11 @@ func TestBehavior_00(t *testing.T) {
 	req, resp := svc.EmptyPutRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -94,10 +89,11 @@ func TestBehavior_01(t *testing.T) {
 	req, resp := svc.EmptyPostRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -139,10 +135,11 @@ func TestBehavior_02(t *testing.T) {
 	req, resp := svc.EmptyPatchRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -184,10 +181,11 @@ func TestBehavior_03(t *testing.T) {
 	req, resp := svc.EmptyGetRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -229,10 +227,11 @@ func TestBehavior_04(t *testing.T) {
 	req, resp := svc.EmptyHeadRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -274,10 +273,11 @@ func TestBehavior_05(t *testing.T) {
 	req, resp := svc.EmptyDeleteRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -322,10 +322,11 @@ func TestBehavior_06(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -367,10 +368,11 @@ func TestBehavior_07(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -409,10 +411,11 @@ func TestBehavior_08(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -452,10 +455,11 @@ func TestBehavior_09(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -495,10 +499,11 @@ func TestBehavior_10(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -538,10 +543,11 @@ func TestBehavior_11(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -581,10 +587,11 @@ func TestBehavior_12(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -624,10 +631,11 @@ func TestBehavior_13(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -667,10 +675,11 @@ func TestBehavior_14(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -710,10 +719,11 @@ func TestBehavior_15(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -753,10 +763,11 @@ func TestBehavior_16(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -796,10 +807,11 @@ func TestBehavior_17(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -830,7 +842,13 @@ func TestBehavior_18(t *testing.T) {
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
-		QueryTimestamp: parseTime("2006-01-02T15:04:05Z", "946845296.123000"),
+		QueryTimestamp: func() *time.Time {
+			v, err := protocol.ParseTime("unixTimestamp", "946845296.123000")
+			if err != nil {
+				panic(err)
+			}
+			return &v
+		}(),
 		UriPath:        aws.String("path"),
 		UriPathSegment: aws.String("segment"),
 	}
@@ -839,10 +857,11 @@ func TestBehavior_18(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -873,19 +892,26 @@ func TestBehavior_19(t *testing.T) {
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
-		QueryUnixTimestamp: parseTime("2006-01-02T15:04:05Z", "946845296.123000"),
-		UriPath:            aws.String("path"),
-		UriPathSegment:     aws.String("segment"),
+		QueryUnixTimestamp: func() *time.Time {
+			v, err := protocol.ParseTime("unixTimestamp", "946845296.123000")
+			if err != nil {
+				panic(err)
+			}
+			return &v
+		}(),
+		UriPath:        aws.String("path"),
+		UriPathSegment: aws.String("segment"),
 	}
 
 	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -916,19 +942,26 @@ func TestBehavior_20(t *testing.T) {
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
-		QueryIso8601Timestamp: parseTime("2006-01-02T15:04:05Z", "946845296.123000"),
-		UriPath:               aws.String("path"),
-		UriPathSegment:        aws.String("segment"),
+		QueryIso8601Timestamp: func() *time.Time {
+			v, err := protocol.ParseTime("unixTimestamp", "946845296.123000")
+			if err != nil {
+				panic(err)
+			}
+			return &v
+		}(),
+		UriPath:        aws.String("path"),
+		UriPathSegment: aws.String("segment"),
 	}
 
 	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -967,10 +1000,11 @@ func TestBehavior_21(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -1014,10 +1048,11 @@ func TestBehavior_22(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -1060,10 +1095,11 @@ func TestBehavior_23(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -1106,10 +1142,11 @@ func TestBehavior_24(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -1158,10 +1195,11 @@ func TestBehavior_25(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -1201,10 +1239,11 @@ func TestBehavior_26(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -1244,10 +1283,11 @@ func TestBehavior_27(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -1287,10 +1327,11 @@ func TestBehavior_28(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -1330,10 +1371,11 @@ func TestBehavior_29(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -1373,10 +1415,11 @@ func TestBehavior_30(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -1416,10 +1459,11 @@ func TestBehavior_31(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -1459,10 +1503,11 @@ func TestBehavior_32(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -1502,10 +1547,11 @@ func TestBehavior_33(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -1545,10 +1591,11 @@ func TestBehavior_34(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -1579,19 +1626,26 @@ func TestBehavior_35(t *testing.T) {
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
-		HeaderTimestamp: parseTime("Mon, 2 Jan 2006 15:04:05 GMT", "946845296.123000"),
-		UriPath:         aws.String("path"),
-		UriPathSegment:  aws.String("segment"),
+		HeaderTimestamp: func() *time.Time {
+			v, err := protocol.ParseTime("unixTimestamp", "946845296.123000")
+			if err != nil {
+				panic(err)
+			}
+			return &v
+		}(),
+		UriPath:        aws.String("path"),
+		UriPathSegment: aws.String("segment"),
 	}
 
 	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -1622,19 +1676,26 @@ func TestBehavior_36(t *testing.T) {
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
-		HeaderUnixTimestamp: parseTime("Mon, 2 Jan 2006 15:04:05 GMT", "946845296.123000"),
-		UriPath:             aws.String("path"),
-		UriPathSegment:      aws.String("segment"),
+		HeaderUnixTimestamp: func() *time.Time {
+			v, err := protocol.ParseTime("unixTimestamp", "946845296.123000")
+			if err != nil {
+				panic(err)
+			}
+			return &v
+		}(),
+		UriPath:        aws.String("path"),
+		UriPathSegment: aws.String("segment"),
 	}
 
 	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -1665,19 +1726,26 @@ func TestBehavior_37(t *testing.T) {
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
-		HeaderIso8601Timestamp: parseTime("Mon, 2 Jan 2006 15:04:05 GMT", "946845296.123000"),
-		UriPath:                aws.String("path"),
-		UriPathSegment:         aws.String("segment"),
+		HeaderIso8601Timestamp: func() *time.Time {
+			v, err := protocol.ParseTime("unixTimestamp", "946845296.123000")
+			if err != nil {
+				panic(err)
+			}
+			return &v
+		}(),
+		UriPath:        aws.String("path"),
+		UriPathSegment: aws.String("segment"),
 	}
 
 	//Build request
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -1716,10 +1784,11 @@ func TestBehavior_38(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -1763,10 +1832,11 @@ func TestBehavior_39(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -1810,10 +1880,11 @@ func TestBehavior_40(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -1853,10 +1924,11 @@ func TestBehavior_41(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -1895,10 +1967,11 @@ func TestBehavior_42(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -1938,10 +2011,11 @@ func TestBehavior_43(t *testing.T) {
 	req, resp := svc.OperationWithPayloadStructureMemberRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -1979,10 +2053,11 @@ func TestBehavior_44(t *testing.T) {
 	req, resp := svc.OperationWithPayloadStructureMemberRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -2020,10 +2095,11 @@ func TestBehavior_45(t *testing.T) {
 	req, resp := svc.OperationWithPayloadStructureMemberRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -2064,10 +2140,11 @@ func TestBehavior_46(t *testing.T) {
 	req, resp := svc.OperationMembersWithoutLocationRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -2108,10 +2185,11 @@ func TestBehavior_47(t *testing.T) {
 	req, resp := svc.OperationMembersWithoutLocationRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -2147,10 +2225,11 @@ func TestBehavior_48(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -2186,10 +2265,11 @@ func TestBehavior_49(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -2219,18 +2299,17 @@ func TestBehavior_50(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
-	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
-		JsonValue: aws.JSONValue{"key": "value"},
-	}
+	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -2268,10 +2347,11 @@ func TestBehavior_51(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -2309,10 +2389,11 @@ func TestBehavior_52(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -2350,10 +2431,11 @@ func TestBehavior_53(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -2391,10 +2473,11 @@ func TestBehavior_54(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -2432,10 +2515,11 @@ func TestBehavior_55(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -2473,10 +2557,11 @@ func TestBehavior_56(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -2514,10 +2599,11 @@ func TestBehavior_57(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -2548,17 +2634,24 @@ func TestBehavior_58(t *testing.T) {
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
-		Iso8601Timestamp: parseTime("2006-01-02T15:04:05Z", "946845296.000000"),
+		Iso8601Timestamp: func() *time.Time {
+			v, err := protocol.ParseTime("unixTimestamp", "946845296.000000")
+			if err != nil {
+				panic(err)
+			}
+			return &v
+		}(),
 	}
 
 	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -2589,17 +2682,24 @@ func TestBehavior_59(t *testing.T) {
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
-		Timestamp: parseTime("2006-01-02T15:04:05Z", "946845296.000000"),
+		Timestamp: func() *time.Time {
+			v, err := protocol.ParseTime("unixTimestamp", "946845296.000000")
+			if err != nil {
+				panic(err)
+			}
+			return &v
+		}(),
 	}
 
 	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -2635,10 +2735,11 @@ func TestBehavior_60(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -2669,17 +2770,24 @@ func TestBehavior_61(t *testing.T) {
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
-		UnixTimestamp: parseTime("2006-01-02T15:04:05Z", "946845296.123000"),
+		UnixTimestamp: func() *time.Time {
+			v, err := protocol.ParseTime("unixTimestamp", "946845296.123000")
+			if err != nil {
+				panic(err)
+			}
+			return &v
+		}(),
 	}
 
 	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -2720,10 +2828,11 @@ func TestBehavior_62(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -2769,10 +2878,11 @@ func TestBehavior_63(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -2820,10 +2930,11 @@ func TestBehavior_64(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -2877,10 +2988,11 @@ func TestBehavior_65(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -2925,10 +3037,11 @@ func TestBehavior_66(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -2973,10 +3086,11 @@ func TestBehavior_67(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -3021,10 +3135,11 @@ func TestBehavior_68(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -3069,10 +3184,11 @@ func TestBehavior_69(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -3117,10 +3233,11 @@ func TestBehavior_70(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -3165,10 +3282,11 @@ func TestBehavior_71(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -3213,10 +3331,11 @@ func TestBehavior_72(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -3261,10 +3380,11 @@ func TestBehavior_73(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -3305,10 +3425,11 @@ func TestBehavior_74(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -3354,10 +3475,11 @@ func TestBehavior_75(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -3403,10 +3525,11 @@ func TestBehavior_76(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -3451,10 +3574,11 @@ func TestBehavior_77(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -3499,10 +3623,11 @@ func TestBehavior_78(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -3547,10 +3672,11 @@ func TestBehavior_79(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -3595,10 +3721,11 @@ func TestBehavior_80(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -3643,10 +3770,11 @@ func TestBehavior_81(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -3691,10 +3819,11 @@ func TestBehavior_82(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -3739,10 +3868,11 @@ func TestBehavior_83(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -3787,10 +3917,11 @@ func TestBehavior_84(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -3835,10 +3966,11 @@ func TestBehavior_85(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -3886,10 +4018,11 @@ func TestBehavior_86(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -3929,10 +4062,11 @@ func TestBehavior_87(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -3972,10 +4106,11 @@ func TestBehavior_88(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -4013,10 +4148,11 @@ func TestBehavior_89(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -4058,10 +4194,11 @@ func TestBehavior_90(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{}}
-
+			Header: http.Header{},
+			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -4100,12 +4237,12 @@ func TestBehavior_91(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -4115,7 +4252,7 @@ func TestBehavior_91(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
 	}) {
@@ -4147,12 +4284,12 @@ func TestBehavior_92(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 202,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -4162,7 +4299,7 @@ func TestBehavior_92(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HttpStatusCode: aws.Int64(202),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
 	}) {
@@ -4194,7 +4331,7 @@ func TestBehavior_93(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4202,7 +4339,6 @@ func TestBehavior_93(t *testing.T) {
 			},
 			Body: ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -4212,7 +4348,7 @@ func TestBehavior_93(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderString:   aws.String("value"),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4245,7 +4381,7 @@ func TestBehavior_94(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4253,7 +4389,6 @@ func TestBehavior_94(t *testing.T) {
 			},
 			Body: ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -4263,7 +4398,7 @@ func TestBehavior_94(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderJsonValue: aws.JSONValue{"foo": "bar"},
 		HttpStatusCode:  aws.Int64(200),
 		KitchenSink:     &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4296,7 +4431,7 @@ func TestBehavior_95(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4304,7 +4439,6 @@ func TestBehavior_95(t *testing.T) {
 			},
 			Body: ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -4314,7 +4448,7 @@ func TestBehavior_95(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderInteger:  aws.Int64(123456),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4347,7 +4481,7 @@ func TestBehavior_96(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4355,7 +4489,6 @@ func TestBehavior_96(t *testing.T) {
 			},
 			Body: ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -4365,7 +4498,7 @@ func TestBehavior_96(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderLong:     aws.Int64(123456),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4398,7 +4531,7 @@ func TestBehavior_97(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4406,7 +4539,6 @@ func TestBehavior_97(t *testing.T) {
 			},
 			Body: ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -4416,7 +4548,7 @@ func TestBehavior_97(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderFloat:    aws.Float64(123.456000),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4449,7 +4581,7 @@ func TestBehavior_98(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4457,7 +4589,6 @@ func TestBehavior_98(t *testing.T) {
 			},
 			Body: ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -4467,7 +4598,7 @@ func TestBehavior_98(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderDouble:   aws.Float64(123.456000),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4500,7 +4631,7 @@ func TestBehavior_99(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4508,7 +4639,6 @@ func TestBehavior_99(t *testing.T) {
 			},
 			Body: ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -4518,7 +4648,7 @@ func TestBehavior_99(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderBoolean:  aws.Bool(true),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4551,7 +4681,7 @@ func TestBehavior_100(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4559,7 +4689,6 @@ func TestBehavior_100(t *testing.T) {
 			},
 			Body: ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -4569,7 +4698,7 @@ func TestBehavior_100(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderBoolean:  aws.Bool(false),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4602,7 +4731,7 @@ func TestBehavior_101(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4610,7 +4739,6 @@ func TestBehavior_101(t *testing.T) {
 			},
 			Body: ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -4620,7 +4748,7 @@ func TestBehavior_101(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderBlob:     []byte("YmluYXJ5LXZhbHVl"),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4653,7 +4781,7 @@ func TestBehavior_102(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4661,7 +4789,6 @@ func TestBehavior_102(t *testing.T) {
 			},
 			Body: ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -4671,10 +4798,16 @@ func TestBehavior_102(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
-		HeaderTimestamp: parseTime("Mon, 2 Jan 2006 15:04:05 GMT", "946845296.000000"),
-		HttpStatusCode:  aws.Int64(200),
-		KitchenSink:     &sampleresetxmlprotocolservice.KitchenSink{},
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+		HeaderTimestamp: func() *time.Time {
+			v, err := protocol.ParseTime("unixTimestamp", "946845296.000000")
+			if err != nil {
+				panic(err)
+			}
+			return &v
+		}(),
+		HttpStatusCode: aws.Int64(200),
+		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
@@ -4704,7 +4837,7 @@ func TestBehavior_103(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4712,7 +4845,6 @@ func TestBehavior_103(t *testing.T) {
 			},
 			Body: ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -4722,10 +4854,16 @@ func TestBehavior_103(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
-		HeaderUnixTimestamp: parseTime("Mon, 2 Jan 2006 15:04:05 GMT", "946845296.000000"),
-		HttpStatusCode:      aws.Int64(200),
-		KitchenSink:         &sampleresetxmlprotocolservice.KitchenSink{},
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+		HeaderUnixTimestamp: func() *time.Time {
+			v, err := protocol.ParseTime("unixTimestamp", "946845296.000000")
+			if err != nil {
+				panic(err)
+			}
+			return &v
+		}(),
+		HttpStatusCode: aws.Int64(200),
+		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
@@ -4755,7 +4893,7 @@ func TestBehavior_104(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4763,7 +4901,6 @@ func TestBehavior_104(t *testing.T) {
 			},
 			Body: ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -4773,10 +4910,16 @@ func TestBehavior_104(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
-		HeaderIso8601Timestamp: parseTime("Mon, 2 Jan 2006 15:04:05 GMT", "946845296.123000"),
-		HttpStatusCode:         aws.Int64(200),
-		KitchenSink:            &sampleresetxmlprotocolservice.KitchenSink{},
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+		HeaderIso8601Timestamp: func() *time.Time {
+			v, err := protocol.ParseTime("unixTimestamp", "946845296.123000")
+			if err != nil {
+				panic(err)
+			}
+			return &v
+		}(),
+		HttpStatusCode: aws.Int64(200),
+		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
@@ -4806,7 +4949,7 @@ func TestBehavior_105(t *testing.T) {
 	req, resp := svc.PutWithRestBindingsRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4814,7 +4957,6 @@ func TestBehavior_105(t *testing.T) {
 			},
 			Body: ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -4824,7 +4966,7 @@ func TestBehavior_105(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
 	}) {
@@ -4855,7 +4997,7 @@ func TestBehavior_106(t *testing.T) {
 	req, resp := svc.SimpleHttpOperationRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4863,8 +5005,8 @@ func TestBehavior_106(t *testing.T) {
 				"Header-2": []string{"value-2"},
 				"Header-3": []string{"value-3"},
 			},
+			Body: ioutil.NopCloser(&bytes.Buffer{}),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -4874,7 +5016,7 @@ func TestBehavior_106(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.SimpleHttpOperationOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.SimpleHttpOperationOutput{
 		Headers: map[string]*string{
 			"Header-1": aws.String("value-1"),
 			"Header-2": aws.String("value-2"),
@@ -4907,12 +5049,12 @@ func TestBehavior_107(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><String>value</String></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -4922,7 +5064,7 @@ func TestBehavior_107(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{}) {
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -4948,12 +5090,12 @@ func TestBehavior_108(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><JsonValue>{\"foo\":\"bar\"}</JsonValue></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -4963,9 +5105,7 @@ func TestBehavior_108(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
-		JsonValue: aws.JSONValue{"foo": "bar"},
-	}) {
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -4991,12 +5131,12 @@ func TestBehavior_109(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><Integer>123456</Integer></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -5006,7 +5146,7 @@ func TestBehavior_109(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Integer: aws.Int64(123456),
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
@@ -5034,12 +5174,12 @@ func TestBehavior_110(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><Long>123456</Long></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -5049,7 +5189,7 @@ func TestBehavior_110(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Long: aws.Int64(123456),
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
@@ -5077,12 +5217,12 @@ func TestBehavior_111(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><Float>123.456</Float></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -5092,7 +5232,7 @@ func TestBehavior_111(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Float: aws.Float64(123.456000),
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
@@ -5120,12 +5260,12 @@ func TestBehavior_112(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><Double>123.456</Double></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -5135,7 +5275,7 @@ func TestBehavior_112(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Double: aws.Float64(123.456000),
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
@@ -5163,12 +5303,12 @@ func TestBehavior_113(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><Boolean>true</Boolean></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -5178,7 +5318,7 @@ func TestBehavior_113(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Boolean: aws.Bool(true),
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
@@ -5206,12 +5346,12 @@ func TestBehavior_114(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><Boolean>false</Boolean></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -5221,7 +5361,7 @@ func TestBehavior_114(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Boolean: aws.Bool(false),
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
@@ -5249,12 +5389,12 @@ func TestBehavior_115(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><Blob>YmluYXJ5LXZhbHVl</Blob></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -5264,7 +5404,7 @@ func TestBehavior_115(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Blob: []byte("YmluYXJ5LXZhbHVl"),
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
@@ -5292,12 +5432,12 @@ func TestBehavior_116(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><Timestamp>2000-01-02T20:34:56.123Z</Timestamp></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -5307,8 +5447,14 @@ func TestBehavior_116(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
-		Timestamp: parseTime("2006-01-02T15:04:05Z", "946845296.123000"),
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+		Timestamp: func() *time.Time {
+			v, err := protocol.ParseTime("unixTimestamp", "946845296.123000")
+			if err != nil {
+				panic(err)
+			}
+			return &v
+		}(),
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
@@ -5335,12 +5481,12 @@ func TestBehavior_117(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><Iso8601Timestamp>2000-01-02T20:34:56.123Z</Iso8601Timestamp></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -5350,8 +5496,14 @@ func TestBehavior_117(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
-		Iso8601Timestamp: parseTime("2006-01-02T15:04:05Z", "946845296.123000"),
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+		Iso8601Timestamp: func() *time.Time {
+			v, err := protocol.ParseTime("unixTimestamp", "946845296.123000")
+			if err != nil {
+				panic(err)
+			}
+			return &v
+		}(),
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
@@ -5378,12 +5530,12 @@ func TestBehavior_118(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><HttpdateTimestamp>Sun, 02 Jan 2000 20:34:56 GMT</HttpdateTimestamp></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -5393,7 +5545,7 @@ func TestBehavior_118(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{}) {
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -5419,12 +5571,12 @@ func TestBehavior_119(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><UnixTimestamp>946845296</UnixTimestamp></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -5434,8 +5586,14 @@ func TestBehavior_119(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
-		UnixTimestamp: parseTime("2006-01-02T15:04:05Z", "946845296.000000"),
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+		UnixTimestamp: func() *time.Time {
+			v, err := protocol.ParseTime("unixTimestamp", "946845296.000000")
+			if err != nil {
+				panic(err)
+			}
+			return &v
+		}(),
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
@@ -5462,12 +5620,12 @@ func TestBehavior_120(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><ListOfStrings><member>abc</member><member>xyz</member></ListOfStrings></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -5477,7 +5635,7 @@ func TestBehavior_120(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		ListOfStrings: []*string{
 			aws.String("abc"),
 			aws.String("xyz"),
@@ -5508,12 +5666,12 @@ func TestBehavior_121(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><ListOfMapsOfStrings><member><entry><key>size</key><value>large</value></entry><entry><key>color</key><value>red</value></entry></member><member><entry><key>abc</key><value>xyz</value></entry></member></ListOfMapsOfStrings></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -5523,7 +5681,7 @@ func TestBehavior_121(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		ListOfMapsOfStrings: []map[string]*string{
 			{
 				"color": aws.String("red"),
@@ -5559,12 +5717,12 @@ func TestBehavior_122(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><RecursiveList><member><RecursiveList><member><String>value</String></member></RecursiveList></member></RecursiveList></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -5574,7 +5732,7 @@ func TestBehavior_122(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		RecursiveList: []*sampleresetxmlprotocolservice.KitchenSink{
 			{
 				RecursiveList: []*sampleresetxmlprotocolservice.KitchenSink{
@@ -5608,12 +5766,12 @@ func TestBehavior_123(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><List><member><Value>value-1</Value></member><member><Value>value-2</Value></member></List></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -5623,7 +5781,7 @@ func TestBehavior_123(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		List: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -5658,12 +5816,12 @@ func TestBehavior_124(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><list-name><member><Value>value-1</Value></member><member><Value>value-2</Value></member></list-name></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -5673,7 +5831,7 @@ func TestBehavior_124(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		ListWithName: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -5708,12 +5866,12 @@ func TestBehavior_125(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><ListWithMemberName><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name></ListWithMemberName></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -5723,7 +5881,7 @@ func TestBehavior_125(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		ListWithMemberName: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -5758,12 +5916,12 @@ func TestBehavior_126(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><list-name><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name></list-name></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -5773,7 +5931,7 @@ func TestBehavior_126(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		ListWithBothNames: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -5808,12 +5966,12 @@ func TestBehavior_127(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><FlatList><Value>value-1</Value></FlatList><FlatList><Value>value-2</Value></FlatList></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -5823,7 +5981,7 @@ func TestBehavior_127(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatList: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -5858,12 +6016,12 @@ func TestBehavior_128(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><item-name><Value>value-1</Value></item-name><item-name><Value>value-2</Value></item-name></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -5873,7 +6031,7 @@ func TestBehavior_128(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatListWithName: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -5908,12 +6066,12 @@ func TestBehavior_129(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><other-member-name><Value>value-1</Value></other-member-name><other-member-name><Value>value-2</Value></other-member-name></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -5923,7 +6081,7 @@ func TestBehavior_129(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatListWithBothNames: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -5958,12 +6116,12 @@ func TestBehavior_130(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><MapOfStrings><entry><key>key-1</key><value>value-1</value></entry><entry><key>key-2</key><value>value-2</value></entry></MapOfStrings></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -5973,7 +6131,7 @@ func TestBehavior_130(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapOfStrings: map[string]*string{
 			"key-1": aws.String("value-1"),
 			"key-2": aws.String("value-2"),
@@ -6004,12 +6162,12 @@ func TestBehavior_131(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><MapOfListsOfStrings><entry><key>key-1</key><value><member>value-1</member><member>value-2</member></value></entry><entry><key>key-2</key><value><member>value-3</member></value></entry></MapOfListsOfStrings></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -6019,7 +6177,7 @@ func TestBehavior_131(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapOfListsOfStrings: map[string][]*string{
 			"key-1": {
 				aws.String("value-1"),
@@ -6055,12 +6213,12 @@ func TestBehavior_132(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><MapOfMaps><entry><key>key-1</key><value><entry><key>key-2</key><value>value-1</value></entry><entry><key>key-3</key><value>value-2</value></entry></value></entry><entry><key>key-4</key><value><entry><key>key-5</key><value>value-3</value></entry></value></entry></MapOfMaps></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -6070,7 +6228,7 @@ func TestBehavior_132(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapOfMaps: map[string]map[string]*string{
 			"key-1": {
 				"key-2": aws.String("value-1"),
@@ -6106,12 +6264,12 @@ func TestBehavior_133(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><RecursiveMap><entry><key>key-1</key><value><RecursiveMap><entry><key>key-2</key><value><RecursiveMap><entry><key>key-3</key><value><String>value-1</String></value></entry></RecursiveMap></value></entry></RecursiveMap></value></entry></RecursiveMap></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -6121,7 +6279,7 @@ func TestBehavior_133(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		RecursiveMap: map[string]*sampleresetxmlprotocolservice.KitchenSink{
 			"\"key-1\"": {
 				RecursiveMap: map[string]*sampleresetxmlprotocolservice.KitchenSink{
@@ -6159,12 +6317,12 @@ func TestBehavior_134(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><Map><entry><key>key-1</key><value><Value>value-1</Value></value></entry><entry><key>key-2</key><value><Value>value-2</Value></value></entry></Map></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -6174,7 +6332,7 @@ func TestBehavior_134(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Map: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"\"key-1\"": {
 				Value: aws.String("value-1"),
@@ -6209,12 +6367,12 @@ func TestBehavior_135(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><map-with-name><entry><key>key-1</key><value><Value>value-1</Value></value></entry><entry><key>key-2</key><value><Value>value-2</Value></value></entry></map-with-name></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -6224,7 +6382,7 @@ func TestBehavior_135(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapWithName: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"\"key-1\"": {
 				Value: aws.String("value-1"),
@@ -6259,12 +6417,12 @@ func TestBehavior_136(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><MapWithMemberNames><entry><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></entry><entry><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></entry></MapWithMemberNames></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -6274,7 +6432,7 @@ func TestBehavior_136(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapWithMemberNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"\"key-1\"": {
 				Value: aws.String("value-1"),
@@ -6309,12 +6467,12 @@ func TestBehavior_137(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><map-name><entry><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></entry><entry><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></entry></map-name></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -6324,7 +6482,7 @@ func TestBehavior_137(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapWithBothNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"\"key-1\"": {
 				Value: aws.String("value-1"),
@@ -6359,12 +6517,12 @@ func TestBehavior_138(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><FlatMap><key>key-1</key><value><Value>value-1</Value></value></FlatMap><FlatMap><key>key-2</key><value><Value>value-2</Value></value></FlatMap></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -6374,7 +6532,7 @@ func TestBehavior_138(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatMap: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"\"key-1\"": {
 				Value: aws.String("value-1"),
@@ -6409,12 +6567,12 @@ func TestBehavior_139(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><flat-map-with-name><key>key-1</key><value><Value>value-1</Value></value></flat-map-with-name><flat-map-with-name><key>key-2</key><value><Value>value-2</Value></value></flat-map-with-name></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -6424,7 +6582,7 @@ func TestBehavior_139(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatMapWithName: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"\"key-1\"": {
 				Value: aws.String("value-1"),
@@ -6459,12 +6617,12 @@ func TestBehavior_140(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><FlatMapWithMemberNames><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></FlatMapWithMemberNames><FlatMapWithMemberNames><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></FlatMapWithMemberNames></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -6474,7 +6632,7 @@ func TestBehavior_140(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatMapWithMemberNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"\"key-1\"": {
 				Value: aws.String("value-1"),
@@ -6509,12 +6667,12 @@ func TestBehavior_141(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><flat-map><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></flat-map><flat-map><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></flat-map></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -6524,7 +6682,7 @@ func TestBehavior_141(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatMapWithBothNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"\"key-1\"": {
 				Value: aws.String("value-1"),
@@ -6559,12 +6717,12 @@ func TestBehavior_142(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><SimpleStruct><Value>value</Value></SimpleStruct></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -6574,7 +6732,7 @@ func TestBehavior_142(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		SimpleStruct: &sampleresetxmlprotocolservice.SimpleStruct{
 			Value: aws.String("value"),
 		},
@@ -6604,12 +6762,12 @@ func TestBehavior_143(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><StructWithMemberWithName><member-with-name>value</member-with-name></StructWithMemberWithName></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -6619,7 +6777,7 @@ func TestBehavior_143(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		StructWithMemberWithName: &sampleresetxmlprotocolservice.StructWithMemberWithName{
 			Value: aws.String("value"),
 		},
@@ -6649,12 +6807,12 @@ func TestBehavior_144(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><EmptyStruct></EmptyStruct></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -6664,7 +6822,7 @@ func TestBehavior_144(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		EmptyStruct: &sampleresetxmlprotocolservice.EmptyStruct{},
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
@@ -6692,12 +6850,12 @@ func TestBehavior_145(t *testing.T) {
 	req, resp := svc.KitchenSinkRequest(input)
 	_ = resp
 
-	MockHTTPResponseHandler := request.NamedHandler{Name: "MockHTTPResponseHandler", Fn: func(r *request.Request) {
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
+			Header:     http.Header{},
 			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><RecursiveStruct><RecursiveStruct><RecursiveStruct><String>value</String></RecursiveStruct></RecursiveStruct></RecursiveStruct></KitchenSink>")),
 		}
-
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
@@ -6707,7 +6865,7 @@ func TestBehavior_145(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{
 			RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{
 				RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{},
