@@ -7920,6 +7920,11 @@
         "tableName":{"shape":"TableName"}
       }
     },
+    "Qos":{
+      "type":"integer",
+      "max":1,
+      "min":0
+    },
     "QueryMaxResults":{
       "type":"integer",
       "max":500,
@@ -8154,7 +8159,8 @@
       ],
       "members":{
         "roleArn":{"shape":"AwsArn"},
-        "topic":{"shape":"TopicPattern"}
+        "topic":{"shape":"TopicPattern"},
+        "qos":{"shape":"Qos"}
       }
     },
     "Resource":{"type":"string"},

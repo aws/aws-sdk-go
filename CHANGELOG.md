@@ -1,3 +1,18 @@
+Release v1.22.3 (2019-08-09)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/guardduty`: Updates service API and documentation
+  * New "evidence" field in the finding model to provide evidence information explaining why the finding has been triggered. Currently only threat-intelligence findings have this field. Some documentation updates.
+* `service/iot`: Updates service API and documentation
+  * This release adds Quality of Service (QoS) support for AWS IoT rules engine republish action.
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert has added support for multi-DRM SPEKE with CMAF outputs, MP3 ingest, and options for improved video quality.
+* `service/redshift`: Updates service API and documentation
+  * Add expectedNextSnapshotScheduleTime and expectedNextSnapshotScheduleTimeStatus to redshift cluster object.
+* `service/runtime.lex`: Updates service API and documentation
+
 Release v1.22.2 (2019-08-08)
 ===
 

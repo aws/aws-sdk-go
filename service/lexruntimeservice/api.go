@@ -11,6 +11,189 @@ import (
 	"github.com/aws/aws-sdk-go/aws/signer/v4"
 )
 
+const opDeleteSession = "DeleteSession"
+
+// DeleteSessionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSession operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteSession for more information on using the DeleteSession
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteSessionRequest method.
+//    req, resp := client.DeleteSessionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex-2016-11-28/DeleteSession
+func (c *LexRuntimeService) DeleteSessionRequest(input *DeleteSessionInput) (req *request.Request, output *DeleteSessionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteSession,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/bot/{botName}/alias/{botAlias}/user/{userId}/session",
+	}
+
+	if input == nil {
+		input = &DeleteSessionInput{}
+	}
+
+	output = &DeleteSessionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteSession API operation for Amazon Lex Runtime Service.
+//
+// Removes session information for a specified bot, alias, and user ID.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Runtime Service's
+// API operation DeleteSession for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource (such as the Amazon Lex bot or an alias) that is referred to
+//   is not found.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   Request validation failed, there is no usable message in the context, or
+//   the bot build failed, is still in progress, or contains unbuilt changes.
+//
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   Exceeded a limit.
+//
+//   * ErrCodeInternalFailureException "InternalFailureException"
+//   Internal service error. Retry the call.
+//
+//   * ErrCodeConflictException "ConflictException"
+//   Two clients are using the same AWS account, Amazon Lex bot, and user ID.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex-2016-11-28/DeleteSession
+func (c *LexRuntimeService) DeleteSession(input *DeleteSessionInput) (*DeleteSessionOutput, error) {
+	req, out := c.DeleteSessionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteSessionWithContext is the same as DeleteSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexRuntimeService) DeleteSessionWithContext(ctx aws.Context, input *DeleteSessionInput, opts ...request.Option) (*DeleteSessionOutput, error) {
+	req, out := c.DeleteSessionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetSession = "GetSession"
+
+// GetSessionRequest generates a "aws/request.Request" representing the
+// client's request for the GetSession operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSession for more information on using the GetSession
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetSessionRequest method.
+//    req, resp := client.GetSessionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex-2016-11-28/GetSession
+func (c *LexRuntimeService) GetSessionRequest(input *GetSessionInput) (req *request.Request, output *GetSessionOutput) {
+	op := &request.Operation{
+		Name:       opGetSession,
+		HTTPMethod: "GET",
+		HTTPPath:   "/bot/{botName}/alias/{botAlias}/user/{userId}/session",
+	}
+
+	if input == nil {
+		input = &GetSessionInput{}
+	}
+
+	output = &GetSessionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSession API operation for Amazon Lex Runtime Service.
+//
+// Returns session information for a specified bot, alias, and user ID.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Runtime Service's
+// API operation GetSession for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource (such as the Amazon Lex bot or an alias) that is referred to
+//   is not found.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   Request validation failed, there is no usable message in the context, or
+//   the bot build failed, is still in progress, or contains unbuilt changes.
+//
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   Exceeded a limit.
+//
+//   * ErrCodeInternalFailureException "InternalFailureException"
+//   Internal service error. Retry the call.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex-2016-11-28/GetSession
+func (c *LexRuntimeService) GetSession(input *GetSessionInput) (*GetSessionOutput, error) {
+	req, out := c.GetSessionRequest(input)
+	return out, req.Send()
+}
+
+// GetSessionWithContext is the same as GetSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexRuntimeService) GetSessionWithContext(ctx aws.Context, input *GetSessionInput, opts ...request.Option) (*GetSessionOutput, error) {
+	req, out := c.GetSessionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPostContent = "PostContent"
 
 // PostContentRequest generates a "aws/request.Request" representing the
@@ -104,7 +287,7 @@ func (c *LexRuntimeService) PostContentRequest(input *PostContentInput) (req *re
 //    header is set to ElicitIntent and the x-amz-slot-to-elicit header is omitted.
 //
 // In addition, Amazon Lex also returns your application-specific sessionAttributes.
-// For more information, see Managing Conversation Context (http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html).
+// For more information, see Managing Conversation Context (https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -225,8 +408,8 @@ func (c *LexRuntimeService) PostTextRequest(input *PostTextInput) (req *request.
 
 // PostText API operation for Amazon Lex Runtime Service.
 //
-// Sends user input (text-only) to Amazon Lex. Client applications can use this
-// API to send requests to Amazon Lex at runtime. Amazon Lex then interprets
+// Sends user input (text or SSML) to Amazon Lex. Client applications can use
+// this API to send requests to Amazon Lex at runtime. Amazon Lex then interprets
 // the user input using the machine learning model it built for the bot.
 //
 // In response, Amazon Lex returns the next message to convey to the user an
@@ -266,7 +449,7 @@ func (c *LexRuntimeService) PostTextRequest(input *PostTextInput) (req *request.
 //    set to ElicitIntent and slotToElicit is set to null.
 //
 // In addition, Amazon Lex also returns your application-specific sessionAttributes.
-// For more information, see Managing Conversation Context (http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html).
+// For more information, see Managing Conversation Context (https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -334,6 +517,122 @@ func (c *LexRuntimeService) PostTextWithContext(ctx aws.Context, input *PostText
 	return out, req.Send()
 }
 
+const opPutSession = "PutSession"
+
+// PutSessionRequest generates a "aws/request.Request" representing the
+// client's request for the PutSession operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutSession for more information on using the PutSession
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutSessionRequest method.
+//    req, resp := client.PutSessionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex-2016-11-28/PutSession
+func (c *LexRuntimeService) PutSessionRequest(input *PutSessionInput) (req *request.Request, output *PutSessionOutput) {
+	op := &request.Operation{
+		Name:       opPutSession,
+		HTTPMethod: "POST",
+		HTTPPath:   "/bot/{botName}/alias/{botAlias}/user/{userId}/session",
+	}
+
+	if input == nil {
+		input = &PutSessionInput{}
+	}
+
+	output = &PutSessionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutSession API operation for Amazon Lex Runtime Service.
+//
+// Creates a new session or modifies an existing session with an Amazon Lex
+// bot. Use this operation to enable your application to set the state of the
+// bot.
+//
+// For more information, see Managing Sessions (https://docs.aws.amazon.com/lex/latest/dg/how-session-api.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Runtime Service's
+// API operation PutSession for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource (such as the Amazon Lex bot or an alias) that is referred to
+//   is not found.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   Request validation failed, there is no usable message in the context, or
+//   the bot build failed, is still in progress, or contains unbuilt changes.
+//
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   Exceeded a limit.
+//
+//   * ErrCodeInternalFailureException "InternalFailureException"
+//   Internal service error. Retry the call.
+//
+//   * ErrCodeConflictException "ConflictException"
+//   Two clients are using the same AWS account, Amazon Lex bot, and user ID.
+//
+//   * ErrCodeNotAcceptableException "NotAcceptableException"
+//   The accept header in the request does not have a valid value.
+//
+//   * ErrCodeDependencyFailedException "DependencyFailedException"
+//   One of the dependencies, such as AWS Lambda or Amazon Polly, threw an exception.
+//   For example,
+//
+//      * If Amazon Lex does not have sufficient permissions to call a Lambda
+//      function.
+//
+//      * If a Lambda function takes longer than 30 seconds to execute.
+//
+//      * If a fulfillment Lambda function returns a Delegate dialog action without
+//      removing any slot values.
+//
+//   * ErrCodeBadGatewayException "BadGatewayException"
+//   Either the Amazon Lex bot is still building, or one of the dependent services
+//   (Amazon Polly, AWS Lambda) failed with an internal service error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.lex-2016-11-28/PutSession
+func (c *LexRuntimeService) PutSession(input *PutSessionInput) (*PutSessionOutput, error) {
+	req, out := c.PutSessionRequest(input)
+	return out, req.Send()
+}
+
+// PutSessionWithContext is the same as PutSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexRuntimeService) PutSessionWithContext(ctx aws.Context, input *PutSessionInput, opts ...request.Option) (*PutSessionOutput, error) {
+	req, out := c.PutSessionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // Represents an option to be shown on the client platform (Facebook, Slack,
 // etc.)
 type Button struct {
@@ -371,6 +670,263 @@ func (s *Button) SetText(v string) *Button {
 // SetValue sets the Value field's value.
 func (s *Button) SetValue(v string) *Button {
 	s.Value = &v
+	return s
+}
+
+type DeleteSessionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The alias in use for the bot that contains the session data.
+	//
+	// BotAlias is a required field
+	BotAlias *string `location:"uri" locationName:"botAlias" type:"string" required:"true"`
+
+	// The name of the bot that contains the session data.
+	//
+	// BotName is a required field
+	BotName *string `location:"uri" locationName:"botName" type:"string" required:"true"`
+
+	// The identifier of the user associated with the session data.
+	//
+	// UserId is a required field
+	UserId *string `location:"uri" locationName:"userId" min:"2" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteSessionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSessionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteSessionInput"}
+	if s.BotAlias == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotAlias"))
+	}
+	if s.BotAlias != nil && len(*s.BotAlias) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BotAlias", 1))
+	}
+	if s.BotName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotName"))
+	}
+	if s.BotName != nil && len(*s.BotName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BotName", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 2))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotAlias sets the BotAlias field's value.
+func (s *DeleteSessionInput) SetBotAlias(v string) *DeleteSessionInput {
+	s.BotAlias = &v
+	return s
+}
+
+// SetBotName sets the BotName field's value.
+func (s *DeleteSessionInput) SetBotName(v string) *DeleteSessionInput {
+	s.BotName = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *DeleteSessionInput) SetUserId(v string) *DeleteSessionInput {
+	s.UserId = &v
+	return s
+}
+
+type DeleteSessionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The alias in use for the bot associated with the session data.
+	BotAlias *string `locationName:"botAlias" type:"string"`
+
+	// The name of the bot associated with the session data.
+	BotName *string `locationName:"botName" type:"string"`
+
+	// The unique identifier for the session.
+	SessionId *string `locationName:"sessionId" type:"string"`
+
+	// The ID of the client application user.
+	UserId *string `locationName:"userId" min:"2" type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteSessionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSessionOutput) GoString() string {
+	return s.String()
+}
+
+// SetBotAlias sets the BotAlias field's value.
+func (s *DeleteSessionOutput) SetBotAlias(v string) *DeleteSessionOutput {
+	s.BotAlias = &v
+	return s
+}
+
+// SetBotName sets the BotName field's value.
+func (s *DeleteSessionOutput) SetBotName(v string) *DeleteSessionOutput {
+	s.BotName = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *DeleteSessionOutput) SetSessionId(v string) *DeleteSessionOutput {
+	s.SessionId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *DeleteSessionOutput) SetUserId(v string) *DeleteSessionOutput {
+	s.UserId = &v
+	return s
+}
+
+// Describes the next action that the bot should take in its interaction with
+// the user and provides information about the context in which the action takes
+// place. Use the DialogAction data type to set the interaction to a specific
+// state, or to return the interaction to a previous state.
+type DialogAction struct {
+	_ struct{} `type:"structure"`
+
+	// The fulfillment state of the intent. The possible values are:
+	//
+	//    * Failed - The Lambda function associated with the intent failed to fulfill
+	//    the intent.
+	//
+	//    * Fulfilled - The intent has fulfilled by the Lambda function associated
+	//    with the intent.
+	//
+	//    * ReadyForFulfillment - All of the information necessary for the intent
+	//    is present and the intent ready to be fulfilled by the client application.
+	FulfillmentState *string `locationName:"fulfillmentState" type:"string" enum:"FulfillmentState"`
+
+	// The name of the intent.
+	IntentName *string `locationName:"intentName" type:"string"`
+
+	// The message that should be shown to the user. If you don't specify a message,
+	// Amazon Lex will use the message configured for the intent.
+	Message *string `locationName:"message" min:"1" type:"string" sensitive:"true"`
+
+	//    * PlainText - The message contains plain UTF-8 text.
+	//
+	//    * CustomPayload - The message is a custom format for the client.
+	//
+	//    * SSML - The message contains text formatted for voice output.
+	//
+	//    * Composite - The message contains an escaped JSON object containing one
+	//    or more messages. For more information, see Message Groups (https://docs.aws.amazon.com/lex/latest/dg/howitworks-manage-prompts.html).
+	MessageFormat *string `locationName:"messageFormat" type:"string" enum:"MessageFormatType"`
+
+	// The name of the slot that should be elicited from the user.
+	SlotToElicit *string `locationName:"slotToElicit" type:"string"`
+
+	// Map of the slots that have been gathered and their values.
+	Slots map[string]*string `locationName:"slots" type:"map" sensitive:"true"`
+
+	// The next action that the bot should take in its interaction with the user.
+	// The possible values are:
+	//
+	//    * ConfirmIntent - The next action is asking the user if the intent is
+	//    complete and ready to be fulfilled. This is a yes/no question such as
+	//    "Place the order?"
+	//
+	//    * Close - Indicates that the there will not be a response from the user.
+	//    For example, the statement "Your order has been placed" does not require
+	//    a response.
+	//
+	//    * Delegate - The next action is determined by Amazon Lex.
+	//
+	//    * ElicitIntent - The next action is to determine the intent that the user
+	//    wants to fulfill.
+	//
+	//    * ElicitSlot - The next action is to elicit a slot value from the user.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"DialogActionType"`
+}
+
+// String returns the string representation
+func (s DialogAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DialogAction) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DialogAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DialogAction"}
+	if s.Message != nil && len(*s.Message) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Message", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFulfillmentState sets the FulfillmentState field's value.
+func (s *DialogAction) SetFulfillmentState(v string) *DialogAction {
+	s.FulfillmentState = &v
+	return s
+}
+
+// SetIntentName sets the IntentName field's value.
+func (s *DialogAction) SetIntentName(v string) *DialogAction {
+	s.IntentName = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *DialogAction) SetMessage(v string) *DialogAction {
+	s.Message = &v
+	return s
+}
+
+// SetMessageFormat sets the MessageFormat field's value.
+func (s *DialogAction) SetMessageFormat(v string) *DialogAction {
+	s.MessageFormat = &v
+	return s
+}
+
+// SetSlotToElicit sets the SlotToElicit field's value.
+func (s *DialogAction) SetSlotToElicit(v string) *DialogAction {
+	s.SlotToElicit = &v
+	return s
+}
+
+// SetSlots sets the Slots field's value.
+func (s *DialogAction) SetSlots(v map[string]*string) *DialogAction {
+	s.Slots = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DialogAction) SetType(v string) *DialogAction {
+	s.Type = &v
 	return s
 }
 
@@ -435,6 +991,245 @@ func (s *GenericAttachment) SetTitle(v string) *GenericAttachment {
 	return s
 }
 
+type GetSessionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The alias in use for the bot that contains the session data.
+	//
+	// BotAlias is a required field
+	BotAlias *string `location:"uri" locationName:"botAlias" type:"string" required:"true"`
+
+	// The name of the bot that contains the session data.
+	//
+	// BotName is a required field
+	BotName *string `location:"uri" locationName:"botName" type:"string" required:"true"`
+
+	// The ID of the client application user. Amazon Lex uses this to identify a
+	// user's conversation with your bot.
+	//
+	// UserId is a required field
+	UserId *string `location:"uri" locationName:"userId" min:"2" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetSessionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSessionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSessionInput"}
+	if s.BotAlias == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotAlias"))
+	}
+	if s.BotAlias != nil && len(*s.BotAlias) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BotAlias", 1))
+	}
+	if s.BotName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotName"))
+	}
+	if s.BotName != nil && len(*s.BotName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BotName", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 2))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotAlias sets the BotAlias field's value.
+func (s *GetSessionInput) SetBotAlias(v string) *GetSessionInput {
+	s.BotAlias = &v
+	return s
+}
+
+// SetBotName sets the BotName field's value.
+func (s *GetSessionInput) SetBotName(v string) *GetSessionInput {
+	s.BotName = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *GetSessionInput) SetUserId(v string) *GetSessionInput {
+	s.UserId = &v
+	return s
+}
+
+type GetSessionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the current state of the bot.
+	DialogAction *DialogAction `locationName:"dialogAction" type:"structure"`
+
+	// An array of information about the intents used in the session. The array
+	// can contain a maximum of three summaries. If more than three intents are
+	// used in the session, the recentIntentSummaryView operation contains information
+	// about the last three intents used.
+	RecentIntentSummaryView []*IntentSummary `locationName:"recentIntentSummaryView" type:"list"`
+
+	// Map of key/value pairs representing the session-specific context information.
+	// It contains application information passed between Amazon Lex and a client
+	// application.
+	SessionAttributes map[string]*string `locationName:"sessionAttributes" type:"map" sensitive:"true"`
+
+	// A unique identifier for the session.
+	SessionId *string `locationName:"sessionId" type:"string"`
+}
+
+// String returns the string representation
+func (s GetSessionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSessionOutput) GoString() string {
+	return s.String()
+}
+
+// SetDialogAction sets the DialogAction field's value.
+func (s *GetSessionOutput) SetDialogAction(v *DialogAction) *GetSessionOutput {
+	s.DialogAction = v
+	return s
+}
+
+// SetRecentIntentSummaryView sets the RecentIntentSummaryView field's value.
+func (s *GetSessionOutput) SetRecentIntentSummaryView(v []*IntentSummary) *GetSessionOutput {
+	s.RecentIntentSummaryView = v
+	return s
+}
+
+// SetSessionAttributes sets the SessionAttributes field's value.
+func (s *GetSessionOutput) SetSessionAttributes(v map[string]*string) *GetSessionOutput {
+	s.SessionAttributes = v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *GetSessionOutput) SetSessionId(v string) *GetSessionOutput {
+	s.SessionId = &v
+	return s
+}
+
+// Provides information about the state of an intent. You can use this information
+// to get the current state of an intent so that you can process the intent,
+// or so that you can return the intent to its previous state.
+type IntentSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the intent after the user responds to the confirmation prompt.
+	// If the user confirms the intent, Amazon Lex sets this field to Confirmed.
+	// If the user denies the intent, Amazon Lex sets this value to Denied. The
+	// possible values are:
+	//
+	//    * Confirmed - The user has responded "Yes" to the confirmation prompt,
+	//    confirming that the intent is complete and that it is ready to be fulfilled.
+	//
+	//    * Denied - The user has responded "No" to the confirmation prompt.
+	//
+	//    * None - The user has never been prompted for confirmation; or, the user
+	//    was prompted but did not confirm or deny the prompt.
+	ConfirmationStatus *string `locationName:"confirmationStatus" type:"string" enum:"ConfirmationStatus"`
+
+	// The next action that the bot should take in its interaction with the user.
+	// The possible values are:
+	//
+	//    * ConfirmIntent - The next action is asking the user if the intent is
+	//    complete and ready to be fulfilled. This is a yes/no question such as
+	//    "Place the order?"
+	//
+	//    * Close - Indicates that the there will not be a response from the user.
+	//    For example, the statement "Your order has been placed" does not require
+	//    a response.
+	//
+	//    * ElicitIntent - The next action is to determine the intent that the user
+	//    wants to fulfill.
+	//
+	//    * ElicitSlot - The next action is to elicit a slot value from the user.
+	//
+	// DialogActionType is a required field
+	DialogActionType *string `locationName:"dialogActionType" type:"string" required:"true" enum:"DialogActionType"`
+
+	// The fulfillment state of the intent. The possible values are:
+	//
+	//    * Failed - The Lambda function associated with the intent failed to fulfill
+	//    the intent.
+	//
+	//    * Fulfilled - The intent has fulfilled by the Lambda function associated
+	//    with the intent.
+	//
+	//    * ReadyForFulfillment - All of the information necessary for the intent
+	//    is present and the intent ready to be fulfilled by the client application.
+	FulfillmentState *string `locationName:"fulfillmentState" type:"string" enum:"FulfillmentState"`
+
+	// The name of the intent.
+	IntentName *string `locationName:"intentName" type:"string"`
+
+	// The next slot to elicit from the user. If there is not slot to elicit, the
+	// field is blank.
+	SlotToElicit *string `locationName:"slotToElicit" type:"string"`
+
+	// Map of the slots that have been gathered and their values.
+	Slots map[string]*string `locationName:"slots" type:"map" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s IntentSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s IntentSummary) GoString() string {
+	return s.String()
+}
+
+// SetConfirmationStatus sets the ConfirmationStatus field's value.
+func (s *IntentSummary) SetConfirmationStatus(v string) *IntentSummary {
+	s.ConfirmationStatus = &v
+	return s
+}
+
+// SetDialogActionType sets the DialogActionType field's value.
+func (s *IntentSummary) SetDialogActionType(v string) *IntentSummary {
+	s.DialogActionType = &v
+	return s
+}
+
+// SetFulfillmentState sets the FulfillmentState field's value.
+func (s *IntentSummary) SetFulfillmentState(v string) *IntentSummary {
+	s.FulfillmentState = &v
+	return s
+}
+
+// SetIntentName sets the IntentName field's value.
+func (s *IntentSummary) SetIntentName(v string) *IntentSummary {
+	s.IntentName = &v
+	return s
+}
+
+// SetSlotToElicit sets the SlotToElicit field's value.
+func (s *IntentSummary) SetSlotToElicit(v string) *IntentSummary {
+	s.SlotToElicit = &v
+	return s
+}
+
+// SetSlots sets the Slots field's value.
+func (s *IntentSummary) SetSlots(v map[string]*string) *IntentSummary {
+	s.Slots = v
+	return s
+}
+
 type PostContentInput struct {
 	_ struct{} `type:"structure" payload:"InputStream"`
 
@@ -449,9 +1244,13 @@ type PostContentInput struct {
 	//    * If the value begins with audio/, Amazon Lex returns speech in the response.
 	//    Amazon Lex uses Amazon Polly to generate the speech (using the configuration
 	//    you specified in the Accept header). For example, if you specify audio/mpeg
-	//    as the value, Amazon Lex returns speech in the MPEG format. The following
-	//    are the accepted values: audio/mpeg audio/ogg audio/pcm text/plain; charset=utf-8
-	//    audio/* (defaults to mpeg)
+	//    as the value, Amazon Lex returns speech in the MPEG format.
+	//
+	//    * If the value is audio/pcm, the speech returned is audio/pcm in 16-bit,
+	//    little endian format.
+	//
+	//    * The following are the accepted values: audio/mpeg audio/ogg audio/pcm
+	//    text/plain; charset=utf-8 audio/* (defaults to mpeg)
 	Accept *string `location:"header" locationName:"Accept" type:"string"`
 
 	// Alias of the Amazon Lex bot.
@@ -506,7 +1305,7 @@ type PostContentInput struct {
 	// The namespace x-amz-lex: is reserved for special attributes. Don't create
 	// any request attributes with the prefix x-amz-lex:.
 	//
-	// For more information, see Setting Request Attributes (http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs).
+	// For more information, see Setting Request Attributes (https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs).
 	RequestAttributes aws.JSONValue `location:"header" locationName:"x-amz-lex-request-attributes" type:"jsonvalue"`
 
 	// You pass this value as the x-amz-lex-session-attributes HTTP header.
@@ -516,7 +1315,7 @@ type PostContentInput struct {
 	// and values. The total size of the sessionAttributes and requestAttributes
 	// headers is limited to 12 KB.
 	//
-	// For more information, see Setting Session Attributes (http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs).
+	// For more information, see Setting Session Attributes (https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs).
 	SessionAttributes aws.JSONValue `location:"header" locationName:"x-amz-lex-session-attributes" type:"jsonvalue"`
 
 	// The ID of the client application user. Amazon Lex uses this to identify a
@@ -705,7 +1504,7 @@ type PostContentOutput struct {
 	// or from a Lambda function.
 	//
 	// If the intent is not configured with a Lambda function, or if the Lambda
-	// function returned Delegate as the dialogAction.type its response, Amazon
+	// function returned Delegate as the dialogAction.type in its response, Amazon
 	// Lex decides on the next course of action and selects an appropriate message
 	// from the bot's configuration based on the current interaction context. For
 	// example, if Amazon Lex isn't able to understand user input, it uses a clarification
@@ -742,7 +1541,7 @@ type PostContentOutput struct {
 	SlotToElicit *string `location:"header" locationName:"x-amz-lex-slot-to-elicit" type:"string"`
 
 	// Map of zero or more intent slots (name/value pairs) Amazon Lex detected from
-	// the user input during the conversation.
+	// the user input during the conversation. The field is base-64 encoded.
 	//
 	// Amazon Lex creates a resolution list containing likely values for a slot.
 	// The value that it returns is determined by the valueSelectionStrategy selected
@@ -848,12 +1647,12 @@ type PostTextInput struct {
 	// The namespace x-amz-lex: is reserved for special attributes. Don't create
 	// any request attributes with the prefix x-amz-lex:.
 	//
-	// For more information, see Setting Request Attributes (http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs).
+	// For more information, see Setting Request Attributes (https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs).
 	RequestAttributes map[string]*string `locationName:"requestAttributes" type:"map" sensitive:"true"`
 
 	// Application-specific information passed between Amazon Lex and a client application.
 	//
-	// For more information, see Setting Session Attributes (http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs).
+	// For more information, see Setting Session Attributes (https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-session-attribs).
 	SessionAttributes map[string]*string `locationName:"sessionAttributes" type:"map" sensitive:"true"`
 
 	// The ID of the client application user. Amazon Lex uses this to identify a
@@ -1123,6 +1922,272 @@ func (s *PostTextOutput) SetSlots(v map[string]*string) *PostTextOutput {
 	return s
 }
 
+type PutSessionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The message that Amazon Lex returns in the response can be either text or
+	// speech based depending on the value of this field.
+	//
+	//    * If the value is text/plain; charset=utf-8, Amazon Lex returns text in
+	//    the response.
+	//
+	//    * If the value begins with audio/, Amazon Lex returns speech in the response.
+	//    Amazon Lex uses Amazon Polly to generate the speech in the configuration
+	//    that you specify. For example, if you specify audio/mpeg as the value,
+	//    Amazon Lex returns speech in the MPEG format.
+	//
+	//    * If the value is audio/pcm, the speech is returned as audio/pcm in 16-bit,
+	//    little endian format.
+	//
+	//    * The following are the accepted values: audio/mpeg audio/ogg audio/pcm
+	//    audio/* (defaults to mpeg) text/plain; charset=utf-8
+	Accept *string `location:"header" locationName:"Accept" type:"string"`
+
+	// The alias in use for the bot that contains the session data.
+	//
+	// BotAlias is a required field
+	BotAlias *string `location:"uri" locationName:"botAlias" type:"string" required:"true"`
+
+	// The name of the bot that contains the session data.
+	//
+	// BotName is a required field
+	BotName *string `location:"uri" locationName:"botName" type:"string" required:"true"`
+
+	// Sets the next action that the bot should take to fulfill the conversation.
+	DialogAction *DialogAction `locationName:"dialogAction" type:"structure"`
+
+	// Map of key/value pairs representing the session-specific context information.
+	// It contains application information passed between Amazon Lex and a client
+	// application.
+	SessionAttributes map[string]*string `locationName:"sessionAttributes" type:"map" sensitive:"true"`
+
+	// The ID of the client application user. Amazon Lex uses this to identify a
+	// user's conversation with your bot.
+	//
+	// UserId is a required field
+	UserId *string `location:"uri" locationName:"userId" min:"2" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PutSessionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutSessionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutSessionInput"}
+	if s.BotAlias == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotAlias"))
+	}
+	if s.BotAlias != nil && len(*s.BotAlias) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BotAlias", 1))
+	}
+	if s.BotName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotName"))
+	}
+	if s.BotName != nil && len(*s.BotName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BotName", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 2))
+	}
+	if s.DialogAction != nil {
+		if err := s.DialogAction.Validate(); err != nil {
+			invalidParams.AddNested("DialogAction", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccept sets the Accept field's value.
+func (s *PutSessionInput) SetAccept(v string) *PutSessionInput {
+	s.Accept = &v
+	return s
+}
+
+// SetBotAlias sets the BotAlias field's value.
+func (s *PutSessionInput) SetBotAlias(v string) *PutSessionInput {
+	s.BotAlias = &v
+	return s
+}
+
+// SetBotName sets the BotName field's value.
+func (s *PutSessionInput) SetBotName(v string) *PutSessionInput {
+	s.BotName = &v
+	return s
+}
+
+// SetDialogAction sets the DialogAction field's value.
+func (s *PutSessionInput) SetDialogAction(v *DialogAction) *PutSessionInput {
+	s.DialogAction = v
+	return s
+}
+
+// SetSessionAttributes sets the SessionAttributes field's value.
+func (s *PutSessionInput) SetSessionAttributes(v map[string]*string) *PutSessionInput {
+	s.SessionAttributes = v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *PutSessionInput) SetUserId(v string) *PutSessionInput {
+	s.UserId = &v
+	return s
+}
+
+type PutSessionOutput struct {
+	_ struct{} `type:"structure" payload:"AudioStream"`
+
+	// The audio version of the message to convey to the user.
+	AudioStream io.ReadCloser `locationName:"audioStream" type:"blob"`
+
+	// Content type as specified in the Accept HTTP header in the request.
+	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
+
+	//    * ConfirmIntent - Amazon Lex is expecting a "yes" or "no" response to
+	//    confirm the intent before fulfilling an intent.
+	//
+	//    * ElicitIntent - Amazon Lex wants to elicit the user's intent.
+	//
+	//    * ElicitSlot - Amazon Lex is expecting the value of a slot for the current
+	//    intent.
+	//
+	//    * Failed - Conveys that the conversation with the user has failed. This
+	//    can happen for various reasons, including the user does not provide an
+	//    appropriate response to prompts from the service, or if the Lambda function
+	//    fails to fulfill the intent.
+	//
+	//    * Fulfilled - Conveys that the Lambda function has sucessfully fulfilled
+	//    the intent.
+	//
+	//    * ReadyForFulfillment - Conveys that the client has to fulfill the intent.
+	DialogState *string `location:"header" locationName:"x-amz-lex-dialog-state" type:"string" enum:"DialogState"`
+
+	// The name of the current intent.
+	IntentName *string `location:"header" locationName:"x-amz-lex-intent-name" type:"string"`
+
+	// The next message that should be presented to the user.
+	Message *string `location:"header" locationName:"x-amz-lex-message" min:"1" type:"string" sensitive:"true"`
+
+	// The format of the response message. One of the following values:
+	//
+	//    * PlainText - The message contains plain UTF-8 text.
+	//
+	//    * CustomPayload - The message is a custom format for the client.
+	//
+	//    * SSML - The message contains text formatted for voice output.
+	//
+	//    * Composite - The message contains an escaped JSON object containing one
+	//    or more messages from the groups that messages were assigned to when the
+	//    intent was created.
+	MessageFormat *string `location:"header" locationName:"x-amz-lex-message-format" type:"string" enum:"MessageFormatType"`
+
+	// Map of key/value pairs representing session-specific context information.
+	SessionAttributes aws.JSONValue `location:"header" locationName:"x-amz-lex-session-attributes" type:"jsonvalue"`
+
+	// A unique identifier for the session.
+	SessionId *string `location:"header" locationName:"x-amz-lex-session-id" type:"string"`
+
+	// If the dialogState is ElicitSlot, returns the name of the slot for which
+	// Amazon Lex is eliciting a value.
+	SlotToElicit *string `location:"header" locationName:"x-amz-lex-slot-to-elicit" type:"string"`
+
+	// Map of zero or more intent slots Amazon Lex detected from the user input
+	// during the conversation.
+	//
+	// Amazon Lex creates a resolution list containing likely values for a slot.
+	// The value that it returns is determined by the valueSelectionStrategy selected
+	// when the slot type was created or updated. If valueSelectionStrategy is set
+	// to ORIGINAL_VALUE, the value provided by the user is returned, if the user
+	// value is similar to the slot values. If valueSelectionStrategy is set to
+	// TOP_RESOLUTION Amazon Lex returns the first value in the resolution list
+	// or, if there is no resolution list, null. If you don't specify a valueSelectionStrategy
+	// the default is ORIGINAL_VALUE.
+	Slots aws.JSONValue `location:"header" locationName:"x-amz-lex-slots" type:"jsonvalue"`
+}
+
+// String returns the string representation
+func (s PutSessionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutSessionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAudioStream sets the AudioStream field's value.
+func (s *PutSessionOutput) SetAudioStream(v io.ReadCloser) *PutSessionOutput {
+	s.AudioStream = v
+	return s
+}
+
+// SetContentType sets the ContentType field's value.
+func (s *PutSessionOutput) SetContentType(v string) *PutSessionOutput {
+	s.ContentType = &v
+	return s
+}
+
+// SetDialogState sets the DialogState field's value.
+func (s *PutSessionOutput) SetDialogState(v string) *PutSessionOutput {
+	s.DialogState = &v
+	return s
+}
+
+// SetIntentName sets the IntentName field's value.
+func (s *PutSessionOutput) SetIntentName(v string) *PutSessionOutput {
+	s.IntentName = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *PutSessionOutput) SetMessage(v string) *PutSessionOutput {
+	s.Message = &v
+	return s
+}
+
+// SetMessageFormat sets the MessageFormat field's value.
+func (s *PutSessionOutput) SetMessageFormat(v string) *PutSessionOutput {
+	s.MessageFormat = &v
+	return s
+}
+
+// SetSessionAttributes sets the SessionAttributes field's value.
+func (s *PutSessionOutput) SetSessionAttributes(v aws.JSONValue) *PutSessionOutput {
+	s.SessionAttributes = v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *PutSessionOutput) SetSessionId(v string) *PutSessionOutput {
+	s.SessionId = &v
+	return s
+}
+
+// SetSlotToElicit sets the SlotToElicit field's value.
+func (s *PutSessionOutput) SetSlotToElicit(v string) *PutSessionOutput {
+	s.SlotToElicit = &v
+	return s
+}
+
+// SetSlots sets the Slots field's value.
+func (s *PutSessionOutput) SetSlots(v aws.JSONValue) *PutSessionOutput {
+	s.Slots = v
+	return s
+}
+
 // If you configure a response card when creating your bots, Amazon Lex substitutes
 // the session attributes and slot values that are available, and then returns
 // it. The response card can also come from a Lambda function ( dialogCodeHook
@@ -1169,8 +2234,36 @@ func (s *ResponseCard) SetVersion(v string) *ResponseCard {
 }
 
 const (
+	// ConfirmationStatusNone is a ConfirmationStatus enum value
+	ConfirmationStatusNone = "None"
+
+	// ConfirmationStatusConfirmed is a ConfirmationStatus enum value
+	ConfirmationStatusConfirmed = "Confirmed"
+
+	// ConfirmationStatusDenied is a ConfirmationStatus enum value
+	ConfirmationStatusDenied = "Denied"
+)
+
+const (
 	// ContentTypeApplicationVndAmazonawsCardGeneric is a ContentType enum value
 	ContentTypeApplicationVndAmazonawsCardGeneric = "application/vnd.amazonaws.card.generic"
+)
+
+const (
+	// DialogActionTypeElicitIntent is a DialogActionType enum value
+	DialogActionTypeElicitIntent = "ElicitIntent"
+
+	// DialogActionTypeConfirmIntent is a DialogActionType enum value
+	DialogActionTypeConfirmIntent = "ConfirmIntent"
+
+	// DialogActionTypeElicitSlot is a DialogActionType enum value
+	DialogActionTypeElicitSlot = "ElicitSlot"
+
+	// DialogActionTypeClose is a DialogActionType enum value
+	DialogActionTypeClose = "Close"
+
+	// DialogActionTypeDelegate is a DialogActionType enum value
+	DialogActionTypeDelegate = "Delegate"
 )
 
 const (
@@ -1191,6 +2284,17 @@ const (
 
 	// DialogStateFailed is a DialogState enum value
 	DialogStateFailed = "Failed"
+)
+
+const (
+	// FulfillmentStateFulfilled is a FulfillmentState enum value
+	FulfillmentStateFulfilled = "Fulfilled"
+
+	// FulfillmentStateFailed is a FulfillmentState enum value
+	FulfillmentStateFailed = "Failed"
+
+	// FulfillmentStateReadyForFulfillment is a FulfillmentState enum value
+	FulfillmentStateReadyForFulfillment = "ReadyForFulfillment"
 )
 
 const (

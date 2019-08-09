@@ -1700,6 +1700,8 @@
         "DeferredMaintenanceWindows":{"shape":"DeferredMaintenanceWindowsList"},
         "SnapshotScheduleIdentifier":{"shape":"String"},
         "SnapshotScheduleState":{"shape":"ScheduleState"},
+        "ExpectedNextSnapshotScheduleTime":{"shape":"TStamp"},
+        "ExpectedNextSnapshotScheduleTimeStatus":{"shape":"String"},
         "ResizeInfo":{"shape":"ResizeInfo"}
       },
       "wrapper":true

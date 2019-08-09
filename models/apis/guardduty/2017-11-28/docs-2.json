@@ -3,8 +3,8 @@
   "service": "<p>Amazon GuardDuty is a continuous security monitoring service that analyzes and processes the following data sources: VPC Flow Logs, AWS CloudTrail event logs, and DNS logs. It uses threat intelligence feeds, such as lists of malicious IPs and domains, and machine learning to identify unexpected and potentially unauthorized and malicious activity within your AWS environment. This can include issues like escalations of privileges, uses of exposed credentials, or communication with malicious IPs, URLs, or domains. For example, GuardDuty can detect compromised EC2 instances serving malware or mining bitcoin. It also monitors AWS account access behavior for signs of compromise, such as unauthorized infrastructure deployments, like instances deployed in a region that has never been used, or unusual API calls, like a password policy change to reduce password strength. GuardDuty informs you of the status of your AWS environment by producing security findings that you can view in the GuardDuty console or through Amazon CloudWatch events. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html\"> Amazon GuardDuty User Guide</a>. </p>",
   "operations": {
     "AcceptInvitation": "<p>Accepts the invitation to be monitored by a master GuardDuty account.</p>",
-    "ArchiveFindings": "<p>Archives Amazon GuardDuty findings specified by the list of finding IDs.</p>",
-    "CreateDetector": "<p>Creates a single Amazon GuardDuty detector. A detector is an object that represents the GuardDuty service. A detector must be created in order for GuardDuty to become operational.</p>",
+    "ArchiveFindings": "<p>Archives GuardDuty findings specified by the list of finding IDs.</p> <note> <p>Only the master account can archive findings. Member accounts do not have permission to archive findings from their accounts.</p> </note>",
+    "CreateDetector": "<p>Creates a single Amazon GuardDuty detector. A detector is a resource that represents the GuardDuty service. To start using GuardDuty, you must create a detector in each region that you enable the service. You can have only one detector per account per region.</p>",
     "CreateFilter": "<p>Creates a filter using the specified finding criteria.</p>",
     "CreateIPSet": "<p>Creates a new IPSet - a list of trusted IP addresses that have been whitelisted for secure communication with AWS infrastructure and applications.</p>",
     "CreateMembers": "<p>Creates member accounts of the current AWS account by specifying a list of AWS account IDs. The current AWS account can then invite these members to manage GuardDuty in their accounts.</p>",
@@ -25,7 +25,7 @@
     "GetFindingsStatistics": "<p>Lists Amazon GuardDuty findings' statistics for the specified detector ID.</p>",
     "GetIPSet": "<p>Retrieves the IPSet specified by the IPSet ID.</p>",
     "GetInvitationsCount": "<p>Returns the count of all GuardDuty membership invitations that were sent to the current member account except the currently accepted invitation.</p>",
-    "GetMasterAccount": "<p>Provides the details for the GuardDuty master account to the current GuardDuty member account.</p>",
+    "GetMasterAccount": "<p>Provides the details for the GuardDuty master account associated with the current GuardDuty member account.</p>",
     "GetMembers": "<p>Retrieves GuardDuty member accounts (to the current GuardDuty master account) specified by the account IDs.</p>",
     "GetThreatIntelSet": "<p>Retrieves the ThreatIntelSet that is specified by the ThreatIntelSet ID.</p>",
     "InviteMembers": "<p>Invites other AWS accounts (created as members of the current AWS account by CreateMembers) to enable GuardDuty and allow the current AWS account to view and manage these accounts' GuardDuty findings on their behalf as the master account.</p>",
@@ -60,13 +60,13 @@
       }
     },
     "AccessKeyDetails": {
-      "base": null,
+      "base": "<p>Contains information about the access keys.</p>",
       "refs": {
         "Resource$AccessKeyDetails": "<p>The IAM access key details (IAM user information) of a user that engaged in the activity that prompted GuardDuty to generate a finding.</p>"
       }
     },
     "AccountDetail": {
-      "base": null,
+      "base": "<p>Contains information about the account.</p>",
       "refs": {
         "AccountDetails$member": null
       }
@@ -83,7 +83,7 @@
         "AccountDetail$AccountId": "<p>Member account ID.</p>",
         "AccountIds$member": null,
         "Invitation$AccountId": "<p>Inviter account ID</p>",
-        "Master$AccountId": "<p>Master account ID</p>",
+        "Master$AccountId": "<p>The ID of the account used as the Master account.</p>",
         "Member$AccountId": "<p>Member account ID.</p>",
         "UnprocessedAccount$AccountId": "<p>AWS Account ID.</p>"
       }
@@ -102,7 +102,7 @@
       }
     },
     "Action": {
-      "base": null,
+      "base": "<p>Contains information about action.</p>",
       "refs": {
         "Service$Action": "<p>Information about the activity described in a finding.</p>"
       }
@@ -118,7 +118,7 @@
       }
     },
     "AwsApiCallAction": {
-      "base": null,
+      "base": "<p>Contains information about the API operation.</p>",
       "refs": {
         "Action$AwsApiCallAction": "<p>Information about the AWS_API_CALL action described in this finding.</p>"
       }
@@ -144,7 +144,7 @@
       }
     },
     "City": {
-      "base": null,
+      "base": "<p>Contains information about the city associated with the IP address.</p>",
       "refs": {
         "RemoteIpDetails$City": "<p>City information of the remote IP address.</p>"
       }
@@ -159,7 +159,7 @@
       }
     },
     "Condition": {
-      "base": null,
+      "base": "<p>Contains information about the condition.</p>",
       "refs": {
         "Criterion$value": null
       }
@@ -171,7 +171,7 @@
       }
     },
     "Country": {
-      "base": null,
+      "base": "<p>Contains information about the country.</p>",
       "refs": {
         "RemoteIpDetails$Country": "<p>Country code of the remote IP address.</p>"
       }
@@ -390,13 +390,13 @@
       }
     },
     "DnsRequestAction": {
-      "base": null,
+      "base": "<p>Contains information about the DNS request.</p>",
       "refs": {
         "Action$DnsRequestAction": "<p>Information about the DNS_REQUEST action described in this finding.</p>"
       }
     },
     "DomainDetails": {
-      "base": null,
+      "base": "<p>Contains information about the domain.</p>",
       "refs": {
         "AwsApiCallAction$DomainDetails": "<p>Domain information for the AWS API call.</p>"
       }
@@ -404,8 +404,8 @@
     "Double": {
       "base": null,
       "refs": {
-        "Finding$Confidence": "<p>The confidence level of a finding.</p>",
-        "Finding$Severity": "<p>The severity of a finding.</p>",
+        "Finding$Confidence": "<p>The confidence score for the finding.</p>",
+        "Finding$Severity": "<p>The severity of the finding.</p>",
         "GeoLocation$Lat": "<p>Latitude information of remote IP address.</p>",
         "GeoLocation$Lon": "<p>Longitude information of remote IP address.</p>"
       }
@@ -420,13 +420,19 @@
     "Eq": {
       "base": null,
       "refs": {
-        "Condition$Eq": "<p>Represents the equal condition to be applied to a single field when querying for findings.</p>"
+        "Condition$Eq": "<p>Deprecated. Represents the equal condition to be applied to a single field when querying for findings.</p>"
       }
     },
     "Equals": {
       "base": null,
       "refs": {
-        "Condition$Equals": null
+        "Condition$Equals": "<p>Represents an <b>equal</b> condition to be applied to a single field when querying for findings.</p>"
+      }
+    },
+    "Evidence": {
+      "base": "<p>Contains information about the reason that the finding was generated.</p>",
+      "refs": {
+        "Service$Evidence": "<p>An evidence object associated with the service.</p>"
       }
     },
     "Feedback": {
@@ -476,13 +482,13 @@
       }
     },
     "Finding": {
-      "base": null,
+      "base": "<p>Contains information about the finding.</p>",
       "refs": {
         "Findings$member": null
       }
     },
     "FindingCriteria": {
-      "base": null,
+      "base": "<p>Contains finding criteria information.</p>",
       "refs": {
         "CreateFilterRequest$FindingCriteria": "<p>Represents the criteria to be used in the filter for querying findings.</p>",
         "GetFilterResponse$FindingCriteria": "<p>Represents the criteria to be used in the filter for querying findings.</p>",
@@ -528,7 +534,7 @@
       }
     },
     "FindingStatistics": {
-      "base": null,
+      "base": "<p>Contains information about finding statistics.</p>",
       "refs": {
         "GetFindingsStatisticsResponse$FindingStatistics": "<p>Finding statistics object.</p>"
       }
@@ -536,7 +542,7 @@
     "FindingType": {
       "base": null,
       "refs": {
-        "Finding$Type": "<p>The type of a finding described by the action.</p>",
+        "Finding$Type": "<p>The type of the finding.</p>",
         "FindingTypes$member": null
       }
     },
@@ -553,7 +559,7 @@
       }
     },
     "GeoLocation": {
-      "base": null,
+      "base": "<p>Contains information about the </p>",
       "refs": {
         "RemoteIpDetails$GeoLocation": "<p>Location information of the remote IP address.</p>"
       }
@@ -657,13 +663,13 @@
       }
     },
     "IamInstanceProfile": {
-      "base": null,
+      "base": "<p>Contains information about the instance profile.</p>",
       "refs": {
         "InstanceDetails$IamInstanceProfile": "<p>The profile information of the EC2 instance.</p>"
       }
     },
     "InstanceDetails": {
-      "base": null,
+      "base": "<p>Contains information about the details of an instance.</p>",
       "refs": {
         "Resource$InstanceDetails": "<p>The information about the EC2 instance associated with the activity that prompted GuardDuty to generate a finding.</p>"
       }
@@ -671,10 +677,10 @@
     "Integer": {
       "base": null,
       "refs": {
-        "Condition$Gt": "<p>Represents a greater than condition to be applied to a single field when querying for findings.</p>",
-        "Condition$Gte": "<p>Represents a greater than equal condition to be applied to a single field when querying for findings.</p>",
-        "Condition$Lt": "<p>Represents a less than condition to be applied to a single field when querying for findings.</p>",
-        "Condition$Lte": "<p>Represents a less than equal condition to be applied to a single field when querying for findings.</p>",
+        "Condition$Gt": "<p>Deprecated. Represents a greater than condition to be applied to a single field when querying for findings.</p>",
+        "Condition$Gte": "<p>Deprecated. Represents a greater than equal condition to be applied to a single field when querying for findings.</p>",
+        "Condition$Lt": "<p>Deprecated. Represents a less than condition to be applied to a single field when querying for findings.</p>",
+        "Condition$Lte": "<p>Deprecated. Represents a less than equal condition to be applied to a single field when querying for findings.</p>",
         "CountBySeverity$value": null,
         "GetInvitationsCountResponse$InvitationsCount": "<p>The number of received invitations.</p>",
         "LocalPortDetails$Port": "<p>Port number of the local connection.</p>",
@@ -688,7 +694,7 @@
       }
     },
     "Invitation": {
-      "base": null,
+      "base": "<p>Contains information about the invitation.</p>",
       "refs": {
         "Invitations$member": null
       }
@@ -815,7 +821,7 @@
       }
     },
     "LocalPortDetails": {
-      "base": null,
+      "base": "<p>Contains information about the port for the local connection.</p>",
       "refs": {
         "NetworkConnectionAction$LocalPortDetails": "<p>Local port information of the connection.</p>",
         "PortProbeDetail$LocalPortDetails": "<p>Local port information of the connection.</p>"
@@ -842,7 +848,7 @@
       }
     },
     "Master": {
-      "base": null,
+      "base": "<p>Contains information about the Master account and invitation.</p>",
       "refs": {
         "GetMasterAccountResponse$Master": "<p>Master account details.</p>"
       }
@@ -860,7 +866,7 @@
       }
     },
     "Member": {
-      "base": null,
+      "base": "<p>Continas information about the member account </p>",
       "refs": {
         "Members$member": null
       }
@@ -886,17 +892,17 @@
     "Neq": {
       "base": null,
       "refs": {
-        "Condition$Neq": "<p>Represents the not equal condition to be applied to a single field when querying for findings.</p>"
+        "Condition$Neq": "<p>Deprecated. Represents the not equal condition to be applied to a single field when querying for findings.</p>"
       }
     },
     "NetworkConnectionAction": {
-      "base": null,
+      "base": "<p>Contains information about the network connection.</p>",
       "refs": {
         "Action$NetworkConnectionAction": "<p>Information about the NETWORK_CONNECTION action described in this finding.</p>"
       }
     },
     "NetworkInterface": {
-      "base": null,
+      "base": "<p>Contains information about the network interface.</p>",
       "refs": {
         "NetworkInterfaces$member": null
       }
@@ -910,7 +916,7 @@
     "NotEquals": {
       "base": null,
       "refs": {
-        "Condition$NotEquals": null
+        "Condition$NotEquals": "<p>Represents an <b>not equal</b> condition to be applied to a single field when querying for findings.</p>"
       }
     },
     "OrderBy": {
@@ -920,19 +926,19 @@
       }
     },
     "Organization": {
-      "base": null,
+      "base": "<p>Continas information about the organization.</p>",
       "refs": {
         "RemoteIpDetails$Organization": "<p>ISP Organization information of the remote IP address.</p>"
       }
     },
     "PortProbeAction": {
-      "base": null,
+      "base": "<p>Contains information about the port probe.</p>",
       "refs": {
         "Action$PortProbeAction": "<p>Information about the PORT_PROBE action described in this finding.</p>"
       }
     },
     "PortProbeDetail": {
-      "base": null,
+      "base": "<p>Contains information about the port probe details.</p>",
       "refs": {
         "PortProbeDetails$member": null
       }
@@ -944,7 +950,7 @@
       }
     },
     "PrivateIpAddressDetails": {
-      "base": null,
+      "base": "<p>Contains information about the private IP address.</p>",
       "refs": {
         "PrivateIpAddresses$member": null
       }
@@ -956,7 +962,7 @@
       }
     },
     "ProductCode": {
-      "base": null,
+      "base": "<p>Contains information about the product code.</p>",
       "refs": {
         "ProductCodes$member": null
       }
@@ -968,7 +974,7 @@
       }
     },
     "RemoteIpDetails": {
-      "base": null,
+      "base": "<p>Continas information about the remote IP address.</p>",
       "refs": {
         "AwsApiCallAction$RemoteIpDetails": "<p>Remote IP information of the connection.</p>",
         "NetworkConnectionAction$RemoteIpDetails": "<p>Remote IP information of the connection.</p>",
@@ -976,19 +982,19 @@
       }
     },
     "RemotePortDetails": {
-      "base": null,
+      "base": "<p>Contains information about the remote port.</p>",
       "refs": {
         "NetworkConnectionAction$RemotePortDetails": "<p>Remote port information of the connection.</p>"
       }
     },
     "Resource": {
-      "base": null,
+      "base": "<p>Contains information about the resource.</p>",
       "refs": {
-        "Finding$Resource": "<p>The AWS resource associated with the activity that prompted GuardDuty to generate a finding.</p>"
+        "Finding$Resource": null
       }
     },
     "SecurityGroup": {
-      "base": null,
+      "base": "<p>Contains information about the security group.</p>",
       "refs": {
         "SecurityGroups$member": null
       }
@@ -1000,13 +1006,13 @@
       }
     },
     "Service": {
-      "base": null,
+      "base": "<p>Contains information about the service.</p>",
       "refs": {
-        "Finding$Service": "<p>Additional information assigned to the generated finding by GuardDuty.</p>"
+        "Finding$Service": null
       }
     },
     "SortCriteria": {
-      "base": null,
+      "base": "<p>Contains information about the criteria for sorting.</p>",
       "refs": {
         "GetFindingsRequest$SortCriteria": "<p>Represents the criteria used for sorting findings.</p>",
         "ListFindingsRequest$SortCriteria": "<p>Represents the criteria used for sorting findings.</p>"
@@ -1061,16 +1067,16 @@
         "DomainDetails$Domain": "<p>Domain information for the AWS API call.</p>",
         "Eq$member": null,
         "Equals$member": null,
-        "Finding$AccountId": "<p>AWS account ID where the activity occurred that prompted GuardDuty to generate a finding.</p>",
-        "Finding$Arn": "<p>The ARN of a finding described by the action.</p>",
-        "Finding$CreatedAt": "<p>The time stamp at which a finding was generated.</p>",
-        "Finding$Description": "<p>The description of a finding.</p>",
-        "Finding$Id": "<p>The identifier that corresponds to a finding described by the action.</p>",
-        "Finding$Partition": "<p>The AWS resource partition.</p>",
-        "Finding$Region": "<p>The AWS region where the activity occurred that prompted GuardDuty to generate a finding.</p>",
-        "Finding$SchemaVersion": "<p>Findings' schema version.</p>",
-        "Finding$Title": "<p>The title of a finding.</p>",
-        "Finding$UpdatedAt": "<p>The time stamp at which a finding was last updated.</p>",
+        "Finding$AccountId": "<p>The ID of the account in which the finding was generated.</p>",
+        "Finding$Arn": "<p>The ARN for the finding.</p>",
+        "Finding$CreatedAt": "<p>The time and date at which the finding was created.</p>",
+        "Finding$Description": "<p>The description of the finding.</p>",
+        "Finding$Id": "<p>The ID of the finding.</p>",
+        "Finding$Partition": "<p>The partition associated with the finding.</p>",
+        "Finding$Region": "<p>The Region in which the finding was generated.</p>",
+        "Finding$SchemaVersion": "<p>The version of the schema used for the finding.</p>",
+        "Finding$Title": "<p>The title for the finding.</p>",
+        "Finding$UpdatedAt": "<p>The time and date at which the finding was laste updated.</p>",
         "GetDetectorResponse$CreatedAt": "<p>Detector creation timestamp.</p>",
         "GetDetectorResponse$ServiceRole": "<p>The GuardDuty service role.</p>",
         "GetDetectorResponse$UpdatedAt": "<p>Detector last update timestamp.</p>",
@@ -1113,7 +1119,7 @@
         "LocalPortDetails$PortName": "<p>Port name of the local connection.</p>",
         "Master$InvitationId": "<p>This value is used to validate the master account to the member account.</p>",
         "Master$RelationshipStatus": "<p>The status of the relationship between the master and member accounts.</p>",
-        "Master$InvitedAt": "<p>Timestamp at which the invitation was sent</p>",
+        "Master$InvitedAt": "<p>Timestamp at which the invitation was sent.</p>",
         "Member$MasterId": "<p>Master account ID.</p>",
         "Member$RelationshipStatus": "<p>The status of the relationship between the member and the master.</p>",
         "Member$InvitedAt": "<p>Timestamp at which the invitation was sent</p>",
@@ -1151,6 +1157,8 @@
         "Tag$Key": "<p>EC2 instance tag key.</p>",
         "Tag$Value": "<p>EC2 instance tag value.</p>",
         "ThreatIntelSetIds$member": null,
+        "ThreatIntelligenceDetail$ThreatListName": "<p>The name of the threat intelligence list that triggered the finding.</p>",
+        "ThreatNames$member": null,
         "UnprocessedAccount$Result": "<p>A reason why the account hasn't been processed.</p>",
         "UpdateFilterRequest$FilterName": "<p>The name of the filter.</p>",
         "UpdateFindingsFeedbackRequest$Comments": "<p>Additional feedback about the GuardDuty findings.</p>",
@@ -1159,7 +1167,7 @@
       }
     },
     "Tag": {
-      "base": null,
+      "base": "<p>Contains information about the tag associated with the resource.</p>",
       "refs": {
         "Tags$member": null
       }
@@ -1188,7 +1196,7 @@
         "GetFilterResponse$Tags": "<p>The tags of the filter resource.</p>",
         "GetIPSetResponse$Tags": "<p>The tags of the IP set resource.</p>",
         "GetThreatIntelSetResponse$Tags": "<p>The tags of the Threat List resource.</p>",
-        "ListTagsForResourceResponse$Tags": null,
+        "ListTagsForResourceResponse$Tags": "<p>The tags associated with the resource.</p>",
         "TagResourceRequest$Tags": "<p>The tags to be added to a resource.</p>"
       }
     },
@@ -1233,6 +1241,24 @@
         "GetThreatIntelSetResponse$Status": "<p>The status of threatIntelSet file uploaded.</p>"
       }
     },
+    "ThreatIntelligenceDetail": {
+      "base": "<p>An instance of a threat intelligence detail that constitutes evidence for the finding.</p>",
+      "refs": {
+        "ThreatIntelligenceDetails$member": null
+      }
+    },
+    "ThreatIntelligenceDetails": {
+      "base": null,
+      "refs": {
+        "Evidence$ThreatIntelligenceDetails": "<p>A list of threat intelligence details related to the evidence.</p>"
+      }
+    },
+    "ThreatNames": {
+      "base": null,
+      "refs": {
+        "ThreatIntelligenceDetail$ThreatNames": "<p>A list of names of the threats in the threat intelligence list that triggered the finding.</p>"
+      }
+    },
     "UnarchiveFindingsRequest": {
       "base": null,
       "refs": {
@@ -1244,7 +1270,7 @@
       }
     },
     "UnprocessedAccount": {
-      "base": null,
+      "base": "<p>Contains information about the accounts that were not processed.</p>",
       "refs": {
         "UnprocessedAccounts$member": null
       }
@@ -1255,7 +1281,7 @@
         "CreateMembersResponse$UnprocessedAccounts": "<p>A list of objects containing the unprocessed account and a result string explaining why it was unprocessed.</p>",
         "DeclineInvitationsResponse$UnprocessedAccounts": "<p>A list of objects containing the unprocessed account and a result string explaining why it was unprocessed.</p>",
         "DeleteInvitationsResponse$UnprocessedAccounts": "<p>A list of objects containing the unprocessed account and a result string explaining why it was unprocessed.</p>",
-        "DeleteMembersResponse$UnprocessedAccounts": "<p>A list of objects containing the unprocessed account and a result string explaining why it was unprocessed.</p>",
+        "DeleteMembersResponse$UnprocessedAccounts": "<p>The accounts that could not be processed.</p>",
         "DisassociateMembersResponse$UnprocessedAccounts": "<p>A list of objects containing the unprocessed account and a result string explaining why it was unprocessed.</p>",
         "GetMembersResponse$UnprocessedAccounts": "<p>A list of objects containing the unprocessed account and a result string explaining why it was unprocessed.</p>",
         "InviteMembersResponse$UnprocessedAccounts": "<p>A list of objects containing the unprocessed account and a result string explaining why it was unprocessed.</p>",
