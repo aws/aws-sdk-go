@@ -144,7 +144,7 @@ func (a *API) fixStutterNames() {
 
 	for k, s := range a.Shapes {
 		newName := re.ReplaceAllString(k, "")
-		if newName != s.ShapeName && len(newName) > 0 {
+		if newName != s.ShapeName && len(newName) > 0 && a.Shapes[newName] == nil {
 			s.Rename(newName)
 		}
 	}

@@ -96,6 +96,11 @@ func s3Customizations(a *API) {
 	}
 
 	for name, s := range a.Shapes {
+		// Keep Location type for backwards compatibility
+		if name == "S3Location" {
+			s.Rename("Location")
+		}
+
 		// Remove ContentMD5 members unless specified otherwise.
 		if _, keep := keepContentMD5Ref[name]; !keep {
 			if _, have := s.MemberRefs["ContentMD5"]; have {
