@@ -1402,6 +1402,15 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "Evidence":{
+      "type":"structure",
+      "members":{
+        "ThreatIntelligenceDetails":{
+          "shape":"ThreatIntelligenceDetails",
+          "locationName":"threatIntelligenceDetails"
+        }
+      }
+    },
     "Feedback":{
       "type":"string",
       "enum":[
@@ -2725,6 +2734,10 @@
           "shape":"Action",
           "locationName":"action"
         },
+        "Evidence":{
+          "shape":"Evidence",
+          "locationName":"evidence"
+        },
         "Archived":{
           "shape":"Boolean",
           "locationName":"archived"
@@ -2924,6 +2937,27 @@
       ],
       "max":300,
       "min":1
+    },
+    "ThreatIntelligenceDetail":{
+      "type":"structure",
+      "members":{
+        "ThreatListName":{
+          "shape":"String",
+          "locationName":"threatListName"
+        },
+        "ThreatNames":{
+          "shape":"ThreatNames",
+          "locationName":"threatNames"
+        }
+      }
+    },
+    "ThreatIntelligenceDetails":{
+      "type":"list",
+      "member":{"shape":"ThreatIntelligenceDetail"}
+    },
+    "ThreatNames":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "UnarchiveFindingsRequest":{
       "type":"structure",

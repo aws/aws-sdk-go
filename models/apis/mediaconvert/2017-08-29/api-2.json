@@ -1297,7 +1297,7 @@
           "locationName": "defaultSelection"
         },
         "ExternalAudioFileInput": {
-          "shape": "__stringPatternS3MM2VVMMPPEEGGAAVVIIMMPP4FFLLVVMMPPTTMMPPGGMM4VVTTRRPPFF4VVMM2TTSSTTSS264HH264MMKKVVMMOOVVMMTTSSMM2TTWWMMVVAASSFFVVOOBB3GGPP3GGPPPPMMXXFFDDIIVVXXXXVVIIDDRRAAWWDDVVGGXXFFMM1VV3GG2VVMMFFMM3UU8LLCCHHGGXXFFMMPPEEGG2MMXXFFMMPPEEGG2MMXXFFHHDDWWAAVVYY4MMAAAACCAAIIFFFFMMPP2AACC3EECC3DDTTSSEE",
+          "shape": "__stringPatternS3MM2VVMMPPEEGGMMPP3AAVVIIMMPP4FFLLVVMMPPTTMMPPGGMM4VVTTRRPPFF4VVMM2TTSSTTSS264HH264MMKKVVMMOOVVMMTTSSMM2TTWWMMVVAASSFFVVOOBB3GGPP3GGPPPPMMXXFFDDIIVVXXXXVVIIDDRRAAWWDDVVGGXXFFMM1VV3GG2VVMMFFMM3UU8LLCCHHGGXXFFMMPPEEGG2MMXXFFMMPPEEGG2MMXXFFHHDDWWAAVVYY4MMAAAACCAAIIFFFFMMPP2AACC3EECC3DDTTSSEE",
           "locationName": "externalAudioFileInput"
         },
         "LanguageCode": {
@@ -1727,6 +1727,10 @@
           "shape": "CmafInitializationVectorInManifest",
           "locationName": "initializationVectorInManifest"
         },
+        "SpekeKeyProvider": {
+          "shape": "SpekeKeyProviderCmaf",
+          "locationName": "spekeKeyProvider"
+        },
         "StaticKeyProvider": {
           "shape": "StaticKeyProvider",
           "locationName": "staticKeyProvider"
@@ -1822,6 +1826,7 @@
     "CmafKeyProviderType": {
       "type": "string",
       "enum": [
+        "SPEKE",
         "STATIC_KEY"
       ]
     },
@@ -2162,6 +2167,10 @@
         "ReservationPlanSettings": {
           "shape": "ReservationPlanSettings",
           "locationName": "reservationPlanSettings"
+        },
+        "Status": {
+          "shape": "QueueStatus",
+          "locationName": "status"
         },
         "Tags": {
           "shape": "__mapOf__string",
@@ -3388,7 +3397,8 @@
       "type": "string",
       "enum": [
         "DISABLED",
-        "ENABLED"
+        "ENABLED",
+        "TRANSITION_DETECTION"
       ]
     },
     "H264Settings": {
@@ -3745,7 +3755,8 @@
       "type": "string",
       "enum": [
         "DISABLED",
-        "ENABLED"
+        "ENABLED",
+        "TRANSITION_DETECTION"
       ]
     },
     "H265Settings": {
@@ -4394,7 +4405,7 @@
           "locationName": "denoiseFilter"
         },
         "FileInput": {
-          "shape": "__stringPatternHttpHttpsS3MM2VVMMPPEEGGAAVVIIMMPP4FFLLVVMMPPTTMMPPGGMM4VVTTRRPPFF4VVMM2TTSSTTSS264HH264MMKKVVMMOOVVMMTTSSMM2TTWWMMVVAASSFFVVOOBB3GGPP3GGPPPPMMXXFFDDIIVVXXXXVVIIDDRRAAWWDDVVGGXXFFMM1VV3GG2VVMMFFMM3UU8WWEEBBMMLLCCHHGGXXFFMMPPEEGG2MMXXFFMMPPEEGG2MMXXFFHHDDWWAAVVYY4MMXXMMLL",
+          "shape": "__stringPatternHttpHttpsS3MM2VVMMPPEEGGMMPP3AAVVIIMMPP4FFLLVVMMPPTTMMPPGGMM4VVTTRRPPFF4VVMM2TTSSTTSS264HH264MMKKVVMMOOVVMMTTSSMM2TTWWMMVVAASSFFVVOOBB3GGPP3GGPPPPMMXXFFDDIIVVXXXXVVIIDDRRAAWWDDVVGGXXFFMM1VV3GG2VVMMFFMM3UU8WWEEBBMMLLCCHHGGXXFFMMPPEEGG2MMXXFFMMPPEEGG2MMXXFFHHDDWWAAVVYY4MMXXMMLL",
           "locationName": "fileInput"
         },
         "FilterEnable": {
@@ -6156,6 +6167,10 @@
         "SpatialFilterSettings": {
           "shape": "NoiseReducerSpatialFilterSettings",
           "locationName": "spatialFilterSettings"
+        },
+        "TemporalFilterSettings": {
+          "shape": "NoiseReducerTemporalFilterSettings",
+          "locationName": "temporalFilterSettings"
         }
       }
     },
@@ -6168,7 +6183,8 @@
         "LANCZOS",
         "SHARPEN",
         "CONSERVE",
-        "SPATIAL"
+        "SPATIAL",
+        "TEMPORAL"
       ]
     },
     "NoiseReducerFilterSettings": {
@@ -6189,6 +6205,23 @@
         },
         "Speed": {
           "shape": "__integerMinNegative2Max3",
+          "locationName": "speed"
+        },
+        "Strength": {
+          "shape": "__integerMin0Max16",
+          "locationName": "strength"
+        }
+      }
+    },
+    "NoiseReducerTemporalFilterSettings": {
+      "type": "structure",
+      "members": {
+        "AggressiveMode": {
+          "shape": "__integerMin0Max4",
+          "locationName": "aggressiveMode"
+        },
+        "Speed": {
+          "shape": "__integerMinNegative1Max3",
           "locationName": "speed"
         },
         "Strength": {
@@ -6808,6 +6841,31 @@
         }
       }
     },
+    "SpekeKeyProviderCmaf": {
+      "type": "structure",
+      "members": {
+        "CertificateArn": {
+          "shape": "__stringPatternArnAwsUsGovAcm",
+          "locationName": "certificateArn"
+        },
+        "DashSignaledSystemIds": {
+          "shape": "__listOf__stringMin36Max36Pattern09aFAF809aFAF409aFAF409aFAF409aFAF12",
+          "locationName": "dashSignaledSystemIds"
+        },
+        "HlsSignaledSystemIds": {
+          "shape": "__listOf__stringMin36Max36Pattern09aFAF809aFAF409aFAF409aFAF409aFAF12",
+          "locationName": "hlsSignaledSystemIds"
+        },
+        "ResourceId": {
+          "shape": "__stringPatternW",
+          "locationName": "resourceId"
+        },
+        "Url": {
+          "shape": "__stringPatternHttps",
+          "locationName": "url"
+        }
+      }
+    },
     "StaticKeyProvider": {
       "type": "structure",
       "members": {
@@ -6877,8 +6935,22 @@
         "PageNumber": {
           "shape": "__stringMin3Max3Pattern1809aFAF09aEAE",
           "locationName": "pageNumber"
+        },
+        "PageTypes": {
+          "shape": "__listOfTeletextPageType",
+          "locationName": "pageTypes"
         }
       }
+    },
+    "TeletextPageType": {
+      "type": "string",
+      "enum": [
+        "PAGE_TYPE_INITIAL",
+        "PAGE_TYPE_SUBTITLE",
+        "PAGE_TYPE_ADDL_INFO",
+        "PAGE_TYPE_PROGRAM_SCHEDULE",
+        "PAGE_TYPE_HEARING_IMPAIRED_SUBTITLE"
+      ]
     },
     "TeletextSourceSettings": {
       "type": "structure",
@@ -7480,6 +7552,11 @@
       "min": 0,
       "max": 3600
     },
+    "__integerMin0Max4": {
+      "type": "integer",
+      "min": 0,
+      "max": 4
+    },
     "__integerMin0Max47185920": {
       "type": "integer",
       "min": 0,
@@ -7725,6 +7802,11 @@
       "min": -180,
       "max": 180
     },
+    "__integerMinNegative1Max3": {
+      "type": "integer",
+      "min": -1,
+      "max": 3
+    },
     "__integerMinNegative2147483648Max2147483647": {
       "type": "integer",
       "min": -2147483648,
@@ -7875,6 +7957,12 @@
         "shape": "Queue"
       }
     },
+    "__listOfTeletextPageType": {
+      "type": "list",
+      "member": {
+        "shape": "TeletextPageType"
+      }
+    },
     "__listOf__integerMin1Max2147483647": {
       "type": "list",
       "member": {
@@ -7903,6 +7991,12 @@
       "type": "list",
       "member": {
         "shape": "__stringMin1"
+      }
+    },
+    "__listOf__stringMin36Max36Pattern09aFAF809aFAF409aFAF409aFAF409aFAF12": {
+      "type": "list",
+      "member": {
+        "shape": "__stringMin36Max36Pattern09aFAF809aFAF409aFAF409aFAF409aFAF12"
       }
     },
     "__listOf__stringPattern09aFAF809aFAF409aFAF409aFAF409aFAF12": {
@@ -8014,6 +8108,12 @@
       "max": 32,
       "pattern": "^[0-9a-fA-F]{32}$"
     },
+    "__stringMin36Max36Pattern09aFAF809aFAF409aFAF409aFAF409aFAF12": {
+      "type": "string",
+      "min": 36,
+      "max": 36,
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
     "__stringMin3Max3Pattern1809aFAF09aEAE": {
       "type": "string",
       "min": 3,
@@ -8072,9 +8172,9 @@
       "type": "string",
       "pattern": "^(\\d+(\\/\\d+)*)$"
     },
-    "__stringPatternHttpHttpsS3MM2VVMMPPEEGGAAVVIIMMPP4FFLLVVMMPPTTMMPPGGMM4VVTTRRPPFF4VVMM2TTSSTTSS264HH264MMKKVVMMOOVVMMTTSSMM2TTWWMMVVAASSFFVVOOBB3GGPP3GGPPPPMMXXFFDDIIVVXXXXVVIIDDRRAAWWDDVVGGXXFFMM1VV3GG2VVMMFFMM3UU8WWEEBBMMLLCCHHGGXXFFMMPPEEGG2MMXXFFMMPPEEGG2MMXXFFHHDDWWAAVVYY4MMXXMMLL": {
+    "__stringPatternHttpHttpsS3MM2VVMMPPEEGGMMPP3AAVVIIMMPP4FFLLVVMMPPTTMMPPGGMM4VVTTRRPPFF4VVMM2TTSSTTSS264HH264MMKKVVMMOOVVMMTTSSMM2TTWWMMVVAASSFFVVOOBB3GGPP3GGPPPPMMXXFFDDIIVVXXXXVVIIDDRRAAWWDDVVGGXXFFMM1VV3GG2VVMMFFMM3UU8WWEEBBMMLLCCHHGGXXFFMMPPEEGG2MMXXFFMMPPEEGG2MMXXFFHHDDWWAAVVYY4MMXXMMLL": {
       "type": "string",
-      "pattern": "^(http|https|s3)://([^\\/]+\\/)+([^\\/\\.]+|(([^\\/]*)\\.([mM]2[vV]|[mM][pP][eE][gG]|[aA][vV][iI]|[mM][pP]4|[fF][lL][vV]|[mM][pP][tT]|[mM][pP][gG]|[mM]4[vV]|[tT][rR][pP]|[fF]4[vV]|[mM]2[tT][sS]|[tT][sS]|264|[hH]264|[mM][kK][vV]|[mM][oO][vV]|[mM][tT][sS]|[mM]2[tT]|[wW][mM][vV]|[aA][sS][fF]|[vV][oO][bB]|3[gG][pP]|3[gG][pP][pP]|[mM][xX][fF]|[dD][iI][vV][xX]|[xX][vV][iI][dD]|[rR][aA][wW]|[dD][vV]|[gG][xX][fF]|[mM]1[vV]|3[gG]2|[vV][mM][fF]|[mM]3[uU]8|[wW][eE][bB][mM]|[lL][cC][hH]|[gG][xX][fF]_[mM][pP][eE][gG]2|[mM][xX][fF]_[mM][pP][eE][gG]2|[mM][xX][fF][hH][dD]|[wW][aA][vV]|[yY]4[mM]|[xX][mM][lL])))$"
+      "pattern": "^(http|https|s3)://([^\\/]+\\/)+([^\\/\\.]+|(([^\\/]*)\\.([mM]2[vV]|[mM][pP][eE][gG]|[mM][pP]3|[aA][vV][iI]|[mM][pP]4|[fF][lL][vV]|[mM][pP][tT]|[mM][pP][gG]|[mM]4[vV]|[tT][rR][pP]|[fF]4[vV]|[mM]2[tT][sS]|[tT][sS]|264|[hH]264|[mM][kK][vV]|[mM][oO][vV]|[mM][tT][sS]|[mM]2[tT]|[wW][mM][vV]|[aA][sS][fF]|[vV][oO][bB]|3[gG][pP]|3[gG][pP][pP]|[mM][xX][fF]|[dD][iI][vV][xX]|[xX][vV][iI][dD]|[rR][aA][wW]|[dD][vV]|[gG][xX][fF]|[mM]1[vV]|3[gG]2|[vV][mM][fF]|[mM]3[uU]8|[wW][eE][bB][mM]|[lL][cC][hH]|[gG][xX][fF]_[mM][pP][eE][gG]2|[mM][xX][fF]_[mM][pP][eE][gG]2|[mM][xX][fF][hH][dD]|[wW][aA][vV]|[yY]4[mM]|[xX][mM][lL])))$"
     },
     "__stringPatternHttps": {
       "type": "string",
@@ -8092,9 +8192,9 @@
       "type": "string",
       "pattern": "^s3:\\/\\/.*\\/(ASSETMAP.xml)?$"
     },
-    "__stringPatternS3MM2VVMMPPEEGGAAVVIIMMPP4FFLLVVMMPPTTMMPPGGMM4VVTTRRPPFF4VVMM2TTSSTTSS264HH264MMKKVVMMOOVVMMTTSSMM2TTWWMMVVAASSFFVVOOBB3GGPP3GGPPPPMMXXFFDDIIVVXXXXVVIIDDRRAAWWDDVVGGXXFFMM1VV3GG2VVMMFFMM3UU8LLCCHHGGXXFFMMPPEEGG2MMXXFFMMPPEEGG2MMXXFFHHDDWWAAVVYY4MMAAAACCAAIIFFFFMMPP2AACC3EECC3DDTTSSEE": {
+    "__stringPatternS3MM2VVMMPPEEGGMMPP3AAVVIIMMPP4FFLLVVMMPPTTMMPPGGMM4VVTTRRPPFF4VVMM2TTSSTTSS264HH264MMKKVVMMOOVVMMTTSSMM2TTWWMMVVAASSFFVVOOBB3GGPP3GGPPPPMMXXFFDDIIVVXXXXVVIIDDRRAAWWDDVVGGXXFFMM1VV3GG2VVMMFFMM3UU8LLCCHHGGXXFFMMPPEEGG2MMXXFFMMPPEEGG2MMXXFFHHDDWWAAVVYY4MMAAAACCAAIIFFFFMMPP2AACC3EECC3DDTTSSEE": {
       "type": "string",
-      "pattern": "^(s3:\\/\\/)([^\\/]+\\/)+([^\\/\\.]+|(([^\\/]*)\\.([mM]2[vV]|[mM][pP][eE][gG]|[aA][vV][iI]|[mM][pP]4|[fF][lL][vV]|[mM][pP][tT]|[mM][pP][gG]|[mM]4[vV]|[tT][rR][pP]|[fF]4[vV]|[mM]2[tT][sS]|[tT][sS]|264|[hH]264|[mM][kK][vV]|[mM][oO][vV]|[mM][tT][sS]|[mM]2[tT]|[wW][mM][vV]|[aA][sS][fF]|[vV][oO][bB]|3[gG][pP]|3[gG][pP][pP]|[mM][xX][fF]|[dD][iI][vV][xX]|[xX][vV][iI][dD]|[rR][aA][wW]|[dD][vV]|[gG][xX][fF]|[mM]1[vV]|3[gG]2|[vV][mM][fF]|[mM]3[uU]8|[lL][cC][hH]|[gG][xX][fF]_[mM][pP][eE][gG]2|[mM][xX][fF]_[mM][pP][eE][gG]2|[mM][xX][fF][hH][dD]|[wW][aA][vV]|[yY]4[mM]|[aA][aA][cC]|[aA][iI][fF][fF]|[mM][pP]2|[aA][cC]3|[eE][cC]3|[dD][tT][sS][eE])))$"
+      "pattern": "^(s3:\\/\\/)([^\\/]+\\/)+([^\\/\\.]+|(([^\\/]*)\\.([mM]2[vV]|[mM][pP][eE][gG]|[mM][pP]3|[aA][vV][iI]|[mM][pP]4|[fF][lL][vV]|[mM][pP][tT]|[mM][pP][gG]|[mM]4[vV]|[tT][rR][pP]|[fF]4[vV]|[mM]2[tT][sS]|[tT][sS]|264|[hH]264|[mM][kK][vV]|[mM][oO][vV]|[mM][tT][sS]|[mM]2[tT]|[wW][mM][vV]|[aA][sS][fF]|[vV][oO][bB]|3[gG][pP]|3[gG][pP][pP]|[mM][xX][fF]|[dD][iI][vV][xX]|[xX][vV][iI][dD]|[rR][aA][wW]|[dD][vV]|[gG][xX][fF]|[mM]1[vV]|3[gG]2|[vV][mM][fF]|[mM]3[uU]8|[lL][cC][hH]|[gG][xX][fF]_[mM][pP][eE][gG]2|[mM][xX][fF]_[mM][pP][eE][gG]2|[mM][xX][fF][hH][dD]|[wW][aA][vV]|[yY]4[mM]|[aA][aA][cC]|[aA][iI][fF][fF]|[mM][pP]2|[aA][cC]3|[eE][cC]3|[dD][tT][sS][eE])))$"
     },
     "__stringPatternSNManifestConfirmConditionNotificationNS": {
       "type": "string",
@@ -8103,6 +8203,10 @@
     "__stringPatternSNSignalProcessingNotificationNS": {
       "type": "string",
       "pattern": "^\\s*<(.|\\n)*SignalProcessingNotification(.|\\n)*>\\s*$"
+    },
+    "__stringPatternW": {
+      "type": "string",
+      "pattern": "^[\\w-]+$"
     },
     "__stringPatternWS": {
       "type": "string",

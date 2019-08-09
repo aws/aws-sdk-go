@@ -2407,7 +2407,7 @@
     "Flag": {
       "base": null,
       "refs": {
-        "AttributePayload$merge": "<p>Specifies whether the list of attributes provided in the <code>AttributePayload</code> is merged with the attributes stored in the registry, instead of overwriting them.</p> <p>To remove an attribute, call <code>UpdateThing</code> with an empty attribute value.</p> <note> <p>The <code>merge</code> attribute is only valid when calling <code>UpdateThing</code>.</p> </note>"
+        "AttributePayload$merge": "<p>Specifies whether the list of attributes provided in the <code>AttributePayload</code> is merged with the attributes stored in the registry, instead of overwriting them.</p> <p>To remove an attribute, call <code>UpdateThing</code> with an empty attribute value.</p> <note> <p>The <code>merge</code> attribute is only valid when calling <code>UpdateThing</code> or <code>UpdateThingGroup</code>.</p> </note>"
       }
     },
     "ForceDelete": {
@@ -3986,7 +3986,7 @@
       "refs": {
         "AttachPolicyRequest$target": "<p>The <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/iot-security-identity.html\">identity</a> to which the policy is attached.</p>",
         "DetachPolicyRequest$target": "<p>The target from which the policy will be detached.</p>",
-        "ListAttachedPoliciesRequest$target": "<p>The group for which the policies will be listed.</p>",
+        "ListAttachedPoliciesRequest$target": "<p>The group or principal for which the policies will be listed.</p>",
         "PolicyTargets$member": null
       }
     },
@@ -4134,6 +4134,12 @@
       "base": "<p>The input for the DynamoActionVS action that specifies the DynamoDB table to which the message data will be written.</p>",
       "refs": {
         "DynamoDBv2Action$putItem": "<p>Specifies the DynamoDB table to which the message data will be written. For example:</p> <p> <code>{ \"dynamoDBv2\": { \"roleArn\": \"aws:iam:12341251:my-role\" \"putItem\": { \"tableName\": \"my-table\" } } }</code> </p> <p>Each attribute in the message payload will be written to a separate column in the DynamoDB database.</p>"
+      }
+    },
+    "Qos": {
+      "base": null,
+      "refs": {
+        "RepublishAction$qos": "<p>The Quality of Service (QoS) level to use when republishing messages.</p>"
       }
     },
     "QueryMaxResults": {
