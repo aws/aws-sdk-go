@@ -194,10 +194,27 @@ lint:
 vet:
 	go vet -tags "example codegen awsinclude integration" --all ${SDK_ALL_PKGS}
 
+apimeta-export-remote: get-deps-apidiff
+	@echo "Generating API metadata for SDK remote tip"
+	rm -rf /tmp/aws-sdk-go
+	git clone https://github.com/aws/aws-sdk-go /tmp/aws-sdk-go
+	./gen-apimeta.sh /tmp/aws-sdk-go /tmp/aws-sdk-go-remote-apidiff 
+
+apimeta-export-local: get-deps-apidiff
+	@echo "Generating API metadata for SDK local HEAD"
+	./gen-apimeta.sh ./ /tmp/aws-sdk-go-local-apidiff 
+
+apidiff: get-deps-apidiff apimeta-export-remote apimeta-export-local
+	@echo "API diff remote tip vs local"
+	./check-apidiff.sh /tmp/aws-sdk-go-remote-apidiff /tmp/aws-sdk-go-local-apidiff 
+
 ################
 # Dependencies #
 ################
 get-deps: get-deps-tests get-deps-x-tests get-deps-codegen get-deps-verify
+
+get-deps-apidiff:
+	go install golang.org/x/exp/cmd/apidiff
 
 get-deps-tests:
 	@echo "go get SDK testing dependencies"
