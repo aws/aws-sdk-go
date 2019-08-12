@@ -994,7 +994,7 @@ type KitchenSink struct {
 
 	Integer *int64 `type:"integer"`
 
-	Iso8601Timestamp *time.Time `locationName:"iso8601Timestamp" type:"timestamp" timestampFormat:"iso8601"`
+	Iso8601Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	List []*SimpleStruct `type:"list"`
 
@@ -1305,7 +1305,7 @@ type KitchenSinkInput struct {
 
 	Integer *int64 `type:"integer"`
 
-	Iso8601Timestamp *time.Time `locationName:"iso8601Timestamp" type:"timestamp" timestampFormat:"iso8601"`
+	Iso8601Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	List []*SimpleStruct `type:"list"`
 
@@ -1616,7 +1616,7 @@ type KitchenSinkOutput struct {
 
 	Integer *int64 `type:"integer"`
 
-	Iso8601Timestamp *time.Time `locationName:"iso8601Timestamp" type:"timestamp" timestampFormat:"iso8601"`
+	Iso8601Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	List []*SimpleStruct `type:"list"`
 
@@ -1896,7 +1896,7 @@ func (s *KitchenSinkOutput) SetUnixTimestamp(v time.Time) *KitchenSinkOutput {
 }
 
 type OperationMembersWithoutLocationInput struct {
-	_ struct{} `locationName:"RootNode" type:"structure" xmlURI:"http://xml/ns"`
+	_ struct{} `type:"structure"`
 
 	Header *string `location:"header" locationName:"Some-Header" type:"string"`
 
@@ -1997,6 +1997,8 @@ type PutWithRestBindingsInput struct {
 
 	HeaderFloat *float64 `location:"header" locationName:"Header-Float" type:"float"`
 
+	HeaderHttpdateTimestamp *time.Time `location:"header" locationName:"Header-Httpdate-Timestamp" type:"timestamp" timestampFormat:"rfc822"`
+
 	HeaderInteger *int64 `location:"header" locationName:"Header-Integer" type:"integer"`
 
 	HeaderIso8601Timestamp *time.Time `location:"header" locationName:"Header-Iso8601-Timestamp" type:"timestamp" timestampFormat:"iso8601"`
@@ -2015,8 +2017,6 @@ type PutWithRestBindingsInput struct {
 
 	HeaderUnixTimestamp *time.Time `location:"header" locationName:"Header-Unix-Timestamp" type:"timestamp" timestampFormat:"unixTimestamp"`
 
-	Headeriso8601Timestamp *time.Time `location:"header" locationName:"Header-iso8601-Timestamp" type:"timestamp" timestampFormat:"iso8601"`
-
 	// QueryBlob is automatically base64 encoded/decoded by the SDK.
 	QueryBlob []byte `location:"querystring" locationName:"binary-value" type:"blob"`
 
@@ -2025,6 +2025,8 @@ type PutWithRestBindingsInput struct {
 	QueryDouble *float64 `location:"querystring" locationName:"double" type:"double"`
 
 	QueryFloat *float64 `location:"querystring" locationName:"float" type:"float"`
+
+	QueryHttpdateTimestamp *time.Time `location:"querystring" locationName:"httpdate-timestamp" type:"timestamp" timestampFormat:"rfc822"`
 
 	QueryInteger *int64 `location:"querystring" locationName:"integer" type:"integer"`
 
@@ -2040,11 +2042,9 @@ type PutWithRestBindingsInput struct {
 
 	QueryString *string `location:"querystring" locationName:"string" type:"string"`
 
-	QueryTimestamp *time.Time `location:"querystring" locationName:"unixTimestamp" type:"timestamp"`
+	QueryTimestamp *time.Time `location:"querystring" locationName:"timestamp" type:"timestamp"`
 
 	QueryUnixTimestamp *time.Time `location:"querystring" locationName:"unix-timestamp" type:"timestamp" timestampFormat:"unixTimestamp"`
-
-	Queryiso8601Timestamp *time.Time `location:"querystring" locationName:"iso8601-timestamp" type:"timestamp" timestampFormat:"iso8601"`
 
 	// UriPath is a required field
 	UriPath *string `location:"uri" locationName:"second" type:"string" required:"true"`
@@ -2115,6 +2115,12 @@ func (s *PutWithRestBindingsInput) SetHeaderFloat(v float64) *PutWithRestBinding
 	return s
 }
 
+// SetHeaderHttpdateTimestamp sets the HeaderHttpdateTimestamp field's value.
+func (s *PutWithRestBindingsInput) SetHeaderHttpdateTimestamp(v time.Time) *PutWithRestBindingsInput {
+	s.HeaderHttpdateTimestamp = &v
+	return s
+}
+
 // SetHeaderInteger sets the HeaderInteger field's value.
 func (s *PutWithRestBindingsInput) SetHeaderInteger(v int64) *PutWithRestBindingsInput {
 	s.HeaderInteger = &v
@@ -2169,12 +2175,6 @@ func (s *PutWithRestBindingsInput) SetHeaderUnixTimestamp(v time.Time) *PutWithR
 	return s
 }
 
-// SetHeaderiso8601Timestamp sets the Headeriso8601Timestamp field's value.
-func (s *PutWithRestBindingsInput) SetHeaderiso8601Timestamp(v time.Time) *PutWithRestBindingsInput {
-	s.Headeriso8601Timestamp = &v
-	return s
-}
-
 // SetQueryBlob sets the QueryBlob field's value.
 func (s *PutWithRestBindingsInput) SetQueryBlob(v []byte) *PutWithRestBindingsInput {
 	s.QueryBlob = v
@@ -2196,6 +2196,12 @@ func (s *PutWithRestBindingsInput) SetQueryDouble(v float64) *PutWithRestBinding
 // SetQueryFloat sets the QueryFloat field's value.
 func (s *PutWithRestBindingsInput) SetQueryFloat(v float64) *PutWithRestBindingsInput {
 	s.QueryFloat = &v
+	return s
+}
+
+// SetQueryHttpdateTimestamp sets the QueryHttpdateTimestamp field's value.
+func (s *PutWithRestBindingsInput) SetQueryHttpdateTimestamp(v time.Time) *PutWithRestBindingsInput {
+	s.QueryHttpdateTimestamp = &v
 	return s
 }
 
@@ -2253,12 +2259,6 @@ func (s *PutWithRestBindingsInput) SetQueryUnixTimestamp(v time.Time) *PutWithRe
 	return s
 }
 
-// SetQueryiso8601Timestamp sets the Queryiso8601Timestamp field's value.
-func (s *PutWithRestBindingsInput) SetQueryiso8601Timestamp(v time.Time) *PutWithRestBindingsInput {
-	s.Queryiso8601Timestamp = &v
-	return s
-}
-
 // SetUriPath sets the UriPath field's value.
 func (s *PutWithRestBindingsInput) SetUriPath(v string) *PutWithRestBindingsInput {
 	s.UriPath = &v
@@ -2298,8 +2298,6 @@ type PutWithRestBindingsOutput struct {
 	HeaderTimestamp *time.Time `location:"header" locationName:"Header-Timestamp" type:"timestamp"`
 
 	HeaderUnixTimestamp *time.Time `location:"header" locationName:"Header-Unix-Timestamp" type:"timestamp" timestampFormat:"unixTimestamp"`
-
-	Headeriso8601Timestamp *time.Time `location:"header" locationName:"Header-iso8601-Timestamp" type:"timestamp" timestampFormat:"iso8601"`
 
 	HttpStatusCode *int64 `location:"statusCode" type:"integer"`
 
@@ -2385,12 +2383,6 @@ func (s *PutWithRestBindingsOutput) SetHeaderTimestamp(v time.Time) *PutWithRest
 // SetHeaderUnixTimestamp sets the HeaderUnixTimestamp field's value.
 func (s *PutWithRestBindingsOutput) SetHeaderUnixTimestamp(v time.Time) *PutWithRestBindingsOutput {
 	s.HeaderUnixTimestamp = &v
-	return s
-}
-
-// SetHeaderiso8601Timestamp sets the Headeriso8601Timestamp field's value.
-func (s *PutWithRestBindingsOutput) SetHeaderiso8601Timestamp(v time.Time) *PutWithRestBindingsOutput {
-	s.Headeriso8601Timestamp = &v
 	return s
 }
 

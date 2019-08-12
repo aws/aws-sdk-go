@@ -2,7 +2,6 @@ package awstesting
 
 import (
 	"bytes"
-	"encoding/base64"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/util"
@@ -35,18 +34,7 @@ func AssertRequestUrlQueryMatches(t *testing.T, req *request.Request, val string
 		return false
 	}
 	for expectKey, expectVal := range expectQ{
-		if expectKey == "timestamp" {
-			expectKey = "unixTimestamp"
-		}
 		reqVal := queryRequest.Get(expectKey)
-		if expectKey == "binary-value"{
-			temp, err  := base64.StdEncoding.DecodeString(reqVal)
-			if err != nil {
-				t.Errorf(errMsg("unable to decode string for binary-value parameter of expect", err, msgAndArgs))
-				return false
-			}
-			reqVal = string(temp)
-		}
 		if  reqVal != expectVal[0] {
 			t.Errorf(errMsg("query values inside request and expect don't match", nil))
 			return false
@@ -58,14 +46,6 @@ func AssertRequestUrlQueryMatches(t *testing.T, req *request.Request, val string
 func AssertRequestHeadersMatch(t *testing.T, req *request.Request, header map[string]interface{}, msgAndArgs ...interface{}) bool {
 	for key, valExpect := range header {
 		valReq := req.HTTPRequest.Header.Get(key)
-		if key == "Header-Binary" {
-			temp, err  := base64.StdEncoding.DecodeString(valReq)
-			if err != nil {
-				t.Errorf(errMsg("unable to decode string for Header-Binary parameter of expect", err, msgAndArgs))
-				return false
-			}
-			valReq = string(temp)
-		}
 		if valReq == "" || valReq != valExpect {
 			t.Errorf(errMsg("header values inside request and expect don't match", nil))
 			return false

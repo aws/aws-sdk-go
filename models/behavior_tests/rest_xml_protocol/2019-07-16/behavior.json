@@ -1989,8 +1989,7 @@
                 "Header-2": "value-2",
                 "Header-3": "value-3"
               },
-              "bodyType": "xml",
-              "bodyContent": ""
+              "Body": ""
             }
           }
         ]

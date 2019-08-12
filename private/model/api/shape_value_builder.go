@@ -3,8 +3,9 @@
 package api
 
 import (
-	"fmt"
+	"encoding/base64"
 	"encoding/json"
+	"fmt"
 	"reflect"
 	"sort"
 	"strings"
@@ -158,7 +159,12 @@ func (b ShapeValueBuilder) BuildScalar(name, memName string, ref *ShapeRef, shap
 				return fmt.Sprintf("%s: aws.ReadSeekCloser(strings.NewReader(%q)),\n", memName, v)
 			}
 
-			return fmt.Sprintf("%s: []byte(%q),\n", memName, v)
+			b, err := base64.StdEncoding.DecodeString(v)
+			if err != nil {
+				panic(fmt.Errorf("Failed to decode string: %v", err))
+			}
+
+			return fmt.Sprintf("%s: []byte(%q),\n", memName, b)
 		default:
 			return convertToCorrectType(memName, t, v)
 		}
@@ -190,12 +196,11 @@ func (b ShapeValueBuilder) BuildComplex(name, memName string, ref *ShapeRef, par
 			},
 			`, name, b.GoType(ref, false), b.BuildShape(ref, v, true))
 		} else{
-			return fmt.Sprintf(`%q: &%s{
+			return fmt.Sprintf(`%s: &%s{
 				%s
 			},
 			`, memName, b.GoType(ref, true), b.BuildShape(ref, v, false))
 		}
-
 	default:
 		panic(fmt.Sprintf("Expected complex type but received %q", ref.Shape.Type))
 	}

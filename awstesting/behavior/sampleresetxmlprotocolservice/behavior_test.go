@@ -798,7 +798,7 @@ func TestBehavior_17(t *testing.T) {
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
-		QueryBlob:      []byte("YmluYXJ5LXZhbHVl"),
+		QueryBlob:      []byte("binary-value"),
 		UriPath:        aws.String("path"),
 		UriPathSegment: aws.String("segment"),
 	}
@@ -992,6 +992,13 @@ func TestBehavior_21(t *testing.T) {
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
+		QueryHttpdateTimestamp: func() *time.Time {
+			v, err := protocol.ParseTime("unixTimestamp", "946845296.123000")
+			if err != nil {
+				panic(err)
+			}
+			return &v
+		}(),
 		UriPath:        aws.String("path"),
 		UriPathSegment: aws.String("segment"),
 	}
@@ -1538,7 +1545,7 @@ func TestBehavior_33(t *testing.T) {
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
-		HeaderBlob:     []byte("YmluYXJ5LXZhbHVl"),
+		HeaderBlob:     []byte("binary-value"),
 		UriPath:        aws.String("path"),
 		UriPathSegment: aws.String("segment"),
 	}
@@ -1776,6 +1783,13 @@ func TestBehavior_38(t *testing.T) {
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
+		HeaderHttpdateTimestamp: func() *time.Time {
+			v, err := protocol.ParseTime("unixTimestamp", "946845296.123000")
+			if err != nil {
+				panic(err)
+			}
+			return &v
+		}(),
 		UriPath:        aws.String("path"),
 		UriPathSegment: aws.String("segment"),
 	}
@@ -2508,7 +2522,7 @@ func TestBehavior_55(t *testing.T) {
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
-		Blob: []byte("YmluYXJ5LXZhbHVl"),
+		Blob: []byte("binary-value"),
 	}
 
 	//Build request
@@ -3561,10 +3575,10 @@ func TestBehavior_77(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		Map: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
-			"\"key-1\"": {
+			"key-1": {
 				Value: aws.String("value-1"),
 			},
-			"\"key-2\"": {
+			"key-2": {
 				Value: aws.String("value-2"),
 			},
 		},
@@ -3610,10 +3624,10 @@ func TestBehavior_78(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		Map: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
-			"\"key-1\"": {
+			"key-1": {
 				Value: aws.String("value-1"),
 			},
-			"\"key-2\"": {
+			"key-2": {
 				Value: aws.String("value-2"),
 			},
 		},
@@ -3659,10 +3673,10 @@ func TestBehavior_79(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		MapWithName: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
-			"\"key-1\"": {
+			"key-1": {
 				Value: aws.String("value-1"),
 			},
-			"\"key-2\"": {
+			"key-2": {
 				Value: aws.String("value-2"),
 			},
 		},
@@ -3708,10 +3722,10 @@ func TestBehavior_80(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		MapWithMemberNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
-			"\"key-1\"": {
+			"key-1": {
 				Value: aws.String("value-1"),
 			},
-			"\"key-2\"": {
+			"key-2": {
 				Value: aws.String("value-2"),
 			},
 		},
@@ -3757,10 +3771,10 @@ func TestBehavior_81(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		MapWithBothNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
-			"\"key-1\"": {
+			"key-1": {
 				Value: aws.String("value-1"),
 			},
-			"\"key-2\"": {
+			"key-2": {
 				Value: aws.String("value-2"),
 			},
 		},
@@ -3806,10 +3820,10 @@ func TestBehavior_82(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		FlatMap: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
-			"\"key-1\"": {
+			"key-1": {
 				Value: aws.String("value-1"),
 			},
-			"\"key-2\"": {
+			"key-2": {
 				Value: aws.String("value-2"),
 			},
 		},
@@ -3855,10 +3869,10 @@ func TestBehavior_83(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		FlatMapWithName: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
-			"\"key-1\"": {
+			"key-1": {
 				Value: aws.String("value-1"),
 			},
-			"\"key-2\"": {
+			"key-2": {
 				Value: aws.String("value-2"),
 			},
 		},
@@ -3904,10 +3918,10 @@ func TestBehavior_84(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		FlatMapWithMemberNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
-			"\"key-1\"": {
+			"key-1": {
 				Value: aws.String("value-1"),
 			},
-			"\"key-2\"": {
+			"key-2": {
 				Value: aws.String("value-2"),
 			},
 		},
@@ -3953,10 +3967,10 @@ func TestBehavior_85(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		FlatMapWithBothNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
-			"\"key-1\"": {
+			"key-1": {
 				Value: aws.String("value-1"),
 			},
-			"\"key-2\"": {
+			"key-2": {
 				Value: aws.String("value-2"),
 			},
 		},
@@ -4002,11 +4016,11 @@ func TestBehavior_86(t *testing.T) {
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		RecursiveMap: map[string]*sampleresetxmlprotocolservice.KitchenSink{
-			"\"key-1\"": {
+			"key-1": {
 				RecursiveMap: map[string]*sampleresetxmlprotocolservice.KitchenSink{
-					"\"key-2\"": {
+					"key-2": {
 						RecursiveMap: map[string]*sampleresetxmlprotocolservice.KitchenSink{
-							"\"key-3\"": {},
+							"key-3": {},
 						},
 					},
 				},
@@ -4749,7 +4763,7 @@ func TestBehavior_101(t *testing.T) {
 
 	//Assertions start here
 	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
-		HeaderBlob:     []byte("YmluYXJ5LXZhbHVl"),
+		HeaderBlob:     []byte("binary-value"),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
 	}) {
@@ -5017,6 +5031,7 @@ func TestBehavior_106(t *testing.T) {
 
 	//Assertions start here
 	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.SimpleHttpOperationOutput{
+		Body: aws.ReadSeekCloser(strings.NewReader("")),
 		Headers: map[string]*string{
 			"Header-1": aws.String("value-1"),
 			"Header-2": aws.String("value-2"),
@@ -5405,7 +5420,7 @@ func TestBehavior_115(t *testing.T) {
 
 	//Assertions start here
 	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
-		Blob: []byte("YmluYXJ5LXZhbHVl"),
+		Blob: []byte("binary-value"),
 	}) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
@@ -6281,11 +6296,11 @@ func TestBehavior_133(t *testing.T) {
 	//Assertions start here
 	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		RecursiveMap: map[string]*sampleresetxmlprotocolservice.KitchenSink{
-			"\"key-1\"": {
+			"key-1": {
 				RecursiveMap: map[string]*sampleresetxmlprotocolservice.KitchenSink{
-					"\"key-2\"": {
+					"key-2": {
 						RecursiveMap: map[string]*sampleresetxmlprotocolservice.KitchenSink{
-							"\"key-3\"": {},
+							"key-3": {},
 						},
 					},
 				},
@@ -6334,10 +6349,10 @@ func TestBehavior_134(t *testing.T) {
 	//Assertions start here
 	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Map: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
-			"\"key-1\"": {
+			"key-1": {
 				Value: aws.String("value-1"),
 			},
-			"\"key-2\"": {
+			"key-2": {
 				Value: aws.String("value-2"),
 			},
 		},
@@ -6384,10 +6399,10 @@ func TestBehavior_135(t *testing.T) {
 	//Assertions start here
 	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapWithName: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
-			"\"key-1\"": {
+			"key-1": {
 				Value: aws.String("value-1"),
 			},
-			"\"key-2\"": {
+			"key-2": {
 				Value: aws.String("value-2"),
 			},
 		},
@@ -6434,10 +6449,10 @@ func TestBehavior_136(t *testing.T) {
 	//Assertions start here
 	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapWithMemberNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
-			"\"key-1\"": {
+			"key-1": {
 				Value: aws.String("value-1"),
 			},
-			"\"key-2\"": {
+			"key-2": {
 				Value: aws.String("value-2"),
 			},
 		},
@@ -6484,10 +6499,10 @@ func TestBehavior_137(t *testing.T) {
 	//Assertions start here
 	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapWithBothNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
-			"\"key-1\"": {
+			"key-1": {
 				Value: aws.String("value-1"),
 			},
-			"\"key-2\"": {
+			"key-2": {
 				Value: aws.String("value-2"),
 			},
 		},
@@ -6534,10 +6549,10 @@ func TestBehavior_138(t *testing.T) {
 	//Assertions start here
 	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatMap: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
-			"\"key-1\"": {
+			"key-1": {
 				Value: aws.String("value-1"),
 			},
-			"\"key-2\"": {
+			"key-2": {
 				Value: aws.String("value-2"),
 			},
 		},
@@ -6584,10 +6599,10 @@ func TestBehavior_139(t *testing.T) {
 	//Assertions start here
 	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatMapWithName: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
-			"\"key-1\"": {
+			"key-1": {
 				Value: aws.String("value-1"),
 			},
-			"\"key-2\"": {
+			"key-2": {
 				Value: aws.String("value-2"),
 			},
 		},
@@ -6634,10 +6649,10 @@ func TestBehavior_140(t *testing.T) {
 	//Assertions start here
 	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatMapWithMemberNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
-			"\"key-1\"": {
+			"key-1": {
 				Value: aws.String("value-1"),
 			},
-			"\"key-2\"": {
+			"key-2": {
 				Value: aws.String("value-2"),
 			},
 		},
@@ -6684,10 +6699,10 @@ func TestBehavior_141(t *testing.T) {
 	//Assertions start here
 	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatMapWithBothNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
-			"\"key-1\"": {
+			"key-1": {
 				Value: aws.String("value-1"),
 			},
-			"\"key-2\"": {
+			"key-2": {
 				Value: aws.String("value-2"),
 			},
 		},

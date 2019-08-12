@@ -72,9 +72,7 @@
         "requestUri": "/"
       },
       "input": {
-        "shape": "OperationMembersWithoutLocationInput",
-        "locationName": "RootNode",
-        "xmlNamespace": { "uri": "http://xml/ns" }
+        "shape": "OperationMembersWithoutLocationInput"
       }
     },
     "KitchenSink": {
@@ -143,10 +141,16 @@
           "location": "querystring",
           "locationName": "binary-value"
         },
+        "QueryHttpdateTimestamp": {
+          "shape": "Timestamp",
+          "location": "querystring",
+          "locationName": "httpdate-timestamp",
+          "timestampFormat": "rfc822"
+        },
         "QueryTimestamp": {
           "shape": "Timestamp",
           "location": "querystring",
-          "locationName": "unixTimestamp"
+          "locationName": "timestamp"
         },
         "QueryUnixTimestamp": {
           "shape": "Timestamp",
@@ -155,12 +159,6 @@
           "timestampFormat": "unixTimestamp"
         },
         "QueryIso8601Timestamp": {
-          "shape": "Timestamp",
-          "location": "querystring",
-          "locationName": "iso8601-timestamp",
-          "timestampFormat": "iso8601"
-        },
-        "Queryiso8601Timestamp": {
           "shape": "Timestamp",
           "location": "querystring",
           "locationName": "iso8601-timestamp",
@@ -216,6 +214,12 @@
           "location": "header",
           "locationName": "Header-Binary"
         },
+        "HeaderHttpdateTimestamp": {
+          "shape": "Timestamp",
+          "location": "header",
+          "locationName": "Header-Httpdate-Timestamp",
+          "timestampFormat": "rfc822"
+        },
         "HeaderJsonValue": {
           "shape": "String",
           "jsonvalue": true,
@@ -237,12 +241,6 @@
           "shape": "Timestamp",
           "location": "header",
           "locationName": "Header-Iso8601-Timestamp",
-          "timestampFormat": "iso8601"
-        },
-        "Headeriso8601Timestamp": {
-          "shape": "Timestamp",
-          "location": "header",
-          "locationName": "Header-iso8601-Timestamp",
           "timestampFormat": "iso8601"
         },
         "HeaderMap": {
@@ -326,12 +324,6 @@
           "locationName": "Header-Iso8601-Timestamp",
           "timestampFormat": "iso8601"
         },
-        "Headeriso8601Timestamp": {
-          "shape": "Timestamp",
-          "location": "header",
-          "locationName": "Header-iso8601-Timestamp",
-          "timestampFormat": "iso8601"
-        },
         "HeaderMapWithPrefix": {
           "shape": "MapOfStrings",
           "location": "headers",
@@ -395,7 +387,6 @@
         "Blob": { "shape": "Blob" },
         "Timestamp": { "shape": "Timestamp" },
         "Iso8601Timestamp": { "shape": "Timestamp", "timestampFormat": "iso8601" },
-        "iso8601Timestamp": { "shape": "Timestamp", "timestampFormat": "iso8601" },
         "UnixTimestamp": { "shape": "Timestamp", "timestampFormat": "unixTimestamp" },
 
         "ListOfStrings": { "shape": "ListOfStrings"},

@@ -146,7 +146,7 @@ func unmarshalStatusCode(v reflect.Value, statusCode int) {
 }
 
 func unmarshalHeaderMap(r reflect.Value, headers http.Header, prefix string) error {
-	if headers == nil {
+	if headers == nil || r.IsNil() {
 		return nil
 	}
 	switch r.Interface().(type) {
