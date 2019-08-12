@@ -10820,6 +10820,9 @@ const (
 
 	// EmotionNameUnknown is a EmotionName enum value
 	EmotionNameUnknown = "UNKNOWN"
+
+	// EmotionNameFear is a EmotionName enum value
+	EmotionNameFear = "FEAR"
 )
 
 const (
