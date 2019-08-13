@@ -4,6 +4,9 @@
   * `AWS IoT Events`'s `IotEventsAction` with `Action`. The previously deleted `Action` is available as `ActionData`.
 
 ### SDK Enhancements
+* `service/kinesis`: Add support for retrying service specific API errors ([#2751](https://github.com/aws/aws-sdk-go/pull/2751)
+  * Adds support for retrying the Kinesis API error, LimitExceededException.
+  * Fixes [#1376](https://github.com/aws/aws-sdk-go/issues/1376)
 
 ### SDK Bugs
 * `private/model/api`: Fix broken shape stutter rename during generation ([#2747](https://github.com/aws/aws-sdk-go/pull/2747))
