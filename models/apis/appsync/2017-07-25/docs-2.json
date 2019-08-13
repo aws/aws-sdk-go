@@ -130,7 +130,8 @@
     "Boolean": {
       "base": null,
       "refs": {
-        "DynamodbDataSourceConfig$useCallerCredentials": "<p>Set to TRUE to use Amazon Cognito credentials with this data source.</p>"
+        "DynamodbDataSourceConfig$useCallerCredentials": "<p>Set to TRUE to use Amazon Cognito credentials with this data source.</p>",
+        "LogConfig$excludeVerboseContent": "<p>Set to TRUE to exclude sections that contain information such as headers, context, and evaluated mapping templates, regardless of logging level.</p>"
       }
     },
     "BooleanValue": {
