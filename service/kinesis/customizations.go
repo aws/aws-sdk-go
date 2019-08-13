@@ -18,5 +18,5 @@ func customizeRequest(r *request.Request) {
 	}
 
 	// Service specific error codes. Github(aws/aws-sdk-go#1376)
-	r.RetryCodes = append(r.RetryCodes, ErrCodeLimitExceededException)
+	r.RetryErrorCodes = append(r.RetryErrorCodes, ErrCodeLimitExceededException)
 }
