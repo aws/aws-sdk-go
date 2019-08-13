@@ -31,12 +31,12 @@ func TestShouldRetryError_timeout(t *testing.T) {
 
 	tr := &http.Transport{}
 	defer tr.CloseIdleConnections()
-	cli := http.Client{
+	client := http.Client{
 		Timeout:   time.Nanosecond,
 		Transport: tr,
 	}
 
-	resp, err := cli.Do(newRequest(t, "https://179.179.179.179/no/such/host"))
+	resp, err := client.Do(newRequest(t, "https://179.179.179.179/no/such/host"))
 	if resp != nil {
 		resp.Body.Close()
 	}
@@ -53,7 +53,7 @@ func TestShouldRetryError_timeout(t *testing.T) {
 func TestShouldRetryError_cancelled(t *testing.T) {
 	tr := &http.Transport{}
 	defer tr.CloseIdleConnections()
-	cli := http.Client{
+	client := http.Client{
 		Transport: tr,
 	}
 
@@ -82,7 +82,7 @@ func TestShouldRetryError_cancelled(t *testing.T) {
 		close(ch) // request is cancelled before anything
 	}()
 
-	resp, err := cli.Do(r)
+	resp, err := client.Do(r)
 	if resp != nil {
 		resp.Body.Close()
 	}
@@ -131,10 +131,7 @@ func debugerr(t *testing.T, err error) {
 		t.Logf("%s is a temporary error: %t", err, err.Temporary())
 		return
 	case *url.Error:
-		// we should be before 1.5
-		// that's our case !
-		t.Logf("err: %s", err)
-		t.Logf("err: %#v", err.Err)
+		t.Logf("err: %s, nested err: %#v", err, err.Err)
 		if operr, ok := err.Err.(*net.OpError); ok {
 			t.Logf("operr: %#v", operr)
 		}
@@ -142,5 +139,64 @@ func debugerr(t *testing.T, err error) {
 		return
 	default:
 		return
+	}
+}
+
+func TestRequest_retryCustomCodes(t *testing.T) {
+	cases := map[string]struct {
+		Code               string
+		RetryErrorCodes    []string
+		ThrottleErrorCodes []string
+		Retryable          bool
+		Throttle           bool
+	}{
+		"retry code": {
+			Code: "RetryMePlease",
+			RetryErrorCodes: []string{
+				"RetryMePlease",
+				"SomeOtherError",
+			},
+			Retryable: true,
+		},
+		"throttle code": {
+			Code: "AThrottleableError",
+			RetryErrorCodes: []string{
+				"RetryMePlease",
+				"SomeOtherError",
+			},
+			ThrottleErrorCodes: []string{
+				"AThrottleableError",
+				"SomeOtherError",
+			},
+			Throttle: true,
+		},
+		"unknown code": {
+			Code: "UnknownCode",
+			RetryErrorCodes: []string{
+				"RetryMePlease",
+				"SomeOtherError",
+			},
+			Retryable: false,
+		},
+	}
+
+	for name, c := range cases {
+		req := Request{
+			HTTPRequest:        &http.Request{},
+			HTTPResponse:       &http.Response{},
+			Error:              awserr.New(c.Code, "some error", nil),
+			RetryErrorCodes:    c.RetryErrorCodes,
+			ThrottleErrorCodes: c.ThrottleErrorCodes,
+		}
+
+		retryable := req.IsErrorRetryable()
+		if e, a := c.Retryable, retryable; e != a {
+			t.Errorf("%s, expect %v retryable, got %v", name, e, a)
+		}
+
+		throttle := req.IsErrorThrottle()
+		if e, a := c.Throttle, throttle; e != a {
+			t.Errorf("%s, expect %v throttle, got %v", name, e, a)
+		}
 	}
 }

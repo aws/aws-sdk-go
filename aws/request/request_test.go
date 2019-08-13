@@ -181,13 +181,18 @@ func TestRequestRecoverRetry4xxRetryable(t *testing.T) {
 
 // test that retries don't occur for 4xx status codes with a response type that can't be retried
 func TestRequest4xxUnretryable(t *testing.T) {
-	s := awstesting.NewClient(aws.NewConfig().WithMaxRetries(10))
+	s := awstesting.NewClient(&aws.Config{
+		MaxRetries: aws.Int(1),
+	})
 	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)
 	s.Handlers.Send.Clear() // mock sending
 	s.Handlers.Send.PushBack(func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 401, Body: body(`{"__type":"SignatureDoesNotMatch","message":"Signature does not match."}`)}
+		r.HTTPResponse = &http.Response{
+			StatusCode: 401,
+			Body:       body(`{"__type":"SignatureDoesNotMatch","message":"Signature does not match."}`),
+		}
 	})
 	out := &testData{}
 	r := s.NewRequest(&request.Operation{Name: "Operation"}, nil, out)
@@ -580,7 +585,7 @@ func TestIsSerializationErrorRetryable(t *testing.T) {
 			Error: c.err,
 		}
 		if r.IsErrorRetryable() != c.expected {
-			t.Errorf("Case %d: Expected %v, but received %v", i+1, c.expected, !c.expected)
+			t.Errorf("Case %d: Expected %v, but received %v", i, c.expected, !c.expected)
 		}
 	}
 }
@@ -1124,7 +1129,6 @@ func TestRequestBodySeekFails(t *testing.T) {
 	if err == nil {
 		t.Fatal("expect error, but got none")
 	}
-	t.Log("Error:", err)
 
 	aerr := err.(awserr.Error)
 	if e, a := request.ErrCodeSerialization, aerr.Code(); e != a {
