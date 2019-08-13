@@ -4224,6 +4224,11 @@
         },
         "isRegionalized" : true
       },
+      "health" : {
+        "endpoints" : {
+          "us-gov-west-1" : { }
+        }
+      },
       "iam" : {
         "endpoints" : {
           "aws-us-gov-global" : {
