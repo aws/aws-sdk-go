@@ -4,13 +4,64 @@ import (
 	"bytes"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/util"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
+	"io"
 	"io/ioutil"
+	"log"
+	"math"
 	"net/url"
+	"reflect"
 	"testing"
 )
+
+
+func FloatIntEquate() cmp.Option {
+	return cmp.Options{
+		cmp.FilterValues(areNaNsF64s, cmp.Comparer(equateAlways)),
+		cmp.FilterValues(areNaNsF32s, cmp.Comparer(equateAlways)),
+		cmp.FilterValues(areNaNsI32s, cmp.Comparer(equateAlways)),
+		cmp.FilterValues(areNaNsI64s, cmp.Comparer(equateAlways)),
+	}
+}
+
+func equateAlways(_, _ interface{}) bool { return true }
+
+func areNaNsF64s(x, y float64) bool {
+	return math.IsNaN(x) && math.IsNaN(y)
+}
+func areNaNsF32s(x, y float32) bool {
+	return areNaNsF64s(float64(x), float64(y))
+}
+
+func areNaNsI32s(x, y int32) bool {
+	return areNaNsF64s(float64(x), float64(y))
+}
+func areNaNsI64s(x, y int64) bool {
+	return areNaNsF64s(float64(x), float64(y))
+}
+
+func EquateIoReader() cmp.Option {
+	return cmp.FilterValues(ioReaderCompare, cmp.Comparer(equateAlways))
+}
+
+func ioReaderCompare(x, y interface{}) bool {
+	vx, vy := reflect.ValueOf(x), reflect.ValueOf(y)
+	if vx.Type().String() != "ioutil.nopCloser" || vy.Type().String() != "aws.ReaderSeekerCloser" {
+		return false
+	}
+	xbyte, err1 := ioutil.ReadAll(x.(io.Reader))
+	if err1 != nil {
+		log.Println("couldn't read the body from response")
+	}
+	ybyte, err2 := ioutil.ReadAll(y.(io.Reader))
+	if err2 != nil {
+		log.Println("couldn't read the body from expect response")
+	}
+	return (x != nil && y != nil) && (bytes.Compare(xbyte, ybyte) == 0)
+}
 
 func AssertRequestMethodEquals(t *testing.T, req *request.Request, val string, msgAndArgs ...interface{}) bool {
 	return equal(t, val, req.HTTPRequest.Method, msgAndArgs)
@@ -46,6 +97,23 @@ func AssertRequestUrlQueryMatches(t *testing.T, req *request.Request, val string
 func AssertRequestHeadersMatch(t *testing.T, req *request.Request, header map[string]interface{}, msgAndArgs ...interface{}) bool {
 	for key, valExpect := range header {
 		valReq := req.HTTPRequest.Header.Get(key)
+		if key == "Header-Json-Value" {
+			expectJsonValue, err1 := protocol.DecodeJSONValue(valExpect.(string), protocol.Base64Escape)
+			if err1 != nil {
+				t.Errorf(errMsg("unable to parse expected JSON", err1, msgAndArgs...))
+			}
+			responseJsonValue, err2 := protocol.DecodeJSONValue(valReq, protocol.Base64Escape)
+			if err2 != nil {
+				t.Errorf(errMsg("unable to parse response JSON", err2, msgAndArgs...))
+			}
+			for key1, val1 := range expectJsonValue{
+				if ! cmp.Equal(responseJsonValue[key1], val1, FloatIntEquate()) {
+					t.Errorf(errMsg("aws.JSON value from expect and response don't match", nil))
+					return false
+				}
+			}
+			continue
+		}
 		if valReq == "" || valReq != valExpect {
 			t.Errorf(errMsg("header values inside request and expect don't match", nil))
 			return false
@@ -115,7 +183,7 @@ func AssertResponseDataEquals(t *testing.T, response interface{}, expectResponse
 	if response == nil || expectResponse == nil {
 		return equal(t, expectResponse, response, msgAndArgs)
 	}
-	return cmp.Equal(response, expectResponse, cmpopts.EquateEmpty())
+	return cmp.Equal(response, expectResponse, cmpopts.EquateEmpty(), EquateIoReader())
 }
 
 func AssertResponseErrorIsKindOf(t *testing.T, err error, val string, msgAndArgs ...interface{}) bool {

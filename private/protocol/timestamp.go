@@ -16,7 +16,9 @@ const (
 // Time formats supported by the SDK
 const (
 	// RFC 7231#section-7.1.1.1 timetamp format. e.g Tue, 29 Apr 2014 18:30:38 GMT
-	RFC822TimeFormat = "Mon, 02 Jan 2006 15:04:05 GMT"
+	RFC822TimeFormat = "Mon, 2 Jan 2006 15:04:05 GMT"
+
+	RFC822OutputTimeFormat = "Mon, 02 Jan 2006 15:04:05 GMT"
 
 	// RFC3339 a subset of the ISO8601 timestamp format. e.g 2014-04-29T18:30:38Z
 	ISO8601TimeFormat = "2006-01-02T15:04:05.000Z"
@@ -43,7 +45,7 @@ func FormatTime(name string, t time.Time) string {
 
 	switch name {
 	case RFC822TimeFormatName:
-		return t.Format(RFC822TimeFormat)
+		return t.Format(RFC822OutputTimeFormat)
 	case ISO8601TimeFormatName:
 		return t.Format(ISO8601TimeFormat)
 	case UnixTimeFormatName:
