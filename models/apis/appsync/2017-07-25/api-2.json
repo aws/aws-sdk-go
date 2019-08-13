@@ -1559,7 +1559,8 @@
       ],
       "members":{
         "fieldLogLevel":{"shape":"FieldLogLevel"},
-        "cloudWatchLogsRoleArn":{"shape":"String"}
+        "cloudWatchLogsRoleArn":{"shape":"String"},
+        "excludeVerboseContent":{"shape":"Boolean"}
       }
     },
     "Long":{"type":"long"},
