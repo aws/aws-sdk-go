@@ -7,5 +7,5 @@ func init() {
 }
 
 func customizeRequest(r *request.Request) {
-	r.RetryCodes = append(r.RetryCodes, ErrCodeIDPCommunicationErrorException)
+	r.RetryErrorCodes = append(r.RetryErrorCodes, ErrCodeIDPCommunicationErrorException)
 }

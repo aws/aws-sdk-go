@@ -1,39 +1,28 @@
 // +build go1.7
 
-package stscreds
+package stscreds_test
 
 import (
-	"fmt"
+	"net/http"
 	"reflect"
 	"testing"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/corehandlers"
 	"github.com/aws/aws-sdk-go/aws/credentials"
+	"github.com/aws/aws-sdk-go/aws/credentials/stscreds"
+	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/service/sts"
 )
 
-type mockSTS struct {
-	*sts.STS
-	AssumeRoleWithWebIdentityFn func(input *sts.AssumeRoleWithWebIdentityInput) (*sts.AssumeRoleWithWebIdentityOutput, error)
-}
-
-func (m *mockSTS) AssumeRoleWithWebIdentity(input *sts.AssumeRoleWithWebIdentityInput) (*sts.AssumeRoleWithWebIdentityOutput, error) {
-	if m.AssumeRoleWithWebIdentityFn != nil {
-		return m.AssumeRoleWithWebIdentityFn(input)
-	}
-
-	return nil, nil
-}
-
 func TestWebIdentityProviderRetrieve(t *testing.T) {
-	now = func() time.Time {
-		return time.Time{}
-	}
-
+	var reqCount int
 	cases := []struct {
 		name              string
-		mockSTS           *mockSTS
+		onSendReq         func(*testing.T, *request.Request)
 		roleARN           string
 		tokenFilepath     string
 		sessionName       string
@@ -42,64 +31,91 @@ func TestWebIdentityProviderRetrieve(t *testing.T) {
 	}{
 		{
 			name:          "session name case",
-			roleARN:       "arn",
+			roleARN:       "arn01234567890123456789",
 			tokenFilepath: "testdata/token.jwt",
 			sessionName:   "foo",
-			mockSTS: &mockSTS{
-				AssumeRoleWithWebIdentityFn: func(input *sts.AssumeRoleWithWebIdentityInput) (*sts.AssumeRoleWithWebIdentityOutput, error) {
-					if e, a := "foo", *input.RoleSessionName; !reflect.DeepEqual(e, a) {
-						t.Errorf("expected %v, but received %v", e, a)
-					}
+			onSendReq: func(t *testing.T, r *request.Request) {
+				input := r.Params.(*sts.AssumeRoleWithWebIdentityInput)
+				if e, a := "foo", *input.RoleSessionName; !reflect.DeepEqual(e, a) {
+					t.Errorf("expected %v, but received %v", e, a)
+				}
 
-					return &sts.AssumeRoleWithWebIdentityOutput{
-						Credentials: &sts.Credentials{
-							Expiration:      aws.Time(time.Now()),
-							AccessKeyId:     aws.String("access-key-id"),
-							SecretAccessKey: aws.String("secret-access-key"),
-							SessionToken:    aws.String("session-token"),
-						},
-					}, nil
-				},
+				data := r.Data.(*sts.AssumeRoleWithWebIdentityOutput)
+				*data = sts.AssumeRoleWithWebIdentityOutput{
+					Credentials: &sts.Credentials{
+						Expiration:      aws.Time(time.Now()),
+						AccessKeyId:     aws.String("access-key-id"),
+						SecretAccessKey: aws.String("secret-access-key"),
+						SessionToken:    aws.String("session-token"),
+					},
+				}
 			},
 			expectedCredValue: credentials.Value{
 				AccessKeyID:     "access-key-id",
 				SecretAccessKey: "secret-access-key",
 				SessionToken:    "session-token",
-				ProviderName:    WebIdentityProviderName,
+				ProviderName:    stscreds.WebIdentityProviderName,
 			},
 		},
 		{
-			name:          "valid case",
-			roleARN:       "arn",
+			name:          "invalid token retry",
+			roleARN:       "arn01234567890123456789",
 			tokenFilepath: "testdata/token.jwt",
-			mockSTS: &mockSTS{
-				AssumeRoleWithWebIdentityFn: func(input *sts.AssumeRoleWithWebIdentityInput) (*sts.AssumeRoleWithWebIdentityOutput, error) {
-					if e, a := fmt.Sprintf("%d", now().UnixNano()), *input.RoleSessionName; !reflect.DeepEqual(e, a) {
-						t.Errorf("expected %v, but received %v", e, a)
-					}
+			sessionName:   "foo",
+			onSendReq: func(t *testing.T, r *request.Request) {
+				input := r.Params.(*sts.AssumeRoleWithWebIdentityInput)
+				if e, a := "foo", *input.RoleSessionName; !reflect.DeepEqual(e, a) {
+					t.Errorf("expected %v, but received %v", e, a)
+				}
 
-					return &sts.AssumeRoleWithWebIdentityOutput{
-						Credentials: &sts.Credentials{
-							Expiration:      aws.Time(time.Now()),
-							AccessKeyId:     aws.String("access-key-id"),
-							SecretAccessKey: aws.String("secret-access-key"),
-							SessionToken:    aws.String("session-token"),
-						},
-					}, nil
-				},
+				if reqCount == 0 {
+					r.HTTPResponse.StatusCode = 400
+					r.Error = awserr.New(sts.ErrCodeInvalidIdentityTokenException,
+						"some error message", nil)
+					return
+				}
+
+				data := r.Data.(*sts.AssumeRoleWithWebIdentityOutput)
+				*data = sts.AssumeRoleWithWebIdentityOutput{
+					Credentials: &sts.Credentials{
+						Expiration:      aws.Time(time.Now()),
+						AccessKeyId:     aws.String("access-key-id"),
+						SecretAccessKey: aws.String("secret-access-key"),
+						SessionToken:    aws.String("session-token"),
+					},
+				}
 			},
 			expectedCredValue: credentials.Value{
 				AccessKeyID:     "access-key-id",
 				SecretAccessKey: "secret-access-key",
 				SessionToken:    "session-token",
-				ProviderName:    WebIdentityProviderName,
+				ProviderName:    stscreds.WebIdentityProviderName,
 			},
 		},
 	}
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			p := NewWebIdentityRoleProvider(c.mockSTS, c.roleARN, c.sessionName, c.tokenFilepath)
+			reqCount = 0
+
+			svc := sts.New(unit.Session, &aws.Config{
+				Logger: t,
+			})
+			svc.Handlers.Send.Swap(corehandlers.SendHandler.Name, request.NamedHandler{
+				Name: "custom send stub handler",
+				Fn: func(r *request.Request) {
+					r.HTTPResponse = &http.Response{
+						StatusCode: 200, Header: http.Header{},
+					}
+					c.onSendReq(t, r)
+					reqCount++
+				},
+			})
+			svc.Handlers.UnmarshalMeta.Clear()
+			svc.Handlers.Unmarshal.Clear()
+			svc.Handlers.UnmarshalError.Clear()
+
+			p := stscreds.NewWebIdentityRoleProvider(svc, c.roleARN, c.sessionName, c.tokenFilepath)
 			credValue, err := p.Retrieve()
 			if e, a := c.expectedError, err; !reflect.DeepEqual(e, a) {
 				t.Errorf("expected %v, but received %v", e, a)

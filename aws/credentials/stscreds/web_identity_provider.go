@@ -83,7 +83,7 @@ func (p *WebIdentityRoleProvider) Retrieve() (credentials.Value, error) {
 	})
 	// InvalidIdentityToken error is a temporary error that can occur
 	// when assuming an Role with a JWT web identity token.
-	req.RetryCodes = append(req.RetryCodes, sts.ErrCodeInvalidIdentityTokenException)
+	req.RetryErrorCodes = append(req.RetryErrorCodes, sts.ErrCodeInvalidIdentityTokenException)
 	if err := req.Send(); err != nil {
 		return credentials.Value{}, awserr.New(ErrCodeWebIdentity, "failed to retrieve credentials", err)
 	}
