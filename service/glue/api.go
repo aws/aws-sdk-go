@@ -23067,7 +23067,7 @@ type GetTableOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Table object that defines the specified table.
-	Table *Table `type:"structure"`
+	Table *TableData `type:"structure"`
 }
 
 // String returns the string representation
@@ -23081,7 +23081,7 @@ func (s GetTableOutput) GoString() string {
 }
 
 // SetTable sets the Table field's value.
-func (s *GetTableOutput) SetTable(v *Table) *GetTableOutput {
+func (s *GetTableOutput) SetTable(v *TableData) *GetTableOutput {
 	s.Table = v
 	return s
 }
@@ -23413,7 +23413,7 @@ type GetTablesOutput struct {
 	NextToken *string `type:"string"`
 
 	// A list of the requested Table objects.
-	TableList []*Table `type:"list"`
+	TableList []*TableData `type:"list"`
 }
 
 // String returns the string representation
@@ -23433,7 +23433,7 @@ func (s *GetTablesOutput) SetNextToken(v string) *GetTablesOutput {
 }
 
 // SetTableList sets the TableList field's value.
-func (s *GetTablesOutput) SetTableList(v []*Table) *GetTablesOutput {
+func (s *GetTablesOutput) SetTableList(v []*TableData) *GetTablesOutput {
 	s.TableList = v
 	return s
 }
@@ -27624,7 +27624,7 @@ type SearchTablesOutput struct {
 
 	// A list of the requested Table objects. The SearchTables response returns
 	// only the tables that you have access to.
-	TableList []*Table `type:"list"`
+	TableList []*TableData `type:"list"`
 }
 
 // String returns the string representation
@@ -27644,7 +27644,7 @@ func (s *SearchTablesOutput) SetNextToken(v string) *SearchTablesOutput {
 }
 
 // SetTableList sets the TableList field's value.
-func (s *SearchTablesOutput) SetTableList(v []*Table) *SearchTablesOutput {
+func (s *SearchTablesOutput) SetTableList(v []*TableData) *SearchTablesOutput {
 	s.TableList = v
 	return s
 }
@@ -29061,6 +29061,186 @@ func (s *Table) SetTableName(v string) *Table {
 	return s
 }
 
+// Represents a collection of related data organized in columns and rows.
+type TableData struct {
+	_ struct{} `type:"structure"`
+
+	// The time when the table definition was created in the Data Catalog.
+	CreateTime *time.Time `type:"timestamp"`
+
+	// The person or entity who created the table.
+	CreatedBy *string `min:"1" type:"string"`
+
+	// The name of the database where the table metadata resides. For Hive compatibility,
+	// this must be all lowercase.
+	DatabaseName *string `min:"1" type:"string"`
+
+	// A description of the table.
+	Description *string `type:"string"`
+
+	// Indicates whether the table has been registered with AWS Lake Formation.
+	IsRegisteredWithLakeFormation *bool `type:"boolean"`
+
+	// The last time that the table was accessed. This is usually taken from HDFS,
+	// and might not be reliable.
+	LastAccessTime *time.Time `type:"timestamp"`
+
+	// The last time that column statistics were computed for this table.
+	LastAnalyzedTime *time.Time `type:"timestamp"`
+
+	// The table name. For Hive compatibility, this must be entirely lowercase.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The owner of the table.
+	Owner *string `min:"1" type:"string"`
+
+	// These key-value pairs define properties associated with the table.
+	Parameters map[string]*string `type:"map"`
+
+	// A list of columns by which the table is partitioned. Only primitive types
+	// are supported as partition keys.
+	//
+	// When you create a table used by Amazon Athena, and you do not specify any
+	// partitionKeys, you must at least set the value of partitionKeys to an empty
+	// list. For example:
+	//
+	// "PartitionKeys": []
+	PartitionKeys []*Column `type:"list"`
+
+	// The retention time for this table.
+	Retention *int64 `type:"integer"`
+
+	// A storage descriptor containing information about the physical storage of
+	// this table.
+	StorageDescriptor *StorageDescriptor `type:"structure"`
+
+	// The type of this table (EXTERNAL_TABLE, VIRTUAL_VIEW, etc.).
+	TableType *string `type:"string"`
+
+	// The last time that the table was updated.
+	UpdateTime *time.Time `type:"timestamp"`
+
+	// If the table is a view, the expanded text of the view; otherwise null.
+	ViewExpandedText *string `type:"string"`
+
+	// If the table is a view, the original text of the view; otherwise null.
+	ViewOriginalText *string `type:"string"`
+}
+
+// String returns the string representation
+func (s TableData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TableData) GoString() string {
+	return s.String()
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *TableData) SetCreateTime(v time.Time) *TableData {
+	s.CreateTime = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *TableData) SetCreatedBy(v string) *TableData {
+	s.CreatedBy = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *TableData) SetDatabaseName(v string) *TableData {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *TableData) SetDescription(v string) *TableData {
+	s.Description = &v
+	return s
+}
+
+// SetIsRegisteredWithLakeFormation sets the IsRegisteredWithLakeFormation field's value.
+func (s *TableData) SetIsRegisteredWithLakeFormation(v bool) *TableData {
+	s.IsRegisteredWithLakeFormation = &v
+	return s
+}
+
+// SetLastAccessTime sets the LastAccessTime field's value.
+func (s *TableData) SetLastAccessTime(v time.Time) *TableData {
+	s.LastAccessTime = &v
+	return s
+}
+
+// SetLastAnalyzedTime sets the LastAnalyzedTime field's value.
+func (s *TableData) SetLastAnalyzedTime(v time.Time) *TableData {
+	s.LastAnalyzedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *TableData) SetName(v string) *TableData {
+	s.Name = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *TableData) SetOwner(v string) *TableData {
+	s.Owner = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *TableData) SetParameters(v map[string]*string) *TableData {
+	s.Parameters = v
+	return s
+}
+
+// SetPartitionKeys sets the PartitionKeys field's value.
+func (s *TableData) SetPartitionKeys(v []*Column) *TableData {
+	s.PartitionKeys = v
+	return s
+}
+
+// SetRetention sets the Retention field's value.
+func (s *TableData) SetRetention(v int64) *TableData {
+	s.Retention = &v
+	return s
+}
+
+// SetStorageDescriptor sets the StorageDescriptor field's value.
+func (s *TableData) SetStorageDescriptor(v *StorageDescriptor) *TableData {
+	s.StorageDescriptor = v
+	return s
+}
+
+// SetTableType sets the TableType field's value.
+func (s *TableData) SetTableType(v string) *TableData {
+	s.TableType = &v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *TableData) SetUpdateTime(v time.Time) *TableData {
+	s.UpdateTime = &v
+	return s
+}
+
+// SetViewExpandedText sets the ViewExpandedText field's value.
+func (s *TableData) SetViewExpandedText(v string) *TableData {
+	s.ViewExpandedText = &v
+	return s
+}
+
+// SetViewOriginalText sets the ViewOriginalText field's value.
+func (s *TableData) SetViewOriginalText(v string) *TableData {
+	s.ViewOriginalText = &v
+	return s
+}
+
 // An error record for table operations.
 type TableError struct {
 	_ struct{} `type:"structure"`
@@ -29267,7 +29447,7 @@ type TableVersion struct {
 	_ struct{} `type:"structure"`
 
 	// The table in question.
-	Table *Table `type:"structure"`
+	Table *TableData `type:"structure"`
 
 	// The ID value that identifies this table version. A VersionId is a string
 	// representation of an integer. Each version is incremented by 1.
@@ -29285,7 +29465,7 @@ func (s TableVersion) GoString() string {
 }
 
 // SetTable sets the Table field's value.
-func (s *TableVersion) SetTable(v *Table) *TableVersion {
+func (s *TableVersion) SetTable(v *TableData) *TableVersion {
 	s.Table = v
 	return s
 }

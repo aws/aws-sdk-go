@@ -1549,6 +1549,175 @@ func (s *Action) SetInputName(v string) *Action {
 	return s
 }
 
+// An action to be performed when the "condition" is TRUE.
+type ActionData struct {
+	_ struct{} `type:"structure"`
+
+	// Information needed to clear the timer.
+	ClearTimer *ClearTimerAction `locationName:"clearTimer" type:"structure"`
+
+	// Sends information about the detector model instance and the event which triggered
+	// the action to a Kinesis Data Firehose stream.
+	Firehose *FirehoseAction `locationName:"firehose" type:"structure"`
+
+	// Sends an IoT Events input, passing in information about the detector model
+	// instance and the event which triggered the action.
+	IotEvents *Action `locationName:"iotEvents" type:"structure"`
+
+	// Publishes an MQTT message with the given topic to the AWS IoT message broker.
+	IotTopicPublish *IotTopicPublishAction `locationName:"iotTopicPublish" type:"structure"`
+
+	// Calls a Lambda function, passing in information about the detector model
+	// instance and the event which triggered the action.
+	Lambda *LambdaAction `locationName:"lambda" type:"structure"`
+
+	// Information needed to reset the timer.
+	ResetTimer *ResetTimerAction `locationName:"resetTimer" type:"structure"`
+
+	// Information needed to set the timer.
+	SetTimer *SetTimerAction `locationName:"setTimer" type:"structure"`
+
+	// Sets a variable to a specified value.
+	SetVariable *SetVariableAction `locationName:"setVariable" type:"structure"`
+
+	// Sends an Amazon SNS message.
+	Sns *SNSTopicPublishAction `locationName:"sns" type:"structure"`
+
+	// Sends information about the detector model instance and the event which triggered
+	// the action to an AWS SQS queue.
+	Sqs *SqsAction `locationName:"sqs" type:"structure"`
+}
+
+// String returns the string representation
+func (s ActionData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ActionData) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ActionData) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ActionData"}
+	if s.ClearTimer != nil {
+		if err := s.ClearTimer.Validate(); err != nil {
+			invalidParams.AddNested("ClearTimer", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Firehose != nil {
+		if err := s.Firehose.Validate(); err != nil {
+			invalidParams.AddNested("Firehose", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.IotEvents != nil {
+		if err := s.IotEvents.Validate(); err != nil {
+			invalidParams.AddNested("IotEvents", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.IotTopicPublish != nil {
+		if err := s.IotTopicPublish.Validate(); err != nil {
+			invalidParams.AddNested("IotTopicPublish", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Lambda != nil {
+		if err := s.Lambda.Validate(); err != nil {
+			invalidParams.AddNested("Lambda", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ResetTimer != nil {
+		if err := s.ResetTimer.Validate(); err != nil {
+			invalidParams.AddNested("ResetTimer", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SetTimer != nil {
+		if err := s.SetTimer.Validate(); err != nil {
+			invalidParams.AddNested("SetTimer", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SetVariable != nil {
+		if err := s.SetVariable.Validate(); err != nil {
+			invalidParams.AddNested("SetVariable", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Sns != nil {
+		if err := s.Sns.Validate(); err != nil {
+			invalidParams.AddNested("Sns", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Sqs != nil {
+		if err := s.Sqs.Validate(); err != nil {
+			invalidParams.AddNested("Sqs", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClearTimer sets the ClearTimer field's value.
+func (s *ActionData) SetClearTimer(v *ClearTimerAction) *ActionData {
+	s.ClearTimer = v
+	return s
+}
+
+// SetFirehose sets the Firehose field's value.
+func (s *ActionData) SetFirehose(v *FirehoseAction) *ActionData {
+	s.Firehose = v
+	return s
+}
+
+// SetIotEvents sets the IotEvents field's value.
+func (s *ActionData) SetIotEvents(v *Action) *ActionData {
+	s.IotEvents = v
+	return s
+}
+
+// SetIotTopicPublish sets the IotTopicPublish field's value.
+func (s *ActionData) SetIotTopicPublish(v *IotTopicPublishAction) *ActionData {
+	s.IotTopicPublish = v
+	return s
+}
+
+// SetLambda sets the Lambda field's value.
+func (s *ActionData) SetLambda(v *LambdaAction) *ActionData {
+	s.Lambda = v
+	return s
+}
+
+// SetResetTimer sets the ResetTimer field's value.
+func (s *ActionData) SetResetTimer(v *ResetTimerAction) *ActionData {
+	s.ResetTimer = v
+	return s
+}
+
+// SetSetTimer sets the SetTimer field's value.
+func (s *ActionData) SetSetTimer(v *SetTimerAction) *ActionData {
+	s.SetTimer = v
+	return s
+}
+
+// SetSetVariable sets the SetVariable field's value.
+func (s *ActionData) SetSetVariable(v *SetVariableAction) *ActionData {
+	s.SetVariable = v
+	return s
+}
+
+// SetSns sets the Sns field's value.
+func (s *ActionData) SetSns(v *SNSTopicPublishAction) *ActionData {
+	s.Sns = v
+	return s
+}
+
+// SetSqs sets the Sqs field's value.
+func (s *ActionData) SetSqs(v *SqsAction) *ActionData {
+	s.Sqs = v
+	return s
+}
+
 // The attributes from the JSON payload that are made available by the input.
 // Inputs are derived from messages sent to the AWS IoT Events system using
 // BatchPutMessage. Each such message contains a JSON payload, and those attributes
@@ -2573,7 +2742,7 @@ type Event struct {
 	_ struct{} `type:"structure"`
 
 	// The actions to be performed.
-	Actions []*Action `locationName:"actions" type:"list"`
+	Actions []*ActionData `locationName:"actions" type:"list"`
 
 	// [Optional] The Boolean expression that when TRUE causes the "actions" to
 	// be performed. If not present, the actions are performed (=TRUE); if the expression
@@ -2620,7 +2789,7 @@ func (s *Event) Validate() error {
 }
 
 // SetActions sets the Actions field's value.
-func (s *Event) SetActions(v []*Action) *Event {
+func (s *Event) SetActions(v []*ActionData) *Event {
 	s.Actions = v
 	return s
 }
@@ -4108,7 +4277,7 @@ type TransitionEvent struct {
 	_ struct{} `type:"structure"`
 
 	// The actions to be performed.
-	Actions []*Action `locationName:"actions" type:"list"`
+	Actions []*ActionData `locationName:"actions" type:"list"`
 
 	// [Required] A Boolean expression that when TRUE causes the actions to be performed
 	// and the "nextState" to be entered.
@@ -4170,7 +4339,7 @@ func (s *TransitionEvent) Validate() error {
 }
 
 // SetActions sets the Actions field's value.
-func (s *TransitionEvent) SetActions(v []*Action) *TransitionEvent {
+func (s *TransitionEvent) SetActions(v []*ActionData) *TransitionEvent {
 	s.Actions = v
 	return s
 }
