@@ -197,7 +197,7 @@ vet:
 apimeta-export-remote: get-deps-apidiff
 	@echo "Generating API metadata for SDK remote tip"
 	rm -rf /tmp/aws-sdk-go
-	git clone https://github.com/aws/aws-sdk-go /tmp/aws-sdk-go
+	git clone git clone --single-branch --branch master . /tmp/aws-sdk-go
 	./gen-apimeta.sh /tmp/aws-sdk-go /tmp/aws-sdk-go-remote-apidiff 
 
 apimeta-export-local: get-deps-apidiff
