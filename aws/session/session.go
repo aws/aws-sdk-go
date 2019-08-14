@@ -395,7 +395,7 @@ func newSession(opts Options, envCfg envConfig, cfgs ...*aws.Config) (*Session, 
 	// Load additional config from file(s)
 	sharedCfg, err := loadSharedConfig(envCfg.Profile, cfgFiles, envCfg.EnableSharedConfig)
 	if err != nil {
-		if len(envCfg.Profile) == 0 && !envCfg.EnableSharedConfig && envCfg.Creds.HasKeys() {
+		if len(envCfg.Profile) == 0 && !envCfg.EnableSharedConfig && (envCfg.Creds.HasKeys() || userCfg.Credentials != nil) {
 			// Special case where the user has not explicitly specified an AWS_PROFILE,
 			// or session.Options.profile, shared config is not enabled, and the
 			// environment has credentials, allow the shared config file to fail to
