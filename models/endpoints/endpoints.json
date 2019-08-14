@@ -3578,7 +3578,8 @@
           "protocols" : [ "https" ]
         },
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "directconnect" : {
@@ -3713,7 +3714,8 @@
           }
         },
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "kinesis" : {

@@ -1633,6 +1633,10 @@ type EC2API interface {
 	SearchTransitGatewayRoutesWithContext(aws.Context, *ec2.SearchTransitGatewayRoutesInput, ...request.Option) (*ec2.SearchTransitGatewayRoutesOutput, error)
 	SearchTransitGatewayRoutesRequest(*ec2.SearchTransitGatewayRoutesInput) (*request.Request, *ec2.SearchTransitGatewayRoutesOutput)
 
+	SendDiagnosticInterrupt(*ec2.SendDiagnosticInterruptInput) (*ec2.SendDiagnosticInterruptOutput, error)
+	SendDiagnosticInterruptWithContext(aws.Context, *ec2.SendDiagnosticInterruptInput, ...request.Option) (*ec2.SendDiagnosticInterruptOutput, error)
+	SendDiagnosticInterruptRequest(*ec2.SendDiagnosticInterruptInput) (*request.Request, *ec2.SendDiagnosticInterruptOutput)
+
 	StartInstances(*ec2.StartInstancesInput) (*ec2.StartInstancesOutput, error)
 	StartInstancesWithContext(aws.Context, *ec2.StartInstancesInput, ...request.Option) (*ec2.StartInstancesOutput, error)
 	StartInstancesRequest(*ec2.StartInstancesInput) (*request.Request, *ec2.StartInstancesOutput)
