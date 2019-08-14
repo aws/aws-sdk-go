@@ -1,3 +1,11 @@
+Release v1.23.1 (2019-08-14)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release adds a new API called SendDiagnosticInterrupt, which allows you to send diagnostic interrupts to your EC2 instance.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.23.0 (2019-08-13)
 ===
 
