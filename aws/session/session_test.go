@@ -428,22 +428,47 @@ func TestNewSessionWithOptions_Overrides(t *testing.T) {
 func TestNewSession_EnvCredsWithInvalidConfigFile(t *testing.T) {
 	cases := map[string]struct {
 		AccessKey, SecretKey string
-		SharedConfigState    SharedConfigState
+		Profile              string
 		Options              Options
+		ExpectCreds          credentials.Value
 		Err                  string
 	}{
-		"no env": {
+		"no options": {
 			Err: "SharedConfigLoadError",
 		},
 		"env only": {
 			AccessKey: "env_akid",
 			SecretKey: "env_secret",
+			ExpectCreds: credentials.Value{
+				AccessKeyID:     "env_akid",
+				SecretAccessKey: "env_secret",
+				ProviderName:    "EnvConfigCredentials",
+			},
 		},
-		"profile and env": {
+		"static credentials only": {
+			Options: Options{
+				Config: aws.Config{
+					Credentials: credentials.NewStaticCredentials(
+						"AKID", "SECRET", ""),
+				},
+			},
+			ExpectCreds: credentials.Value{
+				AccessKeyID:     "AKID",
+				SecretAccessKey: "SECRET",
+				ProviderName:    "StaticProvider",
+			},
+		},
+		"env profile and env": {
+			AccessKey: "env_akid",
+			SecretKey: "env_secret",
+			Profile:   "env_profile",
+			Err:       "SharedConfigLoadError",
+		},
+		"opt profile and env": {
 			AccessKey: "env_akid",
 			SecretKey: "env_secret",
 			Options: Options{
-				SharedConfigState: SharedConfigEnable,
+				Profile: "someProfile",
 			},
 			Err: "SharedConfigLoadError",
 		},
@@ -470,6 +495,9 @@ func TestNewSession_EnvCredsWithInvalidConfigFile(t *testing.T) {
 			if v := c.SecretKey; len(v) != 0 {
 				os.Setenv("AWS_SECRET_ACCESS_KEY", v)
 			}
+			if v := c.Profile; len(v) != 0 {
+				os.Setenv("AWS_PROFILE", v)
+			}
 
 			opts := c.Options
 			opts.SharedConfigFiles = []string{cfgFile}
@@ -492,13 +520,13 @@ func TestNewSession_EnvCredsWithInvalidConfigFile(t *testing.T) {
 			if err != nil {
 				t.Fatalf("expect no error, got %v", err)
 			}
-			if e, a := "env_akid", creds.AccessKeyID; e != a {
+			if e, a := c.ExpectCreds.AccessKeyID, creds.AccessKeyID; e != a {
 				t.Errorf("expect %v, got %v", e, a)
 			}
-			if e, a := "env_secret", creds.SecretAccessKey; e != a {
+			if e, a := c.ExpectCreds.SecretAccessKey, creds.SecretAccessKey; e != a {
 				t.Errorf("expect %v, got %v", e, a)
 			}
-			if e, a := "EnvConfigCredentials", creds.ProviderName; !strings.Contains(a, e) {
+			if e, a := c.ExpectCreds.ProviderName, creds.ProviderName; !strings.Contains(a, e) {
 				t.Errorf("expect %v, to be in %v", e, a)
 			}
 		})
