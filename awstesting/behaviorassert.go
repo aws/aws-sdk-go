@@ -107,7 +107,7 @@ func AssertRequestHeadersMatch(t *testing.T, req *request.Request, header map[st
 				t.Errorf(errMsg("unable to parse response JSON", err2, msgAndArgs...))
 			}
 			for key1, val1 := range expectJsonValue{
-				if ! cmp.Equal(responseJsonValue[key1], val1, FloatIntEquate()) {
+				if !cmp.Equal(responseJsonValue[key1], val1, FloatIntEquate()) {
 					t.Errorf(errMsg("aws.JSON value from expect and response don't match", nil))
 					return false
 				}

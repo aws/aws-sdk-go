@@ -490,7 +490,7 @@ func TestBehavior_10(t *testing.T) {
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
-		QueryString:    aws.String("string valu"),
+		QueryString:    aws.String("string value"),
 		UriPath:        aws.String("path"),
 		UriPathSegment: aws.String("segment"),
 	}

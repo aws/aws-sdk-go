@@ -66,7 +66,7 @@ func ParseTime(formatName, value string) (time.Time, error) {
 	case UnixTimeFormatName:
 		v, err := strconv.ParseFloat(value, 64)
 		_, dec := math.Modf(v)
-		dec = math.Round(dec*1000)/1000
+		dec = math.Round(dec*1000)/1000 //Rounds 0.1229999 to 0.123
 		if err != nil {
 			return time.Time{}, err
 		}
