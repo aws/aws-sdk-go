@@ -30,12 +30,6 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken"
     },
-    "GetJobBookmarks": {
-      "input_token": "NextToken",
-      "limit_key": "MaxResults",
-      "output_token": "NextToken",
-      "result_key": "JobBookmarkEntries"
-    },
     "GetJobRuns": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

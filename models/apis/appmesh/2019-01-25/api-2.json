@@ -660,6 +660,9 @@
           "shape": "BadRequestException"
         },
         {
+          "shape": "ForbiddenException"
+        },
+        {
           "shape": "InternalServerErrorException"
         },
         {
@@ -667,6 +670,9 @@
         },
         {
           "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
         }
       ]
     },
@@ -790,6 +796,9 @@
           "shape": "BadRequestException"
         },
         {
+          "shape": "ForbiddenException"
+        },
+        {
           "shape": "InternalServerErrorException"
         },
         {
@@ -797,6 +806,9 @@
         },
         {
           "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
         },
         {
           "shape": "TooManyTagsException"
@@ -822,6 +834,9 @@
           "shape": "BadRequestException"
         },
         {
+          "shape": "ForbiddenException"
+        },
+        {
           "shape": "InternalServerErrorException"
         },
         {
@@ -829,6 +844,9 @@
         },
         {
           "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
         }
       ],
       "idempotent": true
@@ -1660,6 +1678,27 @@
         }
       }
     },
+    "Boolean": {
+      "type": "boolean",
+      "box": true
+    },
+    "HttpRouteHeader": {
+      "type": "structure",
+      "required": [
+        "name"
+      ],
+      "members": {
+        "invert": {
+          "shape": "Boolean"
+        },
+        "match": {
+          "shape": "HeaderMatchMethod"
+        },
+        "name": {
+          "shape": "HeaderName"
+        }
+      }
+    },
     "DescribeVirtualServiceOutput": {
       "type": "structure",
       "required": [
@@ -1902,6 +1941,21 @@
         }
       }
     },
+    "MatchRange": {
+      "type": "structure",
+      "required": [
+        "end",
+        "start"
+      ],
+      "members": {
+        "end": {
+          "shape": "Long"
+        },
+        "start": {
+          "shape": "Long"
+        }
+      }
+    },
     "ListVirtualRoutersLimit": {
       "type": "integer",
       "box": true,
@@ -2024,6 +2078,12 @@
           "shape": "MeshSpec"
         }
       }
+    },
+    "RoutePriority": {
+      "type": "integer",
+      "box": true,
+      "min": 0,
+      "max": 1000
     },
     "ListVirtualServicesInput": {
       "type": "structure",
@@ -2208,6 +2268,11 @@
     "Timestamp": {
       "type": "timestamp"
     },
+    "HeaderMatch": {
+      "type": "string",
+      "min": 1,
+      "max": 255
+    },
     "VirtualNodeSpec": {
       "type": "structure",
       "members": {
@@ -2247,6 +2312,20 @@
       "min": 1,
       "max": 1
     },
+    "HttpMethod": {
+      "type": "string",
+      "enum": [
+        "connect",
+        "delete",
+        "get",
+        "head",
+        "options",
+        "patch",
+        "post",
+        "put",
+        "trace"
+      ]
+    },
     "ConflictException": {
       "type": "structure",
       "members": {
@@ -2279,8 +2358,17 @@
         "prefix"
       ],
       "members": {
+        "headers": {
+          "shape": "HttpRouteHeaders"
+        },
+        "method": {
+          "shape": "HttpMethod"
+        },
         "prefix": {
           "shape": "String"
+        },
+        "scheme": {
+          "shape": "HttpScheme"
         }
       }
     },
@@ -2590,6 +2678,11 @@
         "fault": true
       }
     },
+    "HeaderName": {
+      "type": "string",
+      "min": 1,
+      "max": 50
+    },
     "TagList": {
       "type": "list",
       "member": {
@@ -2653,6 +2746,26 @@
         "code": "TooManyTagsException",
         "httpStatusCode": 400,
         "senderFault": true
+      }
+    },
+    "HeaderMatchMethod": {
+      "type": "structure",
+      "members": {
+        "exact": {
+          "shape": "HeaderMatch"
+        },
+        "prefix": {
+          "shape": "HeaderMatch"
+        },
+        "range": {
+          "shape": "MatchRange"
+        },
+        "regex": {
+          "shape": "HeaderMatch"
+        },
+        "suffix": {
+          "shape": "HeaderMatch"
+        }
       }
     },
     "DeleteMeshOutput": {
@@ -2741,6 +2854,14 @@
       "min": 1,
       "max": 10
     },
+    "HttpRouteHeaders": {
+      "type": "list",
+      "member": {
+        "shape": "HttpRouteHeader"
+      },
+      "min": 1,
+      "max": 10
+    },
     "VirtualServiceProvider": {
       "type": "structure",
       "members": {
@@ -2772,6 +2893,13 @@
           "shape": "AwsCloudMapName"
         }
       }
+    },
+    "HttpScheme": {
+      "type": "string",
+      "enum": [
+        "http",
+        "https"
+      ]
     },
     "UpdateVirtualServiceOutput": {
       "type": "structure",
@@ -2873,6 +3001,9 @@
       "members": {
         "httpRoute": {
           "shape": "HttpRoute"
+        },
+        "priority": {
+          "shape": "RoutePriority"
         },
         "tcpRoute": {
           "shape": "TcpRoute"

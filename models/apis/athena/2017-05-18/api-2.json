@@ -602,7 +602,7 @@
       "type":"integer",
       "box":true,
       "max":1000,
-      "min":0
+      "min":1
     },
     "MaxTagsCount":{
       "type":"integer",
@@ -929,7 +929,8 @@
         "ResultConfiguration":{"shape":"ResultConfiguration"},
         "EnforceWorkGroupConfiguration":{"shape":"BoxedBoolean"},
         "PublishCloudWatchMetricsEnabled":{"shape":"BoxedBoolean"},
-        "BytesScannedCutoffPerQuery":{"shape":"BytesScannedCutoffValue"}
+        "BytesScannedCutoffPerQuery":{"shape":"BytesScannedCutoffValue"},
+        "RequesterPaysEnabled":{"shape":"BoxedBoolean"}
       }
     },
     "WorkGroupConfigurationUpdates":{
@@ -939,7 +940,8 @@
         "ResultConfigurationUpdates":{"shape":"ResultConfigurationUpdates"},
         "PublishCloudWatchMetricsEnabled":{"shape":"BoxedBoolean"},
         "BytesScannedCutoffPerQuery":{"shape":"BytesScannedCutoffValue"},
-        "RemoveBytesScannedCutoffPerQuery":{"shape":"BoxedBoolean"}
+        "RemoveBytesScannedCutoffPerQuery":{"shape":"BoxedBoolean"},
+        "RequesterPaysEnabled":{"shape":"BoxedBoolean"}
       }
     },
     "WorkGroupDescriptionString":{

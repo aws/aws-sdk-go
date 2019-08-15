@@ -2736,6 +2736,15 @@
       "input":{"shape":"ModifyVpnConnectionRequest"},
       "output":{"shape":"ModifyVpnConnectionResult"}
     },
+    "ModifyVpnTunnelCertificate":{
+      "name":"ModifyVpnTunnelCertificate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyVpnTunnelCertificateRequest"},
+      "output":{"shape":"ModifyVpnTunnelCertificateResult"}
+    },
     "MonitorInstances":{
       "name":"MonitorInstances",
       "http":{
@@ -5744,7 +5753,6 @@
       "type":"structure",
       "required":[
         "BgpAsn",
-        "PublicIp",
         "Type"
       ],
       "members":{
@@ -5753,6 +5761,7 @@
           "shape":"String",
           "locationName":"IpAddress"
         },
+        "CertificateArn":{"shape":"String"},
         "Type":{"shape":"GatewayType"},
         "DryRun":{
           "shape":"Boolean",
@@ -7148,6 +7157,10 @@
         "IpAddress":{
           "shape":"String",
           "locationName":"ipAddress"
+        },
+        "CertificateArn":{
+          "shape":"String",
+          "locationName":"certificateArn"
         },
         "State":{
           "shape":"String",
@@ -17294,11 +17307,33 @@
       "members":{
         "VpnConnectionId":{"shape":"String"},
         "TransitGatewayId":{"shape":"String"},
+        "CustomerGatewayId":{"shape":"String"},
         "VpnGatewayId":{"shape":"String"},
         "DryRun":{"shape":"Boolean"}
       }
     },
     "ModifyVpnConnectionResult":{
+      "type":"structure",
+      "members":{
+        "VpnConnection":{
+          "shape":"VpnConnection",
+          "locationName":"vpnConnection"
+        }
+      }
+    },
+    "ModifyVpnTunnelCertificateRequest":{
+      "type":"structure",
+      "required":[
+        "VpnConnectionId",
+        "VpnTunnelOutsideIpAddress"
+      ],
+      "members":{
+        "VpnConnectionId":{"shape":"String"},
+        "VpnTunnelOutsideIpAddress":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "ModifyVpnTunnelCertificateResult":{
       "type":"structure",
       "members":{
         "VpnConnection":{
@@ -23755,6 +23790,10 @@
         "StatusMessage":{
           "shape":"String",
           "locationName":"statusMessage"
+        },
+        "CertificateArn":{
+          "shape":"String",
+          "locationName":"certificateArn"
         }
       }
     },

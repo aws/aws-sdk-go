@@ -1304,7 +1304,8 @@
       ],
       "members":{
         "VolumeARN":{"shape":"VolumeARN"},
-        "SnapshotDescription":{"shape":"SnapshotDescription"}
+        "SnapshotDescription":{"shape":"SnapshotDescription"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "CreateSnapshotFromVolumeRecoveryPointOutput":{
@@ -1701,7 +1702,8 @@
         "StartAt":{"shape":"HourOfDay"},
         "RecurrenceInHours":{"shape":"RecurrenceInHours"},
         "Description":{"shape":"Description"},
-        "Timezone":{"shape":"GatewayTimezone"}
+        "Timezone":{"shape":"GatewayTimezone"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "DescribeStorediSCSIVolumesInput":{
