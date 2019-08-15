@@ -60,7 +60,6 @@
     "GetDevEndpoints": "<p>Retrieves all the development endpoints in this AWS account.</p> <note> <p>When you create a development endpoint in a virtual private cloud (VPC), AWS Glue returns only a private IP address and the public IP address field is not populated. When you create a non-VPC development endpoint, AWS Glue returns only a public IP address.</p> </note>",
     "GetJob": "<p>Retrieves an existing job definition.</p>",
     "GetJobBookmark": "<p>Returns information on a job bookmark entry.</p>",
-    "GetJobBookmarks": "<p>Returns information on the job bookmark entries. The list is ordered on decreasing version numbers.</p>",
     "GetJobRun": "<p>Retrieves the metadata for a given job run.</p>",
     "GetJobRuns": "<p>Retrieves metadata for all runs of a given job definition.</p>",
     "GetJobs": "<p>Retrieves all current job definitions.</p>",
@@ -1718,16 +1717,6 @@
       "refs": {
       }
     },
-    "GetJobBookmarksRequest": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "GetJobBookmarksResponse": {
-      "base": null,
-      "refs": {
-      }
-    },
     "GetJobRequest": {
       "base": null,
       "refs": {
@@ -2166,9 +2155,6 @@
         "CreateJobRequest$AllocatedCapacity": "<p>This parameter is deprecated. Use <code>MaxCapacity</code> instead.</p> <p>The number of AWS Glue data processing units (DPUs) to allocate to this Job. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>.</p>",
         "DevEndpoint$ZeppelinRemoteSparkInterpreterPort": "<p>The Apache Zeppelin port for the remote Apache Spark interpreter.</p>",
         "DevEndpoint$NumberOfNodes": "<p>The number of AWS Glue Data Processing Units (DPUs) allocated to this <code>DevEndpoint</code>.</p>",
-        "GetJobBookmarksRequest$MaxResults": "<p>The maximum size of the response.</p>",
-        "GetJobBookmarksRequest$NextToken": "<p>A continuation token, if this is a continuation call.</p>",
-        "GetJobBookmarksResponse$NextToken": "<p>A continuation token, which has a value of 1 if all the entries are returned, or &gt; 1 if not all requested job runs have been returned.</p>",
         "Job$AllocatedCapacity": "<p>This field is deprecated. Use <code>MaxCapacity</code> instead.</p> <p>The number of AWS Glue data processing units (DPUs) allocated to runs of this job. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>.</p> <p/>",
         "JobBookmarkEntry$Version": "<p>The version of the job.</p>",
         "JobBookmarkEntry$Run": "<p>The run ID number.</p>",
@@ -2217,14 +2203,7 @@
       "base": "<p>Defines a point that a job can resume processing.</p>",
       "refs": {
         "GetJobBookmarkResponse$JobBookmarkEntry": "<p>A structure that defines a point that a job can resume processing.</p>",
-        "JobBookmarkEntryList$member": null,
         "ResetJobBookmarkResponse$JobBookmarkEntry": "<p>The reset bookmark entry.</p>"
-      }
-    },
-    "JobBookmarkEntryList": {
-      "base": null,
-      "refs": {
-        "GetJobBookmarksResponse$JobBookmarkEntries": "<p>A list of job bookmark entries that defines a point that a job can resume processing.</p>"
       }
     },
     "JobBookmarksEncryption": {
@@ -2258,7 +2237,6 @@
       "base": null,
       "refs": {
         "GetJobBookmarkRequest$JobName": "<p>The name of the job in question.</p>",
-        "GetJobBookmarksRequest$JobName": "<p>The name of the job in question.</p>",
         "JobBookmarkEntry$JobName": "<p>The name of the job in question.</p>",
         "ResetJobBookmarkRequest$JobName": "<p>The name of the job in question.</p>"
       }
