@@ -1,3 +1,26 @@
+Release v1.23.2 (2019-08-15)
+===
+
+### Service Client Updates
+* `service/appmesh`: Updates service API and documentation
+* `service/athena`: Updates service API and documentation
+  * This release adds support for querying S3 Requester Pays buckets. Users can enable this feature through their Workgroup settings.
+* `service/codecommit`: Updates service API and documentation
+  * This release adds an API, BatchGetCommits, that allows retrieval of metadata for multiple commits in an AWS CodeCommit repository.
+* `service/ec2`: Updates service API and documentation
+  * This release adds an option to use private certificates from AWS Certificate Manager (ACM) to authenticate a Site-to-Site VPN connection's tunnel endpoints and customer gateway device.
+* `service/glue`: Updates service API, documentation, and paginators
+  * GetJobBookmarks API is withdrawn.
+* `service/storagegateway`: Updates service API and documentation
+  * CreateSnapshotFromVolumeRecoveryPoint API supports new parameter: Tags (to be attached to the created resource)
+
+### SDK Enhancements
+* `service/kinesis`: Add support for retrying service specific API errors ([#2751](https://github.com/aws/aws-sdk-go/pull/2751)
+  * Adds support for retrying the Kinesis API error, LimitExceededException.
+  * Fixes [#1376](https://github.com/aws/aws-sdk-go/issues/1376)
+* `aws/credentials/stscreds`: Add STS and Assume Role specific retries ([#2752](https://github.com/aws/aws-sdk-go/pull/2752))
+  * Adds retries to specific STS API errors to the STS AssumeRoleWithWebIdentity credential provider, and STS API operations in general.
+
 Release v1.23.1 (2019-08-14)
 ===
 

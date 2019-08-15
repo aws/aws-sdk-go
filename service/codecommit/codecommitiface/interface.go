@@ -64,6 +64,10 @@ type CodeCommitAPI interface {
 	BatchDescribeMergeConflictsWithContext(aws.Context, *codecommit.BatchDescribeMergeConflictsInput, ...request.Option) (*codecommit.BatchDescribeMergeConflictsOutput, error)
 	BatchDescribeMergeConflictsRequest(*codecommit.BatchDescribeMergeConflictsInput) (*request.Request, *codecommit.BatchDescribeMergeConflictsOutput)
 
+	BatchGetCommits(*codecommit.BatchGetCommitsInput) (*codecommit.BatchGetCommitsOutput, error)
+	BatchGetCommitsWithContext(aws.Context, *codecommit.BatchGetCommitsInput, ...request.Option) (*codecommit.BatchGetCommitsOutput, error)
+	BatchGetCommitsRequest(*codecommit.BatchGetCommitsInput) (*request.Request, *codecommit.BatchGetCommitsOutput)
+
 	BatchGetRepositories(*codecommit.BatchGetRepositoriesInput) (*codecommit.BatchGetRepositoriesOutput, error)
 	BatchGetRepositoriesWithContext(aws.Context, *codecommit.BatchGetRepositoriesInput, ...request.Option) (*codecommit.BatchGetRepositoriesOutput, error)
 	BatchGetRepositoriesRequest(*codecommit.BatchGetRepositoriesInput) (*request.Request, *codecommit.BatchGetRepositoriesOutput)

@@ -28523,6 +28523,80 @@ func (c *EC2) ModifyVpnConnectionWithContext(ctx aws.Context, input *ModifyVpnCo
 	return out, req.Send()
 }
 
+const opModifyVpnTunnelCertificate = "ModifyVpnTunnelCertificate"
+
+// ModifyVpnTunnelCertificateRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyVpnTunnelCertificate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifyVpnTunnelCertificate for more information on using the ModifyVpnTunnelCertificate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ModifyVpnTunnelCertificateRequest method.
+//    req, resp := client.ModifyVpnTunnelCertificateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15/ModifyVpnTunnelCertificate
+func (c *EC2) ModifyVpnTunnelCertificateRequest(input *ModifyVpnTunnelCertificateInput) (req *request.Request, output *ModifyVpnTunnelCertificateOutput) {
+	op := &request.Operation{
+		Name:       opModifyVpnTunnelCertificate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyVpnTunnelCertificateInput{}
+	}
+
+	output = &ModifyVpnTunnelCertificateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ModifyVpnTunnelCertificate API operation for Amazon Elastic Compute Cloud.
+//
+// Modifies the VPN tunnel endpoint certificate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Compute Cloud's
+// API operation ModifyVpnTunnelCertificate for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15/ModifyVpnTunnelCertificate
+func (c *EC2) ModifyVpnTunnelCertificate(input *ModifyVpnTunnelCertificateInput) (*ModifyVpnTunnelCertificateOutput, error) {
+	req, out := c.ModifyVpnTunnelCertificateRequest(input)
+	return out, req.Send()
+}
+
+// ModifyVpnTunnelCertificateWithContext is the same as ModifyVpnTunnelCertificate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifyVpnTunnelCertificate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EC2) ModifyVpnTunnelCertificateWithContext(ctx aws.Context, input *ModifyVpnTunnelCertificateInput, opts ...request.Option) (*ModifyVpnTunnelCertificateOutput, error) {
+	req, out := c.ModifyVpnTunnelCertificateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opMonitorInstances = "MonitorInstances"
 
 // MonitorInstancesRequest generates a "aws/request.Request" representing the
@@ -39407,6 +39481,9 @@ type CreateCustomerGatewayInput struct {
 	// BgpAsn is a required field
 	BgpAsn *int64 `type:"integer" required:"true"`
 
+	// The Amazon Resource Name (ARN) for the customer gateway certificate.
+	CertificateArn *string `type:"string"`
+
 	// Checks whether you have the required permissions for the action, without
 	// actually making the request, and provides an error response. If you have
 	// the required permissions, the error response is DryRunOperation. Otherwise,
@@ -39415,9 +39492,7 @@ type CreateCustomerGatewayInput struct {
 
 	// The Internet-routable IP address for the customer gateway's outside interface.
 	// The address must be static.
-	//
-	// PublicIp is a required field
-	PublicIp *string `locationName:"IpAddress" type:"string" required:"true"`
+	PublicIp *string `locationName:"IpAddress" type:"string"`
 
 	// The type of VPN connection that this customer gateway supports (ipsec.1).
 	//
@@ -39441,9 +39516,6 @@ func (s *CreateCustomerGatewayInput) Validate() error {
 	if s.BgpAsn == nil {
 		invalidParams.Add(request.NewErrParamRequired("BgpAsn"))
 	}
-	if s.PublicIp == nil {
-		invalidParams.Add(request.NewErrParamRequired("PublicIp"))
-	}
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
 	}
@@ -39457,6 +39529,12 @@ func (s *CreateCustomerGatewayInput) Validate() error {
 // SetBgpAsn sets the BgpAsn field's value.
 func (s *CreateCustomerGatewayInput) SetBgpAsn(v int64) *CreateCustomerGatewayInput {
 	s.BgpAsn = &v
+	return s
+}
+
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *CreateCustomerGatewayInput) SetCertificateArn(v string) *CreateCustomerGatewayInput {
+	s.CertificateArn = &v
 	return s
 }
 
@@ -44850,6 +44928,9 @@ type CustomerGateway struct {
 	// (ASN).
 	BgpAsn *string `locationName:"bgpAsn" type:"string"`
 
+	// The Amazon Resource Name (ARN) for the customer gateway certificate.
+	CertificateArn *string `locationName:"certificateArn" type:"string"`
+
 	// The ID of the customer gateway.
 	CustomerGatewayId *string `locationName:"customerGatewayId" type:"string"`
 
@@ -44880,6 +44961,12 @@ func (s CustomerGateway) GoString() string {
 // SetBgpAsn sets the BgpAsn field's value.
 func (s *CustomerGateway) SetBgpAsn(v string) *CustomerGateway {
 	s.BgpAsn = &v
+	return s
+}
+
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *CustomerGateway) SetCertificateArn(v string) *CustomerGateway {
+	s.CertificateArn = &v
 	return s
 }
 
@@ -75580,8 +75667,7 @@ type ModifyVpcEndpointInput struct {
 	DryRun *bool `type:"boolean"`
 
 	// A policy to attach to the endpoint that controls access to the service. The
-	// policy must be in valid JSON format. If this parameter is not specified,
-	// we attach a default policy that allows full access to the service.
+	// policy must be in valid JSON format.
 	PolicyDocument *string `type:"string"`
 
 	// (Interface endpoint) Indicate whether a private hosted zone is associated
@@ -76106,6 +76192,9 @@ func (s *ModifyVpcTenancyOutput) SetReturnValue(v bool) *ModifyVpcTenancyOutput 
 type ModifyVpnConnectionInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the customer gateway at your end of the VPN connection.
+	CustomerGatewayId *string `type:"string"`
+
 	// Checks whether you have the required permissions for the action, without
 	// actually making the request, and provides an error response. If you have
 	// the required permissions, the error response is DryRunOperation. Otherwise,
@@ -76145,6 +76234,12 @@ func (s *ModifyVpnConnectionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCustomerGatewayId sets the CustomerGatewayId field's value.
+func (s *ModifyVpnConnectionInput) SetCustomerGatewayId(v string) *ModifyVpnConnectionInput {
+	s.CustomerGatewayId = &v
+	return s
 }
 
 // SetDryRun sets the DryRun field's value.
@@ -76190,6 +76285,93 @@ func (s ModifyVpnConnectionOutput) GoString() string {
 
 // SetVpnConnection sets the VpnConnection field's value.
 func (s *ModifyVpnConnectionOutput) SetVpnConnection(v *VpnConnection) *ModifyVpnConnectionOutput {
+	s.VpnConnection = v
+	return s
+}
+
+type ModifyVpnTunnelCertificateInput struct {
+	_ struct{} `type:"structure"`
+
+	// Checks whether you have the required permissions for the action, without
+	// actually making the request, and provides an error response. If you have
+	// the required permissions, the error response is DryRunOperation. Otherwise,
+	// it is UnauthorizedOperation.
+	DryRun *bool `type:"boolean"`
+
+	// The ID of the AWS Site-to-Site VPN connection.
+	//
+	// VpnConnectionId is a required field
+	VpnConnectionId *string `type:"string" required:"true"`
+
+	// The external IP address of the VPN tunnel.
+	//
+	// VpnTunnelOutsideIpAddress is a required field
+	VpnTunnelOutsideIpAddress *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ModifyVpnTunnelCertificateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyVpnTunnelCertificateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyVpnTunnelCertificateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyVpnTunnelCertificateInput"}
+	if s.VpnConnectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpnConnectionId"))
+	}
+	if s.VpnTunnelOutsideIpAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpnTunnelOutsideIpAddress"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ModifyVpnTunnelCertificateInput) SetDryRun(v bool) *ModifyVpnTunnelCertificateInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetVpnConnectionId sets the VpnConnectionId field's value.
+func (s *ModifyVpnTunnelCertificateInput) SetVpnConnectionId(v string) *ModifyVpnTunnelCertificateInput {
+	s.VpnConnectionId = &v
+	return s
+}
+
+// SetVpnTunnelOutsideIpAddress sets the VpnTunnelOutsideIpAddress field's value.
+func (s *ModifyVpnTunnelCertificateInput) SetVpnTunnelOutsideIpAddress(v string) *ModifyVpnTunnelCertificateInput {
+	s.VpnTunnelOutsideIpAddress = &v
+	return s
+}
+
+type ModifyVpnTunnelCertificateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes a VPN connection.
+	VpnConnection *VpnConnection `locationName:"vpnConnection" type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyVpnTunnelCertificateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyVpnTunnelCertificateOutput) GoString() string {
+	return s.String()
+}
+
+// SetVpnConnection sets the VpnConnection field's value.
+func (s *ModifyVpnTunnelCertificateOutput) SetVpnConnection(v *VpnConnection) *ModifyVpnTunnelCertificateOutput {
 	s.VpnConnection = v
 	return s
 }
@@ -91513,6 +91695,9 @@ type VgwTelemetry struct {
 	// The number of accepted routes.
 	AcceptedRouteCount *int64 `locationName:"acceptedRouteCount" type:"integer"`
 
+	// The Amazon Resource Name (ARN) of the VPN tunnel endpoint certificate.
+	CertificateArn *string `locationName:"certificateArn" type:"string"`
+
 	// The date and time of the last change in status.
 	LastStatusChange *time.Time `locationName:"lastStatusChange" type:"timestamp"`
 
@@ -91540,6 +91725,12 @@ func (s VgwTelemetry) GoString() string {
 // SetAcceptedRouteCount sets the AcceptedRouteCount field's value.
 func (s *VgwTelemetry) SetAcceptedRouteCount(v int64) *VgwTelemetry {
 	s.AcceptedRouteCount = &v
+	return s
+}
+
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *VgwTelemetry) SetCertificateArn(v string) *VgwTelemetry {
+	s.CertificateArn = &v
 	return s
 }
 

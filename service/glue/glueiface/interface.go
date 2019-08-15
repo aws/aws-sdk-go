@@ -310,13 +310,6 @@ type GlueAPI interface {
 	GetJobBookmarkWithContext(aws.Context, *glue.GetJobBookmarkInput, ...request.Option) (*glue.GetJobBookmarkOutput, error)
 	GetJobBookmarkRequest(*glue.GetJobBookmarkInput) (*request.Request, *glue.GetJobBookmarkOutput)
 
-	GetJobBookmarks(*glue.GetJobBookmarksInput) (*glue.GetJobBookmarksOutput, error)
-	GetJobBookmarksWithContext(aws.Context, *glue.GetJobBookmarksInput, ...request.Option) (*glue.GetJobBookmarksOutput, error)
-	GetJobBookmarksRequest(*glue.GetJobBookmarksInput) (*request.Request, *glue.GetJobBookmarksOutput)
-
-	GetJobBookmarksPages(*glue.GetJobBookmarksInput, func(*glue.GetJobBookmarksOutput, bool) bool) error
-	GetJobBookmarksPagesWithContext(aws.Context, *glue.GetJobBookmarksInput, func(*glue.GetJobBookmarksOutput, bool) bool, ...request.Option) error
-
 	GetJobRun(*glue.GetJobRunInput) (*glue.GetJobRunOutput, error)
 	GetJobRunWithContext(aws.Context, *glue.GetJobRunInput, ...request.Option) (*glue.GetJobRunOutput, error)
 	GetJobRunRequest(*glue.GetJobRunInput) (*request.Request, *glue.GetJobRunOutput)

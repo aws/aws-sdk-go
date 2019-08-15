@@ -886,21 +886,6 @@
         {"shape":"ValidationException"}
       ]
     },
-    "GetJobBookmarks":{
-      "name":"GetJobBookmarks",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"GetJobBookmarksRequest"},
-      "output":{"shape":"GetJobBookmarksResponse"},
-      "errors":[
-        {"shape":"InvalidInputException"},
-        {"shape":"EntityNotFoundException"},
-        {"shape":"InternalServiceException"},
-        {"shape":"OperationTimeoutException"}
-      ]
-    },
     "GetJobRun":{
       "name":"GetJobRun",
       "http":{
@@ -3750,22 +3735,6 @@
         "JobBookmarkEntry":{"shape":"JobBookmarkEntry"}
       }
     },
-    "GetJobBookmarksRequest":{
-      "type":"structure",
-      "required":["JobName"],
-      "members":{
-        "JobName":{"shape":"JobName"},
-        "MaxResults":{"shape":"IntegerValue"},
-        "NextToken":{"shape":"IntegerValue"}
-      }
-    },
-    "GetJobBookmarksResponse":{
-      "type":"structure",
-      "members":{
-        "JobBookmarkEntries":{"shape":"JobBookmarkEntryList"},
-        "NextToken":{"shape":"IntegerValue"}
-      }
-    },
     "GetJobRequest":{
       "type":"structure",
       "required":["JobName"],
@@ -4435,10 +4404,6 @@
         "RunId":{"shape":"RunId"},
         "JobBookmark":{"shape":"JsonValue"}
       }
-    },
-    "JobBookmarkEntryList":{
-      "type":"list",
-      "member":{"shape":"JobBookmarkEntry"}
     },
     "JobBookmarksEncryption":{
       "type":"structure",

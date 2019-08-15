@@ -45,6 +45,27 @@
         {"shape":"EncryptionKeyUnavailableException"}
       ]
     },
+    "BatchGetCommits":{
+      "name":"BatchGetCommits",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetCommitsInput"},
+      "output":{"shape":"BatchGetCommitsOutput"},
+      "errors":[
+        {"shape":"CommitIdsListRequiredException"},
+        {"shape":"CommitIdsLimitExceededException"},
+        {"shape":"RepositoryNameRequiredException"},
+        {"shape":"InvalidRepositoryNameException"},
+        {"shape":"RepositoryDoesNotExistException"},
+        {"shape":"EncryptionIntegrityChecksFailedException"},
+        {"shape":"EncryptionKeyAccessDeniedException"},
+        {"shape":"EncryptionKeyDisabledException"},
+        {"shape":"EncryptionKeyNotFoundException"},
+        {"shape":"EncryptionKeyUnavailableException"}
+      ]
+    },
     "BatchGetRepositories":{
       "name":"BatchGetRepositories",
       "http":{
@@ -1506,6 +1527,36 @@
         "baseCommitId":{"shape":"ObjectId"}
       }
     },
+    "BatchGetCommitsError":{
+      "type":"structure",
+      "members":{
+        "commitId":{"shape":"ObjectId"},
+        "errorCode":{"shape":"ErrorCode"},
+        "errorMessage":{"shape":"ErrorMessage"}
+      }
+    },
+    "BatchGetCommitsErrorsList":{
+      "type":"list",
+      "member":{"shape":"BatchGetCommitsError"}
+    },
+    "BatchGetCommitsInput":{
+      "type":"structure",
+      "required":[
+        "commitIds",
+        "repositoryName"
+      ],
+      "members":{
+        "commitIds":{"shape":"CommitIdsInputList"},
+        "repositoryName":{"shape":"RepositoryName"}
+      }
+    },
+    "BatchGetCommitsOutput":{
+      "type":"structure",
+      "members":{
+        "commits":{"shape":"CommitObjectsList"},
+        "errors":{"shape":"BatchGetCommitsErrorsList"}
+      }
+    },
     "BatchGetRepositoriesInput":{
       "type":"structure",
       "required":["repositoryNames"],
@@ -1722,6 +1773,22 @@
       },
       "exception":true
     },
+    "CommitIdsInputList":{
+      "type":"list",
+      "member":{"shape":"ObjectId"}
+    },
+    "CommitIdsLimitExceededException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "CommitIdsListRequiredException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "CommitMessageLengthExceededException":{
       "type":"structure",
       "members":{
@@ -1729,6 +1796,10 @@
       "exception":true
     },
     "CommitName":{"type":"string"},
+    "CommitObjectsList":{
+      "type":"list",
+      "member":{"shape":"Commit"}
+    },
     "CommitRequiredException":{
       "type":"structure",
       "members":{
@@ -2112,6 +2183,8 @@
       },
       "exception":true
     },
+    "ErrorCode":{"type":"string"},
+    "ErrorMessage":{"type":"string"},
     "EventDate":{"type":"timestamp"},
     "ExceptionName":{"type":"string"},
     "File":{
