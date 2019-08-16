@@ -1544,7 +1544,9 @@
         "devices":{"shape":"DevicesList"},
         "initProcessEnabled":{"shape":"BoxedBoolean"},
         "sharedMemorySize":{"shape":"BoxedInteger"},
-        "tmpfs":{"shape":"TmpfsList"}
+        "tmpfs":{"shape":"TmpfsList"},
+        "maxSwap":{"shape":"BoxedInteger"},
+        "swappiness":{"shape":"BoxedInteger"}
       }
     },
     "ListAccountSettingsRequest":{
