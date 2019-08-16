@@ -1,9 +1,10 @@
 package protocol
 
 import (
-	"math"
 	"strconv"
 	"time"
+
+	"github.com/aws/aws-sdk-go/internal/sdkmath"
 )
 
 // Names of time formats supported by the SDK
@@ -19,11 +20,13 @@ const (
 	// RFC 7231#section-7.1.1.1 timetamp format. e.g Tue, 29 Apr 2014 18:30:38 GMT
 	RFC822TimeFormat = "Mon, 2 Jan 2006 15:04:05 GMT"
 
+	// This format is used for output time without seconds precision
 	RFC822OutputTimeFormat = "Mon, 02 Jan 2006 15:04:05 GMT"
 
 	// RFC3339 a subset of the ISO8601 timestamp format. e.g 2014-04-29T18:30:38Z
 	ISO8601TimeFormat = "2006-01-02T15:04:05.999999999Z"
 
+	// This format is used for output time without seconds precision
 	ISO8601OutputTimeFormat = "2006-01-02T15:04:05Z"
 )
 
@@ -52,7 +55,7 @@ func FormatTime(name string, t time.Time) string {
 	case ISO8601TimeFormatName:
 		return t.Format(ISO8601OutputTimeFormat)
 	case UnixTimeFormatName:
-		return strconv.FormatInt(t.Unix(),10)
+		return strconv.FormatInt(t.Unix(), 10)
 	default:
 		panic("unknown timestamp format name, " + name)
 	}
@@ -68,8 +71,8 @@ func ParseTime(formatName, value string) (time.Time, error) {
 		return time.Parse(ISO8601TimeFormat, value)
 	case UnixTimeFormatName:
 		v, err := strconv.ParseFloat(value, 64)
-		_, dec := math.Modf(v)
-		dec = math.Round(dec*1e3)/1e3 //Rounds 0.1229999 to 0.123
+		_, dec := sdkmath.Modf(v)
+		dec = sdkmath.Round(dec*1e3) / 1e3 //Rounds 0.1229999 to 0.123
 		if err != nil {
 			return time.Time{}, err
 		}

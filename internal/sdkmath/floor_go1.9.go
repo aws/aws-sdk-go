@@ -67,7 +67,6 @@ func Round(x float64) float64 {
 // Special cases are:
 //	Modf(±Inf) = ±Inf, NaN
 //	Modf(NaN) = NaN, NaN
-
 func Modf(f float64) (int float64, frac float64) {
 	if f < 1 {
 		switch {
