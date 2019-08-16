@@ -1,6 +1,7 @@
 package protocol
 
 import (
+	"math"
 	"strconv"
 	"time"
 
@@ -71,7 +72,7 @@ func ParseTime(formatName, value string) (time.Time, error) {
 		return time.Parse(ISO8601TimeFormat, value)
 	case UnixTimeFormatName:
 		v, err := strconv.ParseFloat(value, 64)
-		_, dec := sdkmath.Modf(v)
+		_, dec := math.Modf(v)
 		dec = sdkmath.Round(dec*1e3) / 1e3 //Rounds 0.1229999 to 0.123
 		if err != nil {
 			return time.Time{}, err

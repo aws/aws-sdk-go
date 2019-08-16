@@ -4,10 +4,12 @@ package sdkmath
 
 import "math"
 
+// Round returns the nearest integer, rounding half away from zero.
+//
+// Special cases are:
+//	Round(±0) = ±0
+//	Round(±Inf) = ±Inf
+//	Round(NaN) = NaN
 func Round(x float64) float64 {
 	return math.Round(x)
-}
-
-func Modf(f float64) (int float64, frac float64) {
-	return math.Modf(f)
 }
