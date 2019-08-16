@@ -154,6 +154,19 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "GetBlockPublicAccessConfiguration":{
+      "name":"GetBlockPublicAccessConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetBlockPublicAccessConfigurationInput"},
+      "output":{"shape":"GetBlockPublicAccessConfigurationOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
     "ListBootstrapActions":{
       "name":"ListBootstrapActions",
       "http":{
@@ -276,6 +289,19 @@
       },
       "input":{"shape":"PutAutoScalingPolicyInput"},
       "output":{"shape":"PutAutoScalingPolicyOutput"}
+    },
+    "PutBlockPublicAccessConfiguration":{
+      "name":"PutBlockPublicAccessConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutBlockPublicAccessConfigurationInput"},
+      "output":{"shape":"PutBlockPublicAccessConfigurationOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
+      ]
     },
     "RemoveAutoScalingPolicy":{
       "name":"RemoveAutoScalingPolicy",
@@ -445,6 +471,11 @@
       "type":"list",
       "member":{"shape":"Application"}
     },
+    "ArnType":{
+      "type":"string",
+      "max":2048,
+      "min":20
+    },
     "AutoScalingPolicy":{
       "type":"structure",
       "required":[
@@ -495,6 +526,25 @@
       "members":{
         "State":{"shape":"AutoScalingPolicyState"},
         "StateChangeReason":{"shape":"AutoScalingPolicyStateChangeReason"}
+      }
+    },
+    "BlockPublicAccessConfiguration":{
+      "type":"structure",
+      "required":["BlockPublicSecurityGroupRules"],
+      "members":{
+        "BlockPublicSecurityGroupRules":{"shape":"Boolean"},
+        "PermittedPublicSecurityGroupRuleRanges":{"shape":"PortRanges"}
+      }
+    },
+    "BlockPublicAccessConfigurationMetadata":{
+      "type":"structure",
+      "required":[
+        "CreationDateTime",
+        "CreatedByArn"
+      ],
+      "members":{
+        "CreationDateTime":{"shape":"Date"},
+        "CreatedByArn":{"shape":"ArnType"}
       }
     },
     "Boolean":{"type":"boolean"},
@@ -877,6 +927,22 @@
         "Reason":{"shape":"String"},
         "Message":{"shape":"String"},
         "LogFile":{"shape":"String"}
+      }
+    },
+    "GetBlockPublicAccessConfigurationInput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetBlockPublicAccessConfigurationOutput":{
+      "type":"structure",
+      "required":[
+        "BlockPublicAccessConfiguration",
+        "BlockPublicAccessConfigurationMetadata"
+      ],
+      "members":{
+        "BlockPublicAccessConfiguration":{"shape":"BlockPublicAccessConfiguration"},
+        "BlockPublicAccessConfigurationMetadata":{"shape":"BlockPublicAccessConfigurationMetadata"}
       }
     },
     "HadoopJarStepConfig":{
@@ -1611,6 +1677,23 @@
         "AvailabilityZones":{"shape":"XmlStringMaxLen256List"}
       }
     },
+    "Port":{
+      "type":"integer",
+      "max":65535,
+      "min":0
+    },
+    "PortRange":{
+      "type":"structure",
+      "required":["MinRange"],
+      "members":{
+        "MinRange":{"shape":"Port"},
+        "MaxRange":{"shape":"Port"}
+      }
+    },
+    "PortRanges":{
+      "type":"list",
+      "member":{"shape":"PortRange"}
+    },
     "PutAutoScalingPolicyInput":{
       "type":"structure",
       "required":[
@@ -1630,6 +1713,18 @@
         "ClusterId":{"shape":"ClusterId"},
         "InstanceGroupId":{"shape":"InstanceGroupId"},
         "AutoScalingPolicy":{"shape":"AutoScalingPolicyDescription"}
+      }
+    },
+    "PutBlockPublicAccessConfigurationInput":{
+      "type":"structure",
+      "required":["BlockPublicAccessConfiguration"],
+      "members":{
+        "BlockPublicAccessConfiguration":{"shape":"BlockPublicAccessConfiguration"}
+      }
+    },
+    "PutBlockPublicAccessConfigurationOutput":{
+      "type":"structure",
+      "members":{
       }
     },
     "RemoveAutoScalingPolicyInput":{

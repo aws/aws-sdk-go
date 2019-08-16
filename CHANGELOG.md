@@ -1,3 +1,14 @@
+Release v1.23.3 (2019-08-16)
+===
+
+### Service Client Updates
+* `service/ecs`: Updates service API and documentation
+  * This release of Amazon Elastic Container Service (Amazon ECS) introduces support for controlling the usage of swap space on a per-container basis for Linux containers.
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Amazon EMR  has introduced an account level configuration called Block Public Access that allows you to block clusters with ports open to traffic from public IP sources (i.e. 0.0.0.0/0 for IPv4 and ::/0 for IPv6) from launching.  Individual ports or port ranges can be added as exceptions to allow public access.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/robomaker`: Updates service API and documentation
+
 Release v1.23.2 (2019-08-15)
 ===
 
