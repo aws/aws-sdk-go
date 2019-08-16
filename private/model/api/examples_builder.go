@@ -5,7 +5,7 @@ package api
 type examplesBuilder interface {
 	BuildShape(*ShapeRef, map[string]interface{}, bool) string
 	BuildList(string, string, *ShapeRef, []interface{}) string
-	BuildComplex(string, string, *ShapeRef, map[string]interface{}) string
+	BuildComplex(string, string, *ShapeRef, *Shape, map[string]interface{}) string
 	GoType(*ShapeRef, bool) string
 	Imports(*API) string
 }

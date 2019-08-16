@@ -299,15 +299,23 @@ func (ex *Example) HasVisitedError(errRef *ShapeRef) bool {
 	return ok
 }
 
+// Returns the string of an inline function which returns time
+func TimeStringFunc(memName,v string) string{
+	return	"func() *time.Time{" + fmt.Sprintln() + fmt.Sprintf(`v, err := protocol.ParseTime("unixTimestamp","%s")`,v) + `
+		if err != nil {
+			panic(err)
+		}
+		return &v
+	}()`
+}
+
 func parseTimeString(ref *ShapeRef, memName, v string) string {
 	if ref.Location == "header" {
-		return fmt.Sprintf("%s: parseTime(%q, %q),\n", memName, "Mon, 2 Jan 2006 15:04:05 GMT", v)
+		return fmt.Sprintf("%s: %s,\n",memName,TimeStringFunc(memName,v))
 	} else {
 		switch ref.API.Metadata.Protocol {
-		case "json", "rest-json":
-			return fmt.Sprintf("%s: parseTime(%q, %q),\n", memName, "2006-01-02T15:04:05Z", v)
-		case "rest-xml", "ec2", "query":
-			return fmt.Sprintf("%s: parseTime(%q, %q),\n", memName, "2006-01-02T15:04:05Z", v)
+		case "json", "rest-json", "rest-xml", "ec2", "query":
+			return fmt.Sprintf("%s: %s,\n",memName,TimeStringFunc(memName,v))
 		default:
 			panic("Unsupported time type: " + ref.API.Metadata.Protocol)
 		}

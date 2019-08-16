@@ -3,10 +3,14 @@
 package api
 
 import (
+	"encoding/base64"
+	"encoding/json"
 	"fmt"
 	"reflect"
 	"sort"
 	"strings"
+
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 // ShapeValueBuilder provides the logic to build the nested values for a shape.
@@ -37,18 +41,17 @@ func (b ShapeValueBuilder) BuildShape(ref *ShapeRef, shapes map[string]interface
 
 		memName := name
 		passRef := ref.Shape.MemberRefs[name]
-
 		if isMap {
 			memName = fmt.Sprintf("%q", memName)
 			passRef = &ref.Shape.ValueRef
 		}
-
 		switch v := shape.(type) {
 		case map[string]interface{}:
-			ret += b.BuildComplex(name, memName, passRef, v)
+			ret += b.BuildComplex(name, memName, passRef, ref.Shape, v)
 		case []interface{}:
 			ret += b.BuildList(name, memName, passRef, v)
 		default:
+
 			ret += b.BuildScalar(name, memName, passRef, v, ref.Shape.Payload == name)
 		}
 	}
@@ -132,8 +135,13 @@ func (b ShapeValueBuilder) BuildScalar(name, memName string, ref *ShapeRef, shap
 		}
 		return convertToCorrectType(memName, ref.Shape.Type, fmt.Sprintf("%d", v))
 	case float64:
+
 		dataType := ref.Shape.Type
-		if dataType == "integer" || dataType == "int64" || dataType == "long" {
+
+		if dataType=="timestamp" {
+			return parseTimeString(ref, memName, fmt.Sprintf("%f", v))
+		}
+		if dataType == "integer" || dataType == "int64" || dataType == "long"{
 			return convertToCorrectType(memName, ref.Shape.Type, fmt.Sprintf("%d", int(shape.(float64))))
 		}
 		return convertToCorrectType(memName, ref.Shape.Type, fmt.Sprintf("%f", v))
@@ -142,12 +150,21 @@ func (b ShapeValueBuilder) BuildScalar(name, memName string, ref *ShapeRef, shap
 		switch t {
 		case "timestamp":
 			return parseTimeString(ref, memName, fmt.Sprintf("%s", v))
+
+		case "jsonvalue":
+			return fmt.Sprintf("%s: %#v,\n",memName,parseJsonString(v))
+
 		case "blob":
 			if (ref.Streaming || ref.Shape.Streaming) && isPayload {
 				return fmt.Sprintf("%s: aws.ReadSeekCloser(strings.NewReader(%q)),\n", memName, v)
 			}
 
-			return fmt.Sprintf("%s: []byte(%q),\n", memName, v)
+			b, err := base64.StdEncoding.DecodeString(v)
+			if err != nil {
+				panic(fmt.Errorf("Failed to decode string: %v", err))
+			}
+
+			return fmt.Sprintf("%s: []byte(%q),\n", memName, b)
 		default:
 			return convertToCorrectType(memName, t, v)
 		}
@@ -158,18 +175,32 @@ func (b ShapeValueBuilder) BuildScalar(name, memName string, ref *ShapeRef, shap
 
 // BuildComplex will build the shape's value for complex types such as structs,
 // and maps.
-func (b ShapeValueBuilder) BuildComplex(name, memName string, ref *ShapeRef, v map[string]interface{}) string {
-	switch ref.Shape.Type {
+func (b ShapeValueBuilder) BuildComplex(name, memName string, ref *ShapeRef, parent *Shape, v map[string]interface{}) string {
+	switch parent.Type {
 	case "structure":
-		return fmt.Sprintf(`%s: &%s{
+		if ref.Shape.Type == "map" {
+			return fmt.Sprintf(`%s: %s{
+				%s
+			},
+			`, memName, b.GoType(ref, true), b.BuildShape(ref, v, true))
+		} else{
+			return fmt.Sprintf(`%s: &%s{
 				%s
 			},
 			`, memName, b.GoType(ref, true), b.BuildShape(ref, v, false))
+		}
 	case "map":
-		return fmt.Sprintf(`%s: %s{
+		if ref.Shape.Type == "map" {
+			return fmt.Sprintf(`%q: %s{
 				%s
 			},
 			`, name, b.GoType(ref, false), b.BuildShape(ref, v, true))
+		} else{
+			return fmt.Sprintf(`%s: &%s{
+				%s
+			},
+			`, memName, b.GoType(ref, true), b.BuildShape(ref, v, false))
+		}
 	default:
 		panic(fmt.Sprintf("Expected complex type but received %q", ref.Shape.Type))
 	}
@@ -177,6 +208,7 @@ func (b ShapeValueBuilder) BuildComplex(name, memName string, ref *ShapeRef, v m
 
 // GoType returns the string of the shape's Go type identifier.
 func (b ShapeValueBuilder) GoType(ref *ShapeRef, elem bool) string {
+
 	if ref.Shape.Type != "structure" && ref.Shape.Type != "list" && ref.Shape.Type != "map" {
 		// Scalars are always pointers.
 		return ref.GoTypeWithPkgName()
@@ -192,4 +224,12 @@ func (b ShapeValueBuilder) GoType(ref *ShapeRef, elem bool) string {
 		return prefix + ref.Shape.GoTypeWithPkgNameElem()
 	}
 	return prefix + ref.GoTypeWithPkgName()
+}
+
+func parseJsonString(input string) aws.JSONValue{
+	var v aws.JSONValue
+	if err := json.Unmarshal([]byte(input), &v); err != nil {
+		panic(fmt.Sprintf("unable to unmarshal JSONValue, %v", err))
+	}
+	return v
 }
