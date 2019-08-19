@@ -22,6 +22,7 @@ func (builder defaultExamplesBuilder) Imports(a *API) string {
 	"` + SDKImportRoot + `/aws"
 	"` + SDKImportRoot + `/aws/awserr"
 	"` + SDKImportRoot + `/aws/session"
+	"` + SDKImportRoot + `/private/protocol"
 	"` + a.ImportPath() + `"
 	`
 }

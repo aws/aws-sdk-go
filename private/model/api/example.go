@@ -251,14 +251,7 @@ import (
 var _ time.Duration
 var _ strings.Reader
 var _ aws.Config
-
-func parseTime(layout, value string) *time.Time {
-	t, err := time.Parse(layout, value)
-	if err != nil {
-		panic(err)
-	}
-	return &t
-}
+var _, _ = protocol.ParseTime("unixTimestamp", "2016-09-27T15:50Z")
 
 `))
 
