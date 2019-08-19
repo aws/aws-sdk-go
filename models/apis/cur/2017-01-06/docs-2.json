@@ -4,6 +4,7 @@
   "operations": {
     "DeleteReportDefinition": "<p>Deletes the specified report.</p>",
     "DescribeReportDefinitions": "<p>Lists the AWS Cost and Usage reports available to this account.</p>",
+    "ModifyReportDefinition": "<p>Allows you to programatically update your report preferences.</p>",
     "PutReportDefinition": "<p>Creates a new report using the description that you provide.</p>"
   },
   "shapes": {
@@ -89,6 +90,16 @@
         "DescribeReportDefinitionsRequest$MaxResults": null
       }
     },
+    "ModifyReportDefinitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyReportDefinitionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "PutReportDefinitionRequest": {
       "base": "<p>Creates a Cost and Usage Report.</p>",
       "refs": {
@@ -108,6 +119,7 @@
     "ReportDefinition": {
       "base": "<p>The definition of AWS Cost and Usage Report. You can specify the report name, time unit, report format, compression format, S3 bucket, additional artifacts, and schema elements in the definition. </p>",
       "refs": {
+        "ModifyReportDefinitionRequest$ReportDefinition": null,
         "PutReportDefinitionRequest$ReportDefinition": "<p>Represents the output of the PutReportDefinition operation. The content consists of the detailed metadata and data file information. </p>",
         "ReportDefinitionList$member": null
       }
@@ -133,6 +145,7 @@
       "base": "<p>The name of the report that you want to create. The name must be unique, is case sensitive, and can't include spaces. </p>",
       "refs": {
         "DeleteReportDefinitionRequest$ReportName": null,
+        "ModifyReportDefinitionRequest$ReportName": null,
         "ReportDefinition$ReportName": null
       }
     },
