@@ -49,7 +49,7 @@ type Request struct{
 }
 
 func (c Request) BuildInputShape(ref *ShapeRef) string {
-	var b ShapeValueBuilder
+	b := ShapeValueBuilder{IsBase64:true}
 	return fmt.Sprintf("&%s{\n%s\n}",
 		b.GoType(ref, true),
 		b.BuildShape(ref, c.Input, false),
@@ -64,7 +64,7 @@ func (c Request) EmptyShapeBuilder(ref *ShapeRef) string{
 
 
 func (c Case) BuildOutputShape(ref *ShapeRef) string{
-	var b ShapeValueBuilder
+	b := ShapeValueBuilder{IsBase64:true}
 	return fmt.Sprintf("&%s{\n%s\n}",
 		b.GoType(ref, true),
 		b.BuildShape(ref, c.Expect[0]["responseDataEquals"].(map[string]interface{}), false),

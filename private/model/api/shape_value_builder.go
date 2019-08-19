@@ -14,7 +14,9 @@ import (
 )
 
 // ShapeValueBuilder provides the logic to build the nested values for a shape.
-type ShapeValueBuilder struct{}
+type ShapeValueBuilder struct{
+	IsBase64 bool
+}
 
 // BuildShape will recursively build the referenced shape based on the json
 // object provided.  isMap will dictate how the field name is specified. If
@@ -158,13 +160,14 @@ func (b ShapeValueBuilder) BuildScalar(name, memName string, ref *ShapeRef, shap
 			if (ref.Streaming || ref.Shape.Streaming) && isPayload {
 				return fmt.Sprintf("%s: aws.ReadSeekCloser(strings.NewReader(%q)),\n", memName, v)
 			}
-
-			b, err := base64.StdEncoding.DecodeString(v)
-			if err != nil {
-				panic(fmt.Errorf("Failed to decode string: %v", err))
+			if b.IsBase64 {
+				decodedBlob, err := base64.StdEncoding.DecodeString(v)
+				if err != nil {
+					panic(fmt.Errorf("Failed to decode string: %v", err))
+				}
+				return fmt.Sprintf("%s: []byte(%q),\n", memName, decodedBlob)
 			}
-
-			return fmt.Sprintf("%s: []byte(%q),\n", memName, b)
+			return fmt.Sprintf("%s: []byte(%q),\n", memName, v)
 		default:
 			return convertToCorrectType(memName, t, v)
 		}
