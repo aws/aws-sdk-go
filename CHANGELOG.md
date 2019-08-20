@@ -1,3 +1,15 @@
+Release v1.23.5 (2019-08-20)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API and documentation
+* `service/appstream`: Updates service API and documentation
+  * Includes API updates to support streaming through VPC endpoints for image builders and stacks.
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker introduces Managed Spot Training. Increases the maximum number of metric definitions to 40 for SageMaker Training and Hyperparameter Tuning Jobs. SageMaker Neo adds support for Acer aiSage and Qualcomm QCS605 and QCS603.
+* `service/transfer`: Updates service API and documentation
+  * New field in response of TestIdentityProvider
+
 Release v1.23.4 (2019-08-19)
 ===
 

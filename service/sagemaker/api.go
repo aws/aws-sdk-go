@@ -1036,7 +1036,8 @@ func (c *SageMaker) CreateNotebookInstanceRequest(input *CreateNotebookInstanceI
 // groups allow it.
 //
 // After creating the notebook instance, Amazon SageMaker returns its Amazon
-// Resource Name (ARN).
+// Resource Name (ARN). You can't change the name of a notebook instance after
+// you create it.
 //
 // After Amazon SageMaker creates the notebook instance, you can connect to
 // the Jupyter server and work in Jupyter notebooks. For example, you can write
@@ -1338,13 +1339,19 @@ func (c *SageMaker) CreateTrainingJobRequest(input *CreateTrainingJobInput) (req
 //    ML storage volumes to deploy for model training. In distributed training,
 //    you specify more than one instance.
 //
+//    * EnableManagedSpotTraining - Optimize the cost of training machine learning
+//    models by up to 80% by using Amazon EC2 Spot instances. For more information,
+//    see Managed Spot Training (https://docs.aws.amazon.com/sagemaker/latest/dg/model-managed-spot-training.html).
+//
 //    * RoleARN - The Amazon Resource Number (ARN) that Amazon SageMaker assumes
 //    to perform tasks on your behalf during model training. You must grant
 //    this role the necessary permissions so that Amazon SageMaker can successfully
 //    complete model training.
 //
-//    * StoppingCondition - Sets a time limit for training. Use this parameter
-//    to cap model training costs.
+//    * StoppingCondition - To help cap training costs, use MaxRuntimeInSeconds
+//    to set a time limit for training. Use MaxWaitTimeInSeconds to specify
+//    how long you are willing to to wait for a managed spot training job to
+//    complete.
 //
 // For more information about Amazon SageMaker, see How It Works (https://docs.aws.amazon.com/sagemaker/latest/dg/how-it-works.html).
 //
@@ -7623,6 +7630,14 @@ type AnnotationConsolidationConfig struct {
 	//    arn:aws:lambda:eu-west-1:568282634449:function:ACS-TextMultiClass arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-TextMultiClass
 	//    arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-TextMultiClass
 	//
+	//    * Named entity eecognition - Groups similar selections and calculates
+	//    aggregate boundaries, resolving to most-assigned label. arn:aws:lambda:us-east-1:432418664414:function:ACS-NamedEntityRecognition
+	//    arn:aws:lambda:us-east-2:266458841044:function:ACS-NamedEntityRecognition
+	//    arn:aws:lambda:us-west-2:081040173940:function:ACS-NamedEntityRecognition
+	//    arn:aws:lambda:eu-west-1:568282634449:function:ACS-NamedEntityRecognition
+	//    arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-NamedEntityRecognition
+	//    arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-NamedEntityRecognition
+	//
 	// For more information, see Annotation Consolidation (http://docs.aws.amazon.com/sagemaker/latest/dg/sms-annotation-consolidation.html).
 	//
 	// AnnotationConsolidationLambdaArn is a required field
@@ -8002,6 +8017,57 @@ func (s *ChannelSpecification) SetSupportedContentTypes(v []*string) *ChannelSpe
 // SetSupportedInputModes sets the SupportedInputModes field's value.
 func (s *ChannelSpecification) SetSupportedInputModes(v []*string) *ChannelSpecification {
 	s.SupportedInputModes = v
+	return s
+}
+
+// Contains information about the output location for managed spot training
+// checkpoint data.
+type CheckpointConfig struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) The local directory where checkpoints are written. The default
+	// directory is /opt/ml/checkpoints/.
+	LocalPath *string `type:"string"`
+
+	// Identifies the S3 path where you want Amazon SageMaker to store checkpoints.
+	// For example, s3://bucket-name/key-name-prefix.
+	//
+	// S3Uri is a required field
+	S3Uri *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CheckpointConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CheckpointConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CheckpointConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CheckpointConfig"}
+	if s.S3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLocalPath sets the LocalPath field's value.
+func (s *CheckpointConfig) SetLocalPath(v string) *CheckpointConfig {
+	s.LocalPath = &v
+	return s
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *CheckpointConfig) SetS3Uri(v string) *CheckpointConfig {
+	s.S3Uri = &v
 	return s
 }
 
@@ -10333,6 +10399,10 @@ type CreateTrainingJobInput struct {
 	// AlgorithmSpecification is a required field
 	AlgorithmSpecification *AlgorithmSpecification `type:"structure" required:"true"`
 
+	// Contains information about the output location for managed spot training
+	// checkpoint data.
+	CheckpointConfig *CheckpointConfig `type:"structure"`
+
 	// To encrypt all communications between ML compute instances in distributed
 	// training, choose True. Encryption provides greater security for distributed
 	// training, but training might take longer. How long it takes depends on the
@@ -10341,6 +10411,18 @@ type CreateTrainingJobInput struct {
 	// see Protect Communications Between ML Compute Instances in a Distributed
 	// Training Job (https://docs.aws.amazon.com/sagemaker/latest/dg/train-encrypt.html).
 	EnableInterContainerTrafficEncryption *bool `type:"boolean"`
+
+	// To train models using managed spot training, choose True. Managed spot training
+	// provides a fully managed and scalable infrastructure for training machine
+	// learning models. this option is useful when training jobs can be interrupted
+	// and when there is flexibility when the training job is run.
+	//
+	// The complete and intermediate results of jobs are stored in an Amazon S3
+	// bucket, and can be used as a starting point to train models incrementally.
+	// Amazon SageMaker provides metrics and logs in CloudWatch. They can be used
+	// to see when managed spot training jobs are running, interrupted, resumed,
+	// or completed.
+	EnableManagedSpotTraining *bool `type:"boolean"`
 
 	// Isolates the training container. No inbound or outbound network calls can
 	// be made, except for calls between peers within a training cluster for distributed
@@ -10484,6 +10566,11 @@ func (s *CreateTrainingJobInput) Validate() error {
 			invalidParams.AddNested("AlgorithmSpecification", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.CheckpointConfig != nil {
+		if err := s.CheckpointConfig.Validate(); err != nil {
+			invalidParams.AddNested("CheckpointConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.InputDataConfig != nil {
 		for i, v := range s.InputDataConfig {
 			if v == nil {
@@ -10537,9 +10624,21 @@ func (s *CreateTrainingJobInput) SetAlgorithmSpecification(v *AlgorithmSpecifica
 	return s
 }
 
+// SetCheckpointConfig sets the CheckpointConfig field's value.
+func (s *CreateTrainingJobInput) SetCheckpointConfig(v *CheckpointConfig) *CreateTrainingJobInput {
+	s.CheckpointConfig = v
+	return s
+}
+
 // SetEnableInterContainerTrafficEncryption sets the EnableInterContainerTrafficEncryption field's value.
 func (s *CreateTrainingJobInput) SetEnableInterContainerTrafficEncryption(v bool) *CreateTrainingJobInput {
 	s.EnableInterContainerTrafficEncryption = &v
+	return s
+}
+
+// SetEnableManagedSpotTraining sets the EnableManagedSpotTraining field's value.
+func (s *CreateTrainingJobInput) SetEnableManagedSpotTraining(v bool) *CreateTrainingJobInput {
+	s.EnableManagedSpotTraining = &v
 	return s
 }
 
@@ -10645,8 +10744,13 @@ type CreateTransformJobInput struct {
 	// limit, set BatchStrategy to MultiRecord and SplitType to Line.
 	BatchStrategy *string `type:"string" enum:"BatchStrategy"`
 
-	// The data structure used for combining the input data and inference in the
-	// output file. For more information, see Batch Transform I/O Join (http://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-io-join.html).
+	// The data structure used to specify the data to be used for inference in a
+	// batch transform job and to associate the data that is relevant to the prediction
+	// results in the output. The input filter provided allows you to exclude input
+	// data that is not needed for inference in a batch transform job. The output
+	// filter provided allows you to include input data relevant to interpreting
+	// the predictions in the output from the job. For more information, see Associate
+	// Prediction Results with their Corresponding Input Records (http://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-data-processing.html).
 	DataProcessing *DataProcessing `type:"structure"`
 
 	// The environment variables to set in the Docker container. We support up to
@@ -11005,17 +11109,21 @@ func (s *CreateWorkteamOutput) SetWorkteamArn(v string) *CreateWorkteamOutput {
 	return s
 }
 
-// The data structure used to combine the input data and transformed data from
-// the batch transform output into a joined dataset and to store it in an output
-// file. It also contains information on how to filter the input data and the
-// joined dataset. For more information, see Batch Transform I/O Join (http://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-io-join.html).
+// The data structure used to specify the data to be used for inference in a
+// batch transform job and to associate the data that is relevant to the prediction
+// results in the output. The input filter provided allows you to exclude input
+// data that is not needed for inference in a batch transform job. The output
+// filter provided allows you to include input data relevant to interpreting
+// the predictions in the output from the job. For more information, see Associate
+// Prediction Results with their Corresponding Input Records (http://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-data-processing.html).
 type DataProcessing struct {
 	_ struct{} `type:"structure"`
 
-	// A JSONPath expression used to select a portion of the input data to pass
-	// to the algorithm. Use the InputFilter parameter to exclude fields, such as
-	// an ID column, from the input. If you want Amazon SageMaker to pass the entire
-	// input dataset to the algorithm, accept the default value $.
+	// A JSONPath (http://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-data-processing.html#data-processing-operators)
+	// expression used to select a portion of the input data to pass to the algorithm.
+	// Use the InputFilter parameter to exclude fields, such as an ID column, from
+	// the input. If you want Amazon SageMaker to pass the entire input dataset
+	// to the algorithm, accept the default value $.
 	//
 	// Examples: "$", "$[1:]", "$.features"
 	InputFilter *string `type:"string"`
@@ -11024,8 +11132,7 @@ type DataProcessing struct {
 	// values are None and Input The default value is None which specifies not to
 	// join the input with the transformed data. If you want the batch transform
 	// job to join the original input data with the transformed data, set JoinSource
-	// to Input. To join input and output, the batch transform job must satisfy
-	// the Requirements for Using Batch Transform I/O Join (http://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-io-join.html#batch-transform-io-join-requirements).
+	// to Input.
 	//
 	// For JSON or JSONLines objects, such as a JSON array, Amazon SageMaker adds
 	// the transformed data to the input JSON object in an attribute called SageMakerOutput.
@@ -11040,13 +11147,14 @@ type DataProcessing struct {
 	// is a CSV file.
 	JoinSource *string `type:"string" enum:"JoinSource"`
 
-	// A JSONPath expression used to select a portion of the joined dataset to save
-	// in the output file for a batch transform job. If you want Amazon SageMaker
-	// to store the entire input dataset in the output file, leave the default value,
-	// $. If you specify indexes that aren't within the dimension size of the joined
+	// A JSONPath (http://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-data-processing.html#data-processing-operators)
+	// expression used to select a portion of the joined dataset to save in the
+	// output file for a batch transform job. If you want Amazon SageMaker to store
+	// the entire input dataset in the output file, leave the default value, $.
+	// If you specify indexes that aren't within the dimension size of the joined
 	// dataset, you get an error.
 	//
-	// Examples: "$", "$[0,5:]", "$.['id','SageMakerOutput']"
+	// Examples: "$", "$[0,5:]", "$['id','SageMakerOutput']"
 	OutputFilter *string `type:"string"`
 }
 
@@ -13758,6 +13866,18 @@ type DescribeTrainingJobOutput struct {
 	// AlgorithmSpecification is a required field
 	AlgorithmSpecification *AlgorithmSpecification `type:"structure" required:"true"`
 
+	// The billable time in seconds.
+	//
+	// You can calculate the savings from using managed spot training using the
+	// formula (1 - BillableTimeInSeconds / TrainingTimeInSeconds) * 100. For example,
+	// if BillableTimeInSeconds is 100 and TrainingTimeInSeconds is 500, the savings
+	// is 80%.
+	BillableTimeInSeconds *int64 `min:"1" type:"integer"`
+
+	// Contains information about the output location for managed spot training
+	// checkpoint data.
+	CheckpointConfig *CheckpointConfig `type:"structure"`
+
 	// A timestamp that indicates when the training job was created.
 	//
 	// CreationTime is a required field
@@ -13769,6 +13889,10 @@ type DescribeTrainingJobOutput struct {
 	// amount of communication between compute instances, especially if you use
 	// a deep learning algorithms in distributed training.
 	EnableInterContainerTrafficEncryption *bool `type:"boolean"`
+
+	// A Boolean indicating whether managed spot training is enabled (True) or not
+	// (False).
+	EnableManagedSpotTraining *bool `type:"boolean"`
 
 	// If you want to allow inbound or outbound network calls, except for calls
 	// between peers within a training cluster for distributed training, choose
@@ -13854,6 +13978,12 @@ type DescribeTrainingJobOutput struct {
 	//    * MaxRuntimeExceeded - The job stopped because it exceeded the maximum
 	//    allowed runtime.
 	//
+	//    * MaxWaitTmeExceeded - The job stopped because it exceeded the maximum
+	//    allowed wait time.
+	//
+	//    * Interrupted - The job stopped because the managed spot training instances
+	//    were interrupted.
+	//
 	//    * Stopped - The training job has stopped.
 	//
 	// Stopping
@@ -13877,9 +14007,10 @@ type DescribeTrainingJobOutput struct {
 	// through.
 	SecondaryStatusTransitions []*SecondaryStatusTransition `type:"list"`
 
-	// Specifies a limit to how long a model training job can run. When the job
-	// reaches the time limit, Amazon SageMaker ends the training job. Use this
-	// API to cap model training costs.
+	// Specifies a limit to how long a model training job can run. It also specifies
+	// the maximum time to wait for a spot instance. When the job reaches the time
+	// limit, Amazon SageMaker ends the training job. Use this API to cap model
+	// training costs.
 	//
 	// To stop a job, Amazon SageMaker sends the algorithm the SIGTERM signal, which
 	// delays job termination for 120 seconds. Algorithms can use this 120-second
@@ -13933,6 +14064,9 @@ type DescribeTrainingJobOutput struct {
 	// of the training container.
 	TrainingStartTime *time.Time `type:"timestamp"`
 
+	// The training time in seconds.
+	TrainingTimeInSeconds *int64 `min:"1" type:"integer"`
+
 	// The Amazon Resource Name (ARN) of the associated hyperparameter tuning job
 	// if the training job was launched by a hyperparameter tuning job.
 	TuningJobArn *string `type:"string"`
@@ -13959,6 +14093,18 @@ func (s *DescribeTrainingJobOutput) SetAlgorithmSpecification(v *AlgorithmSpecif
 	return s
 }
 
+// SetBillableTimeInSeconds sets the BillableTimeInSeconds field's value.
+func (s *DescribeTrainingJobOutput) SetBillableTimeInSeconds(v int64) *DescribeTrainingJobOutput {
+	s.BillableTimeInSeconds = &v
+	return s
+}
+
+// SetCheckpointConfig sets the CheckpointConfig field's value.
+func (s *DescribeTrainingJobOutput) SetCheckpointConfig(v *CheckpointConfig) *DescribeTrainingJobOutput {
+	s.CheckpointConfig = v
+	return s
+}
+
 // SetCreationTime sets the CreationTime field's value.
 func (s *DescribeTrainingJobOutput) SetCreationTime(v time.Time) *DescribeTrainingJobOutput {
 	s.CreationTime = &v
@@ -13968,6 +14114,12 @@ func (s *DescribeTrainingJobOutput) SetCreationTime(v time.Time) *DescribeTraini
 // SetEnableInterContainerTrafficEncryption sets the EnableInterContainerTrafficEncryption field's value.
 func (s *DescribeTrainingJobOutput) SetEnableInterContainerTrafficEncryption(v bool) *DescribeTrainingJobOutput {
 	s.EnableInterContainerTrafficEncryption = &v
+	return s
+}
+
+// SetEnableManagedSpotTraining sets the EnableManagedSpotTraining field's value.
+func (s *DescribeTrainingJobOutput) SetEnableManagedSpotTraining(v bool) *DescribeTrainingJobOutput {
+	s.EnableManagedSpotTraining = &v
 	return s
 }
 
@@ -14085,6 +14237,12 @@ func (s *DescribeTrainingJobOutput) SetTrainingStartTime(v time.Time) *DescribeT
 	return s
 }
 
+// SetTrainingTimeInSeconds sets the TrainingTimeInSeconds field's value.
+func (s *DescribeTrainingJobOutput) SetTrainingTimeInSeconds(v int64) *DescribeTrainingJobOutput {
+	s.TrainingTimeInSeconds = &v
+	return s
+}
+
 // SetTuningJobArn sets the TuningJobArn field's value.
 func (s *DescribeTrainingJobOutput) SetTuningJobArn(v string) *DescribeTrainingJobOutput {
 	s.TuningJobArn = &v
@@ -14154,10 +14312,13 @@ type DescribeTransformJobOutput struct {
 	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" required:"true"`
 
-	// The data structure used to combine the input data and transformed data from
-	// the batch transform output into a joined dataset and to store it in an output
-	// file. It also contains information on how to filter the input data and the
-	// joined dataset. For more information, see Batch Transform I/O Join (http://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-io-join.html).
+	// The data structure used to specify the data to be used for inference in a
+	// batch transform job and to associate the data that is relevant to the prediction
+	// results in the output. The input filter provided allows you to exclude input
+	// data that is not needed for inference in a batch transform job. The output
+	// filter provided allows you to include input data relevant to interpreting
+	// the predictions in the output from the job. For more information, see Associate
+	// Prediction Results with their Corresponding Input Records (http://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-data-processing.html).
 	DataProcessing *DataProcessing `type:"structure"`
 
 	// The environment variables to set in the Docker container. We support up to
@@ -15037,6 +15198,8 @@ type HumanTaskConfig struct {
 	//
 	//    * arn:aws:lambda:us-east-1:432418664414:function:PRE-TextMultiClass
 	//
+	//    * arn:aws:lambda:us-east-1:432418664414:function:PRE-NamedEntityRecognition
+	//
 	// US East (Ohio) (us-east-2):
 	//
 	//    * arn:aws:lambda:us-east-2:266458841044:function:PRE-BoundingBox
@@ -15046,6 +15209,8 @@ type HumanTaskConfig struct {
 	//    * arn:aws:lambda:us-east-2:266458841044:function:PRE-SemanticSegmentation
 	//
 	//    * arn:aws:lambda:us-east-2:266458841044:function:PRE-TextMultiClass
+	//
+	//    * arn:aws:lambda:us-east-2:266458841044:function:PRE-NamedEntityRecognition
 	//
 	// US West (Oregon) (us-west-2):
 	//
@@ -15057,6 +15222,8 @@ type HumanTaskConfig struct {
 	//
 	//    * arn:aws:lambda:us-west-2:081040173940:function:PRE-TextMultiClass
 	//
+	//    * arn:aws:lambda:us-west-2:081040173940:function:PRE-NamedEntityRecognition
+	//
 	// EU (Ireland) (eu-west-1):
 	//
 	//    * arn:aws:lambda:eu-west-1:568282634449:function:PRE-BoundingBox
@@ -15066,6 +15233,8 @@ type HumanTaskConfig struct {
 	//    * arn:aws:lambda:eu-west-1:568282634449:function:PRE-SemanticSegmentation
 	//
 	//    * arn:aws:lambda:eu-west-1:568282634449:function:PRE-TextMultiClass
+	//
+	//    * arn:aws:lambda:eu-west-1:568282634449:function:PRE-NamedEntityRecognition
 	//
 	// Asia Pacific (Tokyo) (ap-northeast-1):
 	//
@@ -15077,7 +15246,9 @@ type HumanTaskConfig struct {
 	//
 	//    * arn:aws:lambda:ap-northeast-1:477331159723:function:PRE-TextMultiClass
 	//
-	// Asia Pacific (Sydney) (ap-southeast-1):
+	//    * arn:aws:lambda:ap-northeast-1:477331159723:function:PRE-NamedEntityRecognition
+	//
+	// Asia Pacific (Sydney) (ap-southeast-2):
 	//
 	//    * arn:aws:lambda:ap-southeast-2:454466003867:function:PRE-BoundingBox
 	//
@@ -15087,13 +15258,18 @@ type HumanTaskConfig struct {
 	//
 	//    * arn:aws:lambda:ap-southeast-2:454466003867:function:PRE-TextMultiClass
 	//
+	//    * arn:aws:lambda:ap-southeast-2:454466003867:function:PRE-NamedEntityRecognition
+	//
 	// PreHumanTaskLambdaArn is a required field
 	PreHumanTaskLambdaArn *string `type:"string" required:"true"`
 
-	// The price that you pay for each task performed by a public worker.
+	// The price that you pay for each task performed by an Amazon Mechanical Turk
+	// worker.
 	PublicWorkforceTaskPrice *PublicWorkforceTaskPrice `type:"structure"`
 
-	// The length of time that a task remains available for labelling by human workers.
+	// The length of time that a task remains available for labeling by human workers.
+	// If you choose the Amazon Mechanical Turk workforce, the maximum is 12 hours
+	// (43200). For private and vendor workforces, the maximum is as listed.
 	TaskAvailabilityLifetimeInSeconds *int64 `min:"1" type:"integer"`
 
 	// A description of the task for your human workers.
@@ -15108,7 +15284,7 @@ type HumanTaskConfig struct {
 	// The amount of time that a worker has to complete a task.
 	//
 	// TaskTimeLimitInSeconds is a required field
-	TaskTimeLimitInSeconds *int64 `min:"1" type:"integer" required:"true"`
+	TaskTimeLimitInSeconds *int64 `min:"30" type:"integer" required:"true"`
 
 	// A title for the task for your human workers.
 	//
@@ -15171,8 +15347,8 @@ func (s *HumanTaskConfig) Validate() error {
 	if s.TaskTimeLimitInSeconds == nil {
 		invalidParams.Add(request.NewErrParamRequired("TaskTimeLimitInSeconds"))
 	}
-	if s.TaskTimeLimitInSeconds != nil && *s.TaskTimeLimitInSeconds < 1 {
-		invalidParams.Add(request.NewErrParamMinValue("TaskTimeLimitInSeconds", 1))
+	if s.TaskTimeLimitInSeconds != nil && *s.TaskTimeLimitInSeconds < 30 {
+		invalidParams.Add(request.NewErrParamMinValue("TaskTimeLimitInSeconds", 30))
 	}
 	if s.TaskTitle == nil {
 		invalidParams.Add(request.NewErrParamRequired("TaskTitle"))
@@ -15489,12 +15665,20 @@ type HyperParameterTrainingJobDefinition struct {
 	// AlgorithmSpecification is a required field
 	AlgorithmSpecification *HyperParameterAlgorithmSpecification `type:"structure" required:"true"`
 
+	// Contains information about the output location for managed spot training
+	// checkpoint data.
+	CheckpointConfig *CheckpointConfig `type:"structure"`
+
 	// To encrypt all communications between ML compute instances in distributed
 	// training, choose True. Encryption provides greater security for distributed
 	// training, but training might take longer. How long it takes depends on the
 	// amount of communication between compute instances, especially if you use
 	// a deep learning algorithm in distributed training.
 	EnableInterContainerTrafficEncryption *bool `type:"boolean"`
+
+	// A Boolean indicating whether managed spot training is enabled (True) or not
+	// (False).
+	EnableManagedSpotTraining *bool `type:"boolean"`
 
 	// Isolates the training container. No inbound or outbound network calls can
 	// be made, except for calls between peers within a training cluster for distributed
@@ -15539,8 +15723,9 @@ type HyperParameterTrainingJobDefinition struct {
 	StaticHyperParameters map[string]*string `type:"map"`
 
 	// Specifies a limit to how long a model hyperparameter training job can run.
-	// When the job reaches the time limit, Amazon SageMaker ends the training job.
-	// Use this API to cap model training costs.
+	// It also specifies how long you are willing to wait for a managed spot training
+	// job to complete. When the job reaches the a limit, Amazon SageMaker ends
+	// the training job. Use this API to cap model training costs.
 	//
 	// StoppingCondition is a required field
 	StoppingCondition *StoppingCondition `type:"structure" required:"true"`
@@ -15591,6 +15776,11 @@ func (s *HyperParameterTrainingJobDefinition) Validate() error {
 			invalidParams.AddNested("AlgorithmSpecification", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.CheckpointConfig != nil {
+		if err := s.CheckpointConfig.Validate(); err != nil {
+			invalidParams.AddNested("CheckpointConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.InputDataConfig != nil {
 		for i, v := range s.InputDataConfig {
 			if v == nil {
@@ -15634,9 +15824,21 @@ func (s *HyperParameterTrainingJobDefinition) SetAlgorithmSpecification(v *Hyper
 	return s
 }
 
+// SetCheckpointConfig sets the CheckpointConfig field's value.
+func (s *HyperParameterTrainingJobDefinition) SetCheckpointConfig(v *CheckpointConfig) *HyperParameterTrainingJobDefinition {
+	s.CheckpointConfig = v
+	return s
+}
+
 // SetEnableInterContainerTrafficEncryption sets the EnableInterContainerTrafficEncryption field's value.
 func (s *HyperParameterTrainingJobDefinition) SetEnableInterContainerTrafficEncryption(v bool) *HyperParameterTrainingJobDefinition {
 	s.EnableInterContainerTrafficEncryption = &v
+	return s
+}
+
+// SetEnableManagedSpotTraining sets the EnableManagedSpotTraining field's value.
+func (s *HyperParameterTrainingJobDefinition) SetEnableManagedSpotTraining(v bool) *HyperParameterTrainingJobDefinition {
+	s.EnableManagedSpotTraining = &v
 	return s
 }
 
@@ -17080,8 +17282,14 @@ func (s *LabelingJobOutputConfig) SetS3OutputPath(v string) *LabelingJobOutputCo
 type LabelingJobResourceConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Key Management Service key ID for the key used to encrypt the output
-	// data, if any.
+	// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
+	// encrypt data on the storage volume attached to the ML compute instance(s)
+	// that run the training job. The VolumeKmsKeyId can be any of the following
+	// formats:
+	//
+	//    * // KMS Key ID "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * // Amazon Resource Name (ARN) of a KMS Key "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
 	VolumeKmsKeyId *string `type:"string"`
 }
 
@@ -19980,10 +20188,10 @@ func (s *MetricData) SetValue(v float64) *MetricData {
 	return s
 }
 
-// Specifies a metric that the training algorithm writes to stderr or stdout.
-// Amazon SageMakerhyperparameter tuning captures all defined metrics. You specify
-// one metric that a hyperparameter tuning job uses as its objective metric
-// to choose the best training job.
+// Specifies a metric that the training algorithm writes to stderr or stdout
+// . Amazon SageMakerhyperparameter tuning captures all defined metrics. You
+// specify one metric that a hyperparameter tuning job uses as its objective
+// metric to choose the best training job.
 type MetricDefinition struct {
 	_ struct{} `type:"structure"`
 
@@ -20518,7 +20726,7 @@ type NestedFilters struct {
 	Filters []*Filter `min:"1" type:"list" required:"true"`
 
 	// The name of the property to use in the nested filters. The value must match
-	// a listed property name, such as InputDataConfig.
+	// a listed property name, such as InputDataConfig .
 	//
 	// NestedPropertyName is a required field
 	NestedPropertyName *string `min:"1" type:"string" required:"true"`
@@ -21479,7 +21687,8 @@ func (s *PropertyNameSuggestion) SetPropertyName(v string) *PropertyNameSuggesti
 // each task performed.
 //
 // Use one of the following prices for bounding box tasks. Prices are in US
-// dollars.
+// dollars and should be based on the complexity of the task; the longer it
+// takes in your initial testing, the more you should offer.
 //
 //    * 0.036
 //
@@ -21557,7 +21766,8 @@ func (s *PropertyNameSuggestion) SetPropertyName(v string) *PropertyNameSuggesti
 type PublicWorkforceTaskPrice struct {
 	_ struct{} `type:"structure"`
 
-	// Defines the amount of money paid to a worker in United States dollars.
+	// Defines the amount of money paid to an Amazon Mechanical Turk worker in United
+	// States dollars.
 	AmountInUsd *USD `type:"structure"`
 }
 
@@ -23017,8 +23227,9 @@ func (s StopTransformJobOutput) GoString() string {
 }
 
 // Specifies a limit to how long a model training or compilation job can run.
-// When the job reaches the time limit, Amazon SageMaker ends the training or
-// compilation job. Use this API to cap model training costs.
+// It also specifies how long you are willing to wait for a managed spot training
+// job to complete. When the job reaches the time limit, Amazon SageMaker ends
+// the training or compilation job. Use this API to cap model training costs.
 //
 // To stop a job, Amazon SageMaker sends the algorithm the SIGTERM signal, which
 // delays job termination for 120 seconds. Algorithms can use this 120-second
@@ -23042,6 +23253,12 @@ type StoppingCondition struct {
 	// ends the job. If value is not specified, default value is 1 day. The maximum
 	// value is 28 days.
 	MaxRuntimeInSeconds *int64 `min:"1" type:"integer"`
+
+	// The maximum length of time, in seconds, how long you are willing to wait
+	// for a managed spot training job to complete. It is the amount of time spent
+	// waiting for Spot capacity plus the amount of time the training job runs.
+	// It must be equal to or greater than MaxRuntimeInSeconds.
+	MaxWaitTimeInSeconds *int64 `min:"1" type:"integer"`
 }
 
 // String returns the string representation
@@ -23060,6 +23277,9 @@ func (s *StoppingCondition) Validate() error {
 	if s.MaxRuntimeInSeconds != nil && *s.MaxRuntimeInSeconds < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxRuntimeInSeconds", 1))
 	}
+	if s.MaxWaitTimeInSeconds != nil && *s.MaxWaitTimeInSeconds < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxWaitTimeInSeconds", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -23070,6 +23290,12 @@ func (s *StoppingCondition) Validate() error {
 // SetMaxRuntimeInSeconds sets the MaxRuntimeInSeconds field's value.
 func (s *StoppingCondition) SetMaxRuntimeInSeconds(v int64) *StoppingCondition {
 	s.MaxRuntimeInSeconds = &v
+	return s
+}
+
+// SetMaxWaitTimeInSeconds sets the MaxWaitTimeInSeconds field's value.
+func (s *StoppingCondition) SetMaxWaitTimeInSeconds(v int64) *StoppingCondition {
+	s.MaxWaitTimeInSeconds = &v
 	return s
 }
 
@@ -24498,7 +24724,7 @@ type TransformResources struct {
 
 	// The ML compute instance type for the transform job. If you are using built-in
 	// algorithms to transform moderately sized datasets, we recommend using ml.m4.xlarge
-	// or ml.m5.largeinstance types.
+	// or ml.m5.large instance types.
 	//
 	// InstanceType is a required field
 	InstanceType *string `type:"string" required:"true" enum:"TransformInstanceType"`
@@ -25220,11 +25446,13 @@ type UpdateNotebookInstanceLifecycleConfigInput struct {
 	// NotebookInstanceLifecycleConfigName is a required field
 	NotebookInstanceLifecycleConfigName *string `type:"string" required:"true"`
 
-	// The shell script that runs only once, when you create a notebook instance
+	// The shell script that runs only once, when you create a notebook instance.
+	// The shell script must be a base64-encoded string.
 	OnCreate []*NotebookInstanceLifecycleHook `type:"list"`
 
 	// The shell script that runs every time you start a notebook instance, including
-	// when you create the notebook instance.
+	// when you create the notebook instance. The shell script must be a base64-encoded
+	// string.
 	OnStart []*NotebookInstanceLifecycleHook `type:"list"`
 }
 
@@ -26391,6 +26619,12 @@ const (
 
 	// SecondaryStatusFailed is a SecondaryStatus enum value
 	SecondaryStatusFailed = "Failed"
+
+	// SecondaryStatusInterrupted is a SecondaryStatus enum value
+	SecondaryStatusInterrupted = "Interrupted"
+
+	// SecondaryStatusMaxWaitTimeExceeded is a SecondaryStatus enum value
+	SecondaryStatusMaxWaitTimeExceeded = "MaxWaitTimeExceeded"
 )
 
 const (
@@ -26469,8 +26703,17 @@ const (
 	// TargetDeviceRk3288 is a TargetDevice enum value
 	TargetDeviceRk3288 = "rk3288"
 
+	// TargetDeviceAisage is a TargetDevice enum value
+	TargetDeviceAisage = "aisage"
+
 	// TargetDeviceSbeC is a TargetDevice enum value
 	TargetDeviceSbeC = "sbe_c"
+
+	// TargetDeviceQcs605 is a TargetDevice enum value
+	TargetDeviceQcs605 = "qcs605"
+
+	// TargetDeviceQcs603 is a TargetDevice enum value
+	TargetDeviceQcs603 = "qcs603"
 )
 
 const (

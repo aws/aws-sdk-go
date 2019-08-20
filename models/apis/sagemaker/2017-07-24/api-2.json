@@ -951,6 +951,10 @@
         "SingleRecord"
       ]
     },
+    "BillableTimeInSeconds":{
+      "type":"integer",
+      "min":1
+    },
     "Boolean":{"type":"boolean"},
     "BooleanOperator":{
       "type":"string",
@@ -1038,6 +1042,14 @@
       "member":{"shape":"ChannelSpecification"},
       "max":8,
       "min":1
+    },
+    "CheckpointConfig":{
+      "type":"structure",
+      "required":["S3Uri"],
+      "members":{
+        "S3Uri":{"shape":"S3Uri"},
+        "LocalPath":{"shape":"DirectoryPath"}
+      }
     },
     "CodeRepositoryArn":{
       "type":"string",
@@ -1527,7 +1539,9 @@
         "StoppingCondition":{"shape":"StoppingCondition"},
         "Tags":{"shape":"TagList"},
         "EnableNetworkIsolation":{"shape":"Boolean"},
-        "EnableInterContainerTrafficEncryption":{"shape":"Boolean"}
+        "EnableInterContainerTrafficEncryption":{"shape":"Boolean"},
+        "EnableManagedSpotTraining":{"shape":"Boolean"},
+        "CheckpointConfig":{"shape":"CheckpointConfig"}
       }
     },
     "CreateTrainingJobResponse":{
@@ -2091,7 +2105,11 @@
         "SecondaryStatusTransitions":{"shape":"SecondaryStatusTransitions"},
         "FinalMetricDataList":{"shape":"FinalMetricDataList"},
         "EnableNetworkIsolation":{"shape":"Boolean"},
-        "EnableInterContainerTrafficEncryption":{"shape":"Boolean"}
+        "EnableInterContainerTrafficEncryption":{"shape":"Boolean"},
+        "EnableManagedSpotTraining":{"shape":"Boolean"},
+        "CheckpointConfig":{"shape":"CheckpointConfig"},
+        "TrainingTimeInSeconds":{"shape":"TrainingTimeInSeconds"},
+        "BillableTimeInSeconds":{"shape":"BillableTimeInSeconds"}
       }
     },
     "DescribeTransformJobRequest":{
@@ -2184,6 +2202,11 @@
         "Enabled",
         "Disabled"
       ]
+    },
+    "DirectoryPath":{
+      "type":"string",
+      "max":4096,
+      "pattern":".*"
     },
     "DisassociateAdditionalCodeRepositories":{"type":"boolean"},
     "DisassociateDefaultCodeRepository":{"type":"boolean"},
@@ -2359,7 +2382,7 @@
     "FinalMetricDataList":{
       "type":"list",
       "member":{"shape":"MetricData"},
-      "max":20,
+      "max":40,
       "min":0
     },
     "Float":{"type":"float"},
@@ -2493,7 +2516,9 @@
         "ResourceConfig":{"shape":"ResourceConfig"},
         "StoppingCondition":{"shape":"StoppingCondition"},
         "EnableNetworkIsolation":{"shape":"Boolean"},
-        "EnableInterContainerTrafficEncryption":{"shape":"Boolean"}
+        "EnableInterContainerTrafficEncryption":{"shape":"Boolean"},
+        "EnableManagedSpotTraining":{"shape":"Boolean"},
+        "CheckpointConfig":{"shape":"CheckpointConfig"}
       }
     },
     "HyperParameterTrainingJobSummaries":{
@@ -3435,6 +3460,10 @@
       "type":"integer",
       "min":1
     },
+    "MaxWaitTimeInSeconds":{
+      "type":"integer",
+      "min":1
+    },
     "MemberDefinition":{
       "type":"structure",
       "members":{
@@ -3469,7 +3498,7 @@
     "MetricDefinitionList":{
       "type":"list",
       "member":{"shape":"MetricDefinition"},
-      "max":20,
+      "max":40,
       "min":0
     },
     "MetricName":{
@@ -4027,6 +4056,7 @@
     "ProductionVariantList":{
       "type":"list",
       "member":{"shape":"ProductionVariant"},
+      "max":10,
       "min":1
     },
     "ProductionVariantSummary":{
@@ -4316,7 +4346,9 @@
         "Stopped",
         "MaxRuntimeExceeded",
         "Completed",
-        "Failed"
+        "Failed",
+        "Interrupted",
+        "MaxWaitTimeExceeded"
       ]
     },
     "SecondaryStatusTransition":{
@@ -4463,7 +4495,8 @@
     "StoppingCondition":{
       "type":"structure",
       "members":{
-        "MaxRuntimeInSeconds":{"shape":"MaxRuntimeInSeconds"}
+        "MaxRuntimeInSeconds":{"shape":"MaxRuntimeInSeconds"},
+        "MaxWaitTimeInSeconds":{"shape":"MaxWaitTimeInSeconds"}
       }
     },
     "String":{"type":"string"},
@@ -4558,7 +4591,10 @@
         "deeplens",
         "rk3399",
         "rk3288",
-        "sbe_c"
+        "aisage",
+        "sbe_c",
+        "qcs605",
+        "qcs603"
       ]
     },
     "TaskAvailabilityLifetimeInSeconds":{
@@ -4597,7 +4633,7 @@
     "TaskTimeLimitInSeconds":{
       "type":"integer",
       "max":28800,
-      "min":1
+      "min":30
     },
     "TaskTitle":{
       "type":"string",
@@ -4800,6 +4836,10 @@
         "TrainingChannels":{"shape":"ChannelSpecifications"},
         "SupportedTuningJobObjectiveMetrics":{"shape":"HyperParameterTuningJobObjectives"}
       }
+    },
+    "TrainingTimeInSeconds":{
+      "type":"integer",
+      "min":1
     },
     "TransformDataSource":{
       "type":"structure",
