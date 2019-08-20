@@ -2315,15 +2315,15 @@
     "HttpMethod": {
       "type": "string",
       "enum": [
-        "connect",
-        "delete",
-        "get",
-        "head",
-        "options",
-        "patch",
-        "post",
-        "put",
-        "trace"
+        "CONNECT",
+        "DELETE",
+        "GET",
+        "HEAD",
+        "OPTIONS",
+        "PATCH",
+        "POST",
+        "PUT",
+        "TRACE"
       ]
     },
     "ConflictException": {

@@ -1711,6 +1711,7 @@
         "DistanceUnit":{"shape":"DistanceUnit"},
         "TemperatureUnit":{"shape":"TemperatureUnit"},
         "WakeWord":{"shape":"WakeWord"},
+        "Locale":{"shape":"DeviceLocale"},
         "ClientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
@@ -2044,6 +2045,11 @@
       ]
     },
     "DeviceEventValue":{"type":"string"},
+    "DeviceLocale":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
     "DeviceName":{
       "type":"string",
       "max":100,
@@ -2204,7 +2210,7 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"([0-9a-zA-Z]([+-.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})"
+      "pattern":"([0-9a-zA-Z]([+-.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z]([-\\w]*[0-9a-zA-Z]+)*\\.)+[a-zA-Z]{2,9})"
     },
     "EnablementType":{
       "type":"string",
@@ -2948,6 +2954,7 @@
         "DistanceUnit":{"shape":"DistanceUnit"},
         "TemperatureUnit":{"shape":"TemperatureUnit"},
         "WakeWord":{"shape":"WakeWord"},
+        "Locale":{"shape":"DeviceLocale"},
         "SetupModeDisabled":{"shape":"Boolean"},
         "MaxVolumeLimit":{"shape":"MaxVolumeLimit"},
         "PSTNEnabled":{"shape":"Boolean"},
@@ -2964,7 +2971,8 @@
         "Timezone":{"shape":"Timezone"},
         "DistanceUnit":{"shape":"DistanceUnit"},
         "TemperatureUnit":{"shape":"TemperatureUnit"},
-        "WakeWord":{"shape":"WakeWord"}
+        "WakeWord":{"shape":"WakeWord"},
+        "Locale":{"shape":"DeviceLocale"}
       }
     },
     "ProfileDataList":{
@@ -3894,6 +3902,7 @@
         "DistanceUnit":{"shape":"DistanceUnit"},
         "TemperatureUnit":{"shape":"TemperatureUnit"},
         "WakeWord":{"shape":"WakeWord"},
+        "Locale":{"shape":"DeviceLocale"},
         "SetupModeDisabled":{"shape":"Boolean"},
         "MaxVolumeLimit":{"shape":"MaxVolumeLimit"},
         "PSTNEnabled":{"shape":"Boolean"}

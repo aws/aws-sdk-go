@@ -8286,31 +8286,31 @@ const (
 
 const (
 	// HttpMethodConnect is a HttpMethod enum value
-	HttpMethodConnect = "connect"
+	HttpMethodConnect = "CONNECT"
 
 	// HttpMethodDelete is a HttpMethod enum value
-	HttpMethodDelete = "delete"
+	HttpMethodDelete = "DELETE"
 
 	// HttpMethodGet is a HttpMethod enum value
-	HttpMethodGet = "get"
+	HttpMethodGet = "GET"
 
 	// HttpMethodHead is a HttpMethod enum value
-	HttpMethodHead = "head"
+	HttpMethodHead = "HEAD"
 
 	// HttpMethodOptions is a HttpMethod enum value
-	HttpMethodOptions = "options"
+	HttpMethodOptions = "OPTIONS"
 
 	// HttpMethodPatch is a HttpMethod enum value
-	HttpMethodPatch = "patch"
+	HttpMethodPatch = "PATCH"
 
 	// HttpMethodPost is a HttpMethod enum value
-	HttpMethodPost = "post"
+	HttpMethodPost = "POST"
 
 	// HttpMethodPut is a HttpMethod enum value
-	HttpMethodPut = "put"
+	HttpMethodPut = "PUT"
 
 	// HttpMethodTrace is a HttpMethod enum value
-	HttpMethodTrace = "trace"
+	HttpMethodTrace = "TRACE"
 )
 
 const (

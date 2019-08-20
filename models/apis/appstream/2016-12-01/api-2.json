@@ -521,7 +521,8 @@
         {"shape":"OperationNotPermittedException"},
         {"shape":"LimitExceededException"},
         {"shape":"InvalidAccountStatusException"},
-        {"shape":"ConcurrentModificationException"}
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceNotAvailableException"}
       ]
     },
     "StartImageBuilder":{
@@ -664,6 +665,24 @@
     }
   },
   "shapes":{
+    "AccessEndpoint":{
+      "type":"structure",
+      "required":["EndpointType"],
+      "members":{
+        "EndpointType":{"shape":"AccessEndpointType"},
+        "VpceId":{"shape":"String"}
+      }
+    },
+    "AccessEndpointList":{
+      "type":"list",
+      "member":{"shape":"AccessEndpoint"},
+      "max":4,
+      "min":1
+    },
+    "AccessEndpointType":{
+      "type":"string",
+      "enum":["STREAMING"]
+    },
     "AccountName":{
       "type":"string",
       "min":1,
@@ -903,7 +922,8 @@
         "EnableDefaultInternetAccess":{"shape":"BooleanObject"},
         "DomainJoinInfo":{"shape":"DomainJoinInfo"},
         "AppstreamAgentVersion":{"shape":"AppstreamAgentVersion"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "AccessEndpoints":{"shape":"AccessEndpointList"}
       }
     },
     "CreateImageBuilderResult":{
@@ -939,7 +959,8 @@
         "FeedbackURL":{"shape":"FeedbackURL"},
         "UserSettings":{"shape":"UserSettingList"},
         "ApplicationSettings":{"shape":"ApplicationSettings"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "AccessEndpoints":{"shape":"AccessEndpointList"}
       }
     },
     "CreateStackResult":{
@@ -1440,6 +1461,7 @@
         "NETWORK_INTERFACE_LIMIT_EXCEEDED",
         "INTERNAL_SERVICE_ERROR",
         "IAM_SERVICE_ROLE_IS_MISSING",
+        "STS_DISABLED_IN_REGION",
         "SUBNET_HAS_INSUFFICIENT_IP_ADDRESSES",
         "IAM_SERVICE_ROLE_MISSING_DESCRIBE_SUBNET_ACTION",
         "SUBNET_NOT_FOUND",
@@ -1527,7 +1549,8 @@
         "DomainJoinInfo":{"shape":"DomainJoinInfo"},
         "NetworkAccessConfiguration":{"shape":"NetworkAccessConfiguration"},
         "ImageBuilderErrors":{"shape":"ResourceErrors"},
-        "AppstreamAgentVersion":{"shape":"AppstreamAgentVersion"}
+        "AppstreamAgentVersion":{"shape":"AppstreamAgentVersion"},
+        "AccessEndpoints":{"shape":"AccessEndpointList"}
       }
     },
     "ImageBuilderList":{
@@ -1891,7 +1914,8 @@
         "FeedbackURL":{"shape":"FeedbackURL"},
         "StackErrors":{"shape":"StackErrors"},
         "UserSettings":{"shape":"UserSettingList"},
-        "ApplicationSettings":{"shape":"ApplicationSettingsResponse"}
+        "ApplicationSettings":{"shape":"ApplicationSettingsResponse"},
+        "AccessEndpoints":{"shape":"AccessEndpointList"}
       }
     },
     "StackAttribute":{
@@ -1904,7 +1928,8 @@
         "REDIRECT_URL",
         "FEEDBACK_URL",
         "THEME_NAME",
-        "USER_SETTINGS"
+        "USER_SETTINGS",
+        "ACCESS_ENDPOINTS"
       ]
     },
     "StackAttributes":{
@@ -2159,7 +2184,8 @@
         "FeedbackURL":{"shape":"FeedbackURL"},
         "AttributesToDelete":{"shape":"StackAttributes"},
         "UserSettings":{"shape":"UserSettingList"},
-        "ApplicationSettings":{"shape":"ApplicationSettings"}
+        "ApplicationSettings":{"shape":"ApplicationSettings"},
+        "AccessEndpoints":{"shape":"AccessEndpointList"}
       }
     },
     "UpdateStackResult":{

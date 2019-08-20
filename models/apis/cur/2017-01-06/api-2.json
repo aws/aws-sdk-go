@@ -38,6 +38,19 @@
         {"shape":"InternalErrorException"}
       ]
     },
+    "ModifyReportDefinition":{
+      "name":"ModifyReportDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyReportDefinitionRequest"},
+      "output":{"shape":"ModifyReportDefinitionResponse"},
+      "errors":[
+        {"shape":"InternalErrorException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "PutReportDefinition":{
       "name":"PutReportDefinition",
       "http":{
@@ -67,7 +80,8 @@
         "ap-southeast-2",
         "ap-northeast-1",
         "eu-north-1",
-        "ap-northeast-3"
+        "ap-northeast-3",
+        "ap-east-1"
       ]
     },
     "AdditionalArtifact":{
@@ -139,6 +153,22 @@
       "box":true,
       "max":5,
       "min":5
+    },
+    "ModifyReportDefinitionRequest":{
+      "type":"structure",
+      "required":[
+        "ReportName",
+        "ReportDefinition"
+      ],
+      "members":{
+        "ReportName":{"shape":"ReportName"},
+        "ReportDefinition":{"shape":"ReportDefinition"}
+      }
+    },
+    "ModifyReportDefinitionResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "PutReportDefinitionRequest":{
       "type":"structure",

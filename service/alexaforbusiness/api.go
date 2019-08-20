@@ -1907,10 +1907,6 @@ func (c *AlexaForBusiness) DeleteDeviceUsageDataRequest(input *DeleteDeviceUsage
 // and associated response data. This action can be called once every 24 hours
 // for a specific shared device.
 //
-// When this action is called for a specified shared device, it allows authorized
-// users to delete the device's entire previous history of voice input data.
-// This action can be called once every 24 hours for a specific shared device.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -10520,6 +10516,9 @@ type CreateProfileInput struct {
 	// DistanceUnit is a required field
 	DistanceUnit *string `type:"string" required:"true" enum:"DistanceUnit"`
 
+	// The locale of the room profile.
+	Locale *string `min:"1" type:"string"`
+
 	// The maximum volume limit for a room profile.
 	MaxVolumeLimit *int64 `type:"integer"`
 
@@ -10575,6 +10574,9 @@ func (s *CreateProfileInput) Validate() error {
 	if s.DistanceUnit == nil {
 		invalidParams.Add(request.NewErrParamRequired("DistanceUnit"))
 	}
+	if s.Locale != nil && len(*s.Locale) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Locale", 1))
+	}
 	if s.ProfileName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProfileName"))
 	}
@@ -10615,6 +10617,12 @@ func (s *CreateProfileInput) SetClientRequestToken(v string) *CreateProfileInput
 // SetDistanceUnit sets the DistanceUnit field's value.
 func (s *CreateProfileInput) SetDistanceUnit(v string) *CreateProfileInput {
 	s.DistanceUnit = &v
+	return s
+}
+
+// SetLocale sets the Locale field's value.
+func (s *CreateProfileInput) SetLocale(v string) *CreateProfileInput {
+	s.Locale = &v
 	return s
 }
 
@@ -14880,6 +14888,9 @@ type Profile struct {
 	// Retrieves if the profile is default or not.
 	IsDefault *bool `type:"boolean"`
 
+	// The locale of a room profile.
+	Locale *string `min:"1" type:"string"`
+
 	// The max volume limit of a room profile.
 	MaxVolumeLimit *int64 `type:"integer"`
 
@@ -14936,6 +14947,12 @@ func (s *Profile) SetDistanceUnit(v string) *Profile {
 // SetIsDefault sets the IsDefault field's value.
 func (s *Profile) SetIsDefault(v bool) *Profile {
 	s.IsDefault = &v
+	return s
+}
+
+// SetLocale sets the Locale field's value.
+func (s *Profile) SetLocale(v string) *Profile {
+	s.Locale = &v
 	return s
 }
 
@@ -15000,6 +15017,9 @@ type ProfileData struct {
 	// Retrieves if the profile data is default or not.
 	IsDefault *bool `type:"boolean"`
 
+	// The locale of a room profile.
+	Locale *string `min:"1" type:"string"`
+
 	// The ARN of a room profile.
 	ProfileArn *string `type:"string"`
 
@@ -15041,6 +15061,12 @@ func (s *ProfileData) SetDistanceUnit(v string) *ProfileData {
 // SetIsDefault sets the IsDefault field's value.
 func (s *ProfileData) SetIsDefault(v bool) *ProfileData {
 	s.IsDefault = &v
+	return s
+}
+
+// SetLocale sets the Locale field's value.
+func (s *ProfileData) SetLocale(v string) *ProfileData {
+	s.Locale = &v
 	return s
 }
 
@@ -18781,6 +18807,9 @@ type UpdateProfileInput struct {
 	// done to the default status.
 	IsDefault *bool `type:"boolean"`
 
+	// The updated locale for the room profile.
+	Locale *string `min:"1" type:"string"`
+
 	// The updated maximum volume limit for the room profile.
 	MaxVolumeLimit *int64 `type:"integer"`
 
@@ -18822,6 +18851,9 @@ func (s *UpdateProfileInput) Validate() error {
 	if s.Address != nil && len(*s.Address) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Address", 1))
 	}
+	if s.Locale != nil && len(*s.Locale) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Locale", 1))
+	}
 	if s.ProfileName != nil && len(*s.ProfileName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ProfileName", 1))
 	}
@@ -18850,6 +18882,12 @@ func (s *UpdateProfileInput) SetDistanceUnit(v string) *UpdateProfileInput {
 // SetIsDefault sets the IsDefault field's value.
 func (s *UpdateProfileInput) SetIsDefault(v bool) *UpdateProfileInput {
 	s.IsDefault = &v
+	return s
+}
+
+// SetLocale sets the Locale field's value.
+func (s *UpdateProfileInput) SetLocale(v string) *UpdateProfileInput {
+	s.Locale = &v
 	return s
 }
 
