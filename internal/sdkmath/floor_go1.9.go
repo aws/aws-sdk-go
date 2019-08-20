@@ -4,6 +4,8 @@ package sdkmath
 
 import "math"
 
+// Copied from the Go standard library's (Go 1.12) math/floor.go for use in
+// Go version prior to Go 1.10.
 const (
 	uvone    = 0x3FF0000000000000
 	mask     = 0x7FF
@@ -19,6 +21,9 @@ const (
 //	Round(±0) = ±0
 //	Round(±Inf) = ±Inf
 //	Round(NaN) = NaN
+//
+// Copied from the Go standard library's (Go 1.12) math/floor.go for use in
+// Go version prior to Go 1.10.
 func Round(x float64) float64 {
 	// Round is a faster implementation of:
 	//
