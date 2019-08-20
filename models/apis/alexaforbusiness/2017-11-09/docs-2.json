@@ -24,7 +24,7 @@
     "DeleteConferenceProvider": "<p>Deletes a conference provider.</p>",
     "DeleteContact": "<p>Deletes a contact by the contact ARN.</p>",
     "DeleteDevice": "<p>Removes a device from Alexa For Business.</p>",
-    "DeleteDeviceUsageData": "<p>When this action is called for a specified shared device, it allows authorized users to delete the device's entire previous history of voice input data and associated response data. This action can be called once every 24 hours for a specific shared device.</p> <p>When this action is called for a specified shared device, it allows authorized users to delete the device's entire previous history of voice input data. This action can be called once every 24 hours for a specific shared device. </p>",
+    "DeleteDeviceUsageData": "<p>When this action is called for a specified shared device, it allows authorized users to delete the device's entire previous history of voice input data and associated response data. This action can be called once every 24 hours for a specific shared device.</p>",
     "DeleteGatewayGroup": "<p>Deletes a gateway group.</p>",
     "DeleteNetworkProfile": "<p>Deletes a network profile by the network profile ARN.</p>",
     "DeleteProfile": "<p>Deletes a room profile by the profile ARN.</p>",
@@ -980,6 +980,15 @@
       "base": null,
       "refs": {
         "DeviceEvent$Value": "<p>The value of the event.</p>"
+      }
+    },
+    "DeviceLocale": {
+      "base": null,
+      "refs": {
+        "CreateProfileRequest$Locale": "<p>The locale of the room profile.</p>",
+        "Profile$Locale": "<p>The locale of a room profile.</p>",
+        "ProfileData$Locale": "<p>The locale of a room profile.</p>",
+        "UpdateProfileRequest$Locale": "<p>The updated locale for the room profile.</p>"
       }
     },
     "DeviceName": {

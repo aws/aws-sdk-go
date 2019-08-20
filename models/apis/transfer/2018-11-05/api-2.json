@@ -450,7 +450,8 @@
     },
     "HostKey":{
       "type":"string",
-      "max":4096
+      "max":4096,
+      "sensitive":true
     },
     "HostKeyFingerprint":{"type":"string"},
     "IdentityProviderDetails":{
@@ -649,6 +650,7 @@
       "exception":true
     },
     "ResourceType":{"type":"string"},
+    "Response":{"type":"string"},
     "Role":{
       "type":"string",
       "pattern":"arn:.*role/.*"
@@ -776,8 +778,9 @@
         "Url"
       ],
       "members":{
-        "Message":{"shape":"Message"},
+        "Response":{"shape":"Response"},
         "StatusCode":{"shape":"StatusCode"},
+        "Message":{"shape":"Message"},
         "Url":{"shape":"Url"}
       }
     },
@@ -842,7 +845,10 @@
       "type":"string",
       "pattern":"^[a-zA-Z0-9_][a-zA-Z0-9_-]{2,31}$"
     },
-    "UserPassword":{"type":"string"},
+    "UserPassword":{
+      "type":"string",
+      "sensitive":true
+    },
     "VpcEndpointId":{
       "type":"string",
       "pattern":"^vpce-[0-9a-f]{17}$"
