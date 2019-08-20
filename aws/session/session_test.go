@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"path/filepath"
 	"strings"
 	"testing"
 
@@ -418,6 +419,114 @@ func TestNewSessionWithOptions_Overrides(t *testing.T) {
 				t.Errorf("expect %v, got %v", e, a)
 			}
 			if e, a := c.OutCreds.ProviderName, creds.ProviderName; !strings.Contains(a, e) {
+				t.Errorf("expect %v, to be in %v", e, a)
+			}
+		})
+	}
+}
+
+func TestNewSession_EnvCredsWithInvalidConfigFile(t *testing.T) {
+	cases := map[string]struct {
+		AccessKey, SecretKey string
+		Profile              string
+		Options              Options
+		ExpectCreds          credentials.Value
+		Err                  string
+	}{
+		"no options": {
+			Err: "SharedConfigLoadError",
+		},
+		"env only": {
+			AccessKey: "env_akid",
+			SecretKey: "env_secret",
+			ExpectCreds: credentials.Value{
+				AccessKeyID:     "env_akid",
+				SecretAccessKey: "env_secret",
+				ProviderName:    "EnvConfigCredentials",
+			},
+		},
+		"static credentials only": {
+			Options: Options{
+				Config: aws.Config{
+					Credentials: credentials.NewStaticCredentials(
+						"AKID", "SECRET", ""),
+				},
+			},
+			ExpectCreds: credentials.Value{
+				AccessKeyID:     "AKID",
+				SecretAccessKey: "SECRET",
+				ProviderName:    "StaticProvider",
+			},
+		},
+		"env profile and env": {
+			AccessKey: "env_akid",
+			SecretKey: "env_secret",
+			Profile:   "env_profile",
+			Err:       "SharedConfigLoadError",
+		},
+		"opt profile and env": {
+			AccessKey: "env_akid",
+			SecretKey: "env_secret",
+			Options: Options{
+				Profile: "someProfile",
+			},
+			Err: "SharedConfigLoadError",
+		},
+		"cfg enabled": {
+			AccessKey: "env_akid",
+			SecretKey: "env_secret",
+			Options: Options{
+				SharedConfigState: SharedConfigEnable,
+			},
+			Err: "SharedConfigLoadError",
+		},
+	}
+
+	var cfgFile = filepath.Join("testdata", "shared_config_invalid_ini")
+
+	for name, c := range cases {
+		t.Run(name, func(t *testing.T) {
+			restoreEnvFn := initSessionTestEnv()
+			defer restoreEnvFn()
+
+			if v := c.AccessKey; len(v) != 0 {
+				os.Setenv("AWS_ACCESS_KEY", v)
+			}
+			if v := c.SecretKey; len(v) != 0 {
+				os.Setenv("AWS_SECRET_ACCESS_KEY", v)
+			}
+			if v := c.Profile; len(v) != 0 {
+				os.Setenv("AWS_PROFILE", v)
+			}
+
+			opts := c.Options
+			opts.SharedConfigFiles = []string{cfgFile}
+			s, err := NewSessionWithOptions(opts)
+			if len(c.Err) != 0 {
+				if err == nil {
+					t.Fatalf("expect session error, got none")
+				}
+				if e, a := c.Err, err.Error(); !strings.Contains(a, e) {
+					t.Fatalf("expect session error to contain %q, got %v", e, a)
+				}
+				return
+			}
+
+			if err != nil {
+				t.Fatalf("expect no error, got %v", err)
+			}
+
+			creds, err := s.Config.Credentials.Get()
+			if err != nil {
+				t.Fatalf("expect no error, got %v", err)
+			}
+			if e, a := c.ExpectCreds.AccessKeyID, creds.AccessKeyID; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+			if e, a := c.ExpectCreds.SecretAccessKey, creds.SecretAccessKey; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+			if e, a := c.ExpectCreds.ProviderName, creds.ProviderName; !strings.Contains(a, e) {
 				t.Errorf("expect %v, to be in %v", e, a)
 			}
 		})
