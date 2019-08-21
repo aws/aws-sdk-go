@@ -1005,7 +1005,8 @@
     "NodeTypeList": {
       "base": null,
       "refs": {
-        "AllowedNodeTypeModificationsMessage$ScaleUpModifications": "<p>A string list, each element of which specifies a cache node type which you can use to scale your cluster or replication group.</p> <p>When scaling up a Redis cluster or replication group using <code>ModifyCacheCluster</code> or <code>ModifyReplicationGroup</code>, use a value from this list for the <code>CacheNodeType</code> parameter.</p>"
+        "AllowedNodeTypeModificationsMessage$ScaleUpModifications": "<p>A string list, each element of which specifies a cache node type which you can use to scale your cluster or replication group.</p> <p>When scaling up a Redis cluster or replication group using <code>ModifyCacheCluster</code> or <code>ModifyReplicationGroup</code>, use a value from this list for the <code>CacheNodeType</code> parameter.</p>",
+        "AllowedNodeTypeModificationsMessage$ScaleDownModifications": "<p>A string list, each element of which specifies a cache node type which you can use to scale your cluster or replication group.</p> <p>When scaling down on a Redis cluster or replication group using <code>ModifyCacheCluster</code> or <code>ModifyReplicationGroup</code>, use a value from this list for the <code>CacheNodeType</code> parameter.</p>"
       }
     },
     "NodeUpdateInitiatedBy": {
