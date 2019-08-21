@@ -1203,10 +1203,10 @@ func (c *Rekognition) DetectModerationLabelsRequest(input *DetectModerationLabel
 
 // DetectModerationLabels API operation for Amazon Rekognition.
 //
-// Detects explicit or suggestive adult content in a specified JPEG or PNG format
-// image. Use DetectModerationLabels to moderate images depending on your requirements.
-// For example, you might want to filter images that contain nudity, but not
-// images containing suggestive content.
+// Detects unsafe content in a specified JPEG or PNG format image. Use DetectModerationLabels
+// to moderate images depending on your requirements. For example, you might
+// want to filter images that contain nudity, but not images containing suggestive
+// content.
 //
 // To filter images, use the labels returned by DetectModerationLabels to determine
 // which types of content are appropriate.
@@ -1752,23 +1752,23 @@ func (c *Rekognition) GetContentModerationRequest(input *GetContentModerationInp
 
 // GetContentModeration API operation for Amazon Rekognition.
 //
-// Gets the content moderation analysis results for a Amazon Rekognition Video
-// analysis started by StartContentModeration.
+// Gets the unsafe content analysis results for a Amazon Rekognition Video analysis
+// started by StartContentModeration.
 //
-// Content moderation analysis of a video is an asynchronous operation. You
-// start analysis by calling StartContentModeration which returns a job identifier
+// Unsafe content analysis of a video is an asynchronous operation. You start
+// analysis by calling StartContentModeration which returns a job identifier
 // (JobId). When analysis finishes, Amazon Rekognition Video publishes a completion
 // status to the Amazon Simple Notification Service topic registered in the
-// initial call to StartContentModeration. To get the results of the content
-// moderation analysis, first check that the status value published to the Amazon
+// initial call to StartContentModeration. To get the results of the unsafe
+// content analysis, first check that the status value published to the Amazon
 // SNS topic is SUCCEEDED. If so, call GetContentModeration and pass the job
 // identifier (JobId) from the initial call to StartContentModeration.
 //
 // For more information, see Working with Stored Videos in the Amazon Rekognition
 // Devlopers Guide.
 //
-// GetContentModeration returns detected content moderation labels, and the
-// time they are detected, in an array, ModerationLabels, of ContentModerationDetection
+// GetContentModeration returns detected unsafe content labels, and the time
+// they are detected, in an array, ModerationLabels, of ContentModerationDetection
 // objects.
 //
 // By default, the moderated labels are returned sorted by time, in milliseconds
@@ -3822,20 +3822,18 @@ func (c *Rekognition) StartContentModerationRequest(input *StartContentModeratio
 
 // StartContentModeration API operation for Amazon Rekognition.
 //
-// Starts asynchronous detection of explicit or suggestive adult content in
-// a stored video.
+// Starts asynchronous detection of unsafe content in a stored video.
 //
 // Amazon Rekognition Video can moderate content in a video stored in an Amazon
 // S3 bucket. Use Video to specify the bucket name and the filename of the video.
 // StartContentModeration returns a job identifier (JobId) which you use to
-// get the results of the analysis. When content moderation analysis is finished,
+// get the results of the analysis. When unsafe content analysis is finished,
 // Amazon Rekognition Video publishes a completion status to the Amazon Simple
 // Notification Service topic that you specify in NotificationChannel.
 //
-// To get the results of the content moderation analysis, first check that the
-// status value published to the Amazon SNS topic is SUCCEEDED. If so, call
-// GetContentModeration and pass the job identifier (JobId) from the initial
-// call to StartContentModeration.
+// To get the results of the unsafe content analysis, first check that the status
+// value published to the Amazon SNS topic is SUCCEEDED. If so, call GetContentModeration
+// and pass the job identifier (JobId) from the initial call to StartContentModeration.
 //
 // For more information, see Detecting Unsafe Content in the Amazon Rekognition
 // Developer Guide.
@@ -5216,14 +5214,14 @@ func (s *ComparedSourceImageFace) SetConfidence(v float64) *ComparedSourceImageF
 	return s
 }
 
-// Information about a moderation label detection in a stored video.
+// Information about an unsafe content label detection in a stored video.
 type ContentModerationDetection struct {
 	_ struct{} `type:"structure"`
 
-	// The moderation label detected by in the stored video.
+	// The unsafe content label detected by in the stored video.
 	ModerationLabel *ModerationLabel `type:"structure"`
 
-	// Time, in milliseconds from the beginning of the video, that the moderation
+	// Time, in milliseconds from the beginning of the video, that the unsafe content
 	// label was detected.
 	Timestamp *int64 `type:"long"`
 }
@@ -6211,7 +6209,7 @@ func (s *DetectModerationLabelsInput) SetMinConfidence(v float64) *DetectModerat
 type DetectModerationLabelsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Array of detected Moderation labels and the time, in millseconds from the
+	// Array of detected Moderation labels and the time, in milliseconds from the
 	// start of the video, they were detected.
 	ModerationLabels []*ModerationLabel `type:"list"`
 
@@ -6313,8 +6311,11 @@ func (s *DetectTextOutput) SetTextDetections(v []*TextDetection) *DetectTextOutp
 	return s
 }
 
-// The emotions detected on the face, and the confidence level in the determination.
-// For example, HAPPY, SAD, and ANGRY.
+// The emotions that appear to be expressed on the face, and the confidence
+// level in the determination. The API is only making a determination of the
+// physical appearance of a person's face. It is not a determination of the
+// person’s internal emotional state and should not be used in such a way.
+// For example, a person pretending to have a sad face might not be sad emotionally.
 type Emotion struct {
 	_ struct{} `type:"structure"`
 
@@ -6518,8 +6519,11 @@ type FaceDetail struct {
 	// object such as a tree). Default attribute.
 	Confidence *float64 `type:"float"`
 
-	// The emotions detected on the face, and the confidence level in the determination.
-	// For example, HAPPY, SAD, and ANGRY.
+	// The emotions that appear to be expressed on the face, and the confidence
+	// level in the determination. The API is only making a determination of the
+	// physical appearance of a person's face. It is not a determination of the
+	// person’s internal emotional state and should not be used in such a way.
+	// For example, a person pretending to have a sad face might not be sad emotionally.
 	Emotions []*Emotion `type:"list"`
 
 	// Indicates whether or not the face is wearing eye glasses, and the confidence
@@ -7096,8 +7100,8 @@ func (s *GetCelebrityRecognitionOutput) SetVideoMetadata(v *VideoMetadata) *GetC
 type GetContentModerationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the content moderation job. Use JobId to identify the
-	// job in a subsequent call to GetContentModeration.
+	// The identifier for the unsafe content job. Use JobId to identify the job
+	// in a subsequent call to GetContentModeration.
 	//
 	// JobId is a required field
 	JobId *string `min:"1" type:"string" required:"true"`
@@ -7109,7 +7113,7 @@ type GetContentModerationInput struct {
 
 	// If the previous response was incomplete (because there is more data to retrieve),
 	// Amazon Rekognition returns a pagination token in the response. You can use
-	// this pagination token to retrieve the next set of content moderation labels.
+	// this pagination token to retrieve the next set of unsafe content labels.
 	NextToken *string `type:"string"`
 
 	// Sort to use for elements in the ModerationLabelDetections array. Use TIMESTAMP
@@ -7175,10 +7179,10 @@ func (s *GetContentModerationInput) SetSortBy(v string) *GetContentModerationInp
 type GetContentModerationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The current status of the content moderation job.
+	// The current status of the unsafe content analysis job.
 	JobStatus *string `type:"string" enum:"VideoJobStatus"`
 
-	// The detected moderation labels and the time(s) they were detected.
+	// The detected unsafe content labels and the time(s) they were detected.
 	ModerationLabels []*ContentModerationDetection `type:"list"`
 
 	// Version number of the moderation detection model that was used to detect
@@ -7186,8 +7190,8 @@ type GetContentModerationOutput struct {
 	ModerationModelVersion *string `type:"string"`
 
 	// If the response is truncated, Amazon Rekognition Video returns this token
-	// that you can use in the subsequent request to retrieve the next set of moderation
-	// labels.
+	// that you can use in the subsequent request to retrieve the next set of unsafe
+	// content labels.
 	NextToken *string `type:"string"`
 
 	// If the job fails, StatusMessage provides a descriptive error message.
@@ -8634,8 +8638,8 @@ func (s *ListStreamProcessorsOutput) SetStreamProcessors(v []*StreamProcessor) *
 	return s
 }
 
-// Provides information about a single type of moderated content found in an
-// image or video. Each type of moderated content has a label within a hierarchical
+// Provides information about a single type of unsafe content found in an image
+// or video. Each type of moderated content has a label within a hierarchical
 // taxonomy. For more information, see Detecting Unsafe Content in the Amazon
 // Rekognition Developer Guide.
 type ModerationLabel struct {
@@ -8649,7 +8653,7 @@ type ModerationLabel struct {
 	// to 50 percent.
 	Confidence *float64 `type:"float"`
 
-	// The label name for the type of content detected in the image.
+	// The label name for the type of unsafe content detected in the image.
 	Name *string `type:"string"`
 
 	// The name for the parent label. Labels at the top level of the hierarchy have
@@ -9227,7 +9231,7 @@ type SearchFacesByImageInput struct {
 
 	// (Optional) Specifies the minimum confidence in the face match to return.
 	// For example, don't return any matches where confidence in matches is less
-	// than 70%.
+	// than 70%. The default value is 80%.
 	FaceMatchThreshold *float64 `type:"float"`
 
 	// The input image as base64-encoded bytes or an S3 object. If you use the AWS
@@ -9375,7 +9379,7 @@ type SearchFacesInput struct {
 
 	// Optional value specifying the minimum confidence in the face match to return.
 	// For example, don't return any matches where confidence in matches is less
-	// than 70%.
+	// than 70%. The default value is 80%.
 	FaceMatchThreshold *float64 `type:"float"`
 
 	// Maximum number of faces to return. The operation returns the maximum number
@@ -9525,8 +9529,10 @@ type StartCelebrityRecognitionInput struct {
 	// started more than once.
 	ClientRequestToken *string `min:"1" type:"string"`
 
-	// Unique identifier you specify to identify the job in the completion status
-	// published to the Amazon Simple Notification Service topic.
+	// An identifier you specify that's returned in the completion notification
+	// that's published to your Amazon Simple Notification Service topic. For example,
+	// you can use JobTag to group related jobs and identify them in the completion
+	// notification.
 	JobTag *string `min:"1" type:"string"`
 
 	// The Amazon SNS topic ARN that you want Amazon Rekognition Video to publish
@@ -9636,8 +9642,10 @@ type StartContentModerationInput struct {
 	// more than once.
 	ClientRequestToken *string `min:"1" type:"string"`
 
-	// Unique identifier you specify to identify the job in the completion status
-	// published to the Amazon Simple Notification Service topic.
+	// An identifier you specify that's returned in the completion notification
+	// that's published to your Amazon Simple Notification Service topic. For example,
+	// you can use JobTag to group related jobs and identify them in the completion
+	// notification.
 	JobTag *string `min:"1" type:"string"`
 
 	// Specifies the minimum confidence that Amazon Rekognition must have in order
@@ -9650,10 +9658,10 @@ type StartContentModerationInput struct {
 	MinConfidence *float64 `type:"float"`
 
 	// The Amazon SNS topic ARN that you want Amazon Rekognition Video to publish
-	// the completion status of the content moderation analysis to.
+	// the completion status of the unsafe content analysis to.
 	NotificationChannel *NotificationChannel `type:"structure"`
 
-	// The video in which you want to moderate content. The video must be stored
+	// The video in which you want to detect unsafe content. The video must be stored
 	// in an Amazon S3 bucket.
 	//
 	// Video is a required field
@@ -9732,7 +9740,7 @@ func (s *StartContentModerationInput) SetVideo(v *Video) *StartContentModeration
 type StartContentModerationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the content moderation analysis job. Use JobId to identify
+	// The identifier for the unsafe content analysis job. Use JobId to identify
 	// the job in a subsequent call to GetContentModeration.
 	JobId *string `min:"1" type:"string"`
 }
@@ -9770,8 +9778,10 @@ type StartFaceDetectionInput struct {
 	// ALL - All facial attributes are returned.
 	FaceAttributes *string `type:"string" enum:"FaceAttributes"`
 
-	// Unique identifier you specify to identify the job in the completion status
-	// published to the Amazon Simple Notification Service topic.
+	// An identifier you specify that's returned in the completion notification
+	// that's published to your Amazon Simple Notification Service topic. For example,
+	// you can use JobTag to group related jobs and identify them in the completion
+	// notification.
 	JobTag *string `min:"1" type:"string"`
 
 	// The ARN of the Amazon SNS topic to which you want Amazon Rekognition Video
@@ -9893,11 +9903,14 @@ type StartFaceSearchInput struct {
 	CollectionId *string `min:"1" type:"string" required:"true"`
 
 	// The minimum confidence in the person match to return. For example, don't
-	// return any matches where confidence in matches is less than 70%.
+	// return any matches where confidence in matches is less than 70%. The default
+	// value is 80%.
 	FaceMatchThreshold *float64 `type:"float"`
 
-	// Unique identifier you specify to identify the job in the completion status
-	// published to the Amazon Simple Notification Service topic.
+	// An identifier you specify that's returned in the completion notification
+	// that's published to your Amazon Simple Notification Service topic. For example,
+	// you can use JobTag to group related jobs and identify them in the completion
+	// notification.
 	JobTag *string `min:"1" type:"string"`
 
 	// The ARN of the Amazon SNS topic to which you want Amazon Rekognition Video
@@ -10024,8 +10037,10 @@ type StartLabelDetectionInput struct {
 	// more than once.
 	ClientRequestToken *string `min:"1" type:"string"`
 
-	// Unique identifier you specify to identify the job in the completion status
-	// published to the Amazon Simple Notification Service topic.
+	// An identifier you specify that's returned in the completion notification
+	// that's published to your Amazon Simple Notification Service topic. For example,
+	// you can use JobTag to group related jobs and identify them in the completion
+	// notification.
 	JobTag *string `min:"1" type:"string"`
 
 	// Specifies the minimum confidence that Amazon Rekognition Video must have
@@ -10151,8 +10166,10 @@ type StartPersonTrackingInput struct {
 	// more than once.
 	ClientRequestToken *string `min:"1" type:"string"`
 
-	// Unique identifier you specify to identify the job in the completion status
-	// published to the Amazon Simple Notification Service topic.
+	// An identifier you specify that's returned in the completion notification
+	// that's published to your Amazon Simple Notification Service topic. For example,
+	// you can use JobTag to group related jobs and identify them in the completion
+	// notification.
 	JobTag *string `min:"1" type:"string"`
 
 	// The Amazon SNS topic ARN you want Amazon Rekognition Video to publish the

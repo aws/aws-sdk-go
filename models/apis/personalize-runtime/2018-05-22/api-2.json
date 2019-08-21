@@ -85,8 +85,7 @@
     },
     "InputList":{
       "type":"list",
-      "member":{"shape":"ItemID"},
-      "max":100
+      "member":{"shape":"ItemID"}
     },
     "InvalidInputException":{
       "type":"structure",
@@ -102,12 +101,10 @@
     },
     "ItemList":{
       "type":"list",
-      "member":{"shape":"PredictedItem"},
-      "max":100
+      "member":{"shape":"PredictedItem"}
     },
     "NumResults":{
       "type":"integer",
-      "max":100,
       "min":0
     },
     "PredictedItem":{

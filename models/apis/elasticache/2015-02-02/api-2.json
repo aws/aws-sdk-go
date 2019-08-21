@@ -913,7 +913,8 @@
     "AllowedNodeTypeModificationsMessage":{
       "type":"structure",
       "members":{
-        "ScaleUpModifications":{"shape":"NodeTypeList"}
+        "ScaleUpModifications":{"shape":"NodeTypeList"},
+        "ScaleDownModifications":{"shape":"NodeTypeList"}
       }
     },
     "AuthorizationAlreadyExistsFault":{

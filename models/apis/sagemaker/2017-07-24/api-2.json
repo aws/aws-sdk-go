@@ -1620,7 +1620,8 @@
     "DataSource":{
       "type":"structure",
       "members":{
-        "S3DataSource":{"shape":"S3DataSource"}
+        "S3DataSource":{"shape":"S3DataSource"},
+        "FileSystemDataSource":{"shape":"FileSystemDataSource"}
       }
     },
     "DeleteAlgorithmInput":{
@@ -2345,6 +2346,40 @@
     "FailureReason":{
       "type":"string",
       "max":1024
+    },
+    "FileSystemAccessMode":{
+      "type":"string",
+      "enum":[
+        "rw",
+        "ro"
+      ]
+    },
+    "FileSystemDataSource":{
+      "type":"structure",
+      "required":[
+        "FileSystemId",
+        "FileSystemAccessMode",
+        "FileSystemType",
+        "DirectoryPath"
+      ],
+      "members":{
+        "FileSystemId":{"shape":"FileSystemId"},
+        "FileSystemAccessMode":{"shape":"FileSystemAccessMode"},
+        "FileSystemType":{"shape":"FileSystemType"},
+        "DirectoryPath":{"shape":"DirectoryPath"}
+      }
+    },
+    "FileSystemId":{
+      "type":"string",
+      "min":11,
+      "pattern":".*"
+    },
+    "FileSystemType":{
+      "type":"string",
+      "enum":[
+        "EFS",
+        "FSxLustre"
+      ]
     },
     "Filter":{
       "type":"structure",
@@ -4692,7 +4727,8 @@
         "ml.c5.2xlarge",
         "ml.c5.4xlarge",
         "ml.c5.9xlarge",
-        "ml.c5.18xlarge"
+        "ml.c5.18xlarge",
+        "ml.p3dn.24xlarge"
       ]
     },
     "TrainingInstanceTypes":{

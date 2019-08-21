@@ -1,3 +1,24 @@
+Release v1.23.6 (2019-08-21)
+===
+
+### Service Client Updates
+* `service/elasticache`: Updates service API and documentation
+  * ElastiCache extends support for Scale down for Redis Cluster-mode enabled and disabled replication groups
+* `service/forecast`: Adds new service
+* `service/forecastquery`: Adds new service
+* `service/personalize-runtime`: Updates service API
+* `service/rekognition`: Updates service documentation
+  * Documentation updates for Amazon Rekognition.
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker now supports Amazon EFS and Amazon FSx for Lustre file systems as data sources for training machine learning models. Amazon SageMaker now supports running training jobs on ml.p3dn.24xlarge instance type. This instance type is offered as a limited private preview for certain SageMaker customers. If you are interested in joining the private preview, please reach out to the SageMaker Product Management team via AWS Support."
+* `service/sqs`: Updates service API and documentation
+  * This release provides a way to add metadata tags to a queue when it is created. You can use tags to organize and identify your Amazon SQS queues for cost allocation.
+
+### SDK Enhancements
+* `aws/session`: Ignore invalid shared config file when not used ([#2731](https://github.com/aws/aws-sdk-go/pull/2731))
+  * Updates the Session to not fail to load when credentials are provided via the environment variable, the AWS_PROFILE/Option.Profile have not been specified, and the shared config has not been enabled.
+  * Fixes [#2455](https://github.com/aws/aws-sdk-go/issues/2455)
+
 Release v1.23.5 (2019-08-20)
 ===
 
