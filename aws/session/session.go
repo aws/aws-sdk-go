@@ -623,6 +623,9 @@ func (s *Session) clientConfigWithErr(serviceName string, cfgs ...*aws.Config) (
 			func(opt *endpoints.Options) {
 				opt.DisableSSL = aws.BoolValue(s.Config.DisableSSL)
 				opt.UseDualStack = aws.BoolValue(s.Config.UseDualStack)
+				// Support for STSRegionalEndpoint where the STSRegionalEndpoint is
+				// provided in envconfig or sharedconfig with envconfig getting precedence.
+				opt.STSRegionalEndpoint = aws.BoolValue(s.Config.STSRegionalEndpoint)
 
 				// Support the condition where the service is modeled but its
 				// endpoint metadata is not available.
