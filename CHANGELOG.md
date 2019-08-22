@@ -1,3 +1,16 @@
+Release v1.23.7 (2019-08-22)
+===
+
+### Service Client Updates
+* `service/datasync`: Updates service API and documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/rds`: Updates service API and documentation
+  * This release allows users to enable RDS Data API while creating Aurora Serverless databases.
+
+### SDK Bugs
+* `aws/request`: Fix IsErrorRetryable returning true for nil error ([#2774](https://github.com/aws/aws-sdk-go/pull/2774))
+  * Fixes [#2773](https://github.com/aws/aws-sdk-go/pull/2773) where the IsErrorRetryable helper was incorrectly returning true for nil errors passed in. IsErrorRetryable will now correctly return false when the passed in error is nil like documented.
+
 Release v1.23.6 (2019-08-21)
 ===
 
