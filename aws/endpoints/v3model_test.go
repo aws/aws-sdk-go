@@ -1,3 +1,5 @@
+// +build go1.7
+
 package endpoints
 
 import (
@@ -639,7 +641,6 @@ func Test_Regional_Flag(t *testing.T) {
 	if err != nil {
 		t.Fatalf("expected no error, got %v", err)
 	}
-
 	cases := map[string]struct {
 		service, region                                     string
 		regional                                            bool
@@ -758,7 +759,6 @@ func Test_Regional_Flag(t *testing.T) {
 	}
 
 	for name, c := range cases {
-		sdktesting.StashEnv()
 		var optionSlice []func(o *Options)
 		t.Run(name, func(t *testing.T) {
 			if c.regional {
@@ -892,7 +892,6 @@ func Test_Regional_Flag_CN(t *testing.T) {
 	}
 
 	for name, c := range cases {
-		sdktesting.StashEnv()
 		var optionSlice []func(o *Options)
 		t.Run(name, func(t *testing.T) {
 			if c.regional {
