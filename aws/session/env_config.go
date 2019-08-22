@@ -1,12 +1,11 @@
 package session
 
 import (
-	"os"
-	"strconv"
-
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/defaults"
+	"os"
+	"strconv"
 )
 
 // EnvProviderName provides a name of the provider when config is loaded from environment.
@@ -125,6 +124,12 @@ type envConfig struct {
 	//
 	//  AWS_ROLE_SESSION_NAME=session_name
 	RoleSessionName string
+
+	// Specifies the Regional Endpoint flag for the sdk to resolve the endpoint for a service
+	//
+	// AWS_STS_REGIONAL_ENDPOINTS =regional_endpoint
+	// This can take value as `regional` or `legacy`
+	RegionalEndpoint string
 }
 
 var (
@@ -178,6 +183,9 @@ var (
 	}
 	roleSessionNameEnvKey = []string{
 		"AWS_ROLE_SESSION_NAME",
+	}
+	regionalEndpointKey = []string{
+		"AWS_STS_REGIONAL_ENDPOINTS",
 	}
 )
 
@@ -263,6 +271,9 @@ func envConfigLoad(enableSharedConfig bool) envConfig {
 	}
 
 	cfg.CustomCABundle = os.Getenv("AWS_CA_BUNDLE")
+
+	// Regional Endpoint variable
+	setFromEnvVal(&cfg.RegionalEndpoint, regionalEndpointKey)
 
 	return cfg
 }

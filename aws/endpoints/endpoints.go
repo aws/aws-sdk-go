@@ -46,6 +46,11 @@ type Options struct {
 	//
 	// This option is ignored if StrictMatching is enabled.
 	ResolveUnknownService bool
+
+	// STS Regional Endpoint flag helps with resolving the STS RIP endpoint
+	// It has a default value of `true` for regional endpoints,
+	// and can be switched to `false` for legacy endpoints.
+	STSRegionalEndpoint bool
 }
 
 // Set combines all of the option functions together.
@@ -77,6 +82,10 @@ func StrictMatchingOption(o *Options) {
 // as a functional option when resolving endpoints.
 func ResolveUnknownServiceOption(o *Options) {
 	o.ResolveUnknownService = true
+}
+
+func STSRegionalEndpointOption(o *Options) {
+	o.STSRegionalEndpoint = true
 }
 
 // A Resolver provides the interface for functionality to resolve endpoints.
@@ -194,7 +203,7 @@ func (p Partition) ID() string { return p.id }
 // require the provided service and region to be known by the partition.
 // If the endpoint cannot be strictly resolved an error will be returned. This
 // mode is useful to ensure the endpoint resolved is valid. Without
-// StrictMatching enabled the endpoint returned my look valid but may not work.
+// StrictMatching enabled the endpoint returned may look valid but may not work.
 // StrictMatching requires the SDK to be updated if you want to take advantage
 // of new regions and services expansions.
 //

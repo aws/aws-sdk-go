@@ -40,6 +40,9 @@ const (
 	// Web Identity Token File
 	webIdentityTokenFileKey = `web_identity_token_file` // optional
 
+	// Additonal config fields for regional or legacy endpoints
+	regionalEndpointSharedKey = `sts_regional_endpoints`
+
 	// DefaultSharedConfigProfile is the default profile to be used when
 	// loading configuration from the config files if another profile name
 	// is not provided.
@@ -82,12 +85,16 @@ type sharedConfig struct {
 	//
 	//	endpoint_discovery_enabled = true
 	EnableEndpointDiscovery *bool
-
 	// CSM Options
 	CSMEnabled  *bool
 	CSMHost     string
 	CSMPort     string
 	CSMClientID string
+	// Specifies the Regional Endpoint flag for the sdk to resolve the endpoint for a service
+	//
+	// sts_regional_endpoints = regional_endpoint
+	// This can take value as `regional` or `legacy`
+	RegionalEndpoint string
 }
 
 type sharedConfigFile struct {
@@ -246,6 +253,7 @@ func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile, e
 		updateString(&cfg.CredentialSource, section, credentialSourceKey)
 
 		updateString(&cfg.Region, section, regionKey)
+		updateString(&cfg.RegionalEndpoint, section, regionalEndpointSharedKey)
 	}
 
 	updateString(&cfg.CredentialProcess, section, credentialProcessKey)

@@ -166,7 +166,7 @@ func TestGetRetryDelay(t *testing.T) {
 }
 
 func TestRetryDelay(t *testing.T) {
-	d := DefaultRetryer{NumMaxRetries:100}
+	d := DefaultRetryer{NumMaxRetries: 100}
 	r := request.Request{}
 	for i := 0; i < 100; i++ {
 		rTemp := r

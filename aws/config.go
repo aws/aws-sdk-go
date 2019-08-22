@@ -2,6 +2,7 @@ package aws
 
 import (
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/credentials"
@@ -246,6 +247,10 @@ type Config struct {
 	// Disabling this feature is useful when you want to use local endpoints
 	// for testing that do not support the modeled host prefix pattern.
 	DisableEndpointHostPrefix *bool
+
+	// STSRegionalEndpoint will enable regional or legacy endpoint resolving
+	// if regional true, else false
+	STSRegionalEndpoint *bool
 }
 
 // NewConfig returns a new Config pointer that can be chained with builder
@@ -420,6 +425,17 @@ func (c *Config) MergeIn(cfgs ...*Config) {
 	}
 }
 
+// WithSTSRegionalEndpoint will set whether or not to use regional endpoint flag
+// when resolving the endpoint for a service
+func (c *Config) WithSTSRegionalEndpoint(s string) *Config {
+	var t bool
+	if strings.ToLower(s) == "regional" {
+		t = true
+	}
+	c.STSRegionalEndpoint = &t
+	return c
+}
+
 func mergeInConfig(dst *Config, other *Config) {
 	if other == nil {
 		return
@@ -519,6 +535,10 @@ func mergeInConfig(dst *Config, other *Config) {
 
 	if other.DisableEndpointHostPrefix != nil {
 		dst.DisableEndpointHostPrefix = other.DisableEndpointHostPrefix
+	}
+
+	if other.STSRegionalEndpoint != nil {
+		dst.STSRegionalEndpoint = other.STSRegionalEndpoint
 	}
 }
 

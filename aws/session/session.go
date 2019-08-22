@@ -550,6 +550,13 @@ func mergeConfigSrcs(cfg, userCfg *aws.Config,
 		}
 	}
 
+	// Regional Endpoint flag for STS endpoint resolving
+	if envCfg.RegionalEndpoint != "" {
+		cfg.WithSTSRegionalEndpoint(envCfg.RegionalEndpoint)
+	} else if sharedCfg.RegionalEndpoint != "" {
+		cfg.WithSTSRegionalEndpoint(sharedCfg.RegionalEndpoint)
+	}
+
 	// Configure credentials if not already set by the user when creating the
 	// Session.
 	if cfg.Credentials == credentials.AnonymousCredentials && userCfg.Credentials == nil {
