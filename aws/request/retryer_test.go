@@ -28,34 +28,38 @@ func (e mockTempError) Temporary() bool {
 
 func TestIsErrorRetryable(t *testing.T) {
 	cases := []struct {
-		Err    error
-		IsTemp bool
+		Err       error
+		Retryable bool
 	}{
 		{
-			Err:    awserr.New(ErrCodeSerialization, "temporary error", mockTempError(true)),
-			IsTemp: true,
+			Err:       awserr.New(ErrCodeSerialization, "temporary error", mockTempError(true)),
+			Retryable: true,
 		},
 		{
-			Err:    awserr.New(ErrCodeSerialization, "temporary error", mockTempError(false)),
-			IsTemp: false,
+			Err:       awserr.New(ErrCodeSerialization, "temporary error", mockTempError(false)),
+			Retryable: false,
 		},
 		{
-			Err:    awserr.New(ErrCodeSerialization, "some error", errors.New("blah")),
-			IsTemp: false,
+			Err:       awserr.New(ErrCodeSerialization, "some error", errors.New("blah")),
+			Retryable: false,
 		},
 		{
-			Err:    awserr.New("SomeError", "some error", nil),
-			IsTemp: false,
+			Err:       awserr.New("SomeError", "some error", nil),
+			Retryable: false,
 		},
 		{
-			Err:    awserr.New("RequestError", "some error", nil),
-			IsTemp: true,
+			Err:       awserr.New("RequestError", "some error", nil),
+			Retryable: true,
+		},
+		{
+			Err:       nil,
+			Retryable: false,
 		},
 	}
 
 	for i, c := range cases {
 		retryable := IsErrorRetryable(c.Err)
-		if e, a := c.IsTemp, retryable; e != a {
+		if e, a := c.Retryable, retryable; e != a {
 			t.Errorf("%d, expect %t temporary error, got %t", i, e, a)
 		}
 	}
