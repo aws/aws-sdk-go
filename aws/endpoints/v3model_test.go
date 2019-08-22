@@ -4,7 +4,10 @@ import (
 	"encoding/json"
 	"reflect"
 	"regexp"
+	"strings"
 	"testing"
+
+	"github.com/aws/aws-sdk-go/internal/sdktesting"
 )
 
 func TestUnmarshalRegionRegex(t *testing.T) {
@@ -537,5 +540,381 @@ func TestResolveEndpoint_AwsGlobal(t *testing.T) {
 	}
 	if !resolved.SigningNameDerived {
 		t.Errorf("expect the signing name to be derived")
+	}
+}
+func Test_Regional_Flag(t *testing.T) {
+	const v3Doc = `
+{
+  "version": 3,
+  "partitions": [
+    {
+      "defaults": {
+        "hostname": "{service}.{region}.{dnsSuffix}",
+        "protocols": [
+          "https"
+        ],
+        "signatureVersions": [
+          "v4"
+        ]
+      },
+      "dnsSuffix": "amazonaws.com",
+      "partition": "aws",
+      "partitionName": "AWS Standard",
+      "regionRegex": "^(us|eu|ap|sa|ca)\\-\\w+\\-\\d+$",
+      "regions": {
+        "ap-northeast-1": {
+          "description": "Asia Pacific (Tokyo)"
+        }
+      },
+      "services": {
+        "acm": {
+          "endpoints": {
+             "ap-northeast-1": {}
+    	  }
+        },
+        "s3": {
+          "endpoints": {
+             "ap-northeast-1": {}
+    	  }
+        },
+		 "sts" : {
+			"defaults" : { },
+			"endpoints" : {
+			  "ap-east-1" : { },
+			  "ap-northeast-1" : { },
+			  "ap-northeast-2" : { },
+			  "ap-south-1" : { },
+			  "ap-southeast-1" : { },
+			  "ap-southeast-2" : { },
+			  "aws-global" : { 
+				"credentialScope" : {
+				  "region" : "us-east-1"
+				},
+				"hostname" : "sts.amazonaws.com"
+			  },
+			  "ca-central-1" : { },
+			  "eu-central-1" : { },
+			  "eu-north-1" : { },
+			  "eu-west-1" : { },
+			  "eu-west-2" : { },
+			  "eu-west-3" : { },
+			  "sa-east-1" : { },
+			  "us-east-1" : { },
+			  "us-east-1-fips" : {
+				"credentialScope" : {
+				  "region" : "us-east-1"
+				},
+				"hostname" : "sts-fips.us-east-1.amazonaws.com"
+			  },
+			  "us-east-2" : { },
+			  "us-east-2-fips" : {
+				"credentialScope" : {
+				  "region" : "us-east-2"
+				},
+				"hostname" : "sts-fips.us-east-2.amazonaws.com"
+			  },
+			  "us-west-1" : { },
+			  "us-west-1-fips" : {
+				"credentialScope" : {
+				  "region" : "us-west-1"
+				},
+				"hostname" : "sts-fips.us-west-1.amazonaws.com"
+			  },
+			  "us-west-2" : { },
+			  "us-west-2-fips" : {
+				"credentialScope" : {
+				  "region" : "us-west-2"
+				},
+				"hostname" : "sts-fips.us-west-2.amazonaws.com"
+			  }
+			},
+			"partitionEndpoint" : "aws-global"
+		  }
+      }
+    }
+  ]
+}`
+
+	resolver, err := DecodeModel(strings.NewReader(v3Doc))
+	if err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
+
+	cases := map[string]struct {
+		service, region                                     string
+		regional                                            bool
+		ExpectURL, ExpectSigningMethod, ExpectSigningRegion string
+		ExpectSigningNameDerived                            bool
+	}{
+		"acm/ap-northeast-1/regional": {
+			service: "acm", region: "ap-northeast-1", regional: true, ExpectURL: "https://acm.ap-northeast-1.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "ap-northeast-1",
+		},
+		"acm/ap-northeast-1/legacy": {
+			service: "acm", region: "ap-northeast-1", regional: false, ExpectURL: "https://acm.ap-northeast-1.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "ap-northeast-1",
+		},
+		// STS Endpoints resolver tests :
+		"sts/us-west-2/regional": {
+			service: "sts", region: "us-west-2", regional: true, ExpectURL: "https://sts.us-west-2.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "us-west-2",
+		},
+		"sts/us-west-2/legacy": {
+			service: "sts", region: "us-west-2", regional: false, ExpectURL: "https://sts.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "us-east-1",
+		},
+		"sts/ap-east-1/regional": {
+			service: "sts", region: "ap-east-1", regional: true, ExpectURL: "https://sts.ap-east-1.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "ap-east-1",
+		},
+		"sts/ap-east-1/legacy": {
+			service: "sts", region: "ap-east-1", regional: false, ExpectURL: "https://sts.ap-east-1.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "ap-east-1",
+		},
+		"sts/us-west-2-fips/regional": {
+			service: "sts", region: "us-west-2-fips", regional: true, ExpectURL: "https://sts-fips.us-west-2.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "us-west-2",
+		},
+		"sts/us-west-2-fips/legacy": {
+			service: "sts", region: "us-west-2-fips", regional: false, ExpectURL: "https://sts-fips.us-west-2.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "us-west-2",
+		},
+		"sts/aws-global/regional": {
+			service: "sts", region: "aws-global", regional: true, ExpectURL: "https://sts.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "us-east-1",
+		},
+		"sts/aws-global/legacy": {
+			service: "sts", region: "aws-global", regional: false, ExpectURL: "https://sts.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "us-east-1",
+		},
+		"sts/ap-south-1/regional": {
+			service: "sts", region: "ap-south-1", regional: true, ExpectURL: "https://sts.ap-south-1.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "ap-south-1",
+		},
+		"sts/ap-south-1/legacy": {
+			service: "sts", region: "ap-south-1", regional: false, ExpectURL: "https://sts.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "us-east-1",
+		},
+		"sts/ap-northeast-1/regional": {
+			service: "sts", region: "ap-northeast-1", regional: true, ExpectURL: "https://sts.ap-northeast-1.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "ap-northeast-1",
+		},
+		"sts/ap-northeast-1/legacy": {
+			service: "sts", region: "ap-northeast-1", regional: false, ExpectURL: "https://sts.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "us-east-1",
+		},
+		"sts/ap-southeast-1/regional": {
+			service: "sts", region: "ap-southeast-1", regional: true, ExpectURL: "https://sts.ap-southeast-1.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "ap-southeast-1",
+		},
+		"sts/ap-southeast-1/legacy": {
+			service: "sts", region: "ap-southeast-1", regional: false, ExpectURL: "https://sts.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "us-east-1",
+		},
+		"sts/ca-central-1/regional": {
+			service: "sts", region: "ca-central-1", regional: true, ExpectURL: "https://sts.ca-central-1.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "ca-central-1",
+		},
+		"sts/ca-central-1/legacy": {
+			service: "sts", region: "ca-central-1", regional: false, ExpectURL: "https://sts.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "us-east-1",
+		},
+		"sts/eu-central-1/regional": {
+			service: "sts", region: "eu-central-1", regional: true, ExpectURL: "https://sts.eu-central-1.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "eu-central-1",
+		},
+		"sts/eu-central-1/legacy": {
+			service: "sts", region: "eu-central-1", regional: false, ExpectURL: "https://sts.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "us-east-1",
+		},
+		"sts/eu-north-1/regional": {
+			service: "sts", region: "eu-north-1", regional: true, ExpectURL: "https://sts.eu-north-1.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "eu-north-1",
+		},
+		"sts/eu-north-1/legacy": {
+			service: "sts", region: "eu-north-1", regional: false, ExpectURL: "https://sts.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "us-east-1",
+		},
+		"sts/eu-west-1/regional": {
+			service: "sts", region: "eu-west-1", regional: true, ExpectURL: "https://sts.eu-west-1.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "eu-west-1",
+		},
+		"sts/eu-west-1/legacy": {
+			service: "sts", region: "eu-west-1", regional: false, ExpectURL: "https://sts.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "us-east-1",
+		},
+		"sts/eu-west-2/regional": {
+			service: "sts", region: "eu-west-2", regional: true, ExpectURL: "https://sts.eu-west-2.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "eu-west-2",
+		},
+		"sts/eu-west-2/legacy": {
+			service: "sts", region: "eu-west-2", regional: false, ExpectURL: "https://sts.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "us-east-1",
+		},
+		"sts/eu-west-3/regional": {
+			service: "sts", region: "eu-west-3", regional: true, ExpectURL: "https://sts.eu-west-3.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "eu-west-3",
+		},
+		"sts/eu-west-3/legacy": {
+			service: "sts", region: "eu-west-3", regional: false, ExpectURL: "https://sts.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "us-east-1",
+		},
+		"sts/sa-east-1/regional": {
+			service: "sts", region: "sa-east-1", regional: true, ExpectURL: "https://sts.sa-east-1.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "sa-east-1",
+		},
+		"sts/sa-east-1/legacy": {
+			service: "sts", region: "sa-east-1", regional: false, ExpectURL: "https://sts.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "us-east-1",
+		},
+		"sts/us-east-1/regional": {
+			service: "sts", region: "us-east-1", regional: true, ExpectURL: "https://sts.us-east-1.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "us-east-1",
+		},
+		"sts/us-east-1/legacy": {
+			service: "sts", region: "us-east-1", regional: false, ExpectURL: "https://sts.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "us-east-1",
+		},
+		"sts/us-east-2/regional": {
+			service: "sts", region: "us-east-2", regional: true, ExpectURL: "https://sts.us-east-2.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "us-east-2",
+		},
+		"sts/us-east-2/legacy": {
+			service: "sts", region: "us-east-2", regional: false, ExpectURL: "https://sts.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "us-east-1",
+		},
+		"sts/us-west-1/regional": {
+			service: "sts", region: "us-west-1", regional: true, ExpectURL: "https://sts.us-west-1.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "us-west-1",
+		},
+		"sts/us-west-1/legacy": {
+			service: "sts", region: "us-west-1", regional: false, ExpectURL: "https://sts.amazonaws.com", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "us-east-1",
+		},
+	}
+
+	for name, c := range cases {
+		sdktesting.StashEnv()
+		var optionSlice []func(o *Options)
+		t.Run(name, func(t *testing.T) {
+			if c.regional {
+				optionSlice = append(optionSlice, STSRegionalEndpointOption)
+			}
+			actual, err := resolver.EndpointFor(c.service, c.region, optionSlice...)
+			if err != nil {
+				t.Fatalf("failed to resolve endpoint, %v", err)
+			}
+
+			if e, a := c.ExpectURL, actual.URL; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+
+			if e, a := c.ExpectSigningMethod, actual.SigningMethod; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+
+			if e, a := c.ExpectSigningNameDerived, actual.SigningNameDerived; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+
+			if e, a := c.ExpectSigningRegion, actual.SigningRegion; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+
+		})
+	}
+}
+
+func Test_Regional_Flag_CN(t *testing.T) {
+	const v3Doc = `
+{
+  "version": 3,
+  "partitions": [
+    {
+      "defaults": {
+        "hostname": "{service}.{region}.{dnsSuffix}",
+        "protocols": [
+          "https"
+        ],
+        "signatureVersions": [
+          "v4"
+        ]
+      },
+      "dnsSuffix": "amazonaws.com.cn",
+      "partition": "aws",
+      "partitionName": "AWS Standard",
+      "regionRegex": "^(cn)\\-\\w+\\-\\d+$",
+      "regions": {
+        "cn-north-1": {
+          "description": "China North -1"
+        }
+      },
+      "services": {
+		 "sts" : {
+			"defaults" : { },
+			"endpoints" : {
+			  "ap-east-1" : { },
+			  "ap-northeast-1" : { },
+			  "ap-northeast-2" : { },
+			  "ap-south-1" : { },
+			  "ap-southeast-1" : { },
+			  "ap-southeast-2" : { },
+			  "aws-global" : { 
+				"credentialScope" : {
+				  "region" : "us-east-1"
+				},
+				"hostname" : "sts.amazonaws.com"
+			  },
+			  "ca-central-1" : { },
+			  "eu-central-1" : { },
+			  "eu-north-1" : { },
+			  "eu-west-1" : { },
+			  "eu-west-2" : { },
+			  "eu-west-3" : { },
+			  "sa-east-1" : { },
+			  "us-east-1" : { },
+			  "us-east-1-fips" : {
+				"credentialScope" : {
+				  "region" : "us-east-1"
+				},
+				"hostname" : "sts-fips.us-east-1.amazonaws.com"
+			  },
+			  "us-east-2" : { },
+			  "us-east-2-fips" : {
+				"credentialScope" : {
+				  "region" : "us-east-2"
+				},
+				"hostname" : "sts-fips.us-east-2.amazonaws.com"
+			  },
+			  "us-west-1" : { },
+			  "us-west-1-fips" : {
+				"credentialScope" : {
+				  "region" : "us-west-1"
+				},
+				"hostname" : "sts-fips.us-west-1.amazonaws.com"
+			  },
+			  "us-west-2" : { },
+			  "us-west-2-fips" : {
+				"credentialScope" : {
+				  "region" : "us-west-2"
+				},
+				"hostname" : "sts-fips.us-west-2.amazonaws.com"
+			  }
+			},
+			"partitionEndpoint" : "aws-global"
+		  }
+      }
+    }
+  ]
+}`
+
+	resolver, err := DecodeModel(strings.NewReader(v3Doc))
+	if err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
+
+	cases := map[string]struct {
+		service, region                                     string
+		regional                                            bool
+		ExpectURL, ExpectSigningMethod, ExpectSigningRegion string
+		ExpectSigningNameDerived                            bool
+	}{
+		"sts/cn-north-1/regional": {
+			service: "sts", region: "cn-north-1", regional: true, ExpectURL: "https://sts.cn-north-1.amazonaws.com.cn", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "cn-north-1",
+		},
+		"sts/cn-north-1/legacy": {
+			service: "sts", region: "cn-north-1", regional: false, ExpectURL: "https://sts.cn-north-1.amazonaws.com.cn", ExpectSigningMethod: "v4", ExpectSigningNameDerived: true, ExpectSigningRegion: "cn-north-1",
+		},
+	}
+
+	for name, c := range cases {
+		sdktesting.StashEnv()
+		var optionSlice []func(o *Options)
+		t.Run(name, func(t *testing.T) {
+			if c.regional {
+				optionSlice = append(optionSlice, STSRegionalEndpointOption)
+			}
+			actual, err := resolver.EndpointFor(c.service, c.region, optionSlice...)
+			if err != nil {
+				t.Fatalf("failed to resolve endpoint, %v", err)
+			}
+
+			if e, a := c.ExpectURL, actual.URL; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+			if e, a := c.ExpectSigningMethod, actual.SigningMethod; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+			if e, a := c.ExpectSigningNameDerived, actual.SigningNameDerived; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+			if e, a := c.ExpectSigningRegion, actual.SigningRegion; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
 	}
 }
