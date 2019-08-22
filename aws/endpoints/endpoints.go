@@ -84,6 +84,8 @@ func ResolveUnknownServiceOption(o *Options) {
 	o.ResolveUnknownService = true
 }
 
+// STSRegionalEndpointOption sets the STSRegionalEndpoint option. Can be used
+// as a functional option when resolving endpoints.
 func STSRegionalEndpointOption(o *Options) {
 	o.STSRegionalEndpoint = true
 }
