@@ -228,7 +228,7 @@ func (c *SageMaker) CreateCodeRepositoryRequest(input *CreateCodeRepositoryInput
 // more than one notebook instance, and it persists independently from the lifecycle
 // of any notebook instances it is associated with.
 //
-// The repository can be hosted either in AWS CodeCommit (http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
+// The repository can be hosted either in AWS CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
 // or in any other Git repository.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -443,7 +443,7 @@ func (c *SageMaker) CreateEndpointRequest(input *CreateEndpointInput) (req *requ
 // model artifacts from the S3 path you provided. AWS STS is activated in your
 // IAM user account by default. If you previously deactivated AWS STS for a
 // region, you need to reactivate AWS STS for that region. For more information,
-// see Activating and Deactivating AWS STS i an AWS Region (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html)
+// see Activating and Deactivating AWS STS i an AWS Region (IAM/latest/UserGuide/id_credentials_temp_enable-regions.html)
 // in the AWS Identity and Access Management User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -729,11 +729,11 @@ func (c *SageMaker) CreateLabelingJobRequest(input *CreateLabelingJobInput) (req
 // that need to be labeled by a human. Automated data labeling uses active learning
 // to determine if a data object can be labeled by machine or if it needs to
 // be sent to a human worker. For more information, see Using Automated Data
-// Labeling (http://docs.aws.amazon.com/sagemaker/latest/dg/sms-automated-labeling.html).
+// Labeling (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-automated-labeling.html).
 //
 // The data objects to be labeled are contained in an Amazon S3 bucket. You
 // create a manifest file that describes the location of each object. For more
-// information, see Using Input and Output Data (http://docs.aws.amazon.com/sagemaker/latest/dg/sms-data.html).
+// information, see Using Input and Output Data (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-data.html).
 //
 // The output can be used as the manifest file for another labeling job or as
 // training data for your machine learning models.
@@ -1329,11 +1329,11 @@ func (c *SageMaker) CreateTrainingJobRequest(input *CreateTrainingJobInput) (req
 //    for each training algorithm provided by Amazon SageMaker, see Algorithms
 //    (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).
 //
-//    * InputDataConfig - Describes the training dataset and the Amazon S3 location
-//    where it is stored.
+//    * InputDataConfig - Describes the training dataset and the Amazon S3,
+//    EFS, or FSx location where it is stored.
 //
-//    * OutputDataConfig - Identifies the Amazon S3 location where you want
-//    Amazon SageMaker to save the results of model training.
+//    * OutputDataConfig - Identifies the Amazon S3 bucket where you want Amazon
+//    SageMaker to save the results of model training.
 //
 //    * ResourceConfig - Identifies the resources, ML compute instances, and
 //    ML storage volumes to deploy for model training. In distributed training,
@@ -7605,7 +7605,10 @@ type AnnotationConsolidationConfig struct {
 	//    on the Jaccard index of the boxes. arn:aws:lambda:us-east-1:432418664414:function:ACS-BoundingBox
 	//    arn:aws:lambda:us-east-2:266458841044:function:ACS-BoundingBox arn:aws:lambda:us-west-2:081040173940:function:ACS-BoundingBox
 	//    arn:aws:lambda:eu-west-1:568282634449:function:ACS-BoundingBox arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-BoundingBox
-	//    arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-BoundingBox
+	//    arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-BoundingBox arn:aws:lambda:ap-south-1:565803892007:function:ACS-BoundingBox
+	//    arn:aws:lambda:eu-central-1:203001061592:function:ACS-BoundingBox arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-BoundingBox
+	//    arn:aws:lambda:eu-west-2:487402164563:function:ACS-BoundingBox arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-BoundingBox
+	//    arn:aws:lambda:ca-central-1:918755190332:function:ACS-BoundingBox
 	//
 	//    * Image classification - Uses a variant of the Expectation Maximization
 	//    approach to estimate the true class of an image based on annotations from
@@ -7613,6 +7616,10 @@ type AnnotationConsolidationConfig struct {
 	//    arn:aws:lambda:us-east-2:266458841044:function:ACS-ImageMultiClass arn:aws:lambda:us-west-2:081040173940:function:ACS-ImageMultiClass
 	//    arn:aws:lambda:eu-west-1:568282634449:function:ACS-ImageMultiClass arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-ImageMultiClass
 	//    arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-ImageMultiClass
+	//    arn:aws:lambda:ap-south-1:565803892007:function:ACS-ImageMultiClass arn:aws:lambda:eu-central-1:203001061592:function:ACS-ImageMultiClass
+	//    arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-ImageMultiClass
+	//    arn:aws:lambda:eu-west-2:487402164563:function:ACS-ImageMultiClass arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-ImageMultiClass
+	//    arn:aws:lambda:ca-central-1:918755190332:function:ACS-ImageMultiClass
 	//
 	//    * Semantic segmentation - Treats each pixel in an image as a multi-class
 	//    classification and treats pixel annotations from workers as "votes" for
@@ -7622,6 +7629,12 @@ type AnnotationConsolidationConfig struct {
 	//    arn:aws:lambda:eu-west-1:568282634449:function:ACS-SemanticSegmentation
 	//    arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-SemanticSegmentation
 	//    arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-SemanticSegmentation
+	//    arn:aws:lambda:ap-south-1:565803892007:function:ACS-SemanticSegmentation
+	//    arn:aws:lambda:eu-central-1:203001061592:function:ACS-SemanticSegmentation
+	//    arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-SemanticSegmentation
+	//    arn:aws:lambda:eu-west-2:487402164563:function:ACS-SemanticSegmentation
+	//    arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-SemanticSegmentation
+	//    arn:aws:lambda:ca-central-1:918755190332:function:ACS-SemanticSegmentation
 	//
 	//    * Text classification - Uses a variant of the Expectation Maximization
 	//    approach to estimate the true class of text based on annotations from
@@ -7629,6 +7642,24 @@ type AnnotationConsolidationConfig struct {
 	//    arn:aws:lambda:us-east-2:266458841044:function:ACS-TextMultiClass arn:aws:lambda:us-west-2:081040173940:function:ACS-TextMultiClass
 	//    arn:aws:lambda:eu-west-1:568282634449:function:ACS-TextMultiClass arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-TextMultiClass
 	//    arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-TextMultiClass
+	//    arn:aws:lambda:ap-south-1:565803892007:function:ACS-TextMultiClass arn:aws:lambda:eu-central-1:203001061592:function:ACS-TextMultiClass
+	//    arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-TextMultiClass
+	//    arn:aws:lambda:eu-west-2:487402164563:function:ACS-TextMultiClass arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-TextMultiClass
+	//    arn:aws:lambda:ca-central-1:918755190332:function:ACS-TextMultiClass
+	//
+	//    * Named entity eecognition - Groups similar selections and calculates
+	//    aggregate boundaries, resolving to most-assigned label. arn:aws:lambda:us-east-1:432418664414:function:ACS-NamedEntityRecognition
+	//    arn:aws:lambda:us-east-2:266458841044:function:ACS-NamedEntityRecognition
+	//    arn:aws:lambda:us-west-2:081040173940:function:ACS-NamedEntityRecognition
+	//    arn:aws:lambda:eu-west-1:568282634449:function:ACS-NamedEntityRecognition
+	//    arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-NamedEntityRecognition
+	//    arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-NamedEntityRecognition
+	//    arn:aws:lambda:ap-south-1:565803892007:function:ACS-NamedEntityRecognition
+	//    arn:aws:lambda:eu-central-1:203001061592:function:ACS-NamedEntityRecognition
+	//    arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-NamedEntityRecognition
+	//    arn:aws:lambda:eu-west-2:487402164563:function:ACS-NamedEntityRecognition
+	//    arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-NamedEntityRecognition
+	//    arn:aws:lambda:ca-central-1:918755190332:function:ACS-NamedEntityRecognition
 	//
 	//    * Named entity eecognition - Groups similar selections and calculates
 	//    aggregate boundaries, resolving to most-assigned label. arn:aws:lambda:us-east-1:432418664414:function:ACS-NamedEntityRecognition
@@ -7638,7 +7669,7 @@ type AnnotationConsolidationConfig struct {
 	//    arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-NamedEntityRecognition
 	//    arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-NamedEntityRecognition
 	//
-	// For more information, see Annotation Consolidation (http://docs.aws.amazon.com/sagemaker/latest/dg/sms-annotation-consolidation.html).
+	// For more information, see Annotation Consolidation (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-annotation-consolidation.html).
 	//
 	// AnnotationConsolidationLambdaArn is a required field
 	AnnotationConsolidationLambdaArn *string `type:"string" required:"true"`
@@ -8326,7 +8357,7 @@ type ContainerDefinition struct {
 	// When a ContainerDefinition is part of an inference pipeline, the value of
 	// ths parameter uniquely identifies the container for the purposes of logging
 	// and metrics. For information, see Use Logs and Metrics to Monitor an Inference
-	// Pipeline (http://docs.aws.amazon.com/sagemaker/latest/dg/inference-pipeline-logs-metrics.html).
+	// Pipeline (https://docs.aws.amazon.com/sagemaker/latest/dg/inference-pipeline-logs-metrics.html).
 	// If you don't specify a value for this parameter for a ContainerDefinition
 	// that is part of an inference pipeline, a unique name is automatically assigned
 	// based on the position of the ContainerDefinition in the pipeline. If you
@@ -8352,14 +8383,14 @@ type ContainerDefinition struct {
 	// are stored. This path must point to a single gzip compressed tar archive
 	// (.tar.gz suffix). The S3 path is required for Amazon SageMaker built-in algorithms,
 	// but not if you use your own algorithms. For more information on built-in
-	// algorithms, see Common Parameters (http://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html).
+	// algorithms, see Common Parameters (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html).
 	//
 	// If you provide a value for this parameter, Amazon SageMaker uses AWS Security
 	// Token Service to download model artifacts from the S3 path you provide. AWS
 	// STS is activated in your IAM user account by default. If you previously deactivated
 	// AWS STS for a region, you need to reactivate AWS STS for that region. For
 	// more information, see Activating and Deactivating AWS STS in an AWS Region
-	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html)
+	// (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html)
 	// in the AWS Identity and Access Management User Guide.
 	//
 	// If you use a built-in algorithm to create a model, Amazon SageMaker requires
@@ -8447,7 +8478,7 @@ type ContinuousParameterRange struct {
 
 	// The scale that hyperparameter tuning uses to search the hyperparameter range.
 	// For information about choosing a hyperparameter scale, see Hyperparameter
-	// Scaling (http://docs.aws.amazon.com//sagemaker/latest/dg/automatic-model-tuning-define-ranges.html#scaling-type).
+	// Scaling (https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-define-ranges.html#scaling-type).
 	// One of the following values:
 	//
 	// Auto
@@ -9242,7 +9273,7 @@ type CreateHyperParameterTuningJobInput struct {
 
 	// An array of key-value pairs. You can use tags to categorize your AWS resources
 	// in different ways, for example, by purpose, owner, or environment. For more
-	// information, see AWS Tagging Strategies (https://aws.amazon.com/answers/account-management/aws-tagging-strategies/).
+	// information, see AWS Tagging Strategies (https://docs.aws.amazon.com/https:/aws.amazon.com/answers/account-management/aws-tagging-strategies/).
 	//
 	// Tags that you specify for the tuning job are also added to all training jobs
 	// that the tuning job launches.
@@ -9472,7 +9503,7 @@ type CreateLabelingJobInput struct {
 	StoppingConditions *LabelingJobStoppingConditions `type:"structure"`
 
 	// An array of key/value pairs. For more information, see Using Cost Allocation
-	// Tags (http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what)
+	// Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what)
 	// in the AWS Billing and Cost Management User Guide.
 	Tags []*Tag `type:"list"`
 }
@@ -9964,24 +9995,24 @@ type CreateNotebookInstanceInput struct {
 	// A list of Elastic Inference (EI) instance types to associate with this notebook
 	// instance. Currently, only one instance type can be associated with a notebook
 	// instance. For more information, see Using Elastic Inference in Amazon SageMaker
-	// (http://docs.aws.amazon.com/sagemaker/latest/dg/ei.html).
+	// (https://docs.aws.amazon.com/sagemaker/latest/dg/ei.html).
 	AcceleratorTypes []*string `type:"list"`
 
 	// An array of up to three Git repositories to associate with the notebook instance.
 	// These can be either the names of Git repositories stored as resources in
-	// your account, or the URL of Git repositories in AWS CodeCommit (http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
+	// your account, or the URL of Git repositories in AWS CodeCommit (codecommit/latest/userguide/welcome.html)
 	// or in any other Git repository. These repositories are cloned at the same
 	// level as the default repository of your notebook instance. For more information,
 	// see Associating Git Repositories with Amazon SageMaker Notebook Instances
-	// (http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
+	// (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	AdditionalCodeRepositories []*string `type:"list"`
 
 	// A Git repository to associate with the notebook instance as its default code
 	// repository. This can be either the name of a Git repository stored as a resource
-	// in your account, or the URL of a Git repository in AWS CodeCommit (http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
+	// in your account, or the URL of a Git repository in AWS CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
 	// or in any other Git repository. When you open a notebook instance, it opens
 	// in the directory that contains this repository. For more information, see
-	// Associating Git Repositories with Amazon SageMaker Notebook Instances (http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
+	// Associating Git Repositories with Amazon SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	DefaultCodeRepository *string `min:"1" type:"string"`
 
 	// Sets whether Amazon SageMaker provides internet access to the notebook instance.
@@ -10004,7 +10035,7 @@ type CreateNotebookInstanceInput struct {
 	// The Amazon Resource Name (ARN) of a AWS Key Management Service key that Amazon
 	// SageMaker uses to encrypt data on the storage volume attached to your notebook
 	// instance. The KMS key you provide must be enabled. For information, see Enabling
-	// and Disabling Keys (http://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html)
+	// and Disabling Keys (https://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html)
 	// in the AWS Key Management Service Developer Guide.
 	KmsKeyId *string `type:"string"`
 
@@ -10022,7 +10053,7 @@ type CreateNotebookInstanceInput struct {
 	// SageMaker assumes this role to perform tasks on your behalf. You must grant
 	// this role necessary permissions so Amazon SageMaker can perform these tasks.
 	// The policy must allow the Amazon SageMaker service principal (sagemaker.amazonaws.com)
-	// permissions to assume this role. For more information, see Amazon SageMaker
+	// permissionsto to assume this role. For more information, see Amazon SageMaker
 	// Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html).
 	//
 	// To be able to pass this role to Amazon SageMaker, the caller of this API
@@ -10449,16 +10480,19 @@ type CreateTrainingJobInput struct {
 	//
 	// Algorithms can accept input data from one or more channels. For example,
 	// an algorithm might have two channels of input data, training_data and validation_data.
-	// The configuration for each channel provides the S3 location where the input
-	// data is stored. It also provides information about the stored data: the MIME
-	// type, compression method, and whether the data is wrapped in RecordIO format.
+	// The configuration for each channel provides the S3, EFS, or FSx location
+	// where the input data is stored. It also provides information about the stored
+	// data: the MIME type, compression method, and whether the data is wrapped
+	// in RecordIO format.
 	//
 	// Depending on the input mode that the algorithm supports, Amazon SageMaker
 	// either copies input data files from an S3 bucket to a local directory in
-	// the Docker container, or makes it available as input streams.
+	// the Docker container, or makes it available as input streams. For example,
+	// if you specify an EFS location, input data files will be made available as
+	// input streams. They do not need to be downloaded.
 	InputDataConfig []*Channel `min:"1" type:"list"`
 
-	// Specifies the path to the S3 bucket where you want to store model artifacts.
+	// Specifies the path to the S3 location where you want to store model artifacts.
 	// Amazon SageMaker creates subfolders for the artifacts.
 	//
 	// OutputDataConfig is a required field
@@ -10750,7 +10784,7 @@ type CreateTransformJobInput struct {
 	// data that is not needed for inference in a batch transform job. The output
 	// filter provided allows you to include input data relevant to interpreting
 	// the predictions in the output from the job. For more information, see Associate
-	// Prediction Results with their Corresponding Input Records (http://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-data-processing.html).
+	// Prediction Results with their Corresponding Input Records (https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-data-processing.html).
 	DataProcessing *DataProcessing `type:"structure"`
 
 	// The environment variables to set in the Docker container. We support up to
@@ -10762,7 +10796,7 @@ type CreateTransformJobInput struct {
 	// Amazon SageMaker checks the optional execution-parameters to determine the
 	// optimal settings for your chosen algorithm. If the execution-parameters endpoint
 	// is not enabled, the default value is 1. For more information on execution-parameters,
-	// see How Containers Serve Requests (http://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-batch-code.html#your-algorithms-batch-code-how-containe-serves-requests).
+	// see How Containers Serve Requests (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-batch-code.html#your-algorithms-batch-code-how-containe-serves-requests).
 	// For built-in algorithms, you don't need to set a value for MaxConcurrentTransforms.
 	MaxConcurrentTransforms *int64 `type:"integer"`
 
@@ -10978,7 +11012,7 @@ type CreateWorkteamInput struct {
 
 	// A list of MemberDefinition objects that contains objects that identify the
 	// Amazon Cognito user pool that makes up the work team. For more information,
-	// see Amazon Cognito User Pools (http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html).
+	// see Amazon Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html).
 	//
 	// All of the CognitoMemberDefinition objects that make up the member definition
 	// must have the same ClientId and UserPool values.
@@ -10989,6 +11023,11 @@ type CreateWorkteamInput struct {
 	// Configures notification of workers regarding available or expiring work items.
 	NotificationConfiguration *NotificationConfiguration `type:"structure"`
 
+	// An array of key-value pairs.
+	//
+	// For more information, see Resource Tag (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html)
+	// and Using Cost Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what)
+	// in the AWS Billing and Cost Management User Guide.
 	Tags []*Tag `type:"list"`
 
 	// The name of the work team. Use this name to identify the work team.
@@ -11115,11 +11154,11 @@ func (s *CreateWorkteamOutput) SetWorkteamArn(v string) *CreateWorkteamOutput {
 // data that is not needed for inference in a batch transform job. The output
 // filter provided allows you to include input data relevant to interpreting
 // the predictions in the output from the job. For more information, see Associate
-// Prediction Results with their Corresponding Input Records (http://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-data-processing.html).
+// Prediction Results with their Corresponding Input Records (https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-data-processing.html).
 type DataProcessing struct {
 	_ struct{} `type:"structure"`
 
-	// A JSONPath (http://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-data-processing.html#data-processing-operators)
+	// A JSONPath (https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-data-processing.html#data-processing-operators)
 	// expression used to select a portion of the input data to pass to the algorithm.
 	// Use the InputFilter parameter to exclude fields, such as an ID column, from
 	// the input. If you want Amazon SageMaker to pass the entire input dataset
@@ -11147,7 +11186,7 @@ type DataProcessing struct {
 	// is a CSV file.
 	JoinSource *string `type:"string" enum:"JoinSource"`
 
-	// A JSONPath (http://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-data-processing.html#data-processing-operators)
+	// A JSONPath (https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-data-processing.html#data-processing-operators)
 	// expression used to select a portion of the joined dataset to save in the
 	// output file for a batch transform job. If you want Amazon SageMaker to store
 	// the entire input dataset in the output file, leave the default value, $.
@@ -11190,6 +11229,9 @@ func (s *DataProcessing) SetOutputFilter(v string) *DataProcessing {
 type DataSource struct {
 	_ struct{} `type:"structure"`
 
+	// The file system that is associated with a channel.
+	FileSystemDataSource *FileSystemDataSource `type:"structure"`
+
 	// The S3 location of the data source that is associated with a channel.
 	S3DataSource *S3DataSource `type:"structure"`
 }
@@ -11207,6 +11249,11 @@ func (s DataSource) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DataSource) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DataSource"}
+	if s.FileSystemDataSource != nil {
+		if err := s.FileSystemDataSource.Validate(); err != nil {
+			invalidParams.AddNested("FileSystemDataSource", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.S3DataSource != nil {
 		if err := s.S3DataSource.Validate(); err != nil {
 			invalidParams.AddNested("S3DataSource", err.(request.ErrInvalidParams))
@@ -11217,6 +11264,12 @@ func (s *DataSource) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFileSystemDataSource sets the FileSystemDataSource field's value.
+func (s *DataSource) SetFileSystemDataSource(v *FileSystemDataSource) *DataSource {
+	s.FileSystemDataSource = v
+	return s
 }
 
 // SetS3DataSource sets the S3DataSource field's value.
@@ -11794,7 +11847,7 @@ func (s *DeleteWorkteamOutput) SetSuccess(v bool) *DeleteWorkteamOutput {
 // of the primary container when you created the model hosted in this ProductionVariant,
 // the path resolves to a path of the form registry/repository[@digest]. A digest
 // is a hash value that identifies a specific version of an image. For information
-// about Amazon ECR paths, see Pulling an Image (http://docs.aws.amazon.com//AmazonECR/latest/userguide/docker-pull-ecr-image.html)
+// about Amazon ECR paths, see Pulling an Image (https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-pull-ecr-image.html)
 // in the Amazon ECR User Guide.
 type DeployedImage struct {
 	_ struct{} `type:"structure"`
@@ -12963,7 +13016,7 @@ type DescribeLabelingJobOutput struct {
 	StoppingConditions *LabelingJobStoppingConditions `type:"structure"`
 
 	// An array of key/value pairs. For more information, see Using Cost Allocation
-	// Tags (http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what)
+	// Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what)
 	// in the AWS Billing and Cost Management User Guide.
 	Tags []*Tag `type:"list"`
 }
@@ -13533,16 +13586,16 @@ type DescribeNotebookInstanceOutput struct {
 	// A list of the Elastic Inference (EI) instance types associated with this
 	// notebook instance. Currently only one EI instance type can be associated
 	// with a notebook instance. For more information, see Using Elastic Inference
-	// in Amazon SageMaker (http://docs.aws.amazon.com/sagemaker/latest/dg/ei.html).
+	// in Amazon SageMaker (sagemaker/latest/dg/ei.html).
 	AcceleratorTypes []*string `type:"list"`
 
 	// An array of up to three Git repositories associated with the notebook instance.
 	// These can be either the names of Git repositories stored as resources in
-	// your account, or the URL of Git repositories in AWS CodeCommit (http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
+	// your account, or the URL of Git repositories in AWS CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
 	// or in any other Git repository. These repositories are cloned at the same
 	// level as the default repository of your notebook instance. For more information,
 	// see Associating Git Repositories with Amazon SageMaker Notebook Instances
-	// (http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
+	// (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	AdditionalCodeRepositories []*string `type:"list"`
 
 	// A timestamp. Use this parameter to return the time when the notebook instance
@@ -13551,10 +13604,10 @@ type DescribeNotebookInstanceOutput struct {
 
 	// The Git repository associated with the notebook instance as its default code
 	// repository. This can be either the name of a Git repository stored as a resource
-	// in your account, or the URL of a Git repository in AWS CodeCommit (http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
+	// in your account, or the URL of a Git repository in AWS CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
 	// or in any other Git repository. When you open a notebook instance, it opens
 	// in the directory that contains this repository. For more information, see
-	// Associating Git Repositories with Amazon SageMaker Notebook Instances (http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
+	// Associating Git Repositories with Amazon SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	DefaultCodeRepository *string `min:"1" type:"string"`
 
 	// Describes whether Amazon SageMaker provides internet access to the notebook
@@ -14318,7 +14371,7 @@ type DescribeTransformJobOutput struct {
 	// data that is not needed for inference in a batch transform job. The output
 	// filter provided allows you to include input data relevant to interpreting
 	// the predictions in the output from the job. For more information, see Associate
-	// Prediction Results with their Corresponding Input Records (http://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-data-processing.html).
+	// Prediction Results with their Corresponding Input Records (https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-data-processing.html).
 	DataProcessing *DataProcessing `type:"structure"`
 
 	// The environment variables to set in the Docker container. We support up to
@@ -14328,7 +14381,7 @@ type DescribeTransformJobOutput struct {
 	// If the transform job failed, FailureReason describes why it failed. A transform
 	// job creates a log file, which includes error messages, and stores it as an
 	// Amazon S3 object. For more information, see Log Amazon SageMaker Events with
-	// Amazon CloudWatch (http://docs.aws.amazon.com/sagemaker/latest/dg/logging-cloudwatch.html).
+	// Amazon CloudWatch (https://docs.aws.amazon.com/sagemaker/latest/dg/logging-cloudwatch.html).
 	FailureReason *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the Amazon SageMaker Ground Truth labeling
@@ -14771,6 +14824,91 @@ func (s *EndpointSummary) SetEndpointStatus(v string) *EndpointSummary {
 // SetLastModifiedTime sets the LastModifiedTime field's value.
 func (s *EndpointSummary) SetLastModifiedTime(v time.Time) *EndpointSummary {
 	s.LastModifiedTime = &v
+	return s
+}
+
+// Specifies a file system data source for a channel.
+type FileSystemDataSource struct {
+	_ struct{} `type:"structure"`
+
+	// The full path to the directory to associate with the channel.
+	//
+	// DirectoryPath is a required field
+	DirectoryPath *string `type:"string" required:"true"`
+
+	// The access mode of the mount of the directory associated with the channel.
+	// A directory can be mounted either in ro (read-only) or rw (read-write).
+	//
+	// FileSystemAccessMode is a required field
+	FileSystemAccessMode *string `type:"string" required:"true" enum:"FileSystemAccessMode"`
+
+	// The file system id.
+	//
+	// FileSystemId is a required field
+	FileSystemId *string `min:"11" type:"string" required:"true"`
+
+	// The file system type.
+	//
+	// FileSystemType is a required field
+	FileSystemType *string `type:"string" required:"true" enum:"FileSystemType"`
+}
+
+// String returns the string representation
+func (s FileSystemDataSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FileSystemDataSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FileSystemDataSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FileSystemDataSource"}
+	if s.DirectoryPath == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryPath"))
+	}
+	if s.FileSystemAccessMode == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileSystemAccessMode"))
+	}
+	if s.FileSystemId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileSystemId"))
+	}
+	if s.FileSystemId != nil && len(*s.FileSystemId) < 11 {
+		invalidParams.Add(request.NewErrParamMinLen("FileSystemId", 11))
+	}
+	if s.FileSystemType == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileSystemType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDirectoryPath sets the DirectoryPath field's value.
+func (s *FileSystemDataSource) SetDirectoryPath(v string) *FileSystemDataSource {
+	s.DirectoryPath = &v
+	return s
+}
+
+// SetFileSystemAccessMode sets the FileSystemAccessMode field's value.
+func (s *FileSystemDataSource) SetFileSystemAccessMode(v string) *FileSystemDataSource {
+	s.FileSystemAccessMode = &v
+	return s
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *FileSystemDataSource) SetFileSystemId(v string) *FileSystemDataSource {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetFileSystemType sets the FileSystemType field's value.
+func (s *FileSystemDataSource) SetFileSystemType(v string) *FileSystemDataSource {
+	s.FileSystemType = &v
 	return s
 }
 
@@ -15224,6 +15362,18 @@ type HumanTaskConfig struct {
 	//
 	//    * arn:aws:lambda:us-west-2:081040173940:function:PRE-NamedEntityRecognition
 	//
+	// Canada (Central) (ca-central-1):
+	//
+	//    * arn:awslambda:ca-central-1:918755190332:function:PRE-BoundingBox
+	//
+	//    * arn:awslambda:ca-central-1:918755190332:function:PRE-ImageMultiClass
+	//
+	//    * arn:awslambda:ca-central-1:918755190332:function:PRE-SemanticSegmentation
+	//
+	//    * arn:awslambda:ca-central-1:918755190332:function:PRE-TextMultiClass
+	//
+	//    * arn:awslambda:ca-central-1:918755190332:function:PRE-NamedEntityRecognition
+	//
 	// EU (Ireland) (eu-west-1):
 	//
 	//    * arn:aws:lambda:eu-west-1:568282634449:function:PRE-BoundingBox
@@ -15236,6 +15386,30 @@ type HumanTaskConfig struct {
 	//
 	//    * arn:aws:lambda:eu-west-1:568282634449:function:PRE-NamedEntityRecognition
 	//
+	// EU (London) (eu-west-2):
+	//
+	//    * arn:awslambda:eu-west-2:487402164563:function:PRE-BoundingBox
+	//
+	//    * arn:awslambda:eu-west-2:487402164563:function:PRE-ImageMultiClass
+	//
+	//    * arn:awslambda:eu-west-2:487402164563:function:PRE-SemanticSegmentation
+	//
+	//    * arn:awslambda:eu-west-2:487402164563:function:PRE-TextMultiClass
+	//
+	//    * arn:awslambda:eu-west-2:487402164563:function:PRE-NamedEntityRecognition
+	//
+	// EU Frankfurt (eu-central-1):
+	//
+	//    * arn:awslambda:eu-central-1:203001061592:function:PRE-BoundingBox
+	//
+	//    * arn:awslambda:eu-central-1:203001061592:function:PRE-ImageMultiClass
+	//
+	//    * arn:awslambda:eu-central-1:203001061592:function:PRE-SemanticSegmentation
+	//
+	//    * arn:awslambda:eu-central-1:203001061592:function:PRE-TextMultiClass
+	//
+	//    * arn:awslambda:eu-central-1:203001061592:function:PRE-NamedEntityRecognition
+	//
 	// Asia Pacific (Tokyo) (ap-northeast-1):
 	//
 	//    * arn:aws:lambda:ap-northeast-1:477331159723:function:PRE-BoundingBox
@@ -15247,6 +15421,42 @@ type HumanTaskConfig struct {
 	//    * arn:aws:lambda:ap-northeast-1:477331159723:function:PRE-TextMultiClass
 	//
 	//    * arn:aws:lambda:ap-northeast-1:477331159723:function:PRE-NamedEntityRecognition
+	//
+	// Asia Pacific (Seoul) (ap-northeast-2):
+	//
+	//    * arn:awslambda:ap-northeast-2:845288260483:function:PRE-BoundingBox
+	//
+	//    * arn:awslambda:ap-northeast-2:845288260483:function:PRE-ImageMultiClass
+	//
+	//    * arn:awslambda:ap-northeast-2:845288260483:function:PRE-SemanticSegmentation
+	//
+	//    * arn:awslambda:ap-northeast-2:845288260483:function:PRE-TextMultiClass
+	//
+	//    * arn:awslambda:ap-northeast-2:845288260483:function:PRE-NamedEntityRecognition
+	//
+	// Asia Pacific (Mumbai) (ap-south-1):
+	//
+	//    * arn:awslambda:ap-south-1:565803892007:function:PRE-BoundingBox
+	//
+	//    * arn:awslambda:ap-south-1:565803892007:function:PRE-ImageMultiClass
+	//
+	//    * arn:awslambda:ap-south-1:565803892007:function:PRE-SemanticSegmentation
+	//
+	//    * arn:awslambda:ap-south-1:565803892007:function:PRE-TextMultiClass
+	//
+	//    * arn:awslambda:ap-south-1:565803892007:function:PRE-NamedEntityRecognition
+	//
+	// Asia Pacific (Singapore) (ap-southeast-1):
+	//
+	//    * arn:awslambda:ap-southeast-1:377565633583:function:PRE-BoundingBox
+	//
+	//    * arn:awslambda:ap-southeast-1:377565633583:function:PRE-ImageMultiClass
+	//
+	//    * arn:awslambda:ap-southeast-1:377565633583:function:PRE-SemanticSegmentation
+	//
+	//    * arn:awslambda:ap-southeast-1:377565633583:function:PRE-TextMultiClass
+	//
+	//    * arn:awslambda:ap-southeast-1:377565633583:function:PRE-NamedEntityRecognition
 	//
 	// Asia Pacific (Sydney) (ap-southeast-2):
 	//
@@ -16053,7 +16263,7 @@ type HyperParameterTuningJobConfig struct {
 	// values to use for the training job it launches. To use the Bayesian search
 	// stategy, set this to Bayesian. To randomly search, set it to Random. For
 	// information about search strategies, see How Hyperparameter Tuning Works
-	// (http://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-how-it-works.html).
+	// (https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-how-it-works.html).
 	//
 	// Strategy is a required field
 	Strategy *string `type:"string" required:"true" enum:"HyperParameterTuningJobStrategyType"`
@@ -16071,7 +16281,7 @@ type HyperParameterTuningJobConfig struct {
 	//
 	// Amazon SageMaker stops training jobs launched by the hyperparameter tuning
 	// job when they are unlikely to perform better than previously completed training
-	// jobs. For more information, see Stop Training Jobs Early (http://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-early-stopping.html).
+	// jobs. For more information, see Stop Training Jobs Early (https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-early-stopping.html).
 	TrainingJobEarlyStoppingType *string `type:"string" enum:"TrainingJobEarlyStoppingType"`
 }
 
@@ -16349,7 +16559,7 @@ type HyperParameterTuningJobWarmStartConfig struct {
 	// An array of hyperparameter tuning jobs that are used as the starting point
 	// for the new hyperparameter tuning job. For more information about warm starting
 	// a hyperparameter tuning job, see Using a Previous Hyperparameter Tuning Job
-	// as a Starting Point (http://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-warm-start.html).
+	// as a Starting Point (https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-warm-start.html).
 	//
 	// Hyperparameter tuning jobs created before October 1, 2018 cannot be used
 	// as parent jobs for warm start tuning jobs.
@@ -16679,7 +16889,7 @@ type IntegerParameterRange struct {
 
 	// The scale that hyperparameter tuning uses to search the hyperparameter range.
 	// For information about choosing a hyperparameter scale, see Hyperparameter
-	// Scaling (http://docs.aws.amazon.com//sagemaker/latest/dg/automatic-model-tuning-define-ranges.html#scaling-type).
+	// Scaling (https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-define-ranges.html#scaling-type).
 	// One of the following values:
 	//
 	// Auto
@@ -16928,6 +17138,8 @@ type LabelingJobAlgorithmsConfig struct {
 	//    * Text classification arn:aws:sagemaker:region:027400017018:labeling-job-algorithm-specification/text-classification
 	//
 	//    * Object detection arn:aws:sagemaker:region:027400017018:labeling-job-algorithm-specification/object-detection
+	//
+	//    * Semantic Segmentation arn:aws:sagemaker:region:027400017018:labeling-job-algorithm-specification/semantic-segmentation
 	//
 	// LabelingJobAlgorithmSpecificationArn is a required field
 	LabelingJobAlgorithmSpecificationArn *string `type:"string" required:"true"`
@@ -17406,7 +17618,7 @@ type LabelingJobSummary struct {
 
 	// The Amazon Resource Name (ARN) of the Lambda function used to consolidate
 	// the annotations from individual workers into a label for a data object. For
-	// more information, see Annotation Consolidation (http://docs.aws.amazon.com/sagemaker/latest/dg/sms-annotation-consolidation.html).
+	// more information, see Annotation Consolidation (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-annotation-consolidation.html).
 	AnnotationConsolidationLambdaArn *string `type:"string"`
 
 	// The date and time that the job was created (timestamp).
@@ -20900,11 +21112,11 @@ type NotebookInstanceSummary struct {
 
 	// An array of up to three Git repositories associated with the notebook instance.
 	// These can be either the names of Git repositories stored as resources in
-	// your account, or the URL of Git repositories in AWS CodeCommit (http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
+	// your account, or the URL of Git repositories in AWS CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
 	// or in any other Git repository. These repositories are cloned at the same
 	// level as the default repository of your notebook instance. For more information,
 	// see Associating Git Repositories with Amazon SageMaker Notebook Instances
-	// (http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
+	// (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	AdditionalCodeRepositories []*string `type:"list"`
 
 	// A timestamp that shows when the notebook instance was created.
@@ -20912,10 +21124,10 @@ type NotebookInstanceSummary struct {
 
 	// The Git repository associated with the notebook instance as its default code
 	// repository. This can be either the name of a Git repository stored as a resource
-	// in your account, or the URL of a Git repository in AWS CodeCommit (http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
+	// in your account, or the URL of a Git repository in AWS CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
 	// or in any other Git repository. When you open a notebook instance, it opens
 	// in the directory that contains this repository. For more information, see
-	// Associating Git Repositories with Amazon SageMaker Notebook Instances (http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
+	// Associating Git Repositories with Amazon SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	DefaultCodeRepository *string `min:"1" type:"string"`
 
 	// The type of ML compute instance that the notebook instance is running on.
@@ -21178,7 +21390,7 @@ type OutputDataConfig struct {
 	//
 	// The KMS key policy must grant permission to the IAM role that you specify
 	// in your CreateTrainingJob, CreateTransformJob, or CreateHyperParameterTuningJob
-	// requests. For more information, see Using Key Policies in AWS KMS (http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)
+	// requests. For more information, see Using Key Policies in AWS KMS (https://docs.aws.amazon.com/http:/docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)
 	// in the AWS Key Management Service Developer Guide.
 	KmsKeyId *string `type:"string"`
 
@@ -21436,8 +21648,7 @@ type ProductionVariant struct {
 
 	// The size of the Elastic Inference (EI) instance to use for the production
 	// variant. EI instances provide on-demand GPU computing for inference. For
-	// more information, see Using Elastic Inference in Amazon SageMaker (http://docs.aws.amazon.com/sagemaker/latest/dg/ei.html).
-	// For more information, see Using Elastic Inference in Amazon SageMaker (http://docs.aws.amazon.com/sagemaker/latest/dg/ei.html).
+	// more information, see Using Elastic Inference in Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/ei.html).
 	AcceleratorType *string `type:"string" enum:"ProductionVariantAcceleratorType"`
 
 	// Number of instances to launch initially.
@@ -24910,7 +25121,7 @@ type UiConfig struct {
 
 	// The Amazon S3 bucket location of the UI template. For more information about
 	// the contents of a UI template, see Creating Your Custom Labeling Task Template
-	// (http://docs.aws.amazon.com/sagemaker/latest/dg/sms-custom-templates-step2.html).
+	// (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-custom-templates-step2.html).
 	//
 	// UiTemplateS3Uri is a required field
 	UiTemplateS3Uri *string `type:"string" required:"true"`
@@ -25245,25 +25456,25 @@ type UpdateNotebookInstanceInput struct {
 	// A list of the Elastic Inference (EI) instance types to associate with this
 	// notebook instance. Currently only one EI instance type can be associated
 	// with a notebook instance. For more information, see Using Elastic Inference
-	// in Amazon SageMaker (http://docs.aws.amazon.com/sagemaker/latest/dg/ei.html).
+	// in Amazon SageMaker (sagemaker/latest/dg/ei.html).
 	AcceleratorTypes []*string `type:"list"`
 
 	// An array of up to three Git repositories to associate with the notebook instance.
 	// These can be either the names of Git repositories stored as resources in
-	// your account, or the URL of Git repositories in AWS CodeCommit (http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
+	// your account, or the URL of Git repositories in AWS CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
 	// or in any other Git repository. These repositories are cloned at the same
 	// level as the default repository of your notebook instance. For more information,
 	// see Associating Git Repositories with Amazon SageMaker Notebook Instances
-	// (http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
+	// (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	AdditionalCodeRepositories []*string `type:"list"`
 
 	// The Git repository to associate with the notebook instance as its default
 	// code repository. This can be either the name of a Git repository stored as
 	// a resource in your account, or the URL of a Git repository in AWS CodeCommit
-	// (http://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html) or
+	// (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html) or
 	// in any other Git repository. When you open a notebook instance, it opens
 	// in the directory that contains this repository. For more information, see
-	// Associating Git Repositories with Amazon SageMaker Notebook Instances (http://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
+	// Associating Git Repositories with Amazon SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	DefaultCodeRepository *string `min:"1" type:"string"`
 
 	// A list of the Elastic Inference (EI) instance types to remove from this notebook
@@ -26013,6 +26224,22 @@ const (
 
 	// EndpointStatusFailed is a EndpointStatus enum value
 	EndpointStatusFailed = "Failed"
+)
+
+const (
+	// FileSystemAccessModeRw is a FileSystemAccessMode enum value
+	FileSystemAccessModeRw = "rw"
+
+	// FileSystemAccessModeRo is a FileSystemAccessMode enum value
+	FileSystemAccessModeRo = "ro"
+)
+
+const (
+	// FileSystemTypeEfs is a FileSystemType enum value
+	FileSystemTypeEfs = "EFS"
+
+	// FileSystemTypeFsxLustre is a FileSystemType enum value
+	FileSystemTypeFsxLustre = "FSxLustre"
 )
 
 const (
@@ -26802,6 +27029,9 @@ const (
 
 	// TrainingInstanceTypeMlC518xlarge is a TrainingInstanceType enum value
 	TrainingInstanceTypeMlC518xlarge = "ml.c5.18xlarge"
+
+	// TrainingInstanceTypeMlP3dn24xlarge is a TrainingInstanceType enum value
+	TrainingInstanceTypeMlP3dn24xlarge = "ml.p3dn.24xlarge"
 )
 
 const (

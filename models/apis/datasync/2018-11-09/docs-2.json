@@ -7,6 +7,7 @@
     "CreateLocationEfs": "<p>Creates an endpoint for an Amazon EFS file system.</p>",
     "CreateLocationNfs": "<p>Creates an endpoint for a Network File System (NFS) file system.</p>",
     "CreateLocationS3": "<p>Creates an endpoint for an Amazon S3 bucket.</p> <p>For AWS DataSync to access a destination S3 bucket, it needs an AWS Identity and Access Management (IAM) role that has the required permissions. You can set up the required permissions by creating an IAM policy that grants the required permissions and attaching the policy to the role. An example of such a policy is shown in the examples section.</p> <p>For more information, see Configuring Amazon S3 Location Settings in the <i>AWS DataSync User Guide.</i> </p>",
+    "CreateLocationSmb": "<p>Creates an endpoint for a Server Message Block (SMB) file system.</p>",
     "CreateTask": "<p>Creates a task. A task is a set of two locations (source and destination) and a set of Options that you use to control the behavior of a task. If you don't specify Options when you create a task, AWS DataSync populates them with service defaults.</p> <p>When you create a task, it first enters the CREATING state. During CREATING AWS DataSync attempts to mount the on-premises Network File System (NFS) location. The task transitions to the AVAILABLE state without waiting for the AWS location to become mounted. If required, AWS DataSync mounts the AWS location before each task execution.</p> <p>If an agent that is associated with a source (NFS) location goes offline, the task transitions to the UNAVAILABLE status. If the status of the task remains in the CREATING status for more than a few minutes, it means that your agent might be having trouble mounting the source NFS file system. Check the task's ErrorCode and ErrorDetail. Mount issues are often caused by either a misconfigured firewall or a mistyped NFS server host name.</p>",
     "DeleteAgent": "<p>Deletes an agent. To specify which agent to delete, use the Amazon Resource Name (ARN) of the agent in your request. The operation disassociates the agent from your AWS account. However, it doesn't delete the agent virtual machine (VM) from your on-premises environment.</p>",
     "DeleteLocation": "<p>Deletes the configuration of a location used by AWS DataSync. </p>",
@@ -15,6 +16,7 @@
     "DescribeLocationEfs": "<p>Returns metadata, such as the path information about an Amazon EFS location.</p>",
     "DescribeLocationNfs": "<p>Returns metadata, such as the path information, about a NFS location.</p>",
     "DescribeLocationS3": "<p>Returns metadata, such as bucket name, about an Amazon S3 bucket location.</p>",
+    "DescribeLocationSmb": "<p>Returns metadata, such as the path and user information about a SMB location.</p>",
     "DescribeTask": "<p>Returns metadata about a task.</p>",
     "DescribeTaskExecution": "<p>Returns detailed metadata about a task that is being executed.</p>",
     "ListAgents": "<p>Returns a list of agents owned by an AWS account in the AWS Region specified in the request. The returned list is ordered by agent Amazon Resource Name (ARN).</p> <p>By default, this operation returns a maximum of 100 agents. This operation supports pagination that enables you to optionally reduce the number of agents returned in a response.</p> <p>If you have more agents than are returned in a response (that is, the response returns only a truncated list of your agents), the response contains a marker that you can specify in your next request to fetch the next page of agents.</p>",
@@ -50,6 +52,8 @@
     "AgentArnList": {
       "base": null,
       "refs": {
+        "CreateLocationSmbRequest$AgentArns": "<p>The Amazon Resource Names (ARNs) of agents to use for a Simple Message Block (SMB) location. </p>",
+        "DescribeLocationSmbResponse$AgentArns": "<p>The Amazon Resource Name (ARN) of the source SMB file system location that is created.</p>",
         "OnPremConfig$AgentArns": "<p>ARNs)of the agents to use for an NFS location.</p>"
       }
     },
@@ -134,6 +138,16 @@
       "refs": {
       }
     },
+    "CreateLocationSmbRequest": {
+      "base": "<p>CreateLocationSmbRequest</p>",
+      "refs": {
+      }
+    },
+    "CreateLocationSmbResponse": {
+      "base": "<p>CreateLocationSmbResponse</p>",
+      "refs": {
+      }
+    },
     "CreateTaskRequest": {
       "base": "<p>CreateTaskRequest</p>",
       "refs": {
@@ -211,6 +225,16 @@
     },
     "DescribeLocationS3Response": {
       "base": "<p>DescribeLocationS3Response</p>",
+      "refs": {
+      }
+    },
+    "DescribeLocationSmbRequest": {
+      "base": "<p>DescribeLocationSmbRequest</p>",
+      "refs": {
+      }
+    },
+    "DescribeLocationSmbResponse": {
+      "base": "<p>DescribeLocationSmbResponse</p>",
       "refs": {
       }
     },
@@ -400,6 +424,7 @@
         "CreateLocationEfsResponse$LocationArn": "<p>The Amazon Resource Name (ARN) of the Amazon EFS file system location that is created.</p>",
         "CreateLocationNfsResponse$LocationArn": "<p>The Amazon Resource Name (ARN) of the source NFS file system location that is created.</p>",
         "CreateLocationS3Response$LocationArn": "<p>The Amazon Resource Name (ARN) of the source Amazon S3 bucket location that is created.</p>",
+        "CreateLocationSmbResponse$LocationArn": "<p>The Amazon Resource Name (ARN) of the source SMB file system location that is created.</p>",
         "CreateTaskRequest$SourceLocationArn": "<p>The Amazon Resource Name (ARN) of the source location for the task.</p>",
         "CreateTaskRequest$DestinationLocationArn": "<p>The Amazon Resource Name (ARN) of an AWS storage resource's location. </p>",
         "DeleteLocationRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the location to delete.</p>",
@@ -409,6 +434,8 @@
         "DescribeLocationNfsResponse$LocationArn": "<p>The Amazon resource Name (ARN) of the NFS location that was described.</p>",
         "DescribeLocationS3Request$LocationArn": "<p>The Amazon Resource Name (ARN) of the Amazon S3 bucket location to describe.</p>",
         "DescribeLocationS3Response$LocationArn": "<p>The Amazon Resource Name (ARN) of the Amazon S3 bucket location.</p>",
+        "DescribeLocationSmbRequest$LocationArn": "<p>The Amazon resource Name (ARN) of the SMB location to describe.</p>",
+        "DescribeLocationSmbResponse$LocationArn": "<p>The Amazon resource Name (ARN) of the SMB location that was described.</p>",
         "DescribeTaskResponse$SourceLocationArn": "<p>The Amazon Resource Name (ARN) of the source file system's location.</p>",
         "DescribeTaskResponse$DestinationLocationArn": "<p>The Amazon Resource Name (ARN) of the AWS storage resource's location.</p>",
         "LocationListEntry$LocationArn": "<p>The Amazon Resource Name (ARN) of the location. For Network File System (NFS) or Amazon EFS, the location is the export path. For Amazon S3, the location is the prefix path that you want to mount and use as the root of the location.</p>"
@@ -432,6 +459,7 @@
         "DescribeLocationEfsResponse$LocationUri": "<p>The URL of the EFS location that was described.</p>",
         "DescribeLocationNfsResponse$LocationUri": "<p>The URL of the source NFS location that was described.</p>",
         "DescribeLocationS3Response$LocationUri": "<p>The URL of the Amazon S3 location that was described.</p>",
+        "DescribeLocationSmbResponse$LocationUri": "<p>The URL of the source SBM location that was described.</p>",
         "LocationListEntry$LocationUri": "<p>Represents a list of URLs of a location. <code>LocationUri</code> returns an array that contains a list of locations when the <a>ListLocations</a> operation is called.</p> <p>Format: <code>TYPE://GLOBAL_ID/SUBDIR</code>.</p> <p>TYPE designates the type of location. Valid values: NFS | EFS | S3.</p> <p>GLOBAL_ID is the globally unique identifier of the resource that backs the location. An example for EFS is <code>us-east-2.fs-abcd1234</code>. An example for Amazon S3 is the bucket name, such as <code>myBucket</code>. An example for NFS is a valid IPv4 address or a host name compliant with Domain Name Service (DNS).</p> <p>SUBDIR is a valid file system path, delimited by forward slashes as is the *nix convention. For NFS and Amazon EFS, it's the export path to mount the location. For Amazon S3, it's the prefix path that you mount to and treat as the root of the location.</p> <p/>"
       }
     },
@@ -497,7 +525,8 @@
     "NonEmptySubdirectory": {
       "base": null,
       "refs": {
-        "CreateLocationNfsRequest$Subdirectory": "<p>The subdirectory in the NFS file system that is used to read data from the NFS source location or write data to the NFS destination. The NFS path should be a path that's exported by the NFS server, or a subdirectory of that path. The path should be such that it can be mounted by other NFS clients in your network. </p> <p>To see all the paths exported by your NFS server. run \"<code>showmount -e nfs-server-name</code>\" from an NFS client that has access to your server. You can specify any directory that appears in the results, and any subdirectory of that directory. Ensure that the NFS export is accessible without Kerberos authentication. </p> <p>To transfer all the data in the folder you specified, DataSync needs to have permissions to read all the data. To ensure this, either configure the NFS export with <code>no_root_squash,</code> or ensure that the permissions for all of the files that you want DataSync allow read access for all users. Doing either enables the agent to read the files. For the agent to access directories, you must additionally enable all execute access.</p> <p>For information about NFS export configuration, see 18.7. The /etc/exports Configuration File in the Red Hat Enterprise Linux documentation.</p>"
+        "CreateLocationNfsRequest$Subdirectory": "<p>The subdirectory in the NFS file system that is used to read data from the NFS source location or write data to the NFS destination. The NFS path should be a path that's exported by the NFS server, or a subdirectory of that path. The path should be such that it can be mounted by other NFS clients in your network. </p> <p>To see all the paths exported by your NFS server. run \"<code>showmount -e nfs-server-name</code>\" from an NFS client that has access to your server. You can specify any directory that appears in the results, and any subdirectory of that directory. Ensure that the NFS export is accessible without Kerberos authentication. </p> <p>To transfer all the data in the folder you specified, DataSync needs to have permissions to read all the data. To ensure this, either configure the NFS export with <code>no_root_squash,</code> or ensure that the permissions for all of the files that you want DataSync allow read access for all users. Doing either enables the agent to read the files. For the agent to access directories, you must additionally enable all execute access.</p> <p>For information about NFS export configuration, see 18.7. The /etc/exports Configuration File in the Red Hat Enterprise Linux documentation.</p>",
+        "CreateLocationSmbRequest$Subdirectory": "<p>The subdirectory in the SMB file system that is used to read data from the SMB source location or write data to the SMB destination. The SMB path should be a path that's exported by the SMB server, or a subdirectory of that path. The path should be such that it can be mounted by other SMB clients in your network.</p> <p>To transfer all the data in the folder you specified, DataSync needs to have permissions to mount the SMB share, as well as to access all the data in that share. To ensure this, either ensure that the user/password specified belongs to the user who can mount the share, and who has the appropriate permissions for all of the files and directories that you want DataSync to access, or use credentials of a member of the Backup Operators group to mount the share. Doing either enables the agent to access the data. For the agent to access directories, you must additionally enable all execute access.</p>"
       }
     },
     "OnPremConfig": {
@@ -560,7 +589,7 @@
     "PrivateLinkConfig": {
       "base": "<p>The VPC endpoint, subnet and security group that an agent uses to access IP addresses in a VPC (Virtual Private Cloud).</p>",
       "refs": {
-        "DescribeAgentResponse$PrivateLinkConfig": "<p>The subnet and the security group that DataSync used to access a VPC endpoint.</p>"
+        "DescribeAgentResponse$PrivateLinkConfig": null
       }
     },
     "S3BucketArn": {
@@ -579,7 +608,41 @@
     "ServerHostname": {
       "base": null,
       "refs": {
-        "CreateLocationNfsRequest$ServerHostname": "<p>The name of the NFS server. This value is the IP address or Domain Name Service (DNS) name of the NFS server. An agent that is installed on-premises uses this host name to mount the NFS server in a network. </p> <note> <p>This name must either be DNS-compliant or must be an IP version 4 (IPv4) address.</p> </note>"
+        "CreateLocationNfsRequest$ServerHostname": "<p>The name of the NFS server. This value is the IP address or Domain Name Service (DNS) name of the NFS server. An agent that is installed on-premises uses this host name to mount the NFS server in a network. </p> <note> <p>This name must either be DNS-compliant or must be an IP version 4 (IPv4) address.</p> </note>",
+        "CreateLocationSmbRequest$ServerHostname": "<p>The name of the SMB server. This value is the IP address or Domain Name Service (DNS) name of the SMB server. An agent that is installed on-premises uses this host name to mount the SMB server in a network.</p> <note> <p>This name must either be DNS-compliant or must be an IP version 4 (IPv4) address.</p> </note>"
+      }
+    },
+    "SmbDomain": {
+      "base": null,
+      "refs": {
+        "CreateLocationSmbRequest$Domain": "<p>The name of the domain that the SMB server belongs to.</p>",
+        "DescribeLocationSmbResponse$Domain": "<p>The name of the domain that the SMB server belongs to.</p>"
+      }
+    },
+    "SmbMountOptions": {
+      "base": "<p>Represents the mount options that are available for DataSync to access an SMB location.</p>",
+      "refs": {
+        "CreateLocationSmbRequest$MountOptions": "<p>The mount options that are available for DataSync to use to access an SMB location.</p>",
+        "DescribeLocationSmbResponse$MountOptions": "<p>The mount options that are available for DataSync to use to access an SMB location.</p>"
+      }
+    },
+    "SmbPassword": {
+      "base": null,
+      "refs": {
+        "CreateLocationSmbRequest$Password": "<p>The password of the user who has permission to access the SMB server.</p>"
+      }
+    },
+    "SmbUser": {
+      "base": null,
+      "refs": {
+        "CreateLocationSmbRequest$User": "<p>The user who can mount the share, has the permissions to access files and directories in the SMB share.</p>",
+        "DescribeLocationSmbResponse$User": "<p>The user who is logged on the SMB server.</p>"
+      }
+    },
+    "SmbVersion": {
+      "base": null,
+      "refs": {
+        "SmbMountOptions$Version": "<p>The specific SMB version that you want DataSync to use to mount your SMB share. If you don't specify a version, DataSync defaults to <code>AUTOMATIC</code>. That is, DataSync automatically selects a version based on negotiation with the SMB Server server.</p>"
       }
     },
     "SourceNetworkInterfaceArns": {
@@ -625,6 +688,7 @@
         "CreateLocationEfsRequest$Tags": "<p>The key-value pair that represents a tag that you want to add to the resource. The value can be an empty string. This value helps you manage, filter, and search for your resources. We recommend that you create a name tag for your location.</p>",
         "CreateLocationNfsRequest$Tags": "<p>The key-value pair that represents the tag that you want to add to the location. The value can be an empty string. We recommend using tags to name your resources.</p>",
         "CreateLocationS3Request$Tags": "<p>The key-value pair that represents the tag that you want to add to the location. The value can be an empty string. We recommend using tags to name your resources.</p>",
+        "CreateLocationSmbRequest$Tags": "<p>The key-value pair that represents the tag that you want to add to the location. The value can be an empty string. We recommend using tags to name your resources.</p>",
         "CreateTaskRequest$Tags": "<p>The key-value pair that represents the tag that you want to add to the resource. The value can be an empty string. </p>",
         "ListTagsForResourceResponse$Tags": "<p>Array of resource tags.</p>",
         "TagResourceRequest$Tags": "<p>The tags to apply.</p>"
@@ -744,6 +808,7 @@
         "DescribeLocationEfsResponse$CreationTime": "<p>The time that the EFS location was created.</p>",
         "DescribeLocationNfsResponse$CreationTime": "<p>The time that the NFS location was created.</p>",
         "DescribeLocationS3Response$CreationTime": "<p>The time that the Amazon S3 bucket location was created.</p>",
+        "DescribeLocationSmbResponse$CreationTime": "<p>The time that the SMB location was created.</p>",
         "DescribeTaskExecutionResponse$StartTime": "<p>The time that the task execution was started.</p>",
         "DescribeTaskResponse$CreationTime": "<p>The time that the task was created.</p>"
       }

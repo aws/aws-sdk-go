@@ -446,6 +446,10 @@
         "Attributes":{
           "shape":"QueueAttributeMap",
           "locationName":"Attribute"
+        },
+        "tags":{
+          "shape":"TagMap",
+          "locationName":"Tag"
         }
       }
     },

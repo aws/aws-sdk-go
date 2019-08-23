@@ -158,7 +158,7 @@ func unmarshalHeaderMap(r reflect.Value, headers http.Header, prefix string) err
 				out[k[len(prefix):]] = &v[0]
 			}
 		}
-		if len(out) !=0 {
+		if len(out) != 0 {
 			r.Set(reflect.ValueOf(out))
 		}
 
@@ -167,7 +167,7 @@ func unmarshalHeaderMap(r reflect.Value, headers http.Header, prefix string) err
 }
 
 func unmarshalHeader(v reflect.Value, header string, tag reflect.StructTag) error {
-	switch tag.Get("type"){
+	switch tag.Get("type") {
 	case "jsonvalue":
 		if len(header) == 0 {
 			return nil
