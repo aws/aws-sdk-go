@@ -2456,6 +2456,10 @@ func (s *EgressEndpoint) SetUrl(v string) *EgressEndpoint {
 type HlsEncryption struct {
 	_ struct{} `type:"structure"`
 
+	// A constant initialization vector for encryption (optional).When not specified
+	// the initialization vector will be periodically rotated.
+	ConstantInitializationVector *string `locationName:"constantInitializationVector" type:"string"`
+
 	// The encryption method to use.
 	EncryptionMethod *string `locationName:"encryptionMethod" type:"string" enum:"EncryptionMethod"`
 
@@ -2492,6 +2496,12 @@ func (s *HlsEncryption) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetConstantInitializationVector sets the ConstantInitializationVector field's value.
+func (s *HlsEncryption) SetConstantInitializationVector(v string) *HlsEncryption {
+	s.ConstantInitializationVector = &v
+	return s
 }
 
 // SetEncryptionMethod sets the EncryptionMethod field's value.
