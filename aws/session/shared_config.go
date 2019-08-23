@@ -2,6 +2,7 @@ package session
 
 import (
 	"fmt"
+
 	"github.com/aws/aws-sdk-go/aws/endpoints"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
@@ -91,6 +92,7 @@ type sharedConfig struct {
 	CSMHost     string
 	CSMPort     string
 	CSMClientID string
+
 	// Specifies the Regional Endpoint flag for the sdk to resolve the endpoint for a service
 	//
 	// sts_regional_endpoints = sts_regional_endpoint

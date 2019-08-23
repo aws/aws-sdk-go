@@ -8,8 +8,6 @@ import (
 	"regexp"
 	"strings"
 	"testing"
-
-	"github.com/aws/aws-sdk-go/internal/sdktesting"
 )
 
 func TestUnmarshalRegionRegex(t *testing.T) {
