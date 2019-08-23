@@ -2,6 +2,7 @@ package session
 
 import (
 	"fmt"
+	"github.com/aws/aws-sdk-go/aws/endpoints"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/credentials"
@@ -41,7 +42,7 @@ const (
 	webIdentityTokenFileKey = `web_identity_token_file` // optional
 
 	// Additonal config fields for regional or legacy endpoints
-	regionalEndpointSharedKey = `sts_regional_endpoints`
+	stsRegionalEndpointSharedKey = `sts_regional_endpoints`
 
 	// DefaultSharedConfigProfile is the default profile to be used when
 	// loading configuration from the config files if another profile name
@@ -92,9 +93,9 @@ type sharedConfig struct {
 	CSMClientID string
 	// Specifies the Regional Endpoint flag for the sdk to resolve the endpoint for a service
 	//
-	// sts_regional_endpoints = regional_endpoint
-	// This can take value as `regional` or `legacy`
-	RegionalEndpoint string
+	// sts_regional_endpoints = sts_regional_endpoint
+	// This can take value as `LegacySTSEndpoint` or `RegionalSTSEndpoint`
+	STSRegionalEndpoint endpoints.STSRegionalEndpoint
 }
 
 type sharedConfigFile struct {
@@ -251,9 +252,16 @@ func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile, e
 		updateString(&cfg.RoleSessionName, section, roleSessionNameKey)
 		updateString(&cfg.SourceProfileName, section, sourceProfileKey)
 		updateString(&cfg.CredentialSource, section, credentialSourceKey)
-
 		updateString(&cfg.Region, section, regionKey)
-		updateString(&cfg.RegionalEndpoint, section, regionalEndpointSharedKey)
+
+		if v := section.String(stsRegionalEndpointSharedKey); len(v) != 0 {
+			STSRegionalEndpoint, err := endpoints.GetSTSRegionalEndpoint(v)
+			if err != nil {
+				return fmt.Errorf("failed to load %s from shared config, %s, %v",
+					stsRegionalEndpointKey, file.Filename, err)
+			}
+			cfg.STSRegionalEndpoint = STSRegionalEndpoint
+		}
 	}
 
 	updateString(&cfg.CredentialProcess, section, credentialProcessKey)

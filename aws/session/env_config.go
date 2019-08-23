@@ -4,6 +4,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"os"
 	"strconv"
 )
@@ -127,9 +128,9 @@ type envConfig struct {
 
 	// Specifies the Regional Endpoint flag for the sdk to resolve the endpoint for a service
 	//
-	// AWS_STS_REGIONAL_ENDPOINTS =regional_endpoint
+	// AWS_STS_REGIONAL_ENDPOINTS =sts_regional_endpoint
 	// This can take value as `regional` or `legacy`
-	RegionalEndpoint string
+	STSRegionalEndpoint endpoints.STSRegionalEndpoint
 }
 
 var (
@@ -184,7 +185,7 @@ var (
 	roleSessionNameEnvKey = []string{
 		"AWS_ROLE_SESSION_NAME",
 	}
-	regionalEndpointKey = []string{
+	stsRegionalEndpointKey = []string{
 		"AWS_STS_REGIONAL_ENDPOINTS",
 	}
 )
@@ -272,15 +273,22 @@ func envConfigLoad(enableSharedConfig bool) envConfig {
 
 	cfg.CustomCABundle = os.Getenv("AWS_CA_BUNDLE")
 
-	// Regional Endpoint variable
-	setFromEnvVal(&cfg.RegionalEndpoint, regionalEndpointKey)
+	// STS Regional Endpoint variable
+	for _, k := range stsRegionalEndpointKey {
+		if v := os.Getenv(k); len(v) != 0 {
+			STSRegionalEndpoint, err := endpoints.GetSTSRegionalEndpoint(v)
+			if err == nil {
+				cfg.STSRegionalEndpoint = STSRegionalEndpoint
+			}
+		}
+	}
 
 	return cfg
 }
 
 func setFromEnvVal(dst *string, keys []string) {
 	for _, k := range keys {
-		if v := os.Getenv(k); len(v) > 0 {
+		if v := os.Getenv(k); len(v) != 0 {
 			*dst = v
 			break
 		}

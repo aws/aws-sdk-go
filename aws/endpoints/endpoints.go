@@ -3,6 +3,7 @@ package endpoints
 import (
 	"fmt"
 	"regexp"
+	"strings"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
@@ -50,7 +51,26 @@ type Options struct {
 	// STS Regional Endpoint flag helps with resolving the STS RIP endpoint
 	// It has a default value of `true` for regional endpoints,
 	// and can be switched to `false` for legacy endpoints.
-	STSRegionalEndpoint bool
+	STSRegionalEndpoint STSRegionalEndpoint
+}
+
+type STSRegionalEndpoint int
+
+const (
+	UnsetSTSEndpoint STSRegionalEndpoint = iota
+	LegacySTSEndpoint
+	RegionalSTSEndpoint
+)
+
+func GetSTSRegionalEndpoint(s string) (STSRegionalEndpoint, error){
+	switch  {
+	case strings.EqualFold(s, "legacy"):
+		return LegacySTSEndpoint, nil
+	case strings.EqualFold(s, "regional"):
+		return RegionalSTSEndpoint, nil
+	default:
+		return UnsetSTSEndpoint , fmt.Errorf("unable to resolve the value of STSRegionalEndpoint for %v", s)
+	}
 }
 
 // Set combines all of the option functions together.
@@ -87,8 +107,10 @@ func ResolveUnknownServiceOption(o *Options) {
 // STSRegionalEndpointOption sets the STSRegionalEndpoint option. Can be used
 // as a functional option when resolving endpoints.
 func STSRegionalEndpointOption(o *Options) {
-	o.STSRegionalEndpoint = true
+	o.STSRegionalEndpoint = RegionalSTSEndpoint
 }
+
+
 
 // A Resolver provides the interface for functionality to resolve endpoints.
 // The build in Partition and DefaultResolver return value satisfy this interface.

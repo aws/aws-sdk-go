@@ -25,6 +25,12 @@ const (
 	// ErrCodeSharedConfig represents an error that occurs in the shared
 	// configuration logic
 	ErrCodeSharedConfig = "SharedConfigErr"
+
+	// `Legacy` STSRegionalEndpoint represents the endpoint for legacy global endpoints
+	Legacy = "legacy"
+
+	// `Regional` STSRegionalEndpoint represents the endpoint for regional sts endpoints
+
 )
 
 // ErrSharedConfigSourceCollision will be returned if a section contains both
@@ -551,11 +557,7 @@ func mergeConfigSrcs(cfg, userCfg *aws.Config,
 	}
 
 	// Regional Endpoint flag for STS endpoint resolving
-	if envCfg.RegionalEndpoint != "" {
-		cfg.WithSTSRegionalEndpoint(envCfg.RegionalEndpoint)
-	} else if sharedCfg.RegionalEndpoint != "" {
-		cfg.WithSTSRegionalEndpoint(sharedCfg.RegionalEndpoint)
-	}
+	mergeSTSRegionalEndpointConfig(cfg, envCfg, sharedCfg)
 
 	// Configure credentials if not already set by the user when creating the
 	// Session.
@@ -567,6 +569,22 @@ func mergeConfigSrcs(cfg, userCfg *aws.Config,
 		cfg.Credentials = creds
 	}
 
+	return nil
+}
+
+// mergeSTSRegionalEndpointConfig function merges the STSRegionalEndpoint into cfg from
+// envConfig and SharedConfig with envConfig being given precedence over SharedConfig
+func mergeSTSRegionalEndpointConfig(cfg *aws.Config, envCfg envConfig, sharedCfg sharedConfig) error {
+
+	cfg.STSRegionalEndpoint = envCfg.STSRegionalEndpoint
+
+	if cfg.STSRegionalEndpoint == endpoints.UnsetSTSEndpoint {
+		cfg.STSRegionalEndpoint = sharedCfg.STSRegionalEndpoint
+	}
+
+	if cfg.STSRegionalEndpoint == endpoints.UnsetSTSEndpoint {
+		cfg.STSRegionalEndpoint = endpoints.LegacySTSEndpoint
+	}
 	return nil
 }
 
@@ -625,7 +643,7 @@ func (s *Session) clientConfigWithErr(serviceName string, cfgs ...*aws.Config) (
 				opt.UseDualStack = aws.BoolValue(s.Config.UseDualStack)
 				// Support for STSRegionalEndpoint where the STSRegionalEndpoint is
 				// provided in envconfig or sharedconfig with envconfig getting precedence.
-				opt.STSRegionalEndpoint = aws.BoolValue(s.Config.STSRegionalEndpoint)
+				opt.STSRegionalEndpoint = s.Config.STSRegionalEndpoint
 
 				// Support the condition where the service is modeled but its
 				// endpoint metadata is not available.

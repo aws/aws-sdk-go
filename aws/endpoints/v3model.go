@@ -79,7 +79,7 @@ func (p partition) EndpointFor(service, region string, opts ...func(*Options)) (
 	var opt Options
 	opt.Set(opts...)
 
-	if service == "sts" && !opt.STSRegionalEndpoint {
+	if service == "sts" && opt.STSRegionalEndpoint != RegionalSTSEndpoint {
 		if _, ok := stsLegacyGlocalRegions[region]; ok {
 			region = "aws-global"
 		}
