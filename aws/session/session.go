@@ -25,12 +25,6 @@ const (
 	// ErrCodeSharedConfig represents an error that occurs in the shared
 	// configuration logic
 	ErrCodeSharedConfig = "SharedConfigErr"
-
-	// `Legacy` STSRegionalEndpoint represents the endpoint for legacy global endpoints
-	Legacy = "legacy"
-
-	// `Regional` STSRegionalEndpoint represents the endpoint for regional sts endpoints
-
 )
 
 // ErrSharedConfigSourceCollision will be returned if a section contains both

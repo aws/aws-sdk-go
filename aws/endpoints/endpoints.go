@@ -49,19 +49,32 @@ type Options struct {
 	ResolveUnknownService bool
 
 	// STS Regional Endpoint flag helps with resolving the STS RIP endpoint
-	// It has a default value of `true` for regional endpoints,
-	// and can be switched to `false` for legacy endpoints.
 	STSRegionalEndpoint STSRegionalEndpoint
 }
 
+// STSRegionalEndpoint is an enum type alias for int
+// It is used internally by the core sdk as STS Regional Endpoint flag value
 type STSRegionalEndpoint int
 
 const (
+
+	// UnsetSTSEndpoint represents that STS Regional Endpoint flag is not specified.
 	UnsetSTSEndpoint STSRegionalEndpoint = iota
+
+	// LegacySTSEndpoint represents when STS Regional Endpoint flag is specified
+	// to use legacy endpoints.
 	LegacySTSEndpoint
+
+	// RegionalSTSEndpoint represents when STS Regional Endpoint flag is specified
+	// to use regional endpoints.
 	RegionalSTSEndpoint
 )
 
+// GetSTSRegionalEndpoint function returns the STSRegionalEndpointFlag based
+// on the input string provided in env config or shared config by the user.
+//
+// `legacy`, `regional` are the only case-insensitive valid strings for
+// resolving the STS regional Endpoint flag.
 func GetSTSRegionalEndpoint(s string) (STSRegionalEndpoint, error) {
 	switch {
 	case strings.EqualFold(s, "legacy"):
