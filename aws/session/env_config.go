@@ -1,6 +1,7 @@
 package session
 
 import (
+	"fmt"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/defaults"
@@ -196,7 +197,7 @@ var (
 // If the environment variable `AWS_SDK_LOAD_CONFIG` is set to a truthy value
 // the shared SDK config will be loaded in addition to the SDK's specific
 // configuration values.
-func loadEnvConfig() envConfig {
+func loadEnvConfig() (envConfig, error) {
 	enableSharedConfig, _ := strconv.ParseBool(os.Getenv("AWS_SDK_LOAD_CONFIG"))
 	return envConfigLoad(enableSharedConfig)
 }
@@ -207,11 +208,11 @@ func loadEnvConfig() envConfig {
 // Loads the shared configuration in addition to the SDK's specific configuration.
 // This will load the same values as `loadEnvConfig` if the `AWS_SDK_LOAD_CONFIG`
 // environment variable is set.
-func loadSharedEnvConfig() envConfig {
+func loadSharedEnvConfig() (envConfig, error) {
 	return envConfigLoad(true)
 }
 
-func envConfigLoad(enableSharedConfig bool) envConfig {
+func envConfigLoad(enableSharedConfig bool) (envConfig, error) {
 	cfg := envConfig{}
 
 	cfg.EnableSharedConfig = enableSharedConfig
@@ -277,13 +278,14 @@ func envConfigLoad(enableSharedConfig bool) envConfig {
 	for _, k := range stsRegionalEndpointKey {
 		if v := os.Getenv(k); len(v) != 0 {
 			STSRegionalEndpoint, err := endpoints.GetSTSRegionalEndpoint(v)
-			if err == nil {
-				cfg.STSRegionalEndpoint = STSRegionalEndpoint
+			if err != nil {
+				return cfg, fmt.Errorf("failed to load from env config, %v", err)
 			}
+			cfg.STSRegionalEndpoint = STSRegionalEndpoint
 		}
 	}
 
-	return cfg
+	return cfg, nil
 }
 
 func setFromEnvVal(dst *string, keys []string) {

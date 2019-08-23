@@ -62,14 +62,14 @@ const (
 	RegionalSTSEndpoint
 )
 
-func GetSTSRegionalEndpoint(s string) (STSRegionalEndpoint, error){
-	switch  {
+func GetSTSRegionalEndpoint(s string) (STSRegionalEndpoint, error) {
+	switch {
 	case strings.EqualFold(s, "legacy"):
 		return LegacySTSEndpoint, nil
 	case strings.EqualFold(s, "regional"):
 		return RegionalSTSEndpoint, nil
 	default:
-		return UnsetSTSEndpoint , fmt.Errorf("unable to resolve the value of STSRegionalEndpoint for %v", s)
+		return UnsetSTSEndpoint, fmt.Errorf("unable to resolve the value of STSRegionalEndpoint for %v", s)
 	}
 }
 
@@ -109,8 +109,6 @@ func ResolveUnknownServiceOption(o *Options) {
 func STSRegionalEndpointOption(o *Options) {
 	o.STSRegionalEndpoint = RegionalSTSEndpoint
 }
-
-
 
 // A Resolver provides the interface for functionality to resolve endpoints.
 // The build in Partition and DefaultResolver return value satisfy this interface.

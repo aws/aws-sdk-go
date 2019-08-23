@@ -3,6 +3,7 @@
 package session
 
 import (
+	"fmt"
 	"os"
 	"reflect"
 	"strconv"
@@ -84,7 +85,10 @@ func TestLoadEnvConfig_Creds(t *testing.T) {
 				os.Setenv(k, v)
 			}
 
-			cfg := loadEnvConfig()
+			cfg, err := loadEnvConfig()
+			if err != nil {
+				fmt.Errorf("failed to load env config, %v", err)
+			}
 			if !reflect.DeepEqual(c.Val, cfg.Creds) {
 				t.Errorf("expect credentials to match.\n%s",
 					awstesting.SprintExpectActual(c.Val, cfg.Creds))
@@ -279,10 +283,17 @@ func TestLoadEnvConfig(t *testing.T) {
 			}
 
 			var cfg envConfig
+			var err error
 			if c.UseSharedConfigCall {
-				cfg = loadSharedEnvConfig()
+				cfg, err = loadSharedEnvConfig()
+				if err != nil {
+					fmt.Errorf("failed to load shared env config, %v", err)
+				}
 			} else {
-				cfg = loadEnvConfig()
+				cfg, err = loadEnvConfig()
+				if err != nil {
+					fmt.Errorf("failed to load env config, %v", err)
+				}
 			}
 
 			if !reflect.DeepEqual(c.Config, cfg) {

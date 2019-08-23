@@ -251,7 +251,6 @@ type Config struct {
 	STSRegionalEndpoint endpoints.STSRegionalEndpoint
 }
 
-
 // NewConfig returns a new Config pointer that can be chained with builder
 // methods to set multiple configuration values inline without using pointers.
 //

@@ -79,7 +79,10 @@ type Session struct {
 // func is called instead of waiting to receive an error until a request is made.
 func New(cfgs ...*aws.Config) *Session {
 	// load initial config from environment
-	envCfg := loadEnvConfig()
+	envCfg, err := loadEnvConfig()
+	if err != nil {
+		fmt.Errorf("failed to load env config, %v", err)
+	}
 
 	if envCfg.EnableSharedConfig {
 		var cfg aws.Config
@@ -285,10 +288,17 @@ type Options struct {
 //     }))
 func NewSessionWithOptions(opts Options) (*Session, error) {
 	var envCfg envConfig
+	var err error
 	if opts.SharedConfigState == SharedConfigEnable {
-		envCfg = loadSharedEnvConfig()
+		envCfg, err = loadSharedEnvConfig()
+		if err != nil {
+			fmt.Errorf("failed to load environment from shared config, %v", err)
+		}
 	} else {
-		envCfg = loadEnvConfig()
+		envCfg, err = loadEnvConfig()
+		if err != nil {
+			fmt.Errorf("failed to load environment from env config, %v", err)
+		}
 	}
 
 	if len(opts.Profile) != 0 {
