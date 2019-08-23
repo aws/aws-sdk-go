@@ -980,6 +980,10 @@
     },
     "HlsEncryption": {
       "members": {
+        "ConstantInitializationVector": {
+          "locationName": "constantInitializationVector",
+          "shape": "__string"
+        },
         "EncryptionMethod": {
           "locationName": "encryptionMethod",
           "shape": "EncryptionMethod"

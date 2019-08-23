@@ -255,7 +255,9 @@
         "es-ES",
         "en-IN",
         "hi-IN",
-        "ar-SA"
+        "ar-SA",
+        "ru-RU",
+        "zh-CN"
       ]
     },
     "LimitExceededException":{

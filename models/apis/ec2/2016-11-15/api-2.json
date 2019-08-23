@@ -1331,6 +1331,15 @@
       "input":{"shape":"DescribeElasticGpusRequest"},
       "output":{"shape":"DescribeElasticGpusResult"}
     },
+    "DescribeExportImageTasks":{
+      "name":"DescribeExportImageTasks",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeExportImageTasksRequest"},
+      "output":{"shape":"DescribeExportImageTasksResult"}
+    },
     "DescribeExportTasks":{
       "name":"DescribeExportTasks",
       "http":{
@@ -2267,6 +2276,15 @@
       },
       "input":{"shape":"ExportClientVpnClientConfigurationRequest"},
       "output":{"shape":"ExportClientVpnClientConfigurationResult"}
+    },
+    "ExportImage":{
+      "name":"ExportImage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ExportImageRequest"},
+      "output":{"shape":"ExportImageResult"}
     },
     "ExportTransitGatewayRoutes":{
       "name":"ExportTransitGatewayRoutes",
@@ -8606,6 +8624,40 @@
         }
       }
     },
+    "DescribeExportImageTasksMaxResults":{
+      "type":"integer",
+      "max":500,
+      "min":1
+    },
+    "DescribeExportImageTasksRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "ExportImageTaskIds":{
+          "shape":"ExportImageTaskIdList",
+          "locationName":"ExportImageTaskId"
+        },
+        "MaxResults":{"shape":"DescribeExportImageTasksMaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeExportImageTasksResult":{
+      "type":"structure",
+      "members":{
+        "ExportImageTasks":{
+          "shape":"ExportImageTaskList",
+          "locationName":"exportImageTaskSet"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "locationName":"nextToken"
+        }
+      }
+    },
     "DescribeExportTasksRequest":{
       "type":"structure",
       "members":{
@@ -12178,6 +12230,114 @@
         "microsoft"
       ]
     },
+    "ExportImageRequest":{
+      "type":"structure",
+      "required":[
+        "DiskImageFormat",
+        "ImageId",
+        "S3ExportLocation"
+      ],
+      "members":{
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        },
+        "Description":{"shape":"String"},
+        "DiskImageFormat":{"shape":"DiskImageFormat"},
+        "DryRun":{"shape":"Boolean"},
+        "ImageId":{"shape":"String"},
+        "S3ExportLocation":{"shape":"ExportTaskS3LocationRequest"},
+        "RoleName":{"shape":"String"}
+      }
+    },
+    "ExportImageResult":{
+      "type":"structure",
+      "members":{
+        "Description":{
+          "shape":"String",
+          "locationName":"description"
+        },
+        "DiskImageFormat":{
+          "shape":"DiskImageFormat",
+          "locationName":"diskImageFormat"
+        },
+        "ExportImageTaskId":{
+          "shape":"String",
+          "locationName":"exportImageTaskId"
+        },
+        "ImageId":{
+          "shape":"String",
+          "locationName":"imageId"
+        },
+        "RoleName":{
+          "shape":"String",
+          "locationName":"roleName"
+        },
+        "Progress":{
+          "shape":"String",
+          "locationName":"progress"
+        },
+        "S3ExportLocation":{
+          "shape":"ExportTaskS3Location",
+          "locationName":"s3ExportLocation"
+        },
+        "Status":{
+          "shape":"String",
+          "locationName":"status"
+        },
+        "StatusMessage":{
+          "shape":"String",
+          "locationName":"statusMessage"
+        }
+      }
+    },
+    "ExportImageTask":{
+      "type":"structure",
+      "members":{
+        "Description":{
+          "shape":"String",
+          "locationName":"description"
+        },
+        "ExportImageTaskId":{
+          "shape":"String",
+          "locationName":"exportImageTaskId"
+        },
+        "ImageId":{
+          "shape":"String",
+          "locationName":"imageId"
+        },
+        "Progress":{
+          "shape":"String",
+          "locationName":"progress"
+        },
+        "S3ExportLocation":{
+          "shape":"ExportTaskS3Location",
+          "locationName":"s3ExportLocation"
+        },
+        "Status":{
+          "shape":"String",
+          "locationName":"status"
+        },
+        "StatusMessage":{
+          "shape":"String",
+          "locationName":"statusMessage"
+        }
+      }
+    },
+    "ExportImageTaskIdList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"ExportImageTaskId"
+      }
+    },
+    "ExportImageTaskList":{
+      "type":"list",
+      "member":{
+        "shape":"ExportImageTask",
+        "locationName":"item"
+      }
+    },
     "ExportTask":{
       "type":"structure",
       "members":{
@@ -12219,6 +12379,27 @@
       "member":{
         "shape":"ExportTask",
         "locationName":"item"
+      }
+    },
+    "ExportTaskS3Location":{
+      "type":"structure",
+      "members":{
+        "S3Bucket":{
+          "shape":"String",
+          "locationName":"s3Bucket"
+        },
+        "S3Prefix":{
+          "shape":"String",
+          "locationName":"s3Prefix"
+        }
+      }
+    },
+    "ExportTaskS3LocationRequest":{
+      "type":"structure",
+      "required":["S3Bucket"],
+      "members":{
+        "S3Bucket":{"shape":"String"},
+        "S3Prefix":{"shape":"String"}
       }
     },
     "ExportTaskState":{
