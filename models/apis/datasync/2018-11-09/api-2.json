@@ -79,6 +79,19 @@
         {"shape":"InternalException"}
       ]
     },
+    "CreateLocationSmb":{
+      "name":"CreateLocationSmb",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateLocationSmbRequest"},
+      "output":{"shape":"CreateLocationSmbResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "CreateTask":{
       "name":"CreateTask",
       "http":{
@@ -178,6 +191,19 @@
       },
       "input":{"shape":"DescribeLocationS3Request"},
       "output":{"shape":"DescribeLocationS3Response"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "DescribeLocationSmb":{
+      "name":"DescribeLocationSmb",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeLocationSmbRequest"},
+      "output":{"shape":"DescribeLocationSmbResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InternalException"}
@@ -476,6 +502,32 @@
         "LocationArn":{"shape":"LocationArn"}
       }
     },
+    "CreateLocationSmbRequest":{
+      "type":"structure",
+      "required":[
+        "Subdirectory",
+        "ServerHostname",
+        "User",
+        "Password",
+        "AgentArns"
+      ],
+      "members":{
+        "Subdirectory":{"shape":"NonEmptySubdirectory"},
+        "ServerHostname":{"shape":"ServerHostname"},
+        "User":{"shape":"SmbUser"},
+        "Domain":{"shape":"SmbDomain"},
+        "Password":{"shape":"SmbPassword"},
+        "AgentArns":{"shape":"AgentArnList"},
+        "MountOptions":{"shape":"SmbMountOptions"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateLocationSmbResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
     "CreateTaskRequest":{
       "type":"structure",
       "required":[
@@ -599,6 +651,25 @@
         "LocationArn":{"shape":"LocationArn"},
         "LocationUri":{"shape":"LocationUri"},
         "S3Config":{"shape":"S3Config"},
+        "CreationTime":{"shape":"Time"}
+      }
+    },
+    "DescribeLocationSmbRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
+    "DescribeLocationSmbResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "LocationUri":{"shape":"LocationUri"},
+        "AgentArns":{"shape":"AgentArnList"},
+        "User":{"shape":"SmbUser"},
+        "Domain":{"shape":"SmbDomain"},
+        "MountOptions":{"shape":"SmbMountOptions"},
         "CreationTime":{"shape":"Time"}
       }
     },
@@ -851,7 +922,8 @@
     },
     "LocationUri":{
       "type":"string",
-      "pattern":"(efs|nfs|s3)://[a-zA-Z0-9.\\-]+"
+      "max":4355,
+      "pattern":"^(efs|nfs|s3|smb)://[a-zA-Z0-9.\\-]+$"
     },
     "LogGroupArn":{
       "type":"string",
@@ -988,6 +1060,35 @@
       "type":"string",
       "max":255,
       "pattern":"^(([a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9\\-]*[A-Za-z0-9])$"
+    },
+    "SmbDomain":{
+      "type":"string",
+      "max":253,
+      "pattern":"^([A-Za-z0-9]+[A-Za-z0-9-.]*)*[A-Za-z0-9-]*[A-Za-z0-9]$"
+    },
+    "SmbMountOptions":{
+      "type":"structure",
+      "members":{
+        "Version":{"shape":"SmbVersion"}
+      }
+    },
+    "SmbPassword":{
+      "type":"string",
+      "max":104,
+      "pattern":"^.{0,104}$"
+    },
+    "SmbUser":{
+      "type":"string",
+      "max":104,
+      "pattern":"^[^\\\\x5B\\\\x5D\\\\/:;|=,+*?]{1,104}$"
+    },
+    "SmbVersion":{
+      "type":"string",
+      "enum":[
+        "AUTOMATIC",
+        "SMB2",
+        "SMB3"
+      ]
     },
     "SourceNetworkInterfaceArns":{
       "type":"list",

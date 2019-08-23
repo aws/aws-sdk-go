@@ -247,6 +247,12 @@ type OutputService1TestShapeOutputService1TestCaseOperation1Input struct {
 type OutputService1TestShapeOutputService1TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 
+	// Blob is automatically base64 encoded/decoded by the SDK.
+	Blob []byte `type:"blob"`
+
+	// BlobHeader is automatically base64 encoded/decoded by the SDK.
+	BlobHeader []byte `location:"header" type:"blob"`
+
 	Char *string `type:"character"`
 
 	Double *float64 `type:"double"`
@@ -268,6 +274,18 @@ type OutputService1TestShapeOutputService1TestCaseOperation1Output struct {
 	Timestamp *time.Time `type:"timestamp"`
 
 	TrueBool *bool `type:"boolean"`
+}
+
+// SetBlob sets the Blob field's value.
+func (s *OutputService1TestShapeOutputService1TestCaseOperation1Output) SetBlob(v []byte) *OutputService1TestShapeOutputService1TestCaseOperation1Output {
+	s.Blob = v
+	return s
+}
+
+// SetBlobHeader sets the BlobHeader field's value.
+func (s *OutputService1TestShapeOutputService1TestCaseOperation1Output) SetBlobHeader(v []byte) *OutputService1TestShapeOutputService1TestCaseOperation1Output {
+	s.BlobHeader = v
+	return s
 }
 
 // SetChar sets the Char field's value.
@@ -343,6 +361,12 @@ type OutputService1TestShapeOutputService1TestCaseOperation2Input struct {
 type OutputService1TestShapeOutputService1TestCaseOperation2Output struct {
 	_ struct{} `type:"structure"`
 
+	// Blob is automatically base64 encoded/decoded by the SDK.
+	Blob []byte `type:"blob"`
+
+	// BlobHeader is automatically base64 encoded/decoded by the SDK.
+	BlobHeader []byte `location:"header" type:"blob"`
+
 	Char *string `type:"character"`
 
 	Double *float64 `type:"double"`
@@ -364,6 +388,18 @@ type OutputService1TestShapeOutputService1TestCaseOperation2Output struct {
 	Timestamp *time.Time `type:"timestamp"`
 
 	TrueBool *bool `type:"boolean"`
+}
+
+// SetBlob sets the Blob field's value.
+func (s *OutputService1TestShapeOutputService1TestCaseOperation2Output) SetBlob(v []byte) *OutputService1TestShapeOutputService1TestCaseOperation2Output {
+	s.Blob = v
+	return s
+}
+
+// SetBlobHeader sets the BlobHeader field's value.
+func (s *OutputService1TestShapeOutputService1TestCaseOperation2Output) SetBlobHeader(v []byte) *OutputService1TestShapeOutputService1TestCaseOperation2Output {
+	s.BlobHeader = v
+	return s
 }
 
 // SetChar sets the Char field's value.
@@ -2798,11 +2834,12 @@ const (
 func TestOutputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	svc := NewOutputService1ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 
-	buf := bytes.NewReader([]byte("<OperationNameResponse><Str>myname</Str><FooNum>123</FooNum><FalseBool>false</FalseBool><TrueBool>true</TrueBool><Float>1.2</Float><Double>1.3</Double><Long>200</Long><Char>a</Char><Timestamp>2015-01-25T08:00:00Z</Timestamp></OperationNameResponse>"))
+	buf := bytes.NewReader([]byte("<OperationNameResponse><Str>myname</Str><FooNum>123</FooNum><FalseBool>false</FalseBool><TrueBool>true</TrueBool><Float>1.2</Float><Double>1.3</Double><Long>200</Long><Char>a</Char><Timestamp>2015-01-25T08:00:00Z</Timestamp><Blob>aGVsbG8=</Blob></OperationNameResponse>"))
 	req, out := svc.OutputService1TestCaseOperation1Request(nil)
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers
+	req.HTTPResponse.Header.Set("BlobHeader", "aGVsbG8=")
 	req.HTTPResponse.Header.Set("ImaHeader", "test")
 	req.HTTPResponse.Header.Set("X-Foo", "abc")
 
@@ -2816,6 +2853,12 @@ func TestOutputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	// assert response
 	if out == nil {
 		t.Errorf("expect not to be nil")
+	}
+	if e, a := "hello", string(out.Blob); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "hello", string(out.BlobHeader); e != a {
+		t.Errorf("expect %v, got %v", e, a)
 	}
 	if e, a := "a", *out.Char; e != a {
 		t.Errorf("expect %v, got %v", e, a)
