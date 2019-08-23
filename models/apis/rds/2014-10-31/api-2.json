@@ -2385,6 +2385,7 @@
         "ScalingConfiguration":{"shape":"ScalingConfiguration"},
         "DeletionProtection":{"shape":"BooleanOptional"},
         "GlobalClusterIdentifier":{"shape":"String"},
+        "EnableHttpEndpoint":{"shape":"BooleanOptional"},
         "CopyTagsToSnapshot":{"shape":"BooleanOptional"}
       }
     },

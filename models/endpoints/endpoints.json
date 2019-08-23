@@ -1994,6 +1994,7 @@
           "ap-southeast-1" : { },
           "ap-southeast-2" : { },
           "eu-central-1" : { },
+          "eu-north-1" : { },
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
@@ -4339,6 +4340,12 @@
       },
       "neptune" : {
         "endpoints" : {
+          "us-gov-east-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-east-1"
+            },
+            "hostname" : "rds.us-gov-east-1.amazonaws.com"
+          },
           "us-gov-west-1" : {
             "credentialScope" : {
               "region" : "us-gov-west-1"

@@ -1,9 +1,14 @@
 ### SDK Features
 
 ### SDK Enhancements
+* `aws/session`: Add support for CSM options from shared config file ([#2768](https://github.com/aws/aws-sdk-go/pull/2768))
+  * Adds support for enabling and controlling the Client Side Metrics (CSM) reporting from the shared configuration files in addition to the environment variables.
 
 ### SDK Bugs
-* `aws/request`: Fix IsErrorRetryable returning true for nil error ([#2774](https://github.com/aws/aws-sdk-go/pull/2774))
-  * Fixes [#2773](https://github.com/aws/aws-sdk-go/pull/2773) where the IsErrorRetryable helper was incorrectly returning true for nil errors passed in. IsErrorRetryable will now correctly return false when the passed in error is nil like documented.
 * `service/s3/s3crypto`: Fix tmp file not being deleted after upload ([#2776](https://github.com/aws/aws-sdk-go/pull/2776))
   * Fixes the s3crypto's getWriterStore utiliy's send handler not cleaning up the temporary file after Send completes.
+* `private/protocol`: Add protocol tests for blob types and headers ([#2770](https://github.com/aws/aws-sdk-go/pull/2770))
+  * Adds RESTJSON and RESTXML protocol tests for blob headers.
+  * Related to [#750](https://github.com/aws/aws-sdk-go/issues/750)
+* `service/dynamodb/expression`: Improved reporting of bad key conditions ([#2775](https://github.com/aws/aws-sdk-go/pull/2775))
+  * Improved error reporting when invalid key conditions are constructed using KeyConditionBuilder
