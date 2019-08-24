@@ -3,7 +3,6 @@
 package session
 
 import (
-	"fmt"
 	"os"
 	"reflect"
 	"strconv"
@@ -87,7 +86,7 @@ func TestLoadEnvConfig_Creds(t *testing.T) {
 
 			cfg, err := loadEnvConfig()
 			if err != nil {
-				fmt.Errorf("failed to load env config, %v", err)
+				t.Errorf("failed to load env config, %v", err)
 			}
 			if !reflect.DeepEqual(c.Val, cfg.Creds) {
 				t.Errorf("expect credentials to match.\n%s",
@@ -287,12 +286,12 @@ func TestLoadEnvConfig(t *testing.T) {
 			if c.UseSharedConfigCall {
 				cfg, err = loadSharedEnvConfig()
 				if err != nil {
-					fmt.Errorf("failed to load shared env config, %v", err)
+					t.Errorf("failed to load shared env config, %v", err)
 				}
 			} else {
 				cfg, err = loadEnvConfig()
 				if err != nil {
-					fmt.Errorf("failed to load env config, %v", err)
+					t.Errorf("failed to load env config, %v", err)
 				}
 			}
 

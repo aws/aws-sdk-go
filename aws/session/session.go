@@ -73,10 +73,7 @@ type Session struct {
 // func is called instead of waiting to receive an error until a request is made.
 func New(cfgs ...*aws.Config) *Session {
 	// load initial config from environment
-	envCfg, err := loadEnvConfig()
-	if err != nil {
-		fmt.Errorf("failed to load env config, %v", err)
-	}
+	envCfg, envErr := loadEnvConfig()
 
 	if envCfg.EnableSharedConfig {
 		var cfg aws.Config
@@ -96,17 +93,17 @@ func New(cfgs ...*aws.Config) *Session {
 			// Session creation failed, need to report the error and prevent
 			// any requests from succeeding.
 			s = &Session{Config: defaults.Config()}
-			s.Config.MergeIn(cfgs...)
-			s.Config.Logger.Log("ERROR:", msg, "Error:", err)
-			s.Handlers.Validate.PushBack(func(r *request.Request) {
-				r.Error = err
-			})
+			s.errorLogHelper(msg, err, cfgs)
 		}
 
 		return s
 	}
 
 	s := deprecatedNewSession(cfgs...)
+	if envErr != nil {
+		msg := "failed to load env config"
+		s.errorLogHelper(msg, envErr, cfgs)
+	}
 
 	if csmCfg, err := loadCSMConfig(envCfg, []string{}); err != nil {
 		if l := s.Config.Logger; l != nil {
@@ -115,11 +112,8 @@ func New(cfgs ...*aws.Config) *Session {
 	} else if csmCfg.Enabled {
 		err := enableCSM(&s.Handlers, csmCfg, s.Config.Logger)
 		if err != nil {
-			err = fmt.Errorf("failed to enable CSM, %v", err)
-			s.Config.Logger.Log("ERROR:", err.Error())
-			s.Handlers.Validate.PushBack(func(r *request.Request) {
-				r.Error = err
-			})
+			msg := "failed to enable CSM"
+			s.errorLogHelper(msg, err, cfgs)
 		}
 	}
 
@@ -286,12 +280,12 @@ func NewSessionWithOptions(opts Options) (*Session, error) {
 	if opts.SharedConfigState == SharedConfigEnable {
 		envCfg, err = loadSharedEnvConfig()
 		if err != nil {
-			fmt.Errorf("failed to load environment from shared config, %v", err)
+			return nil, fmt.Errorf("failed to load environment from shared config, %v", err)
 		}
 	} else {
 		envCfg, err = loadEnvConfig()
 		if err != nil {
-			fmt.Errorf("failed to load environment from env config, %v", err)
+			return nil, fmt.Errorf("failed to load environment from env config, %v", err)
 		}
 	}
 
@@ -689,4 +683,15 @@ func (s *Session) ClientConfigNoResolveEndpoint(cfgs ...*aws.Config) client.Conf
 		SigningNameDerived: resolved.SigningNameDerived,
 		SigningName:        resolved.SigningName,
 	}
+}
+
+// errorLogHelper function enables error handling for session
+func (s *Session) errorLogHelper(msg string, err error, cfgs []*aws.Config) {
+	// Session creation failed, need to report the error and prevent
+	// any requests from succeeding.
+	s.Config.MergeIn(cfgs...)
+	s.Config.Logger.Log("ERROR:", msg, "Error:", err)
+	s.Handlers.Validate.PushBack(func(r *request.Request) {
+		r.Error = err
+	})
 }
