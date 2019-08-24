@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"reflect"
 	"regexp"
-	"strings"
 	"testing"
 )
 
@@ -477,102 +476,10 @@ func TestResolveEndpoint_AwsGlobal(t *testing.T) {
 	}
 }
 func Test_Regional_Flag(t *testing.T) {
-	const v3Doc = `
-{
-  "version": 3,
-  "partitions": [
-    {
-      "defaults": {
-        "hostname": "{service}.{region}.{dnsSuffix}",
-        "protocols": [
-          "https"
-        ],
-        "signatureVersions": [
-          "v4"
-        ]
-      },
-      "dnsSuffix": "amazonaws.com",
-      "partition": "aws",
-      "partitionName": "AWS Standard",
-      "regionRegex": "^(us|eu|ap|sa|ca)\\-\\w+\\-\\d+$",
-      "regions": {
-        "ap-northeast-1": {
-          "description": "Asia Pacific (Tokyo)"
-        }
-      },
-      "services": {
-        "acm": {
-          "endpoints": {
-             "ap-northeast-1": {}
-    	  }
-        },
-        "s3": {
-          "endpoints": {
-             "ap-northeast-1": {}
-    	  }
-        },
-		 "sts" : {
-			"defaults" : { },
-			"endpoints" : {
-			  "ap-east-1" : { },
-			  "ap-northeast-1" : { },
-			  "ap-northeast-2" : { },
-			  "ap-south-1" : { },
-			  "ap-southeast-1" : { },
-			  "ap-southeast-2" : { },
-			  "aws-global" : { 
-				"credentialScope" : {
-				  "region" : "us-east-1"
-				},
-				"hostname" : "sts.amazonaws.com"
-			  },
-			  "ca-central-1" : { },
-			  "eu-central-1" : { },
-			  "eu-north-1" : { },
-			  "eu-west-1" : { },
-			  "eu-west-2" : { },
-			  "eu-west-3" : { },
-			  "sa-east-1" : { },
-			  "us-east-1" : { },
-			  "us-east-1-fips" : {
-				"credentialScope" : {
-				  "region" : "us-east-1"
-				},
-				"hostname" : "sts-fips.us-east-1.amazonaws.com"
-			  },
-			  "us-east-2" : { },
-			  "us-east-2-fips" : {
-				"credentialScope" : {
-				  "region" : "us-east-2"
-				},
-				"hostname" : "sts-fips.us-east-2.amazonaws.com"
-			  },
-			  "us-west-1" : { },
-			  "us-west-1-fips" : {
-				"credentialScope" : {
-				  "region" : "us-west-1"
-				},
-				"hostname" : "sts-fips.us-west-1.amazonaws.com"
-			  },
-			  "us-west-2" : { },
-			  "us-west-2-fips" : {
-				"credentialScope" : {
-				  "region" : "us-west-2"
-				},
-				"hostname" : "sts-fips.us-west-2.amazonaws.com"
-			  }
-			},
-			"partitionEndpoint" : "aws-global"
-		  }
-      }
-    }
-  ]
-}`
 
-	resolver, err := DecodeModel(strings.NewReader(v3Doc))
-	if err != nil {
-		t.Fatalf("expected no error, got %v", err)
-	}
+	// AwsPartition resolver for STS regional endpoints in AWS Partition
+	resolver := AwsPartition()
+
 	cases := map[string]struct {
 		service, region                                     string
 		regional                                            bool
@@ -942,6 +849,7 @@ func Test_Regional_Flag(t *testing.T) {
 
 func Test_Regional_Flag_CN(t *testing.T) {
 
+	// AwsCnPartition resolver for STS regional endpoints in AWS-CN Partition
 	resolver := AwsCnPartition()
 
 	cases := map[string]struct {
