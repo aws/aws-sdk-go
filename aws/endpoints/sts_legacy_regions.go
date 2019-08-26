@@ -1,6 +1,6 @@
 package endpoints
 
-var stsLegacyGlocalRegions = map[string]struct{}{
+var stsLegacyGlobalRegions = map[string]struct{}{
 	"ap-northeast-1": {},
 	"ap-south-1":     {},
 	"ap-southeast-1": {},
