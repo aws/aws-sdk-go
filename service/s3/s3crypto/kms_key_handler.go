@@ -111,8 +111,8 @@ func (kp *kmsKeyHandler) DecryptKey(ctx aws.Context, key []byte) ([]byte, error)
 
 // GenerateCipherData makes a call to KMS to generate a data key, Upon making
 // the call, it also sets the encrypted key.
-func (kp *kmsKeyHandler) GenerateCipherData(keySize, ivSize int) (CipherData, error) {
-	out, err := kp.kms.GenerateDataKey(&kms.GenerateDataKeyInput{
+func (kp *kmsKeyHandler) GenerateCipherData(ctx aws.Context, keySize, ivSize int) (CipherData, error) {
+	out, err := kp.kms.GenerateDataKeyWithContext(ctx, &kms.GenerateDataKeyInput{
 		EncryptionContext: kp.CipherData.MaterialDescription,
 		KeyId:             kp.cmkID,
 		KeySpec:           aws.String("AES_256"),

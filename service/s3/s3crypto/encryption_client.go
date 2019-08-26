@@ -1,6 +1,7 @@
 package s3crypto
 
 import (
+	"context"
 	"encoding/hex"
 	"io"
 
@@ -68,7 +69,7 @@ func NewEncryptionClient(prov client.ConfigProvider, builder ContentCipherBuilde
 //	  Body: strings.NewReader("test data"),
 //	})
 //	err := req.Send()
-func (c *EncryptionClient) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *s3.PutObjectOutput) {
+func (c *EncryptionClient) PutObjectRequest(ctx aws.Context, input *s3.PutObjectInput) (*request.Request, *s3.PutObjectOutput) {
 	req, out := c.S3Client.PutObjectRequest(input)
 
 	// Get Size of file
@@ -84,7 +85,7 @@ func (c *EncryptionClient) PutObjectRequest(input *s3.PutObjectInput) (*request.
 		return req, out
 	}
 
-	encryptor, err := c.ContentCipherBuilder.ContentCipher()
+	encryptor, err := c.ContentCipherBuilder.ContentCipher(ctx)
 	req.Handlers.Build.PushFront(func(r *request.Request) {
 		if err != nil {
 			r.Error = err
@@ -127,7 +128,7 @@ func (c *EncryptionClient) PutObjectRequest(input *s3.PutObjectInput) (*request.
 
 // PutObject is a wrapper for PutObjectRequest
 func (c *EncryptionClient) PutObject(input *s3.PutObjectInput) (*s3.PutObjectOutput, error) {
-	req, out := c.PutObjectRequest(input)
+	req, out := c.PutObjectRequest(context.Background(), input)
 	return out, req.Send()
 }
 
@@ -139,7 +140,7 @@ func (c *EncryptionClient) PutObject(input *s3.PutObjectInput) (*s3.PutObjectOut
 // cause a panic. Use the Context to add deadlining, timeouts, etc. In the future
 // this may create sub-contexts for individual underlying requests.
 func (c *EncryptionClient) PutObjectWithContext(ctx aws.Context, input *s3.PutObjectInput, opts ...request.Option) (*s3.PutObjectOutput, error) {
-	req, out := c.PutObjectRequest(input)
+	req, out := c.PutObjectRequest(ctx, input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()

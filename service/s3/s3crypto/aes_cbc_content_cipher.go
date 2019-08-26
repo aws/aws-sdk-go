@@ -3,6 +3,8 @@ package s3crypto
 import (
 	"io"
 	"strings"
+
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 const (
@@ -21,8 +23,8 @@ func AESCBCContentCipherBuilder(generator CipherDataGenerator, padder Padder) Co
 	return cbcContentCipherBuilder{generator: generator, padder: padder}
 }
 
-func (builder cbcContentCipherBuilder) ContentCipher() (ContentCipher, error) {
-	cd, err := builder.generator.GenerateCipherData(cbcKeySize, cbcNonceSize)
+func (builder cbcContentCipherBuilder) ContentCipher(ctx aws.Context) (ContentCipher, error) {
+	cd, err := builder.generator.GenerateCipherData(ctx, cbcKeySize, cbcNonceSize)
 	if err != nil {
 		return nil, err
 	}
