@@ -14,7 +14,7 @@ type defaultExamplesBuilder struct {
 	ShapeValueBuilder
 }
 
-func NewExamplesBuilder() defaultExamplesBuilder{
+func NewExamplesBuilder() defaultExamplesBuilder {
 	b := defaultExamplesBuilder{
 		ShapeValueBuilder: NewShapeValueBuilder(),
 	}

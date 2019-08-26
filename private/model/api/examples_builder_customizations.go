@@ -6,7 +6,7 @@ type wafregionalExamplesBuilder struct {
 	defaultExamplesBuilder
 }
 
-func NewWAFregionalExamplesBuilder() wafregionalExamplesBuilder{
+func NewWAFregionalExamplesBuilder() wafregionalExamplesBuilder {
 	return wafregionalExamplesBuilder{defaultExamplesBuilder: NewExamplesBuilder()}
 }
 func (builder wafregionalExamplesBuilder) Imports(a *API) string {

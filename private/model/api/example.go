@@ -11,7 +11,6 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/util"
 )
 
@@ -252,7 +251,7 @@ import (
 var _ time.Duration
 var _ strings.Reader
 var _ aws.Config
-var _ protocol.ParseTime
+var _ = protocol.ParseTime
 
 `))
 
@@ -291,36 +290,6 @@ func (ex *Example) HasVisitedError(errRef *ShapeRef) bool {
 	_, ok := ex.VisitedErrors[errName]
 	ex.VisitedErrors[errName] = struct{}{}
 	return ok
-}
-
-// Returns the string of an inline function which returns time
-func InlineParseModeledTime(format, v string) string {
-	const formatTimeTmpl = `func() *time.Time{
-        v, err := protocol.ParseTime("%s", "%s")
-        if err != nil {
-            panic(err)
-        }
-        return &v
-    }()`
-
-	return fmt.Sprintf(formatTimeTmpl, format, v)
-}
-
-func parseExampleTimeString(ref *ShapeRef, memName, v string) string {
-	if ref.Location == "header" {
-		return fmt.Sprintf("%s: %s,\n", memName, InlineParseModeledTime(protocol.RFC822TimeFormatName, v))
-	} else {
-		switch ref.API.Metadata.Protocol {
-		case "json", "rest-json", "rest-xml", "ec2", "query":
-			return fmt.Sprintf("%s: %s,\n", memName, InlineParseModeledTime(protocol.ISO8601TimeFormatName, v))
-		default:
-			panic("Unsupported time type: " + ref.API.Metadata.Protocol)
-		}
-	}
-}
-
-func ParseUnixTimeString(ref *ShapeRef, memName, v string) string {
-	return fmt.Sprintf("%s: %s,\n", memName, InlineParseModeledTime(protocol.UnixTimeFormatName, v))
 }
 
 func (ex *Example) MethodName() string {
