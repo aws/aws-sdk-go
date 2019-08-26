@@ -2,7 +2,6 @@ package s3crypto_test
 
 import (
 	"bytes"
-	"context"
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
@@ -46,7 +45,7 @@ func TestGetObjectGCM(t *testing.T) {
 		Key:    aws.String("test"),
 		Bucket: aws.String("test"),
 	}
-	req, out := c.GetObjectRequest(context.Background(), input)
+	req, out := c.GetObjectRequest(&awstesting.FakeContext{}, input)
 	req.Handlers.Send.Clear()
 	req.Handlers.Send.PushBack(func(r *request.Request) {
 		iv, err := hex.DecodeString("0d18e06c7c725ac9e362e1ce")
@@ -117,7 +116,7 @@ func TestGetObjectCBC(t *testing.T) {
 		Key:    aws.String("test"),
 		Bucket: aws.String("test"),
 	}
-	req, out := c.GetObjectRequest(context.Background(), input)
+	req, out := c.GetObjectRequest(&awstesting.FakeContext{}, input)
 	req.Handlers.Send.Clear()
 	req.Handlers.Send.PushBack(func(r *request.Request) {
 		iv, err := hex.DecodeString("9dea7621945988f96491083849b068df")
@@ -186,7 +185,7 @@ func TestGetObjectCBC2(t *testing.T) {
 		Key:    aws.String("test"),
 		Bucket: aws.String("test"),
 	}
-	req, out := c.GetObjectRequest(context.Background(), input)
+	req, out := c.GetObjectRequest(&awstesting.FakeContext{}, input)
 	req.Handlers.Send.Clear()
 	req.Handlers.Send.PushBack(func(r *request.Request) {
 		b, err := hex.DecodeString("fd0c71ecb7ed16a9bf42ea5f75501d416df608f190890c3b4d8897f24744cd7f9ea4a0b212e60634302450e1c5378f047ff753ccefe365d411c36339bf22e301fae4c3a6226719a4b93dc74c1af79d0296659b5d56c0892315f2c7cc30190220db1eaafae3920d6d9c65d0aa366499afc17af493454e141c6e0fbdeb6a990cb4")

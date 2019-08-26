@@ -2,7 +2,6 @@ package s3crypto_test
 
 import (
 	"bytes"
-	"context"
 	"errors"
 	"fmt"
 	"io/ioutil"
@@ -62,7 +61,7 @@ func TestPutObject(t *testing.T) {
 		Bucket: aws.String("test"),
 		Body:   bytes.NewReader(data),
 	}
-	req, _ := c.PutObjectRequest(context.Background(), input)
+	req, _ := c.PutObjectRequest(&awstesting.FakeContext{}, input)
 	req.Handlers.Send.Clear()
 	req.Handlers.Send.PushBack(func(r *request.Request) {
 		r.Error = errors.New("stop")

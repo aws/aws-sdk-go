@@ -2,7 +2,6 @@ package s3crypto
 
 import (
 	"bytes"
-	"context"
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
@@ -12,6 +11,7 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/service/kms"
 )
@@ -63,7 +63,7 @@ func TestKMSGenerateCipherData(t *testing.T) {
 	keySize := 32
 	ivSize := 16
 
-	cd, err := handler.GenerateCipherData(context.Background(), keySize, ivSize)
+	cd, err := handler.GenerateCipherData(&awstesting.FakeContext{}, keySize, ivSize)
 	if err != nil {
 		t.Errorf("expected no error, but received %v", err)
 	}
@@ -94,7 +94,7 @@ func TestKMSDecrypt(t *testing.T) {
 		t.Errorf("expected no error, but received %v", err)
 	}
 
-	plaintextKey, err := handler.DecryptKey(context.Background(), []byte{1, 2, 3, 4})
+	plaintextKey, err := handler.DecryptKey(&awstesting.FakeContext{}, []byte{1, 2, 3, 4})
 	if err != nil {
 		t.Errorf("expected no error, but received %v", err)
 	}
