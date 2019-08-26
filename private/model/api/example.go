@@ -11,6 +11,7 @@ import (
 	"strings"
 	"text/template"
 
+	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/util"
 )
 
@@ -251,7 +252,7 @@ import (
 var _ time.Duration
 var _ strings.Reader
 var _ aws.Config
-var _, _ = protocol.ParseTime("unixTimestamp", "2016-09-27T15:50Z")
+var _ protocol.ParseTime
 
 `))
 
@@ -293,22 +294,25 @@ func (ex *Example) HasVisitedError(errRef *ShapeRef) bool {
 }
 
 // Returns the string of an inline function which returns time
-func TimeStringFunc(memName,v string) string{
-	return	"func() *time.Time{" + fmt.Sprintln() + fmt.Sprintf(`v, err := protocol.ParseTime("unixTimestamp","%s")`,v) + `
-		if err != nil {
-			panic(err)
-		}
-		return &v
-	}()`
+func InlineParseModeledTime(format, v string) string {
+	const formatTimeTmpl = `func() *time.Time{
+        v, err := protocol.ParseTime("%s", "%s")
+        if err != nil {
+            panic(err)
+        }
+        return &v
+    }()`
+
+	return fmt.Sprintf(formatTimeTmpl, format, v)
 }
 
 func parseTimeString(ref *ShapeRef, memName, v string) string {
 	if ref.Location == "header" {
-		return fmt.Sprintf("%s: %s,\n",memName,TimeStringFunc(memName,v))
+		return fmt.Sprintf("%s: %s,\n", memName, InlineParseModeledTime(protocol.RFC822TimeFormat, v))
 	} else {
 		switch ref.API.Metadata.Protocol {
 		case "json", "rest-json", "rest-xml", "ec2", "query":
-			return fmt.Sprintf("%s: %s,\n",memName,TimeStringFunc(memName,v))
+			return fmt.Sprintf("%s: %s,\n", memName, InlineParseModeledTime(protocol.ISO8601TimeFormatName, v))
 		default:
 			panic("Unsupported time type: " + ref.API.Metadata.Protocol)
 		}

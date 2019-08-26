@@ -14,9 +14,9 @@ import (
 )
 
 // ShapeValueBuilder provides the logic to build the nested values for a shape.
-// IsBase64 is true if the blob field in shapeRef.Shape.Type is base64 encoded
-type ShapeValueBuilder struct{
-	IsBase64 bool
+// Base64BlobValues is true if the blob field in shapeRef.Shape.Type is base64 encoded
+type ShapeValueBuilder struct {
+	Base64BlobValues bool
 }
 
 // BuildShape will recursively build the referenced shape based on the json
@@ -141,10 +141,10 @@ func (b ShapeValueBuilder) BuildScalar(name, memName string, ref *ShapeRef, shap
 
 		dataType := ref.Shape.Type
 
-		if dataType=="timestamp" {
+		if dataType == "timestamp" {
 			return parseTimeString(ref, memName, fmt.Sprintf("%f", v))
 		}
-		if dataType == "integer" || dataType == "int64" || dataType == "long"{
+		if dataType == "integer" || dataType == "int64" || dataType == "long" {
 			return convertToCorrectType(memName, ref.Shape.Type, fmt.Sprintf("%d", int(shape.(float64))))
 		}
 		return convertToCorrectType(memName, ref.Shape.Type, fmt.Sprintf("%f", v))
@@ -155,13 +155,13 @@ func (b ShapeValueBuilder) BuildScalar(name, memName string, ref *ShapeRef, shap
 			return parseTimeString(ref, memName, fmt.Sprintf("%s", v))
 
 		case "jsonvalue":
-			return fmt.Sprintf("%s: %#v,\n",memName,parseJsonString(v))
+			return fmt.Sprintf("%s: %#v,\n", memName, parseJsonString(v))
 
 		case "blob":
 			if (ref.Streaming || ref.Shape.Streaming) && isPayload {
 				return fmt.Sprintf("%s: aws.ReadSeekCloser(strings.NewReader(%q)),\n", memName, v)
 			}
-			if b.IsBase64 {
+			if b.Base64BlobValues {
 				decodedBlob, err := base64.StdEncoding.DecodeString(v)
 				if err != nil {
 					panic(fmt.Errorf("Failed to decode string: %v", err))
@@ -187,7 +187,7 @@ func (b ShapeValueBuilder) BuildComplex(name, memName string, ref *ShapeRef, par
 				%s
 			},
 			`, memName, b.GoType(ref, true), b.BuildShape(ref, v, true))
-		} else{
+		} else {
 			return fmt.Sprintf(`%s: &%s{
 				%s
 			},
@@ -199,7 +199,7 @@ func (b ShapeValueBuilder) BuildComplex(name, memName string, ref *ShapeRef, par
 				%s
 			},
 			`, name, b.GoType(ref, false), b.BuildShape(ref, v, true))
-		} else{
+		} else {
 			return fmt.Sprintf(`%s: &%s{
 				%s
 			},
@@ -231,7 +231,7 @@ func (b ShapeValueBuilder) GoType(ref *ShapeRef, elem bool) string {
 }
 
 // Parses a json string and returns aws.JSONValue
-func parseJsonString(input string) aws.JSONValue{
+func parseJsonString(input string) aws.JSONValue {
 	var v aws.JSONValue
 	if err := json.Unmarshal([]byte(input), &v); err != nil {
 		panic(fmt.Sprintf("unable to unmarshal JSONValue, %v", err))
