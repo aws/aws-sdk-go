@@ -85,7 +85,7 @@ func NewDecryptionClient(prov client.ConfigProvider, options ...func(*Decryption
 //	  Bucket: aws.String("testBucket"),
 //	})
 //	err := req.Send()
-func (c *DecryptionClient) GetObjectRequest(ctx context.Context, input *s3.GetObjectInput) (*request.Request, *s3.GetObjectOutput) {
+func (c *DecryptionClient) GetObjectRequest(ctx aws.Context, input *s3.GetObjectInput) (*request.Request, *s3.GetObjectOutput) {
 	req, out := c.S3Client.GetObjectRequest(input)
 	req.Handlers.Unmarshal.PushBack(func(r *request.Request) {
 		env, err := c.LoadStrategy.Load(r)

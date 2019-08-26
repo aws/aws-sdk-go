@@ -1,8 +1,9 @@
 package s3crypto
 
 import (
-	"context"
 	"crypto/rand"
+
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 // CipherDataGenerator handles generating proper key and IVs of proper size for the
@@ -14,7 +15,7 @@ type CipherDataGenerator interface {
 
 // CipherDataDecrypter is a handler to decrypt keys from the envelope.
 type CipherDataDecrypter interface {
-	DecryptKey(context.Context, []byte) ([]byte, error)
+	DecryptKey(aws.Context, []byte) ([]byte, error)
 }
 
 func generateBytes(n int) []byte {

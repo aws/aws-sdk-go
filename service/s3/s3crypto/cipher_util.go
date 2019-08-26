@@ -1,15 +1,15 @@
 package s3crypto
 
 import (
-	"context"
 	"encoding/base64"
 	"strconv"
 	"strings"
 
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
-func (client *DecryptionClient) contentCipherFromEnvelope(ctx context.Context, env Envelope) (ContentCipher, error) {
+func (client *DecryptionClient) contentCipherFromEnvelope(ctx aws.Context, env Envelope) (ContentCipher, error) {
 	wrap, err := client.wrapFromEnvelope(env)
 	if err != nil {
 		return nil, err
@@ -37,7 +37,7 @@ const AESGCMNoPadding = "AES/GCM/NoPadding"
 // AESCBC is the string constant that signifies the AES CBC algorithm cipher.
 const AESCBC = "AES/CBC"
 
-func (client *DecryptionClient) cekFromEnvelope(ctx context.Context, env Envelope, decrypter CipherDataDecrypter) (ContentCipher, error) {
+func (client *DecryptionClient) cekFromEnvelope(ctx aws.Context, env Envelope, decrypter CipherDataDecrypter) (ContentCipher, error) {
 	f, ok := client.CEKRegistry[env.CEKAlg]
 	if !ok || f == nil {
 		return nil, awserr.New(
