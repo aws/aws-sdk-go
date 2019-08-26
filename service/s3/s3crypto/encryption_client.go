@@ -1,10 +1,10 @@
 package s3crypto
 
 import (
-	"context"
 	"encoding/hex"
 	"io"
 
+	"golang.org/x/net/context"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"

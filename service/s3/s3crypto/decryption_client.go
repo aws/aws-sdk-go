@@ -1,7 +1,6 @@
 package s3crypto
 
 import (
-	"context"
 	"strings"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -10,6 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/kms"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3iface"
+	"golang.org/x/net/context"
 )
 
 // WrapEntry is builder that return a proper key decrypter and error
