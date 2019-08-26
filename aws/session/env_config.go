@@ -280,7 +280,7 @@ func envConfigLoad(enableSharedConfig bool) (envConfig, error) {
 		if v := os.Getenv(k); len(v) != 0 {
 			STSRegionalEndpoint, err := endpoints.GetSTSRegionalEndpoint(v)
 			if err != nil {
-				return cfg, fmt.Errorf("failed to load from env config, %v", err)
+				return cfg, fmt.Errorf("failed to load, %v from env config, %v", k, err)
 			}
 			cfg.STSRegionalEndpoint = STSRegionalEndpoint
 		}

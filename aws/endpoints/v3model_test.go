@@ -475,8 +475,8 @@ func TestResolveEndpoint_AwsGlobal(t *testing.T) {
 		t.Errorf("expect the signing name to be derived")
 	}
 }
-func Test_Regional_Flag(t *testing.T) {
 
+func TestEndpointFor_RegionalFlag(t *testing.T) {
 	// AwsPartition resolver for STS regional endpoints in AWS Partition
 	resolver := AwsPartition()
 
@@ -847,7 +847,7 @@ func Test_Regional_Flag(t *testing.T) {
 	}
 }
 
-func Test_Regional_Flag_CN(t *testing.T) {
+func TestEndpointFor_RegionalFlagCN(t *testing.T) {
 
 	// AwsCnPartition resolver for STS regional endpoints in AWS-CN Partition
 	resolver := AwsCnPartition()

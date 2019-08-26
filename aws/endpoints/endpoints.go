@@ -119,6 +119,9 @@ func ResolveUnknownServiceOption(o *Options) {
 
 // STSRegionalEndpointOption sets the STSRegionalEndpoint option. Can be used
 // as a functional option when resolving endpoints.
+//
+// STSRegionalEndpointOption enables the STS endpoint resolver behavior to resolve
+// STS endpoint to their regional endpoint, instead of the global endpoint.
 func STSRegionalEndpointOption(o *Options) {
 	o.STSRegionalEndpoint = RegionalSTSEndpoint
 }

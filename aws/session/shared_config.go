@@ -41,7 +41,7 @@ const (
 	// Web Identity Token File
 	webIdentityTokenFileKey = `web_identity_token_file` // optional
 
-	// Additonal config fields for regional or legacy endpoints
+	// Additional config fields for regional or legacy endpoints
 	stsRegionalEndpointSharedKey = `sts_regional_endpoints`
 
 	// DefaultSharedConfigProfile is the default profile to be used when

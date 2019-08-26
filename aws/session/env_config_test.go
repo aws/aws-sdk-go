@@ -86,7 +86,7 @@ func TestLoadEnvConfig_Creds(t *testing.T) {
 
 			cfg, err := loadEnvConfig()
 			if err != nil {
-				t.Errorf("failed to load env config, %v", err)
+				t.Fatalf("failed to load env config, %v", err)
 			}
 			if !reflect.DeepEqual(c.Val, cfg.Creds) {
 				t.Errorf("expect credentials to match.\n%s",

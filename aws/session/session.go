@@ -93,7 +93,7 @@ func New(cfgs ...*aws.Config) *Session {
 			// Session creation failed, need to report the error and prevent
 			// any requests from succeeding.
 			s = &Session{Config: defaults.Config()}
-			s.errorLogHelper(msg, err, cfgs)
+			s.logDeprecatedNewSessionError(msg, err, cfgs)
 		}
 
 		return s
@@ -102,7 +102,7 @@ func New(cfgs ...*aws.Config) *Session {
 	s := deprecatedNewSession(cfgs...)
 	if envErr != nil {
 		msg := "failed to load env config"
-		s.errorLogHelper(msg, envErr, cfgs)
+		s.logDeprecatedNewSessionError(msg, envErr, cfgs)
 	}
 
 	if csmCfg, err := loadCSMConfig(envCfg, []string{}); err != nil {
@@ -113,7 +113,7 @@ func New(cfgs ...*aws.Config) *Session {
 		err := enableCSM(&s.Handlers, csmCfg, s.Config.Logger)
 		if err != nil {
 			msg := "failed to enable CSM"
-			s.errorLogHelper(msg, err, cfgs)
+			s.logDeprecatedNewSessionError(msg, err, cfgs)
 		}
 	}
 
@@ -280,12 +280,12 @@ func NewSessionWithOptions(opts Options) (*Session, error) {
 	if opts.SharedConfigState == SharedConfigEnable {
 		envCfg, err = loadSharedEnvConfig()
 		if err != nil {
-			return nil, fmt.Errorf("failed to load environment from shared config, %v", err)
+			return nil, fmt.Errorf("failed to load shared config, %v", err)
 		}
 	} else {
 		envCfg, err = loadEnvConfig()
 		if err != nil {
-			return nil, fmt.Errorf("failed to load environment from env config, %v", err)
+			return nil, fmt.Errorf("failed to load environment config, %v", err)
 		}
 	}
 
@@ -685,8 +685,8 @@ func (s *Session) ClientConfigNoResolveEndpoint(cfgs ...*aws.Config) client.Conf
 	}
 }
 
-// errorLogHelper function enables error handling for session
-func (s *Session) errorLogHelper(msg string, err error, cfgs []*aws.Config) {
+// logDeprecatedNewSessionError function enables error handling for session
+func (s *Session) logDeprecatedNewSessionError(msg string, err error, cfgs []*aws.Config) {
 	// Session creation failed, need to report the error and prevent
 	// any requests from succeeding.
 	s.Config.MergeIn(cfgs...)
