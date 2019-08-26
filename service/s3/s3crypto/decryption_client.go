@@ -1,6 +1,7 @@
 package s3crypto
 
 import (
+	"context"
 	"strings"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -84,7 +85,7 @@ func NewDecryptionClient(prov client.ConfigProvider, options ...func(*Decryption
 //	  Bucket: aws.String("testBucket"),
 //	})
 //	err := req.Send()
-func (c *DecryptionClient) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *s3.GetObjectOutput) {
+func (c *DecryptionClient) GetObjectRequest(ctx context.Context, input *s3.GetObjectInput) (*request.Request, *s3.GetObjectOutput) {
 	req, out := c.S3Client.GetObjectRequest(input)
 	req.Handlers.Unmarshal.PushBack(func(r *request.Request) {
 		env, err := c.LoadStrategy.Load(r)
@@ -96,7 +97,7 @@ func (c *DecryptionClient) GetObjectRequest(input *s3.GetObjectInput) (*request.
 
 		// If KMS should return the correct CEK algorithm with the proper
 		// KMS key provider
-		cipher, err := c.contentCipherFromEnvelope(env)
+		cipher, err := c.contentCipherFromEnvelope(ctx, env)
 		if err != nil {
 			r.Error = err
 			out.Body.Close()
@@ -116,7 +117,7 @@ func (c *DecryptionClient) GetObjectRequest(input *s3.GetObjectInput) (*request.
 
 // GetObject is a wrapper for GetObjectRequest
 func (c *DecryptionClient) GetObject(input *s3.GetObjectInput) (*s3.GetObjectOutput, error) {
-	req, out := c.GetObjectRequest(input)
+	req, out := c.GetObjectRequest(context.Background(), input)
 	return out, req.Send()
 }
 
@@ -128,7 +129,7 @@ func (c *DecryptionClient) GetObject(input *s3.GetObjectInput) (*s3.GetObjectOut
 // cause a panic. Use the Context to add deadlining, timeouts, etc. In the future
 // this may create sub-contexts for individual underlying requests.
 func (c *DecryptionClient) GetObjectWithContext(ctx aws.Context, input *s3.GetObjectInput, opts ...request.Option) (*s3.GetObjectOutput, error) {
-	req, out := c.GetObjectRequest(input)
+	req, out := c.GetObjectRequest(ctx, input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()

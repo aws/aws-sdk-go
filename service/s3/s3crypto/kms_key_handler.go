@@ -1,6 +1,8 @@
 package s3crypto
 
 import (
+	"context"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/service/kms"
@@ -97,8 +99,8 @@ func (kp kmsKeyHandler) decryptHandler(env Envelope) (CipherDataDecrypter, error
 }
 
 // DecryptKey makes a call to KMS to decrypt the key.
-func (kp *kmsKeyHandler) DecryptKey(key []byte) ([]byte, error) {
-	out, err := kp.kms.Decrypt(&kms.DecryptInput{
+func (kp *kmsKeyHandler) DecryptKey(ctx context.Context, key []byte) ([]byte, error) {
+	out, err := kp.kms.DecryptWithContext(ctx, &kms.DecryptInput{
 		EncryptionContext: map[string]*string(kp.CipherData.MaterialDescription),
 		CiphertextBlob:    key,
 		GrantTokens:       []*string{},
