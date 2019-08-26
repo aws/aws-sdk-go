@@ -2,17 +2,17 @@ package s3crypto_test
 
 import (
 	"bytes"
-	"context"
 	"io"
 	"io/ioutil"
 
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/s3/s3crypto"
 )
 
 type mockGenerator struct {
 }
 
-func (m mockGenerator) GenerateCipherData(keySize, ivSize int) (s3crypto.CipherData, error) {
+func (m mockGenerator) GenerateCipherData(_ aws.Context, keySize, ivSize int) (s3crypto.CipherData, error) {
 	cd := s3crypto.CipherData{
 		Key: make([]byte, keySize),
 		IV:  make([]byte, ivSize),
@@ -26,7 +26,7 @@ func (m mockGenerator) EncryptKey(key []byte) ([]byte, error) {
 	return b, nil
 }
 
-func (m mockGenerator) DecryptKey(_ context.Context, key []byte) ([]byte, error) {
+func (m mockGenerator) DecryptKey(_ aws.Context, key []byte) ([]byte, error) {
 	return make([]byte, 16), nil
 
 }
@@ -35,8 +35,8 @@ type mockCipherBuilder struct {
 	generator s3crypto.CipherDataGenerator
 }
 
-func (builder mockCipherBuilder) ContentCipher() (s3crypto.ContentCipher, error) {
-	cd, err := builder.generator.GenerateCipherData(32, 16)
+func (builder mockCipherBuilder) ContentCipher(ctx aws.Context) (s3crypto.ContentCipher, error) {
+	cd, err := builder.generator.GenerateCipherData(ctx, 32, 16)
 	if err != nil {
 		return nil, err
 	}

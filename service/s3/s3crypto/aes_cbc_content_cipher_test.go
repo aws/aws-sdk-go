@@ -1,6 +1,7 @@
 package s3crypto_test
 
 import (
+	"context"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/service/s3/s3crypto"
@@ -13,7 +14,7 @@ func TestAESCBCBuilder(t *testing.T) {
 		t.Fatal(builder)
 	}
 
-	_, err := builder.ContentCipher()
+	_, err := builder.ContentCipher(context.Background())
 	if err != nil {
 		t.Fatal(err)
 	}

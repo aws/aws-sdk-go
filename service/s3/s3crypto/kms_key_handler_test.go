@@ -63,7 +63,7 @@ func TestKMSGenerateCipherData(t *testing.T) {
 	keySize := 32
 	ivSize := 16
 
-	cd, err := handler.GenerateCipherData(keySize, ivSize)
+	cd, err := handler.GenerateCipherData(context.Background(), keySize, ivSize)
 	if err != nil {
 		t.Errorf("expected no error, but received %v", err)
 	}
