@@ -2,6 +2,7 @@ package s3crypto_test
 
 import (
 	"bytes"
+	"context"
 	"io"
 	"io/ioutil"
 
@@ -25,7 +26,7 @@ func (m mockGenerator) EncryptKey(key []byte) ([]byte, error) {
 	return b, nil
 }
 
-func (m mockGenerator) DecryptKey(key []byte) ([]byte, error) {
+func (m mockGenerator) DecryptKey(_ context.Context, key []byte) ([]byte, error) {
 	return make([]byte, 16), nil
 
 }

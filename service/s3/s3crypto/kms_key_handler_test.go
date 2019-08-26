@@ -2,6 +2,7 @@ package s3crypto
 
 import (
 	"bytes"
+	"context"
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
@@ -93,7 +94,7 @@ func TestKMSDecrypt(t *testing.T) {
 		t.Errorf("expected no error, but received %v", err)
 	}
 
-	plaintextKey, err := handler.DecryptKey([]byte{1, 2, 3, 4})
+	plaintextKey, err := handler.DecryptKey(context.Background(), []byte{1, 2, 3, 4})
 	if err != nil {
 		t.Errorf("expected no error, but received %v", err)
 	}
