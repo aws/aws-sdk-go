@@ -14,6 +14,14 @@ type defaultExamplesBuilder struct {
 	ShapeValueBuilder
 }
 
+func NewExamplesBuilder() defaultExamplesBuilder{
+	b := defaultExamplesBuilder{
+		ShapeValueBuilder: NewShapeValueBuilder(),
+	}
+	b.ParseTimeString = parseExampleTimeString
+	return b
+}
+
 func (builder defaultExamplesBuilder) Imports(a *API) string {
 	return `"fmt"
 	"strings"

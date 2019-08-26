@@ -17,8 +17,12 @@ import (
 // Base64BlobValues is true if the blob field in shapeRef.Shape.Type is base64 encoded
 type ShapeValueBuilder struct {
 	Base64BlobValues bool
+	ParseTimeString func(ref *ShapeRef, memName, v string) string
 }
 
+func NewShapeValueBuilder() ShapeValueBuilder{
+	return ShapeValueBuilder{ParseTimeString: ParseUnixTimeString}
+}
 // BuildShape will recursively build the referenced shape based on the json
 // object provided.  isMap will dictate how the field name is specified. If
 // isMap is true, we will expect the member name to be quotes like "Foo".
@@ -134,7 +138,7 @@ func (b ShapeValueBuilder) BuildScalar(name, memName string, ref *ShapeRef, shap
 		return convertToCorrectType(memName, ref.Shape.Type, fmt.Sprintf("%t", v))
 	case int:
 		if ref.Shape.Type == "timestamp" {
-			return parseTimeString(ref, memName, fmt.Sprintf("%d", v))
+			return b.ParseTimeString(ref, memName, fmt.Sprintf("%d", v))
 		}
 		return convertToCorrectType(memName, ref.Shape.Type, fmt.Sprintf("%d", v))
 	case float64:
@@ -142,7 +146,7 @@ func (b ShapeValueBuilder) BuildScalar(name, memName string, ref *ShapeRef, shap
 		dataType := ref.Shape.Type
 
 		if dataType == "timestamp" {
-			return parseTimeString(ref, memName, fmt.Sprintf("%f", v))
+			return b.ParseTimeString(ref, memName, fmt.Sprintf("%f", v))
 		}
 		if dataType == "integer" || dataType == "int64" || dataType == "long" {
 			return convertToCorrectType(memName, ref.Shape.Type, fmt.Sprintf("%d", int(shape.(float64))))
@@ -152,7 +156,7 @@ func (b ShapeValueBuilder) BuildScalar(name, memName string, ref *ShapeRef, shap
 		t := ref.Shape.Type
 		switch t {
 		case "timestamp":
-			return parseTimeString(ref, memName, fmt.Sprintf("%s", v))
+			return b.ParseTimeString(ref, memName, fmt.Sprintf("%s", v))
 
 		case "jsonvalue":
 			return fmt.Sprintf("%s: %#v,\n", memName, parseJsonString(v))
