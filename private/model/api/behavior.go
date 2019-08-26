@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"os"
 	"text/template"
-	"strings"
 )
 
 type BehaviorTestSuite struct {
@@ -136,33 +135,52 @@ func (c Case) GenerateAssertions (op *Operation) string{
 
 	for _, assertion := range  c.Expect{
 		for assertionName, assertionContext := range assertion{
+			if assertionName  == "responseErrorDataEquals" {
+				val += fmt.Sprintf("\nawstesting.Assert%s(t, %#v, err)", FormatAssertionName(assertionName), assertionContext)
+				continue
+			}
 			val += fmt.Sprintf("\n")
 
 			val += "if !awstesting.Assert"
-			if strings.Contains(assertionName, "request"){
-				switch assertionName {
-				case "requestBodyMatchesXml":
-					val += fmt.Sprintf("%s(t, req, %q, %v)",FormatAssertionName(assertionName), assertionContext,c.Request.EmptyShapeBuilder(&op.InputRef))
-				case "requestHeadersMatch":
-					val += fmt.Sprintf("%s(t, req, %#v)",FormatAssertionName(assertionName),assertionContext)
-				default:
-					val += fmt.Sprintf("%s(t, req, %q)",FormatAssertionName(assertionName),assertionContext)
-				}
-			} else{
-				switch assertionName {
-				case "responseDataEquals":
-					val += fmt.Sprintf("%s(t, resp, %v)",FormatAssertionName(assertionName),c.BuildOutputShape(&op.OutputRef))
-				default:
-					val += fmt.Sprintf("%s(t, err, %q)",FormatAssertionName(assertionName),assertionContext)
-				}
+			switch assertionName {
+			case "requestMethodEquals":
+				val += fmt.Sprintf("%s(t, %q, req.HTTPRequest.Method)",FormatAssertionName(assertionName),assertionContext)
+			case "requestUrlMatches":
+				val += fmt.Sprintf("%s(t, %q, req.HTTPRequest.URL.String())",FormatAssertionName(assertionName),assertionContext)
+			case "requestUrlPathMatches":
+				val += fmt.Sprintf("%s(t, %q, req.HTTPRequest.URL.EscapedPath())",FormatAssertionName(assertionName),assertionContext)
+			case "requestUrlQueryMatches":
+				val += fmt.Sprintf("%s(t, %q, req)",FormatAssertionName(assertionName),assertionContext)
+			case "requestHeadersMatch":
+				val += fmt.Sprintf("%s(t, %#v, req)",FormatAssertionName(assertionName),assertionContext)
+			case "requestBodyEqualsBytes":
+				val += fmt.Sprintf("%s(t, %q, req)",FormatAssertionName(assertionName),assertionContext)
+			case "requestBodyEqualsJson":
+				val += fmt.Sprintf("%s(t, %#v, req)",FormatAssertionName(assertionName),assertionContext)
+			case "requestBodyMatchesXml":
+				val += fmt.Sprintf("%s(t, %q, req, %v)",FormatAssertionName(assertionName), assertionContext,c.Request.EmptyShapeBuilder(&op.InputRef))
+			case "requestBodyEqualsString":
+				val += fmt.Sprintf("%s(t, %q, req)",FormatAssertionName(assertionName),assertionContext)
+			case "requestIdEquals":
+				val += fmt.Sprintf("%s(t, %q, req.RequestID)",FormatAssertionName(assertionName),assertionContext)
+			case "responseDataEquals":
+				val += fmt.Sprintf("%s(t, %v, resp)",FormatAssertionName(assertionName),c.BuildOutputShape(&op.OutputRef))
+			case "responseErrorIsKindOf":
+				val += fmt.Sprintf("%s(t, %q, err)",FormatAssertionName(assertionName),assertionContext)
+			case "responseErrorMessageEquals":
+				val += fmt.Sprintf("%s(t, %q, err)",FormatAssertionName(assertionName),assertionContext)
+			case "responseErrorRequestIdEquals":
+				val += fmt.Sprintf("%s(t, %q, err)",FormatAssertionName(assertionName),assertionContext)
+			default:
+				val += fmt.Sprintf("%s(t, %q, err)",FormatAssertionName(assertionName),assertionContext)
 			}
+
 			val += fmt.Sprintf(`{ 
 				t.Errorf("Expect no error, got %s assertion failed")
 			}`,assertionName)
 
 		}
 	}
-
 	return val
 }
 

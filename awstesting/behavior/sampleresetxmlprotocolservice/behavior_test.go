@@ -57,13 +57,13 @@ func TestBehavior_00(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestMethodEquals(t, req, "PUT") {
+	if !awstesting.AssertRequestMethodEquals(t, "PUT", req.HTTPRequest.Method) {
 		t.Errorf("Expect no error, got requestMethodEquals assertion failed")
 	}
-	if !awstesting.AssertRequestUrlMatches(t, req, "https://rest-xml-svc.us-west-2.amazonaws.com/") {
+	if !awstesting.AssertRequestUrlMatches(t, "https://rest-xml-svc.us-west-2.amazonaws.com/", req.HTTPRequest.URL.String()) {
 		t.Errorf("Expect no error, got requestUrlMatches assertion failed")
 	}
-	if !awstesting.AssertRequestBodyEqualsString(t, req, "") {
+	if !awstesting.AssertRequestBodyEqualsString(t, "", req) {
 		t.Errorf("Expect no error, got requestBodyEqualsString assertion failed")
 	}
 
@@ -103,13 +103,13 @@ func TestBehavior_01(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestMethodEquals(t, req, "POST") {
+	if !awstesting.AssertRequestMethodEquals(t, "POST", req.HTTPRequest.Method) {
 		t.Errorf("Expect no error, got requestMethodEquals assertion failed")
 	}
-	if !awstesting.AssertRequestUrlMatches(t, req, "https://rest-xml-svc.us-west-2.amazonaws.com/") {
+	if !awstesting.AssertRequestUrlMatches(t, "https://rest-xml-svc.us-west-2.amazonaws.com/", req.HTTPRequest.URL.String()) {
 		t.Errorf("Expect no error, got requestUrlMatches assertion failed")
 	}
-	if !awstesting.AssertRequestBodyEqualsString(t, req, "") {
+	if !awstesting.AssertRequestBodyEqualsString(t, "", req) {
 		t.Errorf("Expect no error, got requestBodyEqualsString assertion failed")
 	}
 
@@ -149,13 +149,13 @@ func TestBehavior_02(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestMethodEquals(t, req, "PATCH") {
+	if !awstesting.AssertRequestMethodEquals(t, "PATCH", req.HTTPRequest.Method) {
 		t.Errorf("Expect no error, got requestMethodEquals assertion failed")
 	}
-	if !awstesting.AssertRequestUrlMatches(t, req, "https://rest-xml-svc.us-west-2.amazonaws.com/") {
+	if !awstesting.AssertRequestUrlMatches(t, "https://rest-xml-svc.us-west-2.amazonaws.com/", req.HTTPRequest.URL.String()) {
 		t.Errorf("Expect no error, got requestUrlMatches assertion failed")
 	}
-	if !awstesting.AssertRequestBodyEqualsString(t, req, "") {
+	if !awstesting.AssertRequestBodyEqualsString(t, "", req) {
 		t.Errorf("Expect no error, got requestBodyEqualsString assertion failed")
 	}
 
@@ -195,13 +195,13 @@ func TestBehavior_03(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestMethodEquals(t, req, "GET") {
+	if !awstesting.AssertRequestMethodEquals(t, "GET", req.HTTPRequest.Method) {
 		t.Errorf("Expect no error, got requestMethodEquals assertion failed")
 	}
-	if !awstesting.AssertRequestUrlMatches(t, req, "https://rest-xml-svc.us-west-2.amazonaws.com/") {
+	if !awstesting.AssertRequestUrlMatches(t, "https://rest-xml-svc.us-west-2.amazonaws.com/", req.HTTPRequest.URL.String()) {
 		t.Errorf("Expect no error, got requestUrlMatches assertion failed")
 	}
-	if !awstesting.AssertRequestBodyEqualsString(t, req, "") {
+	if !awstesting.AssertRequestBodyEqualsString(t, "", req) {
 		t.Errorf("Expect no error, got requestBodyEqualsString assertion failed")
 	}
 
@@ -241,13 +241,13 @@ func TestBehavior_04(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestMethodEquals(t, req, "HEAD") {
+	if !awstesting.AssertRequestMethodEquals(t, "HEAD", req.HTTPRequest.Method) {
 		t.Errorf("Expect no error, got requestMethodEquals assertion failed")
 	}
-	if !awstesting.AssertRequestUrlMatches(t, req, "https://rest-xml-svc.us-west-2.amazonaws.com/") {
+	if !awstesting.AssertRequestUrlMatches(t, "https://rest-xml-svc.us-west-2.amazonaws.com/", req.HTTPRequest.URL.String()) {
 		t.Errorf("Expect no error, got requestUrlMatches assertion failed")
 	}
-	if !awstesting.AssertRequestBodyEqualsString(t, req, "") {
+	if !awstesting.AssertRequestBodyEqualsString(t, "", req) {
 		t.Errorf("Expect no error, got requestBodyEqualsString assertion failed")
 	}
 
@@ -287,13 +287,13 @@ func TestBehavior_05(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestMethodEquals(t, req, "DELETE") {
+	if !awstesting.AssertRequestMethodEquals(t, "DELETE", req.HTTPRequest.Method) {
 		t.Errorf("Expect no error, got requestMethodEquals assertion failed")
 	}
-	if !awstesting.AssertRequestUrlMatches(t, req, "https://rest-xml-svc.us-west-2.amazonaws.com/") {
+	if !awstesting.AssertRequestUrlMatches(t, "https://rest-xml-svc.us-west-2.amazonaws.com/", req.HTTPRequest.URL.String()) {
 		t.Errorf("Expect no error, got requestUrlMatches assertion failed")
 	}
-	if !awstesting.AssertRequestBodyEqualsString(t, req, "") {
+	if !awstesting.AssertRequestBodyEqualsString(t, "", req) {
 		t.Errorf("Expect no error, got requestBodyEqualsString assertion failed")
 	}
 
@@ -336,10 +336,10 @@ func TestBehavior_06(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestMethodEquals(t, req, "PUT") {
+	if !awstesting.AssertRequestMethodEquals(t, "PUT", req.HTTPRequest.Method) {
 		t.Errorf("Expect no error, got requestMethodEquals assertion failed")
 	}
-	if !awstesting.AssertRequestUrlPathMatches(t, req, "/param-1/param-2") {
+	if !awstesting.AssertRequestUrlPathMatches(t, "/param-1/param-2", req.HTTPRequest.URL.EscapedPath()) {
 		t.Errorf("Expect no error, got requestUrlPathMatches assertion failed")
 	}
 
@@ -382,7 +382,7 @@ func TestBehavior_07(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestUrlPathMatches(t, req, "/path%2Fsegment%20abc~/%2520uri%20path%3F") {
+	if !awstesting.AssertRequestUrlPathMatches(t, "/path%2Fsegment%20abc~/%2520uri%20path%3F", req.HTTPRequest.URL.EscapedPath()) {
 		t.Errorf("Expect no error, got requestUrlPathMatches assertion failed")
 	}
 
@@ -425,7 +425,7 @@ func TestBehavior_08(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestUrlPathMatches(t, req, "/segment/greedy%20path/with/slashes") {
+	if !awstesting.AssertRequestUrlPathMatches(t, "/segment/greedy%20path/with/slashes", req.HTTPRequest.URL.EscapedPath()) {
 		t.Errorf("Expect no error, got requestUrlPathMatches assertion failed")
 	}
 
@@ -469,7 +469,7 @@ func TestBehavior_09(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestUrlQueryMatches(t, req, "string=string-value") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, "string=string-value", req) {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
@@ -513,7 +513,7 @@ func TestBehavior_10(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestUrlQueryMatches(t, req, "string=string%20value") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, "string=string%20value", req) {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
@@ -557,7 +557,7 @@ func TestBehavior_11(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestUrlQueryMatches(t, req, "integer=123456") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, "integer=123456", req) {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
@@ -601,7 +601,7 @@ func TestBehavior_12(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestUrlQueryMatches(t, req, "long=123456") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, "long=123456", req) {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
@@ -645,7 +645,7 @@ func TestBehavior_13(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestUrlQueryMatches(t, req, "float=123.456") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, "float=123.456", req) {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
@@ -689,7 +689,7 @@ func TestBehavior_14(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestUrlQueryMatches(t, req, "double=123.456") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, "double=123.456", req) {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
@@ -733,7 +733,7 @@ func TestBehavior_15(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestUrlQueryMatches(t, req, "boolean-value=true") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, "boolean-value=true", req) {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
@@ -777,7 +777,7 @@ func TestBehavior_16(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestUrlQueryMatches(t, req, "boolean-value=false") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, "boolean-value=false", req) {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
@@ -821,7 +821,7 @@ func TestBehavior_17(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestUrlQueryMatches(t, req, "binary-value=YmluYXJ5LXZhbHVl") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, "binary-value=YmluYXJ5LXZhbHVl", req) {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
@@ -871,7 +871,7 @@ func TestBehavior_18(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestUrlQueryMatches(t, req, "timestamp=2000-01-02T20%3A34%3A56.123Z") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, "timestamp=2000-01-02T20%3A34%3A56.123Z", req) {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
@@ -921,7 +921,7 @@ func TestBehavior_19(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestUrlQueryMatches(t, req, "unix-timestamp=946845296.123") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, "unix-timestamp=946845296.123", req) {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
@@ -971,7 +971,7 @@ func TestBehavior_20(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestUrlQueryMatches(t, req, "iso8601-timestamp=2000-01-02T20%3A34%3A56.123Z") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, "iso8601-timestamp=2000-01-02T20%3A34%3A56.123Z", req) {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
@@ -1021,7 +1021,7 @@ func TestBehavior_21(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestUrlQueryMatches(t, req, "httpdate-timestamp=Sun%2C%2002%20Jan%202000%2020%3A34%3A56%20GMT") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, "httpdate-timestamp=Sun%2C%2002%20Jan%202000%2020%3A34%3A56%20GMT", req) {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
@@ -1069,7 +1069,7 @@ func TestBehavior_22(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestUrlQueryMatches(t, req, "list=abc&list=mno&list=xyz") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, "list=abc&list=mno&list=xyz", req) {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
@@ -1116,7 +1116,7 @@ func TestBehavior_23(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestUrlQueryMatches(t, req, "color=red&size=large") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, "color=red&size=large", req) {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
@@ -1163,7 +1163,7 @@ func TestBehavior_24(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestUrlQueryMatches(t, req, "a%20b=x%3Az&a%26b=x%2Fz") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, "a%20b=x%3Az&a%26b=x%2Fz", req) {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
@@ -1216,7 +1216,7 @@ func TestBehavior_25(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestUrlQueryMatches(t, req, "key%201=value%201&key%201=value%202&key%202=value%203&key%202=value%204") {
+	if !awstesting.AssertRequestUrlQueryMatches(t, "key%201=value%201&key%201=value%202&key%202=value%203&key%202=value%204", req) {
 		t.Errorf("Expect no error, got requestUrlQueryMatches assertion failed")
 	}
 
@@ -1260,7 +1260,7 @@ func TestBehavior_26(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-String": "header string value"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-String": "header string value"}, req) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
@@ -1304,7 +1304,7 @@ func TestBehavior_27(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Integer": "123456"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Integer": "123456"}, req) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
@@ -1348,7 +1348,7 @@ func TestBehavior_28(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Long": "123456"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Long": "123456"}, req) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
@@ -1392,7 +1392,7 @@ func TestBehavior_29(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Float": "123.456"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Float": "123.456"}, req) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
@@ -1436,7 +1436,7 @@ func TestBehavior_30(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Double": "123.456"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Double": "123.456"}, req) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
@@ -1480,7 +1480,7 @@ func TestBehavior_31(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Boolean": "true"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Boolean": "true"}, req) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
@@ -1524,7 +1524,7 @@ func TestBehavior_32(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Boolean": "false"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Boolean": "false"}, req) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
@@ -1568,7 +1568,7 @@ func TestBehavior_33(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Binary": "YmluYXJ5LXZhbHVl"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Binary": "YmluYXJ5LXZhbHVl"}, req) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
@@ -1612,7 +1612,7 @@ func TestBehavior_34(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Json-Value": "eyJzdHJpbmciOiJ2YWx1ZSIsIm51bWJlciI6MTIzNC41LCJib29sVHJ1ZSI6dHJ1ZSwiYm9vbEZhbHNlIjpmYWxzZSwiYXJyYXkiOlsxLDIsMyw0XSwib2JqZWN0Ijp7ImtleSI6InZhbHVlIn0sIm51bGwiOm51bGx9"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Json-Value": "eyJzdHJpbmciOiJ2YWx1ZSIsIm51bWJlciI6MTIzNC41LCJib29sVHJ1ZSI6dHJ1ZSwiYm9vbEZhbHNlIjpmYWxzZSwiYXJyYXkiOlsxLDIsMyw0XSwib2JqZWN0Ijp7ImtleSI6InZhbHVlIn0sIm51bGwiOm51bGx9"}, req) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
@@ -1662,7 +1662,7 @@ func TestBehavior_35(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Timestamp": "946845296.123"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Timestamp": "946845296.123"}, req) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
@@ -1712,7 +1712,7 @@ func TestBehavior_36(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Unix-Timestamp": "946845296.123"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Unix-Timestamp": "946845296.123"}, req) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
@@ -1762,7 +1762,7 @@ func TestBehavior_37(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Iso8601-Timestamp": "2000-01-02T20:34:56.123Z"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Iso8601-Timestamp": "2000-01-02T20:34:56.123Z"}, req) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
@@ -1812,7 +1812,7 @@ func TestBehavior_38(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Header-Httpdate-Timestamp": "Sun, 02 Jan 2000 20:34:56 GMT"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Httpdate-Timestamp": "Sun, 02 Jan 2000 20:34:56 GMT"}, req) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
@@ -1860,7 +1860,7 @@ func TestBehavior_39(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Key-1": "map value 1", "Key-2": "map value 2", "Key-3": "map value 3"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Key-1": "map value 1", "Key-2": "map value 2", "Key-3": "map value 3"}, req) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
@@ -1908,7 +1908,7 @@ func TestBehavior_40(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Prefix-Key-1": "prefix map value 1", "Prefix-Key-2": "prefix map value 2", "Prefix-Key-3": "prefix map value 3"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Prefix-Key-1": "prefix map value 1", "Prefix-Key-2": "prefix map value 2", "Prefix-Key-3": "prefix map value 3"}, req) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
@@ -1952,7 +1952,7 @@ func TestBehavior_41(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyEqualsBytes(t, req, "YmluYXJ5LXZhbHVl") {
+	if !awstesting.AssertRequestBodyEqualsBytes(t, "YmluYXJ5LXZhbHVl", req) {
 		t.Errorf("Expect no error, got requestBodyEqualsBytes assertion failed")
 	}
 
@@ -1995,7 +1995,7 @@ func TestBehavior_42(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyEqualsString(t, req, "") {
+	if !awstesting.AssertRequestBodyEqualsString(t, "", req) {
 		t.Errorf("Expect no error, got requestBodyEqualsString assertion failed")
 	}
 
@@ -2039,7 +2039,7 @@ func TestBehavior_43(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<DataNode xmlns=\"http://xml/ns\"><Value>string value</Value></DataNode>", sampleresetxmlprotocolservice.OperationWithPayloadStructureMemberInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<DataNode xmlns=\"http://xml/ns\"><Value>string value</Value></DataNode>", req, sampleresetxmlprotocolservice.OperationWithPayloadStructureMemberInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -2081,7 +2081,7 @@ func TestBehavior_44(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<DataNode xmlns=\"http://xml/ns\"/>", sampleresetxmlprotocolservice.OperationWithPayloadStructureMemberInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<DataNode xmlns=\"http://xml/ns\"/>", req, sampleresetxmlprotocolservice.OperationWithPayloadStructureMemberInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -2123,7 +2123,7 @@ func TestBehavior_45(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<DataNode xmlns=\"http://xml/ns\"/>", sampleresetxmlprotocolservice.OperationWithPayloadStructureMemberInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<DataNode xmlns=\"http://xml/ns\"/>", req, sampleresetxmlprotocolservice.OperationWithPayloadStructureMemberInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -2144,7 +2144,8 @@ func TestBehavior_46(t *testing.T) {
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 	input := &sampleresetxmlprotocolservice.OperationMembersWithoutLocationInput{
-		Header: aws.String("value 1"),
+		Header:  aws.String("value 1"),
+		String_: aws.String("value 2"),
 		Struct: &sampleresetxmlprotocolservice.SimpleStruct{
 			Value: aws.String("value 3"),
 		},
@@ -2168,10 +2169,10 @@ func TestBehavior_46(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestHeadersMatch(t, req, map[string]interface{}{"Some-Header": "value 1"}) {
+	if !awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Some-Header": "value 1"}, req) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<RootNode xmlns=\"http://xml/ns\"><String>value 2</String><Struct><Value>value 3</Value></Struct></RootNode>", sampleresetxmlprotocolservice.OperationMembersWithoutLocationInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<RootNode xmlns=\"http://xml/ns\"><String_>value 2</String_><Struct><Value>value 3</Value></Struct></RootNode>", req, sampleresetxmlprotocolservice.OperationMembersWithoutLocationInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -2213,7 +2214,7 @@ func TestBehavior_47(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyEqualsString(t, req, "") {
+	if !awstesting.AssertRequestBodyEqualsString(t, "", req) {
 		t.Errorf("Expect no error, got requestBodyEqualsString assertion failed")
 	}
 
@@ -2233,7 +2234,9 @@ func TestBehavior_48(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
-	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
+	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
+		String_: aws.String("string value"),
+	}
 
 	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
@@ -2253,7 +2256,7 @@ func TestBehavior_48(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><String>string value</String></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><String_>string value</String_></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -2273,7 +2276,9 @@ func TestBehavior_49(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
-	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
+	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
+		String_: aws.String("a&b"),
+	}
 
 	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
@@ -2293,7 +2298,7 @@ func TestBehavior_49(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><String>a&amp;b</String></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><String_>a&amp;b</String_></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -2333,7 +2338,7 @@ func TestBehavior_50(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><JsonValue>{\"key\":\"value\"}</JsonValue></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><JsonValue>{\"key\":\"value\"}</JsonValue></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -2375,7 +2380,7 @@ func TestBehavior_51(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Integer>123456</Integer></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><Integer>123456</Integer></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -2417,7 +2422,7 @@ func TestBehavior_52(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Long>999999999999</Long></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><Long>999999999999</Long></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -2459,7 +2464,7 @@ func TestBehavior_53(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Float>123.456</Float></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><Float>123.456</Float></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -2501,7 +2506,7 @@ func TestBehavior_54(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Double>123.456</Double></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><Double>123.456</Double></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -2543,7 +2548,7 @@ func TestBehavior_55(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Blob>YmluYXJ5LXZhbHVl</Blob></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><Blob>YmluYXJ5LXZhbHVl</Blob></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -2585,7 +2590,7 @@ func TestBehavior_56(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Boolean>true</Boolean></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><Boolean>true</Boolean></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -2627,7 +2632,7 @@ func TestBehavior_57(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Boolean>false</Boolean></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><Boolean>false</Boolean></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -2675,7 +2680,7 @@ func TestBehavior_58(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Iso8601Timestamp>2000-01-02T20:34:56.000Z</Iso8601Timestamp></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><Iso8601Timestamp>2000-01-02T20:34:56.000Z</Iso8601Timestamp></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -2723,7 +2728,7 @@ func TestBehavior_59(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Timestamp>2000-01-02T20:34:56.000Z</Timestamp></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><Timestamp>2000-01-02T20:34:56.000Z</Timestamp></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -2763,7 +2768,7 @@ func TestBehavior_60(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><HttpdateTimestamp>Sun, 02 Jan 2000 20:34:56 GMT</HttpdateTimestamp></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><HttpdateTimestamp>Sun, 02 Jan 2000 20:34:56 GMT</HttpdateTimestamp></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -2811,7 +2816,7 @@ func TestBehavior_61(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><UnixTimestamp>946845296.123</UnixTimestamp></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><UnixTimestamp>946845296.123</UnixTimestamp></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -2856,7 +2861,7 @@ func TestBehavior_62(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><ListOfStrings><member>abc</member><member>xyz</member></ListOfStrings></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><ListOfStrings><member>abc</member><member>xyz</member></ListOfStrings></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -2906,7 +2911,7 @@ func TestBehavior_63(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><ListOfMapsOfStrings><member><entry><key>size</key><value>small</value></entry><entry><key>label</key><value>extra</value></entry></member><member><entry><key>color</key><value>red</value></entry></member></ListOfMapsOfStrings></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><ListOfMapsOfStrings><member><entry><key>size</key><value>small</value></entry><entry><key>label</key><value>extra</value></entry></member><member><entry><key>color</key><value>red</value></entry></member></ListOfMapsOfStrings></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -2958,7 +2963,7 @@ func TestBehavior_64(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><ListWithMemberName><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name><list-member-name><Value>value-3</Value></list-member-name></ListWithMemberName></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><ListWithMemberName><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name><list-member-name><Value>value-3</Value></list-member-name></ListWithMemberName></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -2984,13 +2989,19 @@ func TestBehavior_65(t *testing.T) {
 				RecursiveList: []*sampleresetxmlprotocolservice.KitchenSink{
 					{
 						RecursiveList: []*sampleresetxmlprotocolservice.KitchenSink{
-							{},
-							{},
+							{
+								String_: aws.String("value-1"),
+							},
+							{
+								String_: aws.String("value-2"),
+							},
 						},
 					},
 					{
 						RecursiveList: []*sampleresetxmlprotocolservice.KitchenSink{
-							{},
+							{
+								String_: aws.String("value-3"),
+							},
 						},
 					},
 				},
@@ -3016,7 +3027,7 @@ func TestBehavior_65(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveList><member><RecursiveList><member><RecursiveList><member><String>value-1</String></member><member><String>value-2</String></member></RecursiveList></member><member><RecursiveList><member><String>value-3</String></member></RecursiveList></member></RecursiveList></member></RecursiveList></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveList><member><RecursiveList><member><RecursiveList><member><String_>value-1</String_></member><member><String_>value-2</String_></member></RecursiveList></member><member><RecursiveList><member><String_>value-3</String_></member></RecursiveList></member></RecursiveList></member></RecursiveList></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -3065,7 +3076,7 @@ func TestBehavior_66(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><List><member><Value>value-1</Value></member><member><Value>value-2</Value></member></List></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><List><member><Value>value-1</Value></member><member><Value>value-2</Value></member></List></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -3114,7 +3125,7 @@ func TestBehavior_67(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><list-name><member><Value>value-1</Value></member><member><Value>value-2</Value></member></list-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><list-name><member><Value>value-1</Value></member><member><Value>value-2</Value></member></list-name></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -3163,7 +3174,7 @@ func TestBehavior_68(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><ListWithMemberName><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name></ListWithMemberName></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><ListWithMemberName><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name></ListWithMemberName></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -3212,7 +3223,7 @@ func TestBehavior_69(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><list-name><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name></list-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><list-name><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name></list-name></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -3261,7 +3272,7 @@ func TestBehavior_70(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><FlatList><Value>value-1</Value></FlatList><FlatList><Value>value-2</Value></FlatList></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><FlatList><Value>value-1</Value></FlatList><FlatList><Value>value-2</Value></FlatList></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -3310,7 +3321,7 @@ func TestBehavior_71(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><item-name><Value>value-1</Value></item-name><item-name><Value>value-2</Value></item-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><item-name><Value>value-1</Value></item-name><item-name><Value>value-2</Value></item-name></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -3359,7 +3370,7 @@ func TestBehavior_72(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><list-member-name><Value>value-1</Value></list-member-name><list-member-name><Value>value-2</Value></list-member-name></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -3408,7 +3419,7 @@ func TestBehavior_73(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><other-member-name><Value>value-1</Value></other-member-name><other-member-name><Value>value-2</Value></other-member-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><other-member-name><Value>value-1</Value></other-member-name><other-member-name><Value>value-2</Value></other-member-name></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -3453,7 +3464,7 @@ func TestBehavior_74(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><MapOfStrings><entry><key>size</key><value>large</value></entry><entry><key>color</key><value>red</value></entry></MapOfStrings></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><MapOfStrings><entry><key>size</key><value>large</value></entry><entry><key>color</key><value>red</value></entry></MapOfStrings></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -3503,7 +3514,7 @@ func TestBehavior_75(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><MapOfListsOfStrings><entry><key>sizes</key><value><member>large</member><member>small</member></value></entry><entry><key>colors</key><value><member>red</member></value></entry></MapOfListsOfStrings></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><MapOfListsOfStrings><entry><key>sizes</key><value><member>large</member><member>small</member></value></entry><entry><key>colors</key><value><member>red</member></value></entry></MapOfListsOfStrings></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -3553,7 +3564,7 @@ func TestBehavior_76(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><MapOfMaps><entry><key>key-1</key><value><entry><key>key-2</key><value>value-1</value></entry><entry><key>key-3</key><value>value-2</value></entry></value></entry><entry><key>key-4</key><value><entry><key>key-5</key><value>value-3</value></entry></value></entry></MapOfMaps></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><MapOfMaps><entry><key>key-1</key><value><entry><key>key-2</key><value>value-1</value></entry><entry><key>key-3</key><value>value-2</value></entry></value></entry><entry><key>key-4</key><value><entry><key>key-5</key><value>value-3</value></entry></value></entry></MapOfMaps></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -3602,7 +3613,7 @@ func TestBehavior_77(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Map><entry><key>key-1</key><value><Value>value-1</Value></value></entry><entry><key>key-2</key><value><Value>value-2</Value></value></entry></Map></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><Map><entry><key>key-1</key><value><Value>value-1</Value></value></entry><entry><key>key-2</key><value><Value>value-2</Value></value></entry></Map></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -3651,7 +3662,7 @@ func TestBehavior_78(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><Map><entry><key>key-1</key><value><Value>value-1</Value></value></entry><entry><key>key-2</key><value><Value>value-2</Value></value></entry></Map></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><Map><entry><key>key-1</key><value><Value>value-1</Value></value></entry><entry><key>key-2</key><value><Value>value-2</Value></value></entry></Map></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -3700,7 +3711,7 @@ func TestBehavior_79(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><map-with-name><entry><key>key-1</key><value><Value>value-1</Value></value></entry><entry><key>key-2</key><value><Value>value-2</Value></value></entry></map-with-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><map-with-name><entry><key>key-1</key><value><Value>value-1</Value></value></entry><entry><key>key-2</key><value><Value>value-2</Value></value></entry></map-with-name></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -3749,7 +3760,7 @@ func TestBehavior_80(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><MapWithMemberNames><entry><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></entry><entry><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></entry></MapWithMemberNames></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><MapWithMemberNames><entry><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></entry><entry><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></entry></MapWithMemberNames></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -3798,7 +3809,7 @@ func TestBehavior_81(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><map-name><entry><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></entry><entry><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></entry></map-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><map-name><entry><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></entry><entry><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></entry></map-name></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -3847,7 +3858,7 @@ func TestBehavior_82(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><FlatMap><key>key-1</key><value><Value>value-1</Value></value></FlatMap><FlatMap><key>key-2</key><value><Value>value-2</Value></value></FlatMap></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><FlatMap><key>key-1</key><value><Value>value-1</Value></value></FlatMap><FlatMap><key>key-2</key><value><Value>value-2</Value></value></FlatMap></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -3896,7 +3907,7 @@ func TestBehavior_83(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><flat-map-with-name><key>key-1</key><value><Value>value-1</Value></value></flat-map-with-name><flat-map-with-name><key>key-2</key><value><Value>value-2</Value></value></flat-map-with-name></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><flat-map-with-name><key>key-1</key><value><Value>value-1</Value></value></flat-map-with-name><flat-map-with-name><key>key-2</key><value><Value>value-2</Value></value></flat-map-with-name></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -3945,7 +3956,7 @@ func TestBehavior_84(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><FlatMapWithMemberNames><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></FlatMapWithMemberNames><FlatMapWithMemberNames><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></FlatMapWithMemberNames></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><FlatMapWithMemberNames><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></FlatMapWithMemberNames><FlatMapWithMemberNames><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></FlatMapWithMemberNames></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -3994,7 +4005,7 @@ func TestBehavior_85(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><flat-map><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></flat-map><flat-map><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></flat-map></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><flat-map><key-name>key-1</key-name><value-name><Value>value-1</Value></value-name></flat-map><flat-map><key-name>key-2</key-name><value-name><Value>value-2</Value></value-name></flat-map></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -4020,7 +4031,9 @@ func TestBehavior_86(t *testing.T) {
 				RecursiveMap: map[string]*sampleresetxmlprotocolservice.KitchenSink{
 					"key-2": {
 						RecursiveMap: map[string]*sampleresetxmlprotocolservice.KitchenSink{
-							"key-3": {},
+							"key-3": {
+								String_: aws.String("value-1"),
+							},
 						},
 					},
 				},
@@ -4046,7 +4059,7 @@ func TestBehavior_86(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveMap><entry><key>key-1</key><value><RecursiveMap><entry><key>key-2</key><value><RecursiveMap><entry><key>key-3</key><value><String>value-1</String></value></entry></RecursiveMap></value></entry></RecursiveMap></value></entry></RecursiveMap></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveMap><entry><key>key-1</key><value><RecursiveMap><entry><key>key-2</key><value><RecursiveMap><entry><key>key-3</key><value><String_>value-1</String_></value></entry></RecursiveMap></value></entry></RecursiveMap></value></entry></RecursiveMap></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -4090,7 +4103,7 @@ func TestBehavior_87(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><SimpleStruct><Value>value</Value></SimpleStruct></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><SimpleStruct><Value>value</Value></SimpleStruct></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -4134,7 +4147,7 @@ func TestBehavior_88(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><StructWithMemberWithName><member-with-name>value</member-with-name></StructWithMemberWithName></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><StructWithMemberWithName><member-with-name>value</member-with-name></StructWithMemberWithName></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -4176,7 +4189,7 @@ func TestBehavior_89(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><EmptyStruct/></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><EmptyStruct/></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -4199,7 +4212,9 @@ func TestBehavior_90(t *testing.T) {
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{
 			RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{
-				RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{},
+				RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{
+					String_: aws.String("value"),
+				},
 			},
 		},
 	}
@@ -4222,7 +4237,7 @@ func TestBehavior_90(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestBodyMatchesXml(t, req, "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveStruct><RecursiveStruct><RecursiveStruct><String>value</String></RecursiveStruct></RecursiveStruct></RecursiveStruct></KitchenSink>", sampleresetxmlprotocolservice.KitchenSinkInput{}) {
+	if !awstesting.AssertRequestBodyMatchesXml(t, "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveStruct><RecursiveStruct><RecursiveStruct><String_>value</String_></RecursiveStruct></RecursiveStruct></RecursiveStruct></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{}) {
 		t.Errorf("Expect no error, got requestBodyMatchesXml assertion failed")
 	}
 
@@ -4266,10 +4281,10 @@ func TestBehavior_91(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -4313,10 +4328,10 @@ func TestBehavior_92(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HttpStatusCode: aws.Int64(202),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -4362,11 +4377,11 @@ func TestBehavior_93(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderString:   aws.String("value"),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -4412,11 +4427,11 @@ func TestBehavior_94(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderJsonValue: aws.JSONValue{"foo": "bar"},
 		HttpStatusCode:  aws.Int64(200),
 		KitchenSink:     &sampleresetxmlprotocolservice.KitchenSink{},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -4462,11 +4477,11 @@ func TestBehavior_95(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderInteger:  aws.Int64(123456),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -4512,11 +4527,11 @@ func TestBehavior_96(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderLong:     aws.Int64(123456),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -4562,11 +4577,11 @@ func TestBehavior_97(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderFloat:    aws.Float64(123.456000),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -4612,11 +4627,11 @@ func TestBehavior_98(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderDouble:   aws.Float64(123.456000),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -4662,11 +4677,11 @@ func TestBehavior_99(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderBoolean:  aws.Bool(true),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -4712,11 +4727,11 @@ func TestBehavior_100(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderBoolean:  aws.Bool(false),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -4762,11 +4777,11 @@ func TestBehavior_101(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderBlob:     []byte("binary-value"),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -4812,7 +4827,7 @@ func TestBehavior_102(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderTimestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.000000")
 			if err != nil {
@@ -4822,7 +4837,7 @@ func TestBehavior_102(t *testing.T) {
 		}(),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -4868,7 +4883,7 @@ func TestBehavior_103(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderUnixTimestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.000000")
 			if err != nil {
@@ -4878,7 +4893,7 @@ func TestBehavior_103(t *testing.T) {
 		}(),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -4924,7 +4939,7 @@ func TestBehavior_104(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderIso8601Timestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.123000")
 			if err != nil {
@@ -4934,7 +4949,7 @@ func TestBehavior_104(t *testing.T) {
 		}(),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -4980,10 +4995,10 @@ func TestBehavior_105(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -5030,7 +5045,7 @@ func TestBehavior_106(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.SimpleHttpOperationOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.SimpleHttpOperationOutput{
 		Body: aws.ReadSeekCloser(strings.NewReader("")),
 		Headers: map[string]*string{
 			"Header-1": aws.String("value-1"),
@@ -5038,7 +5053,7 @@ func TestBehavior_106(t *testing.T) {
 			"Header-3": aws.String("value-3"),
 		},
 		StatusCode: aws.Int64(200),
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -5068,7 +5083,7 @@ func TestBehavior_107(t *testing.T) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
-			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><String>value</String></KitchenSink>")),
+			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><String_>value</String_></KitchenSink>")),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
@@ -5079,7 +5094,9 @@ func TestBehavior_107(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{}) {
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+		String_: aws.String("value"),
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -5120,7 +5137,7 @@ func TestBehavior_108(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{}) {
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -5161,9 +5178,9 @@ func TestBehavior_109(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Integer: aws.Int64(123456),
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -5204,9 +5221,9 @@ func TestBehavior_110(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Long: aws.Int64(123456),
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -5247,9 +5264,9 @@ func TestBehavior_111(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Float: aws.Float64(123.456000),
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -5290,9 +5307,9 @@ func TestBehavior_112(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Double: aws.Float64(123.456000),
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -5333,9 +5350,9 @@ func TestBehavior_113(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Boolean: aws.Bool(true),
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -5376,9 +5393,9 @@ func TestBehavior_114(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Boolean: aws.Bool(false),
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -5419,9 +5436,9 @@ func TestBehavior_115(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Blob: []byte("binary-value"),
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -5462,7 +5479,7 @@ func TestBehavior_116(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Timestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.123000")
 			if err != nil {
@@ -5470,7 +5487,7 @@ func TestBehavior_116(t *testing.T) {
 			}
 			return &v
 		}(),
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -5511,7 +5528,7 @@ func TestBehavior_117(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Iso8601Timestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.123000")
 			if err != nil {
@@ -5519,7 +5536,7 @@ func TestBehavior_117(t *testing.T) {
 			}
 			return &v
 		}(),
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -5560,7 +5577,7 @@ func TestBehavior_118(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{}) {
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -5601,7 +5618,7 @@ func TestBehavior_119(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		UnixTimestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.000000")
 			if err != nil {
@@ -5609,7 +5626,7 @@ func TestBehavior_119(t *testing.T) {
 			}
 			return &v
 		}(),
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -5650,12 +5667,12 @@ func TestBehavior_120(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		ListOfStrings: []*string{
 			aws.String("abc"),
 			aws.String("xyz"),
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -5696,7 +5713,7 @@ func TestBehavior_121(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		ListOfMapsOfStrings: []map[string]*string{
 			{
 				"color": aws.String("red"),
@@ -5706,7 +5723,7 @@ func TestBehavior_121(t *testing.T) {
 				"abc": aws.String("xyz"),
 			},
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -5736,7 +5753,7 @@ func TestBehavior_122(t *testing.T) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
-			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><RecursiveList><member><RecursiveList><member><String>value</String></member></RecursiveList></member></RecursiveList></KitchenSink>")),
+			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><RecursiveList><member><RecursiveList><member><String_>value</String_></member></RecursiveList></member></RecursiveList></KitchenSink>")),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
@@ -5747,15 +5764,17 @@ func TestBehavior_122(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		RecursiveList: []*sampleresetxmlprotocolservice.KitchenSink{
 			{
 				RecursiveList: []*sampleresetxmlprotocolservice.KitchenSink{
-					{},
+					{
+						String_: aws.String("value"),
+					},
 				},
 			},
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -5796,7 +5815,7 @@ func TestBehavior_123(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		List: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -5805,7 +5824,7 @@ func TestBehavior_123(t *testing.T) {
 				Value: aws.String("value-2"),
 			},
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -5846,7 +5865,7 @@ func TestBehavior_124(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		ListWithName: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -5855,7 +5874,7 @@ func TestBehavior_124(t *testing.T) {
 				Value: aws.String("value-2"),
 			},
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -5896,7 +5915,7 @@ func TestBehavior_125(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		ListWithMemberName: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -5905,7 +5924,7 @@ func TestBehavior_125(t *testing.T) {
 				Value: aws.String("value-2"),
 			},
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -5946,7 +5965,7 @@ func TestBehavior_126(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		ListWithBothNames: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -5955,7 +5974,7 @@ func TestBehavior_126(t *testing.T) {
 				Value: aws.String("value-2"),
 			},
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -5996,7 +6015,7 @@ func TestBehavior_127(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatList: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -6005,7 +6024,7 @@ func TestBehavior_127(t *testing.T) {
 				Value: aws.String("value-2"),
 			},
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -6046,7 +6065,7 @@ func TestBehavior_128(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatListWithName: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -6055,7 +6074,7 @@ func TestBehavior_128(t *testing.T) {
 				Value: aws.String("value-2"),
 			},
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -6096,7 +6115,7 @@ func TestBehavior_129(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatListWithBothNames: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -6105,7 +6124,7 @@ func TestBehavior_129(t *testing.T) {
 				Value: aws.String("value-2"),
 			},
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -6146,12 +6165,12 @@ func TestBehavior_130(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapOfStrings: map[string]*string{
 			"key-1": aws.String("value-1"),
 			"key-2": aws.String("value-2"),
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -6192,7 +6211,7 @@ func TestBehavior_131(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapOfListsOfStrings: map[string][]*string{
 			"key-1": {
 				aws.String("value-1"),
@@ -6202,7 +6221,7 @@ func TestBehavior_131(t *testing.T) {
 				aws.String("value-3"),
 			},
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -6243,7 +6262,7 @@ func TestBehavior_132(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapOfMaps: map[string]map[string]*string{
 			"key-1": {
 				"key-2": aws.String("value-1"),
@@ -6253,7 +6272,7 @@ func TestBehavior_132(t *testing.T) {
 				"key-5": aws.String("value-3"),
 			},
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -6283,7 +6302,7 @@ func TestBehavior_133(t *testing.T) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
-			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><RecursiveMap><entry><key>key-1</key><value><RecursiveMap><entry><key>key-2</key><value><RecursiveMap><entry><key>key-3</key><value><String>value-1</String></value></entry></RecursiveMap></value></entry></RecursiveMap></value></entry></RecursiveMap></KitchenSink>")),
+			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><RecursiveMap><entry><key>key-1</key><value><RecursiveMap><entry><key>key-2</key><value><RecursiveMap><entry><key>key-3</key><value><String_>value-1</String_></value></entry></RecursiveMap></value></entry></RecursiveMap></value></entry></RecursiveMap></KitchenSink>")),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
@@ -6294,19 +6313,21 @@ func TestBehavior_133(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		RecursiveMap: map[string]*sampleresetxmlprotocolservice.KitchenSink{
 			"key-1": {
 				RecursiveMap: map[string]*sampleresetxmlprotocolservice.KitchenSink{
 					"key-2": {
 						RecursiveMap: map[string]*sampleresetxmlprotocolservice.KitchenSink{
-							"key-3": {},
+							"key-3": {
+								String_: aws.String("value-1"),
+							},
 						},
 					},
 				},
 			},
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -6347,7 +6368,7 @@ func TestBehavior_134(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Map: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
 				Value: aws.String("value-1"),
@@ -6356,7 +6377,7 @@ func TestBehavior_134(t *testing.T) {
 				Value: aws.String("value-2"),
 			},
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -6397,7 +6418,7 @@ func TestBehavior_135(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapWithName: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
 				Value: aws.String("value-1"),
@@ -6406,7 +6427,7 @@ func TestBehavior_135(t *testing.T) {
 				Value: aws.String("value-2"),
 			},
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -6447,7 +6468,7 @@ func TestBehavior_136(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapWithMemberNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
 				Value: aws.String("value-1"),
@@ -6456,7 +6477,7 @@ func TestBehavior_136(t *testing.T) {
 				Value: aws.String("value-2"),
 			},
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -6497,7 +6518,7 @@ func TestBehavior_137(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapWithBothNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
 				Value: aws.String("value-1"),
@@ -6506,7 +6527,7 @@ func TestBehavior_137(t *testing.T) {
 				Value: aws.String("value-2"),
 			},
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -6547,7 +6568,7 @@ func TestBehavior_138(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatMap: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
 				Value: aws.String("value-1"),
@@ -6556,7 +6577,7 @@ func TestBehavior_138(t *testing.T) {
 				Value: aws.String("value-2"),
 			},
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -6597,7 +6618,7 @@ func TestBehavior_139(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatMapWithName: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
 				Value: aws.String("value-1"),
@@ -6606,7 +6627,7 @@ func TestBehavior_139(t *testing.T) {
 				Value: aws.String("value-2"),
 			},
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -6647,7 +6668,7 @@ func TestBehavior_140(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatMapWithMemberNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
 				Value: aws.String("value-1"),
@@ -6656,7 +6677,7 @@ func TestBehavior_140(t *testing.T) {
 				Value: aws.String("value-2"),
 			},
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -6697,7 +6718,7 @@ func TestBehavior_141(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatMapWithBothNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
 				Value: aws.String("value-1"),
@@ -6706,7 +6727,7 @@ func TestBehavior_141(t *testing.T) {
 				Value: aws.String("value-2"),
 			},
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -6747,11 +6768,11 @@ func TestBehavior_142(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		SimpleStruct: &sampleresetxmlprotocolservice.SimpleStruct{
 			Value: aws.String("value"),
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -6792,11 +6813,11 @@ func TestBehavior_143(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		StructWithMemberWithName: &sampleresetxmlprotocolservice.StructWithMemberWithName{
 			Value: aws.String("value"),
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -6837,9 +6858,9 @@ func TestBehavior_144(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		EmptyStruct: &sampleresetxmlprotocolservice.EmptyStruct{},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 
@@ -6869,7 +6890,7 @@ func TestBehavior_145(t *testing.T) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
-			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><RecursiveStruct><RecursiveStruct><RecursiveStruct><String>value</String></RecursiveStruct></RecursiveStruct></RecursiveStruct></KitchenSink>")),
+			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><RecursiveStruct><RecursiveStruct><RecursiveStruct><String_>value</String_></RecursiveStruct></RecursiveStruct></RecursiveStruct></KitchenSink>")),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
@@ -6880,13 +6901,15 @@ func TestBehavior_145(t *testing.T) {
 	}
 
 	//Assertions start here
-	if !awstesting.AssertResponseDataEquals(t, resp, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	if !awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{
 			RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{
-				RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{},
+				RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{
+					String_: aws.String("value"),
+				},
 			},
 		},
-	}) {
+	}, resp) {
 		t.Errorf("Expect no error, got responseDataEquals assertion failed")
 	}
 

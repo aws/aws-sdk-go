@@ -2,6 +2,8 @@ package awstesting
 
 import (
 	"bytes"
+	"encoding/json"
+	"fmt"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
@@ -14,9 +16,9 @@ import (
 	"math"
 	"net/url"
 	"reflect"
+	"strings"
 	"testing"
 )
-
 
 func FloatIntEquate() cmp.Option {
 	return cmp.Options{
@@ -32,6 +34,7 @@ func equateAlways(_, _ interface{}) bool { return true }
 func areNaNsF64s(x, y float64) bool {
 	return math.IsNaN(x) && math.IsNaN(y)
 }
+
 func areNaNsF32s(x, y float32) bool {
 	return areNaNsF64s(float64(x), float64(y))
 }
@@ -39,6 +42,7 @@ func areNaNsF32s(x, y float32) bool {
 func areNaNsI32s(x, y int32) bool {
 	return areNaNsF64s(float64(x), float64(y))
 }
+
 func areNaNsI64s(x, y int64) bool {
 	return areNaNsF64s(float64(x), float64(y))
 }
@@ -63,22 +67,64 @@ func ioReaderCompare(x, y interface{}) bool {
 	return (x != nil && y != nil) && (bytes.Compare(xbyte, ybyte) == 0)
 }
 
-func AssertRequestMethodEquals(t *testing.T, req *request.Request, val string, msgAndArgs ...interface{}) bool {
-	return equal(t, val, req.HTTPRequest.Method, msgAndArgs)
+// DiffReporter is a simple custom reporter that only records differences
+// detected during comparison.
+type DiffReporter struct {
+	path  cmp.Path
+	diffs []string
 }
 
-func AssertRequestUrlMatches(t *testing.T, req *request.Request, val string, msgAndArgs ...interface{}) bool {
-	return AssertURL(t, val, req.HTTPRequest.URL.String(), msgAndArgs)
+func (r *DiffReporter) PushStep(ps cmp.PathStep) {
+	r.path = append(r.path, ps)
 }
 
-func AssertRequestUrlPathMatches(t *testing.T, req *request.Request, val string, msgAndArgs ...interface{}) bool {
-	return equal(t, val, req.HTTPRequest.URL.EscapedPath(), msgAndArgs)
+func (r *DiffReporter) Report(rs cmp.Result) {
+	if !rs.Equal() {
+		vx, vy := r.path.Last().Values()
+		r.diffs = append(r.diffs, fmt.Sprintf("comparision failed at %#v:\n\t expect: %+v\n\t actual: %+v\n", r.path, vx, vy))
+	}
 }
 
-func AssertRequestUrlQueryMatches(t *testing.T, req *request.Request, val string, msgAndArgs ...interface{}) bool {
+func (r *DiffReporter) PopStep() {
+	r.path = r.path[:len(r.path)-1]
+}
 
+func (r *DiffReporter) String() string {
+	return strings.Join(r.diffs, "\n")
+}
+
+// StringEqual asserts that two strings are equal else returns false by wrapping an error message
+func StringEqual(t *testing.T, expectVal, actualVal string) bool {
+	if expectVal != actualVal {
+		t.Errorf("%s\n",fmt.Sprintf("String comparision failed,\n\texpect: %s\n\tactual: %s\n", expectVal, actualVal))
+		return false
+	}
+	return true
+}
+
+// 	Asserts if method field in request and expect value are equal
+func AssertRequestMethodEquals(t *testing.T, expectVal string, actualVal string) bool {
+	return StringEqual(t, expectVal, actualVal)
+}
+
+// Asserts if request URL in request and expect are equal. True
+// if all URL fields, (path, query, hostname, protocol name etc)
+// in request and expect are equal
+func AssertRequestUrlMatches(t *testing.T, expectVal string, actualVal string) bool {
+	return StringEqual(t, expectVal, actualVal)
+}
+
+// Asserts if the path field in request and expect are equal
+func AssertRequestUrlPathMatches(t *testing.T, expectVal string, actualVal string) bool {
+	return StringEqual(t, expectVal, actualVal)
+}
+
+// 	Asserts if query values in request and expect are equal. Values
+// 	of query string in request and expect are equal even if they have
+//	different orders
+func AssertRequestUrlQueryMatches(t *testing.T, expectVal string, req *request.Request, msgAndArgs ...interface{}) bool {
 	queryRequest := req.HTTPRequest.URL.Query() //parsed RawQuery of "req" to get the values inside
-	expectQ, err := url.ParseQuery(val)
+	expectQ, err := url.ParseQuery(expectVal)
 
 	if err != nil {
 		t.Errorf(errMsg("unable to parse query from expect", err, msgAndArgs))
@@ -94,8 +140,12 @@ func AssertRequestUrlQueryMatches(t *testing.T, req *request.Request, val string
 	return true
 }
 
-func AssertRequestHeadersMatch(t *testing.T, req *request.Request, header map[string]interface{}, msgAndArgs ...interface{}) bool {
-	for key, valExpect := range header {
+// Asserts if headers in request and expect are equal. True if each
+// header key in the expected map is present in the request with
+// equal values. request may have additional headers outside the
+// expected ones.
+func AssertRequestHeadersMatch(t *testing.T, expectHeader map[string]interface{}, req *request.Request, msgAndArgs ...interface{}) bool {
+	for key, valExpect := range expectHeader {
 		valReq := req.HTTPRequest.Header.Get(key)
 		if key == "Header-Json-Value" {
 			expectJsonValue, err1 := protocol.DecodeJSONValue(valExpect.(string), protocol.Base64Escape)
@@ -106,7 +156,7 @@ func AssertRequestHeadersMatch(t *testing.T, req *request.Request, header map[st
 			if err2 != nil {
 				t.Errorf(errMsg("unable to parse response JSON", err2, msgAndArgs...))
 			}
-			for key1, val1 := range expectJsonValue{
+			for key1, val1 := range expectJsonValue {
 				if !cmp.Equal(responseJsonValue[key1], val1, FloatIntEquate()) {
 					t.Errorf(errMsg("aws.JSON value from expect and response don't match", nil))
 					return false
@@ -115,14 +165,32 @@ func AssertRequestHeadersMatch(t *testing.T, req *request.Request, header map[st
 			continue
 		}
 		if valReq == "" || valReq != valExpect {
-			t.Errorf(errMsg("header values inside request and expect don't match", nil))
+			t.Errorf("header values don't match,\nexpect: %s\nactual: %s", valExpect, valReq )
 			return false
 		}
 	}
 	return true
 }
 
-func AssertRequestBodyEqualsBytes(t *testing.T, req *request.Request, val string, msgAndArgs ...interface{}) bool {
+// Asserts if base64 encoded string inside request body is equal to expected value.
+func AssertRequestBodyEqualsBytes(t *testing.T, expectVal string, req *request.Request) bool {
+	var bytesReqBody []byte
+	var err error
+	if req.HTTPRequest.Body != nil {
+		bytesReqBody, err = ioutil.ReadAll(req.HTTPRequest.Body)
+		if err != nil {
+			t.Errorf(errMsg("unable to read body from request", err))
+			return false
+		}
+	}
+	req.HTTPRequest.Body = ioutil.NopCloser(bytes.NewBuffer(bytesReqBody))
+
+	return StringEqual(t, expectVal, string(bytesReqBody))
+}
+
+// AssertRequestBodyEqualsJson verifies that the json value in request body
+// string matches the expectVal map
+func AssertRequestBodyEqualsJson(t *testing.T, expectVal map[string]interface{}, req *request.Request, msgAndArgs ...interface{}) bool {
 	var bytesReqBody []byte
 	var err error
 	if req.HTTPRequest.Body != nil {
@@ -134,25 +202,23 @@ func AssertRequestBodyEqualsBytes(t *testing.T, req *request.Request, val string
 	}
 	req.HTTPRequest.Body = ioutil.NopCloser(bytes.NewBuffer(bytesReqBody))
 
-	return equal(t, val, string(bytesReqBody), msgAndArgs)
-}
-
-func AssertRequestBodyEqualsJson(t *testing.T, req *request.Request, val string, msgAndArgs ...interface{}) bool {
-	var bytesReqBody []byte
-	var err error
-	if req.HTTPRequest.Body != nil {
-		bytesReqBody, err = ioutil.ReadAll(req.HTTPRequest.Body)
-		if err != nil {
-			t.Errorf(errMsg("unable to read body from request", err, msgAndArgs))
-			return false
-		}
+	actualVal := map[string]interface{}{}
+	if err := json.Unmarshal(bytesReqBody, &actualVal); err != nil {
+		t.Errorf(errMsg("unable to parse expected JSON", err, msgAndArgs...))
+		return false
 	}
-	req.HTTPRequest.Body = ioutil.NopCloser(bytes.NewBuffer(bytesReqBody))
-
-	return AssertJSON(t, val, util.Trim(string(bytesReqBody)))
+	var r DiffReporter
+	if !cmp.Equal(actualVal, expectVal, cmpopts.EquateEmpty(), cmp.Reporter(&r)){
+		fmt.Print(r.String())
+		return false
+	}
+ 	return true
 }
 
-func AssertRequestBodyMatchesXml(t *testing.T, req *request.Request, val string, container interface{}, msgAndArgs ...interface{}) bool {
+// AssertRequestBodyMatchesXml verifies that the expect xml string matches the actual. True if
+// XML string inside request and expect are equal. For XML string, order of
+// elements and attributes are significant while whitespaces are not.
+func AssertRequestBodyMatchesXml(t *testing.T, expectVal string, req *request.Request, container interface{}, msgAndArgs ...interface{}) bool {
 	r := req.HTTPRequest
 	if r.Body == nil {
 		t.Errorf(errMsg("request body is nil", nil, msgAndArgs))
@@ -160,48 +226,63 @@ func AssertRequestBodyMatchesXml(t *testing.T, req *request.Request, val string,
 	}
 	body := util.SortXML(r.Body)
 
-	return AssertXML(t, val, util.Trim(string(body)), container)
+	return AssertXML(t, expectVal, util.Trim(string(body)), container)
 }
 
-func AssertRequestBodyEqualsString(t *testing.T, req *request.Request, val string, msgAndArgs ...interface{}) bool {
-	buf := new(bytes.Buffer)
-	ReqBody, err := req.HTTPRequest.GetBody()
-	if err != nil {
-		t.Errorf(errMsg("unable to read body from request", err, msgAndArgs))
+func AssertRequestBodyEqualsString(t *testing.T, expectVal string, req *request.Request, msgAndArgs ...interface{}) bool {
+	return AssertRequestBodyEqualsBytes(t, expectVal, req)
+}
+
+// Asserts if requestID field in request and expect value are equal
+func AssertRequestIdEquals(t *testing.T, expectVal string, actualVal string) bool {
+	return StringEqual(t, expectVal, actualVal)
+}
+
+// Asserts if data in response and error are equal. True if all fields
+// inside the structure parsed from expect value are equal to the
+// corresponding response fields
+func AssertResponseDataEquals(t *testing.T, expectResponse interface{}, actualResponse interface{}, msgAndArgs ...interface{}) bool {
+	if actualResponse == nil || expectResponse == nil {
+		return equal(t, expectResponse, actualResponse, msgAndArgs)
+	}
+	var r DiffReporter
+	if !cmp.Equal(actualResponse, expectResponse, cmpopts.EquateEmpty(), EquateIoReader(),cmp.Reporter(&r)){
+		fmt.Print(r.String())
 		return false
 	}
-	buf.ReadFrom(ReqBody)
-
-	return buf.String() == val
+	return true
 }
 
-func AssertRequestIdEquals(t *testing.T, req *request.Request, val string, msgAndArgs ...interface{}) bool {
-	return req.RequestID == val
-}
-
-func AssertResponseDataEquals(t *testing.T, response interface{}, expectResponse interface{}, msgAndArgs ...interface{}) bool {
-	if response == nil || expectResponse == nil {
-		return equal(t, expectResponse, response, msgAndArgs)
-	}
-	return cmp.Equal(response, expectResponse, cmpopts.EquateEmpty(), EquateIoReader())
-}
-
-func AssertResponseErrorIsKindOf(t *testing.T, err error, val string, msgAndArgs ...interface{}) bool {
+// Asserts if code in response error and expect value are equal
+func AssertResponseErrorIsKindOf(t *testing.T, expectVal string, err error) bool {
 	if awsErr, ok := err.(awserr.Error); ok {
-		return awsErr.Code() == val
+		return StringEqual(t, expectVal, awsErr.Code())
 	}
 	return true
 }
 
-func AssertResponseErrorMessageEquals(t *testing.T, err error, val string, msgAndArgs ...interface{}) bool {
+// Asserts if error message in response error and expect value are equal
+func AssertResponseErrorMessageEquals(t *testing.T, expectVal string, err error) bool {
 	if awsErr, ok := err.(awserr.Error); ok {
-		return awsErr.Message() == val
+		return StringEqual(t, expectVal, awsErr.Message())
 	}
 	return true
 }
 
-func AssertResponseErrorDataEquals(t *testing.T, err error, val map[string]interface{}, msgAndArgs ...interface{}) {
+// Asserts if requestID field inside response error and expect
+//	value are equal
+func AssertResponseErrorRequestIdEquals(t *testing.T, expectVal string, err error) bool{
+	if reqErr, ok := err.(awserr.RequestFailure); ok{
+		return StringEqual(t, expectVal, reqErr.RequestID())
+	}
+	return true
+}
+
+// Asserts if all fields inside the structure parsed from expect value
+// are equal to the corresponding response error data fields. This is not
+// implemented in because Go SDK V1 doesn't expose the error data
+func AssertResponseErrorDataEquals(t *testing.T, expectVal map[string]interface{}, err error, msgAndArgs ...interface{}){
 	if testing.Short() {
-		t.Skip("skipping responseErrorDataEquals assertion")
+		t.Skip("\n\nskipping responseErrorDataEquals assertion")
 	}
 }
