@@ -6,6 +6,7 @@ package sampleresetxmlprotocolservice_test
 
 import (
 	"bytes"
+	"encoding/json"
 	"io/ioutil"
 	"net/http"
 	"strings"
@@ -23,6 +24,11 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
+var _ *time.Time
+var _ = protocol.ParseTime
+var _ = strings.NewReader
+var _ = json.Marshal
+
 //Can build empty PUT requests
 func TestBehavior_00(t *testing.T) {
 
@@ -32,8 +38,7 @@ func TestBehavior_00(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "localSecret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -78,8 +83,7 @@ func TestBehavior_01(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -124,8 +128,7 @@ func TestBehavior_02(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -170,8 +173,7 @@ func TestBehavior_03(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -216,8 +218,7 @@ func TestBehavior_04(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -262,8 +263,7 @@ func TestBehavior_05(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -308,8 +308,7 @@ func TestBehavior_06(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -354,8 +353,7 @@ func TestBehavior_07(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -397,8 +395,7 @@ func TestBehavior_08(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -440,8 +437,7 @@ func TestBehavior_09(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -484,8 +480,7 @@ func TestBehavior_10(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -528,8 +523,7 @@ func TestBehavior_11(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -572,8 +566,7 @@ func TestBehavior_12(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -616,8 +609,7 @@ func TestBehavior_13(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -660,8 +652,7 @@ func TestBehavior_14(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -704,8 +695,7 @@ func TestBehavior_15(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -748,8 +738,7 @@ func TestBehavior_16(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -792,8 +781,7 @@ func TestBehavior_17(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -836,8 +824,7 @@ func TestBehavior_18(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -886,8 +873,7 @@ func TestBehavior_19(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -936,8 +922,7 @@ func TestBehavior_20(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -986,8 +971,7 @@ func TestBehavior_21(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1036,8 +1020,7 @@ func TestBehavior_22(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1084,8 +1067,7 @@ func TestBehavior_23(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1131,8 +1113,7 @@ func TestBehavior_24(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1178,8 +1159,7 @@ func TestBehavior_25(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1231,8 +1211,7 @@ func TestBehavior_26(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1275,8 +1254,7 @@ func TestBehavior_27(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1319,8 +1297,7 @@ func TestBehavior_28(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1363,8 +1340,7 @@ func TestBehavior_29(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1407,8 +1383,7 @@ func TestBehavior_30(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1451,8 +1426,7 @@ func TestBehavior_31(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1495,8 +1469,7 @@ func TestBehavior_32(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1539,8 +1512,7 @@ func TestBehavior_33(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1583,8 +1555,7 @@ func TestBehavior_34(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1627,8 +1598,7 @@ func TestBehavior_35(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1677,8 +1647,7 @@ func TestBehavior_36(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1727,8 +1696,7 @@ func TestBehavior_37(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1777,8 +1745,7 @@ func TestBehavior_38(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1827,8 +1794,7 @@ func TestBehavior_39(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1875,8 +1841,7 @@ func TestBehavior_40(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1923,8 +1888,7 @@ func TestBehavior_41(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1967,8 +1931,7 @@ func TestBehavior_42(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2010,8 +1973,7 @@ func TestBehavior_43(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2054,8 +2016,7 @@ func TestBehavior_44(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2096,8 +2057,7 @@ func TestBehavior_45(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2138,8 +2098,7 @@ func TestBehavior_46(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2187,8 +2146,7 @@ func TestBehavior_47(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2229,8 +2187,7 @@ func TestBehavior_48(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2271,8 +2228,7 @@ func TestBehavior_49(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2313,8 +2269,7 @@ func TestBehavior_50(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2353,8 +2308,7 @@ func TestBehavior_51(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2395,8 +2349,7 @@ func TestBehavior_52(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2437,8 +2390,7 @@ func TestBehavior_53(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2479,8 +2431,7 @@ func TestBehavior_54(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2521,8 +2472,7 @@ func TestBehavior_55(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2563,8 +2513,7 @@ func TestBehavior_56(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2605,8 +2554,7 @@ func TestBehavior_57(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2647,8 +2595,7 @@ func TestBehavior_58(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2695,8 +2642,7 @@ func TestBehavior_59(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2743,8 +2689,7 @@ func TestBehavior_60(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2783,8 +2728,7 @@ func TestBehavior_61(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2831,8 +2775,7 @@ func TestBehavior_62(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2876,8 +2819,7 @@ func TestBehavior_63(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2926,8 +2868,7 @@ func TestBehavior_64(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2978,8 +2919,7 @@ func TestBehavior_65(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3042,8 +2982,7 @@ func TestBehavior_66(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3091,8 +3030,7 @@ func TestBehavior_67(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3140,8 +3078,7 @@ func TestBehavior_68(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3189,8 +3126,7 @@ func TestBehavior_69(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3238,8 +3174,7 @@ func TestBehavior_70(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3287,8 +3222,7 @@ func TestBehavior_71(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3336,8 +3270,7 @@ func TestBehavior_72(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3385,8 +3318,7 @@ func TestBehavior_73(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3434,8 +3366,7 @@ func TestBehavior_74(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3479,8 +3410,7 @@ func TestBehavior_75(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3529,8 +3459,7 @@ func TestBehavior_76(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3579,8 +3508,7 @@ func TestBehavior_77(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3628,8 +3556,7 @@ func TestBehavior_78(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3677,8 +3604,7 @@ func TestBehavior_79(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3726,8 +3652,7 @@ func TestBehavior_80(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3775,8 +3700,7 @@ func TestBehavior_81(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3824,8 +3748,7 @@ func TestBehavior_82(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3873,8 +3796,7 @@ func TestBehavior_83(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3922,8 +3844,7 @@ func TestBehavior_84(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3971,8 +3892,7 @@ func TestBehavior_85(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4020,8 +3940,7 @@ func TestBehavior_86(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4074,8 +3993,7 @@ func TestBehavior_87(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4118,8 +4036,7 @@ func TestBehavior_88(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4162,8 +4079,7 @@ func TestBehavior_89(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4204,8 +4120,7 @@ func TestBehavior_90(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4252,8 +4167,7 @@ func TestBehavior_91(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4299,8 +4213,7 @@ func TestBehavior_92(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4346,8 +4259,7 @@ func TestBehavior_93(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4396,8 +4308,7 @@ func TestBehavior_94(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4446,8 +4357,7 @@ func TestBehavior_95(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4496,8 +4406,7 @@ func TestBehavior_96(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4546,8 +4455,7 @@ func TestBehavior_97(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4596,8 +4504,7 @@ func TestBehavior_98(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4646,8 +4553,7 @@ func TestBehavior_99(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4696,8 +4602,7 @@ func TestBehavior_100(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4746,8 +4651,7 @@ func TestBehavior_101(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4796,8 +4700,7 @@ func TestBehavior_102(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4852,8 +4755,7 @@ func TestBehavior_103(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4908,8 +4810,7 @@ func TestBehavior_104(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4964,8 +4865,7 @@ func TestBehavior_105(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5013,8 +4913,7 @@ func TestBehavior_106(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5068,8 +4967,7 @@ func TestBehavior_107(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5111,8 +5009,7 @@ func TestBehavior_108(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5152,8 +5049,7 @@ func TestBehavior_109(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5195,8 +5091,7 @@ func TestBehavior_110(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5238,8 +5133,7 @@ func TestBehavior_111(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5281,8 +5175,7 @@ func TestBehavior_112(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5324,8 +5217,7 @@ func TestBehavior_113(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5367,8 +5259,7 @@ func TestBehavior_114(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5410,8 +5301,7 @@ func TestBehavior_115(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5453,8 +5343,7 @@ func TestBehavior_116(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5502,8 +5391,7 @@ func TestBehavior_117(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5551,8 +5439,7 @@ func TestBehavior_118(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5592,8 +5479,7 @@ func TestBehavior_119(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5641,8 +5527,7 @@ func TestBehavior_120(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5687,8 +5572,7 @@ func TestBehavior_121(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5738,8 +5622,7 @@ func TestBehavior_122(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5789,8 +5672,7 @@ func TestBehavior_123(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5839,8 +5721,7 @@ func TestBehavior_124(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5889,8 +5770,7 @@ func TestBehavior_125(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5939,8 +5819,7 @@ func TestBehavior_126(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5989,8 +5868,7 @@ func TestBehavior_127(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6039,8 +5917,7 @@ func TestBehavior_128(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6089,8 +5966,7 @@ func TestBehavior_129(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6139,8 +6015,7 @@ func TestBehavior_130(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6185,8 +6060,7 @@ func TestBehavior_131(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6236,8 +6110,7 @@ func TestBehavior_132(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6287,8 +6160,7 @@ func TestBehavior_133(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6342,8 +6214,7 @@ func TestBehavior_134(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6392,8 +6263,7 @@ func TestBehavior_135(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6442,8 +6312,7 @@ func TestBehavior_136(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6492,8 +6361,7 @@ func TestBehavior_137(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6542,8 +6410,7 @@ func TestBehavior_138(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6592,8 +6459,7 @@ func TestBehavior_139(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6642,8 +6508,7 @@ func TestBehavior_140(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6692,8 +6557,7 @@ func TestBehavior_141(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6742,8 +6606,7 @@ func TestBehavior_142(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6787,8 +6650,7 @@ func TestBehavior_143(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6832,8 +6694,7 @@ func TestBehavior_144(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6875,8 +6736,7 @@ func TestBehavior_145(t *testing.T) {
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
-	}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)

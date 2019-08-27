@@ -12,10 +12,10 @@
     "cases": [
       {
         "description": "Can build empty PUT requests",
-        "localConfig": {
+        "env": {
           "AWS_REGION": "us-west-2",
           "AWS_ACCESS_KEY": "akid",
-          "AWS_SECRET_ACCESS_KEY": "secret"
+          "AWS_SECRET_ACCESS_KEY": "localSecret"
         },
         "request": {
           "operation": "EmptyPut",

@@ -9,7 +9,6 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/util"
 	"github.com/google/go-cmp/cmp"
-	"github.com/google/go-cmp/cmp/cmpopts"
 	"io"
 	"io/ioutil"
 	"log"
@@ -58,7 +57,7 @@ func ioReaderCompare(x, y interface{}) bool {
 	}
 	xbyte, err1 := ioutil.ReadAll(x.(io.Reader))
 	if err1 != nil {
-		log.Println("couldn't read the body from response")
+		log.Println("couldn't read the body from actual response")
 	}
 	ybyte, err2 := ioutil.ReadAll(y.(io.Reader))
 	if err2 != nil {
@@ -111,7 +110,7 @@ func AssertRequestMethodEquals(t *testing.T, expectVal string, actualVal string)
 // if all URL fields, (path, query, hostname, protocol name etc)
 // in request and expect are equal
 func AssertRequestUrlMatches(t *testing.T, expectVal string, actualVal string) bool {
-	return StringEqual(t, expectVal, actualVal)
+	return AssertURL(t, expectVal, actualVal)
 }
 
 // Asserts if the path field in request and expect are equal
@@ -156,8 +155,10 @@ func AssertRequestHeadersMatch(t *testing.T, expectHeader map[string]interface{}
 			if err2 != nil {
 				t.Errorf(errMsg("unable to parse response JSON", err2, msgAndArgs...))
 			}
+
+			var r DiffReporter
 			for key1, val1 := range expectJsonValue {
-				if !cmp.Equal(responseJsonValue[key1], val1, FloatIntEquate()) {
+				if !cmp.Equal(responseJsonValue[key1], val1, FloatIntEquate(), cmp.Reporter(&r)) {
 					t.Errorf(errMsg("aws.JSON value from expect and response don't match", nil))
 					return false
 				}
@@ -208,7 +209,7 @@ func AssertRequestBodyEqualsJson(t *testing.T, expectVal map[string]interface{},
 		return false
 	}
 	var r DiffReporter
-	if !cmp.Equal(actualVal, expectVal, cmpopts.EquateEmpty(), cmp.Reporter(&r)){
+	if !cmp.Equal(actualVal, expectVal, FloatIntEquate(), cmp.Reporter(&r)){
 		fmt.Print(r.String())
 		return false
 	}
@@ -230,7 +231,18 @@ func AssertRequestBodyMatchesXml(t *testing.T, expectVal string, req *request.Re
 }
 
 func AssertRequestBodyEqualsString(t *testing.T, expectVal string, req *request.Request, msgAndArgs ...interface{}) bool {
-	return AssertRequestBodyEqualsBytes(t, expectVal, req)
+	var bytesReqBody []byte
+	var err error
+	if req.HTTPRequest.Body != nil {
+		bytesReqBody, err = ioutil.ReadAll(req.HTTPRequest.Body)
+		if err != nil {
+			t.Errorf(errMsg("unable to read body from request", err))
+			return false
+		}
+	}
+	req.HTTPRequest.Body = ioutil.NopCloser(bytes.NewBuffer(bytesReqBody))
+
+	return StringEqual(t, expectVal, string(bytesReqBody))
 }
 
 // Asserts if requestID field in request and expect value are equal
@@ -246,7 +258,7 @@ func AssertResponseDataEquals(t *testing.T, expectResponse interface{}, actualRe
 		return equal(t, expectResponse, actualResponse, msgAndArgs)
 	}
 	var r DiffReporter
-	if !cmp.Equal(actualResponse, expectResponse, cmpopts.EquateEmpty(), EquateIoReader(),cmp.Reporter(&r)){
+	if !cmp.Equal(actualResponse, expectResponse, EquateIoReader(),cmp.Reporter(&r)){
 		fmt.Print(r.String())
 		return false
 	}

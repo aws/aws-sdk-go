@@ -23,12 +23,13 @@ type Tests struct {
 type Defaults struct{
 	Env map[string]string `json:"env"`
 	Files interface{} `json:"files"`
-	Config interface{} `json:"config"`
+	Config map[string]string `json:"config"`
 }
 
 type Case struct{
 	Description string `json:"description"`
-	LocalConfig map[string]string `json:"localConfig"`
+	LocalEnv map[string]string `json:"env"`
+	LocalConfig map[string]string `json:"config"`
 	Request Request `json:"request"`
 	Response Response `json:"response"`
 	Expect []map[string]interface{} `json:"expect"`
@@ -36,7 +37,7 @@ type Case struct{
 
 type Response struct{
 	StatusCode int `json:"statusCode"`
-	BodyContent string `json:"bodyContent"`
+	BodyContent interface{} `json:"bodyContent"`
 	BodyType string `json:"bodyType"`
 	Headers map[string]string `json:"headers"`
 
@@ -95,6 +96,7 @@ func (a *API) APIBehaviorTestsGoCode() string {
 	a.AddImport("io/ioutil")
 	a.AddImport("bytes")
 	a.AddImport("strings")
+	a.AddImport("encoding/json")
 
 	a.AddSDKImport("aws")
 	a.AddSDKImport("awstesting")
@@ -119,7 +121,14 @@ func (a *API) APIBehaviorTestsGoCode() string {
 		panic(fmt.Sprintf("failed to create behavior tests, %v", err))
 	}
 
-	return a.importsGoCode()  + w.String()
+	ignoreImports := `
+	var _ *time.Time
+	var _ = protocol.ParseTime
+	var _ = strings.NewReader
+	var _ = json.Marshal
+	`
+
+	return a.importsGoCode() + ignoreImports + w.String()
 }
 
 // Changes the first character of val to upper case
@@ -184,8 +193,44 @@ func (c Case) GenerateAssertions (op *Operation) string{
 	return val
 }
 
+// Returns a value to set Credentials
+func (c Case) ConfigurationString (T Tests) string{
+	region := T.Defaults.Env["AWS_REGION"]
+	accessKeyId := T.Defaults.Env["AWS_ACCESS_KEY"]
+	secretAccessKey := T.Defaults.Env["AWS_SECRET_ACCESS_KEY"]
+	endpointUrl := ""
+	if len(c.LocalConfig) > 0 {
+		if c.LocalConfig["region"] != "" {
+			region = c.LocalConfig["region"]
+		}
+		if c.LocalConfig["accessKeyId"] != "" {
+			accessKeyId = c.LocalConfig["accessKeyId"]
+		}
+		if c.LocalConfig["secretAccessKey"] != "" {
+			secretAccessKey = c.LocalConfig["secretAccessKey"]
+		}
+		if c.LocalConfig["endpointUrl"] != "" {
+			endpointUrl = c.LocalConfig["endpointUrl"]
+		}
+	} else {
+		if c.LocalEnv["AWS_REGION"] != "" {
+			region = c.LocalEnv["AWS_REGION"]
+		}
+		if c.LocalEnv["AWS_ACCESS_KEY"] != "" {
+			accessKeyId = c.LocalEnv["AWS_ACCESS_KEY"]
+		}
+		if c.LocalEnv["AWS_SECRET_ACCESS_KEY"] != "" {
+			secretAccessKey = c.LocalEnv["AWS_SECRET_ACCESS_KEY"]
+		}
+	}
+	return fmt.Sprintf("\n\t\tRegion: aws.String(%#v),\n\t\tCredentials: credentials.NewStaticCredentials(%#v, %#v, %#v),",
+		region, accessKeyId, secretAccessKey, endpointUrl)
+}
+
 //template map is defined in "eventstream.go"
-var funcMap = template.FuncMap{"Map": templateMap,"FormatAssertionName": FormatAssertionName}
+var funcMap = template.FuncMap{
+	"Map": templateMap,
+}
 
 var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(funcMap).Parse(`
 
@@ -196,21 +241,7 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 
 {{define "SessionSetup"}}
 	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
-	sess := session.Must(session.NewSession(&aws.Config{
-			 Region: aws.String( {{- if and (len $.testCase.LocalConfig) $.testCase.LocalConfig.AWS_REGION }} "{{$.testCase.LocalConfig.AWS_REGION}}" {{- else}} "{{$.Tests.Defaults.Env.AWS_REGION}}" {{- end}}),
-			 Credentials: credentials.NewStaticCredentials(
-							{{- if and (len $.testCase.LocalConfig) $.testCase.LocalConfig.AWS_ACCESS_KEY -}}
-								"{{$.testCase.LocalConfig.AWS_ACCESS_KEY}}",							
-							{{- else -}}
-								"{{$.Tests.Defaults.Env.AWS_ACCESS_KEY}}",
-							{{- end -}}
-
-							{{- if and (len $.testCase.LocalConfig) $.testCase.LocalConfig.AWS_SECRET_ACCESS_KEY -}}
-								"{{$.testCase.LocalConfig.AWS_SECRET_ACCESS_KEY}}",							
-							{{- else -}}
-								"{{$.Tests.Defaults.Env.AWS_SECRET_ACCESS_KEY}}",
-							{{- end -}} ""),
-		   }))
+	sess := session.Must(session.NewSession(&aws.Config{ {{$.testCase.ConfigurationString $.Tests}} }))
 {{end}}
 
 {{define "ResponseBuild"}}
@@ -232,8 +263,17 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 							Header: http.Header{},
 						{{- end}}
 
-						{{- if ne (len $.testCase.Response.BodyContent) 0}}
+						{{- if eq ($.testCase.Response.BodyType) "xml"}}
 							Body: ioutil.NopCloser(bytes.NewBufferString({{printf "%q" $.testCase.Response.BodyContent}})),
+						{{- else if eq ($.testCase.Response.BodyType) "json"}}
+							Body: ioutil.NopCloser(bytes.NewBuffer(
+															func() []byte {
+																v, err := json.Marshal({{printf "%#v" $.testCase.Response.BodyContent}})
+																if err != nil {
+																	panic(err)
+																}
+																return v
+															}())),
 						{{- else}}
 							Body: ioutil.NopCloser(&bytes.Buffer{}),
 						{{- end}}
