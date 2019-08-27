@@ -603,6 +603,10 @@
   "shapes":{
     "AcceptInvitationRequest":{
       "type":"structure",
+      "required":[
+        "MasterId",
+        "InvitationId"
+      ],
       "members":{
         "MasterId":{"shape":"NonEmptyString"},
         "InvitationId":{"shape":"NonEmptyString"}
@@ -987,6 +991,7 @@
     },
     "DeclineInvitationsRequest":{
       "type":"structure",
+      "required":["AccountIds"],
       "members":{
         "AccountIds":{"shape":"AccountIdList"}
       }
@@ -1035,6 +1040,7 @@
     },
     "DeleteInvitationsRequest":{
       "type":"structure",
+      "required":["AccountIds"],
       "members":{
         "AccountIds":{"shape":"AccountIdList"}
       }
@@ -1076,7 +1082,11 @@
     "DescribeHubRequest":{
       "type":"structure",
       "members":{
-        "HubArn":{"shape":"NonEmptyString"}
+        "HubArn":{
+          "shape":"NonEmptyString",
+          "location":"querystring",
+          "locationName":"HubArn"
+        }
       }
     },
     "DescribeHubResponse":{

@@ -273,6 +273,7 @@
         "DashManifest$ManifestName" : "An optional string to include in the name of the manifest.",
         "EgressEndpoint$PackagingConfigurationId" : "The ID of the PackagingConfiguration being applied to the Asset.",
         "EgressEndpoint$Url" : "The URL of the parent manifest for the repackaged Asset.",
+        "HlsEncryption$ConstantInitializationVector" : "A constant initialization vector for encryption (optional).\nWhen not specified the initialization vector will be periodically rotated.\n",
         "HlsManifest$ManifestName" : "An optional string to include in the name of the manifest.",
         "MssManifest$ManifestName" : "An optional string to include in the name of the manifest.",
         "PackagingConfiguration$Arn" : "The ARN of the PackagingConfiguration.",

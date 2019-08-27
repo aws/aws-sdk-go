@@ -1,3 +1,33 @@
+Release v1.23.9 (2019-08-26)
+===
+
+### Service Client Updates
+* `service/securityhub`: Updates service API
+* `service/ssm`: Updates service API and documentation
+  * This feature adds "default tier" to the AWS Systems Manager Parameter Store for parameter creation and update. AWS customers can now set the "default tier" to one of the following values: Standard (default), Advanced or Intelligent-Tiering.  This allows customers to create advanced parameters or parameters in corresponding tiers with one setting rather than code change to specify parameter tiers.
+
+Release v1.23.8 (2019-08-23)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release of EC2 VM Import Export adds support for exporting Amazon Machine Image(AMI)s to a VM file
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/mediapackage-vod`: Updates service API and documentation
+* `service/transcribe`: Updates service API and documentation
+
+### SDK Enhancements
+* `aws/session`: Add support for CSM options from shared config file ([#2768](https://github.com/aws/aws-sdk-go/pull/2768))
+  * Adds support for enabling and controlling the Client Side Metrics (CSM) reporting from the shared configuration files in addition to the environment variables.
+
+### SDK Bugs
+* `service/s3/s3crypto`: Fix tmp file not being deleted after upload ([#2776](https://github.com/aws/aws-sdk-go/pull/2776))
+  * Fixes the s3crypto's getWriterStore utiliy's send handler not cleaning up the temporary file after Send completes.
+* `private/protocol`: Add protocol tests for blob types and headers ([#2770](https://github.com/aws/aws-sdk-go/pull/2770))
+  * Adds RESTJSON and RESTXML protocol tests for blob headers.
+  * Related to [#750](https://github.com/aws/aws-sdk-go/issues/750)
+* `service/dynamodb/expression`: Improved reporting of bad key conditions ([#2775](https://github.com/aws/aws-sdk-go/pull/2775))
+  * Improved error reporting when invalid key conditions are constructed using KeyConditionBuilder
 Release v1.23.7 (2019-08-22)
 ===
 

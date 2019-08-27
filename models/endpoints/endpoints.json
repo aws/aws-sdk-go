@@ -1636,9 +1636,33 @@
           "eu-west-3" : { },
           "sa-east-1" : { },
           "us-east-1" : { },
+          "us-east-1-fips" : {
+            "credentialScope" : {
+              "region" : "us-east-1"
+            },
+            "hostname" : "guardduty-fips.us-east-1.amazonaws.com"
+          },
           "us-east-2" : { },
+          "us-east-2-fips" : {
+            "credentialScope" : {
+              "region" : "us-east-2"
+            },
+            "hostname" : "guardduty-fips.us-east-2.amazonaws.com"
+          },
           "us-west-1" : { },
-          "us-west-2" : { }
+          "us-west-1-fips" : {
+            "credentialScope" : {
+              "region" : "us-west-1"
+            },
+            "hostname" : "guardduty-fips.us-west-1.amazonaws.com"
+          },
+          "us-west-2" : { },
+          "us-west-2-fips" : {
+            "credentialScope" : {
+              "region" : "us-west-2"
+            },
+            "hostname" : "guardduty-fips.us-west-2.amazonaws.com"
+          }
         },
         "isRegionalized" : true
       },

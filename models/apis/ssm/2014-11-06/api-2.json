@@ -7015,7 +7015,8 @@
       "type":"string",
       "enum":[
         "Standard",
-        "Advanced"
+        "Advanced",
+        "Intelligent-Tiering"
       ]
     },
     "ParameterType":{
@@ -7396,7 +7397,7 @@
     },
     "PatchSourceConfiguration":{
       "type":"string",
-      "max":512,
+      "max":1024,
       "min":1,
       "sensitive":true
     },
