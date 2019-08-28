@@ -15,7 +15,6 @@ import (
 	"runtime/debug"
 	"strings"
 	"sync"
-
 	"github.com/aws/aws-sdk-go/private/model/api"
 	"github.com/aws/aws-sdk-go/private/util"
 )
@@ -175,6 +174,10 @@ func writeServiceFiles(g *generateInfo, pkgDir string) {
 	if len(g.API.SmokeTests.TestCases) > 0 {
 		Must(writeAPISmokeTestsFile(g))
 	}
+
+	if len(g.API.BehaviorTests.Tests.Cases) > 0 {
+		Must(writeAPIBehaviorTestsFile(g))
+	}
 }
 
 // Must will panic if the error passed in is not nil.
@@ -304,5 +307,14 @@ func writeAPISmokeTestsFile(g *generateInfo) error {
 		"// +build go1.10,integration\n",
 		g.API.PackageName()+"_test",
 		g.API.APISmokeTestsGoCode(),
+	)
+}
+
+func writeAPIBehaviorTestsFile(g *generateInfo) error {
+	return writeGoFile(filepath.Join(g.PackageDir, "behavior_test.go"),
+		codeLayout,
+		"// +build go1.10,integration\n",
+		g.API.PackageName()+"_test",
+		g.API.APIBehaviorTestsGoCode(),
 	)
 }
