@@ -7,6 +7,7 @@ LINTIGNOREENDPOINTS='aws/endpoints/(defaults|dep_service_ids).go:.+(method|const
 LINTIGNOREDEPS='vendor/.+\.go'
 LINTIGNOREPKGCOMMENT='service/[^/]+/doc_custom.go:.+package comment should be of the form'
 UNIT_TEST_TAGS="example codegen awsinclude"
+ALL_TAGS="example codegen awsinclude integration perftest"
 
 # SDK's Core and client packages that are compatable with Go 1.5+.
 SDK_CORE_PKGS=./aws/... ./private/... ./internal/...
@@ -52,15 +53,18 @@ cleanup-models:
 # Unit/CI Testing #
 ###################
 
+build:
+	go build -o /dev/null -tags ${ALL_TAGS} ${SDK_ALL_PKGS}
+
 unit-no-verify:
 	@echo "go test SDK and vendor packages with no linting"
 	go test -count=1 -tags ${UNIT_TEST_TAGS} ${SDK_ALL_PKGS}
 
-unit: verify
+unit: verify build
 	@echo "go test SDK and vendor packages"
 	go test -count=1 -tags ${UNIT_TEST_TAGS} ${SDK_ALL_PKGS}
 
-unit-with-race-cover: verify
+unit-with-race-cover: verify build
 	@echo "go test SDK and vendor packages"
 	go test -count=1 -tags ${UNIT_TEST_TAGS} -race -cpu=1,2,4 ${SDK_ALL_PKGS}
 
@@ -75,9 +79,9 @@ ci-test-generate-validate:
 	git update-index --assume-unchanged go.mod go.sum
 	git add . -A
 	gitstatus=`git diff --cached --ignore-space-change`; \
-	git update-index --no-assume-unchanged go.mod go.sum
 	echo "$$gitstatus"; \
 	if [ "$$gitstatus" != "" ] && [ "$$gitstatus" != "skipping validation" ]; then echo "$$gitstatus"; exit 1; fi
+	git update-index --no-assume-unchanged go.mod go.sum
 
 #######################
 # Integration Testing #
