@@ -48,7 +48,7 @@ type Options struct {
 	// This option is ignored if StrictMatching is enabled.
 	ResolveUnknownService bool
 
-	// STS Regional Endpoint flag helps with resolving the STS RIP endpoint
+	// STS Regional Endpoint flag helps with resolving the STS endpoint
 	STSRegionalEndpoint STSRegionalEndpoint
 }
 
