@@ -15,14 +15,22 @@ import (
 )
 
 // ShapeValueBuilder provides the logic to build the nested values for a shape.
-// Base64BlobValues is true if the blob field in shapeRef.Shape.Type is base64 encoded
+// Base64BlobValues is true if the blob field in shapeRef.Shape.Type is base64
+// encoded.
 type ShapeValueBuilder struct {
+	// Specifies if API shapes modeled as blob types, input values are base64
+	// encoded or not, and strings values instead.
 	Base64BlobValues bool
-	ParseTimeString  func(ref *ShapeRef, memName, v string) string
+
+	// The helper that will provide the logic and formated code to convert a
+	// timestamp input value into a Go time.Time.
+	ParseTimeString func(ref *ShapeRef, memberName, v string) string
 }
 
+// NewShapeValueBuilder returns an initialized ShapeValueBuilder for generating
+// API shape types initialized with values.
 func NewShapeValueBuilder() ShapeValueBuilder {
-	return ShapeValueBuilder{ParseTimeString: ParseUnixTimeString}
+	return ShapeValueBuilder{ParseTimeString: parseUnixTimeString}
 }
 
 // BuildShape will recursively build the referenced shape based on the json
@@ -161,7 +169,7 @@ func (b ShapeValueBuilder) BuildScalar(name, memName string, ref *ShapeRef, shap
 			return b.ParseTimeString(ref, memName, fmt.Sprintf("%s", v))
 
 		case "jsonvalue":
-			return fmt.Sprintf("%s: %#v,\n", memName, parseJsonString(v))
+			return fmt.Sprintf("%s: %#v,\n", memName, parseJSONString(v))
 
 		case "blob":
 			if (ref.Streaming || ref.Shape.Streaming) && isPayload {
@@ -236,8 +244,8 @@ func (b ShapeValueBuilder) GoType(ref *ShapeRef, elem bool) string {
 	return prefix + ref.GoTypeWithPkgName()
 }
 
-// Parses a json string and returns aws.JSONValue
-func parseJsonString(input string) aws.JSONValue {
+// parseJSONString a json string and returns aws.JSONValue.
+func parseJSONString(input string) aws.JSONValue {
 	var v aws.JSONValue
 	if err := json.Unmarshal([]byte(input), &v); err != nil {
 		panic(fmt.Sprintf("unable to unmarshal JSONValue, %v", err))
@@ -245,8 +253,9 @@ func parseJsonString(input string) aws.JSONValue {
 	return v
 }
 
-// Returns the string of an inline function which returns time
-func InlineParseModeledTime(format, v string) string {
+// InlineParseModeledTime returns the string of an inline function which
+// returns time.
+func inlineParseModeledTime(format, v string) string {
 	const formatTimeTmpl = `func() *time.Time{
         v, err := protocol.ParseTime("%s", "%s")
         if err != nil {
@@ -258,23 +267,10 @@ func InlineParseModeledTime(format, v string) string {
 	return fmt.Sprintf(formatTimeTmpl, format, v)
 }
 
-// Returns a string which assigns the value of a time member by calling
-// parseTime function defined in the file
-func parseExampleTimeString(ref *ShapeRef, memName, v string) string {
-	if ref.Location == "header" {
-		return fmt.Sprintf("%s: parseTime(%q, %q),\n", memName, protocol.RFC822TimeFormat, v)
-	} else {
-		switch ref.API.Metadata.Protocol {
-		case "json", "rest-json", "rest-xml", "ec2", "query":
-			return fmt.Sprintf("%s: parseTime(%q, %q),\n", memName, protocol.ISO8601TimeFormat, v)
-		default:
-			panic("Unsupported time type: " + ref.API.Metadata.Protocol)
-		}
-	}
-}
-
-// Returns a string which assigns the value of a time member using an inline function
-// Defined inline function parses time in UnixTimeFormat
-func ParseUnixTimeString(ref *ShapeRef, memName, v string) string {
-	return fmt.Sprintf("%s: %s,\n", memName, InlineParseModeledTime(protocol.UnixTimeFormatName, v))
+// parseUnixTimeString returns a string which assigns the value of a time
+// member using an inline function Defined inline function parses time in
+// UnixTimeFormat.
+func parseUnixTimeString(ref *ShapeRef, memName, v string) string {
+	ref.API.AddSDKImport("private/protocol")
+	return fmt.Sprintf("%s: %s,\n", memName, inlineParseModeledTime(protocol.UnixTimeFormatName, v))
 }
