@@ -2318,6 +2318,13 @@
         "CaptionDestinationSettings$SccDestinationSettings": "Settings for SCC caption output."
       }
     },
+    "SimulateReservedQueue": {
+      "base": "Enable this setting when you run a test job to estimate how many reserved transcoding slots (RTS) you need. When this is enabled, MediaConvert runs your job from an on-demand queue with similar performance to what you will see with one RTS in a reserved queue. This setting is disabled by default.",
+      "refs": {
+        "CreateJobRequest$SimulateReservedQueue": "Enable this setting when you run a test job to estimate how many reserved transcoding slots (RTS) you need. When this is enabled, MediaConvert runs your job from an on-demand queue with similar performance to what you will see with one RTS in a reserved queue. This setting is disabled by default.",
+        "Job$SimulateReservedQueue": "Enable this setting when you run a test job to estimate how many reserved transcoding slots (RTS) you need. When this is enabled, MediaConvert runs your job from an on-demand queue with similar performance to what you will see with one RTS in a reserved queue. This setting is disabled by default."
+      }
+    },
     "SpekeKeyProvider": {
       "base": "Use these settings when doing DRM encryption with a SPEKE-compliant key provider, if your output group type is HLS, MS Smooth, or DASH. If your output group type is CMAF, use the SpekeKeyProviderCmaf settings instead.",
       "refs": {
