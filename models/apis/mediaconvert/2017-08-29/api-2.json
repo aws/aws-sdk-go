@@ -2034,6 +2034,10 @@
           "shape": "JobSettings",
           "locationName": "settings"
         },
+        "SimulateReservedQueue": {
+          "shape": "SimulateReservedQueue",
+          "locationName": "simulateReservedQueue"
+        },
         "StatusUpdateInterval": {
           "shape": "StatusUpdateInterval",
           "locationName": "statusUpdateInterval"
@@ -4725,6 +4729,10 @@
           "shape": "JobSettings",
           "locationName": "settings"
         },
+        "SimulateReservedQueue": {
+          "shape": "SimulateReservedQueue",
+          "locationName": "simulateReservedQueue"
+        },
         "Status": {
           "shape": "JobStatus",
           "locationName": "status"
@@ -6819,6 +6827,13 @@
           "locationName": "framerate"
         }
       }
+    },
+    "SimulateReservedQueue": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "ENABLED"
+      ]
     },
     "SpekeKeyProvider": {
       "type": "structure",
