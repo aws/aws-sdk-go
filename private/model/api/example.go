@@ -211,14 +211,14 @@ func (a *API) AttachExamples(filename string) {
 }
 
 var examplesBuilderCustomizations = map[string]examplesBuilder{
-	"wafregional": wafregionalExamplesBuilder{},
+	"wafregional": NewWAFregionalExamplesBuilder(),
 }
 
 func (p *ExamplesDefinition) setup() {
 	var builder examplesBuilder
 	ok := false
 	if builder, ok = examplesBuilderCustomizations[p.API.PackageName()]; !ok {
-		builder = defaultExamplesBuilder{}
+		builder = NewExamplesBuilder()
 	}
 
 	keys := p.Examples.Names()
@@ -274,7 +274,7 @@ func (a *API) ExamplesGoCode() string {
 	var builder examplesBuilder
 	ok := false
 	if builder, ok = examplesBuilderCustomizations[a.PackageName()]; !ok {
-		builder = defaultExamplesBuilder{}
+		builder = NewExamplesBuilder()
 	}
 
 	if err := exampleHeader.ExecuteTemplate(&buf, "exampleHeader", &exHeader{builder, a}); err != nil {
@@ -297,21 +297,6 @@ func (ex *Example) HasVisitedError(errRef *ShapeRef) bool {
 	_, ok := ex.VisitedErrors[errName]
 	ex.VisitedErrors[errName] = struct{}{}
 	return ok
-}
-
-func parseTimeString(ref *ShapeRef, memName, v string) string {
-	if ref.Location == "header" {
-		return fmt.Sprintf("%s: parseTime(%q, %q),\n", memName, "Mon, 2 Jan 2006 15:04:05 GMT", v)
-	} else {
-		switch ref.API.Metadata.Protocol {
-		case "json", "rest-json":
-			return fmt.Sprintf("%s: parseTime(%q, %q),\n", memName, "2006-01-02T15:04:05Z", v)
-		case "rest-xml", "ec2", "query":
-			return fmt.Sprintf("%s: parseTime(%q, %q),\n", memName, "2006-01-02T15:04:05Z", v)
-		default:
-			panic("Unsupported time type: " + ref.API.Metadata.Protocol)
-		}
-	}
 }
 
 func (ex *Example) MethodName() string {
