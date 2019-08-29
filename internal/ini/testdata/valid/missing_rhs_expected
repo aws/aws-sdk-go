@@ -1,0 +1,7 @@
+{
+	"bar": {
+		"aws_access_key_id": "accesskey",
+		"aws_secret_access_key": "secret",
+		"aws_session_token": "token"
+	}
+}
