@@ -15,6 +15,7 @@ import (
 	"runtime/debug"
 	"strings"
 	"sync"
+
 	"github.com/aws/aws-sdk-go/private/model/api"
 	"github.com/aws/aws-sdk-go/private/util"
 )
