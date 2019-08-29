@@ -611,6 +611,7 @@
         {"shape":"NodeGroupsPerReplicationGroupQuotaExceededFault"},
         {"shape":"NodeQuotaForCustomerExceededFault"},
         {"shape":"NoOperationFault"},
+        {"shape":"InvalidKMSKeyFault"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"InvalidParameterCombinationException"}
       ]
@@ -734,6 +735,7 @@
         {"shape":"CacheSecurityGroupNotFoundFault"},
         {"shape":"CacheParameterGroupNotFoundFault"},
         {"shape":"InvalidVPCNetworkStateFault"},
+        {"shape":"InvalidKMSKeyFault"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"InvalidParameterCombinationException"}
       ]
@@ -757,6 +759,7 @@
         {"shape":"InsufficientCacheClusterCapacityFault"},
         {"shape":"NodeGroupsPerReplicationGroupQuotaExceededFault"},
         {"shape":"NodeQuotaForCustomerExceededFault"},
+        {"shape":"InvalidKMSKeyFault"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"InvalidParameterCombinationException"}
       ]
@@ -869,6 +872,7 @@
         {"shape":"NodeGroupNotFoundFault"},
         {"shape":"ReplicationGroupNotFoundFault"},
         {"shape":"TestFailoverNotAvailableFault"},
+        {"shape":"InvalidKMSKeyFault"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"InvalidParameterCombinationException"}
       ]
@@ -1439,7 +1443,8 @@
       "members":{
         "SourceSnapshotName":{"shape":"String"},
         "TargetSnapshotName":{"shape":"String"},
-        "TargetBucket":{"shape":"String"}
+        "TargetBucket":{"shape":"String"},
+        "KmsKeyId":{"shape":"String"}
       }
     },
     "CopySnapshotResult":{
@@ -1572,7 +1577,8 @@
         "SnapshotWindow":{"shape":"String"},
         "AuthToken":{"shape":"String"},
         "TransitEncryptionEnabled":{"shape":"BooleanOptional"},
-        "AtRestEncryptionEnabled":{"shape":"BooleanOptional"}
+        "AtRestEncryptionEnabled":{"shape":"BooleanOptional"},
+        "KmsKeyId":{"shape":"String"}
       }
     },
     "CreateReplicationGroupResult":{
@@ -1587,7 +1593,8 @@
       "members":{
         "ReplicationGroupId":{"shape":"String"},
         "CacheClusterId":{"shape":"String"},
-        "SnapshotName":{"shape":"String"}
+        "SnapshotName":{"shape":"String"},
+        "KmsKeyId":{"shape":"String"}
       }
     },
     "CreateSnapshotResult":{
@@ -1962,6 +1969,17 @@
       },
       "error":{
         "code":"InvalidCacheSecurityGroupState",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InvalidKMSKeyFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidKMSKeyFault",
         "httpStatusCode":400,
         "senderFault":true
       },
@@ -2530,7 +2548,8 @@
         "CacheNodeType":{"shape":"String"},
         "AuthTokenEnabled":{"shape":"BooleanOptional"},
         "TransitEncryptionEnabled":{"shape":"BooleanOptional"},
-        "AtRestEncryptionEnabled":{"shape":"BooleanOptional"}
+        "AtRestEncryptionEnabled":{"shape":"BooleanOptional"},
+        "KmsKeyId":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -2873,7 +2892,8 @@
         "SnapshotWindow":{"shape":"String"},
         "NumNodeGroups":{"shape":"IntegerOptional"},
         "AutomaticFailover":{"shape":"AutomaticFailoverStatus"},
-        "NodeSnapshots":{"shape":"NodeSnapshotList"}
+        "NodeSnapshots":{"shape":"NodeSnapshotList"},
+        "KmsKeyId":{"shape":"String"}
       },
       "wrapper":true
     },

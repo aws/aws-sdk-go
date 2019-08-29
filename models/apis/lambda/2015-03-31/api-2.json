@@ -859,6 +859,7 @@
         "FunctionName":{"shape":"FunctionName"},
         "Enabled":{"shape":"Enabled"},
         "BatchSize":{"shape":"BatchSize"},
+        "MaximumBatchingWindowInSeconds":{"shape":"MaximumBatchingWindowInSeconds"},
         "StartingPosition":{"shape":"EventSourcePosition"},
         "StartingPositionTimestamp":{"shape":"Date"}
       }
@@ -1057,6 +1058,7 @@
       "members":{
         "UUID":{"shape":"String"},
         "BatchSize":{"shape":"BatchSize"},
+        "MaximumBatchingWindowInSeconds":{"shape":"MaximumBatchingWindowInSeconds"},
         "EventSourceArn":{"shape":"Arn"},
         "FunctionArn":{"shape":"FunctionArn"},
         "LastModified":{"shape":"Date"},
@@ -1826,6 +1828,11 @@
       "max":10000,
       "min":1
     },
+    "MaximumBatchingWindowInSeconds":{
+      "type":"integer",
+      "max":300,
+      "min":0
+    },
     "MemorySize":{
       "type":"integer",
       "max":3008,
@@ -2269,7 +2276,8 @@
         },
         "FunctionName":{"shape":"FunctionName"},
         "Enabled":{"shape":"Enabled"},
-        "BatchSize":{"shape":"BatchSize"}
+        "BatchSize":{"shape":"BatchSize"},
+        "MaximumBatchingWindowInSeconds":{"shape":"MaximumBatchingWindowInSeconds"}
       }
     },
     "UpdateFunctionCodeRequest":{

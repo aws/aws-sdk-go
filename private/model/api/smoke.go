@@ -27,7 +27,7 @@ type SmokeTestCase struct {
 // BuildInputShape returns the Go code as a string for initializing the test
 // case's input shape.
 func (c SmokeTestCase) BuildInputShape(ref *ShapeRef) string {
-	var b ShapeValueBuilder
+	b := NewShapeValueBuilder()
 	return fmt.Sprintf("&%s{\n%s\n}",
 		b.GoType(ref, true),
 		b.BuildShape(ref, c.Input, false),

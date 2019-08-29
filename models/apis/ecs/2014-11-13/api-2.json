@@ -905,6 +905,7 @@
         "containerArn":{"shape":"String"},
         "taskArn":{"shape":"String"},
         "name":{"shape":"String"},
+        "runtimeId":{"shape":"String"},
         "lastStatus":{"shape":"String"},
         "exitCode":{"shape":"BoxedInteger"},
         "reason":{"shape":"String"},
@@ -1050,6 +1051,7 @@
       "type":"structure",
       "members":{
         "containerName":{"shape":"String"},
+        "runtimeId":{"shape":"String"},
         "exitCode":{"shape":"BoxedInteger"},
         "networkBindings":{"shape":"NetworkBindings"},
         "reason":{"shape":"String"},
@@ -2334,6 +2336,7 @@
         "cluster":{"shape":"String"},
         "task":{"shape":"String"},
         "containerName":{"shape":"String"},
+        "runtimeId":{"shape":"String"},
         "status":{"shape":"String"},
         "exitCode":{"shape":"BoxedInteger"},
         "reason":{"shape":"String"},

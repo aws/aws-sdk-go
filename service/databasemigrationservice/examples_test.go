@@ -238,7 +238,7 @@ func ExampleDatabaseMigrationService_CreateReplicationSubnetGroup_shared00() {
 func ExampleDatabaseMigrationService_CreateReplicationTask_shared00() {
 	svc := databasemigrationservice.New(session.New())
 	input := &databasemigrationservice.CreateReplicationTaskInput{
-		CdcStartTime:              parseTime("2006-01-02T15:04:05Z", "2016-12-14T18:25:43Z"),
+		CdcStartTime:              parseTime("2006-01-02T15:04:05.999999999Z", "2016-12-14T18:25:43Z"),
 		MigrationType:             aws.String("full-load"),
 		ReplicationInstanceArn:    aws.String("arn:aws:dms:us-east-1:123456789012:rep:6UTDJGBOUS3VI3SUWA66XFJCJQ"),
 		ReplicationTaskIdentifier: aws.String("task1"),
@@ -1144,7 +1144,7 @@ func ExampleDatabaseMigrationService_RemoveTagsFromResource_shared00() {
 func ExampleDatabaseMigrationService_StartReplicationTask_shared00() {
 	svc := databasemigrationservice.New(session.New())
 	input := &databasemigrationservice.StartReplicationTaskInput{
-		CdcStartTime:             parseTime("2006-01-02T15:04:05Z", "2016-12-14T13:33:20Z"),
+		CdcStartTime:             parseTime("2006-01-02T15:04:05.999999999Z", "2016-12-14T13:33:20Z"),
 		ReplicationTaskArn:       aws.String("arn:aws:dms:us-east-1:123456789012:rep:6UTDJGBOUS3VI3SUWA66XFJCJQ"),
 		StartReplicationTaskType: aws.String("start-replication"),
 	}

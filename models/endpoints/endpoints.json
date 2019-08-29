@@ -4273,6 +4273,7 @@
       },
       "health" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },

@@ -5,7 +5,7 @@
     "AcknowledgeJob": "<p>Returns information about a specified job and whether that job has been received by the job worker. Only used for custom actions.</p>",
     "AcknowledgeThirdPartyJob": "<p>Confirms a job worker has received the specified job. Only used for partner actions.</p>",
     "CreateCustomActionType": "<p>Creates a new custom action that can be used in all pipelines associated with the AWS account. Only used for custom actions.</p>",
-    "CreatePipeline": "<p>Creates a pipeline.</p>",
+    "CreatePipeline": "<p>Creates a pipeline.</p> <note> <p>In the pipeline structure, you must include either <code>artifactStore</code> or <code>artifactStores</code> in your pipeline, but you cannot use both. If you create a cross-region action in your pipeline, you must use <code>artifactStores</code>.</p> </note>",
     "DeleteCustomActionType": "<p>Marks a custom action as deleted. <code>PollForJobs</code> for the custom action will fail after the action is marked for deletion. Only used for custom actions.</p> <important> <p>To re-create a custom action after it has been deleted you must use a string in the version field that has never been used before. This string can be an incremented version number, for example. To restore a deleted custom action, use a JSON file that is identical to the deleted action, including the original string in the version field.</p> </important>",
     "DeletePipeline": "<p>Deletes the specified pipeline.</p>",
     "DeleteWebhook": "<p>Deletes a previously created webhook by name. Deleting the webhook stops AWS CodePipeline from starting a pipeline every time an external event occurs. The API will return successfully when trying to delete a webhook that is already deleted. If a deleted webhook is re-created by calling PutWebhook with the same name, it will have a different URL.</p>",
@@ -115,7 +115,7 @@
       "base": null,
       "refs": {
         "ActionConfiguration$configuration": "<p>The configuration data for the action.</p>",
-        "ActionDeclaration$configuration": "<p>The action declaration's configuration.</p>",
+        "ActionDeclaration$configuration": "<p>The action's configuration. These are key-value pairs that specify input values for an action. For more information, see <a href=\"https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#action-requirements\">Action Structure Requirements in CodePipeline</a>. For the list of configuration properties for the AWS CloudFormation action type in CodePipeline, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/continuous-delivery-codepipeline-action-reference.html\">Configuration Properties Reference</a> in the <i>AWS CloudFormation User Guide</i>. For template snippets with examples, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/continuous-delivery-codepipeline-parameter-override-functions.html\">Using Parameter Override Functions with CodePipeline Pipelines</a> in the <i>AWS CloudFormation User Guide</i>.</p> <p>The values can be represented in either JSON or YAML format. For example, the JSON configuration item format is as follows: </p> <p> <i>JSON:</i> </p> <p> <code>\"Configuration\" : { Key : Value },</code> </p>",
         "ActionExecutionInput$configuration": "<p>Configuration data for an action execution.</p>"
       }
     },
@@ -292,7 +292,7 @@
     "ActionTypeId": {
       "base": "<p>Represents information about an action type.</p>",
       "refs": {
-        "ActionDeclaration$actionTypeId": "<p>The configuration information for the action type.</p>",
+        "ActionDeclaration$actionTypeId": "<p>Specifies the action type and the provider of the action.</p>",
         "ActionExecutionInput$actionTypeId": null,
         "ActionType$id": "<p>Represents information about an action type.</p>",
         "JobData$actionTypeId": "<p>Represents information about an action type.</p>",
@@ -420,10 +420,10 @@
       }
     },
     "ArtifactStore": {
-      "base": "<p>The Amazon S3 bucket where artifacts are stored for the pipeline.</p>",
+      "base": "<p>The Amazon S3 bucket where artifacts are stored for the pipeline.</p> <note> <p>You must include either <code>artifactStore</code> or <code>artifactStores</code> in your pipeline, but you cannot use both. If you create a cross-region action in your pipeline, you must use <code>artifactStores</code>.</p> </note>",
       "refs": {
         "ArtifactStoreMap$value": null,
-        "PipelineDeclaration$artifactStore": "<p>Represents information about the Amazon S3 bucket where artifacts are stored for the pipeline. </p>"
+        "PipelineDeclaration$artifactStore": "<p>Represents information about the Amazon S3 bucket where artifacts are stored for the pipeline.</p> <note> <p>You must include either <code>artifactStore</code> or <code>artifactStores</code> in your pipeline, but you cannot use both. If you create a cross-region action in your pipeline, you must use <code>artifactStores</code>.</p> </note>"
       }
     },
     "ArtifactStoreLocation": {
@@ -435,7 +435,7 @@
     "ArtifactStoreMap": {
       "base": null,
       "refs": {
-        "PipelineDeclaration$artifactStores": "<p>A mapping of <code>artifactStore</code> objects and their corresponding regions. There must be an artifact store for the pipeline region and for each cross-region action within the pipeline. You can only use either <code>artifactStore</code> or <code>artifactStores</code>, not both.</p> <p>If you create a cross-region action in your pipeline, you must use <code>artifactStores</code>.</p>"
+        "PipelineDeclaration$artifactStores": "<p>A mapping of <code>artifactStore</code> objects and their corresponding regions. There must be an artifact store for the pipeline region and for each cross-region action within the pipeline.</p> <note> <p>You must include either <code>artifactStore</code> or <code>artifactStores</code> in your pipeline, but you cannot use both. If you create a cross-region action in your pipeline, you must use <code>artifactStores</code>.</p> </note>"
       }
     },
     "ArtifactStoreType": {
@@ -610,7 +610,7 @@
     "EncryptionKeyId": {
       "base": null,
       "refs": {
-        "EncryptionKey$id": "<p>The ID used to identify the key. For an AWS KMS key, this is the key ID or key ARN.</p>"
+        "EncryptionKey$id": "<p>The ID used to identify the key. For an AWS KMS key, you can use the key ID, the key ARN, or the alias ARN.</p> <note> <p>Aliases are recognized only in the account that created the customer master key (CMK). For cross-account actions, you can only use the key ID or key ARN to identify the key.</p> </note>"
       }
     },
     "EncryptionKeyType": {
@@ -645,6 +645,12 @@
       "refs": {
         "ActionExecution$summary": "<p>A summary of the run of the action.</p>",
         "ExecutionDetails$summary": "<p>The summary of the current status of the actions.</p>"
+      }
+    },
+    "ExecutionTrigger": {
+      "base": "<p>The interaction or event that started a pipeline execution.</p>",
+      "refs": {
+        "PipelineExecutionSummary$trigger": "<p>The interaction or event that started a pipeline execution, such as automated change detection or a <code>StartPipelineExecution</code> API call.</p>"
       }
     },
     "ExternalExecutionId": {
@@ -1601,6 +1607,18 @@
       "base": "<p>Represents information about the state of transitions between one stage and another stage.</p>",
       "refs": {
         "StageState$inboundTransitionState": "<p>The state of the inbound transition, which is either enabled or disabled.</p>"
+      }
+    },
+    "TriggerDetail": {
+      "base": null,
+      "refs": {
+        "ExecutionTrigger$triggerDetail": "<p>Detail related to the event that started a pipeline execution, such as the webhook ARN of the webhook that triggered the pipeline execution or the user ARN for a user-initiated <code>start-pipeline-execution</code> CLI command.</p>"
+      }
+    },
+    "TriggerType": {
+      "base": null,
+      "refs": {
+        "ExecutionTrigger$triggerType": "<p>The type of change-detection method, command, or user interaction that started a pipeline execution.</p>"
       }
     },
     "UntagResourceInput": {

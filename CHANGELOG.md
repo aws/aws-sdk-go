@@ -1,3 +1,54 @@
+Release v1.23.12 (2019-08-29)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API, documentation, and paginators
+* `service/codepipeline`: Updates service API and documentation
+  * Introducing pipeline execution trigger details in ListPipelineExecutions API.
+* `service/ecs`: Updates service API and documentation
+  * This release of Amazon Elastic Container Service (Amazon ECS) introduces support for including Docker container IDs in the API response when describing and stopping tasks. This enables customers to easily map containers to the tasks they are associated with.
+* `service/elasticache`: Updates service API and documentation
+  * Amazon ElastiCache for Redis now supports encryption at rest using customer managed customer master keys (CMKs) in AWS Key Management Service (KMS). Amazon ElastiCache now supports cluster names upto 40 characters for replicationGoups and upto 50 characters for cacheClusters.
+* `service/lambda`: Updates service API, documentation, and paginators
+  * Adds a "MaximumBatchingWindowInSeconds" parameter to event source mapping api's. Usable by Dynamodb and Kinesis event sources.
+
+### SDK Enhancements
+* `aws/ec2metadata`: Add marketplaceProductCodes to EC2 Instance Identity Document
+  * Adds `MarketplaceProductCodes` to the EC2 Instance Metadata's Identity Document. The ec2metadata client will now retrieve these values if they are available.
+  * Fixes [#2781](https://github.com/aws/aws-sdk-go/issues/2781)
+* `private/protocol`: Add support for parsing fractional time ([#2760](https://github.com/aws/aws-sdk-go/pull/2760))
+  * Fixes the SDK's ability to parse fractional unix timestamp values and added tests.
+  * Fixes [#1448](https://github.com/aws/aws-sdk-go/pull/1448)
+
+Release v1.23.11 (2019-08-28)
+===
+
+### Service Client Updates
+* `service/globalaccelerator`: Updates service API and documentation
+* `service/mediaconvert`: Updates service API and documentation
+  * This release adds the ability to send a job to an on-demand queue while simulating the performance of a job sent to a reserved queue. Use this setting to estimate the number of reserved transcoding slots (RTS) you need for a reserved queue.
+* `service/sqs`: Updates service API and documentation
+  * Added support for message system attributes, which currently lets you send AWS X-Ray trace IDs through Amazon SQS.
+
+Release v1.23.10 (2019-08-27)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/organizations`: Updates service documentation
+  * Documentation updates for organizations
+
+### SDK Bugs
+* `service/ec2`: Fix int overflow in minTime on 386 and arm ([#2787](https://github.com/aws/aws-sdk-go/pull/2787))
+  * Fixes [2786](https://github.com/aws/aws-sdk-go/issues/2786) int overflow issue on 32-bit platforms like 386 and arm.
+Release v1.23.9 (2019-08-26)
+===
+
+### Service Client Updates
+* `service/securityhub`: Updates service API
+* `service/ssm`: Updates service API and documentation
+  * This feature adds "default tier" to the AWS Systems Manager Parameter Store for parameter creation and update. AWS customers can now set the "default tier" to one of the following values: Standard (default), Advanced or Intelligent-Tiering.  This allows customers to create advanced parameters or parameters in corresponding tiers with one setting rather than code change to specify parameter tiers.
+
 Release v1.23.8 (2019-08-23)
 ===
 

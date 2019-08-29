@@ -1225,6 +1225,13 @@
       "max":2048,
       "min":1
     },
+    "ExecutionTrigger":{
+      "type":"structure",
+      "members":{
+        "triggerType":{"shape":"TriggerType"},
+        "triggerDetail":{"shape":"TriggerDetail"}
+      }
+    },
     "ExternalExecutionId":{"type":"string"},
     "ExternalExecutionSummary":{"type":"string"},
     "FailureDetails":{
@@ -1730,7 +1737,8 @@
         "status":{"shape":"PipelineExecutionStatus"},
         "startTime":{"shape":"Timestamp"},
         "lastUpdateTime":{"shape":"Timestamp"},
-        "sourceRevisions":{"shape":"SourceRevisionList"}
+        "sourceRevisions":{"shape":"SourceRevisionList"},
+        "trigger":{"shape":"ExecutionTrigger"}
       }
     },
     "PipelineExecutionSummaryList":{
@@ -2244,6 +2252,22 @@
         "lastChangedAt":{"shape":"LastChangedAt"},
         "disabledReason":{"shape":"DisabledReason"}
       }
+    },
+    "TriggerDetail":{
+      "type":"string",
+      "max":1024,
+      "min":0
+    },
+    "TriggerType":{
+      "type":"string",
+      "enum":[
+        "CreatePipeline",
+        "StartPipelineExecution",
+        "PollForSourceChanges",
+        "Webhook",
+        "CloudWatchEvent",
+        "PutActionRevision"
+      ]
     },
     "UntagResourceInput":{
       "type":"structure",
