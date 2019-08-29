@@ -737,8 +737,8 @@ func ExampleWAF_GetSampledRequests_shared00() {
 		MaxItems: aws.Int64(100),
 		RuleId:   aws.String("WAFRule-1-Example"),
 		TimeWindow: &waf.TimeWindow{
-			EndTime:   parseTime("2006-01-02T15:04:05Z", "2016-09-27T15:50Z"),
-			StartTime: parseTime("2006-01-02T15:04:05Z", "2016-09-27T15:50Z"),
+			EndTime:   parseTime("2006-01-02T15:04:05.999999999Z", "2016-09-27T15:50Z"),
+			StartTime: parseTime("2006-01-02T15:04:05.999999999Z", "2016-09-27T15:50Z"),
 		},
 		WebAclId: aws.String("createwebacl-1472061481310"),
 	}

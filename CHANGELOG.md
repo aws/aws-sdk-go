@@ -1,3 +1,25 @@
+Release v1.23.12 (2019-08-29)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API, documentation, and paginators
+* `service/codepipeline`: Updates service API and documentation
+  * Introducing pipeline execution trigger details in ListPipelineExecutions API.
+* `service/ecs`: Updates service API and documentation
+  * This release of Amazon Elastic Container Service (Amazon ECS) introduces support for including Docker container IDs in the API response when describing and stopping tasks. This enables customers to easily map containers to the tasks they are associated with.
+* `service/elasticache`: Updates service API and documentation
+  * Amazon ElastiCache for Redis now supports encryption at rest using customer managed customer master keys (CMKs) in AWS Key Management Service (KMS). Amazon ElastiCache now supports cluster names upto 40 characters for replicationGoups and upto 50 characters for cacheClusters.
+* `service/lambda`: Updates service API, documentation, and paginators
+  * Adds a "MaximumBatchingWindowInSeconds" parameter to event source mapping api's. Usable by Dynamodb and Kinesis event sources.
+
+### SDK Enhancements
+* `aws/ec2metadata`: Add marketplaceProductCodes to EC2 Instance Identity Document
+  * Adds `MarketplaceProductCodes` to the EC2 Instance Metadata's Identity Document. The ec2metadata client will now retrieve these values if they are available.
+  * Fixes [#2781](https://github.com/aws/aws-sdk-go/issues/2781)
+* `private/protocol`: Add support for parsing fractional time ([#2760](https://github.com/aws/aws-sdk-go/pull/2760))
+  * Fixes the SDK's ability to parse fractional unix timestamp values and added tests.
+  * Fixes [#1448](https://github.com/aws/aws-sdk-go/pull/1448)
+
 Release v1.23.11 (2019-08-28)
 ===
 

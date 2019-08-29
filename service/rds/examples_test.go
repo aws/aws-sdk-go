@@ -2841,7 +2841,7 @@ func ExampleRDS_RestoreDBClusterToPointInTime_shared00() {
 	svc := rds.New(session.New())
 	input := &rds.RestoreDBClusterToPointInTimeInput{
 		DBClusterIdentifier:       aws.String("sample-restored-cluster1"),
-		RestoreToTime:             parseTime("2006-01-02T15:04:05Z", "2016-09-13T18:45:00Z"),
+		RestoreToTime:             parseTime("2006-01-02T15:04:05.999999999Z", "2016-09-13T18:45:00Z"),
 		SourceDBClusterIdentifier: aws.String("sample-cluster1"),
 	}
 
@@ -2972,7 +2972,7 @@ func ExampleRDS_RestoreDBInstanceFromDBSnapshot_shared00() {
 func ExampleRDS_RestoreDBInstanceToPointInTime_shared00() {
 	svc := rds.New(session.New())
 	input := &rds.RestoreDBInstanceToPointInTimeInput{
-		RestoreTime:                parseTime("2006-01-02T15:04:05Z", "2016-09-13T18:45:00Z"),
+		RestoreTime:                parseTime("2006-01-02T15:04:05.999999999Z", "2016-09-13T18:45:00Z"),
 		SourceDBInstanceIdentifier: aws.String("mysql-sample"),
 		TargetDBInstanceIdentifier: aws.String("mysql-sample-restored"),
 	}
