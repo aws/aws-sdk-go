@@ -818,6 +818,14 @@
         "ListVersionsByFunctionRequest$MaxItems": "<p>Limit the number of versions that are returned.</p>"
       }
     },
+    "MaximumBatchingWindowInSeconds": {
+      "base": null,
+      "refs": {
+        "CreateEventSourceMappingRequest$MaximumBatchingWindowInSeconds": null,
+        "EventSourceMappingConfiguration$MaximumBatchingWindowInSeconds": null,
+        "UpdateEventSourceMappingRequest$MaximumBatchingWindowInSeconds": null
+      }
+    },
     "MemorySize": {
       "base": null,
       "refs": {
