@@ -38,7 +38,7 @@ func (r *DiffReporter) PushStep(ps cmp.PathStep) {
 func (r *DiffReporter) Report(rs cmp.Result) {
 	if !rs.Equal() {
 		vx, vy := r.path.Last().Values()
-		r.diffs = append(r.diffs, fmt.Sprintf("comparision failed at %#v:\n\t expect: %+v\n\t actual: %+v\n", r.path, vx, vy))
+		r.diffs = append(r.diffs, fmt.Sprintf("comparision failed for key: %#v\n\t expect: %+v\n\t actual: %+v\n", r.path, vx, vy))
 	}
 }
 
@@ -107,23 +107,23 @@ func ioReaderCompare(expect, actual interface{}) bool {
 }
 
 // StringEqual asserts that two strings are equal else returns false by wrapping an error message
-func StringEqual(t *testing.T, expectVal, actualVal string) bool {
+func StringEqual(t *testing.T, expectVal, actualVal string) error {
+	t.Helper()
 	if expectVal != actualVal {
-		t.Errorf("%s\n", fmt.Sprintf("String comparision failed,\n\texpect: %s\n\tactual: %s\n", expectVal, actualVal))
-		return false
+		t.Fatalf("String comparision failed,\n\texpect: %s\n\tactual: %s\n", expectVal, actualVal)
 	}
-	return true
+	return nil
 }
 
 // ReadBody returns the request body as byte slice without erasing it
 func ReadBody(t *testing.T, req *request.Request) []byte {
+	t.Helper()
 	var bytesReqBody []byte
 	var err error
 	if req.HTTPRequest.Body != nil {
 		bytesReqBody, err = ioutil.ReadAll(req.HTTPRequest.Body)
 		if err != nil {
-			t.Errorf(errMsg("unable to read body from request", err))
-			return nil
+			t.Fatalf("unable to read body from request, %v", err)
 		}
 	}
 	req.HTTPRequest.Body = ioutil.NopCloser(bytes.NewBuffer(bytesReqBody))
@@ -132,7 +132,7 @@ func ReadBody(t *testing.T, req *request.Request) []byte {
 
 // AssertRequestMethodEquals asserts if method field in request and expect value are equal
 func AssertRequestMethodEquals(t *testing.T, expectVal string, actualVal string) bool {
-	return StringEqual(t, expectVal, actualVal)
+	return StringEqual(t, expectVal, actualVal) == nil
 }
 
 // AssertRequestURLMatches asserts if request URL in request and expect are equal. True
@@ -144,7 +144,7 @@ func AssertRequestURLMatches(t *testing.T, expectVal string, actualVal string) b
 
 // AssertRequestURLPathMatches asserts if the path field in request and expect are equal
 func AssertRequestURLPathMatches(t *testing.T, expectVal string, actualVal string) bool {
-	return StringEqual(t, expectVal, actualVal)
+	return StringEqual(t, expectVal, actualVal) == nil
 }
 
 // AssertRequestURLQueryMatches asserts if query values in request and expect are equal.
@@ -155,15 +155,13 @@ func AssertRequestURLQueryMatches(t *testing.T, expectVal string, req *request.R
 	expectQ, err := url.ParseQuery(expectVal)
 
 	if err != nil {
-		t.Errorf(errMsg("unable to parse query from expect", err, msgAndArgs))
-		return false
+		t.Fatalf("unable to parse query from expect, %v", err)
 	}
 	var r DiffReporter
 	for expectKey, expectVal := range expectQ {
 		reqVal := queryRequest.Get(expectKey)
 		if !cmp.Equal(expectVal[0], reqVal, cmp.Reporter(&r)) {
-			t.Errorf(fmt.Sprintf("query values inside request and expect don't match\n%s\n", r.String()))
-			return false
+			t.Fatalf("query values inside request and expect don't match\n%s\n", r.String())
 		}
 	}
 	return true
@@ -178,25 +176,23 @@ func AssertRequestHeadersMatch(t *testing.T, expectHeader map[string]interface{}
 		if key == "Header-Json-Value" {
 			expectJSONValue, err1 := protocol.DecodeJSONValue(valExpect.(string), protocol.Base64Escape)
 			if err1 != nil {
-				t.Errorf(errMsg("unable to parse expected JSON", err1, msgAndArgs...))
+				t.Fatalf("unable to parse expected JSON, %v", err1)
 			}
 			responseJSONValue, err2 := protocol.DecodeJSONValue(valReq, protocol.Base64Escape)
 			if err2 != nil {
-				t.Errorf(errMsg("unable to parse response JSON", err2, msgAndArgs...))
+				t.Fatalf("unable to parse response JSON, %v", err2)
 			}
 
 			var r DiffReporter
 			for key1, val1 := range expectJSONValue {
 				if !cmp.Equal(val1, responseJSONValue[key1], FloatIntEquate(), cmp.Reporter(&r)) {
-					t.Errorf(fmt.Sprintf("aws.JSON value from expect and response don't match\n%s\n", r.String()))
-					return false
+					t.Fatalf("aws.JSON value from expect and response don't match\n%s\n", r.String())
 				}
 			}
 			continue
 		}
 		if valReq == "" || valReq != valExpect {
-			t.Errorf("header values don't match for \"key\": %q,\nexpect: %s\nactual: %s", key, valExpect, valReq)
-			return false
+			t.Fatalf("header values don't match for key: %q,\nexpect: %s\nactual: %s", key, valExpect, valReq)
 		}
 	}
 	return true
@@ -206,7 +202,7 @@ func AssertRequestHeadersMatch(t *testing.T, expectHeader map[string]interface{}
 // to expected value.
 func AssertRequestBodyEqualsBytes(t *testing.T, expectVal string, req *request.Request) bool {
 	bytesReqBody := ReadBody(t, req)
-	return StringEqual(t, expectVal, string(bytesReqBody))
+	return StringEqual(t, expectVal, string(bytesReqBody)) == nil
 }
 
 // AssertRequestBodyEqualsJSON verifies that the json value in request body
@@ -215,17 +211,15 @@ func AssertRequestBodyEqualsJSON(t *testing.T, expectVal map[string]interface{},
 	bytesReqBody := ReadBody(t, req)
 	actualVal := map[string]interface{}{}
 	if err := json.Unmarshal(bytesReqBody, &actualVal); err != nil {
-		t.Errorf(errMsg("unable to parse expected JSON", err, msgAndArgs...))
-		return false
+		t.Fatalf("unable to parse expected JSON, %v", err)
 	}
 	var r DiffReporter
 	for key, val := range expectVal {
 		if key == "JsonValue" && !AssertJSON(t, reflect.ValueOf(val).String(), reflect.ValueOf(actualVal[key]).String()) {
-			return false
+			t.Fatalf("AssertJSON failed when key is %s,\nexpect: %s\n\t\tactual: %s\t", key, val, actualVal[key])
 		} else if key != "JsonValue" {
 			if !cmp.Equal(val, actualVal[key], FloatIntEquate(), cmp.Reporter(&r)) {
-				fmt.Print(r.String())
-				return false
+				t.Fatalf(r.String())
 			}
 		}
 	}
@@ -238,8 +232,7 @@ func AssertRequestBodyEqualsJSON(t *testing.T, expectVal map[string]interface{},
 func AssertRequestBodyMatchesXML(t *testing.T, expectVal string, req *request.Request, container interface{}, msgAndArgs ...interface{}) bool {
 	r := req.HTTPRequest
 	if r.Body == nil {
-		t.Errorf(errMsg("request body is nil", nil, msgAndArgs))
-		return false
+		t.Fatalf("request body is nil")
 	}
 	body := util.SortXML(r.Body)
 
@@ -250,12 +243,12 @@ func AssertRequestBodyMatchesXML(t *testing.T, expectVal string, req *request.Re
 // equal
 func AssertRequestBodyEqualsString(t *testing.T, expectVal string, req *request.Request, msgAndArgs ...interface{}) bool {
 	bytesReqBody := ReadBody(t, req)
-	return StringEqual(t, expectVal, string(bytesReqBody))
+	return StringEqual(t, expectVal, string(bytesReqBody)) == nil
 }
 
 // AssertRequestIDEquals asserts if requestID field in request and expect value are equal
 func AssertRequestIDEquals(t *testing.T, expectVal string, actualVal string) bool {
-	return StringEqual(t, expectVal, actualVal)
+	return StringEqual(t, expectVal, actualVal) == nil
 }
 
 // AssertResponseDataEquals asserts if data in response and error are equal. True if all
@@ -264,8 +257,7 @@ func AssertRequestIDEquals(t *testing.T, expectVal string, actualVal string) boo
 func AssertResponseDataEquals(t *testing.T, expectResponse interface{}, actualResponse interface{}, msgAndArgs ...interface{}) bool {
 	var r DiffReporter
 	if !cmp.Equal(expectResponse, actualResponse, EquateIoReader(), cmp.Reporter(&r)) {
-		fmt.Print(r.String())
-		return false
+		t.Fatalf(r.String())
 	}
 	return true
 }
@@ -273,7 +265,7 @@ func AssertResponseDataEquals(t *testing.T, expectResponse interface{}, actualRe
 // AssertResponseErrorIsKindOf asserts if code in response error and expect value are equal
 func AssertResponseErrorIsKindOf(t *testing.T, expectVal string, err error) bool {
 	if awsErr, ok := err.(awserr.Error); ok {
-		return StringEqual(t, expectVal, awsErr.Code())
+		return StringEqual(t, expectVal, awsErr.Code()) == nil
 	}
 	return true
 }
@@ -282,7 +274,7 @@ func AssertResponseErrorIsKindOf(t *testing.T, expectVal string, err error) bool
 // value are equal
 func AssertResponseErrorMessageEquals(t *testing.T, expectVal string, err error) bool {
 	if awsErr, ok := err.(awserr.Error); ok {
-		return StringEqual(t, expectVal, awsErr.Message())
+		return StringEqual(t, expectVal, awsErr.Message()) == nil
 	}
 	return true
 }
@@ -291,7 +283,7 @@ func AssertResponseErrorMessageEquals(t *testing.T, expectVal string, err error)
 // expect value are equal
 func AssertResponseErrorRequestIDEquals(t *testing.T, expectVal string, err error) bool {
 	if reqErr, ok := err.(awserr.RequestFailure); ok {
-		return StringEqual(t, expectVal, reqErr.RequestID())
+		return StringEqual(t, expectVal, reqErr.RequestID()) == nil
 	}
 	return true
 }

@@ -135,16 +135,10 @@ func (a *API) APIBehaviorTestsGoCode() string {
 //Generates assertions
 func (c Case) GenerateAssertions(op *Operation) string {
 	var val string = "//Assertions start here"
-
 	for _, assertion := range c.Expect {
 		for assertionName, assertionContext := range assertion {
-			if assertionName == "responseErrorDataEquals" {
-				val += fmt.Sprintf("\nawstesting.AssertResponseErrorDataEquals(t, %#v, err)", assertionContext)
-				continue
-			}
-			val += fmt.Sprintf("\n")
+			val += fmt.Sprintf("\nawstesting.Assert")
 
-			val += "if !awstesting.Assert"
 			switch assertionName {
 			case "requestMethodEquals":
 				val += fmt.Sprintf("RequestMethodEquals(t, %q, req.HTTPRequest.Method)", assertionContext)
@@ -168,6 +162,8 @@ func (c Case) GenerateAssertions(op *Operation) string {
 				val += fmt.Sprintf("RequestIDEquals(t, %q, req.RequestID)", assertionContext)
 			case "responseDataEquals":
 				val += fmt.Sprintf("ResponseDataEquals(t, %v, resp)", c.BuildOutputShape(&op.OutputRef))
+			case "responseErrorDataEquals":
+				val += fmt.Sprintf("ResponseErrorDataEquals(t, %#v, err)", assertionContext)
 			case "responseErrorIsKindOf":
 				val += fmt.Sprintf("ResponseErrorIsKindOf(t, %q, err)", assertionContext)
 			case "responseErrorMessageEquals":
@@ -177,11 +173,6 @@ func (c Case) GenerateAssertions(op *Operation) string {
 			default:
 				panic("Invalid assertion key")
 			}
-
-			val += fmt.Sprintf(`{ 
-				t.Errorf("Expect no error, got %s assertion failed")
-			}`, assertionName)
-
 		}
 	}
 	return val
