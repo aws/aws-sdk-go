@@ -82,13 +82,14 @@ func areNaNsI64s(x, y int64) bool {
 }
 
 // EquateIoReader return an option to compare actual and expect bodies
-// even if they have different types but have the same byte stream value
-// Body is built from shape_value_builder such that, actual would be of
-// type "ioutil.nopCloser" and expect would be "aws.ReaderSeekerCloser"
 func EquateIoReader() cmp.Option {
 	return cmp.FilterValues(ioReaderCompare, cmp.Comparer(equateAlways))
 }
 
+// ioReaderCompare compares actual and expect bodies even if they have
+// different types but have the same byte stream value. Body is built
+// from shape_value_builder such that, actual would be of type
+// "ioutil.nopCloser" and expect would be "aws.ReaderSeekerCloser"
 func ioReaderCompare(expect, actual interface{}) bool {
 	vActual, vExpect := reflect.ValueOf(actual), reflect.ValueOf(expect)
 	if vActual.Type().String() != "ioutil.nopCloser" || vExpect.Type().String() != "aws.ReaderSeekerCloser" {
