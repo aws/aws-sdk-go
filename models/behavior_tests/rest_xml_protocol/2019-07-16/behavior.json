@@ -322,12 +322,12 @@
           "input": {
             "UriPathSegment": "segment",
             "UriPath": "path",
-            "QueryTimestamp": 946845296.123
+            "QueryTimestamp": 946845296
           }
         },
         "expect": [
           {
-            "requestUrlQueryMatches": "timestamp=2000-01-02T20%3A34%3A56.123Z"
+            "requestUrlQueryMatches": "timestamp=2000-01-02T20%3A34%3A56Z"
           }
         ]
       },
@@ -338,12 +338,12 @@
           "input": {
             "UriPathSegment": "segment",
             "UriPath": "path",
-            "QueryUnixTimestamp": 946845296.123
+            "QueryUnixTimestamp": 946845296
           }
         },
         "expect": [
           {
-            "requestUrlQueryMatches": "unix-timestamp=946845296.123"
+            "requestUrlQueryMatches": "unix-timestamp=946845296"
           }
         ]
       },
@@ -354,12 +354,12 @@
           "input": {
             "UriPathSegment": "segment",
             "UriPath": "path",
-            "QueryIso8601Timestamp": 946845296.123
+            "QueryIso8601Timestamp": 946845296
           }
         },
         "expect": [
           {
-            "requestUrlQueryMatches": "iso8601-timestamp=2000-01-02T20%3A34%3A56.123Z"
+            "requestUrlQueryMatches": "iso8601-timestamp=2000-01-02T20%3A34%3A56Z"
           }
         ]
       },
@@ -625,13 +625,13 @@
           "input": {
             "UriPathSegment": "segment",
             "UriPath": "path",
-            "HeaderTimestamp": 946845296.123
+            "HeaderTimestamp": 946845296
           }
         },
         "expect": [
           {
             "requestHeadersMatch": {
-              "Header-Timestamp": "946845296.123"
+              "Header-Timestamp": "946845296"
             }
           }
         ]
@@ -643,13 +643,13 @@
           "input": {
             "UriPathSegment": "segment",
             "UriPath": "path",
-            "HeaderUnixTimestamp": 946845296.123
+            "HeaderUnixTimestamp": 946845296
           }
         },
         "expect": [
           {
             "requestHeadersMatch": {
-              "Header-Unix-Timestamp": "946845296.123"
+              "Header-Unix-Timestamp": "946845296"
             }
           }
         ]
@@ -661,13 +661,13 @@
           "input": {
             "UriPathSegment": "segment",
             "UriPath": "path",
-            "HeaderIso8601Timestamp": 946845296.123
+            "HeaderIso8601Timestamp": 946845296
           }
         },
         "expect": [
           {
             "requestHeadersMatch": {
-              "Header-Iso8601-Timestamp": "2000-01-02T20:34:56.123Z"
+              "Header-Iso8601-Timestamp": "2000-01-02T20:34:56Z"
             }
           }
         ]

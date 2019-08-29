@@ -195,7 +195,7 @@ func AssertRequestHeadersMatch(t *testing.T, expectHeader map[string]interface{}
 			continue
 		}
 		if valReq == "" || valReq != valExpect {
-			t.Errorf("header values don't match,\nexpect: %s\nactual: %s", valExpect, valReq)
+			t.Errorf("header values don't match for \"key\": %q,\nexpect: %s\nactual: %s", key, valExpect, valReq)
 			return false
 		}
 	}
@@ -262,9 +262,6 @@ func AssertRequestIDEquals(t *testing.T, expectVal string, actualVal string) boo
 // fields inside the structure parsed from expect value are equal to the corresponding
 // response fields
 func AssertResponseDataEquals(t *testing.T, expectResponse interface{}, actualResponse interface{}, msgAndArgs ...interface{}) bool {
-	if actualResponse == nil || expectResponse == nil {
-		return equal(t, expectResponse, actualResponse, msgAndArgs)
-	}
 	var r DiffReporter
 	if !cmp.Equal(expectResponse, actualResponse, EquateIoReader(), cmp.Reporter(&r)) {
 		fmt.Print(r.String())
