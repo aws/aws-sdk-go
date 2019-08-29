@@ -631,7 +631,7 @@
         "expect": [
           {
             "requestHeadersMatch": {
-              "Header-Timestamp": "946845296"
+              "Header-Timestamp": "Sun, 02 Jan 2000 20:34:56 GMT"
             }
           }
         ]

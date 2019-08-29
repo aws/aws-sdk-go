@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"strings"
 	"text/template"
 )
 
@@ -215,9 +216,25 @@ func (c Case) ConfigurationString(T Tests) string {
 		if c.LocalEnv["AWS_SECRET_ACCESS_KEY"] != "" {
 			secretAccessKey = c.LocalEnv["AWS_SECRET_ACCESS_KEY"]
 		}
+		if c.LocalEnv["endpointUrl"] != "" {
+			endpointUrl = c.LocalEnv["endpointUrl"]
+		}
 	}
 	return fmt.Sprintf("\n\t\tRegion: aws.String(%#v),\n\t\tCredentials: credentials.NewStaticCredentials(%#v, %#v, %#v),",
 		region, accessKeyId, secretAccessKey, endpointUrl)
+}
+
+// ErrorAssertExists returns true if there is an assertion in the expect map
+// which requires error as an argument
+func (c Case) ErrorAssertExists() bool {
+	for _, assertion := range c.Expect {
+		for assertionName := range assertion {
+			if strings.Contains(assertionName, "Error") {
+				return true
+			}
+		}
+	}
+	return false
 }
 
 //template map is defined in "eventstream.go"
@@ -238,24 +255,17 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 {{end}}
 
 {{define "ResponseBuild"}}
-		{{- if eq $.testCase.Response.StatusCode 0}}
-			r.HTTPResponse = &http.Response{StatusCode:200,
-											Header: http.Header{},
-											Body: ioutil.NopCloser(&bytes.Buffer{}),
-											}
-		{{- else }}
 			r.HTTPResponse = &http.Response{
+						{{- if eq $.testCase.Response.StatusCode 0}}
+											StatusCode:200,
+						{{- else}}
 							StatusCode:{{$.testCase.Response.StatusCode}},
-						{{- if ne (len $.testCase.Response.Headers) 0}}
+						{{- end}}
 							Header: http.Header{
 										{{- range $key,$val:=$.testCase.Response.Headers}}
 											"{{$key}}":[]string{ "{{$val}}" },
 										{{- end}}	
 									},
-						{{- else}}
-							Header: http.Header{},
-						{{- end}}
-
 						{{- if eq ($.testCase.Response.BodyType) "xml"}}
 							Body: ioutil.NopCloser(bytes.NewBufferString({{printf "%q" $.testCase.Response.BodyContent}})),
 						{{- else if eq ($.testCase.Response.BodyType) "json"}}
@@ -271,26 +281,31 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 							Body: ioutil.NopCloser(&bytes.Buffer{}),
 						{{- end}}
 						}
-		{{- end}}
 {{end}}
 
 {{define "RequestBuild"}}
-		input := {{ $.testCase.Request.BuildInputShape $.op.InputRef }}
+	input := {{ $.testCase.Request.BuildInputShape $.op.InputRef }}
 
-		//Build request
-		req, resp := svc.{{$.testCase.Request.Operation}}Request(input)
-		_ = resp
+	//Build request
+	req, resp := svc.{{$.testCase.Request.Operation}}Request(input)
+	_ = resp
 
-		MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func (r *request.Request){ 
-			{{- template "ResponseBuild" Map "testCase" $.testCase -}}	
-		}}
-		req.Handlers.Send.Swap( corehandlers.SendHandler.Name, MockHTTPResponseHandler )
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func (r *request.Request){ 
+		{{ template "ResponseBuild" Map "testCase" $.testCase -}}	
+	}}
+	req.Handlers.Send.Swap( corehandlers.SendHandler.Name, MockHTTPResponseHandler )
 
-		err := req.Send()
-		if err != nil {
-			t.Errorf("expect no error, got %v", err)
+	err := req.Send()
+	{{- if $.testCase.ErrorAssertExists}}
+		if err == nil {
+			t.Fatal(err)
 		}
-		{{printf "\n"}}
+	{{- else}}
+		if err != nil {
+			t.Fatal(err)
+		}
+	{{- end}}
+	{{printf "\n"}}
 {{end}}
 
 {{- range $i, $testCase := $.Tests.Cases }}
@@ -300,12 +315,12 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 
 		{{template "StashCredentials" .}}
 
-		{{- template "SessionSetup" Map "testCase" $testCase "Tests" $.Tests}}
+		{{ template "SessionSetup" Map "testCase" $testCase "Tests" $.Tests}}
 
 		//Starts a new service using using sess
 		svc := {{$.API.PackageName}}.New(sess)
 
-		{{- template "RequestBuild" Map "testCase" $testCase "op" $op}}
+		{{ template "RequestBuild" Map "testCase" $testCase "op" $op}}
 		
 		{{$testCase.GenerateAssertions $op}}
 

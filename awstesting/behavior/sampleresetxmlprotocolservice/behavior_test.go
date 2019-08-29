@@ -42,6 +42,7 @@ func TestBehavior_00(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.EmptyPutInput{}
 
 	//Build request
@@ -49,16 +50,18 @@ func TestBehavior_00(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -87,6 +90,7 @@ func TestBehavior_01(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.EmptyPostInput{}
 
 	//Build request
@@ -94,16 +98,18 @@ func TestBehavior_01(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -132,6 +138,7 @@ func TestBehavior_02(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.EmptyPatchInput{}
 
 	//Build request
@@ -139,16 +146,18 @@ func TestBehavior_02(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -177,6 +186,7 @@ func TestBehavior_03(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.EmptyGetInput{}
 
 	//Build request
@@ -184,16 +194,18 @@ func TestBehavior_03(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -222,6 +234,7 @@ func TestBehavior_04(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.EmptyHeadInput{}
 
 	//Build request
@@ -229,16 +242,18 @@ func TestBehavior_04(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -267,6 +282,7 @@ func TestBehavior_05(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.EmptyDeleteInput{}
 
 	//Build request
@@ -274,16 +290,18 @@ func TestBehavior_05(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -312,6 +330,7 @@ func TestBehavior_06(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		UriPath:        aws.String("param-2"),
 		UriPathSegment: aws.String("param-1"),
@@ -322,16 +341,18 @@ func TestBehavior_06(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -357,6 +378,7 @@ func TestBehavior_07(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		UriPath:        aws.String("%20uri path?"),
 		UriPathSegment: aws.String("path/segment abc~"),
@@ -367,16 +389,18 @@ func TestBehavior_07(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -399,6 +423,7 @@ func TestBehavior_08(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		UriPath:        aws.String("greedy path/with/slashes"),
 		UriPathSegment: aws.String("segment"),
@@ -409,16 +434,18 @@ func TestBehavior_08(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -441,6 +468,7 @@ func TestBehavior_09(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		QueryString:    aws.String("string-value"),
 		UriPath:        aws.String("path"),
@@ -452,16 +480,18 @@ func TestBehavior_09(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -484,6 +514,7 @@ func TestBehavior_10(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		QueryString:    aws.String("string value"),
 		UriPath:        aws.String("path"),
@@ -495,16 +526,18 @@ func TestBehavior_10(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -527,6 +560,7 @@ func TestBehavior_11(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		QueryInteger:   aws.Int64(123456),
 		UriPath:        aws.String("path"),
@@ -538,16 +572,18 @@ func TestBehavior_11(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -570,6 +606,7 @@ func TestBehavior_12(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		QueryLong:      aws.Int64(123456),
 		UriPath:        aws.String("path"),
@@ -581,16 +618,18 @@ func TestBehavior_12(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -613,6 +652,7 @@ func TestBehavior_13(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		QueryFloat:     aws.Float64(123.456000),
 		UriPath:        aws.String("path"),
@@ -624,16 +664,18 @@ func TestBehavior_13(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -656,6 +698,7 @@ func TestBehavior_14(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		QueryDouble:    aws.Float64(123.456000),
 		UriPath:        aws.String("path"),
@@ -667,16 +710,18 @@ func TestBehavior_14(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -699,6 +744,7 @@ func TestBehavior_15(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		QueryBoolean:   aws.Bool(true),
 		UriPath:        aws.String("path"),
@@ -710,16 +756,18 @@ func TestBehavior_15(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -742,6 +790,7 @@ func TestBehavior_16(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		QueryBoolean:   aws.Bool(false),
 		UriPath:        aws.String("path"),
@@ -753,16 +802,18 @@ func TestBehavior_16(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -785,6 +836,7 @@ func TestBehavior_17(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		QueryBlob:      []byte("binary-value"),
 		UriPath:        aws.String("path"),
@@ -796,16 +848,18 @@ func TestBehavior_17(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -828,6 +882,7 @@ func TestBehavior_18(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		QueryTimestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.000000")
@@ -845,16 +900,18 @@ func TestBehavior_18(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -877,6 +934,7 @@ func TestBehavior_19(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		QueryUnixTimestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.000000")
@@ -894,16 +952,18 @@ func TestBehavior_19(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -926,6 +986,7 @@ func TestBehavior_20(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		QueryIso8601Timestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.000000")
@@ -943,16 +1004,18 @@ func TestBehavior_20(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -975,6 +1038,7 @@ func TestBehavior_21(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		QueryHttpdateTimestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.123000")
@@ -992,16 +1056,18 @@ func TestBehavior_21(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -1024,6 +1090,7 @@ func TestBehavior_22(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		QueryListOfStrings: []*string{
 			aws.String("abc"),
@@ -1039,16 +1106,18 @@ func TestBehavior_22(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -1071,6 +1140,7 @@ func TestBehavior_23(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		QueryMapOfStrings: map[string]*string{
 			"color": aws.String("red"),
@@ -1085,16 +1155,18 @@ func TestBehavior_23(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -1117,6 +1189,7 @@ func TestBehavior_24(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		QueryMapOfStrings: map[string]*string{
 			"a b": aws.String("x:z"),
@@ -1131,16 +1204,18 @@ func TestBehavior_24(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -1163,6 +1238,7 @@ func TestBehavior_25(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		QueryMapOfListsOfStrings: map[string][]*string{
 			"key 1": {
@@ -1183,16 +1259,18 @@ func TestBehavior_25(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -1215,6 +1293,7 @@ func TestBehavior_26(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		HeaderString:   aws.String("header string value"),
 		UriPath:        aws.String("path"),
@@ -1226,16 +1305,18 @@ func TestBehavior_26(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -1258,6 +1339,7 @@ func TestBehavior_27(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		HeaderInteger:  aws.Int64(123456),
 		UriPath:        aws.String("path"),
@@ -1269,16 +1351,18 @@ func TestBehavior_27(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -1301,6 +1385,7 @@ func TestBehavior_28(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		HeaderLong:     aws.Int64(123456),
 		UriPath:        aws.String("path"),
@@ -1312,16 +1397,18 @@ func TestBehavior_28(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -1344,6 +1431,7 @@ func TestBehavior_29(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		HeaderFloat:    aws.Float64(123.456000),
 		UriPath:        aws.String("path"),
@@ -1355,16 +1443,18 @@ func TestBehavior_29(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -1387,6 +1477,7 @@ func TestBehavior_30(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		HeaderDouble:   aws.Float64(123.456000),
 		UriPath:        aws.String("path"),
@@ -1398,16 +1489,18 @@ func TestBehavior_30(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -1430,6 +1523,7 @@ func TestBehavior_31(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		HeaderBoolean:  aws.Bool(true),
 		UriPath:        aws.String("path"),
@@ -1441,16 +1535,18 @@ func TestBehavior_31(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -1473,6 +1569,7 @@ func TestBehavior_32(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		HeaderBoolean:  aws.Bool(false),
 		UriPath:        aws.String("path"),
@@ -1484,16 +1581,18 @@ func TestBehavior_32(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -1516,6 +1615,7 @@ func TestBehavior_33(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		HeaderBlob:     []byte("binary-value"),
 		UriPath:        aws.String("path"),
@@ -1527,16 +1627,18 @@ func TestBehavior_33(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -1559,6 +1661,7 @@ func TestBehavior_34(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		HeaderJsonValue: aws.JSONValue{"array": []interface{}{1, 2, 3, 4}, "boolFalse": false, "boolTrue": true, "null": interface{}(nil), "number": 1234.5, "object": map[string]interface{}{"key": "value"}, "string": "value"},
 		UriPath:         aws.String("path"),
@@ -1570,16 +1673,18 @@ func TestBehavior_34(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -1602,6 +1707,7 @@ func TestBehavior_35(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		HeaderTimestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.000000")
@@ -1619,20 +1725,22 @@ func TestBehavior_35(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
-	if !awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Timestamp": "946845296"}, req) {
+	if !awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Timestamp": "Sun, 02 Jan 2000 20:34:56 GMT"}, req) {
 		t.Errorf("Expect no error, got requestHeadersMatch assertion failed")
 	}
 
@@ -1651,6 +1759,7 @@ func TestBehavior_36(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		HeaderUnixTimestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.000000")
@@ -1668,16 +1777,18 @@ func TestBehavior_36(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -1700,6 +1811,7 @@ func TestBehavior_37(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		HeaderIso8601Timestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.000000")
@@ -1717,16 +1829,18 @@ func TestBehavior_37(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -1749,6 +1863,7 @@ func TestBehavior_38(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		HeaderHttpdateTimestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.123000")
@@ -1766,16 +1881,18 @@ func TestBehavior_38(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -1798,6 +1915,7 @@ func TestBehavior_39(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		HeaderMap: map[string]*string{
 			"Key-1": aws.String("map value 1"),
@@ -1813,16 +1931,18 @@ func TestBehavior_39(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -1845,6 +1965,7 @@ func TestBehavior_40(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		HeaderMapWithPrefix: map[string]*string{
 			"Key-1": aws.String("prefix map value 1"),
@@ -1860,16 +1981,18 @@ func TestBehavior_40(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -1892,6 +2015,7 @@ func TestBehavior_41(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		BodyStream:     aws.ReadSeekCloser(strings.NewReader("YmluYXJ5LXZhbHVl")),
 		UriPath:        aws.String("path"),
@@ -1903,16 +2027,18 @@ func TestBehavior_41(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -1935,6 +2061,7 @@ func TestBehavior_42(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		UriPath:        aws.String("path"),
 		UriPathSegment: aws.String("segment"),
@@ -1945,16 +2072,18 @@ func TestBehavior_42(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -1977,6 +2106,7 @@ func TestBehavior_43(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.OperationWithPayloadStructureMemberInput{
 		Data: &sampleresetxmlprotocolservice.SimpleStruct{
 			Value: aws.String("string value"),
@@ -1988,16 +2118,18 @@ func TestBehavior_43(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -2020,6 +2152,7 @@ func TestBehavior_44(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.OperationWithPayloadStructureMemberInput{
 		Data: &sampleresetxmlprotocolservice.SimpleStruct{},
 	}
@@ -2029,16 +2162,18 @@ func TestBehavior_44(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -2061,6 +2196,7 @@ func TestBehavior_45(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.OperationWithPayloadStructureMemberInput{
 		Data: &sampleresetxmlprotocolservice.SimpleStruct{},
 	}
@@ -2070,16 +2206,18 @@ func TestBehavior_45(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -2102,6 +2240,7 @@ func TestBehavior_46(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.OperationMembersWithoutLocationInput{
 		Header:  aws.String("value 1"),
 		String_: aws.String("value 2"),
@@ -2115,16 +2254,18 @@ func TestBehavior_46(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -2150,6 +2291,7 @@ func TestBehavior_47(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.OperationMembersWithoutLocationInput{
 		Header: aws.String("value 1"),
 	}
@@ -2159,16 +2301,18 @@ func TestBehavior_47(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -2191,6 +2335,7 @@ func TestBehavior_48(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		String_: aws.String("string value"),
 	}
@@ -2200,16 +2345,18 @@ func TestBehavior_48(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -2232,6 +2379,7 @@ func TestBehavior_49(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		String_: aws.String("a&b"),
 	}
@@ -2241,16 +2389,18 @@ func TestBehavior_49(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -2273,6 +2423,7 @@ func TestBehavior_50(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -2280,16 +2431,18 @@ func TestBehavior_50(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -2312,6 +2465,7 @@ func TestBehavior_51(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		Integer: aws.Int64(123456),
 	}
@@ -2321,16 +2475,18 @@ func TestBehavior_51(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -2353,6 +2509,7 @@ func TestBehavior_52(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		Long: aws.Int64(999999999999),
 	}
@@ -2362,16 +2519,18 @@ func TestBehavior_52(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -2394,6 +2553,7 @@ func TestBehavior_53(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		Float: aws.Float64(123.456000),
 	}
@@ -2403,16 +2563,18 @@ func TestBehavior_53(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -2435,6 +2597,7 @@ func TestBehavior_54(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		Double: aws.Float64(123.456000),
 	}
@@ -2444,16 +2607,18 @@ func TestBehavior_54(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -2476,6 +2641,7 @@ func TestBehavior_55(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		Blob: []byte("binary-value"),
 	}
@@ -2485,16 +2651,18 @@ func TestBehavior_55(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -2517,6 +2685,7 @@ func TestBehavior_56(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		Boolean: aws.Bool(true),
 	}
@@ -2526,16 +2695,18 @@ func TestBehavior_56(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -2558,6 +2729,7 @@ func TestBehavior_57(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		Boolean: aws.Bool(false),
 	}
@@ -2567,16 +2739,18 @@ func TestBehavior_57(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -2599,6 +2773,7 @@ func TestBehavior_58(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		Iso8601Timestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.000000")
@@ -2614,16 +2789,18 @@ func TestBehavior_58(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -2646,6 +2823,7 @@ func TestBehavior_59(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		Timestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.000000")
@@ -2661,16 +2839,18 @@ func TestBehavior_59(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -2693,6 +2873,7 @@ func TestBehavior_60(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -2700,16 +2881,18 @@ func TestBehavior_60(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -2732,6 +2915,7 @@ func TestBehavior_61(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		UnixTimestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.123000")
@@ -2747,16 +2931,18 @@ func TestBehavior_61(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -2779,6 +2965,7 @@ func TestBehavior_62(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		ListOfStrings: []*string{
 			aws.String("abc"),
@@ -2791,16 +2978,18 @@ func TestBehavior_62(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -2823,6 +3012,7 @@ func TestBehavior_63(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		ListOfMapsOfStrings: []map[string]*string{
 			{
@@ -2840,16 +3030,18 @@ func TestBehavior_63(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -2872,6 +3064,7 @@ func TestBehavior_64(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		ListWithMemberName: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
@@ -2891,16 +3084,18 @@ func TestBehavior_64(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -2923,6 +3118,7 @@ func TestBehavior_65(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		RecursiveList: []*sampleresetxmlprotocolservice.KitchenSink{
 			{
@@ -2954,16 +3150,18 @@ func TestBehavior_65(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -2986,6 +3184,7 @@ func TestBehavior_66(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		List: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
@@ -3002,16 +3201,18 @@ func TestBehavior_66(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -3034,6 +3235,7 @@ func TestBehavior_67(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		ListWithName: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
@@ -3050,16 +3252,18 @@ func TestBehavior_67(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -3082,6 +3286,7 @@ func TestBehavior_68(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		ListWithMemberName: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
@@ -3098,16 +3303,18 @@ func TestBehavior_68(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -3130,6 +3337,7 @@ func TestBehavior_69(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		ListWithBothNames: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
@@ -3146,16 +3354,18 @@ func TestBehavior_69(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -3178,6 +3388,7 @@ func TestBehavior_70(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		FlatList: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
@@ -3194,16 +3405,18 @@ func TestBehavior_70(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -3226,6 +3439,7 @@ func TestBehavior_71(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		FlatListWithName: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
@@ -3242,16 +3456,18 @@ func TestBehavior_71(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -3274,6 +3490,7 @@ func TestBehavior_72(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		FlatListWithMemberName: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
@@ -3290,16 +3507,18 @@ func TestBehavior_72(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -3322,6 +3541,7 @@ func TestBehavior_73(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		FlatListWithBothNames: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
@@ -3338,16 +3558,18 @@ func TestBehavior_73(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -3370,6 +3592,7 @@ func TestBehavior_74(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		MapOfStrings: map[string]*string{
 			"color": aws.String("red"),
@@ -3382,16 +3605,18 @@ func TestBehavior_74(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -3414,6 +3639,7 @@ func TestBehavior_75(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		MapOfListsOfStrings: map[string][]*string{
 			"colors": {
@@ -3431,16 +3657,18 @@ func TestBehavior_75(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -3463,6 +3691,7 @@ func TestBehavior_76(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		MapOfMaps: map[string]map[string]*string{
 			"key-1": {
@@ -3480,16 +3709,18 @@ func TestBehavior_76(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -3512,6 +3743,7 @@ func TestBehavior_77(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		Map: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
@@ -3528,16 +3760,18 @@ func TestBehavior_77(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -3560,6 +3794,7 @@ func TestBehavior_78(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		Map: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
@@ -3576,16 +3811,18 @@ func TestBehavior_78(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -3608,6 +3845,7 @@ func TestBehavior_79(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		MapWithName: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
@@ -3624,16 +3862,18 @@ func TestBehavior_79(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -3656,6 +3896,7 @@ func TestBehavior_80(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		MapWithMemberNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
@@ -3672,16 +3913,18 @@ func TestBehavior_80(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -3704,6 +3947,7 @@ func TestBehavior_81(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		MapWithBothNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
@@ -3720,16 +3964,18 @@ func TestBehavior_81(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -3752,6 +3998,7 @@ func TestBehavior_82(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		FlatMap: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
@@ -3768,16 +4015,18 @@ func TestBehavior_82(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -3800,6 +4049,7 @@ func TestBehavior_83(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		FlatMapWithName: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
@@ -3816,16 +4066,18 @@ func TestBehavior_83(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -3848,6 +4100,7 @@ func TestBehavior_84(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		FlatMapWithMemberNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
@@ -3864,16 +4117,18 @@ func TestBehavior_84(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -3896,6 +4151,7 @@ func TestBehavior_85(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		FlatMapWithBothNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
@@ -3912,16 +4168,18 @@ func TestBehavior_85(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -3944,6 +4202,7 @@ func TestBehavior_86(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		RecursiveMap: map[string]*sampleresetxmlprotocolservice.KitchenSink{
 			"key-1": {
@@ -3965,16 +4224,18 @@ func TestBehavior_86(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -3997,6 +4258,7 @@ func TestBehavior_87(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		SimpleStruct: &sampleresetxmlprotocolservice.SimpleStruct{
 			Value: aws.String("value"),
@@ -4008,16 +4270,18 @@ func TestBehavior_87(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -4040,6 +4304,7 @@ func TestBehavior_88(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		StructWithMemberWithName: &sampleresetxmlprotocolservice.StructWithMemberWithName{
 			Value: aws.String("value"),
@@ -4051,16 +4316,18 @@ func TestBehavior_88(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -4083,6 +4350,7 @@ func TestBehavior_89(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		EmptyStruct: &sampleresetxmlprotocolservice.EmptyStruct{},
 	}
@@ -4092,16 +4360,18 @@ func TestBehavior_89(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -4124,6 +4394,7 @@ func TestBehavior_90(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{
 			RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{
@@ -4139,16 +4410,18 @@ func TestBehavior_90(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 200,
-			Header: http.Header{},
-			Body:   ioutil.NopCloser(&bytes.Buffer{}),
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -4171,6 +4444,7 @@ func TestBehavior_91(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		UriPath:        aws.String("path"),
 		UriPathSegment: aws.String("segment"),
@@ -4181,6 +4455,7 @@ func TestBehavior_91(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -4191,7 +4466,7 @@ func TestBehavior_91(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -4217,6 +4492,7 @@ func TestBehavior_92(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		UriPath:        aws.String("path"),
 		UriPathSegment: aws.String("segment"),
@@ -4227,6 +4503,7 @@ func TestBehavior_92(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 202,
 			Header:     http.Header{},
@@ -4237,7 +4514,7 @@ func TestBehavior_92(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -4263,6 +4540,7 @@ func TestBehavior_93(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		UriPath:        aws.String("path"),
 		UriPathSegment: aws.String("segment"),
@@ -4273,6 +4551,7 @@ func TestBehavior_93(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4285,7 +4564,7 @@ func TestBehavior_93(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -4312,6 +4591,7 @@ func TestBehavior_94(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		UriPath:        aws.String("path"),
 		UriPathSegment: aws.String("segment"),
@@ -4322,6 +4602,7 @@ func TestBehavior_94(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4334,7 +4615,7 @@ func TestBehavior_94(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -4361,6 +4642,7 @@ func TestBehavior_95(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		UriPath:        aws.String("path"),
 		UriPathSegment: aws.String("segment"),
@@ -4371,6 +4653,7 @@ func TestBehavior_95(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4383,7 +4666,7 @@ func TestBehavior_95(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -4410,6 +4693,7 @@ func TestBehavior_96(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		UriPath:        aws.String("path"),
 		UriPathSegment: aws.String("segment"),
@@ -4420,6 +4704,7 @@ func TestBehavior_96(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4432,7 +4717,7 @@ func TestBehavior_96(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -4459,6 +4744,7 @@ func TestBehavior_97(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		UriPath:        aws.String("path"),
 		UriPathSegment: aws.String("segment"),
@@ -4469,6 +4755,7 @@ func TestBehavior_97(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4481,7 +4768,7 @@ func TestBehavior_97(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -4508,6 +4795,7 @@ func TestBehavior_98(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		UriPath:        aws.String("path"),
 		UriPathSegment: aws.String("segment"),
@@ -4518,6 +4806,7 @@ func TestBehavior_98(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4530,7 +4819,7 @@ func TestBehavior_98(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -4557,6 +4846,7 @@ func TestBehavior_99(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		UriPath:        aws.String("path"),
 		UriPathSegment: aws.String("segment"),
@@ -4567,6 +4857,7 @@ func TestBehavior_99(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4579,7 +4870,7 @@ func TestBehavior_99(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -4606,6 +4897,7 @@ func TestBehavior_100(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		UriPath:        aws.String("path"),
 		UriPathSegment: aws.String("segment"),
@@ -4616,6 +4908,7 @@ func TestBehavior_100(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4628,7 +4921,7 @@ func TestBehavior_100(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -4655,6 +4948,7 @@ func TestBehavior_101(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		UriPath:        aws.String("path"),
 		UriPathSegment: aws.String("segment"),
@@ -4665,6 +4959,7 @@ func TestBehavior_101(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4677,7 +4972,7 @@ func TestBehavior_101(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -4704,6 +4999,7 @@ func TestBehavior_102(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		UriPath:        aws.String("path"),
 		UriPathSegment: aws.String("segment"),
@@ -4714,6 +5010,7 @@ func TestBehavior_102(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4726,7 +5023,7 @@ func TestBehavior_102(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -4759,6 +5056,7 @@ func TestBehavior_103(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		UriPath:        aws.String("path"),
 		UriPathSegment: aws.String("segment"),
@@ -4769,6 +5067,7 @@ func TestBehavior_103(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4781,7 +5080,7 @@ func TestBehavior_103(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -4814,6 +5113,7 @@ func TestBehavior_104(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		UriPath:        aws.String("path"),
 		UriPathSegment: aws.String("segment"),
@@ -4824,6 +5124,7 @@ func TestBehavior_104(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4836,7 +5137,7 @@ func TestBehavior_104(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -4869,6 +5170,7 @@ func TestBehavior_105(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.PutWithRestBindingsInput{
 		UriPath:        aws.String("path"),
 		UriPathSegment: aws.String("segment"),
@@ -4879,6 +5181,7 @@ func TestBehavior_105(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4891,7 +5194,7 @@ func TestBehavior_105(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -4917,6 +5220,7 @@ func TestBehavior_106(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.SimpleHttpOperationInput{
 		Path: aws.String("path"),
 	}
@@ -4926,6 +5230,7 @@ func TestBehavior_106(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header: http.Header{
@@ -4940,7 +5245,7 @@ func TestBehavior_106(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -4971,6 +5276,7 @@ func TestBehavior_107(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -4978,6 +5284,7 @@ func TestBehavior_107(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -4988,7 +5295,7 @@ func TestBehavior_107(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -5013,6 +5320,7 @@ func TestBehavior_108(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -5020,6 +5328,7 @@ func TestBehavior_108(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -5030,7 +5339,7 @@ func TestBehavior_108(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -5053,6 +5362,7 @@ func TestBehavior_109(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -5060,6 +5370,7 @@ func TestBehavior_109(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -5070,7 +5381,7 @@ func TestBehavior_109(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -5095,6 +5406,7 @@ func TestBehavior_110(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -5102,6 +5414,7 @@ func TestBehavior_110(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -5112,7 +5425,7 @@ func TestBehavior_110(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -5137,6 +5450,7 @@ func TestBehavior_111(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -5144,6 +5458,7 @@ func TestBehavior_111(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -5154,7 +5469,7 @@ func TestBehavior_111(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -5179,6 +5494,7 @@ func TestBehavior_112(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -5186,6 +5502,7 @@ func TestBehavior_112(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -5196,7 +5513,7 @@ func TestBehavior_112(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -5221,6 +5538,7 @@ func TestBehavior_113(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -5228,6 +5546,7 @@ func TestBehavior_113(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -5238,7 +5557,7 @@ func TestBehavior_113(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -5263,6 +5582,7 @@ func TestBehavior_114(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -5270,6 +5590,7 @@ func TestBehavior_114(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -5280,7 +5601,7 @@ func TestBehavior_114(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -5305,6 +5626,7 @@ func TestBehavior_115(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -5312,6 +5634,7 @@ func TestBehavior_115(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -5322,7 +5645,7 @@ func TestBehavior_115(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -5347,6 +5670,7 @@ func TestBehavior_116(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -5354,6 +5678,7 @@ func TestBehavior_116(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -5364,7 +5689,7 @@ func TestBehavior_116(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -5395,6 +5720,7 @@ func TestBehavior_117(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -5402,6 +5728,7 @@ func TestBehavior_117(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -5412,7 +5739,7 @@ func TestBehavior_117(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -5443,6 +5770,7 @@ func TestBehavior_118(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -5450,6 +5778,7 @@ func TestBehavior_118(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -5460,7 +5789,7 @@ func TestBehavior_118(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -5483,6 +5812,7 @@ func TestBehavior_119(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -5490,6 +5820,7 @@ func TestBehavior_119(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -5500,7 +5831,7 @@ func TestBehavior_119(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -5531,6 +5862,7 @@ func TestBehavior_120(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -5538,6 +5870,7 @@ func TestBehavior_120(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -5548,7 +5881,7 @@ func TestBehavior_120(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -5576,6 +5909,7 @@ func TestBehavior_121(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -5583,6 +5917,7 @@ func TestBehavior_121(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -5593,7 +5928,7 @@ func TestBehavior_121(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -5626,6 +5961,7 @@ func TestBehavior_122(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -5633,6 +5969,7 @@ func TestBehavior_122(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -5643,7 +5980,7 @@ func TestBehavior_122(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -5676,6 +6013,7 @@ func TestBehavior_123(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -5683,6 +6021,7 @@ func TestBehavior_123(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -5693,7 +6032,7 @@ func TestBehavior_123(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -5725,6 +6064,7 @@ func TestBehavior_124(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -5732,6 +6072,7 @@ func TestBehavior_124(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -5742,7 +6083,7 @@ func TestBehavior_124(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -5774,6 +6115,7 @@ func TestBehavior_125(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -5781,6 +6123,7 @@ func TestBehavior_125(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -5791,7 +6134,7 @@ func TestBehavior_125(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -5823,6 +6166,7 @@ func TestBehavior_126(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -5830,6 +6174,7 @@ func TestBehavior_126(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -5840,7 +6185,7 @@ func TestBehavior_126(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -5872,6 +6217,7 @@ func TestBehavior_127(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -5879,6 +6225,7 @@ func TestBehavior_127(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -5889,7 +6236,7 @@ func TestBehavior_127(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -5921,6 +6268,7 @@ func TestBehavior_128(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -5928,6 +6276,7 @@ func TestBehavior_128(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -5938,7 +6287,7 @@ func TestBehavior_128(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -5970,6 +6319,7 @@ func TestBehavior_129(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -5977,6 +6327,7 @@ func TestBehavior_129(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -5987,7 +6338,7 @@ func TestBehavior_129(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -6019,6 +6370,7 @@ func TestBehavior_130(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -6026,6 +6378,7 @@ func TestBehavior_130(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -6036,7 +6389,7 @@ func TestBehavior_130(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -6064,6 +6417,7 @@ func TestBehavior_131(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -6071,6 +6425,7 @@ func TestBehavior_131(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -6081,7 +6436,7 @@ func TestBehavior_131(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -6114,6 +6469,7 @@ func TestBehavior_132(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -6121,6 +6477,7 @@ func TestBehavior_132(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -6131,7 +6488,7 @@ func TestBehavior_132(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -6164,6 +6521,7 @@ func TestBehavior_133(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -6171,6 +6529,7 @@ func TestBehavior_133(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -6181,7 +6540,7 @@ func TestBehavior_133(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -6218,6 +6577,7 @@ func TestBehavior_134(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -6225,6 +6585,7 @@ func TestBehavior_134(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -6235,7 +6596,7 @@ func TestBehavior_134(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -6267,6 +6628,7 @@ func TestBehavior_135(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -6274,6 +6636,7 @@ func TestBehavior_135(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -6284,7 +6647,7 @@ func TestBehavior_135(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -6316,6 +6679,7 @@ func TestBehavior_136(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -6323,6 +6687,7 @@ func TestBehavior_136(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -6333,7 +6698,7 @@ func TestBehavior_136(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -6365,6 +6730,7 @@ func TestBehavior_137(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -6372,6 +6738,7 @@ func TestBehavior_137(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -6382,7 +6749,7 @@ func TestBehavior_137(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -6414,6 +6781,7 @@ func TestBehavior_138(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -6421,6 +6789,7 @@ func TestBehavior_138(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -6431,7 +6800,7 @@ func TestBehavior_138(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -6463,6 +6832,7 @@ func TestBehavior_139(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -6470,6 +6840,7 @@ func TestBehavior_139(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -6480,7 +6851,7 @@ func TestBehavior_139(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -6512,6 +6883,7 @@ func TestBehavior_140(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -6519,6 +6891,7 @@ func TestBehavior_140(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -6529,7 +6902,7 @@ func TestBehavior_140(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -6561,6 +6934,7 @@ func TestBehavior_141(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -6568,6 +6942,7 @@ func TestBehavior_141(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -6578,7 +6953,7 @@ func TestBehavior_141(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -6610,6 +6985,7 @@ func TestBehavior_142(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -6617,6 +6993,7 @@ func TestBehavior_142(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -6627,7 +7004,7 @@ func TestBehavior_142(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -6654,6 +7031,7 @@ func TestBehavior_143(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -6661,6 +7039,7 @@ func TestBehavior_143(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -6671,7 +7050,7 @@ func TestBehavior_143(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -6698,6 +7077,7 @@ func TestBehavior_144(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -6705,6 +7085,7 @@ func TestBehavior_144(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -6715,7 +7096,7 @@ func TestBehavior_144(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
@@ -6740,6 +7121,7 @@ func TestBehavior_145(t *testing.T) {
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
+
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
@@ -6747,6 +7129,7 @@ func TestBehavior_145(t *testing.T) {
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
@@ -6757,7 +7140,7 @@ func TestBehavior_145(t *testing.T) {
 
 	err := req.Send()
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatal(err)
 	}
 
 	//Assertions start here
