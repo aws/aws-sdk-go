@@ -17,6 +17,12 @@
           "AWS_ACCESS_KEY": "akid",
           "AWS_SECRET_ACCESS_KEY": "localSecret"
         },
+        "config": {
+          "region": "us-west-2",
+          "accessKeyId": "akid",
+          "secretAccessKey": "localSecret",
+          "endpointUrl": ""
+        },
         "request": {
           "operation": "EmptyPut",
           "input": {}

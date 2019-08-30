@@ -185,30 +185,30 @@ func (c Case) ConfigurationString(T Tests) string {
 	secretAccessKey := T.Defaults.Env["AWS_SECRET_ACCESS_KEY"]
 	endpointUrl := ""
 	if len(c.LocalConfig) > 0 {
-		if c.LocalConfig["region"] != "" {
-			region = c.LocalConfig["region"]
-		}
-		if c.LocalConfig["accessKeyId"] != "" {
-			accessKeyId = c.LocalConfig["accessKeyId"]
-		}
-		if c.LocalConfig["secretAccessKey"] != "" {
-			secretAccessKey = c.LocalConfig["secretAccessKey"]
-		}
-		if c.LocalConfig["endpointUrl"] != "" {
-			endpointUrl = c.LocalConfig["endpointUrl"]
+		for key, val := range c.LocalConfig {
+			switch key {
+			case "region":
+				region = val
+			case "accessKeyId":
+				accessKeyId = val
+			case "secretAccessKey":
+				secretAccessKey = val
+			case "endpointUrl":
+				endpointUrl = val
+			}
 		}
 	} else {
-		if c.LocalEnv["AWS_REGION"] != "" {
-			region = c.LocalEnv["AWS_REGION"]
-		}
-		if c.LocalEnv["AWS_ACCESS_KEY"] != "" {
-			accessKeyId = c.LocalEnv["AWS_ACCESS_KEY"]
-		}
-		if c.LocalEnv["AWS_SECRET_ACCESS_KEY"] != "" {
-			secretAccessKey = c.LocalEnv["AWS_SECRET_ACCESS_KEY"]
-		}
-		if c.LocalEnv["endpointUrl"] != "" {
-			endpointUrl = c.LocalEnv["endpointUrl"]
+		for key, val := range c.LocalEnv {
+			switch key {
+			case "AWS_REGION":
+				region = val
+			case "AWS_ACCESS_KEY":
+				accessKeyId = val
+			case "AWS_SECRET_ACCESS_KEY":
+				secretAccessKey = val
+			case "EndPointURL":
+				endpointUrl = val
+			}
 		}
 	}
 	return fmt.Sprintf("\n\t\tRegion: aws.String(%#v),\n\t\tCredentials: credentials.NewStaticCredentials(%#v, %#v, %#v),",

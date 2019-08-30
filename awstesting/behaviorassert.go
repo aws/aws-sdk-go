@@ -101,11 +101,11 @@ func ioReaderCompare(expect, actual interface{}) bool {
 	if vActual.Type().String() != "ioutil.nopCloser" || vExpect.Type().String() != "aws.ReaderSeekerCloser" {
 		return false
 	}
-	actualByte, err1 := ioutil.ReadAll(actual.(io.Reader))
+	actualByte, err1 := ioutil.ReadAll(vActual.Interface().(io.Reader))
 	if err1 != nil {
 		log.Println("couldn't read the body from actual response")
 	}
-	expectByte, err2 := ioutil.ReadAll(expect.(io.Reader))
+	expectByte, err2 := ioutil.ReadAll(vExpect.Interface().(io.Reader))
 	if err2 != nil {
 		log.Println("couldn't read the body from expect response")
 	}
