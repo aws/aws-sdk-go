@@ -299,7 +299,5 @@ func AssertResponseErrorRequestIDEquals(t *testing.T, expectVal string, err erro
 // value are equal to the corresponding response error data fields. This is not implemented in
 // because Go SDK V1 doesn't expose the error data
 func AssertResponseErrorDataEquals(t *testing.T, expectVal map[string]interface{}, err error, msgAndArgs ...interface{}) {
-	if testing.Short() {
-		t.Skip("\nskipping responseErrorDataEquals assertion")
-	}
+	t.Skip("\nskipping responseErrorDataEquals assertion")
 }
