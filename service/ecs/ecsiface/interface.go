@@ -234,6 +234,10 @@ type ECSAPI interface {
 	UntagResourceWithContext(aws.Context, *ecs.UntagResourceInput, ...request.Option) (*ecs.UntagResourceOutput, error)
 	UntagResourceRequest(*ecs.UntagResourceInput) (*request.Request, *ecs.UntagResourceOutput)
 
+	UpdateClusterSettings(*ecs.UpdateClusterSettingsInput) (*ecs.UpdateClusterSettingsOutput, error)
+	UpdateClusterSettingsWithContext(aws.Context, *ecs.UpdateClusterSettingsInput, ...request.Option) (*ecs.UpdateClusterSettingsOutput, error)
+	UpdateClusterSettingsRequest(*ecs.UpdateClusterSettingsInput) (*request.Request, *ecs.UpdateClusterSettingsOutput)
+
 	UpdateContainerAgent(*ecs.UpdateContainerAgentInput) (*ecs.UpdateContainerAgentOutput, error)
 	UpdateContainerAgentWithContext(aws.Context, *ecs.UpdateContainerAgentInput, ...request.Option) (*ecs.UpdateContainerAgentOutput, error)
 	UpdateContainerAgentRequest(*ecs.UpdateContainerAgentInput) (*request.Request, *ecs.UpdateContainerAgentOutput)

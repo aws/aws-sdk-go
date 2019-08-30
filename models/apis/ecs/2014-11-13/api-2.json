@@ -609,6 +609,21 @@
         {"shape":"InvalidParameterException"}
       ]
     },
+    "UpdateClusterSettings":{
+      "name":"UpdateClusterSettings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateClusterSettingsRequest"},
+      "output":{"shape":"UpdateClusterSettingsResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ClientException"},
+        {"shape":"ClusterNotFoundException"},
+        {"shape":"InvalidParameterException"}
+      ]
+    },
     "UpdateContainerAgent":{
       "name":"UpdateContainerAgent",
       "http":{
@@ -915,7 +930,8 @@
         "cpu":{"shape":"String"},
         "memory":{"shape":"String"},
         "memoryReservation":{"shape":"String"},
-        "gpuIds":{"shape":"GpuIds"}
+        "gpuIds":{"shape":"GpuIds"},
+        "firelensConfiguration":{"shape":"FirelensConfiguration"}
       }
     },
     "ContainerCondition":{
@@ -966,7 +982,8 @@
         "logConfiguration":{"shape":"LogConfiguration"},
         "healthCheck":{"shape":"HealthCheck"},
         "systemControls":{"shape":"SystemControls"},
-        "resourceRequirements":{"shape":"ResourceRequirements"}
+        "resourceRequirements":{"shape":"ResourceRequirements"},
+        "firelensConfiguration":{"shape":"FirelensConfiguration"}
       }
     },
     "ContainerDefinitions":{
@@ -1459,6 +1476,26 @@
       "type":"list",
       "member":{"shape":"Failure"}
     },
+    "FirelensConfiguration":{
+      "type":"structure",
+      "required":["type"],
+      "members":{
+        "type":{"shape":"FirelensConfigurationType"},
+        "options":{"shape":"FirelensConfigurationOptionsMap"}
+      }
+    },
+    "FirelensConfigurationOptionsMap":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"String"}
+    },
+    "FirelensConfigurationType":{
+      "type":"string",
+      "enum":[
+        "fluentd",
+        "fluentbit"
+      ]
+    },
     "GpuIds":{
       "type":"list",
       "member":{"shape":"String"}
@@ -1739,7 +1776,8 @@
         "gelf",
         "fluentd",
         "awslogs",
-        "splunk"
+        "splunk",
+        "awsfirelens"
       ]
     },
     "Long":{"type":"long"},
@@ -2675,6 +2713,23 @@
     "UntagResourceResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateClusterSettingsRequest":{
+      "type":"structure",
+      "required":[
+        "cluster",
+        "settings"
+      ],
+      "members":{
+        "cluster":{"shape":"String"},
+        "settings":{"shape":"ClusterSettings"}
+      }
+    },
+    "UpdateClusterSettingsResponse":{
+      "type":"structure",
+      "members":{
+        "cluster":{"shape":"Cluster"}
       }
     },
     "UpdateContainerAgentRequest":{
