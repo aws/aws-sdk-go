@@ -40,6 +40,10 @@ gen-protocol-test:
 	@echo "Generating SDK protocol tests"
 	go generate ./private/protocol/...
 
+gen-behavior-test:
+	@echo "Generating SDK behavior tests"
+	go generate ./models/behavior_tests
+
 gen-endpoints:
 	@echo "Generating SDK endpoints"
 	go generate ./models/endpoints

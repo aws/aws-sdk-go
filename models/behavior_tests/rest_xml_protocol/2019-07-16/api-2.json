@@ -1,5 +1,6 @@
 {
   "metadata":{
+    "apiVersion":"2019-08-30",
     "serviceId":"Rest Xml Protocol Service",
     "protocol":"rest-xml",
     "endpointPrefix":"rest-xml-svc",
@@ -8,42 +9,49 @@
   },
   "operations": {
     "EmptyPut": {
+      "name": "EmptyPut",
       "http": {
         "method": "PUT",
         "requestUri": "/"
       }
     },
     "EmptyPost": {
+      "name": "EmptyPost",
       "http": {
         "method": "POST",
         "requestUri": "/"
       }
     },
     "EmptyPatch": {
+      "name": "EmptyPatch",
       "http": {
         "method": "PATCH",
         "requestUri": "/"
       }
     },
     "EmptyGet": {
+      "name": "EmptyGet",
       "http": {
         "method": "GET",
         "requestUri": "/"
       }
     },
     "EmptyHead": {
+      "name": "EmptyHead",
       "http": {
         "method": "HEAD",
         "requestUri": "/"
       }
     },
     "EmptyDelete": {
+      "name": "EmptyDelete",
       "http": {
         "method": "DELETE",
         "requestUri": "/"
       }
     },
     "PutWithRestBindings": {
+      "name": "PutWithRestBindings",
       "http": {
         "method": "PUT",
         "requestUri": "/{first}/{second+}"
@@ -52,6 +60,7 @@
       "output": { "shape": "RestfulOutput" }
     },
     "SimpleHttpOperation": {
+      "name": "SimpleHttpOperation",
       "http": {
         "method": "POST",
         "requestUri": "/{path+}"
@@ -60,6 +69,7 @@
       "output": { "shape": "SimpleHttpOperationOutput" }
     },
     "OperationWithPayloadStructureMember": {
+      "name": "OperationWithPayloadStructureMember",
       "http": {
         "method": "PUT",
         "requestUri": "/"
@@ -67,6 +77,7 @@
       "input": { "shape": "OperationWithPayloadStructureMemberInput" }
     },
     "OperationMembersWithoutLocation": {
+      "name": "OperationMembersWithoutLocation",
       "http": {
         "method": "PUT",
         "requestUri": "/"
@@ -76,6 +87,7 @@
       }
     },
     "KitchenSink": {
+      "name": "KitchenSink",
       "http": {
         "method": "PUT",
         "requestUri": "/"

@@ -13,7 +13,7 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restxml"
 )
 
-const opEmptyDelete = ""
+const opEmptyDelete = "EmptyDelete"
 
 // EmptyDeleteRequest generates a "aws/request.Request" representing the
 // client's request for the EmptyDelete operation. The "output" return
@@ -83,7 +83,7 @@ func (c *SampleResetXmlProtocolService) EmptyDeleteWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
-const opEmptyGet = ""
+const opEmptyGet = "EmptyGet"
 
 // EmptyGetRequest generates a "aws/request.Request" representing the
 // client's request for the EmptyGet operation. The "output" return
@@ -153,7 +153,7 @@ func (c *SampleResetXmlProtocolService) EmptyGetWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
-const opEmptyHead = ""
+const opEmptyHead = "EmptyHead"
 
 // EmptyHeadRequest generates a "aws/request.Request" representing the
 // client's request for the EmptyHead operation. The "output" return
@@ -223,7 +223,7 @@ func (c *SampleResetXmlProtocolService) EmptyHeadWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
-const opEmptyPatch = ""
+const opEmptyPatch = "EmptyPatch"
 
 // EmptyPatchRequest generates a "aws/request.Request" representing the
 // client's request for the EmptyPatch operation. The "output" return
@@ -293,7 +293,7 @@ func (c *SampleResetXmlProtocolService) EmptyPatchWithContext(ctx aws.Context, i
 	return out, req.Send()
 }
 
-const opEmptyPost = ""
+const opEmptyPost = "EmptyPost"
 
 // EmptyPostRequest generates a "aws/request.Request" representing the
 // client's request for the EmptyPost operation. The "output" return
@@ -363,7 +363,7 @@ func (c *SampleResetXmlProtocolService) EmptyPostWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
-const opEmptyPut = ""
+const opEmptyPut = "EmptyPut"
 
 // EmptyPutRequest generates a "aws/request.Request" representing the
 // client's request for the EmptyPut operation. The "output" return
@@ -433,7 +433,7 @@ func (c *SampleResetXmlProtocolService) EmptyPutWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
-const opKitchenSink = ""
+const opKitchenSink = "KitchenSink"
 
 // KitchenSinkRequest generates a "aws/request.Request" representing the
 // client's request for the KitchenSink operation. The "output" return
@@ -502,7 +502,7 @@ func (c *SampleResetXmlProtocolService) KitchenSinkWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
-const opOperationMembersWithoutLocation = ""
+const opOperationMembersWithoutLocation = "OperationMembersWithoutLocation"
 
 // OperationMembersWithoutLocationRequest generates a "aws/request.Request" representing the
 // client's request for the OperationMembersWithoutLocation operation. The "output" return
@@ -572,7 +572,7 @@ func (c *SampleResetXmlProtocolService) OperationMembersWithoutLocationWithConte
 	return out, req.Send()
 }
 
-const opOperationWithPayloadStructureMember = ""
+const opOperationWithPayloadStructureMember = "OperationWithPayloadStructureMember"
 
 // OperationWithPayloadStructureMemberRequest generates a "aws/request.Request" representing the
 // client's request for the OperationWithPayloadStructureMember operation. The "output" return
@@ -642,7 +642,7 @@ func (c *SampleResetXmlProtocolService) OperationWithPayloadStructureMemberWithC
 	return out, req.Send()
 }
 
-const opPutWithRestBindings = ""
+const opPutWithRestBindings = "PutWithRestBindings"
 
 // PutWithRestBindingsRequest generates a "aws/request.Request" representing the
 // client's request for the PutWithRestBindings operation. The "output" return
@@ -711,7 +711,7 @@ func (c *SampleResetXmlProtocolService) PutWithRestBindingsWithContext(ctx aws.C
 	return out, req.Send()
 }
 
-const opSimpleHttpOperation = ""
+const opSimpleHttpOperation = "SimpleHttpOperation"
 
 // SimpleHttpOperationRequest generates a "aws/request.Request" representing the
 // client's request for the SimpleHttpOperation operation. The "output" return
