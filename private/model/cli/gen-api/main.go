@@ -314,7 +314,7 @@ func writeAPISmokeTestsFile(g *generateInfo) error {
 func writeAPIBehaviorTestsFile(g *generateInfo) error {
 	return writeGoFile(filepath.Join(g.PackageDir, "behavior_test.go"),
 		codeLayout,
-		"// +build go1.8,integration\n",
+		"// +build go1.9,integration\n",
 		g.API.PackageName()+"_test",
 		g.API.APIBehaviorTestsGoCode(),
 	)

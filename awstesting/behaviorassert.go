@@ -1,4 +1,4 @@
-// +build go1.8
+// +build go1.9
 
 package awstesting
 
@@ -6,19 +6,20 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io"
+	"io/ioutil"
+	"log"
+	"net/url"
+	"reflect"
+	"strings"
+	"testing"
+
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/util"
 	"github.com/google/go-cmp/cmp"
-	"io"
-	"io/ioutil"
-	"log"
-	"math"
-	"net/url"
-	"reflect"
-	"strings"
-	"testing"
+	"github.com/google/go-cmp/cmp/cmpopts"
 )
 
 // DiffReporter is a simple custom reporter that only records differences
@@ -55,30 +56,35 @@ func (r *DiffReporter) String() string {
 // FloatIntEquate returns an option which compares floats with ints
 // and return true if they have same value, Ex: (1.00 , 1)  are equal
 func FloatIntEquate() cmp.Option {
-	return cmp.Options{
-		cmp.FilterValues(areNaNsF64s, cmp.Comparer(equateAlways)),
-		cmp.FilterValues(areNaNsF32s, cmp.Comparer(equateAlways)),
-		cmp.FilterValues(areNaNsI32s, cmp.Comparer(equateAlways)),
-		cmp.FilterValues(areNaNsI64s, cmp.Comparer(equateAlways)),
-	}
+	return cmp.FilterValues(EqualFloatVal, cmp.Comparer(equateAlways))
 }
 
 func equateAlways(_, _ interface{}) bool { return true }
 
-func areNaNsF64s(x, y float64) bool {
-	return math.IsNaN(x) && math.IsNaN(y)
+// EqualFloatVal checks if the underlying value of x and y are same
+// even if they are different types provided they are one of the int
+// or float types
+func EqualFloatVal(x, y interface{}) bool {
+	xFloat, err1 := ToFloat(x)
+	if err1 != nil {
+		return false
+	}
+	yFloat, err2 := ToFloat(y)
+	if err2 != nil {
+		return false
+	}
+	return xFloat == yFloat
 }
 
-func areNaNsF32s(x, y float32) bool {
-	return areNaNsF64s(float64(x), float64(y))
-}
-
-func areNaNsI32s(x, y int32) bool {
-	return areNaNsF64s(float64(x), float64(y))
-}
-
-func areNaNsI64s(x, y int64) bool {
-	return areNaNsF64s(float64(x), float64(y))
+// ToFloat converts interface to float64, accepts only int and float types
+func ToFloat(val interface{}) (float64, error) {
+	floatType := reflect.TypeOf(float64(0))
+	b := reflect.Indirect(reflect.ValueOf(val))
+	if !b.Type().ConvertibleTo(floatType) {
+		return 0, fmt.Errorf("cannot convert %v to float64", b.Type())
+	}
+	ans := b.Convert(floatType)
+	return ans.Float(), nil
 }
 
 // EquateIoReader return an option to compare actual and expect bodies
@@ -256,7 +262,8 @@ func AssertRequestIDEquals(t *testing.T, expectVal string, actualVal string) boo
 // response fields
 func AssertResponseDataEquals(t *testing.T, expectResponse interface{}, actualResponse interface{}, msgAndArgs ...interface{}) bool {
 	var r DiffReporter
-	if !cmp.Equal(expectResponse, actualResponse, EquateIoReader(), cmp.Reporter(&r)) {
+	// EquateApprox considers two values to be equal if their difference is less than 1E-7
+	if !cmp.Equal(expectResponse, actualResponse, EquateIoReader(), cmpopts.EquateApprox(1E-6, 1E-7), cmp.Reporter(&r)) {
 		t.Fatalf(r.String())
 	}
 	return true
@@ -293,6 +300,6 @@ func AssertResponseErrorRequestIDEquals(t *testing.T, expectVal string, err erro
 // because Go SDK V1 doesn't expose the error data
 func AssertResponseErrorDataEquals(t *testing.T, expectVal map[string]interface{}, err error, msgAndArgs ...interface{}) {
 	if testing.Short() {
-		t.Skip("\n\nskipping responseErrorDataEquals assertion")
+		t.Skip("\nskipping responseErrorDataEquals assertion")
 	}
 }
