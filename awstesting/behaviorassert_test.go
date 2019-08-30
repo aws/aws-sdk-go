@@ -2,6 +2,12 @@ package awstesting_test
 
 import (
 	"bytes"
+	"io"
+	"io/ioutil"
+	"net/http"
+	"strings"
+	"testing"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/client"
@@ -11,17 +17,37 @@ import (
 	v4 "github.com/aws/aws-sdk-go/aws/signer/v4"
 	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
-	"github.com/aws/aws-sdk-go/internal/sdktesting"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/private/protocol/restxml"
-	"io/ioutil"
-	"net/http"
-	"testing"
 )
 
-type MockInput struct {
+// Used for custom request initialization logic
+var initRequest func(*request.Request)
+
+// Used for custom client initialization logic
+var initClient func(*client.Client)
+
+// Error types are copied from awserr as they are unexported
+type awsError awserr.Error
+
+type RequestError struct {
+	awsError
+	statusCode int
+	requestID  string
+	bytes      []byte
+}
+
+type MockService struct {
+	*client.Client
+}
+
+// MockInput1 is doesn't have payload defined and is used
+// as input for all assertion unit tests except "requestBodyEqualsBytes"
+type MockInput1 struct {
 	_ struct{} `type:"structure"`
+
+	//BodyStream io.ReadSeeker `type:"blob"`
 
 	Data *SimpleStruct `locationName:"DataNode" type:"structure" xmlURI:"http://xml/ns"`
 
@@ -50,6 +76,20 @@ type MockInput struct {
 	UriPathSegment *string `location:"uri" locationName:"first" type:"string" required:"true"`
 }
 
+// MockInput2 has payload defined as 'BodyStream' and is used as
+// as input for "requestBodyEqualsBytes" assertion unit test
+type MockInput2 struct {
+	_ struct{} `type:"structure" payload:"BodyStream"`
+
+	BodyStream io.ReadSeeker `type:"blob"`
+
+	// UriPath is a required field
+	UriPath *string `location:"uri" locationName:"second" type:"string" required:"true"`
+
+	// UriPathSegment is a required field
+	UriPathSegment *string `location:"uri" locationName:"first" type:"string" required:"true"`
+}
+
 type SimpleStruct struct {
 	_ struct{} `type:"structure"`
 
@@ -69,19 +109,9 @@ type MockOutput struct {
 	HttpStatusCode *int64 `location:"statusCode" type:"integer"`
 }
 
-type MockClient struct {
-	*client.Client
-}
-
-// Used for custom request initialization logic
-var initRequest func(*request.Request)
-
-// Used for custom client initialization logic
-var initClient func(*client.Client)
-
-// newRequest creates a new request for a SampleResetXmlProtocolService operation and runs any
+// newRequest creates a new request for a MockService operation and runs any
 // custom request initialization.
-func (c *MockClient) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+func (c *MockService) newRequest(op *request.Operation, params, data interface{}) *request.Request {
 	req := c.NewRequest(op, params, data)
 	// Run custom request initialization if present
 	if initRequest != nil {
@@ -90,13 +120,17 @@ func (c *MockClient) newRequest(op *request.Operation, params, data interface{})
 	return req
 }
 
-func NewRestXML(p client.ConfigProvider, cfgs ...*aws.Config) *MockClient {
+// NewRestXML creates a new instance of the MockService client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+func NewRestXML(p client.ConfigProvider, cfgs ...*aws.Config) *MockService {
 	c := p.ClientConfig("rest-xml-svc", cfgs...)
 	return newRestXMLClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
-func newRestXMLClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *MockClient {
-	svc := &MockClient{
+// newClient creates, initializes and returns a new service client instance.
+func newRestXMLClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *MockService {
+	svc := &MockService{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
@@ -126,14 +160,17 @@ func newRestXMLClient(cfg aws.Config, handlers request.Handlers, endpoint, signi
 	return svc
 }
 
-func NewJSONRpc(p client.ConfigProvider, cfgs ...*aws.Config) *MockClient {
+// NewJSONRpc creates a new instance of the MockService client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+func NewJSONRpc(p client.ConfigProvider, cfgs ...*aws.Config) *MockService {
 	c := p.ClientConfig("endpoint-prefix", cfgs...)
 	return newJSONRpcClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
 // newJSONRpcClient creates, initializes and returns a new service client instance.
-func newJSONRpcClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *MockClient {
-	svc := &MockClient{
+func newJSONRpcClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *MockService {
+	svc := &MockService{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
@@ -165,7 +202,11 @@ func newJSONRpcClient(cfg aws.Config, handlers request.Handlers, endpoint, signi
 	return svc
 }
 
-func (c MockClient) CreateRequest(input *MockInput, method string, requestUri string) (req *request.Request, output *MockOutput) {
+// CreateRequest1 generates a "aws/request.Request". The "output" return value
+// will be populated with the request's response once the request completes
+// successfully. The input here is MockInput1
+// method is the HTTPMethod and requestUri is the HTTPPath
+func (c MockService) CreateRequest1(input *MockInput1, method string, requestUri string) (req *request.Request, output *MockOutput) {
 	op := &request.Operation{
 		Name:       "",
 		HTTPMethod: method,
@@ -173,7 +214,7 @@ func (c MockClient) CreateRequest(input *MockInput, method string, requestUri st
 	}
 
 	if input == nil {
-		input = &MockInput{}
+		input = &MockInput1{}
 	}
 
 	output = &MockOutput{}
@@ -182,16 +223,16 @@ func (c MockClient) CreateRequest(input *MockInput, method string, requestUri st
 	return
 }
 
-func BuildRequest(input *MockInput, method string, requestUri string, clientType string) (req *request.Request, resp *MockOutput) {
-	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
-	defer restoreEnv()
-
+// BuildRequest1 creates the request, stubs out a mock response by
+// replacing the send handler with a custom handler and outputs
+// request and response
+func BuildRequest1(input *MockInput1, method string, requestUri string, clientType string) (req *request.Request, resp *MockOutput) {
 	sess := unit.Session
 	svc := NewRestXML(sess)
 	if clientType == "json" {
 		svc = NewJSONRpc(sess)
 	}
-	req, resp = svc.CreateRequest(input, method, requestUri)
+	req, resp = svc.CreateRequest1(input, method, requestUri)
 	_ = resp
 
 	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
@@ -210,25 +251,77 @@ func BuildRequest(input *MockInput, method string, requestUri string, clientType
 	return
 }
 
-// GetRequest returns the request by calling BuildRequest
-func GetRequest(input *MockInput, method string, requestUri string, clientType string) *request.Request {
-	req, _ := BuildRequest(input, method, requestUri, clientType)
+// GetRequest1 returns the request by calling BuildRequest1
+func GetRequest1(input *MockInput1, method string, requestUri string, clientType string) *request.Request {
+	req, _ := BuildRequest1(input, method, requestUri, clientType)
 	return req
 }
 
-// GetResponse returns the response by calling BuildRequest
-func GetResponse(input *MockInput, method string, requestUri string, clientType string) *MockOutput {
-	_, resp := BuildRequest(input, method, requestUri, clientType)
+// GetResponse1 returns the response by calling BuildRequest1
+func GetResponse1(input *MockInput1, method string, requestUri string, clientType string) *MockOutput {
+	_, resp := BuildRequest1(input, method, requestUri, clientType)
 	return resp
 }
 
-type awsError awserr.Error
+// CreateRequest2 generates a "aws/request.Request". The "output" return value
+// will be populated with the request's response once the request completes
+// successfully. The input here is MockInput2
+// method is the HTTPMethod and requestUri is the HTTPPath
+func (c MockService) CreateRequest2(input *MockInput2, method string, requestUri string) (req *request.Request, output *MockOutput) {
+	op := &request.Operation{
+		Name:       "",
+		HTTPMethod: method,
+		HTTPPath:   requestUri,
+	}
 
-type RequestError struct {
-	awsError
-	statusCode int
-	requestID  string
-	bytes      []byte
+	if input == nil {
+		input = &MockInput2{}
+	}
+
+	output = &MockOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// BuildRequest2 creates the request, stubs out a mock response by
+// replacing the send handler with a custom handler and outputs
+// request and response
+func BuildRequest2(input *MockInput2, method string, requestUri string, clientType string) (req *request.Request, resp *MockOutput) {
+	sess := unit.Session
+	svc := NewRestXML(sess)
+	if clientType == "json" {
+		svc = NewJSONRpc(sess)
+	}
+	req, resp = svc.CreateRequest2(input, method, requestUri)
+	_ = resp
+
+	MockHTTPResponseHandler := request.NamedHandler{Name: "core.SendHandler", Fn: func(r *request.Request) {
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{},
+			Body:       ioutil.NopCloser(&bytes.Buffer{}),
+		}
+	}}
+	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
+
+	err := req.Send()
+	if err != nil {
+		panic(err)
+	}
+	return
+}
+
+// GetRequest2 returns the request by calling BuildRequest2
+func GetRequest2(input *MockInput2, method string, requestUri string, clientType string) *request.Request {
+	req, _ := BuildRequest2(input, method, requestUri, clientType)
+	return req
+}
+
+// GetResponse2 returns the response by calling BuildRequest2
+func GetResponse2(input *MockInput2, method string, requestUri string, clientType string) *MockOutput {
+	_, resp := BuildRequest2(input, method, requestUri, clientType)
+	return resp
 }
 
 func NewRequestError(err awsError, statusCode int, requestID string) *RequestError {
@@ -239,6 +332,7 @@ func NewRequestError(err awsError, statusCode int, requestID string) *RequestErr
 	}
 }
 
+// Unit Test for assertions start here
 func TestAssertRequestURLMatches(t *testing.T) {
 	cases := map[string]struct {
 		expectVal string
@@ -266,7 +360,7 @@ func TestAssertRequestURLQueryMatches(t *testing.T) {
 	}{
 		"Test1": {
 			expectVal: "string=string-value",
-			req: GetRequest(&MockInput{
+			req: GetRequest1(&MockInput1{
 				QueryString: aws.String("string-value"),
 			}, "PUT", "/", "xml"),
 		},
@@ -287,7 +381,7 @@ func TestAssertRequestHeadersMatch(t *testing.T) {
 		expectHeader map[string]interface{}
 	}{
 		"Test1": {
-			req: GetRequest(&MockInput{
+			req: GetRequest1(&MockInput1{
 				HeaderBoolean: aws.Bool(true),
 				HeaderDouble:  aws.Float64(123.456),
 			}, "PUT", "/", "xml"),
@@ -297,7 +391,7 @@ func TestAssertRequestHeadersMatch(t *testing.T) {
 			},
 		},
 		"Test2": {
-			req: GetRequest(&MockInput{
+			req: GetRequest1(&MockInput1{
 				HeaderJsonValue: aws.JSONValue{"array": []interface{}{1, 2, 3, 4}, "boolFalse": false, "boolTrue": true, "null": interface{}(nil), "number": 1234.5, "object": map[string]interface{}{"key": "value"}, "string": "value"},
 			}, "PUT", "/", "xml"),
 			expectHeader: map[string]interface{}{
@@ -315,7 +409,6 @@ func TestAssertRequestHeadersMatch(t *testing.T) {
 	}
 }
 
-/*
 func TestAssertRequestBodyEqualsBytes(t *testing.T) {
 	cases := map[string]struct {
 		expectVal string
@@ -323,11 +416,11 @@ func TestAssertRequestBodyEqualsBytes(t *testing.T) {
 	}{
 		"Test1": {
 			expectVal: "YmluYXJ5LXZhbHVl",
-			req: GetRequest(&MockInput{
+			req: GetRequest2(&MockInput2{
 				BodyStream:     aws.ReadSeekCloser(strings.NewReader("YmluYXJ5LXZhbHVl")),
 				UriPath:        aws.String("path"),
 				UriPathSegment: aws.String("segment"),
-			}, "PUT","/{first}/{second+}"),
+			}, "PUT", "/{first}/{second+}", "xml"),
 		},
 	}
 
@@ -340,7 +433,6 @@ func TestAssertRequestBodyEqualsBytes(t *testing.T) {
 		})
 	}
 }
-*/
 
 func TestAssertRequestBodyEqualsJSON(t *testing.T) {
 	cases := map[string]struct {
@@ -349,7 +441,7 @@ func TestAssertRequestBodyEqualsJSON(t *testing.T) {
 	}{
 		"Test1": {
 			expectVal: map[string]interface{}{"String_": "abc xyz"},
-			req: GetRequest(&MockInput{
+			req: GetRequest1(&MockInput1{
 				String_: aws.String("abc xyz"),
 			}, "POST", "/", "json"),
 		},
@@ -371,7 +463,7 @@ func TestAssertRequestBodyMatchesXML(t *testing.T) {
 	}{
 		"Test1": {
 			expectVal: "<DataNode xmlns=\"http://xml/ns\"><Value>string value</Value></DataNode>",
-			req: GetRequest(&MockInput{
+			req: GetRequest1(&MockInput1{
 				Data: &SimpleStruct{
 					Value: aws.String("string value"),
 				},
@@ -381,7 +473,7 @@ func TestAssertRequestBodyMatchesXML(t *testing.T) {
 
 	for name, c := range cases {
 		t.Run(name, func(t *testing.T) {
-			if !awstesting.AssertRequestBodyMatchesXML(t, c.expectVal, c.req, MockInput{}) {
+			if !awstesting.AssertRequestBodyMatchesXML(t, c.expectVal, c.req, MockInput1{}) {
 				t.Errorf("input and output time don't match for %s case", name)
 			}
 		})
@@ -395,13 +487,13 @@ func TestAssertRequestBodyEqualsString(t *testing.T) {
 	}{
 		"Test1": {
 			expectVal: "",
-			req:       GetRequest(&MockInput{}, "PUT", "/", "xml"),
+			req:       GetRequest1(&MockInput1{}, "PUT", "/", "xml"),
 		},
 	}
 
 	for name, c := range cases {
 		t.Run(name, func(t *testing.T) {
-			if !awstesting.AssertRequestBodyEqualsString(t, c.expectVal, c.req, MockInput{}) {
+			if !awstesting.AssertRequestBodyEqualsString(t, c.expectVal, c.req, MockInput1{}) {
 				t.Errorf("input and output time don't match for %s case", name)
 			}
 		})
