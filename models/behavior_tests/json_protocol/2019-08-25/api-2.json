@@ -1,0 +1,160 @@
+{
+  "metadata":{
+    "serviceId":"Json One One Protocol Service",
+    "protocol":"json",
+    "jsonVersion":"1.1",
+    "targetPrefix":"JsonProtocolService_20180101",
+    "endpointPrefix":"endpoint-prefix",
+    "signatureVersion":"v4",
+    "serviceFullName": "Sample Json 1.1 Protocol Service"
+  },
+  "operations": {
+    "EmptyOperation": {
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      }
+    },
+    "OperationWithOptionalInputOutput": {
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "SimpleStruct" },
+      "output": { "shape": "SimpleStruct" }
+    },
+    "KitchenSinkOperation": {
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": { "shape": "KitchenSink" },
+      "output": { "shape": "KitchenSink" },
+      "errors": [
+        { "shape": "ErrorWithoutMembers" },
+        { "shape": "ErrorWithMembers" }
+      ]
+    }
+  },
+  "shapes": {
+    "KitchenSink": {
+      "type": "structure",
+      "members": {
+        "String": { "shape": "String" },
+        "JsonValue": { "shape": "String", "jsonvalue": true },
+        "Integer": { "shape": "Integer" },
+        "Long": { "shape": "Long" },
+        "Float": { "shape": "Float" },
+        "Double": { "shape": "Double" },
+        "Boolean": { "shape": "Boolean" },
+        "Blob": { "shape": "Blob" },
+        "Timestamp": { "shape": "Timestamp" },
+        "Iso8601Timestamp": { "shape": "Timestamp", "timestampFormat": "iso8601" },
+        "HttpdateTimestamp": { "shape": "Timestamp", "timestampFormat": "rfc822" },
+        "UnixTimestamp": { "shape": "Timestamp", "timestampFormat": "unixTimestamp" },
+        "ListOfStrings": { "shape": "ListOfStrings"},
+        "ListOfLists": { "shape": "ListOfListOfStrings"},
+        "ListOfMapsOfStrings": { "shape": "ListOfMapsOfStrings"},
+        "ListOfStructs": { "shape": "ListOfStructs"},
+        "RecursiveList": { "shape": "ListOfKitchenSinks"},
+        "MapOfStrings": { "shape": "MapOfStrings"},
+        "MapOfListsOfStrings": { "shape": "MapOfListsOfStrings"},
+        "MapOfMaps": { "shape": "MapOfMapOfStrings"},
+        "MapOfStructs": { "shape": "MapOfStructs"},
+        "RecursiveMap": { "shape": "MapOfKitchenSinks"},
+        "SimpleStruct": { "shape": "SimpleStruct" },
+        "StructWithLocationName": { "shape": "StructWithLocationName" },
+        "EmptyStruct": { "shape": "EmptyStruct" },
+        "RecursiveStruct": { "shape": "KitchenSink" }
+      }
+    },
+    "String": { "type": "string" },
+    "Integer": { "type": "integer" },
+    "Long": { "type": "long" },
+    "Float": { "type": "float" },
+    "Double": { "type": "double" },
+    "Boolean": { "type": "boolean" },
+    "Blob": { "type": "blob" },
+    "Timestamp": { "type": "timestamp" },
+    "ListOfStrings": {
+      "type": "list",
+      "member": { "shape": "String" }
+    },
+    "ListOfMapsOfStrings": {
+      "type": "list",
+      "member": { "shape": "MapOfStrings" }
+    },
+    "ListOfListOfStrings": {
+      "type": "list",
+      "member": { "shape": "ListOfStrings" }
+    },
+    "ListOfStructs": {
+      "type": "list",
+      "member": { "shape": "SimpleStruct" }
+    },
+    "ListOfKitchenSinks": {
+      "type": "list",
+      "member": { "shape": "KitchenSink" }
+    },
+    "MapOfStrings": {
+      "type": "map",
+      "key": { "shape": "String" },
+      "value": { "shape": "String" }
+    },
+    "MapOfListsOfStrings": {
+      "type": "map",
+      "key": { "shape": "String" },
+      "value": { "shape": "ListOfStrings" }
+    },
+    "MapOfMapOfStrings": {
+      "type": "map",
+      "key": { "shape": "String" },
+      "value": { "shape": "MapOfStrings" }
+    },
+    "MapOfStructs": {
+      "type": "map",
+      "key": { "shape": "String" },
+      "value": { "shape": "SimpleStruct" }
+    },
+    "MapOfKitchenSinks": {
+      "type": "map",
+      "key": { "shape": "String" },
+      "value": { "shape": "KitchenSink" }
+    },
+    "SimpleStruct": {
+      "type": "structure",
+      "members": {
+        "Value": { "shape": "String" }
+      }
+    },
+    "StructWithLocationName": {
+      "type": "structure",
+      "members": {
+        "Value": { "shape": "String", "locationName": "RenamedMember" }
+      }
+    },
+    "EmptyStruct": {
+      "type": "structure",
+      "members": {}
+    },
+    "ErrorWithoutMembers": {
+      "type": "structure",
+      "members": {},
+      "exception": true,
+      "fault": true
+    },
+    "ErrorWithMembers": {
+      "type":"structure",
+      "members": {
+        "Code": { "shape": "String" },
+        "Message": { "shape": "String" },
+        "StringField":  { "shape": "String", "documentation": "abc" },
+        "IntegerField":  { "shape": "Integer" },
+        "ListField":  { "shape": "ListOfStrings" },
+        "MapField":  { "shape": "MapOfStrings" },
+        "ComplexData":  { "shape": "KitchenSink" }
+      },
+      "exception": true
+    }
+  }
+}

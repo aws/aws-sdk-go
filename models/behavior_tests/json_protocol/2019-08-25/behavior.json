@@ -1,0 +1,1407 @@
+{
+  "tests": {
+    "defaults": {
+      "env": {
+        "AWS_REGION": "us-west-2",
+        "AWS_ACCESS_KEY": "akid",
+        "AWS_SECRET_ACCESS_KEY": "secret"
+      },
+      "files": {},
+      "config": {}
+    },
+    "cases": [
+      {
+        "description": "Expands request url with an empty path",
+        "request": {
+          "operation": "EmptyOperation"
+        },
+        "expect": [
+          {
+            "requestUrlMatches": "https://endpoint-prefix.us-west-2.amazonaws.com/"
+          }
+        ]
+      },
+      {
+        "description": "Does not modify the configured endpoint url",
+        "config": {
+          "endpointUrl": "http://localhost:8080/local-server"
+        },
+        "request": {
+          "operation": "EmptyOperation"
+        },
+        "expect": [
+          {
+            "requestUrlMatches": "http://localhost:8080/local-server"
+          }
+        ]
+      },
+      {
+        "description": "Adds required JSON protocol headers",
+        "request": {
+          "operation": "OperationWithOptionalInputOutput"
+        },
+        "expect": [
+          {
+            "requestHeadersMatch": {
+              "Content-Type": "application/x-amz-json-1.1",
+              "X-Amz-Target": "JsonProtocolService_20180101.OperationWithOptionalInputOutput"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Can invoke operations which do not have modeled inputs or outputs",
+        "request": {
+          "operation": "OperationWithOptionalInputOutput",
+          "input": {}
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {}
+          }
+        ]
+      },
+      {
+        "description": "Can invoke an operation which has modeled input without providing request input",
+        "request": {
+          "operation": "OperationWithOptionalInputOutput",
+          "input": {}
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {}
+          }
+        ]
+      },
+      {
+        "description": "Serializes string shapes",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "String_": "abc xyz"
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "String_": "abc xyz"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes string shapes with jsonvalue trait",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "JsonValue": "{\"string\":\"value\",\"number\":1234.5,\"boolTrue\":true,\"boolFalse\":false,\"array\":[1,2,3,4],\"object\":{\"key\":\"value\"},\"null\":null}"
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "JsonValue": "{\"string\":\"value\",\"number\":1234.5,\"boolTrue\":true,\"boolFalse\":false,\"array\":[1,2,3,4],\"object\":{\"key\":\"value\"},\"null\":null}"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes integer shapes",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "Integer": 1234
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "Integer": 1234
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes long shapes",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "Long": 999999999999
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "Long": 999999999999
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes float shapes",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "Float": 1234.5
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "Float": 1234.5
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes double shapes",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "Double": 1234.5
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "Double": 1234.5
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes blob shapes",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "Blob": "YmluYXJ5LXZhbHVl"
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "Blob": "YmluYXJ5LXZhbHVl"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes boolean shapes (true)",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "Boolean": true
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "Boolean": true
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes boolean shapes (false)",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "Boolean": false
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "Boolean": false
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes timestamp shapes",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "Timestamp": 946845296.000
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "Timestamp": 946845296.000
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes timestamp shapes with iso8601 timestampFormat",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "Iso8601Timestamp": 946845296
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "Iso8601Timestamp": "2000-01-02T20:34:56Z"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes timestamp shapes with httpdate timestampFormat",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "HttpdateTimestamp": 946845296.000
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "HttpdateTimestamp": "Sun, 02 Jan 2000 20:34:56 GMT"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes timestamp shapes with unixTimestamp timestampFormat",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "UnixTimestamp": 946845296.000
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "UnixTimestamp": 946845296.000
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes list shapes",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "ListOfStrings": ["abc", "mno", "xyz"]
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "ListOfStrings": ["abc", "mno", "xyz"]
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes empty list shapes",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "ListOfStrings": []
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "ListOfStrings": []
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes list of map shapes",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "ListOfMapsOfStrings": [
+              { "foo": "bar" },
+              { "abc": "xyz" },
+              { "red": "blue" }
+            ]
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "ListOfMapsOfStrings": [
+                { "foo": "bar" },
+                { "abc": "xyz" },
+                { "red": "blue" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes list of structure shapes",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "ListOfStructs": [
+              { "Value": "abc" },
+              { "Value": "mno" },
+              { "Value": "xyz" }
+            ]
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "ListOfStructs": [
+                { "Value": "abc" },
+                { "Value": "mno" },
+                { "Value": "xyz" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes list of recursive structure shapes",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "RecursiveList": [
+              {
+                "RecursiveList": [
+                  {
+                    "RecursiveList": [
+                      {
+                        "Integer": 123
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "RecursiveList": [
+                {
+                  "RecursiveList": [
+                    {
+                      "RecursiveList": [
+                        {
+                          "Integer": 123
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes map shapes",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "MapOfStrings": {
+              "abc": "xyz",
+              "mno": "hjk"
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "MapOfStrings": {
+                "abc": "xyz",
+                "mno": "hjk"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes empty map shapes",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "MapOfStrings": {}
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "MapOfStrings": {}
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes map of list shapes",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "MapOfListsOfStrings": {
+              "abc": ["abc", "xyz"],
+              "mno": ["xyz", "abc"]
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "MapOfListsOfStrings": {
+                "abc": ["abc", "xyz"],
+                "mno": ["xyz", "abc"]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes map of structure shapes",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "MapOfStructs": {
+              "key1": { "Value": "value-1" },
+              "key2": { "Value": "value-2" }
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "MapOfStructs": {
+                "key1": { "Value": "value-1" },
+                "key2": { "Value": "value-2" }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes map of recursive structure shapes",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "RecursiveMap": {
+              "key1": {
+                "RecursiveMap": {
+                  "key2": {
+                    "RecursiveMap": {
+                      "key3": {
+                        "Boolean": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "RecursiveMap": {
+                "key1": {
+                  "RecursiveMap": {
+                    "key2": {
+                      "RecursiveMap": {
+                        "key3": {
+                          "Boolean": false
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes structure shapes",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "SimpleStruct": {
+              "Value": "abc"
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "SimpleStruct": {
+                "Value": "abc"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes structure members with locationName traits",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "StructWithLocationName": {
+              "Value": "some-value"
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "StructWithLocationName": {
+                "RenamedMember": "some-value"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes empty structure shapes",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "SimpleStruct": {}
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "SimpleStruct": {}
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes structure which have no members",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "EmptyStruct": {}
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "EmptyStruct": {}
+            }
+          }
+        ]
+      },
+      {
+        "description": "Serializes recursive structure shapes",
+        "request": {
+          "operation": "KitchenSinkOperation",
+          "input": {
+            "String_": "top-value",
+            "Boolean": false,
+            "RecursiveStruct": {
+              "String_": "nested-value",
+              "Boolean": true,
+              "RecursiveList": [
+                {
+                  "String_": "string-only"
+                },
+                {
+                  "RecursiveStruct": {
+                    "MapOfStrings": {
+                      "color": "red",
+                      "size": "large"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expect": [
+          {
+            "requestBodyEqualsJson": {
+              "String_": "top-value",
+              "Boolean": false,
+              "RecursiveStruct": {
+                "String_": "nested-value",
+                "Boolean": true,
+                "RecursiveList": [
+                  {
+                    "String_": "string-only"
+                  },
+                  {
+                    "RecursiveStruct": {
+                      "MapOfStrings": {
+                        "color": "red",
+                        "size": "large"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses operations without an output shape",
+        "request": {
+          "operation": "EmptyOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "json",
+      "bodyContent": {}
+        },
+        "expect": [
+          {
+            "responseDataEquals": {}
+          }
+        ]
+      },
+      {
+        "description": "Parses operations with empty JSON bodies",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "json",
+      "bodyContent": {}
+        },
+        "expect": [
+          {
+            "responseDataEquals": {}
+          }
+        ]
+      },
+      {
+        "description": "Parses string shapes",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "json",
+          "bodyType": "json",
+      "bodyContent": {
+              "String_": "string-value"
+            }
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "String_": "string-value"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses integer shapes",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "json",
+      "bodyContent": {
+              "Integer": 1234
+            }
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "Integer": 1234
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses long shapes",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "json",
+      "bodyContent": {
+              "Long": 1234567890123456789
+            }
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "Long": 1234567890123456789
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses float shapes",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "json",
+      "bodyContent": {
+              "Float": 1234.5
+            }
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "Float": 1234.5
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses double shapes",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "json",
+      "bodyContent": {
+              "Double": 123456789.123456789
+            }
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "Double": 123456789.123456789
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses boolean shapes (true)",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "json",
+      "bodyContent": {
+              "Boolean": true
+            }
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "Boolean": true
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses boolean (false)",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "json",
+      "bodyContent": {
+              "Boolean": false
+            }
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "Boolean": false
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses blob shapes",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "json",
+      "bodyContent": {
+              "Blob": "YmluYXJ5LXZhbHVl"
+            }
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "Blob": "YmluYXJ5LXZhbHVl"
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses timestamp shapes",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "json",
+      "bodyContent": {
+              "Timestamp": 946845296.000
+            }
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "Timestamp": 946845296.000
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses iso8601 timestamps",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "json",
+      "bodyContent": {
+              "Timestamp": "2000-01-02T20:34:56.000Z"
+            }
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "Timestamp": 946845296.000
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses httpdate timestamps",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "json",
+      "bodyContent": {
+              "Timestamp": "Sun, 02 Jan 2000 20:34:56.000 GMT"
+            }
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "Timestamp": 946845296.000
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses list shapes",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "json",
+      "bodyContent": {
+              "ListOfStrings": ["abc", "mno", "xyz"]
+            }
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "ListOfStrings": ["abc", "mno", "xyz"]
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses list of map shapes",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "json",
+      "bodyContent": {
+              "ListOfMapsOfStrings": [
+                { "size": "large" },
+                { "color": "red" }
+              ]
+            }
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "ListOfMapsOfStrings": [
+                { "size": "large" },
+                { "color": "red" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses list of list shapes",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "json",
+      "bodyContent": {
+              "ListOfLists": [
+                ["abc", "mno", "xyz"],
+                ["hjk", "qrs", "tuv"]
+              ]
+            }
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "ListOfLists": [
+                ["abc", "mno", "xyz"],
+                ["hjk", "qrs", "tuv"]
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses list of structure shapes",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "json",
+      "bodyContent": {
+              "ListOfStructs": [
+                { "Value": "value-1" },
+                { "Value": "value-2" }
+              ]
+            }
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "ListOfStructs": [
+                { "Value": "value-1" },
+                { "Value": "value-2" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses list of recursive structure shapes",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "json",
+      "bodyContent": {
+              "RecursiveList": [
+                {
+                  "RecursiveList": [
+                    {
+                      "RecursiveList": [
+                        { "String_": "value" }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "RecursiveList": [
+                {
+                  "RecursiveList": [
+                    {
+                      "RecursiveList": [
+                        { "String_": "value" }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses map shapes",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "json",
+      "bodyContent": {
+              "MapOfStrings": {
+                "size": "large",
+                "color": "red"
+              }
+            }
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "MapOfStrings": {
+                "size": "large",
+                "color": "red"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses map of list shapes",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "json",
+      "bodyContent": {
+              "MapOfListsOfStrings": {
+                "sizes": ["large", "small"],
+                "colors": ["red", "green"]
+              }
+            }
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "MapOfListsOfStrings": {
+                "sizes": ["large", "small"],
+                "colors": ["red", "green"]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses map of map shapes",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "json",
+      "bodyContent": {
+              "MapOfMaps": {
+                "sizes": {
+                  "large": "L",
+                  "medium": "M"
+                },
+                "colors": {
+                  "red": "R",
+                  "blue": "B"
+                }
+              }
+            }
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "MapOfMaps": {
+                "sizes": {
+                  "large": "L",
+                  "medium": "M"
+                },
+                "colors": {
+                  "red": "R",
+                  "blue": "B"
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses map of structure shapes",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "json",
+      "bodyContent": {
+              "MapOfStructs": {
+                "size": { "Value": "small" },
+                "color": { "Value": "red" }
+              }
+            }
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "MapOfStructs": {
+                "size": { "Value": "small" },
+                "color": { "Value": "red" }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses map of recursive structure shapes",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "bodyType": "json",
+      "bodyContent": {
+              "RecursiveMap": {
+                "key-1": {
+                  "RecursiveMap": {
+                    "key-2": {
+                      "RecursiveMap": {
+                        "key-3": {
+                          "String_": "value"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+        },
+        "expect": [
+          {
+            "responseDataEquals": {
+              "RecursiveMap": {
+                "key-1": {
+                  "RecursiveMap": {
+                    "key-2": {
+                      "RecursiveMap": {
+                        "key-3": {
+                          "String_": "value"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses the request id from the response",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 200,
+          "headers": {
+            "X-Amzn-Requestid": "amazon-uniq-request-id"
+          },
+          "body": {
+            "string": "{}"
+          }
+        },
+        "expect": [
+          {
+            "requestIdEquals": "amazon-uniq-request-id"
+          }
+        ]
+      },
+      {
+        "description": "Parses error codes from \"__type\"",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 500,
+          "bodyType": "json",
+      "bodyContent": {
+              "__type": "ErrorWithoutMembers"
+            }
+        },
+        "expect": [
+          {
+            "responseErrorIsKindOf": "ErrorWithoutMembers"
+          }
+        ]
+      },
+      {
+        "description": "Parses error codes from \"code\"",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 500,
+          "bodyType": "json",
+      "bodyContent": {
+              "code": "ErrorWithoutMembers"
+            }
+        },
+        "expect": [
+          {
+            "responseErrorIsKindOf": "ErrorWithoutMembers"
+          }
+        ]
+      },
+      {
+        "description": "Parses error codes also from \"Code\"",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 500,
+          "bodyType": "json",
+      "bodyContent": {
+              "Code": "ErrorWithoutMembers"
+            }
+        },
+        "expect": [
+          {
+            "responseErrorIsKindOf": "ErrorWithoutMembers"
+          }
+        ]
+      },
+      {
+        "description": "Parses error codes ignoring prefixes",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 500,
+          "bodyType": "json",
+      "bodyContent": {
+              "__type": "SomeArbitraryPrefix#ErrorWithoutMembers"
+            }
+        },
+        "expect": [
+          {
+            "responseErrorIsKindOf": "ErrorWithoutMembers"
+          }
+        ]
+      },
+      {
+        "description": "Parses error messages from \"message\"",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 500,
+          "bodyType": "json",
+      "bodyContent": {
+              "code": "ErrorWithoutMembers",
+              "message": "Something went wrong"
+            }
+        },
+        "expect": [
+          {
+            "responseErrorMessageEquals": "Something went wrong"
+          }
+        ]
+      },
+      {
+        "description": "Parses error messages from \"Message\"",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 500,
+          "bodyType": "json",
+      "bodyContent": {
+              "code": "ErrorWithoutMembers",
+              "Message": "Something went wrong"
+            }
+        },
+        "expect": [
+          {
+            "responseErrorMessageEquals": "Something went wrong"
+          }
+        ]
+      },
+      {
+        "description": "Parses error data",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 400,
+          "bodyType": "json",
+      "bodyContent": {
+              "Code": "ErrorWithMembers",
+              "Message": "Something went wrong",
+              "StringField": "string value",
+              "IntegerField": 123,
+              "ListField": ["abc", "mno", "xyz"],
+              "MapField": {
+                "size": "large",
+                "color": "red"
+              },
+              "ComplexData": {
+                "RecursiveStruct": {
+                  "RecursiveStruct": {
+                    "String_": "string-value"
+                  }
+                }
+              }
+            }
+        },
+        "expect": [
+          {
+            "responseErrorDataEquals": {
+              "ErrorWithMembers": {
+                "Code": "ErrorWithMembers",
+                "Message": "Something went wrong",
+                "StringField": "string value",
+                "IntegerField": 123,
+                "ListField": ["abc", "mno", "xyz"],
+                "MapField": {
+                  "size": "large",
+                  "color": "red"
+                },
+                "ComplexData": {
+                  "RecursiveStruct": {
+                    "RecursiveStruct": {
+                      "String_": "string-value"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Parses request id from error responses",
+        "request": {
+          "operation": "KitchenSinkOperation"
+        },
+        "response": {
+          "statusCode": 400,
+          "headers": {
+            "X-Amzn-Requestid": "amazon-uniq-request-id"
+          },
+          "bodyType": "json",
+      "bodyContent": {
+              "Code": "ErrorWithMembers",
+              "Message": "Something went wrong"
+            }
+        },
+        "expect": [
+          {
+            "responseErrorRequestIdEquals": "amazon-uniq-request-id"
+          }
+        ]
+      }
+    ]
+  }
+}
