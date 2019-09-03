@@ -1540,6 +1540,32 @@
         "sourcePath":{"shape":"String"}
       }
     },
+    "InferenceAccelerator":{
+      "type":"structure",
+      "required":[
+        "deviceName",
+        "deviceType"
+      ],
+      "members":{
+        "deviceName":{"shape":"String"},
+        "deviceType":{"shape":"String"}
+      }
+    },
+    "InferenceAcceleratorOverride":{
+      "type":"structure",
+      "members":{
+        "deviceName":{"shape":"String"},
+        "deviceType":{"shape":"String"}
+      }
+    },
+    "InferenceAcceleratorOverrides":{
+      "type":"list",
+      "member":{"shape":"InferenceAcceleratorOverride"}
+    },
+    "InferenceAccelerators":{
+      "type":"list",
+      "member":{"shape":"InferenceAccelerator"}
+    },
     "Integer":{"type":"integer"},
     "InvalidParameterException":{
       "type":"structure",
@@ -2045,7 +2071,8 @@
         "tags":{"shape":"Tags"},
         "pidMode":{"shape":"PidMode"},
         "ipcMode":{"shape":"IpcMode"},
-        "proxyConfiguration":{"shape":"ProxyConfiguration"}
+        "proxyConfiguration":{"shape":"ProxyConfiguration"},
+        "inferenceAccelerators":{"shape":"InferenceAccelerators"}
       }
     },
     "RegisterTaskDefinitionResponse":{
@@ -2100,7 +2127,10 @@
     },
     "ResourceType":{
       "type":"string",
-      "enum":["GPU"]
+      "enum":[
+        "GPU",
+        "InferenceAccelerator"
+      ]
     },
     "Resources":{
       "type":"list",
@@ -2504,7 +2534,8 @@
         "platformVersion":{"shape":"String"},
         "attachments":{"shape":"Attachments"},
         "healthStatus":{"shape":"HealthStatus"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "inferenceAccelerators":{"shape":"InferenceAccelerators"}
       }
     },
     "TaskDefinition":{
@@ -2580,6 +2611,7 @@
       "type":"structure",
       "members":{
         "containerOverrides":{"shape":"ContainerOverrides"},
+        "inferenceAcceleratorOverrides":{"shape":"InferenceAcceleratorOverrides"},
         "taskRoleArn":{"shape":"String"},
         "executionRoleArn":{"shape":"String"}
       }
