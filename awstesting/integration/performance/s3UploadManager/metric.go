@@ -84,7 +84,9 @@ func (rt *RequestTrace) OnCompleteAttempt(r *request.Request) {
 func (rt *RequestTrace) OnComplete(r *request.Request) {
 	rt.finish = time.Now()
 	// Last attempt includes reading the response body
-	rt.attempts[len(rt.attempts)-1].Finish = rt.finish
+	if len(rt.attempts) > 0 {
+		rt.attempts[len(rt.attempts)-1].Finish = rt.finish
+	}
 }
 
 func (rt *RequestTrace) Err() error {

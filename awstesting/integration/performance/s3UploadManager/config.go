@@ -6,6 +6,7 @@ import (
 	"flag"
 	"fmt"
 	"net/http"
+	"os"
 	"strings"
 	"time"
 
@@ -13,9 +14,11 @@ import (
 )
 
 type Config struct {
-	Bucket, Key string
-	Filename    string
-	LogVerbose  bool
+	Bucket     string
+	Filename   string
+	Size       int64
+	TempDir    string
+	LogVerbose bool
 
 	SDK    SDKConfig
 	Client ClientConfig
@@ -24,10 +27,11 @@ type Config struct {
 func (c *Config) SetupFlags(prefix string, flagset *flag.FlagSet) {
 	flagset.StringVar(&c.Bucket, "bucket", "",
 		"The S3 bucket `name` to upload the object to.")
-	flagset.StringVar(&c.Key, "key", "",
-		"The S3 object key `name` to name the uploaded object.")
 	flagset.StringVar(&c.Filename, "file", "",
 		"The `path` of the local file to upload.")
+	flagset.Int64Var(&c.Size, "size", 0,
+		"The S3 object size in bytes to upload")
+	flagset.StringVar(&c.TempDir, "temp", os.TempDir(), "location to create temporary files")
 	flagset.BoolVar(&c.LogVerbose, "verbose", false,
 		"The output log will include verbose request information")
 
@@ -38,8 +42,8 @@ func (c *Config) SetupFlags(prefix string, flagset *flag.FlagSet) {
 func (c *Config) Validate() error {
 	var errs Errors
 
-	if len(c.Bucket) == 0 || len(c.Key) == 0 || len(c.Filename) == 0 {
-		errs = append(errs, fmt.Errorf("bucket, key, and filename are required"))
+	if len(c.Bucket) == 0 || (c.Size <= 0 && c.Filename == "") {
+		errs = append(errs, fmt.Errorf("bucket and filename/size are required"))
 	}
 
 	if err := c.SDK.Validate(); err != nil {
@@ -60,7 +64,9 @@ type SDKConfig struct {
 	PartSize            int64
 	Concurrency         int
 	WithUnsignedPayload bool
+	WithContentMD5      bool
 	ExpectContinue      bool
+	BufferProvider      s3manager.ReadSeekerWriteToProvider
 }
 
 func (c *SDKConfig) SetupFlags(prefix string, flagset *flag.FlagSet) {
@@ -72,6 +78,8 @@ func (c *SDKConfig) SetupFlags(prefix string, flagset *flag.FlagSet) {
 		"Specifies the number of parts to upload `at once`.")
 	flagset.BoolVar(&c.WithUnsignedPayload, prefix+"unsigned", false,
 		"Specifies if the SDK will use UNSIGNED_PAYLOAD for part SHA256 in request signature.")
+	flagset.BoolVar(&c.WithContentMD5, prefix+"content-md5", true,
+		"Specifies if the SDK should compute the content md5 header for S3 uploads.")
 
 	flagset.BoolVar(&c.ExpectContinue, prefix+"100-continue", true,
 		"Specifies if the SDK requests will wait for the 100 continue response before sending request payload.")

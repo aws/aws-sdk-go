@@ -5,5 +5,6 @@
   * Non-Windows platforms will continue to employ a non-buffering behavior.
 
 ### SDK Enhancements
+* `awstesting/integration/performance/s3UploadManager`: Extended to support benchmarking and usage of new `BufferProvider` ([#2792](https://github.com/aws/aws-sdk-go/pull/2792))
 
 ### SDK Bugs
