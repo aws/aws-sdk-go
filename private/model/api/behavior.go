@@ -7,16 +7,16 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"reflect"
 	"strings"
 	"text/template"
 )
 
 type BehaviorTestSuite struct {
-	Defaults Defaults `json:"defaults"`
-	Tests    Tests    `json:"tests"`
+	BehaviorTest BehaviorTest `json:"tests"`
 }
 
-type Tests struct {
+type BehaviorTest struct {
 	Defaults Defaults `json:"defaults"`
 	Cases    []Case   `json:"cases"`
 }
@@ -66,9 +66,15 @@ func (c Request) EmptyShapeBuilder(ref *ShapeRef) string {
 func (c Case) BuildOutputShape(ref *ShapeRef) string {
 	b := NewShapeValueBuilder()
 	b.Base64BlobValues = true
+	index := 0
+	for i, expectVal := range c.Expect {
+		if _, ok := expectVal["responseDataEquals"]; ok {
+			index = i
+		}
+	}
 	return fmt.Sprintf("&%s{\n%s\n}",
 		b.GoType(ref, true),
-		b.BuildShape(ref, c.Expect[0]["responseDataEquals"].(map[string]interface{}), false),
+		b.BuildShape(ref, c.Expect[index]["responseDataEquals"].(map[string]interface{}), false),
 	)
 }
 
@@ -132,6 +138,26 @@ func (a *API) APIBehaviorTestsGoCode() string {
 	return a.importsGoCode() + ignoreImports + w.String()
 }
 
+// BuildHeaderMapCompare returns a string which defines a map[string]interface{}
+// variable inline
+func BuildHeaderMapCompare(input interface{}) string {
+	if reflect.ValueOf(input).Kind() != reflect.Map {
+		panic("requestHeadersMatch field doesn't contain a map")
+	}
+	newInput := input.(map[string]interface{})
+	output := fmt.Sprint("map[string]awstesting.CompareValue {\n")
+	for key, val := range newInput {
+		switch key {
+		case "Header-Json-Value":
+			output += fmt.Sprintf("%#v: awstesting.JSONValueCompareWith(t, %#v),\n", key, val)
+		default:
+			output += fmt.Sprintf("%#v: awstesting.DefaultCompareWith(t, %#v),\n", key, val)
+		}
+	}
+	output += "}"
+	return output
+}
+
 //Generates assertions
 func (c Case) GenerateAssertions(op *Operation) string {
 	var val string = "//Assertions start here"
@@ -147,9 +173,9 @@ func (c Case) GenerateAssertions(op *Operation) string {
 			case "requestUrlPathMatches":
 				val += fmt.Sprintf("RequestURLPathMatches(t, %q, req.HTTPRequest.URL.EscapedPath())", assertionContext)
 			case "requestUrlQueryMatches":
-				val += fmt.Sprintf("RequestURLQueryMatches(t, %q, req)", assertionContext)
+				val += fmt.Sprintf("RequestURLQueryMatches(t, %q, req.HTTPRequest.URL)", assertionContext)
 			case "requestHeadersMatch":
-				val += fmt.Sprintf("RequestHeadersMatch(t, %#v, req)", assertionContext)
+				val += fmt.Sprintf("RequestHeadersMatch(t, %s, req.HTTPRequest.Header)", BuildHeaderMapCompare(assertionContext))
 			case "requestBodyEqualsBytes":
 				val += fmt.Sprintf("RequestBodyEqualsBytes(t, %q, req)", assertionContext)
 			case "requestBodyEqualsJson":
@@ -161,7 +187,7 @@ func (c Case) GenerateAssertions(op *Operation) string {
 			case "requestIdEquals":
 				val += fmt.Sprintf("RequestIDEquals(t, %q, req.RequestID)", assertionContext)
 			case "responseDataEquals":
-				val += fmt.Sprintf("ResponseDataEquals(t, %v, resp)", c.BuildOutputShape(&op.OutputRef))
+				val += fmt.Sprintf("ResponseValueEquals(t, %v, resp)", c.BuildOutputShape(&op.OutputRef))
 			case "responseErrorDataEquals":
 				val += fmt.Sprintf("ResponseErrorDataEquals(t, %#v, err)", assertionContext)
 			case "responseErrorIsKindOf":
@@ -179,25 +205,12 @@ func (c Case) GenerateAssertions(op *Operation) string {
 }
 
 // Returns a value to set Credentials
-func (c Case) ConfigurationString(T Tests) string {
+func (c Case) ConfigurationString(T BehaviorTest) string {
 	region := T.Defaults.Env["AWS_REGION"]
 	accessKeyId := T.Defaults.Env["AWS_ACCESS_KEY"]
 	secretAccessKey := T.Defaults.Env["AWS_SECRET_ACCESS_KEY"]
 	endpointUrl := ""
-	if len(c.LocalConfig) > 0 {
-		for key, val := range c.LocalConfig {
-			switch key {
-			case "region":
-				region = val
-			case "accessKeyId":
-				accessKeyId = val
-			case "secretAccessKey":
-				secretAccessKey = val
-			case "endpointUrl":
-				endpointUrl = val
-			}
-		}
-	} else {
+	if len(c.LocalEnv) > 0 {
 		for key, val := range c.LocalEnv {
 			switch key {
 			case "AWS_REGION":
@@ -211,8 +224,25 @@ func (c Case) ConfigurationString(T Tests) string {
 			}
 		}
 	}
-	return fmt.Sprintf("\n\t\tRegion: aws.String(%#v),\n\t\tCredentials: credentials.NewStaticCredentials(%#v, %#v, %#v),",
-		region, accessKeyId, secretAccessKey, endpointUrl)
+	if len(c.LocalConfig) > 0 {
+		for key, val := range c.LocalConfig {
+			switch key {
+			case "region":
+				region = val
+			case "accessKeyId":
+				accessKeyId = val
+			case "secretAccessKey":
+				secretAccessKey = val
+			case "endpointUrl":
+				endpointUrl = val
+			}
+		}
+	}
+	const cfgFmt = `
+					Region: aws.String(%#v),
+					Credentials: credentials.NewStaticCredentials(%#v, %#v, %#v),
+					`
+	return fmt.Sprintf(cfgFmt, region, accessKeyId, secretAccessKey, endpointUrl)
 }
 
 // ErrorAssertExists returns true if there is an assertion in the expect map
@@ -228,7 +258,6 @@ func (c Case) ErrorAssertExists() bool {
 	return false
 }
 
-//template map is defined in "eventstream.go"
 var funcMap = template.FuncMap{
 	"Map": templateMap,
 }
@@ -236,42 +265,42 @@ var funcMap = template.FuncMap{
 var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(funcMap).Parse(`
 
 {{define "StashCredentials"}}
-	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
-	defer restoreEnv()
+restoreEnv := sdktesting.StashEnv() //Stashes the current environment
+defer restoreEnv()
 {{end}}
 
 {{define "SessionSetup"}}
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
-	sess := session.Must(session.NewSession(&aws.Config{ {{$.testCase.ConfigurationString $.Tests}} }))
+// Starts a new session with credentials and region parsed from "defaults" in the Json file'
+sess := session.Must(session.NewSession(&aws.Config{ {{$.testCase.ConfigurationString $.BehaviorTest}} }))
 {{end}}
 
 {{define "ResponseBuild"}}
-			r.HTTPResponse = &http.Response{
-						{{- if eq $.testCase.Response.StatusCode 0}}
-											StatusCode:200,
-						{{- else}}
-							StatusCode:{{$.testCase.Response.StatusCode}},
-						{{- end}}
-							Header: http.Header{
-										{{- range $key,$val:=$.testCase.Response.Headers}}
-											"{{$key}}":[]string{ "{{$val}}" },
-										{{- end}}	
-									},
-						{{- if eq ($.testCase.Response.BodyType) "xml"}}
-							Body: ioutil.NopCloser(bytes.NewBufferString({{printf "%q" $.testCase.Response.BodyContent}})),
-						{{- else if eq ($.testCase.Response.BodyType) "json"}}
-							Body: ioutil.NopCloser(bytes.NewBuffer(
-															func() []byte {
-																v, err := json.Marshal({{printf "%#v" $.testCase.Response.BodyContent}})
-																if err != nil {
-																	panic(err)
-																}
-																return v
-															}())),
-						{{- else}}
-							Body: ioutil.NopCloser(&bytes.Buffer{}),
-						{{- end}}
-						}
+	r.HTTPResponse = &http.Response{
+				{{- if eq $.testCase.Response.StatusCode 0}}
+					StatusCode: 200,
+				{{- else}}
+					StatusCode: {{$.testCase.Response.StatusCode}},
+				{{- end}}
+					Header: http.Header{
+								{{- range $key,$val:=$.testCase.Response.Headers}}
+									"{{$key}}":[]string{ "{{$val}}" },
+								{{- end}}	
+							},
+				{{- if eq ($.testCase.Response.BodyType) "xml"}}
+					Body: ioutil.NopCloser(bytes.NewBufferString({{printf "%q" $.testCase.Response.BodyContent}})),
+				{{- else if eq ($.testCase.Response.BodyType) "json"}}
+					Body: ioutil.NopCloser(bytes.NewBuffer(
+							func() []byte {
+								v, err := json.Marshal({{printf "%#v" $.testCase.Response.BodyContent}})
+								if err != nil {
+									panic(err)
+								}
+								return v
+							}())),
+				{{- else}}
+					Body: ioutil.NopCloser(&bytes.Buffer{}),
+				{{- end}}
+				}
 {{end}}
 
 {{define "RequestBuild"}}
@@ -287,26 +316,21 @@ var behaviorTestTmpl = template.Must(template.New(`behaviorTestTmpl`).Funcs(func
 	req.Handlers.Send.Swap( corehandlers.SendHandler.Name, MockHTTPResponseHandler )
 
 	err := req.Send()
-	{{- if $.testCase.ErrorAssertExists}}
-		if err == nil {
-			t.Fatal(err)
-		}
-	{{- else}}
-		if err != nil {
-			t.Fatal(err)
-		}
-	{{- end}}
+	if err {{- if $.testCase.ErrorAssertExists}}=={{- else}}!={{- end}} nil {
+		t.Fatal(err)
+	}
+
 	{{printf "\n"}}
 {{end}}
 
-{{- range $i, $testCase := $.Tests.Cases }}
+{{- range $i, $testCase := $.BehaviorTest.Cases }}
 	// {{printf "%s" $testCase.Description}}
 	{{- $op := index $.API.Operations $testCase.Request.Operation }}
-	func TestBehavior_{{ printf "%02d" $i }}(t *testing.T) {
+	func TestBehavior_{{ printf "%03d" $i }}(t *testing.T) {
 
 		{{template "StashCredentials" .}}
 
-		{{ template "SessionSetup" Map "testCase" $testCase "Tests" $.Tests}}
+		{{ template "SessionSetup" Map "testCase" $testCase "BehaviorTest" $.BehaviorTest}}
 
 		//Starts a new service using using sess
 		svc := {{$.API.PackageName}}.New(sess)

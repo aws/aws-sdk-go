@@ -78,13 +78,13 @@
         "request": {
           "operation": "KitchenSinkOperation",
           "input": {
-            "String_": "abc xyz"
+            "String": "abc xyz"
           }
         },
         "expect": [
           {
             "requestBodyEqualsJson": {
-              "String_": "abc xyz"
+              "String": "abc xyz"
             }
           }
         ]
@@ -600,14 +600,14 @@
         "request": {
           "operation": "KitchenSinkOperation",
           "input": {
-            "String_": "top-value",
+            "String": "top-value",
             "Boolean": false,
             "RecursiveStruct": {
-              "String_": "nested-value",
+              "String": "nested-value",
               "Boolean": true,
               "RecursiveList": [
                 {
-                  "String_": "string-only"
+                  "String": "string-only"
                 },
                 {
                   "RecursiveStruct": {
@@ -624,14 +624,14 @@
         "expect": [
           {
             "requestBodyEqualsJson": {
-              "String_": "top-value",
+              "String": "top-value",
               "Boolean": false,
               "RecursiveStruct": {
-                "String_": "nested-value",
+                "String": "nested-value",
                 "Boolean": true,
                 "RecursiveList": [
                   {
-                    "String_": "string-only"
+                    "String": "string-only"
                   },
                   {
                     "RecursiveStruct": {
@@ -689,13 +689,13 @@
           "bodyType": "json",
           "bodyType": "json",
       "bodyContent": {
-              "String_": "string-value"
+              "String": "string-value"
             }
         },
         "expect": [
           {
             "responseDataEquals": {
-              "String_": "string-value"
+              "String": "string-value"
             }
           }
         ]
@@ -1012,7 +1012,7 @@
                   "RecursiveList": [
                     {
                       "RecursiveList": [
-                        { "String_": "value" }
+                        { "String": "value" }
                       ]
                     }
                   ]
@@ -1028,7 +1028,7 @@
                   "RecursiveList": [
                     {
                       "RecursiveList": [
-                        { "String_": "value" }
+                        { "String": "value" }
                       ]
                     }
                   ]
@@ -1169,7 +1169,7 @@
                     "key-2": {
                       "RecursiveMap": {
                         "key-3": {
-                          "String_": "value"
+                          "String": "value"
                         }
                       }
                     }
@@ -1187,7 +1187,7 @@
                     "key-2": {
                       "RecursiveMap": {
                         "key-3": {
-                          "String_": "value"
+                          "String": "value"
                         }
                       }
                     }
@@ -1349,7 +1349,7 @@
               "ComplexData": {
                 "RecursiveStruct": {
                   "RecursiveStruct": {
-                    "String_": "string-value"
+                    "String": "string-value"
                   }
                 }
               }
@@ -1371,7 +1371,7 @@
                 "ComplexData": {
                   "RecursiveStruct": {
                     "RecursiveStruct": {
-                      "String_": "string-value"
+                      "String": "string-value"
                     }
                   }
                 }

@@ -30,15 +30,16 @@ var _ = strings.NewReader
 var _ = json.Marshal
 
 // Prefers configured region over ENV region
-func TestBehavior_00(t *testing.T) {
+func TestBehavior_000(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-1"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleservice.New(sess)

@@ -30,15 +30,16 @@ var _ = strings.NewReader
 var _ = json.Marshal
 
 // Can build empty PUT requests
-func TestBehavior_00(t *testing.T) {
+func TestBehavior_000(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "localSecret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "localSecret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -72,15 +73,16 @@ func TestBehavior_00(t *testing.T) {
 }
 
 // Can build empty POST requests
-func TestBehavior_01(t *testing.T) {
+func TestBehavior_001(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -114,15 +116,16 @@ func TestBehavior_01(t *testing.T) {
 }
 
 // Can build empty PATCH requests
-func TestBehavior_02(t *testing.T) {
+func TestBehavior_002(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -156,15 +159,16 @@ func TestBehavior_02(t *testing.T) {
 }
 
 // Can build empty GET requests
-func TestBehavior_03(t *testing.T) {
+func TestBehavior_003(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -198,15 +202,16 @@ func TestBehavior_03(t *testing.T) {
 }
 
 // Can build empty HEAD requests
-func TestBehavior_04(t *testing.T) {
+func TestBehavior_004(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -240,15 +245,16 @@ func TestBehavior_04(t *testing.T) {
 }
 
 // Can build empty DELETE requests
-func TestBehavior_05(t *testing.T) {
+func TestBehavior_005(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -282,15 +288,16 @@ func TestBehavior_05(t *testing.T) {
 }
 
 // Supports location uri members
-func TestBehavior_06(t *testing.T) {
+func TestBehavior_006(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -326,15 +333,16 @@ func TestBehavior_06(t *testing.T) {
 }
 
 // Escapes path segments
-func TestBehavior_07(t *testing.T) {
+func TestBehavior_007(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -369,15 +377,16 @@ func TestBehavior_07(t *testing.T) {
 }
 
 // Performs path-safe escaping for uri path params with placeholders containing a plus-sign
-func TestBehavior_08(t *testing.T) {
+func TestBehavior_008(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -412,15 +421,16 @@ func TestBehavior_08(t *testing.T) {
 }
 
 // Serializes query parameter serialization
-func TestBehavior_09(t *testing.T) {
+func TestBehavior_009(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -451,20 +461,21 @@ func TestBehavior_09(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestURLQueryMatches(t, "string=string-value", req)
+	awstesting.AssertRequestURLQueryMatches(t, "string=string-value", req.HTTPRequest.URL)
 
 }
 
 // Serializes query params are URI escaped
-func TestBehavior_10(t *testing.T) {
+func TestBehavior_010(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -495,20 +506,21 @@ func TestBehavior_10(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestURLQueryMatches(t, "string=string%20value", req)
+	awstesting.AssertRequestURLQueryMatches(t, "string=string%20value", req.HTTPRequest.URL)
 
 }
 
 // Serializes integer query params
-func TestBehavior_11(t *testing.T) {
+func TestBehavior_011(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -539,20 +551,21 @@ func TestBehavior_11(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestURLQueryMatches(t, "integer=123456", req)
+	awstesting.AssertRequestURLQueryMatches(t, "integer=123456", req.HTTPRequest.URL)
 
 }
 
 // Serializes long query params
-func TestBehavior_12(t *testing.T) {
+func TestBehavior_012(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -583,20 +596,21 @@ func TestBehavior_12(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestURLQueryMatches(t, "long=123456", req)
+	awstesting.AssertRequestURLQueryMatches(t, "long=123456", req.HTTPRequest.URL)
 
 }
 
 // Serializes float query params
-func TestBehavior_13(t *testing.T) {
+func TestBehavior_013(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -627,20 +641,21 @@ func TestBehavior_13(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestURLQueryMatches(t, "float=123.456", req)
+	awstesting.AssertRequestURLQueryMatches(t, "float=123.456", req.HTTPRequest.URL)
 
 }
 
 // Serializes double query params
-func TestBehavior_14(t *testing.T) {
+func TestBehavior_014(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -671,20 +686,21 @@ func TestBehavior_14(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestURLQueryMatches(t, "double=123.456", req)
+	awstesting.AssertRequestURLQueryMatches(t, "double=123.456", req.HTTPRequest.URL)
 
 }
 
 // Serializes boolean true query params
-func TestBehavior_15(t *testing.T) {
+func TestBehavior_015(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -715,20 +731,21 @@ func TestBehavior_15(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestURLQueryMatches(t, "boolean-value=true", req)
+	awstesting.AssertRequestURLQueryMatches(t, "boolean-value=true", req.HTTPRequest.URL)
 
 }
 
 // Serializes boolean false query params
-func TestBehavior_16(t *testing.T) {
+func TestBehavior_016(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -759,20 +776,21 @@ func TestBehavior_16(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestURLQueryMatches(t, "boolean-value=false", req)
+	awstesting.AssertRequestURLQueryMatches(t, "boolean-value=false", req.HTTPRequest.URL)
 
 }
 
 // Serializes blob query params
-func TestBehavior_17(t *testing.T) {
+func TestBehavior_017(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -803,20 +821,21 @@ func TestBehavior_17(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestURLQueryMatches(t, "binary-value=YmluYXJ5LXZhbHVl", req)
+	awstesting.AssertRequestURLQueryMatches(t, "binary-value=YmluYXJ5LXZhbHVl", req.HTTPRequest.URL)
 
 }
 
 // Serializes timestamp query params
-func TestBehavior_18(t *testing.T) {
+func TestBehavior_018(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -853,20 +872,21 @@ func TestBehavior_18(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestURLQueryMatches(t, "timestamp=2000-01-02T20%3A34%3A56Z", req)
+	awstesting.AssertRequestURLQueryMatches(t, "timestamp=2000-01-02T20%3A34%3A56Z", req.HTTPRequest.URL)
 
 }
 
 // Serializes unixTimestamp format timestamp query params
-func TestBehavior_19(t *testing.T) {
+func TestBehavior_019(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -903,20 +923,21 @@ func TestBehavior_19(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestURLQueryMatches(t, "unix-timestamp=946845296", req)
+	awstesting.AssertRequestURLQueryMatches(t, "unix-timestamp=946845296", req.HTTPRequest.URL)
 
 }
 
 // Serializes iso8601 format timestamp query params
-func TestBehavior_20(t *testing.T) {
+func TestBehavior_020(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -953,20 +974,21 @@ func TestBehavior_20(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestURLQueryMatches(t, "iso8601-timestamp=2000-01-02T20%3A34%3A56Z", req)
+	awstesting.AssertRequestURLQueryMatches(t, "iso8601-timestamp=2000-01-02T20%3A34%3A56Z", req.HTTPRequest.URL)
 
 }
 
 // Serializes httpdate format timestamp query params
-func TestBehavior_21(t *testing.T) {
+func TestBehavior_021(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1003,20 +1025,21 @@ func TestBehavior_21(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestURLQueryMatches(t, "httpdate-timestamp=Sun%2C%2002%20Jan%202000%2020%3A34%3A56%20GMT", req)
+	awstesting.AssertRequestURLQueryMatches(t, "httpdate-timestamp=Sun%2C%2002%20Jan%202000%2020%3A34%3A56%20GMT", req.HTTPRequest.URL)
 
 }
 
 // Serializes list of string query params
-func TestBehavior_22(t *testing.T) {
+func TestBehavior_022(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1051,20 +1074,21 @@ func TestBehavior_22(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestURLQueryMatches(t, "list=abc&list=mno&list=xyz", req)
+	awstesting.AssertRequestURLQueryMatches(t, "list=abc&list=mno&list=xyz", req.HTTPRequest.URL)
 
 }
 
 // Serializes map of string query params
-func TestBehavior_23(t *testing.T) {
+func TestBehavior_023(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1098,20 +1122,21 @@ func TestBehavior_23(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestURLQueryMatches(t, "color=red&size=large", req)
+	awstesting.AssertRequestURLQueryMatches(t, "color=red&size=large", req.HTTPRequest.URL)
 
 }
 
 // Serializes and escapes query map of string keys and values
-func TestBehavior_24(t *testing.T) {
+func TestBehavior_024(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1145,20 +1170,21 @@ func TestBehavior_24(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestURLQueryMatches(t, "a%20b=x%3Az&a%26b=x%2Fz", req)
+	awstesting.AssertRequestURLQueryMatches(t, "a%20b=x%3Az&a%26b=x%2Fz", req.HTTPRequest.URL)
 
 }
 
 // Serializes map of lists of strings query params
-func TestBehavior_25(t *testing.T) {
+func TestBehavior_025(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1198,20 +1224,21 @@ func TestBehavior_25(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestURLQueryMatches(t, "key%201=value%201&key%201=value%202&key%202=value%203&key%202=value%204", req)
+	awstesting.AssertRequestURLQueryMatches(t, "key%201=value%201&key%201=value%202&key%202=value%203&key%202=value%204", req.HTTPRequest.URL)
 
 }
 
 // Serializes header strings
-func TestBehavior_26(t *testing.T) {
+func TestBehavior_026(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1242,20 +1269,23 @@ func TestBehavior_26(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-String": "header string value"}, req)
+	awstesting.AssertRequestHeadersMatch(t, map[string]awstesting.CompareValue{
+		"Header-String": awstesting.DefaultCompareWith(t, "header string value"),
+	}, req.HTTPRequest.Header)
 
 }
 
 // Serializes header integers
-func TestBehavior_27(t *testing.T) {
+func TestBehavior_027(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1286,20 +1316,23 @@ func TestBehavior_27(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Integer": "123456"}, req)
+	awstesting.AssertRequestHeadersMatch(t, map[string]awstesting.CompareValue{
+		"Header-Integer": awstesting.DefaultCompareWith(t, "123456"),
+	}, req.HTTPRequest.Header)
 
 }
 
 // Serializes header longs
-func TestBehavior_28(t *testing.T) {
+func TestBehavior_028(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1330,20 +1363,23 @@ func TestBehavior_28(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Long": "123456"}, req)
+	awstesting.AssertRequestHeadersMatch(t, map[string]awstesting.CompareValue{
+		"Header-Long": awstesting.DefaultCompareWith(t, "123456"),
+	}, req.HTTPRequest.Header)
 
 }
 
 // Serializes header floats
-func TestBehavior_29(t *testing.T) {
+func TestBehavior_029(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1374,20 +1410,23 @@ func TestBehavior_29(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Float": "123.456"}, req)
+	awstesting.AssertRequestHeadersMatch(t, map[string]awstesting.CompareValue{
+		"Header-Float": awstesting.DefaultCompareWith(t, "123.456"),
+	}, req.HTTPRequest.Header)
 
 }
 
 // Serializes header doubles
-func TestBehavior_30(t *testing.T) {
+func TestBehavior_030(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1418,20 +1457,23 @@ func TestBehavior_30(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Double": "123.456"}, req)
+	awstesting.AssertRequestHeadersMatch(t, map[string]awstesting.CompareValue{
+		"Header-Double": awstesting.DefaultCompareWith(t, "123.456"),
+	}, req.HTTPRequest.Header)
 
 }
 
 // Serializes true boolean values
-func TestBehavior_31(t *testing.T) {
+func TestBehavior_031(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1462,20 +1504,23 @@ func TestBehavior_31(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Boolean": "true"}, req)
+	awstesting.AssertRequestHeadersMatch(t, map[string]awstesting.CompareValue{
+		"Header-Boolean": awstesting.DefaultCompareWith(t, "true"),
+	}, req.HTTPRequest.Header)
 
 }
 
 // Serializes false boolean values
-func TestBehavior_32(t *testing.T) {
+func TestBehavior_032(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1506,20 +1551,23 @@ func TestBehavior_32(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Boolean": "false"}, req)
+	awstesting.AssertRequestHeadersMatch(t, map[string]awstesting.CompareValue{
+		"Header-Boolean": awstesting.DefaultCompareWith(t, "false"),
+	}, req.HTTPRequest.Header)
 
 }
 
 // Serializes header binary values
-func TestBehavior_33(t *testing.T) {
+func TestBehavior_033(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1550,20 +1598,23 @@ func TestBehavior_33(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Binary": "YmluYXJ5LXZhbHVl"}, req)
+	awstesting.AssertRequestHeadersMatch(t, map[string]awstesting.CompareValue{
+		"Header-Binary": awstesting.DefaultCompareWith(t, "YmluYXJ5LXZhbHVl"),
+	}, req.HTTPRequest.Header)
 
 }
 
 // Serializes header string values with jsonvalue trait
-func TestBehavior_34(t *testing.T) {
+func TestBehavior_034(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1594,20 +1645,23 @@ func TestBehavior_34(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Json-Value": "eyJzdHJpbmciOiJ2YWx1ZSIsIm51bWJlciI6MTIzNC41LCJib29sVHJ1ZSI6dHJ1ZSwiYm9vbEZhbHNlIjpmYWxzZSwiYXJyYXkiOlsxLDIsMyw0XSwib2JqZWN0Ijp7ImtleSI6InZhbHVlIn0sIm51bGwiOm51bGx9"}, req)
+	awstesting.AssertRequestHeadersMatch(t, map[string]awstesting.CompareValue{
+		"Header-Json-Value": awstesting.JSONValueCompareWith(t, "eyJzdHJpbmciOiJ2YWx1ZSIsIm51bWJlciI6MTIzNC41LCJib29sVHJ1ZSI6dHJ1ZSwiYm9vbEZhbHNlIjpmYWxzZSwiYXJyYXkiOlsxLDIsMyw0XSwib2JqZWN0Ijp7ImtleSI6InZhbHVlIn0sIm51bGwiOm51bGx9"),
+	}, req.HTTPRequest.Header)
 
 }
 
 // Serializes header timestamp values
-func TestBehavior_35(t *testing.T) {
+func TestBehavior_035(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1644,20 +1698,23 @@ func TestBehavior_35(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Timestamp": "Sun, 02 Jan 2000 20:34:56 GMT"}, req)
+	awstesting.AssertRequestHeadersMatch(t, map[string]awstesting.CompareValue{
+		"Header-Timestamp": awstesting.DefaultCompareWith(t, "Sun, 02 Jan 2000 20:34:56 GMT"),
+	}, req.HTTPRequest.Header)
 
 }
 
 // Serializes unixTimestamp format header timestamps
-func TestBehavior_36(t *testing.T) {
+func TestBehavior_036(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1694,20 +1751,23 @@ func TestBehavior_36(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Unix-Timestamp": "946845296"}, req)
+	awstesting.AssertRequestHeadersMatch(t, map[string]awstesting.CompareValue{
+		"Header-Unix-Timestamp": awstesting.DefaultCompareWith(t, "946845296"),
+	}, req.HTTPRequest.Header)
 
 }
 
 // Serializes iso8601 format header timestamp
-func TestBehavior_37(t *testing.T) {
+func TestBehavior_037(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1744,20 +1804,23 @@ func TestBehavior_37(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Iso8601-Timestamp": "2000-01-02T20:34:56Z"}, req)
+	awstesting.AssertRequestHeadersMatch(t, map[string]awstesting.CompareValue{
+		"Header-Iso8601-Timestamp": awstesting.DefaultCompareWith(t, "2000-01-02T20:34:56Z"),
+	}, req.HTTPRequest.Header)
 
 }
 
 // Serializes httpdate format header timestamps
-func TestBehavior_38(t *testing.T) {
+func TestBehavior_038(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1794,20 +1857,23 @@ func TestBehavior_38(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Header-Httpdate-Timestamp": "Sun, 02 Jan 2000 20:34:56 GMT"}, req)
+	awstesting.AssertRequestHeadersMatch(t, map[string]awstesting.CompareValue{
+		"Header-Httpdate-Timestamp": awstesting.DefaultCompareWith(t, "Sun, 02 Jan 2000 20:34:56 GMT"),
+	}, req.HTTPRequest.Header)
 
 }
 
 // Serializes header maps
-func TestBehavior_39(t *testing.T) {
+func TestBehavior_039(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1842,20 +1908,25 @@ func TestBehavior_39(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Key-1": "map value 1", "Key-2": "map value 2", "Key-3": "map value 3"}, req)
+	awstesting.AssertRequestHeadersMatch(t, map[string]awstesting.CompareValue{
+		"Key-2": awstesting.DefaultCompareWith(t, "map value 2"),
+		"Key-3": awstesting.DefaultCompareWith(t, "map value 3"),
+		"Key-1": awstesting.DefaultCompareWith(t, "map value 1"),
+	}, req.HTTPRequest.Header)
 
 }
 
 // Serializes header maps with prefixes
-func TestBehavior_40(t *testing.T) {
+func TestBehavior_040(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1890,20 +1961,25 @@ func TestBehavior_40(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Prefix-Key-1": "prefix map value 1", "Prefix-Key-2": "prefix map value 2", "Prefix-Key-3": "prefix map value 3"}, req)
+	awstesting.AssertRequestHeadersMatch(t, map[string]awstesting.CompareValue{
+		"Prefix-Key-1": awstesting.DefaultCompareWith(t, "prefix map value 1"),
+		"Prefix-Key-2": awstesting.DefaultCompareWith(t, "prefix map value 2"),
+		"Prefix-Key-3": awstesting.DefaultCompareWith(t, "prefix map value 3"),
+	}, req.HTTPRequest.Header)
 
 }
 
 // Serializes payload blob members to the body as raw bytes
-func TestBehavior_41(t *testing.T) {
+func TestBehavior_041(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1939,15 +2015,16 @@ func TestBehavior_41(t *testing.T) {
 }
 
 // Omits the HTTP body when payload blob member is not set
-func TestBehavior_42(t *testing.T) {
+func TestBehavior_042(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -1982,15 +2059,16 @@ func TestBehavior_42(t *testing.T) {
 }
 
 // Serializes payload structure members to the body as XML
-func TestBehavior_43(t *testing.T) {
+func TestBehavior_043(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2026,15 +2104,16 @@ func TestBehavior_43(t *testing.T) {
 }
 
 // Can serialize an empty structure to XML
-func TestBehavior_44(t *testing.T) {
+func TestBehavior_044(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2068,15 +2147,16 @@ func TestBehavior_44(t *testing.T) {
 }
 
 // Can serialize an empty structure to XML
-func TestBehavior_45(t *testing.T) {
+func TestBehavior_045(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2110,22 +2190,22 @@ func TestBehavior_45(t *testing.T) {
 }
 
 // Serializes members without locations to the body XML document
-func TestBehavior_46(t *testing.T) {
+func TestBehavior_046(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 
 	input := &sampleresetxmlprotocolservice.OperationMembersWithoutLocationInput{
-		Header:  aws.String("value 1"),
-		String_: aws.String("value 2"),
+		Header: aws.String("value 1"),
 		Struct: &sampleresetxmlprotocolservice.SimpleStruct{
 			Value: aws.String("value 3"),
 		},
@@ -2151,21 +2231,24 @@ func TestBehavior_46(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Some-Header": "value 1"}, req)
-	awstesting.AssertRequestBodyMatchesXML(t, "<RootNode xmlns=\"http://xml/ns\"><String_>value 2</String_><Struct><Value>value 3</Value></Struct></RootNode>", req, sampleresetxmlprotocolservice.OperationMembersWithoutLocationInput{})
+	awstesting.AssertRequestHeadersMatch(t, map[string]awstesting.CompareValue{
+		"Some-Header": awstesting.DefaultCompareWith(t, "value 1"),
+	}, req.HTTPRequest.Header)
+	awstesting.AssertRequestBodyMatchesXML(t, "<RootNode xmlns=\"http://xml/ns\"><String>value 2</String><Struct><Value>value 3</Value></Struct></RootNode>", req, sampleresetxmlprotocolservice.OperationMembersWithoutLocationInput{})
 
 }
 
 // Omits the body when all body members are not present
-func TestBehavior_47(t *testing.T) {
+func TestBehavior_047(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2199,22 +2282,21 @@ func TestBehavior_47(t *testing.T) {
 }
 
 // Serializes string XML members
-func TestBehavior_48(t *testing.T) {
+func TestBehavior_048(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 
-	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
-		String_: aws.String("string value"),
-	}
+	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
@@ -2236,27 +2318,26 @@ func TestBehavior_48(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestBodyMatchesXML(t, "<KitchenSink xmlns=\"http://xml/ns\"><String_>string value</String_></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{})
+	awstesting.AssertRequestBodyMatchesXML(t, "<KitchenSink xmlns=\"http://xml/ns\"><String>string value</String></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{})
 
 }
 
 // Serializes and escapes string XML members
-func TestBehavior_49(t *testing.T) {
+func TestBehavior_049(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
 
-	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
-		String_: aws.String("a&b"),
-	}
+	input := &sampleresetxmlprotocolservice.KitchenSinkInput{}
 
 	//Build request
 	req, resp := svc.KitchenSinkRequest(input)
@@ -2278,20 +2359,21 @@ func TestBehavior_49(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestBodyMatchesXML(t, "<KitchenSink xmlns=\"http://xml/ns\"><String_>a&amp;b</String_></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{})
+	awstesting.AssertRequestBodyMatchesXML(t, "<KitchenSink xmlns=\"http://xml/ns\"><String>a&amp;b</String></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{})
 
 }
 
 // Serializes string XML members with jsonvalue trait
-func TestBehavior_50(t *testing.T) {
+func TestBehavior_050(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2323,15 +2405,16 @@ func TestBehavior_50(t *testing.T) {
 }
 
 // Serializes integer XML members
-func TestBehavior_51(t *testing.T) {
+func TestBehavior_051(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2365,15 +2448,16 @@ func TestBehavior_51(t *testing.T) {
 }
 
 // Serializes long XML members
-func TestBehavior_52(t *testing.T) {
+func TestBehavior_052(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2407,15 +2491,16 @@ func TestBehavior_52(t *testing.T) {
 }
 
 // Serializes float XML members
-func TestBehavior_53(t *testing.T) {
+func TestBehavior_053(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2449,15 +2534,16 @@ func TestBehavior_53(t *testing.T) {
 }
 
 // Serializes double XML members
-func TestBehavior_54(t *testing.T) {
+func TestBehavior_054(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2491,15 +2577,16 @@ func TestBehavior_54(t *testing.T) {
 }
 
 // Serializes blob XML members
-func TestBehavior_55(t *testing.T) {
+func TestBehavior_055(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2533,15 +2620,16 @@ func TestBehavior_55(t *testing.T) {
 }
 
 // Serializes boolean true XML members
-func TestBehavior_56(t *testing.T) {
+func TestBehavior_056(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2575,15 +2663,16 @@ func TestBehavior_56(t *testing.T) {
 }
 
 // Serializes boolean false XML members
-func TestBehavior_57(t *testing.T) {
+func TestBehavior_057(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2617,15 +2706,16 @@ func TestBehavior_57(t *testing.T) {
 }
 
 // Serializes iso8601 timestamp XML members
-func TestBehavior_58(t *testing.T) {
+func TestBehavior_058(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2665,15 +2755,16 @@ func TestBehavior_58(t *testing.T) {
 }
 
 // Serializes timestamp XML members
-func TestBehavior_59(t *testing.T) {
+func TestBehavior_059(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2713,15 +2804,16 @@ func TestBehavior_59(t *testing.T) {
 }
 
 // Serializes httpdate timestamp XML members
-func TestBehavior_60(t *testing.T) {
+func TestBehavior_060(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2753,15 +2845,16 @@ func TestBehavior_60(t *testing.T) {
 }
 
 // Serializes unix timestamp XML members
-func TestBehavior_61(t *testing.T) {
+func TestBehavior_061(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2801,15 +2894,16 @@ func TestBehavior_61(t *testing.T) {
 }
 
 // Serializes list of string XML members
-func TestBehavior_62(t *testing.T) {
+func TestBehavior_062(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2846,15 +2940,16 @@ func TestBehavior_62(t *testing.T) {
 }
 
 // Serializes list of maps of strings XML members
-func TestBehavior_63(t *testing.T) {
+func TestBehavior_063(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2896,15 +2991,16 @@ func TestBehavior_63(t *testing.T) {
 }
 
 // Serializes lists with member locationName traits
-func TestBehavior_64(t *testing.T) {
+func TestBehavior_064(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2948,15 +3044,16 @@ func TestBehavior_64(t *testing.T) {
 }
 
 // Serializes lists of recursive shapes
-func TestBehavior_65(t *testing.T) {
+func TestBehavior_065(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -2967,19 +3064,13 @@ func TestBehavior_65(t *testing.T) {
 				RecursiveList: []*sampleresetxmlprotocolservice.KitchenSink{
 					{
 						RecursiveList: []*sampleresetxmlprotocolservice.KitchenSink{
-							{
-								String_: aws.String("value-1"),
-							},
-							{
-								String_: aws.String("value-2"),
-							},
+							{},
+							{},
 						},
 					},
 					{
 						RecursiveList: []*sampleresetxmlprotocolservice.KitchenSink{
-							{
-								String_: aws.String("value-3"),
-							},
+							{},
 						},
 					},
 				},
@@ -3007,20 +3098,21 @@ func TestBehavior_65(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestBodyMatchesXML(t, "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveList><member><RecursiveList><member><RecursiveList><member><String_>value-1</String_></member><member><String_>value-2</String_></member></RecursiveList></member><member><RecursiveList><member><String_>value-3</String_></member></RecursiveList></member></RecursiveList></member></RecursiveList></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{})
+	awstesting.AssertRequestBodyMatchesXML(t, "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveList><member><RecursiveList><member><RecursiveList><member><String>value-1</String></member><member><String>value-2</String></member></RecursiveList></member><member><RecursiveList><member><String>value-3</String></member></RecursiveList></member></RecursiveList></member></RecursiveList></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{})
 
 }
 
 // Serializes lists
-func TestBehavior_66(t *testing.T) {
+func TestBehavior_066(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3061,15 +3153,16 @@ func TestBehavior_66(t *testing.T) {
 }
 
 // Serializes lists with locationName traits
-func TestBehavior_67(t *testing.T) {
+func TestBehavior_067(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3110,15 +3203,16 @@ func TestBehavior_67(t *testing.T) {
 }
 
 // Serializes lists with member locationName traits
-func TestBehavior_68(t *testing.T) {
+func TestBehavior_068(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3159,15 +3253,16 @@ func TestBehavior_68(t *testing.T) {
 }
 
 // Serializes lists which have both locationName and memberLocationName traits
-func TestBehavior_69(t *testing.T) {
+func TestBehavior_069(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3208,15 +3303,16 @@ func TestBehavior_69(t *testing.T) {
 }
 
 // Serializes flat lists
-func TestBehavior_70(t *testing.T) {
+func TestBehavior_070(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3257,15 +3353,16 @@ func TestBehavior_70(t *testing.T) {
 }
 
 // Serializes flat lists with locationName traits
-func TestBehavior_71(t *testing.T) {
+func TestBehavior_071(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3306,15 +3403,16 @@ func TestBehavior_71(t *testing.T) {
 }
 
 // Serializes flat lists with member locationName traits
-func TestBehavior_72(t *testing.T) {
+func TestBehavior_072(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3355,15 +3453,16 @@ func TestBehavior_72(t *testing.T) {
 }
 
 // Serializes flat lists with locationName traits and member locationName traits
-func TestBehavior_73(t *testing.T) {
+func TestBehavior_073(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3404,15 +3503,16 @@ func TestBehavior_73(t *testing.T) {
 }
 
 // Serializes maps of strings
-func TestBehavior_74(t *testing.T) {
+func TestBehavior_074(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3449,15 +3549,16 @@ func TestBehavior_74(t *testing.T) {
 }
 
 // Serializes maps of lists of strings
-func TestBehavior_75(t *testing.T) {
+func TestBehavior_075(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3499,15 +3600,16 @@ func TestBehavior_75(t *testing.T) {
 }
 
 // Serializes maps of maps
-func TestBehavior_76(t *testing.T) {
+func TestBehavior_076(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3549,15 +3651,16 @@ func TestBehavior_76(t *testing.T) {
 }
 
 // Serializes maps of structs
-func TestBehavior_77(t *testing.T) {
+func TestBehavior_077(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3598,15 +3701,16 @@ func TestBehavior_77(t *testing.T) {
 }
 
 // Serializes maps
-func TestBehavior_78(t *testing.T) {
+func TestBehavior_078(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3647,15 +3751,16 @@ func TestBehavior_78(t *testing.T) {
 }
 
 // Serializes maps with locationName traits
-func TestBehavior_79(t *testing.T) {
+func TestBehavior_079(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3696,15 +3801,16 @@ func TestBehavior_79(t *testing.T) {
 }
 
 // Serializes maps with member locationName traits
-func TestBehavior_80(t *testing.T) {
+func TestBehavior_080(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3745,15 +3851,16 @@ func TestBehavior_80(t *testing.T) {
 }
 
 // Serializes maps with member locationName traits
-func TestBehavior_81(t *testing.T) {
+func TestBehavior_081(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3794,15 +3901,16 @@ func TestBehavior_81(t *testing.T) {
 }
 
 // Serializes flat maps
-func TestBehavior_82(t *testing.T) {
+func TestBehavior_082(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3843,15 +3951,16 @@ func TestBehavior_82(t *testing.T) {
 }
 
 // Serializes flat maps with locationName traits
-func TestBehavior_83(t *testing.T) {
+func TestBehavior_083(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3892,15 +4001,16 @@ func TestBehavior_83(t *testing.T) {
 }
 
 // Serializes flat maps with member locationName traits
-func TestBehavior_84(t *testing.T) {
+func TestBehavior_084(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3941,15 +4051,16 @@ func TestBehavior_84(t *testing.T) {
 }
 
 // Serializes flat maps with member locationName traits
-func TestBehavior_85(t *testing.T) {
+func TestBehavior_085(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -3990,15 +4101,16 @@ func TestBehavior_85(t *testing.T) {
 }
 
 // Serializes recursive maps
-func TestBehavior_86(t *testing.T) {
+func TestBehavior_086(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4009,9 +4121,7 @@ func TestBehavior_86(t *testing.T) {
 				RecursiveMap: map[string]*sampleresetxmlprotocolservice.KitchenSink{
 					"key-2": {
 						RecursiveMap: map[string]*sampleresetxmlprotocolservice.KitchenSink{
-							"key-3": {
-								String_: aws.String("value-1"),
-							},
+							"key-3": {},
 						},
 					},
 				},
@@ -4039,20 +4149,21 @@ func TestBehavior_86(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestBodyMatchesXML(t, "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveMap><entry><key>key-1</key><value><RecursiveMap><entry><key>key-2</key><value><RecursiveMap><entry><key>key-3</key><value><String_>value-1</String_></value></entry></RecursiveMap></value></entry></RecursiveMap></value></entry></RecursiveMap></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{})
+	awstesting.AssertRequestBodyMatchesXML(t, "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveMap><entry><key>key-1</key><value><RecursiveMap><entry><key>key-2</key><value><RecursiveMap><entry><key>key-3</key><value><String>value-1</String></value></entry></RecursiveMap></value></entry></RecursiveMap></value></entry></RecursiveMap></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{})
 
 }
 
 // Serializes structs
-func TestBehavior_87(t *testing.T) {
+func TestBehavior_087(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4088,15 +4199,16 @@ func TestBehavior_87(t *testing.T) {
 }
 
 // Serializes structs with locationName traits
-func TestBehavior_88(t *testing.T) {
+func TestBehavior_088(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4132,15 +4244,16 @@ func TestBehavior_88(t *testing.T) {
 }
 
 // Serializes structures with no members
-func TestBehavior_89(t *testing.T) {
+func TestBehavior_089(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4174,15 +4287,16 @@ func TestBehavior_89(t *testing.T) {
 }
 
 // Serializes recursive structures
-func TestBehavior_90(t *testing.T) {
+func TestBehavior_090(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4190,9 +4304,7 @@ func TestBehavior_90(t *testing.T) {
 	input := &sampleresetxmlprotocolservice.KitchenSinkInput{
 		RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{
 			RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{
-				RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{
-					String_: aws.String("value"),
-				},
+				RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{},
 			},
 		},
 	}
@@ -4217,20 +4329,21 @@ func TestBehavior_90(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestBodyMatchesXML(t, "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveStruct><RecursiveStruct><RecursiveStruct><String_>value</String_></RecursiveStruct></RecursiveStruct></RecursiveStruct></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{})
+	awstesting.AssertRequestBodyMatchesXML(t, "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveStruct><RecursiveStruct><RecursiveStruct><String>value</String></RecursiveStruct></RecursiveStruct></RecursiveStruct></KitchenSink>", req, sampleresetxmlprotocolservice.KitchenSinkInput{})
 
 }
 
 // Parses status codes as output members
-func TestBehavior_91(t *testing.T) {
+func TestBehavior_091(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4260,7 +4373,7 @@ func TestBehavior_91(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
 	}, resp)
@@ -4268,15 +4381,16 @@ func TestBehavior_91(t *testing.T) {
 }
 
 // Parses other 2XX status codes
-func TestBehavior_92(t *testing.T) {
+func TestBehavior_092(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4306,7 +4420,7 @@ func TestBehavior_92(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HttpStatusCode: aws.Int64(202),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
 	}, resp)
@@ -4314,15 +4428,16 @@ func TestBehavior_92(t *testing.T) {
 }
 
 // Parses header strings
-func TestBehavior_93(t *testing.T) {
+func TestBehavior_093(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4354,7 +4469,7 @@ func TestBehavior_93(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderString:   aws.String("value"),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4363,15 +4478,16 @@ func TestBehavior_93(t *testing.T) {
 }
 
 // Parses header strings with jsonvalue trait
-func TestBehavior_94(t *testing.T) {
+func TestBehavior_094(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4403,7 +4519,7 @@ func TestBehavior_94(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderJsonValue: aws.JSONValue{"foo": "bar"},
 		HttpStatusCode:  aws.Int64(200),
 		KitchenSink:     &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4412,15 +4528,16 @@ func TestBehavior_94(t *testing.T) {
 }
 
 // Parses header integers
-func TestBehavior_95(t *testing.T) {
+func TestBehavior_095(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4452,7 +4569,7 @@ func TestBehavior_95(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderInteger:  aws.Int64(123456),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4461,15 +4578,16 @@ func TestBehavior_95(t *testing.T) {
 }
 
 // Parses header longs
-func TestBehavior_96(t *testing.T) {
+func TestBehavior_096(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4501,7 +4619,7 @@ func TestBehavior_96(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderLong:     aws.Int64(123456),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4510,15 +4628,16 @@ func TestBehavior_96(t *testing.T) {
 }
 
 // Parses header floats
-func TestBehavior_97(t *testing.T) {
+func TestBehavior_097(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4550,7 +4669,7 @@ func TestBehavior_97(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderFloat:    aws.Float64(123.456000),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4559,15 +4678,16 @@ func TestBehavior_97(t *testing.T) {
 }
 
 // Parses header doubles
-func TestBehavior_98(t *testing.T) {
+func TestBehavior_098(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4599,7 +4719,7 @@ func TestBehavior_98(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderDouble:   aws.Float64(123.456000),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4608,15 +4728,16 @@ func TestBehavior_98(t *testing.T) {
 }
 
 // Parses header boolean true values
-func TestBehavior_99(t *testing.T) {
+func TestBehavior_099(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4648,7 +4769,7 @@ func TestBehavior_99(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderBoolean:  aws.Bool(true),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4662,10 +4783,11 @@ func TestBehavior_100(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4697,7 +4819,7 @@ func TestBehavior_100(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderBoolean:  aws.Bool(false),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4711,10 +4833,11 @@ func TestBehavior_101(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4746,7 +4869,7 @@ func TestBehavior_101(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderBlob:     []byte("binary-value"),
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
@@ -4760,10 +4883,11 @@ func TestBehavior_102(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4795,7 +4919,7 @@ func TestBehavior_102(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderTimestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.000000")
 			if err != nil {
@@ -4815,10 +4939,11 @@ func TestBehavior_103(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4850,7 +4975,7 @@ func TestBehavior_103(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderUnixTimestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.000000")
 			if err != nil {
@@ -4870,10 +4995,11 @@ func TestBehavior_104(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4905,7 +5031,7 @@ func TestBehavior_104(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HeaderIso8601Timestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.123000")
 			if err != nil {
@@ -4925,10 +5051,11 @@ func TestBehavior_105(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -4960,7 +5087,7 @@ func TestBehavior_105(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.PutWithRestBindingsOutput{
 		HttpStatusCode: aws.Int64(200),
 		KitchenSink:    &sampleresetxmlprotocolservice.KitchenSink{},
 	}, resp)
@@ -4973,10 +5100,11 @@ func TestBehavior_106(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5009,7 +5137,7 @@ func TestBehavior_106(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.SimpleHttpOperationOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.SimpleHttpOperationOutput{
 		Body: aws.ReadSeekCloser(strings.NewReader("")),
 		Headers: map[string]*string{
 			"Header-1": aws.String("value-1"),
@@ -5027,10 +5155,11 @@ func TestBehavior_107(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5046,7 +5175,7 @@ func TestBehavior_107(t *testing.T) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
-			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><String_>value</String_></KitchenSink>")),
+			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><String>value</String></KitchenSink>")),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
@@ -5057,9 +5186,7 @@ func TestBehavior_107(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
-		String_: aws.String("value"),
-	}, resp)
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{}, resp)
 
 }
 
@@ -5069,10 +5196,11 @@ func TestBehavior_108(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5099,7 +5227,7 @@ func TestBehavior_108(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{}, resp)
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{}, resp)
 
 }
 
@@ -5109,10 +5237,11 @@ func TestBehavior_109(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5139,7 +5268,7 @@ func TestBehavior_109(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Integer: aws.Int64(123456),
 	}, resp)
 
@@ -5151,10 +5280,11 @@ func TestBehavior_110(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5181,7 +5311,7 @@ func TestBehavior_110(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Long: aws.Int64(123456),
 	}, resp)
 
@@ -5193,10 +5323,11 @@ func TestBehavior_111(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5223,7 +5354,7 @@ func TestBehavior_111(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Float: aws.Float64(123.456000),
 	}, resp)
 
@@ -5235,10 +5366,11 @@ func TestBehavior_112(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5265,7 +5397,7 @@ func TestBehavior_112(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Double: aws.Float64(123.456000),
 	}, resp)
 
@@ -5277,10 +5409,11 @@ func TestBehavior_113(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5307,7 +5440,7 @@ func TestBehavior_113(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Boolean: aws.Bool(true),
 	}, resp)
 
@@ -5319,10 +5452,11 @@ func TestBehavior_114(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5349,7 +5483,7 @@ func TestBehavior_114(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Boolean: aws.Bool(false),
 	}, resp)
 
@@ -5361,10 +5495,11 @@ func TestBehavior_115(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5391,7 +5526,7 @@ func TestBehavior_115(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Blob: []byte("binary-value"),
 	}, resp)
 
@@ -5403,10 +5538,11 @@ func TestBehavior_116(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5433,7 +5569,7 @@ func TestBehavior_116(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Timestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.123000")
 			if err != nil {
@@ -5451,10 +5587,11 @@ func TestBehavior_117(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5481,7 +5618,7 @@ func TestBehavior_117(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Iso8601Timestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.123000")
 			if err != nil {
@@ -5499,10 +5636,11 @@ func TestBehavior_118(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5529,7 +5667,7 @@ func TestBehavior_118(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{}, resp)
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{}, resp)
 
 }
 
@@ -5539,10 +5677,11 @@ func TestBehavior_119(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5569,7 +5708,7 @@ func TestBehavior_119(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		UnixTimestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.000000")
 			if err != nil {
@@ -5587,10 +5726,11 @@ func TestBehavior_120(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5617,7 +5757,7 @@ func TestBehavior_120(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		ListOfStrings: []*string{
 			aws.String("abc"),
 			aws.String("xyz"),
@@ -5632,10 +5772,11 @@ func TestBehavior_121(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5662,7 +5803,7 @@ func TestBehavior_121(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		ListOfMapsOfStrings: []map[string]*string{
 			{
 				"color": aws.String("red"),
@@ -5682,10 +5823,11 @@ func TestBehavior_122(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5701,7 +5843,7 @@ func TestBehavior_122(t *testing.T) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
-			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><RecursiveList><member><RecursiveList><member><String_>value</String_></member></RecursiveList></member></RecursiveList></KitchenSink>")),
+			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><RecursiveList><member><RecursiveList><member><String>value</String></member></RecursiveList></member></RecursiveList></KitchenSink>")),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
@@ -5712,13 +5854,11 @@ func TestBehavior_122(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		RecursiveList: []*sampleresetxmlprotocolservice.KitchenSink{
 			{
 				RecursiveList: []*sampleresetxmlprotocolservice.KitchenSink{
-					{
-						String_: aws.String("value"),
-					},
+					{},
 				},
 			},
 		},
@@ -5732,10 +5872,11 @@ func TestBehavior_123(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5762,7 +5903,7 @@ func TestBehavior_123(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		List: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -5781,10 +5922,11 @@ func TestBehavior_124(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5811,7 +5953,7 @@ func TestBehavior_124(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		ListWithName: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -5830,10 +5972,11 @@ func TestBehavior_125(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5860,7 +6003,7 @@ func TestBehavior_125(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		ListWithMemberName: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -5879,10 +6022,11 @@ func TestBehavior_126(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5909,7 +6053,7 @@ func TestBehavior_126(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		ListWithBothNames: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -5928,10 +6072,11 @@ func TestBehavior_127(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -5958,7 +6103,7 @@ func TestBehavior_127(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatList: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -5977,10 +6122,11 @@ func TestBehavior_128(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6007,7 +6153,7 @@ func TestBehavior_128(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatListWithName: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -6026,10 +6172,11 @@ func TestBehavior_129(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6056,7 +6203,7 @@ func TestBehavior_129(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatListWithBothNames: []*sampleresetxmlprotocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -6075,10 +6222,11 @@ func TestBehavior_130(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6105,7 +6253,7 @@ func TestBehavior_130(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapOfStrings: map[string]*string{
 			"key-1": aws.String("value-1"),
 			"key-2": aws.String("value-2"),
@@ -6120,10 +6268,11 @@ func TestBehavior_131(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6150,7 +6299,7 @@ func TestBehavior_131(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapOfListsOfStrings: map[string][]*string{
 			"key-1": {
 				aws.String("value-1"),
@@ -6170,10 +6319,11 @@ func TestBehavior_132(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6200,7 +6350,7 @@ func TestBehavior_132(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapOfMaps: map[string]map[string]*string{
 			"key-1": {
 				"key-2": aws.String("value-1"),
@@ -6220,10 +6370,11 @@ func TestBehavior_133(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6239,7 +6390,7 @@ func TestBehavior_133(t *testing.T) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
-			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><RecursiveMap><entry><key>key-1</key><value><RecursiveMap><entry><key>key-2</key><value><RecursiveMap><entry><key>key-3</key><value><String_>value-1</String_></value></entry></RecursiveMap></value></entry></RecursiveMap></value></entry></RecursiveMap></KitchenSink>")),
+			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><RecursiveMap><entry><key>key-1</key><value><RecursiveMap><entry><key>key-2</key><value><RecursiveMap><entry><key>key-3</key><value><String>value-1</String></value></entry></RecursiveMap></value></entry></RecursiveMap></value></entry></RecursiveMap></KitchenSink>")),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
@@ -6250,15 +6401,13 @@ func TestBehavior_133(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		RecursiveMap: map[string]*sampleresetxmlprotocolservice.KitchenSink{
 			"key-1": {
 				RecursiveMap: map[string]*sampleresetxmlprotocolservice.KitchenSink{
 					"key-2": {
 						RecursiveMap: map[string]*sampleresetxmlprotocolservice.KitchenSink{
-							"key-3": {
-								String_: aws.String("value-1"),
-							},
+							"key-3": {},
 						},
 					},
 				},
@@ -6274,10 +6423,11 @@ func TestBehavior_134(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6304,7 +6454,7 @@ func TestBehavior_134(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		Map: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
 				Value: aws.String("value-1"),
@@ -6323,10 +6473,11 @@ func TestBehavior_135(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6353,7 +6504,7 @@ func TestBehavior_135(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapWithName: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
 				Value: aws.String("value-1"),
@@ -6372,10 +6523,11 @@ func TestBehavior_136(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6402,7 +6554,7 @@ func TestBehavior_136(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapWithMemberNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
 				Value: aws.String("value-1"),
@@ -6421,10 +6573,11 @@ func TestBehavior_137(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6451,7 +6604,7 @@ func TestBehavior_137(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		MapWithBothNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
 				Value: aws.String("value-1"),
@@ -6470,10 +6623,11 @@ func TestBehavior_138(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6500,7 +6654,7 @@ func TestBehavior_138(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatMap: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
 				Value: aws.String("value-1"),
@@ -6519,10 +6673,11 @@ func TestBehavior_139(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6549,7 +6704,7 @@ func TestBehavior_139(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatMapWithName: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
 				Value: aws.String("value-1"),
@@ -6568,10 +6723,11 @@ func TestBehavior_140(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6598,7 +6754,7 @@ func TestBehavior_140(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatMapWithMemberNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
 				Value: aws.String("value-1"),
@@ -6617,10 +6773,11 @@ func TestBehavior_141(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6647,7 +6804,7 @@ func TestBehavior_141(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		FlatMapWithBothNames: map[string]*sampleresetxmlprotocolservice.SimpleStruct{
 			"key-1": {
 				Value: aws.String("value-1"),
@@ -6666,10 +6823,11 @@ func TestBehavior_142(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6696,7 +6854,7 @@ func TestBehavior_142(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		SimpleStruct: &sampleresetxmlprotocolservice.SimpleStruct{
 			Value: aws.String("value"),
 		},
@@ -6710,10 +6868,11 @@ func TestBehavior_143(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6740,7 +6899,7 @@ func TestBehavior_143(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		StructWithMemberWithName: &sampleresetxmlprotocolservice.StructWithMemberWithName{
 			Value: aws.String("value"),
 		},
@@ -6754,10 +6913,11 @@ func TestBehavior_144(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6784,7 +6944,7 @@ func TestBehavior_144(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		EmptyStruct: &sampleresetxmlprotocolservice.EmptyStruct{},
 	}, resp)
 
@@ -6796,10 +6956,11 @@ func TestBehavior_145(t *testing.T) {
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := sampleresetxmlprotocolservice.New(sess)
@@ -6815,7 +6976,7 @@ func TestBehavior_145(t *testing.T) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},
-			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><RecursiveStruct><RecursiveStruct><RecursiveStruct><String_>value</String_></RecursiveStruct></RecursiveStruct></RecursiveStruct></KitchenSink>")),
+			Body:       ioutil.NopCloser(bytes.NewBufferString("<KitchenSink xmlns=\"http://xml/ns\"><RecursiveStruct><RecursiveStruct><RecursiveStruct><String>value</String></RecursiveStruct></RecursiveStruct></RecursiveStruct></KitchenSink>")),
 		}
 	}}
 	req.Handlers.Send.Swap(corehandlers.SendHandler.Name, MockHTTPResponseHandler)
@@ -6826,12 +6987,10 @@ func TestBehavior_145(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
+	awstesting.AssertResponseValueEquals(t, &sampleresetxmlprotocolservice.KitchenSinkOutput{
 		RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{
 			RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{
-				RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{
-					String_: aws.String("value"),
-				},
+				RecursiveStruct: &sampleresetxmlprotocolservice.KitchenSink{},
 			},
 		},
 	}, resp)

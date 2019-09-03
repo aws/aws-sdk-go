@@ -176,7 +176,7 @@ func writeServiceFiles(g *generateInfo, pkgDir string) {
 		Must(writeAPISmokeTestsFile(g))
 	}
 
-	if len(g.API.BehaviorTests.Tests.Cases) > 0 {
+	if len(g.API.BehaviorTests.BehaviorTest.Cases) > 0 {
 		Must(writeAPIBehaviorTestsFile(g))
 	}
 }

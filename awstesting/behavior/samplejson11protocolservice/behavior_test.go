@@ -30,15 +30,16 @@ var _ = strings.NewReader
 var _ = json.Marshal
 
 // Expands request url with an empty path
-func TestBehavior_00(t *testing.T) {
+func TestBehavior_000(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -70,15 +71,16 @@ func TestBehavior_00(t *testing.T) {
 }
 
 // Does not modify the configured endpoint url
-func TestBehavior_01(t *testing.T) {
+func TestBehavior_001(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "http://localhost:8080/local-server")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", "http://localhost:8080/local-server"),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -110,15 +112,16 @@ func TestBehavior_01(t *testing.T) {
 }
 
 // Adds required JSON protocol headers
-func TestBehavior_02(t *testing.T) {
+func TestBehavior_002(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -145,20 +148,24 @@ func TestBehavior_02(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestHeadersMatch(t, map[string]interface{}{"Content-Type": "application/x-amz-json-1.1", "X-Amz-Target": "JsonProtocolService_20180101.OperationWithOptionalInputOutput"}, req)
+	awstesting.AssertRequestHeadersMatch(t, map[string]awstesting.CompareValue{
+		"Content-Type": awstesting.DefaultCompareWith(t, "application/x-amz-json-1.1"),
+		"X-Amz-Target": awstesting.DefaultCompareWith(t, "JsonProtocolService_20180101.OperationWithOptionalInputOutput"),
+	}, req.HTTPRequest.Header)
 
 }
 
 // Can invoke operations which do not have modeled inputs or outputs
-func TestBehavior_03(t *testing.T) {
+func TestBehavior_003(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -190,15 +197,16 @@ func TestBehavior_03(t *testing.T) {
 }
 
 // Can invoke an operation which has modeled input without providing request input
-func TestBehavior_04(t *testing.T) {
+func TestBehavior_004(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -230,22 +238,21 @@ func TestBehavior_04(t *testing.T) {
 }
 
 // Serializes string shapes
-func TestBehavior_05(t *testing.T) {
+func TestBehavior_005(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
 
-	input := &samplejson11protocolservice.KitchenSinkOperationInput{
-		String_: aws.String("abc xyz"),
-	}
+	input := &samplejson11protocolservice.KitchenSinkOperationInput{}
 
 	//Build request
 	req, resp := svc.KitchenSinkOperationRequest(input)
@@ -267,20 +274,21 @@ func TestBehavior_05(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestBodyEqualsJSON(t, map[string]interface{}{"String_": "abc xyz"}, req)
+	awstesting.AssertRequestBodyEqualsJSON(t, map[string]interface{}{"String": "abc xyz"}, req)
 
 }
 
 // Serializes string shapes with jsonvalue trait
-func TestBehavior_06(t *testing.T) {
+func TestBehavior_006(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -314,15 +322,16 @@ func TestBehavior_06(t *testing.T) {
 }
 
 // Serializes integer shapes
-func TestBehavior_07(t *testing.T) {
+func TestBehavior_007(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -356,15 +365,16 @@ func TestBehavior_07(t *testing.T) {
 }
 
 // Serializes long shapes
-func TestBehavior_08(t *testing.T) {
+func TestBehavior_008(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -398,15 +408,16 @@ func TestBehavior_08(t *testing.T) {
 }
 
 // Serializes float shapes
-func TestBehavior_09(t *testing.T) {
+func TestBehavior_009(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -440,15 +451,16 @@ func TestBehavior_09(t *testing.T) {
 }
 
 // Serializes double shapes
-func TestBehavior_10(t *testing.T) {
+func TestBehavior_010(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -482,15 +494,16 @@ func TestBehavior_10(t *testing.T) {
 }
 
 // Serializes blob shapes
-func TestBehavior_11(t *testing.T) {
+func TestBehavior_011(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -524,15 +537,16 @@ func TestBehavior_11(t *testing.T) {
 }
 
 // Serializes boolean shapes (true)
-func TestBehavior_12(t *testing.T) {
+func TestBehavior_012(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -566,15 +580,16 @@ func TestBehavior_12(t *testing.T) {
 }
 
 // Serializes boolean shapes (false)
-func TestBehavior_13(t *testing.T) {
+func TestBehavior_013(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -608,15 +623,16 @@ func TestBehavior_13(t *testing.T) {
 }
 
 // Serializes timestamp shapes
-func TestBehavior_14(t *testing.T) {
+func TestBehavior_014(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -656,15 +672,16 @@ func TestBehavior_14(t *testing.T) {
 }
 
 // Serializes timestamp shapes with iso8601 timestampFormat
-func TestBehavior_15(t *testing.T) {
+func TestBehavior_015(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -704,15 +721,16 @@ func TestBehavior_15(t *testing.T) {
 }
 
 // Serializes timestamp shapes with httpdate timestampFormat
-func TestBehavior_16(t *testing.T) {
+func TestBehavior_016(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -752,15 +770,16 @@ func TestBehavior_16(t *testing.T) {
 }
 
 // Serializes timestamp shapes with unixTimestamp timestampFormat
-func TestBehavior_17(t *testing.T) {
+func TestBehavior_017(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -800,15 +819,16 @@ func TestBehavior_17(t *testing.T) {
 }
 
 // Serializes list shapes
-func TestBehavior_18(t *testing.T) {
+func TestBehavior_018(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -846,15 +866,16 @@ func TestBehavior_18(t *testing.T) {
 }
 
 // Serializes empty list shapes
-func TestBehavior_19(t *testing.T) {
+func TestBehavior_019(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -886,15 +907,16 @@ func TestBehavior_19(t *testing.T) {
 }
 
 // Serializes list of map shapes
-func TestBehavior_20(t *testing.T) {
+func TestBehavior_020(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -938,15 +960,16 @@ func TestBehavior_20(t *testing.T) {
 }
 
 // Serializes list of structure shapes
-func TestBehavior_21(t *testing.T) {
+func TestBehavior_021(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -990,15 +1013,16 @@ func TestBehavior_21(t *testing.T) {
 }
 
 // Serializes list of recursive structure shapes
-func TestBehavior_22(t *testing.T) {
+func TestBehavior_022(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -1044,15 +1068,16 @@ func TestBehavior_22(t *testing.T) {
 }
 
 // Serializes map shapes
-func TestBehavior_23(t *testing.T) {
+func TestBehavior_023(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -1089,15 +1114,16 @@ func TestBehavior_23(t *testing.T) {
 }
 
 // Serializes empty map shapes
-func TestBehavior_24(t *testing.T) {
+func TestBehavior_024(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -1131,15 +1157,16 @@ func TestBehavior_24(t *testing.T) {
 }
 
 // Serializes map of list shapes
-func TestBehavior_25(t *testing.T) {
+func TestBehavior_025(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -1182,15 +1209,16 @@ func TestBehavior_25(t *testing.T) {
 }
 
 // Serializes map of structure shapes
-func TestBehavior_26(t *testing.T) {
+func TestBehavior_026(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -1231,15 +1259,16 @@ func TestBehavior_26(t *testing.T) {
 }
 
 // Serializes map of recursive structure shapes
-func TestBehavior_27(t *testing.T) {
+func TestBehavior_027(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -1285,15 +1314,16 @@ func TestBehavior_27(t *testing.T) {
 }
 
 // Serializes structure shapes
-func TestBehavior_28(t *testing.T) {
+func TestBehavior_028(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -1329,15 +1359,16 @@ func TestBehavior_28(t *testing.T) {
 }
 
 // Serializes structure members with locationName traits
-func TestBehavior_29(t *testing.T) {
+func TestBehavior_029(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -1373,15 +1404,16 @@ func TestBehavior_29(t *testing.T) {
 }
 
 // Serializes empty structure shapes
-func TestBehavior_30(t *testing.T) {
+func TestBehavior_030(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -1415,15 +1447,16 @@ func TestBehavior_30(t *testing.T) {
 }
 
 // Serializes structure which have no members
-func TestBehavior_31(t *testing.T) {
+func TestBehavior_031(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -1457,15 +1490,16 @@ func TestBehavior_31(t *testing.T) {
 }
 
 // Serializes recursive structure shapes
-func TestBehavior_32(t *testing.T) {
+func TestBehavior_032(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -1475,9 +1509,7 @@ func TestBehavior_32(t *testing.T) {
 		RecursiveStruct: &samplejson11protocolservice.KitchenSink{
 			Boolean: aws.Bool(true),
 			RecursiveList: []*samplejson11protocolservice.KitchenSink{
-				{
-					String_: aws.String("string-only"),
-				},
+				{},
 				{
 					RecursiveStruct: &samplejson11protocolservice.KitchenSink{
 						MapOfStrings: map[string]*string{
@@ -1487,9 +1519,7 @@ func TestBehavior_32(t *testing.T) {
 					},
 				},
 			},
-			String_: aws.String("nested-value"),
 		},
-		String_: aws.String("top-value"),
 	}
 
 	//Build request
@@ -1512,20 +1542,21 @@ func TestBehavior_32(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertRequestBodyEqualsJSON(t, map[string]interface{}{"Boolean": false, "RecursiveStruct": map[string]interface{}{"Boolean": true, "RecursiveList": []interface{}{map[string]interface{}{"String_": "string-only"}, map[string]interface{}{"RecursiveStruct": map[string]interface{}{"MapOfStrings": map[string]interface{}{"color": "red", "size": "large"}}}}, "String_": "nested-value"}, "String_": "top-value"}, req)
+	awstesting.AssertRequestBodyEqualsJSON(t, map[string]interface{}{"Boolean": false, "RecursiveStruct": map[string]interface{}{"Boolean": true, "RecursiveList": []interface{}{map[string]interface{}{"String": "string-only"}, map[string]interface{}{"RecursiveStruct": map[string]interface{}{"MapOfStrings": map[string]interface{}{"color": "red", "size": "large"}}}}, "String": "nested-value"}, "String": "top-value"}, req)
 
 }
 
 // Parses operations without an output shape
-func TestBehavior_33(t *testing.T) {
+func TestBehavior_033(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -1559,20 +1590,21 @@ func TestBehavior_33(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &samplejson11protocolservice.EmptyOperationOutput{}, resp)
+	awstesting.AssertResponseValueEquals(t, &samplejson11protocolservice.EmptyOperationOutput{}, resp)
 
 }
 
 // Parses operations with empty JSON bodies
-func TestBehavior_34(t *testing.T) {
+func TestBehavior_034(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -1606,20 +1638,21 @@ func TestBehavior_34(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{}, resp)
+	awstesting.AssertResponseValueEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{}, resp)
 
 }
 
 // Parses string shapes
-func TestBehavior_35(t *testing.T) {
+func TestBehavior_035(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -1637,7 +1670,7 @@ func TestBehavior_35(t *testing.T) {
 			Header:     http.Header{},
 			Body: ioutil.NopCloser(bytes.NewBuffer(
 				func() []byte {
-					v, err := json.Marshal(map[string]interface{}{"String_": "string-value"})
+					v, err := json.Marshal(map[string]interface{}{"String": "string-value"})
 					if err != nil {
 						panic(err)
 					}
@@ -1653,22 +1686,21 @@ func TestBehavior_35(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
-		String_: aws.String("string-value"),
-	}, resp)
+	awstesting.AssertResponseValueEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{}, resp)
 
 }
 
 // Parses integer shapes
-func TestBehavior_36(t *testing.T) {
+func TestBehavior_036(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -1702,22 +1734,23 @@ func TestBehavior_36(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
+	awstesting.AssertResponseValueEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
 		Integer: aws.Int64(1234),
 	}, resp)
 
 }
 
 // Parses long shapes
-func TestBehavior_37(t *testing.T) {
+func TestBehavior_037(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -1751,22 +1784,23 @@ func TestBehavior_37(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
+	awstesting.AssertResponseValueEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
 		Long: aws.Int64(1234567890123456768),
 	}, resp)
 
 }
 
 // Parses float shapes
-func TestBehavior_38(t *testing.T) {
+func TestBehavior_038(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -1800,22 +1834,23 @@ func TestBehavior_38(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
+	awstesting.AssertResponseValueEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
 		Float: aws.Float64(1234.500000),
 	}, resp)
 
 }
 
 // Parses double shapes
-func TestBehavior_39(t *testing.T) {
+func TestBehavior_039(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -1849,22 +1884,23 @@ func TestBehavior_39(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
+	awstesting.AssertResponseValueEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
 		Double: aws.Float64(123456789.123457),
 	}, resp)
 
 }
 
 // Parses boolean shapes (true)
-func TestBehavior_40(t *testing.T) {
+func TestBehavior_040(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -1898,22 +1934,23 @@ func TestBehavior_40(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
+	awstesting.AssertResponseValueEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
 		Boolean: aws.Bool(true),
 	}, resp)
 
 }
 
 // Parses boolean (false)
-func TestBehavior_41(t *testing.T) {
+func TestBehavior_041(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -1947,22 +1984,23 @@ func TestBehavior_41(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
+	awstesting.AssertResponseValueEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
 		Boolean: aws.Bool(false),
 	}, resp)
 
 }
 
 // Parses blob shapes
-func TestBehavior_42(t *testing.T) {
+func TestBehavior_042(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -1996,22 +2034,23 @@ func TestBehavior_42(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
+	awstesting.AssertResponseValueEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
 		Blob: []byte("binary-value"),
 	}, resp)
 
 }
 
 // Parses timestamp shapes
-func TestBehavior_43(t *testing.T) {
+func TestBehavior_043(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -2045,7 +2084,7 @@ func TestBehavior_43(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
+	awstesting.AssertResponseValueEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
 		Timestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.000000")
 			if err != nil {
@@ -2058,15 +2097,16 @@ func TestBehavior_43(t *testing.T) {
 }
 
 // Parses iso8601 timestamps
-func TestBehavior_44(t *testing.T) {
+func TestBehavior_044(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -2100,7 +2140,7 @@ func TestBehavior_44(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
+	awstesting.AssertResponseValueEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
 		Timestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.000000")
 			if err != nil {
@@ -2113,15 +2153,16 @@ func TestBehavior_44(t *testing.T) {
 }
 
 // Parses httpdate timestamps
-func TestBehavior_45(t *testing.T) {
+func TestBehavior_045(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -2155,7 +2196,7 @@ func TestBehavior_45(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
+	awstesting.AssertResponseValueEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
 		Timestamp: func() *time.Time {
 			v, err := protocol.ParseTime("unixTimestamp", "946845296.000000")
 			if err != nil {
@@ -2168,15 +2209,16 @@ func TestBehavior_45(t *testing.T) {
 }
 
 // Parses list shapes
-func TestBehavior_46(t *testing.T) {
+func TestBehavior_046(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -2210,7 +2252,7 @@ func TestBehavior_46(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
+	awstesting.AssertResponseValueEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
 		ListOfStrings: []*string{
 			aws.String("abc"),
 			aws.String("mno"),
@@ -2221,15 +2263,16 @@ func TestBehavior_46(t *testing.T) {
 }
 
 // Parses list of map shapes
-func TestBehavior_47(t *testing.T) {
+func TestBehavior_047(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -2263,7 +2306,7 @@ func TestBehavior_47(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
+	awstesting.AssertResponseValueEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
 		ListOfMapsOfStrings: []map[string]*string{
 			{
 				"size": aws.String("large"),
@@ -2277,15 +2320,16 @@ func TestBehavior_47(t *testing.T) {
 }
 
 // Parses list of list shapes
-func TestBehavior_48(t *testing.T) {
+func TestBehavior_048(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -2319,7 +2363,7 @@ func TestBehavior_48(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
+	awstesting.AssertResponseValueEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
 		ListOfLists: [][]*string{
 			{
 				aws.String("abc"),
@@ -2337,15 +2381,16 @@ func TestBehavior_48(t *testing.T) {
 }
 
 // Parses list of structure shapes
-func TestBehavior_49(t *testing.T) {
+func TestBehavior_049(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -2379,7 +2424,7 @@ func TestBehavior_49(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
+	awstesting.AssertResponseValueEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
 		ListOfStructs: []*samplejson11protocolservice.SimpleStruct{
 			{
 				Value: aws.String("value-1"),
@@ -2393,15 +2438,16 @@ func TestBehavior_49(t *testing.T) {
 }
 
 // Parses list of recursive structure shapes
-func TestBehavior_50(t *testing.T) {
+func TestBehavior_050(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -2419,7 +2465,7 @@ func TestBehavior_50(t *testing.T) {
 			Header:     http.Header{},
 			Body: ioutil.NopCloser(bytes.NewBuffer(
 				func() []byte {
-					v, err := json.Marshal(map[string]interface{}{"RecursiveList": []interface{}{map[string]interface{}{"RecursiveList": []interface{}{map[string]interface{}{"RecursiveList": []interface{}{map[string]interface{}{"String_": "value"}}}}}}})
+					v, err := json.Marshal(map[string]interface{}{"RecursiveList": []interface{}{map[string]interface{}{"RecursiveList": []interface{}{map[string]interface{}{"RecursiveList": []interface{}{map[string]interface{}{"String": "value"}}}}}}})
 					if err != nil {
 						panic(err)
 					}
@@ -2435,15 +2481,13 @@ func TestBehavior_50(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
+	awstesting.AssertResponseValueEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
 		RecursiveList: []*samplejson11protocolservice.KitchenSink{
 			{
 				RecursiveList: []*samplejson11protocolservice.KitchenSink{
 					{
 						RecursiveList: []*samplejson11protocolservice.KitchenSink{
-							{
-								String_: aws.String("value"),
-							},
+							{},
 						},
 					},
 				},
@@ -2454,15 +2498,16 @@ func TestBehavior_50(t *testing.T) {
 }
 
 // Parses map shapes
-func TestBehavior_51(t *testing.T) {
+func TestBehavior_051(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -2496,7 +2541,7 @@ func TestBehavior_51(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
+	awstesting.AssertResponseValueEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
 		MapOfStrings: map[string]*string{
 			"color": aws.String("red"),
 			"size":  aws.String("large"),
@@ -2506,15 +2551,16 @@ func TestBehavior_51(t *testing.T) {
 }
 
 // Parses map of list shapes
-func TestBehavior_52(t *testing.T) {
+func TestBehavior_052(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -2548,7 +2594,7 @@ func TestBehavior_52(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
+	awstesting.AssertResponseValueEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
 		MapOfListsOfStrings: map[string][]*string{
 			"colors": {
 				aws.String("red"),
@@ -2564,15 +2610,16 @@ func TestBehavior_52(t *testing.T) {
 }
 
 // Parses map of map shapes
-func TestBehavior_53(t *testing.T) {
+func TestBehavior_053(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -2606,7 +2653,7 @@ func TestBehavior_53(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
+	awstesting.AssertResponseValueEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
 		MapOfMaps: map[string]map[string]*string{
 			"colors": {
 				"blue": aws.String("B"),
@@ -2622,15 +2669,16 @@ func TestBehavior_53(t *testing.T) {
 }
 
 // Parses map of structure shapes
-func TestBehavior_54(t *testing.T) {
+func TestBehavior_054(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -2664,7 +2712,7 @@ func TestBehavior_54(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
+	awstesting.AssertResponseValueEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
 		MapOfStructs: map[string]*samplejson11protocolservice.SimpleStruct{
 			"color": {
 				Value: aws.String("red"),
@@ -2678,15 +2726,16 @@ func TestBehavior_54(t *testing.T) {
 }
 
 // Parses map of recursive structure shapes
-func TestBehavior_55(t *testing.T) {
+func TestBehavior_055(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -2704,7 +2753,7 @@ func TestBehavior_55(t *testing.T) {
 			Header:     http.Header{},
 			Body: ioutil.NopCloser(bytes.NewBuffer(
 				func() []byte {
-					v, err := json.Marshal(map[string]interface{}{"RecursiveMap": map[string]interface{}{"key-1": map[string]interface{}{"RecursiveMap": map[string]interface{}{"key-2": map[string]interface{}{"RecursiveMap": map[string]interface{}{"key-3": map[string]interface{}{"String_": "value"}}}}}}})
+					v, err := json.Marshal(map[string]interface{}{"RecursiveMap": map[string]interface{}{"key-1": map[string]interface{}{"RecursiveMap": map[string]interface{}{"key-2": map[string]interface{}{"RecursiveMap": map[string]interface{}{"key-3": map[string]interface{}{"String": "value"}}}}}}})
 					if err != nil {
 						panic(err)
 					}
@@ -2720,15 +2769,13 @@ func TestBehavior_55(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseDataEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
+	awstesting.AssertResponseValueEquals(t, &samplejson11protocolservice.KitchenSinkOperationOutput{
 		RecursiveMap: map[string]*samplejson11protocolservice.KitchenSink{
 			"key-1": {
 				RecursiveMap: map[string]*samplejson11protocolservice.KitchenSink{
 					"key-2": {
 						RecursiveMap: map[string]*samplejson11protocolservice.KitchenSink{
-							"key-3": {
-								String_: aws.String("value"),
-							},
+							"key-3": {},
 						},
 					},
 				},
@@ -2739,15 +2786,16 @@ func TestBehavior_55(t *testing.T) {
 }
 
 // Parses the request id from the response
-func TestBehavior_56(t *testing.T) {
+func TestBehavior_056(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -2781,15 +2829,16 @@ func TestBehavior_56(t *testing.T) {
 }
 
 // Parses error codes from "__type"
-func TestBehavior_57(t *testing.T) {
+func TestBehavior_057(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -2828,15 +2877,16 @@ func TestBehavior_57(t *testing.T) {
 }
 
 // Parses error codes from "code"
-func TestBehavior_58(t *testing.T) {
+func TestBehavior_058(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -2875,15 +2925,16 @@ func TestBehavior_58(t *testing.T) {
 }
 
 // Parses error codes also from "Code"
-func TestBehavior_59(t *testing.T) {
+func TestBehavior_059(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -2922,15 +2973,16 @@ func TestBehavior_59(t *testing.T) {
 }
 
 // Parses error codes ignoring prefixes
-func TestBehavior_60(t *testing.T) {
+func TestBehavior_060(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -2969,15 +3021,16 @@ func TestBehavior_60(t *testing.T) {
 }
 
 // Parses error messages from "message"
-func TestBehavior_61(t *testing.T) {
+func TestBehavior_061(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -3016,15 +3069,16 @@ func TestBehavior_61(t *testing.T) {
 }
 
 // Parses error messages from "Message"
-func TestBehavior_62(t *testing.T) {
+func TestBehavior_062(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -3063,15 +3117,16 @@ func TestBehavior_62(t *testing.T) {
 }
 
 // Parses error data
-func TestBehavior_63(t *testing.T) {
+func TestBehavior_063(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)
@@ -3089,7 +3144,7 @@ func TestBehavior_63(t *testing.T) {
 			Header:     http.Header{},
 			Body: ioutil.NopCloser(bytes.NewBuffer(
 				func() []byte {
-					v, err := json.Marshal(map[string]interface{}{"Code": "ErrorWithMembers", "ComplexData": map[string]interface{}{"RecursiveStruct": map[string]interface{}{"RecursiveStruct": map[string]interface{}{"String_": "string-value"}}}, "IntegerField": 123, "ListField": []interface{}{"abc", "mno", "xyz"}, "MapField": map[string]interface{}{"color": "red", "size": "large"}, "Message": "Something went wrong", "StringField": "string value"})
+					v, err := json.Marshal(map[string]interface{}{"Code": "ErrorWithMembers", "ComplexData": map[string]interface{}{"RecursiveStruct": map[string]interface{}{"RecursiveStruct": map[string]interface{}{"String": "string-value"}}}, "IntegerField": 123, "ListField": []interface{}{"abc", "mno", "xyz"}, "MapField": map[string]interface{}{"color": "red", "size": "large"}, "Message": "Something went wrong", "StringField": "string value"})
 					if err != nil {
 						panic(err)
 					}
@@ -3105,20 +3160,21 @@ func TestBehavior_63(t *testing.T) {
 	}
 
 	//Assertions start here
-	awstesting.AssertResponseErrorDataEquals(t, map[string]interface{}{"ErrorWithMembers": map[string]interface{}{"Code": "ErrorWithMembers", "ComplexData": map[string]interface{}{"RecursiveStruct": map[string]interface{}{"RecursiveStruct": map[string]interface{}{"String_": "string-value"}}}, "IntegerField": 123, "ListField": []interface{}{"abc", "mno", "xyz"}, "MapField": map[string]interface{}{"color": "red", "size": "large"}, "Message": "Something went wrong", "StringField": "string value"}}, err)
+	awstesting.AssertResponseErrorDataEquals(t, map[string]interface{}{"ErrorWithMembers": map[string]interface{}{"Code": "ErrorWithMembers", "ComplexData": map[string]interface{}{"RecursiveStruct": map[string]interface{}{"RecursiveStruct": map[string]interface{}{"String": "string-value"}}}, "IntegerField": 123, "ListField": []interface{}{"abc", "mno", "xyz"}, "MapField": map[string]interface{}{"color": "red", "size": "large"}, "Message": "Something went wrong", "StringField": "string value"}}, err)
 
 }
 
 // Parses request id from error responses
-func TestBehavior_64(t *testing.T) {
+func TestBehavior_064(t *testing.T) {
 
 	restoreEnv := sdktesting.StashEnv() //Stashes the current environment
 	defer restoreEnv()
 
-	//Starts a new session with credentials and region parsed from "defaults" in the Json file'
+	// Starts a new session with credentials and region parsed from "defaults" in the Json file'
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
-		Credentials: credentials.NewStaticCredentials("akid", "secret", "")}))
+		Credentials: credentials.NewStaticCredentials("akid", "secret", ""),
+	}))
 
 	//Starts a new service using using sess
 	svc := samplejson11protocolservice.New(sess)

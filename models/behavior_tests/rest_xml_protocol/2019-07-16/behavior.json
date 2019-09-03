@@ -825,7 +825,7 @@
           "operation": "OperationMembersWithoutLocation",
           "input": {
             "Header": "value 1",
-            "String_": "value 2",
+            "String": "value 2",
             "Struct": {
               "Value": "value 3"
             }
@@ -838,7 +838,7 @@
             }
           },
           {
-            "requestBodyMatchesXml": "<RootNode xmlns=\"http://xml/ns\"><String_>value 2</String_><Struct><Value>value 3</Value></Struct></RootNode>"
+            "requestBodyMatchesXml": "<RootNode xmlns=\"http://xml/ns\"><String>value 2</String><Struct><Value>value 3</Value></Struct></RootNode>"
           }
         ]
       },
@@ -861,12 +861,12 @@
         "request": {
           "operation": "KitchenSink",
           "input": {
-            "String_": "string value"
+            "String": "string value"
           }
         },
         "expect": [
           {
-            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><String_>string value</String_></KitchenSink>"
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><String>string value</String></KitchenSink>"
           }
         ]
       },
@@ -875,12 +875,12 @@
         "request": {
           "operation": "KitchenSink",
           "input": {
-            "String_": "a&b"
+            "String": "a&b"
           }
         },
         "expect": [
           {
-            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><String_>a&amp;b</String_></KitchenSink>"
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><String>a&amp;b</String></KitchenSink>"
           }
         ]
       },
@@ -1116,13 +1116,13 @@
                 "RecursiveList": [
                   {
                     "RecursiveList": [
-                      { "String_": "value-1" },
-                      { "String_": "value-2" }
+                      { "String": "value-1" },
+                      { "String": "value-2" }
                     ]
                   },
                   {
                     "RecursiveList": [
-                      { "String_": "value-3" }
+                      { "String": "value-3" }
                     ]
                   }
                 ]
@@ -1132,7 +1132,7 @@
         },
         "expect": [
           {
-            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveList><member><RecursiveList><member><RecursiveList><member><String_>value-1</String_></member><member><String_>value-2</String_></member></RecursiveList></member><member><RecursiveList><member><String_>value-3</String_></member></RecursiveList></member></RecursiveList></member></RecursiveList></KitchenSink>"
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveList><member><RecursiveList><member><RecursiveList><member><String>value-1</String></member><member><String>value-2</String></member></RecursiveList></member><member><RecursiveList><member><String>value-3</String></member></RecursiveList></member></RecursiveList></member></RecursiveList></KitchenSink>"
           }
         ]
       },
@@ -1492,7 +1492,7 @@
                   "key-2": {
                     "RecursiveMap": {
                       "key-3": {
-                        "String_": "value-1"
+                        "String": "value-1"
                       }
                     }
                   }
@@ -1503,7 +1503,7 @@
         },
         "expect": [
           {
-            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveMap><entry><key>key-1</key><value><RecursiveMap><entry><key>key-2</key><value><RecursiveMap><entry><key>key-3</key><value><String_>value-1</String_></value></entry></RecursiveMap></value></entry></RecursiveMap></value></entry></RecursiveMap></KitchenSink>"
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveMap><entry><key>key-1</key><value><RecursiveMap><entry><key>key-2</key><value><RecursiveMap><entry><key>key-3</key><value><String>value-1</String></value></entry></RecursiveMap></value></entry></RecursiveMap></value></entry></RecursiveMap></KitchenSink>"
           }
         ]
       },
@@ -1561,7 +1561,7 @@
             "RecursiveStruct": {
               "RecursiveStruct": {
                 "RecursiveStruct": {
-                  "String_": "value"
+                  "String": "value"
                 }
               }
             }
@@ -1569,7 +1569,7 @@
         },
         "expect": [
           {
-            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveStruct><RecursiveStruct><RecursiveStruct><String_>value</String_></RecursiveStruct></RecursiveStruct></RecursiveStruct></KitchenSink>"
+            "requestBodyMatchesXml": "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveStruct><RecursiveStruct><RecursiveStruct><String>value</String></RecursiveStruct></RecursiveStruct></RecursiveStruct></KitchenSink>"
           }
         ]
       },
@@ -2012,12 +2012,12 @@
         "response": {
           "statusCode": 200,
           "bodyType": "xml",
-          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><String_>value</String_></KitchenSink>"
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><String>value</String></KitchenSink>"
         },
         "expect": [
           {
             "responseDataEquals": {
-              "String_": "value"
+              "String": "value"
             }
           }
         ]
@@ -2291,7 +2291,7 @@
         "response": {
           "statusCode": 200,
           "bodyType": "xml",
-          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveList><member><RecursiveList><member><String_>value</String_></member></RecursiveList></member></RecursiveList></KitchenSink>"
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveList><member><RecursiveList><member><String>value</String></member></RecursiveList></member></RecursiveList></KitchenSink>"
 
         },
         "expect": [
@@ -2301,7 +2301,7 @@
                 {
                   "RecursiveList": [
                     {
-                      "String_": "value"
+                      "String": "value"
                     }
                   ]
                 }
@@ -2571,7 +2571,7 @@
         "response": {
           "statusCode": 200,
           "bodyType": "xml",
-          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveMap><entry><key>key-1</key><value><RecursiveMap><entry><key>key-2</key><value><RecursiveMap><entry><key>key-3</key><value><String_>value-1</String_></value></entry></RecursiveMap></value></entry></RecursiveMap></value></entry></RecursiveMap></KitchenSink>"
+          "bodyContent": "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveMap><entry><key>key-1</key><value><RecursiveMap><entry><key>key-2</key><value><RecursiveMap><entry><key>key-3</key><value><String>value-1</String></value></entry></RecursiveMap></value></entry></RecursiveMap></value></entry></RecursiveMap></KitchenSink>"
 
         },
         "expect": [
@@ -2583,7 +2583,7 @@
                     "key-2": {
                       "RecursiveMap": {
                         "key-3": {
-                          "String_": "value-1"
+                          "String": "value-1"
                         }
                       }
                     }
@@ -2839,7 +2839,7 @@
         "response": {
           "statusCode": 200,
           "bodyType": "xml",
-          "bodyContent":  "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveStruct><RecursiveStruct><RecursiveStruct><String_>value</String_></RecursiveStruct></RecursiveStruct></RecursiveStruct></KitchenSink>"
+          "bodyContent":  "<KitchenSink xmlns=\"http://xml/ns\"><RecursiveStruct><RecursiveStruct><RecursiveStruct><String>value</String></RecursiveStruct></RecursiveStruct></RecursiveStruct></KitchenSink>"
 
         },
         "expect": [
@@ -2848,7 +2848,7 @@
               "RecursiveStruct": {
                 "RecursiveStruct": {
                   "RecursiveStruct": {
-                    "String_": "value"
+                    "String": "value"
                   }
                 }
               }
