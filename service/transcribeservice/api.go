@@ -1804,10 +1804,14 @@ type StartTranscriptionJobInput struct {
 
 	// The format of the input media file.
 	//
-	// MediaFormat is a required field
-	MediaFormat *string `type:"string" required:"true" enum:"MediaFormat"`
+	// If you do not specify the format of the media file, Amazon Transcribe determines
+	// the format. If the format is not recognized, Amazon Transcribe returns an
+	// InternalFailureException exception. If you specify the format, it must match
+	// the format detected by Amazon Transcribe, otherwise you get an InternalFailureException
+	// exception.
+	MediaFormat *string `type:"string" enum:"MediaFormat"`
 
-	// The sample rate, in Hertz, of the audio track in the input media file.
+	// The sample rate of the audio track in the input media file in Hertz.
 	//
 	// If you do not specify the media sample rate, Amazon Transcribe determines
 	// the sample rate. If you specify the sample rate, it must match the sample
@@ -1861,9 +1865,6 @@ func (s *StartTranscriptionJobInput) Validate() error {
 	}
 	if s.Media == nil {
 		invalidParams.Add(request.NewErrParamRequired("Media"))
-	}
-	if s.MediaFormat == nil {
-		invalidParams.Add(request.NewErrParamRequired("MediaFormat"))
 	}
 	if s.MediaSampleRateHertz != nil && *s.MediaSampleRateHertz < 8000 {
 		invalidParams.Add(request.NewErrParamMinValue("MediaSampleRateHertz", 8000))

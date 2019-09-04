@@ -744,6 +744,11 @@
         "executionSucceededEventDetails":{"shape":"ExecutionSucceededEventDetails"},
         "executionAbortedEventDetails":{"shape":"ExecutionAbortedEventDetails"},
         "executionTimedOutEventDetails":{"shape":"ExecutionTimedOutEventDetails"},
+        "mapStateStartedEventDetails":{"shape":"MapStateStartedEventDetails"},
+        "mapIterationStartedEventDetails":{"shape":"MapIterationEventDetails"},
+        "mapIterationSucceededEventDetails":{"shape":"MapIterationEventDetails"},
+        "mapIterationFailedEventDetails":{"shape":"MapIterationEventDetails"},
+        "mapIterationAbortedEventDetails":{"shape":"MapIterationEventDetails"},
         "lambdaFunctionFailedEventDetails":{"shape":"LambdaFunctionFailedEventDetails"},
         "lambdaFunctionScheduleFailedEventDetails":{"shape":"LambdaFunctionScheduleFailedEventDetails"},
         "lambdaFunctionScheduledEventDetails":{"shape":"LambdaFunctionScheduledEventDetails"},
@@ -762,47 +767,57 @@
       "type":"string",
       "enum":[
         "ActivityFailed",
-        "ActivityScheduleFailed",
         "ActivityScheduled",
+        "ActivityScheduleFailed",
         "ActivityStarted",
         "ActivitySucceeded",
         "ActivityTimedOut",
         "ChoiceStateEntered",
         "ChoiceStateExited",
-        "TaskFailed",
-        "TaskScheduled",
-        "TaskStartFailed",
-        "TaskStarted",
-        "TaskSubmitFailed",
-        "TaskSubmitted",
-        "TaskSucceeded",
-        "TaskTimedOut",
+        "ExecutionAborted",
         "ExecutionFailed",
         "ExecutionStarted",
         "ExecutionSucceeded",
-        "ExecutionAborted",
         "ExecutionTimedOut",
         "FailStateEntered",
         "LambdaFunctionFailed",
-        "LambdaFunctionScheduleFailed",
         "LambdaFunctionScheduled",
-        "LambdaFunctionStartFailed",
+        "LambdaFunctionScheduleFailed",
         "LambdaFunctionStarted",
+        "LambdaFunctionStartFailed",
         "LambdaFunctionSucceeded",
         "LambdaFunctionTimedOut",
-        "SucceedStateEntered",
-        "SucceedStateExited",
-        "TaskStateAborted",
-        "TaskStateEntered",
-        "TaskStateExited",
-        "PassStateEntered",
-        "PassStateExited",
+        "MapIterationAborted",
+        "MapIterationFailed",
+        "MapIterationStarted",
+        "MapIterationSucceeded",
+        "MapStateAborted",
+        "MapStateEntered",
+        "MapStateExited",
+        "MapStateFailed",
+        "MapStateStarted",
+        "MapStateSucceeded",
         "ParallelStateAborted",
         "ParallelStateEntered",
         "ParallelStateExited",
         "ParallelStateFailed",
         "ParallelStateStarted",
         "ParallelStateSucceeded",
+        "PassStateEntered",
+        "PassStateExited",
+        "SucceedStateEntered",
+        "SucceedStateExited",
+        "TaskFailed",
+        "TaskScheduled",
+        "TaskStarted",
+        "TaskStartFailed",
+        "TaskStateAborted",
+        "TaskStateEntered",
+        "TaskStateExited",
+        "TaskSubmitFailed",
+        "TaskSubmitted",
+        "TaskSucceeded",
+        "TaskTimedOut",
         "WaitStateAborted",
         "WaitStateEntered",
         "WaitStateExited"
@@ -922,7 +937,7 @@
         "stateMachineArn":{"shape":"Arn"},
         "statusFilter":{"shape":"ExecutionStatus"},
         "maxResults":{"shape":"PageSize"},
-        "nextToken":{"shape":"PageToken"}
+        "nextToken":{"shape":"ListExecutionsPageToken"}
       }
     },
     "ListExecutionsOutput":{
@@ -930,8 +945,13 @@
       "required":["executions"],
       "members":{
         "executions":{"shape":"ExecutionList"},
-        "nextToken":{"shape":"PageToken"}
+        "nextToken":{"shape":"ListExecutionsPageToken"}
       }
+    },
+    "ListExecutionsPageToken":{
+      "type":"string",
+      "max":3096,
+      "min":1
     },
     "ListStateMachinesInput":{
       "type":"structure",
@@ -959,6 +979,19 @@
       "type":"structure",
       "members":{
         "tags":{"shape":"TagList"}
+      }
+    },
+    "MapIterationEventDetails":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"Name"},
+        "Index":{"shape":"UnsignedInteger"}
+      }
+    },
+    "MapStateStartedEventDetails":{
+      "type":"structure",
+      "members":{
+        "Length":{"shape":"UnsignedInteger"}
       }
     },
     "MissingRequiredParameter":{
@@ -1335,6 +1368,10 @@
         "resourceName":{"shape":"Arn"}
       },
       "exception":true
+    },
+    "UnsignedInteger":{
+      "type":"integer",
+      "min":0
     },
     "UntagResourceInput":{
       "type":"structure",

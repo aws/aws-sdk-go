@@ -80,9 +80,15 @@ type EKSAPI interface {
 	ListClustersWithContext(aws.Context, *eks.ListClustersInput, ...request.Option) (*eks.ListClustersOutput, error)
 	ListClustersRequest(*eks.ListClustersInput) (*request.Request, *eks.ListClustersOutput)
 
+	ListClustersPages(*eks.ListClustersInput, func(*eks.ListClustersOutput, bool) bool) error
+	ListClustersPagesWithContext(aws.Context, *eks.ListClustersInput, func(*eks.ListClustersOutput, bool) bool, ...request.Option) error
+
 	ListUpdates(*eks.ListUpdatesInput) (*eks.ListUpdatesOutput, error)
 	ListUpdatesWithContext(aws.Context, *eks.ListUpdatesInput, ...request.Option) (*eks.ListUpdatesOutput, error)
 	ListUpdatesRequest(*eks.ListUpdatesInput) (*request.Request, *eks.ListUpdatesOutput)
+
+	ListUpdatesPages(*eks.ListUpdatesInput, func(*eks.ListUpdatesOutput, bool) bool) error
+	ListUpdatesPagesWithContext(aws.Context, *eks.ListUpdatesInput, func(*eks.ListUpdatesOutput, bool) bool, ...request.Option) error
 
 	UpdateClusterConfig(*eks.UpdateClusterConfigInput) (*eks.UpdateClusterConfigOutput, error)
 	UpdateClusterConfigWithContext(aws.Context, *eks.UpdateClusterConfigInput, ...request.Option) (*eks.UpdateClusterConfigOutput, error)

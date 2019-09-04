@@ -1009,6 +1009,7 @@
             },
             "hostname" : "datasync-fips.us-west-2.amazonaws.com"
           },
+          "me-south-1" : { },
           "us-east-1" : { },
           "us-east-2" : { },
           "us-west-1" : { },
@@ -4398,6 +4399,7 @@
       },
       "ram" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
@@ -4625,6 +4627,498 @@
       "workspaces" : {
         "endpoints" : {
           "us-gov-west-1" : { }
+        }
+      }
+    }
+  }, {
+    "defaults" : {
+      "hostname" : "{service}.{region}.{dnsSuffix}",
+      "protocols" : [ "https" ],
+      "signatureVersions" : [ "v4" ]
+    },
+    "dnsSuffix" : "c2s.ic.gov",
+    "partition" : "aws-iso",
+    "partitionName" : "AWS ISO (US)",
+    "regionRegex" : "^us\\-iso\\-\\w+\\-\\d+$",
+    "regions" : {
+      "us-iso-east-1" : {
+        "description" : "US ISO East"
+      }
+    },
+    "services" : {
+      "api.ecr" : {
+        "endpoints" : {
+          "us-iso-east-1" : {
+            "credentialScope" : {
+              "region" : "us-iso-east-1"
+            },
+            "hostname" : "api.ecr.us-iso-east-1.c2s.ic.gov"
+          }
+        }
+      },
+      "application-autoscaling" : {
+        "defaults" : {
+          "credentialScope" : {
+            "service" : "application-autoscaling"
+          },
+          "hostname" : "autoscaling.{region}.amazonaws.com",
+          "protocols" : [ "http", "https" ]
+        },
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "autoscaling" : {
+        "endpoints" : {
+          "us-iso-east-1" : {
+            "protocols" : [ "http", "https" ]
+          }
+        }
+      },
+      "cloudformation" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "cloudtrail" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "codedeploy" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "config" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "datapipeline" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "directconnect" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "dms" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "ds" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "dynamodb" : {
+        "endpoints" : {
+          "us-iso-east-1" : {
+            "protocols" : [ "http", "https" ]
+          }
+        }
+      },
+      "ec2" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "ecs" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "elasticache" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "elasticloadbalancing" : {
+        "endpoints" : {
+          "us-iso-east-1" : {
+            "protocols" : [ "http", "https" ]
+          }
+        }
+      },
+      "elasticmapreduce" : {
+        "endpoints" : {
+          "us-iso-east-1" : {
+            "protocols" : [ "https" ]
+          }
+        }
+      },
+      "events" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "glacier" : {
+        "endpoints" : {
+          "us-iso-east-1" : {
+            "protocols" : [ "http", "https" ]
+          }
+        }
+      },
+      "health" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "iam" : {
+        "endpoints" : {
+          "aws-iso-global" : {
+            "credentialScope" : {
+              "region" : "us-iso-east-1"
+            },
+            "hostname" : "iam.us-iso-east-1.c2s.ic.gov"
+          }
+        },
+        "isRegionalized" : false,
+        "partitionEndpoint" : "aws-iso-global"
+      },
+      "kinesis" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "kms" : {
+        "endpoints" : {
+          "ProdFips" : {
+            "credentialScope" : {
+              "region" : "us-iso-east-1"
+            },
+            "hostname" : "kms-fips.us-iso-east-1.c2s.ic.gov"
+          },
+          "us-iso-east-1" : { }
+        }
+      },
+      "lambda" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "logs" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "monitoring" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "rds" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "redshift" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "s3" : {
+        "defaults" : {
+          "signatureVersions" : [ "s3v4" ]
+        },
+        "endpoints" : {
+          "us-iso-east-1" : {
+            "protocols" : [ "http", "https" ],
+            "signatureVersions" : [ "s3v4" ]
+          }
+        }
+      },
+      "snowball" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "sns" : {
+        "endpoints" : {
+          "us-iso-east-1" : {
+            "protocols" : [ "http", "https" ]
+          }
+        }
+      },
+      "sqs" : {
+        "endpoints" : {
+          "us-iso-east-1" : {
+            "protocols" : [ "http", "https" ]
+          }
+        }
+      },
+      "states" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "streams.dynamodb" : {
+        "defaults" : {
+          "credentialScope" : {
+            "service" : "dynamodb"
+          },
+          "protocols" : [ "http", "https" ]
+        },
+        "endpoints" : {
+          "us-iso-east-1" : {
+            "protocols" : [ "http", "https" ]
+          }
+        }
+      },
+      "sts" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "support" : {
+        "endpoints" : {
+          "aws-iso-global" : {
+            "credentialScope" : {
+              "region" : "us-iso-east-1"
+            },
+            "hostname" : "support.us-iso-east-1.c2s.ic.gov"
+          }
+        },
+        "partitionEndpoint" : "aws-iso-global"
+      },
+      "swf" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "workspaces" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      }
+    }
+  }, {
+    "defaults" : {
+      "hostname" : "{service}.{region}.{dnsSuffix}",
+      "protocols" : [ "https" ],
+      "signatureVersions" : [ "v4" ]
+    },
+    "dnsSuffix" : "sc2s.sgov.gov",
+    "partition" : "aws-iso-b",
+    "partitionName" : "AWS ISOB (US)",
+    "regionRegex" : "^us\\-isob\\-\\w+\\-\\d+$",
+    "regions" : {
+      "us-isob-east-1" : {
+        "description" : "US ISOB East (Ohio)"
+      }
+    },
+    "services" : {
+      "application-autoscaling" : {
+        "defaults" : {
+          "credentialScope" : {
+            "service" : "application-autoscaling"
+          },
+          "hostname" : "autoscaling.{region}.amazonaws.com",
+          "protocols" : [ "http", "https" ]
+        },
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "autoscaling" : {
+        "defaults" : {
+          "protocols" : [ "http", "https" ]
+        },
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "cloudformation" : {
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "cloudtrail" : {
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "config" : {
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "directconnect" : {
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "dms" : {
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "dynamodb" : {
+        "defaults" : {
+          "protocols" : [ "http", "https" ]
+        },
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "ec2" : {
+        "defaults" : {
+          "protocols" : [ "http", "https" ]
+        },
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "elasticache" : {
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "elasticloadbalancing" : {
+        "endpoints" : {
+          "us-isob-east-1" : {
+            "protocols" : [ "https" ]
+          }
+        }
+      },
+      "elasticmapreduce" : {
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "events" : {
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "glacier" : {
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "health" : {
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "iam" : {
+        "endpoints" : {
+          "aws-iso-b-global" : {
+            "credentialScope" : {
+              "region" : "us-isob-east-1"
+            },
+            "hostname" : "iam.us-isob-east-1.sc2s.sgov.gov"
+          }
+        },
+        "isRegionalized" : false,
+        "partitionEndpoint" : "aws-iso-b-global"
+      },
+      "kinesis" : {
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "kms" : {
+        "endpoints" : {
+          "ProdFips" : {
+            "credentialScope" : {
+              "region" : "us-isob-east-1"
+            },
+            "hostname" : "kms-fips.us-isob-east-1.sc2s.sgov.gov"
+          },
+          "us-isob-east-1" : { }
+        }
+      },
+      "logs" : {
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "monitoring" : {
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "rds" : {
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "redshift" : {
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "s3" : {
+        "defaults" : {
+          "protocols" : [ "http", "https" ],
+          "signatureVersions" : [ "s3v4" ]
+        },
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "snowball" : {
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "sns" : {
+        "defaults" : {
+          "protocols" : [ "http", "https" ]
+        },
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "sqs" : {
+        "defaults" : {
+          "protocols" : [ "http", "https" ],
+          "sslCommonName" : "{region}.queue.{dnsSuffix}"
+        },
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "states" : {
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "streams.dynamodb" : {
+        "defaults" : {
+          "credentialScope" : {
+            "service" : "dynamodb"
+          },
+          "protocols" : [ "http", "https" ]
+        },
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "sts" : {
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "support" : {
+        "endpoints" : {
+          "aws-iso-b-global" : {
+            "credentialScope" : {
+              "region" : "us-isob-east-1"
+            },
+            "hostname" : "support.us-isob-east-1.sc2s.sgov.gov"
+          }
+        },
+        "partitionEndpoint" : "aws-iso-b-global"
+      },
+      "swf" : {
+        "endpoints" : {
+          "us-isob-east-1" : { }
         }
       }
     }
