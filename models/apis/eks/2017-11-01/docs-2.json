@@ -116,6 +116,12 @@
         "Update$errors": "<p>Any errors associated with a <code>Failed</code> update.</p>"
       }
     },
+    "Identity": {
+      "base": "<p>An object representing an identity provider for authentication credentials.</p>",
+      "refs": {
+        "Cluster$identity": "<p>The identity provider information for the cluster.</p>"
+      }
+    },
     "InvalidParameterException": {
       "base": "<p>The specified parameter is invalid. Review the available parameters for the API request.</p>",
       "refs": {
@@ -190,6 +196,12 @@
         "UpdateClusterConfigRequest$logging": "<p>Enable or disable exporting the Kubernetes control plane logs for your cluster to CloudWatch Logs. By default, cluster control plane logs aren't exported to CloudWatch Logs. For more information, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html\">Amazon EKS Cluster Control Plane Logs</a> in the <i> <i>Amazon EKS User Guide</i> </i>.</p> <note> <p>CloudWatch Logs ingestion, archive storage, and data scanning rates apply to exported control plane logs. For more information, see <a href=\"http://aws.amazon.com/cloudwatch/pricing/\">Amazon CloudWatch Pricing</a>.</p> </note>"
       }
     },
+    "OIDC": {
+      "base": "<p>An object representing the <a href=\"https://openid.net/connect/\">OpenID Connect</a> identity provider information for the cluster.</p>",
+      "refs": {
+        "Identity$oidc": "<p>The <a href=\"https://openid.net/connect/\">OpenID Connect</a> identity provider information for the cluster.</p>"
+      }
+    },
     "ResourceInUseException": {
       "base": "<p>The specified resource is in use.</p>",
       "refs": {
@@ -245,6 +257,7 @@
         "ListUpdatesRequest$name": "<p>The name of the Amazon EKS cluster to list updates for.</p>",
         "ListUpdatesRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListUpdates</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value.</p>",
         "ListUpdatesResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListUpdates</code> request. When the results of a <code>ListUpdates</code> request exceed <code>maxResults</code>, you can use this value to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "OIDC$issuer": "<p>The issuer URL for the OpenID Connect identity provider.</p>",
         "ResourceInUseException$clusterName": "<p>The Amazon EKS cluster associated with the exception.</p>",
         "ResourceInUseException$message": null,
         "ResourceLimitExceededException$clusterName": "<p>The Amazon EKS cluster associated with the exception.</p>",
