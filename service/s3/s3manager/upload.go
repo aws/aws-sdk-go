@@ -98,6 +98,10 @@ func (m multiUploadError) UploadID() string {
 
 // UploadOutput represents a response from the Upload() call.
 type UploadOutput struct {
+
+	// Entity tag of the object.
+	ETag *string
+
 	// The URL where the object was uploaded to.
 	Location string
 
@@ -617,6 +621,7 @@ func (u *multiuploader) upload(firstBuf io.ReadSeeker, firstPart []byte) (*Uploa
 		Location:  uploadLocation,
 		VersionID: complete.VersionId,
 		UploadID:  u.uploadID,
+		ETag: complete.ETag,
 	}, nil
 }
 
