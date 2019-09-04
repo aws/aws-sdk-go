@@ -13,6 +13,7 @@ go:
     - 1.10.x
     - 1.11.x
     - 1.12.x
+    - 1.13.x
     - tip
 
 matrix:
@@ -26,7 +27,10 @@ matrix:
           os: osx
     include:
         - os: windows
-          go: 1.12.x
+          go: 
+           - 1.12.x
+           - 1.13.x
+           - tip
         - os: linux
           go: 1.5.x
           # Use Go 1.5's vendoring experiment for 1.5 tests.
@@ -43,6 +47,7 @@ script:
       if [ $TRAVIS_GO_VERSION == "1.10.x" ] ||
       [ $TRAVIS_GO_VERSION == "1.11.x" ] ||
       [ $TRAVIS_GO_VERSION == "1.12.x" ] ||
+      [ $TRAVIS_GO_VERSION == "1.13.x" ] ||
       [ $TRAVIS_GO_VERSION == "tip" ]; then
           make get-deps;
           make ci-test;
