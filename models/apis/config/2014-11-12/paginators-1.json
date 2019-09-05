@@ -1,5 +1,10 @@
 {
   "pagination": {
+    "DescribeRemediationExceptions": {
+      "input_token": "NextToken",
+      "limit_key": "Limit",
+      "output_token": "NextToken"
+    },
     "DescribeRemediationExecutionStatus": {
       "input_token": "NextToken",
       "limit_key": "Limit",

@@ -1,3 +1,10 @@
+Release v1.23.16 (2019-09-05)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API, documentation, and paginators
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.23.15 (2019-09-04)
 ===
 
