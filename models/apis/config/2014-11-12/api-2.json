@@ -146,6 +146,18 @@
         {"shape":"RemediationInProgressException"}
       ]
     },
+    "DeleteRemediationExceptions":{
+      "name":"DeleteRemediationExceptions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteRemediationExceptionsRequest"},
+      "output":{"shape":"DeleteRemediationExceptionsResponse"},
+      "errors":[
+        {"shape":"NoSuchRemediationExceptionException"}
+      ]
+    },
     "DeleteRetentionConfiguration":{
       "name":"DeleteRetentionConfiguration",
       "http":{
@@ -386,6 +398,19 @@
       "input":{"shape":"DescribeRemediationConfigurationsRequest"},
       "output":{"shape":"DescribeRemediationConfigurationsResponse"}
     },
+    "DescribeRemediationExceptions":{
+      "name":"DescribeRemediationExceptions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeRemediationExceptionsRequest"},
+      "output":{"shape":"DescribeRemediationExceptionsResponse"},
+      "errors":[
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidParameterValueException"}
+      ]
+    },
     "DescribeRemediationExecutionStatus":{
       "name":"DescribeRemediationExecutionStatus",
       "http":{
@@ -395,7 +420,8 @@
       "input":{"shape":"DescribeRemediationExecutionStatusRequest"},
       "output":{"shape":"DescribeRemediationExecutionStatusResponse"},
       "errors":[
-        {"shape":"NoSuchRemediationConfigurationException"}
+        {"shape":"NoSuchRemediationConfigurationException"},
+        {"shape":"InvalidNextTokenException"}
       ]
     },
     "DescribeRetentionConfigurations":{
@@ -730,6 +756,18 @@
         {"shape":"InvalidParameterValueException"}
       ]
     },
+    "PutRemediationExceptions":{
+      "name":"PutRemediationExceptions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutRemediationExceptionsRequest"},
+      "output":{"shape":"PutRemediationExceptionsResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"}
+      ]
+    },
     "PutRetentionConfiguration":{
       "name":"PutRetentionConfiguration",
       "http":{
@@ -793,6 +831,7 @@
       "input":{"shape":"StartRemediationExecutionRequest"},
       "output":{"shape":"StartRemediationExecutionResponse"},
       "errors":[
+        {"shape":"InvalidParameterValueException"},
         {"shape":"InsufficientPermissionsException"},
         {"shape":"NoSuchRemediationConfigurationException"}
       ]
@@ -974,6 +1013,18 @@
     "AmazonResourceName":{
       "type":"string",
       "max":256,
+      "min":1
+    },
+    "AutoRemediationAttemptSeconds":{
+      "type":"long",
+      "box":true,
+      "max":2678000,
+      "min":1
+    },
+    "AutoRemediationAttempts":{
+      "type":"integer",
+      "box":true,
+      "max":25,
       "min":1
     },
     "AvailabilityZone":{"type":"string"},
@@ -1204,12 +1255,13 @@
     },
     "ConfigRuleName":{
       "type":"string",
-      "max":64,
-      "min":1
+      "max":128,
+      "min":1,
+      "pattern":".*\\S.*"
     },
     "ConfigRuleNames":{
       "type":"list",
-      "member":{"shape":"StringWithCharLimit64"},
+      "member":{"shape":"ConfigRuleName"},
       "max":25,
       "min":0
     },
@@ -1425,13 +1477,30 @@
       "type":"structure",
       "required":["ConfigRuleName"],
       "members":{
-        "ConfigRuleName":{"shape":"StringWithCharLimit64"},
+        "ConfigRuleName":{"shape":"ConfigRuleName"},
         "ResourceType":{"shape":"String"}
       }
     },
     "DeleteRemediationConfigurationResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DeleteRemediationExceptionsRequest":{
+      "type":"structure",
+      "required":[
+        "ConfigRuleName",
+        "ResourceKeys"
+      ],
+      "members":{
+        "ConfigRuleName":{"shape":"ConfigRuleName"},
+        "ResourceKeys":{"shape":"RemediationExceptionResourceKeys"}
+      }
+    },
+    "DeleteRemediationExceptionsResponse":{
+      "type":"structure",
+      "members":{
+        "FailedBatches":{"shape":"FailedDeleteRemediationExceptionsBatches"}
       }
     },
     "DeleteRetentionConfigurationRequest":{
@@ -1727,21 +1796,38 @@
         "RemediationConfigurations":{"shape":"RemediationConfigurations"}
       }
     },
+    "DescribeRemediationExceptionsRequest":{
+      "type":"structure",
+      "required":["ConfigRuleName"],
+      "members":{
+        "ConfigRuleName":{"shape":"ConfigRuleName"},
+        "ResourceKeys":{"shape":"RemediationExceptionResourceKeys"},
+        "Limit":{"shape":"Limit"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeRemediationExceptionsResponse":{
+      "type":"structure",
+      "members":{
+        "RemediationExceptions":{"shape":"RemediationExceptions"},
+        "NextToken":{"shape":"String"}
+      }
+    },
     "DescribeRemediationExecutionStatusRequest":{
       "type":"structure",
       "required":["ConfigRuleName"],
       "members":{
-        "ConfigRuleName":{"shape":"StringWithCharLimit64"},
+        "ConfigRuleName":{"shape":"ConfigRuleName"},
         "ResourceKeys":{"shape":"ResourceKeys"},
         "Limit":{"shape":"Limit"},
-        "NextToken":{"shape":"StringWithCharLimit256"}
+        "NextToken":{"shape":"String"}
       }
     },
     "DescribeRemediationExecutionStatusResponse":{
       "type":"structure",
       "members":{
         "RemediationExecutionStatuses":{"shape":"RemediationExecutionStatuses"},
-        "NextToken":{"shape":"StringWithCharLimit256"}
+        "NextToken":{"shape":"String"}
       }
     },
     "DescribeRetentionConfigurationsRequest":{
@@ -1830,10 +1916,27 @@
       "max":1000,
       "min":0
     },
+    "ExecutionControls":{
+      "type":"structure",
+      "members":{
+        "SsmControls":{"shape":"SsmControls"}
+      }
+    },
     "Expression":{
       "type":"string",
       "max":4096,
       "min":1
+    },
+    "FailedDeleteRemediationExceptionsBatch":{
+      "type":"structure",
+      "members":{
+        "FailureMessage":{"shape":"String"},
+        "FailedItems":{"shape":"RemediationExceptionResourceKeys"}
+      }
+    },
+    "FailedDeleteRemediationExceptionsBatches":{
+      "type":"list",
+      "member":{"shape":"FailedDeleteRemediationExceptionsBatch"}
     },
     "FailedRemediationBatch":{
       "type":"structure",
@@ -1845,6 +1948,17 @@
     "FailedRemediationBatches":{
       "type":"list",
       "member":{"shape":"FailedRemediationBatch"}
+    },
+    "FailedRemediationExceptionBatch":{
+      "type":"structure",
+      "members":{
+        "FailureMessage":{"shape":"String"},
+        "FailedItems":{"shape":"RemediationExceptions"}
+      }
+    },
+    "FailedRemediationExceptionBatches":{
+      "type":"list",
+      "member":{"shape":"FailedRemediationExceptionBatch"}
     },
     "FieldInfo":{
       "type":"structure",
@@ -2378,6 +2492,12 @@
       },
       "exception":true
     },
+    "NoSuchRemediationExceptionException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "NoSuchRetentionConfigurationException":{
       "type":"structure",
       "members":{
@@ -2535,6 +2655,12 @@
       "type":"list",
       "member":{"shape":"PendingAggregationRequest"}
     },
+    "Percentage":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
     "PutAggregationAuthorizationRequest":{
       "type":"structure",
       "required":[
@@ -2635,6 +2761,25 @@
         "FailedBatches":{"shape":"FailedRemediationBatches"}
       }
     },
+    "PutRemediationExceptionsRequest":{
+      "type":"structure",
+      "required":[
+        "ConfigRuleName",
+        "ResourceKeys"
+      ],
+      "members":{
+        "ConfigRuleName":{"shape":"ConfigRuleName"},
+        "ResourceKeys":{"shape":"RemediationExceptionResourceKeys"},
+        "Message":{"shape":"StringWithCharLimit1024"},
+        "ExpirationTime":{"shape":"Date"}
+      }
+    },
+    "PutRemediationExceptionsResponse":{
+      "type":"structure",
+      "members":{
+        "FailedBatches":{"shape":"FailedRemediationExceptionBatches"}
+      }
+    },
     "PutRetentionConfigurationRequest":{
       "type":"structure",
       "required":["RetentionPeriodInDays"],
@@ -2708,17 +2853,57 @@
         "TargetId"
       ],
       "members":{
-        "ConfigRuleName":{"shape":"StringWithCharLimit64"},
+        "ConfigRuleName":{"shape":"ConfigRuleName"},
         "TargetType":{"shape":"RemediationTargetType"},
         "TargetId":{"shape":"StringWithCharLimit256"},
         "TargetVersion":{"shape":"String"},
         "Parameters":{"shape":"RemediationParameters"},
-        "ResourceType":{"shape":"String"}
+        "ResourceType":{"shape":"String"},
+        "Automatic":{"shape":"Boolean"},
+        "ExecutionControls":{"shape":"ExecutionControls"},
+        "MaximumAutomaticAttempts":{"shape":"AutoRemediationAttempts"},
+        "RetryAttemptSeconds":{"shape":"AutoRemediationAttemptSeconds"},
+        "Arn":{"shape":"StringWithCharLimit1024"},
+        "CreatedByService":{"shape":"StringWithCharLimit1024"}
       }
     },
     "RemediationConfigurations":{
       "type":"list",
       "member":{"shape":"RemediationConfiguration"},
+      "max":25,
+      "min":0
+    },
+    "RemediationException":{
+      "type":"structure",
+      "required":[
+        "ConfigRuleName",
+        "ResourceType",
+        "ResourceId"
+      ],
+      "members":{
+        "ConfigRuleName":{"shape":"ConfigRuleName"},
+        "ResourceType":{"shape":"StringWithCharLimit256"},
+        "ResourceId":{"shape":"StringWithCharLimit1024"},
+        "Message":{"shape":"StringWithCharLimit1024"},
+        "ExpirationTime":{"shape":"Date"}
+      }
+    },
+    "RemediationExceptionResourceKey":{
+      "type":"structure",
+      "members":{
+        "ResourceType":{"shape":"StringWithCharLimit256"},
+        "ResourceId":{"shape":"StringWithCharLimit1024"}
+      }
+    },
+    "RemediationExceptionResourceKeys":{
+      "type":"list",
+      "member":{"shape":"RemediationExceptionResourceKey"},
+      "max":100,
+      "min":1
+    },
+    "RemediationExceptions":{
+      "type":"list",
+      "member":{"shape":"RemediationException"},
       "max":25,
       "min":0
     },
@@ -2911,55 +3096,81 @@
         "AWS::EC2::VPC",
         "AWS::EC2::VPNConnection",
         "AWS::EC2::VPNGateway",
+        "AWS::EC2::RegisteredHAInstance",
+        "AWS::EC2::NatGateway",
+        "AWS::EC2::EgressOnlyInternetGateway",
+        "AWS::EC2::VPCEndpoint",
+        "AWS::EC2::VPCEndpointService",
+        "AWS::EC2::FlowLog",
+        "AWS::EC2::VPCPeeringConnection",
         "AWS::IAM::Group",
         "AWS::IAM::Policy",
         "AWS::IAM::Role",
         "AWS::IAM::User",
+        "AWS::ElasticLoadBalancingV2::LoadBalancer",
         "AWS::ACM::Certificate",
         "AWS::RDS::DBInstance",
+        "AWS::RDS::DBParameterGroup",
+        "AWS::RDS::DBOptionGroup",
         "AWS::RDS::DBSubnetGroup",
         "AWS::RDS::DBSecurityGroup",
         "AWS::RDS::DBSnapshot",
+        "AWS::RDS::DBCluster",
+        "AWS::RDS::DBClusterParameterGroup",
+        "AWS::RDS::DBClusterSnapshot",
         "AWS::RDS::EventSubscription",
-        "AWS::ElasticLoadBalancingV2::LoadBalancer",
         "AWS::S3::Bucket",
-        "AWS::SSM::ManagedInstanceInventory",
+        "AWS::S3::AccountPublicAccessBlock",
         "AWS::Redshift::Cluster",
         "AWS::Redshift::ClusterSnapshot",
         "AWS::Redshift::ClusterParameterGroup",
         "AWS::Redshift::ClusterSecurityGroup",
         "AWS::Redshift::ClusterSubnetGroup",
         "AWS::Redshift::EventSubscription",
+        "AWS::SSM::ManagedInstanceInventory",
         "AWS::CloudWatch::Alarm",
         "AWS::CloudFormation::Stack",
-        "AWS::DynamoDB::Table",
+        "AWS::ElasticLoadBalancing::LoadBalancer",
         "AWS::AutoScaling::AutoScalingGroup",
         "AWS::AutoScaling::LaunchConfiguration",
         "AWS::AutoScaling::ScalingPolicy",
         "AWS::AutoScaling::ScheduledAction",
+        "AWS::DynamoDB::Table",
         "AWS::CodeBuild::Project",
         "AWS::WAF::RateBasedRule",
         "AWS::WAF::Rule",
+        "AWS::WAF::RuleGroup",
         "AWS::WAF::WebACL",
         "AWS::WAFRegional::RateBasedRule",
         "AWS::WAFRegional::Rule",
+        "AWS::WAFRegional::RuleGroup",
         "AWS::WAFRegional::WebACL",
         "AWS::CloudFront::Distribution",
         "AWS::CloudFront::StreamingDistribution",
-        "AWS::WAF::RuleGroup",
-        "AWS::WAFRegional::RuleGroup",
+        "AWS::Lambda::Alias",
         "AWS::Lambda::Function",
         "AWS::ElasticBeanstalk::Application",
         "AWS::ElasticBeanstalk::ApplicationVersion",
         "AWS::ElasticBeanstalk::Environment",
-        "AWS::ElasticLoadBalancing::LoadBalancer",
+        "AWS::MobileHub::Project",
         "AWS::XRay::EncryptionConfig",
         "AWS::SSM::AssociationCompliance",
         "AWS::SSM::PatchCompliance",
         "AWS::Shield::Protection",
         "AWS::ShieldRegional::Protection",
         "AWS::Config::ResourceCompliance",
-        "AWS::CodePipeline::Pipeline"
+        "AWS::LicenseManager::LicenseConfiguration",
+        "AWS::ApiGateway::DomainName",
+        "AWS::ApiGateway::Method",
+        "AWS::ApiGateway::Stage",
+        "AWS::ApiGateway::RestApi",
+        "AWS::ApiGatewayV2::DomainName",
+        "AWS::ApiGatewayV2::Stage",
+        "AWS::ApiGatewayV2::Api",
+        "AWS::CodePipeline::Pipeline",
+        "AWS::ServiceCatalog::CloudFormationProvisionedProduct",
+        "AWS::ServiceCatalog::CloudFormationProduct",
+        "AWS::ServiceCatalog::Portfolio"
       ]
     },
     "ResourceTypeList":{
@@ -2980,6 +3191,7 @@
     },
     "ResourceValue":{
       "type":"structure",
+      "required":["Value"],
       "members":{
         "Value":{"shape":"ResourceValueType"}
       }
@@ -3081,6 +3293,13 @@
       "max":25,
       "min":0
     },
+    "SsmControls":{
+      "type":"structure",
+      "members":{
+        "ConcurrentExecutionRatePercentage":{"shape":"Percentage"},
+        "ErrorPercentage":{"shape":"Percentage"}
+      }
+    },
     "StartConfigRulesEvaluationRequest":{
       "type":"structure",
       "members":{
@@ -3106,7 +3325,7 @@
         "ResourceKeys"
       ],
       "members":{
-        "ConfigRuleName":{"shape":"StringWithCharLimit64"},
+        "ConfigRuleName":{"shape":"ConfigRuleName"},
         "ResourceKeys":{"shape":"ResourceKeys"}
       }
     },
@@ -3125,6 +3344,7 @@
     },
     "StaticValue":{
       "type":"structure",
+      "required":["Values"],
       "members":{
         "Values":{"shape":"StaticParameterValues"}
       }

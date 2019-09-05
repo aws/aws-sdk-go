@@ -10,12 +10,13 @@
     "DeleteConfigurationRecorder": "<p>Deletes the configuration recorder.</p> <p>After the configuration recorder is deleted, AWS Config will not record resource configuration changes until you create a new configuration recorder.</p> <p>This action does not delete the configuration information that was previously recorded. You will be able to access the previously recorded information by using the <code>GetResourceConfigHistory</code> action, but you will not be able to access this information in the AWS Config console until you create a new configuration recorder.</p>",
     "DeleteDeliveryChannel": "<p>Deletes the delivery channel.</p> <p>Before you can delete the delivery channel, you must stop the configuration recorder by using the <a>StopConfigurationRecorder</a> action.</p>",
     "DeleteEvaluationResults": "<p>Deletes the evaluation results for the specified AWS Config rule. You can specify one AWS Config rule per request. After you delete the evaluation results, you can call the <a>StartConfigRulesEvaluation</a> API to start evaluating your AWS resources against the rule.</p>",
-    "DeleteOrganizationConfigRule": null,
+    "DeleteOrganizationConfigRule": "<p>Deletes the specified organization config rule and all of its evaluation results from all member accounts in that organization. Only a master account can delete an organization config rule.</p> <p>AWS Config sets the state of a rule to DELETE_IN_PROGRESS until the deletion is complete. You cannot update a rule while it is in this state.</p>",
     "DeletePendingAggregationRequest": "<p>Deletes pending authorization requests for a specified aggregator account in a specified region.</p>",
     "DeleteRemediationConfiguration": "<p>Deletes the remediation configuration.</p>",
+    "DeleteRemediationExceptions": "<p>Deletes one or more remediation exceptions mentioned in the resource keys.</p>",
     "DeleteRetentionConfiguration": "<p>Deletes the retention configuration.</p>",
     "DeliverConfigSnapshot": "<p>Schedules delivery of a configuration snapshot to the Amazon S3 bucket in the specified delivery channel. After the delivery has started, AWS Config sends the following notifications using an Amazon SNS topic that you have specified.</p> <ul> <li> <p>Notification of the start of the delivery.</p> </li> <li> <p>Notification of the completion of the delivery, if the delivery was successfully completed.</p> </li> <li> <p>Notification of delivery failure, if the delivery failed.</p> </li> </ul>",
-    "DescribeAggregateComplianceByConfigRules": "<p>Returns a list of compliant and noncompliant rules with the number of resources for compliant and noncompliant rules. </p> <note> <p>The results can return an empty result page, but if you have a nextToken, the results are displayed on the next page.</p> </note>",
+    "DescribeAggregateComplianceByConfigRules": "<p>Returns a list of compliant and noncompliant rules with the number of resources for compliant and noncompliant rules. </p> <note> <p>The results can return an empty result page, but if you have a <code>nextToken</code>, the results are displayed on the next page.</p> </note>",
     "DescribeAggregationAuthorizations": "<p>Returns a list of authorizations granted to various aggregator accounts and regions.</p>",
     "DescribeComplianceByConfigRule": "<p>Indicates whether the specified AWS Config rules are compliant. If a rule is noncompliant, this action returns the number of AWS resources that do not comply with the rule.</p> <p>A rule is compliant if all of the evaluated resources comply with it. It is noncompliant if any of these resources do not comply.</p> <p>If AWS Config has no current evaluation results for the rule, it returns <code>INSUFFICIENT_DATA</code>. This result might indicate one of the following conditions:</p> <ul> <li> <p>AWS Config has never invoked an evaluation for the rule. To check whether it has, use the <code>DescribeConfigRuleEvaluationStatus</code> action to get the <code>LastSuccessfulInvocationTime</code> and <code>LastFailedInvocationTime</code>.</p> </li> <li> <p>The rule's AWS Lambda function is failing to send evaluation results to AWS Config. Verify that the role you assigned to your configuration recorder includes the <code>config:PutEvaluations</code> permission. If the rule is a custom rule, verify that the AWS Lambda execution role includes the <code>config:PutEvaluations</code> permission.</p> </li> <li> <p>The rule's AWS Lambda function has returned <code>NOT_APPLICABLE</code> for all evaluation results. This can occur if the resources were deleted or removed from the rule's scope.</p> </li> </ul>",
     "DescribeComplianceByResource": "<p>Indicates whether the specified AWS resources are compliant. If a resource is noncompliant, this action returns the number of AWS Config rules that the resource does not comply with.</p> <p>A resource is compliant if it complies with all the AWS Config rules that evaluate it. It is noncompliant if it does not comply with one or more of these rules.</p> <p>If AWS Config has no current evaluation results for the resource, it returns <code>INSUFFICIENT_DATA</code>. This result might indicate one of the following conditions about the rules that evaluate the resource:</p> <ul> <li> <p>AWS Config has never invoked an evaluation for the rule. To check whether it has, use the <code>DescribeConfigRuleEvaluationStatus</code> action to get the <code>LastSuccessfulInvocationTime</code> and <code>LastFailedInvocationTime</code>.</p> </li> <li> <p>The rule's AWS Lambda function is failing to send evaluation results to AWS Config. Verify that the role that you assigned to your configuration recorder includes the <code>config:PutEvaluations</code> permission. If the rule is a custom rule, verify that the AWS Lambda execution role includes the <code>config:PutEvaluations</code> permission.</p> </li> <li> <p>The rule's AWS Lambda function has returned <code>NOT_APPLICABLE</code> for all evaluation results. This can occur if the resources were deleted or removed from the rule's scope.</p> </li> </ul>",
@@ -27,13 +28,14 @@
     "DescribeConfigurationRecorders": "<p>Returns the details for the specified configuration recorders. If the configuration recorder is not specified, this action returns the details for all configuration recorders associated with the account.</p> <note> <p>Currently, you can specify only one configuration recorder per region in your account.</p> </note>",
     "DescribeDeliveryChannelStatus": "<p>Returns the current status of the specified delivery channel. If a delivery channel is not specified, this action returns the current status of all delivery channels associated with the account.</p> <note> <p>Currently, you can specify only one delivery channel per region in your account.</p> </note>",
     "DescribeDeliveryChannels": "<p>Returns details about the specified delivery channel. If a delivery channel is not specified, this action returns the details of all delivery channels associated with the account.</p> <note> <p>Currently, you can specify only one delivery channel per region in your account.</p> </note>",
-    "DescribeOrganizationConfigRuleStatuses": null,
-    "DescribeOrganizationConfigRules": null,
+    "DescribeOrganizationConfigRuleStatuses": "<p>Provides organization config rule deployment status for an organization.</p> <note> <p>The status is not considered successful until organization config rule is successfully deployed in all the member accounts with an exception of excluded accounts.</p> <p>When you specify the limit and the next token, you receive a paginated response. Limit and next token are not applicable if you specify organization config rule names. It is only applicable, when you request all the organization config rules.</p> <p>Only a master account can call this API.</p> </note>",
+    "DescribeOrganizationConfigRules": "<p>Returns a list of organization config rules.</p> <note> <p>When you specify the limit and the next token, you receive a paginated response. Limit and next token are not applicable if you specify organization config rule names. It is only applicable, when you request all the organization config rules.</p> <p>Only a master account can call this API.</p> </note>",
     "DescribePendingAggregationRequests": "<p>Returns a list of all pending aggregation requests.</p>",
     "DescribeRemediationConfigurations": "<p>Returns the details of one or more remediation configurations.</p>",
+    "DescribeRemediationExceptions": "<p>Returns the details of one or more remediation exceptions. A detailed view of a remediation exception for a set of resources that includes an explanation of an exception and the time when the exception will be deleted. When you specify the limit and the next token, you receive a paginated response. </p> <note> <p>When you specify the limit and the next token, you receive a paginated response. </p> <p>Limit and next token are not applicable if you request resources in batch. It is only applicable, when you request all resources.</p> </note>",
     "DescribeRemediationExecutionStatus": "<p>Provides a detailed view of a Remediation Execution for a set of resources including state, timestamps for when steps for the remediation execution occur, and any error messages for steps that have failed. When you specify the limit and the next token, you receive a paginated response.</p>",
     "DescribeRetentionConfigurations": "<p>Returns the details of one or more retention configurations. If the retention configuration name is not specified, this action returns the details for all the retention configurations for that account.</p> <note> <p>Currently, AWS Config supports only one retention configuration per region in your account.</p> </note>",
-    "GetAggregateComplianceDetailsByConfigRule": "<p>Returns the evaluation results for the specified AWS Config rule for a specific resource in a rule. The results indicate which AWS resources were evaluated by the rule, when each resource was last evaluated, and whether each resource complies with the rule. </p> <note> <p>The results can return an empty result page. But if you have a nextToken, the results are displayed on the next page.</p> </note>",
+    "GetAggregateComplianceDetailsByConfigRule": "<p>Returns the evaluation results for the specified AWS Config rule for a specific resource in a rule. The results indicate which AWS resources were evaluated by the rule, when each resource was last evaluated, and whether each resource complies with the rule. </p> <note> <p>The results can return an empty result page. But if you have a <code>nextToken</code>, the results are displayed on the next page.</p> </note>",
     "GetAggregateConfigRuleComplianceSummary": "<p>Returns the number of compliant and noncompliant rules for one or more accounts and regions in an aggregator.</p> <note> <p>The results can return an empty result page, but if you have a nextToken, the results are displayed on the next page.</p> </note>",
     "GetAggregateDiscoveredResourceCounts": "<p>Returns the resource counts across accounts and regions that are present in your AWS Config aggregator. You can request the resource counts by providing filters and GroupByKey.</p> <p>For example, if the input contains accountID 12345678910 and region us-east-1 in filters, the API returns the count of resources in account ID 12345678910 and region us-east-1. If the input contains ACCOUNT_ID as a GroupByKey, the API returns resource counts for all source accounts that are present in your aggregator.</p>",
     "GetAggregateResourceConfig": "<p>Returns configuration item that is aggregated for your specific resource in a specific source account and region.</p>",
@@ -42,7 +44,7 @@
     "GetComplianceSummaryByConfigRule": "<p>Returns the number of AWS Config rules that are compliant and noncompliant, up to a maximum of 25 for each.</p>",
     "GetComplianceSummaryByResourceType": "<p>Returns the number of resources that are compliant and the number that are noncompliant. You can specify one or more resource types to get these numbers for each resource type. The maximum number returned is 100.</p>",
     "GetDiscoveredResourceCounts": "<p>Returns the resource types, the number of each resource type, and the total number of resources that AWS Config is recording in this region for your AWS account. </p> <p class=\"title\"> <b>Example</b> </p> <ol> <li> <p>AWS Config is recording three resource types in the US East (Ohio) Region for your account: 25 EC2 instances, 20 IAM users, and 15 S3 buckets.</p> </li> <li> <p>You make a call to the <code>GetDiscoveredResourceCounts</code> action and specify that you want all resource types. </p> </li> <li> <p>AWS Config returns the following:</p> <ul> <li> <p>The resource types (EC2 instances, IAM users, and S3 buckets).</p> </li> <li> <p>The number of each resource type (25, 20, and 15).</p> </li> <li> <p>The total number of all resources (60).</p> </li> </ul> </li> </ol> <p>The response is paginated. By default, AWS Config lists 100 <a>ResourceCount</a> objects on each page. You can customize this number with the <code>limit</code> parameter. The response includes a <code>nextToken</code> string. To get the next page of results, run the request again and specify the string for the <code>nextToken</code> parameter.</p> <note> <p>If you make a call to the <a>GetDiscoveredResourceCounts</a> action, you might not immediately receive resource counts in the following situations:</p> <ul> <li> <p>You are a new AWS Config customer.</p> </li> <li> <p>You just enabled resource recording.</p> </li> </ul> <p>It might take a few minutes for AWS Config to record and count your resources. Wait a few minutes and then retry the <a>GetDiscoveredResourceCounts</a> action. </p> </note>",
-    "GetOrganizationConfigRuleDetailedStatus": null,
+    "GetOrganizationConfigRuleDetailedStatus": "<p>Returns detailed status for each member account within an organization for a given organization config rule.</p> <note> <p>Only a master account can call this API.</p> </note>",
     "GetResourceConfigHistory": "<p>Returns a list of configuration items for the specified resource. The list contains details about each state of the resource during the specified time interval. If you specified a retention period to retain your <code>ConfigurationItems</code> between a minimum of 30 days and a maximum of 7 years (2557 days), AWS Config returns the <code>ConfigurationItems</code> for the specified retention period. </p> <p>The response is paginated. By default, AWS Config returns a limit of 10 configuration items per page. You can customize this number with the <code>limit</code> parameter. The response includes a <code>nextToken</code> string. To get the next page of results, run the request again and specify the string for the <code>nextToken</code> parameter.</p> <note> <p>Each call to the API is limited to span a duration of seven days. It is likely that the number of records returned is smaller than the specified <code>limit</code>. In such cases, you can make another call, using the <code>nextToken</code>.</p> </note>",
     "ListAggregateDiscoveredResources": "<p>Accepts a resource type and returns a list of resource identifiers that are aggregated for a specific resource type across accounts and regions. A resource identifier includes the resource type, ID, (if available) the custom resource name, source account, and source region. You can narrow the results to include only resources that have specific resource IDs, or a resource name, or source account ID, or source region.</p> <p>For example, if the input consists of accountID 12345678910 and the region is us-east-1 for resource type <code>AWS::EC2::Instance</code> then the API returns all the EC2 instance identifiers of accountID 12345678910 and region us-east-1.</p>",
     "ListDiscoveredResources": "<p>Accepts a resource type and returns a list of resource identifiers for the resources of that type. A resource identifier includes the resource type, ID, and (if available) the custom resource name. The results consist of resources that AWS Config has discovered, including those that AWS Config is not currently recording. You can narrow the results to include only resources that have specific resource IDs or a resource name.</p> <note> <p>You can specify either resource IDs or a resource name, but not both, in the same request.</p> </note> <p>The response is paginated. By default, AWS Config lists 100 resource identifiers on each page. You can customize this number with the <code>limit</code> parameter. The response includes a <code>nextToken</code> string. To get the next page of results, run the request again and specify the string for the <code>nextToken</code> parameter.</p>",
@@ -53,8 +55,9 @@
     "PutConfigurationRecorder": "<p>Creates a new configuration recorder to record the selected resource configurations.</p> <p>You can use this action to change the role <code>roleARN</code> or the <code>recordingGroup</code> of an existing recorder. To change the role, call the action on the existing configuration recorder and specify a role.</p> <note> <p>Currently, you can specify only one configuration recorder per region in your account.</p> <p>If <code>ConfigurationRecorder</code> does not have the <b>recordingGroup</b> parameter specified, the default is to record all supported resource types.</p> </note>",
     "PutDeliveryChannel": "<p>Creates a delivery channel object to deliver configuration information to an Amazon S3 bucket and Amazon SNS topic.</p> <p>Before you can create a delivery channel, you must create a configuration recorder.</p> <p>You can use this action to change the Amazon S3 bucket or an Amazon SNS topic of the existing delivery channel. To change the Amazon S3 bucket or an Amazon SNS topic, call this action and specify the changed values for the S3 bucket and the SNS topic. If you specify a different value for either the S3 bucket or the SNS topic, this action will keep the existing value for the parameter that is not changed.</p> <note> <p>You can have only one delivery channel per region in your account.</p> </note>",
     "PutEvaluations": "<p>Used by an AWS Lambda function to deliver evaluation results to AWS Config. This action is required in every AWS Lambda function that is invoked by an AWS Config rule.</p>",
-    "PutOrganizationConfigRule": null,
+    "PutOrganizationConfigRule": "<p>Adds or updates organization config rule for your entire organization evaluating whether your AWS resources comply with your desired configurations. Only a master account can create or update an organization config rule.</p> <p>This API enables organization service access through the <code>EnableAWSServiceAccess</code> action and creates a service linked role <code>AWSServiceRoleForConfigMultiAccountSetup</code> in the master account of your organization. The service linked role is created only when the role does not exist in the master account. AWS Config verifies the existence of role with <code>GetRole</code> action.</p> <p>You can use this action to create both custom AWS Config rules and AWS managed Config rules. If you are adding a new custom AWS Config rule, you must first create AWS Lambda function in the master account that the rule invokes to evaluate your resources. When you use the <code>PutOrganizationConfigRule</code> action to add the rule to AWS Config, you must specify the Amazon Resource Name (ARN) that AWS Lambda assigns to the function. If you are adding an AWS managed Config rule, specify the rule's identifier for the <code>RuleIdentifier</code> key.</p> <p>The maximum number of organization config rules that AWS Config supports is 150.</p> <note> <p>Specify either <code>OrganizationCustomRuleMetadata</code> or <code>OrganizationManagedRuleMetadata</code>.</p> </note>",
     "PutRemediationConfigurations": "<p>Adds or updates the remediation configuration with a specific AWS Config rule with the selected target or action. The API creates the <code>RemediationConfiguration</code> object for the AWS Config rule. The AWS Config rule must already exist for you to add a remediation configuration. The target (SSM document) must exist and have permissions to use the target. </p>",
+    "PutRemediationExceptions": "<p>A remediation exception is when a specific resource is no longer considered for auto-remediation. This API adds a new exception or updates an exisiting exception for a specific resource with a specific AWS Config rule. </p>",
     "PutRetentionConfiguration": "<p>Creates and updates the retention configuration with details about retention period (number of days) that AWS Config stores your historical information. The API creates the <code>RetentionConfiguration</code> object and names the object as <b>default</b>. When you have a <code>RetentionConfiguration</code> object named <b>default</b>, calling the API modifies the default object. </p> <note> <p>Currently, AWS Config supports only one retention configuration per region in your account.</p> </note>",
     "SelectResourceConfig": "<p>Accepts a structured query language (SQL) <code>SELECT</code> command, performs the corresponding search, and returns resource configurations matching the properties.</p> <p>For more information about query components, see the <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/query-components.html\"> <b>Query Components</b> </a> section in the AWS Config Developer Guide.</p>",
     "StartConfigRulesEvaluation": "<p>Runs an on-demand evaluation for the specified AWS Config rules against the last known configuration state of the resources. Use <code>StartConfigRulesEvaluation</code> when you want to test that a rule you updated is working as expected. <code>StartConfigRulesEvaluation</code> does not re-record the latest configuration state for your resources. It re-runs an evaluation against the last known state of your resources. </p> <p>You can specify up to 25 AWS Config rules per request. </p> <p>An existing <code>StartConfigRulesEvaluation</code> call for the specified rules must complete before you can call the API again. If you chose to have AWS Config stream to an Amazon SNS topic, you will receive a <code>ConfigRuleEvaluationStarted</code> notification when the evaluation starts.</p> <note> <p>You don't need to call the <code>StartConfigRulesEvaluation</code> API to run an evaluation for a new rule. When you create a rule, AWS Config evaluates your resources against the rule automatically. </p> </note> <p>The <code>StartConfigRulesEvaluation</code> API is useful if you want to run on-demand evaluations, such as the following example:</p> <ol> <li> <p>You have a custom rule that evaluates your IAM resources every 24 hours.</p> </li> <li> <p>You update your Lambda function to add additional conditions to your rule.</p> </li> <li> <p>Instead of waiting for the next periodic evaluation, you call the <code>StartConfigRulesEvaluation</code> API.</p> </li> <li> <p>AWS Config invokes your Lambda function and evaluates your IAM resources.</p> </li> <li> <p>Your custom rule will still run periodic evaluations every 24 hours.</p> </li> </ol>",
@@ -107,12 +110,12 @@
         "DeletePendingAggregationRequestRequest$RequesterAccountId": "<p>The 12-digit account ID of the account requesting to aggregate data.</p>",
         "ExcludedAccounts$member": null,
         "GetAggregateComplianceDetailsByConfigRuleRequest$AccountId": "<p>The 12-digit account ID of the source account.</p>",
-        "MemberAccountStatus$AccountId": null,
+        "MemberAccountStatus$AccountId": "<p>The 12-digit account ID of a member account.</p>",
         "PendingAggregationRequest$RequesterAccountId": "<p>The 12-digit account ID of the account requesting to aggregate data.</p>",
         "PutAggregationAuthorizationRequest$AuthorizedAccountId": "<p>The 12-digit account ID of the account authorized to aggregate data.</p>",
         "ResourceCountFilters$AccountId": "<p>The 12-digit ID of the account.</p>",
         "ResourceFilters$AccountId": "<p>The 12-digit source account ID.</p>",
-        "StatusDetailFilters$AccountId": null
+        "StatusDetailFilters$AccountId": "<p>The 12-digit account ID of the member account within an organization.</p>"
       }
     },
     "AggregateComplianceByConfigRule": {
@@ -225,6 +228,18 @@
         "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) that identifies the resource for which to list the tags. Currently, the supported resources are <code>ConfigRule</code>, <code>ConfigurationAggregator</code> and <code>AggregatorAuthorization</code>.</p>"
       }
     },
+    "AutoRemediationAttemptSeconds": {
+      "base": null,
+      "refs": {
+        "RemediationConfiguration$RetryAttemptSeconds": "<p>Maximum time in seconds that AWS Config runs auto-remediation. If you do not select a number, the default is 60 seconds. </p> <p>For example, if you specify RetryAttemptsSeconds as 50 seconds and MaximumAutomaticAttempts as 5, AWS Config will run auto-remediations 5 times within 50 seconds before throwing an exception. </p>"
+      }
+    },
+    "AutoRemediationAttempts": {
+      "base": null,
+      "refs": {
+        "RemediationConfiguration$MaximumAutomaticAttempts": "<p>The maximum number of failed attempts for auto-remediation. If you do not select a number, the default is 5.</p> <p>For example, if you specify MaximumAutomaticAttempts as 5 with RetryAttemptsSeconds as 50 seconds, AWS Config throws an exception after the 5th failed attempt within 50 seconds.</p>"
+      }
+    },
     "AvailabilityZone": {
       "base": null,
       "refs": {
@@ -306,7 +321,8 @@
         "ConfigurationRecorderStatus$recording": "<p>Specifies whether or not the recorder is currently recording.</p>",
         "ListDiscoveredResourcesRequest$includeDeletedResources": "<p>Specifies whether AWS Config includes deleted resources in the results. By default, deleted resources are not included.</p>",
         "OrganizationAggregationSource$AllAwsRegions": "<p>If true, aggregate existing AWS Config regions and future regions.</p>",
-        "PutEvaluationsRequest$TestMode": "<p>Use this parameter to specify a test run for <code>PutEvaluations</code>. You can verify whether your AWS Lambda function will deliver evaluation results to AWS Config. No updates occur to your existing evaluations, and evaluation results are not sent to AWS Config.</p> <note> <p>When <code>TestMode</code> is <code>true</code>, <code>PutEvaluations</code> doesn't require a valid value for the <code>ResultToken</code> parameter, but the value cannot be null.</p> </note>"
+        "PutEvaluationsRequest$TestMode": "<p>Use this parameter to specify a test run for <code>PutEvaluations</code>. You can verify whether your AWS Lambda function will deliver evaluation results to AWS Config. No updates occur to your existing evaluations, and evaluation results are not sent to AWS Config.</p> <note> <p>When <code>TestMode</code> is <code>true</code>, <code>PutEvaluations</code> doesn't require a valid value for the <code>ResultToken</code> parameter, but the value cannot be null.</p> </note>",
+        "RemediationConfiguration$Automatic": "<p>The remediation is triggered automatically.</p>"
       }
     },
     "ChannelName": {
@@ -460,7 +476,16 @@
       "refs": {
         "AggregateComplianceByConfigRule$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
         "ConfigRuleComplianceFilters$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
-        "GetAggregateComplianceDetailsByConfigRuleRequest$ConfigRuleName": "<p>The name of the AWS Config rule for which you want compliance information.</p>"
+        "ConfigRuleNames$member": null,
+        "DeleteRemediationConfigurationRequest$ConfigRuleName": "<p>The name of the AWS Config rule for which you want to delete remediation configuration.</p>",
+        "DeleteRemediationExceptionsRequest$ConfigRuleName": "<p>The name of the AWS Config rule for which you want to delete remediation exception configuration.</p>",
+        "DescribeRemediationExceptionsRequest$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
+        "DescribeRemediationExecutionStatusRequest$ConfigRuleName": "<p>A list of AWS Config rule names.</p>",
+        "GetAggregateComplianceDetailsByConfigRuleRequest$ConfigRuleName": "<p>The name of the AWS Config rule for which you want compliance information.</p>",
+        "PutRemediationExceptionsRequest$ConfigRuleName": "<p>The name of the AWS Config rule for which you want to create remediation exception.</p>",
+        "RemediationConfiguration$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
+        "RemediationException$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
+        "StartRemediationExecutionRequest$ConfigRuleName": "<p>The list of names of AWS Config rules that you want to run remediation execution for.</p>"
       }
     },
     "ConfigRuleNames": {
@@ -620,9 +645,9 @@
     "CosmosPageLimit": {
       "base": null,
       "refs": {
-        "DescribeOrganizationConfigRuleStatusesRequest$Limit": null,
-        "DescribeOrganizationConfigRulesRequest$Limit": null,
-        "GetOrganizationConfigRuleDetailedStatusRequest$Limit": null
+        "DescribeOrganizationConfigRuleStatusesRequest$Limit": "<p>The maximum number of <code>OrganizationConfigRuleStatuses</code> returned on each page. If you do no specify a number, AWS Config uses the default. The default is 100.</p>",
+        "DescribeOrganizationConfigRulesRequest$Limit": "<p>The maximum number of organization config rules returned on each page. If you do no specify a number, AWS Config uses the default. The default is 100.</p>",
+        "GetOrganizationConfigRuleDetailedStatusRequest$Limit": "<p>The maximum number of <code>OrganizationConfigRuleDetailedStatus</code> returned on each page. If you do not specify a number, AWS Config uses the default. The default is 100.</p>"
       }
     },
     "Date": {
@@ -650,9 +675,11 @@
         "EvaluationResult$ResultRecordedTime": "<p>The time when AWS Config recorded the evaluation result.</p>",
         "EvaluationResult$ConfigRuleInvokedTime": "<p>The time when the AWS Config rule evaluated the AWS resource.</p>",
         "EvaluationResultIdentifier$OrderingTimestamp": "<p>The time of the event that triggered the evaluation of your AWS resources. The time can indicate when AWS Config delivered a configuration item change notification, or it can indicate when AWS Config delivered the configuration snapshot, depending on which event triggered the evaluation.</p>",
-        "MemberAccountStatus$LastUpdateTime": null,
-        "OrganizationConfigRule$LastUpdateTime": null,
-        "OrganizationConfigRuleStatus$LastUpdateTime": null,
+        "MemberAccountStatus$LastUpdateTime": "<p>The timestamp of the last status update.</p>",
+        "OrganizationConfigRule$LastUpdateTime": "<p>The timestamp of the last update.</p>",
+        "OrganizationConfigRuleStatus$LastUpdateTime": "<p>The timestamp of the last update.</p>",
+        "PutRemediationExceptionsRequest$ExpirationTime": "<p>The exception is automatically deleted after the expiration date.</p>",
+        "RemediationException$ExpirationTime": "<p>The time when the remediation exception will be deleted.</p>",
         "RemediationExecutionStatus$InvocationTime": "<p>Start time when the remediation was executed.</p>",
         "RemediationExecutionStatus$LastUpdatedTime": "<p>The time when the remediation execution was last updated.</p>",
         "RemediationExecutionStep$StartTime": "<p>The time when the step started.</p>",
@@ -710,6 +737,16 @@
       }
     },
     "DeleteRemediationConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteRemediationExceptionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteRemediationExceptionsResponse": {
       "base": null,
       "refs": {
       }
@@ -934,6 +971,16 @@
       "refs": {
       }
     },
+    "DescribeRemediationExceptionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeRemediationExceptionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeRemediationExecutionStatusRequest": {
       "base": null,
       "refs": {
@@ -1020,14 +1067,32 @@
     "ExcludedAccounts": {
       "base": null,
       "refs": {
-        "OrganizationConfigRule$ExcludedAccounts": null,
-        "PutOrganizationConfigRuleRequest$ExcludedAccounts": null
+        "OrganizationConfigRule$ExcludedAccounts": "<p>A comma-separated list of accounts excluded from organization config rule.</p>",
+        "PutOrganizationConfigRuleRequest$ExcludedAccounts": "<p>A comma-separated list of accounts that you want to exclude from an organization config rule.</p>"
+      }
+    },
+    "ExecutionControls": {
+      "base": "<p>The controls that AWS Config uses for executing remediations.</p>",
+      "refs": {
+        "RemediationConfiguration$ExecutionControls": "<p>An ExecutionControls object.</p>"
       }
     },
     "Expression": {
       "base": null,
       "refs": {
         "SelectResourceConfigRequest$Expression": "<p>The SQL query <code>SELECT</code> command.</p>"
+      }
+    },
+    "FailedDeleteRemediationExceptionsBatch": {
+      "base": "<p>List of each of the failed delete remediation exceptions with specific reasons.</p>",
+      "refs": {
+        "FailedDeleteRemediationExceptionsBatches$member": null
+      }
+    },
+    "FailedDeleteRemediationExceptionsBatches": {
+      "base": null,
+      "refs": {
+        "DeleteRemediationExceptionsResponse$FailedBatches": "<p>Returns a list of failed delete remediation exceptions batch objects. Each object in the batch consists of a list of failed items and failure messages.</p>"
       }
     },
     "FailedRemediationBatch": {
@@ -1040,6 +1105,18 @@
       "base": null,
       "refs": {
         "PutRemediationConfigurationsResponse$FailedBatches": "<p>Returns a list of failed remediation batch objects.</p>"
+      }
+    },
+    "FailedRemediationExceptionBatch": {
+      "base": "<p>List of each of the failed remediation exceptions with specific reasons.</p>",
+      "refs": {
+        "FailedRemediationExceptionBatches$member": null
+      }
+    },
+    "FailedRemediationExceptionBatches": {
+      "base": null,
+      "refs": {
+        "PutRemediationExceptionsResponse$FailedBatches": "<p>Returns a list of failed remediation exceptions batch objects. Each object in the batch consists of a list of failed items and failure messages.</p>"
       }
     },
     "FieldInfo": {
@@ -1197,7 +1274,7 @@
       }
     },
     "InsufficientPermissionsException": {
-      "base": "<p>Indicates one of the following errors:</p> <ul> <li> <p>The rule cannot be created because the IAM role assigned to AWS Config lacks permissions to perform the config:Put* action.</p> </li> <li> <p>The AWS Lambda function cannot be invoked. Check the function ARN, and check the function's permissions.</p> </li> </ul>",
+      "base": "<p>Indicates one of the following errors:</p> <ul> <li> <p>For PutConfigRule, the rule cannot be created because the IAM role assigned to AWS Config lacks permissions to perform the config:Put* action.</p> </li> <li> <p>For PutConfigRule, the AWS Lambda function cannot be invoked. Check the function ARN, and check the function's permissions.</p> </li> <li> <p>For OrganizationConfigRule, organization config rule cannot be created because you do not have permissions to call IAM <code>GetRole</code> action or create service linked role.</p> </li> </ul>",
       "refs": {
       }
     },
@@ -1285,6 +1362,7 @@
         "DescribeComplianceByResourceRequest$Limit": "<p>The maximum number of evaluation results returned on each page. The default is 10. You cannot specify a number greater than 100. If you specify 0, AWS Config uses the default.</p>",
         "DescribeConfigurationAggregatorSourcesStatusRequest$Limit": "<p>The maximum number of AggregatorSourceStatus returned on each page. The default is maximum. If you specify 0, AWS Config uses the default.</p>",
         "DescribeConfigurationAggregatorsRequest$Limit": "<p>The maximum number of configuration aggregators returned on each page. The default is maximum. If you specify 0, AWS Config uses the default.</p>",
+        "DescribeRemediationExceptionsRequest$Limit": "<p>The maximum number of RemediationExceptionResourceKey returned on each page. The default is 25. If you specify 0, AWS Config uses the default.</p>",
         "DescribeRemediationExecutionStatusRequest$Limit": "<p>The maximum number of RemediationExecutionStatuses returned on each page. The default is maximum. If you specify 0, AWS Config uses the default. </p>",
         "GetAggregateComplianceDetailsByConfigRuleRequest$Limit": "<p>The maximum number of evaluation results returned on each page. The default is 50. You cannot specify a number greater than 100. If you specify 0, AWS Config uses the default.</p>",
         "GetComplianceDetailsByConfigRuleRequest$Limit": "<p>The maximum number of evaluation results returned on each page. The default is 10. You cannot specify a number greater than 100. If you specify 0, AWS Config uses the default.</p>",
@@ -1356,7 +1434,7 @@
       }
     },
     "MaxNumberOfOrganizationConfigRulesExceededException": {
-      "base": null,
+      "base": "<p>You have reached the limit of the number of organization config rules you can create.</p>",
       "refs": {
       }
     },
@@ -1370,20 +1448,20 @@
       "refs": {
         "ConfigRule$MaximumExecutionFrequency": "<p>The maximum frequency with which AWS Config runs evaluations for a rule. You can specify a value for <code>MaximumExecutionFrequency</code> when:</p> <ul> <li> <p>You are using an AWS managed rule that is triggered at a periodic frequency.</p> </li> <li> <p>Your custom rule is triggered when AWS Config delivers the configuration snapshot. For more information, see <a>ConfigSnapshotDeliveryProperties</a>.</p> </li> </ul> <note> <p>By default, rules with a periodic trigger are evaluated every 24 hours. To change the frequency, specify a valid value for the <code>MaximumExecutionFrequency</code> parameter.</p> </note>",
         "ConfigSnapshotDeliveryProperties$deliveryFrequency": "<p>The frequency with which AWS Config delivers configuration snapshots.</p>",
-        "OrganizationCustomRuleMetadata$MaximumExecutionFrequency": null,
-        "OrganizationManagedRuleMetadata$MaximumExecutionFrequency": null,
+        "OrganizationCustomRuleMetadata$MaximumExecutionFrequency": "<p>The maximum frequency with which AWS Config runs evaluations for a rule. Your custom rule is triggered when AWS Config delivers the configuration snapshot. For more information, see <a>ConfigSnapshotDeliveryProperties</a>.</p> <note> <p>By default, rules with a periodic trigger are evaluated every 24 hours. To change the frequency, specify a valid value for the <code>MaximumExecutionFrequency</code> parameter.</p> </note>",
+        "OrganizationManagedRuleMetadata$MaximumExecutionFrequency": "<p>The maximum frequency with which AWS Config runs evaluations for a rule. You are using an AWS managed rule that is triggered at a periodic frequency.</p> <note> <p>By default, rules with a periodic trigger are evaluated every 24 hours. To change the frequency, specify a valid value for the <code>MaximumExecutionFrequency</code> parameter.</p> </note>",
         "SourceDetail$MaximumExecutionFrequency": "<p>The frequency at which you want AWS Config to run evaluations for a custom rule with a periodic trigger. If you specify a value for <code>MaximumExecutionFrequency</code>, then <code>MessageType</code> must use the <code>ScheduledNotification</code> value.</p> <note> <p>By default, rules with a periodic trigger are evaluated every 24 hours. To change the frequency, specify a valid value for the <code>MaximumExecutionFrequency</code> parameter.</p> <p>Based on the valid value you choose, AWS Config runs evaluations once for each valid value. For example, if you choose <code>Three_Hours</code>, AWS Config runs evaluations once every three hours. In this case, <code>Three_Hours</code> is the frequency of this rule. </p> </note>"
       }
     },
     "MemberAccountRuleStatus": {
       "base": null,
       "refs": {
-        "MemberAccountStatus$MemberAccountRuleStatus": null,
-        "StatusDetailFilters$MemberAccountRuleStatus": null
+        "MemberAccountStatus$MemberAccountRuleStatus": "<p>Indicates deployment status for config rule in the member account. When master account calls <code>PutOrganizationConfigRule</code> action for the first time, config rule status is created in the member account. When master account calls <code>PutOrganizationConfigRule</code> action for the second time, config rule status is updated in the member account. Config rule status is deleted when the master account deletes <code>OrganizationConfigRule</code> and disables service access for <code>config-multiaccountsetup.amazonaws.com</code>. </p> <p> AWS Config sets the state of the rule to:</p> <ul> <li> <p> <code>CREATE_SUCCESSFUL</code> when config rule has been created in the member account. </p> </li> <li> <p> <code>CREATE_IN_PROGRESS</code> when config rule is being created in the member account.</p> </li> <li> <p> <code>CREATE_FAILED</code> when config rule creation has failed in the member account.</p> </li> <li> <p> <code>DELETE_FAILED</code> when config rule deletion has failed in the member account.</p> </li> <li> <p> <code>DELETE_IN_PROGRESS</code> when config rule is being deleted in the member account.</p> </li> <li> <p> <code>DELETE_SUCCESSFUL</code> when config rule has been deleted in the member account. </p> </li> <li> <p> <code>UPDATE_SUCCESSFUL</code> when config rule has been updated in the member account.</p> </li> <li> <p> <code>UPDATE_IN_PROGRESS</code> when config rule is being updated in the member account.</p> </li> <li> <p> <code>UPDATE_FAILED</code> when config rule deletion has failed in the member account.</p> </li> </ul>",
+        "StatusDetailFilters$MemberAccountRuleStatus": "<p>Indicates deployment status for config rule in the member account. When master account calls <code>PutOrganizationConfigRule</code> action for the first time, config rule status is created in the member account. When master account calls <code>PutOrganizationConfigRule</code> action for the second time, config rule status is updated in the member account. Config rule status is deleted when the master account deletes <code>OrganizationConfigRule</code> and disables service access for <code>config-multiaccountsetup.amazonaws.com</code>. </p> <p>AWS Config sets the state of the rule to:</p> <ul> <li> <p> <code>CREATE_SUCCESSFUL</code> when config rule has been created in the member account.</p> </li> <li> <p> <code>CREATE_IN_PROGRESS</code> when config rule is being created in the member account.</p> </li> <li> <p> <code>CREATE_FAILED</code> when config rule creation has failed in the member account.</p> </li> <li> <p> <code>DELETE_FAILED</code> when config rule deletion has failed in the member account.</p> </li> <li> <p> <code>DELETE_IN_PROGRESS</code> when config rule is being deleted in the member account.</p> </li> <li> <p> <code>DELETE_SUCCESSFUL</code> when config rule has been deleted in the member account.</p> </li> <li> <p> <code>UPDATE_SUCCESSFUL</code> when config rule has been updated in the member account.</p> </li> <li> <p> <code>UPDATE_IN_PROGRESS</code> when config rule is being updated in the member account.</p> </li> <li> <p> <code>UPDATE_FAILED</code> when config rule deletion has failed in the member account.</p> </li> </ul>"
       }
     },
     "MemberAccountStatus": {
-      "base": null,
+      "base": "<p>Organization config rule creation or deletion status in each member account. This includes the name of the rule, the status, error code and error message when the rule creation or deletion failed.</p>",
       "refs": {
         "OrganizationConfigRuleDetailedStatus$member": null
       }
@@ -1403,16 +1481,16 @@
     "NextToken": {
       "base": null,
       "refs": {
-        "DescribeAggregateComplianceByConfigRulesRequest$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
-        "DescribeAggregateComplianceByConfigRulesResponse$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
+        "DescribeAggregateComplianceByConfigRulesRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
+        "DescribeAggregateComplianceByConfigRulesResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "DescribeComplianceByResourceRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "DescribeComplianceByResourceResponse$NextToken": "<p>The string that you use in a subsequent request to get the next page of results in a paginated response.</p>",
         "DescribeRetentionConfigurationsRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
         "DescribeRetentionConfigurationsResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
-        "GetAggregateComplianceDetailsByConfigRuleRequest$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
-        "GetAggregateComplianceDetailsByConfigRuleResponse$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
-        "GetAggregateConfigRuleComplianceSummaryRequest$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
-        "GetAggregateConfigRuleComplianceSummaryResponse$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
+        "GetAggregateComplianceDetailsByConfigRuleRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
+        "GetAggregateComplianceDetailsByConfigRuleResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
+        "GetAggregateConfigRuleComplianceSummaryRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
+        "GetAggregateConfigRuleComplianceSummaryResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "GetAggregateDiscoveredResourceCountsRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
         "GetAggregateDiscoveredResourceCountsResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "GetComplianceDetailsByConfigRuleRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
@@ -1425,8 +1503,8 @@
         "ListAggregateDiscoveredResourcesResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "ListDiscoveredResourcesRequest$nextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "ListDiscoveredResourcesResponse$nextToken": "<p>The string that you use in a subsequent request to get the next page of results in a paginated response.</p>",
-        "ListTagsForResourceRequest$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
-        "ListTagsForResourceResponse$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
+        "ListTagsForResourceRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
+        "ListTagsForResourceResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
         "SelectResourceConfigRequest$NextToken": "<p>The <code>nextToken</code> string returned in a previous request that you use to request the next page of results in a paginated response. </p>",
         "SelectResourceConfigResponse$NextToken": "<p>The <code>nextToken</code> string returned in a previous request that you use to request the next page of results in a paginated response. </p>"
       }
@@ -1442,7 +1520,7 @@
       }
     },
     "NoAvailableOrganizationException": {
-      "base": "<p>Organization does is no longer available.</p>",
+      "base": "<p>Organization is no longer available.</p>",
       "refs": {
       }
     },
@@ -1477,12 +1555,17 @@
       }
     },
     "NoSuchOrganizationConfigRuleException": {
-      "base": null,
+      "base": "<p>You specified one or more organization config rules that do not exist.</p>",
       "refs": {
       }
     },
     "NoSuchRemediationConfigurationException": {
       "base": "<p>You specified an AWS Config rule without a remediation configuration.</p>",
+      "refs": {
+      }
+    },
+    "NoSuchRemediationExceptionException": {
+      "base": "<p>You tried to delete a remediation exception that does not exist.</p>",
       "refs": {
       }
     },
@@ -1498,7 +1581,7 @@
       }
     },
     "OrganizationAccessDeniedException": {
-      "base": "<p>No permission to call the EnableAWSServiceAccess API.</p>",
+      "base": "<p>For PutConfigAggregator API, no permission to call EnableAWSServiceAccess API.</p> <p>For all OrganizationConfigRule APIs, AWS Config throws an exception if APIs are called from member accounts. All APIs must be called from organization master account.</p>",
       "refs": {
       }
     },
@@ -1510,12 +1593,12 @@
       }
     },
     "OrganizationAllFeaturesNotEnabledException": {
-      "base": "<p>The configuration aggregator cannot be created because organization does not have all features enabled.</p>",
+      "base": "<p>AWS Config resource cannot be created because your organization does not have all features enabled.</p>",
       "refs": {
       }
     },
     "OrganizationConfigRule": {
-      "base": null,
+      "base": "<p>An organization config rule that has information about config rules that AWS Config creates in member accounts.</p>",
       "refs": {
         "OrganizationConfigRules$member": null
       }
@@ -1523,18 +1606,18 @@
     "OrganizationConfigRuleDetailedStatus": {
       "base": null,
       "refs": {
-        "GetOrganizationConfigRuleDetailedStatusResponse$OrganizationConfigRuleDetailedStatus": null
+        "GetOrganizationConfigRuleDetailedStatusResponse$OrganizationConfigRuleDetailedStatus": "<p>A list of <code>MemberAccountStatus</code> objects.</p>"
       }
     },
     "OrganizationConfigRuleNames": {
       "base": null,
       "refs": {
-        "DescribeOrganizationConfigRuleStatusesRequest$OrganizationConfigRuleNames": null,
-        "DescribeOrganizationConfigRulesRequest$OrganizationConfigRuleNames": null
+        "DescribeOrganizationConfigRuleStatusesRequest$OrganizationConfigRuleNames": "<p>The names of organization config rules for which you want status details. If you do not specify any names, AWS Config returns details for all your organization AWS Confg rules.</p>",
+        "DescribeOrganizationConfigRulesRequest$OrganizationConfigRuleNames": "<p>The names of organization config rules for which you want details. If you do not specify any names, AWS Config returns details for all your organization config rules.</p>"
       }
     },
     "OrganizationConfigRuleStatus": {
-      "base": null,
+      "base": "<p>Returns the status for an organization config rule in an organization.</p>",
       "refs": {
         "OrganizationConfigRuleStatuses$member": null
       }
@@ -1542,7 +1625,7 @@
     "OrganizationConfigRuleStatuses": {
       "base": null,
       "refs": {
-        "DescribeOrganizationConfigRuleStatusesResponse$OrganizationConfigRuleStatuses": null
+        "DescribeOrganizationConfigRuleStatusesResponse$OrganizationConfigRuleStatuses": "<p>A list of <code>OrganizationConfigRuleStatus</code> objects.</p>"
       }
     },
     "OrganizationConfigRuleTriggerType": {
@@ -1554,33 +1637,33 @@
     "OrganizationConfigRuleTriggerTypes": {
       "base": null,
       "refs": {
-        "OrganizationCustomRuleMetadata$OrganizationConfigRuleTriggerTypes": null
+        "OrganizationCustomRuleMetadata$OrganizationConfigRuleTriggerTypes": "<p>The type of notification that triggers AWS Config to run an evaluation for a rule. You can specify the following notification types:</p> <ul> <li> <p> <code>ConfigurationItemChangeNotification</code> - Triggers an evaluation when AWS Config delivers a configuration item as a result of a resource change.</p> </li> <li> <p> <code>OversizedConfigurationItemChangeNotification</code> - Triggers an evaluation when AWS Config delivers an oversized configuration item. AWS Config may generate this notification type when a resource changes and the notification exceeds the maximum size allowed by Amazon SNS.</p> </li> <li> <p> <code>ScheduledNotification</code> - Triggers a periodic evaluation at the frequency specified for <code>MaximumExecutionFrequency</code>.</p> </li> </ul>"
       }
     },
     "OrganizationConfigRules": {
       "base": null,
       "refs": {
-        "DescribeOrganizationConfigRulesResponse$OrganizationConfigRules": null
+        "DescribeOrganizationConfigRulesResponse$OrganizationConfigRules": "<p>Retuns a list <code>OrganizationConfigRule</code> objects.</p>"
       }
     },
     "OrganizationCustomRuleMetadata": {
-      "base": null,
+      "base": "<p>An object that specifies organization custom rule metadata such as resource type, resource ID of AWS resource, Lamdba function ARN, and organization trigger types that trigger AWS Config to evaluate your AWS resources against a rule. It also provides the frequency with which you want AWS Config to run evaluations for the rule if the trigger type is periodic.</p>",
       "refs": {
-        "OrganizationConfigRule$OrganizationCustomRuleMetadata": null,
-        "PutOrganizationConfigRuleRequest$OrganizationCustomRuleMetadata": null
+        "OrganizationConfigRule$OrganizationCustomRuleMetadata": "<p>An <code>OrganizationCustomRuleMetadata</code> object.</p>",
+        "PutOrganizationConfigRuleRequest$OrganizationCustomRuleMetadata": "<p>An <code>OrganizationCustomRuleMetadata</code> object.</p>"
       }
     },
     "OrganizationManagedRuleMetadata": {
-      "base": null,
+      "base": "<p>An object that specifies organization managed rule metadata such as resource type and ID of AWS resource along with the rule identifier. It also provides the frequency with which you want AWS Config to run evaluations for the rule if the trigger type is periodic.</p>",
       "refs": {
-        "OrganizationConfigRule$OrganizationManagedRuleMetadata": null,
-        "PutOrganizationConfigRuleRequest$OrganizationManagedRuleMetadata": null
+        "OrganizationConfigRule$OrganizationManagedRuleMetadata": "<p>An <code>OrganizationManagedRuleMetadata</code> object.</p>",
+        "PutOrganizationConfigRuleRequest$OrganizationManagedRuleMetadata": "<p>An <code>OrganizationManagedRuleMetadata</code> object. </p>"
       }
     },
     "OrganizationRuleStatus": {
       "base": null,
       "refs": {
-        "OrganizationConfigRuleStatus$OrganizationRuleStatus": null
+        "OrganizationConfigRuleStatus$OrganizationRuleStatus": "<p>Indicates deployment status of an organization config rule. When master account calls PutOrganizationConfigRule action for the first time, config rule status is created in all the member accounts. When master account calls PutOrganizationConfigRule action for the second time, config rule status is updated in all the member accounts. Additionally, config rule status is updated when one or more member accounts join or leave an organization. Config rule status is deleted when the master account deletes OrganizationConfigRule in all the member accounts and disables service access for <code>config-multiaccountsetup.amazonaws.com</code>.</p> <p>AWS Config sets the state of the rule to:</p> <ul> <li> <p> <code>CREATE_SUCCESSFUL</code> when an organization config rule has been successfully created in all the member accounts. </p> </li> <li> <p> <code>CREATE_IN_PROGRESS</code> when an organization config rule creation is in progress.</p> </li> <li> <p> <code>CREATE_FAILED</code> when an organization config rule creation failed in one or more member accounts within that organization.</p> </li> <li> <p> <code>DELETE_FAILED</code> when an organization config rule deletion failed in one or more member accounts within that organization.</p> </li> <li> <p> <code>DELETE_IN_PROGRESS</code> when an organization config rule deletion is in progress.</p> </li> <li> <p> <code>DELETE_SUCCESSFUL</code> when an organization config rule has been successfully deleted from all the member accounts.</p> </li> <li> <p> <code>UPDATE_SUCCESSFUL</code> when an organization config rule has been successfully updated in all the member accounts.</p> </li> <li> <p> <code>UPDATE_IN_PROGRESS</code> when an organization config rule update is in progress.</p> </li> <li> <p> <code>UPDATE_FAILED</code> when an organization config rule update failed in one or more member accounts within that organization.</p> </li> </ul>"
       }
     },
     "OversizedConfigurationItemException": {
@@ -1604,6 +1687,13 @@
       "base": null,
       "refs": {
         "DescribePendingAggregationRequestsResponse$PendingAggregationRequests": "<p>Returns a PendingAggregationRequests object.</p>"
+      }
+    },
+    "Percentage": {
+      "base": null,
+      "refs": {
+        "SsmControls$ConcurrentExecutionRatePercentage": "<p>The maximum percentage of remediation actions allowed to run in parallel on the non-compliant resources for that specific rule. You can specify a percentage, such as 10%. The default value is 10. </p>",
+        "SsmControls$ErrorPercentage": "<p>The percentage of errors that are allowed before SSM stops running automations on non-compliant resources for that specific rule. You can specify a percentage of errors, for example 10%. If you do not specifiy a percentage, the default is 50%. For example, if you set the ErrorPercentage to 40% for 10 non-compliant resources, then SSM stops running the automations when the fifth error is received. </p>"
       }
     },
     "PutAggregationAuthorizationRequest": {
@@ -1667,6 +1757,16 @@
       }
     },
     "PutRemediationConfigurationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutRemediationExceptionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutRemediationExceptionsResponse": {
       "base": null,
       "refs": {
       }
@@ -1759,6 +1859,34 @@
         "PutRemediationConfigurationsRequest$RemediationConfigurations": "<p>A list of remediation configuration objects.</p>"
       }
     },
+    "RemediationException": {
+      "base": "<p>An object that represents the details about the remediation exception. The details include the rule name, an explanation of an exception, the time when the exception will be deleted, the resource ID, and resource type. </p>",
+      "refs": {
+        "RemediationExceptions$member": null
+      }
+    },
+    "RemediationExceptionResourceKey": {
+      "base": "<p>The details that identify a resource within AWS Config, including the resource type and resource ID. </p>",
+      "refs": {
+        "RemediationExceptionResourceKeys$member": null
+      }
+    },
+    "RemediationExceptionResourceKeys": {
+      "base": null,
+      "refs": {
+        "DeleteRemediationExceptionsRequest$ResourceKeys": "<p>An exception list of resource exception keys to be processed with the current request. AWS Config adds exception for each resource key. For example, AWS Config adds 3 exceptions for 3 resource keys. </p>",
+        "DescribeRemediationExceptionsRequest$ResourceKeys": "<p>An exception list of resource exception keys to be processed with the current request. AWS Config adds exception for each resource key. For example, AWS Config adds 3 exceptions for 3 resource keys. </p>",
+        "FailedDeleteRemediationExceptionsBatch$FailedItems": "<p>Returns remediation exception resource key object of the failed items.</p>",
+        "PutRemediationExceptionsRequest$ResourceKeys": "<p>An exception list of resource exception keys to be processed with the current request. AWS Config adds exception for each resource key. For example, AWS Config adds 3 exceptions for 3 resource keys. </p>"
+      }
+    },
+    "RemediationExceptions": {
+      "base": null,
+      "refs": {
+        "DescribeRemediationExceptionsResponse$RemediationExceptions": "<p>Returns a list of remediation exception objects.</p>",
+        "FailedRemediationExceptionBatch$FailedItems": "<p>Returns remediation exception resource key object of the failed items.</p>"
+      }
+    },
     "RemediationExecutionState": {
       "base": null,
       "refs": {
@@ -1796,7 +1924,7 @@
       }
     },
     "RemediationInProgressException": {
-      "base": null,
+      "base": "<p>Remediation action is in progress. You can either cancel execution in AWS Systems Manager or wait and try again later. </p>",
       "refs": {
       }
     },
@@ -1900,7 +2028,7 @@
       }
     },
     "ResourceInUseException": {
-      "base": "<p>The rule is currently being deleted or the rule is deleting your evaluation results. Try your request again later.</p>",
+      "base": "<p>You see this exception in the following cases: </p> <ul> <li> <p>For DeleteConfigRule API, AWS Config is deleting this rule. Try your request again later.</p> </li> <li> <p>For DeleteConfigRule API, the rule is deleting your evaluation results. Try your request again later.</p> </li> <li> <p>For DeleteConfigRule API, a remediation action is associated with the rule and AWS Config cannot delete this rule. Delete the remediation action associated with the rule before deleting the rule and try your request again later.</p> </li> <li> <p>For PutConfigOrganizationRule, organization config rule deletion is in progress. Try your request again later.</p> </li> <li> <p>For DeleteOrganizationConfigRule, organization config rule creation is in progress. Try your request again later.</p> </li> </ul>",
       "refs": {
       }
     },
@@ -1976,8 +2104,8 @@
     "ResourceTypesScope": {
       "base": null,
       "refs": {
-        "OrganizationCustomRuleMetadata$ResourceTypesScope": null,
-        "OrganizationManagedRuleMetadata$ResourceTypesScope": null
+        "OrganizationCustomRuleMetadata$ResourceTypesScope": "<p>The type of the AWS resource that was evaluated.</p>",
+        "OrganizationManagedRuleMetadata$ResourceTypesScope": "<p>The type of the AWS resource that was evaluated.</p>"
       }
     },
     "ResourceValue": {
@@ -2072,6 +2200,12 @@
         "Source$SourceDetails": "<p>Provides the source and type of the event that causes AWS Config to evaluate your AWS resources.</p>"
       }
     },
+    "SsmControls": {
+      "base": "<p>AWS Systems Manager (SSM) specific remediation controls.</p>",
+      "refs": {
+        "ExecutionControls$SsmControls": "<p>A SsmControls object.</p>"
+      }
+    },
     "StartConfigRulesEvaluationRequest": {
       "base": "<p/>",
       "refs": {
@@ -2110,9 +2244,9 @@
       }
     },
     "StatusDetailFilters": {
-      "base": null,
+      "base": "<p>Status filter object to filter results based on specific member account ID or status type for an organization config rule. </p>",
       "refs": {
-        "GetOrganizationConfigRuleDetailedStatusRequest$Filters": null
+        "GetOrganizationConfigRuleDetailedStatusRequest$Filters": "<p>A <code>StatusDetailFilters</code> object.</p>"
       }
     },
     "StopConfigurationRecorderRequest": {
@@ -2148,35 +2282,41 @@
         "DeliveryChannel$s3KeyPrefix": "<p>The prefix for the specified Amazon S3 bucket.</p>",
         "DeliveryChannel$snsTopicARN": "<p>The Amazon Resource Name (ARN) of the Amazon SNS topic to which AWS Config sends notifications about configuration changes.</p> <p>If you choose a topic from another account, the topic must have policies that grant access permissions to AWS Config. For more information, see <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/sns-topic-policy.html\">Permissions for the Amazon SNS Topic</a> in the AWS Config Developer Guide.</p>",
         "DeliveryChannelStatus$name": "<p>The name of the delivery channel.</p>",
-        "DescribeAggregationAuthorizationsRequest$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
-        "DescribeAggregationAuthorizationsResponse$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
+        "DescribeAggregationAuthorizationsRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
+        "DescribeAggregationAuthorizationsResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "DescribeComplianceByConfigRuleRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "DescribeComplianceByConfigRuleResponse$NextToken": "<p>The string that you use in a subsequent request to get the next page of results in a paginated response.</p>",
         "DescribeConfigRuleEvaluationStatusRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "DescribeConfigRuleEvaluationStatusResponse$NextToken": "<p>The string that you use in a subsequent request to get the next page of results in a paginated response.</p>",
         "DescribeConfigRulesRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "DescribeConfigRulesResponse$NextToken": "<p>The string that you use in a subsequent request to get the next page of results in a paginated response.</p>",
-        "DescribeConfigurationAggregatorSourcesStatusRequest$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
-        "DescribeConfigurationAggregatorSourcesStatusResponse$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
-        "DescribeConfigurationAggregatorsRequest$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
-        "DescribeConfigurationAggregatorsResponse$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
-        "DescribeOrganizationConfigRuleStatusesRequest$NextToken": null,
-        "DescribeOrganizationConfigRuleStatusesResponse$NextToken": null,
-        "DescribeOrganizationConfigRulesRequest$NextToken": null,
-        "DescribeOrganizationConfigRulesResponse$NextToken": null,
-        "DescribePendingAggregationRequestsRequest$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
-        "DescribePendingAggregationRequestsResponse$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
+        "DescribeConfigurationAggregatorSourcesStatusRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
+        "DescribeConfigurationAggregatorSourcesStatusResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
+        "DescribeConfigurationAggregatorsRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
+        "DescribeConfigurationAggregatorsResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
+        "DescribeOrganizationConfigRuleStatusesRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
+        "DescribeOrganizationConfigRuleStatusesResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
+        "DescribeOrganizationConfigRulesRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
+        "DescribeOrganizationConfigRulesResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
+        "DescribePendingAggregationRequestsRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
+        "DescribePendingAggregationRequestsResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
+        "DescribeRemediationExceptionsRequest$NextToken": "<p>The <code>nextToken</code> string returned in a previous request that you use to request the next page of results in a paginated response.</p>",
+        "DescribeRemediationExceptionsResponse$NextToken": "<p>The <code>nextToken</code> string returned in a previous request that you use to request the next page of results in a paginated response.</p>",
+        "DescribeRemediationExecutionStatusRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
+        "DescribeRemediationExecutionStatusResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "EvaluationResult$ResultToken": "<p>An encrypted token that associates an evaluation with an AWS Config rule. The token identifies the rule, the AWS resource being evaluated, and the event that triggered the evaluation.</p>",
+        "FailedDeleteRemediationExceptionsBatch$FailureMessage": "<p>Returns a failure message for delete remediation exception. For example, AWS Config creates an exception due to an internal error.</p>",
         "FailedRemediationBatch$FailureMessage": "<p>Returns a failure message. For example, the resource is already compliant.</p>",
+        "FailedRemediationExceptionBatch$FailureMessage": "<p>Returns a failure message. For example, the auto-remediation has failed.</p>",
         "GetComplianceDetailsByResourceRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "GetComplianceDetailsByResourceResponse$NextToken": "<p>The string that you use in a subsequent request to get the next page of results in a paginated response.</p>",
-        "GetOrganizationConfigRuleDetailedStatusRequest$NextToken": null,
-        "GetOrganizationConfigRuleDetailedStatusResponse$NextToken": null,
-        "MemberAccountStatus$ErrorCode": null,
-        "MemberAccountStatus$ErrorMessage": null,
+        "GetOrganizationConfigRuleDetailedStatusRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
+        "GetOrganizationConfigRuleDetailedStatusResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
+        "MemberAccountStatus$ErrorCode": "<p>An error code that is returned when config rule creation or deletion failed in the member account.</p>",
+        "MemberAccountStatus$ErrorMessage": "<p>An error message indicating that config rule account creation or deletion has failed due to an error in the member account.</p>",
         "OrganizationAggregationSource$RoleArn": "<p>ARN of the IAM role used to retrieve AWS Organization details associated with the aggregator account.</p>",
-        "OrganizationConfigRuleStatus$ErrorCode": null,
-        "OrganizationConfigRuleStatus$ErrorMessage": null,
+        "OrganizationConfigRuleStatus$ErrorCode": "<p>An error code that is returned when organization config rule creation or deletion has failed.</p>",
+        "OrganizationConfigRuleStatus$ErrorMessage": "<p>An error message indicating that organization config rule creation or deletion failed due to an error.</p>",
         "PutEvaluationsRequest$ResultToken": "<p>An encrypted token that associates an evaluation with an AWS Config rule. Identifies the rule and the event that triggered the evaluation.</p>",
         "RemediationConfiguration$TargetVersion": "<p>Version of the target. For example, version of the SSM document.</p>",
         "RemediationConfiguration$ResourceType": "<p>The type of a resource. </p>",
@@ -2189,22 +2329,28 @@
     "StringWithCharLimit1024": {
       "base": null,
       "refs": {
-        "ConfigRule$InputParameters": "<p>A string, in JSON format, that is passed to the AWS Config rule Lambda function.</p>"
+        "ConfigRule$InputParameters": "<p>A string, in JSON format, that is passed to the AWS Config rule Lambda function.</p>",
+        "PutRemediationExceptionsRequest$Message": "<p>The message contains an explanation of the exception.</p>",
+        "RemediationConfiguration$Arn": "<p>Amazon Resource Name (ARN) of remediation configuration.</p>",
+        "RemediationConfiguration$CreatedByService": "<p>Name of the service that owns the service linked rule, if applicable.</p>",
+        "RemediationException$ResourceId": "<p>The ID of the resource (for example., sg-xxxxxx).</p>",
+        "RemediationException$Message": "<p>An explanation of an remediation exception.</p>",
+        "RemediationExceptionResourceKey$ResourceId": "<p>The ID of the resource (for example., sg-xxxxxx).</p>"
       }
     },
     "StringWithCharLimit128": {
       "base": null,
       "refs": {
-        "OrganizationCustomRuleMetadata$TagKeyScope": null,
-        "OrganizationManagedRuleMetadata$TagKeyScope": null,
+        "OrganizationCustomRuleMetadata$TagKeyScope": "<p>One part of a key-value pair that make up a tag. A key is a general label that acts like a category for more specific tag values. </p>",
+        "OrganizationManagedRuleMetadata$TagKeyScope": "<p>One part of a key-value pair that make up a tag. A key is a general label that acts like a category for more specific tag values. </p>",
         "Scope$TagKey": "<p>The tag key that is applied to only those AWS resources that you want to trigger an evaluation for the rule.</p>"
       }
     },
     "StringWithCharLimit2048": {
       "base": null,
       "refs": {
-        "OrganizationCustomRuleMetadata$InputParameters": null,
-        "OrganizationManagedRuleMetadata$InputParameters": null
+        "OrganizationCustomRuleMetadata$InputParameters": "<p>A string, in JSON format, that is passed to organization config rule Lambda function.</p>",
+        "OrganizationManagedRuleMetadata$InputParameters": "<p>A string, in JSON format, that is passed to organization config rule Lambda function.</p>"
       }
     },
     "StringWithCharLimit256": {
@@ -2217,8 +2363,6 @@
         "ComplianceSummaryByResourceType$ResourceType": "<p>The type of AWS resource.</p>",
         "ConfigRule$CreatedBy": "<p>Service principal name of the service that created the rule.</p> <note> <p>The field is populated only if the service linked rule is created by a service. The field is empty if you create your own rule.</p> </note>",
         "DescribeComplianceByResourceRequest$ResourceType": "<p>The types of AWS resources for which you want compliance information (for example, <code>AWS::EC2::Instance</code>). For this action, you can specify that the resource type is an AWS account by specifying <code>AWS::::Account</code>.</p>",
-        "DescribeRemediationExecutionStatusRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
-        "DescribeRemediationExecutionStatusResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "Evaluation$ComplianceResourceType": "<p>The type of AWS resource that was evaluated.</p>",
         "Evaluation$Annotation": "<p>Supplementary information about how the evaluation determined the compliance.</p>",
         "EvaluationResult$Annotation": "<p>Supplementary information about how the evaluation determined the compliance.</p>",
@@ -2227,13 +2371,15 @@
         "GetAggregateDiscoveredResourceCountsResponse$GroupByKey": "<p>The key passed into the request object. If <code>GroupByKey</code> is not provided, the result will be empty.</p>",
         "GetComplianceDetailsByResourceRequest$ResourceType": "<p>The type of the AWS resource for which you want compliance information.</p>",
         "GroupedResourceCount$GroupName": "<p>The name of the group that can be region, account ID, or resource type. For example, region1, region2 if the region was chosen as <code>GroupByKey</code>.</p>",
-        "OrganizationConfigRule$OrganizationConfigRuleArn": null,
-        "OrganizationCustomRuleMetadata$LambdaFunctionArn": null,
-        "OrganizationCustomRuleMetadata$TagValueScope": null,
-        "OrganizationManagedRuleMetadata$RuleIdentifier": null,
-        "OrganizationManagedRuleMetadata$TagValueScope": null,
-        "PutOrganizationConfigRuleResponse$OrganizationConfigRuleArn": null,
+        "OrganizationConfigRule$OrganizationConfigRuleArn": "<p>The Amazon Resource Name (ARN) of organization config rule.</p>",
+        "OrganizationCustomRuleMetadata$LambdaFunctionArn": "<p>The lambda function ARN.</p>",
+        "OrganizationCustomRuleMetadata$TagValueScope": "<p>The optional part of a key-value pair that make up a tag. A value acts as a descriptor within a tag category (key). </p>",
+        "OrganizationManagedRuleMetadata$RuleIdentifier": "<p>For organization config managed rules, a predefined identifier from a list. For example, <code>IAM_PASSWORD_POLICY</code> is a managed rule. To reference a managed rule, see <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html\">Using AWS Managed Config Rules</a>.</p>",
+        "OrganizationManagedRuleMetadata$TagValueScope": "<p>The optional part of a key-value pair that make up a tag. A value acts as a descriptor within a tag category (key).</p>",
+        "PutOrganizationConfigRuleResponse$OrganizationConfigRuleArn": "<p>The Amazon Resource Name (ARN) of an organization config rule.</p>",
         "RemediationConfiguration$TargetId": "<p>Target ID is the name of the public document.</p>",
+        "RemediationException$ResourceType": "<p>The type of a resource.</p>",
+        "RemediationExceptionResourceKey$ResourceType": "<p>The type of a resource.</p>",
         "RemediationParameters$key": null,
         "ResourceTypes$member": null,
         "ResourceTypesScope$member": null,
@@ -2245,8 +2391,8 @@
     "StringWithCharLimit256Min0": {
       "base": null,
       "refs": {
-        "OrganizationCustomRuleMetadata$Description": null,
-        "OrganizationManagedRuleMetadata$Description": null
+        "OrganizationCustomRuleMetadata$Description": "<p>The description that you provide for organization config rule.</p>",
+        "OrganizationManagedRuleMetadata$Description": "<p>The description that you provide for organization config rule.</p>"
       }
     },
     "StringWithCharLimit64": {
@@ -2255,30 +2401,25 @@
         "ComplianceByConfigRule$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
         "ConfigRule$ConfigRuleName": "<p>The name that you assign to the AWS Config rule. The name is required if you are adding a new rule.</p>",
         "ConfigRuleEvaluationStatus$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
-        "ConfigRuleNames$member": null,
         "DeleteConfigRuleRequest$ConfigRuleName": "<p>The name of the AWS Config rule that you want to delete.</p>",
         "DeleteEvaluationResultsRequest$ConfigRuleName": "<p>The name of the AWS Config rule for which you want to delete the evaluation results.</p>",
-        "DeleteOrganizationConfigRuleRequest$OrganizationConfigRuleName": null,
-        "DeleteRemediationConfigurationRequest$ConfigRuleName": "<p>The name of the AWS Config rule for which you want to delete remediation configuration.</p>",
-        "DescribeRemediationExecutionStatusRequest$ConfigRuleName": "<p>A list of AWS Config rule names.</p>",
+        "DeleteOrganizationConfigRuleRequest$OrganizationConfigRuleName": "<p>The name of organization config rule that you want to delete.</p>",
         "EvaluationResultQualifier$ConfigRuleName": "<p>The name of the AWS Config rule that was used in the evaluation.</p>",
         "GetComplianceDetailsByConfigRuleRequest$ConfigRuleName": "<p>The name of the AWS Config rule for which you want compliance information.</p>",
-        "GetOrganizationConfigRuleDetailedStatusRequest$OrganizationConfigRuleName": null,
-        "MemberAccountStatus$ConfigRuleName": null,
-        "OrganizationConfigRule$OrganizationConfigRuleName": null,
+        "GetOrganizationConfigRuleDetailedStatusRequest$OrganizationConfigRuleName": "<p>The name of organization config rule for which you want status details for member accounts.</p>",
+        "MemberAccountStatus$ConfigRuleName": "<p>The name of config rule deployed in the member account.</p>",
+        "OrganizationConfigRule$OrganizationConfigRuleName": "<p>The name that you assign to organization config rule.</p>",
         "OrganizationConfigRuleNames$member": null,
-        "OrganizationConfigRuleStatus$OrganizationConfigRuleName": null,
-        "PutOrganizationConfigRuleRequest$OrganizationConfigRuleName": null,
-        "ReevaluateConfigRuleNames$member": null,
-        "RemediationConfiguration$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
-        "StartRemediationExecutionRequest$ConfigRuleName": "<p>The list of names of AWS Config rules that you want to run remediation execution for.</p>"
+        "OrganizationConfigRuleStatus$OrganizationConfigRuleName": "<p>The name that you assign to organization config rule.</p>",
+        "PutOrganizationConfigRuleRequest$OrganizationConfigRuleName": "<p>The name that you assign to an organization config rule.</p>",
+        "ReevaluateConfigRuleNames$member": null
       }
     },
     "StringWithCharLimit768": {
       "base": null,
       "refs": {
-        "OrganizationCustomRuleMetadata$ResourceIdScope": null,
-        "OrganizationManagedRuleMetadata$ResourceIdScope": null
+        "OrganizationCustomRuleMetadata$ResourceIdScope": "<p>The ID of the AWS resource that was evaluated.</p>",
+        "OrganizationManagedRuleMetadata$ResourceIdScope": "<p>The ID of the AWS resource that was evaluated.</p>"
       }
     },
     "SupplementaryConfiguration": {
@@ -2347,9 +2488,9 @@
     "TagsList": {
       "base": null,
       "refs": {
-        "PutAggregationAuthorizationRequest$Tags": null,
-        "PutConfigRuleRequest$Tags": null,
-        "PutConfigurationAggregatorRequest$Tags": null
+        "PutAggregationAuthorizationRequest$Tags": "<p>An array of tag object.</p>",
+        "PutConfigRuleRequest$Tags": "<p>An array of tag object.</p>",
+        "PutConfigurationAggregatorRequest$Tags": "<p>An array of tag object.</p>"
       }
     },
     "TooManyTagsException": {
