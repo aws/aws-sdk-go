@@ -1,3 +1,13 @@
+Release v1.23.17 (2019-09-06)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/kinesisanalytics`: Updates service documentation
+  * Documentation updates for kinesisanalytics
+
+### SDK Bugs
+* `awstesting`: Fixes AssertXML to correctly assert on differences ([#2804](https://github.com/aws/aws-sdk-go/pull/2804))
 Release v1.23.16 (2019-09-05)
 ===
 
