@@ -1,8 +1,10 @@
 package processcreds_test
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"os"
 	"os/exec"
@@ -385,19 +387,23 @@ func TestProcessProviderNotExpired(t *testing.T) {
 		t.Errorf("expected %v, got %v", "no error", err)
 	}
 
-	tmpFile := strings.Join(
-		[]string{"testdata", "tmp_expiring.json"},
-		string(os.PathSeparator))
-	if err = ioutil.WriteFile(tmpFile, b, 0644); err != nil {
+	tmpFile, err := ioutil.TempFile(os.TempDir(), "tmp_expiring")
+	if err != nil {
+		t.Errorf("expected %v, got %v", "no error", err)
+	}
+	if _, err = io.Copy(tmpFile, bytes.NewReader(b)); err != nil {
 		t.Errorf("expected %v, got %v", "no error", err)
 	}
 	defer func() {
-		if err = os.Remove(tmpFile); err != nil {
+		if err = tmpFile.Close(); err != nil {
+			t.Errorf("expected %v, got %v", "no error", err)
+		}
+		if err = os.Remove(tmpFile.Name()); err != nil {
 			t.Errorf("expected %v, got %v", "no error", err)
 		}
 	}()
 	creds := processcreds.NewCredentials(
-		fmt.Sprintf("%s %s", getOSCat(), tmpFile))
+		fmt.Sprintf("%s %s", getOSCat(), tmpFile.Name()))
 	_, err = creds.Get()
 	if err != nil {
 		t.Errorf("expected %v, got %v", "no error", err)
@@ -422,19 +428,23 @@ func TestProcessProviderExpired(t *testing.T) {
 		t.Errorf("expected %v, got %v", "no error", err)
 	}
 
-	tmpFile := strings.Join(
-		[]string{"testdata", "tmp_expired.json"},
-		string(os.PathSeparator))
-	if err = ioutil.WriteFile(tmpFile, b, 0644); err != nil {
+	tmpFile, err := ioutil.TempFile(os.TempDir(), "tmp_expired")
+	if err != nil {
+		t.Errorf("expected %v, got %v", "no error", err)
+	}
+	if _, err = io.Copy(tmpFile, bytes.NewReader(b)); err != nil {
 		t.Errorf("expected %v, got %v", "no error", err)
 	}
 	defer func() {
-		if err = os.Remove(tmpFile); err != nil {
+		if err = tmpFile.Close(); err != nil {
+			t.Errorf("expected %v, got %v", "no error", err)
+		}
+		if err = os.Remove(tmpFile.Name()); err != nil {
 			t.Errorf("expected %v, got %v", "no error", err)
 		}
 	}()
 	creds := processcreds.NewCredentials(
-		fmt.Sprintf("%s %s", getOSCat(), tmpFile))
+		fmt.Sprintf("%s %s", getOSCat(), tmpFile.Name()))
 	_, err = creds.Get()
 	if err != nil {
 		t.Errorf("expected %v, got %v", "no error", err)
@@ -460,21 +470,25 @@ func TestProcessProviderForceExpire(t *testing.T) {
 	if err != nil {
 		t.Errorf("expected %v, got %v", "no error", err)
 	}
-	tmpFile := strings.Join(
-		[]string{"testdata", "tmp_force_expire.json"},
-		string(os.PathSeparator))
-	if err = ioutil.WriteFile(tmpFile, b, 0644); err != nil {
+	tmpFile, err := ioutil.TempFile(os.TempDir(), "tmp_force_expire")
+	if err != nil {
+		t.Errorf("expected %v, got %v", "no error", err)
+	}
+	if _, err = io.Copy(tmpFile, bytes.NewReader(b)); err != nil {
 		t.Errorf("expected %v, got %v", "no error", err)
 	}
 	defer func() {
-		if err = os.Remove(tmpFile); err != nil {
+		if err = tmpFile.Close(); err != nil {
+			t.Errorf("expected %v, got %v", "no error", err)
+		}
+		if err = os.Remove(tmpFile.Name()); err != nil {
 			t.Errorf("expected %v, got %v", "no error", err)
 		}
 	}()
 
 	// get credentials from file
 	creds := processcreds.NewCredentials(
-		fmt.Sprintf("%s %s", getOSCat(), tmpFile))
+		fmt.Sprintf("%s %s", getOSCat(), tmpFile.Name()))
 	if _, err = creds.Get(); err != nil {
 		t.Errorf("expected %v, got %v", "no error", err)
 	}
