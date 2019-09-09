@@ -1,3 +1,21 @@
+Release v1.23.18 (2019-09-09)
+===
+
+### Service Client Updates
+* `service/appmesh`: Updates service API and documentation
+* `service/appstream`: Updates service API and documentation
+  * IamRoleArn support in CreateFleet, UpdateFleet, CreateImageBuilder APIs
+* `service/ec2`: Updates service API and documentation
+  * This release expands Site-to-Site VPN tunnel options to allow customers to restrict security algorithms and configure timer settings for VPN connections. Customers can specify these new options while creating new VPN connections, or they can modify the tunnel options on existing connections using a new API.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/marketplacecommerceanalytics`: Updates service API and documentation
+  * Add FDP+FPS (monthly_revenue_field_demonstration_usage + monthly_revenue_flexible_payment_schedule)  to Marketplace Commerce Analytics Service
+* `service/qldb`: Adds new service
+* `service/qldb-session`: Adds new service
+* `service/robomaker`: Updates service API and documentation
+
+### SDK Bugs
+* Fixed failing tests when executed as a module dependency ([#2817](https://github.com/aws/aws-sdk-go/pull/2817))
 Release v1.23.17 (2019-09-06)
 ===
 

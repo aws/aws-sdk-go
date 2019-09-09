@@ -180,7 +180,8 @@
       "output":{"shape":"CreateUsageReportSubscriptionResult"},
       "errors":[
         {"shape":"InvalidRoleException"},
-        {"shape":"InvalidAccountStatusException"}
+        {"shape":"InvalidAccountStatusException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "CreateUser":{
@@ -522,7 +523,8 @@
         {"shape":"LimitExceededException"},
         {"shape":"InvalidAccountStatusException"},
         {"shape":"ConcurrentModificationException"},
-        {"shape":"ResourceNotAvailableException"}
+        {"shape":"ResourceNotAvailableException"},
+        {"shape":"InvalidRoleException"}
       ]
     },
     "StartImageBuilder":{
@@ -896,7 +898,8 @@
         "EnableDefaultInternetAccess":{"shape":"BooleanObject"},
         "DomainJoinInfo":{"shape":"DomainJoinInfo"},
         "Tags":{"shape":"Tags"},
-        "IdleDisconnectTimeoutInSeconds":{"shape":"Integer"}
+        "IdleDisconnectTimeoutInSeconds":{"shape":"Integer"},
+        "IamRoleArn":{"shape":"Arn"}
       }
     },
     "CreateFleetResult":{
@@ -919,6 +922,7 @@
         "Description":{"shape":"Description"},
         "DisplayName":{"shape":"DisplayName"},
         "VpcConfig":{"shape":"VpcConfig"},
+        "IamRoleArn":{"shape":"Arn"},
         "EnableDefaultInternetAccess":{"shape":"BooleanObject"},
         "DomainJoinInfo":{"shape":"DomainJoinInfo"},
         "AppstreamAgentVersion":{"shape":"AppstreamAgentVersion"},
@@ -1430,7 +1434,8 @@
         "FleetErrors":{"shape":"FleetErrors"},
         "EnableDefaultInternetAccess":{"shape":"BooleanObject"},
         "DomainJoinInfo":{"shape":"DomainJoinInfo"},
-        "IdleDisconnectTimeoutInSeconds":{"shape":"Integer"}
+        "IdleDisconnectTimeoutInSeconds":{"shape":"Integer"},
+        "IamRoleArn":{"shape":"Arn"}
       }
     },
     "FleetAttribute":{
@@ -1438,7 +1443,8 @@
       "enum":[
         "VPC_CONFIGURATION",
         "VPC_CONFIGURATION_SECURITY_GROUP_IDS",
-        "DOMAIN_JOIN_INFO"
+        "DOMAIN_JOIN_INFO",
+        "IAM_ROLE_ARN"
       ]
     },
     "FleetAttributes":{
@@ -1461,6 +1467,7 @@
         "NETWORK_INTERFACE_LIMIT_EXCEEDED",
         "INTERNAL_SERVICE_ERROR",
         "IAM_SERVICE_ROLE_IS_MISSING",
+        "MACHINE_ROLE_IS_MISSING",
         "STS_DISABLED_IN_REGION",
         "SUBNET_HAS_INSUFFICIENT_IP_ADDRESSES",
         "IAM_SERVICE_ROLE_MISSING_DESCRIBE_SUBNET_ACTION",
@@ -1542,6 +1549,7 @@
         "VpcConfig":{"shape":"VpcConfig"},
         "InstanceType":{"shape":"String"},
         "Platform":{"shape":"PlatformType"},
+        "IamRoleArn":{"shape":"Arn"},
         "State":{"shape":"ImageBuilderState"},
         "StateChangeReason":{"shape":"ImageBuilderStateChangeReason"},
         "CreatedTime":{"shape":"Timestamp"},
@@ -1929,6 +1937,7 @@
         "FEEDBACK_URL",
         "THEME_NAME",
         "USER_SETTINGS",
+        "IAM_ROLE_ARN",
         "ACCESS_ENDPOINTS"
       ]
     },
@@ -2141,7 +2150,8 @@
         "EnableDefaultInternetAccess":{"shape":"BooleanObject"},
         "DomainJoinInfo":{"shape":"DomainJoinInfo"},
         "IdleDisconnectTimeoutInSeconds":{"shape":"Integer"},
-        "AttributesToDelete":{"shape":"FleetAttributes"}
+        "AttributesToDelete":{"shape":"FleetAttributes"},
+        "IamRoleArn":{"shape":"Arn"}
       }
     },
     "UpdateFleetResult":{

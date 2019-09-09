@@ -44,7 +44,7 @@
     "CreateCapacityReservation": "<p>Creates a new Capacity Reservation with the specified attributes.</p> <p>Capacity Reservations enable you to reserve capacity for your Amazon EC2 instances in a specific Availability Zone for any duration. This gives you the flexibility to selectively add capacity reservations and still get the Regional RI discounts for that usage. By creating Capacity Reservations, you ensure that you always have access to Amazon EC2 capacity when you need it, for as long as you need it. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-capacity-reservations.html\">Capacity Reservations</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Your request to create a Capacity Reservation could fail if Amazon EC2 does not have sufficient capacity to fulfill the request. If your request fails due to Amazon EC2 capacity constraints, either try again at a later time, try in a different Availability Zone, or request a smaller capacity reservation. If your application is flexible across instance types and sizes, try to create a Capacity Reservation with different instance attributes.</p> <p>Your request could also fail if the requested quantity exceeds your On-Demand Instance limit for the selected instance type. If your request fails due to limit constraints, increase your On-Demand Instance limit for the required instance type and try again. For more information about increasing your instance limits, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html\">Amazon EC2 Service Limits</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "CreateClientVpnEndpoint": "<p>Creates a Client VPN endpoint. A Client VPN endpoint is the resource you create and configure to enable and manage client VPN sessions. It is the destination endpoint at which all client VPN sessions are terminated.</p>",
     "CreateClientVpnRoute": "<p>Adds a route to a network to a Client VPN endpoint. Each Client VPN endpoint has a route table that describes the available destination network routes. Each route in the route table specifies the path for traﬃc to speciﬁc resources or networks.</p>",
-    "CreateCustomerGateway": "<p>Provides information to AWS about your VPN customer gateway device. The customer gateway is the appliance at your end of the VPN connection. (The device on the AWS side of the VPN connection is the virtual private gateway.) You must provide the Internet-routable IP address of the customer gateway's external interface. The IP address must be static and may be behind a device performing network address translation (NAT).</p> <p>For devices that use Border Gateway Protocol (BGP), you can also provide the device's BGP Autonomous System Number (ASN). You can use an existing ASN assigned to your network. If you don't have an ASN already, you can use a private ASN (in the 64512 - 65534 range).</p> <note> <p>Amazon EC2 supports all 2-byte ASN numbers in the range of 1 - 65534, with the exception of 7224, which is reserved in the <code>us-east-1</code> Region, and 9059, which is reserved in the <code>eu-west-1</code> Region.</p> </note> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html\">AWS Site-to-Site VPN</a> in the <i>AWS Site-to-Site VPN User Guide</i>.</p> <important> <p>You cannot create more than one customer gateway with the same VPN type, IP address, and BGP ASN parameter values. If you run an identical request more than one time, the first request creates the customer gateway, and subsequent requests return information about the existing customer gateway. The subsequent requests do not create new customer gateway resources.</p> </important>",
+    "CreateCustomerGateway": "<p>Provides information to AWS about your VPN customer gateway device. The customer gateway is the appliance at your end of the VPN connection. (The device on the AWS side of the VPN connection is the virtual private gateway.) You must provide the Internet-routable IP address of the customer gateway's external interface. The IP address must be static and can be behind a device performing network address translation (NAT).</p> <p>For devices that use Border Gateway Protocol (BGP), you can also provide the device's BGP Autonomous System Number (ASN). You can use an existing ASN assigned to your network. If you don't have an ASN already, you can use a private ASN (in the 64512 - 65534 range).</p> <note> <p>Amazon EC2 supports all 2-byte ASN numbers in the range of 1 - 65534, with the exception of 7224, which is reserved in the <code>us-east-1</code> Region, and 9059, which is reserved in the <code>eu-west-1</code> Region.</p> </note> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html\">AWS Site-to-Site VPN</a> in the <i>AWS Site-to-Site VPN User Guide</i>.</p> <important> <p>You cannot create more than one customer gateway with the same VPN type, IP address, and BGP ASN parameter values. If you run an identical request more than one time, the first request creates the customer gateway, and subsequent requests return information about the existing customer gateway. The subsequent requests do not create new customer gateway resources.</p> </important>",
     "CreateDefaultSubnet": "<p>Creates a default subnet with a size <code>/20</code> IPv4 CIDR block in the specified Availability Zone in your default VPC. You can have only one default subnet per Availability Zone. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#create-default-subnet\">Creating a Default Subnet</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "CreateDefaultVpc": "<p>Creates a default VPC with a size <code>/16</code> IPv4 CIDR block and a default subnet in each Availability Zone. For more information about the components of a default VPC, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html\">Default VPC and Default Subnets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>. You cannot specify the components of the default VPC yourself.</p> <p>If you deleted your previous default VPC, you can create a default VPC. You cannot have more than one default VPC per Region.</p> <p>If your account supports EC2-Classic, you cannot use this action to create a default VPC in a Region that supports EC2-Classic. If you want a default VPC in a Region that supports EC2-Classic, see \"I really want a default VPC for my existing EC2 account. Is that possible?\" in the <a href=\"http://aws.amazon.com/vpc/faqs/#Default_VPCs\">Default VPCs FAQ</a>.</p>",
     "CreateDhcpOptions": "<p>Creates a set of DHCP options for your VPC. After creating the set, you must associate it with the VPC, causing all existing and new instances that you launch in the VPC to use this set of DHCP options. The following are the individual DHCP options you can specify. For more information about the options, see <a href=\"http://www.ietf.org/rfc/rfc2132.txt\">RFC 2132</a>.</p> <ul> <li> <p> <code>domain-name-servers</code> - The IP addresses of up to four domain name servers, or AmazonProvidedDNS. The default DHCP option set specifies AmazonProvidedDNS. If specifying more than one domain name server, specify the IP addresses in a single parameter, separated by commas. To have your instance receive a custom DNS hostname as specified in <code>domain-name</code>, you must set <code>domain-name-servers</code> to a custom DNS server.</p> </li> <li> <p> <code>domain-name</code> - If you're using AmazonProvidedDNS in <code>us-east-1</code>, specify <code>ec2.internal</code>. If you're using AmazonProvidedDNS in another Region, specify <code>region.compute.internal</code> (for example, <code>ap-northeast-1.compute.internal</code>). Otherwise, specify a domain name (for example, <code>MyCompany.com</code>). This value is used to complete unqualified DNS hostnames. <b>Important</b>: Some Linux operating systems accept multiple domain names separated by spaces. However, Windows and other Linux operating systems treat the value as a single domain, which results in unexpected behavior. If your DHCP options set is associated with a VPC that has instances with multiple operating systems, specify only one domain name.</p> </li> <li> <p> <code>ntp-servers</code> - The IP addresses of up to four Network Time Protocol (NTP) servers.</p> </li> <li> <p> <code>netbios-name-servers</code> - The IP addresses of up to four NetBIOS name servers.</p> </li> <li> <p> <code>netbios-node-type</code> - The NetBIOS node type (1, 2, 4, or 8). We recommend that you specify 2 (broadcast and multicast are not currently supported). For more information about these node types, see <a href=\"http://www.ietf.org/rfc/rfc2132.txt\">RFC 2132</a>.</p> </li> </ul> <p>Your VPC automatically starts out with a set of DHCP options that includes only a DNS server that we provide (AmazonProvidedDNS). If you create a set of options, and if your VPC has an internet gateway, make sure to set the <code>domain-name-servers</code> option either to <code>AmazonProvidedDNS</code> or to a domain name server of your choice. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html\">DHCP Options Sets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
@@ -87,7 +87,7 @@
     "CreateVpcEndpointConnectionNotification": "<p>Creates a connection notification for a specified VPC endpoint or VPC endpoint service. A connection notification notifies you of specific endpoint events. You must create an SNS topic to receive notifications. For more information, see <a href=\"https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html\">Create a Topic</a> in the <i>Amazon Simple Notification Service Developer Guide</i>.</p> <p>You can create a connection notification for interface endpoints only.</p>",
     "CreateVpcEndpointServiceConfiguration": "<p>Creates a VPC endpoint service configuration to which service consumers (AWS accounts, IAM users, and IAM roles) can connect. Service consumers can create an interface VPC endpoint to connect to your service.</p> <p>To create an endpoint service configuration, you must first create a Network Load Balancer for your service. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-service.html\">VPC Endpoint Services</a> in the <i>Amazon Virtual Private Cloud User Guide</i>. </p>",
     "CreateVpcPeeringConnection": "<p>Requests a VPC peering connection between two VPCs: a requester VPC that you own and an accepter VPC with which to create the connection. The accepter VPC can belong to another AWS account and can be in a different Region to the requester VPC. The requester VPC and accepter VPC cannot have overlapping CIDR blocks.</p> <note> <p>Limitations and rules apply to a VPC peering connection. For more information, see the <a href=\"https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-basics.html#vpc-peering-limitations\">limitations</a> section in the <i>VPC Peering Guide</i>.</p> </note> <p>The owner of the accepter VPC must accept the peering request to activate the peering connection. The VPC peering connection request expires after 7 days, after which it cannot be accepted or rejected.</p> <p>If you create a VPC peering connection request between VPCs with overlapping CIDR blocks, the VPC peering connection has a status of <code>failed</code>.</p>",
-    "CreateVpnConnection": "<p>Creates a VPN connection between an existing virtual private gateway and a VPN customer gateway. The supported connection types is <code>ipsec.1</code>.</p> <p>The response includes information that you need to give to your network administrator to configure your customer gateway.</p> <important> <p>We strongly recommend that you use HTTPS when calling this operation because the response contains sensitive cryptographic information for configuring your customer gateway.</p> </important> <p>If you decide to shut down your VPN connection for any reason and later create a new VPN connection, you must reconfigure your customer gateway with the new information returned from this call.</p> <p>This is an idempotent operation. If you perform the operation more than once, Amazon EC2 doesn't return an error.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html\">AWS Site-to-Site VPN</a> in the <i>AWS Site-to-Site VPN User Guide</i>.</p>",
+    "CreateVpnConnection": "<p>Creates a VPN connection between an existing virtual private gateway and a VPN customer gateway. The supported connection type is <code>ipsec.1</code>.</p> <p>The response includes information that you need to give to your network administrator to configure your customer gateway.</p> <important> <p>We strongly recommend that you use HTTPS when calling this operation because the response contains sensitive cryptographic information for configuring your customer gateway.</p> </important> <p>If you decide to shut down your VPN connection for any reason and later create a new VPN connection, you must reconfigure your customer gateway with the new information returned from this call.</p> <p>This is an idempotent operation. If you perform the operation more than once, Amazon EC2 doesn't return an error.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html\">AWS Site-to-Site VPN</a> in the <i>AWS Site-to-Site VPN User Guide</i>.</p>",
     "CreateVpnConnectionRoute": "<p>Creates a static route associated with a VPN connection between an existing virtual private gateway and a VPN customer gateway. The static route allows traffic to be routed from the virtual private gateway to the VPN customer gateway.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html\">AWS Site-to-Site VPN</a> in the <i>AWS Site-to-Site VPN User Guide</i>.</p>",
     "CreateVpnGateway": "<p>Creates a virtual private gateway. A virtual private gateway is the endpoint on the VPC side of your VPN connection. You can create a virtual private gateway before creating the VPC itself.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html\">AWS Site-to-Site VPN</a> in the <i>AWS Site-to-Site VPN User Guide</i>.</p>",
     "DeleteClientVpnEndpoint": "<p>Deletes the specified Client VPN endpoint. You must disassociate all target networks before you can delete a Client VPN endpoint.</p>",
@@ -311,8 +311,9 @@
     "ModifyVpcEndpointServicePermissions": "<p>Modifies the permissions for your <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-service.html\">VPC endpoint service</a>. You can add or remove permissions for service consumers (IAM users, IAM roles, and AWS accounts) to connect to your endpoint service.</p> <p>If you grant permissions to all principals, the service is public. Any users who know the name of a public service can send a request to attach an endpoint. If the service does not require manual approval, attachments are automatically approved.</p>",
     "ModifyVpcPeeringConnectionOptions": "<p>Modifies the VPC peering connection options on one side of a VPC peering connection. You can do the following:</p> <ul> <li> <p>Enable/disable communication over the peering connection between an EC2-Classic instance that's linked to your VPC (using ClassicLink) and instances in the peer VPC.</p> </li> <li> <p>Enable/disable communication over the peering connection between instances in your VPC and an EC2-Classic instance that's linked to the peer VPC.</p> </li> <li> <p>Enable/disable the ability to resolve public DNS hostnames to private IP addresses when queried from instances in the peer VPC.</p> </li> </ul> <p>If the peered VPCs are in the same AWS account, you can enable DNS resolution for queries from the local VPC. This ensures that queries from the local VPC resolve to private IP addresses in the peer VPC. This option is not available if the peered VPCs are in different AWS accounts or different Regions. For peered VPCs in different AWS accounts, each AWS account owner must initiate a separate request to modify the peering connection options. For inter-region peering connections, you must use the Region for the requester VPC to modify the requester VPC peering options and the Region for the accepter VPC to modify the accepter VPC peering options. To verify which VPCs are the accepter and the requester for a VPC peering connection, use the <a>DescribeVpcPeeringConnections</a> command.</p>",
     "ModifyVpcTenancy": "<p>Modifies the instance tenancy attribute of the specified VPC. You can change the instance tenancy attribute of a VPC to <code>default</code> only. You cannot change the instance tenancy attribute to <code>dedicated</code>.</p> <p>After you modify the tenancy of the VPC, any new instances that you launch into the VPC have a tenancy of <code>default</code>, unless you specify otherwise during launch. The tenancy of any existing instances in the VPC is not affected.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-instance.html\">Dedicated Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
-    "ModifyVpnConnection": "<p>Modifies the target gateway of a AWS Site-to-Site VPN connection. The following migration options are available:</p> <ul> <li> <p>An existing virtual private gateway to a new virtual private gateway</p> </li> <li> <p>An existing virtual private gateway to a transit gateway</p> </li> <li> <p>An existing transit gateway to a new transit gateway</p> </li> <li> <p>An existing transit gateway to a virtual private gateway</p> </li> </ul> <p>Before you perform the migration to the new gateway, you must configure the new gateway. Use <a>CreateVpnGateway</a> to create a virtual private gateway, or <a>CreateTransitGateway</a> to create a transit gateway.</p> <p>This step is required when you migrate from a virtual private gateway with static routes to a transit gateway. </p> <p>You must delete the static routes before you migrate to the new gateway.</p> <p>Keep a copy of the static route before you delete it. You will need to add back these routes to the transit gateway after the VPN connection migration is complete.</p> <p>After you migrate to the new gateway, you might need to modify your VPC route table. Use <a>CreateRoute</a> and <a>DeleteRoute</a> to make the changes described in <a href=\"https://docs.aws.amazon.com/vpn/latest/s2svpn/modify-vpn-target.html#step-update-routing\">VPN Gateway Target Modification Required VPC Route Table Updates</a> in the <i>AWS Site-to-Site VPN User Guide</i>.</p> <p> When the new gateway is a transit gateway, modify the transit gateway route table to allow traffic between the VPC and the AWS Site-to-Site VPN connection. Use <a>CreateTransitGatewayRoute</a> to add the routes.</p> <p> If you deleted VPN static routes, you must add the static routes to the transit gateway route table.</p> <p>After you perform this operation, the AWS VPN endpoint's IP addresses on the AWS side and the tunnel options remain intact. Your s2slong; connection will be temporarily unavailable for approximately 10 minutes while we provision the new endpoints </p>",
+    "ModifyVpnConnection": "<p>Modifies the target gateway of an AWS Site-to-Site VPN connection. The following migration options are available:</p> <ul> <li> <p>An existing virtual private gateway to a new virtual private gateway</p> </li> <li> <p>An existing virtual private gateway to a transit gateway</p> </li> <li> <p>An existing transit gateway to a new transit gateway</p> </li> <li> <p>An existing transit gateway to a virtual private gateway</p> </li> </ul> <p>Before you perform the migration to the new gateway, you must configure the new gateway. Use <a>CreateVpnGateway</a> to create a virtual private gateway, or <a>CreateTransitGateway</a> to create a transit gateway.</p> <p>This step is required when you migrate from a virtual private gateway with static routes to a transit gateway. </p> <p>You must delete the static routes before you migrate to the new gateway.</p> <p>Keep a copy of the static route before you delete it. You will need to add back these routes to the transit gateway after the VPN connection migration is complete.</p> <p>After you migrate to the new gateway, you might need to modify your VPC route table. Use <a>CreateRoute</a> and <a>DeleteRoute</a> to make the changes described in <a href=\"https://docs.aws.amazon.com/vpn/latest/s2svpn/modify-vpn-target.html#step-update-routing\">VPN Gateway Target Modification Required VPC Route Table Updates</a> in the <i>AWS Site-to-Site VPN User Guide</i>.</p> <p> When the new gateway is a transit gateway, modify the transit gateway route table to allow traffic between the VPC and the AWS Site-to-Site VPN connection. Use <a>CreateTransitGatewayRoute</a> to add the routes.</p> <p> If you deleted VPN static routes, you must add the static routes to the transit gateway route table.</p> <p>After you perform this operation, the AWS VPN endpoint's IP addresses on the AWS side and the tunnel options remain intact. Your s2slong; connection will be temporarily unavailable for approximately 10 minutes while we provision the new endpoints </p>",
     "ModifyVpnTunnelCertificate": "<p>Modifies the VPN tunnel endpoint certificate.</p>",
+    "ModifyVpnTunnelOptions": "<p>Modifies the options for a VPN tunnel in an AWS Site-to-Site VPN connection. You can modify multiple options for a tunnel in a single request, but you can only modify one tunnel at a time. For more information, see <a href=\"https://docs.aws.amazon.com/vpn/latest/s2svpn/VPNTunnels.html\">Site-to-Site VPN Tunnel Options for Your Site-to-Site VPN Connection</a> in the <i>AWS Site-to-Site VPN User Guide</i>.</p>",
     "MonitorInstances": "<p>Enables detailed monitoring for a running instance. Otherwise, basic monitoring is enabled. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html\">Monitoring Your Instances and Volumes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>To disable detailed monitoring, see .</p>",
     "MoveAddressToVpc": "<p>Moves an Elastic IP address from the EC2-Classic platform to the EC2-VPC platform. The Elastic IP address must be allocated to your account for more than 24 hours, and it must not be associated with an instance. After the Elastic IP address is moved, it is no longer available for use in the EC2-Classic platform, unless you move it back using the <a>RestoreAddressToClassic</a> request. You cannot move an Elastic IP address that was originally allocated for use in the EC2-VPC platform to the EC2-Classic platform. </p>",
     "ProvisionByoipCidr": "<p>Provisions an address range for use with your AWS resources through bring your own IP addresses (BYOIP) and creates a corresponding address pool. After the address range is provisioned, it is ready to be advertised using <a>AdvertiseByoipCidr</a>.</p> <p>AWS verifies that you own the address range and are authorized to advertise it. You must ensure that the address range is registered to you and that you created an RPKI ROA to authorize Amazon ASNs 16509 and 14618 to advertise the address range. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html\">Bring Your Own IP Addresses (BYOIP)</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Provisioning an address range is an asynchronous operation, so the call returns immediately, but the address range is not ready to use until its status changes from <code>pending-provision</code> to <code>provisioned</code>. To monitor the status of an address range, use <a>DescribeByoipCidrs</a>. To allocate an Elastic IP address from your address pool, use <a>AllocateAddress</a> with either the specific address from the address pool or the ID of the address pool.</p>",
@@ -1324,6 +1325,7 @@
         "ModifyVpcTenancyResult$ReturnValue": "<p>Returns <code>true</code> if the request succeeds; otherwise, returns an error.</p>",
         "ModifyVpnConnectionRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyVpnTunnelCertificateRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "ModifyVpnTunnelOptionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "MonitorInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "MoveAddressToVpcRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "NetworkAcl$IsDefault": "<p>Indicates whether this is the default network ACL for the VPC.</p>",
@@ -5611,6 +5613,31 @@
         "Instance$Hypervisor": "<p>The hypervisor type of the instance.</p>"
       }
     },
+    "IKEVersionsList": {
+      "base": null,
+      "refs": {
+        "TunnelOption$IkeVersions": "<p>The IKE versions that are permitted for the VPN tunnel.</p>"
+      }
+    },
+    "IKEVersionsListValue": {
+      "base": "<p>The internet key exchange (IKE) version permitted for the VPN tunnel.</p>",
+      "refs": {
+        "IKEVersionsList$member": null
+      }
+    },
+    "IKEVersionsRequestList": {
+      "base": null,
+      "refs": {
+        "ModifyVpnTunnelOptionsSpecification$IKEVersions": "<p>The IKE versions that are permitted for the VPN tunnel.</p> <p>Valid values: <code>ikev1</code> | <code>ikev2</code> </p>",
+        "VpnTunnelOptionsSpecification$IKEVersions": "<p>The IKE versions that are permitted for the VPN tunnel.</p> <p>Valid values: <code>ikev1</code> | <code>ikev2</code> </p>"
+      }
+    },
+    "IKEVersionsRequestListValue": {
+      "base": "<p>The IKE version that is permitted for the VPN tunnel.</p>",
+      "refs": {
+        "IKEVersionsRequestList$member": null
+      }
+    },
     "IamInstanceProfile": {
       "base": "<p>Describes an IAM instance profile.</p>",
       "refs": {
@@ -6363,12 +6390,22 @@
         "ModifyTrafficMirrorSessionRequest$VirtualNetworkId": "<p>The virtual network ID of the Traffic Mirror session.</p>",
         "ModifyVolumeRequest$Size": "<p>The target size of the volume, in GiB. The target volume size must be greater than or equal to than the existing size of the volume. For information about available EBS volume sizes, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html\">Amazon EBS Volume Types</a>.</p> <p>Default: If no size is specified, the existing size is retained.</p>",
         "ModifyVolumeRequest$Iops": "<p>The target IOPS rate of the volume.</p> <p>This is only valid for Provisioned IOPS SSD (<code>io1</code>) volumes. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html#EBSVolumeTypes_piops\">Provisioned IOPS SSD (io1) Volumes</a>.</p> <p>Default: If no IOPS value is specified, the existing value is retained.</p>",
+        "ModifyVpnTunnelOptionsSpecification$Phase1LifetimeSeconds": "<p>The lifetime for phase 1 of the IKE negotiation, in seconds.</p> <p>Constraints: A value between 900 and 28,800.</p> <p>Default: <code>28800</code> </p>",
+        "ModifyVpnTunnelOptionsSpecification$Phase2LifetimeSeconds": "<p>The lifetime for phase 2 of the IKE negotiation, in seconds.</p> <p>Constraints: A value between 900 and 3,600. The value must be less than the value for <code>Phase1LifetimeSeconds</code>.</p> <p>Default: <code>3600</code> </p>",
+        "ModifyVpnTunnelOptionsSpecification$RekeyMarginTimeSeconds": "<p>The margin time, in seconds, before the phase 2 lifetime expires, during which the AWS side of the VPN connection performs an IKE rekey. The exact time of the rekey is randomly selected based on the value for <code>RekeyFuzzPercentage</code>.</p> <p>Constraints: A value between 60 and half of <code>Phase2LifetimeSeconds</code>.</p> <p>Default: <code>540</code> </p>",
+        "ModifyVpnTunnelOptionsSpecification$RekeyFuzzPercentage": "<p>The percentage of the rekey window (determined by <code>RekeyMarginTimeSeconds</code>) during which the rekey time is randomly selected.</p> <p>Constraints: A value between 0 and 100.</p> <p>Default: <code>100</code> </p>",
+        "ModifyVpnTunnelOptionsSpecification$ReplayWindowSize": "<p>The number of packets in an IKE replay window.</p> <p>Constraints: A value between 64 and 2048.</p> <p>Default: <code>1024</code> </p>",
+        "ModifyVpnTunnelOptionsSpecification$DPDTimeoutSeconds": "<p>The number of seconds after which a DPD timeout occurs.</p> <p>Constraints: A value between 0 and 30.</p> <p>Default: <code>30</code> </p>",
         "NetworkAclEntry$RuleNumber": "<p>The rule number for the entry. ACL entries are processed in ascending order by rule number.</p>",
         "NetworkInterfaceAttachment$DeviceIndex": "<p>The device index of the network interface attachment on the instance.</p>",
         "OccurrenceDayRequestSet$member": null,
         "OccurrenceDaySet$member": null,
         "OnDemandOptions$MinTargetCapacity": "<p>The minimum target capacity for On-Demand Instances in the fleet. If the minimum target capacity is not reached, the fleet launches no instances.</p>",
         "OnDemandOptionsRequest$MinTargetCapacity": "<p>The minimum target capacity for On-Demand Instances in the fleet. If the minimum target capacity is not reached, the fleet launches no instances.</p>",
+        "Phase1DHGroupNumbersListValue$Value": "<p>The Diffie-Hellmann group number.</p>",
+        "Phase1DHGroupNumbersRequestListValue$Value": "<p>The Diffie-Hellmann group number.</p>",
+        "Phase2DHGroupNumbersListValue$Value": "<p>The Diffie-Hellmann group number.</p>",
+        "Phase2DHGroupNumbersRequestListValue$Value": "<p>The Diffie-Hellmann group number.</p>",
         "Placement$PartitionNumber": "<p>The number of the partition the instance is in. Valid only if the placement group strategy is set to <code>partition</code>.</p>",
         "PlacementGroup$PartitionCount": "<p>The number of partitions. Valid only if <b>strategy</b> is set to <code>partition</code>.</p>",
         "PortRange$From": "<p>The first port in the range.</p>",
@@ -6440,13 +6477,25 @@
         "TrafficMirrorSession$PacketLength": "<p>The number of bytes in each packet to mirror. These are the bytes after the VXLAN header. To mirror a subset, set this to the length (in bytes) to mirror. For example, if you set this value to 100, then the first 100 bytes that meet the filter criteria are copied to the target. Do not specify this parameter when you want to mirror the entire packet</p>",
         "TrafficMirrorSession$SessionNumber": "<p>The session number determines the order in which sessions are evaluated when an interface is used by multiple sessions. The first session with a matching filter is the one that mirrors the packets.</p> <p>Valid values are 1-32766.</p>",
         "TrafficMirrorSession$VirtualNetworkId": "<p>The virtual network ID associated with the Traffic Mirror session.</p>",
+        "TunnelOption$Phase1LifetimeSeconds": "<p>The lifetime for phase 1 of the IKE negotiation, in seconds.</p>",
+        "TunnelOption$Phase2LifetimeSeconds": "<p>The lifetime for phase 2 of the IKE negotiation, in seconds.</p>",
+        "TunnelOption$RekeyMarginTimeSeconds": "<p>The margin time, in seconds, before the phase 2 lifetime expires, during which the AWS side of the VPN connection performs an IKE rekey.</p>",
+        "TunnelOption$RekeyFuzzPercentage": "<p>The percentage of the rekey window determined by <code>RekeyMarginTimeSeconds</code> during which the rekey time is randomly selected.</p>",
+        "TunnelOption$ReplayWindowSize": "<p>The number of packets in an IKE replay window.</p>",
+        "TunnelOption$DpdTimeoutSeconds": "<p>The number of seconds after which a DPD timeout occurs.</p>",
         "VgwTelemetry$AcceptedRouteCount": "<p>The number of accepted routes.</p>",
         "Volume$Size": "<p>The size of the volume, in GiBs.</p>",
         "Volume$Iops": "<p>The number of I/O operations per second (IOPS) that the volume supports. For Provisioned IOPS SSD volumes, this represents the number of IOPS that are provisioned for the volume. For General Purpose SSD volumes, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html\">Amazon EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Constraints: Range is 100-16,000 IOPS for <code>gp2</code> volumes and 100 to 64,000IOPS for <code>io1</code> volumes, in most Regions. The maximum IOPS for <code>io1</code> of 64,000 is guaranteed only on <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances\">Nitro-based instances</a>. Other instance families guarantee performance up to 32,000 IOPS.</p> <p>Condition: This parameter is required for requests to create <code>io1</code> volumes; it is not used in requests to create <code>gp2</code>, <code>st1</code>, <code>sc1</code>, or <code>standard</code> volumes.</p>",
         "VolumeModification$TargetSize": "<p>The target size of the volume, in GiB.</p>",
         "VolumeModification$TargetIops": "<p>The target IOPS rate of the volume.</p>",
         "VolumeModification$OriginalSize": "<p>The original size of the volume.</p>",
-        "VolumeModification$OriginalIops": "<p>The original IOPS rate of the volume.</p>"
+        "VolumeModification$OriginalIops": "<p>The original IOPS rate of the volume.</p>",
+        "VpnTunnelOptionsSpecification$Phase1LifetimeSeconds": "<p>The lifetime for phase 1 of the IKE negotiation, in seconds.</p> <p>Constraints: A value between 900 and 28,800.</p> <p>Default: <code>28800</code> </p>",
+        "VpnTunnelOptionsSpecification$Phase2LifetimeSeconds": "<p>The lifetime for phase 2 of the IKE negotiation, in seconds.</p> <p>Constraints: A value between 900 and 3,600. The value must be less than the value for <code>Phase1LifetimeSeconds</code>.</p> <p>Default: <code>3600</code> </p>",
+        "VpnTunnelOptionsSpecification$RekeyMarginTimeSeconds": "<p>The margin time, in seconds, before the phase 2 lifetime expires, during which the AWS side of the VPN connection performs an IKE rekey. The exact time of the rekey is randomly selected based on the value for <code>RekeyFuzzPercentage</code>.</p> <p>Constraints: A value between 60 and half of <code>Phase2LifetimeSeconds</code>.</p> <p>Default: <code>540</code> </p>",
+        "VpnTunnelOptionsSpecification$RekeyFuzzPercentage": "<p>The percentage of the rekey window (determined by <code>RekeyMarginTimeSeconds</code>) during which the rekey time is randomly selected.</p> <p>Constraints: A value between 0 and 100.</p> <p>Default: <code>100</code> </p>",
+        "VpnTunnelOptionsSpecification$ReplayWindowSize": "<p>The number of packets in an IKE replay window.</p> <p>Constraints: A value between 64 and 2048.</p> <p>Default: <code>1024</code> </p>",
+        "VpnTunnelOptionsSpecification$DPDTimeoutSeconds": "<p>The number of seconds after which a DPD timeout occurs.</p> <p>Constraints: A value between 0 and 30.</p> <p>Default: <code>30</code> </p>"
       }
     },
     "InterfacePermissionType": {
@@ -7378,6 +7427,22 @@
       "refs": {
       }
     },
+    "ModifyVpnTunnelOptionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyVpnTunnelOptionsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyVpnTunnelOptionsSpecification": {
+      "base": "<p>The AWS Site-to-Site VPN tunnel options to modify.</p>",
+      "refs": {
+        "ModifyVpnTunnelOptionsRequest$TunnelOptions": "<p>The tunnel options to modify.</p>"
+      }
+    },
     "MonitorInstancesRequest": {
       "base": null,
       "refs": {
@@ -7753,6 +7818,156 @@
         "LaunchPermission$Group": "<p>The name of the group.</p>",
         "LoadPermission$Group": "<p>The name of the group.</p>",
         "LoadPermissionRequest$Group": "<p>The name of the group.</p>"
+      }
+    },
+    "Phase1DHGroupNumbersList": {
+      "base": null,
+      "refs": {
+        "TunnelOption$Phase1DHGroupNumbers": "<p>The permitted Diffie-Hellman group numbers for the VPN tunnel for phase 1 IKE negotiations.</p>"
+      }
+    },
+    "Phase1DHGroupNumbersListValue": {
+      "base": "<p>The Diffie-Hellmann group number for phase 1 IKE negotiations.</p>",
+      "refs": {
+        "Phase1DHGroupNumbersList$member": null
+      }
+    },
+    "Phase1DHGroupNumbersRequestList": {
+      "base": null,
+      "refs": {
+        "ModifyVpnTunnelOptionsSpecification$Phase1DHGroupNumbers": "<p>One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p> <p>Valid values: <code>2</code> | <code>14</code> | <code>15</code> | <code>16</code> | <code>17</code> | <code>18</code> | <code>22</code> | <code>23</code> | <code>24</code> </p>",
+        "VpnTunnelOptionsSpecification$Phase1DHGroupNumbers": "<p>One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p> <p>Valid values: <code>2</code> | <code>14</code> | <code>15</code> | <code>16</code> | <code>17</code> | <code>18</code> | <code>22</code> | <code>23</code> | <code>24</code> </p>"
+      }
+    },
+    "Phase1DHGroupNumbersRequestListValue": {
+      "base": "<p>Specifies a Diffie-Hellman group number for the VPN tunnel for phase 1 IKE negotiations.</p>",
+      "refs": {
+        "Phase1DHGroupNumbersRequestList$member": null
+      }
+    },
+    "Phase1EncryptionAlgorithmsList": {
+      "base": null,
+      "refs": {
+        "TunnelOption$Phase1EncryptionAlgorithms": "<p>The permitted encryption algorithms for the VPN tunnel for phase 1 IKE negotiations.</p>"
+      }
+    },
+    "Phase1EncryptionAlgorithmsListValue": {
+      "base": "<p>The encryption algorithm for phase 1 IKE negotiations.</p>",
+      "refs": {
+        "Phase1EncryptionAlgorithmsList$member": null
+      }
+    },
+    "Phase1EncryptionAlgorithmsRequestList": {
+      "base": null,
+      "refs": {
+        "ModifyVpnTunnelOptionsSpecification$Phase1EncryptionAlgorithms": "<p>One or more encryption algorithms that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p> <p>Valid values: <code>AES128</code> | <code>AES256</code> </p>",
+        "VpnTunnelOptionsSpecification$Phase1EncryptionAlgorithms": "<p>One or more encryption algorithms that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p> <p>Valid values: <code>AES128</code> | <code>AES256</code> </p>"
+      }
+    },
+    "Phase1EncryptionAlgorithmsRequestListValue": {
+      "base": "<p>Specifies the encryption algorithm for the VPN tunnel for phase 1 IKE negotiations.</p>",
+      "refs": {
+        "Phase1EncryptionAlgorithmsRequestList$member": null
+      }
+    },
+    "Phase1IntegrityAlgorithmsList": {
+      "base": null,
+      "refs": {
+        "TunnelOption$Phase1IntegrityAlgorithms": "<p>The permitted integrity algorithms for the VPN tunnel for phase 1 IKE negotiations.</p>"
+      }
+    },
+    "Phase1IntegrityAlgorithmsListValue": {
+      "base": "<p>The integrity algorithm for phase 1 IKE negotiations.</p>",
+      "refs": {
+        "Phase1IntegrityAlgorithmsList$member": null
+      }
+    },
+    "Phase1IntegrityAlgorithmsRequestList": {
+      "base": null,
+      "refs": {
+        "ModifyVpnTunnelOptionsSpecification$Phase1IntegrityAlgorithms": "<p>One or more integrity algorithms that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p> <p>Valid values: <code>SHA1</code> | <code>SHA2-256</code> </p>",
+        "VpnTunnelOptionsSpecification$Phase1IntegrityAlgorithms": "<p>One or more integrity algorithms that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p> <p>Valid values: <code>SHA1</code> | <code>SHA2-256</code> </p>"
+      }
+    },
+    "Phase1IntegrityAlgorithmsRequestListValue": {
+      "base": "<p>Specifies the integrity algorithm for the VPN tunnel for phase 1 IKE negotiations.</p>",
+      "refs": {
+        "Phase1IntegrityAlgorithmsRequestList$member": null
+      }
+    },
+    "Phase2DHGroupNumbersList": {
+      "base": null,
+      "refs": {
+        "TunnelOption$Phase2DHGroupNumbers": "<p>The permitted Diffie-Hellman group numbers for the VPN tunnel for phase 2 IKE negotiations.</p>"
+      }
+    },
+    "Phase2DHGroupNumbersListValue": {
+      "base": "<p>The Diffie-Hellmann group number for phase 2 IKE negotiations.</p>",
+      "refs": {
+        "Phase2DHGroupNumbersList$member": null
+      }
+    },
+    "Phase2DHGroupNumbersRequestList": {
+      "base": null,
+      "refs": {
+        "ModifyVpnTunnelOptionsSpecification$Phase2DHGroupNumbers": "<p>One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p> <p>Valid values: <code>2</code> | <code>5</code> | <code>14</code> | <code>15</code> | <code>16</code> | <code>17</code> | <code>18</code> | <code>22</code> | <code>23</code> | <code>24</code> </p>",
+        "VpnTunnelOptionsSpecification$Phase2DHGroupNumbers": "<p>One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p> <p>Valid values: <code>2</code> | <code>5</code> | <code>14</code> | <code>15</code> | <code>16</code> | <code>17</code> | <code>18</code> | <code>22</code> | <code>23</code> | <code>24</code> </p>"
+      }
+    },
+    "Phase2DHGroupNumbersRequestListValue": {
+      "base": "<p>Specifies a Diffie-Hellman group number for the VPN tunnel for phase 2 IKE negotiations.</p>",
+      "refs": {
+        "Phase2DHGroupNumbersRequestList$member": null
+      }
+    },
+    "Phase2EncryptionAlgorithmsList": {
+      "base": null,
+      "refs": {
+        "TunnelOption$Phase2EncryptionAlgorithms": "<p>The permitted encryption algorithms for the VPN tunnel for phase 2 IKE negotiations.</p>"
+      }
+    },
+    "Phase2EncryptionAlgorithmsListValue": {
+      "base": "<p>The encryption algorithm for phase 2 IKE negotiations.</p>",
+      "refs": {
+        "Phase2EncryptionAlgorithmsList$member": null
+      }
+    },
+    "Phase2EncryptionAlgorithmsRequestList": {
+      "base": null,
+      "refs": {
+        "ModifyVpnTunnelOptionsSpecification$Phase2EncryptionAlgorithms": "<p>One or more encryption algorithms that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p> <p>Valid values: <code>AES128</code> | <code>AES256</code> </p>",
+        "VpnTunnelOptionsSpecification$Phase2EncryptionAlgorithms": "<p>One or more encryption algorithms that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p> <p>Valid values: <code>AES128</code> | <code>AES256</code> </p>"
+      }
+    },
+    "Phase2EncryptionAlgorithmsRequestListValue": {
+      "base": "<p>Specifies the encryption algorithm for the VPN tunnel for phase 2 IKE negotiations.</p>",
+      "refs": {
+        "Phase2EncryptionAlgorithmsRequestList$member": null
+      }
+    },
+    "Phase2IntegrityAlgorithmsList": {
+      "base": null,
+      "refs": {
+        "TunnelOption$Phase2IntegrityAlgorithms": "<p>The permitted integrity algorithms for the VPN tunnel for phase 2 IKE negotiations.</p>"
+      }
+    },
+    "Phase2IntegrityAlgorithmsListValue": {
+      "base": "<p>The integrity algorithm for phase 2 IKE negotiations.</p>",
+      "refs": {
+        "Phase2IntegrityAlgorithmsList$member": null
+      }
+    },
+    "Phase2IntegrityAlgorithmsRequestList": {
+      "base": null,
+      "refs": {
+        "ModifyVpnTunnelOptionsSpecification$Phase2IntegrityAlgorithms": "<p>One or more integrity algorithms that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p> <p>Valid values: <code>SHA1</code> | <code>SHA2-256</code> </p>",
+        "VpnTunnelOptionsSpecification$Phase2IntegrityAlgorithms": "<p>One or more integrity algorithms that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p> <p>Valid values: <code>SHA1</code> | <code>SHA2-256</code> </p>"
+      }
+    },
+    "Phase2IntegrityAlgorithmsRequestListValue": {
+      "base": "<p>Specifies the integrity algorithm for the VPN tunnel for phase 2 IKE negotiations.</p>",
+      "refs": {
+        "Phase2IntegrityAlgorithmsRequestList$member": null
       }
     },
     "Placement": {
@@ -10053,6 +10268,8 @@
         "HostReservation$OfferingId": "<p>The ID of the reservation. This remains the same regardless of which Dedicated Hosts are associated with it.</p>",
         "HostReservation$UpfrontPrice": "<p>The upfront price of the reservation.</p>",
         "HostReservationIdSet$member": null,
+        "IKEVersionsListValue$Value": "<p>The IKE version.</p>",
+        "IKEVersionsRequestListValue$Value": "<p>The IKE version.</p>",
         "IamInstanceProfile$Arn": "<p>The Amazon Resource Name (ARN) of the instance profile.</p>",
         "IamInstanceProfile$Id": "<p>The ID of the instance profile.</p>",
         "IamInstanceProfileAssociation$AssociationId": "<p>The ID of the association.</p>",
@@ -10334,6 +10551,10 @@
         "ModifyVpnConnectionRequest$VpnGatewayId": "<p>The ID of the virtual private gateway at the AWS side of the VPN connection.</p>",
         "ModifyVpnTunnelCertificateRequest$VpnConnectionId": "<p>The ID of the AWS Site-to-Site VPN connection.</p>",
         "ModifyVpnTunnelCertificateRequest$VpnTunnelOutsideIpAddress": "<p>The external IP address of the VPN tunnel.</p>",
+        "ModifyVpnTunnelOptionsRequest$VpnConnectionId": "<p>The ID of the AWS Site-to-Site VPN connection.</p>",
+        "ModifyVpnTunnelOptionsRequest$VpnTunnelOutsideIpAddress": "<p>The external IP address of the VPN tunnel.</p>",
+        "ModifyVpnTunnelOptionsSpecification$TunnelInsideCidr": "<p>The range of inside IP addresses for the tunnel. Any specified CIDR blocks must be unique across all VPN connections that use the same virtual private gateway. </p> <p>Constraints: A size /30 CIDR block from the <code>169.254.0.0/16</code> range. The following CIDR blocks are reserved and cannot be used:</p> <ul> <li> <p> <code>169.254.0.0/30</code> </p> </li> <li> <p> <code>169.254.1.0/30</code> </p> </li> <li> <p> <code>169.254.2.0/30</code> </p> </li> <li> <p> <code>169.254.3.0/30</code> </p> </li> <li> <p> <code>169.254.4.0/30</code> </p> </li> <li> <p> <code>169.254.5.0/30</code> </p> </li> <li> <p> <code>169.254.169.252/30</code> </p> </li> </ul>",
+        "ModifyVpnTunnelOptionsSpecification$PreSharedKey": "<p>The pre-shared key (PSK) to establish initial authentication between the virtual private gateway and the customer gateway.</p> <p>Constraints: Allowed characters are alphanumeric characters, periods (.), and underscores (_). Must be between 8 and 64 characters in length and cannot start with zero (0).</p>",
         "MoveAddressToVpcRequest$PublicIp": "<p>The Elastic IP address.</p>",
         "MoveAddressToVpcResult$AllocationId": "<p>The allocation ID for the Elastic IP address.</p>",
         "MovingAddressStatus$PublicIp": "<p>The Elastic IP address.</p>",
@@ -10392,6 +10613,14 @@
         "PciId$VendorId": "<p>The ID of the vendor.</p>",
         "PciId$SubsystemId": "<p>The ID of the subsystem.</p>",
         "PciId$SubsystemVendorId": "<p>The ID of the vendor for the subsystem.</p>",
+        "Phase1EncryptionAlgorithmsListValue$Value": "<p>The value for the encryption algorithm.</p>",
+        "Phase1EncryptionAlgorithmsRequestListValue$Value": "<p>The value for the encryption algorithm.</p>",
+        "Phase1IntegrityAlgorithmsListValue$Value": "<p>The value for the integrity algorithm.</p>",
+        "Phase1IntegrityAlgorithmsRequestListValue$Value": "<p>The value for the integrity algorithm.</p>",
+        "Phase2EncryptionAlgorithmsListValue$Value": "<p>The encryption algorithm.</p>",
+        "Phase2EncryptionAlgorithmsRequestListValue$Value": "<p>The encryption algorithm.</p>",
+        "Phase2IntegrityAlgorithmsListValue$Value": "<p>The integrity algorithm.</p>",
+        "Phase2IntegrityAlgorithmsRequestListValue$Value": "<p>The integrity algorithm.</p>",
         "Placement$AvailabilityZone": "<p>The Availability Zone of the instance.</p> <p>If not specified, an Availability Zone will be automatically chosen for you based on the load balancing criteria for the Region.</p>",
         "Placement$Affinity": "<p>The affinity setting for the instance on the Dedicated Host. This parameter is not supported for the <a>ImportInstance</a> command.</p>",
         "Placement$GroupName": "<p>The name of the placement group the instance is in.</p>",
@@ -10814,6 +11043,9 @@
         "TransitGatewayVpcAttachment$TransitGatewayId": "<p>The ID of the transit gateway.</p>",
         "TransitGatewayVpcAttachment$VpcId": "<p>The ID of the VPC.</p>",
         "TransitGatewayVpcAttachment$VpcOwnerId": "<p>The ID of the AWS account that owns the VPC.</p>",
+        "TunnelOption$OutsideIpAddress": "<p>The external IP address of the VPN tunnel.</p>",
+        "TunnelOption$TunnelInsideCidr": "<p>The range of inside IP addresses for the tunnel.</p>",
+        "TunnelOption$PreSharedKey": "<p>The pre-shared key (PSK) to establish initial authentication between the virtual private gateway and the customer gateway.</p>",
         "UnassignIpv6AddressesRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "UnassignIpv6AddressesResult$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "UnassignPrivateIpAddressesRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
@@ -10904,7 +11136,7 @@
         "VpnGatewayIdStringList$member": null,
         "VpnStaticRoute$DestinationCidrBlock": "<p>The CIDR block associated with the local subnet of the customer data center.</p>",
         "VpnTunnelOptionsSpecification$TunnelInsideCidr": "<p>The range of inside IP addresses for the tunnel. Any specified CIDR blocks must be unique across all VPN connections that use the same virtual private gateway. </p> <p>Constraints: A size /30 CIDR block from the <code>169.254.0.0/16</code> range. The following CIDR blocks are reserved and cannot be used:</p> <ul> <li> <p> <code>169.254.0.0/30</code> </p> </li> <li> <p> <code>169.254.1.0/30</code> </p> </li> <li> <p> <code>169.254.2.0/30</code> </p> </li> <li> <p> <code>169.254.3.0/30</code> </p> </li> <li> <p> <code>169.254.4.0/30</code> </p> </li> <li> <p> <code>169.254.5.0/30</code> </p> </li> <li> <p> <code>169.254.169.252/30</code> </p> </li> </ul>",
-        "VpnTunnelOptionsSpecification$PreSharedKey": "<p>The pre-shared key (PSK) to establish initial authentication between the virtual private gateway and customer gateway.</p> <p>Constraints: Allowed characters are alphanumeric characters and ._. Must be between 8 and 64 characters in length and cannot start with zero (0).</p>",
+        "VpnTunnelOptionsSpecification$PreSharedKey": "<p>The pre-shared key (PSK) to establish initial authentication between the virtual private gateway and customer gateway.</p> <p>Constraints: Allowed characters are alphanumeric characters, periods (.), and underscores (_). Must be between 8 and 64 characters in length and cannot start with zero (0).</p>",
         "WithdrawByoipCidrRequest$Cidr": "<p>The public IPv4 address range, in CIDR notation.</p>",
         "ZoneIdStringList$member": null,
         "ZoneNameStringList$member": null
@@ -11605,10 +11837,16 @@
         "CreateClientVpnEndpointRequest$TransportProtocol": "<p>The transport protocol to be used by the VPN session.</p> <p>Default value: <code>udp</code> </p>"
       }
     },
+    "TunnelOption": {
+      "base": "<p>The VPN tunnel options.</p>",
+      "refs": {
+        "TunnelOptionsList$member": null
+      }
+    },
     "TunnelOptionsList": {
       "base": null,
       "refs": {
-        "VpnConnectionOptionsSpecification$TunnelOptions": "<p>The tunnel options for the VPN connection.</p>"
+        "VpnConnectionOptions$TunnelOptions": "<p>Indicates the VPN tunnel options.</p>"
       }
     },
     "UnassignIpv6AddressesRequest": {
@@ -12218,6 +12456,7 @@
         "CreateVpnConnectionResult$VpnConnection": "<p>Information about the VPN connection.</p>",
         "ModifyVpnConnectionResult$VpnConnection": null,
         "ModifyVpnTunnelCertificateResult$VpnConnection": null,
+        "ModifyVpnTunnelOptionsResult$VpnConnection": null,
         "VpnConnectionList$member": null
       }
     },
@@ -12306,7 +12545,13 @@
     "VpnTunnelOptionsSpecification": {
       "base": "<p>The tunnel options for a VPN connection.</p>",
       "refs": {
-        "TunnelOptionsList$member": null
+        "VpnTunnelOptionsSpecificationsList$member": null
+      }
+    },
+    "VpnTunnelOptionsSpecificationsList": {
+      "base": null,
+      "refs": {
+        "VpnConnectionOptionsSpecification$TunnelOptions": "<p>The tunnel options for the VPN connection.</p>"
       }
     },
     "WithdrawByoipCidrRequest": {

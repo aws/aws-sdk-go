@@ -24,7 +24,7 @@
     "DescribeRobotApplication": "<p>Describes a robot application.</p>",
     "DescribeSimulationApplication": "<p>Describes a simulation application.</p>",
     "DescribeSimulationJob": "<p>Describes a simulation job.</p>",
-    "ListDeploymentJobs": "<p>Returns a list of deployment jobs for a fleet. You can optionally provide filters to retrieve specific deployment jobs. </p>",
+    "ListDeploymentJobs": "<p>Returns a list of deployment jobs for a fleet. You can optionally provide filters to retrieve specific deployment jobs. </p> <note> <p> </p> </note>",
     "ListFleets": "<p>Returns a list of fleets. You can optionally provide filters to retrieve specific fleets. </p>",
     "ListRobotApplications": "<p>Returns a list of robot application. You can optionally provide filters to retrieve specific robot applications.</p>",
     "ListRobots": "<p>Returns a list of robots. You can optionally provide filters to retrieve specific robots.</p>",
@@ -145,6 +145,7 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "PortMapping$enableOnPublicIp": "<p>A Boolean indicating whether to enable this port mapping on public IP.</p>",
         "VPCConfig$assignPublicIp": "<p>A boolean indicating whether to assign a public IP address.</p>",
         "VPCConfigResponse$assignPublicIp": "<p>A boolean indicating if a public IP was assigned.</p>"
       }
@@ -596,6 +597,9 @@
         "DeploymentJob$failureReason": "<p>A short description of the reason why the deployment job failed.</p>",
         "DescribeDeploymentJobResponse$failureReason": "<p>A short description of the reason why the deployment job failed.</p>",
         "DescribeSimulationJobResponse$failureReason": "<p>Details about why the simulation job failed. For more information about troubleshooting, see <a href=\"https://docs.aws.amazon.com/robomaker/latest/dg/troubleshooting.html\">Troubleshooting</a>.</p>",
+        "NetworkInterface$networkInterfaceId": "<p>The ID of the network interface.</p>",
+        "NetworkInterface$privateIpAddress": "<p>The IPv4 address of the network interface within the subnet.</p>",
+        "NetworkInterface$publicIpAddress": "<p>The IPv4 public address of the network interface.</p>",
         "ProgressDetail$targetResource": "<p>The Amazon Resource Name (ARN) of the deployment job.</p>",
         "RobotDeployment$failureReason": "<p>A short description of the reason why the robot deployment failed.</p>",
         "SimulationJob$failureReason": "<p>The reason why the simulation job failed.</p>",
@@ -809,11 +813,24 @@
         "UpdateSimulationApplicationResponse$name": "<p>The name of the simulation application.</p>"
       }
     },
+    "NetworkInterface": {
+      "base": "<p>Describes a network interface.</p>",
+      "refs": {
+        "DescribeSimulationJobResponse$networkInterface": "<p>The network interface information for the simulation job.</p>",
+        "SimulationJob$networkInterface": "<p/>"
+      }
+    },
     "NonEmptyString": {
       "base": null,
       "refs": {
         "SecurityGroups$member": null,
         "Subnets$member": null
+      }
+    },
+    "NonSystemPort": {
+      "base": null,
+      "refs": {
+        "PortMapping$applicationPort": "<p>The port number on the application.</p>"
       }
     },
     "OutputLocation": {
@@ -860,6 +877,30 @@
       "refs": {
         "DeploymentConfig$concurrentDeploymentPercentage": "<p>The percentage of robots receiving the deployment at the same time.</p>",
         "DeploymentConfig$failureThresholdPercentage": "<p>The percentage of deployments that need to fail before stopping deployment.</p>"
+      }
+    },
+    "Port": {
+      "base": null,
+      "refs": {
+        "PortMapping$jobPort": "<p>The port number on the simulation job instance to use as a remote connection point. </p>"
+      }
+    },
+    "PortForwardingConfig": {
+      "base": "<p>Configuration information for port forwarding.</p>",
+      "refs": {
+        "LaunchConfig$portForwardingConfig": "<p>The port forwarding configuration.</p>"
+      }
+    },
+    "PortMapping": {
+      "base": "<p>An object representing a port mapping.</p>",
+      "refs": {
+        "PortMappingList$member": null
+      }
+    },
+    "PortMappingList": {
+      "base": null,
+      "refs": {
+        "PortForwardingConfig$portMappings": "<p>The port mappings for the configuration.</p>"
       }
     },
     "ProgressDetail": {
@@ -1140,7 +1181,7 @@
     "SimulationJobErrorCode": {
       "base": null,
       "refs": {
-        "CreateSimulationJobResponse$failureCode": "<p>The failure code of the simulation job if it failed:</p> <dl> <dt>InternalServiceError</dt> <dd> <p>Internal service error.</p> </dd> <dt>RobotApplicationCrash</dt> <dd> <p>Robot application exited abnormally.</p> </dd> <dt>SimulationApplicationCrash</dt> <dd> <p> Simulation application exited abnormally.</p> </dd> <dt>BadPermissionsRobotApplication</dt> <dd> <p>Robot application bundle could not be downloaded.</p> </dd> <dt>BadPermissionsSimulationApplication</dt> <dd> <p>Simulation application bundle could not be downloaded.</p> </dd> <dt>BadPermissionsS3Output</dt> <dd> <p>Unable to publish outputs to customer-provided S3 bucket.</p> </dd> <dt>BadPermissionsCloudwatchLogs</dt> <dd> <p>Unable to publish logs to customer-provided CloudWatch Logs resource.</p> </dd> <dt>SubnetIpLimitExceeded</dt> <dd> <p>Subnet IP limit exceeded.</p> </dd> <dt>ENILimitExceeded</dt> <dd> <p>ENI limit exceeded.</p> </dd> <dt>BadPermissionsUserCredentials</dt> <dd> <p>Unable to use the Role provided.</p> </dd> <dt>InvalidBundleRobotApplication</dt> <dd> <p>Robot bundle cannot be extracted (invalid format, bundling error, or other issue).</p> </dd> <dt>InvalidBundleSimulationApplication</dt> <dd> <p>Simulation bundle cannot be extracted (invalid format, bundling error, or other issue).</p> </dd> <dt>RobotApplicationVersionMismatchedEtag</dt> <dd> <p>Etag for RobotApplication does not match value during version creation.</p> </dd> <dt>SimulationApplicationVersionMismatchedEtag</dt> <dd> <p>Etag for SimulationApplication does not match value during version creation.</p> </dd> <dt>WrongRegionS3Output</dt> <dd> <p>S3 output bucket is in a different region than AWS RoboMaker.</p> </dd> <dt>WrongRegionRobotApplication</dt> <dd> <p>RobotApplication bucket is in a different region than AWS RoboMaker.</p> </dd> <dt>WrongRegionSimulationApplication</dt> <dd> <p>SimulationApplication bucket is in a different region than AWS RoboMaker.</p> </dd> </dl>",
+        "CreateSimulationJobResponse$failureCode": "<p>The failure code of the simulation job if it failed:</p> <dl> <dt>InternalServiceError</dt> <dd> <p>Internal service error.</p> </dd> <dt>RobotApplicationCrash</dt> <dd> <p>Robot application exited abnormally.</p> </dd> <dt>SimulationApplicationCrash</dt> <dd> <p> Simulation application exited abnormally.</p> </dd> <dt>BadPermissionsRobotApplication</dt> <dd> <p>Robot application bundle could not be downloaded.</p> </dd> <dt>BadPermissionsSimulationApplication</dt> <dd> <p>Simulation application bundle could not be downloaded.</p> </dd> <dt>BadPermissionsS3Output</dt> <dd> <p>Unable to publish outputs to customer-provided S3 bucket.</p> </dd> <dt>BadPermissionsCloudwatchLogs</dt> <dd> <p>Unable to publish logs to customer-provided CloudWatch Logs resource.</p> </dd> <dt>SubnetIpLimitExceeded</dt> <dd> <p>Subnet IP limit exceeded.</p> </dd> <dt>ENILimitExceeded</dt> <dd> <p>ENI limit exceeded.</p> </dd> <dt>BadPermissionsUserCredentials</dt> <dd> <p>Unable to use the Role provided.</p> </dd> <dt>InvalidBundleRobotApplication</dt> <dd> <p>Robot bundle cannot be extracted (invalid format, bundling error, or other issue).</p> </dd> <dt>InvalidBundleSimulationApplication</dt> <dd> <p>Simulation bundle cannot be extracted (invalid format, bundling error, or other issue).</p> </dd> <dt>RobotApplicationVersionMismatchedEtag</dt> <dd> <p>Etag for RobotApplication does not match value during version creation.</p> </dd> <dt>SimulationApplicationVersionMismatchedEtag</dt> <dd> <p>Etag for SimulationApplication does not match value during version creation.</p> </dd> </dl>",
         "DescribeSimulationJobResponse$failureCode": "<p>The failure code of the simulation job if it failed:</p> <dl> <dt>InternalServiceError</dt> <dd> <p>Internal service error.</p> </dd> <dt>RobotApplicationCrash</dt> <dd> <p>Robot application exited abnormally.</p> </dd> <dt>SimulationApplicationCrash</dt> <dd> <p> Simulation application exited abnormally.</p> </dd> <dt>BadPermissionsRobotApplication</dt> <dd> <p>Robot application bundle could not be downloaded.</p> </dd> <dt>BadPermissionsSimulationApplication</dt> <dd> <p>Simulation application bundle could not be downloaded.</p> </dd> <dt>BadPermissionsS3Output</dt> <dd> <p>Unable to publish outputs to customer-provided S3 bucket.</p> </dd> <dt>BadPermissionsCloudwatchLogs</dt> <dd> <p>Unable to publish logs to customer-provided CloudWatch Logs resource.</p> </dd> <dt>SubnetIpLimitExceeded</dt> <dd> <p>Subnet IP limit exceeded.</p> </dd> <dt>ENILimitExceeded</dt> <dd> <p>ENI limit exceeded.</p> </dd> <dt>BadPermissionsUserCredentials</dt> <dd> <p>Unable to use the Role provided.</p> </dd> <dt>InvalidBundleRobotApplication</dt> <dd> <p>Robot bundle cannot be extracted (invalid format, bundling error, or other issue).</p> </dd> <dt>InvalidBundleSimulationApplication</dt> <dd> <p>Simulation bundle cannot be extracted (invalid format, bundling error, or other issue).</p> </dd> <dt>RobotApplicationVersionMismatchedEtag</dt> <dd> <p>Etag for RobotApplication does not match value during version creation.</p> </dd> <dt>SimulationApplicationVersionMismatchedEtag</dt> <dd> <p>Etag for SimulationApplication does not match value during version creation.</p> </dd> </dl>",
         "SimulationJob$failureCode": "<p>The failure code of the simulation job if it failed.</p>"
       }

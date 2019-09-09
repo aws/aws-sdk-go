@@ -1505,6 +1505,10 @@ type EC2API interface {
 	ModifyVpnTunnelCertificateWithContext(aws.Context, *ec2.ModifyVpnTunnelCertificateInput, ...request.Option) (*ec2.ModifyVpnTunnelCertificateOutput, error)
 	ModifyVpnTunnelCertificateRequest(*ec2.ModifyVpnTunnelCertificateInput) (*request.Request, *ec2.ModifyVpnTunnelCertificateOutput)
 
+	ModifyVpnTunnelOptions(*ec2.ModifyVpnTunnelOptionsInput) (*ec2.ModifyVpnTunnelOptionsOutput, error)
+	ModifyVpnTunnelOptionsWithContext(aws.Context, *ec2.ModifyVpnTunnelOptionsInput, ...request.Option) (*ec2.ModifyVpnTunnelOptionsOutput, error)
+	ModifyVpnTunnelOptionsRequest(*ec2.ModifyVpnTunnelOptionsInput) (*request.Request, *ec2.ModifyVpnTunnelOptionsOutput)
+
 	MonitorInstances(*ec2.MonitorInstancesInput) (*ec2.MonitorInstancesOutput, error)
 	MonitorInstancesWithContext(aws.Context, *ec2.MonitorInstancesInput, ...request.Option) (*ec2.MonitorInstancesOutput, error)
 	MonitorInstancesRequest(*ec2.MonitorInstancesInput) (*request.Request, *ec2.MonitorInstancesOutput)
