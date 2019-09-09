@@ -1208,7 +1208,8 @@
         "simulationApplications":{"shape":"SimulationApplicationConfigs"},
         "dataSources":{"shape":"DataSources"},
         "tags":{"shape":"TagMap"},
-        "vpcConfig":{"shape":"VPCConfigResponse"}
+        "vpcConfig":{"shape":"VPCConfigResponse"},
+        "networkInterface":{"shape":"NetworkInterface"}
       }
     },
     "EnvironmentVariableKey":{
@@ -1321,7 +1322,8 @@
       "members":{
         "packageName":{"shape":"Command"},
         "launchFile":{"shape":"Command"},
-        "environmentVariables":{"shape":"EnvironmentVariableMap"}
+        "environmentVariables":{"shape":"EnvironmentVariableMap"},
+        "portForwardingConfig":{"shape":"PortForwardingConfig"}
       }
     },
     "LimitExceededException":{
@@ -1456,9 +1458,22 @@
       "min":1,
       "pattern":"[a-zA-Z0-9_\\-]*"
     },
+    "NetworkInterface":{
+      "type":"structure",
+      "members":{
+        "networkInterfaceId":{"shape":"GenericString"},
+        "privateIpAddress":{"shape":"GenericString"},
+        "publicIpAddress":{"shape":"GenericString"}
+      }
+    },
     "NonEmptyString":{
       "type":"string",
       "min":1
+    },
+    "NonSystemPort":{
+      "type":"integer",
+      "max":65535,
+      "min":1024
     },
     "OutputLocation":{
       "type":"structure",
@@ -1487,6 +1502,35 @@
       "type":"integer",
       "max":100,
       "min":1
+    },
+    "Port":{
+      "type":"integer",
+      "max":65535,
+      "min":1
+    },
+    "PortForwardingConfig":{
+      "type":"structure",
+      "members":{
+        "portMappings":{"shape":"PortMappingList"}
+      }
+    },
+    "PortMapping":{
+      "type":"structure",
+      "required":[
+        "jobPort",
+        "applicationPort"
+      ],
+      "members":{
+        "jobPort":{"shape":"Port"},
+        "applicationPort":{"shape":"NonSystemPort"},
+        "enableOnPublicIp":{"shape":"Boolean"}
+      }
+    },
+    "PortMappingList":{
+      "type":"list",
+      "member":{"shape":"PortMapping"},
+      "max":10,
+      "min":0
     },
     "ProgressDetail":{
       "type":"structure",
@@ -1783,7 +1827,8 @@
         "simulationApplications":{"shape":"SimulationApplicationConfigs"},
         "dataSources":{"shape":"DataSources"},
         "tags":{"shape":"TagMap"},
-        "vpcConfig":{"shape":"VPCConfigResponse"}
+        "vpcConfig":{"shape":"VPCConfigResponse"},
+        "networkInterface":{"shape":"NetworkInterface"}
       }
     },
     "SimulationJobErrorCode":{

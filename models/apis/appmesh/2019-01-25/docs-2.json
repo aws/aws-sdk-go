@@ -315,6 +315,21 @@
         "DnsServiceDiscovery$hostname": "<p>Specifies the DNS service discovery hostname for the virtual node. </p>"
       }
     },
+    "Duration": {
+      "base": "<p>An object representing the duration between retry attempts.</p>",
+      "refs": {
+        "Duration$unit": "<p>The unit of time between retry attempts.</p>",
+        "Duration$value": "<p>The duration of time between retry attempts.</p>"
+      }
+    },
+    "DurationUnit": {
+      "base": null,
+      "refs": { }
+    },
+    "DurationValue": {
+      "base": null,
+      "refs": { }
+    },
     "EgressFilter": {
       "base": "<p>An object representing the egress filter rules for a service mesh.</p>",
       "refs": {
@@ -389,11 +404,31 @@
       "base": null,
       "refs": { }
     },
+    "HttpRetryPolicy": {
+      "base": "<p>An object that represents a retry policy.</p>",
+      "refs": {
+        "HttpRetryPolicy$httpRetryEvents": "<p>Specify at least one of the following values.</p>\n         <ul>\n            <li>\n               <p>\n                  <b>server-error</b> – HTTP status codes 500, 501,\n               502, 503, 504, 505, 506, 507, 508, 510, and 511</p>\n            </li>\n            <li>\n               <p>\n                  <b>gateway-error</b> – HTTP status codes 502,\n               503, and 504</p>\n            </li>\n            <li>\n               <p>\n                  <b>client-error</b> – HTTP status code 409</p>\n            </li>\n            <li>\n               <p>\n                  <b>stream-error</b> – Retry on refused\n               stream</p>\n            </li>\n         </ul>",
+        "HttpRetryPolicy$maxRetries": "<p>The maximum number of retry attempts. If no value is specified, the default is 1.</p>",
+        "HttpRetryPolicy$perRetryTimeout": "<p>An object that represents the retry duration.</p>",
+        "HttpRetryPolicy$tcpRetryEvents": "<p>Specify a valid value.</p>"
+      }
+    },
+    "HttpRetryPolicyEvent": {
+      "base": null,
+      "refs": { }
+    },
+    "HttpRetryPolicyEvents": {
+      "base": null,
+      "refs": {
+        "HttpRetryPolicyEvents$member": null
+      }
+    },
     "HttpRoute": {
       "base": "<p>An object representing the HTTP routing specification for a route.</p>",
       "refs": {
         "HttpRoute$action": "<p>The action to take if a match is determined.</p>",
-        "HttpRoute$match": "<p>The criteria for determining an HTTP request match.</p>"
+        "HttpRoute$match": "<p>The criteria for determining an HTTP request match.</p>",
+        "HttpRoute$retryPolicy": "<p>An object that represents a retry policy.</p>"
       }
     },
     "HttpRouteAction": {
@@ -576,6 +611,10 @@
         "MatchRange$end": "<p>The end of the range.</p>",
         "MatchRange$start": "<p>The start of the range.</p>"
       }
+    },
+    "MaxRetries": {
+      "base": null,
+      "refs": { }
     },
     "MeshData": {
       "base": "<p>An object representing a service mesh returned by a describe operation.</p>",
@@ -764,6 +803,16 @@
     "TagsLimit": {
       "base": null,
       "refs": { }
+    },
+    "TcpRetryPolicyEvent": {
+      "base": null,
+      "refs": { }
+    },
+    "TcpRetryPolicyEvents": {
+      "base": null,
+      "refs": {
+        "TcpRetryPolicyEvents$member": null
+      }
     },
     "TcpRoute": {
       "base": "<p>An object representing the TCP routing specification for a route.</p>",

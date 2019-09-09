@@ -1106,6 +1106,14 @@
         }
       }
     },
+    "TcpRetryPolicyEvents": {
+      "type": "list",
+      "member": {
+        "shape": "TcpRetryPolicyEvent"
+      },
+      "min": 1,
+      "max": 1
+    },
     "CreateVirtualServiceInput": {
       "type": "structure",
       "required": [
@@ -1699,6 +1707,11 @@
         }
       }
     },
+    "HttpRetryPolicyEvent": {
+      "type": "string",
+      "min": 1,
+      "max": 25
+    },
     "DescribeVirtualServiceOutput": {
       "type": "structure",
       "required": [
@@ -1925,6 +1938,12 @@
         }
       }
     },
+    "TcpRetryPolicyEvent": {
+      "type": "string",
+      "enum": [
+        "connection-error"
+      ]
+    },
     "VirtualServiceSpec": {
       "type": "structure",
       "members": {
@@ -2079,6 +2098,13 @@
         }
       }
     },
+    "DurationUnit": {
+      "type": "string",
+      "enum": [
+        "ms",
+        "s"
+      ]
+    },
     "RoutePriority": {
       "type": "integer",
       "box": true,
@@ -2214,6 +2240,14 @@
         }
       }
     },
+    "HttpRetryPolicyEvents": {
+      "type": "list",
+      "member": {
+        "shape": "HttpRetryPolicyEvent"
+      },
+      "min": 1,
+      "max": 25
+    },
     "ListVirtualNodesLimit": {
       "type": "integer",
       "box": true,
@@ -2326,6 +2360,17 @@
         "TRACE"
       ]
     },
+    "Duration": {
+      "type": "structure",
+      "members": {
+        "unit": {
+          "shape": "DurationUnit"
+        },
+        "value": {
+          "shape": "DurationValue"
+        }
+      }
+    },
     "ConflictException": {
       "type": "structure",
       "members": {
@@ -2406,6 +2451,11 @@
           "shape": "ResourceName"
         }
       }
+    },
+    "MaxRetries": {
+      "type": "long",
+      "box": true,
+      "min": 0
     },
     "MeshStatusCode": {
       "type": "string",
@@ -2691,6 +2741,27 @@
       "min": 0,
       "max": 50
     },
+    "HttpRetryPolicy": {
+      "type": "structure",
+      "required": [
+        "maxRetries",
+        "perRetryTimeout"
+      ],
+      "members": {
+        "httpRetryEvents": {
+          "shape": "HttpRetryPolicyEvents"
+        },
+        "maxRetries": {
+          "shape": "MaxRetries"
+        },
+        "perRetryTimeout": {
+          "shape": "Duration"
+        },
+        "tcpRetryEvents": {
+          "shape": "TcpRetryPolicyEvents"
+        }
+      }
+    },
     "DescribeVirtualRouterInput": {
       "type": "structure",
       "required": [
@@ -2786,6 +2857,11 @@
         "ALLOW_ALL",
         "DROP_ALL"
       ]
+    },
+    "DurationValue": {
+      "type": "long",
+      "box": true,
+      "min": 0
     },
     "Hostname": {
       "type": "string"
@@ -3022,6 +3098,9 @@
         },
         "match": {
           "shape": "HttpRouteMatch"
+        },
+        "retryPolicy": {
+          "shape": "HttpRetryPolicy"
         }
       }
     },
