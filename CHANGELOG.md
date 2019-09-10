@@ -1,3 +1,10 @@
+Release v1.23.19 (2019-09-10)
+===
+
+### Service Client Updates
+* `service/storagegateway`: Updates service API and documentation
+  * The CloudWatchLogGroupARN parameter of the UpdateGatewayInformation API allows for configuring the gateway to use a CloudWatch log-group where Storage Gateway health events will be logged.
+
 Release v1.23.18 (2019-09-09)
 ===
 
