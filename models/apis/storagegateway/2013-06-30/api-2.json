@@ -1201,6 +1201,10 @@
       "max":100,
       "min":5
     },
+    "CloudWatchLogGroupARN":{
+      "type":"string",
+      "max":562
+    },
     "CreateCachediSCSIVolumeInput":{
       "type":"structure",
       "required":[
@@ -1625,7 +1629,8 @@
         "Ec2InstanceId":{"shape":"Ec2InstanceId"},
         "Ec2InstanceRegion":{"shape":"Ec2InstanceRegion"},
         "Tags":{"shape":"Tags"},
-        "VPCEndpoint":{"shape":"string"}
+        "VPCEndpoint":{"shape":"string"},
+        "CloudWatchLogGroupARN":{"shape":"CloudWatchLogGroupARN"}
       }
     },
     "DescribeMaintenanceStartTimeInput":{
@@ -2905,7 +2910,8 @@
       "members":{
         "GatewayARN":{"shape":"GatewayARN"},
         "GatewayName":{"shape":"GatewayName"},
-        "GatewayTimezone":{"shape":"GatewayTimezone"}
+        "GatewayTimezone":{"shape":"GatewayTimezone"},
+        "CloudWatchLogGroupARN":{"shape":"CloudWatchLogGroupARN"}
       }
     },
     "UpdateGatewayInformationOutput":{
