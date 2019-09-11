@@ -1,3 +1,21 @@
+Release v1.23.20 (2019-09-11)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for new data fields and log format in VPC flow logs.
+* `service/email`: Updates service documentation
+  * Updated API documentation to correct broken links, and to update content based on customer feedback.
+* `service/mediaconnect`: Updates service API and documentation
+* `service/rds`: Updates service API and documentation
+  * This release allows customers to specify a custom parameter group when creating a Read Replica, for DB engines which support this feature.
+* `service/states`: Updates service API and documentation
+  * Fixing letter case in Map history event details to be small case
+
+### SDK Enhancements
+* Enabled verbose logging for continuous integration tests ([#2815](https://github.com/aws/aws-sdk-go/pull/2815))
+
 Release v1.23.19 (2019-09-10)
 ===
 

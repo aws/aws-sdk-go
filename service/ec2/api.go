@@ -40491,6 +40491,17 @@ type CreateFlowLogsInput struct {
 	// Default: cloud-watch-logs
 	LogDestinationType *string `type:"string" enum:"LogDestinationType"`
 
+	// The fields to include in the flow log record, in the order in which they
+	// should appear. For a list of available fields, see Flow Log Records (https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-log-records).
+	// If you omit this parameter, the flow log is created using the default format.
+	// If you specify this parameter, you must specify at least one field.
+	//
+	// Specify the fields using the ${field-id} format, separated by spaces. For
+	// the AWS CLI, use single quotation marks (' ') to surround the parameter value.
+	//
+	// Only applicable to flow logs that are published to an Amazon S3 bucket.
+	LogFormat *string `type:"string"`
+
 	// The name of a new or existing CloudWatch Logs log group where Amazon EC2
 	// publishes your flow logs.
 	//
@@ -40575,6 +40586,12 @@ func (s *CreateFlowLogsInput) SetLogDestination(v string) *CreateFlowLogsInput {
 // SetLogDestinationType sets the LogDestinationType field's value.
 func (s *CreateFlowLogsInput) SetLogDestinationType(v string) *CreateFlowLogsInput {
 	s.LogDestinationType = &v
+	return s
+}
+
+// SetLogFormat sets the LogFormat field's value.
+func (s *CreateFlowLogsInput) SetLogFormat(v string) *CreateFlowLogsInput {
+	s.LogFormat = &v
 	return s
 }
 
@@ -60126,8 +60143,8 @@ type DescribeVpcEndpointsInput struct {
 	//
 	//    * vpc-endpoint-id: The ID of the endpoint.
 	//
-	//    * vpc-endpoint-state: The state of the endpoint. (pending | available
-	//    | deleting | deleted)
+	//    * vpc-endpoint-state - The state of the endpoint (pendingAcceptance |
+	//    pending | available | deleting | deleted | rejected | failed).
 	//
 	//    * tag:<key> - The key/value combination of a tag assigned to the resource.
 	//    Use the tag key in the filter name and the tag value as the filter value.
@@ -64957,6 +64974,9 @@ type FlowLog struct {
 	// Flow log data can be published to CloudWatch Logs or Amazon S3.
 	LogDestinationType *string `locationName:"logDestinationType" type:"string" enum:"LogDestinationType"`
 
+	// The format of the flow log record.
+	LogFormat *string `locationName:"logFormat" type:"string"`
+
 	// The name of the flow log group.
 	LogGroupName *string `locationName:"logGroupName" type:"string"`
 
@@ -65022,6 +65042,12 @@ func (s *FlowLog) SetLogDestination(v string) *FlowLog {
 // SetLogDestinationType sets the LogDestinationType field's value.
 func (s *FlowLog) SetLogDestinationType(v string) *FlowLog {
 	s.LogDestinationType = &v
+	return s
+}
+
+// SetLogFormat sets the LogFormat field's value.
+func (s *FlowLog) SetLogFormat(v string) *FlowLog {
+	s.LogFormat = &v
 	return s
 }
 

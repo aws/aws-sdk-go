@@ -2505,6 +2505,7 @@
         "AutoMinorVersionUpgrade":{"shape":"BooleanOptional"},
         "Iops":{"shape":"IntegerOptional"},
         "OptionGroupName":{"shape":"String"},
+        "DBParameterGroupName":{"shape":"String"},
         "PubliclyAccessible":{"shape":"BooleanOptional"},
         "Tags":{"shape":"TagList"},
         "DBSubnetGroupName":{"shape":"String"},

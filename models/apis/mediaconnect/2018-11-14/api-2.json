@@ -1232,7 +1232,8 @@
         "zixi-push",
         "rtp-fec",
         "rtp",
-        "zixi-pull"
+        "zixi-pull",
+        "rist"
       ]
     },
     "RemoveFlowOutputRequest": {

@@ -1609,6 +1609,16 @@
         "GetOrganizationConfigRuleDetailedStatusResponse$OrganizationConfigRuleDetailedStatus": "<p>A list of <code>MemberAccountStatus</code> objects.</p>"
       }
     },
+    "OrganizationConfigRuleName": {
+      "base": null,
+      "refs": {
+        "DeleteOrganizationConfigRuleRequest$OrganizationConfigRuleName": "<p>The name of organization config rule that you want to delete.</p>",
+        "GetOrganizationConfigRuleDetailedStatusRequest$OrganizationConfigRuleName": "<p>The name of organization config rule for which you want status details for member accounts.</p>",
+        "OrganizationConfigRule$OrganizationConfigRuleName": "<p>The name that you assign to organization config rule.</p>",
+        "OrganizationConfigRuleStatus$OrganizationConfigRuleName": "<p>The name that you assign to organization config rule.</p>",
+        "PutOrganizationConfigRuleRequest$OrganizationConfigRuleName": "<p>The name that you assign to an organization config rule.</p>"
+      }
+    },
     "OrganizationConfigRuleNames": {
       "base": null,
       "refs": {
@@ -2403,15 +2413,10 @@
         "ConfigRuleEvaluationStatus$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
         "DeleteConfigRuleRequest$ConfigRuleName": "<p>The name of the AWS Config rule that you want to delete.</p>",
         "DeleteEvaluationResultsRequest$ConfigRuleName": "<p>The name of the AWS Config rule for which you want to delete the evaluation results.</p>",
-        "DeleteOrganizationConfigRuleRequest$OrganizationConfigRuleName": "<p>The name of organization config rule that you want to delete.</p>",
         "EvaluationResultQualifier$ConfigRuleName": "<p>The name of the AWS Config rule that was used in the evaluation.</p>",
         "GetComplianceDetailsByConfigRuleRequest$ConfigRuleName": "<p>The name of the AWS Config rule for which you want compliance information.</p>",
-        "GetOrganizationConfigRuleDetailedStatusRequest$OrganizationConfigRuleName": "<p>The name of organization config rule for which you want status details for member accounts.</p>",
         "MemberAccountStatus$ConfigRuleName": "<p>The name of config rule deployed in the member account.</p>",
-        "OrganizationConfigRule$OrganizationConfigRuleName": "<p>The name that you assign to organization config rule.</p>",
         "OrganizationConfigRuleNames$member": null,
-        "OrganizationConfigRuleStatus$OrganizationConfigRuleName": "<p>The name that you assign to organization config rule.</p>",
-        "PutOrganizationConfigRuleRequest$OrganizationConfigRuleName": "<p>The name that you assign to an organization config rule.</p>",
         "ReevaluateConfigRuleNames$member": null
       }
     },

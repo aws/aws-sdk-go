@@ -984,14 +984,14 @@
     "MapIterationEventDetails":{
       "type":"structure",
       "members":{
-        "Name":{"shape":"Name"},
-        "Index":{"shape":"UnsignedInteger"}
+        "name":{"shape":"Name"},
+        "index":{"shape":"UnsignedInteger"}
       }
     },
     "MapStateStartedEventDetails":{
       "type":"structure",
       "members":{
-        "Length":{"shape":"UnsignedInteger"}
+        "length":{"shape":"UnsignedInteger"}
       }
     },
     "MissingRequiredParameter":{
