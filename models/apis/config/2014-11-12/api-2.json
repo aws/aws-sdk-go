@@ -1459,7 +1459,7 @@
       "type":"structure",
       "required":["OrganizationConfigRuleName"],
       "members":{
-        "OrganizationConfigRuleName":{"shape":"StringWithCharLimit64"}
+        "OrganizationConfigRuleName":{"shape":"OrganizationConfigRuleName"}
       }
     },
     "DeletePendingAggregationRequestRequest":{
@@ -2128,7 +2128,7 @@
       "type":"structure",
       "required":["OrganizationConfigRuleName"],
       "members":{
-        "OrganizationConfigRuleName":{"shape":"StringWithCharLimit64"},
+        "OrganizationConfigRuleName":{"shape":"OrganizationConfigRuleName"},
         "Filters":{"shape":"StatusDetailFilters"},
         "Limit":{"shape":"CosmosPageLimit"},
         "NextToken":{"shape":"String"}
@@ -2533,7 +2533,7 @@
         "OrganizationConfigRuleArn"
       ],
       "members":{
-        "OrganizationConfigRuleName":{"shape":"StringWithCharLimit64"},
+        "OrganizationConfigRuleName":{"shape":"OrganizationConfigRuleName"},
         "OrganizationConfigRuleArn":{"shape":"StringWithCharLimit256"},
         "OrganizationManagedRuleMetadata":{"shape":"OrganizationManagedRuleMetadata"},
         "OrganizationCustomRuleMetadata":{"shape":"OrganizationCustomRuleMetadata"},
@@ -2544,6 +2544,12 @@
     "OrganizationConfigRuleDetailedStatus":{
       "type":"list",
       "member":{"shape":"MemberAccountStatus"}
+    },
+    "OrganizationConfigRuleName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":".*\\S.*"
     },
     "OrganizationConfigRuleNames":{
       "type":"list",
@@ -2558,7 +2564,7 @@
         "OrganizationRuleStatus"
       ],
       "members":{
-        "OrganizationConfigRuleName":{"shape":"StringWithCharLimit64"},
+        "OrganizationConfigRuleName":{"shape":"OrganizationConfigRuleName"},
         "OrganizationRuleStatus":{"shape":"OrganizationRuleStatus"},
         "ErrorCode":{"shape":"String"},
         "ErrorMessage":{"shape":"String"},
@@ -2736,7 +2742,7 @@
       "type":"structure",
       "required":["OrganizationConfigRuleName"],
       "members":{
-        "OrganizationConfigRuleName":{"shape":"StringWithCharLimit64"},
+        "OrganizationConfigRuleName":{"shape":"OrganizationConfigRuleName"},
         "OrganizationManagedRuleMetadata":{"shape":"OrganizationManagedRuleMetadata"},
         "OrganizationCustomRuleMetadata":{"shape":"OrganizationCustomRuleMetadata"},
         "ExcludedAccounts":{"shape":"ExcludedAccounts"}

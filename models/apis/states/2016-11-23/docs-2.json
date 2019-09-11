@@ -512,7 +512,7 @@
         "DescribeStateMachineOutput$name": "<p>The name of the state machine.</p> <p>A name must <i>not</i> contain:</p> <ul> <li> <p>white space</p> </li> <li> <p>brackets <code>&lt; &gt; { } [ ]</code> </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li> <p>special characters <code>\" # % \\ ^ | ~ ` $ &amp; , ; : /</code> </p> </li> <li> <p>control characters (<code>U+0000-001F</code>, <code>U+007F-009F</code>)</p> </li> </ul>",
         "ExecutionListItem$name": "<p>The name of the execution.</p> <p>A name must <i>not</i> contain:</p> <ul> <li> <p>white space</p> </li> <li> <p>brackets <code>&lt; &gt; { } [ ]</code> </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li> <p>special characters <code>\" # % \\ ^ | ~ ` $ &amp; , ; : /</code> </p> </li> <li> <p>control characters (<code>U+0000-001F</code>, <code>U+007F-009F</code>)</p> </li> </ul>",
         "GetActivityTaskInput$workerName": "<p>You can provide an arbitrary name in order to identify the worker that the task is assigned to. This name is used when it is logged in the execution history.</p>",
-        "MapIterationEventDetails$Name": "<p>The name of the iteration’s parent Map state.</p>",
+        "MapIterationEventDetails$name": "<p>The name of the iteration’s parent Map state.</p>",
         "StartExecutionInput$name": "<p>The name of the execution. This name must be unique for your AWS account, region, and state machine for 90 days. For more information, see <a href=\"https://docs.aws.amazon.com/step-functions/latest/dg/limits.html#service-limits-state-machine-executions\"> Limits Related to State Machine Executions</a> in the <i>AWS Step Functions Developer Guide</i>.</p> <p>A name must <i>not</i> contain:</p> <ul> <li> <p>white space</p> </li> <li> <p>brackets <code>&lt; &gt; { } [ ]</code> </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li> <p>special characters <code>\" # % \\ ^ | ~ ` $ &amp; , ; : /</code> </p> </li> <li> <p>control characters (<code>U+0000-001F</code>, <code>U+007F-009F</code>)</p> </li> </ul>",
         "StateEnteredEventDetails$name": "<p>The name of the state.</p>",
         "StateExitedEventDetails$name": "<p>The name of the state.</p> <p>A name must <i>not</i> contain:</p> <ul> <li> <p>white space</p> </li> <li> <p>brackets <code>&lt; &gt; { } [ ]</code> </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li> <p>special characters <code>\" # % \\ ^ | ~ ` $ &amp; , ; : /</code> </p> </li> <li> <p>control characters (<code>U+0000-001F</code>, <code>U+007F-009F</code>)</p> </li> </ul>",
@@ -882,8 +882,8 @@
     "UnsignedInteger": {
       "base": null,
       "refs": {
-        "MapIterationEventDetails$Index": "<p>The index of the array belonging to the Map state iteration.</p>",
-        "MapStateStartedEventDetails$Length": "<p>The size of the array for Map state iterations.</p>"
+        "MapIterationEventDetails$index": "<p>The index of the array belonging to the Map state iteration.</p>",
+        "MapStateStartedEventDetails$length": "<p>The size of the array for Map state iterations.</p>"
       }
     },
     "UntagResourceInput": {

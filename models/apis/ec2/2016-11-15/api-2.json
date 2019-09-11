@@ -6003,7 +6003,8 @@
         "ResourceType":{"shape":"FlowLogsResourceType"},
         "TrafficType":{"shape":"TrafficType"},
         "LogDestinationType":{"shape":"LogDestinationType"},
-        "LogDestination":{"shape":"String"}
+        "LogDestination":{"shape":"String"},
+        "LogFormat":{"shape":"String"}
       }
     },
     "CreateFlowLogsResult":{
@@ -12819,6 +12820,10 @@
         "LogDestination":{
           "shape":"String",
           "locationName":"logDestination"
+        },
+        "LogFormat":{
+          "shape":"String",
+          "locationName":"logFormat"
         }
       }
     },

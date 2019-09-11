@@ -2023,7 +2023,7 @@ type AddOutputRequest struct {
 	// The remote ID for the Zixi-pull output stream.
 	RemoteId *string `locationName:"remoteId" type:"string"`
 
-	// The smoothing latency in milliseconds for RTP and RTP-FEC streams.
+	// The smoothing latency in milliseconds for RIST, RTP, and RTP-FEC streams.
 	SmoothingLatency *int64 `locationName:"smoothingLatency" type:"integer"`
 
 	// The stream ID that you want to use for this transport. This parameter applies
@@ -3561,10 +3561,11 @@ type SetSourceRequest struct {
 	// The port that the flow will be listening on for incoming content.
 	IngestPort *int64 `locationName:"ingestPort" type:"integer"`
 
-	// The smoothing max bitrate for RTP and RTP-FEC streams.
+	// The smoothing max bitrate for RIST, RTP, and RTP-FEC streams.
 	MaxBitrate *int64 `locationName:"maxBitrate" type:"integer"`
 
-	// The maximum latency in milliseconds for Zixi-based streams.
+	// The maximum latency in milliseconds. This parameter applies only to RIST-based
+	// and Zixi-based streams.
 	MaxLatency *int64 `locationName:"maxLatency" type:"integer"`
 
 	// The name of the source.
@@ -3996,10 +3997,11 @@ type Transport struct {
 	// Routing (CIDR) block; for example, 10.0.0.0/16.
 	CidrAllowList []*string `locationName:"cidrAllowList" type:"list"`
 
-	// The smoothing max bitrate for RTP and RTP-FEC streams.
+	// The smoothing max bitrate for RIST, RTP, and RTP-FEC streams.
 	MaxBitrate *int64 `locationName:"maxBitrate" type:"integer"`
 
-	// The maximum latency in milliseconds for Zixi-based streams.
+	// The maximum latency in milliseconds. This parameter applies only to RIST-based
+	// and Zixi-based streams.
 	MaxLatency *int64 `locationName:"maxLatency" type:"integer"`
 
 	// The protocol that is used by the source or output.
@@ -4010,7 +4012,7 @@ type Transport struct {
 	// The remote ID for the Zixi-pull stream.
 	RemoteId *string `locationName:"remoteId" type:"string"`
 
-	// The smoothing latency in milliseconds for RTP and RTP-FEC streams.
+	// The smoothing latency in milliseconds for RIST, RTP, and RTP-FEC streams.
 	SmoothingLatency *int64 `locationName:"smoothingLatency" type:"integer"`
 
 	// The stream ID that you want to use for this transport. This parameter applies
@@ -4405,7 +4407,7 @@ type UpdateFlowOutputInput struct {
 	// The remote ID for the Zixi-pull stream.
 	RemoteId *string `locationName:"remoteId" type:"string"`
 
-	// The smoothing latency in milliseconds for RTP and RTP-FEC streams.
+	// The smoothing latency in milliseconds for RIST, RTP, and RTP-FEC streams.
 	SmoothingLatency *int64 `locationName:"smoothingLatency" type:"integer"`
 
 	// The stream ID that you want to use for this transport. This parameter applies
@@ -4573,10 +4575,11 @@ type UpdateFlowSourceInput struct {
 	// The port that the flow will be listening on for incoming content.
 	IngestPort *int64 `locationName:"ingestPort" type:"integer"`
 
-	// The smoothing max bitrate for RTP and RTP-FEC streams.
+	// The smoothing max bitrate for RIST, RTP, and RTP-FEC streams.
 	MaxBitrate *int64 `locationName:"maxBitrate" type:"integer"`
 
-	// The maximum latency in milliseconds for Zixi-based streams.
+	// The maximum latency in milliseconds. This parameter applies only to RIST-based
+	// and Zixi-based streams.
 	MaxLatency *int64 `locationName:"maxLatency" type:"integer"`
 
 	// The protocol that is used by the source.
@@ -4758,6 +4761,9 @@ const (
 
 	// ProtocolZixiPull is a Protocol enum value
 	ProtocolZixiPull = "zixi-pull"
+
+	// ProtocolRist is a Protocol enum value
+	ProtocolRist = "rist"
 )
 
 const (
