@@ -1,3 +1,19 @@
+Release v1.23.21 (2019-09-12)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * Fix for FleetActivityStatus and FleetStateCode enum
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/medialive`: Updates service API and documentation
+  * AWS Elemental MediaLive now supports High Efficiency Video Coding (HEVC) for standard-definition (SD), high-definition (HD), and ultra-high-definition (UHD) encoding with HDR support.Encoding with HEVC offers a number of advantages. While UHD video requires an advanced codec beyond H.264 (AVC), high frame rate (HFR) or High Dynamic Range (HDR) content in HD also benefit from HEVC's advancements. In addition, benefits can be achieved with HD and SD content even if HDR and HFR are not needed.
+* `service/workmailmessageflow`: Adds new service
+
+### SDK Enhancements
+* `aws`: Add value/pointer conversion functions for all basic number types ([#2740](https://github.com/aws/aws-sdk-go/pull/2740))
+  * Adds value and pointer conversion utilities for the remaining set of integer and float number types.
+
 Release v1.23.20 (2019-09-11)
 ===
 

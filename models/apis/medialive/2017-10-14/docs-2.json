@@ -127,7 +127,8 @@
     "AfdSignaling": {
       "base": "Afd Signaling",
       "refs": {
-        "H264Settings$AfdSignaling": "Indicates that AFD values will be written into the output stream.  If afdSignaling is \"auto\", the system will try to preserve the input AFD value (in cases where multiple AFD values are valid). If set to \"fixed\", the AFD value will be the value configured in the fixedAfd parameter."
+        "H264Settings$AfdSignaling": "Indicates that AFD values will be written into the output stream.  If afdSignaling is \"auto\", the system will try to preserve the input AFD value (in cases where multiple AFD values are valid). If set to \"fixed\", the AFD value will be the value configured in the fixedAfd parameter.",
+        "H265Settings$AfdSignaling": "Indicates that AFD values will be written into the output stream.  If afdSignaling is \"auto\", the system will try to preserve the input AFD value (in cases where multiple AFD values are valid). If set to \"fixed\", the AFD value will be the value configured in the fixedAfd parameter."
       }
     },
     "ArchiveContainerSettings": {
@@ -461,6 +462,13 @@
         "__listOfChannelSummary$member": null
       }
     },
+    "ColorSpacePassthroughSettings": {
+      "base": "Passthrough applies no color space conversion to the output",
+      "refs": {
+        "H264ColorSpaceSettings$ColorSpacePassthroughSettings": null,
+        "H265ColorSpaceSettings$ColorSpacePassthroughSettings": null
+      }
+    },
     "ConflictException": {
       "base": null,
       "refs": {
@@ -711,7 +719,8 @@
     "FixedAfd": {
       "base": "Fixed Afd",
       "refs": {
-        "H264Settings$FixedAfd": "Four bit AFD value to write on all frames of video in the output stream. Only valid when afdSignaling is set to 'Fixed'."
+        "H264Settings$FixedAfd": "Four bit AFD value to write on all frames of video in the output stream. Only valid when afdSignaling is set to 'Fixed'.",
+        "H265Settings$FixedAfd": "Four bit AFD value to write on all frames of video in the output stream. Only valid when afdSignaling is set to 'Fixed'."
       }
     },
     "FixedModeScheduleActionStartSettings": {
@@ -802,6 +811,12 @@
         "H264Settings$ColorMetadata": "Includes colorspace metadata in the output."
       }
     },
+    "H264ColorSpaceSettings": {
+      "base": "H264 Color Space Settings",
+      "refs": {
+        "H264Settings$ColorSpaceSettings": "Color Space settings"
+      }
+    },
     "H264EntropyEncoding": {
       "base": "H264 Entropy Encoding",
       "refs": {
@@ -859,7 +874,7 @@
     "H264RateControlMode": {
       "base": "H264 Rate Control Mode",
       "refs": {
-        "H264Settings$RateControlMode": "Rate control mode. \n\nQVBR: Quality will match the specified quality level except when it is constrained by the\nmaximum bitrate.  Recommended if you or your viewers pay for bandwidth.\n\nVBR: Quality and bitrate vary, depending on the video complexity. Recommended instead of QVBR\nif you want to maintain a specific average bitrate over the duration of the channel.\n\nCBR: Quality varies, depending on the video complexity. Recommended only if you distribute\nyour assets to devices that cannot handle variable bitrates."
+        "H264Settings$RateControlMode": "Rate control mode.\n\nQVBR: Quality will match the specified quality level except when it is constrained by the\nmaximum bitrate.  Recommended if you or your viewers pay for bandwidth.\n\nVBR: Quality and bitrate vary, depending on the video complexity. Recommended instead of QVBR\nif you want to maintain a specific average bitrate over the duration of the channel.\n\nCBR: Quality varies, depending on the video complexity. Recommended only if you distribute\nyour assets to devices that cannot handle variable bitrates."
       }
     },
     "H264ScanType": {
@@ -908,6 +923,102 @@
       "base": "H264 Timecode Insertion Behavior",
       "refs": {
         "H264Settings$TimecodeInsertion": "Determines how timecodes should be inserted into the video elementary stream.\n- 'disabled': Do not include timecodes\n- 'picTimingSei': Pass through picture timing SEI messages from the source specified in Timecode Config"
+      }
+    },
+    "H265AdaptiveQuantization": {
+      "base": "H265 Adaptive Quantization",
+      "refs": {
+        "H265Settings$AdaptiveQuantization": "Adaptive quantization. Allows intra-frame quantizers to vary to improve visual quality."
+      }
+    },
+    "H265AlternativeTransferFunction": {
+      "base": "H265 Alternative Transfer Function",
+      "refs": {
+        "H265Settings$AlternativeTransferFunction": "Whether or not EML should insert an Alternative Transfer Function SEI message to support backwards compatibility with non-HDR decoders and displays."
+      }
+    },
+    "H265ColorMetadata": {
+      "base": "H265 Color Metadata",
+      "refs": {
+        "H265Settings$ColorMetadata": "Includes colorspace metadata in the output."
+      }
+    },
+    "H265ColorSpaceSettings": {
+      "base": "H265 Color Space Settings",
+      "refs": {
+        "H265Settings$ColorSpaceSettings": "Color Space settings"
+      }
+    },
+    "H265FlickerAq": {
+      "base": "H265 Flicker Aq",
+      "refs": {
+        "H265Settings$FlickerAq": "If set to enabled, adjust quantization within each frame to reduce flicker or 'pop' on I-frames."
+      }
+    },
+    "H265GopSizeUnits": {
+      "base": "H265 Gop Size Units",
+      "refs": {
+        "H265Settings$GopSizeUnits": "Indicates if the gopSize is specified in frames or seconds. If seconds the system will convert the gopSize into a frame count at run time."
+      }
+    },
+    "H265Level": {
+      "base": "H265 Level",
+      "refs": {
+        "H265Settings$Level": "H.265 Level."
+      }
+    },
+    "H265LookAheadRateControl": {
+      "base": "H265 Look Ahead Rate Control",
+      "refs": {
+        "H265Settings$LookAheadRateControl": "Amount of lookahead. A value of low can decrease latency and memory usage, while high can produce better quality for certain content."
+      }
+    },
+    "H265Profile": {
+      "base": "H265 Profile",
+      "refs": {
+        "H265Settings$Profile": "H.265 Profile."
+      }
+    },
+    "H265RateControlMode": {
+      "base": "H265 Rate Control Mode",
+      "refs": {
+        "H265Settings$RateControlMode": "Rate control mode.\n\nQVBR: Quality will match the specified quality level except when it is constrained by the\nmaximum bitrate.  Recommended if you or your viewers pay for bandwidth.\n\nCBR: Quality varies, depending on the video complexity. Recommended only if you distribute\nyour assets to devices that cannot handle variable bitrates."
+      }
+    },
+    "H265ScanType": {
+      "base": "H265 Scan Type",
+      "refs": {
+        "H265Settings$ScanType": "Sets the scan type of the output to progressive or top-field-first interlaced."
+      }
+    },
+    "H265SceneChangeDetect": {
+      "base": "H265 Scene Change Detect",
+      "refs": {
+        "H265Settings$SceneChangeDetect": "Scene change detection."
+      }
+    },
+    "H265Settings": {
+      "base": "H265 Settings",
+      "refs": {
+        "VideoCodecSettings$H265Settings": null
+      }
+    },
+    "H265Tier": {
+      "base": "H265 Tier",
+      "refs": {
+        "H265Settings$Tier": "H.265 Tier."
+      }
+    },
+    "H265TimecodeInsertionBehavior": {
+      "base": "H265 Timecode Insertion Behavior",
+      "refs": {
+        "H265Settings$TimecodeInsertion": "Determines how timecodes should be inserted into the video elementary stream.\n- 'disabled': Do not include timecodes\n- 'picTimingSei': Pass through picture timing SEI messages from the source specified in Timecode Config"
+      }
+    },
+    "Hdr10Settings": {
+      "base": "Hdr10 Settings",
+      "refs": {
+        "H265ColorSpaceSettings$Hdr10Settings": null
       }
     },
     "HlsAdMarkers": {
@@ -1185,7 +1296,7 @@
     "InputLocation": {
       "base": "Input Location",
       "refs": {
-        "AudioOnlyHlsSettings$AudioOnlyImage": "For use with an audio only Stream. Must be a .jpg or .png file. If given, this image will be used as the cover-art for the audio only output. Ideally, it should be formatted for an iPhone screen for two reasons. The iPhone does not resize the image, it crops a centered image on the top/bottom and left/right. Additionally, this image file gets saved bit-for-bit into every 10-second segment file, so will increase bandwidth by {image file size} * {segment count} * {user count.}.",
+        "AudioOnlyHlsSettings$AudioOnlyImage": "Optional. Specifies the .jpg or .png image to use as the cover art for an audio-only output. We recommend a low bit-size file because the image increases the output audio bandwidth.\n\nThe image is attached to the audio as an ID3 tag, frame type APIC, picture type 0x10, as per the \"ID3 tag version 2.4.0 - Native Frames\" standard.",
         "AvailBlanking$AvailBlankingImage": "Blanking image to be used. Leave empty for solid black. Only bmp and png images are supported.",
         "BlackoutSlate$BlackoutSlateImage": "Blackout slate image to be used. Leave empty for solid black. Only bmp and png images are supported.",
         "BlackoutSlate$NetworkEndBlackoutImage": "Path to local file to use as Network End Blackout image. Image will be scaled to fill the entire output raster.",
@@ -1598,6 +1709,12 @@
         "OutputGroupSettings$MsSmoothGroupSettings": null
       }
     },
+    "MsSmoothH265PackagingType": {
+      "base": "Ms Smooth H265 Packaging Type",
+      "refs": {
+        "MsSmoothOutputSettings$H265PackagingType": "Only applicable when this output is referencing an H.265 video description.\nSpecifies whether MP4 segments should be packaged as HEV1 or HVC1."
+      }
+    },
     "MsSmoothOutputSettings": {
       "base": "Ms Smooth Output Settings",
       "refs": {
@@ -1727,6 +1844,20 @@
     "PurchaseOfferingResultModel": {
       "base": "PurchaseOffering response",
       "refs": {
+      }
+    },
+    "Rec601Settings": {
+      "base": "Rec601 Settings",
+      "refs": {
+        "H264ColorSpaceSettings$Rec601Settings": null,
+        "H265ColorSpaceSettings$Rec601Settings": null
+      }
+    },
+    "Rec709Settings": {
+      "base": "Rec709 Settings",
+      "refs": {
+        "H264ColorSpaceSettings$Rec709Settings": null,
+        "H265ColorSpaceSettings$Rec709Settings": null
       }
     },
     "RemixSettings": {
@@ -2269,7 +2400,7 @@
     "VideoSelectorColorSpace": {
       "base": "Video Selector Color Space",
       "refs": {
-        "VideoSelector$ColorSpace": "Specifies the colorspace of an input. This setting works in tandem with colorSpaceConversion to determine if any conversion will be performed."
+        "VideoSelector$ColorSpace": "Specifies the color space of an input. This setting works in tandem with colorSpaceUsage and a video description's colorSpaceSettingsChoice to determine if any conversion will be performed."
       }
     },
     "VideoSelectorColorSpaceUsage": {
@@ -2332,6 +2463,7 @@
       "base": null,
       "refs": {
         "H264Settings$GopSize": "GOP size (keyframe interval) in units of either frames or seconds per gopSizeUnits. Must be greater than zero.",
+        "H265Settings$GopSize": "GOP size (keyframe interval) in units of either frames or seconds per gopSizeUnits. Must be greater than zero.",
         "M2tsSettings$SegmentationTime": "The length in seconds of each segment. Required unless markers is set to None_."
       }
     },
@@ -2365,8 +2497,9 @@
         "BurnInDestinationSettings$YPosition": "Specifies the vertical position of the caption relative to the top of the output in pixels. A value of 10 would result in the captions starting 10 pixels from the top of the output. If no explicit yPosition is provided, the caption will be positioned towards the bottom of the output.  All burn-in and DVB-Sub font settings must match.",
         "DvbSubDestinationSettings$XPosition": "Specifies the horizontal position of the caption relative to the left side of the output in pixels. A value of 10 would result in the captions starting 10 pixels from the left of the output. If no explicit xPosition is provided, the horizontal caption position will be determined by the alignment parameter.  This option is not valid for source captions that are STL, 608/embedded or teletext. These source settings are already pre-defined by the caption stream.  All burn-in and DVB-Sub font settings must match.",
         "DvbSubDestinationSettings$YPosition": "Specifies the vertical position of the caption relative to the top of the output in pixels. A value of 10 would result in the captions starting 10 pixels from the top of the output. If no explicit yPosition is provided, the caption will be positioned towards the bottom of the output.  This option is not valid for source captions that are STL, 608/embedded or teletext.  These source settings are already pre-defined by the caption stream.  All burn-in and DVB-Sub font settings must match.",
-        "H264Settings$BufSize": "Size of buffer (HRD buffer model) in bits/second.",
+        "H264Settings$BufSize": "Size of buffer (HRD buffer model) in bits.",
         "H264Settings$GopClosedCadence": "Frequency of closed GOPs. In streaming applications, it is recommended that this be set to 1 so a decoder joining mid-stream will receive an IDR frame as quickly as possible. Setting this value to 0 will break output segmenting.",
+        "H265Settings$GopClosedCadence": "Frequency of closed GOPs. In streaming applications, it is recommended that this be set to 1 so a decoder joining mid-stream will receive an IDR frame as quickly as possible. Setting this value to 0 will break output segmenting.",
         "HlsAkamaiSettings$ConnectionRetryInterval": "Number of seconds to wait before retrying connection to the CDN if the connection is lost.",
         "HlsAkamaiSettings$NumRetries": "Number of retry attempts that will be made before the Live Event is put into an error state.",
         "HlsBasicPutSettings$ConnectionRetryInterval": "Number of seconds to wait before retrying connection to the CDN if the connection is lost.",
@@ -2475,7 +2608,15 @@
     "__integerMin0Max30": {
       "base": null,
       "refs": {
-        "H264Settings$MinIInterval": "Only meaningful if sceneChangeDetect is set to enabled.  Enforces separation between repeated (cadence) I-frames and I-frames inserted by Scene Change Detection. If a scene change I-frame is within I-interval frames of a cadence I-frame, the GOP is shrunk and/or stretched to the scene change I-frame. GOP stretch requires enabling lookahead as well as setting I-interval. The normal cadence resumes for the next GOP. Note: Maximum GOP stretch = GOP size + Min-I-interval - 1"
+        "H264Settings$MinIInterval": "Only meaningful if sceneChangeDetect is set to enabled.  Enforces separation between repeated (cadence) I-frames and I-frames inserted by Scene Change Detection. If a scene change I-frame is within I-interval frames of a cadence I-frame, the GOP is shrunk and/or stretched to the scene change I-frame. GOP stretch requires enabling lookahead as well as setting I-interval. The normal cadence resumes for the next GOP. Note: Maximum GOP stretch = GOP size + Min-I-interval - 1",
+        "H265Settings$MinIInterval": "Only meaningful if sceneChangeDetect is set to enabled.  Enforces separation between repeated (cadence) I-frames and I-frames inserted by Scene Change Detection. If a scene change I-frame is within I-interval frames of a cadence I-frame, the GOP is shrunk and/or stretched to the scene change I-frame. GOP stretch requires enabling lookahead as well as setting I-interval. The normal cadence resumes for the next GOP. Note: Maximum GOP stretch = GOP size + Min-I-interval - 1"
+      }
+    },
+    "__integerMin0Max32768": {
+      "base": null,
+      "refs": {
+        "Hdr10Settings$MaxCll": "Maximum Content Light Level\nAn integer metadata value defining the maximum light level, in nits,\nof any single pixel within an encoded HDR video stream or file.",
+        "Hdr10Settings$MaxFall": "Maximum Frame Average Light Level\nAn integer metadata value defining the maximum average light level, in nits,\nfor any single frame within an encoded HDR video stream or file."
       }
     },
     "__integerMin0Max3600": {
@@ -2540,6 +2681,9 @@
         "H264Settings$FramerateDenominator": "Framerate denominator.",
         "H264Settings$FramerateNumerator": "Framerate numerator - framerate is a fraction, e.g. 24000 / 1001 = 23.976 fps.",
         "H264Settings$ParDenominator": "Pixel Aspect Ratio denominator.",
+        "H265Settings$FramerateNumerator": "Framerate numerator - framerate is a fraction, e.g. 24000 / 1001 = 23.976 fps.",
+        "H265Settings$ParDenominator": "Pixel Aspect Ratio denominator.",
+        "H265Settings$ParNumerator": "Pixel Aspect Ratio numerator.",
         "HlsGroupSettings$KeepSegments": "Applies only if Mode field is LIVE. Specifies the number of media segments (.ts files) to retain in the destination directory.",
         "HlsGroupSettings$SegmentLength": "Length of MPEG-2 Transport Stream segments to create (in seconds). Note that segments will end on the next keyframe after this number of seconds, so actual segment length may be longer.",
         "HlsGroupSettings$SegmentsPerSubdirectory": "Number of segments to write to a subdirectory before starting a new one. directoryStructure must be subdirectoryPerStream for this setting to have an effect.",
@@ -2555,7 +2699,20 @@
       "base": null,
       "refs": {
         "H264Settings$Bitrate": "Average bitrate in bits/second. Required when the rate control mode is VBR or CBR. Not used for QVBR. In an MS Smooth output group, each output must have a unique value when its bitrate is rounded down to the nearest multiple of 1000.",
-        "H264Settings$MaxBitrate": "For QVBR: See the tooltip for Quality level \n\nFor VBR: Set the maximum bitrate in order to accommodate expected spikes in the complexity of the video."
+        "H264Settings$MaxBitrate": "For QVBR: See the tooltip for Quality level\n\nFor VBR: Set the maximum bitrate in order to accommodate expected spikes in the complexity of the video."
+      }
+    },
+    "__integerMin100000Max40000000": {
+      "base": null,
+      "refs": {
+        "H265Settings$Bitrate": "Average bitrate in bits/second. Required when the rate control mode is VBR or CBR. Not used for QVBR. In an MS Smooth output group, each output must have a unique value when its bitrate is rounded down to the nearest multiple of 1000.",
+        "H265Settings$MaxBitrate": "For QVBR: See the tooltip for Quality level"
+      }
+    },
+    "__integerMin100000Max80000000": {
+      "base": null,
+      "refs": {
+        "H265Settings$BufSize": "Size of buffer (HRD buffer model) in bits."
       }
     },
     "__integerMin1000Max30000": {
@@ -2567,7 +2724,8 @@
     "__integerMin1Max10": {
       "base": null,
       "refs": {
-        "H264Settings$QvbrQualityLevel": "Controls the target quality for the video encode. Applies only when the rate control mode is QVBR. Set values for the QVBR quality level field and Max bitrate field that suit your most important viewing devices. Recommended values are:\n- Primary screen: Quality level: 8 to 10. Max bitrate: 4M\n- PC or tablet: Quality level: 7. Max bitrate: 1.5M to 3M\n- Smartphone: Quality level: 6. Max bitrate: 1M to 1.5M"
+        "H264Settings$QvbrQualityLevel": "Controls the target quality for the video encode. Applies only when the rate control mode is QVBR. Set values for the QVBR quality level field and Max bitrate field that suit your most important viewing devices. Recommended values are:\n- Primary screen: Quality level: 8 to 10. Max bitrate: 4M\n- PC or tablet: Quality level: 7. Max bitrate: 1.5M to 3M\n- Smartphone: Quality level: 6. Max bitrate: 1M to 1.5M",
+        "H265Settings$QvbrQualityLevel": "Controls the target quality for the video encode. Applies only when the rate control mode is QVBR. Set values for the QVBR quality level field and Max bitrate field that suit your most important viewing devices. Recommended values are:\n- Primary screen: Quality level: 8 to 10. Max bitrate: 4M\n- PC or tablet: Quality level: 7. Max bitrate: 1.5M to 3M\n- Smartphone: Quality level: 6. Max bitrate: 1M to 1.5M"
       }
     },
     "__integerMin1Max1000000": {
@@ -2579,6 +2737,7 @@
     "__integerMin1Max16": {
       "base": null,
       "refs": {
+        "H265Settings$Slices": "Number of slices per picture. Must be less than or equal to the number of macroblock rows for progressive pictures, and less than or equal to half the number of macroblock rows for interlaced pictures.\nThis field is optional; when no value is specified the encoder will choose the number of slices based on encode resolution.",
         "RemixSettings$ChannelsIn": "Number of input channels to be used."
       }
     },
@@ -2586,6 +2745,12 @@
       "base": null,
       "refs": {
         "FecOutputSettings$RowLength": "Parameter L from SMPTE 2022-1. The width of the FEC protection matrix.  Must be between 1 and 20, inclusive. If only Column FEC is used, then larger values increase robustness.  If Row FEC is used, then this is the number of transport stream packets per row error correction packet, and the value must be between 4 and 20, inclusive, if includeFec is columnAndRow. If includeFec is column, this value must be 1 to 20, inclusive."
+      }
+    },
+    "__integerMin1Max3003": {
+      "base": null,
+      "refs": {
+        "H265Settings$FramerateDenominator": "Framerate denominator."
       }
     },
     "__integerMin1Max31": {
@@ -3104,13 +3269,6 @@
         "ValidationError$ErrorMessage": null,
         "VideoDescription$Name": "The name of this VideoDescription. Outputs will use this name to uniquely identify this Description.  Description names should be unique within this Live Event.",
         "__listOf__string$member": null
-      }
-    },
-    "__stringMax256": {
-      "base": null,
-      "refs": {
-        "ServiceDescriptor$ProviderName": "Name of provider",
-        "ServiceDescriptor$ServiceName": "Name of service"
       }
     },
     "__stringMax32": {
