@@ -257,7 +257,7 @@ func TestRequestExhaustRetries(t *testing.T) {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 
-	expectDelays := []struct{ min, max time.Duration }{{30, 59}, {60, 118}, {120, 236}}
+	expectDelays := []struct{ min, max time.Duration }{{30, 60}, {60, 120}, {120, 240}}
 	for i, v := range delays {
 		min := expectDelays[i].min * time.Millisecond
 		max := expectDelays[i].max * time.Millisecond
@@ -361,7 +361,7 @@ func TestRequestUserAgent(t *testing.T) {
 }
 
 func TestRequestThrottleRetries(t *testing.T) {
-	delays := []time.Duration{}
+	var delays []time.Duration
 	sleepDelay := func(delay time.Duration) {
 		delays = append(delays, delay)
 	}
@@ -402,7 +402,7 @@ func TestRequestThrottleRetries(t *testing.T) {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 
-	expectDelays := []struct{ min, max time.Duration }{{500, 999}, {1000, 1998}, {2000, 3996}}
+	expectDelays := []struct{ min, max time.Duration }{{500, 1000}, {1000, 2000}, {2000, 4000}}
 	for i, v := range delays {
 		min := expectDelays[i].min * time.Millisecond
 		max := expectDelays[i].max * time.Millisecond
