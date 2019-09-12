@@ -22,8 +22,8 @@ func TestCustomRetryRules(t *testing.T) {
 
 	req.RetryCount = 15
 	duration = req.Retryer.RetryRules(req)
-	if duration < time.Second*5 || duration > time.Second*10 {
-		t.Errorf("expected duration to be between 5s and 10s, but received %v", duration)
+	if duration < time.Second*4 || duration > time.Second*8 {
+		t.Errorf("expected duration to be between 4s and 8s, but received %v", duration)
 	}
 }
 

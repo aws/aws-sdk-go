@@ -257,7 +257,7 @@ func TestRequestExhaustRetries(t *testing.T) {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 
-	expectDelays := []struct{ min, max time.Duration }{{30, 59}, {60, 118}, {120, 236}}
+	expectDelays := []struct{ min, max time.Duration }{{30, 60}, {60, 120}, {120, 240}}
 	for i, v := range delays {
 		min := expectDelays[i].min * time.Millisecond
 		max := expectDelays[i].max * time.Millisecond
