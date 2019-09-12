@@ -11,9 +11,6 @@ import (
 )
 
 const (
-	// customRetryerMaxNumRetries sets max number of retries
-	customRetryerMaxNumRetries = 3
-
 	// customRetryerMinRetryDelay sets min retry delay
 	customRetryerMinRetryDelay = 1 * time.Second
 
@@ -30,7 +27,7 @@ func init() {
 		// only set the retryer on request if config doesn't have a retryer
 		if r.Config.Retryer == nil && (r.Operation.Name == opModifyNetworkInterfaceAttribute || r.Operation.Name == opAssignPrivateIpAddresses) {
 			r.Retryer = client.DefaultRetryer{
-				NumMaxRetries:    customRetryerMaxNumRetries,
+				NumMaxRetries:    client.DefaultRetryerMaxNumRetries,
 				MinRetryDelay:    customRetryerMinRetryDelay,
 				MinThrottleDelay: customRetryerMinRetryDelay,
 				MaxRetryDelay:    customRetryerMaxRetryDelay,

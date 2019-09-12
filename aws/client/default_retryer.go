@@ -10,22 +10,28 @@ import (
 )
 
 // DefaultRetryer implements basic retry logic using exponential backoff for
-// most services. If you want to implement custom retry logic, implement the
-// request.Retryer interface or create a structure type that composes this
-// struct and override the specific methods. For example, to override only
-// the MaxRetries method:
+// most services. If you want to implement custom retry logic, you can implement the
+// request.Retryer interface.
 //
-//   type retryer struct {
-//       client.DefaultRetryer
-//   }
-//
-//   // This implementation always has 100 max retries
-//   func (d retryer) MaxRetries() int { return 100 }
 type DefaultRetryer struct {
+	// Num max Retries is the number of max retries that will be performed.
+	// By default, this is zero.
 	NumMaxRetries    int
+
+	// MinRetryDelay is the minimum retry delay after which retry will be performed.
+	// If not set, the value is 0ns.
 	MinRetryDelay    time.Duration
+
+	// MinThrottleRetryDelay is the minimum retry delay when throttled.
+	// If not set, the value is 0ns.
 	MinThrottleDelay time.Duration
+
+	// MaxRetryDelay is the maximum retry delay before which retry must be performed.
+	// If not set, the value is 0ns.
 	MaxRetryDelay    time.Duration
+
+	// MaxThrottleDelay is the maximum retry delay when throttled.
+	// If not set, the value is 0ns.
 	MaxThrottleDelay time.Duration
 }
 
@@ -123,6 +129,12 @@ func getJitterDelay(duration time.Duration) time.Duration {
 
 // ShouldRetry returns true if the request should be retried.
 func (d DefaultRetryer) ShouldRetry(r *request.Request) bool {
+
+	// ShouldRetry returns false if number of max retries is 0.
+	if d.NumMaxRetries == 0 {
+		return false
+	}
+
 	// If one of the other handlers already set the retry state
 	// we don't want to override it based on the service's state
 	if r.Retryable != nil {

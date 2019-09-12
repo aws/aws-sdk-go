@@ -78,8 +78,8 @@ func TestCustomRetryer(t *testing.T) {
 
 	d := req.Retryer.(client.DefaultRetryer)
 
-	if d.NumMaxRetries != customRetryerMaxNumRetries {
-		t.Errorf("expected max retries to be %v, got %v", customRetryerMaxNumRetries, d.NumMaxRetries)
+	if d.NumMaxRetries != client.DefaultRetryerMaxNumRetries {
+		t.Errorf("expected max retries to be %v, got %v", client.DefaultRetryerMaxNumRetries, d.NumMaxRetries)
 	}
 
 	if d.MinRetryDelay != customRetryerMinRetryDelay {
