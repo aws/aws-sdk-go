@@ -172,15 +172,15 @@ func (d *Decoder) decode(av *dynamodb.AttributeValue, v reflect.Value, fieldTag 
 	}
 
 	switch {
-	case len(av.B) != 0:
+	case len(av.B) != 0 || (av.B != nil && d.EmptyCollections):
 		return d.decodeBinary(av.B, v)
 	case av.BOOL != nil:
 		return d.decodeBool(av.BOOL, v)
 	case len(av.BS) != 0:
 		return d.decodeBinarySet(av.BS, v)
-	case len(av.L) != 0:
+	case len(av.L) != 0 || (av.L != nil && d.EmptyCollections):
 		return d.decodeList(av.L, v)
-	case len(av.M) != 0:
+	case len(av.M) != 0 || (av.M != nil && d.EmptyCollections):
 		return d.decodeMap(av.M, v)
 	case av.N != nil:
 		return d.decodeNumber(av.N, v, fieldTag)

@@ -620,3 +620,72 @@ func TestDecodeAliasedUnixTime(t *testing.T) {
 		t.Errorf("expect %v, got %v", expect, actual)
 	}
 }
+
+func TestUnmarshalEmptyCollections(t *testing.T) {
+	null := dynamodb.AttributeValue{NULL: aws.Bool(true)}
+
+	type A struct {
+		Map       map[string]string
+		Slice     []string
+		ByteSlice []byte
+	}
+
+	cases := map[string]struct {
+		emptyCollections bool
+		value            dynamodb.AttributeValue
+		expected         A
+	}{
+		"default behavior nil values": {
+			value: dynamodb.AttributeValue{M: map[string]*dynamodb.AttributeValue{
+				"Map":       &null,
+				"Slice":     &null,
+				"ByteSlice": &null,
+			}},
+		},
+		"default behavior empty values": {
+			value: dynamodb.AttributeValue{M: map[string]*dynamodb.AttributeValue{
+				"Map":       &null,
+				"Slice":     &null,
+				"ByteSlice": &null,
+			}},
+		},
+		"nil values with empty collections option": {
+			emptyCollections: true,
+			value: dynamodb.AttributeValue{M: map[string]*dynamodb.AttributeValue{
+				"Map":       &null,
+				"Slice":     &null,
+				"ByteSlice": &null,
+			}},
+		},
+		"empty values with empty collections option": {
+			emptyCollections: true,
+			expected: A{
+				Map:       map[string]string{},
+				Slice:     []string{},
+				ByteSlice: []byte{},
+			},
+			value: dynamodb.AttributeValue{M: map[string]*dynamodb.AttributeValue{
+				"Map":       {M: map[string]*dynamodb.AttributeValue{}},
+				"Slice":     {L: []*dynamodb.AttributeValue{}},
+				"ByteSlice": {B: []byte{}},
+			}},
+		},
+	}
+
+	for name, tCase := range cases {
+		t.Log(name)
+		decoder := NewDecoder(func(d *Decoder) {
+			d.EmptyCollections = tCase.emptyCollections
+		})
+
+		actual := A{}
+		err := decoder.Decode(&tCase.value, &actual)
+		if err != nil {
+			t.Errorf("expect no err, got %v", err)
+		}
+
+		if e, a := tCase.expected, actual; !reflect.DeepEqual(e, a) {
+			t.Errorf("expected %v, got %v", e, a)
+		}
+	}
+}

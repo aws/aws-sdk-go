@@ -194,6 +194,13 @@ type MarshalOptions struct {
 	// Note that values provided with a custom TagKey must also be supported
 	// by the (un)marshalers in this package.
 	TagKey string
+
+	// EmptyCollections controls how empty slices and maps are (un)marshalled.
+	// This will prevent null values being written to DynamoDB for these types
+	// when set to true.
+	//
+	// Disabled by default.
+	EmptyCollections bool
 }
 
 // An Encoder provides marshaling Go value types to AttributeValues.
@@ -339,6 +346,7 @@ func (e *Encoder) encodeStruct(av *dynamodb.AttributeValue, v reflect.Value, fie
 
 func (e *Encoder) encodeMap(av *dynamodb.AttributeValue, v reflect.Value, fieldTag tag) error {
 	av.M = map[string]*dynamodb.AttributeValue{}
+
 	for _, key := range v.MapKeys() {
 		keyName := fmt.Sprint(key.Interface())
 		if keyName == "" {
@@ -357,7 +365,8 @@ func (e *Encoder) encodeMap(av *dynamodb.AttributeValue, v reflect.Value, fieldT
 
 		av.M[keyName] = elem
 	}
-	if len(av.M) == 0 {
+
+	if v.IsNil() || (len(av.M) == 0 && !e.EmptyCollections) {
 		encodeNull(av)
 	}
 
@@ -371,7 +380,7 @@ func (e *Encoder) encodeSlice(av *dynamodb.AttributeValue, v reflect.Value, fiel
 		reflect.Copy(slice, v)
 
 		b := slice.Bytes()
-		if len(b) == 0 {
+		if v.IsNil() || (len(b) == 0 && !e.EmptyCollections) {
 			encodeNull(av)
 			return nil
 		}
@@ -416,7 +425,7 @@ func (e *Encoder) encodeSlice(av *dynamodb.AttributeValue, v reflect.Value, fiel
 
 		if n, err := e.encodeList(v, fieldTag, elemFn); err != nil {
 			return err
-		} else if n == 0 {
+		} else if v.IsNil() || (n == 0 && !e.EmptyCollections) {
 			encodeNull(av)
 		}
 	}
