@@ -95896,10 +95896,10 @@ const (
 	FleetActivityStatusError = "error"
 
 	// FleetActivityStatusPendingFulfillment is a FleetActivityStatus enum value
-	FleetActivityStatusPendingFulfillment = "pending-fulfillment"
+	FleetActivityStatusPendingFulfillment = "pending_fulfillment"
 
 	// FleetActivityStatusPendingTermination is a FleetActivityStatus enum value
-	FleetActivityStatusPendingTermination = "pending-termination"
+	FleetActivityStatusPendingTermination = "pending_termination"
 
 	// FleetActivityStatusFulfilled is a FleetActivityStatus enum value
 	FleetActivityStatusFulfilled = "fulfilled"
@@ -95946,10 +95946,10 @@ const (
 	FleetStateCodeFailed = "failed"
 
 	// FleetStateCodeDeletedRunning is a FleetStateCode enum value
-	FleetStateCodeDeletedRunning = "deleted-running"
+	FleetStateCodeDeletedRunning = "deleted_running"
 
 	// FleetStateCodeDeletedTerminating is a FleetStateCode enum value
-	FleetStateCodeDeletedTerminating = "deleted-terminating"
+	FleetStateCodeDeletedTerminating = "deleted_terminating"
 
 	// FleetStateCodeModifying is a FleetStateCode enum value
 	FleetStateCodeModifying = "modifying"
