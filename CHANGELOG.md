@@ -1,3 +1,18 @@
+Release v1.23.22 (2019-09-16)
+===
+
+### Service Client Updates
+* `service/eks`: Updates service API and documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added support for multi-DRM SPEKE with CMAF outputs, MP3 ingest, and options for improved video quality.
+
+### SDK Enhancements
+* `aws/client`: Adds configurations to the default retryer ([#2830](https://github.com/aws/aws-sdk-go/pull/2830))
+  * Exposes members of the default retryer. Adds NoOpRetryer to support no retry behavior. 
+  * Updates the underlying logic used by the default retryer to calculate jittered delay for retry. 
+  * Fixes [#2829](https://github.com/aws/aws-sdk-go/issues/2829)
+
 Release v1.23.21 (2019-09-12)
 ===
 

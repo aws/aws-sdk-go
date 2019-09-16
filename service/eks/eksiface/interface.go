@@ -83,12 +83,24 @@ type EKSAPI interface {
 	ListClustersPages(*eks.ListClustersInput, func(*eks.ListClustersOutput, bool) bool) error
 	ListClustersPagesWithContext(aws.Context, *eks.ListClustersInput, func(*eks.ListClustersOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*eks.ListTagsForResourceInput) (*eks.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *eks.ListTagsForResourceInput, ...request.Option) (*eks.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*eks.ListTagsForResourceInput) (*request.Request, *eks.ListTagsForResourceOutput)
+
 	ListUpdates(*eks.ListUpdatesInput) (*eks.ListUpdatesOutput, error)
 	ListUpdatesWithContext(aws.Context, *eks.ListUpdatesInput, ...request.Option) (*eks.ListUpdatesOutput, error)
 	ListUpdatesRequest(*eks.ListUpdatesInput) (*request.Request, *eks.ListUpdatesOutput)
 
 	ListUpdatesPages(*eks.ListUpdatesInput, func(*eks.ListUpdatesOutput, bool) bool) error
 	ListUpdatesPagesWithContext(aws.Context, *eks.ListUpdatesInput, func(*eks.ListUpdatesOutput, bool) bool, ...request.Option) error
+
+	TagResource(*eks.TagResourceInput) (*eks.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *eks.TagResourceInput, ...request.Option) (*eks.TagResourceOutput, error)
+	TagResourceRequest(*eks.TagResourceInput) (*request.Request, *eks.TagResourceOutput)
+
+	UntagResource(*eks.UntagResourceInput) (*eks.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *eks.UntagResourceInput, ...request.Option) (*eks.UntagResourceOutput, error)
+	UntagResourceRequest(*eks.UntagResourceInput) (*request.Request, *eks.UntagResourceOutput)
 
 	UpdateClusterConfig(*eks.UpdateClusterConfigInput) (*eks.UpdateClusterConfigOutput, error)
 	UpdateClusterConfigWithContext(aws.Context, *eks.UpdateClusterConfigInput, ...request.Option) (*eks.UpdateClusterConfigOutput, error)

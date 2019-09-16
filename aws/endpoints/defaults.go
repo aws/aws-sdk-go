@@ -4865,6 +4865,18 @@ var awsusgovPartition = partition{
 				},
 			},
 		},
+		"servicecatalog": service{
+
+			Endpoints: endpoints{
+				"us-gov-west-1": endpoint{},
+				"us-gov-west-1-fips": endpoint{
+					Hostname: "servicecatalog-fips.us-gov-west-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-gov-west-1",
+					},
+				},
+			},
+		},
 		"sms": service{
 
 			Endpoints: endpoints{

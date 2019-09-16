@@ -1075,7 +1075,7 @@
           "locationName": "bitDepth"
         },
         "Channels": {
-          "shape": "__integerMin1Max2",
+          "shape": "__integerMin1Max64",
           "locationName": "channels"
         },
         "SampleRate": {
@@ -1084,14 +1084,36 @@
         }
       }
     },
+    "AncillaryConvert608To708": {
+      "type": "string",
+      "enum": [
+        "UPCONVERT",
+        "DISABLED"
+      ]
+    },
     "AncillarySourceSettings": {
       "type": "structure",
       "members": {
+        "Convert608To708": {
+          "shape": "AncillaryConvert608To708",
+          "locationName": "convert608To708"
+        },
         "SourceAncillaryChannelNumber": {
           "shape": "__integerMin1Max4",
           "locationName": "sourceAncillaryChannelNumber"
+        },
+        "TerminateCaptions": {
+          "shape": "AncillaryTerminateCaptions",
+          "locationName": "terminateCaptions"
         }
       }
+    },
+    "AncillaryTerminateCaptions": {
+      "type": "string",
+      "enum": [
+        "END_OF_INPUT",
+        "DISABLED"
+      ]
     },
     "AntiAlias": {
       "type": "string",
@@ -1592,6 +1614,10 @@
           "shape": "EmbeddedDestinationSettings",
           "locationName": "embeddedDestinationSettings"
         },
+        "ImscDestinationSettings": {
+          "shape": "ImscDestinationSettings",
+          "locationName": "imscDestinationSettings"
+        },
         "SccDestinationSettings": {
           "shape": "SccDestinationSettings",
           "locationName": "sccDestinationSettings"
@@ -1613,6 +1639,7 @@
         "DVB_SUB",
         "EMBEDDED",
         "EMBEDDED_PLUS_SCTE20",
+        "IMSC",
         "SCTE20_PLUS_EMBEDDED",
         "SCC",
         "SRT",
@@ -1744,7 +1771,8 @@
     "CmafEncryptionType": {
       "type": "string",
       "enum": [
-        "SAMPLE_AES"
+        "SAMPLE_AES",
+        "AES_CTR"
       ]
     },
     "CmafGroupSettings": {
@@ -3005,8 +3033,19 @@
         "Source608TrackNumber": {
           "shape": "__integerMin1Max1",
           "locationName": "source608TrackNumber"
+        },
+        "TerminateCaptions": {
+          "shape": "EmbeddedTerminateCaptions",
+          "locationName": "terminateCaptions"
         }
       }
+    },
+    "EmbeddedTerminateCaptions": {
+      "type": "string",
+      "enum": [
+        "END_OF_INPUT",
+        "DISABLED"
+      ]
     },
     "Endpoint": {
       "type": "structure",
@@ -3105,7 +3144,7 @@
           "locationName": "convert608To708"
         },
         "SourceFile": {
-          "shape": "__stringMin14PatternS3SccSCCTtmlTTMLDfxpDFXPStlSTLSrtSRTSmiSMI",
+          "shape": "__stringMin14PatternS3SccSCCTtmlTTMLDfxpDFXPStlSTLSrtSRTXmlXMLSmiSMI",
           "locationName": "sourceFile"
         },
         "TimeDelta": {
@@ -4377,6 +4416,22 @@
         }
       }
     },
+    "ImscDestinationSettings": {
+      "type": "structure",
+      "members": {
+        "StylePassthrough": {
+          "shape": "ImscStylePassthrough",
+          "locationName": "stylePassthrough"
+        }
+      }
+    },
+    "ImscStylePassthrough": {
+      "type": "string",
+      "enum": [
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "Input": {
       "type": "structure",
       "members": {
@@ -4447,6 +4502,10 @@
         "TimecodeSource": {
           "shape": "InputTimecodeSource",
           "locationName": "timecodeSource"
+        },
+        "TimecodeStart": {
+          "shape": "__stringMin11Max11Pattern01D20305D205D",
+          "locationName": "timecodeStart"
         },
         "VideoSelector": {
           "shape": "VideoSelector",
@@ -4585,6 +4644,10 @@
         "TimecodeSource": {
           "shape": "InputTimecodeSource",
           "locationName": "timecodeSource"
+        },
+        "TimecodeStart": {
+          "shape": "__stringMin11Max11Pattern01D20305D205D",
+          "locationName": "timecodeStart"
         },
         "VideoSelector": {
           "shape": "VideoSelector",
@@ -6679,11 +6742,11 @@
           "locationName": "channelMapping"
         },
         "ChannelsIn": {
-          "shape": "__integerMin1Max16",
+          "shape": "__integerMin1Max64",
           "locationName": "channelsIn"
         },
         "ChannelsOut": {
-          "shape": "__integerMin1Max8",
+          "shape": "__integerMin1Max64",
           "locationName": "channelsOut"
         }
       }
@@ -7325,7 +7388,7 @@
           "locationName": "fixedAfd"
         },
         "Height": {
-          "shape": "__integerMin32Max2160",
+          "shape": "__integerMin32Max4096",
           "locationName": "height"
         },
         "Position": {
@@ -7447,7 +7510,7 @@
           "locationName": "bitDepth"
         },
         "Channels": {
-          "shape": "__integerMin1Max8",
+          "shape": "__integerMin1Max64",
           "locationName": "channels"
         },
         "Format": {
@@ -7672,11 +7735,6 @@
       "min": 1,
       "max": 1001
     },
-    "__integerMin1Max16": {
-      "type": "integer",
-      "min": 1,
-      "max": 16
-    },
     "__integerMin1Max17895697": {
       "type": "integer",
       "min": 1,
@@ -7722,10 +7780,10 @@
       "min": 1,
       "max": 6
     },
-    "__integerMin1Max8": {
+    "__integerMin1Max64": {
       "type": "integer",
       "min": 1,
-      "max": 8
+      "max": 64
     },
     "__integerMin24Max60000": {
       "type": "integer",
@@ -7756,11 +7814,6 @@
       "type": "integer",
       "min": 32000,
       "max": 48000
-    },
-    "__integerMin32Max2160": {
-      "type": "integer",
-      "min": 32,
-      "max": 2160
     },
     "__integerMin32Max4096": {
       "type": "integer",
@@ -8095,10 +8148,10 @@
       "min": 14,
       "pattern": "^(s3:\\/\\/)(.*?)\\.(bmp|BMP|png|PNG|tga|TGA)$"
     },
-    "__stringMin14PatternS3SccSCCTtmlTTMLDfxpDFXPStlSTLSrtSRTSmiSMI": {
+    "__stringMin14PatternS3SccSCCTtmlTTMLDfxpDFXPStlSTLSrtSRTXmlXMLSmiSMI": {
       "type": "string",
       "min": 14,
-      "pattern": "^(s3:\\/\\/)(.*?)\\.(scc|SCC|ttml|TTML|dfxp|DFXP|stl|STL|srt|SRT|smi|SMI)$"
+      "pattern": "^(s3:\\/\\/)(.*?)\\.(scc|SCC|ttml|TTML|dfxp|DFXP|stl|STL|srt|SRT|xml|XML|smi|SMI)$"
     },
     "__stringMin16Max24PatternAZaZ0922AZaZ0916": {
       "type": "string",
