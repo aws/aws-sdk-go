@@ -4,9 +4,11 @@ package s3manager_test
 
 import (
 	"bytes"
+	"crypto/rand"
 	"fmt"
 	"io"
 	"io/ioutil"
+	random "math/rand"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -577,7 +579,7 @@ func (s *sizedReader) Read(p []byte) (n int, err error) {
 		n -= s.cur - s.size
 	}
 
-	return
+	return n, err
 }
 
 func TestUploadOrderMultiBufferedReader(t *testing.T) {
@@ -1140,6 +1142,99 @@ func TestUploadRetry(t *testing.T) {
 	}
 }
 
+func TestUploadBufferStrategy(t *testing.T) {
+	cases := map[string]struct {
+		PartSize  int64
+		Size      int64
+		Strategy  s3manager.ReadSeekerWriteToProvider
+		callbacks int
+	}{
+		"NoBuffer": {
+			PartSize: s3manager.DefaultUploadPartSize,
+			Strategy: nil,
+		},
+		"SinglePart": {
+			PartSize:  s3manager.DefaultUploadPartSize,
+			Size:      s3manager.DefaultUploadPartSize,
+			Strategy:  &recordedBufferProvider{size: int(s3manager.DefaultUploadPartSize)},
+			callbacks: 1,
+		},
+		"MultiPart": {
+			PartSize:  s3manager.DefaultUploadPartSize,
+			Size:      s3manager.DefaultUploadPartSize * 2,
+			Strategy:  &recordedBufferProvider{size: int(s3manager.DefaultUploadPartSize)},
+			callbacks: 2,
+		},
+	}
+
+	for name, tCase := range cases {
+		t.Run(name, func(t *testing.T) {
+			_ = tCase
+			sess := unit.Session.Copy()
+			svc := s3.New(sess)
+			svc.Handlers.Unmarshal.Clear()
+			svc.Handlers.UnmarshalMeta.Clear()
+			svc.Handlers.UnmarshalError.Clear()
+			svc.Handlers.Send.Clear()
+			svc.Handlers.Send.PushBack(func(r *request.Request) {
+				if r.Body != nil {
+					io.Copy(ioutil.Discard, r.Body)
+				}
+
+				r.HTTPResponse = &http.Response{
+					StatusCode: 200,
+					Body:       ioutil.NopCloser(bytes.NewReader([]byte{})),
+				}
+
+				switch data := r.Data.(type) {
+				case *s3.CreateMultipartUploadOutput:
+					data.UploadId = aws.String("UPLOAD-ID")
+				case *s3.UploadPartOutput:
+					data.ETag = aws.String(fmt.Sprintf("ETAG%d", random.Int()))
+				case *s3.CompleteMultipartUploadOutput:
+					data.Location = aws.String("https://location")
+					data.VersionId = aws.String("VERSION-ID")
+				case *s3.PutObjectOutput:
+					data.VersionId = aws.String("VERSION-ID")
+				}
+			})
+
+			uploader := s3manager.NewUploaderWithClient(svc, func(u *s3manager.Uploader) {
+				u.PartSize = tCase.PartSize
+				u.BufferProvider = tCase.Strategy
+				u.Concurrency = 1
+			})
+
+			expected := make([]byte, tCase.Size)
+			n, err := rand.Read(expected)
+			if err != nil {
+				t.Fatalf("failed to generate byte slice: %v", err)
+			} else if n != int(tCase.Size) {
+				t.Fatalf("failed to generate sufficient byte slice: expected %d, got %d", tCase.Size, n)
+			}
+
+			_, err = uploader.Upload(&s3manager.UploadInput{
+				Bucket: aws.String("bucket"),
+				Key:    aws.String("key"),
+				Body:   bytes.NewReader(expected),
+			})
+			if err != nil {
+				t.Fatalf("failed to upload file: %v", err)
+			}
+
+			switch strat := tCase.Strategy.(type) {
+			case *recordedBufferProvider:
+				if !bytes.Equal(expected, strat.content) {
+					t.Errorf("content buffered did not match expected")
+				}
+				if tCase.callbacks != strat.callbackCount {
+					t.Errorf("expected %v, got %v callbacks", tCase.callbacks, strat.callbackCount)
+				}
+			}
+		})
+	}
+}
+
 type mockS3UploadServer struct {
 	*http.ServeMux
 
@@ -1267,6 +1362,22 @@ func (h *failPartHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		fmt.Sprintf("mock error, partNumber %v", r.URL.Query().Get("partNumber")))
 
 	h.failsRemaining--
+}
+
+type recordedBufferProvider struct {
+	content       []byte
+	size          int
+	callbackCount int
+}
+
+func (r *recordedBufferProvider) GetWriteTo(seeker io.ReadSeeker) (s3manager.ReadSeekerWriteTo, func()) {
+	b := make([]byte, r.size)
+	w := &s3manager.BufferedReadSeekerWriteTo{BufferedReadSeeker: s3manager.NewBufferedReadSeeker(seeker, b)}
+
+	return w, func() {
+		r.content = append(r.content, b...)
+		r.callbackCount++
+	}
 }
 
 const createUploadResp = `
