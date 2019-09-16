@@ -141,10 +141,22 @@
         "AudioCodecSettings$AiffSettings": "Required when you set (Codec) under (AudioDescriptions)>(CodecSettings) to the value AIFF."
       }
     },
+    "AncillaryConvert608To708": {
+      "base": "Specify whether this set of input captions appears in your outputs in both 608 and 708 format. If you choose Upconvert (UPCONVERT), MediaConvert includes the captions data in two ways: it passes the 608 data through using the 608 compatibility bytes fields of the 708 wrapper, and it also translates the 608 data into 708.",
+      "refs": {
+        "AncillarySourceSettings$Convert608To708": "Specify whether this set of input captions appears in your outputs in both 608 and 708 format. If you choose Upconvert (UPCONVERT), MediaConvert includes the captions data in two ways: it passes the 608 data through using the 608 compatibility bytes fields of the 708 wrapper, and it also translates the 608 data into 708."
+      }
+    },
     "AncillarySourceSettings": {
       "base": "Settings for ancillary captions source.",
       "refs": {
         "CaptionSourceSettings$AncillarySourceSettings": "Settings for ancillary captions source."
+      }
+    },
+    "AncillaryTerminateCaptions": {
+      "base": "By default, the service terminates any unterminated captions at the end of each input. If you want the caption to continue onto your next input, disable this setting.",
+      "refs": {
+        "AncillarySourceSettings$TerminateCaptions": "By default, the service terminates any unterminated captions at the end of each input. If you want the caption to continue onto your next input, disable this setting."
       }
     },
     "AntiAlias": {
@@ -338,9 +350,9 @@
       }
     },
     "CaptionDestinationType": {
-      "base": "Specify the format for this set of captions on this output. The default format is embedded without SCTE-20. Other options are embedded with SCTE-20, burn-in, DVB-sub, SCC, SRT, teletext, TTML, and web-VTT. If you are using SCTE-20, choose SCTE-20 plus embedded (SCTE20_PLUS_EMBEDDED) to create an output that complies with the SCTE-43 spec. To create a non-compliant output where the embedded captions come first, choose Embedded plus SCTE-20 (EMBEDDED_PLUS_SCTE20).",
+      "base": "Specify the format for this set of captions on this output. The default format is embedded without SCTE-20. Other options are embedded with SCTE-20, burn-in, DVB-sub, IMSC, SCC, SRT, teletext, TTML, and web-VTT. If you are using SCTE-20, choose SCTE-20 plus embedded (SCTE20_PLUS_EMBEDDED) to create an output that complies with the SCTE-43 spec. To create a non-compliant output where the embedded captions come first, choose Embedded plus SCTE-20 (EMBEDDED_PLUS_SCTE20).",
       "refs": {
-        "CaptionDestinationSettings$DestinationType": "Specify the format for this set of captions on this output. The default format is embedded without SCTE-20. Other options are embedded with SCTE-20, burn-in, DVB-sub, SCC, SRT, teletext, TTML, and web-VTT. If you are using SCTE-20, choose SCTE-20 plus embedded (SCTE20_PLUS_EMBEDDED) to create an output that complies with the SCTE-43 spec. To create a non-compliant output where the embedded captions come first, choose Embedded plus SCTE-20 (EMBEDDED_PLUS_SCTE20)."
+        "CaptionDestinationSettings$DestinationType": "Specify the format for this set of captions on this output. The default format is embedded without SCTE-20. Other options are embedded with SCTE-20, burn-in, DVB-sub, IMSC, SCC, SRT, teletext, TTML, and web-VTT. If you are using SCTE-20, choose SCTE-20 plus embedded (SCTE20_PLUS_EMBEDDED) to create an output that complies with the SCTE-43 spec. To create a non-compliant output where the embedded captions come first, choose Embedded plus SCTE-20 (EMBEDDED_PLUS_SCTE20)."
       }
     },
     "CaptionSelector": {
@@ -350,9 +362,9 @@
       }
     },
     "CaptionSourceSettings": {
-      "base": "Source settings (SourceSettings) contains the group of settings for captions in the input.",
+      "base": "If your input captions are SCC, TTML, STL, SMI, SRT, or IMSC in an xml file, specify the URI of the input captions source file. If your input captions are IMSC in an IMF package, use TrackSourceSettings instead of FileSoureSettings.",
       "refs": {
-        "CaptionSelector$SourceSettings": "Source settings (SourceSettings) contains the group of settings for captions in the input."
+        "CaptionSelector$SourceSettings": "If your input captions are SCC, TTML, STL, SMI, SRT, or IMSC in an xml file, specify the URI of the input captions source file. If your input captions are IMSC in an IMF package, use TrackSourceSettings instead of FileSoureSettings."
       }
     },
     "CaptionSourceType": {
@@ -386,9 +398,9 @@
       }
     },
     "CmafEncryptionType": {
-      "base": "For DRM with CMAF, the encryption type is always sample AES.",
+      "base": "Specify the encryption scheme that you want the service to use when encrypting your CMAF segments. Choose AES-CBC subsample (SAMPLE-AES) or AES_CTR (AES-CTR).",
       "refs": {
-        "CmafEncryptionSettings$EncryptionMethod": "For DRM with CMAF, the encryption type is always sample AES."
+        "CmafEncryptionSettings$EncryptionMethod": "Specify the encryption scheme that you want the service to use when encrypting your CMAF segments. Choose AES-CBC subsample (SAMPLE-AES) or AES_CTR (AES-CTR)."
       }
     },
     "CmafGroupSettings": {
@@ -889,9 +901,9 @@
       }
     },
     "EmbeddedConvert608To708": {
-      "base": "When set to UPCONVERT, 608 data is both passed through via the \"608 compatibility bytes\" fields of the 708 wrapper as well as translated into 708. 708 data present in the source content will be discarded.",
+      "base": "Specify whether this set of input captions appears in your outputs in both 608 and 708 format. If you choose Upconvert (UPCONVERT), MediaConvert includes the captions data in two ways: it passes the 608 data through using the 608 compatibility bytes fields of the 708 wrapper, and it also translates the 608 data into 708.",
       "refs": {
-        "EmbeddedSourceSettings$Convert608To708": "When set to UPCONVERT, 608 data is both passed through via the \"608 compatibility bytes\" fields of the 708 wrapper as well as translated into 708. 708 data present in the source content will be discarded."
+        "EmbeddedSourceSettings$Convert608To708": "Specify whether this set of input captions appears in your outputs in both 608 and 708 format. If you choose Upconvert (UPCONVERT), MediaConvert includes the captions data in two ways: it passes the 608 data through using the 608 compatibility bytes fields of the 708 wrapper, and it also translates the 608 data into 708."
       }
     },
     "EmbeddedDestinationSettings": {
@@ -904,6 +916,12 @@
       "base": "Settings for embedded captions Source",
       "refs": {
         "CaptionSourceSettings$EmbeddedSourceSettings": "Settings for embedded captions Source"
+      }
+    },
+    "EmbeddedTerminateCaptions": {
+      "base": "By default, the service terminates any unterminated captions at the end of each input. If you want the caption to continue onto your next input, disable this setting.",
+      "refs": {
+        "EmbeddedSourceSettings$TerminateCaptions": "By default, the service terminates any unterminated captions at the end of each input. If you want the caption to continue onto your next input, disable this setting."
       }
     },
     "Endpoint": {
@@ -955,15 +973,15 @@
       }
     },
     "FileSourceConvert608To708": {
-      "base": "If set to UPCONVERT, 608 caption data is both passed through via the \"608 compatibility bytes\" fields of the 708 wrapper as well as translated into 708. 708 data present in the source content will be discarded.",
+      "base": "Specify whether this set of input captions appears in your outputs in both 608 and 708 format. If you choose Upconvert (UPCONVERT), MediaConvert includes the captions data in two ways: it passes the 608 data through using the 608 compatibility bytes fields of the 708 wrapper, and it also translates the 608 data into 708.",
       "refs": {
-        "FileSourceSettings$Convert608To708": "If set to UPCONVERT, 608 caption data is both passed through via the \"608 compatibility bytes\" fields of the 708 wrapper as well as translated into 708. 708 data present in the source content will be discarded."
+        "FileSourceSettings$Convert608To708": "Specify whether this set of input captions appears in your outputs in both 608 and 708 format. If you choose Upconvert (UPCONVERT), MediaConvert includes the captions data in two ways: it passes the 608 data through using the 608 compatibility bytes fields of the 708 wrapper, and it also translates the 608 data into 708."
       }
     },
     "FileSourceSettings": {
-      "base": "Settings for File-based Captions in Source",
+      "base": "If your input captions are SCC, SMI, SRT, STL, TTML, or IMSC 1.1 in an xml file, specify the URI of the input caption source file. If your caption source is IMSC in an IMF package, use TrackSourceSettings instead of FileSoureSettings.",
       "refs": {
-        "CaptionSourceSettings$FileSourceSettings": "Settings for File-based Captions in Source"
+        "CaptionSourceSettings$FileSourceSettings": "If your input captions are SCC, SMI, SRT, STL, TTML, or IMSC 1.1 in an xml file, specify the URI of the input caption source file. If your caption source is IMSC in an IMF package, use TrackSourceSettings instead of FileSoureSettings."
       }
     },
     "FontScript": {
@@ -1489,6 +1507,18 @@
         "VideoPreprocessor$ImageInserter": "Enable the Image inserter (ImageInserter) feature to include a graphic overlay on your video. Enable or disable this feature for each output individually. This setting is disabled by default."
       }
     },
+    "ImscDestinationSettings": {
+      "base": "Settings specific to IMSC caption outputs.",
+      "refs": {
+        "CaptionDestinationSettings$ImscDestinationSettings": "Settings specific to IMSC caption outputs."
+      }
+    },
+    "ImscStylePassthrough": {
+      "base": "Keep this setting enabled to have MediaConvert use the font style and position information from the captions source in the output. This option is available only when your input captions are CFF-TT, IMSC, SMPTE-TT, or TTML. Disable this setting for simplified output captions.",
+      "refs": {
+        "ImscDestinationSettings$StylePassthrough": "Keep this setting enabled to have MediaConvert use the font style and position information from the captions source in the output. This option is available only when your input captions are CFF-TT, IMSC, SMPTE-TT, or TTML. Disable this setting for simplified output captions."
+      }
+    },
     "Input": {
       "base": "Specifies media input",
       "refs": {
@@ -1548,10 +1578,10 @@
       }
     },
     "InputTimecodeSource": {
-      "base": "Timecode source under input settings (InputTimecodeSource) only affects the behavior of features that apply to a single input at a time, such as input clipping and synchronizing some captions formats. Use this setting to specify whether the service counts frames by timecodes embedded in the video (EMBEDDED) or by starting the first frame at zero (ZEROBASED). In both cases, the timecode format is HH:MM:SS:FF or HH:MM:SS;FF, where FF is the frame number. Only set this to EMBEDDED if your source video has embedded timecodes.",
+      "base": "Use this Timecode source setting, located under the input settings (InputTimecodeSource), to specify how the service counts input video frames. This input frame count affects only the behavior of features that apply to a single input at a time, such as input clipping and synchronizing some captions formats. Choose Embedded (EMBEDDED) to use the timecodes in your input video. Choose Start at zero (ZEROBASED) to start the first frame at zero. Choose Specified start (SPECIFIEDSTART) to start the first frame at the timecode that you specify in the setting Start timecode (timecodeStart). If you don't specify a value for Timecode source, the service will use Embedded by default. For more information about timecodes, see https://docs.aws.amazon.com/console/mediaconvert/timecode.",
       "refs": {
-        "Input$TimecodeSource": "Timecode source under input settings (InputTimecodeSource) only affects the behavior of features that apply to a single input at a time, such as input clipping and synchronizing some captions formats. Use this setting to specify whether the service counts frames by timecodes embedded in the video (EMBEDDED) or by starting the first frame at zero (ZEROBASED). In both cases, the timecode format is HH:MM:SS:FF or HH:MM:SS;FF, where FF is the frame number. Only set this to EMBEDDED if your source video has embedded timecodes.",
-        "InputTemplate$TimecodeSource": "Timecode source under input settings (InputTimecodeSource) only affects the behavior of features that apply to a single input at a time, such as input clipping and synchronizing some captions formats. Use this setting to specify whether the service counts frames by timecodes embedded in the video (EMBEDDED) or by starting the first frame at zero (ZEROBASED). In both cases, the timecode format is HH:MM:SS:FF or HH:MM:SS;FF, where FF is the frame number. Only set this to EMBEDDED if your source video has embedded timecodes."
+        "Input$TimecodeSource": "Use this Timecode source setting, located under the input settings (InputTimecodeSource), to specify how the service counts input video frames. This input frame count affects only the behavior of features that apply to a single input at a time, such as input clipping and synchronizing some captions formats. Choose Embedded (EMBEDDED) to use the timecodes in your input video. Choose Start at zero (ZEROBASED) to start the first frame at zero. Choose Specified start (SPECIFIEDSTART) to start the first frame at the timecode that you specify in the setting Start timecode (timecodeStart). If you don't specify a value for Timecode source, the service will use Embedded by default. For more information about timecodes, see https://docs.aws.amazon.com/console/mediaconvert/timecode.",
+        "InputTemplate$TimecodeSource": "Use this Timecode source setting, located under the input settings (InputTimecodeSource), to specify how the service counts input video frames. This input frame count affects only the behavior of features that apply to a single input at a time, such as input clipping and synchronizing some captions formats. Choose Embedded (EMBEDDED) to use the timecodes in your input video. Choose Start at zero (ZEROBASED) to start the first frame at zero. Choose Specified start (SPECIFIEDSTART) to start the first frame at the timecode that you specify in the setting Start timecode (timecodeStart). If you don't specify a value for Timecode source, the service will use Embedded by default. For more information about timecodes, see https://docs.aws.amazon.com/console/mediaconvert/timecode."
       }
     },
     "InsertableImage": {
@@ -2326,17 +2356,17 @@
       }
     },
     "SpekeKeyProvider": {
-      "base": "Use these settings when doing DRM encryption with a SPEKE-compliant key provider, if your output group type is HLS, MS Smooth, or DASH. If your output group type is CMAF, use the SpekeKeyProviderCmaf settings instead.",
+      "base": "If your output group type is HLS, DASH, or Microsoft Smooth, use these settings when doing DRM encryption with a SPEKE-compliant key provider.  If your output group type is CMAF, use the SpekeKeyProviderCmaf settings instead.",
       "refs": {
-        "DashIsoEncryptionSettings$SpekeKeyProvider": "Use these settings when doing DRM encryption with a SPEKE-compliant key provider, if your output group type is HLS, MS Smooth, or DASH. If your output group type is CMAF, use the SpekeKeyProviderCmaf settings instead.",
-        "HlsEncryptionSettings$SpekeKeyProvider": "Use these settings when doing DRM encryption with a SPEKE-compliant key provider, if your output group type is HLS, MS Smooth, or DASH. If your output group type is CMAF, use the SpekeKeyProviderCmaf settings instead.",
-        "MsSmoothEncryptionSettings$SpekeKeyProvider": "Use these settings when doing DRM encryption with a SPEKE-compliant key provider, if your output group type is HLS, MS Smooth, or DASH. If your output group type is CMAF, use the SpekeKeyProviderCmaf settings instead."
+        "DashIsoEncryptionSettings$SpekeKeyProvider": "If your output group type is HLS, DASH, or Microsoft Smooth, use these settings when doing DRM encryption with a SPEKE-compliant key provider.  If your output group type is CMAF, use the SpekeKeyProviderCmaf settings instead.",
+        "HlsEncryptionSettings$SpekeKeyProvider": "If your output group type is HLS, DASH, or Microsoft Smooth, use these settings when doing DRM encryption with a SPEKE-compliant key provider.  If your output group type is CMAF, use the SpekeKeyProviderCmaf settings instead.",
+        "MsSmoothEncryptionSettings$SpekeKeyProvider": "If your output group type is HLS, DASH, or Microsoft Smooth, use these settings when doing DRM encryption with a SPEKE-compliant key provider.  If your output group type is CMAF, use the SpekeKeyProviderCmaf settings instead."
       }
     },
     "SpekeKeyProviderCmaf": {
-      "base": "Use these settings when doing DRM encryption with a SPEKE-compliant key provider, if your output group type is CMAF. If your output group type is HLS, MS Smooth, or DASH, use the SpekeKeyProvider settings instead.",
+      "base": "If your output group type is CMAF, use these settings when doing DRM encryption with a SPEKE-compliant key provider. If your output group type is HLS, DASH, or Microsoft Smooth, use the SpekeKeyProvider settings instead.",
       "refs": {
-        "CmafEncryptionSettings$SpekeKeyProvider": "Use these settings when doing DRM encryption with a SPEKE-compliant key provider, if your output group type is CMAF. If your output group type is HLS, MS Smooth, or DASH, use the SpekeKeyProvider settings instead."
+        "CmafEncryptionSettings$SpekeKeyProvider": "If your output group type is CMAF, use these settings when doing DRM encryption with a SPEKE-compliant key provider. If your output group type is HLS, DASH, or Microsoft Smooth, use the SpekeKeyProvider settings instead."
       }
     },
     "StaticKeyProvider": {
@@ -2434,9 +2464,9 @@
       }
     },
     "TrackSourceSettings": {
-      "base": "Settings specific to caption sources that are specfied by track number. Sources include IMSC in IMF.",
+      "base": "Settings specific to caption sources that are specified by track number. Currently, this is only IMSC captions in an IMF package. If your caption source is IMSC 1.1 in a separate xml file, use FileSourceSettings instead of TrackSourceSettings.",
       "refs": {
-        "CaptionSourceSettings$TrackSourceSettings": "Settings specific to caption sources that are specfied by track number. Sources include IMSC in IMF."
+        "CaptionSourceSettings$TrackSourceSettings": "Settings specific to caption sources that are specified by track number. Currently, this is only IMSC captions in an IMF package. If your caption source is IMSC 1.1 in a separate xml file, use FileSourceSettings instead of TrackSourceSettings."
       }
     },
     "TtmlDestinationSettings": {
@@ -2685,7 +2715,7 @@
       "base": null,
       "refs": {
         "NoiseReducerSpatialFilterSettings$Strength": "Relative strength of noise reducing filter. Higher values produce stronger filtering.",
-        "NoiseReducerTemporalFilterSettings$Strength": "Relative strength of noise reducing filter. Higher values produce stronger filtering. Recommended Range: * [0 .. 2] for complexity reduction with minimal sharpness loss * [2 .. 8] for complexity reduction with image preservation * [8 .. 16] for noise reduction. Reduce noise combined high complexity reduction"
+        "NoiseReducerTemporalFilterSettings$Strength": "Specify the strength of the noise reducing filter on this output. Higher values produce stronger filtering. We recommend the following value ranges, depending on the result that you want: * 0-2 for complexity reduction with minimal sharpness loss * 2-8 for complexity reduction with image preservation * 8-16 for a high level of complexity reduction"
       }
     },
     "__integerMin0Max2147483647": {
@@ -2910,12 +2940,6 @@
         "Mpeg2Settings$FramerateDenominator": "Frame rate denominator."
       }
     },
-    "__integerMin1Max16": {
-      "base": null,
-      "refs": {
-        "RemixSettings$ChannelsIn": "Specify the number of audio channels from your input that you want to use in your output. With remixing, you might combine or split the data in these channels, so the number of channels in your final output might be different."
-      }
-    },
     "__integerMin1Max17895697": {
       "base": null,
       "refs": {
@@ -2925,7 +2949,6 @@
     "__integerMin1Max2": {
       "base": null,
       "refs": {
-        "AiffSettings$Channels": "Set Channels to specify the number of channels in this output audio track. Choosing Mono in the console will give you 1 output channel; choosing Stereo will give you 2. In the API, valid values are 1 and 2.",
         "Mp2Settings$Channels": "Set Channels to specify the number of channels in this output audio track. Choosing Mono in the console will give you 1 output channel; choosing Stereo will give you 2. In the API, valid values are 1 and 2."
       }
     },
@@ -2996,23 +3019,25 @@
       "base": null,
       "refs": {
         "AncillarySourceSettings$SourceAncillaryChannelNumber": "Specifies the 608 channel number in the ancillary data track from which to extract captions. Unused for passthrough.",
-        "EmbeddedDestinationSettings$Destination608ChannelNumber": "Ignore this setting unless your input captions are SCC format and your output captions are embedded in the video stream. Specify a CC number for each captions channel in this output. If you have two channels, pick CC numbers that aren't in the same field. For example, choose 1 and 3. For more information, see https://docs.aws.amazon.com/console/mediaconvert/dual-scc-to-embedded.",
+        "EmbeddedDestinationSettings$Destination608ChannelNumber": "Ignore this setting unless your input captions are SCC format and your output captions are embedded in the video stream. Specify a CC number for each captions channel in this output. If you have two channels, choose CC numbers that aren't in the same field. For example, choose 1 and 3. For more information, see https://docs.aws.amazon.com/console/mediaconvert/dual-scc-to-embedded.",
         "EmbeddedSourceSettings$Source608ChannelNumber": "Specifies the 608/708 channel number within the video track from which to extract captions. Unused for passthrough."
       }
     },
     "__integerMin1Max6": {
       "base": null,
       "refs": {
-        "EmbeddedDestinationSettings$Destination708ServiceNumber": "Ignore this setting unless your input captions are SCC format and you want both 608 and 708 captions embedded in your output stream. Optionally, specify the 708 service number for each output captions channel. Choose a different number for each channel. To use this setting, also set Force 608 to 708 upconvert (Convert608To708) to Upconvert (UPCONVERT) in your input captions selector settings. If you choose to upconvert but don't specify a 708 service number, MediaConvert uses the number you specify for CC channel number (destination608ChannelNumber) for the 708 service number. For more information, see https://docs.aws.amazon.com/console/mediaconvert/dual-scc-to-embedded.",
+        "EmbeddedDestinationSettings$Destination708ServiceNumber": "Ignore this setting unless your input captions are SCC format and you want both 608 and 708 captions embedded in your output stream. Optionally, specify the 708 service number for each output captions channel. Choose a different number for each channel. To use this setting, also set Force 608 to 708 upconvert (Convert608To708) to Upconvert (UPCONVERT) in your input captions selector settings. If you choose to upconvert but don't specify a 708 service number, MediaConvert uses the number that you specify for CC channel number (destination608ChannelNumber) for the 708 service number. For more information, see https://docs.aws.amazon.com/console/mediaconvert/dual-scc-to-embedded.",
         "H264Settings$NumberReferenceFrames": "Number of reference frames to use. The encoder may use more than requested if using B-frames and/or interlaced encoding.",
         "H265Settings$NumberReferenceFrames": "Number of reference frames to use. The encoder may use more than requested if using B-frames and/or interlaced encoding."
       }
     },
-    "__integerMin1Max8": {
+    "__integerMin1Max64": {
       "base": null,
       "refs": {
-        "RemixSettings$ChannelsOut": "Specify the number of channels in this output after remixing. Valid values: 1, 2, 4, 6, 8",
-        "WavSettings$Channels": "Set Channels to specify the number of channels in this output audio track. With WAV, valid values 1, 2, 4, and 8. In the console, these values are Mono, Stereo, 4-Channel, and 8-Channel, respectively."
+        "AiffSettings$Channels": "Specify the number of channels in this output audio track. Valid values are 1 and even numbers up to 64. For example, 1, 2, 4, 6, and so on, up to 64.",
+        "RemixSettings$ChannelsIn": "Specify the number of audio channels from your input that you want to use in your output. With remixing, you might combine or split the data in these channels, so the number of channels in your final output might be different.",
+        "RemixSettings$ChannelsOut": "Specify the number of channels in this output after remixing. Valid values: 1, 2, 4, 6, 8... 64. (1 and even numbers to 64.)",
+        "WavSettings$Channels": "Specify the number of channels in this output audio track. Valid values are 1 and even numbers up to 64. For example, 1, 2, 4, 6, and so on, up to 64."
       }
     },
     "__integerMin24Max60000": {
@@ -3052,15 +3077,10 @@
         "Mp2Settings$SampleRate": "Sample rate in hz."
       }
     },
-    "__integerMin32Max2160": {
-      "base": null,
-      "refs": {
-        "VideoDescription$Height": "Use the Height (Height) setting to define the video resolution height for this output. Specify in pixels. If you don't provide a value here, the service will use the input height."
-      }
-    },
     "__integerMin32Max4096": {
       "base": null,
       "refs": {
+        "VideoDescription$Height": "Use the Height (Height) setting to define the video resolution height for this output. Specify in pixels. If you don't provide a value here, the service will use the input height.",
         "VideoDescription$Width": "Use Width (Width) to define the video resolution width, in pixels, for this output. If you don't provide a value here, the service will use the input width."
       }
     },
@@ -3524,6 +3544,8 @@
     "__stringMin11Max11Pattern01D20305D205D": {
       "base": null,
       "refs": {
+        "Input$TimecodeStart": "Specify the timecode that you want the service to use for this input's initial frame. To use this setting, you must set the Timecode source setting, located under the input settings (InputTimecodeSource), to Specified start (SPECIFIEDSTART). For more information about timecodes, see https://docs.aws.amazon.com/console/mediaconvert/timecode.",
+        "InputTemplate$TimecodeStart": "Specify the timecode that you want the service to use for this input's initial frame. To use this setting, you must set the Timecode source setting, located under the input settings (InputTimecodeSource), to Specified start (SPECIFIEDSTART). For more information about timecodes, see https://docs.aws.amazon.com/console/mediaconvert/timecode.",
         "MotionImageInserter$StartTime": "Specify when the motion overlay begins. Use timecode format (HH:MM:SS:FF or HH:MM:SS;FF). Make sure that the timecode you provide here takes into account how you have set up your timecode configuration under both job settings and input settings. The simplest way to do that is to set both to start at 0. If you need to set up your job to follow timecodes embedded in your source that don't start at zero, make sure that you specify a start time that is after the first embedded timecode. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/setting-up-timecode.html Find job-wide and input timecode configuration settings in your JSON job settings specification at settings>timecodeConfig>source and settings>inputs>timecodeSource."
       }
     },
@@ -3545,10 +3567,10 @@
         "InsertableImage$ImageInserterInput": "Specify the Amazon S3 location of the image that you want to overlay on the video. Use a PNG or TGA file."
       }
     },
-    "__stringMin14PatternS3SccSCCTtmlTTMLDfxpDFXPStlSTLSrtSRTSmiSMI": {
+    "__stringMin14PatternS3SccSCCTtmlTTMLDfxpDFXPStlSTLSrtSRTXmlXMLSmiSMI": {
       "base": null,
       "refs": {
-        "FileSourceSettings$SourceFile": "External caption file used for loading captions. Accepted file extensions are 'scc', 'ttml', 'dfxp', 'stl', 'srt', and 'smi'."
+        "FileSourceSettings$SourceFile": "External caption file used for loading captions. Accepted file extensions are 'scc', 'ttml', 'dfxp', 'stl', 'srt', 'xml', and 'smi'."
       }
     },
     "__stringMin16Max24PatternAZaZ0922AZaZ0916": {

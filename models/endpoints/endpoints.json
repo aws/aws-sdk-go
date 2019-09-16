@@ -4543,6 +4543,17 @@
           }
         }
       },
+      "servicecatalog" : {
+        "endpoints" : {
+          "us-gov-west-1" : { },
+          "us-gov-west-1-fips" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "servicecatalog-fips.us-gov-west-1.amazonaws.com"
+          }
+        }
+      },
       "sms" : {
         "endpoints" : {
           "us-gov-east-1" : { },
