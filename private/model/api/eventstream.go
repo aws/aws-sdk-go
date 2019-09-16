@@ -25,6 +25,7 @@ type EventStreamAPI struct {
 // modeled events that are known for the stream.
 type EventStream struct {
 	Name       string
+	RefName    string
 	Shape      *Shape
 	Events     []*Event
 	Exceptions []*Event
@@ -130,27 +131,28 @@ func (a *API) setupEventStreams() {
 			MemberRefs: map[string]*ShapeRef{
 				"Inbound": &ShapeRef{
 					ShapeName: inbound.Shape.ShapeName,
+					Shape:     inbound.Shape,
 				},
 			},
 		}
+		// persist reference to the original inbound shape so its event types
+		// can be walked during generation.
 		inbound.Shape.refs = append(inbound.Shape.refs, streamShape.MemberRefs["Inbound"])
+
 		streamShapeRef := &ShapeRef{
 			API:           a,
 			ShapeName:     streamShape.ShapeName,
 			Shape:         streamShape,
-			Documentation: eventStreamAPIShapeRefDoc(eventStreamMemberName),
+			Documentation: eventStreamAPIShapeRefDoc(inbound.RefName),
 		}
 		streamShape.refs = []*ShapeRef{streamShapeRef}
 		op.EventStreamAPI.Shape = streamShape
 
-		if _, ok := op.OutputRef.Shape.MemberRefs[eventStreamMemberName]; ok {
-			panic(fmt.Sprintf("shape ref already exists, %s.%s",
-				op.OutputRef.Shape.ShapeName, eventStreamMemberName))
-		}
-		op.OutputRef.Shape.MemberRefs[eventStreamMemberName] = streamShapeRef
-		op.OutputRef.Shape.EventStreamsMemberName = eventStreamMemberName
-		if _, ok := a.Shapes[streamShape.ShapeName]; ok {
-			panic("shape already exists, " + streamShape.ShapeName)
+		op.OutputRef.Shape.MemberRefs[inbound.RefName] = streamShapeRef
+		op.OutputRef.Shape.EventStreamsMemberName = inbound.RefName
+
+		if s, ok := a.Shapes[streamShape.ShapeName]; ok {
+			s.Rename(streamShape.ShapeName + "Data")
 		}
 		a.Shapes[streamShape.ShapeName] = streamShape
 
@@ -165,13 +167,15 @@ func setupEventStream(topShape *Shape) *EventStream {
 			continue
 		}
 		if eventStream != nil {
+			// Only on event stream member within an Input/Output shape is valid.
 			panic(fmt.Sprintf("multiple shape ref eventstreams, %s, prev: %s",
 				refName, eventStream.Name))
 		}
 
 		eventStream = &EventStream{
-			Name:  ref.Shape.ShapeName,
-			Shape: ref.Shape,
+			Name:    ref.Shape.ShapeName,
+			RefName: refName,
+			Shape:   ref.Shape,
 		}
 
 		if topShape.API.Metadata.Protocol == "json" {
@@ -203,7 +207,8 @@ func setupEventStream(topShape *Shape) *EventStream {
 			}
 		}
 
-		// Remove the eventstream references as they will be added elsewhere.
+		// Remove the event stream member and shape as they will be added
+		// elsewhere.
 		ref.Shape.removeRef(ref)
 		delete(topShape.MemberRefs, refName)
 		delete(topShape.API.Shapes, ref.Shape.ShapeName)
@@ -557,11 +562,11 @@ func (s *{{ $.ShapeName }}) runEventStreamLoop(r *request.Request) {
 		// Wait for the initial response event, which must be the first event to be
 		// received from the API.
 		select {
-		case event, ok := <-s.EventStream.Events():
+		case event, ok := <-s.{{ $.EventStreamsMemberName }}.Events():
 			if !ok {
 				return
 			}
-			es := s.EventStream
+			es := s.{{ $.EventStreamsMemberName }}
 			v, ok := event.(*{{ $.ShapeName }})
 			if !ok || v == nil {
 				r.Error = awserr.New(
@@ -572,7 +577,7 @@ func (s *{{ $.ShapeName }}) runEventStreamLoop(r *request.Request) {
 				return
 			}
 			*s = *v
-			s.EventStream = es
+			s.{{ $.EventStreamsMemberName }} = es
 		}
 	}
 {{ end -}}
@@ -882,6 +887,7 @@ func (c *loopReader) Read(p []byte) (int, error) {
 }
 
 {{ define "event stream inbound tests" }}
+    {{- $esMemberName := $.Operation.OutputRef.Shape.EventStreamsMemberName }}
 	func Test{{ $.Operation.ExportedName }}_Read(t *testing.T) {
 		expectEvents, eventMsgs := mock{{ $.Operation.ExportedName }}ReadEvents()
 		sess, cleanupFn, err := eventstreamtest.SetupEventStreamSession(t,
@@ -901,7 +907,7 @@ func (c *loopReader) Read(p []byte) (int, error) {
 		if err != nil {
 			t.Fatalf("expect no error got, %v", err)
 		}
-		defer resp.EventStream.Close()
+		defer resp.{{ $esMemberName }}.Close()
 
 		{{- if eq $.Operation.API.Metadata.Protocol "json" }}
 			{{- if HasNonEventStreamMember $.Operation.OutputRef.Shape }}
@@ -919,7 +925,7 @@ func (c *loopReader) Read(p []byte) (int, error) {
 		{{ end }}
 
 		var i int
-		for event := range resp.EventStream.Events() {
+		for event := range resp.{{ $esMemberName }}.Events() {
 			if event == nil {
 				t.Errorf("%d, expect event, got nil", i)
 			}
@@ -929,7 +935,7 @@ func (c *loopReader) Read(p []byte) (int, error) {
 			i++
 		}
 
-		if err := resp.EventStream.Err(); err != nil {
+		if err := resp.{{ $esMemberName }}.Err(); err != nil {
 			t.Errorf("expect no error, %v", err)
 		}
 	}
@@ -954,10 +960,10 @@ func (c *loopReader) Read(p []byte) (int, error) {
 			t.Fatalf("expect no error got, %v", err)
 		}
 
-		resp.EventStream.Close()
-		<-resp.EventStream.Events()
+		resp.{{ $esMemberName }}.Close()
+		<-resp.{{ $esMemberName }}.Events()
 
-		if err := resp.EventStream.Err(); err != nil {
+		if err := resp.{{ $esMemberName }}.Err(); err != nil {
 			t.Errorf("expect no error, %v", err)
 		}
 	}
@@ -995,16 +1001,16 @@ func (c *loopReader) Read(p []byte) (int, error) {
 		if err != nil {
 			b.Fatalf("failed to create request, %v", err)
 		}
-		defer resp.EventStream.Close()
+		defer resp.{{ $esMemberName }}.Close()
 		b.ResetTimer()
 
 		for i := 0; i < b.N; i++ {
-			if err = resp.EventStream.Err(); err != nil {
+			if err = resp.{{ $esMemberName }}.Err(); err != nil {
 				b.Fatalf("expect no error, got %v", err)
 			}
-			event := <-resp.EventStream.Events()
+			event := <-resp.{{ $esMemberName }}.Events()
 			if event == nil {
-				b.Fatalf("expect event, got nil, %v, %d", resp.EventStream.Err(), i)
+				b.Fatalf("expect event, got nil, %v, %d", resp.{{ $esMemberName }}.Err(), i)
 			}
 		}
 	}
@@ -1087,11 +1093,11 @@ func (c *loopReader) Read(p []byte) (int, error) {
 				t.Fatalf("expect no error got, %v", err)
 			}
 
-			defer resp.EventStream.Close()
+			defer resp.{{ $esMemberName }}.Close()
 
-			<-resp.EventStream.Events()
+			<-resp.{{ $esMemberName }}.Events()
 
-			err = resp.EventStream.Err()
+			err = resp.{{ $esMemberName }}.Err()
 			if err == nil {
 				t.Fatalf("expect err, got none")
 			}
