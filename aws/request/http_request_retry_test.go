@@ -1,6 +1,7 @@
 package request_test
 
 import (
+	"context"
 	"strings"
 	"testing"
 
@@ -10,7 +11,6 @@ import (
 )
 
 func TestRequestCancelRetry(t *testing.T) {
-	c := make(chan struct{})
 
 	reqNum := 0
 	s := mock.NewMockClient(&aws.Config{
@@ -24,9 +24,10 @@ func TestRequestCancelRetry(t *testing.T) {
 		reqNum++
 	})
 	out := &testData{}
+	ctx, cancelFn := context.WithCancel(context.Background())
 	r := s.NewRequest(&request.Operation{Name: "Operation"}, nil, out)
-	r.HTTPRequest.Cancel = c
-	close(c)
+	r.SetContext(ctx)
+	cancelFn() // cancelling the context associated with the request
 
 	err := r.Send()
 	if !strings.Contains(err.Error(), "canceled") {
