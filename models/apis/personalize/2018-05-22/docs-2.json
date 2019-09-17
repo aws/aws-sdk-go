@@ -169,6 +169,12 @@
         "DatasetSchema$schema": "<p>The schema.</p>"
       }
     },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "CreateSolutionRequest$performHPO": "<p>Whether to perform hyperparameter optimization (HPO) on the specified or selected recipe. The default is <code>false</code>.</p> <p>When performing AutoML, this parameter is always <code>true</code> and you should not set it to <code>false</code>.</p>"
+      }
+    },
     "Campaign": {
       "base": "<p>Describes a deployed solution version, otherwise known as a campaign. For more information on campaigns, see <a>CreateCampaign</a>.</p>",
       "refs": {
@@ -1042,7 +1048,6 @@
     "PerformHPO": {
       "base": null,
       "refs": {
-        "CreateSolutionRequest$performHPO": "<p>Whether to perform hyperparameter optimization (HPO) on the specified or selected recipe. The default is <code>false</code>.</p> <p>When performing AutoML, this parameter is always <code>true</code> and you should not set it to <code>false</code>.</p>",
         "Solution$performHPO": "<p>Whether to perform hyperparameter optimization (HPO) on the chosen recipe. The default is <code>false</code>.</p>",
         "SolutionVersion$performHPO": "<p>Whether to perform hyperparameter optimization (HPO) on the chosen recipe. The default is <code>false</code>.</p>"
       }
@@ -1191,6 +1196,12 @@
       "refs": {
         "CreateEventTrackerResponse$trackingId": "<p>The ID of the event tracker. Include this ID in requests to the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html\">PutEvents</a> API.</p>",
         "EventTracker$trackingId": "<p>The ID of the event tracker. Include this ID in requests to the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html\">PutEvents</a> API.</p>"
+      }
+    },
+    "TrainingHours": {
+      "base": null,
+      "refs": {
+        "SolutionVersion$trainingHours": "<p>The time used to train the model. </p>"
       }
     },
     "TrainingInputMode": {

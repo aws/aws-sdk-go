@@ -1,3 +1,23 @@
+Release v1.24.0 (2019-09-17)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API and documentation
+  * This release adds DataManifestLocation field indicating the location and file name of the data manifest file. Users can get a list of files that the Athena query wrote or intended to write from the manifest file.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/iam`: Updates service documentation and examples
+  * Documentation updates for iam
+* `service/personalize`: Updates service API and documentation
+
+### SDK Features
+* `service/s3/s3manager`: Add Upload Buffer Provider ([#2792](https://github.com/aws/aws-sdk-go/pull/2792))
+  * Adds a new `BufferProvider` member for specifying how part data can be buffered in memory.
+  * Windows platforms will now default to buffering 1MB per part to reduce contention when uploading files.
+  * Non-Windows platforms will continue to employ a non-buffering behavior.
+
+### SDK Enhancements
+* `awstesting/integration/performance/s3UploadManager`: Extended to support benchmarking and usage of new `BufferProvider` ([#2792](https://github.com/aws/aws-sdk-go/pull/2792))
+
 Release v1.23.22 (2019-09-16)
 ===
 

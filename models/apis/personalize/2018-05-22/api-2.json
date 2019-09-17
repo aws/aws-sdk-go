@@ -73,7 +73,8 @@
         {"shape":"InvalidInputException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceAlreadyExistsException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceInUseException"}
       ]
     },
     "CreateEventTracker":{
@@ -495,7 +496,8 @@
       "output":{"shape":"ListSolutionVersionsResponse"},
       "errors":[
         {"shape":"InvalidInputException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidNextTokenException"}
       ],
       "idempotent":true
     },
@@ -584,6 +586,7 @@
       "type":"string",
       "max":10000
     },
+    "Boolean":{"type":"boolean"},
     "Campaign":{
       "type":"structure",
       "members":{
@@ -786,7 +789,7 @@
       ],
       "members":{
         "name":{"shape":"Name"},
-        "performHPO":{"shape":"PerformHPO"},
+        "performHPO":{"shape":"Boolean"},
         "performAutoML":{"shape":"PerformAutoML"},
         "recipeArn":{"shape":"Arn"},
         "datasetGroupArn":{"shape":"Arn"},
@@ -1633,6 +1636,7 @@
         "eventType":{"shape":"EventType"},
         "datasetGroupArn":{"shape":"Arn"},
         "solutionConfig":{"shape":"SolutionConfig"},
+        "trainingHours":{"shape":"TrainingHours"},
         "status":{"shape":"Status"},
         "failureReason":{"shape":"FailureReason"},
         "creationDateTime":{"shape":"Date"},
@@ -1666,6 +1670,10 @@
     "TrackingId":{
       "type":"string",
       "max":256
+    },
+    "TrainingHours":{
+      "type":"double",
+      "min":0
     },
     "TrainingInputMode":{
       "type":"string",

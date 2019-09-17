@@ -691,7 +691,8 @@
       "type":"structure",
       "members":{
         "EngineExecutionTimeInMillis":{"shape":"Long"},
-        "DataScannedInBytes":{"shape":"Long"}
+        "DataScannedInBytes":{"shape":"Long"},
+        "DataManifestLocation":{"shape":"String"}
       }
     },
     "QueryExecutionStatus":{
