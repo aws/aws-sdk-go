@@ -1,3 +1,13 @@
+Release v1.24.1 (2019-09-18)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * Amazon API Gateway simplifies accessing PRIVATE APIs by allowing you to associate one or more Amazon Virtual Private Cloud (VPC) Endpoints to a private API. API Gateway will create and manage DNS alias records necessary for easily invoking the private APIs. With this feature, you can leverage private APIs in web applications hosted within your VPCs.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/ram`: Updates service API, documentation, and paginators
+* `service/waf-regional`: Updates service API and documentation
+
 Release v1.24.0 (2019-09-17)
 ===
 

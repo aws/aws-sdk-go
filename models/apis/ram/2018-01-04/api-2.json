@@ -28,7 +28,9 @@
         {"shape":"ResourceShareInvitationAlreadyRejectedException"},
         {"shape":"ResourceShareInvitationExpiredException"},
         {"shape":"ServerInternalException"},
-        {"shape":"ServiceUnavailableException"}
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidClientTokenException"},
+        {"shape":"IdempotentParameterMismatchException"}
       ]
     },
     "AssociateResourceShare":{
@@ -71,6 +73,7 @@
         {"shape":"InvalidParameterException"},
         {"shape":"OperationNotPermittedException"},
         {"shape":"ResourceShareLimitExceededException"},
+        {"shape":"TagPolicyViolationException"},
         {"shape":"ServerInternalException"},
         {"shape":"ServiceUnavailableException"}
       ]
@@ -199,6 +202,26 @@
         {"shape":"ServiceUnavailableException"}
       ]
     },
+    "ListPendingInvitationResources":{
+      "name":"ListPendingInvitationResources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/listpendinginvitationresources"
+      },
+      "input":{"shape":"ListPendingInvitationResourcesRequest"},
+      "output":{"shape":"ListPendingInvitationResourcesResponse"},
+      "errors":[
+        {"shape":"MalformedArnException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ServerInternalException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ResourceShareInvitationArnNotFoundException"},
+        {"shape":"MissingRequiredParameterException"},
+        {"shape":"ResourceShareInvitationAlreadyRejectedException"},
+        {"shape":"ResourceShareInvitationExpiredException"}
+      ]
+    },
     "ListPrincipals":{
       "name":"ListPrincipals",
       "http":{
@@ -250,7 +273,9 @@
         {"shape":"ResourceShareInvitationAlreadyRejectedException"},
         {"shape":"ResourceShareInvitationExpiredException"},
         {"shape":"ServerInternalException"},
-        {"shape":"ServiceUnavailableException"}
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidClientTokenException"},
+        {"shape":"IdempotentParameterMismatchException"}
       ]
     },
     "TagResource":{
@@ -266,6 +291,7 @@
         {"shape":"MalformedArnException"},
         {"shape":"TagLimitExceededException"},
         {"shape":"ResourceArnNotFoundException"},
+        {"shape":"TagPolicyViolationException"},
         {"shape":"ServerInternalException"},
         {"shape":"ServiceUnavailableException"}
       ]
@@ -546,6 +572,22 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "ListPendingInvitationResourcesRequest":{
+      "type":"structure",
+      "required":["resourceShareInvitationArn"],
+      "members":{
+        "resourceShareInvitationArn":{"shape":"String"},
+        "nextToken":{"shape":"String"},
+        "maxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListPendingInvitationResourcesResponse":{
+      "type":"structure",
+      "members":{
+        "resources":{"shape":"ResourceList"},
+        "nextToken":{"shape":"String"}
+      }
+    },
     "ListPrincipalsRequest":{
       "type":"structure",
       "required":["resourceOwner"],
@@ -714,6 +756,7 @@
       "type":"structure",
       "members":{
         "resourceShareArn":{"shape":"String"},
+        "resourceShareName":{"shape":"String"},
         "associatedEntity":{"shape":"String"},
         "associationType":{"shape":"ResourceShareAssociationType"},
         "status":{"shape":"ResourceShareAssociationStatus"},
@@ -754,7 +797,11 @@
         "receiverAccountId":{"shape":"String"},
         "invitationTimestamp":{"shape":"DateTime"},
         "status":{"shape":"ResourceShareInvitationStatus"},
-        "resourceShareAssociations":{"shape":"ResourceShareAssociationList"}
+        "resourceShareAssociations":{
+          "shape":"ResourceShareAssociationList",
+          "deprecated":true,
+          "deprecatedMessage":"This member has been deprecated. Use ListPendingInvitationResources."
+        }
       }
     },
     "ResourceShareInvitationAlreadyAcceptedException":{
@@ -839,7 +886,8 @@
         "AVAILABLE",
         "ZONAL_RESOURCE_INACCESSIBLE",
         "LIMIT_EXCEEDED",
-        "UNAVAILABLE"
+        "UNAVAILABLE",
+        "PENDING"
       ]
     },
     "ServerInternalException":{
@@ -896,6 +944,15 @@
     "TagList":{
       "type":"list",
       "member":{"shape":"Tag"}
+    },
+    "TagPolicyViolationException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
     },
     "TagResourceRequest":{
       "type":"structure",

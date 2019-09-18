@@ -112,6 +112,13 @@ type RAMAPI interface {
 	GetResourceSharesPages(*ram.GetResourceSharesInput, func(*ram.GetResourceSharesOutput, bool) bool) error
 	GetResourceSharesPagesWithContext(aws.Context, *ram.GetResourceSharesInput, func(*ram.GetResourceSharesOutput, bool) bool, ...request.Option) error
 
+	ListPendingInvitationResources(*ram.ListPendingInvitationResourcesInput) (*ram.ListPendingInvitationResourcesOutput, error)
+	ListPendingInvitationResourcesWithContext(aws.Context, *ram.ListPendingInvitationResourcesInput, ...request.Option) (*ram.ListPendingInvitationResourcesOutput, error)
+	ListPendingInvitationResourcesRequest(*ram.ListPendingInvitationResourcesInput) (*request.Request, *ram.ListPendingInvitationResourcesOutput)
+
+	ListPendingInvitationResourcesPages(*ram.ListPendingInvitationResourcesInput, func(*ram.ListPendingInvitationResourcesOutput, bool) bool) error
+	ListPendingInvitationResourcesPagesWithContext(aws.Context, *ram.ListPendingInvitationResourcesInput, func(*ram.ListPendingInvitationResourcesOutput, bool) bool, ...request.Option) error
+
 	ListPrincipals(*ram.ListPrincipalsInput) (*ram.ListPrincipalsOutput, error)
 	ListPrincipalsWithContext(aws.Context, *ram.ListPrincipalsInput, ...request.Option) (*ram.ListPrincipalsOutput, error)
 	ListPrincipalsRequest(*ram.ListPrincipalsInput) (*request.Request, *ram.ListPrincipalsOutput)
