@@ -3002,7 +3002,7 @@
     "RateLimit":{
       "type":"long",
       "max":2000000000,
-      "min":2000
+      "min":100
     },
     "RedactedFields":{
       "type":"list",

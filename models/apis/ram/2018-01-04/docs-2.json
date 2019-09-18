@@ -1,23 +1,24 @@
 {
   "version": "2.0",
-  "service": "<p>Use AWS Resource Access Manager to share AWS resources between AWS accounts. To share a resource, you create a resource share, associate the resource with the resource share, and specify the principals that can access the resource. The following principals are supported:</p> <ul> <li> <p>The ID of an AWS account</p> </li> <li> <p>The Amazon Resource Name (ARN) of an OU from AWS Organizations</p> </li> <li> <p>The Amazon Resource Name (ARN) of an organization from AWS Organizations</p> </li> </ul> <p>If you specify an AWS account that doesn't exist in the same organization as the account that owns the resource share, the owner of the specified account receives an invitation to accept the resource share. After the owner accepts the invitation, they can access the resources in the resource share. An administrator of the specified account can use IAM policies to restrict access resources in the resource share.</p>",
+  "service": "<p>Use AWS Resource Access Manager to share AWS resources between AWS accounts. To share a resource, you create a resource share, associate the resource with the resource share, and specify the principals that can access the resources associated with the resource share. The following principals are supported: AWS accounts, organizational units (OU) from AWS Organizations, and organizations from AWS Organizations.</p> <p>For more information, see the <a href=\"https://docs.aws.amazon.com/ram/latest/userguide/\">AWS Resource Access Manager User Guide</a>.</p>",
   "operations": {
     "AcceptResourceShareInvitation": "<p>Accepts an invitation to a resource share from another AWS account.</p>",
     "AssociateResourceShare": "<p>Associates the specified resource share with the specified principals and resources.</p>",
     "CreateResourceShare": "<p>Creates a resource share.</p>",
     "DeleteResourceShare": "<p>Deletes the specified resource share.</p>",
     "DisassociateResourceShare": "<p>Disassociates the specified principals or resources from the specified resource share.</p>",
-    "EnableSharingWithAwsOrganization": "<p>Enables resource sharing within your organization.</p>",
-    "GetResourcePolicies": "<p>Gets the policies for the specifies resources.</p>",
-    "GetResourceShareAssociations": "<p>Gets the associations for the specified resource share.</p>",
-    "GetResourceShareInvitations": "<p>Gets the specified invitations for resource sharing.</p>",
-    "GetResourceShares": "<p>Gets the specified resource shares or all of your resource shares.</p>",
-    "ListPrincipals": "<p>Lists the principals with access to the specified resource.</p>",
-    "ListResources": "<p>Lists the resources that the specified principal can access.</p>",
+    "EnableSharingWithAwsOrganization": "<p>Enables resource sharing within your AWS Organization.</p> <p>The caller must be the master account for the AWS Organization.</p>",
+    "GetResourcePolicies": "<p>Gets the policies for the specified resources that you own and have shared.</p>",
+    "GetResourceShareAssociations": "<p>Gets the resources or principals for the resource shares that you own.</p>",
+    "GetResourceShareInvitations": "<p>Gets the invitations for resource sharing that you've received.</p>",
+    "GetResourceShares": "<p>Gets the resource shares that you own or the resource shares that are shared with you.</p>",
+    "ListPendingInvitationResources": "<p>Lists the resources in a resource share that is shared with you but that the invitation is still pending for.</p>",
+    "ListPrincipals": "<p>Lists the principals that you have shared resources with or the principals that have shared resources with you.</p>",
+    "ListResources": "<p>Lists the resources that you added to a resource shares or the resources that are shared with you.</p>",
     "RejectResourceShareInvitation": "<p>Rejects an invitation to a resource share from another AWS account.</p>",
-    "TagResource": "<p>Adds the specified tags to the specified resource share.</p>",
-    "UntagResource": "<p>Removes the specified tags from the specified resource share.</p>",
-    "UpdateResourceShare": "<p>Updates the specified resource share.</p>"
+    "TagResource": "<p>Adds the specified tags to the specified resource share that you own.</p>",
+    "UntagResource": "<p>Removes the specified tags from the specified resource share that you own.</p>",
+    "UpdateResourceShare": "<p>Updates the specified resource share that you own.</p>"
   },
   "shapes": {
     "AcceptResourceShareInvitationRequest": {
@@ -43,13 +44,13 @@
     "Boolean": {
       "base": null,
       "refs": {
-        "CreateResourceShareRequest$allowExternalPrincipals": "<p>Indicates whether principals outside your organization can be associated with a resource share.</p>",
+        "CreateResourceShareRequest$allowExternalPrincipals": "<p>Indicates whether principals outside your AWS organization can be associated with a resource share.</p>",
         "DeleteResourceShareResponse$returnValue": "<p>Indicates whether the request succeeded.</p>",
         "EnableSharingWithAwsOrganizationResponse$returnValue": "<p>Indicates whether the request succeeded.</p>",
-        "Principal$external": "<p>Indicates whether the principal belongs to the same organization as the AWS account that owns the resource share.</p>",
-        "ResourceShare$allowExternalPrincipals": "<p>Indicates whether principals outside your organization can be associated with a resource share.</p>",
-        "ResourceShareAssociation$external": "<p>Indicates whether the principal belongs to the same organization as the AWS account that owns the resource share.</p>",
-        "UpdateResourceShareRequest$allowExternalPrincipals": "<p>Indicates whether principals outside your organization can be associated with a resource share.</p>"
+        "Principal$external": "<p>Indicates whether the principal belongs to the same AWS organization as the AWS account that owns the resource share.</p>",
+        "ResourceShare$allowExternalPrincipals": "<p>Indicates whether principals outside your AWS organization can be associated with a resource share.</p>",
+        "ResourceShareAssociation$external": "<p>Indicates whether the principal belongs to the same AWS organization as the AWS account that owns the resource share.</p>",
+        "UpdateResourceShareRequest$allowExternalPrincipals": "<p>Indicates whether principals outside your AWS organization can be associated with a resource share.</p>"
       }
     },
     "CreateResourceShareRequest": {
@@ -181,6 +182,16 @@
       "refs": {
       }
     },
+    "ListPendingInvitationResourcesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListPendingInvitationResourcesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListPrincipalsRequest": {
       "base": null,
       "refs": {
@@ -213,6 +224,7 @@
         "GetResourceShareAssociationsRequest$maxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
         "GetResourceShareInvitationsRequest$maxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
         "GetResourceSharesRequest$maxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
+        "ListPendingInvitationResourcesRequest$maxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
         "ListPrincipalsRequest$maxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
         "ListResourcesRequest$maxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
       }
@@ -294,6 +306,7 @@
     "ResourceList": {
       "base": null,
       "refs": {
+        "ListPendingInvitationResourcesResponse$resources": "<p>Information about the resources included the resource share.</p>",
         "ListResourcesResponse$resources": "<p>Information about the resources.</p>"
       }
     },
@@ -334,14 +347,14 @@
       "refs": {
         "AssociateResourceShareResponse$resourceShareAssociations": "<p>Information about the associations.</p>",
         "DisassociateResourceShareResponse$resourceShareAssociations": "<p>Information about the associations.</p>",
-        "GetResourceShareAssociationsResponse$resourceShareAssociations": "<p>Information about the association.</p>",
-        "ResourceShareInvitation$resourceShareAssociations": "<p>The resources associated with the resource share.</p>"
+        "GetResourceShareAssociationsResponse$resourceShareAssociations": "<p>Information about the associations.</p>",
+        "ResourceShareInvitation$resourceShareAssociations": "<p>To view the resources associated with a pending resource share invitation, use <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_ListPendingInvitationResources.html\">ListPendingInvitationResources</a>.</p>"
       }
     },
     "ResourceShareAssociationStatus": {
       "base": null,
       "refs": {
-        "GetResourceShareAssociationsRequest$associationStatus": "<p>The status of the association.</p>",
+        "GetResourceShareAssociationsRequest$associationStatus": "<p>The association status.</p>",
         "ResourceShareAssociation$status": "<p>The status of the association.</p>"
       }
     },
@@ -453,8 +466,8 @@
         "GetResourcePoliciesRequest$principal": "<p>The principal.</p>",
         "GetResourcePoliciesRequest$nextToken": "<p>The token for the next page of results.</p>",
         "GetResourcePoliciesResponse$nextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
-        "GetResourceShareAssociationsRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
-        "GetResourceShareAssociationsRequest$principal": "<p>The principal.</p>",
+        "GetResourceShareAssociationsRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource. You cannot specify this parameter if the association type is <code>PRINCIPAL</code>.</p>",
+        "GetResourceShareAssociationsRequest$principal": "<p>The principal. You cannot specify this parameter if the association type is <code>RESOURCE</code>.</p>",
         "GetResourceShareAssociationsRequest$nextToken": "<p>The token for the next page of results.</p>",
         "GetResourceShareAssociationsResponse$nextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "GetResourceShareInvitationsRequest$nextToken": "<p>The token for the next page of results.</p>",
@@ -469,12 +482,15 @@
         "InvalidParameterException$message": null,
         "InvalidResourceTypeException$message": null,
         "InvalidStateTransitionException$message": null,
+        "ListPendingInvitationResourcesRequest$resourceShareInvitationArn": "<p>The Amazon Resource Name (ARN) of the invitation.</p>",
+        "ListPendingInvitationResourcesRequest$nextToken": "<p>The token for the next page of results.</p>",
+        "ListPendingInvitationResourcesResponse$nextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "ListPrincipalsRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
-        "ListPrincipalsRequest$resourceType": "<p>The resource type.</p>",
+        "ListPrincipalsRequest$resourceType": "<p>The resource type.</p> <p>Valid values: <code>route53resolver:ResolverRule</code> | <code>ec2:TransitGateway</code> | <code>ec2:Subnet</code> | <code>license-manager:LicenseConfiguration</code> </p>",
         "ListPrincipalsRequest$nextToken": "<p>The token for the next page of results.</p>",
         "ListPrincipalsResponse$nextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "ListResourcesRequest$principal": "<p>The principal.</p>",
-        "ListResourcesRequest$resourceType": "<p>The resource type.</p>",
+        "ListResourcesRequest$resourceType": "<p>The resource type.</p> <p>Valid values: <code>route53resolver:ResolverRule</code> | <code>ec2:TransitGateway</code> | <code>ec2:Subnet</code> | <code>license-manager:LicenseConfiguration</code> </p>",
         "ListResourcesRequest$nextToken": "<p>The token for the next page of results.</p>",
         "ListResourcesResponse$nextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "MalformedArnException$message": null,
@@ -498,6 +514,7 @@
         "ResourceShare$statusMessage": "<p>A message about the status of the resource share.</p>",
         "ResourceShareArnList$member": null,
         "ResourceShareAssociation$resourceShareArn": "<p>The Amazon Resource Name (ARN) of the resource share.</p>",
+        "ResourceShareAssociation$resourceShareName": "<p>The name of the resource share.</p>",
         "ResourceShareAssociation$associatedEntity": "<p>The associated entity. For resource associations, this is the ARN of the resource. For principal associations, this is the ID of an AWS account or the ARN of an OU or organization from AWS Organizations.</p>",
         "ResourceShareAssociation$statusMessage": "<p>A message about the status of the association.</p>",
         "ResourceShareInvitation$resourceShareInvitationArn": "<p>The Amazon Resource Name (ARN) of the invitation.</p>",
@@ -514,6 +531,7 @@
         "ServerInternalException$message": null,
         "ServiceUnavailableException$message": null,
         "TagLimitExceededException$message": null,
+        "TagPolicyViolationException$message": null,
         "TagResourceRequest$resourceShareArn": "<p>The Amazon Resource Name (ARN) of the resource share.</p>",
         "UnknownResourceException$message": null,
         "UntagResourceRequest$resourceShareArn": "<p>The Amazon Resource Name (ARN) of the resource share.</p>",
@@ -566,6 +584,11 @@
         "CreateResourceShareRequest$tags": "<p>One or more tags.</p>",
         "ResourceShare$tags": "<p>The tags for the resource share.</p>",
         "TagResourceRequest$tags": "<p>One or more tags.</p>"
+      }
+    },
+    "TagPolicyViolationException": {
+      "base": "<p>The specified tag is a reserved word and cannot be used.</p>",
+      "refs": {
       }
     },
     "TagResourceRequest": {

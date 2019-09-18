@@ -389,7 +389,8 @@
       "errors":[
         {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
-        {"shape":"TooManyRequestsException"}
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
       ]
     },
     "DeleteGatewayResponse":{
@@ -2874,7 +2875,8 @@
     "EndpointConfiguration":{
       "type":"structure",
       "members":{
-        "types":{"shape":"ListOfEndpointType"}
+        "types":{"shape":"ListOfEndpointType"},
+        "vpcEndpointIds":{"shape":"ListOfString"}
       }
     },
     "EndpointType":{
