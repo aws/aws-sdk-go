@@ -62,6 +62,7 @@ func TestClientOverrideDefaultHTTPClientTimeoutRace(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("us-east-1a"))
 	}))
+	defer server.Close()
 
 	cfg := aws.NewConfig().WithEndpoint(server.URL)
 	runEC2MetadataClients(t, cfg, 100)
@@ -71,6 +72,7 @@ func TestClientOverrideDefaultHTTPClientTimeoutRaceWithTransport(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("us-east-1a"))
 	}))
+	defer server.Close()
 
 	cfg := aws.NewConfig().WithEndpoint(server.URL).WithHTTPClient(&http.Client{
 		Transport: http.DefaultTransport,

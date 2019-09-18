@@ -158,6 +158,7 @@ func newCopyTestSvc(errMsg string) *s3.S3 {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, errMsg, http.StatusOK)
 	}))
+	defer server.Close()
 	return s3.New(unit.Session, aws.NewConfig().
 		WithEndpoint(server.URL).
 		WithDisableSSL(true).

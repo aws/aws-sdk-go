@@ -551,7 +551,9 @@ func TestRequest_NoBody(t *testing.T) {
 			Name: "OpName", HTTPMethod: c, HTTPPath: "/{bucket}/{key+}",
 		}, &in, &out)
 
-		if err := r.Send(); err != nil {
+		err := r.Send()
+		server.Close()
+		if err != nil {
 			t.Fatalf("%d, expect no error sending request, got %v", i, err)
 		}
 	}
@@ -684,11 +686,15 @@ func TestEnforceShouldRetryCheck(t *testing.T) {
 
 	client := &http.Client{Transport: tp}
 
+	testDone := make(chan struct{})
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// This server should wait forever. Requests will timeout and the SDK should
 		// attempt to retry.
-		select {}
+		select {
+		case <-testDone:
+		}
 	}))
+	defer server.Close()
 
 	retryer := &testRetryer{}
 	s := awstesting.NewClient(&aws.Config{
@@ -717,6 +723,8 @@ func TestEnforceShouldRetryCheck(t *testing.T) {
 	if !retryer.shouldRetry {
 		t.Errorf("expect 'true' for ShouldRetry, but got %v", retryer.shouldRetry)
 	}
+
+	close(testDone)
 }
 
 type errReader struct {
@@ -763,6 +771,7 @@ func TestRequest_TemporaryRetry(t *testing.T) {
 
 		<-done
 	}))
+	defer server.Close()
 
 	client := &http.Client{
 		Timeout: 100 * time.Millisecond,

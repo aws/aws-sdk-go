@@ -303,6 +303,7 @@ func TestSessionAssumeRole(t *testing.T) {
 			assumeRoleRespMsg,
 			time.Now().Add(15*time.Minute).Format("2006-01-02T15:04:05Z"))))
 	}))
+	defer server.Close()
 
 	s, err := NewSession(&aws.Config{
 		Endpoint:   aws.String(server.URL),
@@ -354,6 +355,7 @@ func TestSessionAssumeRole_WithMFA(t *testing.T) {
 			assumeRoleRespMsg,
 			time.Now().Add(15*time.Minute).Format("2006-01-02T15:04:05Z"))))
 	}))
+	defer server.Close()
 
 	customProviderCalled := false
 	sess, err := NewSessionWithOptions(Options{
@@ -488,6 +490,7 @@ func TestSessionAssumeRole_ExtendedDuration(t *testing.T) {
 			assumeRoleRespMsg,
 			time.Now().Add(15*time.Minute).Format("2006-01-02T15:04:05Z"))))
 	}))
+	defer server.Close()
 
 	s, err := NewSessionWithOptions(Options{
 		Profile: "assume_role_w_creds",
@@ -544,6 +547,7 @@ func TestSessionAssumeRole_WithMFA_ExtendedDuration(t *testing.T) {
 			assumeRoleRespMsg,
 			time.Now().Add(30*time.Minute).Format("2006-01-02T15:04:05Z"))))
 	}))
+	defer server.Close()
 
 	customProviderCalled := false
 	sess, err := NewSessionWithOptions(Options{

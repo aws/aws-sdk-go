@@ -743,6 +743,7 @@ func TestUploadZeroLenObject(t *testing.T) {
 		requestMade = true
 		w.WriteHeader(http.StatusOK)
 	}))
+	defer server.Close()
 	mgr := s3manager.NewUploaderWithClient(s3.New(unit.Session, &aws.Config{
 		Endpoint: aws.String(server.URL),
 	}))
