@@ -191,7 +191,7 @@ func TestGetEventStream_Read(t *testing.T) {
 	if err != nil {
 		t.Fatalf("expect no error got, %v", err)
 	}
-	defer resp.EventStream.Close()
+	defer resp.AEventStreamRef.Close()
 	expectResp := expectEvents[0].(*GetEventStreamOutput)
 	if e, a := expectResp.IntVal, resp.IntVal; !reflect.DeepEqual(e, a) {
 		t.Errorf("expect %v, got %v", e, a)
@@ -203,7 +203,7 @@ func TestGetEventStream_Read(t *testing.T) {
 	expectEvents = expectEvents[1:]
 
 	var i int
-	for event := range resp.EventStream.Events() {
+	for event := range resp.AEventStreamRef.Events() {
 		if event == nil {
 			t.Errorf("%d, expect event, got nil", i)
 		}
@@ -213,7 +213,7 @@ func TestGetEventStream_Read(t *testing.T) {
 		i++
 	}
 
-	if err := resp.EventStream.Err(); err != nil {
+	if err := resp.AEventStreamRef.Err(); err != nil {
 		t.Errorf("expect no error, %v", err)
 	}
 }
@@ -238,10 +238,10 @@ func TestGetEventStream_ReadClose(t *testing.T) {
 		t.Fatalf("expect no error got, %v", err)
 	}
 
-	resp.EventStream.Close()
-	<-resp.EventStream.Events()
+	resp.AEventStreamRef.Close()
+	<-resp.AEventStreamRef.Events()
 
-	if err := resp.EventStream.Err(); err != nil {
+	if err := resp.AEventStreamRef.Err(); err != nil {
 		t.Errorf("expect no error, %v", err)
 	}
 }
@@ -279,16 +279,16 @@ func BenchmarkGetEventStream_Read(b *testing.B) {
 	if err != nil {
 		b.Fatalf("failed to create request, %v", err)
 	}
-	defer resp.EventStream.Close()
+	defer resp.AEventStreamRef.Close()
 	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
-		if err = resp.EventStream.Err(); err != nil {
+		if err = resp.AEventStreamRef.Err(); err != nil {
 			b.Fatalf("expect no error, got %v", err)
 		}
-		event := <-resp.EventStream.Events()
+		event := <-resp.AEventStreamRef.Events()
 		if event == nil {
-			b.Fatalf("expect event, got nil, %v, %d", resp.EventStream.Err(), i)
+			b.Fatalf("expect event, got nil, %v, %d", resp.AEventStreamRef.Err(), i)
 		}
 	}
 }
@@ -533,11 +533,11 @@ func TestGetEventStream_ReadException(t *testing.T) {
 		t.Fatalf("expect no error got, %v", err)
 	}
 
-	defer resp.EventStream.Close()
+	defer resp.AEventStreamRef.Close()
 
-	<-resp.EventStream.Events()
+	<-resp.AEventStreamRef.Events()
 
-	err = resp.EventStream.Err()
+	err = resp.AEventStreamRef.Err()
 	if err == nil {
 		t.Fatalf("expect err, got none")
 	}

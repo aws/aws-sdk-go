@@ -1000,8 +1000,8 @@ func (s *GetEventStreamInput) SetInputVal(v string) *GetEventStreamInput {
 type GetEventStreamOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Use EventStream to use the API's stream.
-	EventStream *GetEventStreamEventStream `type:"structure"`
+	// Use AEventStreamRef to use the API's stream.
+	AEventStreamRef *GetEventStreamEventStream `type:"structure"`
 
 	IntVal *int64 `type:"integer"`
 
@@ -1018,9 +1018,9 @@ func (s GetEventStreamOutput) GoString() string {
 	return s.String()
 }
 
-// SetEventStream sets the EventStream field's value.
-func (s *GetEventStreamOutput) SetEventStream(v *GetEventStreamEventStream) *GetEventStreamOutput {
-	s.EventStream = v
+// SetAEventStreamRef sets the AEventStreamRef field's value.
+func (s *GetEventStreamOutput) SetAEventStreamRef(v *GetEventStreamEventStream) *GetEventStreamOutput {
+	s.AEventStreamRef = v
 	return s
 }
 
@@ -1053,18 +1053,18 @@ func (s *GetEventStreamOutput) runEventStreamLoop(r *request.Request) {
 		StreamCloser: r.HTTPResponse.Body,
 		Reader:       reader,
 	}
-	s.EventStream = eventStream
+	s.AEventStreamRef = eventStream
 }
 
 func (s *GetEventStreamOutput) unmarshalInitialResponse(r *request.Request) {
 	// Wait for the initial response event, which must be the first event to be
 	// received from the API.
 	select {
-	case event, ok := <-s.EventStream.Events():
+	case event, ok := <-s.AEventStreamRef.Events():
 		if !ok {
 			return
 		}
-		es := s.EventStream
+		es := s.AEventStreamRef
 		v, ok := event.(*GetEventStreamOutput)
 		if !ok || v == nil {
 			r.Error = awserr.New(
@@ -1075,7 +1075,7 @@ func (s *GetEventStreamOutput) unmarshalInitialResponse(r *request.Request) {
 			return
 		}
 		*s = *v
-		s.EventStream = es
+		s.AEventStreamRef = es
 	}
 }
 

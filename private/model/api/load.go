@@ -179,6 +179,7 @@ func (a *API) Setup() {
 	a.renameAPIPayloadShapes()
 	a.renameCollidingFields()
 	a.updateTopLevelShapeReferences()
+	a.renameS3EventStreamMember()
 	a.setupEventStreams()
 	a.findEndpointDiscoveryOp()
 	a.injectUnboundedOutputStreaming()

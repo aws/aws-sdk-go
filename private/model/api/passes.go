@@ -360,8 +360,8 @@ func (a *API) makeIOShape(name string) *Shape {
 	return shape
 }
 
-// removeUnusedShapes removes shapes from the API which are not referenced by any
-// other shape in the API.
+// removeUnusedShapes removes shapes from the API which are not referenced by
+// any other shape in the API.
 func (a *API) removeUnusedShapes() {
 	for _, s := range a.Shapes {
 		if len(s.refs) == 0 {

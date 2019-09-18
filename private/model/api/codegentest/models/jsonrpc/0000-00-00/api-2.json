@@ -62,7 +62,7 @@
       "members":{
         "StrVal":{"shape":"String"},
         "IntVal":{"shape":"Integer"},
-        "EventStream":{"shape":"EventStream"}
+        "AEventStreamRef":{"shape":"EventStream"}
       }
     },
     "EventStream":{
