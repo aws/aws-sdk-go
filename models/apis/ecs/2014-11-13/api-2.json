@@ -574,7 +574,8 @@
       "errors":[
         {"shape":"ServerException"},
         {"shape":"ClientException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterException"}
       ]
     },
     "TagResource":{
@@ -920,6 +921,8 @@
         "containerArn":{"shape":"String"},
         "taskArn":{"shape":"String"},
         "name":{"shape":"String"},
+        "image":{"shape":"String"},
+        "imageDigest":{"shape":"String"},
         "runtimeId":{"shape":"String"},
         "lastStatus":{"shape":"String"},
         "exitCode":{"shape":"BoxedInteger"},
@@ -1068,6 +1071,7 @@
       "type":"structure",
       "members":{
         "containerName":{"shape":"String"},
+        "imageDigest":{"shape":"String"},
         "runtimeId":{"shape":"String"},
         "exitCode":{"shape":"BoxedInteger"},
         "networkBindings":{"shape":"NetworkBindings"},

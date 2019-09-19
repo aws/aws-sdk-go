@@ -829,6 +829,10 @@
     "Entitlement": {
       "type": "structure",
       "members": {
+        "DataTransferSubscriberFeePercent": {
+          "shape": "__integer",
+          "locationName": "dataTransferSubscriberFeePercent"
+        },
         "Description": {
           "shape": "__string",
           "locationName": "description"
@@ -925,6 +929,10 @@
     "GrantEntitlementRequest": {
       "type": "structure",
       "members": {
+        "DataTransferSubscriberFeePercent": {
+          "shape": "__integer",
+          "locationName": "dataTransferSubscriberFeePercent"
+        },
         "Description": {
           "shape": "__string",
           "locationName": "description"
@@ -1097,6 +1105,10 @@
     "ListedEntitlement": {
       "type": "structure",
       "members": {
+        "DataTransferSubscriberFeePercent": {
+          "shape": "__integer",
+          "locationName": "dataTransferSubscriberFeePercent"
+        },
         "EntitlementArn": {
           "shape": "__string",
           "locationName": "entitlementArn"
@@ -1184,6 +1196,10 @@
     "Output": {
       "type": "structure",
       "members": {
+        "DataTransferSubscriberFeePercent": {
+          "shape": "__integer",
+          "locationName": "dataTransferSubscriberFeePercent"
+        },
         "Description": {
           "shape": "__string",
           "locationName": "description"
@@ -1376,6 +1392,10 @@
     "Source": {
       "type": "structure",
       "members": {
+        "DataTransferSubscriberFeePercent": {
+          "shape": "__integer",
+          "locationName": "dataTransferSubscriberFeePercent"
+        },
         "Decryption": {
           "shape": "Encryption",
           "locationName": "decryption"

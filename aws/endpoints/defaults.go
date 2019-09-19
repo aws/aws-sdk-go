@@ -1212,12 +1212,6 @@ var awsPartition = partition{
 						Region: "ap-northeast-2",
 					},
 				},
-				"ap-south-1": endpoint{
-					Hostname: "rds.ap-south-1.amazonaws.com",
-					CredentialScope: credentialScope{
-						Region: "ap-south-1",
-					},
-				},
 				"ap-southeast-2": endpoint{
 					Hostname: "rds.ap-southeast-2.amazonaws.com",
 					CredentialScope: credentialScope{
