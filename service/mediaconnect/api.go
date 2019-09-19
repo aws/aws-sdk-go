@@ -2535,6 +2535,9 @@ func (s *Encryption) SetUrl(v string) *Encryption {
 type Entitlement struct {
 	_ struct{} `type:"structure"`
 
+	// Percentage from 0-100 of the data transfer cost to be billed to the subscriber.
+	DataTransferSubscriberFeePercent *int64 `locationName:"dataTransferSubscriberFeePercent" type:"integer"`
+
 	// A description of the entitlement.
 	Description *string `locationName:"description" type:"string"`
 
@@ -2568,6 +2571,12 @@ func (s Entitlement) String() string {
 // GoString returns the string representation
 func (s Entitlement) GoString() string {
 	return s.String()
+}
+
+// SetDataTransferSubscriberFeePercent sets the DataTransferSubscriberFeePercent field's value.
+func (s *Entitlement) SetDataTransferSubscriberFeePercent(v int64) *Entitlement {
+	s.DataTransferSubscriberFeePercent = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -2717,6 +2726,9 @@ func (s *Flow) SetStatus(v string) *Flow {
 type GrantEntitlementRequest struct {
 	_ struct{} `type:"structure"`
 
+	// Percentage from 0-100 of the data transfer cost to be billed to the subscriber.
+	DataTransferSubscriberFeePercent *int64 `locationName:"dataTransferSubscriberFeePercent" type:"integer"`
+
 	// A description of the entitlement. This description appears only on the AWS
 	// Elemental MediaConnect console and will not be seen by the subscriber or
 	// end user.
@@ -2764,6 +2776,12 @@ func (s *GrantEntitlementRequest) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDataTransferSubscriberFeePercent sets the DataTransferSubscriberFeePercent field's value.
+func (s *GrantEntitlementRequest) SetDataTransferSubscriberFeePercent(v int64) *GrantEntitlementRequest {
+	s.DataTransferSubscriberFeePercent = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -3118,6 +3136,9 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 type ListedEntitlement struct {
 	_ struct{} `type:"structure"`
 
+	// Percentage from 0-100 of the data transfer cost to be billed to the subscriber.
+	DataTransferSubscriberFeePercent *int64 `locationName:"dataTransferSubscriberFeePercent" type:"integer"`
+
 	// The ARN of the entitlement.
 	//
 	// EntitlementArn is a required field
@@ -3137,6 +3158,12 @@ func (s ListedEntitlement) String() string {
 // GoString returns the string representation
 func (s ListedEntitlement) GoString() string {
 	return s.String()
+}
+
+// SetDataTransferSubscriberFeePercent sets the DataTransferSubscriberFeePercent field's value.
+func (s *ListedEntitlement) SetDataTransferSubscriberFeePercent(v int64) *ListedEntitlement {
+	s.DataTransferSubscriberFeePercent = &v
+	return s
 }
 
 // SetEntitlementArn sets the EntitlementArn field's value.
@@ -3266,6 +3293,9 @@ func (s *Messages) SetErrors(v []*string) *Messages {
 type Output struct {
 	_ struct{} `type:"structure"`
 
+	// Percentage from 0-100 of the data transfer cost to be billed to the subscriber.
+	DataTransferSubscriberFeePercent *int64 `locationName:"dataTransferSubscriberFeePercent" type:"integer"`
+
 	// A description of the output.
 	Description *string `locationName:"description" type:"string"`
 
@@ -3309,6 +3339,12 @@ func (s Output) String() string {
 // GoString returns the string representation
 func (s Output) GoString() string {
 	return s.String()
+}
+
+// SetDataTransferSubscriberFeePercent sets the DataTransferSubscriberFeePercent field's value.
+func (s *Output) SetDataTransferSubscriberFeePercent(v int64) *Output {
+	s.DataTransferSubscriberFeePercent = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -3673,6 +3709,9 @@ func (s *SetSourceRequest) SetWhitelistCidr(v string) *SetSourceRequest {
 type Source struct {
 	_ struct{} `type:"structure"`
 
+	// Percentage from 0-100 of the data transfer cost to be billed to the subscriber.
+	DataTransferSubscriberFeePercent *int64 `locationName:"dataTransferSubscriberFeePercent" type:"integer"`
+
 	// The type of encryption that is used on the content ingested from this source.
 	Decryption *Encryption `locationName:"decryption" type:"structure"`
 
@@ -3718,6 +3757,12 @@ func (s Source) String() string {
 // GoString returns the string representation
 func (s Source) GoString() string {
 	return s.String()
+}
+
+// SetDataTransferSubscriberFeePercent sets the DataTransferSubscriberFeePercent field's value.
+func (s *Source) SetDataTransferSubscriberFeePercent(v int64) *Source {
+	s.DataTransferSubscriberFeePercent = &v
+	return s
 }
 
 // SetDecryption sets the Decryption field's value.

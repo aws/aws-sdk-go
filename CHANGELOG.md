@@ -1,3 +1,14 @@
+Release v1.24.2 (2019-09-19)
+===
+
+### Service Client Updates
+* `service/ecs`: Updates service API and documentation
+  * This release of Amazon Elastic Container Service (Amazon ECS) introduces support for container image manifest digests. This enables you to identify all tasks launched using a container image pulled from ECR in order to correlate what was built with where it is running.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/glue`: Updates service API and documentation
+  * AWS Glue DevEndpoints now supports GlueVersion, enabling you to choose Apache Spark 2.4.3 (in addition to Apache Spark 2.2.1). In addition to supporting the latest version of Spark, you will also have the ability to choose between Python 2 and Python 3.
+* `service/mediaconnect`: Updates service API and documentation
+
 Release v1.24.1 (2019-09-18)
 ===
 
