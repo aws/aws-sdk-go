@@ -6264,9 +6264,9 @@ func (c *Greengrass) TagResourceRequest(input *TagResourceInput) (req *request.R
 
 // TagResource API operation for AWS Greengrass.
 //
-// Add resource tags to a Greengrass Resource. Valid resources are Group, Connector,
-// Core, Device, Function, Logger, Subscription, and Resource Defintions, and
-// also BulkDeploymentIds.
+// Adds tags to a Greengrass resource. Valid resources are 'Group', 'ConnectorDefinition',
+// 'CoreDefinition', 'DeviceDefinition', 'FunctionDefinition', 'LoggerDefinition',
+// 'SubscriptionDefinition', 'ResourceDefinition', and 'BulkDeployment'.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9838,6 +9838,9 @@ type CreateSoftwareUpdateJobOutput struct {
 
 	// The IoT Job Id corresponding to this update.
 	IotJobId *string `type:"string"`
+
+	// The software version installed on the device or devices after the update.
+	PlatformSoftwareVersion *string `type:"string"`
 }
 
 // String returns the string representation
@@ -9859,6 +9862,12 @@ func (s *CreateSoftwareUpdateJobOutput) SetIotJobArn(v string) *CreateSoftwareUp
 // SetIotJobId sets the IotJobId field's value.
 func (s *CreateSoftwareUpdateJobOutput) SetIotJobId(v string) *CreateSoftwareUpdateJobOutput {
 	s.IotJobId = &v
+	return s
+}
+
+// SetPlatformSoftwareVersion sets the PlatformSoftwareVersion field's value.
+func (s *CreateSoftwareUpdateJobOutput) SetPlatformSoftwareVersion(v string) *CreateSoftwareUpdateJobOutput {
+	s.PlatformSoftwareVersion = &v
 	return s
 }
 
@@ -13093,10 +13102,10 @@ type GetGroupVersionOutput struct {
 	// Information about the group version definition.
 	Definition *GroupVersion `type:"structure"`
 
-	// The ID of the group version.
+	// The ID of the group that the version is associated with.
 	Id *string `type:"string"`
 
-	// The unique ID for the version of the group.
+	// The ID of the group version.
 	Version *string `type:"string"`
 }
 
@@ -17386,10 +17395,10 @@ type VersionInformation struct {
 	// The time, in milliseconds since the epoch, when the version was created.
 	CreationTimestamp *string `type:"string"`
 
-	// The ID of the version.
+	// The ID of the parent definition that the version is associated with.
 	Id *string `type:"string"`
 
-	// The unique ID of the version.
+	// The ID of the version.
 	Version *string `type:"string"`
 }
 

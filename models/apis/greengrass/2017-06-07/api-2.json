@@ -2423,6 +2423,9 @@
         },
         "IotJobId" : {
           "shape" : "__string"
+        },
+        "PlatformSoftwareVersion" : {
+          "shape" : "__string"
         }
       }
     },

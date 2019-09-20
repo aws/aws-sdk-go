@@ -4604,7 +4604,6 @@ var awsusgovPartition = partition{
 		"health": service{
 
 			Endpoints: endpoints{
-				"us-gov-east-1": endpoint{},
 				"us-gov-west-1": endpoint{},
 			},
 		},

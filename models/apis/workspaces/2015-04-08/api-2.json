@@ -247,6 +247,20 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "DescribeWorkspaceSnapshots":{
+      "name":"DescribeWorkspaceSnapshots",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeWorkspaceSnapshotsRequest"},
+      "output":{"shape":"DescribeWorkspaceSnapshotsResult"},
+      "errors":[
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "DescribeWorkspaces":{
       "name":"DescribeWorkspaces",
       "http":{
@@ -396,6 +410,20 @@
       },
       "input":{"shape":"RebuildWorkspacesRequest"},
       "output":{"shape":"RebuildWorkspacesResult"}
+    },
+    "RestoreWorkspace":{
+      "name":"RestoreWorkspace",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RestoreWorkspaceRequest"},
+      "output":{"shape":"RestoreWorkspaceResult"},
+      "errors":[
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ]
     },
     "RevokeIpRules":{
       "name":"RevokeIpRules",
@@ -829,6 +857,20 @@
       "members":{
         "Images":{"shape":"WorkspaceImageList"},
         "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "DescribeWorkspaceSnapshotsRequest":{
+      "type":"structure",
+      "required":["WorkspaceId"],
+      "members":{
+        "WorkspaceId":{"shape":"WorkspaceId"}
+      }
+    },
+    "DescribeWorkspaceSnapshotsResult":{
+      "type":"structure",
+      "members":{
+        "RebuildSnapshots":{"shape":"SnapshotList"},
+        "RestoreSnapshots":{"shape":"SnapshotList"}
       }
     },
     "DescribeWorkspacesConnectionStatusRequest":{
@@ -1281,6 +1323,18 @@
       },
       "exception":true
     },
+    "RestoreWorkspaceRequest":{
+      "type":"structure",
+      "required":["WorkspaceId"],
+      "members":{
+        "WorkspaceId":{"shape":"WorkspaceId"}
+      }
+    },
+    "RestoreWorkspaceResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "RevokeIpRulesRequest":{
       "type":"structure",
       "required":[
@@ -1315,6 +1369,16 @@
     "SecurityGroupId":{
       "type":"string",
       "pattern":"^(sg-[0-9a-f]{8})$"
+    },
+    "Snapshot":{
+      "type":"structure",
+      "members":{
+        "SnapshotTime":{"shape":"Timestamp"}
+      }
+    },
+    "SnapshotList":{
+      "type":"list",
+      "member":{"shape":"Snapshot"}
     },
     "StartRequest":{
       "type":"structure",
@@ -1671,6 +1735,7 @@
         "REBOOTING",
         "STARTING",
         "REBUILDING",
+        "RESTORING",
         "MAINTENANCE",
         "ADMIN_MAINTENANCE",
         "TERMINATING",

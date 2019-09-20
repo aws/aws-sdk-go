@@ -4234,6 +4234,7 @@
         "ProductDescription":{"shape":"String"},
         "OfferingType":{"shape":"String"},
         "MultiAZ":{"shape":"BooleanOptional"},
+        "LeaseId":{"shape":"String"},
         "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
         "Marker":{"shape":"String"}
@@ -5737,7 +5738,8 @@
         "MultiAZ":{"shape":"Boolean"},
         "State":{"shape":"String"},
         "RecurringCharges":{"shape":"RecurringChargeList"},
-        "ReservedDBInstanceArn":{"shape":"String"}
+        "ReservedDBInstanceArn":{"shape":"String"},
+        "LeaseId":{"shape":"String"}
       },
       "wrapper":true
     },
