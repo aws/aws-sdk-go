@@ -6,6 +6,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"os"
 	"strings"
 	"text/template"
 )
@@ -90,10 +91,10 @@ func eventStreamAPIShapeRefDoc(refName string) string {
 	return commentify(fmt.Sprintf("Use %s to use the API's stream.", refName))
 }
 
-func (a *API) setupEventStreams() {
+func (a *API) setupEventStreams() error {
 	const eventStreamMemberName = "EventStream"
 
-	for _, op := range a.Operations {
+	for opName, op := range a.Operations {
 		outbound := setupEventStream(op.InputRef.Shape)
 		inbound := setupEventStream(op.OutputRef.Shape)
 
@@ -102,15 +103,26 @@ func (a *API) setupEventStreams() {
 		}
 
 		if outbound != nil {
-			panic(fmt.Sprintf("Outbound stream support not implemented, %s, %s",
-				outbound.Name, outbound.Shape.ShapeName))
+			err := fmt.Errorf("Outbound stream support not implemented, %s, %s",
+				outbound.Name, outbound.Shape.ShapeName)
+
+			if a.IgnoreUnsupportedAPIs {
+				fmt.Fprintf(os.Stderr, "removing operation, %s, %v\n", opName, err)
+				delete(a.Operations, opName)
+				continue
+			}
+			return UnsupportedAPIModelError{
+				Err: err,
+			}
 		}
 
 		switch a.Metadata.Protocol {
 		case `rest-json`, `rest-xml`, `json`:
 		default:
-			panic(fmt.Sprintf("EventStream not supported for protocol %v",
-				a.Metadata.Protocol))
+			return UnsupportedAPIModelError{
+				Err: fmt.Errorf("EventStream not supported for protocol %v",
+					a.Metadata.Protocol),
+			}
 		}
 
 		op.EventStreamAPI = &EventStreamAPI{
@@ -158,6 +170,8 @@ func (a *API) setupEventStreams() {
 
 		a.HasEventStream = true
 	}
+
+	return nil
 }
 
 func setupEventStream(topShape *Shape) *EventStream {
