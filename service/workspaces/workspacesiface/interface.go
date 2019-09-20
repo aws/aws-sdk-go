@@ -134,6 +134,10 @@ type WorkSpacesAPI interface {
 	DescribeWorkspaceImagesWithContext(aws.Context, *workspaces.DescribeWorkspaceImagesInput, ...request.Option) (*workspaces.DescribeWorkspaceImagesOutput, error)
 	DescribeWorkspaceImagesRequest(*workspaces.DescribeWorkspaceImagesInput) (*request.Request, *workspaces.DescribeWorkspaceImagesOutput)
 
+	DescribeWorkspaceSnapshots(*workspaces.DescribeWorkspaceSnapshotsInput) (*workspaces.DescribeWorkspaceSnapshotsOutput, error)
+	DescribeWorkspaceSnapshotsWithContext(aws.Context, *workspaces.DescribeWorkspaceSnapshotsInput, ...request.Option) (*workspaces.DescribeWorkspaceSnapshotsOutput, error)
+	DescribeWorkspaceSnapshotsRequest(*workspaces.DescribeWorkspaceSnapshotsInput) (*request.Request, *workspaces.DescribeWorkspaceSnapshotsOutput)
+
 	DescribeWorkspaces(*workspaces.DescribeWorkspacesInput) (*workspaces.DescribeWorkspacesOutput, error)
 	DescribeWorkspacesWithContext(aws.Context, *workspaces.DescribeWorkspacesInput, ...request.Option) (*workspaces.DescribeWorkspacesOutput, error)
 	DescribeWorkspacesRequest(*workspaces.DescribeWorkspacesInput) (*request.Request, *workspaces.DescribeWorkspacesOutput)
@@ -180,6 +184,10 @@ type WorkSpacesAPI interface {
 	RebuildWorkspaces(*workspaces.RebuildWorkspacesInput) (*workspaces.RebuildWorkspacesOutput, error)
 	RebuildWorkspacesWithContext(aws.Context, *workspaces.RebuildWorkspacesInput, ...request.Option) (*workspaces.RebuildWorkspacesOutput, error)
 	RebuildWorkspacesRequest(*workspaces.RebuildWorkspacesInput) (*request.Request, *workspaces.RebuildWorkspacesOutput)
+
+	RestoreWorkspace(*workspaces.RestoreWorkspaceInput) (*workspaces.RestoreWorkspaceOutput, error)
+	RestoreWorkspaceWithContext(aws.Context, *workspaces.RestoreWorkspaceInput, ...request.Option) (*workspaces.RestoreWorkspaceOutput, error)
+	RestoreWorkspaceRequest(*workspaces.RestoreWorkspaceInput) (*request.Request, *workspaces.RestoreWorkspaceOutput)
 
 	RevokeIpRules(*workspaces.RevokeIpRulesInput) (*workspaces.RevokeIpRulesOutput, error)
 	RevokeIpRulesWithContext(aws.Context, *workspaces.RevokeIpRulesInput, ...request.Option) (*workspaces.RevokeIpRulesOutput, error)
