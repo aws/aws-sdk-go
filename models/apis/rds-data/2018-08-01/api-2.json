@@ -1,786 +1,539 @@
 {
-  "version": "2.0",
-  "metadata": {
-    "apiVersion": "2018-08-01",
-    "endpointPrefix": "rds-data",
-    "jsonVersion": "1.1",
-    "protocol": "rest-json",
-    "serviceFullName": "AWS RDS DataService",
-    "serviceId": "RDS Data",
-    "signatureVersion": "v4",
-    "signingName": "rds-data",
-    "uid": "rds-data-2018-08-01"
+  "version":"2.0",
+  "metadata":{
+    "apiVersion":"2018-08-01",
+    "endpointPrefix":"rds-data",
+    "jsonVersion":"1.1",
+    "protocol":"rest-json",
+    "serviceFullName":"AWS RDS DataService",
+    "serviceId":"RDS Data",
+    "signatureVersion":"v4",
+    "signingName":"rds-data",
+    "uid":"rds-data-2018-08-01"
   },
-  "operations": {
-    "BatchExecuteStatement": {
-      "name": "BatchExecuteStatement",
-      "http": {
-        "method": "POST",
-        "requestUri": "/BatchExecute",
-        "responseCode": 200
+  "operations":{
+    "BatchExecuteStatement":{
+      "name":"BatchExecuteStatement",
+      "http":{
+        "method":"POST",
+        "requestUri":"/BatchExecute",
+        "responseCode":200
       },
-      "input": {
-        "shape": "BatchExecuteStatementRequest"
-      },
-      "output": {
-        "shape": "BatchExecuteStatementResponse"
-      },
-      "errors": [
-        {
-          "shape": "BadRequestException"
-        },
-        {
-          "shape": "ForbiddenException"
-        },
-        {
-          "shape": "InternalServerErrorException"
-        },
-        {
-          "shape": "ServiceUnavailableError"
-        },
-        {
-          "shape": "StatementTimeoutException"
-        }
+      "input":{"shape":"BatchExecuteStatementRequest"},
+      "output":{"shape":"BatchExecuteStatementResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"StatementTimeoutException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ServiceUnavailableError"}
       ]
     },
-    "BeginTransaction": {
-      "name": "BeginTransaction",
-      "http": {
-        "method": "POST",
-        "requestUri": "/BeginTransaction",
-        "responseCode": 200
+    "BeginTransaction":{
+      "name":"BeginTransaction",
+      "http":{
+        "method":"POST",
+        "requestUri":"/BeginTransaction",
+        "responseCode":200
       },
-      "input": {
-        "shape": "BeginTransactionRequest"
-      },
-      "output": {
-        "shape": "BeginTransactionResponse"
-      },
-      "errors": [
-        {
-          "shape": "BadRequestException"
-        },
-        {
-          "shape": "ForbiddenException"
-        },
-        {
-          "shape": "InternalServerErrorException"
-        },
-        {
-          "shape": "ServiceUnavailableError"
-        },
-        {
-          "shape": "StatementTimeoutException"
-        }
+      "input":{"shape":"BeginTransactionRequest"},
+      "output":{"shape":"BeginTransactionResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"StatementTimeoutException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ServiceUnavailableError"}
       ]
     },
-    "CommitTransaction": {
-      "name": "CommitTransaction",
-      "http": {
-        "method": "POST",
-        "requestUri": "/CommitTransaction",
-        "responseCode": 200
+    "CommitTransaction":{
+      "name":"CommitTransaction",
+      "http":{
+        "method":"POST",
+        "requestUri":"/CommitTransaction",
+        "responseCode":200
       },
-      "input": {
-        "shape": "CommitTransactionRequest"
-      },
-      "output": {
-        "shape": "CommitTransactionResponse"
-      },
-      "errors": [
-        {
-          "shape": "BadRequestException"
-        },
-        {
-          "shape": "ForbiddenException"
-        },
-        {
-          "shape": "InternalServerErrorException"
-        },
-        {
-          "shape": "NotFoundException"
-        },
-        {
-          "shape": "ServiceUnavailableError"
-        }
+      "input":{"shape":"CommitTransactionRequest"},
+      "output":{"shape":"CommitTransactionResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ServiceUnavailableError"},
+        {"shape":"NotFoundException"}
       ]
     },
-    "ExecuteSql": {
-      "name": "ExecuteSql",
-      "http": {
-        "method": "POST",
-        "requestUri": "/ExecuteSql",
-        "responseCode": 200
+    "ExecuteSql":{
+      "name":"ExecuteSql",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ExecuteSql",
+        "responseCode":200
       },
-      "input": {
-        "shape": "ExecuteSqlRequest"
-      },
-      "output": {
-        "shape": "ExecuteSqlResponse"
-      },
-      "errors": [
-        {
-          "shape": "BadRequestException"
-        },
-        {
-          "shape": "ForbiddenException"
-        },
-        {
-          "shape": "InternalServerErrorException"
-        },
-        {
-          "shape": "ServiceUnavailableError"
-        }
+      "input":{"shape":"ExecuteSqlRequest"},
+      "output":{"shape":"ExecuteSqlResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ServiceUnavailableError"}
       ],
-      "deprecated": true
+      "deprecated":true,
+      "deprecatedMessage":"The ExecuteSql API is deprecated, please use the ExecuteStatement API."
     },
-    "ExecuteStatement": {
-      "name": "ExecuteStatement",
-      "http": {
-        "method": "POST",
-        "requestUri": "/Execute",
-        "responseCode": 200
+    "ExecuteStatement":{
+      "name":"ExecuteStatement",
+      "http":{
+        "method":"POST",
+        "requestUri":"/Execute",
+        "responseCode":200
       },
-      "input": {
-        "shape": "ExecuteStatementRequest"
-      },
-      "output": {
-        "shape": "ExecuteStatementResponse"
-      },
-      "errors": [
-        {
-          "shape": "BadRequestException"
-        },
-        {
-          "shape": "ForbiddenException"
-        },
-        {
-          "shape": "InternalServerErrorException"
-        },
-        {
-          "shape": "ServiceUnavailableError"
-        },
-        {
-          "shape": "StatementTimeoutException"
-        }
+      "input":{"shape":"ExecuteStatementRequest"},
+      "output":{"shape":"ExecuteStatementResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"StatementTimeoutException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ServiceUnavailableError"}
       ]
     },
-    "RollbackTransaction": {
-      "name": "RollbackTransaction",
-      "http": {
-        "method": "POST",
-        "requestUri": "/RollbackTransaction",
-        "responseCode": 200
+    "RollbackTransaction":{
+      "name":"RollbackTransaction",
+      "http":{
+        "method":"POST",
+        "requestUri":"/RollbackTransaction",
+        "responseCode":200
       },
-      "input": {
-        "shape": "RollbackTransactionRequest"
-      },
-      "output": {
-        "shape": "RollbackTransactionResponse"
-      },
-      "errors": [
-        {
-          "shape": "BadRequestException"
-        },
-        {
-          "shape": "ForbiddenException"
-        },
-        {
-          "shape": "InternalServerErrorException"
-        },
-        {
-          "shape": "NotFoundException"
-        },
-        {
-          "shape": "ServiceUnavailableError"
-        }
+      "input":{"shape":"RollbackTransactionRequest"},
+      "output":{"shape":"RollbackTransactionResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ServiceUnavailableError"},
+        {"shape":"NotFoundException"}
       ]
     }
   },
-  "shapes": {
-    "SqlStatementResults": {
-      "type": "list",
-      "member": {
-        "shape": "SqlStatementResult"
+  "shapes":{
+    "Arn":{
+      "type":"string",
+      "max":100,
+      "min":11
+    },
+    "ArrayOfArray":{
+      "type":"list",
+      "member":{"shape":"ArrayValue"}
+    },
+    "ArrayValue":{
+      "type":"structure",
+      "members":{
+        "arrayValues":{"shape":"ArrayOfArray"},
+        "booleanValues":{"shape":"BooleanArray"},
+        "doubleValues":{"shape":"DoubleArray"},
+        "longValues":{"shape":"LongArray"},
+        "stringValues":{"shape":"StringArray"}
       }
     },
-    "ResultFrame": {
-      "type": "structure",
-      "members": {
-        "records": {
-          "shape": "Records"
-        },
-        "resultSetMetadata": {
-          "shape": "ResultSetMetadata"
-        }
-      }
+    "ArrayValueList":{
+      "type":"list",
+      "member":{"shape":"Value"}
     },
-    "SqlParameterSets": {
-      "type": "list",
-      "member": {
-        "shape": "SqlParametersList"
-      }
-    },
-    "NotFoundException": {
-      "type": "structure",
-      "members": {
-        "message": {
-          "shape": "ErrorMessage"
-        }
+    "BadRequestException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
       },
-      "exception": true,
-      "error": {
-        "code": "NotFoundException",
-        "httpStatusCode": 404,
-        "senderFault": true
-      }
+      "error":{
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
     },
-    "BatchExecuteStatementRequest": {
-      "type": "structure",
-      "required": [
+    "BatchExecuteStatementRequest":{
+      "type":"structure",
+      "required":[
         "resourceArn",
         "secretArn",
         "sql"
       ],
-      "members": {
-        "database": {
-          "shape": "DbName"
-        },
-        "parameterSets": {
-          "shape": "SqlParameterSets"
-        },
-        "resourceArn": {
-          "shape": "Arn"
-        },
-        "schema": {
-          "shape": "DbName"
-        },
-        "secretArn": {
-          "shape": "Arn"
-        },
-        "sql": {
-          "shape": "SqlStatement"
-        },
-        "transactionId": {
-          "shape": "Id"
-        }
+      "members":{
+        "database":{"shape":"DbName"},
+        "parameterSets":{"shape":"SqlParameterSets"},
+        "resourceArn":{"shape":"Arn"},
+        "schema":{"shape":"DbName"},
+        "secretArn":{"shape":"Arn"},
+        "sql":{"shape":"SqlStatement"},
+        "transactionId":{"shape":"Id"}
       }
     },
-    "ArrayValueList": {
-      "type": "list",
-      "member": {
-        "shape": "Value"
+    "BatchExecuteStatementResponse":{
+      "type":"structure",
+      "members":{
+        "updateResults":{"shape":"UpdateResults"}
       }
     },
-    "UpdateResults": {
-      "type": "list",
-      "member": {
-        "shape": "UpdateResult"
+    "BeginTransactionRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "secretArn"
+      ],
+      "members":{
+        "database":{"shape":"DbName"},
+        "resourceArn":{"shape":"Arn"},
+        "schema":{"shape":"DbName"},
+        "secretArn":{"shape":"Arn"}
       }
     },
-    "Row": {
-      "type": "list",
-      "member": {
-        "shape": "Value"
+    "BeginTransactionResponse":{
+      "type":"structure",
+      "members":{
+        "transactionId":{"shape":"Id"}
       }
     },
-    "SqlRecords": {
-      "type": "list",
-      "member": {
-        "shape": "FieldList"
+    "Blob":{"type":"blob"},
+    "Boolean":{"type":"boolean"},
+    "BooleanArray":{
+      "type":"list",
+      "member":{"shape":"BoxedBoolean"}
+    },
+    "BoxedBoolean":{
+      "type":"boolean",
+      "box":true
+    },
+    "BoxedDouble":{
+      "type":"double",
+      "box":true
+    },
+    "BoxedFloat":{
+      "type":"float",
+      "box":true
+    },
+    "BoxedInteger":{
+      "type":"integer",
+      "box":true
+    },
+    "BoxedLong":{
+      "type":"long",
+      "box":true
+    },
+    "ColumnMetadata":{
+      "type":"structure",
+      "members":{
+        "arrayBaseColumnType":{"shape":"Integer"},
+        "isAutoIncrement":{"shape":"Boolean"},
+        "isCaseSensitive":{"shape":"Boolean"},
+        "isCurrency":{"shape":"Boolean"},
+        "isSigned":{"shape":"Boolean"},
+        "label":{"shape":"String"},
+        "name":{"shape":"String"},
+        "nullable":{"shape":"Integer"},
+        "precision":{"shape":"Integer"},
+        "scale":{"shape":"Integer"},
+        "schemaName":{"shape":"String"},
+        "tableName":{"shape":"String"},
+        "type":{"shape":"Integer"},
+        "typeName":{"shape":"String"}
       }
     },
-    "Long": {
-      "type": "long"
-    },
-    "BoxedInteger": {
-      "type": "integer",
-      "box": true
-    },
-    "CommitTransactionResponse": {
-      "type": "structure",
-      "members": {
-        "transactionStatus": {
-          "shape": "TransactionStatus"
-        }
+    "CommitTransactionRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "secretArn",
+        "transactionId"
+      ],
+      "members":{
+        "resourceArn":{"shape":"Arn"},
+        "secretArn":{"shape":"Arn"},
+        "transactionId":{"shape":"Id"}
       }
     },
-    "Integer": {
-      "type": "integer"
-    },
-    "BoxedLong": {
-      "type": "long",
-      "box": true
-    },
-    "SqlParameter": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "shape": "ParameterName"
-        },
-        "value": {
-          "shape": "Field"
-        }
+    "CommitTransactionResponse":{
+      "type":"structure",
+      "members":{
+        "transactionStatus":{"shape":"TransactionStatus"}
       }
     },
-    "Field": {
-      "type": "structure",
-      "members": {
-        "blobValue": {
-          "shape": "Blob"
-        },
-        "booleanValue": {
-          "shape": "BoxedBoolean"
-        },
-        "doubleValue": {
-          "shape": "BoxedDouble"
-        },
-        "isNull": {
-          "shape": "BoxedBoolean"
-        },
-        "longValue": {
-          "shape": "BoxedLong"
-        },
-        "stringValue": {
-          "shape": "String"
-        }
-      }
+    "DbName":{
+      "type":"string",
+      "max":64,
+      "min":0
     },
-    "ExecuteSqlRequest": {
-      "type": "structure",
-      "required": [
+    "DecimalReturnType":{
+      "type":"string",
+      "enum":[
+        "DOUBLE_OR_LONG",
+        "STRING"
+      ]
+    },
+    "DoubleArray":{
+      "type":"list",
+      "member":{"shape":"BoxedDouble"}
+    },
+    "ErrorMessage":{"type":"string"},
+    "ExecuteSqlRequest":{
+      "type":"structure",
+      "required":[
         "awsSecretStoreArn",
         "dbClusterOrInstanceArn",
         "sqlStatements"
       ],
-      "members": {
-        "awsSecretStoreArn": {
-          "shape": "Arn"
-        },
-        "database": {
-          "shape": "DbName"
-        },
-        "dbClusterOrInstanceArn": {
-          "shape": "Arn"
-        },
-        "schema": {
-          "shape": "DbName"
-        },
-        "sqlStatements": {
-          "shape": "SqlStatement"
-        }
+      "members":{
+        "awsSecretStoreArn":{"shape":"Arn"},
+        "database":{"shape":"DbName"},
+        "dbClusterOrInstanceArn":{"shape":"Arn"},
+        "schema":{"shape":"DbName"},
+        "sqlStatements":{"shape":"SqlStatement"}
       }
     },
-    "Arn": {
-      "type": "string",
-      "max": 100
-    },
-    "StructValue": {
-      "type": "structure",
-      "members": {
-        "attributes": {
-          "shape": "ArrayValueList"
-        }
+    "ExecuteSqlResponse":{
+      "type":"structure",
+      "members":{
+        "sqlStatementResults":{"shape":"SqlStatementResults"}
       }
     },
-    "Boolean": {
-      "type": "boolean"
-    },
-    "BadRequestException": {
-      "type": "structure",
-      "members": {
-        "message": {
-          "shape": "ErrorMessage"
-        }
-      },
-      "exception": true,
-      "error": {
-        "code": "BadRequestException",
-        "httpStatusCode": 400,
-        "senderFault": true
-      }
-    },
-    "TransactionStatus": {
-      "type": "string",
-      "max": 128
-    },
-    "SqlStatement": {
-      "type": "string",
-      "max": 65536
-    },
-    "RollbackTransactionRequest": {
-      "type": "structure",
-      "required": [
-        "resourceArn",
-        "secretArn",
-        "transactionId"
-      ],
-      "members": {
-        "resourceArn": {
-          "shape": "Arn"
-        },
-        "secretArn": {
-          "shape": "Arn"
-        },
-        "transactionId": {
-          "shape": "Id"
-        }
-      }
-    },
-    "ErrorMessage": {
-      "type": "string"
-    },
-    "Record": {
-      "type": "structure",
-      "members": {
-        "values": {
-          "shape": "Row"
-        }
-      }
-    },
-    "BoxedFloat": {
-      "type": "float",
-      "box": true
-    },
-    "BoxedDouble": {
-      "type": "double",
-      "box": true
-    },
-    "ForbiddenException": {
-      "type": "structure",
-      "members": {
-        "message": {
-          "shape": "ErrorMessage"
-        }
-      },
-      "exception": true,
-      "error": {
-        "code": "ForbiddenException",
-        "httpStatusCode": 403,
-        "senderFault": true
-      }
-    },
-    "Value": {
-      "type": "structure",
-      "members": {
-        "arrayValues": {
-          "shape": "ArrayValueList"
-        },
-        "bigIntValue": {
-          "shape": "BoxedLong"
-        },
-        "bitValue": {
-          "shape": "BoxedBoolean"
-        },
-        "blobValue": {
-          "shape": "Blob"
-        },
-        "doubleValue": {
-          "shape": "BoxedDouble"
-        },
-        "intValue": {
-          "shape": "BoxedInteger"
-        },
-        "isNull": {
-          "shape": "BoxedBoolean"
-        },
-        "realValue": {
-          "shape": "BoxedFloat"
-        },
-        "stringValue": {
-          "shape": "String"
-        },
-        "structValue": {
-          "shape": "StructValue"
-        }
-      }
-    },
-    "FieldList": {
-      "type": "list",
-      "member": {
-        "shape": "Field"
-      }
-    },
-    "StatementTimeoutException": {
-      "type": "structure",
-      "members": {
-        "dbConnectionId": {
-          "shape": "Long"
-        },
-        "message": {
-          "shape": "ErrorMessage"
-        }
-      },
-      "exception": true,
-      "error": {
-        "code": "StatementTimeoutException",
-        "httpStatusCode": 400,
-        "senderFault": true
-      }
-    },
-    "ExecuteStatementResponse": {
-      "type": "structure",
-      "members": {
-        "columnMetadata": {
-          "shape": "Metadata"
-        },
-        "generatedFields": {
-          "shape": "FieldList"
-        },
-        "numberOfRecordsUpdated": {
-          "shape": "RecordsUpdated"
-        },
-        "records": {
-          "shape": "SqlRecords"
-        }
-      }
-    },
-    "BoxedBoolean": {
-      "type": "boolean",
-      "box": true
-    },
-    "RecordsUpdated": {
-      "type": "long"
-    },
-    "UpdateResult": {
-      "type": "structure",
-      "members": {
-        "generatedFields": {
-          "shape": "FieldList"
-        }
-      }
-    },
-    "SqlParametersList": {
-      "type": "list",
-      "member": {
-        "shape": "SqlParameter"
-      }
-    },
-    "ParameterName": {
-      "type": "string"
-    },
-    "Metadata": {
-      "type": "list",
-      "member": {
-        "shape": "ColumnMetadata"
-      }
-    },
-    "ExecuteSqlResponse": {
-      "type": "structure",
-      "members": {
-        "sqlStatementResults": {
-          "shape": "SqlStatementResults"
-        }
-      }
-    },
-    "SqlStatementResult": {
-      "type": "structure",
-      "members": {
-        "numberOfRecordsUpdated": {
-          "shape": "RecordsUpdated"
-        },
-        "resultFrame": {
-          "shape": "ResultFrame"
-        }
-      }
-    },
-    "BeginTransactionRequest": {
-      "type": "structure",
-      "required": [
-        "resourceArn",
-        "secretArn"
-      ],
-      "members": {
-        "database": {
-          "shape": "DbName"
-        },
-        "resourceArn": {
-          "shape": "Arn"
-        },
-        "schema": {
-          "shape": "DbName"
-        },
-        "secretArn": {
-          "shape": "Arn"
-        }
-      }
-    },
-    "RollbackTransactionResponse": {
-      "type": "structure",
-      "members": {
-        "transactionStatus": {
-          "shape": "TransactionStatus"
-        }
-      }
-    },
-    "BatchExecuteStatementResponse": {
-      "type": "structure",
-      "members": {
-        "updateResults": {
-          "shape": "UpdateResults"
-        }
-      }
-    },
-    "ResultSetMetadata": {
-      "type": "structure",
-      "members": {
-        "columnCount": {
-          "shape": "Long"
-        },
-        "columnMetadata": {
-          "shape": "Metadata"
-        }
-      }
-    },
-    "Records": {
-      "type": "list",
-      "member": {
-        "shape": "Record"
-      }
-    },
-    "ExecuteStatementRequest": {
-      "type": "structure",
-      "required": [
+    "ExecuteStatementRequest":{
+      "type":"structure",
+      "required":[
         "resourceArn",
         "secretArn",
         "sql"
       ],
-      "members": {
-        "continueAfterTimeout": {
-          "shape": "Boolean"
-        },
-        "database": {
-          "shape": "DbName"
-        },
-        "includeResultMetadata": {
-          "shape": "Boolean"
-        },
-        "parameters": {
-          "shape": "SqlParametersList"
-        },
-        "resourceArn": {
-          "shape": "Arn"
-        },
-        "schema": {
-          "shape": "DbName"
-        },
-        "secretArn": {
-          "shape": "Arn"
-        },
-        "sql": {
-          "shape": "SqlStatement"
-        },
-        "transactionId": {
-          "shape": "Id"
-        }
+      "members":{
+        "continueAfterTimeout":{"shape":"Boolean"},
+        "database":{"shape":"DbName"},
+        "includeResultMetadata":{"shape":"Boolean"},
+        "parameters":{"shape":"SqlParametersList"},
+        "resourceArn":{"shape":"Arn"},
+        "resultSetOptions":{"shape":"ResultSetOptions"},
+        "schema":{"shape":"DbName"},
+        "secretArn":{"shape":"Arn"},
+        "sql":{"shape":"SqlStatement"},
+        "transactionId":{"shape":"Id"}
       }
     },
-    "Blob": {
-      "type": "blob"
-    },
-    "String": {
-      "type": "string"
-    },
-    "BeginTransactionResponse": {
-      "type": "structure",
-      "members": {
-        "transactionId": {
-          "shape": "Id"
-        }
+    "ExecuteStatementResponse":{
+      "type":"structure",
+      "members":{
+        "columnMetadata":{"shape":"Metadata"},
+        "generatedFields":{"shape":"FieldList"},
+        "numberOfRecordsUpdated":{"shape":"RecordsUpdated"},
+        "records":{"shape":"SqlRecords"}
       }
     },
-    "Id": {
-      "type": "string",
-      "max": 192
+    "Field":{
+      "type":"structure",
+      "members":{
+        "arrayValue":{"shape":"ArrayValue"},
+        "blobValue":{"shape":"Blob"},
+        "booleanValue":{"shape":"BoxedBoolean"},
+        "doubleValue":{"shape":"BoxedDouble"},
+        "isNull":{"shape":"BoxedBoolean"},
+        "longValue":{"shape":"BoxedLong"},
+        "stringValue":{"shape":"String"}
+      }
     },
-    "CommitTransactionRequest": {
-      "type": "structure",
-      "required": [
+    "FieldList":{
+      "type":"list",
+      "member":{"shape":"Field"}
+    },
+    "ForbiddenException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{
+        "httpStatusCode":403,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "Id":{
+      "type":"string",
+      "max":192,
+      "min":0
+    },
+    "Integer":{"type":"integer"},
+    "InternalServerErrorException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{"httpStatusCode":500},
+      "exception":true,
+      "fault":true
+    },
+    "Long":{"type":"long"},
+    "LongArray":{
+      "type":"list",
+      "member":{"shape":"BoxedLong"}
+    },
+    "Metadata":{
+      "type":"list",
+      "member":{"shape":"ColumnMetadata"}
+    },
+    "NotFoundException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ParameterName":{"type":"string"},
+    "Record":{
+      "type":"structure",
+      "members":{
+        "values":{"shape":"Row"}
+      }
+    },
+    "Records":{
+      "type":"list",
+      "member":{"shape":"Record"}
+    },
+    "RecordsUpdated":{"type":"long"},
+    "ResultFrame":{
+      "type":"structure",
+      "members":{
+        "records":{"shape":"Records"},
+        "resultSetMetadata":{"shape":"ResultSetMetadata"}
+      }
+    },
+    "ResultSetMetadata":{
+      "type":"structure",
+      "members":{
+        "columnCount":{"shape":"Long"},
+        "columnMetadata":{"shape":"Metadata"}
+      }
+    },
+    "ResultSetOptions":{
+      "type":"structure",
+      "members":{
+        "decimalReturnType":{"shape":"DecimalReturnType"}
+      }
+    },
+    "RollbackTransactionRequest":{
+      "type":"structure",
+      "required":[
         "resourceArn",
         "secretArn",
         "transactionId"
       ],
-      "members": {
-        "resourceArn": {
-          "shape": "Arn"
-        },
-        "secretArn": {
-          "shape": "Arn"
-        },
-        "transactionId": {
-          "shape": "Id"
-        }
+      "members":{
+        "resourceArn":{"shape":"Arn"},
+        "secretArn":{"shape":"Arn"},
+        "transactionId":{"shape":"Id"}
       }
     },
-    "ServiceUnavailableError": {
-      "type": "structure",
-      "members": { },
-      "exception": true,
-      "error": {
-        "code": "ServiceUnavailableError",
-        "httpStatusCode": 503,
-        "fault": true
+    "RollbackTransactionResponse":{
+      "type":"structure",
+      "members":{
+        "transactionStatus":{"shape":"TransactionStatus"}
       }
     },
-    "ColumnMetadata": {
-      "type": "structure",
-      "members": {
-        "arrayBaseColumnType": {
-          "shape": "Integer"
-        },
-        "isAutoIncrement": {
-          "shape": "Boolean"
-        },
-        "isCaseSensitive": {
-          "shape": "Boolean"
-        },
-        "isCurrency": {
-          "shape": "Boolean"
-        },
-        "isSigned": {
-          "shape": "Boolean"
-        },
-        "label": {
-          "shape": "String"
-        },
-        "name": {
-          "shape": "String"
-        },
-        "nullable": {
-          "shape": "Integer"
-        },
-        "precision": {
-          "shape": "Integer"
-        },
-        "scale": {
-          "shape": "Integer"
-        },
-        "schemaName": {
-          "shape": "String"
-        },
-        "tableName": {
-          "shape": "String"
-        },
-        "type": {
-          "shape": "Integer"
-        },
-        "typeName": {
-          "shape": "String"
-        }
+    "Row":{
+      "type":"list",
+      "member":{"shape":"Value"}
+    },
+    "ServiceUnavailableError":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{"httpStatusCode":503},
+      "exception":true,
+      "fault":true
+    },
+    "SqlParameter":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"ParameterName"},
+        "value":{"shape":"Field"}
       }
     },
-    "DbName": {
-      "type": "string",
-      "max": 64
+    "SqlParameterSets":{
+      "type":"list",
+      "member":{"shape":"SqlParametersList"}
     },
-    "InternalServerErrorException": {
-      "type": "structure",
-      "members": { },
-      "exception": true,
-      "error": {
-        "code": "InternalServerErrorException",
-        "httpStatusCode": 500,
-        "fault": true
+    "SqlParametersList":{
+      "type":"list",
+      "member":{"shape":"SqlParameter"}
+    },
+    "SqlRecords":{
+      "type":"list",
+      "member":{"shape":"FieldList"}
+    },
+    "SqlStatement":{
+      "type":"string",
+      "max":65536,
+      "min":0
+    },
+    "SqlStatementResult":{
+      "type":"structure",
+      "members":{
+        "numberOfRecordsUpdated":{"shape":"RecordsUpdated"},
+        "resultFrame":{"shape":"ResultFrame"}
+      }
+    },
+    "SqlStatementResults":{
+      "type":"list",
+      "member":{"shape":"SqlStatementResult"}
+    },
+    "StatementTimeoutException":{
+      "type":"structure",
+      "members":{
+        "dbConnectionId":{"shape":"Long"},
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "String":{"type":"string"},
+    "StringArray":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "StructValue":{
+      "type":"structure",
+      "members":{
+        "attributes":{"shape":"ArrayValueList"}
+      }
+    },
+    "TransactionStatus":{
+      "type":"string",
+      "max":128,
+      "min":0
+    },
+    "UpdateResult":{
+      "type":"structure",
+      "members":{
+        "generatedFields":{"shape":"FieldList"}
+      }
+    },
+    "UpdateResults":{
+      "type":"list",
+      "member":{"shape":"UpdateResult"}
+    },
+    "Value":{
+      "type":"structure",
+      "members":{
+        "arrayValues":{"shape":"ArrayValueList"},
+        "bigIntValue":{"shape":"BoxedLong"},
+        "bitValue":{"shape":"BoxedBoolean"},
+        "blobValue":{"shape":"Blob"},
+        "doubleValue":{"shape":"BoxedDouble"},
+        "intValue":{"shape":"BoxedInteger"},
+        "isNull":{"shape":"BoxedBoolean"},
+        "realValue":{"shape":"BoxedFloat"},
+        "stringValue":{"shape":"String"},
+        "structValue":{"shape":"StructValue"}
       }
     }
   }

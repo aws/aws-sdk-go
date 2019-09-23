@@ -4859,6 +4859,18 @@
           "us-iso-east-1" : { }
         }
       },
+      "route53" : {
+        "endpoints" : {
+          "aws-iso-global" : {
+            "credentialScope" : {
+              "region" : "us-iso-east-1"
+            },
+            "hostname" : "route53.c2s.ic.gov"
+          }
+        },
+        "isRegionalized" : false,
+        "partitionEndpoint" : "aws-iso-global"
+      },
       "s3" : {
         "defaults" : {
           "signatureVersions" : [ "s3v4" ]

@@ -48,6 +48,7 @@
     "DescribeHsmClientCertificates": "<p>Returns information about the specified HSM client certificate. If no certificate ID is specified, returns information about all the HSM certificates owned by your AWS customer account.</p> <p>If you specify both tag keys and tag values in the same request, Amazon Redshift returns all HSM client certificates that match any combination of the specified keys and values. For example, if you have <code>owner</code> and <code>environment</code> for tag keys, and <code>admin</code> and <code>test</code> for tag values, all HSM client certificates that have any combination of those values are returned.</p> <p>If both tag keys and values are omitted from the request, HSM client certificates are returned regardless of whether they have tag keys or values associated with them.</p>",
     "DescribeHsmConfigurations": "<p>Returns information about the specified Amazon Redshift HSM configuration. If no configuration ID is specified, returns information about all the HSM configurations owned by your AWS customer account.</p> <p>If you specify both tag keys and tag values in the same request, Amazon Redshift returns all HSM connections that match any combination of the specified keys and values. For example, if you have <code>owner</code> and <code>environment</code> for tag keys, and <code>admin</code> and <code>test</code> for tag values, all HSM connections that have any combination of those values are returned.</p> <p>If both tag keys and values are omitted from the request, HSM connections are returned regardless of whether they have tag keys or values associated with them.</p>",
     "DescribeLoggingStatus": "<p>Describes whether information, such as queries and connection attempts, is being logged for the specified Amazon Redshift cluster.</p>",
+    "DescribeNodeConfigurationOptions": "<p>Returns properties of possible node configurations such as node type, number of nodes, and disk usage for the specified action type.</p>",
     "DescribeOrderableClusterOptions": "<p>Returns a list of orderable cluster options. Before you create a new cluster you can use this operation to find what options are available, such as the EC2 Availability Zones (AZ) in the specific AWS Region that you can specify, and the node types you can request. The node types differ by available storage, memory, CPU and price. With the cost involved you might want to obtain a list of cluster options in the specific region and specify values when creating a cluster. For more information about managing clusters, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html\">Amazon Redshift Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
     "DescribeReservedNodeOfferings": "<p>Returns a list of the available reserved node offerings by Amazon Redshift with their descriptions including the node type, the fixed and recurring costs of reserving the node and duration the node will be reserved for you. These descriptions help you determine which reserve node offering you want to purchase. You then use the unique offering ID in you call to <a>PurchaseReservedNodeOffering</a> to reserve one or more nodes for your Amazon Redshift cluster. </p> <p> For more information about reserved node offerings, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/purchase-reserved-node-instance.html\">Purchasing Reserved Nodes</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
     "DescribeReservedNodes": "<p>Returns the descriptions of the reserved nodes.</p>",
@@ -121,6 +122,12 @@
       "base": null,
       "refs": {
         "Snapshot$AccountsWithRestoreAccess": "<p>A list of the AWS customer accounts authorized to restore the snapshot. Returns <code>null</code> if no accounts are authorized. Visible only to the snapshot owner. </p>"
+      }
+    },
+    "ActionType": {
+      "base": null,
+      "refs": {
+        "DescribeNodeConfigurationOptionsMessage$ActionType": "<p>The action type to evaluate for possible node configurations. Currently, it must be \"restore-cluster\".</p>"
       }
     },
     "AssociatedClusterList": {
@@ -917,6 +924,11 @@
       "refs": {
       }
     },
+    "DescribeNodeConfigurationOptionsMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeOrderableClusterOptionsMessage": {
       "base": "<p/>",
       "refs": {
@@ -998,6 +1010,7 @@
       "base": null,
       "refs": {
         "DataTransferProgress$CurrentRateInMegaBytesPerSecond": "<p>Describes the data transfer rate in MB's per second.</p>",
+        "NodeConfigurationOption$EstimatedDiskUtilizationPercent": "<p>The estimated disk utilizaton percentage.</p>",
         "ResizeProgressMessage$AvgResizeRateInMegaBytesPerSecond": "<p>The average rate of the resize operation over the last few minutes, measured in megabytes per second. After the resize operation completes, this value shows the average rate of the entire resize operation.</p>",
         "ResizeProgressMessage$DataTransferProgressPercent": "<p>The percent of data transferred from source cluster to target cluster.</p>"
       }
@@ -1282,6 +1295,7 @@
         "ClusterSnapshotCopyStatus$ManualSnapshotRetentionPeriod": "<p>The number of days that automated snapshots are retained in the destination region after they are copied from a source region. If the value is -1, the manual snapshot is retained indefinitely. </p> <p>The value must be either -1 or an integer between 1 and 3,653.</p>",
         "Endpoint$Port": "<p>The port that the database engine is listening on.</p>",
         "ModifySnapshotCopyRetentionPeriodMessage$RetentionPeriod": "<p>The number of days to retain automated snapshots in the destination AWS Region after they are copied from the source AWS Region.</p> <p>By default, this only changes the retention period of copied automated snapshots. </p> <p>If you decrease the retention period for automated snapshots that are copied to a destination AWS Region, Amazon Redshift deletes any existing automated snapshots that were copied to the destination AWS Region and that fall outside of the new retention period.</p> <p>Constraints: Must be at least 1 and no more than 35 for automated snapshots. </p> <p>If you specify the <code>manual</code> option, only newly copied manual snapshots will have the new retention period. </p> <p>If you specify the value of -1 newly copied manual snapshots are retained indefinitely.</p> <p>Constraints: The number of days must be either -1 or an integer between 1 and 3,653 for manual snapshots.</p>",
+        "NodeConfigurationOption$NumberOfNodes": "<p>The number of nodes.</p>",
         "ReservedNode$Duration": "<p>The duration of the node reservation in seconds.</p>",
         "ReservedNode$NodeCount": "<p>The number of reserved compute nodes.</p>",
         "ReservedNodeOffering$Duration": "<p>The duration, in seconds, for which the offering will reserve the node.</p>",
@@ -1317,6 +1331,7 @@
         "DescribeEventsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
         "DescribeHsmClientCertificatesMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
         "DescribeHsmConfigurationsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
+        "DescribeNodeConfigurationOptionsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>500</code> </p> <p>Constraints: minimum 100, maximum 500.</p>",
         "DescribeOrderableClusterOptionsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
         "DescribeReservedNodeOfferingsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
         "DescribeReservedNodesMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
@@ -1340,6 +1355,7 @@
         "RestoreFromClusterSnapshotMessage$Port": "<p>The port number on which the cluster accepts connections.</p> <p>Default: The same port as the original cluster.</p> <p>Constraints: Must be between <code>1115</code> and <code>65535</code>.</p>",
         "RestoreFromClusterSnapshotMessage$AutomatedSnapshotRetentionPeriod": "<p>The number of days that automated snapshots are retained. If the value is 0, automated snapshots are disabled. Even if automated snapshots are disabled, you can still create manual snapshots when you want with <a>CreateClusterSnapshot</a>. </p> <p>Default: The value selected for the cluster from which the snapshot was taken.</p> <p>Constraints: Must be a value from 0 to 35.</p>",
         "RestoreFromClusterSnapshotMessage$ManualSnapshotRetentionPeriod": "<p>The default number of days to retain a manual snapshot. If the value is -1, the snapshot is retained indefinitely. This setting doesn't change the retention period of existing snapshots.</p> <p>The value must be either -1 or an integer between 1 and 3,653.</p>",
+        "RestoreFromClusterSnapshotMessage$NumberOfNodes": "<p>The number of nodes specified when provisioning the restored cluster.</p>",
         "Snapshot$ManualSnapshotRetentionPeriod": "<p>The number of days that a manual snapshot is retained. If the value is -1, the manual snapshot is retained indefinitely. </p> <p>The value must be either -1 or an integer between 1 and 3,653.</p>",
         "Snapshot$ManualSnapshotRemainingDays": "<p>The number of days until a manual snapshot will pass its retention period.</p>",
         "SnapshotSchedule$AssociatedClusterCount": "<p>The number of clusters associated with the schedule.</p>"
@@ -1598,6 +1614,41 @@
       "refs": {
       }
     },
+    "NodeConfigurationOption": {
+      "base": "<p>A list of node configurations.</p>",
+      "refs": {
+        "NodeConfigurationOptionList$member": null
+      }
+    },
+    "NodeConfigurationOptionList": {
+      "base": null,
+      "refs": {
+        "NodeConfigurationOptionsMessage$NodeConfigurationOptionList": "<p>A list of valid node configurations.</p>"
+      }
+    },
+    "NodeConfigurationOptionsFilter": {
+      "base": "<p>A set of elements to filter the returned node configurations.</p>",
+      "refs": {
+        "NodeConfigurationOptionsFilterList$member": null
+      }
+    },
+    "NodeConfigurationOptionsFilterList": {
+      "base": null,
+      "refs": {
+        "DescribeNodeConfigurationOptionsMessage$Filters": "<p>A set of name, operator, and value items to filter the results.</p>"
+      }
+    },
+    "NodeConfigurationOptionsFilterName": {
+      "base": null,
+      "refs": {
+        "NodeConfigurationOptionsFilter$Name": "<p>The name of the element to filter.</p>"
+      }
+    },
+    "NodeConfigurationOptionsMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
     "NumberOfNodesPerClusterLimitExceededFault": {
       "base": "<p>The operation would exceed the number of nodes allowed for a cluster.</p>",
       "refs": {
@@ -1606,6 +1657,12 @@
     "NumberOfNodesQuotaExceededFault": {
       "base": "<p>The operation would exceed the number of nodes allotted to the account. For information about increasing your quota, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-limits.html\">Limits in Amazon Redshift</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>",
       "refs": {
+      }
+    },
+    "OperatorType": {
+      "base": null,
+      "refs": {
+        "NodeConfigurationOptionsFilter$Operator": "<p>The filter operator. If filter Name is NodeType only the 'in' operator is supported. Provide one value to evaluate for 'eq', 'lt', 'le', 'gt', and 'ge'. Provide two values to evaluate for 'between'. Provide a list of values for 'in'.</p>"
       }
     },
     "OrderableClusterOption": {
@@ -2262,6 +2319,9 @@
         "DescribeHsmConfigurationsMessage$HsmConfigurationIdentifier": "<p>The identifier of a specific Amazon Redshift HSM configuration to be described. If no identifier is specified, information is returned for all HSM configurations owned by your AWS customer account.</p>",
         "DescribeHsmConfigurationsMessage$Marker": "<p>An optional parameter that specifies the starting point to return a set of response records. When the results of a <a>DescribeHsmConfigurations</a> request exceed the value specified in <code>MaxRecords</code>, AWS returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p>",
         "DescribeLoggingStatusMessage$ClusterIdentifier": "<p>The identifier of the cluster from which to get the logging status.</p> <p>Example: <code>examplecluster</code> </p>",
+        "DescribeNodeConfigurationOptionsMessage$SnapshotIdentifier": "<p>The identifier of the snapshot to evaluate for possible node configurations.</p>",
+        "DescribeNodeConfigurationOptionsMessage$OwnerAccount": "<p>The AWS customer account used to create or copy the snapshot. Required if you are restoring a snapshot you do not own, optional if you own the snapshot.</p>",
+        "DescribeNodeConfigurationOptionsMessage$Marker": "<p>An optional parameter that specifies the starting point to return a set of response records. When the results of a <a>DescribeNodeConfigurationOptions</a> request exceed the value specified in <code>MaxRecords</code>, AWS returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p>",
         "DescribeOrderableClusterOptionsMessage$ClusterVersion": "<p>The version filter value. Specify this parameter to show only the available offerings matching the specified version.</p> <p>Default: All versions.</p> <p>Constraints: Must be one of the version returned from <a>DescribeClusterVersions</a>.</p>",
         "DescribeOrderableClusterOptionsMessage$NodeType": "<p>The node type filter value. Specify this parameter to show only the available offerings matching the specified node type.</p>",
         "DescribeOrderableClusterOptionsMessage$Marker": "<p>An optional parameter that specifies the starting point to return a set of response records. When the results of a <a>DescribeOrderableClusterOptions</a> request exceed the value specified in <code>MaxRecords</code>, AWS returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p>",
@@ -2371,6 +2431,8 @@
         "ModifyEventSubscriptionMessage$Severity": "<p>Specifies the Amazon Redshift event severity to be published by the event notification subscription.</p> <p>Values: ERROR, INFO</p>",
         "ModifySnapshotCopyRetentionPeriodMessage$ClusterIdentifier": "<p>The unique identifier of the cluster for which you want to change the retention period for either automated or manual snapshots that are copied to a destination AWS Region.</p> <p>Constraints: Must be the valid name of an existing cluster that has cross-region snapshot copy enabled.</p>",
         "ModifySnapshotScheduleMessage$ScheduleIdentifier": "<p>A unique alphanumeric identifier of the schedule to modify.</p>",
+        "NodeConfigurationOption$NodeType": "<p>The node type, such as, \"ds2.8xlarge\".</p>",
+        "NodeConfigurationOptionsMessage$Marker": "<p>A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned marker value in the <code>Marker</code> parameter and retrying the command. If the <code>Marker</code> field is empty, all response records have been retrieved for the request. </p>",
         "OrderableClusterOption$ClusterVersion": "<p>The version of the orderable cluster.</p>",
         "OrderableClusterOption$ClusterType": "<p>The cluster type, for example <code>multi-node</code>. </p>",
         "OrderableClusterOption$NodeType": "<p>The node type for the orderable cluster.</p>",
@@ -2505,6 +2567,7 @@
         "TrackListMessage$Marker": "<p>The starting point to return a set of response tracklist records. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request.</p>",
         "UpdateTarget$MaintenanceTrackName": "<p>The name of the new maintenance track.</p>",
         "UpdateTarget$DatabaseVersion": "<p>The cluster version for the new maintenance track.</p>",
+        "ValueStringList$member": null,
         "VpcSecurityGroupIdList$member": null,
         "VpcSecurityGroupMembership$VpcSecurityGroupId": "<p>The identifier of the VPC security group.</p>",
         "VpcSecurityGroupMembership$Status": "<p>The status of the VPC security group.</p>"
@@ -2588,6 +2651,7 @@
       "refs": {
         "Cluster$ClusterCreateTime": "<p>The date and time that the cluster was created.</p>",
         "Cluster$ExpectedNextSnapshotScheduleTime": "<p>The date and time when the next snapshot is expected to be taken for clusters with a valid snapshot schedule and backups enabled. </p>",
+        "Cluster$NextMaintenanceWindowStartTime": "<p>The date and time in UTC when system maintenance can begin.</p>",
         "ClusterCredentials$Expiration": "<p>The date and time the password in <code>DbPassword</code> expires.</p>",
         "ClusterDbRevision$DatabaseRevisionReleaseDate": "<p>The date on which the database revision was released.</p>",
         "DeferredMaintenanceWindow$DeferMaintenanceStartTime": "<p> A timestamp for the beginning of the time period when we defer maintenance.</p>",
@@ -2770,6 +2834,12 @@
       "base": "<p>A maintenance track that you can switch the current track to.</p>",
       "refs": {
         "EligibleTracksToUpdateList$member": null
+      }
+    },
+    "ValueStringList": {
+      "base": null,
+      "refs": {
+        "NodeConfigurationOptionsFilter$Values": "<p>List of values. Compare Name using Operator to Values. If filter Name is NumberOfNodes, then values can range from 0 to 200. If filter Name is EstimatedDiskUtilizationPercent, then values can range from 0 to 100. For example, filter NumberOfNodes (name) GT (operator) 3 (values).</p>"
       }
     },
     "VpcSecurityGroupIdList": {
