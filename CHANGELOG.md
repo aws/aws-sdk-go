@@ -1,3 +1,12 @@
+Release v1.24.4 (2019-09-23)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/rds-data`: Updates service API, documentation, paginators, and examples
+* `service/redshift`: Updates service API, documentation, and paginators
+  * Adds API operation DescribeNodeConfigurationOptions and associated data structures.
+
 Release v1.24.3 (2019-09-20)
 ===
 
