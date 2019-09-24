@@ -1113,17 +1113,23 @@ func TestUploadRetry(t *testing.T) {
 			server := httptest.NewServer(mux)
 			defer server.Close()
 
+			var logger aws.Logger
+			var logLevel *aws.LogLevelType
+			if v := os.Getenv("DEBUG_BODY"); len(v) != 0 {
+				logger = t
+				logLevel = aws.LogLevel(
+					aws.LogDebugWithRequestErrors | aws.LogDebugWithRequestRetries,
+				)
+			}
 			sess := unit.Session.Copy(&aws.Config{
 				Endpoint:         aws.String(server.URL),
 				S3ForcePathStyle: aws.Bool(true),
 				DisableSSL:       aws.Bool(true),
-				Logger:           t,
 				MaxRetries:       aws.Int(retries + 1),
 				SleepDelay:       func(time.Duration) {},
 
-				LogLevel: aws.LogLevel(
-					aws.LogDebugWithRequestErrors | aws.LogDebugWithRequestRetries,
-				),
+				Logger:   logger,
+				LogLevel: logLevel,
 				//Credentials: credentials.AnonymousCredentials,
 			})
 
