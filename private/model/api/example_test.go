@@ -1,10 +1,12 @@
-// +build 1.6,codegen
+// +build go1.10,codegen
 
 package api
 
 import (
 	"encoding/json"
 	"testing"
+
+	"github.com/google/go-cmp/cmp"
 )
 
 func buildAPI() *API {
@@ -132,7 +134,7 @@ func buildAPI() *API {
 	}
 	outputRef := ShapeRef{
 		API:       a,
-		ShapeName: "Foooutput",
+		ShapeName: "FooOutput",
 		Shape:     output,
 	}
 
@@ -150,10 +152,19 @@ func buildAPI() *API {
 	a.Shapes = map[string]*Shape{
 		"FooInput":  input,
 		"FooOutput": output,
+		"string":    stringShape,
+		"int":       intShape,
+		"NestedComplexShape": nestedComplexShape,
+		"NestedListShape": nestedListShape,
+		"ComplexShape": complexShape,
+		"ListShape": listShape,
+		"ListsShape":listsShape,
 	}
 	a.Metadata = Metadata{
 		ServiceAbbreviation: "FooService",
 	}
+
+	a.BaseImportPath = "github.com/aws/aws-sdk-go/service/"
 
 	a.Setup()
 	return a
@@ -224,6 +235,7 @@ import (
 	"` + SDKImportRoot + `/aws/awserr"
 	"` + SDKImportRoot + `/aws/session"
 	"` + SDKImportRoot + `/service/fooservice"
+	
 )
 
 var _ time.Duration
@@ -285,10 +297,8 @@ func ExampleFooService_Foo_shared00() {
 	fmt.Println(result)
 }
 `
-	if expected != a.ExamplesGoCode() {
-		t.Log([]byte(expected))
-		t.Log([]byte(a.ExamplesGoCode()))
-		t.Errorf("Expected:\n%s\nReceived:\n%s\n", expected, a.ExamplesGoCode())
+	if v := cmp.Diff(expected, a.ExamplesGoCode()); len(v) != 0 {
+		t.Errorf(v)
 	}
 }
 
