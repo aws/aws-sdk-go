@@ -190,12 +190,10 @@ func (s *Shape) Rename(newName string) {
 	}
 
 	for _, r := range s.refs {
-		r.OrigShapeName = r.ShapeName
 		r.ShapeName = newName
 	}
 
 	delete(s.API.Shapes, s.ShapeName)
-	s.OrigShapeName = s.ShapeName
 	s.API.Shapes[newName] = s
 	s.ShapeName = newName
 }
@@ -904,9 +902,9 @@ func (s *Shape) Clone(newName string) *Shape {
 	n.Enum = append([]string{}, n.Enum...)
 	n.EnumConsts = append([]string{}, n.EnumConsts...)
 
-	n.OrigShapeName = n.ShapeName
 	n.API.Shapes[newName] = n
 	n.ShapeName = newName
+	n.OrigShapeName = s.OrigShapeName
 
 	return n
 }
