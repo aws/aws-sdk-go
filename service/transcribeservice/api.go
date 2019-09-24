@@ -1803,15 +1803,9 @@ type StartTranscriptionJobInput struct {
 	Media *Media `type:"structure" required:"true"`
 
 	// The format of the input media file.
-	//
-	// If you do not specify the format of the media file, Amazon Transcribe determines
-	// the format. If the format is not recognized, Amazon Transcribe returns an
-	// InternalFailureException exception. If you specify the format, it must match
-	// the format detected by Amazon Transcribe, otherwise you get an InternalFailureException
-	// exception.
 	MediaFormat *string `type:"string" enum:"MediaFormat"`
 
-	// The sample rate of the audio track in the input media file in Hertz.
+	// The sample rate, in Hertz, of the audio track in the input media file.
 	//
 	// If you do not specify the media sample rate, Amazon Transcribe determines
 	// the sample rate. If you specify the sample rate, it must match the sample
@@ -1836,6 +1830,8 @@ type StartTranscriptionJobInput struct {
 	// URL, a shareable URL that provides secure access to your transcription, and
 	// returns it in the TranscriptFileUri field. Use this URL to download the transcription.
 	OutputBucketName *string `type:"string"`
+
+	OutputEncryptionKMSKeyId *string `min:"1" type:"string"`
 
 	// A Settings object that provides optional settings for a transcription job.
 	Settings *Settings `type:"structure"`
@@ -1868,6 +1864,9 @@ func (s *StartTranscriptionJobInput) Validate() error {
 	}
 	if s.MediaSampleRateHertz != nil && *s.MediaSampleRateHertz < 8000 {
 		invalidParams.Add(request.NewErrParamMinValue("MediaSampleRateHertz", 8000))
+	}
+	if s.OutputEncryptionKMSKeyId != nil && len(*s.OutputEncryptionKMSKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutputEncryptionKMSKeyId", 1))
 	}
 	if s.TranscriptionJobName == nil {
 		invalidParams.Add(request.NewErrParamRequired("TranscriptionJobName"))
@@ -1919,6 +1918,12 @@ func (s *StartTranscriptionJobInput) SetMediaSampleRateHertz(v int64) *StartTran
 // SetOutputBucketName sets the OutputBucketName field's value.
 func (s *StartTranscriptionJobInput) SetOutputBucketName(v string) *StartTranscriptionJobInput {
 	s.OutputBucketName = &v
+	return s
+}
+
+// SetOutputEncryptionKMSKeyId sets the OutputEncryptionKMSKeyId field's value.
+func (s *StartTranscriptionJobInput) SetOutputEncryptionKMSKeyId(v string) *StartTranscriptionJobInput {
+	s.OutputEncryptionKMSKeyId = &v
 	return s
 }
 
@@ -2135,7 +2140,7 @@ func (s *TranscriptionJob) SetTranscriptionJobStatus(v string) *TranscriptionJob
 	return s
 }
 
-// Provides a summary of information about a transcription job. .
+// Provides a summary of information about a transcription job.
 type TranscriptionJobSummary struct {
 	_ struct{} `type:"structure"`
 

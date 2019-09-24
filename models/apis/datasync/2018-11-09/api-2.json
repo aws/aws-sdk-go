@@ -492,6 +492,7 @@
       "members":{
         "Subdirectory":{"shape":"Subdirectory"},
         "S3BucketArn":{"shape":"S3BucketArn"},
+        "S3StorageClass":{"shape":"S3StorageClass"},
         "S3Config":{"shape":"S3Config"},
         "Tags":{"shape":"TagList"}
       }
@@ -650,6 +651,7 @@
       "members":{
         "LocationArn":{"shape":"LocationArn"},
         "LocationUri":{"shape":"LocationUri"},
+        "S3StorageClass":{"shape":"S3StorageClass"},
         "S3Config":{"shape":"S3Config"},
         "CreationTime":{"shape":"Time"}
       }
@@ -983,6 +985,7 @@
       "type":"structure",
       "members":{
         "VerifyMode":{"shape":"VerifyMode"},
+        "OverwriteMode":{"shape":"OverwriteMode"},
         "Atime":{"shape":"Atime"},
         "Mtime":{"shape":"Mtime"},
         "Uid":{"shape":"Uid"},
@@ -992,6 +995,13 @@
         "PosixPermissions":{"shape":"PosixPermissions"},
         "BytesPerSecond":{"shape":"BytesPerSecond"}
       }
+    },
+    "OverwriteMode":{
+      "type":"string",
+      "enum":[
+        "ALWAYS",
+        "NEVER"
+      ]
     },
     "PLSecurityGroupArnList":{
       "type":"list",
@@ -1055,6 +1065,17 @@
       "members":{
         "BucketAccessRoleArn":{"shape":"IamRoleArn"}
       }
+    },
+    "S3StorageClass":{
+      "type":"string",
+      "enum":[
+        "STANDARD",
+        "STANDARD_IA",
+        "ONEZONE_IA",
+        "INTELLIGENT_TIERING",
+        "GLACIER",
+        "DEEP_ARCHIVE"
+      ]
     },
     "ServerHostname":{
       "type":"string",
@@ -1292,6 +1313,7 @@
       "type":"string",
       "enum":[
         "POINT_IN_TIME_CONSISTENT",
+        "ONLY_FILES_TRANSFERRED",
         "NONE"
       ]
     },
