@@ -53,6 +53,11 @@ func main() {
 		api.SDKImportRoot+"/service",
 		"The Go `import path` to generate client to be under.",
 	)
+	var ignoreUnsupportedAPIs bool
+	flag.BoolVar(&ignoreUnsupportedAPIs, "ignore-unsupported-apis",
+		true,
+		"Ignores API models that use unsupported features",
+	)
 	flag.Usage = usage
 	flag.Parse()
 
@@ -74,7 +79,12 @@ func main() {
 	}
 	modelPaths, _ = api.TrimModelServiceVersions(modelPaths)
 
-	apis, err := api.LoadAPIs(modelPaths, svcImportPath)
+	loader := api.Loader{
+		BaseImport:            svcImportPath,
+		IgnoreUnsupportedAPIs: ignoreUnsupportedAPIs,
+	}
+
+	apis, err := loader.Load(modelPaths)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "failed to load API models", err)
 		os.Exit(1)

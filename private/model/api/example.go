@@ -194,27 +194,27 @@ func getValue(t, v string) string {
 
 // AttachExamples will create a new ExamplesDefinition from the examples file
 // and reference the API object.
-func (a *API) AttachExamples(filename string) {
+func (a *API) AttachExamples(filename string) error {
 	p := ExamplesDefinition{API: a}
 
 	f, err := os.Open(filename)
 	defer f.Close()
 	if err != nil {
-		panic(err)
+		return err
 	}
 	err = json.NewDecoder(f).Decode(&p)
 	if err != nil {
-		panic(err)
+		return fmt.Errorf("failed to decode %s, err: %v", filename, err)
 	}
 
-	p.setup()
+	return p.setup()
 }
 
 var examplesBuilderCustomizations = map[string]examplesBuilder{
 	"wafregional": NewWAFregionalExamplesBuilder(),
 }
 
-func (p *ExamplesDefinition) setup() {
+func (p *ExamplesDefinition) setup() error {
 	var builder examplesBuilder
 	ok := false
 	if builder, ok = examplesBuilderCustomizations[p.API.PackageName()]; !ok {
@@ -241,6 +241,8 @@ func (p *ExamplesDefinition) setup() {
 	}
 
 	p.API.Examples = p.Examples
+
+	return nil
 }
 
 var exampleHeader = template.Must(template.New("exampleHeader").Parse(`
