@@ -6,7 +6,7 @@
     "CreateAgent": "<p>Activates an AWS DataSync agent that you have deployed on your host. The activation process associates your agent with your account. In the activation process, you specify information such as the AWS Region that you want to activate the agent in. You activate the agent in the AWS Region where your target locations (in Amazon S3 or Amazon EFS) reside. Your tasks are created in this AWS Region.</p> <p>You can activate the agent in a VPC (Virtual private Cloud) or provide the agent access to a VPC endpoint so you can run tasks without going over the public Internet.</p> <p>You can use an agent for more than one location. If a task uses multiple agents, all of them need to have status AVAILABLE for the task to run. If you use multiple agents for a source location, the status of all the agents must be AVAILABLE for the task to run. </p> <p>Agents are automatically updated by AWS on a regular basis, using a mechanism that ensures minimal interruption to your tasks.</p> <p/>",
     "CreateLocationEfs": "<p>Creates an endpoint for an Amazon EFS file system.</p>",
     "CreateLocationNfs": "<p>Creates an endpoint for a Network File System (NFS) file system.</p>",
-    "CreateLocationS3": "<p>Creates an endpoint for an Amazon S3 bucket.</p> <p>For AWS DataSync to access a destination S3 bucket, it needs an AWS Identity and Access Management (IAM) role that has the required permissions. You can set up the required permissions by creating an IAM policy that grants the required permissions and attaching the policy to the role. An example of such a policy is shown in the examples section.</p> <p>For more information, see Configuring Amazon S3 Location Settings in the <i>AWS DataSync User Guide.</i> </p>",
+    "CreateLocationS3": "<p>Creates an endpoint for an Amazon S3 bucket.</p> <p>For AWS DataSync to access a destination S3 bucket, it needs an AWS Identity and Access Management (IAM) role that has the required permissions. You can set up the required permissions by creating an IAM policy that grants the required permissions and attaching the policy to the role. An example of such a policy is shown in the examples section.</p> <p>For more information, see https://docs.aws.amazon.com/datasync/latest/userguide/working-with-locations.html#create-s3-location in the <i>AWS DataSync User Guide.</i> </p>",
     "CreateLocationSmb": "<p>Creates an endpoint for a Server Message Block (SMB) file system.</p>",
     "CreateTask": "<p>Creates a task. A task is a set of two locations (source and destination) and a set of Options that you use to control the behavior of a task. If you don't specify Options when you create a task, AWS DataSync populates them with service defaults.</p> <p>When you create a task, it first enters the CREATING state. During CREATING AWS DataSync attempts to mount the on-premises Network File System (NFS) location. The task transitions to the AVAILABLE state without waiting for the AWS location to become mounted. If required, AWS DataSync mounts the AWS location before each task execution.</p> <p>If an agent that is associated with a source (NFS) location goes offline, the task transitions to the UNAVAILABLE status. If the status of the task remains in the CREATING status for more than a few minutes, it means that your agent might be having trouble mounting the source NFS file system. Check the task's ErrorCode and ErrorDetail. Mount issues are often caused by either a misconfigured firewall or a mistyped NFS server host name.</p>",
     "DeleteAgent": "<p>Deletes an agent. To specify which agent to delete, use the Amazon Resource Name (ARN) of the agent in your request. The operation disassociates the agent from your AWS account. However, it doesn't delete the agent virtual machine (VM) from your on-premises environment.</p>",
@@ -519,7 +519,7 @@
     "NfsVersion": {
       "base": null,
       "refs": {
-        "NfsMountOptions$Version": "<p>The specific NFS version that you want DataSync to use to mount your NFS share. If you don't specify a version, DataSync defaults to <code>AUTOMATIC</code>. That is, DataSync automatically selects a version based on negotiation with the NFS server.</p>"
+        "NfsMountOptions$Version": "<p>The specific NFS version that you want DataSync to use to mount your NFS share. If the server refuses to use the version specified, the sync will fail. If you don't specify a version, DataSync defaults to <code>AUTOMATIC</code>. That is, DataSync automatically selects a version based on negotiation with the NFS server.</p> <p>You can specify the following NFS versions:</p> <ul> <li> <p> <b> <a href=\"https://tools.ietf.org/html/rfc1813\">NFSv3</a> </b> - stateless protocol version that allows for asynchronous writes on the server.</p> </li> <li> <p> <b> <a href=\"https://tools.ietf.org/html/rfc3530\">NFSv4.0</a> </b> - stateful, firewall-friendly protocol version that supports delegations and pseudo filesystems.</p> </li> <li> <p> <b> <a href=\"https://tools.ietf.org/html/rfc5661\">NFSv4.1</a> </b> - stateful protocol version that supports sessions, directory delegations, and parallel data processing. Version 4.1 also includes all features available in version 4.0.</p> </li> </ul>"
       }
     },
     "NonEmptySubdirectory": {
@@ -546,6 +546,12 @@
         "UpdateTaskRequest$Options": null
       }
     },
+    "OverwriteMode": {
+      "base": null,
+      "refs": {
+        "Options$OverwriteMode": "<p>A value that determines whether files at the destination should be overwritten or preserved when copying files. If set to <code>NEVER</code> a destination file will not be replaced by a source file, even if the destination file differs from the source file. If you modify files in the destination and you sync the files, you can use this value to protect against overwriting those changes. </p> <p>Some storage classes have specific behaviors that can affect your S3 storage cost. For detailed information, see <a>using-storage-classes</a> in the <i>AWS DataSync User Guide</i>.</p>"
+      }
+    },
     "PLSecurityGroupArnList": {
       "base": null,
       "refs": {
@@ -556,7 +562,7 @@
     "PLSubnetArnList": {
       "base": null,
       "refs": {
-        "CreateAgentRequest$SubnetArns": "<p>The Amazon Resource Names (ARNs) of the subnets in which DataSync will create Elastic Network Interfaces (ENIs) for each data transfer task. The agent that runs a task must be private. When you start a task that is associated with an agent created in a VPC, or one that has access to an IP address in a VPC, then the task is also private. In this case, DataSync creates four ENIs for each task in your subnet. For a data transfer to work, the agent must be able to route to all these four ENIs.</p>",
+        "CreateAgentRequest$SubnetArns": "<p>The Amazon Resource Names (ARNs) of the subnets in which DataSync will create elastic network interfaces for each data transfer task. The agent that runs a task must be private. When you start a task that is associated with an agent created in a VPC, or one that has access to an IP address in a VPC, then the task is also private. In this case, DataSync creates four network interfaces for each task in your subnet. For a data transfer to work, the agent must be able to route to all these four network interfaces.</p>",
         "PrivateLinkConfig$SubnetArns": "<p>The Amazon Resource Names (ARNs) of the subnets that are configured for an agent activated in a VPC or an agent that has access to a VPC endpoint.</p>"
       }
     },
@@ -577,7 +583,7 @@
     "PreserveDeletedFiles": {
       "base": null,
       "refs": {
-        "Options$PreserveDeletedFiles": "<p>A value that specifies whether files in the destination that don't exist in the source file system should be preserved. </p> <p>Default value: PRESERVE.</p> <p>PRESERVE: Ignore such destination files (recommended). </p> <p>REMOVE: Delete destination files that aren’t present in the source.</p>"
+        "Options$PreserveDeletedFiles": "<p>A value that specifies whether files in the destination that don't exist in the source file system should be preserved. This option can affect your storage cost. If your task deletes objects, you might incur minimum storage duration charges for certain storage classes. For detailed information, see <a>using-storage-classes</a> in the <i>AWS DataSync User Guide</i>.</p> <p>Default value: PRESERVE.</p> <p>PRESERVE: Ignore such destination files (recommended). </p> <p>REMOVE: Delete destination files that aren’t present in the source.</p>"
       }
     },
     "PreserveDevices": {
@@ -589,7 +595,7 @@
     "PrivateLinkConfig": {
       "base": "<p>The VPC endpoint, subnet and security group that an agent uses to access IP addresses in a VPC (Virtual Private Cloud).</p>",
       "refs": {
-        "DescribeAgentResponse$PrivateLinkConfig": null
+        "DescribeAgentResponse$PrivateLinkConfig": "<p>The subnet and the security group that DataSync used to access a VPC endpoint.</p>"
       }
     },
     "S3BucketArn": {
@@ -605,44 +611,51 @@
         "DescribeLocationS3Response$S3Config": null
       }
     },
+    "S3StorageClass": {
+      "base": null,
+      "refs": {
+        "CreateLocationS3Request$S3StorageClass": "<p>The Amazon S3 storage class that you want to store your files in when this location is used as a task destination. For more information about S3 storage classes, see <a href=\"https://aws.amazon.com/s3/storage-classes/\">Amazon S3 Storage Classes</a> in the <i>Amazon Simple Storage Service Developer Guide</i>. Some storage classes have behaviors that can affect your S3 storage cost. For detailed information, see <a>using-storage-classes</a>.</p>",
+        "DescribeLocationS3Response$S3StorageClass": "<p>The Amazon S3 storage class that you chose to store your files in when this location is used as a task destination. For more information about S3 storage classes, see <a href=\"https://aws.amazon.com/s3/storage-classes/\">Amazon S3 Storage Classes</a> in the <i>Amazon Simple Storage Service Developer Guide</i>. Some storage classes have behaviors that can affect your S3 storage cost. For detailed information, see <a>using-storage-classes</a>.</p>"
+      }
+    },
     "ServerHostname": {
       "base": null,
       "refs": {
         "CreateLocationNfsRequest$ServerHostname": "<p>The name of the NFS server. This value is the IP address or Domain Name Service (DNS) name of the NFS server. An agent that is installed on-premises uses this host name to mount the NFS server in a network. </p> <note> <p>This name must either be DNS-compliant or must be an IP version 4 (IPv4) address.</p> </note>",
-        "CreateLocationSmbRequest$ServerHostname": "<p>The name of the SMB server. This value is the IP address or Domain Name Service (DNS) name of the SMB server. An agent that is installed on-premises uses this host name to mount the SMB server in a network.</p> <note> <p>This name must either be DNS-compliant or must be an IP version 4 (IPv4) address.</p> </note>"
+        "CreateLocationSmbRequest$ServerHostname": "<p>The name of the SMB server. This value is the IP address or Domain Name Service (DNS) name of the SMB server. An agent that is installed on-premises uses this hostname to mount the SMB server in a network.</p> <note> <p>This name must either be DNS-compliant or must be an IP version 4 (IPv4) address.</p> </note>"
       }
     },
     "SmbDomain": {
       "base": null,
       "refs": {
-        "CreateLocationSmbRequest$Domain": "<p>The name of the domain that the SMB server belongs to.</p>",
-        "DescribeLocationSmbResponse$Domain": "<p>The name of the domain that the SMB server belongs to.</p>"
+        "CreateLocationSmbRequest$Domain": "<p>The name of the Windows domain that the SMB server belongs to.</p>",
+        "DescribeLocationSmbResponse$Domain": "<p>The name of the Windows domain that the SMB server belongs to.</p>"
       }
     },
     "SmbMountOptions": {
       "base": "<p>Represents the mount options that are available for DataSync to access an SMB location.</p>",
       "refs": {
-        "CreateLocationSmbRequest$MountOptions": "<p>The mount options that are available for DataSync to use to access an SMB location.</p>",
+        "CreateLocationSmbRequest$MountOptions": "<p>The mount options used by DataSync to access the SMB server.</p>",
         "DescribeLocationSmbResponse$MountOptions": "<p>The mount options that are available for DataSync to use to access an SMB location.</p>"
       }
     },
     "SmbPassword": {
       "base": null,
       "refs": {
-        "CreateLocationSmbRequest$Password": "<p>The password of the user who has permission to access the SMB server.</p>"
+        "CreateLocationSmbRequest$Password": "<p>The password of the user who can mount the share, has the permissions to access files and folders in the SMB share.</p>"
       }
     },
     "SmbUser": {
       "base": null,
       "refs": {
-        "CreateLocationSmbRequest$User": "<p>The user who can mount the share, has the permissions to access files and directories in the SMB share.</p>",
-        "DescribeLocationSmbResponse$User": "<p>The user who is logged on the SMB server.</p>"
+        "CreateLocationSmbRequest$User": "<p>The user who can mount the share, has the permissions to access files and folders in the SMB share.</p>",
+        "DescribeLocationSmbResponse$User": "<p>The user who can mount the share, has the permissions to access files and folders in the SMB share.</p>"
       }
     },
     "SmbVersion": {
       "base": null,
       "refs": {
-        "SmbMountOptions$Version": "<p>The specific SMB version that you want DataSync to use to mount your SMB share. If you don't specify a version, DataSync defaults to <code>AUTOMATIC</code>. That is, DataSync automatically selects a version based on negotiation with the SMB Server server.</p>"
+        "SmbMountOptions$Version": "<p>The specific SMB version that you want DataSync to use to mount your SMB share. If you don't specify a version, DataSync defaults to <code>AUTOMATIC</code>. That is, DataSync automatically selects a version based on negotiation with the SMB server.</p>"
       }
     },
     "SourceNetworkInterfaceArns": {
@@ -852,7 +865,7 @@
     "VerifyMode": {
       "base": null,
       "refs": {
-        "Options$VerifyMode": "<p>A value that determines whether a data integrity verification should be performed at the end of a task execution after all data and metadata have been transferred. </p> <p>Default value: POINT_IN_TIME_CONSISTENT.</p> <p>POINT_IN_TIME_CONSISTENT: Perform verification (recommended). </p> <p>NONE: Skip verification.</p>"
+        "Options$VerifyMode": "<p>A value that determines whether a data integrity verification should be performed at the end of a task execution after all data and metadata have been transferred. </p> <p>Default value: POINT_IN_TIME_CONSISTENT.</p> <p>POINT_IN_TIME_CONSISTENT: Perform verification (recommended). </p> <p>ONLY_FILES_TRANSFERRED: Perform verification on only files that were transferred.</p> <p>NONE: Skip verification.</p>"
       }
     },
     "VpcEndpointId": {

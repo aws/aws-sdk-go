@@ -98,6 +98,12 @@
       "refs": {
       }
     },
+    "KMSKeyId": {
+      "base": null,
+      "refs": {
+        "StartTranscriptionJobRequest$OutputEncryptionKMSKeyId": null
+      }
+    },
     "LanguageCode": {
       "base": null,
       "refs": {
@@ -160,14 +166,14 @@
     "MediaFormat": {
       "base": null,
       "refs": {
-        "StartTranscriptionJobRequest$MediaFormat": "<p>The format of the input media file.</p> <p> If you do not specify the format of the media file, Amazon Transcribe determines the format. If the format is not recognized, Amazon Transcribe returns an <code>InternalFailureException</code> exception. If you specify the format, it must match the format detected by Amazon Transcribe, otherwise you get an <code>InternalFailureException</code> exception.</p>",
+        "StartTranscriptionJobRequest$MediaFormat": "<p>The format of the input media file.</p>",
         "TranscriptionJob$MediaFormat": "<p>The format of the input media file.</p>"
       }
     },
     "MediaSampleRateHertz": {
       "base": null,
       "refs": {
-        "StartTranscriptionJobRequest$MediaSampleRateHertz": "<p>The sample rate of the audio track in the input media file in Hertz. </p> <p>If you do not specify the media sample rate, Amazon Transcribe determines the sample rate. If you specify the sample rate, it must match the sample rate detected by Amazon Transcribe. In most cases, you should leave the <code>MediaSampleRateHertz</code> field blank and let Amazon Transcribe determine the sample rate.</p>",
+        "StartTranscriptionJobRequest$MediaSampleRateHertz": "<p>The sample rate, in Hertz, of the audio track in the input media file. </p> <p>If you do not specify the media sample rate, Amazon Transcribe determines the sample rate. If you specify the sample rate, it must match the sample rate detected by Amazon Transcribe. In most cases, you should leave the <code>MediaSampleRateHertz</code> field blank and let Amazon Transcribe determine the sample rate.</p>",
         "TranscriptionJob$MediaSampleRateHertz": "<p>The sample rate, in Hertz, of the audio track in the input media file. </p>"
       }
     },
@@ -277,7 +283,7 @@
       }
     },
     "TranscriptionJobSummary": {
-      "base": "<p>Provides a summary of information about a transcription job. .</p>",
+      "base": "<p>Provides a summary of information about a transcription job.</p>",
       "refs": {
         "TranscriptionJobSummaries$member": null
       }
