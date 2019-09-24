@@ -123,7 +123,10 @@ func TestRequestRecoverRetry5xx(t *testing.T) {
 		{StatusCode: 200, Body: body(`{"data":"valid"}`)},
 	}
 
-	s := awstesting.NewClient(aws.NewConfig().WithMaxRetries(10))
+	s := awstesting.NewClient(&aws.Config{
+		MaxRetries: aws.Int(10),
+		SleepDelay: func(time.Duration) {},
+	})
 	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)
@@ -156,7 +159,10 @@ func TestRequestRecoverRetry4xxRetryable(t *testing.T) {
 		{StatusCode: 200, Body: body(`{"data":"valid"}`)},
 	}
 
-	s := awstesting.NewClient(aws.NewConfig().WithMaxRetries(10))
+	s := awstesting.NewClient(&aws.Config{
+		MaxRetries: aws.Int(10),
+		SleepDelay: func(time.Duration) {},
+	})
 	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)
@@ -183,6 +189,7 @@ func TestRequestRecoverRetry4xxRetryable(t *testing.T) {
 func TestRequest4xxUnretryable(t *testing.T) {
 	s := awstesting.NewClient(&aws.Config{
 		MaxRetries: aws.Int(1),
+		SleepDelay: func(time.Duration) {},
 	})
 	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
@@ -229,7 +236,9 @@ func TestRequestExhaustRetries(t *testing.T) {
 		{StatusCode: 500, Body: body(`{"__type":"UnknownError","message":"An error occurred."}`)},
 	}
 
-	s := awstesting.NewClient(aws.NewConfig().WithSleepDelay(sleepDelay))
+	s := awstesting.NewClient(&aws.Config{
+		SleepDelay: sleepDelay,
+	})
 	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)
@@ -276,7 +285,11 @@ func TestRequestRecoverExpiredCreds(t *testing.T) {
 		{StatusCode: 200, Body: body(`{"data":"valid"}`)},
 	}
 
-	s := awstesting.NewClient(&aws.Config{MaxRetries: aws.Int(10), Credentials: credentials.NewStaticCredentials("AKID", "SECRET", "")})
+	s := awstesting.NewClient(&aws.Config{
+		MaxRetries:  aws.Int(10),
+		Credentials: credentials.NewStaticCredentials("AKID", "SECRET", ""),
+		SleepDelay:  func(time.Duration) {},
+	})
 	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)
@@ -345,7 +358,9 @@ func TestMakeAddtoUserAgentFreeFormHandler(t *testing.T) {
 }
 
 func TestRequestUserAgent(t *testing.T) {
-	s := awstesting.NewClient(&aws.Config{Region: aws.String("us-east-1")})
+	s := awstesting.NewClient(&aws.Config{
+		Region: aws.String("us-east-1"),
+	})
 
 	req := s.NewRequest(&request.Operation{Name: "Operation"}, nil, &testData{})
 	req.HTTPRequest.Header.Set("User-Agent", "foo/bar")
@@ -374,7 +389,9 @@ func TestRequestThrottleRetries(t *testing.T) {
 		{StatusCode: 500, Body: body(`{"__type":"Throttling","message":"An error occurred."}`)},
 	}
 
-	s := awstesting.NewClient(aws.NewConfig().WithSleepDelay(sleepDelay))
+	s := awstesting.NewClient(&aws.Config{
+		SleepDelay: sleepDelay,
+	})
 	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)

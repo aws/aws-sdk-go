@@ -29,7 +29,7 @@ func TestCopyObjectNoError(t *testing.T) {
 	})
 
 	if err != nil {
-		t.Errorf("expected no error, but received %v", err)
+		t.Fatalf("expected no error, but received %v", err)
 	}
 	if e, a := fmt.Sprintf(`%q`, "1da64c7f13d1e8dbeaea40b905fd586c"), *res.CopyObjectResult.ETag; e != a {
 		t.Errorf("expected %s, but received %s", e, a)
@@ -159,6 +159,7 @@ func newCopyTestSvc(errMsg string) *s3.S3 {
 		http.Error(w, errMsg, http.StatusOK)
 	}))
 	defer server.Close()
+
 	return s3.New(unit.Session, aws.NewConfig().
 		WithEndpoint(server.URL).
 		WithDisableSSL(true).
