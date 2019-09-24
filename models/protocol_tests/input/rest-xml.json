@@ -1707,8 +1707,7 @@
       {
         "given": {
           "input": {
-            "shape": "InputShape",
-            "locationName": "OperationRequest"
+            "shape": "InputShape"
           },
           "http": {
             "method": "POST",
@@ -1722,14 +1721,13 @@
         "serialized": {
           "uri": "/path",
           "headers": {},
-          "body": "<OperationRequest><Token>abc123</Token></OperationRequest>"
+          "body": "<InputShape><Token>abc123</Token></InputShape>"
         }
       },
       {
         "given": {
           "input": {
-            "shape": "InputShape",
-            "locationName": "OperationRequest"
+            "shape": "InputShape"
           },
           "http": {
             "method": "POST",
@@ -1742,7 +1740,7 @@
         "serialized": {
           "uri": "/path",
           "headers": {},
-          "body": "<OperationRequest><Token>00000000-0000-4000-8000-000000000000</Token></OperationRequest>"
+          "body": "<InputShape><Token>00000000-0000-4000-8000-000000000000</Token></InputShape>"
         }
       }
     ]
@@ -1801,8 +1799,7 @@
       {
         "given": {
           "input": {
-            "shape": "InputShape",
-            "locationName": "OperationRequest"
+            "shape": "InputShape"
           },
           "http": {
             "method": "POST",
@@ -1820,7 +1817,7 @@
         "serialized": {
           "uri": "/Enum/bar?ListEnums=0&ListEnums=&ListEnums=1",
           "headers": {"x-amz-enum": "baz"},
-          "body": "<OperationRequest><FooEnum>foo</FooEnum><ListEnums><member>foo</member><member></member><member>bar</member></ListEnums></OperationRequest>"
+          "body": "<InputShape><FooEnum>foo</FooEnum><ListEnums><member>foo</member><member></member><member>bar</member></ListEnums></InputShape>"
         }
       },
       {
