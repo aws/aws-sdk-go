@@ -274,6 +274,7 @@
         "IpAddressType":{"shape":"IpAddressType"},
         "Enabled":{"shape":"GenericBoolean"},
         "IpSets":{"shape":"IpSets"},
+        "DnsName":{"shape":"GenericString"},
         "Status":{"shape":"AcceleratorStatus"},
         "CreatedTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"}

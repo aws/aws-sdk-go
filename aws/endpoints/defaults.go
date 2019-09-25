@@ -1212,12 +1212,6 @@ var awsPartition = partition{
 						Region: "ap-northeast-2",
 					},
 				},
-				"ap-south-1": endpoint{
-					Hostname: "rds.ap-south-1.amazonaws.com",
-					CredentialScope: credentialScope{
-						Region: "ap-south-1",
-					},
-				},
 				"ap-southeast-2": endpoint{
 					Hostname: "rds.ap-southeast-2.amazonaws.com",
 					CredentialScope: credentialScope{
@@ -4610,7 +4604,6 @@ var awsusgovPartition = partition{
 		"health": service{
 
 			Endpoints: endpoints{
-				"us-gov-east-1": endpoint{},
 				"us-gov-west-1": endpoint{},
 			},
 		},
@@ -5248,6 +5241,19 @@ var awsisoPartition = partition{
 
 			Endpoints: endpoints{
 				"us-iso-east-1": endpoint{},
+			},
+		},
+		"route53": service{
+			PartitionEndpoint: "aws-iso-global",
+			IsRegionalized:    boxedFalse,
+
+			Endpoints: endpoints{
+				"aws-iso-global": endpoint{
+					Hostname: "route53.c2s.ic.gov",
+					CredentialScope: credentialScope{
+						Region: "us-iso-east-1",
+					},
+				},
 			},
 		},
 		"s3": service{

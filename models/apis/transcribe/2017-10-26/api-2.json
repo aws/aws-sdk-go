@@ -239,6 +239,12 @@
       "exception":true,
       "fault":true
     },
+    "KMSKeyId":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$"
+    },
     "LanguageCode":{
       "type":"string",
       "enum":[
@@ -333,7 +339,8 @@
     },
     "NextToken":{
       "type":"string",
-      "max":8192
+      "max":8192,
+      "pattern":".+"
     },
     "NotFoundException":{
       "type":"structure",
@@ -344,6 +351,7 @@
     },
     "OutputBucketName":{
       "type":"string",
+      "max":64,
       "pattern":"[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]"
     },
     "OutputLocationType":{
@@ -356,7 +364,8 @@
     "Phrase":{
       "type":"string",
       "max":256,
-      "min":0
+      "min":0,
+      "pattern":".+"
     },
     "Phrases":{
       "type":"list",
@@ -385,6 +394,7 @@
         "MediaFormat":{"shape":"MediaFormat"},
         "Media":{"shape":"Media"},
         "OutputBucketName":{"shape":"OutputBucketName"},
+        "OutputEncryptionKMSKeyId":{"shape":"KMSKeyId"},
         "Settings":{"shape":"Settings"}
       }
     },
@@ -472,7 +482,8 @@
     "Uri":{
       "type":"string",
       "max":2000,
-      "min":1
+      "min":1,
+      "pattern":"(s3://|http(s*)://).+"
     },
     "Vocabularies":{
       "type":"list",

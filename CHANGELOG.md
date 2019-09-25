@@ -1,3 +1,59 @@
+Release v1.24.6 (2019-09-25)
+===
+
+### Service Client Updates
+* `service/dms`: Updates service API, documentation, and examples
+  * This release adds a new DeleteConnection API to delete the connection between a replication instance and an endpoint. It also adds an optional S3 setting to specify the precision of any TIMESTAMP column values written to an S3 object file in .parquet format.
+* `service/globalaccelerator`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Enable G4D and R5 instances in SageMaker Hosting Services
+
+Release v1.24.5 (2019-09-24)
+===
+
+### Service Client Updates
+* `service/comprehendmedical`: Updates service API and documentation
+* `service/datasync`: Updates service API and documentation
+* `service/transcribe`: Updates service API and documentation
+
+### SDK Enhancements
+* `private/model/api`: Skip unsupported API models during code generation ([#2849](https://github.com/aws/aws-sdk-go/pull/2849))
+  * Adds support for removing API modeled operations that use unsupported features. If a API model results in having no operations it will be skipped.
+
+Release v1.24.4 (2019-09-23)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/rds-data`: Updates service API, documentation, paginators, and examples
+* `service/redshift`: Updates service API, documentation, and paginators
+  * Adds API operation DescribeNodeConfigurationOptions and associated data structures.
+
+Release v1.24.3 (2019-09-20)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * G4 instances are Amazon EC2 instances based on NVIDIA T4 GPUs and are designed to provide cost-effective machine learning inference for applications, like image classification, object detection, recommender systems, automated speech recognition, and language translation. G4 instances are also a cost-effective platform for building and running graphics-intensive applications, such as remote graphics workstations, video transcoding, photo-realistic design, and game streaming in the cloud. To get started with G4 instances visit https://aws.amazon.com/ec2/instance-types/g4.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/greengrass`: Updates service API and documentation
+  * Greengrass OTA service now returns the updated software version in the PlatformSoftwareVersion parameter of a CreateSoftwareUpdateJob response
+* `service/rds`: Updates service API and documentation
+  * Add a new LeaseID output field to DescribeReservedDBInstances, which shows the unique identifier for the lease associated with the reserved DB instance. AWS Support might request the lease ID for an issue related to a reserved DB instance.
+* `service/workspaces`: Updates service API and documentation
+  * Adds the WorkSpaces restore feature
+
+Release v1.24.2 (2019-09-19)
+===
+
+### Service Client Updates
+* `service/ecs`: Updates service API and documentation
+  * This release of Amazon Elastic Container Service (Amazon ECS) introduces support for container image manifest digests. This enables you to identify all tasks launched using a container image pulled from ECR in order to correlate what was built with where it is running.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/glue`: Updates service API and documentation
+  * AWS Glue DevEndpoints now supports GlueVersion, enabling you to choose Apache Spark 2.4.3 (in addition to Apache Spark 2.2.1). In addition to supporting the latest version of Spark, you will also have the ability to choose between Python 2 and Python 3.
+* `service/mediaconnect`: Updates service API and documentation
+
 Release v1.24.1 (2019-09-18)
 ===
 

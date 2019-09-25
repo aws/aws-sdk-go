@@ -11,7 +11,6 @@ import (
 
 func TestRequestCancelRetry(t *testing.T) {
 	c := make(chan struct{})
-
 	reqNum := 0
 	s := mock.NewMockClient(&aws.Config{
 		MaxRetries: aws.Int(1),

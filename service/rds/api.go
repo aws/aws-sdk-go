@@ -24745,6 +24745,13 @@ type DescribeReservedDBInstancesInput struct {
 	// This parameter is not currently supported.
 	Filters []*Filter `locationNameList:"Filter" type:"list"`
 
+	// The lease identifier filter value. Specify this parameter to show only the
+	// reservation that matches the specified lease ID.
+	//
+	// AWS Support might request the lease ID for an issue related to a reserved
+	// DB instance.
+	LeaseId *string `type:"string"`
+
 	// An optional pagination token provided by a previous request. If this parameter
 	// is specified, the response includes only records beyond the marker, up to
 	// the value specified by MaxRecords.
@@ -24827,6 +24834,12 @@ func (s *DescribeReservedDBInstancesInput) SetDuration(v string) *DescribeReserv
 // SetFilters sets the Filters field's value.
 func (s *DescribeReservedDBInstancesInput) SetFilters(v []*Filter) *DescribeReservedDBInstancesInput {
 	s.Filters = v
+	return s
+}
+
+// SetLeaseId sets the LeaseId field's value.
+func (s *DescribeReservedDBInstancesInput) SetLeaseId(v string) *DescribeReservedDBInstancesInput {
+	s.LeaseId = &v
 	return s
 }
 
@@ -30899,6 +30912,12 @@ type ReservedDBInstance struct {
 	// The fixed price charged for this reserved DB instance.
 	FixedPrice *float64 `type:"double"`
 
+	// The unique identifier for the lease associated with the reserved DB instance.
+	//
+	// AWS Support might request the lease ID for an issue related to a reserved
+	// DB instance.
+	LeaseId *string `type:"string"`
+
 	// Indicates if the reservation applies to Multi-AZ deployments.
 	MultiAZ *bool `type:"boolean"`
 
@@ -30967,6 +30986,12 @@ func (s *ReservedDBInstance) SetDuration(v int64) *ReservedDBInstance {
 // SetFixedPrice sets the FixedPrice field's value.
 func (s *ReservedDBInstance) SetFixedPrice(v float64) *ReservedDBInstance {
 	s.FixedPrice = &v
+	return s
+}
+
+// SetLeaseId sets the LeaseId field's value.
+func (s *ReservedDBInstance) SetLeaseId(v string) *ReservedDBInstance {
+	s.LeaseId = &v
 	return s
 }
 

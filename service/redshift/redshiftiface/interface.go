@@ -280,6 +280,13 @@ type RedshiftAPI interface {
 	DescribeLoggingStatusWithContext(aws.Context, *redshift.DescribeLoggingStatusInput, ...request.Option) (*redshift.LoggingStatus, error)
 	DescribeLoggingStatusRequest(*redshift.DescribeLoggingStatusInput) (*request.Request, *redshift.LoggingStatus)
 
+	DescribeNodeConfigurationOptions(*redshift.DescribeNodeConfigurationOptionsInput) (*redshift.DescribeNodeConfigurationOptionsOutput, error)
+	DescribeNodeConfigurationOptionsWithContext(aws.Context, *redshift.DescribeNodeConfigurationOptionsInput, ...request.Option) (*redshift.DescribeNodeConfigurationOptionsOutput, error)
+	DescribeNodeConfigurationOptionsRequest(*redshift.DescribeNodeConfigurationOptionsInput) (*request.Request, *redshift.DescribeNodeConfigurationOptionsOutput)
+
+	DescribeNodeConfigurationOptionsPages(*redshift.DescribeNodeConfigurationOptionsInput, func(*redshift.DescribeNodeConfigurationOptionsOutput, bool) bool) error
+	DescribeNodeConfigurationOptionsPagesWithContext(aws.Context, *redshift.DescribeNodeConfigurationOptionsInput, func(*redshift.DescribeNodeConfigurationOptionsOutput, bool) bool, ...request.Option) error
+
 	DescribeOrderableClusterOptions(*redshift.DescribeOrderableClusterOptionsInput) (*redshift.DescribeOrderableClusterOptionsOutput, error)
 	DescribeOrderableClusterOptionsWithContext(aws.Context, *redshift.DescribeOrderableClusterOptionsInput, ...request.Option) (*redshift.DescribeOrderableClusterOptionsOutput, error)
 	DescribeOrderableClusterOptionsRequest(*redshift.DescribeOrderableClusterOptionsInput) (*request.Request, *redshift.DescribeOrderableClusterOptionsOutput)
