@@ -268,6 +268,11 @@ func renameCollidingField(name string, v *Shape, field *ShapeRef) {
 	debugLogger.Logf("Shape %s's field %q renamed to %q", v.ShapeName, name, newName)
 	delete(v.MemberRefs, name)
 	v.MemberRefs[newName] = field
+	// Set LocationName to the original field name if it is not already set.
+	// This is to ensure we correctly serialize to the proper member name
+	if len(field.LocationName) == 0 {
+		field.LocationName = name
+	}
 }
 
 // collides will return true if it is a name used by the SDK or Golang.
