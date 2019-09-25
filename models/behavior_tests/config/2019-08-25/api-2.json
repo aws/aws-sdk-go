@@ -1,0 +1,21 @@
+{
+  "metadata":{
+    "serviceId":"Sample Service",
+    "targetPrefix":"SampleService_20180101",
+    "endpointPrefix":"sample-service",
+    "protocol":"json",
+    "jsonVersion":"1.1",
+    "signatureVersion":"v4",
+    "serviceFullName": "AWS Sample Service"
+  },
+  "operations": {
+    "EmptyOperation": {
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      }
+    }
+  },
+  "shapes": {
+  }
+}

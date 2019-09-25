@@ -73,6 +73,7 @@ func loadAPI(modelPath, baseImport string, opts ...func(*API)) (*API, error) {
 		modelLoader{"waiters-2.json", a.AttachWaiters, false},
 		modelLoader{"examples-1.json", a.AttachExamples, false},
 		modelLoader{"smoke.json", a.AttachSmokeTests, false},
+		modelLoader{"behavior.json", a.AttachBehaviorTests, false},
 	)
 	if err != nil {
 		return nil, err

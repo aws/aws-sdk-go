@@ -1,0 +1,28 @@
+{
+  "tests": {
+    "defaults": {
+    },
+    "cases": [
+      {
+        "description": "Prefers configured region over ENV region",
+        "env": {
+          "AWS_REGION": "us-west-2"
+        },
+        "config": {
+          "region": "us-west-1",
+          "accessKeyId": "akid",
+          "secretAccessKey": "secret"
+        },
+        "request": {
+          "operation": "EmptyOperation",
+          "input": {}
+        },
+        "expect": [
+          {
+            "requestUrlMatches": "https://sample-service.us-west-1.amazonaws.com/"
+          }
+        ]
+      }
+    ]
+  }
+}

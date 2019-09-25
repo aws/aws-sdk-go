@@ -26,6 +26,7 @@ type API struct {
 	Documentation string
 	Examples      Examples
 	SmokeTests    SmokeTestSuite
+	BehaviorTests BehaviorTestSuite
 
 	IgnoreUnsupportedAPIs bool
 
