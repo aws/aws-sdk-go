@@ -92,6 +92,10 @@ type DatabaseMigrationServiceAPI interface {
 	DeleteCertificateWithContext(aws.Context, *databasemigrationservice.DeleteCertificateInput, ...request.Option) (*databasemigrationservice.DeleteCertificateOutput, error)
 	DeleteCertificateRequest(*databasemigrationservice.DeleteCertificateInput) (*request.Request, *databasemigrationservice.DeleteCertificateOutput)
 
+	DeleteConnection(*databasemigrationservice.DeleteConnectionInput) (*databasemigrationservice.DeleteConnectionOutput, error)
+	DeleteConnectionWithContext(aws.Context, *databasemigrationservice.DeleteConnectionInput, ...request.Option) (*databasemigrationservice.DeleteConnectionOutput, error)
+	DeleteConnectionRequest(*databasemigrationservice.DeleteConnectionInput) (*request.Request, *databasemigrationservice.DeleteConnectionOutput)
+
 	DeleteEndpoint(*databasemigrationservice.DeleteEndpointInput) (*databasemigrationservice.DeleteEndpointOutput, error)
 	DeleteEndpointWithContext(aws.Context, *databasemigrationservice.DeleteEndpointInput, ...request.Option) (*databasemigrationservice.DeleteEndpointOutput, error)
 	DeleteEndpointRequest(*databasemigrationservice.DeleteEndpointInput) (*request.Request, *databasemigrationservice.DeleteEndpointOutput)

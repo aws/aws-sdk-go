@@ -4085,7 +4085,19 @@
         "ml.c5.2xlarge",
         "ml.c5.4xlarge",
         "ml.c5.9xlarge",
-        "ml.c5.18xlarge"
+        "ml.c5.18xlarge",
+        "ml.g4dn.xlarge",
+        "ml.g4dn.2xlarge",
+        "ml.g4dn.4xlarge",
+        "ml.g4dn.8xlarge",
+        "ml.g4dn.12xlarge",
+        "ml.g4dn.16xlarge",
+        "ml.r5.large",
+        "ml.r5.xlarge",
+        "ml.r5.2xlarge",
+        "ml.r5.4xlarge",
+        "ml.r5.12xlarge",
+        "ml.r5.24xlarge"
       ]
     },
     "ProductionVariantList":{
@@ -4723,12 +4735,12 @@
         "ml.p3.2xlarge",
         "ml.p3.8xlarge",
         "ml.p3.16xlarge",
+        "ml.p3dn.24xlarge",
         "ml.c5.xlarge",
         "ml.c5.2xlarge",
         "ml.c5.4xlarge",
         "ml.c5.9xlarge",
-        "ml.c5.18xlarge",
-        "ml.p3dn.24xlarge"
+        "ml.c5.18xlarge"
       ]
     },
     "TrainingInstanceTypes":{
