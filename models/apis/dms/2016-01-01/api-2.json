@@ -142,6 +142,20 @@
         {"shape":"InvalidResourceStateFault"}
       ]
     },
+    "DeleteConnection":{
+      "name":"DeleteConnection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteConnectionMessage"},
+      "output":{"shape":"DeleteConnectionResponse"},
+      "errors":[
+        {"shape":"AccessDeniedFault"},
+        {"shape":"ResourceNotFoundFault"},
+        {"shape":"InvalidResourceStateFault"}
+      ]
+    },
     "DeleteEndpoint":{
       "name":"DeleteEndpoint",
       "http":{
@@ -914,6 +928,23 @@
       "type":"structure",
       "members":{
         "Certificate":{"shape":"Certificate"}
+      }
+    },
+    "DeleteConnectionMessage":{
+      "type":"structure",
+      "required":[
+        "EndpointArn",
+        "ReplicationInstanceArn"
+      ],
+      "members":{
+        "EndpointArn":{"shape":"String"},
+        "ReplicationInstanceArn":{"shape":"String"}
+      }
+    },
+    "DeleteConnectionResponse":{
+      "type":"structure",
+      "members":{
+        "Connection":{"shape":"Connection"}
       }
     },
     "DeleteEndpointMessage":{
@@ -2037,7 +2068,8 @@
         "EnableStatistics":{"shape":"BooleanOptional"},
         "IncludeOpForFullLoad":{"shape":"BooleanOptional"},
         "CdcInsertsOnly":{"shape":"BooleanOptional"},
-        "TimestampColumnName":{"shape":"String"}
+        "TimestampColumnName":{"shape":"String"},
+        "ParquetTimestampInMillisecond":{"shape":"BooleanOptional"}
       }
     },
     "SNSInvalidTopicFault":{

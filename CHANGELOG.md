@@ -1,3 +1,13 @@
+Release v1.24.6 (2019-09-25)
+===
+
+### Service Client Updates
+* `service/dms`: Updates service API, documentation, and examples
+  * This release adds a new DeleteConnection API to delete the connection between a replication instance and an endpoint. It also adds an optional S3 setting to specify the precision of any TIMESTAMP column values written to an S3 object file in .parquet format.
+* `service/globalaccelerator`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Enable G4D and R5 instances in SageMaker Hosting Services
+
 Release v1.24.5 (2019-09-24)
 ===
 
