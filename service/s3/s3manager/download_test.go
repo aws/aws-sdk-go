@@ -22,6 +22,7 @@ import (
 	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/internal/sdkio"
+	"github.com/aws/aws-sdk-go/internal/sdkrand"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 )
@@ -707,7 +708,7 @@ var randBytes = func() []byte {
 	rr := rand.New(rand.NewSource(0))
 	b := make([]byte, 10*sdkio.MebiByte)
 
-	if _, err := rr.Read(b); err != nil {
+	if _, err := sdkrand.Read(rr, b); err != nil {
 		panic(fmt.Sprintf("failed to read random bytes, %v", err))
 	}
 	return b
