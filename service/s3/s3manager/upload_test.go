@@ -4,7 +4,6 @@ package s3manager_test
 
 import (
 	"bytes"
-	"crypto/rand"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -1212,15 +1211,8 @@ func TestUploadBufferStrategy(t *testing.T) {
 				u.Concurrency = 1
 			})
 
-			expected := make([]byte, tCase.Size)
-			n, err := rand.Read(expected)
-			if err != nil {
-				t.Fatalf("failed to generate byte slice: %v", err)
-			} else if n != int(tCase.Size) {
-				t.Fatalf("failed to generate sufficient byte slice: expected %d, got %d", tCase.Size, n)
-			}
-
-			_, err = uploader.Upload(&s3manager.UploadInput{
+			expected := getTestBytes(int(tCase.Size))
+			_, err := uploader.Upload(&s3manager.UploadInput{
 				Bucket: aws.String("bucket"),
 				Key:    aws.String("key"),
 				Body:   bytes.NewReader(expected),

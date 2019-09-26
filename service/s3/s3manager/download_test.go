@@ -666,8 +666,7 @@ func TestDownloadBufferStrategy(t *testing.T) {
 	for name, tCase := range cases {
 		t.Logf("starting case: %v", name)
 
-		expected := make([]byte, tCase.expectedSize)
-		fillRandom(expected)
+		expected := getTestBytes(int(tCase.expectedSize))
 
 		svc, _, _ := dlLoggingSvc(expected)
 
@@ -704,11 +703,23 @@ func TestDownloadBufferStrategy(t *testing.T) {
 	}
 }
 
-func fillRandom(p []byte) {
-	for i := 0; i < len(p); i++ {
-		val := rand.Int63()
-		p[i] = byte(val)
+var randBytes = func() []byte {
+	rr := rand.New(rand.NewSource(0))
+	b := make([]byte, 10*sdkio.MebiByte)
+
+	if _, err := rr.Read(b); err != nil {
+		panic(fmt.Sprintf("failed to read random bytes, %v", err))
 	}
+	return b
+}()
+
+func getTestBytes(size int) []byte {
+	if len(randBytes) >= size {
+		return randBytes[:size]
+	}
+
+	b := append(randBytes, getTestBytes(size-len(randBytes))...)
+	return b
 }
 
 type testErrReader struct {
@@ -734,14 +745,15 @@ func (r *testErrReader) Read(p []byte) (int, error) {
 }
 
 func TestDownloadBufferStrategy_Errors(t *testing.T) {
-	expected := make([]byte, 10*sdkio.MebiByte)
-	fillRandom(expected)
+	expected := getTestBytes(int(10 * sdkio.MebiByte))
 
 	svc, _, _ := dlLoggingSvc(expected)
-	strat := &recordedWriterReadFromProvider{WriterReadFromProvider: s3manager.NewPooledBufferedWriterReadFromProvider(2 * 1024 * 1024)}
+	strat := &recordedWriterReadFromProvider{
+		WriterReadFromProvider: s3manager.NewPooledBufferedWriterReadFromProvider(int(2 * sdkio.MebiByte)),
+	}
 
 	d := s3manager.NewDownloaderWithClient(svc, func(d *s3manager.Downloader) {
-		d.PartSize = 5 * 1024 * 1024
+		d.PartSize = 5 * sdkio.MebiByte
 		d.BufferProvider = strat
 		d.Concurrency = 1
 	})
@@ -822,6 +834,8 @@ type badReader struct {
 }
 
 func (b *badReader) Read(p []byte) (int, error) {
-	fillRandom(p)
+	tb := getTestBytes(len(p))
+	copy(p, tb)
+
 	return len(p), b.err
 }
