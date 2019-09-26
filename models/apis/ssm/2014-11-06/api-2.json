@@ -5726,7 +5726,8 @@
     "LabelParameterVersionResult":{
       "type":"structure",
       "members":{
-        "InvalidLabels":{"shape":"ParameterLabelList"}
+        "InvalidLabels":{"shape":"ParameterLabelList"},
+        "ParameterVersion":{"shape":"PSParameterVersion"}
       }
     },
     "LastResourceDataSyncMessage":{"type":"string"},
@@ -7537,7 +7538,8 @@
     "PutParameterResult":{
       "type":"structure",
       "members":{
-        "Version":{"shape":"PSParameterVersion"}
+        "Version":{"shape":"PSParameterVersion"},
+        "Tier":{"shape":"ParameterTier"}
       }
     },
     "Region":{"type":"string"},
