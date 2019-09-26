@@ -462,7 +462,7 @@ func (r *readEmptyStreamEventStream) unmarshalerForEventType(
 }
 
 type EmptyStreamInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `locationName:"EmptyStreamRequest" type:"structure"`
 }
 
 // String returns the string representation
@@ -920,7 +920,7 @@ func (r *readGetEventStreamEventStream) unmarshalerForEventType(
 }
 
 type GetEventStreamInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `locationName:"GetEventStreamRequest" type:"structure"`
 
 	InputVal *string `type:"string"`
 }

@@ -211,6 +211,7 @@ func (a *API) Setup() error {
 	a.renameExportable()
 	a.applyShapeNameAliases()
 	a.createInputOutputShapes()
+	a.writeInputOutputLocationName()
 	a.renameAPIPayloadShapes()
 	a.renameCollidingFields()
 	a.updateTopLevelShapeReferences()

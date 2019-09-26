@@ -922,6 +922,23 @@ func (a *API) removeShapeRef(ref *ShapeRef) {
 	}
 }
 
+// writeInputOutputLocationName writes the ShapeName to the
+// shapes LocationName in the event that there is no LocationName
+// specified.
+func (a *API) writeInputOutputLocationName() {
+	for _, o := range a.Operations {
+		setInput := len(o.InputRef.LocationName) == 0 && a.Metadata.Protocol == "rest-xml"
+		setOutput := len(o.OutputRef.LocationName) == 0 && (a.Metadata.Protocol == "rest-xml" || a.Metadata.Protocol == "ec2")
+
+		if setInput {
+			o.InputRef.LocationName = o.InputRef.Shape.OrigShapeName
+		}
+		if setOutput {
+			o.OutputRef.LocationName = o.OutputRef.Shape.OrigShapeName
+		}
+	}
+}
+
 func getDeprecatedMessage(msg string, name string) string {
 	if len(msg) == 0 {
 		return name + " has been deprecated"

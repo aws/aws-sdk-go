@@ -220,7 +220,11 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 				"op": aws.String(req.Operation.Name),
 				{{ range $key, $ref := .InputRef.Shape.MemberRefs -}}
 				{{ if $ref.EndpointDiscoveryID -}}
-				"{{ $ref.OrigShapeName }}": input.{{ $key }},
+				{{ if ne (len $ref.LocationName) 0 -}}
+				"{{ $ref.LocationName }}": input.{{ $key }},
+				{{ else -}}
+				"{{ $key }}": input.{{ $key }},
+				{{ end -}}
 				{{ end -}}
 				{{- end }}
 			},
