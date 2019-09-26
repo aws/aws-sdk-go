@@ -22,6 +22,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/client/metadata"
+	"github.com/aws/aws-sdk-go/aws/corehandlers"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/defaults"
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -672,59 +673,47 @@ func TestWithGetResponseHeaders(t *testing.T) {
 
 type testRetryer struct {
 	shouldRetry bool
+	maxRetries  int
 }
 
 func (d *testRetryer) MaxRetries() int {
-	return 3
+	return d.maxRetries
 }
 
 // RetryRules returns the delay duration before retrying this request again
 func (d *testRetryer) RetryRules(r *request.Request) time.Duration {
-	return time.Duration(time.Millisecond)
+	return 0
 }
 
 func (d *testRetryer) ShouldRetry(r *request.Request) bool {
-	d.shouldRetry = true
-	if r.Retryable != nil {
-		return *r.Retryable
-	}
-
-	if r.HTTPResponse.StatusCode >= 500 {
-		return true
-	}
-	return r.IsErrorRetryable()
+	return d.shouldRetry
 }
 
 func TestEnforceShouldRetryCheck(t *testing.T) {
-	tp := &http.Transport{
-		Proxy:                 http.ProxyFromEnvironment,
-		ResponseHeaderTimeout: 1 * time.Millisecond,
+
+	retryer := &testRetryer{
+		shouldRetry: true, maxRetries: 3,
 	}
-
-	client := &http.Client{Transport: tp}
-
-	testDone := make(chan struct{})
-	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		// This server should wait forever. Requests will timeout and the SDK should
-		// attempt to retry.
-		select {
-		case <-testDone:
-		}
-	}))
-	defer server.Close()
-
-	retryer := &testRetryer{}
 	s := awstesting.NewClient(&aws.Config{
 		Region:                  aws.String("mock-region"),
 		MaxRetries:              aws.Int(0),
-		Endpoint:                aws.String(server.URL),
-		DisableSSL:              aws.Bool(true),
 		Retryer:                 retryer,
-		HTTPClient:              client,
 		EnforceShouldRetryCheck: aws.Bool(true),
+		SleepDelay:              func(time.Duration) {},
 	})
 
 	s.Handlers.Validate.Clear()
+	s.Handlers.Send.Swap(corehandlers.SendHandler.Name, request.NamedHandler{
+		Name: "TestEnforceShouldRetryCheck",
+		Fn: func(r *request.Request) {
+			r.HTTPResponse = &http.Response{
+				Header: http.Header{},
+				Body:   ioutil.NopCloser(bytes.NewBuffer(nil)),
+			}
+			r.Retryable = aws.Bool(false)
+		},
+	})
+
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)
 
@@ -740,8 +729,6 @@ func TestEnforceShouldRetryCheck(t *testing.T) {
 	if !retryer.shouldRetry {
 		t.Errorf("expect 'true' for ShouldRetry, but got %v", retryer.shouldRetry)
 	}
-
-	close(testDone)
 }
 
 type errReader struct {
