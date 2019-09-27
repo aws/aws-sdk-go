@@ -239,6 +239,7 @@ func TestSendWithoutFollowRedirects(t *testing.T) {
 			t.Fatalf("expect not to redirect, but was")
 		}
 	}))
+	defer server.Close()
 
 	svc := awstesting.NewClient(&aws.Config{
 		DisableSSL: aws.Bool(true),
@@ -344,6 +345,7 @@ func setupContentLengthTestServer(t *testing.T, hasContentLength bool, contentLe
 
 func TestBuildContentLength_ZeroBody(t *testing.T) {
 	server := setupContentLengthTestServer(t, false, 0)
+	defer server.Close()
 
 	svc := s3.New(unit.Session, &aws.Config{
 		Endpoint:         aws.String(server.URL),
@@ -362,6 +364,7 @@ func TestBuildContentLength_ZeroBody(t *testing.T) {
 
 func TestBuildContentLength_NegativeBody(t *testing.T) {
 	server := setupContentLengthTestServer(t, false, 0)
+	defer server.Close()
 
 	svc := s3.New(unit.Session, &aws.Config{
 		Endpoint:         aws.String(server.URL),
@@ -382,6 +385,7 @@ func TestBuildContentLength_NegativeBody(t *testing.T) {
 
 func TestBuildContentLength_WithBody(t *testing.T) {
 	server := setupContentLengthTestServer(t, true, 1024)
+	defer server.Close()
 
 	svc := s3.New(unit.Session, &aws.Config{
 		Endpoint:         aws.String(server.URL),

@@ -4,7 +4,6 @@ package s3manager_test
 
 import (
 	"bytes"
-	"crypto/rand"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -743,6 +742,7 @@ func TestUploadZeroLenObject(t *testing.T) {
 		requestMade = true
 		w.WriteHeader(http.StatusOK)
 	}))
+	defer server.Close()
 	mgr := s3manager.NewUploaderWithClient(s3.New(unit.Session, &aws.Config{
 		Endpoint: aws.String(server.URL),
 	}))
@@ -1112,17 +1112,23 @@ func TestUploadRetry(t *testing.T) {
 			server := httptest.NewServer(mux)
 			defer server.Close()
 
+			var logger aws.Logger
+			var logLevel *aws.LogLevelType
+			if v := os.Getenv("DEBUG_BODY"); len(v) != 0 {
+				logger = t
+				logLevel = aws.LogLevel(
+					aws.LogDebugWithRequestErrors | aws.LogDebugWithRequestRetries,
+				)
+			}
 			sess := unit.Session.Copy(&aws.Config{
 				Endpoint:         aws.String(server.URL),
 				S3ForcePathStyle: aws.Bool(true),
 				DisableSSL:       aws.Bool(true),
-				Logger:           t,
 				MaxRetries:       aws.Int(retries + 1),
 				SleepDelay:       func(time.Duration) {},
 
-				LogLevel: aws.LogLevel(
-					aws.LogDebugWithRequestErrors | aws.LogDebugWithRequestRetries,
-				),
+				Logger:   logger,
+				LogLevel: logLevel,
 				//Credentials: credentials.AnonymousCredentials,
 			})
 
@@ -1205,15 +1211,8 @@ func TestUploadBufferStrategy(t *testing.T) {
 				u.Concurrency = 1
 			})
 
-			expected := make([]byte, tCase.Size)
-			n, err := rand.Read(expected)
-			if err != nil {
-				t.Fatalf("failed to generate byte slice: %v", err)
-			} else if n != int(tCase.Size) {
-				t.Fatalf("failed to generate sufficient byte slice: expected %d, got %d", tCase.Size, n)
-			}
-
-			_, err = uploader.Upload(&s3manager.UploadInput{
+			expected := getTestBytes(int(tCase.Size))
+			_, err := uploader.Upload(&s3manager.UploadInput{
 				Bucket: aws.String("bucket"),
 				Key:    aws.String("key"),
 				Body:   bytes.NewReader(expected),

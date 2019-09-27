@@ -564,6 +564,7 @@ func TestSignWithRequestBody(t *testing.T) {
 		}
 		w.WriteHeader(http.StatusOK)
 	}))
+	defer server.Close()
 
 	req, err := http.NewRequest("POST", server.URL, nil)
 	if err != nil {
@@ -601,6 +602,7 @@ func TestSignWithRequestBody_Overwrite(t *testing.T) {
 		}
 		w.WriteHeader(http.StatusOK)
 	}))
+	defer server.Close()
 
 	req, err := http.NewRequest("GET", server.URL, strings.NewReader("invalid body"))
 	if err != nil {

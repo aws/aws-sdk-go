@@ -22,6 +22,7 @@ import (
 	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/internal/sdkio"
+	"github.com/aws/aws-sdk-go/internal/sdkrand"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 )
@@ -90,7 +91,7 @@ func dlLoggingSvcNoChunk(data []byte) (*s3.S3, *[]string) {
 func dlLoggingSvcNoContentRangeLength(data []byte, states []int) (*s3.S3, *[]string) {
 	var m sync.Mutex
 	names := []string{}
-	var index int = 0
+	var index int
 
 	svc := s3.New(unit.Session)
 	svc.Handlers.Send.Clear()
@@ -115,7 +116,7 @@ func dlLoggingSvcContentRangeTotalAny(data []byte, states []int) (*s3.S3, *[]str
 	var m sync.Mutex
 	names := []string{}
 	ranges := []string{}
-	var index int = 0
+	var index int
 
 	svc := s3.New(unit.Session)
 	svc.Handlers.Send.Clear()
@@ -161,7 +162,7 @@ func dlLoggingSvcContentRangeTotalAny(data []byte, states []int) (*s3.S3, *[]str
 func dlLoggingSvcWithErrReader(cases []testErrReader) (*s3.S3, *[]string) {
 	var m sync.Mutex
 	names := []string{}
-	var index int = 0
+	var index int
 
 	svc := s3.New(unit.Session, &aws.Config{
 		MaxRetries: aws.Int(len(cases) - 1),
@@ -195,7 +196,8 @@ func TestDownloadOrder(t *testing.T) {
 	d := s3manager.NewDownloaderWithClient(s, func(d *s3manager.Downloader) {
 		d.Concurrency = 1
 	})
-	w := &aws.WriteAtBuffer{}
+
+	w := aws.NewWriteAtBuffer(make([]byte, len(buf12MB)))
 	n, err := d.Download(w, &s3.GetObjectInput{
 		Bucket: aws.String("bucket"),
 		Key:    aws.String("key"),
@@ -216,14 +218,6 @@ func TestDownloadOrder(t *testing.T) {
 	expectRngs := []string{"bytes=0-5242879", "bytes=5242880-10485759", "bytes=10485760-15728639"}
 	if e, a := expectRngs, *ranges; !reflect.DeepEqual(e, a) {
 		t.Errorf("expect %v ranges, got %v", e, a)
-	}
-
-	count := 0
-	for _, b := range w.Bytes() {
-		count += int(b)
-	}
-	if count != 0 {
-		t.Errorf("expect 0 count, got %d", count)
 	}
 }
 
@@ -673,8 +667,7 @@ func TestDownloadBufferStrategy(t *testing.T) {
 	for name, tCase := range cases {
 		t.Logf("starting case: %v", name)
 
-		expected := make([]byte, tCase.expectedSize)
-		fillRandom(expected)
+		expected := getTestBytes(int(tCase.expectedSize))
 
 		svc, _, _ := dlLoggingSvc(expected)
 
@@ -711,11 +704,23 @@ func TestDownloadBufferStrategy(t *testing.T) {
 	}
 }
 
-func fillRandom(p []byte) {
-	for i := 0; i < len(p); i++ {
-		val := rand.Int63()
-		p[i] = byte(val)
+var randBytes = func() []byte {
+	rr := rand.New(rand.NewSource(0))
+	b := make([]byte, 10*sdkio.MebiByte)
+
+	if _, err := sdkrand.Read(rr, b); err != nil {
+		panic(fmt.Sprintf("failed to read random bytes, %v", err))
 	}
+	return b
+}()
+
+func getTestBytes(size int) []byte {
+	if len(randBytes) >= size {
+		return randBytes[:size]
+	}
+
+	b := append(randBytes, getTestBytes(size-len(randBytes))...)
+	return b
 }
 
 type testErrReader struct {
@@ -741,14 +746,15 @@ func (r *testErrReader) Read(p []byte) (int, error) {
 }
 
 func TestDownloadBufferStrategy_Errors(t *testing.T) {
-	expected := make([]byte, 10*sdkio.MebiByte)
-	fillRandom(expected)
+	expected := getTestBytes(int(10 * sdkio.MebiByte))
 
 	svc, _, _ := dlLoggingSvc(expected)
-	strat := &recordedWriterReadFromProvider{WriterReadFromProvider: s3manager.NewPooledBufferedWriterReadFromProvider(2 * 1024 * 1024)}
+	strat := &recordedWriterReadFromProvider{
+		WriterReadFromProvider: s3manager.NewPooledBufferedWriterReadFromProvider(int(2 * sdkio.MebiByte)),
+	}
 
 	d := s3manager.NewDownloaderWithClient(svc, func(d *s3manager.Downloader) {
-		d.PartSize = 5 * 1024 * 1024
+		d.PartSize = 5 * sdkio.MebiByte
 		d.BufferProvider = strat
 		d.Concurrency = 1
 	})
@@ -829,6 +835,8 @@ type badReader struct {
 }
 
 func (b *badReader) Read(p []byte) (int, error) {
-	fillRandom(p)
+	tb := getTestBytes(len(p))
+	copy(p, tb)
+
 	return len(p), b.err
 }
