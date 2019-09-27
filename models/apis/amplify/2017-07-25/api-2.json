@@ -175,6 +175,21 @@
         {"shape":"LimitExceededException"}
       ]
     },
+    "GenerateAccessLogs":{
+      "name":"GenerateAccessLogs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/apps/{appId}/accesslogs"
+      },
+      "input":{"shape":"GenerateAccessLogsRequest"},
+      "output":{"shape":"GenerateAccessLogsResult"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "GetApp":{
       "name":"GetApp",
       "http":{
@@ -188,6 +203,22 @@
         {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
         {"shape":"InternalFailureException"}
+      ]
+    },
+    "GetArtifactUrl":{
+      "name":"GetArtifactUrl",
+      "http":{
+        "method":"GET",
+        "requestUri":"/artifacts/{artifactId}"
+      },
+      "input":{"shape":"GetArtifactUrlRequest"},
+      "output":{"shape":"GetArtifactUrlResult"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "GetBranch":{
@@ -264,6 +295,21 @@
         {"shape":"BadRequestException"},
         {"shape":"UnauthorizedException"},
         {"shape":"InternalFailureException"}
+      ]
+    },
+    "ListArtifacts":{
+      "name":"ListArtifacts",
+      "http":{
+        "method":"GET",
+        "requestUri":"/apps/{appId}/branches/{branchName}/jobs/{jobId}/artifacts"
+      },
+      "input":{"shape":"ListArtifactsRequest"},
+      "output":{"shape":"ListArtifactsResult"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "ListBranches":{
@@ -541,6 +587,37 @@
       "type":"list",
       "member":{"shape":"App"}
     },
+    "Artifact":{
+      "type":"structure",
+      "required":[
+        "artifactFileName",
+        "artifactId"
+      ],
+      "members":{
+        "artifactFileName":{"shape":"ArtifactFileName"},
+        "artifactId":{"shape":"ArtifactId"}
+      }
+    },
+    "ArtifactFileName":{
+      "type":"string",
+      "max":1000
+    },
+    "ArtifactId":{
+      "type":"string",
+      "max":255
+    },
+    "ArtifactType":{
+      "type":"string",
+      "enum":["TEST"]
+    },
+    "ArtifactUrl":{
+      "type":"string",
+      "max":1000
+    },
+    "Artifacts":{
+      "type":"list",
+      "member":{"shape":"Artifact"}
+    },
     "ArtifactsUrl":{
       "type":"string",
       "max":1000
@@ -563,7 +640,8 @@
         "environmentVariables":{"shape":"EnvironmentVariables"},
         "basicAuthCredentials":{"shape":"BasicAuthCredentials"},
         "enableBasicAuth":{"shape":"EnableBasicAuth"},
-        "buildSpec":{"shape":"BuildSpec"}
+        "buildSpec":{"shape":"BuildSpec"},
+        "enablePullRequestPreview":{"shape":"EnablePullRequestPreview"}
       }
     },
     "AutoBranchCreationPattern":{
@@ -605,7 +683,8 @@
         "activeJobId",
         "totalNumberOfJobs",
         "enableBasicAuth",
-        "ttl"
+        "ttl",
+        "enablePullRequestPreview"
       ],
       "members":{
         "branchArn":{"shape":"BranchArn"},
@@ -628,7 +707,10 @@
         "basicAuthCredentials":{"shape":"BasicAuthCredentials"},
         "buildSpec":{"shape":"BuildSpec"},
         "ttl":{"shape":"TTL"},
-        "associatedResources":{"shape":"AssociatedResources"}
+        "associatedResources":{"shape":"AssociatedResources"},
+        "enablePullRequestPreview":{"shape":"EnablePullRequestPreview"},
+        "destinationBranch":{"shape":"BranchName"},
+        "sourceBranch":{"shape":"BranchName"}
       }
     },
     "BranchArn":{
@@ -724,7 +806,8 @@
         "tags":{"shape":"TagMap"},
         "buildSpec":{"shape":"BuildSpec"},
         "ttl":{"shape":"TTL"},
-        "displayName":{"shape":"DisplayName"}
+        "displayName":{"shape":"DisplayName"},
+        "enablePullRequestPreview":{"shape":"EnablePullRequestPreview"}
       }
     },
     "CreateBranchResult":{
@@ -1042,6 +1125,7 @@
     "EnableBasicAuth":{"type":"boolean"},
     "EnableBranchAutoBuild":{"type":"boolean"},
     "EnableNotification":{"type":"boolean"},
+    "EnablePullRequestPreview":{"type":"boolean"},
     "EndTime":{"type":"timestamp"},
     "EnvKey":{
       "type":"string",
@@ -1078,6 +1162,29 @@
       "type":"string",
       "max":255
     },
+    "GenerateAccessLogsRequest":{
+      "type":"structure",
+      "required":[
+        "domainName",
+        "appId"
+      ],
+      "members":{
+        "startTime":{"shape":"StartTime"},
+        "endTime":{"shape":"EndTime"},
+        "domainName":{"shape":"DomainName"},
+        "appId":{
+          "shape":"AppId",
+          "location":"uri",
+          "locationName":"appId"
+        }
+      }
+    },
+    "GenerateAccessLogsResult":{
+      "type":"structure",
+      "members":{
+        "logUrl":{"shape":"LogUrl"}
+      }
+    },
     "GetAppRequest":{
       "type":"structure",
       "required":["appId"],
@@ -1094,6 +1201,28 @@
       "required":["app"],
       "members":{
         "app":{"shape":"App"}
+      }
+    },
+    "GetArtifactUrlRequest":{
+      "type":"structure",
+      "required":["artifactId"],
+      "members":{
+        "artifactId":{
+          "shape":"ArtifactId",
+          "location":"uri",
+          "locationName":"artifactId"
+        }
+      }
+    },
+    "GetArtifactUrlResult":{
+      "type":"structure",
+      "required":[
+        "artifactId",
+        "artifactUrl"
+      ],
+      "members":{
+        "artifactId":{"shape":"ArtifactId"},
+        "artifactUrl":{"shape":"ArtifactUrl"}
       }
     },
     "GetBranchRequest":{
@@ -1309,6 +1438,50 @@
       "required":["apps"],
       "members":{
         "apps":{"shape":"Apps"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListArtifactsRequest":{
+      "type":"structure",
+      "required":[
+        "appId",
+        "branchName",
+        "jobId"
+      ],
+      "members":{
+        "appId":{
+          "shape":"AppId",
+          "location":"uri",
+          "locationName":"appId"
+        },
+        "branchName":{
+          "shape":"BranchName",
+          "location":"uri",
+          "locationName":"branchName"
+        },
+        "jobId":{
+          "shape":"JobId",
+          "location":"uri",
+          "locationName":"jobId"
+        },
+        "artifactType":{"shape":"ArtifactType"},
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListArtifactsResult":{
+      "type":"structure",
+      "required":["artifacts"],
+      "members":{
+        "artifacts":{"shape":"Artifacts"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -1546,7 +1719,8 @@
         "PRODUCTION",
         "BETA",
         "DEVELOPMENT",
-        "EXPERIMENTAL"
+        "EXPERIMENTAL",
+        "PULL_REQUEST"
       ]
     },
     "StartDeploymentRequest":{
@@ -1613,7 +1787,7 @@
     "StartTime":{"type":"timestamp"},
     "Status":{
       "type":"string",
-      "max":3,
+      "max":7,
       "min":3
     },
     "StatusReason":{
@@ -1635,6 +1809,8 @@
         "endTime":{"shape":"EndTime"},
         "logUrl":{"shape":"LogUrl"},
         "artifactsUrl":{"shape":"ArtifactsUrl"},
+        "testArtifactsUrl":{"shape":"TestArtifactsUrl"},
+        "testConfigUrl":{"shape":"TestConfigUrl"},
         "screenshots":{"shape":"Screenshots"},
         "statusReason":{"shape":"StatusReason"},
         "context":{"shape":"Context"}
@@ -1763,6 +1939,14 @@
       "max":2048,
       "min":1
     },
+    "TestArtifactsUrl":{
+      "type":"string",
+      "max":1000
+    },
+    "TestConfigUrl":{
+      "type":"string",
+      "max":1000
+    },
     "ThumbnailName":{
       "type":"string",
       "max":256
@@ -1829,7 +2013,10 @@
         "buildSpec":{"shape":"BuildSpec"},
         "enableAutoBranchCreation":{"shape":"EnableAutoBranchCreation"},
         "autoBranchCreationPatterns":{"shape":"AutoBranchCreationPatterns"},
-        "autoBranchCreationConfig":{"shape":"AutoBranchCreationConfig"}
+        "autoBranchCreationConfig":{"shape":"AutoBranchCreationConfig"},
+        "repository":{"shape":"Repository"},
+        "oauthToken":{"shape":"OauthToken"},
+        "accessToken":{"shape":"AccessToken"}
       }
     },
     "UpdateAppResult":{
@@ -1866,7 +2053,8 @@
         "enableBasicAuth":{"shape":"EnableBasicAuth"},
         "buildSpec":{"shape":"BuildSpec"},
         "ttl":{"shape":"TTL"},
-        "displayName":{"shape":"DisplayName"}
+        "displayName":{"shape":"DisplayName"},
+        "enablePullRequestPreview":{"shape":"EnablePullRequestPreview"}
       }
     },
     "UpdateBranchResult":{

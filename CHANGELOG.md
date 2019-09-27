@@ -1,3 +1,18 @@
+Release v1.25.1 (2019-09-27)
+===
+
+### Service Client Updates
+* `service/amplify`: Updates service API and documentation
+* `service/ecs`: Updates service API and documentation
+  * This release of Amazon Elastic Container Service (Amazon ECS) removes FirelensConfiguration from the DescribeTask output during the FireLens public preview.
+
+### SDK Enhancements
+* `private/protocol/xml/xmlutil`: Support for sorting xml attributes ([#2854](https://github.com/aws/aws-sdk-go/pull/2854))
+
+### SDK Bugs
+* `private/model/api`: Write locationName for top-level shapes for rest-xml and ec2 protocols ([#2854](https://github.com/aws/aws-sdk-go/pull/2854))
+* `private/mode/api`: Colliding fields should serialize with original name ([#2854](https://github.com/aws/aws-sdk-go/pull/2854))
+  * Fixes [#2806](https://github.com/aws/aws-sdk-go/issues/2806) 
 Release v1.25.0 (2019-09-26)
 ===
 
