@@ -184,8 +184,12 @@ type Uploader struct {
 //          u.PartSize = 64 * 1024 * 1024 // 64MB per part
 //     })
 func NewUploader(c client.ConfigProvider, options ...func(*Uploader)) *Uploader {
+	return newUploader(s3.New(c), options...)
+}
+
+func newUploader(client s3iface.S3API, options ...func(*Uploader)) *Uploader {
 	u := &Uploader{
-		S3:                s3.New(c),
+		S3:                client,
 		PartSize:          DefaultUploadPartSize,
 		Concurrency:       DefaultUploadConcurrency,
 		LeavePartsOnError: false,
@@ -219,20 +223,7 @@ func NewUploader(c client.ConfigProvider, options ...func(*Uploader)) *Uploader 
 //          u.PartSize = 64 * 1024 * 1024 // 64MB per part
 //     })
 func NewUploaderWithClient(svc s3iface.S3API, options ...func(*Uploader)) *Uploader {
-	u := &Uploader{
-		S3:                svc,
-		PartSize:          DefaultUploadPartSize,
-		Concurrency:       DefaultUploadConcurrency,
-		LeavePartsOnError: false,
-		MaxUploadParts:    MaxUploadParts,
-		BufferProvider:    defaultUploadBufferProvider(),
-	}
-
-	for _, option := range options {
-		option(u)
-	}
-
-	return u
+	return newUploader(svc, options...)
 }
 
 // Upload uploads an object to S3, intelligently buffering large files into
@@ -362,8 +353,7 @@ type uploader struct {
 	readerPos int64 // current reader position
 	totalSize int64 // set to -1 if the size is not known
 
-	bufferPool       sync.Pool
-	bufferUploadPool sync.Pool
+	bufferPool sync.Pool
 }
 
 // internal logic for deciding whether to upload a single part or use a
@@ -379,7 +369,7 @@ func (u *uploader) upload() (*UploadOutput, error) {
 	}
 
 	// Do one read to determine if we have more than one part
-	reader, _, part, cleanup, err := u.nextReader()
+	reader, _, cleanup, err := u.nextReader()
 	if err == io.EOF { // single part
 		return u.singlePart(reader, cleanup)
 	} else if err != nil {
@@ -388,7 +378,7 @@ func (u *uploader) upload() (*UploadOutput, error) {
 	}
 
 	mu := multiuploader{uploader: u}
-	return mu.upload(reader, part, cleanup)
+	return mu.upload(reader, cleanup)
 }
 
 // init will initialize all default options.
@@ -440,7 +430,7 @@ func (u *uploader) initSize() error {
 // This operation increases the shared u.readerPos counter, but note that it
 // does not need to be wrapped in a mutex because nextReader is only called
 // from the main thread.
-func (u *uploader) nextReader() (io.ReadSeeker, int, []byte, func(), error) {
+func (u *uploader) nextReader() (io.ReadSeeker, int, func(), error) {
 	type readerAtSeeker interface {
 		io.ReaderAt
 		io.ReadSeeker
@@ -473,7 +463,7 @@ func (u *uploader) nextReader() (io.ReadSeeker, int, []byte, func(), error) {
 
 		u.readerPos += n
 
-		return reader, int(n), nil, cleanup, err
+		return reader, int(n), cleanup, err
 
 	default:
 		part := u.bufferPool.Get().([]byte)
@@ -484,7 +474,7 @@ func (u *uploader) nextReader() (io.ReadSeeker, int, []byte, func(), error) {
 			u.bufferPool.Put(part)
 		}
 
-		return bytes.NewReader(part[0:n]), n, part, cleanup, err
+		return bytes.NewReader(part[0:n]), n, cleanup, err
 	}
 }
 
@@ -537,7 +527,6 @@ type multiuploader struct {
 // keeps track of a single chunk of data being sent to S3.
 type chunk struct {
 	buf     io.ReadSeeker
-	part    []byte
 	num     int64
 	cleanup func()
 }
@@ -552,7 +541,7 @@ func (a completedParts) Less(i, j int) bool { return *a[i].PartNumber < *a[j].Pa
 
 // upload will perform a multipart upload using the firstBuf buffer containing
 // the first chunk of data.
-func (u *multiuploader) upload(firstBuf io.ReadSeeker, firstPart []byte, cleanup func()) (*UploadOutput, error) {
+func (u *multiuploader) upload(firstBuf io.ReadSeeker, cleanup func()) (*UploadOutput, error) {
 	params := &s3.CreateMultipartUploadInput{}
 	awsutil.Copy(params, u.in)
 
@@ -572,18 +561,17 @@ func (u *multiuploader) upload(firstBuf io.ReadSeeker, firstPart []byte, cleanup
 
 	// Send part 1 to the workers
 	var num int64 = 1
-	ch <- chunk{buf: firstBuf, part: firstPart, num: num, cleanup: cleanup}
+	ch <- chunk{buf: firstBuf, num: num, cleanup: cleanup}
 
 	// Read and queue the rest of the parts
 	for u.geterr() == nil && err == nil {
 		var (
 			reader       io.ReadSeeker
 			nextChunkLen int
-			part         []byte
 			ok           bool
 		)
 
-		reader, nextChunkLen, part, cleanup, err = u.nextReader()
+		reader, nextChunkLen, cleanup, err = u.nextReader()
 		ok, err = u.shouldContinue(num, nextChunkLen, err)
 		if !ok {
 			cleanup()
@@ -595,7 +583,7 @@ func (u *multiuploader) upload(firstBuf io.ReadSeeker, firstPart []byte, cleanup
 
 		num++
 
-		ch <- chunk{buf: reader, part: part, num: num, cleanup: cleanup}
+		ch <- chunk{buf: reader, num: num, cleanup: cleanup}
 	}
 
 	// Close the channel, wait for workers, and complete upload
