@@ -1,7 +1,6 @@
 ### SDK Features
 
 ### SDK Enhancements
-* `private/protocol/xml/xmlutil`: Support for sorting xml attributes ([#2854](https://github.com/aws/aws-sdk-go/pull/2854))
 
 ### SDK Bugs
 * `internal/ini`: Fix ini parser to handle empty values [#2860](https://github.com/aws/aws-sdk-go/pull/2860)

@@ -100,9 +100,17 @@ type AmplifyAPI interface {
 	DeleteWebhookWithContext(aws.Context, *amplify.DeleteWebhookInput, ...request.Option) (*amplify.DeleteWebhookOutput, error)
 	DeleteWebhookRequest(*amplify.DeleteWebhookInput) (*request.Request, *amplify.DeleteWebhookOutput)
 
+	GenerateAccessLogs(*amplify.GenerateAccessLogsInput) (*amplify.GenerateAccessLogsOutput, error)
+	GenerateAccessLogsWithContext(aws.Context, *amplify.GenerateAccessLogsInput, ...request.Option) (*amplify.GenerateAccessLogsOutput, error)
+	GenerateAccessLogsRequest(*amplify.GenerateAccessLogsInput) (*request.Request, *amplify.GenerateAccessLogsOutput)
+
 	GetApp(*amplify.GetAppInput) (*amplify.GetAppOutput, error)
 	GetAppWithContext(aws.Context, *amplify.GetAppInput, ...request.Option) (*amplify.GetAppOutput, error)
 	GetAppRequest(*amplify.GetAppInput) (*request.Request, *amplify.GetAppOutput)
+
+	GetArtifactUrl(*amplify.GetArtifactUrlInput) (*amplify.GetArtifactUrlOutput, error)
+	GetArtifactUrlWithContext(aws.Context, *amplify.GetArtifactUrlInput, ...request.Option) (*amplify.GetArtifactUrlOutput, error)
+	GetArtifactUrlRequest(*amplify.GetArtifactUrlInput) (*request.Request, *amplify.GetArtifactUrlOutput)
 
 	GetBranch(*amplify.GetBranchInput) (*amplify.GetBranchOutput, error)
 	GetBranchWithContext(aws.Context, *amplify.GetBranchInput, ...request.Option) (*amplify.GetBranchOutput, error)
@@ -123,6 +131,10 @@ type AmplifyAPI interface {
 	ListApps(*amplify.ListAppsInput) (*amplify.ListAppsOutput, error)
 	ListAppsWithContext(aws.Context, *amplify.ListAppsInput, ...request.Option) (*amplify.ListAppsOutput, error)
 	ListAppsRequest(*amplify.ListAppsInput) (*request.Request, *amplify.ListAppsOutput)
+
+	ListArtifacts(*amplify.ListArtifactsInput) (*amplify.ListArtifactsOutput, error)
+	ListArtifactsWithContext(aws.Context, *amplify.ListArtifactsInput, ...request.Option) (*amplify.ListArtifactsOutput, error)
+	ListArtifactsRequest(*amplify.ListArtifactsInput) (*request.Request, *amplify.ListArtifactsOutput)
 
 	ListBranches(*amplify.ListBranchesInput) (*amplify.ListBranchesOutput, error)
 	ListBranchesWithContext(aws.Context, *amplify.ListBranchesInput, ...request.Option) (*amplify.ListBranchesOutput, error)

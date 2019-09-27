@@ -933,8 +933,7 @@
         "cpu":{"shape":"String"},
         "memory":{"shape":"String"},
         "memoryReservation":{"shape":"String"},
-        "gpuIds":{"shape":"GpuIds"},
-        "firelensConfiguration":{"shape":"FirelensConfiguration"}
+        "gpuIds":{"shape":"GpuIds"}
       }
     },
     "ContainerCondition":{
