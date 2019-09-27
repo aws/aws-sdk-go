@@ -2372,7 +2372,7 @@ func (c *InputService13ProtocolTest) InputService13TestCaseOperation1WithContext
 }
 
 type InputService13TestShapeInputService13TestCaseOperation1Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `locationName:"InputShape" type:"structure"`
 
 	Items []*string `location:"querystring" locationName:"item" type:"list"`
 }
@@ -2518,7 +2518,7 @@ func (c *InputService14ProtocolTest) InputService14TestCaseOperation1WithContext
 }
 
 type InputService14TestShapeInputService14TestCaseOperation1Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `locationName:"InputShape" type:"structure"`
 
 	// PipelineId is a required field
 	PipelineId *string `location:"uri" type:"string" required:"true"`
@@ -2689,7 +2689,7 @@ func (c *InputService15ProtocolTest) InputService15TestCaseOperation1WithContext
 }
 
 type InputService15TestShapeInputService15TestCaseOperation1Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `locationName:"InputShape" type:"structure"`
 
 	// PipelineId is a required field
 	PipelineId *string `location:"uri" type:"string" required:"true"`
@@ -2930,7 +2930,7 @@ func (c *InputService16ProtocolTest) InputService16TestCaseOperation2WithContext
 }
 
 type InputService16TestShapeInputService16TestCaseOperation1Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `locationName:"InputShape" type:"structure"`
 
 	BoolQuery *bool `location:"querystring" locationName:"bool-query" type:"boolean"`
 }
@@ -2946,7 +2946,7 @@ type InputService16TestShapeInputService16TestCaseOperation1Output struct {
 }
 
 type InputService16TestShapeInputService16TestCaseOperation2Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `locationName:"InputShape" type:"structure"`
 
 	BoolQuery *bool `location:"querystring" locationName:"bool-query" type:"boolean"`
 }
@@ -3092,7 +3092,7 @@ func (c *InputService17ProtocolTest) InputService17TestCaseOperation1WithContext
 }
 
 type InputService17TestShapeInputService17TestCaseOperation1Input struct {
-	_ struct{} `type:"structure" payload:"Foo"`
+	_ struct{} `locationName:"InputShape" type:"structure" payload:"Foo"`
 
 	Foo *string `locationName:"foo" type:"string"`
 }
@@ -3308,7 +3308,7 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation2WithContext
 }
 
 type InputService18TestShapeInputService18TestCaseOperation1Input struct {
-	_ struct{} `type:"structure" payload:"Foo"`
+	_ struct{} `locationName:"InputShape" type:"structure" payload:"Foo"`
 
 	Foo []byte `locationName:"foo" type:"blob"`
 }
@@ -3324,7 +3324,7 @@ type InputService18TestShapeInputService18TestCaseOperation1Output struct {
 }
 
 type InputService18TestShapeInputService18TestCaseOperation2Input struct {
-	_ struct{} `type:"structure" payload:"Foo"`
+	_ struct{} `locationName:"InputShape" type:"structure" payload:"Foo"`
 
 	Foo []byte `locationName:"foo" type:"blob"`
 }
@@ -3692,7 +3692,7 @@ func (s *InputService19TestShapeFooShape) SetBaz(v string) *InputService19TestSh
 }
 
 type InputService19TestShapeInputService19TestCaseOperation1Input struct {
-	_ struct{} `type:"structure" payload:"Foo"`
+	_ struct{} `locationName:"InputShape" type:"structure" payload:"Foo"`
 
 	Foo *InputService19TestShapeFooShape `locationName:"foo" type:"structure"`
 }
@@ -3708,7 +3708,7 @@ type InputService19TestShapeInputService19TestCaseOperation1Output struct {
 }
 
 type InputService19TestShapeInputService19TestCaseOperation2Input struct {
-	_ struct{} `type:"structure" payload:"Foo"`
+	_ struct{} `locationName:"InputShape" type:"structure" payload:"Foo"`
 
 	Foo *InputService19TestShapeFooShape `locationName:"foo" type:"structure"`
 }
@@ -3724,7 +3724,7 @@ type InputService19TestShapeInputService19TestCaseOperation2Output struct {
 }
 
 type InputService19TestShapeInputService19TestCaseOperation3Input struct {
-	_ struct{} `type:"structure" payload:"Foo"`
+	_ struct{} `locationName:"InputShape" type:"structure" payload:"Foo"`
 
 	Foo *InputService19TestShapeFooShape `locationName:"foo" type:"structure"`
 }
@@ -3740,7 +3740,7 @@ type InputService19TestShapeInputService19TestCaseOperation3Output struct {
 }
 
 type InputService19TestShapeInputService19TestCaseOperation4Input struct {
-	_ struct{} `type:"structure" payload:"Foo"`
+	_ struct{} `locationName:"InputShape" type:"structure" payload:"Foo"`
 
 	Foo *InputService19TestShapeFooShape `locationName:"foo" type:"structure"`
 }
@@ -3918,7 +3918,7 @@ func (s *InputService20TestShapeGrantee) SetType(v string) *InputService20TestSh
 }
 
 type InputService20TestShapeInputService20TestCaseOperation1Input struct {
-	_ struct{} `type:"structure" payload:"Grant"`
+	_ struct{} `locationName:"InputShape" type:"structure" payload:"Grant"`
 
 	Grant *InputService20TestShapeGrant `locationName:"Grant" type:"structure"`
 }
@@ -4064,7 +4064,7 @@ func (c *InputService21ProtocolTest) InputService21TestCaseOperation1WithContext
 }
 
 type InputService21TestShapeInputService21TestCaseOperation1Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `locationName:"InputShape" type:"structure"`
 
 	// Bucket is a required field
 	Bucket *string `location:"uri" type:"string" required:"true"`
@@ -4312,7 +4312,7 @@ func (c *InputService22ProtocolTest) InputService22TestCaseOperation2WithContext
 }
 
 type InputService22TestShapeInputService22TestCaseOperation1Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `locationName:"InputShape" type:"structure"`
 
 	Foo *string `location:"querystring" locationName:"param-name" type:"string"`
 }
@@ -4328,7 +4328,7 @@ type InputService22TestShapeInputService22TestCaseOperation1Output struct {
 }
 
 type InputService22TestShapeInputService22TestCaseOperation2Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `locationName:"InputShape" type:"structure"`
 
 	Foo *string `location:"querystring" locationName:"param-name" type:"string"`
 }
@@ -5156,7 +5156,7 @@ func (c *InputService24ProtocolTest) InputService24TestCaseOperation2WithContext
 }
 
 type InputService24TestShapeInputService24TestCaseOperation1Input struct {
-	_ struct{} `locationName:"OperationRequest" type:"structure"`
+	_ struct{} `locationName:"InputShape" type:"structure"`
 
 	Token *string `type:"string" idempotencyToken:"true"`
 }
@@ -5172,7 +5172,7 @@ type InputService24TestShapeInputService24TestCaseOperation1Output struct {
 }
 
 type InputService24TestShapeInputService24TestCaseOperation2Input struct {
-	_ struct{} `locationName:"OperationRequest" type:"structure"`
+	_ struct{} `locationName:"InputShape" type:"structure"`
 
 	Token *string `type:"string" idempotencyToken:"true"`
 }
@@ -5388,7 +5388,7 @@ func (c *InputService25ProtocolTest) InputService25TestCaseOperation2WithContext
 }
 
 type InputService25TestShapeInputService25TestCaseOperation1Input struct {
-	_ struct{} `locationName:"OperationRequest" type:"structure"`
+	_ struct{} `locationName:"InputShape" type:"structure"`
 
 	FooEnum *string `type:"string" enum:"InputService25TestShapeEnumType"`
 
@@ -5453,7 +5453,7 @@ type InputService25TestShapeInputService25TestCaseOperation1Output struct {
 }
 
 type InputService25TestShapeInputService25TestCaseOperation2Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `locationName:"InputShape" type:"structure"`
 
 	FooEnum *string `type:"string" enum:"InputService25TestShapeEnumType"`
 
@@ -5921,7 +5921,7 @@ func (c *InputService27ProtocolTest) InputService27TestCaseOperation1WithContext
 }
 
 type InputService27TestShapeInputService27TestCaseOperation1Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `locationName:"InputShape" type:"structure"`
 
 	Header1 *string `location:"header" type:"string"`
 
@@ -6740,7 +6740,7 @@ func TestInputService20ProtocolTestXMLAttributeCase1(t *testing.T) {
 		t.Errorf("expect body not to be nil")
 	}
 	body := util.SortXML(r.Body)
-	awstesting.AssertXML(t, `<Grant xmlns:_xmlns="xmlns" _xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance" XMLSchema-instance:type="CanonicalUser"><Grantee><EmailAddress>foo@example.com</EmailAddress></Grantee></Grant>`, util.Trim(body))
+	awstesting.AssertXML(t, `<Grant xmlns:XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance" XMLSchema-instance:type="CanonicalUser" xmlns:_xmlns="xmlns" _xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><Grantee><EmailAddress>foo@example.com</EmailAddress></Grantee></Grant>`, util.Trim(body))
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
@@ -7041,7 +7041,7 @@ func TestInputService24ProtocolTestIdempotencyTokenAutoFillCase1(t *testing.T) {
 		t.Errorf("expect body not to be nil")
 	}
 	body := util.SortXML(r.Body)
-	awstesting.AssertXML(t, `<OperationRequest><Token>abc123</Token></OperationRequest>`, util.Trim(body))
+	awstesting.AssertXML(t, `<InputShape><Token>abc123</Token></InputShape>`, util.Trim(body))
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
@@ -7067,7 +7067,7 @@ func TestInputService24ProtocolTestIdempotencyTokenAutoFillCase2(t *testing.T) {
 		t.Errorf("expect body not to be nil")
 	}
 	body := util.SortXML(r.Body)
-	awstesting.AssertXML(t, `<OperationRequest><Token>00000000-0000-4000-8000-000000000000</Token></OperationRequest>`, util.Trim(body))
+	awstesting.AssertXML(t, `<InputShape><Token>00000000-0000-4000-8000-000000000000</Token></InputShape>`, util.Trim(body))
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
@@ -7107,7 +7107,7 @@ func TestInputService25ProtocolTestEnumCase1(t *testing.T) {
 		t.Errorf("expect body not to be nil")
 	}
 	body := util.SortXML(r.Body)
-	awstesting.AssertXML(t, `<OperationRequest><FooEnum>foo</FooEnum><ListEnums><member>foo</member><member></member><member>bar</member></ListEnums></OperationRequest>`, util.Trim(body))
+	awstesting.AssertXML(t, `<InputShape><FooEnum>foo</FooEnum><ListEnums><member>foo</member><member></member><member>bar</member></ListEnums></InputShape>`, util.Trim(body))
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/Enum/bar?ListEnums=0&ListEnums=&ListEnums=1", r.URL.String())

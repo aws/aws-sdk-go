@@ -33,11 +33,24 @@ func (a *API) updateTopLevelShapeReferences() {
 }
 
 // writeShapeNames sets each shape's API and shape name values. Binding the
-// shape to its parent API.
+// shape to its parent API. This will set OrigShapeName on each Shape and ShapeRef
+// to allow access to the original shape name for code generation.
 func (a *API) writeShapeNames() {
+	writeOrigShapeName := func(s *ShapeRef) {
+		if len(s.ShapeName) > 0 {
+			s.OrigShapeName = s.ShapeName
+		}
+	}
+
 	for n, s := range a.Shapes {
 		s.API = a
-		s.ShapeName = n
+		s.ShapeName, s.OrigShapeName = n, n
+		for _, ref := range s.MemberRefs {
+			writeOrigShapeName(ref)
+		}
+		writeOrigShapeName(&s.MemberRef)
+		writeOrigShapeName(&s.KeyRef)
+		writeOrigShapeName(&s.ValueRef)
 	}
 }
 
@@ -184,10 +197,6 @@ func (a *API) renameExportable() {
 		}
 
 		for mName, member := range s.MemberRefs {
-			ref := s.MemberRefs[mName]
-			ref.OrigShapeName = mName
-			s.MemberRefs[mName] = ref
-
 			newName := a.ExportableName(mName)
 			if newName != mName {
 				delete(s.MemberRefs, mName)
@@ -259,6 +268,11 @@ func renameCollidingField(name string, v *Shape, field *ShapeRef) {
 	debugLogger.Logf("Shape %s's field %q renamed to %q", v.ShapeName, name, newName)
 	delete(v.MemberRefs, name)
 	v.MemberRefs[newName] = field
+	// Set LocationName to the original field name if it is not already set.
+	// This is to ensure we correctly serialize to the proper member name
+	if len(field.LocationName) == 0 {
+		field.LocationName = name
+	}
 }
 
 // collides will return true if it is a name used by the SDK or Golang.
@@ -337,7 +351,6 @@ func createAPIParamShape(a *API, opName string, ref *ShapeRef, shapeName string,
 	}
 
 	ref.Shape.removeRef(ref)
-	ref.OrigShapeName = shapeName
 	ref.ShapeName = shapeName
 	ref.Shape = ref.Shape.Clone(shapeName)
 	ref.Shape.refs = append(ref.Shape.refs, ref)

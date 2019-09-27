@@ -2595,7 +2595,7 @@ func (s *OutputService14TestShapeOutputService14TestCaseOperation1Output) SetLis
 }
 
 type OutputService14TestShapeOutputService14TestCaseOperation2Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `locationName:"OutputShape" type:"structure"`
 
 	FooEnum *string `type:"string" enum:"OutputService14TestShapeRESTJSONEnumType"`
 
