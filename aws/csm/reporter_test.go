@@ -17,7 +17,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/client/metadata"
 	"github.com/aws/aws-sdk-go/aws/csm"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/aws/signer/v4"
+	v4 "github.com/aws/aws-sdk-go/aws/signer/v4"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
@@ -277,6 +277,7 @@ func BenchmarkWithCSM(b *testing.B) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(fmt.Sprintf("{}")))
 	}))
+	defer server.Close()
 
 	cfg := aws.Config{
 		Endpoint: aws.String(server.URL),
@@ -322,6 +323,7 @@ func BenchmarkWithCSMNoUDPConnection(b *testing.B) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(fmt.Sprintf("{}")))
 	}))
+	defer server.Close()
 
 	cfg := aws.Config{
 		Endpoint: aws.String(server.URL),
@@ -368,6 +370,7 @@ func BenchmarkWithoutCSM(b *testing.B) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(fmt.Sprintf("{}")))
 	}))
+	defer server.Close()
 
 	cfg := aws.Config{
 		Endpoint: aws.String(server.URL),

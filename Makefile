@@ -20,6 +20,8 @@ SDK_TESTING_PKGS=./awstesting/...
 SDK_MODELS_PKGS=./models/...
 SDK_ALL_PKGS=${SDK_COMPA_PKGS} ${SDK_TESTING_PKGS} ${SDK_EXAMPLES_PKGS} ${SDK_MODELS_PKGS}
 
+TEST_TIMEOUT=-timeout 5m
+
 all: generate unit
 
 ###################
@@ -57,20 +59,18 @@ build:
 	go build -o /dev/null -tags ${ALL_TAGS} ${SDK_ALL_PKGS}
 
 unit-no-verify:
-	@echo "go test SDK and vendor packages with no linting"
-	go test -count=1 -tags ${UNIT_TEST_TAGS} ${SDK_ALL_PKGS}
-
-unit: verify build
 	@echo "go test SDK and vendor packages"
-	go test -count=1 -tags ${UNIT_TEST_TAGS} ${SDK_ALL_PKGS}
+	go test ${TEST_TIMEOUT} -v -count=1 -tags ${UNIT_TEST_TAGS} ${SDK_ALL_PKGS}
+
+unit: verify build unit-no-verify
 
 unit-with-race-cover: verify build
 	@echo "go test SDK and vendor packages"
-	go test -v -count=1 -tags ${UNIT_TEST_TAGS} -race -cpu=1,2,4 ${SDK_ALL_PKGS}
+	go test ${TEST_TIMEOUT} -v -count=1 -tags ${UNIT_TEST_TAGS} -race -cpu=1,2,4 ${SDK_ALL_PKGS}
 
 unit-old-go-race-cover:
 	@echo "go test SDK only packages for old Go versions"
-	go test -v -count=1 -race -cpu=1,2,4 ${SDK_COMPA_PKGS}
+	go test ${TEST_TIMEOUT} -v -count=1 -race -cpu=1,2,4 ${SDK_COMPA_PKGS}
 
 ci-test: generate unit-with-race-cover ci-test-generate-validate
 

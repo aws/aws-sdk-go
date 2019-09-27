@@ -22,6 +22,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/client/metadata"
+	"github.com/aws/aws-sdk-go/aws/corehandlers"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/defaults"
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -123,7 +124,10 @@ func TestRequestRecoverRetry5xx(t *testing.T) {
 		{StatusCode: 200, Body: body(`{"data":"valid"}`)},
 	}
 
-	s := awstesting.NewClient(aws.NewConfig().WithMaxRetries(10))
+	s := awstesting.NewClient(&aws.Config{
+		MaxRetries: aws.Int(10),
+		SleepDelay: func(time.Duration) {},
+	})
 	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)
@@ -156,7 +160,10 @@ func TestRequestRecoverRetry4xxRetryable(t *testing.T) {
 		{StatusCode: 200, Body: body(`{"data":"valid"}`)},
 	}
 
-	s := awstesting.NewClient(aws.NewConfig().WithMaxRetries(10))
+	s := awstesting.NewClient(&aws.Config{
+		MaxRetries: aws.Int(10),
+		SleepDelay: func(time.Duration) {},
+	})
 	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)
@@ -183,6 +190,7 @@ func TestRequestRecoverRetry4xxRetryable(t *testing.T) {
 func TestRequest4xxUnretryable(t *testing.T) {
 	s := awstesting.NewClient(&aws.Config{
 		MaxRetries: aws.Int(1),
+		SleepDelay: func(time.Duration) {},
 	})
 	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
@@ -229,7 +237,9 @@ func TestRequestExhaustRetries(t *testing.T) {
 		{StatusCode: 500, Body: body(`{"__type":"UnknownError","message":"An error occurred."}`)},
 	}
 
-	s := awstesting.NewClient(aws.NewConfig().WithSleepDelay(sleepDelay))
+	s := awstesting.NewClient(&aws.Config{
+		SleepDelay: sleepDelay,
+	})
 	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)
@@ -276,7 +286,11 @@ func TestRequestRecoverExpiredCreds(t *testing.T) {
 		{StatusCode: 200, Body: body(`{"data":"valid"}`)},
 	}
 
-	s := awstesting.NewClient(&aws.Config{MaxRetries: aws.Int(10), Credentials: credentials.NewStaticCredentials("AKID", "SECRET", "")})
+	s := awstesting.NewClient(&aws.Config{
+		MaxRetries:  aws.Int(10),
+		Credentials: credentials.NewStaticCredentials("AKID", "SECRET", ""),
+		SleepDelay:  func(time.Duration) {},
+	})
 	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)
@@ -345,7 +359,9 @@ func TestMakeAddtoUserAgentFreeFormHandler(t *testing.T) {
 }
 
 func TestRequestUserAgent(t *testing.T) {
-	s := awstesting.NewClient(&aws.Config{Region: aws.String("us-east-1")})
+	s := awstesting.NewClient(&aws.Config{
+		Region: aws.String("us-east-1"),
+	})
 
 	req := s.NewRequest(&request.Operation{Name: "Operation"}, nil, &testData{})
 	req.HTTPRequest.Header.Set("User-Agent", "foo/bar")
@@ -374,7 +390,9 @@ func TestRequestThrottleRetries(t *testing.T) {
 		{StatusCode: 500, Body: body(`{"__type":"Throttling","message":"An error occurred."}`)},
 	}
 
-	s := awstesting.NewClient(aws.NewConfig().WithSleepDelay(sleepDelay))
+	s := awstesting.NewClient(&aws.Config{
+		SleepDelay: sleepDelay,
+	})
 	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)
@@ -551,7 +569,9 @@ func TestRequest_NoBody(t *testing.T) {
 			Name: "OpName", HTTPMethod: c, HTTPPath: "/{bucket}/{key+}",
 		}, &in, &out)
 
-		if err := r.Send(); err != nil {
+		err := r.Send()
+		server.Close()
+		if err != nil {
 			t.Fatalf("%d, expect no error sending request, got %v", i, err)
 		}
 	}
@@ -653,55 +673,47 @@ func TestWithGetResponseHeaders(t *testing.T) {
 
 type testRetryer struct {
 	shouldRetry bool
+	maxRetries  int
 }
 
 func (d *testRetryer) MaxRetries() int {
-	return 3
+	return d.maxRetries
 }
 
 // RetryRules returns the delay duration before retrying this request again
 func (d *testRetryer) RetryRules(r *request.Request) time.Duration {
-	return time.Duration(time.Millisecond)
+	return 0
 }
 
 func (d *testRetryer) ShouldRetry(r *request.Request) bool {
-	d.shouldRetry = true
-	if r.Retryable != nil {
-		return *r.Retryable
-	}
-
-	if r.HTTPResponse.StatusCode >= 500 {
-		return true
-	}
-	return r.IsErrorRetryable()
+	return d.shouldRetry
 }
 
 func TestEnforceShouldRetryCheck(t *testing.T) {
-	tp := &http.Transport{
-		Proxy:                 http.ProxyFromEnvironment,
-		ResponseHeaderTimeout: 1 * time.Millisecond,
+
+	retryer := &testRetryer{
+		shouldRetry: true, maxRetries: 3,
 	}
-
-	client := &http.Client{Transport: tp}
-
-	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		// This server should wait forever. Requests will timeout and the SDK should
-		// attempt to retry.
-		select {}
-	}))
-
-	retryer := &testRetryer{}
 	s := awstesting.NewClient(&aws.Config{
 		Region:                  aws.String("mock-region"),
 		MaxRetries:              aws.Int(0),
-		Endpoint:                aws.String(server.URL),
-		DisableSSL:              aws.Bool(true),
 		Retryer:                 retryer,
-		HTTPClient:              client,
 		EnforceShouldRetryCheck: aws.Bool(true),
+		SleepDelay:              func(time.Duration) {},
 	})
 
 	s.Handlers.Validate.Clear()
+	s.Handlers.Send.Swap(corehandlers.SendHandler.Name, request.NamedHandler{
+		Name: "TestEnforceShouldRetryCheck",
+		Fn: func(r *request.Request) {
+			r.HTTPResponse = &http.Response{
+				Header: http.Header{},
+				Body:   ioutil.NopCloser(bytes.NewBuffer(nil)),
+			}
+			r.Retryable = aws.Bool(false)
+		},
+	})
+
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)
 
@@ -763,6 +775,7 @@ func TestRequest_TemporaryRetry(t *testing.T) {
 
 		<-done
 	}))
+	defer server.Close()
 
 	client := &http.Client{
 		Timeout: 100 * time.Millisecond,
