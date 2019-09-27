@@ -25,7 +25,6 @@ func (s *skipper) ShouldSkip(tok Token) bool {
 	if s.shouldSkip &&
 		s.prevTok.Type() == TokenNL &&
 		tok.Type() != TokenWS {
-
 		s.Continue()
 		return false
 	}
@@ -36,7 +35,6 @@ func (s *skipper) ShouldSkip(tok Token) bool {
 
 func (s *skipper) Skip() {
 	s.shouldSkip = true
-	s.prevTok = emptyToken
 }
 
 func (s *skipper) Continue() {
