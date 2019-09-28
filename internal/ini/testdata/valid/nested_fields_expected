@@ -1,5 +1,6 @@
 {
 	"foo": {
+	    "aws_session_token": "valid"
 	},
 	"bar": {
 	 	"aws_access_key_id": "valid",
