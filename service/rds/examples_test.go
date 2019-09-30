@@ -411,6 +411,8 @@ func ExampleRDS_CreateDBCluster_shared00() {
 				fmt.Println(rds.ErrCodeGlobalClusterNotFoundFault, aerr.Error())
 			case rds.ErrCodeInvalidGlobalClusterStateFault:
 				fmt.Println(rds.ErrCodeInvalidGlobalClusterStateFault, aerr.Error())
+			case rds.ErrCodeDomainNotFoundFault:
+				fmt.Println(rds.ErrCodeDomainNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -627,6 +629,8 @@ func ExampleRDS_CreateDBInstanceReadReplica_shared00() {
 				fmt.Println(rds.ErrCodeStorageTypeNotSupportedFault, aerr.Error())
 			case rds.ErrCodeKMSKeyNotAccessibleFault:
 				fmt.Println(rds.ErrCodeKMSKeyNotAccessibleFault, aerr.Error())
+			case rds.ErrCodeDomainNotFoundFault:
+				fmt.Println(rds.ErrCodeDomainNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -2171,6 +2175,8 @@ func ExampleRDS_ModifyDBCluster_shared00() {
 				fmt.Println(rds.ErrCodeInvalidDBInstanceStateFault, aerr.Error())
 			case rds.ErrCodeDBClusterAlreadyExistsFault:
 				fmt.Println(rds.ErrCodeDBClusterAlreadyExistsFault, aerr.Error())
+			case rds.ErrCodeDomainNotFoundFault:
+				fmt.Println(rds.ErrCodeDomainNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -2817,6 +2823,8 @@ func ExampleRDS_RestoreDBClusterFromSnapshot_shared00() {
 				fmt.Println(rds.ErrCodeOptionGroupNotFoundFault, aerr.Error())
 			case rds.ErrCodeKMSKeyNotAccessibleFault:
 				fmt.Println(rds.ErrCodeKMSKeyNotAccessibleFault, aerr.Error())
+			case rds.ErrCodeDomainNotFoundFault:
+				fmt.Println(rds.ErrCodeDomainNotFoundFault, aerr.Error())
 			case rds.ErrCodeDBClusterParameterGroupNotFoundFault:
 				fmt.Println(rds.ErrCodeDBClusterParameterGroupNotFoundFault, aerr.Error())
 			default:
@@ -2881,6 +2889,8 @@ func ExampleRDS_RestoreDBClusterToPointInTime_shared00() {
 				fmt.Println(rds.ErrCodeOptionGroupNotFoundFault, aerr.Error())
 			case rds.ErrCodeStorageQuotaExceededFault:
 				fmt.Println(rds.ErrCodeStorageQuotaExceededFault, aerr.Error())
+			case rds.ErrCodeDomainNotFoundFault:
+				fmt.Println(rds.ErrCodeDomainNotFoundFault, aerr.Error())
 			case rds.ErrCodeDBClusterParameterGroupNotFoundFault:
 				fmt.Println(rds.ErrCodeDBClusterParameterGroupNotFoundFault, aerr.Error())
 			default:
