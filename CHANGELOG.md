@@ -1,3 +1,15 @@
+Release v1.25.2 (2019-09-30)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/mq`: Updates service API and documentation
+  * Amazon MQ now includes the ability to scale your brokers by changing the host instance type. See the hostInstanceType property of UpdateBrokerInput (https://docs.aws.amazon.com/amazon-mq/latest/api-reference/brokers-broker-id.html#brokers-broker-id-model-updatebrokerinput), and pendingHostInstanceType property of DescribeBrokerOutput (https://docs.aws.amazon.com/amazon-mq/latest/api-reference/brokers-broker-id.html#brokers-broker-id-model-describebrokeroutput).
+* `service/rds`: Updates service API, documentation, and waiters
+  * This release adds support for creating a Read Replica with Active Directory domain information. This release updates RDS API to indicate whether an OrderableDBInstanceOption supports Kerberos Authentication.
+* `service/waf`: Updates service API and documentation
+  * Lowering the threshold for Rate Based rule from 2000 to 100.
+
 Release v1.25.1 (2019-09-27)
 ===
 

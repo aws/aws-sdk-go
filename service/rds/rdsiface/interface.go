@@ -564,6 +564,12 @@ type RDSAPI interface {
 	StopDBInstanceWithContext(aws.Context, *rds.StopDBInstanceInput, ...request.Option) (*rds.StopDBInstanceOutput, error)
 	StopDBInstanceRequest(*rds.StopDBInstanceInput) (*request.Request, *rds.StopDBInstanceOutput)
 
+	WaitUntilDBClusterSnapshotAvailable(*rds.DescribeDBClusterSnapshotsInput) error
+	WaitUntilDBClusterSnapshotAvailableWithContext(aws.Context, *rds.DescribeDBClusterSnapshotsInput, ...request.WaiterOption) error
+
+	WaitUntilDBClusterSnapshotDeleted(*rds.DescribeDBClusterSnapshotsInput) error
+	WaitUntilDBClusterSnapshotDeletedWithContext(aws.Context, *rds.DescribeDBClusterSnapshotsInput, ...request.WaiterOption) error
+
 	WaitUntilDBInstanceAvailable(*rds.DescribeDBInstancesInput) error
 	WaitUntilDBInstanceAvailableWithContext(aws.Context, *rds.DescribeDBInstancesInput, ...request.WaiterOption) error
 

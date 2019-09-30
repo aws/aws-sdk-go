@@ -238,7 +238,8 @@
         {"shape":"DBInstanceNotFoundFault"},
         {"shape":"DBSubnetGroupDoesNotCoverEnoughAZs"},
         {"shape":"GlobalClusterNotFoundFault"},
-        {"shape":"InvalidGlobalClusterStateFault"}
+        {"shape":"InvalidGlobalClusterStateFault"},
+        {"shape":"DomainNotFoundFault"}
       ]
     },
     "CreateDBClusterEndpoint":{
@@ -358,7 +359,8 @@
         {"shape":"DBSubnetGroupNotAllowedFault"},
         {"shape":"InvalidDBSubnetGroupFault"},
         {"shape":"StorageTypeNotSupportedFault"},
-        {"shape":"KMSKeyNotAccessibleFault"}
+        {"shape":"KMSKeyNotAccessibleFault"},
+        {"shape":"DomainNotFoundFault"}
       ]
     },
     "CreateDBParameterGroup":{
@@ -1242,7 +1244,8 @@
         {"shape":"DBClusterParameterGroupNotFoundFault"},
         {"shape":"InvalidDBSecurityGroupStateFault"},
         {"shape":"InvalidDBInstanceStateFault"},
-        {"shape":"DBClusterAlreadyExistsFault"}
+        {"shape":"DBClusterAlreadyExistsFault"},
+        {"shape":"DomainNotFoundFault"}
       ]
     },
     "ModifyDBClusterEndpoint":{
@@ -1640,6 +1643,7 @@
         {"shape":"DBClusterParameterGroupNotFoundFault"},
         {"shape":"KMSKeyNotAccessibleFault"},
         {"shape":"DBClusterNotFoundFault"},
+        {"shape":"DomainNotFoundFault"},
         {"shape":"InsufficientStorageClusterCapacityFault"}
       ]
     },
@@ -1672,6 +1676,7 @@
         {"shape":"InvalidSubnet"},
         {"shape":"OptionGroupNotFoundFault"},
         {"shape":"KMSKeyNotAccessibleFault"},
+        {"shape":"DomainNotFoundFault"},
         {"shape":"DBClusterParameterGroupNotFoundFault"}
       ]
     },
@@ -1703,6 +1708,7 @@
         {"shape":"KMSKeyNotAccessibleFault"},
         {"shape":"OptionGroupNotFoundFault"},
         {"shape":"StorageQuotaExceededFault"},
+        {"shape":"DomainNotFoundFault"},
         {"shape":"DBClusterParameterGroupNotFoundFault"}
       ]
     },
@@ -2523,7 +2529,9 @@
         "EnableCloudwatchLogsExports":{"shape":"LogTypeList"},
         "ProcessorFeatures":{"shape":"ProcessorFeatureList"},
         "UseDefaultProcessorFeatures":{"shape":"BooleanOptional"},
-        "DeletionProtection":{"shape":"BooleanOptional"}
+        "DeletionProtection":{"shape":"BooleanOptional"},
+        "Domain":{"shape":"String"},
+        "DomainIAMRoleName":{"shape":"String"}
       }
     },
     "CreateDBInstanceReadReplicaResult":{
@@ -5406,7 +5414,8 @@
         "MaxIopsPerGib":{"shape":"DoubleOptional"},
         "AvailableProcessorFeatures":{"shape":"AvailableProcessorFeatureList"},
         "SupportedEngineModes":{"shape":"EngineModeList"},
-        "SupportsStorageAutoscaling":{"shape":"BooleanOptional"}
+        "SupportsStorageAutoscaling":{"shape":"BooleanOptional"},
+        "SupportsKerberosAuthentication":{"shape":"BooleanOptional"}
       },
       "wrapper":true
     },

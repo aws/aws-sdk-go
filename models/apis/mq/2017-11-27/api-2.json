@@ -1314,8 +1314,12 @@
           "locationName" : "pendingEngineVersion"
         },
         "PendingSecurityGroups" : {
-          "shape" : "__listOf__string",
-          "locationName" : "pendingSecurityGroups"
+          "shape": "__listOf__string",
+          "locationName": "pendingSecurityGroups"
+        },
+        "PendingHostInstanceType" : {
+          "shape" : "__string",
+          "locationName" : "pendingHostInstanceType"
         },
         "PubliclyAccessible" : {
           "shape" : "__boolean",
@@ -1420,6 +1424,10 @@
         "PendingSecurityGroups" : {
           "shape" : "__listOf__string",
           "locationName" : "pendingSecurityGroups"
+        },
+          "PendingHostInstanceType" : {
+          "shape" : "__string",
+          "locationName" : "pendingHostInstanceType"
         },
         "PubliclyAccessible" : {
           "shape" : "__boolean",
@@ -2079,6 +2087,10 @@
           "shape" : "__string",
           "locationName" : "engineVersion"
         },
+        "HostInstanceType" : {
+          "shape" : "__string",
+          "locationName" : "hostInstanceType"
+        },
         "Logs" : {
           "shape" : "Logs",
           "locationName" : "logs"
@@ -2107,6 +2119,10 @@
         "EngineVersion" : {
           "shape" : "__string",
           "locationName" : "engineVersion"
+        },
+        "HostInstanceType" : {
+          "shape" : "__string",
+          "locationName" : "hostInstanceType"
         },
         "Logs" : {
           "shape" : "Logs",
@@ -2138,6 +2154,10 @@
           "shape" : "__string",
           "locationName" : "engineVersion"
         },
+        "HostInstanceType" : {
+          "shape" : "__string",
+          "locationName" : "hostInstanceType"
+        },
         "Logs" : {
           "shape" : "Logs",
           "locationName" : "logs"
@@ -2167,6 +2187,10 @@
         "EngineVersion" : {
           "shape" : "__string",
           "locationName" : "engineVersion"
+        },
+        "HostInstanceType" : {
+          "shape" : "__string",
+          "locationName" : "hostInstanceType"
         },
         "Logs" : {
           "shape" : "Logs",
