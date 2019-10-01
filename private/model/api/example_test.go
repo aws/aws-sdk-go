@@ -5,8 +5,6 @@ package api
 import (
 	"encoding/json"
 	"testing"
-
-	"github.com/google/go-cmp/cmp"
 )
 
 func buildAPI() *API {
@@ -150,15 +148,15 @@ func buildAPI() *API {
 
 	a.Operations = operations
 	a.Shapes = map[string]*Shape{
-		"FooInput":  input,
-		"FooOutput": output,
-		"string":    stringShape,
-		"int":       intShape,
+		"FooInput":           input,
+		"FooOutput":          output,
+		"string":             stringShape,
+		"int":                intShape,
 		"NestedComplexShape": nestedComplexShape,
-		"NestedListShape": nestedListShape,
-		"ComplexShape": complexShape,
-		"ListShape": listShape,
-		"ListsShape":listsShape,
+		"NestedListShape":    nestedListShape,
+		"ComplexShape":       complexShape,
+		"ListShape":          listShape,
+		"ListsShape":         listsShape,
 	}
 	a.Metadata = Metadata{
 		ServiceAbbreviation: "FooService",
@@ -297,9 +295,9 @@ func ExampleFooService_Foo_shared00() {
 	fmt.Println(result)
 }
 `
-	if v := cmp.Diff(expected, a.ExamplesGoCode()); len(v) != 0 {
-		t.Errorf(v)
-	}
+	if expected != a.ExamplesGoCode() {
+			t.Errorf("Expected:\n%s\nReceived:\n%s\n", expected, a.ExamplesGoCode())
+		}
 }
 
 func TestBuildShape(t *testing.T) {
