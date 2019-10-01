@@ -116,6 +116,10 @@ type DocDBAPI interface {
 	DeleteDBSubnetGroupWithContext(aws.Context, *docdb.DeleteDBSubnetGroupInput, ...request.Option) (*docdb.DeleteDBSubnetGroupOutput, error)
 	DeleteDBSubnetGroupRequest(*docdb.DeleteDBSubnetGroupInput) (*request.Request, *docdb.DeleteDBSubnetGroupOutput)
 
+	DescribeCertificates(*docdb.DescribeCertificatesInput) (*docdb.DescribeCertificatesOutput, error)
+	DescribeCertificatesWithContext(aws.Context, *docdb.DescribeCertificatesInput, ...request.Option) (*docdb.DescribeCertificatesOutput, error)
+	DescribeCertificatesRequest(*docdb.DescribeCertificatesInput) (*request.Request, *docdb.DescribeCertificatesOutput)
+
 	DescribeDBClusterParameterGroups(*docdb.DescribeDBClusterParameterGroupsInput) (*docdb.DescribeDBClusterParameterGroupsOutput, error)
 	DescribeDBClusterParameterGroupsWithContext(aws.Context, *docdb.DescribeDBClusterParameterGroupsInput, ...request.Option) (*docdb.DescribeDBClusterParameterGroupsOutput, error)
 	DescribeDBClusterParameterGroupsRequest(*docdb.DescribeDBClusterParameterGroupsInput) (*request.Request, *docdb.DescribeDBClusterParameterGroupsOutput)

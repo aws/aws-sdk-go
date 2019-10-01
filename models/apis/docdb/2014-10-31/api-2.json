@@ -271,6 +271,21 @@
         {"shape":"DBSubnetGroupNotFoundFault"}
       ]
     },
+    "DescribeCertificates":{
+      "name":"DescribeCertificates",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeCertificatesMessage"},
+      "output":{
+        "shape":"CertificateMessage",
+        "resultWrapper":"DescribeCertificatesResult"
+      },
+      "errors":[
+        {"shape":"CertificateNotFoundFault"}
+      ]
+    },
     "DescribeDBClusterParameterGroups":{
       "name":"DescribeDBClusterParameterGroups",
       "http":{
@@ -807,6 +822,32 @@
     },
     "Boolean":{"type":"boolean"},
     "BooleanOptional":{"type":"boolean"},
+    "Certificate":{
+      "type":"structure",
+      "members":{
+        "CertificateIdentifier":{"shape":"String"},
+        "CertificateType":{"shape":"String"},
+        "Thumbprint":{"shape":"String"},
+        "ValidFrom":{"shape":"TStamp"},
+        "ValidTill":{"shape":"TStamp"},
+        "CertificateArn":{"shape":"String"}
+      },
+      "wrapper":true
+    },
+    "CertificateList":{
+      "type":"list",
+      "member":{
+        "shape":"Certificate",
+        "locationName":"Certificate"
+      }
+    },
+    "CertificateMessage":{
+      "type":"structure",
+      "members":{
+        "Certificates":{"shape":"CertificateList"},
+        "Marker":{"shape":"String"}
+      }
+    },
     "CertificateNotFoundFault":{
       "type":"structure",
       "members":{
@@ -1279,6 +1320,7 @@
         "StorageEncrypted":{"shape":"Boolean"},
         "KmsKeyId":{"shape":"String"},
         "DbiResourceId":{"shape":"String"},
+        "CACertificateIdentifier":{"shape":"String"},
         "PromotionTier":{"shape":"IntegerOptional"},
         "DBInstanceArn":{"shape":"String"},
         "EnabledCloudwatchLogsExports":{"shape":"LogTypeList"}
@@ -1548,6 +1590,15 @@
       "required":["DBSubnetGroupName"],
       "members":{
         "DBSubnetGroupName":{"shape":"String"}
+      }
+    },
+    "DescribeCertificatesMessage":{
+      "type":"structure",
+      "members":{
+        "CertificateIdentifier":{"shape":"String"},
+        "Filters":{"shape":"FilterList"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
       }
     },
     "DescribeDBClusterParameterGroupsMessage":{
@@ -2064,6 +2115,7 @@
         "PreferredMaintenanceWindow":{"shape":"String"},
         "AutoMinorVersionUpgrade":{"shape":"BooleanOptional"},
         "NewDBInstanceIdentifier":{"shape":"String"},
+        "CACertificateIdentifier":{"shape":"String"},
         "PromotionTier":{"shape":"IntegerOptional"}
       }
     },

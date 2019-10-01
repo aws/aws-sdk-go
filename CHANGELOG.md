@@ -1,3 +1,13 @@
+Release v1.25.3 (2019-10-01)
+===
+
+### Service Client Updates
+* `service/docdb`: Updates service API and documentation
+  * This release provides support for describe and modify CA certificates.
+
+### SDK Bugs
+* `private/model/api` : Fixes broken test for code generation example ([#2855](https://github.com/aws/aws-sdk-go/pull/2855))
+
 Release v1.25.2 (2019-09-30)
 ===
 
