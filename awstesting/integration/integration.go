@@ -16,7 +16,9 @@ import (
 )
 
 // Session is a shared session for all integration tests to use.
-var Session = session.Must(session.NewSession())
+var Session = session.Must(session.NewSession(&aws.Config{
+	CredentialsChainVerboseErrors: aws.Bool(true),
+}))
 
 func init() {
 	logLevel := Session.Config.LogLevel

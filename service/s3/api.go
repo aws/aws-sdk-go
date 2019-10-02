@@ -20,6 +20,7 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream/eventstreamapi"
 	"github.com/aws/aws-sdk-go/private/protocol/rest"
 	"github.com/aws/aws-sdk-go/private/protocol/restxml"
+	"github.com/aws/aws-sdk-go/service/s3/internal/arn"
 )
 
 const opAbortMultipartUpload = "AbortMultipartUpload"
@@ -10051,6 +10052,20 @@ func (s *AbortMultipartUploadInput) SetUploadId(v string) *AbortMultipartUploadI
 	return s
 }
 
+func (s *AbortMultipartUploadInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *AbortMultipartUploadInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type AbortMultipartUploadOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11148,6 +11163,20 @@ func (s *CompleteMultipartUploadInput) SetUploadId(v string) *CompleteMultipartU
 	return s
 }
 
+func (s *CompleteMultipartUploadInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *CompleteMultipartUploadInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type CompleteMultipartUploadOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11820,6 +11849,20 @@ func (s *CopyObjectInput) SetWebsiteRedirectLocation(v string) *CopyObjectInput 
 	return s
 }
 
+func (s *CopyObjectInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *CopyObjectInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type CopyObjectOutput struct {
 	_ struct{} `type:"structure" payload:"CopyObjectResult"`
 
@@ -12488,6 +12531,20 @@ func (s *CreateMultipartUploadInput) SetWebsiteRedirectLocation(v string) *Creat
 	return s
 }
 
+func (s *CreateMultipartUploadInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *CreateMultipartUploadInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type CreateMultipartUploadOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12792,6 +12849,20 @@ func (s *DeleteBucketAnalyticsConfigurationInput) SetId(v string) *DeleteBucketA
 	return s
 }
 
+func (s *DeleteBucketAnalyticsConfigurationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *DeleteBucketAnalyticsConfigurationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type DeleteBucketAnalyticsConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -12852,6 +12923,20 @@ func (s *DeleteBucketCorsInput) getBucket() (v string) {
 		return v
 	}
 	return *s.Bucket
+}
+
+func (s *DeleteBucketCorsInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *DeleteBucketCorsInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type DeleteBucketCorsOutput struct {
@@ -12917,6 +13002,20 @@ func (s *DeleteBucketEncryptionInput) getBucket() (v string) {
 	return *s.Bucket
 }
 
+func (s *DeleteBucketEncryptionInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *DeleteBucketEncryptionInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type DeleteBucketEncryptionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -12977,6 +13076,20 @@ func (s *DeleteBucketInput) getBucket() (v string) {
 		return v
 	}
 	return *s.Bucket
+}
+
+func (s *DeleteBucketInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *DeleteBucketInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type DeleteBucketInventoryConfigurationInput struct {
@@ -13041,6 +13154,20 @@ func (s *DeleteBucketInventoryConfigurationInput) SetId(v string) *DeleteBucketI
 	return s
 }
 
+func (s *DeleteBucketInventoryConfigurationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *DeleteBucketInventoryConfigurationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type DeleteBucketInventoryConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13101,6 +13228,20 @@ func (s *DeleteBucketLifecycleInput) getBucket() (v string) {
 		return v
 	}
 	return *s.Bucket
+}
+
+func (s *DeleteBucketLifecycleInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *DeleteBucketLifecycleInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type DeleteBucketLifecycleOutput struct {
@@ -13179,6 +13320,20 @@ func (s *DeleteBucketMetricsConfigurationInput) SetId(v string) *DeleteBucketMet
 	return s
 }
 
+func (s *DeleteBucketMetricsConfigurationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *DeleteBucketMetricsConfigurationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type DeleteBucketMetricsConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13255,6 +13410,20 @@ func (s *DeleteBucketPolicyInput) getBucket() (v string) {
 	return *s.Bucket
 }
 
+func (s *DeleteBucketPolicyInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *DeleteBucketPolicyInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type DeleteBucketPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13315,6 +13484,20 @@ func (s *DeleteBucketReplicationInput) getBucket() (v string) {
 		return v
 	}
 	return *s.Bucket
+}
+
+func (s *DeleteBucketReplicationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *DeleteBucketReplicationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type DeleteBucketReplicationOutput struct {
@@ -13379,6 +13562,20 @@ func (s *DeleteBucketTaggingInput) getBucket() (v string) {
 	return *s.Bucket
 }
 
+func (s *DeleteBucketTaggingInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *DeleteBucketTaggingInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type DeleteBucketTaggingOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13439,6 +13636,20 @@ func (s *DeleteBucketWebsiteInput) getBucket() (v string) {
 		return v
 	}
 	return *s.Bucket
+}
+
+func (s *DeleteBucketWebsiteInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *DeleteBucketWebsiteInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type DeleteBucketWebsiteOutput struct {
@@ -13661,6 +13872,20 @@ func (s *DeleteObjectInput) SetVersionId(v string) *DeleteObjectInput {
 	return s
 }
 
+func (s *DeleteObjectInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *DeleteObjectInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type DeleteObjectOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13777,6 +14002,20 @@ func (s *DeleteObjectTaggingInput) SetKey(v string) *DeleteObjectTaggingInput {
 func (s *DeleteObjectTaggingInput) SetVersionId(v string) *DeleteObjectTaggingInput {
 	s.VersionId = &v
 	return s
+}
+
+func (s *DeleteObjectTaggingInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *DeleteObjectTaggingInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type DeleteObjectTaggingOutput struct {
@@ -13904,6 +14143,20 @@ func (s *DeleteObjectsInput) SetRequestPayer(v string) *DeleteObjectsInput {
 	return s
 }
 
+func (s *DeleteObjectsInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *DeleteObjectsInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type DeleteObjectsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13994,6 +14247,20 @@ func (s *DeletePublicAccessBlockInput) getBucket() (v string) {
 		return v
 	}
 	return *s.Bucket
+}
+
+func (s *DeletePublicAccessBlockInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *DeletePublicAccessBlockInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type DeletePublicAccessBlockOutput struct {
@@ -14891,6 +15158,20 @@ func (s *GetBucketAccelerateConfigurationInput) getBucket() (v string) {
 	return *s.Bucket
 }
 
+func (s *GetBucketAccelerateConfigurationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketAccelerateConfigurationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type GetBucketAccelerateConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -14960,6 +15241,20 @@ func (s *GetBucketAclInput) getBucket() (v string) {
 		return v
 	}
 	return *s.Bucket
+}
+
+func (s *GetBucketAclInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketAclInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type GetBucketAclOutput struct {
@@ -15056,6 +15351,20 @@ func (s *GetBucketAnalyticsConfigurationInput) SetId(v string) *GetBucketAnalyti
 	return s
 }
 
+func (s *GetBucketAnalyticsConfigurationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketAnalyticsConfigurationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type GetBucketAnalyticsConfigurationOutput struct {
 	_ struct{} `type:"structure" payload:"AnalyticsConfiguration"`
 
@@ -15125,6 +15434,20 @@ func (s *GetBucketCorsInput) getBucket() (v string) {
 		return v
 	}
 	return *s.Bucket
+}
+
+func (s *GetBucketCorsInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketCorsInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type GetBucketCorsOutput struct {
@@ -15198,6 +15521,20 @@ func (s *GetBucketEncryptionInput) getBucket() (v string) {
 		return v
 	}
 	return *s.Bucket
+}
+
+func (s *GetBucketEncryptionInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketEncryptionInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type GetBucketEncryptionOutput struct {
@@ -15285,6 +15622,20 @@ func (s *GetBucketInventoryConfigurationInput) SetId(v string) *GetBucketInvento
 	return s
 }
 
+func (s *GetBucketInventoryConfigurationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketInventoryConfigurationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type GetBucketInventoryConfigurationOutput struct {
 	_ struct{} `type:"structure" payload:"InventoryConfiguration"`
 
@@ -15354,6 +15705,20 @@ func (s *GetBucketLifecycleConfigurationInput) getBucket() (v string) {
 		return v
 	}
 	return *s.Bucket
+}
+
+func (s *GetBucketLifecycleConfigurationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketLifecycleConfigurationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type GetBucketLifecycleConfigurationOutput struct {
@@ -15427,6 +15792,20 @@ func (s *GetBucketLifecycleInput) getBucket() (v string) {
 	return *s.Bucket
 }
 
+func (s *GetBucketLifecycleInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketLifecycleInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type GetBucketLifecycleOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15496,6 +15875,20 @@ func (s *GetBucketLocationInput) getBucket() (v string) {
 		return v
 	}
 	return *s.Bucket
+}
+
+func (s *GetBucketLocationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketLocationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type GetBucketLocationOutput struct {
@@ -15568,6 +15961,20 @@ func (s *GetBucketLoggingInput) getBucket() (v string) {
 		return v
 	}
 	return *s.Bucket
+}
+
+func (s *GetBucketLoggingInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketLoggingInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type GetBucketLoggingOutput struct {
@@ -15658,6 +16065,20 @@ func (s *GetBucketMetricsConfigurationInput) SetId(v string) *GetBucketMetricsCo
 	return s
 }
 
+func (s *GetBucketMetricsConfigurationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketMetricsConfigurationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type GetBucketMetricsConfigurationOutput struct {
 	_ struct{} `type:"structure" payload:"MetricsConfiguration"`
 
@@ -15729,6 +16150,20 @@ func (s *GetBucketNotificationConfigurationRequest) getBucket() (v string) {
 	return *s.Bucket
 }
 
+func (s *GetBucketNotificationConfigurationRequest) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketNotificationConfigurationRequest) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type GetBucketPolicyInput struct {
 	_ struct{} `locationName:"GetBucketPolicyRequest" type:"structure"`
 
@@ -15775,6 +16210,20 @@ func (s *GetBucketPolicyInput) getBucket() (v string) {
 		return v
 	}
 	return *s.Bucket
+}
+
+func (s *GetBucketPolicyInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketPolicyInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type GetBucketPolicyOutput struct {
@@ -15848,6 +16297,20 @@ func (s *GetBucketPolicyStatusInput) getBucket() (v string) {
 	return *s.Bucket
 }
 
+func (s *GetBucketPolicyStatusInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketPolicyStatusInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type GetBucketPolicyStatusOutput struct {
 	_ struct{} `type:"structure" payload:"PolicyStatus"`
 
@@ -15917,6 +16380,20 @@ func (s *GetBucketReplicationInput) getBucket() (v string) {
 		return v
 	}
 	return *s.Bucket
+}
+
+func (s *GetBucketReplicationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketReplicationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type GetBucketReplicationOutput struct {
@@ -15991,6 +16468,20 @@ func (s *GetBucketRequestPaymentInput) getBucket() (v string) {
 	return *s.Bucket
 }
 
+func (s *GetBucketRequestPaymentInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketRequestPaymentInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type GetBucketRequestPaymentOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -16060,6 +16551,20 @@ func (s *GetBucketTaggingInput) getBucket() (v string) {
 		return v
 	}
 	return *s.Bucket
+}
+
+func (s *GetBucketTaggingInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketTaggingInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type GetBucketTaggingOutput struct {
@@ -16133,6 +16638,20 @@ func (s *GetBucketVersioningInput) getBucket() (v string) {
 		return v
 	}
 	return *s.Bucket
+}
+
+func (s *GetBucketVersioningInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketVersioningInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type GetBucketVersioningOutput struct {
@@ -16215,6 +16734,20 @@ func (s *GetBucketWebsiteInput) getBucket() (v string) {
 		return v
 	}
 	return *s.Bucket
+}
+
+func (s *GetBucketWebsiteInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketWebsiteInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type GetBucketWebsiteOutput struct {
@@ -16352,6 +16885,20 @@ func (s *GetObjectAclInput) SetRequestPayer(v string) *GetObjectAclInput {
 func (s *GetObjectAclInput) SetVersionId(v string) *GetObjectAclInput {
 	s.VersionId = &v
 	return s
+}
+
+func (s *GetObjectAclInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetObjectAclInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type GetObjectAclOutput struct {
@@ -16637,6 +17184,20 @@ func (s *GetObjectInput) SetVersionId(v string) *GetObjectInput {
 	return s
 }
 
+func (s *GetObjectInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetObjectInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type GetObjectLegalHoldInput struct {
 	_ struct{} `locationName:"GetObjectLegalHoldRequest" type:"structure"`
 
@@ -16723,6 +17284,20 @@ func (s *GetObjectLegalHoldInput) SetVersionId(v string) *GetObjectLegalHoldInpu
 	return s
 }
 
+func (s *GetObjectLegalHoldInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetObjectLegalHoldInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type GetObjectLegalHoldOutput struct {
 	_ struct{} `type:"structure" payload:"LegalHold"`
 
@@ -16792,6 +17367,20 @@ func (s *GetObjectLockConfigurationInput) getBucket() (v string) {
 		return v
 	}
 	return *s.Bucket
+}
+
+func (s *GetObjectLockConfigurationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetObjectLockConfigurationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type GetObjectLockConfigurationOutput struct {
@@ -17219,6 +17808,20 @@ func (s *GetObjectRetentionInput) SetVersionId(v string) *GetObjectRetentionInpu
 	return s
 }
 
+func (s *GetObjectRetentionInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetObjectRetentionInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type GetObjectRetentionOutput struct {
 	_ struct{} `type:"structure" payload:"Retention"`
 
@@ -17314,6 +17917,20 @@ func (s *GetObjectTaggingInput) SetKey(v string) *GetObjectTaggingInput {
 func (s *GetObjectTaggingInput) SetVersionId(v string) *GetObjectTaggingInput {
 	s.VersionId = &v
 	return s
+}
+
+func (s *GetObjectTaggingInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetObjectTaggingInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type GetObjectTaggingOutput struct {
@@ -17428,6 +18045,20 @@ func (s *GetObjectTorrentInput) SetRequestPayer(v string) *GetObjectTorrentInput
 	return s
 }
 
+func (s *GetObjectTorrentInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetObjectTorrentInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type GetObjectTorrentOutput struct {
 	_ struct{} `type:"structure" payload:"Body"`
 
@@ -17508,6 +18139,20 @@ func (s *GetPublicAccessBlockInput) getBucket() (v string) {
 		return v
 	}
 	return *s.Bucket
+}
+
+func (s *GetPublicAccessBlockInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetPublicAccessBlockInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type GetPublicAccessBlockOutput struct {
@@ -17744,6 +18389,20 @@ func (s *HeadBucketInput) getBucket() (v string) {
 	return *s.Bucket
 }
 
+func (s *HeadBucketInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *HeadBucketInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type HeadBucketOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -17944,6 +18603,20 @@ func (s *HeadObjectInput) SetSSECustomerKeyMD5(v string) *HeadObjectInput {
 func (s *HeadObjectInput) SetVersionId(v string) *HeadObjectInput {
 	s.VersionId = &v
 	return s
+}
+
+func (s *HeadObjectInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *HeadObjectInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type HeadObjectOutput struct {
@@ -19369,6 +20042,20 @@ func (s *ListBucketAnalyticsConfigurationsInput) SetContinuationToken(v string) 
 	return s
 }
 
+func (s *ListBucketAnalyticsConfigurationsInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *ListBucketAnalyticsConfigurationsInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type ListBucketAnalyticsConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -19484,6 +20171,20 @@ func (s *ListBucketInventoryConfigurationsInput) SetContinuationToken(v string) 
 	return s
 }
 
+func (s *ListBucketInventoryConfigurationsInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *ListBucketInventoryConfigurationsInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type ListBucketInventoryConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -19597,6 +20298,20 @@ func (s *ListBucketMetricsConfigurationsInput) getBucket() (v string) {
 func (s *ListBucketMetricsConfigurationsInput) SetContinuationToken(v string) *ListBucketMetricsConfigurationsInput {
 	s.ContinuationToken = &v
 	return s
+}
+
+func (s *ListBucketMetricsConfigurationsInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *ListBucketMetricsConfigurationsInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type ListBucketMetricsConfigurationsOutput struct {
@@ -19830,6 +20545,20 @@ func (s *ListMultipartUploadsInput) SetPrefix(v string) *ListMultipartUploadsInp
 func (s *ListMultipartUploadsInput) SetUploadIdMarker(v string) *ListMultipartUploadsInput {
 	s.UploadIdMarker = &v
 	return s
+}
+
+func (s *ListMultipartUploadsInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *ListMultipartUploadsInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type ListMultipartUploadsOutput struct {
@@ -20097,6 +20826,20 @@ func (s *ListObjectVersionsInput) SetVersionIdMarker(v string) *ListObjectVersio
 	return s
 }
 
+func (s *ListObjectVersionsInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *ListObjectVersionsInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type ListObjectVersionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -20359,6 +21102,20 @@ func (s *ListObjectsInput) SetRequestPayer(v string) *ListObjectsInput {
 	return s
 }
 
+func (s *ListObjectsInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *ListObjectsInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type ListObjectsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -20615,6 +21372,20 @@ func (s *ListObjectsV2Input) SetRequestPayer(v string) *ListObjectsV2Input {
 func (s *ListObjectsV2Input) SetStartAfter(v string) *ListObjectsV2Input {
 	s.StartAfter = &v
 	return s
+}
+
+func (s *ListObjectsV2Input) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *ListObjectsV2Input) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type ListObjectsV2Output struct {
@@ -20879,6 +21650,20 @@ func (s *ListPartsInput) SetRequestPayer(v string) *ListPartsInput {
 func (s *ListPartsInput) SetUploadId(v string) *ListPartsInput {
 	s.UploadId = &v
 	return s
+}
+
+func (s *ListPartsInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *ListPartsInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type ListPartsOutput struct {
@@ -22583,6 +23368,20 @@ func (s *PutBucketAccelerateConfigurationInput) getBucket() (v string) {
 	return *s.Bucket
 }
 
+func (s *PutBucketAccelerateConfigurationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketAccelerateConfigurationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type PutBucketAccelerateConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -22714,6 +23513,20 @@ func (s *PutBucketAclInput) SetGrantWriteACP(v string) *PutBucketAclInput {
 	return s
 }
 
+func (s *PutBucketAclInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketAclInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type PutBucketAclOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -22809,6 +23622,20 @@ func (s *PutBucketAnalyticsConfigurationInput) SetId(v string) *PutBucketAnalyti
 	return s
 }
 
+func (s *PutBucketAnalyticsConfigurationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketAnalyticsConfigurationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type PutBucketAnalyticsConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -22891,6 +23718,20 @@ func (s *PutBucketCorsInput) getBucket() (v string) {
 func (s *PutBucketCorsInput) SetCORSConfiguration(v *CORSConfiguration) *PutBucketCorsInput {
 	s.CORSConfiguration = v
 	return s
+}
+
+func (s *PutBucketCorsInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketCorsInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type PutBucketCorsOutput struct {
@@ -22976,6 +23817,20 @@ func (s *PutBucketEncryptionInput) getBucket() (v string) {
 func (s *PutBucketEncryptionInput) SetServerSideEncryptionConfiguration(v *ServerSideEncryptionConfiguration) *PutBucketEncryptionInput {
 	s.ServerSideEncryptionConfiguration = v
 	return s
+}
+
+func (s *PutBucketEncryptionInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketEncryptionInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type PutBucketEncryptionOutput struct {
@@ -23073,6 +23928,20 @@ func (s *PutBucketInventoryConfigurationInput) SetInventoryConfiguration(v *Inve
 	return s
 }
 
+func (s *PutBucketInventoryConfigurationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketInventoryConfigurationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type PutBucketInventoryConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -23149,6 +24018,20 @@ func (s *PutBucketLifecycleConfigurationInput) SetLifecycleConfiguration(v *Buck
 	return s
 }
 
+func (s *PutBucketLifecycleConfigurationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketLifecycleConfigurationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type PutBucketLifecycleConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -23221,6 +24104,20 @@ func (s *PutBucketLifecycleInput) getBucket() (v string) {
 func (s *PutBucketLifecycleInput) SetLifecycleConfiguration(v *LifecycleConfiguration) *PutBucketLifecycleInput {
 	s.LifecycleConfiguration = v
 	return s
+}
+
+func (s *PutBucketLifecycleInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketLifecycleInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type PutBucketLifecycleOutput struct {
@@ -23302,6 +24199,20 @@ func (s *PutBucketLoggingInput) getBucket() (v string) {
 func (s *PutBucketLoggingInput) SetBucketLoggingStatus(v *BucketLoggingStatus) *PutBucketLoggingInput {
 	s.BucketLoggingStatus = v
 	return s
+}
+
+func (s *PutBucketLoggingInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketLoggingInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type PutBucketLoggingOutput struct {
@@ -23399,6 +24310,20 @@ func (s *PutBucketMetricsConfigurationInput) SetMetricsConfiguration(v *MetricsC
 	return s
 }
 
+func (s *PutBucketMetricsConfigurationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketMetricsConfigurationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type PutBucketMetricsConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -23481,6 +24406,20 @@ func (s *PutBucketNotificationConfigurationInput) SetNotificationConfiguration(v
 	return s
 }
 
+func (s *PutBucketNotificationConfigurationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketNotificationConfigurationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type PutBucketNotificationConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -23555,6 +24494,20 @@ func (s *PutBucketNotificationInput) getBucket() (v string) {
 func (s *PutBucketNotificationInput) SetNotificationConfiguration(v *NotificationConfigurationDeprecated) *PutBucketNotificationInput {
 	s.NotificationConfiguration = v
 	return s
+}
+
+func (s *PutBucketNotificationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketNotificationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type PutBucketNotificationOutput struct {
@@ -23641,6 +24594,20 @@ func (s *PutBucketPolicyInput) SetConfirmRemoveSelfBucketAccess(v bool) *PutBuck
 func (s *PutBucketPolicyInput) SetPolicy(v string) *PutBucketPolicyInput {
 	s.Policy = &v
 	return s
+}
+
+func (s *PutBucketPolicyInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketPolicyInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type PutBucketPolicyOutput struct {
@@ -23733,6 +24700,20 @@ func (s *PutBucketReplicationInput) SetToken(v string) *PutBucketReplicationInpu
 	return s
 }
 
+func (s *PutBucketReplicationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketReplicationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type PutBucketReplicationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -23814,6 +24795,20 @@ func (s *PutBucketRequestPaymentInput) SetRequestPaymentConfiguration(v *Request
 	return s
 }
 
+func (s *PutBucketRequestPaymentInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketRequestPaymentInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type PutBucketRequestPaymentOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -23893,6 +24888,20 @@ func (s *PutBucketTaggingInput) getBucket() (v string) {
 func (s *PutBucketTaggingInput) SetTagging(v *Tagging) *PutBucketTaggingInput {
 	s.Tagging = v
 	return s
+}
+
+func (s *PutBucketTaggingInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketTaggingInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type PutBucketTaggingOutput struct {
@@ -23981,6 +24990,20 @@ func (s *PutBucketVersioningInput) SetVersioningConfiguration(v *VersioningConfi
 	return s
 }
 
+func (s *PutBucketVersioningInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketVersioningInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type PutBucketVersioningOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -24060,6 +25083,20 @@ func (s *PutBucketWebsiteInput) getBucket() (v string) {
 func (s *PutBucketWebsiteInput) SetWebsiteConfiguration(v *WebsiteConfiguration) *PutBucketWebsiteInput {
 	s.WebsiteConfiguration = v
 	return s
+}
+
+func (s *PutBucketWebsiteInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketWebsiteInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type PutBucketWebsiteOutput struct {
@@ -24230,6 +25267,20 @@ func (s *PutObjectAclInput) SetRequestPayer(v string) *PutObjectAclInput {
 func (s *PutObjectAclInput) SetVersionId(v string) *PutObjectAclInput {
 	s.VersionId = &v
 	return s
+}
+
+func (s *PutObjectAclInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutObjectAclInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type PutObjectAclOutput struct {
@@ -24635,6 +25686,20 @@ func (s *PutObjectInput) SetWebsiteRedirectLocation(v string) *PutObjectInput {
 	return s
 }
 
+func (s *PutObjectInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutObjectInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type PutObjectLegalHoldInput struct {
 	_ struct{} `locationName:"PutObjectLegalHoldRequest" type:"structure" payload:"LegalHold"`
 
@@ -24729,6 +25794,20 @@ func (s *PutObjectLegalHoldInput) SetRequestPayer(v string) *PutObjectLegalHoldI
 func (s *PutObjectLegalHoldInput) SetVersionId(v string) *PutObjectLegalHoldInput {
 	s.VersionId = &v
 	return s
+}
+
+func (s *PutObjectLegalHoldInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutObjectLegalHoldInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type PutObjectLegalHoldOutput struct {
@@ -24831,6 +25910,20 @@ func (s *PutObjectLockConfigurationInput) SetRequestPayer(v string) *PutObjectLo
 func (s *PutObjectLockConfigurationInput) SetToken(v string) *PutObjectLockConfigurationInput {
 	s.Token = &v
 	return s
+}
+
+func (s *PutObjectLockConfigurationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutObjectLockConfigurationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type PutObjectLockConfigurationOutput struct {
@@ -25074,6 +26167,20 @@ func (s *PutObjectRetentionInput) SetVersionId(v string) *PutObjectRetentionInpu
 	return s
 }
 
+func (s *PutObjectRetentionInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutObjectRetentionInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type PutObjectRetentionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -25191,6 +26298,20 @@ func (s *PutObjectTaggingInput) SetVersionId(v string) *PutObjectTaggingInput {
 	return s
 }
 
+func (s *PutObjectTaggingInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutObjectTaggingInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type PutObjectTaggingOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -25279,6 +26400,20 @@ func (s *PutPublicAccessBlockInput) getBucket() (v string) {
 func (s *PutPublicAccessBlockInput) SetPublicAccessBlockConfiguration(v *PublicAccessBlockConfiguration) *PutPublicAccessBlockInput {
 	s.PublicAccessBlockConfiguration = v
 	return s
+}
+
+func (s *PutPublicAccessBlockInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutPublicAccessBlockInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type PutPublicAccessBlockOutput struct {
@@ -26206,6 +27341,20 @@ func (s *RestoreObjectInput) SetVersionId(v string) *RestoreObjectInput {
 	return s
 }
 
+func (s *RestoreObjectInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *RestoreObjectInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type RestoreObjectOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -27033,6 +28182,20 @@ func (s *SelectObjectContentInput) SetSSECustomerKeyMD5(v string) *SelectObjectC
 func (s *SelectObjectContentInput) SetScanRange(v *ScanRange) *SelectObjectContentInput {
 	s.ScanRange = v
 	return s
+}
+
+func (s *SelectObjectContentInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *SelectObjectContentInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type SelectObjectContentOutput struct {
@@ -28156,6 +29319,20 @@ func (s *UploadPartCopyInput) SetUploadId(v string) *UploadPartCopyInput {
 	return s
 }
 
+func (s *UploadPartCopyInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *UploadPartCopyInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
 type UploadPartCopyOutput struct {
 	_ struct{} `type:"structure" payload:"CopyPartResult"`
 
@@ -28416,6 +29593,20 @@ func (s *UploadPartInput) SetSSECustomerKeyMD5(v string) *UploadPartInput {
 func (s *UploadPartInput) SetUploadId(v string) *UploadPartInput {
 	s.UploadId = &v
 	return s
+}
+
+func (s *UploadPartInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *UploadPartInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
 }
 
 type UploadPartOutput struct {

@@ -31,8 +31,8 @@ func TestInteg_SelectObjectContent(t *testing.T) {
 	// selected.
 	putTestContent(t, bytes.NewReader(buf), keyName)
 
-	resp, err := svc.SelectObjectContent(&s3.SelectObjectContentInput{
-		Bucket:         bucketName,
+	resp, err := s3Svc.SelectObjectContent(&s3.SelectObjectContentInput{
+		Bucket:         &integMetadata.Buckets.Source.Name,
 		Key:            &keyName,
 		Expression:     aws.String("Select * from S3Object"),
 		ExpressionType: aws.String(s3.ExpressionTypeSql),
@@ -160,8 +160,8 @@ func TestInteg_SelectObjectContent_Error(t *testing.T) {
 
 	putTestContent(t, bytes.NewReader(buf), keyName)
 
-	resp, err := svc.SelectObjectContent(&s3.SelectObjectContentInput{
-		Bucket:         bucketName,
+	resp, err := s3Svc.SelectObjectContent(&s3.SelectObjectContentInput{
+		Bucket:         &integMetadata.Buckets.Source.Name,
 		Key:            &keyName,
 		Expression:     aws.String("SELECT name FROM S3Object WHERE cast(number as int) < 1"),
 		ExpressionType: aws.String(s3.ExpressionTypeSql),
@@ -219,8 +219,8 @@ gopher,0
 	putTestContent(t, strings.NewReader(buf), keyName)
 
 	// Make the Select Object Content API request using the object uploaded.
-	resp, err := svc.SelectObjectContent(&s3.SelectObjectContentInput{
-		Bucket:         bucketName,
+	resp, err := s3Svc.SelectObjectContent(&s3.SelectObjectContentInput{
+		Bucket:         &integMetadata.Buckets.Source.Name,
 		Key:            &keyName,
 		Expression:     aws.String("SELECT name FROM S3Object WHERE cast(number as int) < 1"),
 		ExpressionType: aws.String(s3.ExpressionTypeSql),
