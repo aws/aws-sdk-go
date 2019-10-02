@@ -9,3 +9,4 @@
   * Fixes incorrect modifications to the previous token value of the skipper. Adds checks for cases where a skipped statement should be marked as complete and not be ignored.
   * Adds tests for nested and empty field value parsing, along with tests suggested in [#2801](https://github.com/aws/aws-sdk-go/pull/2801)
   * Fixes [#2800](https://github.com/aws/aws-sdk-go/issues/2800)
+* `service/dynamodb/dynamodbattribute`: Fixes a panic when decoding into a map with a key string type alias. ([#2870](https://github.com/aws/aws-sdk-go/pull/2870))
