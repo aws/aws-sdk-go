@@ -1,4 +1,4 @@
-// +build integration,perftest
+// +build go1.13,integration,perftest
 
 package main
 
@@ -13,12 +13,15 @@ import (
 )
 
 type Config struct {
-	Bucket     string
-	Size       int64
-	LogVerbose bool
+	Bucket         string
+	Size           int64
+	Key            string
+	LogVerbose     bool
+	UploadPartSize int64
 
-	SDK    SDKConfig
-	Client ClientConfig
+	SDK      SDKConfig
+	Client   ClientConfig
+	Profiler Profiler
 }
 
 func (c *Config) SetupFlags(prefix string, flagset *flag.FlagSet) {
@@ -26,17 +29,20 @@ func (c *Config) SetupFlags(prefix string, flagset *flag.FlagSet) {
 		"The S3 bucket `name` to download the object from.")
 	flagset.Int64Var(&c.Size, "size", 0,
 		"The S3 object size in bytes to be first uploaded then downloaded")
+	flagset.StringVar(&c.Key, "key", "", "The S3 object key to download")
 	flagset.BoolVar(&c.LogVerbose, "verbose", false,
 		"The output log will include verbose request information")
+	flagset.Int64Var(&c.UploadPartSize, "upload-part-size", 0, "the upload part size when uploading a file to s3")
 
 	c.SDK.SetupFlags(prefix, flagset)
 	c.Client.SetupFlags(prefix, flagset)
+	c.Profiler.SetupFlags(prefix, flagset)
 }
 
 func (c *Config) Validate() error {
 	var errs Errors
 
-	if len(c.Bucket) == 0 || c.Size <= 0 {
+	if len(c.Bucket) == 0 || (c.Size <= 0 && len(c.Key) == 0) {
 		errs = append(errs, fmt.Errorf("bucket and filename/size are required"))
 	}
 
@@ -79,6 +85,10 @@ type ClientConfig struct {
 
 	MaxIdleConns        int
 	MaxIdleConnsPerHost int
+
+	// Go 1.13
+	ReadBufferSize  int
+	WriteBufferSize int
 }
 
 func (c *ClientConfig) SetupFlags(prefix string, flagset *flag.FlagSet) {
@@ -94,6 +104,9 @@ func (c *ClientConfig) SetupFlags(prefix string, flagset *flag.FlagSet) {
 
 	flagset.IntVar(&c.MaxIdleConnsPerHost, prefix+"idle-conns-host", http.DefaultMaxIdleConnsPerHost,
 		"Specifies max idle connection pool per host, will be truncated by idle-conns.")
+
+	flagset.IntVar(&c.ReadBufferSize, prefix+"read-buffer", defTR.ReadBufferSize, "size of the transport read buffer used")
+	flagset.IntVar(&c.WriteBufferSize, prefix+"writer-buffer", defTR.WriteBufferSize, "size of the transport write buffer used")
 
 	c.Timeouts.SetupFlags(prefix, flagset)
 }
