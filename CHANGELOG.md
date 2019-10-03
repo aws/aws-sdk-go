@@ -1,3 +1,18 @@
+Release v1.25.5 (2019-10-03)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service documentation and examples
+* `service/devicefarm`: Updates service documentation and examples
+  * Documentation updates for devicefarm
+* `service/ec2`: Updates service API and documentation
+  * This release allows customers to purchase regional EC2 RIs on a future date.
+* `service/es`: Updates service API and documentation
+  * Amazon Elasticsearch Service now supports configuring additional options for domain endpoint, such as whether to require HTTPS for all traffic.
+
+### SDK Bugs
+* `service/dynamodb/dynamodbattribute`: Fixes a panic when decoding into a map with a key string type alias. ([#2870](https://github.com/aws/aws-sdk-go/pull/2870))
+
 Release v1.25.4 (2019-10-02)
 ===
 

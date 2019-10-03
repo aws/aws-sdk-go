@@ -948,6 +948,15 @@
       },
       "input":{"shape":"DeletePlacementGroupRequest"}
     },
+    "DeleteQueuedReservedInstances":{
+      "name":"DeleteQueuedReservedInstances",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteQueuedReservedInstancesRequest"},
+      "output":{"shape":"DeleteQueuedReservedInstancesResult"}
+    },
     "DeleteRoute":{
       "name":"DeleteRoute",
       "http":{
@@ -7678,6 +7687,60 @@
         }
       }
     },
+    "DeleteQueuedReservedInstancesError":{
+      "type":"structure",
+      "members":{
+        "Code":{
+          "shape":"DeleteQueuedReservedInstancesErrorCode",
+          "locationName":"code"
+        },
+        "Message":{
+          "shape":"String",
+          "locationName":"message"
+        }
+      }
+    },
+    "DeleteQueuedReservedInstancesErrorCode":{
+      "type":"string",
+      "enum":[
+        "reserved-instances-id-invalid",
+        "reserved-instances-not-in-queued-state",
+        "unexpected-error"
+      ]
+    },
+    "DeleteQueuedReservedInstancesIdList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"item"
+      },
+      "max":100,
+      "min":1
+    },
+    "DeleteQueuedReservedInstancesRequest":{
+      "type":"structure",
+      "required":["ReservedInstancesIds"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "ReservedInstancesIds":{
+          "shape":"DeleteQueuedReservedInstancesIdList",
+          "locationName":"ReservedInstancesId"
+        }
+      }
+    },
+    "DeleteQueuedReservedInstancesResult":{
+      "type":"structure",
+      "members":{
+        "SuccessfulQueuedPurchaseDeletions":{
+          "shape":"SuccessfulQueuedPurchaseDeletionSet",
+          "locationName":"successfulQueuedPurchaseDeletionSet"
+        },
+        "FailedQueuedPurchaseDeletions":{
+          "shape":"FailedQueuedPurchaseDeletionSet",
+          "locationName":"failedQueuedPurchaseDeletionSet"
+        }
+      }
+    },
     "DeleteRouteRequest":{
       "type":"structure",
       "required":["RouteTableId"],
@@ -12486,6 +12549,26 @@
           "shape":"String",
           "locationName":"s3Location"
         }
+      }
+    },
+    "FailedQueuedPurchaseDeletion":{
+      "type":"structure",
+      "members":{
+        "Error":{
+          "shape":"DeleteQueuedReservedInstancesError",
+          "locationName":"error"
+        },
+        "ReservedInstancesId":{
+          "shape":"String",
+          "locationName":"reservedInstancesId"
+        }
+      }
+    },
+    "FailedQueuedPurchaseDeletionSet":{
+      "type":"list",
+      "member":{
+        "shape":"FailedQueuedPurchaseDeletion",
+        "locationName":"item"
       }
     },
     "Filter":{
@@ -19146,7 +19229,8 @@
         "LimitPrice":{
           "shape":"ReservedInstanceLimitPrice",
           "locationName":"limitPrice"
-        }
+        },
+        "PurchaseTime":{"shape":"DateTime"}
       }
     },
     "PurchaseReservedInstancesOfferingResult":{
@@ -20024,7 +20108,9 @@
         "payment-pending",
         "active",
         "payment-failed",
-        "retired"
+        "retired",
+        "queued",
+        "queued-deleted"
       ]
     },
     "ReservedInstances":{
@@ -22801,6 +22887,22 @@
       "type":"list",
       "member":{
         "shape":"SuccessfulInstanceCreditSpecificationItem",
+        "locationName":"item"
+      }
+    },
+    "SuccessfulQueuedPurchaseDeletion":{
+      "type":"structure",
+      "members":{
+        "ReservedInstancesId":{
+          "shape":"String",
+          "locationName":"reservedInstancesId"
+        }
+      }
+    },
+    "SuccessfulQueuedPurchaseDeletionSet":{
+      "type":"list",
+      "member":{
+        "shape":"SuccessfulQueuedPurchaseDeletion",
         "locationName":"item"
       }
     },
