@@ -1,4 +1,4 @@
-// +build integration,perftest
+// +build go1.13,integration,perftest
 
 package main
 
@@ -24,6 +24,9 @@ func NewClient(cfg ClientConfig) *http.Client {
 		TLSHandshakeTimeout:   cfg.Timeouts.TLSHandshake,
 		ExpectContinueTimeout: cfg.Timeouts.ExpectContinue,
 		ResponseHeaderTimeout: cfg.Timeouts.ResponseHeader,
+
+		ReadBufferSize:  cfg.ReadBufferSize,
+		WriteBufferSize: cfg.WriteBufferSize,
 	}
 
 	return &http.Client{

@@ -1,4 +1,4 @@
-// +build integration,perftest
+// +build go1.13,integration,perftest
 
 package main
 
@@ -8,6 +8,10 @@ import (
 	"io"
 	"log"
 	"os"
+	"path/filepath"
+	"runtime"
+	"runtime/pprof"
+	"runtime/trace"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -15,7 +19,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/awstesting/integration"
-	"github.com/aws/aws-sdk-go/internal/sdkio"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 )
@@ -27,10 +30,31 @@ func main() {
 
 	log.SetOutput(os.Stderr)
 
-	log.Printf("uploading %s file to s3://%s\n", integration.SizeToName(int(config.Size)), config.Bucket)
-	key, err := setupDownloadTest(config.Bucket, config.Size)
-	if err != nil {
-		log.Fatalf("failed to setup download testing: %v", err)
+	config.Profiler.Start()
+	defer config.Profiler.Stop()
+
+	var err error
+	key := config.Key
+	size := config.Size
+	if len(key) == 0 {
+		uploadPartSize := getUploadPartSize(size, config.UploadPartSize, config.SDK.PartSize)
+		log.Printf("uploading %s file to s3://%s\n", integration.SizeToName(int(config.Size)), config.Bucket)
+		key, err = setupDownloadTest(config.Bucket, config.Size, uploadPartSize)
+		if err != nil {
+			log.Fatalf("failed to setup download testing: %v", err)
+		}
+
+		defer func() {
+			log.Printf("cleaning up s3://%s/%s\n", config.Bucket, key)
+			if err = teardownDownloadTest(config.Bucket, key); err != nil {
+				log.Fatalf("failed to teardwn test artifacts: %v", err)
+			}
+		}()
+	} else {
+		size, err = getObjectSize(config.Bucket, key)
+		if err != nil {
+			log.Fatalf("failed to get object size: %v", err)
+		}
 	}
 
 	traces := make(chan *RequestTrace, config.SDK.Concurrency)
@@ -52,15 +76,10 @@ func main() {
 
 	dur := time.Since(start)
 	log.Printf("Download finished, Size: %d, Dur: %s, Throughput: %.5f GB/s",
-		config.Size, dur, (float64(config.Size)/(float64(dur)/float64(time.Second)))/float64(1e9),
+		size, dur, (float64(size)/(float64(dur)/float64(time.Second)))/float64(1e9),
 	)
 
 	<-metricReportDone
-
-	log.Printf("cleaning up s3://%s/%s\n", config.Bucket, key)
-	if err = teardownDownloadTest(config.Bucket, key); err != nil {
-		log.Fatalf("failed to teardwn test artifacts: %v", err)
-	}
 }
 
 func parseCommandLine() {
@@ -76,9 +95,9 @@ func parseCommandLine() {
 	}
 }
 
-func setupDownloadTest(bucket string, size int64) (key string, err error) {
+func setupDownloadTest(bucket string, fileSize, partSize int64) (key string, err error) {
 	er := &awstesting.EndlessReader{}
-	lr := io.LimitReader(er, size)
+	lr := io.LimitReader(er, fileSize)
 
 	key = integration.UniqueID()
 
@@ -88,7 +107,8 @@ func setupDownloadTest(bucket string, size int64) (key string, err error) {
 	}))
 
 	uploader := s3manager.NewUploader(sess, func(u *s3manager.Uploader) {
-		u.PartSize = 100 * sdkio.MebiByte
+		u.PartSize = partSize
+		u.Concurrency = runtime.NumCPU() * 2
 		u.RequestOptions = append(u.RequestOptions, func(r *request.Request) {
 			if r.Operation.Name != "UploadPart" && r.Operation.Name != "PutObject" {
 				return
@@ -215,4 +235,100 @@ func newDownloader(clientConfig ClientConfig, sdkConfig SDKConfig, options ...re
 	})
 
 	return downloader
+}
+
+func getObjectSize(bucket, key string) (int64, error) {
+	sess := session.Must(session.NewSession())
+	svc := s3.New(sess)
+	resp, err := svc.HeadObject(&s3.HeadObjectInput{
+		Bucket: &bucket,
+		Key:    &key,
+	})
+	if err != nil {
+		return 0, err
+	}
+
+	return *resp.ContentLength, nil
+}
+
+type Profiler struct {
+	outputDir string
+
+	enableCPU   bool
+	enableTrace bool
+
+	cpuFile   *os.File
+	traceFile *os.File
+}
+
+func (p *Profiler) SetupFlags(prefix string, flagSet *flag.FlagSet) {
+	prefix += "profiler."
+
+	flagSet.StringVar(&p.outputDir, prefix+"output-dir", os.TempDir(), "output directory to write profiling data")
+	flagSet.BoolVar(&p.enableCPU, prefix+"cpu", false, "enable CPU profiling")
+	flagSet.BoolVar(&p.enableTrace, prefix+"trace", false, "enable tracing")
+}
+
+func (p *Profiler) Start() {
+	var err error
+
+	uuid := integration.UniqueID()
+	if p.enableCPU {
+		p.cpuFile, err = p.createFile(uuid, "cpu")
+		if err != nil {
+			panic(fmt.Sprintf("failed to create cpu profile file: %v", err))
+		}
+		err = pprof.StartCPUProfile(p.cpuFile)
+		if err != nil {
+			panic(fmt.Sprintf("failed to start cpu profile: %v", err))
+		}
+	}
+	if p.enableTrace {
+		p.traceFile, err = p.createFile(uuid, "trace")
+		if err != nil {
+			panic(fmt.Sprintf("failed to create trace file: %v", err))
+		}
+		err = trace.Start(p.traceFile)
+		if err != nil {
+			panic(fmt.Sprintf("failed to tracing: %v", err))
+		}
+	}
+}
+
+func (p *Profiler) logAndCloseFile(profile string, file *os.File) {
+	info, err := file.Stat()
+	if err != nil {
+		log.Printf("failed to stat %s profile: %v", profile, err)
+	} else {
+		log.Printf("writing %s profile to: %v", profile, filepath.Join(p.outputDir, info.Name()))
+	}
+	file.Close()
+}
+
+func (p *Profiler) Stop() {
+	if p.enableCPU {
+		pprof.StopCPUProfile()
+		p.logAndCloseFile("cpu", p.cpuFile)
+	}
+	if p.enableTrace {
+		trace.Stop()
+		p.logAndCloseFile("trace", p.traceFile)
+	}
+}
+
+func (p *Profiler) createFile(prefix, name string) (*os.File, error) {
+	return os.OpenFile(filepath.Join(p.outputDir, prefix+"."+name+".profile"), os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0666)
+}
+
+func getUploadPartSize(fileSize, uploadPartSize, downloadPartSize int64) int64 {
+	partSize := uploadPartSize
+
+	if partSize == 0 {
+		partSize = downloadPartSize
+	}
+	if fileSize/partSize > s3manager.MaxUploadParts {
+		partSize = (fileSize / s3manager.MaxUploadParts) + 1
+	}
+
+	return partSize
 }
