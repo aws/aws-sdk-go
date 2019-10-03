@@ -484,6 +484,10 @@ type EC2API interface {
 	DeletePlacementGroupWithContext(aws.Context, *ec2.DeletePlacementGroupInput, ...request.Option) (*ec2.DeletePlacementGroupOutput, error)
 	DeletePlacementGroupRequest(*ec2.DeletePlacementGroupInput) (*request.Request, *ec2.DeletePlacementGroupOutput)
 
+	DeleteQueuedReservedInstances(*ec2.DeleteQueuedReservedInstancesInput) (*ec2.DeleteQueuedReservedInstancesOutput, error)
+	DeleteQueuedReservedInstancesWithContext(aws.Context, *ec2.DeleteQueuedReservedInstancesInput, ...request.Option) (*ec2.DeleteQueuedReservedInstancesOutput, error)
+	DeleteQueuedReservedInstancesRequest(*ec2.DeleteQueuedReservedInstancesInput) (*request.Request, *ec2.DeleteQueuedReservedInstancesOutput)
+
 	DeleteRoute(*ec2.DeleteRouteInput) (*ec2.DeleteRouteOutput, error)
 	DeleteRouteWithContext(aws.Context, *ec2.DeleteRouteInput, ...request.Option) (*ec2.DeleteRouteOutput, error)
 	DeleteRouteRequest(*ec2.DeleteRouteInput) (*request.Request, *ec2.DeleteRouteOutput)

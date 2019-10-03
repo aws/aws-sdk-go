@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<fullname>Amazon Elasticsearch Configuration Service</fullname> <p>Use the Amazon Elasticsearch configuration API to create, configure, and manage Elasticsearch domains.</p> <p>The endpoint for configuration service requests is region-specific: es.<i>region</i>.amazonaws.com. For example, es.us-east-1.amazonaws.com. For a current list of supported regions and endpoints, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticsearch-service-regions\" target=\"_blank\">Regions and Endpoints</a>.</p>",
+  "service": "<fullname>Amazon Elasticsearch Configuration Service</fullname> <p>Use the Amazon Elasticsearch Configuration API to create, configure, and manage Elasticsearch domains.</p> <p>For sample code that uses the Configuration API, see the <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-configuration-samples.html\">Amazon Elasticsearch Service Developer Guide</a>. The guide also contains <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-request-signing.html\">sample code for sending signed HTTP requests to the Elasticsearch APIs</a>.</p> <p>The endpoint for configuration service requests is region-specific: es.<i>region</i>.amazonaws.com. For example, es.us-east-1.amazonaws.com. For a current list of supported regions and endpoints, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticsearch-service-regions\" target=\"_blank\">Regions and Endpoints</a>.</p>",
   "operations": {
     "AddTags": "<p>Attaches tags to an existing Elasticsearch domain. Tags are a set of case-sensitive key value pairs. An Elasticsearch domain may have up to 10 tags. See <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-awsresorcetagging\" target=\"_blank\"> Tagging Amazon Elasticsearch Service Domains for more information.</a></p>",
     "CancelElasticsearchServiceSoftwareUpdate": "<p>Cancels a scheduled service software update for an Amazon ES domain. You can only perform this operation before the <code>AutomatedUpdateDate</code> and when the <code>UpdateStatus</code> is in the <code>PENDING_UPDATE</code> state.</p>",
@@ -83,6 +83,7 @@
       "base": null,
       "refs": {
         "CognitoOptions$Enabled": "<p>Specifies the option to enable Cognito for Kibana authentication.</p>",
+        "DomainEndpointOptions$EnforceHTTPS": "<p>Specify if only HTTPS endpoint should be enabled for the Elasticsearch domain.</p>",
         "EBSOptions$EBSEnabled": "<p>Specifies whether EBS-based storage is enabled.</p>",
         "ElasticsearchClusterConfig$DedicatedMasterEnabled": "<p>A boolean value to indicate whether a dedicated master node is enabled. See <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-dedicatedmasternodes\" target=\"_blank\">About Dedicated Master Nodes</a> for more information.</p>",
         "ElasticsearchClusterConfig$ZoneAwarenessEnabled": "<p>A boolean value to indicate whether zone awareness is enabled. See <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-zoneawareness\" target=\"_blank\">About Zone Awareness</a> for more information.</p>",
@@ -240,6 +241,21 @@
       "refs": {
       }
     },
+    "DomainEndpointOptions": {
+      "base": "<p>Options to configure endpoint for the Elasticsearch domain.</p>",
+      "refs": {
+        "CreateElasticsearchDomainRequest$DomainEndpointOptions": "<p>Options to specify configuration that will be applied to the domain endpoint.</p>",
+        "DomainEndpointOptionsStatus$Options": "<p>Options to configure endpoint for the Elasticsearch domain.</p>",
+        "ElasticsearchDomainStatus$DomainEndpointOptions": "<p>The current status of the Elasticsearch domain's endpoint options.</p>",
+        "UpdateElasticsearchDomainConfigRequest$DomainEndpointOptions": "<p>Options to specify configuration that will be applied to the domain endpoint.</p>"
+      }
+    },
+    "DomainEndpointOptionsStatus": {
+      "base": "<p>The configured endpoint options for the domain and their current status.</p>",
+      "refs": {
+        "ElasticsearchDomainConfig$DomainEndpointOptions": "<p>Specifies the <code>DomainEndpointOptions</code> for the Elasticsearch domain.</p>"
+      }
+    },
     "DomainId": {
       "base": "<p>Unique identifier for an Elasticsearch domain.</p>",
       "refs": {
@@ -262,7 +278,7 @@
       "base": "<p>The name of an Elasticsearch domain. Domain names are unique across the domains owned by an account within an AWS region. Domain names start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).</p>",
       "refs": {
         "CancelElasticsearchServiceSoftwareUpdateRequest$DomainName": "<p>The name of the domain that you want to stop the latest service software update on.</p>",
-        "CreateElasticsearchDomainRequest$DomainName": "<p>The name of the Elasticsearch domain that you are creating. Domain names are unique across the domains owned by an account within an AWS region. Domain names must start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).</p>",
+        "CreateElasticsearchDomainRequest$DomainName": "<p>The name of the Elasticsearch domain that you are creating. Domain names are unique across the domains owned by an account within an AWS region. Domain names must start with a lowercase letter and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).</p>",
         "DeleteElasticsearchDomainRequest$DomainName": "<p>The name of the Elasticsearch domain that you want to permanently delete.</p>",
         "DescribeElasticsearchDomainConfigRequest$DomainName": "<p>The Elasticsearch domain that you want to get information about.</p>",
         "DescribeElasticsearchDomainRequest$DomainName": "<p>The name of the Elasticsearch domain for which you want information.</p>",
@@ -697,6 +713,7 @@
         "AccessPoliciesStatus$Status": "<p>The status of the access policy for the Elasticsearch domain. See <code>OptionStatus</code> for the status information that's included. </p>",
         "AdvancedOptionsStatus$Status": "<p> Specifies the status of <code>OptionStatus</code> for advanced options for the specified Elasticsearch domain.</p>",
         "CognitoOptionsStatus$Status": "<p>Specifies the status of the Cognito options for the specified Elasticsearch domain.</p>",
+        "DomainEndpointOptionsStatus$Status": "<p>The status of the endpoint options for the Elasticsearch domain. See <code>OptionStatus</code> for the status information that's included. </p>",
         "EBSOptionsStatus$Status": "<p> Specifies the status of the EBS options for the specified Elasticsearch domain.</p>",
         "ElasticsearchClusterConfigStatus$Status": "<p> Specifies the status of the configuration for the specified Elasticsearch domain.</p>",
         "ElasticsearchVersionStatus$Status": "<p> Specifies the status of the Elasticsearch version options for the specified Elasticsearch domain.</p>",
@@ -910,6 +927,12 @@
         "VPCDerivedInfo$SecurityGroupIds": "<p>Specifies the security groups for VPC endpoint.</p>",
         "VPCOptions$SubnetIds": "<p>Specifies the subnets for VPC endpoint.</p>",
         "VPCOptions$SecurityGroupIds": "<p>Specifies the security groups for VPC endpoint.</p>"
+      }
+    },
+    "TLSSecurityPolicy": {
+      "base": null,
+      "refs": {
+        "DomainEndpointOptions$TLSSecurityPolicy": "<p>Specify the TLS security policy that needs to be applied to the HTTPS endpoint of Elasticsearch domain. <br/> It can be one of the following values: <ul> <li><b>Policy-Min-TLS-1-0-2019-07: </b> TLS security policy which supports TLSv1.0 and higher.</li> <li><b>Policy-Min-TLS-1-2-2019-07: </b> TLS security policy which supports only TLSv1.2</li> </ul> </p>"
       }
     },
     "Tag": {

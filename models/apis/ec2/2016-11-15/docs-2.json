@@ -108,6 +108,7 @@
     "DeleteNetworkInterface": "<p>Deletes the specified network interface. You must detach the network interface before you can delete it.</p>",
     "DeleteNetworkInterfacePermission": "<p>Deletes a permission for a network interface. By default, you cannot delete the permission if the account for which you're removing the permission has attached the network interface to an instance. However, you can force delete the permission, regardless of any attachment.</p>",
     "DeletePlacementGroup": "<p>Deletes the specified placement group. You must terminate all instances in the placement group before you can delete the placement group. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html\">Placement Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "DeleteQueuedReservedInstances": "<p>Deletes the queued purchases for the specified Reserved Instances.</p>",
     "DeleteRoute": "<p>Deletes the specified route from the specified route table.</p>",
     "DeleteRouteTable": "<p>Deletes the specified route table. You must disassociate the route table from any subnets before you can delete it. You can't delete the main route table.</p>",
     "DeleteSecurityGroup": "<p>Deletes a security group.</p> <p>If you attempt to delete a security group that is associated with an instance, or is referenced by another security group, the operation fails with <code>InvalidGroup.InUse</code> in EC2-Classic or <code>DependencyViolation</code> in EC2-VPC.</p>",
@@ -318,7 +319,7 @@
     "MoveAddressToVpc": "<p>Moves an Elastic IP address from the EC2-Classic platform to the EC2-VPC platform. The Elastic IP address must be allocated to your account for more than 24 hours, and it must not be associated with an instance. After the Elastic IP address is moved, it is no longer available for use in the EC2-Classic platform, unless you move it back using the <a>RestoreAddressToClassic</a> request. You cannot move an Elastic IP address that was originally allocated for use in the EC2-VPC platform to the EC2-Classic platform. </p>",
     "ProvisionByoipCidr": "<p>Provisions an address range for use with your AWS resources through bring your own IP addresses (BYOIP) and creates a corresponding address pool. After the address range is provisioned, it is ready to be advertised using <a>AdvertiseByoipCidr</a>.</p> <p>AWS verifies that you own the address range and are authorized to advertise it. You must ensure that the address range is registered to you and that you created an RPKI ROA to authorize Amazon ASNs 16509 and 14618 to advertise the address range. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html\">Bring Your Own IP Addresses (BYOIP)</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Provisioning an address range is an asynchronous operation, so the call returns immediately, but the address range is not ready to use until its status changes from <code>pending-provision</code> to <code>provisioned</code>. To monitor the status of an address range, use <a>DescribeByoipCidrs</a>. To allocate an Elastic IP address from your address pool, use <a>AllocateAddress</a> with either the specific address from the address pool or the ID of the address pool.</p>",
     "PurchaseHostReservation": "<p>Purchase a reservation with configurations that match those of your Dedicated Host. You must have active Dedicated Hosts in your account before you purchase a reservation. This action results in the specified reservation being purchased and charged to your account.</p>",
-    "PurchaseReservedInstancesOffering": "<p>Purchases a Reserved Instance for use with your account. With Reserved Instances, you pay a lower hourly rate compared to On-Demand instance pricing.</p> <p>Use <a>DescribeReservedInstancesOfferings</a> to get a list of Reserved Instance offerings that match your specifications. After you've purchased a Reserved Instance, you can check for your new Reserved Instance with <a>DescribeReservedInstances</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts-on-demand-reserved-instances.html\">Reserved Instances</a> and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html\">Reserved Instance Marketplace</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "PurchaseReservedInstancesOffering": "<p>Purchases a Reserved Instance for use with your account. With Reserved Instances, you pay a lower hourly rate compared to On-Demand instance pricing.</p> <p>Use <a>DescribeReservedInstancesOfferings</a> to get a list of Reserved Instance offerings that match your specifications. After you've purchased a Reserved Instance, you can check for your new Reserved Instance with <a>DescribeReservedInstances</a>.</p> <p>To queue a purchase for a future date and time, specify a purchase time. If you do not specify a purchase time, the default is the current time.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts-on-demand-reserved-instances.html\">Reserved Instances</a> and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html\">Reserved Instance Marketplace</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "PurchaseScheduledInstances": "<p>Purchases the Scheduled Instances with the specified schedule.</p> <p>Scheduled Instances enable you to purchase Amazon EC2 compute capacity by the hour for a one-year term. Before you can purchase a Scheduled Instance, you must call <a>DescribeScheduledInstanceAvailability</a> to check for available schedules and obtain a purchase token. After you purchase a Scheduled Instance, you must call <a>RunScheduledInstances</a> during each scheduled time period.</p> <p>After you purchase a Scheduled Instance, you can't cancel, modify, or resell your purchase.</p>",
     "RebootInstances": "<p>Requests a reboot of the specified instances. This operation is asynchronous; it only queues a request to reboot the specified instances. The operation succeeds if the instances are valid and belong to you. Requests to reboot terminated instances are ignored.</p> <p>If an instance does not cleanly shut down within four minutes, Amazon EC2 performs a hard reboot.</p> <p>For more information about troubleshooting, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-console.html\">Getting Console Output and Rebooting Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "RegisterImage": "<p>Registers an AMI. When you're creating an AMI, this is the final step you must complete before you can launch an instance from the AMI. For more information about creating AMIs, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami.html\">Creating Your Own AMIs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <note> <p>For Amazon EBS-backed instances, <a>CreateImage</a> creates and registers the AMI in a single request, so you don't have to register the AMI yourself.</p> </note> <p>You can also use <code>RegisterImage</code> to create an Amazon EBS-backed Linux AMI from a snapshot of a root device volume. You specify the snapshot using the block device mapping. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-launch-snapshot.html\">Launching a Linux Instance from a Backup</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>You can't register an image where a secondary (non-root) snapshot has AWS Marketplace product codes.</p> <p>Some Linux distributions, such as Red Hat Enterprise Linux (RHEL) and SUSE Linux Enterprise Server (SLES), use the EC2 billing product code associated with an AMI to verify the subscription status for package updates. Creating an AMI from an EBS snapshot does not maintain this billing code, and instances launched from such an AMI are not able to connect to package update infrastructure. If you purchase a Reserved Instance offering for one of these Linux distributions and launch instances using an AMI that does not contain the required billing code, your Reserved Instance is not applied to these instances.</p> <p>To create an AMI for operating systems that require a billing code, see <a>CreateImage</a>.</p> <p>If needed, you can deregister an AMI at any time. Any modifications you make to an AMI backed by an instance store volume invalidates its registration. If you make changes to an image, deregister the previous image and register the new image.</p>",
@@ -1072,6 +1073,7 @@
         "DeleteNetworkInterfacePermissionResult$Return": "<p>Returns <code>true</code> if the request succeeds, otherwise returns an error.</p>",
         "DeleteNetworkInterfaceRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeletePlacementGroupRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DeleteQueuedReservedInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteRouteRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteRouteTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeleteSecurityGroupRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1207,7 +1209,7 @@
         "DisassociateRouteTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisassociateTransitGatewayRouteTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DnsServersOptionsModifyStructure$Enabled": "<p>Indicates whether DNS servers should be used. Specify <code>False</code> to delete the existing DNS servers.</p>",
-        "EbsBlockDevice$DeleteOnTermination": "<p>Indicates whether the EBS volume is deleted on instance termination.</p>",
+        "EbsBlockDevice$DeleteOnTermination": "<p>Indicates whether the EBS volume is deleted on instance termination. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#preserving-volumes-on-termination\">Preserving Amazon EBS Volumes on Instance Termination</a> in the Amazon Elastic Compute Cloud User Guide.</p>",
         "EbsBlockDevice$Encrypted": "<p>Indicates whether the encryption state of an EBS volume is changed while being restored from a backing snapshot. The effect of setting the encryption state to <code>true</code> depends on the volume origin (new or from a snapshot), starting encryption state, ownership, and whether encryption by default is enabled. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-parameters\">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>In no case can you remove encryption from an encrypted volume.</p> <p>Encrypted volumes can only be attached to instances that support Amazon EBS encryption. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances\">Supported Instance Types</a>.</p>",
         "EbsInstanceBlockDevice$DeleteOnTermination": "<p>Indicates whether the volume is deleted on instance termination.</p>",
         "EbsInstanceBlockDeviceSpecification$DeleteOnTermination": "<p>Indicates whether the volume is deleted on instance termination.</p>",
@@ -2667,9 +2669,10 @@
         "NetworkInterfaceAttachment$AttachTime": "<p>The timestamp indicating when the attachment initiated.</p>",
         "ProvisionedBandwidth$ProvisionTime": "<p>Reserved. If you need to sustain traffic greater than the <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html\">documented limits</a>, contact us through the <a href=\"https://console.aws.amazon.com/support/home?\">Support Center</a>.</p>",
         "ProvisionedBandwidth$RequestTime": "<p>Reserved. If you need to sustain traffic greater than the <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html\">documented limits</a>, contact us through the <a href=\"https://console.aws.amazon.com/support/home?\">Support Center</a>.</p>",
+        "PurchaseReservedInstancesOfferingRequest$PurchaseTime": "<p>The time at which to purchase the Reserved Instance.</p>",
         "ReportInstanceStatusRequest$EndTime": "<p>The time at which the reported instance health state ended.</p>",
         "ReportInstanceStatusRequest$StartTime": "<p>The time at which the reported instance health state began.</p>",
-        "RequestSpotInstancesRequest$ValidFrom": "<p>The start date of the request. If this is a one-time request, the request becomes active at this date and time and remains active until all instances launch, the request expires, or the request is canceled. If the request is persistent, the request becomes active at this date and time and remains active until it expires or is canceled.</p>",
+        "RequestSpotInstancesRequest$ValidFrom": "<p>The start date of the request. If this is a one-time request, the request becomes active at this date and time and remains active until all instances launch, the request expires, or the request is canceled. If the request is persistent, the request becomes active at this date and time and remains active until it expires or is canceled.</p> <p>The specified start date and time cannot be equal to the current date and time. You must specify a start date and time that occurs after the current date and time.</p>",
         "RequestSpotInstancesRequest$ValidUntil": "<p>The end date of the request. If this is a one-time request, the request remains active until all instances launch, the request is canceled, or this date is reached. If the request is persistent, it remains active until it is canceled or this date is reached. The default end date is 7 days from the current date.</p>",
         "ReservedInstances$End": "<p>The time when the Reserved Instance expires.</p>",
         "ReservedInstances$Start": "<p>The date and time the Reserved Instance started.</p>",
@@ -2929,6 +2932,34 @@
       }
     },
     "DeletePlacementGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteQueuedReservedInstancesError": {
+      "base": "<p>Describes the error for a Reserved Instance whose queued purchase could not be deleted.</p>",
+      "refs": {
+        "FailedQueuedPurchaseDeletion$Error": "<p>The error.</p>"
+      }
+    },
+    "DeleteQueuedReservedInstancesErrorCode": {
+      "base": null,
+      "refs": {
+        "DeleteQueuedReservedInstancesError$Code": "<p>The error code.</p>"
+      }
+    },
+    "DeleteQueuedReservedInstancesIdList": {
+      "base": null,
+      "refs": {
+        "DeleteQueuedReservedInstancesRequest$ReservedInstancesIds": "<p>The IDs of the Reserved Instances.</p>"
+      }
+    },
+    "DeleteQueuedReservedInstancesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteQueuedReservedInstancesResult": {
       "base": null,
       "refs": {
       }
@@ -5009,6 +5040,18 @@
     "ExportTransitGatewayRoutesResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "FailedQueuedPurchaseDeletion": {
+      "base": "<p>Describes a Reserved Instance whose queued purchase was not deleted.</p>",
+      "refs": {
+        "FailedQueuedPurchaseDeletionSet$member": null
+      }
+    },
+    "FailedQueuedPurchaseDeletionSet": {
+      "base": null,
+      "refs": {
+        "DeleteQueuedReservedInstancesResult$FailedQueuedPurchaseDeletions": "<p>Information about the queued purchases that could not be deleted.</p>"
       }
     },
     "Filter": {
@@ -9892,6 +9935,8 @@
         "DeleteNetworkInterfacePermissionRequest$NetworkInterfacePermissionId": "<p>The ID of the network interface permission.</p>",
         "DeleteNetworkInterfaceRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "DeletePlacementGroupRequest$GroupName": "<p>The name of the placement group.</p>",
+        "DeleteQueuedReservedInstancesError$Message": "<p>The error message.</p>",
+        "DeleteQueuedReservedInstancesIdList$member": null,
         "DeleteRouteRequest$DestinationCidrBlock": "<p>The IPv4 CIDR range for the route. The value you specify must match the CIDR for the route exactly.</p>",
         "DeleteRouteRequest$DestinationIpv6CidrBlock": "<p>The IPv6 CIDR range for the route. The value you specify must match the CIDR for the route exactly.</p>",
         "DeleteRouteRequest$RouteTableId": "<p>The ID of the route table.</p>",
@@ -10184,6 +10229,7 @@
         "ExportTransitGatewayRoutesRequest$TransitGatewayRouteTableId": "<p>The ID of the route table.</p>",
         "ExportTransitGatewayRoutesRequest$S3Bucket": "<p>The name of the S3 bucket.</p>",
         "ExportTransitGatewayRoutesResult$S3Location": "<p>The URL of the exported file in Amazon S3. For example, s3://<i>bucket_name</i>/VPCTransitGateway/TransitGatewayRouteTables/<i>file_name</i>.</p>",
+        "FailedQueuedPurchaseDeletion$ReservedInstancesId": "<p>The ID of the Reserved Instance.</p>",
         "Filter$Name": "<p>The name of the filter. Filter names are case-sensitive.</p>",
         "FleetData$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p> <p>Constraints: Maximum 64 ASCII characters</p>",
         "FleetLaunchTemplateOverrides$MaxPrice": "<p>The maximum price per unit hour that you are willing to pay for a Spot Instance.</p>",
@@ -10974,6 +11020,7 @@
         "SubnetIpv6CidrBlockAssociation$AssociationId": "<p>The association ID for the CIDR block.</p>",
         "SubnetIpv6CidrBlockAssociation$Ipv6CidrBlock": "<p>The IPv6 CIDR block.</p>",
         "SuccessfulInstanceCreditSpecificationItem$InstanceId": "<p>The ID of the instance.</p>",
+        "SuccessfulQueuedPurchaseDeletion$ReservedInstancesId": "<p>The ID of the Reserved Instance.</p>",
         "Tag$Key": "<p>The key of the tag.</p> <p>Constraints: Tag keys are case-sensitive and accept a maximum of 127 Unicode characters. May not begin with <code>aws:</code>.</p>",
         "Tag$Value": "<p>The value of the tag.</p> <p>Constraints: Tag values are case-sensitive and accept a maximum of 255 Unicode characters.</p>",
         "TagDescription$Key": "<p>The tag key.</p>",
@@ -11206,6 +11253,18 @@
       "base": null,
       "refs": {
         "ModifyInstanceCreditSpecificationResult$SuccessfulInstanceCreditSpecifications": "<p>Information about the instances whose credit option for CPU usage was successfully modified.</p>"
+      }
+    },
+    "SuccessfulQueuedPurchaseDeletion": {
+      "base": "<p>Describes a Reserved Instance whose queued purchase was successfully deleted.</p>",
+      "refs": {
+        "SuccessfulQueuedPurchaseDeletionSet$member": null
+      }
+    },
+    "SuccessfulQueuedPurchaseDeletionSet": {
+      "base": null,
+      "refs": {
+        "DeleteQueuedReservedInstancesResult$SuccessfulQueuedPurchaseDeletions": "<p>Information about the queued purchases that were successfully deleted.</p>"
       }
     },
     "SummaryStatus": {
