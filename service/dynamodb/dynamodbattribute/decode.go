@@ -489,7 +489,8 @@ func (d *Decoder) decodeMap(avMap map[string]*dynamodb.AttributeValue, v reflect
 
 	if v.Kind() == reflect.Map {
 		for k, av := range avMap {
-			key := reflect.ValueOf(k)
+			key := reflect.New(v.Type().Key()).Elem()
+			key.SetString(k)
 			elem := reflect.New(v.Type().Elem()).Elem()
 			if err := d.decode(av, elem, tag{}); err != nil {
 				return err
