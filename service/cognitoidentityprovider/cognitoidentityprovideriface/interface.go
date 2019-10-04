@@ -385,6 +385,9 @@ type CognitoIdentityProviderAPI interface {
 	ListUsersWithContext(aws.Context, *cognitoidentityprovider.ListUsersInput, ...request.Option) (*cognitoidentityprovider.ListUsersOutput, error)
 	ListUsersRequest(*cognitoidentityprovider.ListUsersInput) (*request.Request, *cognitoidentityprovider.ListUsersOutput)
 
+	ListUsersPages(*cognitoidentityprovider.ListUsersInput, func(*cognitoidentityprovider.ListUsersOutput, bool) bool) error
+	ListUsersPagesWithContext(aws.Context, *cognitoidentityprovider.ListUsersInput, func(*cognitoidentityprovider.ListUsersOutput, bool) bool, ...request.Option) error
+
 	ListUsersInGroup(*cognitoidentityprovider.ListUsersInGroupInput) (*cognitoidentityprovider.ListUsersInGroupOutput, error)
 	ListUsersInGroupWithContext(aws.Context, *cognitoidentityprovider.ListUsersInGroupInput, ...request.Option) (*cognitoidentityprovider.ListUsersInGroupOutput, error)
 	ListUsersInGroupRequest(*cognitoidentityprovider.ListUsersInGroupInput) (*request.Request, *cognitoidentityprovider.ListUsersInGroupOutput)

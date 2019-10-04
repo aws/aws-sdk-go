@@ -1,3 +1,13 @@
+Release v1.25.6 (2019-10-04)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service API, documentation, and paginators
+* `service/mediapackage`: Updates service API, documentation, and paginators
+  * New Harvest Job APIs to export segment-accurate content windows from MediaPackage Origin Endpoints to S3. See https://docs.aws.amazon.com/mediapackage/latest/ug/harvest-jobs.html for more info
+* `service/ssm`: Updates service documentation
+  * Documentation updates for Systems Manager / StartSession.
+
 Release v1.25.5 (2019-10-03)
 ===
 
