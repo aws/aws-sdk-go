@@ -84,7 +84,7 @@ func TestEndpointFor_STSRegionalFlag(t *testing.T) {
 		Services: services{
 			"sts": service{
 				PartitionEndpoint: "aws-global",
-				Defaults: endpoint{},
+				Defaults:          endpoint{},
 				Endpoints: endpoints{
 					"ap-east-1":      endpoint{},
 					"ap-northeast-1": endpoint{},
@@ -92,21 +92,21 @@ func TestEndpointFor_STSRegionalFlag(t *testing.T) {
 					"ap-south-1":     endpoint{},
 					"ap-southeast-1": endpoint{},
 					"ap-southeast-2": endpoint{},
-					"aws-global":     endpoint{
+					"aws-global": endpoint{
 						Hostname: "sts.amazonaws.com",
-						CredentialScope : credentialScope {
-							Region : "us-east-1",
+						CredentialScope: credentialScope{
+							Region: "us-east-1",
 						},
 					},
-					"ca-central-1":   endpoint{},
-					"eu-central-1":   endpoint{},
-					"eu-north-1":     endpoint{},
-					"eu-west-1":      endpoint{},
-					"eu-west-2":      endpoint{},
-					"eu-west-3":      endpoint{},
-					"me-south-1":     endpoint{},
-					"sa-east-1":      endpoint{},
-					"us-east-1":      endpoint{},
+					"ca-central-1": endpoint{},
+					"eu-central-1": endpoint{},
+					"eu-north-1":   endpoint{},
+					"eu-west-1":    endpoint{},
+					"eu-west-2":    endpoint{},
+					"eu-west-3":    endpoint{},
+					"me-south-1":   endpoint{},
+					"sa-east-1":    endpoint{},
+					"us-east-1":    endpoint{},
 					"us-east-1-fips": endpoint{
 						Hostname: "sts-fips.us-east-1.amazonaws.com",
 						CredentialScope: credentialScope{
@@ -580,4 +580,3 @@ func TestSTSRegionalEndpoint_CNPartition(t *testing.T) {
 	}
 
 }
-
