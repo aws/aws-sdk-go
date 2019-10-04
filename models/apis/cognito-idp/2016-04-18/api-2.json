@@ -1134,6 +1134,7 @@
       "output":{"shape":"GetSigningCertificateResponse"},
       "errors":[
         {"shape":"InternalErrorException"},
+        {"shape":"InvalidParameterException"},
         {"shape":"ResourceNotFoundException"}
       ]
     },
@@ -1255,7 +1256,9 @@
         {"shape":"PasswordResetRequiredException"},
         {"shape":"UserNotFoundException"},
         {"shape":"UserNotConfirmedException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidSmsRoleAccessPolicyException"},
+        {"shape":"InvalidSmsRoleTrustRelationshipException"}
       ]
     },
     "ListDevices":{
@@ -1958,7 +1961,8 @@
       ],
       "members":{
         "UserPoolId":{"shape":"UserPoolIdType"},
-        "Username":{"shape":"UsernameType"}
+        "Username":{"shape":"UsernameType"},
+        "ClientMetadata":{"shape":"ClientMetadataType"}
       }
     },
     "AdminConfirmSignUpResponse":{
@@ -1988,7 +1992,8 @@
         "TemporaryPassword":{"shape":"PasswordType"},
         "ForceAliasCreation":{"shape":"ForceAliasCreation"},
         "MessageAction":{"shape":"MessageActionType"},
-        "DesiredDeliveryMediums":{"shape":"DeliveryMediumListType"}
+        "DesiredDeliveryMediums":{"shape":"DeliveryMediumListType"},
+        "ClientMetadata":{"shape":"ClientMetadataType"}
       }
     },
     "AdminCreateUserResponse":{
@@ -2263,7 +2268,8 @@
       ],
       "members":{
         "UserPoolId":{"shape":"UserPoolIdType"},
-        "Username":{"shape":"UsernameType"}
+        "Username":{"shape":"UsernameType"},
+        "ClientMetadata":{"shape":"ClientMetadataType"}
       }
     },
     "AdminResetUserPasswordResponse":{
@@ -2285,7 +2291,8 @@
         "ChallengeResponses":{"shape":"ChallengeResponsesType"},
         "Session":{"shape":"SessionType"},
         "AnalyticsMetadata":{"shape":"AnalyticsMetadataType"},
-        "ContextData":{"shape":"ContextDataType"}
+        "ContextData":{"shape":"ContextDataType"},
+        "ClientMetadata":{"shape":"ClientMetadataType"}
       }
     },
     "AdminRespondToAuthChallengeResponse":{
@@ -2401,7 +2408,8 @@
       "members":{
         "UserPoolId":{"shape":"UserPoolIdType"},
         "Username":{"shape":"UsernameType"},
-        "UserAttributes":{"shape":"AttributeListType"}
+        "UserAttributes":{"shape":"AttributeListType"},
+        "ClientMetadata":{"shape":"ClientMetadataType"}
       }
     },
     "AdminUpdateUserAttributesResponse":{
@@ -2793,7 +2801,8 @@
         "ConfirmationCode":{"shape":"ConfirmationCodeType"},
         "Password":{"shape":"PasswordType"},
         "AnalyticsMetadata":{"shape":"AnalyticsMetadataType"},
-        "UserContextData":{"shape":"UserContextDataType"}
+        "UserContextData":{"shape":"UserContextDataType"},
+        "ClientMetadata":{"shape":"ClientMetadataType"}
       }
     },
     "ConfirmForgotPasswordResponse":{
@@ -2815,7 +2824,8 @@
         "ConfirmationCode":{"shape":"ConfirmationCodeType"},
         "ForceAliasCreation":{"shape":"ForceAliasCreation"},
         "AnalyticsMetadata":{"shape":"AnalyticsMetadataType"},
-        "UserContextData":{"shape":"UserContextDataType"}
+        "UserContextData":{"shape":"UserContextDataType"},
+        "ClientMetadata":{"shape":"ClientMetadataType"}
       }
     },
     "ConfirmSignUpResponse":{
@@ -3508,7 +3518,8 @@
         "SecretHash":{"shape":"SecretHashType"},
         "UserContextData":{"shape":"UserContextDataType"},
         "Username":{"shape":"UsernameType"},
-        "AnalyticsMetadata":{"shape":"AnalyticsMetadataType"}
+        "AnalyticsMetadata":{"shape":"AnalyticsMetadataType"},
+        "ClientMetadata":{"shape":"ClientMetadataType"}
       }
     },
     "ForgotPasswordResponse":{
@@ -3618,7 +3629,8 @@
       ],
       "members":{
         "AccessToken":{"shape":"TokenModelType"},
-        "AttributeName":{"shape":"AttributeNameType"}
+        "AttributeName":{"shape":"AttributeNameType"},
+        "ClientMetadata":{"shape":"ClientMetadataType"}
       }
     },
     "GetUserAttributeVerificationCodeResponse":{
@@ -4278,7 +4290,8 @@
         "SecretHash":{"shape":"SecretHashType"},
         "UserContextData":{"shape":"UserContextDataType"},
         "Username":{"shape":"UsernameType"},
-        "AnalyticsMetadata":{"shape":"AnalyticsMetadataType"}
+        "AnalyticsMetadata":{"shape":"AnalyticsMetadataType"},
+        "ClientMetadata":{"shape":"ClientMetadataType"}
       }
     },
     "ResendConfirmationCodeResponse":{
@@ -4314,7 +4327,7 @@
     "ResourceServerScopeListType":{
       "type":"list",
       "member":{"shape":"ResourceServerScopeType"},
-      "max":25
+      "max":100
     },
     "ResourceServerScopeNameType":{
       "type":"string",
@@ -4358,7 +4371,8 @@
         "Session":{"shape":"SessionType"},
         "ChallengeResponses":{"shape":"ChallengeResponsesType"},
         "AnalyticsMetadata":{"shape":"AnalyticsMetadataType"},
-        "UserContextData":{"shape":"UserContextDataType"}
+        "UserContextData":{"shape":"UserContextDataType"},
+        "ClientMetadata":{"shape":"ClientMetadataType"}
       }
     },
     "RespondToAuthChallengeResponse":{
@@ -4454,7 +4468,7 @@
     "ScopeListType":{
       "type":"list",
       "member":{"shape":"ScopeType"},
-      "max":25
+      "max":50
     },
     "ScopeType":{
       "type":"string",
@@ -4587,7 +4601,8 @@
         "UserAttributes":{"shape":"AttributeListType"},
         "ValidationData":{"shape":"AttributeListType"},
         "AnalyticsMetadata":{"shape":"AnalyticsMetadataType"},
-        "UserContextData":{"shape":"UserContextDataType"}
+        "UserContextData":{"shape":"UserContextDataType"},
+        "ClientMetadata":{"shape":"ClientMetadataType"}
       }
     },
     "SignUpResponse":{
@@ -4714,7 +4729,10 @@
     },
     "TagResourceRequest":{
       "type":"structure",
-      "required":["ResourceArn"],
+      "required":[
+        "ResourceArn",
+        "Tags"
+      ],
       "members":{
         "ResourceArn":{"shape":"ArnType"},
         "Tags":{"shape":"UserPoolTagsType"}
@@ -4789,7 +4807,10 @@
     },
     "UntagResourceRequest":{
       "type":"structure",
-      "required":["ResourceArn"],
+      "required":[
+        "ResourceArn",
+        "TagKeys"
+      ],
       "members":{
         "ResourceArn":{"shape":"ArnType"},
         "TagKeys":{"shape":"UserPoolTagsListType"}
@@ -4909,7 +4930,8 @@
       ],
       "members":{
         "UserAttributes":{"shape":"AttributeListType"},
-        "AccessToken":{"shape":"TokenModelType"}
+        "AccessToken":{"shape":"TokenModelType"},
+        "ClientMetadata":{"shape":"ClientMetadataType"}
       }
     },
     "UpdateUserAttributesResponse":{

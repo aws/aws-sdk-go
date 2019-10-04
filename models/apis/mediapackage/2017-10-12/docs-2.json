@@ -3,12 +3,15 @@
   "service" : "AWS Elemental MediaPackage",
   "operations" : {
     "CreateChannel" : "Creates a new Channel.",
+    "CreateHarvestJob" : "Creates a new HarvestJob record.",
     "CreateOriginEndpoint" : "Creates a new OriginEndpoint record.",
     "DeleteChannel" : "Deletes an existing Channel.",
     "DeleteOriginEndpoint" : "Deletes an existing OriginEndpoint.",
     "DescribeChannel" : "Gets details about a Channel.",
+    "DescribeHarvestJob" : "Gets details about an existing HarvestJob.",
     "DescribeOriginEndpoint" : "Gets details about an existing OriginEndpoint.",
     "ListChannels" : "Returns a collection of Channels.",
+    "ListHarvestJobs" : "Returns a collection of HarvestJob records.",
     "ListOriginEndpoints" : "Returns a collection of OriginEndpoint records.",
     "ListTagsForResource" : null,
     "RotateChannelCredentials" : "Changes the Channel's first IngestEndpoint's username and password. WARNING - This API is deprecated. Please use RotateIngestEndpointCredentials instead",
@@ -101,6 +104,20 @@
         "HlsEncryption$EncryptionMethod" : "The encryption method to use."
       }
     },
+    "HarvestJob" : {
+      "base" : "A HarvestJob resource configuration",
+      "refs" : {
+        "__listOfHarvestJob$member" : null
+      }
+    },
+    "HarvestJobCreateParameters" : {
+      "base" : "Configuration parameters for a new HarvestJob",
+      "refs" : { }
+    },
+    "HarvestJobList" : {
+      "base" : "A collection of HarvestJob records.",
+      "refs" : { }
+    },
     "HlsEncryption" : {
       "base" : "An HTTP Live Streaming (HLS) encryption configuration.",
       "refs" : {
@@ -177,6 +194,14 @@
       "base" : "Configuration parameters for updating an existing OriginEndpoint.",
       "refs" : { }
     },
+    "Origination" : {
+      "base" : null,
+      "refs" : {
+        "OriginEndpoint$Origination" : "Control whether origination of video is allowed for this OriginEndpoint. If set to ALLOW, the OriginEndpoint\nmay by requested, pursuant to any other form of access control. If set to DENY, the OriginEndpoint may not be\nrequested. This can be helpful for Live to VOD harvesting, or for temporarily disabling origination\n",
+        "OriginEndpointCreateParameters$Origination" : "Control whether origination of video is allowed for this OriginEndpoint. If set to ALLOW, the OriginEndpoint\nmay by requested, pursuant to any other form of access control. If set to DENY, the OriginEndpoint may not be\nrequested. This can be helpful for Live to VOD harvesting, or for temporarily disabling origination\n",
+        "OriginEndpointUpdateParameters$Origination" : "Control whether origination of video is allowed for this OriginEndpoint. If set to ALLOW, the OriginEndpoint\nmay by requested, pursuant to any other form of access control. If set to DENY, the OriginEndpoint may not be\nrequested. This can be helpful for Live to VOD harvesting, or for temporarily disabling origination\n"
+      }
+    },
     "PlaylistType" : {
       "base" : null,
       "refs" : {
@@ -189,6 +214,13 @@
       "base" : null,
       "refs" : {
         "DashPackage$Profile" : "The Dynamic Adaptive Streaming over HTTP (DASH) profile type.  When set to \"HBBTV_1_5\", HbbTV 1.5 compliant output is enabled."
+      }
+    },
+    "S3Destination" : {
+      "base" : "Configuration parameters for where in an S3 bucket to place the harvested content\n",
+      "refs" : {
+        "HarvestJob$S3Destination" : null,
+        "HarvestJobCreateParameters$S3Destination" : null
       }
     },
     "SegmentTemplateFormat" : {
@@ -204,6 +236,12 @@
         "DashEncryption$SpekeKeyProvider" : null,
         "HlsEncryption$SpekeKeyProvider" : null,
         "MssEncryption$SpekeKeyProvider" : null
+      }
+    },
+    "Status" : {
+      "base" : null,
+      "refs" : {
+        "HarvestJob$Status" : "The current status of the HarvestJob. Consider setting up a CloudWatch Event to listen for\nHarvestJobs as they succeed or fail. In the event of failure, the CloudWatch Event will\ninclude an explanation of why the HarvestJob failed.\n"
       }
     },
     "StreamOrder" : {
@@ -295,6 +333,12 @@
         "ChannelList$Channels" : "A list of Channel records."
       }
     },
+    "__listOfHarvestJob" : {
+      "base" : null,
+      "refs" : {
+        "HarvestJobList$HarvestJobs" : "A list of HarvestJob records."
+      }
+    },
     "__listOfHlsManifest" : {
       "base" : null,
       "refs" : {
@@ -352,6 +396,18 @@
         "ChannelUpdateParameters$Description" : "A short text description of the Channel.",
         "CmafPackage$SegmentPrefix" : "An optional custom string that is prepended to the name of each segment. If not specified, it defaults to the ChannelId.",
         "CmafPackageCreateOrUpdateParameters$SegmentPrefix" : "An optional custom string that is prepended to the name of each segment. If not specified, it defaults to the ChannelId.",
+        "HarvestJob$Arn" : "The Amazon Resource Name (ARN) assigned to the HarvestJob.\n",
+        "HarvestJob$ChannelId" : "The ID of the Channel that the HarvestJob will harvest from.\n",
+        "HarvestJob$CreatedAt" : "The time the HarvestJob was submitted\n",
+        "HarvestJob$EndTime" : "The end of the time-window which will be harvested.\n",
+        "HarvestJob$Id" : "The ID of the HarvestJob. The ID must be unique within the region\nand it cannot be changed after the HarvestJob is submitted.\n",
+        "HarvestJob$OriginEndpointId" : "The ID of the OriginEndpoint that the HarvestJob will harvest from.\nThis cannot be changed after the HarvestJob is submitted.\n",
+        "HarvestJob$StartTime" : "The start of the time-window which will be harvested.\n",
+        "HarvestJobCreateParameters$EndTime" : "The end of the time-window which will be harvested\n",
+        "HarvestJobCreateParameters$Id" : "The ID of the HarvestJob. The ID must be unique within the region\nand it cannot be changed after the HarvestJob is submitted\n",
+        "HarvestJobCreateParameters$OriginEndpointId" : "The ID of the OriginEndpoint that the HarvestJob will harvest from.\nThis cannot be changed after the HarvestJob is submitted.\n",
+        "HarvestJobCreateParameters$StartTime" : "The start of the time-window which will be harvested\n",
+        "HarvestJobList$NextToken" : "A token that can be used to resume pagination from the end of the collection.",
         "HlsEncryption$ConstantInitializationVector" : "A constant initialization vector for encryption (optional).\nWhen not specified the initialization vector will be periodically rotated.\n",
         "HlsManifest$Id" : "The ID of the manifest. The ID must be unique within the OriginEndpoint and it cannot be changed after it is created.",
         "HlsManifest$ManifestName" : "An optional short string appended to the end of the OriginEndpoint URL. If not specified, defaults to the manifestName for the OriginEndpoint.",
@@ -375,6 +431,9 @@
         "OriginEndpointList$NextToken" : "A token that can be used to resume pagination from the end of the collection.",
         "OriginEndpointUpdateParameters$Description" : "A short text description of the OriginEndpoint.",
         "OriginEndpointUpdateParameters$ManifestName" : "A short string that will be appended to the end of the Endpoint URL.",
+        "S3Destination$BucketName" : "The name of an S3 bucket within which harvested content will be exported\n",
+        "S3Destination$ManifestKey" : "The key in the specified S3 bucket where the harvested top-level manifest will be placed.\n",
+        "S3Destination$RoleArn" : "The IAM role used to write to the specified S3 bucket\n",
         "SpekeKeyProvider$CertificateArn" : "An Amazon Resource Name (ARN) of a Certificate Manager certificate\nthat MediaPackage will use for enforcing secure end-to-end data\ntransfer with the key provider service.\n",
         "SpekeKeyProvider$ResourceId" : "The resource ID to include in key requests.",
         "SpekeKeyProvider$RoleArn" : "An Amazon Resource Name (ARN) of an IAM role that AWS Elemental\nMediaPackage will assume when accessing the key provider service.\n",
