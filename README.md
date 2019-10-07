@@ -4,7 +4,7 @@
 
 aws-sdk-go is the official AWS SDK for the Go programming language.
 
-Checkout our [release notes](https://github.com/aws/aws-sdk-go/releases) for
+Check out our [release notes](https://github.com/aws/aws-sdk-go/releases) for
 information about the latest bug fixes, updates, and features added to the SDK.
 
 We [announced](https://aws.amazon.com/blogs/developer/aws-sdk-for-go-2-0-developer-preview/) the Developer Preview for the [v2 AWS SDK for Go](https://github.com/aws/aws-sdk-go-v2). The v2 SDK source is available at https://github.com/aws/aws-sdk-go-v2, and add it to your project with `go get github.com/aws/aws-sdk-go-v2`. Check out the v2 SDK's [changes and updates](https://github.com/aws/aws-sdk-go-v2/blob/master/CHANGELOG.md), and let us know what you think. We want your feedback.
@@ -16,11 +16,11 @@ We have a pilot redesign of the [AWS SDK for Go API reference documentation](htt
 Use `go get` to retrieve the SDK to add it to your `GOPATH` workspace, or
 project's Go module dependencies.
 
-	go get github.com/aws/aws-sdk-go
+    go get github.com/aws/aws-sdk-go
 
 To update the SDK use `go get -u` to retrieve the latest version of the SDK.
 
-	go get -u github.com/aws/aws-sdk-go
+    go get -u github.com/aws/aws-sdk-go
 
 ### Dependencies
 
@@ -34,18 +34,18 @@ If you are using Go modules, your `go get` will default to the latest tagged
 release version of the SDK. To get a specific release version of the SDK use
 `@<tag>` in your `go get` command.
 
-	go get github.com/aws/aws-sdk-go@v1.15.77
+    go get github.com/aws/aws-sdk-go@v1.15.77
 
 To get the latest SDK repository change use `@latest`.
 
-	go get github.com/aws/aws-sdk-go@latest
+    go get github.com/aws/aws-sdk-go@latest
 
 ### Go 1.5
 
 If you are using Go 1.5 without vendoring enabled, (`GO15VENDOREXPERIMENT=1`),
 you will need to use `...` when retrieving the SDK to get its dependencies.
 
-	go get github.com/aws/aws-sdk-go/...
+    go get github.com/aws/aws-sdk-go/...
 
 This will still include the `vendor` folder. The `vendor` folder can be deleted
 if not used by your environment.
@@ -68,12 +68,12 @@ If you encounter a bug with the AWS SDK for Go we would like to hear about it.
 Search the [existing issues](https://github.com/aws/aws-sdk-go/issues) and see
 if others are also experiencing the issue before opening a new issue. Please
 include the version of AWS SDK for Go, Go language, and OS you’re using. Please
-also include reproduction case when appropriate.
+also include a reproduction case when appropriate.
 
 The GitHub issues are intended for bug reports and feature requests. For help
 and questions with using AWS SDK for GO please make use of the resources listed
 in the [Getting Help](https://github.com/aws/aws-sdk-go#getting-help) section.
-Keeping the list of open issues lean will help us respond in a timely manner.
+Keeping the list of open issues lean will help us respond promptly.
 
 ## Reference Documentation
 
@@ -89,18 +89,18 @@ specific AWS services.
 Documentation`](https://docs.aws.amazon.com/sdk-for-go/api/) - Use this
 document to look up all API operation input and output parameters for AWS
 services supported by the SDK. The API reference also includes documentation of
-the SDK, and examples how to using the SDK, service client API operations, and
-API operation require parameters.
+the SDK, and examples of how to using the SDK, service client API operations, and
+API operation requires parameters.
 
 [`Service Developer Guide`](https://aws.amazon.com/documentation/) - Use this
 documentation to learn how to interface with AWS services. These are great
-guides both, if you're getting started with a service, or looking for more
+guides both if you're getting started with a service, or looking for more
 information on a service. You should not need this document for coding, though
 in some cases, services may supply helpful samples that you might want to look
 out for.
 
 [`SDK Examples`](https://github.com/aws/aws-sdk-go/tree/master/example) -
-Included in the SDK's repo are several hand crafted examples using the SDK
+Included in the SDK's repo are several handcrafted examples using the SDK
 features and AWS services.
 
 ## Overview of SDK's Packages
@@ -116,18 +116,16 @@ package under the service folder at the root of the SDK.
       * awserr - Provides the error interface that the SDK will use for all
         errors that occur in the SDK's processing. This includes service API
         response errors as well. The Error type is made up of a code and message.
-        Cast the SDK's returned error type to awserr.Error and call the Code
-        method to compare returned error to specific error codes. See the package's
+        Cast the SDK's returned error type to awserr. Error and call the Code method to compare returned error to specific error codes. See the package's
         documentation for additional values that can be extracted such as RequestID.
 
-      * credentials - Provides the types and built in credentials providers
+      * credentials - Provides the types and built-in credentials providers
         the SDK will use to retrieve AWS credentials to make API requests with.
         Nested under this folder are also additional credentials providers such as
         stscreds for assuming IAM roles, and ec2rolecreds for EC2 Instance roles.
 
       * endpoints - Provides the AWS Regions and Endpoints metadata for the SDK.
-        Use this to lookup AWS service endpoint information such as which services
-        are in a region, and what regions a service is in. Constants are also provided
+        Use this to lookup AWS service endpoint information such as which services are in a region, and what regions a service is in. Constants are also provided
         for all region identifiers, e.g UsWest2RegionID for "us-west-2".
 
       * session - Provides initial default configuration, and load
@@ -144,11 +142,11 @@ package under the service folder at the root of the SDK.
 ## How to Use the SDK's AWS Service Clients
 
 The SDK includes the Go types and utilities you can use to make requests to
-AWS service APIs. Within the service folder at the root of the SDK you'll find
-a package for each AWS service the SDK supports. All service clients follow common pattern of creation and usage.
+AWS service APIs. Within the service folder at the root of the SDK, you'll find
+a package for each AWS service the SDK supports. All service clients follow a common pattern of creation and usage.
 
 When creating a client for an AWS service you'll first need to have a Session
-value constructed. The Session provides shared configuration that can be shared
+value constructed. The Session provides a shared configuration that can be shared
 between your service clients. When service clients are created you can pass
 in additional configuration via the aws.Config type to override configuration
 provided by in the Session to create service client instances with custom
@@ -183,19 +181,19 @@ options.
 
 When using the SDK you'll generally need your AWS credentials to authenticate
 with AWS services. The SDK supports multiple methods of supporting these
-credentials. By default the SDK will source credentials automatically from
+credentials. By default, the SDK will source credentials automatically from
 its default credential chain. See the session package for more information
 on this chain, and how to configure it. The common items in the credential
 chain are the following:
 
-  * Environment Credentials - Set of environment variables that are useful
-    when sub processes are created for specific roles.
+  * Environment Credentials - Set of useful environment variables
+    when subprocesses are created for specific roles.
 
   * Shared Credentials file (~/.aws/credentials) - This file stores your
     credentials based on a profile name and is useful for local development.
 
   * EC2 Instance Role Credentials - Use EC2 Instance Role to assign credentials
-    to application running on an EC2 instance. This removes the need to manage
+    to the application running on an EC2 instance. This removes the need to manage
     credential files in production.
 
 Credentials can be configured in code as well by setting the Config's Credentials
@@ -242,10 +240,10 @@ Option's SharedConfigState parameter.
 ### Configuring AWS Region
 
 In addition to the credentials you'll need to specify the region the SDK
-will use to make AWS API requests to. In the SDK you can specify the region
-either with an environment variable, or directly in code when a Session or
+will use to make AWS API requests. In the SDK you can specify the region
+either with an environment variable or directly in code when a Session or
 service client is created. The last value specified in code wins if the region
-is specified multiple ways.
+is specified in multiple ways.
 
 To set the region via the environment variable set the "AWS_REGION" to the
 region you want to the SDK to use. Using this method to set the region will
@@ -255,7 +253,7 @@ code in the application to select the region.
     AWS_REGION=us-west-2
 
 The endpoints package includes constants for all regions the SDK knows. The
-values are all suffixed with RegionID. These values are helpful, because they
+values are all suffixed with RegionID. These values are helpful because they
 reduce the need to type the region string manually.
 
 To set the region on a Session use the aws package's Config struct parameter
@@ -271,8 +269,8 @@ all of the clients make API requests to the same region.
 
 See the [endpoints][endpoints_pkg] package for the AWS Regions and Endpoints metadata.
 
-In addition to setting the region when creating a Session you can also set
-the region on a per service client bases. This overrides the region of a
+In addition to setting the region when creating a Session, you can also set
+the region on per-service client bases. This overrides the region of a
 Session. This is helpful when you want to create service clients in specific
 regions different from the Session's region.
 
@@ -290,10 +288,10 @@ options such as setting the Endpoint, and other service client configuration opt
 ## Making API Requests
 
 Once the client is created you can make an API request to the service.
-Each API method takes a input parameter, and returns the service response
+Each API method takes an input parameter and returns the service response
 and an error. The SDK provides methods for making the API call in multiple ways.
 
-In this list we'll use the S3 ListObjects API as an example for the different
+In this list, we'll use the S3 ListObjects API as an example for the different
 ways of making API requests.
 
   * ListObjects - Base API operation that will make the API request to the service.
@@ -304,30 +302,27 @@ ways of making API requests.
     application making the request directly.
 
   * ListObjectsPages - Same as the base API operation, but uses a callback to
-    automatically handle pagination of the API's response.
+    automatically handle the pagination of the API's response.
 
   * ListObjectsWithContext - Same as base API operation, but adds support for
-    the Context pattern. This is helpful for controlling the canceling of in
-    flight requests. See the Go standard library context package for more
-    information. This method also takes request package's Option functional
-    options as the variadic argument for modifying how the request will be
-    made, or extracting information from the raw HTTP response.
+    the Context pattern. This helps control the canceling of in-flight requests. See the Go standard library context package for more information. This method also takes the request package's Option functional options as the variadic argument for modifying how the request will be
+    made or extracting information from the raw HTTP response.
 
   * ListObjectsPagesWithContext - same as ListObjectsPages, but adds support for
     the Context pattern. Similar to ListObjectsWithContext this method also
     takes the request package's Option function option types as the variadic
     argument.
 
-In addition to the API operations the SDK also includes several higher level
+In addition to the API operations, the SDK also includes several higher-level
 methods that abstract checking for and waiting for an AWS resource to be in
-a desired state. In this list we'll use WaitUntilBucketExists to demonstrate
+the desired state. In this list, we'll use WaitUntilBucketExists to demonstrate
 the different forms of waiters.
 
   * WaitUntilBucketExists. - Method to make API request to query an AWS service for
     a resource's state. Will return successfully when that state is accomplished.
 
   * WaitUntilBucketExistsWithContext - Same as WaitUntilBucketExists, but adds
-    support for the Context pattern. In addition these methods take request
+    support for the Context pattern. Besides these methods take request
     package's WaiterOptions to configure the waiter, and how underlying request
     will be made by the SDK.
 
@@ -387,8 +382,8 @@ Waiter helper methods provide the functionality to wait for an AWS resource
 state. These methods abstract the logic needed to check the state of an
 AWS resource, and wait until that resource is in a desired state. The waiter
 will block until the resource is in the state that is desired, an error occurs,
-or the waiter times out. If a resource times out the error code returned will
-be request.WaiterResourceNotReadyErrorCode.
+or the waiter times out. If resource times out the error code returned will
+be requested.WaiterResourceNotReadyErrorCode.
 
 ```go
   err := svc.WaitUntilBucketExistsWithContext(ctx, &s3.HeadBucketInput{
@@ -416,17 +411,17 @@ response.
   package main
 
   import (
-  	"context"
-  	"flag"
-  	"fmt"
-  	"os"
-  	"time"
+      "context"
+      "flag"
+      "fmt"
+      "os"
+      "time"
 
-  	"github.com/aws/aws-sdk-go/aws"
-  	"github.com/aws/aws-sdk-go/aws/awserr"
-  	"github.com/aws/aws-sdk-go/aws/request"
-  	"github.com/aws/aws-sdk-go/aws/session"
-  	"github.com/aws/aws-sdk-go/service/s3"
+      "github.com/aws/aws-sdk-go/aws"
+      "github.com/aws/aws-sdk-go/aws/awserr"
+      "github.com/aws/aws-sdk-go/aws/request"
+      "github.com/aws/aws-sdk-go/aws/session"
+      "github.com/aws/aws-sdk-go/service/s3"
   )
 
   // Uploads a file to S3 given a bucket and object key. Also takes a duration
@@ -440,59 +435,58 @@ response.
   //   # Upload myfile.txt to myBucket/myKey. Must complete within 10 minutes or will fail
   //   go run withContext.go -b mybucket -k myKey -d 10m < myfile.txt
   func main() {
-  	var bucket, key string
-  	var timeout time.Duration
+      var bucket, key string var timeout time.Duration
 
-  	flag.StringVar(&bucket, "b", "", "Bucket name.")
-  	flag.StringVar(&key, "k", "", "Object key name.")
-  	flag.DurationVar(&timeout, "d", 0, "Upload timeout.")
-  	flag.Parse()
+      flag.StringVar(&bucket, "b", "", "Bucket name.")
+      flag.StringVar(&key, "k", "", "Object key name.")
+      flag.DurationVar(&timeout, "d", 0, "Upload timeout.")
+      flag.Parse()
 
-  	// All clients require a Session. The Session provides the client with
- 	// shared configuration such as region, endpoint, and credentials. A
- 	// Session should be shared where possible to take advantage of
- 	// configuration and credential caching. See the session package for
- 	// more information.
-  	sess := session.Must(session.NewSession())
+      // All clients require a Session. The Session provides the client with
+     // shared configuration such as region, endpoint, and credentials. A
+     // Session should be shared where possible to take advantage of
+     // configuration and credential caching. See the session package for
+     // more information.
+      sess := session.Must(session.NewSession())
 
- 	// Create a new instance of the service's client with a Session.
- 	// Optional aws.Config values can also be provided as variadic arguments
- 	// to the New function. This option allows you to provide service
- 	// specific configuration.
-  	svc := s3.New(sess)
+     // Create a new instance of the service's client with a Session.
+     // Optional aws.Config values can also be provided as variadic arguments
+     // to the New function. This option allows you to provide service
+     // specific configuration.
+      svc := s3.New(sess)
 
-  	// Create a context with a timeout that will abort the upload if it takes
-  	// more than the passed in timeout.
-  	ctx := context.Background()
-  	var cancelFn func()
-  	if timeout > 0 {
-  		ctx, cancelFn = context.WithTimeout(ctx, timeout)
-  	}
-  	// Ensure the context is canceled to prevent leaking.
-  	// See context package for more information, https://golang.org/pkg/context/
-	if cancelFn != nil {
-  		defer cancelFn()
-	}
+      // Create a context with a timeout that will abort the upload if it takes
+      // more than the passed in timeout.
+      ctx := context.Background()
+      var cancelFn func()
+      if timeout > 0 {
+          ctx, cancelFn = context.WithTimeout(ctx, timeout)
+      }
+      // Ensure the context is canceled to prevent leaking.
+      // See context package for more information, https://golang.org/pkg/context/
+    if cancelFn != nil {
+          defer cancelFn()
+    }
 
-  	// Uploads the object to S3. The Context will interrupt the request if the
-  	// timeout expires.
-  	_, err := svc.PutObjectWithContext(ctx, &s3.PutObjectInput{
-  		Bucket: aws.String(bucket),
-  		Key:    aws.String(key),
-  		Body:   os.Stdin,
-  	})
-  	if err != nil {
-  		if aerr, ok := err.(awserr.Error); ok && aerr.Code() == request.CanceledErrorCode {
-  			// If the SDK can determine the request or retry delay was canceled
-  			// by a context the CanceledErrorCode error code will be returned.
-  			fmt.Fprintf(os.Stderr, "upload canceled due to timeout, %v\n", err)
-  		} else {
-  			fmt.Fprintf(os.Stderr, "failed to upload object, %v\n", err)
-  		}
-  		os.Exit(1)
-  	}
+      // Uploads the object to S3. The Context will interrupt the request if the
+      // timeout expires.
+      _, err := svc.PutObjectWithContext(ctx, &s3.PutObjectInput{
+          Bucket: aws.String(bucket),
+          Key:    aws.String(key),
+          Body:   os.Stdin,
+      })
+      if err != nil {
+          if aerr, ok := err.(awserr.Error); ok && aerr.Code() == request.CanceledErrorCode {
+              // If the SDK can determine the request or retry delay was canceled
+              // by a context the CanceledErrorCode error code will be returned.
+              fmt.Fprintf(os.Stderr, "upload canceled due to timeout, %v\n", err)
+          } else {
+              fmt.Fprintf(os.Stderr, "failed to upload object, %v\n", err)
+          }
+          os.Exit(1)
+      }
 
-  	fmt.Printf("successfully uploaded file to %s/%s\n", bucket, key)
+      fmt.Printf("successfully uploaded file to %s/%s\n", bucket, key)
   }
 ```
 
