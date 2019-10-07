@@ -4,9 +4,12 @@
   "operations" : {
     "CreateApp" : " <p>Creates an application.</p>",
     "CreateCampaign" : "<p>Creates a new campaign for an application or updates the settings of an existing campaign for an application.</p>",
-    "CreateExportJob" : "<p>Creates a new export job for an application.</p>",
-    "CreateImportJob" : "<p>Creates a new import job for an application.</p>",
+    "CreateEmailTemplate" : "<p>Creates a message template that you can use in messages that are sent through the email channel.</p>",
+    "CreateExportJob" : "<p>Creates an export job for an application.</p>",
+    "CreateImportJob" : "<p>Creates an import job for an application.</p>",
+    "CreatePushTemplate" : "<p>Creates a message template that you can use in messages that are sent through a push notification channel.</p>",
     "CreateSegment" : "<p>Creates a new segment for an application or updates the configuration, dimension, and other settings for an existing segment that's associated with an application.</p>",
+    "CreateSmsTemplate" : "<p>Creates a message template that you can use in messages that are sent through the SMS channel.</p>",
     "DeleteAdmChannel" : "<p>Disables the ADM channel for an application and deletes any existing settings for the channel.</p>",
     "DeleteApnsChannel" : "<p>Disables the APNs channel for an application and deletes any existing settings for the channel.</p>",
     "DeleteApnsSandboxChannel" : "<p>Disables the APNs sandbox channel for an application and deletes any existing settings for the channel.</p>",
@@ -16,11 +19,14 @@
     "DeleteBaiduChannel" : "<p>Disables the Baidu channel for an application and deletes any existing settings for the channel.</p>",
     "DeleteCampaign" : "<p>Deletes a campaign from an application.</p>",
     "DeleteEmailChannel" : "<p>Disables the email channel for an application and deletes any existing settings for the channel.</p>",
+    "DeleteEmailTemplate" : "<p>Deletes a message template that was designed for use in messages that were sent through the email channel.</p>",
     "DeleteEndpoint" : "<p>Deletes an endpoint from an application.</p>",
     "DeleteEventStream" : "<p>Deletes the event stream for an application.</p>",
     "DeleteGcmChannel" : "<p>Disables the GCM channel for an application and deletes any existing settings for the channel.</p>",
+    "DeletePushTemplate" : "<p>Deletes a message template that was designed for use in messages that were sent through a push notification channel.</p>",
     "DeleteSegment" : "<p>Deletes a segment from an application.</p>",
     "DeleteSmsChannel" : "<p>Disables the SMS channel for an application and deletes any existing settings for the channel.</p>",
+    "DeleteSmsTemplate" : "<p>Deletes a message template that was designed for use in messages that were sent through the SMS channel.</p>",
     "DeleteUserEndpoints" : "<p>Deletes all the endpoints that are associated with a specific user ID.</p>",
     "DeleteVoiceChannel" : "<p>Disables the voice channel for an application and deletes any existing settings for the channel.</p>",
     "GetAdmChannel" : "<p>Retrieves information about the status and settings of the ADM channel for an application.</p>",
@@ -29,18 +35,19 @@
     "GetApnsVoipChannel" : "<p>Retrieves information about the status and settings of the APNs VoIP channel for an application.</p>",
     "GetApnsVoipSandboxChannel" : "<p>Retrieves information about the status and settings of the APNs VoIP sandbox channel for an application.</p>",
     "GetApp" : "<p>Retrieves information about an application.</p>",
-    "GetApplicationDateRangeKpi" : " <p>Retrieves (queries) pre-aggregated data for a standard metric that applies to an application.</p>",
+    "GetApplicationDateRangeKpi" : "<p>Retrieves (queries) pre-aggregated data for a standard metric that applies to an application.</p>",
     "GetApplicationSettings" : "<p>Retrieves information about the settings for an application.</p>",
     "GetApps" : "<p>Retrieves information about all of your applications.</p>",
-    "GetBaiduChannel" : "<p>Retrieves information about the status and settings of the Baidu Cloud Push channel for an application.</p>",
+    "GetBaiduChannel" : "<p>Retrieves information about the status and settings of the Baidu channel for an application.</p>",
     "GetCampaign" : "<p>Retrieves information about the status, configuration, and other settings for a campaign.</p>",
     "GetCampaignActivities" : "<p>Retrieves information about the activity performed by a campaign.</p>",
-    "GetCampaignDateRangeKpi" : " <p>Retrieves (queries) pre-aggregated data for a standard metric that applies to a campaign.</p>",
+    "GetCampaignDateRangeKpi" : "<p>Retrieves (queries) pre-aggregated data for a standard metric that applies to a campaign.</p>",
     "GetCampaignVersion" : "<p>Retrieves information about the status, configuration, and other settings for a specific version of a campaign.</p>",
     "GetCampaignVersions" : "<p>Retrieves information about the status, configuration, and other settings for all versions of a specific campaign.</p>",
     "GetCampaigns" : "<p>Retrieves information about the status, configuration, and other settings for all the campaigns that are associated with an application.</p>",
     "GetChannels" : "<p>Retrieves information about the history and status of each channel for an application.</p>",
     "GetEmailChannel" : "<p>Retrieves information about the status and settings of the email channel for an application.</p>",
+    "GetEmailTemplate" : "<p>Retrieves the content and settings for a message template that you can use in messages that are sent through the email channel.</p>",
     "GetEndpoint" : "<p>Retrieves information about the settings and attributes of a specific endpoint for an application.</p>",
     "GetEventStream" : "<p>Retrieves information about the event stream settings for an application.</p>",
     "GetExportJob" : "<p>Retrieves information about the status and settings of a specific export job for an application.</p>",
@@ -48,6 +55,7 @@
     "GetGcmChannel" : "<p>Retrieves information about the status and settings of the GCM channel for an application.</p>",
     "GetImportJob" : "<p>Retrieves information about the status and settings of a specific import job for an application.</p>",
     "GetImportJobs" : "<p>Retrieves information about the status and settings of all the import jobs for an application.</p>",
+    "GetPushTemplate" : "<p>Retrieves the content and settings for a message template that you can use in messages that are sent through a push notification channel.</p>",
     "GetSegment" : "<p>Retrieves information about the configuration, dimension, and other settings for a specific segment that's associated with an application.</p>",
     "GetSegmentExportJobs" : "<p>Retrieves information about the status and settings of the export jobs for a segment.</p>",
     "GetSegmentImportJobs" : "<p>Retrieves information about the status and settings of the import jobs for a segment.</p>",
@@ -55,32 +63,37 @@
     "GetSegmentVersions" : "<p>Retrieves information about the configuration, dimension, and other settings for all versions of a specific segment that's associated with an application.</p>",
     "GetSegments" : "<p>Retrieves information about the configuration, dimension, and other settings for all the segments that are associated with an application.</p>",
     "GetSmsChannel" : "<p>Retrieves information about the status and settings of the SMS channel for an application.</p>",
+    "GetSmsTemplate" : "<p>Retrieves the content and settings for a message template that you can use in messages that are sent through the SMS channel.</p>",
     "GetUserEndpoints" : "<p>Retrieves information about all the endpoints that are associated with a specific user ID.</p>",
     "GetVoiceChannel" : "<p>Retrieves information about the status and settings of the voice channel for an application.</p>",
-    "ListTagsForResource" : "<p>Retrieves all the tags (keys and values) that are associated with an application, campaign, or segment.</p>",
+    "ListTagsForResource" : "<p>Retrieves all the tags (keys and values) that are associated with an application, campaign, message template, or segment.</p>",
+    "ListTemplates" : "<p>Retrieves information about all the message templates that are associated with your Amazon Pinpoint account.</p>",
     "PhoneNumberValidate" : "<p>Retrieves information about a phone number.</p>",
     "PutEventStream" : "<p>Creates a new event stream for an application or updates the settings of an existing event stream for an application.</p>",
     "PutEvents" : "<p>Creates a new event to record for endpoints, or creates or updates endpoint data that existing events are associated with.</p>",
     "RemoveAttributes" : "<p>Removes one or more attributes, of the same attribute type, from all the endpoints that are associated with an application.</p>",
     "SendMessages" : "<p>Creates and sends a direct message.</p>",
     "SendUsersMessages" : "<p>Creates and sends a message to a list of users.</p>",
-    "TagResource" : "<p>Adds one or more tags (keys and values) to an application, campaign, or segment.</p>",
-    "UntagResource" : "<p>Removes one or more tags (keys and values) from an application, campaign, or segment.</p>",
-    "UpdateAdmChannel" : "<p>Updates the ADM channel settings for an application.</p>",
-    "UpdateApnsChannel" : "<p>Updates the APNs channel settings for an application.</p>",
-    "UpdateApnsSandboxChannel" : "<p>Updates the APNs sandbox channel settings for an application.</p>",
-    "UpdateApnsVoipChannel" : "<p>Updates the APNs VoIP channel settings for an application.</p>",
-    "UpdateApnsVoipSandboxChannel" : "<p>Updates the settings for the APNs VoIP sandbox channel for an application.</p>",
+    "TagResource" : "<p>Adds one or more tags (keys and values) to an application, campaign, message template, or segment.</p>",
+    "UntagResource" : "<p>Removes one or more tags (keys and values) from an application, campaign, message template, or segment.</p>",
+    "UpdateAdmChannel" : "<p>Enables the ADM channel for an application or updates the status and settings of the ADM channel for an application.</p>",
+    "UpdateApnsChannel" : "<p>Enables the APNs channel for an application or updates the status and settings of the APNs channel for an application.</p>",
+    "UpdateApnsSandboxChannel" : "<p>Enables the APNs sandbox channel for an application or updates the status and settings of the APNs sandbox channel for an application.</p>",
+    "UpdateApnsVoipChannel" : "<p>Enables the APNs VoIP channel for an application or updates the status and settings of the APNs VoIP channel for an application.</p>",
+    "UpdateApnsVoipSandboxChannel" : "<p>Enables the APNs VoIP sandbox channel for an application or updates the status and settings of the APNs VoIP sandbox channel for an application.</p>",
     "UpdateApplicationSettings" : "<p>Updates the settings for an application.</p>",
-    "UpdateBaiduChannel" : "<p>Updates the settings of the Baidu channel for an application.</p>",
+    "UpdateBaiduChannel" : "<p>Enables the Baidu channel for an application or updates the status and settings of the Baidu channel for an application.</p>",
     "UpdateCampaign" : "<p>Updates the settings for a campaign.</p>",
-    "UpdateEmailChannel" : "<p>Updates the status and settings of the email channel for an application.</p>",
+    "UpdateEmailChannel" : "<p>Enables the email channel for an application or updates the status and settings of the email channel for an application.</p>",
+    "UpdateEmailTemplate" : "<p>Updates an existing message template that you can use in messages that are sent through the email channel.</p>",
     "UpdateEndpoint" : "<p>Creates a new endpoint for an application or updates the settings and attributes of an existing endpoint for an application. You can also use this operation to define custom attributes (Attributes, Metrics, and UserAttributes properties) for an endpoint.</p>",
     "UpdateEndpointsBatch" : " <p>Creates a new batch of endpoints for an application or updates the settings and attributes of a batch of existing endpoints for an application. You can also use this operation to define custom attributes (Attributes, Metrics, and UserAttributes properties) for a batch of endpoints.</p>",
-    "UpdateGcmChannel" : "<p>Updates the status and settings of the GCM channel for an application.</p>",
+    "UpdateGcmChannel" : "<p>Enables the GCM channel for an application or updates the status and settings of the GCM channel for an application.</p>",
+    "UpdatePushTemplate" : "<p>Updates an existing message template that you can use in messages that are sent through a push notification channel.</p>",
     "UpdateSegment" : "<p>Creates a new segment for an application or updates the configuration, dimension, and other settings for an existing segment that's associated with an application.</p>",
-    "UpdateSmsChannel" : "<p>Updates the status and settings of the SMS channel for an application.</p>",
-    "UpdateVoiceChannel" : "<p>Updates the status and settings of the voice channel for an application.</p>"
+    "UpdateSmsChannel" : "<p>Enables the SMS channel for an application or updates the status and settings of the SMS channel for an application.</p>",
+    "UpdateSmsTemplate" : "<p>Updates an existing message template that you can use in messages that are sent through the SMS channel.</p>",
+    "UpdateVoiceChannel" : "<p>Enables the voice channel for an application or updates the status and settings of the voice channel for an application.</p>"
   },
   "shapes" : {
     "ADMChannelRequest" : {
@@ -109,6 +122,13 @@
       "base" : "<p>Specifies the settings for a one-time message that's sent directly to an endpoint through the APNs (Apple Push Notification service) channel.</p>",
       "refs" : {
         "DirectMessageConfiguration$APNSMessage" : "<p>The default push notification message for the APNs (Apple Push Notification service) channel. This message overrides the default push notification message (DefaultPushNotificationMessage).</p>"
+      }
+    },
+    "APNSPushNotificationTemplate" : {
+      "base" : "<p>Specifies the content and settings for a message template that can be used in push notifications that are sent through the APNs (Apple Push Notification service) channel.</p>",
+      "refs" : {
+        "PushNotificationTemplateRequest$APNS" : "<p>The message template to use for the APNs (Apple Push Notification service) channel. This message template overrides the default template for push notification channels (DefaultPushNotificationTemplate).</p>",
+        "PushNotificationTemplateResponse$APNS" : "<p>The message template that's used for the APNs (Apple Push Notification service) channel. This message template overrides the default template for push notification channels (DefaultPushNotificationTemplate).</p>"
       }
     },
     "APNSSandboxChannelRequest" : {
@@ -140,8 +160,11 @@
       "refs" : {
         "ADMMessage$Action" : "<p>The action to occur if the recipient taps the push notification. Valid values are:</p> <ul><li><p>OPEN_APP - Your app opens or it becomes the foreground app if it was sent to the background. This is the default action.</p></li> <li><p>DEEP_LINK - Your app opens and displays a designated user interface in the app. This action uses the deep-linking features of the Android platform.</p></li> <li><p>URL - The default mobile browser on the recipient's device opens and loads the web page at a URL that you specify.</p></li></ul>",
         "APNSMessage$Action" : "<p>The action to occur if the recipient taps the push notification. Valid values are:</p> <ul><li><p>OPEN_APP - Your app opens or it becomes the foreground app if it was sent to the background. This is the default action.</p></li> <li><p>DEEP_LINK - Your app opens and displays a designated user interface in the app. This setting uses the deep-linking features of the iOS platform.</p></li> <li><p>URL - The default mobile browser on the recipient's device opens and loads the web page at a URL that you specify.</p></li></ul>",
+        "APNSPushNotificationTemplate$Action" : "<p>The action to occur if a recipient taps a push notification that's based on the message template. Valid values are:</p> <ul><li><p>OPEN_APP - Your app opens or it becomes the foreground app if it was sent to the background. This is the default action.</p></li> <li><p>DEEP_LINK - Your app opens and displays a designated user interface in the app. This setting uses the deep-linking features of the iOS platform.</p></li> <li><p>URL - The default mobile browser on the recipient's device opens and loads the web page at a URL that you specify.</p></li></ul>",
+        "AndroidPushNotificationTemplate$Action" : "<p>The action to occur if a recipient taps a push notification that's based on the message template. Valid values are:</p> <ul><li><p>OPEN_APP - Your app opens or it becomes the foreground app if it was sent to the background. This is the default action.</p></li> <li><p>DEEP_LINK - Your app opens and displays a designated user interface in the app. This action uses the deep-linking features of the Android platform.</p></li> <li><p>URL - The default mobile browser on the recipient's device opens and loads the web page at a URL that you specify.</p></li></ul>",
         "BaiduMessage$Action" : "<p>The action to occur if the recipient taps the push notification. Valid values are:</p> <ul><li><p>OPEN_APP - Your app opens or it becomes the foreground app if it was sent to the background. This is the default action.</p></li> <li><p>DEEP_LINK - Your app opens and displays a designated user interface in the app. This action uses the deep-linking features of the Android platform.</p></li> <li><p>URL - The default mobile browser on the recipient's device opens and loads the web page at a URL that you specify.</p></li></ul>",
         "DefaultPushNotificationMessage$Action" : "<p>The default action to occur if a recipient taps the push notification. Valid values are:</p> <ul><li><p>OPEN_APP - Your app opens or it becomes the foreground app if it was sent to the background. This is the default action.</p></li> <li><p>DEEP_LINK - Your app opens and displays a designated user interface in the app. This setting uses the deep-linking features of the iOS and Android platforms.</p></li> <li><p>URL - The default mobile browser on the recipient's device opens and loads the web page at a URL that you specify.</p></li></ul>",
+        "DefaultPushNotificationTemplate$Action" : "<p>The action to occur if a recipient taps a push notification that's based on the message template. Valid values are:</p> <ul><li><p>OPEN_APP - Your app opens or it becomes the foreground app if it was sent to the background. This is the default action.</p></li> <li><p>DEEP_LINK - Your app opens and displays a designated user interface in the app. This setting uses the deep-linking features of the iOS and Android platforms.</p></li> <li><p>URL - The default mobile browser on the recipient's device opens and loads the web page at a URL that you specify.</p></li></ul>",
         "GCMMessage$Action" : "<p>The action to occur if the recipient taps the push notification. Valid values are:</p> <ul><li><p>OPEN_APP - Your app opens or it becomes the foreground app if it was sent to the background. This is the default action.</p></li> <li><p>DEEP_LINK - Your app opens and displays a designated user interface in the app. This action uses the deep-linking features of the Android platform.</p></li> <li><p>URL - The default mobile browser on the recipient's device opens and loads the web page at a URL that you specify.</p></li></ul>",
         "Message$Action" : "<p>The action to occur if a recipient taps the push notification. Valid values are:</p> <ul><li><p>OPEN_APP - Your app opens or it becomes the foreground app if it was sent to the background. This is the default action.</p></li> <li><p>DEEP_LINK - Your app opens and displays a designated user interface in the app. This setting uses the deep-linking features of iOS and Android.</p></li> <li><p>URL - The default mobile browser on the recipient's device opens and loads the web page at a URL that you specify.</p></li></ul>"
       }
@@ -160,6 +183,17 @@
       "base" : "<p>Specifies address-based configuration settings for a message that's sent directly to an endpoint.</p>",
       "refs" : {
         "MapOfAddressConfiguration$member" : null
+      }
+    },
+    "AndroidPushNotificationTemplate" : {
+      "base" : "<p>Specifies the content and settings for a message template can be used in push notifications that are sent through the ADM (Amazon Device Messaging), GCM (Firebase Cloud Messaging, formerly Google Cloud Messaging), or Baidu (Baidu Cloud Push) channel.</p>",
+      "refs" : {
+        "PushNotificationTemplateRequest$ADM" : "<p>The message template to use for the ADM (Amazon Device Messaging) channel. This message template overrides the default template for push notification channels (DefaultPushNotificationTemplate).</p>",
+        "PushNotificationTemplateRequest$Baidu" : "<p>The message template to use for the Baidu (Baidu Cloud Push) channel. This message template overrides the default template for push notification channels (DefaultPushNotificationTemplate).</p>",
+        "PushNotificationTemplateRequest$GCM" : "<p>The message template to use for the GCM channel, which is used to send notifications through the Firebase Cloud Messaging (FCM), formerly Google Cloud Messaging (GCM), service. This message template overrides the default template for push notification channels (DefaultPushNotificationTemplate).</p>",
+        "PushNotificationTemplateResponse$ADM" : "<p>The message template that's used for the ADM (Amazon Device Messaging) channel. This message template overrides the default template for push notification channels (DefaultPushNotificationTemplate).</p>",
+        "PushNotificationTemplateResponse$Baidu" : "<p>The message template that's used for the Baidu (Baidu Cloud Push) channel. This message template overrides the default template for push notification channels (DefaultPushNotificationTemplate).</p>",
+        "PushNotificationTemplateResponse$GCM" : "<p>The message template that's used for the GCM channel, which is used to send notifications through the Firebase Cloud Messaging (FCM), formerly Google Cloud Messaging (GCM), service. This message template overrides the default template for push notification channels (DefaultPushNotificationTemplate).</p>"
       }
     },
     "ApplicationDateRangeKpiResponse" : {
@@ -309,6 +343,10 @@
       "base" : "<p>Specifies the display name of an application and the tags to associate with the application.</p>",
       "refs" : { }
     },
+    "CreateTemplateMessageBody" : {
+      "base" : "<p>Provides information about an API request or response.</p>",
+      "refs" : { }
+    },
     "DefaultMessage" : {
       "base" : "<p>Specifies the default message to use for all channels.</p>",
       "refs" : {
@@ -318,7 +356,14 @@
     "DefaultPushNotificationMessage" : {
       "base" : "<p>Specifies the default settings and content for a push notification that's sent directly to an endpoint.</p>",
       "refs" : {
-        "DirectMessageConfiguration$DefaultPushNotificationMessage" : "<p>The default push notification message for all push channels.</p>"
+        "DirectMessageConfiguration$DefaultPushNotificationMessage" : "<p>The default push notification message for all push notification channels.</p>"
+      }
+    },
+    "DefaultPushNotificationTemplate" : {
+      "base" : "<p>Specifies the settings and content for the default message template that's used in messages that are sent through a push notification channel.</p>",
+      "refs" : {
+        "PushNotificationTemplateRequest$Default" : "<p>The default message template to use for push notification channels.</p>",
+        "PushNotificationTemplateResponse$Default" : "<p>The default message template that's used for push notification channels.</p>"
       }
     },
     "DeliveryStatus" : {
@@ -360,6 +405,14 @@
       "refs" : {
         "DirectMessageConfiguration$EmailMessage" : "<p>The default message for the email channel. This message overrides the default message (DefaultMessage).</p>"
       }
+    },
+    "EmailTemplateRequest" : {
+      "base" : "<p>Specifies the content and settings for a message template that can be used in messages that are sent through the email channel.</p>",
+      "refs" : { }
+    },
+    "EmailTemplateResponse" : {
+      "base" : "<p>Provides information about the content and settings for a message template that can be used in messages that are sent through the email channel.</p>",
+      "refs" : { }
     },
     "EndpointBatchItem" : {
       "base" : "<p>Specifies an endpoint to create or update and the settings and attributes to set or change for the endpoint.</p>",
@@ -657,6 +710,14 @@
         "EventsBatch$Endpoint" : "<p>A set of properties and attributes that are associated with the endpoint.</p>"
       }
     },
+    "PushNotificationTemplateRequest" : {
+      "base" : "<p>Specifies the content and settings for a message template that can be used in messages that are sent through a push notification channel.</p>",
+      "refs" : { }
+    },
+    "PushNotificationTemplateResponse" : {
+      "base" : "<p>Provides information about the content and settings for a message template that can be used in messages that are sent through a push notification channel.</p>",
+      "refs" : { }
+    },
     "QuietTime" : {
       "base" : "<p>Specifies the start and end times that define a time range when messages aren't sent to endpoints.</p>",
       "refs" : {
@@ -690,7 +751,7 @@
       }
     },
     "ResultRowValue" : {
-      "base" : " <p>Provides a single value and metadata about that value as part of an array of query results for a standard metric that applies to an application or campaign.</p>",
+      "base" : "<p>Provides a single value and metadata about that value as part of an array of query results for a standard metric that applies to an application or campaign.</p>",
       "refs" : {
         "ListOfResultRowValue$member" : null
       }
@@ -708,6 +769,14 @@
       "refs" : {
         "DirectMessageConfiguration$SMSMessage" : "<p>The default message for the SMS channel. This message overrides the default message (DefaultMessage).</p>"
       }
+    },
+    "SMSTemplateRequest" : {
+      "base" : "<p>Specifies the content and settings for a message template that can be used in text messages that are sent through the SMS channel.</p>",
+      "refs" : { }
+    },
+    "SMSTemplateResponse" : {
+      "base" : "<p>Provides information about the content and settings for a message template that can be used in text messages that are sent through the SMS channel.</p>",
+      "refs" : { }
     },
     "Schedule" : {
       "base" : "<p>Specifies the schedule settings for a campaign.</p>",
@@ -813,7 +882,7 @@
       }
     },
     "SimpleEmail" : {
-      "base" : "<p>Specifies the content of an email message, composed of a subject, a text part, and an HTML part.</p>",
+      "base" : "<p>Specifies the contents of an email message, composed of a subject, a text part, and an HTML part.</p>",
       "refs" : {
         "EmailMessage$SimpleEmail" : "<p>The email message, composed of a subject, a text part, and an HTML part.</p>"
       }
@@ -833,7 +902,45 @@
       }
     },
     "TagsModel" : {
-      "base" : "<p>Specifies the tags (keys and values) for an application, campaign, or segment.</p>",
+      "base" : "<p>Specifies the tags (keys and values) for an application, campaign, message template, or segment.</p>",
+      "refs" : { }
+    },
+    "Template" : {
+      "base" : "<p>Specifies the name of the message template to use for the message.</p>",
+      "refs" : {
+        "TemplateConfiguration$EmailTemplate" : "<p>The email template to use for the message.</p>",
+        "TemplateConfiguration$PushTemplate" : "<p>The push notification template to use for the message.</p>",
+        "TemplateConfiguration$SMSTemplate" : "<p>The SMS template to use for the message.</p>"
+      }
+    },
+    "TemplateConfiguration" : {
+      "base" : "<p>Specifies the message template to use for the message, for each type of channel.</p>",
+      "refs" : {
+        "CampaignResponse$TemplateConfiguration" : "<p>The message template that’s used for the campaign.</p>",
+        "MessageRequest$TemplateConfiguration" : "<p>The message template to use for the message.</p>",
+        "SendUsersMessageRequest$TemplateConfiguration" : "<p>The message template to use for the message.</p>",
+        "TreatmentResource$TemplateConfiguration" : "<p>The message template that’s used for the treatment.</p>",
+        "WriteCampaignRequest$TemplateConfiguration" : "<p>The message template to use for the campaign.</p>",
+        "WriteTreatmentResource$TemplateConfiguration" : "<p>The message template to use for the treatment.</p>"
+      }
+    },
+    "TemplateResponse" : {
+      "base" : "<p>Provides information about a message template that's associated with your Amazon Pinpoint account.</p>",
+      "refs" : {
+        "ListOfTemplateResponse$member" : null
+      }
+    },
+    "TemplateType" : {
+      "base" : null,
+      "refs" : {
+        "EmailTemplateResponse$TemplateType" : "<p>The type of channel that the message template is designed for. For an email template, this value is EMAIL.</p>",
+        "PushNotificationTemplateResponse$TemplateType" : "<p>The type of channel that the message template is designed for. For a push notification template, this value is PUSH.</p>",
+        "SMSTemplateResponse$TemplateType" : "<p>The type of channel that the message template is designed for. For an SMS template, this value is SMS.</p>",
+        "TemplateResponse$TemplateType" : "<p>The type of channel that the message template is designed for.</p>"
+      }
+    },
+    "TemplatesResponse" : {
+      "base" : "<p>Provides information about all the message templates that are associated with your Amazon Pinpoint account.</p>",
       "refs" : { }
     },
     "TooManyRequestsException" : {
@@ -905,7 +1012,7 @@
         "APNSChannelResponse$HasCredential" : "<p>(Not used) This property is retained only for backward compatibility.</p>",
         "APNSChannelResponse$HasTokenKey" : "<p>Specifies whether the APNs channel is configured to communicate with APNs by using APNs tokens. To provide an authentication key for APNs tokens, set the TokenKey property of the channel.</p>",
         "APNSChannelResponse$IsArchived" : "<p>Specifies whether the APNs channel is archived.</p>",
-        "APNSMessage$SilentPush" : "<p>Specifies whether the notification is a silent push notification, which is a push notification that doesn't display on a recipient's device. Silent push notifications can be used for cases such as updating an app's configuration, displaying messages in an in-app message center, or supporting phone home functionality.</p>",
+        "APNSMessage$SilentPush" : "<p>Specifies whether the notification is a silent push notification. A silent (or background) push notification isn't displayed on recipients' devices. You can use silent push notifications to make small updates to your app, or to display messages in an in-app message center.</p> <p>Amazon Pinpoint uses this property to determine the correct value for the apns-push-type request header when it sends the notification message to APNs. If you specify a value of true for this property, Amazon Pinpoint sets the value for the apns-push-type header field to background.</p> <note><p>If you specify the raw content of an APNs push notification, the message payload has to include the content-available key. For silent (background) notifications, set the value of content-available to 1. Additionally, the message payload for a silent notification can't include the alert, badge, or sound keys. For more information, see <a href=\"https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification\">Generating a Remote Notification</a> and <a href=\"https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/pushing_background_updates_to_your_app\">Pushing Background Updates to Your App</a> on the Apple Developer website.</p> <p>Apple has indicated that they will throttle \"excessive\" background notifications based on current traffic volumes. To prevent your notifications being throttled, Apple recommends that you send no more than 3 silent push notifications to each recipient per hour.</p></note>",
         "APNSSandboxChannelRequest$Enabled" : "<p>Specifies whether to enable the APNs sandbox channel for the application.</p>",
         "APNSSandboxChannelResponse$Enabled" : "<p>Specifies whether the APNs sandbox channel is enabled for the application.</p>",
         "APNSSandboxChannelResponse$HasCredential" : "<p>(Not used) This property is retained only for backward compatibility.</p>",
@@ -1082,8 +1189,8 @@
     "ListOfResultRowValue" : {
       "base" : null,
       "refs" : {
-        "ResultRow$GroupedBys" : " <p>An array of objects that defines the field and field values that were used to group data in a result set that contains multiple results. This value is null if the data in a result set isn’t grouped.</p>",
-        "ResultRow$Values" : " <p>An array of objects that provides pre-aggregated values for a standard metric that applies to an application or campaign.</p>"
+        "ResultRow$GroupedBys" : "<p>An array of objects that defines the field and field values that were used to group data in a result set that contains multiple results. This value is null if the data in a result set isn’t grouped.</p>",
+        "ResultRow$Values" : "<p>An array of objects that provides pre-aggregated values for a standard metric that applies to an application or campaign.</p>"
       }
     },
     "ListOfSegmentDimensions" : {
@@ -1108,6 +1215,12 @@
       "base" : null,
       "refs" : {
         "SegmentsResponse$Item" : "<p>An array of responses, one for each segment that's associated with the application (Segments resource) or each version of a segment that's associated with the application (Segment Versions resource).</p>"
+      }
+    },
+    "ListOfTemplateResponse" : {
+      "base" : null,
+      "refs" : {
+        "TemplatesResponse$Item" : "<p>An array of responses, one for each message template that's associated with your Amazon Pinpoint account and meets any filter criteria that you specified in the request.</p>"
       }
     },
     "ListOfTreatmentResource" : {
@@ -1260,13 +1373,20 @@
         "CampaignResponse$tags" : "<p>A string-to-string map of key-value pairs that identifies the tags that are associated with the campaign. Each tag consists of a required tag key and an associated tag value.</p>",
         "CreateApplicationRequest$tags" : "<p>A string-to-string map of key-value pairs that defines the tags to associate with the application. Each tag consists of a required tag key and an associated tag value.</p>",
         "DefaultPushNotificationMessage$Data" : "<p>The JSON data payload to use for the default push notification, if the notification is a silent push notification. This payload is added to the data.pinpoint.jsonBody object of the notification.</p>",
+        "EmailTemplateRequest$tags" : "<p>A string-to-string map of key-value pairs that defines the tags to associate with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
+        "EmailTemplateResponse$tags" : "<p>A string-to-string map of key-value pairs that identifies the tags that are associated with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
         "EndpointSendConfiguration$Context" : "<p>A map of custom attributes to attach to the message for the address. For a push notification, this payload is added to the data.pinpoint object. For an email or text message, this payload is added to email/SMS delivery receipt event attributes.</p>",
         "Event$Attributes" : "<p>One or more custom attributes that are associated with the event.</p>",
         "GCMMessage$Data" : "<p>The JSON data payload to use for the push notification, if the notification is a silent push notification. This payload is added to the data.pinpoint.jsonBody object of the notification.</p>",
         "MessageRequest$Context" : "<p>A map of custom attributes to attach to the message. For a push notification, this payload is added to the data.pinpoint object. For an email or text message, this payload is added to email/SMS delivery receipt event attributes.</p>",
+        "PushNotificationTemplateRequest$tags" : "<p>A string-to-string map of key-value pairs that defines the tags to associate with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
+        "PushNotificationTemplateResponse$tags" : "<p>A string-to-string map of key-value pairs that identifies the tags that are associated with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
+        "SMSTemplateRequest$tags" : "<p>A string-to-string map of key-value pairs that defines the tags to associate with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
+        "SMSTemplateResponse$tags" : "<p>A string-to-string map of key-value pairs that identifies the tags that are associated with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
         "SegmentResponse$tags" : "<p>A string-to-string map of key-value pairs that identifies the tags that are associated with the segment. Each tag consists of a required tag key and an associated tag value.</p>",
         "SendUsersMessageRequest$Context" : "<p>A map of custom attribute-value pairs. For a push notification, Amazon Pinpoint adds these attributes to the data.pinpoint object in the body of the notification payload. Amazon Pinpoint also provides these attributes in the events that it generates for users-messages deliveries.</p>",
-        "TagsModel$tags" : "<p>A string-to-string map of key-value pairs that defines the tags for an application, campaign, or segment. A project, campaign, or segment can have a maximum of 50 tags.</p> <p>Each tag consists of a required tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.</p>",
+        "TagsModel$tags" : "<p>A string-to-string map of key-value pairs that defines the tags for an application, campaign, message template, or segment. Each project, campaign, message template, or segment can have a maximum of 50 tags.</p> <p>Each tag consists of a required tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.</p>",
+        "TemplateResponse$tags" : "<p>A string-to-string map of key-value pairs that identifies the tags that are associated with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
         "WriteCampaignRequest$tags" : "<p>A string-to-string map of key-value pairs that defines the tags to associate with the campaign. Each tag consists of a required tag key and an associated tag value.</p>",
         "WriteSegmentRequest$tags" : "<p>A string-to-string map of key-value pairs that defines the tags to associate with the segment. Each tag consists of a required tag key and an associated tag value.</p>"
       }
@@ -1314,11 +1434,16 @@
         "APNSMessage$MediaUrl" : "<p>The URL of an image or video to display in the push notification.</p>",
         "APNSMessage$PreferredAuthenticationMethod" : "<p>The authentication method that you want Amazon Pinpoint to use when authenticating with Apple Push Notification service (APNs), CERTIFICATE or TOKEN.</p>",
         "APNSMessage$Priority" : "<p>para>5 - Low priority, the notification might be delayed, delivered as part of a group, or throttled.</p>/listitem> <li><p>10 - High priority, the notification is sent immediately. This is the default value. A high priority notification should trigger an alert, play a sound, or badge your app's icon on the recipient's device.</p></li>/para> <p>Amazon Pinpoint specifies this value in the apns-priority request header when it sends the notification message to APNs.</p> <p>The equivalent values for Firebase Cloud Messaging (FCM), formerly Google Cloud Messaging (GCM), are normal, for 5, and high, for 10. If you specify an FCM value for this property, Amazon Pinpoint accepts and converts the value to the corresponding APNs value.</p>",
-        "APNSMessage$RawContent" : "<p>The raw, JSON-formatted string to use as the payload for the notification message. This value overrides the message.</p>",
-        "APNSMessage$Sound" : "<p>The key for the sound to play when the recipient receives the push notification. The value of this key is the name of a sound file in your app's main bundle or the Library/Sounds folder in your app's data container. If the sound file can't be found or you specify default for the value, the system plays the default alert sound.</p>",
+        "APNSMessage$RawContent" : "<p>The raw, JSON-formatted string to use as the payload for the notification message. This value overrides the message.</p> <note><p>If you specify the raw content of an APNs push notification, the message payload has to include the content-available key. The value of the content-available key has to be an integer, and can only be 0 or 1. If you're sending a standard notification, set the value of content-available to 0. If you're sending a silent (background) notification, set the value of content-available to 1. Additionally, silent notification payloads can't include the alert, badge, or sound keys. For more information, see <a href=\"https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification\">Generating a Remote Notification</a> and <a href=\"https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/pushing_background_updates_to_your_app\">Pushing Background Updates to Your App</a> on the Apple Developer website.</p></note>",
+        "APNSMessage$Sound" : "<p>The key for the sound to play when the recipient receives the push notification. The value for this key is the name of a sound file in your app's main bundle or the Library/Sounds folder in your app's data container. If the sound file can't be found or you specify default for the value, the system plays the default alert sound.</p>",
         "APNSMessage$ThreadId" : "<p>The key that represents your app-specific identifier for grouping notifications. If you provide a Notification Content app extension, you can use this value to group your notifications together.</p>",
         "APNSMessage$Title" : "<p>The title to display above the notification message on the recipient's device.</p>",
         "APNSMessage$Url" : "<p>The URL to open in the recipient's default mobile browser, if a recipient taps the push notification and the value of the Action property is URL.</p>",
+        "APNSPushNotificationTemplate$Body" : "<p>The message body to use in push notifications that are based on the message template.</p>",
+        "APNSPushNotificationTemplate$MediaUrl" : "<p>The URL of an image or video to display in push notifications that are based on the message template.</p>",
+        "APNSPushNotificationTemplate$Sound" : "<p>The key for the sound to play when the recipient receives a push notification that's based on the message template. The value for this key is the name of a sound file in your app's main bundle or the Library/Sounds folder in your app's data container. If the sound file can't be found or you specify default for the value, the system plays the default alert sound.</p>",
+        "APNSPushNotificationTemplate$Title" : "<p>The title to use in push notifications that are based on the message template. This title appears above the notification message on a recipient's device.</p>",
+        "APNSPushNotificationTemplate$Url" : "<p>The URL to open in the recipient's default mobile browser, if a recipient taps a push notification that's based on the message template and the value of the Action property is URL.</p>",
         "APNSSandboxChannelRequest$BundleId" : "<p>The bundle identifier that's assigned to your iOS app. This identifier is used for APNs tokens.</p>",
         "APNSSandboxChannelRequest$Certificate" : "<p>The APNs client certificate that you received from Apple, if you want Amazon Pinpoint to communicate with the APNs sandbox environment by using an APNs certificate.</p>",
         "APNSSandboxChannelRequest$DefaultAuthenticationMethod" : "<p>The default authentication method that you want Amazon Pinpoint to use when authenticating with the APNs sandbox environment, key or certificate.</p>",
@@ -1374,11 +1499,18 @@
         "AddressConfiguration$BodyOverride" : "<p>The message body to use instead of the default message body. This value overrides the default message body.</p>",
         "AddressConfiguration$RawContent" : "<p>The raw, JSON-formatted string to use as the payload for the notification message. This value overrides the message.</p>",
         "AddressConfiguration$TitleOverride" : "<p>The message title to use instead of the default message title. This value overrides the default message title.</p>",
+        "AndroidPushNotificationTemplate$Body" : "<p>The message body to use in a push notification that's based on the message template.</p>",
+        "AndroidPushNotificationTemplate$ImageIconUrl" : "<p>The URL of the large icon image to display in the content view of a push notification that's based on the message template.</p>",
+        "AndroidPushNotificationTemplate$ImageUrl" : "<p>The URL of an image to display in a push notification that's based on the message template.</p>",
+        "AndroidPushNotificationTemplate$SmallImageIconUrl" : "<p>The URL of the small icon image to display in the status bar and the content view of a push notification that's based on the message template.</p>",
+        "AndroidPushNotificationTemplate$Sound" : "<p>The sound to play when a recipient receives a push notification that's based on the message template. You can use the default stream or specify the file name of a sound resource that's bundled in your app. On an Android platform, the sound file must reside in /res/raw/.</p>",
+        "AndroidPushNotificationTemplate$Title" : "<p>The title to use in a push notification that's based on the message template. This title appears above the notification message on a recipient's device.</p>",
+        "AndroidPushNotificationTemplate$Url" : "<p>The URL to open in a recipient's default mobile browser, if a recipient taps a a push notification that's based on the message template and the value of the Action property is URL.</p>",
         "ApplicationDateRangeKpiResponse$ApplicationId" : "<p>The unique identifier for the application that the metric applies to.</p>",
-        "ApplicationDateRangeKpiResponse$EndTime" : "<p>The last date or date and time of the date range that was used to filter the query results, in ISO 8601 format. The date range is inclusive.</p>",
-        "ApplicationDateRangeKpiResponse$KpiName" : "<p>The name of the metric, also referred to as a <i>key performance indicator (KPI)</i>, that the data was retrieved for. This value describes the associated metric and consists of two or more terms, which are comprised of lowercase alphanumeric characters, separated by a hyphen. For a list of valid values, see the <a href=\"developerguide.html\">Amazon Pinpoint Developer Guide</a>.</p>",
-        "ApplicationDateRangeKpiResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null for the App Metrics resource. The App Metrics resource returns all results in a single page.</p>",
-        "ApplicationDateRangeKpiResponse$StartTime" : "<p>The first date or date and time of the date range that was used to filter the query results, in ISO 8601 format. The date range is inclusive.</p>",
+        "ApplicationDateRangeKpiResponse$EndTime" : "<p>The last date and time of the date range that was used to filter the query results, in extended ISO 8601 format. The date range is inclusive.</p>",
+        "ApplicationDateRangeKpiResponse$KpiName" : "<p>The name of the metric, also referred to as a <i>key performance indicator (KPI)</i>, that the data was retrieved for. This value describes the associated metric and consists of two or more terms, which are comprised of lowercase alphanumeric characters, separated by a hyphen. For a list of valid values, see the <a href=\"https://docs.aws.amazon.com/pinpoint/latest/developerguide/welcome.html\">Amazon Pinpoint Developer Guide</a>.</p>",
+        "ApplicationDateRangeKpiResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null for the Application Metrics resource. The Application Metrics resource returns all results in a single page.</p>",
+        "ApplicationDateRangeKpiResponse$StartTime" : "<p>The first date and time of the date range that was used to filter the query results, in extended ISO 8601 format. The date range is inclusive.</p>",
         "ApplicationResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the application.</p>",
         "ApplicationResponse$Id" : "<p>The unique identifier for the application. This identifier is displayed as the <b>Project ID</b> on the Amazon Pinpoint console.</p>",
         "ApplicationResponse$Name" : "<p>The display name of the application. This name is displayed as the <b>Project name</b> on the Amazon Pinpoint console.</p>",
@@ -1386,7 +1518,7 @@
         "ApplicationSettingsResource$LastModifiedDate" : "<p>The date and time, in ISO 8601 format, when the application's settings were last modified.</p>",
         "ApplicationsResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
         "AttributesResource$ApplicationId" : "<p>The unique identifier for the application.</p>",
-        "AttributesResource$AttributeType" : "<p>The type of attribute or attributes that were removed from the endpoints. Valid values are:</p> <ul><li><p>endpoint-custom-attributes - Custom attributes that describe endpoints</p></li> <li><p>endpoint-custom-metrics - Custom metrics that your app reports to Amazon Pinpoint for endpoints</p></li> <li><p>endpoint-user-attributes - Custom attributes that describe users</p></li></ul>",
+        "AttributesResource$AttributeType" : "<p>The type of attribute or attributes that were removed from the endpoints. Valid values are:</p> <ul><li><p>endpoint-custom-attributes - Custom attributes that describe endpoints.</p></li> <li><p>endpoint-custom-metrics - Custom metrics that your app reports to Amazon Pinpoint for endpoints.</p></li> <li><p>endpoint-user-attributes - Custom attributes that describe users.</p></li></ul>",
         "BaiduChannelRequest$ApiKey" : "<p>The API key that you received from the Baidu Cloud Push service to communicate with the service.</p>",
         "BaiduChannelRequest$SecretKey" : "<p>The secret key that you received from the Baidu Cloud Push service to communicate with the service.</p>",
         "BaiduChannelResponse$ApplicationId" : "<p>The unique identifier for the application that the Baidu channel applies to.</p>",
@@ -1407,10 +1539,10 @@
         "BaiduMessage$Url" : "<p>The URL to open in the recipient's default mobile browser, if a recipient taps the push notification and the value of the Action property is URL.</p>",
         "CampaignDateRangeKpiResponse$ApplicationId" : "<p>The unique identifier for the application that the metric applies to.</p>",
         "CampaignDateRangeKpiResponse$CampaignId" : "<p>The unique identifier for the campaign that the metric applies to.</p>",
-        "CampaignDateRangeKpiResponse$EndTime" : "<p>The last date or date and time of the date range that was used to filter the query results, in ISO 8601 format. The date range is inclusive.</p>",
-        "CampaignDateRangeKpiResponse$KpiName" : "<p>The name of the metric, also referred to as a <i>key performance indicator (KPI)</i>, that the data was retrieved for. This value describes the associated metric and consists of two or more terms, which are comprised of lowercase alphanumeric characters, separated by a hyphen. For a list of valid values, see the <a href=\"developerguide.html\">Amazon Pinpoint Developer Guide</a>.</p>",
+        "CampaignDateRangeKpiResponse$EndTime" : "<p>The last date and time of the date range that was used to filter the query results, in extended ISO 8601 format. The date range is inclusive.</p>",
+        "CampaignDateRangeKpiResponse$KpiName" : "<p>The name of the metric, also referred to as a <i>key performance indicator (KPI)</i>, that the data was retrieved for. This value describes the associated metric and consists of two or more terms, which are comprised of lowercase alphanumeric characters, separated by a hyphen. For a list of valid values, see the <a href=\"https://docs.aws.amazon.com/pinpoint/latest/developerguide/welcome.html\">Amazon Pinpoint Developer Guide</a>.</p>",
         "CampaignDateRangeKpiResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null for the Campaign Metrics resource. The Campaign Metrics resource returns all results in a single page.</p>",
-        "CampaignDateRangeKpiResponse$StartTime" : "<p>The first date or date and time of the date range that was used to filter the query results, in ISO 8601 format. The date range is inclusive.</p>",
+        "CampaignDateRangeKpiResponse$StartTime" : "<p>The first date and time of the date range that was used to filter the query results, in extended ISO 8601 format. The date range is inclusive.</p>",
         "CampaignEmailMessage$Body" : "<p>The body of the email for recipients whose email clients don't support HTML content.</p>",
         "CampaignEmailMessage$FromAddress" : "<p>The verified email address to send the email from. The default address is the FromAddress specified for the email channel for the application.</p>",
         "CampaignEmailMessage$HtmlBody" : "<p>The body of the email, in HTML format, for recipients whose email clients support HTML content.</p>",
@@ -1440,6 +1572,10 @@
         "DefaultPushNotificationMessage$Body" : "<p>The default body of the notification message.</p>",
         "DefaultPushNotificationMessage$Title" : "<p>The default title to display above the notification message on a recipient's device.</p>",
         "DefaultPushNotificationMessage$Url" : "<p>The default URL to open in a recipient's default mobile browser, if a recipient taps the push notification and the value of the Action property is URL.</p>",
+        "DefaultPushNotificationTemplate$Body" : "<p>The message body to use in push notifications that are based on the message template.</p>",
+        "DefaultPushNotificationTemplate$Sound" : "<p>The sound to play when a recipient receives a push notification that's based on the message template. You can use the default stream or specify the file name of a sound resource that's bundled in your app. On an Android platform, the sound file must reside in /res/raw/.</p> <p>For an iOS platform, this value is the key for the name of a sound file in your app's main bundle or the Library/Sounds folder in your app's data container. If the sound file can't be found or you specify default for the value, the system plays the default alert sound.</p>",
+        "DefaultPushNotificationTemplate$Title" : "<p>The title to use in push notifications that are based on the message template. This title appears above the notification message on a recipient's device.</p>",
+        "DefaultPushNotificationTemplate$Url" : "<p>The URL to open in a recipient's default mobile browser, if a recipient taps a push notification that's based on the message template and the value of the Action property is URL.</p>",
         "EmailChannelRequest$ConfigurationSet" : "<p>The configuration set that you want to apply to email that you send through the channel by using the <a href=\"emailAPIreference.html\">Amazon Pinpoint Email API</a>.</p>",
         "EmailChannelRequest$FromAddress" : " <p>The verified email address that you want to send email from when you send email through the channel.</p>",
         "EmailChannelRequest$Identity" : " <p>The Amazon Resource Name (ARN) of the identity, verified with Amazon Simple Email Service (Amazon SES), that you want to use when you send email through the channel.</p>",
@@ -1457,9 +1593,18 @@
         "EmailMessage$Body" : "<p>The body of the email message.</p>",
         "EmailMessage$FeedbackForwardingAddress" : "<p>The email address to forward bounces and complaints to, if feedback forwarding is enabled.</p>",
         "EmailMessage$FromAddress" : "<p>The verified email address to send the email message from. The default value is the FromAddress specified for the email channel.</p>",
+        "EmailTemplateRequest$HtmlPart" : "<p>The message body, in HTML format, to use in email messages that are based on the message template. We recommend using HTML format for email clients that support HTML. You can include links, formatted text, and more in an HTML message.</p>",
+        "EmailTemplateRequest$Subject" : "<p>The subject line, or title, to use in email messages that are based on the message template.</p>",
+        "EmailTemplateRequest$TextPart" : "<p>The message body, in text format, to use in email messages that are based on the message template. We recommend using text format for email clients that don't support HTML and clients that are connected to high-latency networks, such as mobile devices.</p>",
+        "EmailTemplateResponse$CreationDate" : "<p>The date when the message template was created.</p>",
+        "EmailTemplateResponse$HtmlPart" : "<p>The message body, in HTML format, that's used in email messages that are based on the message template.</p>",
+        "EmailTemplateResponse$LastModifiedDate" : "<p>The date when the message template was last modified.</p>",
+        "EmailTemplateResponse$Subject" : "<p>The subject line, or title, that's used in email messages that are based on the message template.</p>",
+        "EmailTemplateResponse$TemplateName" : "<p>The name of the message template.</p>",
+        "EmailTemplateResponse$TextPart" : "<p>The message body, in text format, that's used in email messages that are based on the message template.</p>",
         "EndpointBatchItem$Address" : "<p>The destination address for messages or push notifications that you send to the endpoint. The address varies by channel. For a push-notification channel, use the token provided by the push notification service, such as an Apple Push Notification service (APNs) device token or a Firebase Cloud Messaging (FCM) registration token. For the SMS channel, use a phone number in E.164 format, such as +12065550100. For the email channel, use an email address.</p>",
         "EndpointBatchItem$EffectiveDate" : "<p>The date and time, in ISO 8601 format, when the endpoint was created or updated.</p>",
-        "EndpointBatchItem$EndpointStatus" : "<p>Not used.</p>",
+        "EndpointBatchItem$EndpointStatus" : "<p>Specifies whether to send messages or push notifications to the endpoint. Valid values are: ACTIVE, messages are sent to the endpoint; and, INACTIVE, messages aren’t sent to the endpoint.</p> <p>Amazon Pinpoint automatically sets this value to ACTIVE when you create an endpoint or update an existing endpoint. Amazon Pinpoint automatically sets this value to INACTIVE if you update another endpoint that has the same address specified by the Address property.</p>",
         "EndpointBatchItem$Id" : "<p>The unique identifier for the endpoint in the context of the batch.</p>",
         "EndpointBatchItem$OptOut" : "<p>Specifies whether the user who's associated with the endpoint has opted out of receiving messages and push notifications from you. Possible values are: ALL, the user has opted out and doesn't want to receive any messages or push notifications; and, NONE, the user hasn't opted out and wants to receive all messages and push notifications.</p>",
         "EndpointBatchItem$RequestId" : "<p>The unique identifier for the request to create or update the endpoint.</p>",
@@ -1479,10 +1624,10 @@
         "EndpointMessageResult$Address" : "<p>The endpoint address that the message was delivered to.</p>",
         "EndpointMessageResult$MessageId" : "<p>The unique identifier for the message that was sent.</p>",
         "EndpointMessageResult$StatusMessage" : "<p>The status message for delivering the message.</p>",
-        "EndpointMessageResult$UpdatedToken" : "<p>For push notifications that are sent through the GCM channel, specifies whether the token was updated as part of delivering the message.</p>",
+        "EndpointMessageResult$UpdatedToken" : "<p>For push notifications that are sent through the GCM channel, specifies whether the endpoint's device registration token was updated as part of delivering the message.</p>",
         "EndpointRequest$Address" : "<p>The destination address for messages or push notifications that you send to the endpoint. The address varies by channel. For a push-notification channel, use the token provided by the push notification service, such as an Apple Push Notification service (APNs) device token or a Firebase Cloud Messaging (FCM) registration token. For the SMS channel, use a phone number in E.164 format, such as +12065550100. For the email channel, use an email address.</p>",
         "EndpointRequest$EffectiveDate" : "<p>The date and time, in ISO 8601 format, when the endpoint is updated.</p>",
-        "EndpointRequest$EndpointStatus" : "<p>Not used.</p>",
+        "EndpointRequest$EndpointStatus" : "<p>Specifies whether to send messages or push notifications to the endpoint. Valid values are: ACTIVE, messages are sent to the endpoint; and, INACTIVE, messages aren’t sent to the endpoint.</p> <p>Amazon Pinpoint automatically sets this value to ACTIVE when you create an endpoint or update an existing endpoint. Amazon Pinpoint automatically sets this value to INACTIVE if you update another endpoint that has the same address specified by the Address property.</p>",
         "EndpointRequest$OptOut" : "<p>Specifies whether the user who's associated with the endpoint has opted out of receiving messages and push notifications from you. Possible values are: ALL, the user has opted out and doesn't want to receive any messages or push notifications; and, NONE, the user hasn't opted out and wants to receive all messages and push notifications.</p>",
         "EndpointRequest$RequestId" : "<p>The unique identifier for the most recent request to update the endpoint.</p>",
         "EndpointResponse$Address" : "<p>The destination address for messages or push notifications that you send to the endpoint. The address varies by channel. For example, the address for a push-notification channel is typically the token provided by a push notification service, such as an Apple Push Notification service (APNs) device token or a Firebase Cloud Messaging (FCM) registration token. The address for the SMS channel is a phone number in E.164 format, such as +12065550100. The address for the email channel is an email address.</p>",
@@ -1490,7 +1635,7 @@
         "EndpointResponse$CohortId" : "<p>A number from 0-99 that represents the cohort that the endpoint is assigned to. Endpoints are grouped into cohorts randomly, and each cohort contains approximately 1 percent of the endpoints for an application. Amazon Pinpoint assigns cohorts to the holdout or treatment allocations for campaigns.</p>",
         "EndpointResponse$CreationDate" : "<p>The date and time, in ISO 8601 format, when the endpoint was created.</p>",
         "EndpointResponse$EffectiveDate" : "<p>The date and time, in ISO 8601 format, when the endpoint was last updated.</p>",
-        "EndpointResponse$EndpointStatus" : "<p>Not used.</p>",
+        "EndpointResponse$EndpointStatus" : "<p>Specifies whether messages or push notifications are sent to the endpoint. Possible values are: ACTIVE, messages are sent to the endpoint; and, INACTIVE, messages aren’t sent to the endpoint.</p> <p>Amazon Pinpoint automatically sets this value to ACTIVE when you create an endpoint or update an existing endpoint. Amazon Pinpoint automatically sets this value to INACTIVE if you update another endpoint that has the same address specified by the Address property.</p>",
         "EndpointResponse$Id" : "<p>The unique identifier that you assigned to the endpoint. The identifier should be a globally unique identifier (GUID) to ensure that it doesn't conflict with other endpoint identifiers that are associated with the application.</p>",
         "EndpointResponse$OptOut" : "<p>Specifies whether the user who's associated with the endpoint has opted out of receiving messages and push notifications from you. Possible values are: ALL, the user has opted out and doesn't want to receive any messages or push notifications; and, NONE, the user hasn't opted out and wants to receive all messages and push notifications.</p>",
         "EndpointResponse$RequestId" : "<p>The unique identifier for the most recent request to update the endpoint.</p>",
@@ -1524,10 +1669,10 @@
         "ExportJobResponse$Id" : "<p>The unique identifier for the export job.</p>",
         "ExportJobResponse$Type" : "<p>The job type. This value is EXPORT for export jobs.</p>",
         "ExportJobsResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
-        "GCMChannelRequest$ApiKey" : "<p>The API key, also referred to as a <i>server key</i>, that you received from Google to communicate with Google services.</p>",
+        "GCMChannelRequest$ApiKey" : "<p>The Web API Key, also referred to as an <i>API_KEY</i> or <i>server key</i>, that you received from Google to communicate with Google services.</p>",
         "GCMChannelResponse$ApplicationId" : "<p>The unique identifier for the application that the GCM channel applies to.</p>",
         "GCMChannelResponse$CreationDate" : "<p>The date and time when the GCM channel was enabled.</p>",
-        "GCMChannelResponse$Credential" : "<p>The API key, also referred to as a <i>server key</i>, that you received from Google to communicate with Google services.</p>",
+        "GCMChannelResponse$Credential" : "<p>The Web API Key, also referred to as an <i>API_KEY</i> or <i>server key</i>, that you received from Google to communicate with Google services.</p>",
         "GCMChannelResponse$Id" : "<p>(Deprecated) An identifier for the GCM channel. This property is retained only for backward compatibility.</p>",
         "GCMChannelResponse$LastModifiedBy" : "<p>The user who last modified the GCM channel.</p>",
         "GCMChannelResponse$LastModifiedDate" : "<p>The date and time when the GCM channel was last modified.</p>",
@@ -1576,7 +1721,7 @@
         "MessageResponse$RequestId" : "<p>The identifier for the original request that the message was delivered for.</p>",
         "MessageResult$MessageId" : "<p>The unique identifier for the message that was sent.</p>",
         "MessageResult$StatusMessage" : "<p>The status message for delivering the message.</p>",
-        "MessageResult$UpdatedToken" : "<p>For push notifications that are sent through the GCM channel, specifies whether the token was updated as part of delivering the message.</p>",
+        "MessageResult$UpdatedToken" : "<p>For push notifications that are sent through the GCM channel, specifies whether the endpoint's device registration token was updated as part of delivering the message.</p>",
         "MetricDimension$ComparisonOperator" : "<p>The operator to use when comparing metric values. Valid values are: GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN_OR_EQUAL, and EQUAL.</p>",
         "NumberValidateRequest$IsoCountryCode" : "<p>The two-character code, in ISO 3166-1 alpha-2 format, for the country or region where the phone number was originally registered.</p>",
         "NumberValidateRequest$PhoneNumber" : "<p>The phone number to retrieve information about. The phone number that you provide should include a valid numeric country code. Otherwise, the operation might result in an error.</p>",
@@ -1595,15 +1740,18 @@
         "NumberValidateResponse$ZipCode" : "<p>The postal or ZIP code for the location where the phone number was originally registered.</p>",
         "PublicEndpoint$Address" : "<p>The unique identifier for the recipient, such as a device token, email address, or mobile phone number.</p>",
         "PublicEndpoint$EffectiveDate" : "<p>The date and time, in ISO 8601 format, when the endpoint was last updated.</p>",
-        "PublicEndpoint$EndpointStatus" : "<p>The status of the update request for the endpoint. Possible values are: INACTIVE, the update failed; and, ACTIVE, the endpoint was updated successfully.</p>",
+        "PublicEndpoint$EndpointStatus" : "<p>Specifies whether to send messages or push notifications to the endpoint. Valid values are: ACTIVE, messages are sent to the endpoint; and, INACTIVE, messages aren’t sent to the endpoint.</p> <p>Amazon Pinpoint automatically sets this value to ACTIVE when you create an endpoint or update an existing endpoint. Amazon Pinpoint automatically sets this value to INACTIVE if you update another endpoint that has the same address specified by the Address property.</p>",
         "PublicEndpoint$OptOut" : "<p>Specifies whether the user who's associated with the endpoint has opted out of receiving messages and push notifications from you. Possible values are: ALL, the user has opted out and doesn't want to receive any messages or push notifications; and, NONE, the user hasn't opted out and wants to receive all messages and push notifications.</p>",
         "PublicEndpoint$RequestId" : "<p>A unique identifier that's generated each time the endpoint is updated.</p>",
+        "PushNotificationTemplateResponse$CreationDate" : "<p>The date when the message template was created.</p>",
+        "PushNotificationTemplateResponse$LastModifiedDate" : "<p>The date when the message template was last modified.</p>",
+        "PushNotificationTemplateResponse$TemplateName" : "<p>The name of the message template.</p>",
         "QuietTime$End" : "<p>The specific time when quiet time ends. This value has to use 24-hour notation and be in HH:MM format, where HH is the hour (with a leading zero, if applicable) and MM is the minutes. For example, use 02:30 to represent 2:30 AM, or 14:30 to represent 2:30 PM.</p>",
         "QuietTime$Start" : "<p>The specific time when quiet time begins. This value has to use 24-hour notation and be in HH:MM format, where HH is the hour (with a leading zero, if applicable) and MM is the minutes. For example, use 02:30 to represent 2:30 AM, or 14:30 to represent 2:30 PM.</p>",
         "RawEmail$Data" : "<p>The email message, represented as a raw MIME message. The entire message must be base64 encoded.</p>",
-        "ResultRowValue$Key" : " <p>The name of the field that Amazon Pinpoint uses to store the value specified by the Value property.</p>",
+        "ResultRowValue$Key" : "<p>The name of the field that Amazon Pinpoint uses to store the value specified by the Value property.</p>",
         "ResultRowValue$Type" : " <p>The data type of the value specified by the Value property.</p>",
-        "ResultRowValue$Value" : " <p>In a Values object, the value for the metric that the query retrieved data for. In a GroupedBys object, the value for the field that was used to group data in a result set that contains multiple results (Values objects).</p>",
+        "ResultRowValue$Value" : "<p>In a Values object, the value for the metric that the query retrieved data for. In a GroupedBys object, the value for the field that was used to group data in a result set that contains multiple results (Values objects).</p>",
         "SMSChannelRequest$SenderId" : "<p>The identity that you want to display on recipients' devices when they receive messages from the SMS channel.</p>",
         "SMSChannelRequest$ShortCode" : "<p>The registered short code that you want to use when you send messages through the SMS channel.</p>",
         "SMSChannelResponse$ApplicationId" : "<p>The unique identifier for the application that the SMS channel applies to.</p>",
@@ -1616,8 +1764,13 @@
         "SMSChannelResponse$ShortCode" : "<p>The registered short code to use when you send messages through the SMS channel.</p>",
         "SMSMessage$Body" : "<p>The body of the SMS message.</p>",
         "SMSMessage$Keyword" : "<p>The SMS program name that you provided to AWS Support when you requested your dedicated number.</p>",
-        "SMSMessage$OriginationNumber" : "<p>The number that the SMS message originates from. This should be one of the dedicated long codes or short codes that you requested from AWS Support and is assigned to your AWS account. If you don't specify a long or short code, Amazon Pinpoint assigns a random long code to the SMS message.</p>",
+        "SMSMessage$OriginationNumber" : "<p>The number to send the SMS message from. This value should be one of the dedicated long or short codes that's assigned to your AWS account. If you don't specify a long or short code, Amazon Pinpoint assigns a random long code to the SMS message and sends the message from that code.</p>",
         "SMSMessage$SenderId" : "<p>The sender ID to display as the sender of the message on a recipient's device. Support for sender IDs varies by country or region.</p>",
+        "SMSTemplateRequest$Body" : "<p>The message body to use in text messages that are based on the message template.</p>",
+        "SMSTemplateResponse$Body" : "<p>The message body that's used in text messages that are based on the message template.</p>",
+        "SMSTemplateResponse$CreationDate" : "<p>The date when the message template was created.</p>",
+        "SMSTemplateResponse$LastModifiedDate" : "<p>The date when the message template was last modified.</p>",
+        "SMSTemplateResponse$TemplateName" : "<p>The name of the message template.</p>",
         "Schedule$EndTime" : "<p>The scheduled time, in ISO 8601 format, for the campaign to end.</p>",
         "Schedule$StartTime" : "<p>The scheduled time, in ISO 8601 format, for the campaign to begin.</p>",
         "Schedule$Timezone" : "<p>The starting UTC offset for the campaign schedule, if the value of the IsLocalTime property is true. Valid values are: UTC, UTC+01, UTC+02, UTC+03, UTC+03:30, UTC+04, UTC+04:30, UTC+05,\n                  UTC+05:30, UTC+05:45, UTC+06, UTC+06:30, UTC+07, UTC+08, UTC+09, UTC+09:30,\n                  UTC+10, UTC+10:30, UTC+11, UTC+12, UTC+13, UTC-02, UTC-03, UTC-04, UTC-05, UTC-06,\n                  UTC-07, UTC-08, UTC-09, UTC-10, and UTC-11.</p>",
@@ -1640,6 +1793,12 @@
         "Session$StopTimestamp" : "<p>The date and time when the session ended.</p>",
         "SimpleEmailPart$Charset" : "<p>The applicable character set for the message content.</p>",
         "SimpleEmailPart$Data" : "<p>The textual data of the message content.</p>",
+        "TemplateResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the message template.</p>",
+        "Template$Name" : "<p>The name of the message template to use for the message. If specified, this value must match the name of an existing message template.</p>",
+        "TemplateResponse$CreationDate" : "<p>The date when the message template was created.</p>",
+        "TemplateResponse$LastModifiedDate" : "<p>The date when the message template was last modified.</p>",
+        "TemplateResponse$TemplateName" : "<p>The name of the message template.</p>",
+        "TemplatesResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
         "TreatmentResource$Id" : "<p>The unique identifier for the treatment.</p>",
         "TreatmentResource$TreatmentDescription" : "<p>The custom description of the treatment.</p>",
         "TreatmentResource$TreatmentName" : "<p>The custom name of the treatment. A treatment is a variation of a campaign that's used for A/B testing of a campaign.</p>",
@@ -1651,7 +1810,7 @@
         "VoiceChannelResponse$Platform" : "<p>The type of messaging or notification platform for the channel. For the voice channel, this value is VOICE.</p>",
         "VoiceMessage$Body" : "<p>The text script for the voice message.</p>",
         "VoiceMessage$LanguageCode" : "<p>The language to use when delivering the message. For a list of supported languages, see the <a href=\"AmazonPollyDG.html\">Amazon Polly Developer Guide</a>.</p>",
-        "VoiceMessage$OriginationNumber" : "<p>The phone number from the pool or messaging service to send the message from. Although it isn't required, we recommend that you specify the phone number in E.164 format to ensure prompt and accurate delivery.</p>",
+        "VoiceMessage$OriginationNumber" : "<p>The long code to send the voice message from. This value should be one of the dedicated long codes that's assigned to your AWS account. Although it isn't required, we recommend that you specify the long code in E.164 format, for example +12065550100, to ensure prompt and accurate delivery of the message.</p>",
         "VoiceMessage$VoiceId" : "<p>The name of the voice to use when delivering the message. For a list of supported voices, see the <a href=\"AmazonPollyDG.html\">Amazon Polly Developer Guide</a>.</p>",
         "WriteCampaignRequest$Description" : "<p>The custom description of the campaign.</p>",
         "WriteCampaignRequest$Name" : "<p>The custom name of the campaign.</p>",

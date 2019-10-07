@@ -1005,7 +1005,8 @@
         "jumboFrameCapable":{"shape":"JumboFrameCapable"},
         "awsDeviceV2":{"shape":"AwsDeviceV2"},
         "hasLogicalRedundancy":{"shape":"HasLogicalRedundancy"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "providerName":{"shape":"ProviderName"}
       }
     },
     "ConnectionId":{"type":"string"},
@@ -1060,7 +1061,8 @@
         "bandwidth":{"shape":"Bandwidth"},
         "connectionName":{"shape":"ConnectionName"},
         "lagId":{"shape":"LagId"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "providerName":{"shape":"ProviderName"}
       }
     },
     "CreateDirectConnectGatewayAssociationProposalRequest":{
@@ -1126,7 +1128,8 @@
         "bandwidth":{"shape":"Bandwidth"},
         "location":{"shape":"LocationCode"},
         "lagId":{"shape":"LagId"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "providerName":{"shape":"ProviderName"}
       }
     },
     "CreateLagRequest":{
@@ -1144,7 +1147,8 @@
         "lagName":{"shape":"LagName"},
         "connectionId":{"shape":"ConnectionId"},
         "tags":{"shape":"TagList"},
-        "childConnectionTags":{"shape":"TagList"}
+        "childConnectionTags":{"shape":"TagList"},
+        "providerName":{"shape":"ProviderName"}
       }
     },
     "CreatePrivateVirtualInterfaceRequest":{
@@ -1616,7 +1620,8 @@
         "jumboFrameCapable":{"shape":"JumboFrameCapable"},
         "awsDeviceV2":{"shape":"AwsDeviceV2"},
         "hasLogicalRedundancy":{"shape":"HasLogicalRedundancy"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "providerName":{"shape":"ProviderName"}
       }
     },
     "InterconnectId":{"type":"string"},
@@ -1662,7 +1667,8 @@
         "allowsHostedConnections":{"shape":"BooleanFlag"},
         "jumboFrameCapable":{"shape":"JumboFrameCapable"},
         "hasLogicalRedundancy":{"shape":"HasLogicalRedundancy"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "providerName":{"shape":"ProviderName"}
       }
     },
     "LagId":{"type":"string"},
@@ -1708,7 +1714,8 @@
         "locationCode":{"shape":"LocationCode"},
         "locationName":{"shape":"LocationName"},
         "region":{"shape":"Region"},
-        "availablePortSpeeds":{"shape":"AvailablePortSpeeds"}
+        "availablePortSpeeds":{"shape":"AvailablePortSpeeds"},
+        "availableProviders":{"shape":"ProviderList"}
       }
     },
     "LocationCode":{"type":"string"},
@@ -1850,6 +1857,10 @@
     "PaginationToken":{"type":"string"},
     "PartnerName":{"type":"string"},
     "PortSpeed":{"type":"string"},
+    "ProviderList":{
+      "type":"list",
+      "member":{"shape":"ProviderName"}
+    },
     "ProviderName":{"type":"string"},
     "Region":{"type":"string"},
     "ResourceArn":{"type":"string"},
@@ -1986,10 +1997,7 @@
         "virtualGatewayState":{"shape":"VirtualGatewayState"}
       }
     },
-    "VirtualGatewayId":{
-      "type":"string",
-      "deprecated":true
-    },
+    "VirtualGatewayId":{"type":"string"},
     "VirtualGatewayList":{
       "type":"list",
       "member":{"shape":"VirtualGateway"}

@@ -215,7 +215,7 @@
     "ClusterJDBCURL":{
       "type":"string",
       "min":1,
-      "pattern":"jdbc:(redshift|postgresql)://((?!-)[A-Za-z0-9-]{1,63}(?<!-)\\.)+redshift\\.amazonaws\\.com:\\d{1,5}/[a-zA-Z0-9_$]+"
+      "pattern":"jdbc:(redshift|postgresql)://((?!-)[A-Za-z0-9-]{1,63}(?<!-)\\.)+redshift\\.([a-zA-Z0-9\\.]+):\\d{1,5}/[a-zA-Z0-9_$]+"
     },
     "ColumnToJsonKeyMappings":{
       "type":"map",
@@ -447,11 +447,16 @@
       "max":100,
       "min":1
     },
+    "ElasticsearchClusterEndpoint":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"https:.*"
+    },
     "ElasticsearchDestinationConfiguration":{
       "type":"structure",
       "required":[
         "RoleARN",
-        "DomainARN",
         "IndexName",
         "TypeName",
         "S3Configuration"
@@ -459,6 +464,7 @@
       "members":{
         "RoleARN":{"shape":"RoleARN"},
         "DomainARN":{"shape":"ElasticsearchDomainARN"},
+        "ClusterEndpoint":{"shape":"ElasticsearchClusterEndpoint"},
         "IndexName":{"shape":"ElasticsearchIndexName"},
         "TypeName":{"shape":"ElasticsearchTypeName"},
         "IndexRotationPeriod":{"shape":"ElasticsearchIndexRotationPeriod"},
@@ -475,6 +481,7 @@
       "members":{
         "RoleARN":{"shape":"RoleARN"},
         "DomainARN":{"shape":"ElasticsearchDomainARN"},
+        "ClusterEndpoint":{"shape":"ElasticsearchClusterEndpoint"},
         "IndexName":{"shape":"ElasticsearchIndexName"},
         "TypeName":{"shape":"ElasticsearchTypeName"},
         "IndexRotationPeriod":{"shape":"ElasticsearchIndexRotationPeriod"},
@@ -491,6 +498,7 @@
       "members":{
         "RoleARN":{"shape":"RoleARN"},
         "DomainARN":{"shape":"ElasticsearchDomainARN"},
+        "ClusterEndpoint":{"shape":"ElasticsearchClusterEndpoint"},
         "IndexName":{"shape":"ElasticsearchIndexName"},
         "TypeName":{"shape":"ElasticsearchTypeName"},
         "IndexRotationPeriod":{"shape":"ElasticsearchIndexRotationPeriod"},
