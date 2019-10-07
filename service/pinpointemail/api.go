@@ -5450,10 +5450,10 @@ type DeliveryOptions struct {
 	// set.
 	SendingPoolName *string `type:"string"`
 
-	// Specifies whether Amazon Pinpoint should require that incoming email is delivered
-	// over a connection that’s encrypted by using Transport Layer Security (TLS).
-	// If this value is set to Require, Amazon Pinpoint will bounce email messages
-	// that cannot be delivered over TLS. The default value is Optional.
+	// Specifies whether messages that use the configuration set are required to
+	// use Transport Layer Security (TLS). If the value is Require, messages are
+	// only delivered if a TLS connection can be established. If the value is Optional,
+	// messages can be delivered in plain text if a TLS connection can't be established.
 	TlsPolicy *string `type:"string" enum:"TlsPolicy"`
 }
 
@@ -5899,6 +5899,9 @@ type EmailContent struct {
 	// The simple email message. The message consists of a subject and a message
 	// body.
 	Simple *Message `type:"structure"`
+
+	// The template to use for the email message.
+	Template *Template `type:"structure"`
 }
 
 // String returns the string representation
@@ -5940,6 +5943,12 @@ func (s *EmailContent) SetRaw(v *RawMessage) *EmailContent {
 // SetSimple sets the Simple field's value.
 func (s *EmailContent) SetSimple(v *Message) *EmailContent {
 	s.Simple = v
+	return s
+}
+
+// SetTemplate sets the Template field's value.
+func (s *EmailContent) SetTemplate(v *Template) *EmailContent {
+	s.Template = v
 	return s
 }
 
@@ -8325,8 +8334,10 @@ type PutConfigurationSetDeliveryOptionsInput struct {
 	// set.
 	SendingPoolName *string `type:"string"`
 
-	// Whether Amazon Pinpoint should require that incoming email is delivered over
-	// a connection encrypted with Transport Layer Security (TLS).
+	// Specifies whether messages that use the configuration set are required to
+	// use Transport Layer Security (TLS). If the value is Require, messages are
+	// only delivered if a TLS connection can be established. If the value is Optional,
+	// messages can be delivered in plain text if a TLS connection can't be established.
 	TlsPolicy *string `type:"string" enum:"TlsPolicy"`
 }
 
@@ -9596,6 +9607,41 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type Template struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the template.
+	TemplateArn *string `type:"string"`
+
+	// An object that defines the values to use for message variables in the template.
+	// This object is a set of key-value pairs. Each key defines a message variable
+	// in the template. The corresponding value defines the value to use for that
+	// variable.
+	TemplateData *string `type:"string"`
+}
+
+// String returns the string representation
+func (s Template) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Template) GoString() string {
+	return s.String()
+}
+
+// SetTemplateArn sets the TemplateArn field's value.
+func (s *Template) SetTemplateArn(v string) *Template {
+	s.TemplateArn = &v
+	return s
+}
+
+// SetTemplateData sets the TemplateData field's value.
+func (s *Template) SetTemplateData(v string) *Template {
+	s.TemplateData = &v
+	return s
+}
+
 // An object that defines the tracking options for a configuration set. When
 // you use Amazon Pinpoint to send an email, it contains an invisible image
 // that's used to track when recipients open your email. If your email contains
@@ -10032,11 +10078,10 @@ const (
 	MailFromDomainStatusTemporaryFailure = "TEMPORARY_FAILURE"
 )
 
-// Specifies whether Amazon Pinpoint should require that incoming email is delivered
-// over a connection encrypted with Transport Layer Security (TLS). If this
-// parameter is set to Require, Amazon Pinpoint rejects emails that weren't
-// received over TLS. If the parameter is set to Optional, then Amazon Pinpoint
-// accepts emails that weren't received over TLS. The default value is Optional.
+// Specifies whether messages that use the configuration set are required to
+// use Transport Layer Security (TLS). If the value is Require, messages are
+// only delivered if a TLS connection can be established. If the value is Optional,
+// messages can be delivered in plain text if a TLS connection can't be established.
 const (
 	// TlsPolicyRequire is a TlsPolicy enum value
 	TlsPolicyRequire = "REQUIRE"

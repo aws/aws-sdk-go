@@ -1061,7 +1061,8 @@
       "type":"structure",
       "members":{
         "Simple":{"shape":"Message"},
-        "Raw":{"shape":"RawMessage"}
+        "Raw":{"shape":"RawMessage"},
+        "Template":{"shape":"Template"}
       }
     },
     "Enabled":{"type":"boolean"},
@@ -1987,6 +1988,18 @@
       }
     },
     "TagValue":{"type":"string"},
+    "Template":{
+      "type":"structure",
+      "members":{
+        "TemplateArn":{"shape":"TemplateArn"},
+        "TemplateData":{"shape":"TemplateData"}
+      }
+    },
+    "TemplateArn":{"type":"string"},
+    "TemplateData":{
+      "type":"string",
+      "max":262144
+    },
     "Timestamp":{"type":"timestamp"},
     "TlsPolicy":{
       "type":"string",

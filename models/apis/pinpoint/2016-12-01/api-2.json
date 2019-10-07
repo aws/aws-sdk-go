@@ -79,6 +79,37 @@
         }
       ]
     },
+    "CreateEmailTemplate": {
+      "name": "CreateEmailTemplate",
+      "http": {
+        "method": "POST",
+        "requestUri": "/v1/templates/{template-name}/email",
+        "responseCode": 201
+      },
+      "input": {
+        "shape": "CreateEmailTemplateRequest"
+      },
+      "output": {
+        "shape": "CreateEmailTemplateResponse"
+      },
+      "errors": [
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        }
+      ]
+    },
     "CreateExportJob": {
       "name": "CreateExportJob",
       "http": {
@@ -147,6 +178,37 @@
         }
       ]
     },
+    "CreatePushTemplate": {
+      "name": "CreatePushTemplate",
+      "http": {
+        "method": "POST",
+        "requestUri": "/v1/templates/{template-name}/push",
+        "responseCode": 201
+      },
+      "input": {
+        "shape": "CreatePushTemplateRequest"
+      },
+      "output": {
+        "shape": "CreatePushTemplateResponse"
+      },
+      "errors": [
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        }
+      ]
+    },
     "CreateSegment": {
       "name": "CreateSegment",
       "http": {
@@ -178,6 +240,37 @@
         },
         {
           "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "CreateSmsTemplate": {
+      "name": "CreateSmsTemplate",
+      "http": {
+        "method": "POST",
+        "requestUri": "/v1/templates/{template-name}/sms",
+        "responseCode": 201
+      },
+      "input": {
+        "shape": "CreateSmsTemplateRequest"
+      },
+      "output": {
+        "shape": "CreateSmsTemplateResponse"
+      },
+      "errors": [
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
         }
       ]
     },
@@ -487,6 +580,40 @@
         }
       ]
     },
+    "DeleteEmailTemplate": {
+      "name": "DeleteEmailTemplate",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/v1/templates/{template-name}/email",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "DeleteEmailTemplateRequest"
+      },
+      "output": {
+        "shape": "DeleteEmailTemplateResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "DeleteEndpoint": {
       "name": "DeleteEndpoint",
       "http": {
@@ -589,6 +716,40 @@
         }
       ]
     },
+    "DeletePushTemplate": {
+      "name": "DeletePushTemplate",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/v1/templates/{template-name}/push",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "DeletePushTemplateRequest"
+      },
+      "output": {
+        "shape": "DeletePushTemplateResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "DeleteSegment": {
       "name": "DeleteSegment",
       "http": {
@@ -635,6 +796,40 @@
       },
       "output": {
         "shape": "DeleteSmsChannelResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "DeleteSmsTemplate": {
+      "name": "DeleteSmsTemplate",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/v1/templates/{template-name}/sms",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "DeleteSmsTemplateRequest"
+      },
+      "output": {
+        "shape": "DeleteSmsTemplateResponse"
       },
       "errors": [
         {
@@ -1337,6 +1532,40 @@
         }
       ]
     },
+    "GetEmailTemplate": {
+      "name": "GetEmailTemplate",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/templates/{template-name}/email",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetEmailTemplateRequest"
+      },
+      "output": {
+        "shape": "GetEmailTemplateResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "GetEndpoint": {
       "name": "GetEndpoint",
       "http": {
@@ -1553,6 +1782,40 @@
       },
       "output": {
         "shape": "GetImportJobsResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "GetPushTemplate": {
+      "name": "GetPushTemplate",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/templates/{template-name}/push",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetPushTemplateRequest"
+      },
+      "output": {
+        "shape": "GetPushTemplateResponse"
       },
       "errors": [
         {
@@ -1813,6 +2076,40 @@
         }
       ]
     },
+    "GetSmsTemplate": {
+      "name": "GetSmsTemplate",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/templates/{template-name}/sms",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetSmsTemplateRequest"
+      },
+      "output": {
+        "shape": "GetSmsTemplateResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "GetUserEndpoints": {
       "name": "GetUserEndpoints",
       "http": {
@@ -1896,6 +2193,37 @@
       },
       "errors": [
 
+      ]
+    },
+    "ListTemplates": {
+      "name": "ListTemplates",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/templates",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListTemplatesRequest"
+      },
+      "output": {
+        "shape": "ListTemplatesResponse"
+      },
+      "errors": [
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        }
       ]
     },
     "PhoneNumberValidate": {
@@ -2436,6 +2764,40 @@
         }
       ]
     },
+    "UpdateEmailTemplate": {
+      "name": "UpdateEmailTemplate",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v1/templates/{template-name}/email",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "UpdateEmailTemplateRequest"
+      },
+      "output": {
+        "shape": "UpdateEmailTemplateResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "UpdateEndpoint": {
       "name": "UpdateEndpoint",
       "http": {
@@ -2538,6 +2900,40 @@
         }
       ]
     },
+    "UpdatePushTemplate": {
+      "name": "UpdatePushTemplate",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v1/templates/{template-name}/push",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "UpdatePushTemplateRequest"
+      },
+      "output": {
+        "shape": "UpdatePushTemplateResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "UpdateSegment": {
       "name": "UpdateSegment",
       "http": {
@@ -2584,6 +2980,40 @@
       },
       "output": {
         "shape": "UpdateSmsChannelResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "UpdateSmsTemplate": {
+      "name": "UpdateSmsTemplate",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v1/templates/{template-name}/sms",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "UpdateSmsTemplateRequest"
+      },
+      "output": {
+        "shape": "UpdateSmsTemplateResponse"
       },
       "errors": [
         {
@@ -2871,6 +3301,29 @@
         },
         "TimeToLive": {
           "shape": "__integer"
+        },
+        "Title": {
+          "shape": "__string"
+        },
+        "Url": {
+          "shape": "__string"
+        }
+      }
+    },
+    "APNSPushNotificationTemplate": {
+      "type": "structure",
+      "members": {
+        "Action": {
+          "shape": "Action"
+        },
+        "Body": {
+          "shape": "__string"
+        },
+        "MediaUrl": {
+          "shape": "__string"
+        },
+        "Sound": {
+          "shape": "__string"
         },
         "Title": {
           "shape": "__string"
@@ -3189,6 +3642,35 @@
           "shape": "MapOfListOf__string"
         },
         "TitleOverride": {
+          "shape": "__string"
+        }
+      }
+    },
+    "AndroidPushNotificationTemplate": {
+      "type": "structure",
+      "members": {
+        "Action": {
+          "shape": "Action"
+        },
+        "Body": {
+          "shape": "__string"
+        },
+        "ImageIconUrl": {
+          "shape": "__string"
+        },
+        "ImageUrl": {
+          "shape": "__string"
+        },
+        "SmallImageIconUrl": {
+          "shape": "__string"
+        },
+        "Sound": {
+          "shape": "__string"
+        },
+        "Title": {
+          "shape": "__string"
+        },
+        "Url": {
           "shape": "__string"
         }
       }
@@ -3613,6 +4095,9 @@
           "shape": "MapOf__string",
           "locationName": "tags"
         },
+        "TemplateConfiguration": {
+          "shape": "TemplateConfiguration"
+        },
         "TreatmentDescription": {
           "shape": "__string"
         },
@@ -3808,6 +4293,36 @@
       ],
       "payload": "CampaignResponse"
     },
+    "CreateEmailTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "EmailTemplateRequest": {
+          "shape": "EmailTemplateRequest"
+        },
+        "TemplateName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-name"
+        }
+      },
+      "required": [
+        "TemplateName",
+        "EmailTemplateRequest"
+      ],
+      "payload": "EmailTemplateRequest"
+    },
+    "CreateEmailTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "CreateTemplateMessageBody": {
+          "shape": "CreateTemplateMessageBody"
+        }
+      },
+      "required": [
+        "CreateTemplateMessageBody"
+      ],
+      "payload": "CreateTemplateMessageBody"
+    },
     "CreateExportJobRequest": {
       "type": "structure",
       "members": {
@@ -3868,6 +4383,36 @@
       ],
       "payload": "ImportJobResponse"
     },
+    "CreatePushTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "PushNotificationTemplateRequest": {
+          "shape": "PushNotificationTemplateRequest"
+        },
+        "TemplateName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-name"
+        }
+      },
+      "required": [
+        "TemplateName",
+        "PushNotificationTemplateRequest"
+      ],
+      "payload": "PushNotificationTemplateRequest"
+    },
+    "CreatePushTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "CreateTemplateMessageBody": {
+          "shape": "CreateTemplateMessageBody"
+        }
+      },
+      "required": [
+        "CreateTemplateMessageBody"
+      ],
+      "payload": "CreateTemplateMessageBody"
+    },
     "CreateSegmentRequest": {
       "type": "structure",
       "members": {
@@ -3898,6 +4443,50 @@
       ],
       "payload": "SegmentResponse"
     },
+    "CreateSmsTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "SMSTemplateRequest": {
+          "shape": "SMSTemplateRequest"
+        },
+        "TemplateName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-name"
+        }
+      },
+      "required": [
+        "TemplateName",
+        "SMSTemplateRequest"
+      ],
+      "payload": "SMSTemplateRequest"
+    },
+    "CreateSmsTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "CreateTemplateMessageBody": {
+          "shape": "CreateTemplateMessageBody"
+        }
+      },
+      "required": [
+        "CreateTemplateMessageBody"
+      ],
+      "payload": "CreateTemplateMessageBody"
+    },
+    "CreateTemplateMessageBody": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string"
+        },
+        "Message": {
+          "shape": "__string"
+        },
+        "RequestID": {
+          "shape": "__string"
+        }
+      }
+    },
     "DefaultMessage": {
       "type": "structure",
       "members": {
@@ -3926,6 +4515,26 @@
         },
         "Substitutions": {
           "shape": "MapOfListOf__string"
+        },
+        "Title": {
+          "shape": "__string"
+        },
+        "Url": {
+          "shape": "__string"
+        }
+      }
+    },
+    "DefaultPushNotificationTemplate": {
+      "type": "structure",
+      "members": {
+        "Action": {
+          "shape": "Action"
+        },
+        "Body": {
+          "shape": "__string"
+        },
+        "Sound": {
+          "shape": "__string"
         },
         "Title": {
           "shape": "__string"
@@ -4166,6 +4775,31 @@
       ],
       "payload": "EmailChannelResponse"
     },
+    "DeleteEmailTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "TemplateName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-name"
+        }
+      },
+      "required": [
+        "TemplateName"
+      ]
+    },
+    "DeleteEmailTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "MessageBody": {
+          "shape": "MessageBody"
+        }
+      },
+      "required": [
+        "MessageBody"
+      ],
+      "payload": "MessageBody"
+    },
     "DeleteEndpointRequest": {
       "type": "structure",
       "members": {
@@ -4247,6 +4881,31 @@
       ],
       "payload": "GCMChannelResponse"
     },
+    "DeletePushTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "TemplateName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-name"
+        }
+      },
+      "required": [
+        "TemplateName"
+      ]
+    },
+    "DeletePushTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "MessageBody": {
+          "shape": "MessageBody"
+        }
+      },
+      "required": [
+        "MessageBody"
+      ],
+      "payload": "MessageBody"
+    },
     "DeleteSegmentRequest": {
       "type": "structure",
       "members": {
@@ -4302,6 +4961,31 @@
         "SMSChannelResponse"
       ],
       "payload": "SMSChannelResponse"
+    },
+    "DeleteSmsTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "TemplateName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-name"
+        }
+      },
+      "required": [
+        "TemplateName"
+      ]
+    },
+    "DeleteSmsTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "MessageBody": {
+          "shape": "MessageBody"
+        }
+      },
+      "required": [
+        "MessageBody"
+      ],
+      "payload": "MessageBody"
     },
     "DeleteUserEndpointsRequest": {
       "type": "structure",
@@ -4521,6 +5205,63 @@
           "shape": "MapOfListOf__string"
         }
       }
+    },
+    "EmailTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "HtmlPart": {
+          "shape": "__string"
+        },
+        "Subject": {
+          "shape": "__string"
+        },
+        "tags": {
+          "shape": "MapOf__string",
+          "locationName": "tags"
+        },
+        "TextPart": {
+          "shape": "__string"
+        }
+      }
+    },
+    "EmailTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string"
+        },
+        "CreationDate": {
+          "shape": "__string"
+        },
+        "HtmlPart": {
+          "shape": "__string"
+        },
+        "LastModifiedDate": {
+          "shape": "__string"
+        },
+        "Subject": {
+          "shape": "__string"
+        },
+        "tags": {
+          "shape": "MapOf__string",
+          "locationName": "tags"
+        },
+        "TemplateName": {
+          "shape": "__string"
+        },
+        "TemplateType": {
+          "shape": "TemplateType"
+        },
+        "TextPart": {
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "LastModifiedDate",
+        "CreationDate",
+        "TemplateName",
+        "TemplateType"
+      ]
     },
     "EndpointBatchItem": {
       "type": "structure",
@@ -5779,6 +6520,31 @@
       ],
       "payload": "EmailChannelResponse"
     },
+    "GetEmailTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "TemplateName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-name"
+        }
+      },
+      "required": [
+        "TemplateName"
+      ]
+    },
+    "GetEmailTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "EmailTemplateResponse": {
+          "shape": "EmailTemplateResponse"
+        }
+      },
+      "required": [
+        "EmailTemplateResponse"
+      ],
+      "payload": "EmailTemplateResponse"
+    },
     "GetEndpointRequest": {
       "type": "structure",
       "members": {
@@ -5991,6 +6757,31 @@
         "ImportJobsResponse"
       ],
       "payload": "ImportJobsResponse"
+    },
+    "GetPushTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "TemplateName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-name"
+        }
+      },
+      "required": [
+        "TemplateName"
+      ]
+    },
+    "GetPushTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "PushNotificationTemplateResponse": {
+          "shape": "PushNotificationTemplateResponse"
+        }
+      },
+      "required": [
+        "PushNotificationTemplateResponse"
+      ],
+      "payload": "PushNotificationTemplateResponse"
     },
     "GetSegmentExportJobsRequest": {
       "type": "structure",
@@ -6242,6 +7033,31 @@
         "SMSChannelResponse"
       ],
       "payload": "SMSChannelResponse"
+    },
+    "GetSmsTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "TemplateName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-name"
+        }
+      },
+      "required": [
+        "TemplateName"
+      ]
+    },
+    "GetSmsTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "SMSTemplateResponse": {
+          "shape": "SMSTemplateResponse"
+        }
+      },
+      "required": [
+        "SMSTemplateResponse"
+      ],
+      "payload": "SMSTemplateResponse"
     },
     "GetUserEndpointsRequest": {
       "type": "structure",
@@ -6504,6 +7320,43 @@
       ],
       "payload": "TagsModel"
     },
+    "ListTemplatesRequest": {
+      "type": "structure",
+      "members": {
+        "NextToken": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "next-token"
+        },
+        "PageSize": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "page-size"
+        },
+        "Prefix": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "prefix"
+        },
+        "TemplateType": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "template-type"
+        }
+      }
+    },
+    "ListTemplatesResponse": {
+      "type": "structure",
+      "members": {
+        "TemplatesResponse": {
+          "shape": "TemplatesResponse"
+        }
+      },
+      "required": [
+        "TemplatesResponse"
+      ],
+      "payload": "TemplatesResponse"
+    },
     "Message": {
       "type": "structure",
       "members": {
@@ -6596,6 +7449,9 @@
         },
         "MessageConfiguration": {
           "shape": "DirectMessageConfiguration"
+        },
+        "TemplateConfiguration": {
+          "shape": "TemplateConfiguration"
         },
         "TraceId": {
           "shape": "__string"
@@ -6827,6 +7683,75 @@
           "shape": "EndpointUser"
         }
       }
+    },
+    "PushNotificationTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "ADM": {
+          "shape": "AndroidPushNotificationTemplate"
+        },
+        "APNS": {
+          "shape": "APNSPushNotificationTemplate"
+        },
+        "Baidu": {
+          "shape": "AndroidPushNotificationTemplate"
+        },
+        "Default": {
+          "shape": "DefaultPushNotificationTemplate"
+        },
+        "GCM": {
+          "shape": "AndroidPushNotificationTemplate"
+        },
+        "tags": {
+          "shape": "MapOf__string",
+          "locationName": "tags"
+        }
+      }
+    },
+    "PushNotificationTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "ADM": {
+          "shape": "AndroidPushNotificationTemplate"
+        },
+        "APNS": {
+          "shape": "APNSPushNotificationTemplate"
+        },
+        "Arn": {
+          "shape": "__string"
+        },
+        "Baidu": {
+          "shape": "AndroidPushNotificationTemplate"
+        },
+        "CreationDate": {
+          "shape": "__string"
+        },
+        "Default": {
+          "shape": "DefaultPushNotificationTemplate"
+        },
+        "GCM": {
+          "shape": "AndroidPushNotificationTemplate"
+        },
+        "LastModifiedDate": {
+          "shape": "__string"
+        },
+        "tags": {
+          "shape": "MapOf__string",
+          "locationName": "tags"
+        },
+        "TemplateName": {
+          "shape": "__string"
+        },
+        "TemplateType": {
+          "shape": "TemplateType"
+        }
+      },
+      "required": [
+        "LastModifiedDate",
+        "CreationDate",
+        "TemplateName",
+        "TemplateType"
+      ]
     },
     "PutEventStreamRequest": {
       "type": "structure",
@@ -7088,6 +8013,51 @@
           "shape": "MapOfListOf__string"
         }
       }
+    },
+    "SMSTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "Body": {
+          "shape": "__string"
+        },
+        "tags": {
+          "shape": "MapOf__string",
+          "locationName": "tags"
+        }
+      }
+    },
+    "SMSTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string"
+        },
+        "Body": {
+          "shape": "__string"
+        },
+        "CreationDate": {
+          "shape": "__string"
+        },
+        "LastModifiedDate": {
+          "shape": "__string"
+        },
+        "tags": {
+          "shape": "MapOf__string",
+          "locationName": "tags"
+        },
+        "TemplateName": {
+          "shape": "__string"
+        },
+        "TemplateType": {
+          "shape": "TemplateType"
+        }
+      },
+      "required": [
+        "LastModifiedDate",
+        "CreationDate",
+        "TemplateName",
+        "TemplateType"
+      ]
     },
     "Schedule": {
       "type": "structure",
@@ -7364,6 +8334,9 @@
         "MessageConfiguration": {
           "shape": "DirectMessageConfiguration"
         },
+        "TemplateConfiguration": {
+          "shape": "TemplateConfiguration"
+        },
         "TraceId": {
           "shape": "__string"
         },
@@ -7521,6 +8494,80 @@
         "tags"
       ]
     },
+    "Template": {
+      "type": "structure",
+      "members": {
+        "Name": {
+          "shape": "__string"
+        }
+      }
+    },
+    "TemplateConfiguration": {
+      "type": "structure",
+      "members": {
+        "EmailTemplate": {
+          "shape": "Template"
+        },
+        "PushTemplate": {
+          "shape": "Template"
+        },
+        "SMSTemplate": {
+          "shape": "Template"
+        }
+      }
+    },
+    "TemplateResponse": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string"
+        },
+        "CreationDate": {
+          "shape": "__string"
+        },
+        "LastModifiedDate": {
+          "shape": "__string"
+        },
+        "tags": {
+          "shape": "MapOf__string",
+          "locationName": "tags"
+        },
+        "TemplateName": {
+          "shape": "__string"
+        },
+        "TemplateType": {
+          "shape": "TemplateType"
+        }
+      },
+      "required": [
+        "LastModifiedDate",
+        "CreationDate",
+        "TemplateName",
+        "TemplateType"
+      ]
+    },
+    "TemplateType": {
+      "type": "string",
+      "enum": [
+        "EMAIL",
+        "SMS",
+        "PUSH"
+      ]
+    },
+    "TemplatesResponse": {
+      "type": "structure",
+      "members": {
+        "Item": {
+          "shape": "ListOfTemplateResponse"
+        },
+        "NextToken": {
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "Item"
+      ]
+    },
     "TooManyRequestsException": {
       "type": "structure",
       "members": {
@@ -7553,6 +8600,9 @@
         },
         "State": {
           "shape": "CampaignState"
+        },
+        "TemplateConfiguration": {
+          "shape": "TemplateConfiguration"
         },
         "TreatmentDescription": {
           "shape": "__string"
@@ -7877,6 +8927,36 @@
       ],
       "payload": "EmailChannelResponse"
     },
+    "UpdateEmailTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "EmailTemplateRequest": {
+          "shape": "EmailTemplateRequest"
+        },
+        "TemplateName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-name"
+        }
+      },
+      "required": [
+        "TemplateName",
+        "EmailTemplateRequest"
+      ],
+      "payload": "EmailTemplateRequest"
+    },
+    "UpdateEmailTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "MessageBody": {
+          "shape": "MessageBody"
+        }
+      },
+      "required": [
+        "MessageBody"
+      ],
+      "payload": "MessageBody"
+    },
     "UpdateEndpointRequest": {
       "type": "structure",
       "members": {
@@ -7973,6 +9053,36 @@
       ],
       "payload": "GCMChannelResponse"
     },
+    "UpdatePushTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "PushNotificationTemplateRequest": {
+          "shape": "PushNotificationTemplateRequest"
+        },
+        "TemplateName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-name"
+        }
+      },
+      "required": [
+        "TemplateName",
+        "PushNotificationTemplateRequest"
+      ],
+      "payload": "PushNotificationTemplateRequest"
+    },
+    "UpdatePushTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "MessageBody": {
+          "shape": "MessageBody"
+        }
+      },
+      "required": [
+        "MessageBody"
+      ],
+      "payload": "MessageBody"
+    },
     "UpdateSegmentRequest": {
       "type": "structure",
       "members": {
@@ -8038,6 +9148,36 @@
         "SMSChannelResponse"
       ],
       "payload": "SMSChannelResponse"
+    },
+    "UpdateSmsTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "SMSTemplateRequest": {
+          "shape": "SMSTemplateRequest"
+        },
+        "TemplateName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-name"
+        }
+      },
+      "required": [
+        "TemplateName",
+        "SMSTemplateRequest"
+      ],
+      "payload": "SMSTemplateRequest"
+    },
+    "UpdateSmsTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "MessageBody": {
+          "shape": "MessageBody"
+        }
+      },
+      "required": [
+        "MessageBody"
+      ],
+      "payload": "MessageBody"
     },
     "UpdateVoiceChannelRequest": {
       "type": "structure",
@@ -8195,6 +9335,9 @@
           "shape": "MapOf__string",
           "locationName": "tags"
         },
+        "TemplateConfiguration": {
+          "shape": "TemplateConfiguration"
+        },
         "TreatmentDescription": {
           "shape": "__string"
         },
@@ -8247,6 +9390,9 @@
         },
         "SizePercent": {
           "shape": "__integer"
+        },
+        "TemplateConfiguration": {
+          "shape": "TemplateConfiguration"
         },
         "TreatmentDescription": {
           "shape": "__string"
@@ -8344,6 +9490,12 @@
       "type": "list",
       "member": {
         "shape": "SegmentResponse"
+      }
+    },
+    "ListOfTemplateResponse": {
+      "type": "list",
+      "member": {
+        "shape": "TemplateResponse"
       }
     },
     "ListOfTreatmentResource": {
