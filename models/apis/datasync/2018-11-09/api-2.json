@@ -993,7 +993,8 @@
         "PreserveDeletedFiles":{"shape":"PreserveDeletedFiles"},
         "PreserveDevices":{"shape":"PreserveDevices"},
         "PosixPermissions":{"shape":"PosixPermissions"},
-        "BytesPerSecond":{"shape":"BytesPerSecond"}
+        "BytesPerSecond":{"shape":"BytesPerSecond"},
+        "TaskQueueing":{"shape":"TaskQueueing"}
       }
     },
     "OverwriteMode":{
@@ -1225,6 +1226,7 @@
     "TaskExecutionStatus":{
       "type":"string",
       "enum":[
+        "QUEUED",
         "LAUNCHING",
         "PREPARING",
         "TRANSFERRING",
@@ -1245,11 +1247,19 @@
         "Name":{"shape":"TagValue"}
       }
     },
+    "TaskQueueing":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "TaskStatus":{
       "type":"string",
       "enum":[
         "AVAILABLE",
         "CREATING",
+        "QUEUED",
         "RUNNING",
         "UNAVAILABLE"
       ]

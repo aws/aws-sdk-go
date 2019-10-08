@@ -458,7 +458,6 @@
       "required":[
         "RoleARN",
         "IndexName",
-        "TypeName",
         "S3Configuration"
       ],
       "members":{
@@ -551,7 +550,7 @@
     "ElasticsearchTypeName":{
       "type":"string",
       "max":100,
-      "min":1
+      "min":0
     },
     "EncryptionConfiguration":{
       "type":"structure",
