@@ -1,3 +1,15 @@
+Release v1.25.8 (2019-10-08)
+===
+
+### Service Client Updates
+* `service/datasync`: Updates service API and documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/eventbridge`: Updates service documentation
+* `service/firehose`: Updates service API and documentation
+  * With this release, you can use Amazon Kinesis Firehose delivery streams to deliver streaming data to Amazon Elasticsearch Service version 7.x clusters. For technical documentation, look for CreateDeliveryStream operation in Amazon Kinesis Firehose API reference.
+* `service/organizations`: Updates service documentation
+  * Documentation updates for organizations
+
 Release v1.25.7 (2019-10-07)
 ===
 

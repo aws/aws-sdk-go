@@ -5686,11 +5686,14 @@ func (s *PutEventsOutput) SetFailedEntryCount(v int64) *PutEventsOutput {
 type PutEventsRequestEntry struct {
 	_ struct{} `type:"structure"`
 
-	// A valid JSON string. There is no other schema imposed. The JSON string can
+	// A valid JSON object. There is no other schema imposed. The JSON object can
 	// contain fields and nested subobjects.
+	//
+	// This field is required.
 	Detail *string `type:"string"`
 
 	// Free-form string used to decide which fields to expect in the event detail.
+	// This field is required.
 	DetailType *string `type:"string"`
 
 	// The event bus that will receive the event. Only the rules that are associated
@@ -5889,18 +5892,19 @@ func (s *PutPartnerEventsOutput) SetFailedEntryCount(v int64) *PutPartnerEventsO
 type PutPartnerEventsRequestEntry struct {
 	_ struct{} `type:"structure"`
 
-	// A valid JSON string. There is no other schema imposed. The JSON string can
-	// contain fields and nested subobjects.
+	// A valid JSON object. There is no other schema imposed. The JSON object can
+	// contain fields and nested subobjects. This field is required.
 	Detail *string `type:"string"`
 
 	// A free-form string used to decide which fields to expect in the event detail.
+	// This field is required.
 	DetailType *string `type:"string"`
 
 	// AWS resources, identified by Amazon Resource Name (ARN), that the event primarily
 	// concerns. Any number, including zero, can be present.
 	Resources []*string `type:"list"`
 
-	// The event source that is generating the evntry.
+	// The event source that is generating the evntry. This field is required.
 	Source *string `type:"string"`
 
 	// The date and time of the event.
@@ -6022,8 +6026,8 @@ type PutPermissionInput struct {
 	// If you specify "*" without specifying Condition, avoid creating rules that
 	// might match undesirable events. To create more secure rules, make sure that
 	// the event pattern for each rule contains an account field with a specific
-	// account ID to receive events from. Rules with an account field don't match
-	// any events sent from other accounts.
+	// account ID to receive events from. Rules that have an account field match
+	// events sent only from accounts that are listed in the rule's account field.
 	//
 	// Principal is a required field
 	Principal *string `min:"1" type:"string" required:"true"`
@@ -6141,6 +6145,9 @@ type PutRuleInput struct {
 	EventPattern *string `type:"string"`
 
 	// The name of the rule that you're creating or updating.
+	//
+	// A rule can't have the same name as another rule in the same Region or on
+	// the same event bus.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -7060,7 +7067,8 @@ type Target struct {
 	// in the Amazon EC2 Container Service Developer Guide.
 	EcsParameters *EcsParameters `type:"structure"`
 
-	// The ID of the target.
+	// A name for the target. Use a string that will help you identify the target.
+	// Each target associated with a rule must have an Id unique for that rule.
 	//
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`

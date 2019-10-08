@@ -576,7 +576,7 @@
     "Principal": {
       "base": null,
       "refs": {
-        "PutPermissionRequest$Principal": "<p>The 12-digit AWS account ID that you are permitting to put events to your default event bus. Specify \"*\" to permit any account to put events to your default event bus.</p> <p>If you specify \"*\" without specifying <code>Condition</code>, avoid creating rules that might match undesirable events. To create more secure rules, make sure that the event pattern for each rule contains an <code>account</code> field with a specific account ID to receive events from. Rules with an account field don't match any events sent from other accounts.</p>"
+        "PutPermissionRequest$Principal": "<p>The 12-digit AWS account ID that you are permitting to put events to your default event bus. Specify \"*\" to permit any account to put events to your default event bus.</p> <p>If you specify \"*\" without specifying <code>Condition</code>, avoid creating rules that might match undesirable events. To create more secure rules, make sure that the event pattern for each rule contains an <code>account</code> field with a specific account ID to receive events from. Rules that have an account field match events sent only from accounts that are listed in the rule's <code>account</code> field.</p>"
       }
     },
     "PutEventsRequest": {
@@ -762,7 +762,7 @@
         "EnableRuleRequest$Name": "<p>The name of the rule.</p>",
         "ListRulesRequest$NamePrefix": "<p>The prefix matching the rule name.</p>",
         "ListTargetsByRuleRequest$Rule": "<p>The name of the rule.</p>",
-        "PutRuleRequest$Name": "<p>The name of the rule that you're creating or updating.</p>",
+        "PutRuleRequest$Name": "<p>The name of the rule that you're creating or updating.</p> <p>A rule can't have the same name as another rule in the same Region or on the same event bus.</p>",
         "PutTargetsRequest$Rule": "<p>The name of the rule.</p>",
         "RemoveTargetsRequest$Rule": "<p>The name of the rule.</p>",
         "Rule$Name": "<p>The name of the rule.</p>",
@@ -875,11 +875,11 @@
         "PartnerEventSource$Arn": "<p>The ARN of the partner event source.</p>",
         "PartnerEventSource$Name": "<p>The name of the partner event source.</p>",
         "PutEventsRequestEntry$Source": "<p>The source of the event. This field is required.</p>",
-        "PutEventsRequestEntry$DetailType": "<p>Free-form string used to decide which fields to expect in the event detail.</p>",
-        "PutEventsRequestEntry$Detail": "<p>A valid JSON string. There is no other schema imposed. The JSON string can contain fields and nested subobjects.</p>",
-        "PutPartnerEventsRequestEntry$Source": "<p>The event source that is generating the evntry.</p>",
-        "PutPartnerEventsRequestEntry$DetailType": "<p>A free-form string used to decide which fields to expect in the event detail.</p>",
-        "PutPartnerEventsRequestEntry$Detail": "<p>A valid JSON string. There is no other schema imposed. The JSON string can contain fields and nested subobjects.</p>",
+        "PutEventsRequestEntry$DetailType": "<p>Free-form string used to decide which fields to expect in the event detail. This field is required.</p>",
+        "PutEventsRequestEntry$Detail": "<p>A valid JSON object. There is no other schema imposed. The JSON object can contain fields and nested subobjects.</p> <p>This field is required.</p>",
+        "PutPartnerEventsRequestEntry$Source": "<p>The event source that is generating the evntry. This field is required.</p>",
+        "PutPartnerEventsRequestEntry$DetailType": "<p>A free-form string used to decide which fields to expect in the event detail. This field is required.</p>",
+        "PutPartnerEventsRequestEntry$Detail": "<p>A valid JSON object. There is no other schema imposed. The JSON object can contain fields and nested subobjects. This field is required.</p>",
         "StringList$member": null,
         "TestEventPatternRequest$Event": "<p>The event, in JSON format, to test against the event pattern.</p>"
       }
@@ -952,7 +952,7 @@
       "refs": {
         "PutTargetsResultEntry$TargetId": "<p>The ID of the target.</p>",
         "RemoveTargetsResultEntry$TargetId": "<p>The ID of the target.</p>",
-        "Target$Id": "<p>The ID of the target.</p>",
+        "Target$Id": "<p>A name for the target. Use a string that will help you identify the target. Each target associated with a rule must have an <code>Id</code> unique for that rule.</p>",
         "TargetIdList$member": null
       }
     },
