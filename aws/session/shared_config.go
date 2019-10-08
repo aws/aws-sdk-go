@@ -256,12 +256,12 @@ func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile, e
 		updateString(&cfg.Region, section, regionKey)
 
 		if v := section.String(stsRegionalEndpointSharedKey); len(v) != 0 {
-			STSRegionalEndpoint, err := endpoints.GetSTSRegionalEndpoint(v)
+			sre, err := endpoints.GetSTSRegionalEndpoint(v)
 			if err != nil {
 				return fmt.Errorf("failed to load %s from shared config, %s, %v",
 					stsRegionalEndpointKey, file.Filename, err)
 			}
-			cfg.STSRegionalEndpoint = STSRegionalEndpoint
+			cfg.STSRegionalEndpoint = sre
 		}
 	}
 
