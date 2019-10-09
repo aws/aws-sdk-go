@@ -27,9 +27,9 @@
       "refs" : { }
     },
     "BrokerAZDistribution" : {
-      "base" : "\n            <p>The distribution of broker nodes across Availability Zones. By default, broker nodes are distributed among three Availability Zones. Currently, the only supported value is DEFAULT. You can either specify this value explicitly or leave it out.</p>\n         ",
+      "base" : "\n            <p>The distribution of broker nodes across Availability Zones. This is an optional parameter. If you don't specify it, Amazon MSK gives it the value DEFAULT. You can also explicitly set this parameter to the value DEFAULT. No other values are currently allowed.</p>\n         <p>Amazon MSK distributes the broker nodes evenly across the Availability Zones that correspond to the subnets you provide when you create the cluster.</p>\n         ",
       "refs" : {
-        "BrokerNodeGroupInfo$BrokerAZDistribution" : "\n            <p>The distribution of broker nodes across Availability Zones.</p>\n         "
+        "BrokerNodeGroupInfo$BrokerAZDistribution" : "\n            <p>The distribution of broker nodes across Availability Zones. This is an optional parameter. If you don't specify it, Amazon MSK gives it the value DEFAULT. You can also explicitly set this parameter to the value DEFAULT. No other values are currently allowed.</p>\n         <p>Amazon MSK distributes the broker nodes evenly across the Availability Zones that correspond to the subnets you provide when you create the cluster.</p>\n         "
       }
     },
     "BrokerEBSVolumeInfo" : {
