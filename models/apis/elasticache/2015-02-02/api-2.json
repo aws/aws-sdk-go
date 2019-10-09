@@ -988,23 +988,19 @@
     "AwsQueryErrorMessage":{"type":"string"},
     "BatchApplyUpdateActionMessage":{
       "type":"structure",
-      "required":[
-        "ReplicationGroupIds",
-        "ServiceUpdateName"
-      ],
+      "required":["ServiceUpdateName"],
       "members":{
         "ReplicationGroupIds":{"shape":"ReplicationGroupIdList"},
+        "CacheClusterIds":{"shape":"CacheClusterIdList"},
         "ServiceUpdateName":{"shape":"String"}
       }
     },
     "BatchStopUpdateActionMessage":{
       "type":"structure",
-      "required":[
-        "ReplicationGroupIds",
-        "ServiceUpdateName"
-      ],
+      "required":["ServiceUpdateName"],
       "members":{
         "ReplicationGroupIds":{"shape":"ReplicationGroupIdList"},
+        "CacheClusterIds":{"shape":"CacheClusterIdList"},
         "ServiceUpdateName":{"shape":"String"}
       }
     },
@@ -1051,6 +1047,11 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "CacheClusterIdList":{
+      "type":"list",
+      "member":{"shape":"String"},
+      "max":20
     },
     "CacheClusterList":{
       "type":"list",
@@ -1160,6 +1161,26 @@
       "member":{
         "shape":"CacheNodeTypeSpecificValue",
         "locationName":"CacheNodeTypeSpecificValue"
+      }
+    },
+    "CacheNodeUpdateStatus":{
+      "type":"structure",
+      "members":{
+        "CacheNodeId":{"shape":"String"},
+        "NodeUpdateStatus":{"shape":"NodeUpdateStatus"},
+        "NodeDeletionDate":{"shape":"TStamp"},
+        "NodeUpdateStartDate":{"shape":"TStamp"},
+        "NodeUpdateEndDate":{"shape":"TStamp"},
+        "NodeUpdateInitiatedBy":{"shape":"NodeUpdateInitiatedBy"},
+        "NodeUpdateInitiatedDate":{"shape":"TStamp"},
+        "NodeUpdateStatusModifiedDate":{"shape":"TStamp"}
+      }
+    },
+    "CacheNodeUpdateStatusList":{
+      "type":"list",
+      "member":{
+        "shape":"CacheNodeUpdateStatus",
+        "locationName":"CacheNodeUpdateStatus"
       }
     },
     "CacheParameterGroup":{
@@ -1834,6 +1855,8 @@
       "members":{
         "ServiceUpdateName":{"shape":"String"},
         "ReplicationGroupIds":{"shape":"ReplicationGroupIdList"},
+        "CacheClusterIds":{"shape":"CacheClusterIdList"},
+        "Engine":{"shape":"String"},
         "ServiceUpdateStatus":{"shape":"ServiceUpdateStatusList"},
         "ServiceUpdateTimeRange":{"shape":"TimeRangeFilter"},
         "UpdateActionStatus":{"shape":"UpdateActionStatusList"},
@@ -2450,6 +2473,7 @@
       "type":"structure",
       "members":{
         "ReplicationGroupId":{"shape":"String"},
+        "CacheClusterId":{"shape":"String"},
         "ServiceUpdateName":{"shape":"String"},
         "UpdateActionStatus":{"shape":"UpdateActionStatus"}
       }
@@ -3080,6 +3104,7 @@
       "type":"structure",
       "members":{
         "ReplicationGroupId":{"shape":"String"},
+        "CacheClusterId":{"shape":"String"},
         "ServiceUpdateName":{"shape":"String"},
         "ErrorType":{"shape":"String"},
         "ErrorMessage":{"shape":"String"}
@@ -3096,6 +3121,7 @@
       "type":"structure",
       "members":{
         "ReplicationGroupId":{"shape":"String"},
+        "CacheClusterId":{"shape":"String"},
         "ServiceUpdateName":{"shape":"String"},
         "ServiceUpdateReleaseDate":{"shape":"TStamp"},
         "ServiceUpdateSeverity":{"shape":"ServiceUpdateSeverity"},
@@ -3108,7 +3134,9 @@
         "UpdateActionStatusModifiedDate":{"shape":"TStamp"},
         "SlaMet":{"shape":"SlaMet"},
         "NodeGroupUpdateStatus":{"shape":"NodeGroupUpdateStatusList"},
-        "EstimatedUpdateTime":{"shape":"String"}
+        "CacheNodeUpdateStatus":{"shape":"CacheNodeUpdateStatusList"},
+        "EstimatedUpdateTime":{"shape":"String"},
+        "Engine":{"shape":"String"}
       }
     },
     "UpdateActionList":{

@@ -198,6 +198,14 @@
       "refs": {
       }
     },
+    "CacheClusterIdList": {
+      "base": null,
+      "refs": {
+        "BatchApplyUpdateActionMessage$CacheClusterIds": "<p>The cache cluster IDs</p>",
+        "BatchStopUpdateActionMessage$CacheClusterIds": "<p>The cache cluster IDs</p>",
+        "DescribeUpdateActionsMessage$CacheClusterIds": "<p>The cache cluster IDs</p>"
+      }
+    },
     "CacheClusterList": {
       "base": null,
       "refs": {
@@ -275,6 +283,18 @@
       "base": null,
       "refs": {
         "CacheNodeTypeSpecificParameter$CacheNodeTypeSpecificValues": "<p>A list of cache node types and their corresponding values for this parameter.</p>"
+      }
+    },
+    "CacheNodeUpdateStatus": {
+      "base": "<p>The status of the service update on the cache node</p>",
+      "refs": {
+        "CacheNodeUpdateStatusList$member": null
+      }
+    },
+    "CacheNodeUpdateStatusList": {
+      "base": null,
+      "refs": {
+        "UpdateAction$CacheNodeUpdateStatus": "<p>The status of the service update on the cache node</p>"
       }
     },
     "CacheParameterGroup": {
@@ -1017,12 +1037,14 @@
     "NodeUpdateInitiatedBy": {
       "base": null,
       "refs": {
+        "CacheNodeUpdateStatus$NodeUpdateInitiatedBy": "<p>Reflects whether the update was initiated by the customer or automatically applied</p>",
         "NodeGroupMemberUpdateStatus$NodeUpdateInitiatedBy": "<p>Reflects whether the update was initiated by the customer or automatically applied</p>"
       }
     },
     "NodeUpdateStatus": {
       "base": null,
       "refs": {
+        "CacheNodeUpdateStatus$NodeUpdateStatus": "<p>The update status of the node</p>",
         "NodeGroupMemberUpdateStatus$NodeUpdateStatus": "<p>The update status of the node</p>"
       }
     },
@@ -1437,6 +1459,7 @@
         "CacheCluster$CacheSubnetGroupName": "<p>The name of the cache subnet group associated with the cluster.</p>",
         "CacheCluster$ReplicationGroupId": "<p>The replication group to which this cluster belongs. If this field is empty, the cluster is not associated with any replication group.</p>",
         "CacheCluster$SnapshotWindow": "<p>The daily time range (in UTC) during which ElastiCache begins taking a daily snapshot of your cluster.</p> <p>Example: <code>05:00-09:00</code> </p>",
+        "CacheClusterIdList$member": null,
         "CacheClusterMessage$Marker": "<p>Provides an identifier to allow retrieval of paginated results.</p>",
         "CacheEngineVersion$Engine": "<p>The name of the cache engine.</p>",
         "CacheEngineVersion$EngineVersion": "<p>The version number of the cache engine.</p>",
@@ -1458,6 +1481,7 @@
         "CacheNodeTypeSpecificParameter$MinimumEngineVersion": "<p>The earliest cache engine version to which the parameter can apply.</p>",
         "CacheNodeTypeSpecificValue$CacheNodeType": "<p>The cache node type for which this value applies.</p>",
         "CacheNodeTypeSpecificValue$Value": "<p>The value for the cache node type.</p>",
+        "CacheNodeUpdateStatus$CacheNodeId": "<p>The node ID of the cache cluster</p>",
         "CacheParameterGroup$CacheParameterGroupName": "<p>The name of the cache parameter group.</p>",
         "CacheParameterGroup$CacheParameterGroupFamily": "<p>The name of the cache parameter group family that this cache parameter group is compatible with.</p> <p>Valid values are: <code>memcached1.4</code> | <code>memcached1.5</code> | <code>redis2.6</code> | <code>redis2.8</code> | <code>redis3.2</code> | <code>redis4.0</code> | <code>redis5.0</code> | </p>",
         "CacheParameterGroup$Description": "<p>The description for this cache parameter group.</p>",
@@ -1572,6 +1596,7 @@
         "DescribeSnapshotsMessage$SnapshotSource": "<p>If set to <code>system</code>, the output shows snapshots that were automatically created by ElastiCache. If set to <code>user</code> the output shows snapshots that were manually created. If omitted, the output shows both automatically and manually created snapshots.</p>",
         "DescribeSnapshotsMessage$Marker": "<p>An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "DescribeUpdateActionsMessage$ServiceUpdateName": "<p>The unique ID of the service update</p>",
+        "DescribeUpdateActionsMessage$Engine": "<p>The Elasticache engine to which the update applies. Either Redis or Memcached </p>",
         "DescribeUpdateActionsMessage$Marker": "<p>An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "EC2SecurityGroup$Status": "<p>The status of the Amazon EC2 security group.</p>",
         "EC2SecurityGroup$EC2SecurityGroupName": "<p>The name of the Amazon EC2 security group.</p>",
@@ -1643,6 +1668,7 @@
         "PendingModifiedValues$CacheNodeType": "<p>The cache node type that this cluster or replication group is scaled to.</p>",
         "PreferredAvailabilityZoneList$member": null,
         "ProcessedUpdateAction$ReplicationGroupId": "<p>The ID of the replication group</p>",
+        "ProcessedUpdateAction$CacheClusterId": "<p>The ID of the cache cluster</p>",
         "ProcessedUpdateAction$ServiceUpdateName": "<p>The unique ID of the service update</p>",
         "PurchaseReservedCacheNodesOfferingMessage$ReservedCacheNodesOfferingId": "<p>The ID of the reserved cache node offering to purchase.</p> <p>Example: <code>438012d3-4052-4cc7-b2e3-8d3372e0e706</code> </p>",
         "PurchaseReservedCacheNodesOfferingMessage$ReservedCacheNodeId": "<p>A customer-specified identifier to track this reservation.</p> <note> <p>The Reserved Cache Node ID is an unique customer-specified identifier to track this reservation. If this parameter is not specified, ElastiCache automatically generates an identifier for the reservation.</p> </note> <p>Example: myreservationID</p>",
@@ -1682,8 +1708,8 @@
         "SecurityGroupMembership$Status": "<p>The status of the cache security group membership. The status changes whenever a cache security group is modified, or when the cache security groups assigned to a cluster are modified.</p>",
         "ServiceUpdate$ServiceUpdateName": "<p>The unique ID of the service update</p>",
         "ServiceUpdate$ServiceUpdateDescription": "<p>Provides details of the service update</p>",
-        "ServiceUpdate$Engine": "<p>The Redis engine to which the service update applies</p>",
-        "ServiceUpdate$EngineVersion": "<p>The Redis engine version to which the service update applies</p>",
+        "ServiceUpdate$Engine": "<p>The Elasticache engine to which the update applies. Either Redis or Memcached</p>",
+        "ServiceUpdate$EngineVersion": "<p>The Elasticache engine version to which the update applies. Either Redis or Memcached engine version</p>",
         "ServiceUpdate$EstimatedUpdateTime": "<p>The estimated length of time the service update will take</p>",
         "ServiceUpdatesMessage$Marker": "<p>An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "Snapshot$SnapshotName": "<p>The name of a snapshot. For an automatic snapshot, the name is system-generated. For a manual snapshot, this is the user-provided name.</p>",
@@ -1710,13 +1736,16 @@
         "Tag$Value": "<p>The tag's value. May be null.</p>",
         "TestFailoverMessage$ReplicationGroupId": "<p>The name of the replication group (console: cluster) whose automatic failover is being tested by this operation.</p>",
         "UnprocessedUpdateAction$ReplicationGroupId": "<p>The replication group ID</p>",
+        "UnprocessedUpdateAction$CacheClusterId": "<p>The ID of the cache cluster</p>",
         "UnprocessedUpdateAction$ServiceUpdateName": "<p>The unique ID of the service update</p>",
         "UnprocessedUpdateAction$ErrorType": "<p>The error type for requests that are not processed</p>",
         "UnprocessedUpdateAction$ErrorMessage": "<p>The error message that describes the reason the request was not processed</p>",
         "UpdateAction$ReplicationGroupId": "<p>The ID of the replication group</p>",
+        "UpdateAction$CacheClusterId": "<p>The ID of the cache cluster</p>",
         "UpdateAction$ServiceUpdateName": "<p>The unique ID of the service update</p>",
         "UpdateAction$NodesUpdated": "<p>The progress of the service update on the replication group</p>",
         "UpdateAction$EstimatedUpdateTime": "<p>The estimated length of time for the update to complete</p>",
+        "UpdateAction$Engine": "<p>The Elasticache engine to which the update applies. Either Redis or Memcached</p>",
         "UpdateActionsMessage$Marker": "<p>An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>"
       }
     },
@@ -1749,6 +1778,11 @@
       "refs": {
         "CacheCluster$CacheClusterCreateTime": "<p>The date and time when the cluster was created.</p>",
         "CacheNode$CacheNodeCreateTime": "<p>The date and time when the cache node was created.</p>",
+        "CacheNodeUpdateStatus$NodeDeletionDate": "<p>The deletion date of the node</p>",
+        "CacheNodeUpdateStatus$NodeUpdateStartDate": "<p>The start date of the update for a node</p>",
+        "CacheNodeUpdateStatus$NodeUpdateEndDate": "<p>The end date of the update for a node</p>",
+        "CacheNodeUpdateStatus$NodeUpdateInitiatedDate": "<p>The date when the update is triggered</p>",
+        "CacheNodeUpdateStatus$NodeUpdateStatusModifiedDate": "<p>The date when the NodeUpdateStatus was last modified&gt;</p>",
         "DescribeEventsMessage$StartTime": "<p>The beginning of the time interval to retrieve events for, specified in ISO 8601 format.</p> <p> <b>Example:</b> 2017-03-30T07:03:49.555Z</p>",
         "DescribeEventsMessage$EndTime": "<p>The end of the time interval for which to retrieve events, specified in ISO 8601 format.</p> <p> <b>Example:</b> 2017-03-30T07:03:49.555Z</p>",
         "Event$Date": "<p>The date and time when the event occurred.</p>",
