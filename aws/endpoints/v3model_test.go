@@ -208,7 +208,7 @@ func TestEndpointResolve(t *testing.T) {
 		SSLCommonName:     "new sslCommonName",
 	}
 
-	resolved := e.resolve("service", "region", "dnsSuffix",
+	resolved := e.resolve("service", "partitionID", "region", "dnsSuffix",
 		defs, Options{},
 	)
 

@@ -394,6 +394,9 @@ type ResolvedEndpoint struct {
 	// The endpoint URL
 	URL string
 
+	// The endpoint partition
+	PartitionID string
+
 	// The region that should be used for signing requests.
 	SigningRegion string
 
