@@ -335,6 +335,8 @@ func (es *{{ $.ShapeName }}) Close() (err error) {
 		es.Writer.Close()
 	{{ end -}}
 
+	es.StreamCloser.Close()
+
 	return es.Err()
 }
 
@@ -352,8 +354,6 @@ func (es *{{ $.ShapeName }}) Err() error {
 			return err
 		}
 	{{ end -}}
-
-	es.StreamCloser.Close()
 
 	return nil
 }
@@ -972,6 +972,16 @@ func (c *loopReader) Read(p []byte) (int, error) {
 		resp, err := svc.{{ $.Operation.ExportedName }}(nil)
 		if err != nil {
 			t.Fatalf("expect no error got, %v", err)
+		}
+
+		// Assert calling Err before close does not close the stream.
+		resp.{{ $esMemberName }}.Err()
+		select {
+		case _, ok := <-resp.{{ $esMemberName }}.Events():
+			if !ok {
+				t.Fatalf("expect stream not to be closed, but was")
+			}
+		default:
 		}
 
 		resp.{{ $esMemberName }}.Close()

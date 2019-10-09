@@ -22503,6 +22503,8 @@ type SelectObjectContentEventStream struct {
 // may result in resource leaks.
 func (es *SelectObjectContentEventStream) Close() (err error) {
 	es.Reader.Close()
+	es.StreamCloser.Close()
+
 	return es.Err()
 }
 
@@ -22512,8 +22514,6 @@ func (es *SelectObjectContentEventStream) Err() error {
 	if err := es.Reader.Err(); err != nil {
 		return err
 	}
-	es.StreamCloser.Close()
-
 	return nil
 }
 

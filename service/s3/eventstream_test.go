@@ -84,6 +84,16 @@ func TestSelectObjectContent_ReadClose(t *testing.T) {
 		t.Fatalf("expect no error got, %v", err)
 	}
 
+	// Assert calling Err before close does not close the stream.
+	resp.EventStream.Err()
+	select {
+	case _, ok := <-resp.EventStream.Events():
+		if !ok {
+			t.Fatalf("expect stream not to be closed, but was")
+		}
+	default:
+	}
+
 	resp.EventStream.Close()
 	<-resp.EventStream.Events()
 
