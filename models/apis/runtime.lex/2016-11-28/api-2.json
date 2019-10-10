@@ -32,7 +32,7 @@
       "name":"GetSession",
       "http":{
         "method":"GET",
-        "requestUri":"/bot/{botName}/alias/{botAlias}/user/{userId}/session"
+        "requestUri":"/bot/{botName}/alias/{botAlias}/user/{userId}/session/"
       },
       "input":{"shape":"GetSessionRequest"},
       "output":{"shape":"GetSessionResponse"},
@@ -291,6 +291,11 @@
           "shape":"UserId",
           "location":"uri",
           "locationName":"userId"
+        },
+        "checkpointLabelFilter":{
+          "shape":"IntentSummaryCheckpointLabel",
+          "location":"querystring",
+          "locationName":"checkpointLabelFilter"
         }
       }
     },
@@ -310,12 +315,19 @@
       "required":["dialogActionType"],
       "members":{
         "intentName":{"shape":"IntentName"},
+        "checkpointLabel":{"shape":"IntentSummaryCheckpointLabel"},
         "slots":{"shape":"StringMap"},
         "confirmationStatus":{"shape":"ConfirmationStatus"},
         "dialogActionType":{"shape":"DialogActionType"},
         "fulfillmentState":{"shape":"FulfillmentState"},
         "slotToElicit":{"shape":"String"}
       }
+    },
+    "IntentSummaryCheckpointLabel":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[a-zA-Z0-9-]+"
     },
     "IntentSummaryList":{
       "type":"list",
@@ -550,6 +562,7 @@
         },
         "sessionAttributes":{"shape":"StringMap"},
         "dialogAction":{"shape":"DialogAction"},
+        "recentIntentSummaryView":{"shape":"IntentSummaryList"},
         "accept":{
           "shape":"Accept",
           "location":"header",

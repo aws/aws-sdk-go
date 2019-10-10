@@ -282,7 +282,8 @@
       "enum":[
         "AWSCONFIG",
         "AWSWAF",
-        "AWSSHIELD_ADVANCED"
+        "AWSSHIELD_ADVANCED",
+        "AWSVPC"
       ]
     },
     "DetailedInfo":{
@@ -664,7 +665,10 @@
       "type":"string",
       "enum":[
         "WAF",
-        "SHIELD_ADVANCED"
+        "SHIELD_ADVANCED",
+        "SECURITY_GROUPS_COMMON",
+        "SECURITY_GROUPS_CONTENT_AUDIT",
+        "SECURITY_GROUPS_USAGE_AUDIT"
       ]
     },
     "TagKey":{
@@ -685,7 +689,12 @@
         "WEB_ACL_MISSING_RULE_GROUP",
         "RESOURCE_MISSING_WEB_ACL",
         "RESOURCE_INCORRECT_WEB_ACL",
-        "RESOURCE_MISSING_SHIELD_PROTECTION"
+        "RESOURCE_MISSING_SHIELD_PROTECTION",
+        "RESOURCE_MISSING_WEB_ACL_OR_SHIELD_PROTECTION",
+        "RESOURCE_MISSING_SECURITY_GROUP",
+        "RESOURCE_VIOLATES_AUDIT_SECURITY_GROUP",
+        "SECURITY_GROUP_UNUSED",
+        "SECURITY_GROUP_REDUNDANT"
       ]
     }
   }

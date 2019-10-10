@@ -1,3 +1,14 @@
+Release v1.25.10 (2019-10-10)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * New EC2 M5n, M5dn, R5n, R5dn instances with 100 Gbps network performance and Elastic Fabric Adapter (EFA) for ultra low latency; New A1.metal bare metal instance powered by AWS Graviton Processors
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/fms`: Updates service API and documentation
+* `service/iotanalytics`: Updates service API and documentation
+* `service/runtime.lex`: Updates service API and documentation
+
 Release v1.25.9 (2019-10-09)
 ===
 
