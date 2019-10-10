@@ -3,6 +3,7 @@
 package lexruntimeservice
 
 import (
+	"fmt"
 	"io"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -134,7 +135,7 @@ func (c *LexRuntimeService) GetSessionRequest(input *GetSessionInput) (req *requ
 	op := &request.Operation{
 		Name:       opGetSession,
 		HTTPMethod: "GET",
-		HTTPPath:   "/bot/{botName}/alias/{botAlias}/user/{userId}/session",
+		HTTPPath:   "/bot/{botName}/alias/{botAlias}/user/{userId}/session/",
 	}
 
 	if input == nil {
@@ -408,9 +409,9 @@ func (c *LexRuntimeService) PostTextRequest(input *PostTextInput) (req *request.
 
 // PostText API operation for Amazon Lex Runtime Service.
 //
-// Sends user input (text or SSML) to Amazon Lex. Client applications can use
-// this API to send requests to Amazon Lex at runtime. Amazon Lex then interprets
-// the user input using the machine learning model it built for the bot.
+// Sends user input to Amazon Lex. Client applications can use this API to send
+// requests to Amazon Lex at runtime. Amazon Lex then interprets the user input
+// using the machine learning model it built for the bot.
 //
 // In response, Amazon Lex returns the next message to convey to the user an
 // optional responseCard to display. Consider the following example messages:
@@ -1004,6 +1005,13 @@ type GetSessionInput struct {
 	// BotName is a required field
 	BotName *string `location:"uri" locationName:"botName" type:"string" required:"true"`
 
+	// A string used to filter the intents returned in the recentIntentSummaryView
+	// structure.
+	//
+	// When you specify a filter, only intents with their checkpointLabel field
+	// set to that string are returned.
+	CheckpointLabelFilter *string `location:"querystring" locationName:"checkpointLabelFilter" min:"1" type:"string"`
+
 	// The ID of the client application user. Amazon Lex uses this to identify a
 	// user's conversation with your bot.
 	//
@@ -1036,6 +1044,9 @@ func (s *GetSessionInput) Validate() error {
 	if s.BotName != nil && len(*s.BotName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("BotName", 1))
 	}
+	if s.CheckpointLabelFilter != nil && len(*s.CheckpointLabelFilter) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CheckpointLabelFilter", 1))
+	}
 	if s.UserId == nil {
 		invalidParams.Add(request.NewErrParamRequired("UserId"))
 	}
@@ -1061,6 +1072,12 @@ func (s *GetSessionInput) SetBotName(v string) *GetSessionInput {
 	return s
 }
 
+// SetCheckpointLabelFilter sets the CheckpointLabelFilter field's value.
+func (s *GetSessionInput) SetCheckpointLabelFilter(v string) *GetSessionInput {
+	s.CheckpointLabelFilter = &v
+	return s
+}
+
 // SetUserId sets the UserId field's value.
 func (s *GetSessionInput) SetUserId(v string) *GetSessionInput {
 	s.UserId = &v
@@ -1077,6 +1094,9 @@ type GetSessionOutput struct {
 	// can contain a maximum of three summaries. If more than three intents are
 	// used in the session, the recentIntentSummaryView operation contains information
 	// about the last three intents used.
+	//
+	// If you set the checkpointLabelFilter parameter in the request, the array
+	// contains only the intents with the specified label.
 	RecentIntentSummaryView []*IntentSummary `locationName:"recentIntentSummaryView" type:"list"`
 
 	// Map of key/value pairs representing the session-specific context information.
@@ -1127,6 +1147,14 @@ func (s *GetSessionOutput) SetSessionId(v string) *GetSessionOutput {
 // or so that you can return the intent to its previous state.
 type IntentSummary struct {
 	_ struct{} `type:"structure"`
+
+	// A user-defined label that identifies a particular intent. You can use this
+	// label to return to a previous intent.
+	//
+	// Use the checkpointLabelFilter parameter of the GetSessionRequest operation
+	// to filter the intents returned by the operation to those with only the specified
+	// label.
+	CheckpointLabel *string `locationName:"checkpointLabel" min:"1" type:"string"`
 
 	// The status of the intent after the user responds to the confirmation prompt.
 	// If the user confirms the intent, Amazon Lex sets this field to Confirmed.
@@ -1192,6 +1220,28 @@ func (s IntentSummary) String() string {
 // GoString returns the string representation
 func (s IntentSummary) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IntentSummary) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IntentSummary"}
+	if s.CheckpointLabel != nil && len(*s.CheckpointLabel) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CheckpointLabel", 1))
+	}
+	if s.DialogActionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("DialogActionType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCheckpointLabel sets the CheckpointLabel field's value.
+func (s *IntentSummary) SetCheckpointLabel(v string) *IntentSummary {
+	s.CheckpointLabel = &v
+	return s
 }
 
 // SetConfirmationStatus sets the ConfirmationStatus field's value.
@@ -1956,6 +2006,27 @@ type PutSessionInput struct {
 	// Sets the next action that the bot should take to fulfill the conversation.
 	DialogAction *DialogAction `locationName:"dialogAction" type:"structure"`
 
+	// A summary of the recent intents for the bot. You can use the intent summary
+	// view to set a checkpoint label on an intent and modify attributes of intents.
+	// You can also use it to remove or add intent summary objects to the list.
+	//
+	// An intent that you modify or add to the list must make sense for the bot.
+	// For example, the intent name must be valid for the bot. You must provide
+	// valid values for:
+	//
+	//    * intentName
+	//
+	//    * slot names
+	//
+	//    * slotToElict
+	//
+	// If you send the recentIntentSummaryView parameter in a PutSession request,
+	// the contents of the new summary view replaces the old summary view. For example,
+	// if a GetSession request returns three intents in the summary view and you
+	// call PutSession with one intent in the summary view, the next call to GetSession
+	// will only return one intent.
+	RecentIntentSummaryView []*IntentSummary `locationName:"recentIntentSummaryView" type:"list"`
+
 	// Map of key/value pairs representing the session-specific context information.
 	// It contains application information passed between Amazon Lex and a client
 	// application.
@@ -2004,6 +2075,16 @@ func (s *PutSessionInput) Validate() error {
 			invalidParams.AddNested("DialogAction", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.RecentIntentSummaryView != nil {
+		for i, v := range s.RecentIntentSummaryView {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RecentIntentSummaryView", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2032,6 +2113,12 @@ func (s *PutSessionInput) SetBotName(v string) *PutSessionInput {
 // SetDialogAction sets the DialogAction field's value.
 func (s *PutSessionInput) SetDialogAction(v *DialogAction) *PutSessionInput {
 	s.DialogAction = v
+	return s
+}
+
+// SetRecentIntentSummaryView sets the RecentIntentSummaryView field's value.
+func (s *PutSessionInput) SetRecentIntentSummaryView(v []*IntentSummary) *PutSessionInput {
+	s.RecentIntentSummaryView = v
 	return s
 }
 

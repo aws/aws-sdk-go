@@ -97179,6 +97179,105 @@ const (
 
 	// InstanceTypeA14xlarge is a InstanceType enum value
 	InstanceTypeA14xlarge = "a1.4xlarge"
+
+	// InstanceTypeA1Metal is a InstanceType enum value
+	InstanceTypeA1Metal = "a1.metal"
+
+	// InstanceTypeM5dnLarge is a InstanceType enum value
+	InstanceTypeM5dnLarge = "m5dn.large"
+
+	// InstanceTypeM5dnXlarge is a InstanceType enum value
+	InstanceTypeM5dnXlarge = "m5dn.xlarge"
+
+	// InstanceTypeM5dn2xlarge is a InstanceType enum value
+	InstanceTypeM5dn2xlarge = "m5dn.2xlarge"
+
+	// InstanceTypeM5dn4xlarge is a InstanceType enum value
+	InstanceTypeM5dn4xlarge = "m5dn.4xlarge"
+
+	// InstanceTypeM5dn8xlarge is a InstanceType enum value
+	InstanceTypeM5dn8xlarge = "m5dn.8xlarge"
+
+	// InstanceTypeM5dn12xlarge is a InstanceType enum value
+	InstanceTypeM5dn12xlarge = "m5dn.12xlarge"
+
+	// InstanceTypeM5dn16xlarge is a InstanceType enum value
+	InstanceTypeM5dn16xlarge = "m5dn.16xlarge"
+
+	// InstanceTypeM5dn24xlarge is a InstanceType enum value
+	InstanceTypeM5dn24xlarge = "m5dn.24xlarge"
+
+	// InstanceTypeM5nLarge is a InstanceType enum value
+	InstanceTypeM5nLarge = "m5n.large"
+
+	// InstanceTypeM5nXlarge is a InstanceType enum value
+	InstanceTypeM5nXlarge = "m5n.xlarge"
+
+	// InstanceTypeM5n2xlarge is a InstanceType enum value
+	InstanceTypeM5n2xlarge = "m5n.2xlarge"
+
+	// InstanceTypeM5n4xlarge is a InstanceType enum value
+	InstanceTypeM5n4xlarge = "m5n.4xlarge"
+
+	// InstanceTypeM5n8xlarge is a InstanceType enum value
+	InstanceTypeM5n8xlarge = "m5n.8xlarge"
+
+	// InstanceTypeM5n12xlarge is a InstanceType enum value
+	InstanceTypeM5n12xlarge = "m5n.12xlarge"
+
+	// InstanceTypeM5n16xlarge is a InstanceType enum value
+	InstanceTypeM5n16xlarge = "m5n.16xlarge"
+
+	// InstanceTypeM5n24xlarge is a InstanceType enum value
+	InstanceTypeM5n24xlarge = "m5n.24xlarge"
+
+	// InstanceTypeR5dnLarge is a InstanceType enum value
+	InstanceTypeR5dnLarge = "r5dn.large"
+
+	// InstanceTypeR5dnXlarge is a InstanceType enum value
+	InstanceTypeR5dnXlarge = "r5dn.xlarge"
+
+	// InstanceTypeR5dn2xlarge is a InstanceType enum value
+	InstanceTypeR5dn2xlarge = "r5dn.2xlarge"
+
+	// InstanceTypeR5dn4xlarge is a InstanceType enum value
+	InstanceTypeR5dn4xlarge = "r5dn.4xlarge"
+
+	// InstanceTypeR5dn8xlarge is a InstanceType enum value
+	InstanceTypeR5dn8xlarge = "r5dn.8xlarge"
+
+	// InstanceTypeR5dn12xlarge is a InstanceType enum value
+	InstanceTypeR5dn12xlarge = "r5dn.12xlarge"
+
+	// InstanceTypeR5dn16xlarge is a InstanceType enum value
+	InstanceTypeR5dn16xlarge = "r5dn.16xlarge"
+
+	// InstanceTypeR5dn24xlarge is a InstanceType enum value
+	InstanceTypeR5dn24xlarge = "r5dn.24xlarge"
+
+	// InstanceTypeR5nLarge is a InstanceType enum value
+	InstanceTypeR5nLarge = "r5n.large"
+
+	// InstanceTypeR5nXlarge is a InstanceType enum value
+	InstanceTypeR5nXlarge = "r5n.xlarge"
+
+	// InstanceTypeR5n2xlarge is a InstanceType enum value
+	InstanceTypeR5n2xlarge = "r5n.2xlarge"
+
+	// InstanceTypeR5n4xlarge is a InstanceType enum value
+	InstanceTypeR5n4xlarge = "r5n.4xlarge"
+
+	// InstanceTypeR5n8xlarge is a InstanceType enum value
+	InstanceTypeR5n8xlarge = "r5n.8xlarge"
+
+	// InstanceTypeR5n12xlarge is a InstanceType enum value
+	InstanceTypeR5n12xlarge = "r5n.12xlarge"
+
+	// InstanceTypeR5n16xlarge is a InstanceType enum value
+	InstanceTypeR5n16xlarge = "r5n.16xlarge"
+
+	// InstanceTypeR5n24xlarge is a InstanceType enum value
+	InstanceTypeR5n24xlarge = "r5n.24xlarge"
 )
 
 const (
