@@ -2112,8 +2112,11 @@
           "eu-central-1" : { },
           "eu-north-1" : { },
           "eu-west-1" : { },
+          "eu-west-2" : { },
+          "eu-west-3" : { },
           "sa-east-1" : { },
           "us-east-1" : { },
+          "us-east-2" : { },
           "us-west-2" : { }
         }
       },
@@ -2976,6 +2979,9 @@
           "protocols" : [ "https" ]
         },
         "endpoints" : {
+          "ap-east-1" : {
+            "protocols" : [ "https" ]
+          },
           "ap-northeast-1" : {
             "protocols" : [ "https" ]
           },
@@ -4596,6 +4602,12 @@
         },
         "isRegionalized" : false,
         "partitionEndpoint" : "aws-us-gov-global"
+      },
+      "route53resolver" : {
+        "endpoints" : {
+          "us-gov-east-1" : { },
+          "us-gov-west-1" : { }
+        }
       },
       "runtime.sagemaker" : {
         "endpoints" : {
