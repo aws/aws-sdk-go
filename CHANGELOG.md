@@ -1,3 +1,11 @@
+Release v1.25.11 (2019-10-11)
+===
+
+### Service Client Updates
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/greengrass`: Updates service API
+  * Greengrass OTA service supports Raspbian/Armv6l platforms.
+
 Release v1.25.10 (2019-10-10)
 ===
 
