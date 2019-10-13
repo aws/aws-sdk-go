@@ -322,6 +322,7 @@ func (c *copier) multipartCopy() (*s3.CopyObjectOutput, error) {
 	nextPartNum := int64(0)
 	wg := sync.WaitGroup{}
 	cctx, cancel := canceller(c.ctx)
+	defer cancel()
 	firstErr := make(chan error, 1)
 	var firstPart *s3.UploadPartCopyOutput
 
