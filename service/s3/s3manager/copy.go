@@ -26,6 +26,10 @@ const DefaultCopyConcurrency = 10
 // Copier is a structure for calling Copy(). It is safe to call Copy() on this
 // structure for multiple objects and across concurrent goroutines. Mutating
 // the Copier's properties is not safe to be done concurrently.
+//
+// Similar to the CopyObject API, the Copier does not attempt to copy attributes
+// such as permissions, metadata, and tags. Such information must be copied
+// separately, and is subject to additional IAM permissions.
 type Copier struct {
 	// MaxPartSize is the maximum multipart chunk size to use (in bytes). It
 	// must be at least 5 MB. The actual size of the chunks will vary, but
@@ -74,6 +78,10 @@ func WithCopierRequestOptions(opts ...request.Option) func(*Copier) {
 // otherwise as part of the Copier's Copy method. The ConfigProvider (e.g.
 // a *session.Session) will be used to instantiate a S3 service client.
 //
+// Similar to the CopyObject API, the Copier does not attempt to copy attributes
+// such as permissions, metadata, and tags. Such information must be copied
+// separately, and is subject to additional IAM permissions.
+//
 // See NewCopierWithClient for examples.
 func NewCopier(c client.ConfigProvider, options ...func(*Copier)) *Copier {
 	return NewCopierWithClient(s3.New(c), options...)
@@ -82,6 +90,10 @@ func NewCopier(c client.ConfigProvider, options ...func(*Copier)) *Copier {
 // NewCopierWithClient creates a new Copier instance for copying objects
 // between buckets and/or keys in S3. Customisations can be passed in options,
 // or otherwise as part of the Copier's Copy method.
+//
+// Similar to the CopyObject API, the Copier does not attempt to copy attributes
+// such as permissions, metadata, and tags. Such information must be copied
+// separately, and is subject to additional IAM permissions.
 func NewCopierWithClient(svc s3iface.S3API, options ...func(*Copier)) *Copier {
 	c := &Copier{
 		S3:                     svc,
