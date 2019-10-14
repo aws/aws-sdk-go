@@ -92,7 +92,7 @@
       "base": null,
       "refs": {
         "DefaultWorkspaceCreationProperties$EnableWorkDocs": "<p>Specifies whether the directory is enabled for Amazon WorkDocs.</p>",
-        "DefaultWorkspaceCreationProperties$EnableInternetAccess": "<p>The public IP address to attach to all WorkSpaces that are created or rebuilt.</p>",
+        "DefaultWorkspaceCreationProperties$EnableInternetAccess": "<p>Specifies whether to automatically assign a public IP address to WorkSpaces in this directory by default. If enabled, the public IP address allows outbound internet access from your WorkSpaces when you’re using an internet gateway in the Amazon VPC in which your WorkSpaces are located. If you're using a Network Address Translation (NAT) gateway for outbound internet access from your VPC, or if your WorkSpaces are in public subnets and you manually assign them Elastic IP addresses, you should disable this setting. This setting applies to new WorkSpaces that you launch or to existing WorkSpaces that you rebuild. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/amazon-workspaces-vpc.html\"> Configure a VPC for Amazon WorkSpaces</a>.</p>",
         "DefaultWorkspaceCreationProperties$UserEnabledAsLocalAdministrator": "<p>Specifies whether the WorkSpace user is an administrator on the WorkSpace.</p>",
         "Workspace$UserVolumeEncryptionEnabled": "<p>Indicates whether the data stored on the user volume is encrypted.</p>",
         "Workspace$RootVolumeEncryptionEnabled": "<p>Indicates whether the data stored on the root volume is encrypted.</p>",
@@ -927,7 +927,7 @@
     "RunningModeAutoStopTimeoutInMinutes": {
       "base": null,
       "refs": {
-        "WorkspaceProperties$RunningModeAutoStopTimeoutInMinutes": "<p>The time after a user logs off when WorkSpaces are automatically stopped. Configured in 60 minute intervals.</p>"
+        "WorkspaceProperties$RunningModeAutoStopTimeoutInMinutes": "<p>The time after a user logs off when WorkSpaces are automatically stopped. Configured in 60-minute intervals.</p>"
       }
     },
     "SecurityGroupId": {
@@ -946,7 +946,7 @@
     "SnapshotList": {
       "base": null,
       "refs": {
-        "DescribeWorkspaceSnapshotsResult$RebuildSnapshots": "<p>Information about the snapshots that can be used to rebuild a WorkSpace. These snapshots include the root volume.</p>",
+        "DescribeWorkspaceSnapshotsResult$RebuildSnapshots": "<p>Information about the snapshots that can be used to rebuild a WorkSpace. These snapshots include the user volume.</p>",
         "DescribeWorkspaceSnapshotsResult$RestoreSnapshots": "<p>Information about the snapshots that can be used to restore a WorkSpace. These snapshots include both the root volume and the user volume.</p>"
       }
     },

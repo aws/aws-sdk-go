@@ -1,3 +1,11 @@
+Release v1.25.12 (2019-10-14)
+===
+
+### Service Client Updates
+* `service/personalize`: Updates service API and documentation
+* `service/workspaces`: Updates service documentation
+  * Documentation updates for WorkSpaces
+
 Release v1.25.11 (2019-10-11)
 ===
 
