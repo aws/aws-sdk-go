@@ -705,7 +705,7 @@
         "DatasetGroupSummary$failureReason": "<p>If creating a dataset group fails, the reason behind the failure.</p>",
         "DatasetImportJob$failureReason": "<p>If a dataset import job fails, provides the reason why.</p>",
         "DatasetImportJobSummary$failureReason": "<p>If a dataset import job fails, the reason behind the failure.</p>",
-        "SolutionVersion$failureReason": "<p>If training a solution version fails, the reason behind the failure.</p>",
+        "SolutionVersion$failureReason": "<p>If training a solution version fails, the reason for the failure.</p>",
         "SolutionVersionSummary$failureReason": "<p>If a solution version fails, the reason behind the failure.</p>"
       }
     },
@@ -758,8 +758,8 @@
     "HPOResource": {
       "base": null,
       "refs": {
-        "HPOResourceConfig$maxNumberOfTrainingJobs": "<p>The maximum number of training jobs.</p>",
-        "HPOResourceConfig$maxParallelTrainingJobs": "<p>The maximum number of parallel training jobs.</p>"
+        "HPOResourceConfig$maxNumberOfTrainingJobs": "<p>The maximum number of training jobs when you create a solution version. The maximum value for <code>maxNumberOfTrainingJobs</code> is <code>40</code>.</p>",
+        "HPOResourceConfig$maxParallelTrainingJobs": "<p>The maximum number of parallel training jobs when you create a solution version. The maximum value for <code>maxParallelTrainingJobs</code> is <code>10</code>.</p>"
       }
     },
     "HPOResourceConfig": {
@@ -1042,7 +1042,7 @@
       "refs": {
         "CreateSolutionRequest$performAutoML": "<p>Whether to perform automated machine learning (AutoML). The default is <code>false</code>. For this case, you must specify <code>recipeArn</code>.</p> <p>When set to <code>true</code>, Amazon Personalize analyzes your training data and selects the optimal USER_PERSONALIZATION recipe and hyperparameters. In this case, you must omit <code>recipeArn</code>. Amazon Personalize determines the optimal recipe by running tests with different values for the hyperparameters. AutoML lengthens the training process as compared to selecting a specific recipe.</p>",
         "Solution$performAutoML": "<p>When true, Amazon Personalize performs a search for the best USER_PERSONALIZATION recipe from the list specified in the solution configuration (<code>recipeArn</code> must not be specified). When false (the default), Amazon Personalize uses <code>recipeArn</code> for training.</p>",
-        "SolutionVersion$performAutoML": "<p>When true, Amazon Personalize performs a search for the most optimal recipe according to the solution configuration. When false (the default), Amazon Personalize uses <code>recipeArn</code>.</p>"
+        "SolutionVersion$performAutoML": "<p>When true, Amazon Personalize searches for the most optimal recipe according to the solution configuration. When false (the default), Amazon Personalize uses <code>recipeArn</code>.</p>"
       }
     },
     "PerformHPO": {
@@ -1187,7 +1187,7 @@
         "RecipeSummary$status": "<p>The status of the recipe.</p>",
         "Solution$status": "<p>The status of the solution.</p> <p>A solution can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul>",
         "SolutionSummary$status": "<p>The status of the solution.</p> <p>A solution can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul>",
-        "SolutionVersion$status": "<p>The status of the solution version.</p> <p>A solution version can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> </ul>",
+        "SolutionVersion$status": "<p>The status of the solution version.</p> <p>A solution version can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING</p> </li> <li> <p>CREATE IN_PROGRESS</p> </li> <li> <p>ACTIVE</p> </li> <li> <p>CREATE FAILED</p> </li> </ul>",
         "SolutionVersionSummary$status": "<p>The status of the solution version.</p> <p>A solution version can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> </ul>"
       }
     },
@@ -1201,13 +1201,20 @@
     "TrainingHours": {
       "base": null,
       "refs": {
-        "SolutionVersion$trainingHours": "<p>The time used to train the model. </p>"
+        "SolutionVersion$trainingHours": "<p>The time used to train the model. You are billed for the time it takes to train a model. This field is visible only after Amazon Personalize successfully trains a model.</p>"
       }
     },
     "TrainingInputMode": {
       "base": null,
       "refs": {
         "Algorithm$trainingInputMode": "<p>The training input mode.</p>"
+      }
+    },
+    "TrainingMode": {
+      "base": null,
+      "refs": {
+        "CreateSolutionVersionRequest$trainingMode": "<p>The scope of training to be performed when creating the solution version. The <code>FULL</code> option trains the solution version based on the entirety of the input solution's training data, while the <code>UPDATE</code> option processes only the data that has changed in comparison to the input solution. Choose <code>UPDATE</code> when you want to incrementally update your solution version instead of creating an entirely new one.</p> <important> <p>The <code>UPDATE</code> option can only be used when you already have an active solution version created from the input solution using the <code>FULL</code> option and the input solution was trained with the <a>native-recipe-hrnn-coldstart</a> recipe.</p> </important>",
+        "SolutionVersion$trainingMode": "<p>The scope of training used to create the solution version. The <code>FULL</code> option trains the solution version based on the entirety of the input solution's training data, while the <code>UPDATE</code> option processes only the training data that has changed since the creation of the last solution version. Choose <code>UPDATE</code> when you want to start recommending items added to the dataset without retraining the model.</p> <important> <p>The <code>UPDATE</code> option can only be used after you've created a solution version with the <code>FULL</code> option and the training solution uses the <a>native-recipe-hrnn-coldstart</a>.</p> </important>"
       }
     },
     "TransactionsPerSecond": {

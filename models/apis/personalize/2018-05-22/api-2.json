@@ -807,7 +807,8 @@
       "type":"structure",
       "required":["solutionArn"],
       "members":{
-        "solutionArn":{"shape":"Arn"}
+        "solutionArn":{"shape":"Arn"},
+        "trainingMode":{"shape":"TrainingMode"}
       }
     },
     "CreateSolutionVersionResponse":{
@@ -1637,6 +1638,7 @@
         "datasetGroupArn":{"shape":"Arn"},
         "solutionConfig":{"shape":"SolutionConfig"},
         "trainingHours":{"shape":"TrainingHours"},
+        "trainingMode":{"shape":"TrainingMode"},
         "status":{"shape":"Status"},
         "failureReason":{"shape":"FailureReason"},
         "creationDateTime":{"shape":"Date"},
@@ -1678,6 +1680,13 @@
     "TrainingInputMode":{
       "type":"string",
       "max":256
+    },
+    "TrainingMode":{
+      "type":"string",
+      "enum":[
+        "FULL",
+        "UPDATE"
+      ]
     },
     "TransactionsPerSecond":{
       "type":"integer",
