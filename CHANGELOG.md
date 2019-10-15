@@ -1,3 +1,9 @@
+Release v1.25.13 (2019-10-15)
+===
+
+### Service Client Updates
+* `service/kinesis-video-archived-media`: Updates service API and documentation
+
 Release v1.25.12 (2019-10-14)
 ===
 
