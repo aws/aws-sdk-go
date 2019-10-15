@@ -262,7 +262,8 @@
       "type":"string",
       "enum":[
         "ALWAYS",
-        "NEVER"
+        "NEVER",
+        "ON_DISCONTINUITY"
       ]
     },
     "HLSDisplayFragmentTimestamp":{
