@@ -1,323 +1,332 @@
 {
   "version" : "2.0",
-  "service" : "\n               <p>The operations for managing an Amazon MSK cluster.</p>\n            ",
+  "service" : "<p>The operations for managing an Amazon MSK cluster.</p>",
   "operations" : {
-    "CreateCluster" : "\n            <p>Creates a new MSK cluster.</p>\n         ",
-    "CreateConfiguration" : "\n            <p>Creates a new MSK configuration.</p>\n         ",
-    "DeleteCluster" : "\n            <p>Deletes the MSK cluster specified by the Amazon Resource Name (ARN) in the request.</p>\n         ",
-    "DescribeCluster" : "\n            <p>Returns a description of the MSK cluster whose Amazon Resource Name (ARN) is specified in the request.</p>\n         ",
-    "DescribeClusterOperation" : "\n            <p>Returns a description of the cluster operation specified by the ARN.</p>\n         ",
-    "DescribeConfiguration" : "\n            <p>Returns a description of this MSK configuration.</p>\n         ",
-    "DescribeConfigurationRevision" : "\n            <p>Returns a description of this revision of the configuration.</p>\n         ",
-    "GetBootstrapBrokers" : "\n            <p>A list of brokers that a client application can use to bootstrap.</p>\n         ",
-    "ListClusterOperations" : "\n            <p>Returns a list of all the operations that have been performed on the specified MSK cluster.</p>\n         ",
-    "ListClusters" : "\n            <p>Returns a list of all the MSK clusters in the current Region.</p>\n         ",
-    "ListConfigurationRevisions" : "\n            <p>Returns a list of all the MSK configurations in this Region.</p>\n         ",
-    "ListConfigurations" : "\n            <p>Returns a list of all the MSK configurations in this Region.</p>\n         ",
-    "ListNodes" : "\n            <p>Returns a list of the broker nodes in the cluster.</p>\n         ",
-    "ListTagsForResource" : "\n            <p>Returns a list of the tags associated with the specified resource.</p>\n         ",
-    "TagResource" : "\n            <p>Adds tags to the specified MSK resource.</p>\n         ",
-    "UntagResource" : "\n            <p>Removes the tags associated with the keys that are provided in the query.</p>\n         ",
-    "UpdateBrokerStorage" : "\n            <p>Updates the EBS storage associated with MSK brokers.</p>\n         ",
-    "UpdateClusterConfiguration" : "\n            <p>Updates the cluster with the configuration that is specified in the request body.</p>\n         "
+    "CreateCluster" : "<p>Creates a new MSK cluster.</p>",
+    "CreateConfiguration" : "<p>Creates a new MSK configuration.</p>",
+    "DeleteCluster" : "<p>Deletes the MSK cluster specified by the Amazon Resource Name (ARN) in the request.</p>",
+    "DescribeCluster" : "<p>Returns a description of the MSK cluster whose Amazon Resource Name (ARN) is specified in the request.</p>",
+    "DescribeClusterOperation" : "<p>Returns a description of the cluster operation specified by the ARN.</p>",
+    "DescribeConfiguration" : "<p>Returns a description of this MSK configuration.</p>",
+    "DescribeConfigurationRevision" : "<p>Returns a description of this revision of the configuration.</p>",
+    "GetBootstrapBrokers" : "<p>A list of brokers that a client application can use to bootstrap.</p>",
+    "ListClusterOperations" : "<p>Returns a list of all the operations that have been performed on the specified MSK cluster.</p>",
+    "ListClusters" : "<p>Returns a list of all the MSK clusters in the current Region.</p>",
+    "ListConfigurationRevisions" : "<p>Returns a list of all the revisions of an MSK configuration.</p>",
+    "ListConfigurations" : "<p>Returns a list of all the MSK configurations in this Region.</p>",
+    "ListNodes" : "<p>Returns a list of the broker nodes in the cluster.</p>",
+    "ListTagsForResource" : "<p>Returns a list of the tags associated with the specified resource.</p>",
+    "TagResource" : "<p>Adds tags to the specified MSK resource.</p>",
+    "UntagResource" : "<p>Removes the tags associated with the keys that are provided in the query.</p>",
+    "UpdateBrokerCount" : "<p>Updates the number of broker nodes in the cluster. You can use this operation to increase the number of brokers in an existing cluster. You can't decrease the number of brokers.</p>",
+    "UpdateBrokerStorage" : "<p>Updates the EBS storage associated with MSK brokers.</p>",
+    "UpdateClusterConfiguration" : "<p>Updates the cluster with the configuration that is specified in the request body.</p>"
   },
   "shapes" : {
     "BadRequestException" : {
-      "base" : "\n            <p>Returns information about an error.</p>\n         ",
+      "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
     },
     "BrokerAZDistribution" : {
-      "base" : "\n            <p>The distribution of broker nodes across Availability Zones. This is an optional parameter. If you don't specify it, Amazon MSK gives it the value DEFAULT. You can also explicitly set this parameter to the value DEFAULT. No other values are currently allowed.</p>\n         <p>Amazon MSK distributes the broker nodes evenly across the Availability Zones that correspond to the subnets you provide when you create the cluster.</p>\n         ",
+      "base" : "<p>The distribution of broker nodes across Availability Zones. By default, broker nodes are distributed among the Availability Zones of your Region. Currently, the only supported value is DEFAULT. You can either specify this value explicitly or leave it out.</p>",
       "refs" : {
-        "BrokerNodeGroupInfo$BrokerAZDistribution" : "\n            <p>The distribution of broker nodes across Availability Zones. This is an optional parameter. If you don't specify it, Amazon MSK gives it the value DEFAULT. You can also explicitly set this parameter to the value DEFAULT. No other values are currently allowed.</p>\n         <p>Amazon MSK distributes the broker nodes evenly across the Availability Zones that correspond to the subnets you provide when you create the cluster.</p>\n         "
+        "BrokerNodeGroupInfo$BrokerAZDistribution" : "<p>The distribution of broker nodes across Availability Zones.</p>"
       }
     },
     "BrokerEBSVolumeInfo" : {
-      "base" : "\n            <p>Specifies the EBS volume upgrade information. The broker identifier must be set to the keyword ALL. This means the changes apply to all the brokers in the cluster.</p>\n         ",
+      "base" : "<p>Specifies the EBS volume upgrade information. The broker identifier must be set to the keyword ALL. This means the changes apply to all the brokers in the cluster.</p>",
       "refs" : {
         "__listOfBrokerEBSVolumeInfo$member" : null
       }
     },
     "BrokerNodeGroupInfo" : {
-      "base" : "\n            <p>Describes the setup to be used for Kafka broker nodes in the cluster.</p>\n         ",
+      "base" : "<p>Describes the setup to be used for Kafka broker nodes in the cluster.</p>",
       "refs" : {
-        "ClusterInfo$BrokerNodeGroupInfo" : "\n            <p>Information about the broker nodes.</p>\n         ",
-        "CreateClusterRequest$BrokerNodeGroupInfo" : "\n            <p>Information about the broker nodes in the cluster.</p>\n         "
+        "ClusterInfo$BrokerNodeGroupInfo" : "<p>Information about the broker nodes.</p>",
+        "CreateClusterRequest$BrokerNodeGroupInfo" : "<p>Information about the broker nodes in the cluster.</p>"
       }
     },
     "BrokerNodeInfo" : {
-      "base" : "\n            <p>BrokerNodeInfo</p>\n         ",
+      "base" : "<p>BrokerNodeInfo</p>",
       "refs" : {
-        "NodeInfo$BrokerNodeInfo" : "\n            <p>The broker node info.</p>\n         "
+        "NodeInfo$BrokerNodeInfo" : "<p>The broker node info.</p>"
       }
     },
     "BrokerSoftwareInfo" : {
-      "base" : "\n            <p>Information about the current software installed on the cluster.</p>\n         ",
+      "base" : "<p>Information about the current software installed on the cluster.</p>",
       "refs" : {
-        "BrokerNodeInfo$CurrentBrokerSoftwareInfo" : "\n            <p>Information about the version of software currently deployed on the Kafka brokers in the cluster.</p>\n         ",
-        "ClusterInfo$CurrentBrokerSoftwareInfo" : "\n            <p>Information about the version of software currently deployed on the Kafka brokers in the cluster.</p>\n         "
+        "BrokerNodeInfo$CurrentBrokerSoftwareInfo" : "<p>Information about the version of software currently deployed on the Kafka brokers in the cluster.</p>",
+        "ClusterInfo$CurrentBrokerSoftwareInfo" : "<p>Information about the version of software currently deployed on the Kafka brokers in the cluster.</p>"
       }
     },
     "ClientAuthentication" : {
-      "base" : "\n            <p>Includes all client authentication information.</p>\n         ",
+      "base" : "<p>Includes all client authentication information.</p>",
       "refs" : {
-        "ClusterInfo$ClientAuthentication" : "\n            <p>Includes all client authentication information.</p>\n         ",
-        "CreateClusterRequest$ClientAuthentication" : "\n            <p>Includes all client authentication related information.</p>\n         "
+        "ClusterInfo$ClientAuthentication" : "<p>Includes all client authentication information.</p>",
+        "CreateClusterRequest$ClientAuthentication" : "<p>Includes all client authentication related information.</p>"
       }
     },
     "ClientBroker" : {
-      "base" : "\n            <p>Client-broker encryption in transit setting.</p>\n         ",
+      "base" : "<p>Client-broker encryption in transit setting.</p>",
       "refs" : {
-        "EncryptionInTransit$ClientBroker" : "\n            <p>Indicates the encryption setting for data in transit between clients and brokers. The following are the possible values.</p>\n            <p>\n               TLS means that client-broker communication is enabled with TLS only.</p>\n            <p>\n               TLS_PLAINTEXT means that client-broker communication is enabled for both TLS-encrypted, as well as plaintext data.</p>\n            <p>\n               PLAINTEXT means that client-broker communication is enabled in plaintext only.</p>\n            <p>The default value is TLS_PLAINTEXT.</p>\n         "
+        "EncryptionInTransit$ClientBroker" : "<p>Indicates the encryption setting for data in transit between clients and brokers. You must set it to one of the following values.</p> <p>TLS means that client-broker communication is enabled with TLS only.</p> <p>TLS_PLAINTEXT means that client-broker communication is enabled for both TLS-encrypted, as well as plaintext data.</p> <p>PLAINTEXT means that client-broker communication is enabled in plaintext only.</p> <p>The default value is TLS.</p>"
       }
     },
     "ClusterInfo" : {
-      "base" : "\n            <p>Returns information about a cluster.</p>\n         ",
+      "base" : "<p>Returns information about a cluster.</p>",
       "refs" : {
-        "DescribeClusterResponse$ClusterInfo" : "\n            <p>The cluster information.</p>\n         ",
+        "DescribeClusterResponse$ClusterInfo" : "<p>The cluster information.</p>",
         "__listOfClusterInfo$member" : null
       }
     },
     "ClusterOperationInfo" : {
-      "base" : "\n            <p>Returns information about a cluster operation.</p>\n         ",
+      "base" : "<p>Returns information about a cluster operation.</p>",
       "refs" : {
-        "DescribeClusterOperationResponse$ClusterOperationInfo" : "\n            <p>Cluster operation information</p>\n         ",
+        "DescribeClusterOperationResponse$ClusterOperationInfo" : "<p>Cluster operation information</p>",
         "__listOfClusterOperationInfo$member" : null
       }
     },
     "ClusterState" : {
-      "base" : "\n            <p>The state of a Kafka cluster.</p>\n         ",
+      "base" : "<p>The state of a Kafka cluster.</p>",
       "refs" : {
-        "ClusterInfo$State" : "\n            <p>The state of the cluster. The possible states are CREATING, ACTIVE, and FAILED.</p>\n         ",
-        "CreateClusterResponse$State" : "\n            <p>The state of the cluster. The possible states are CREATING, ACTIVE, and FAILED.</p>\n         ",
-        "DeleteClusterResponse$State" : "\n            <p>The state of the cluster. The possible states are CREATING, ACTIVE, and FAILED.</p>\n         "
+        "ClusterInfo$State" : "<p>The state of the cluster. The possible states are CREATING, ACTIVE, and FAILED.</p>",
+        "CreateClusterResponse$State" : "<p>The state of the cluster. The possible states are CREATING, ACTIVE, and FAILED.</p>",
+        "DeleteClusterResponse$State" : "<p>The state of the cluster. The possible states are CREATING, ACTIVE, and FAILED.</p>"
       }
     },
     "Configuration" : {
-      "base" : "\n            <p>Represents an MSK Configuration.</p>\n         ",
+      "base" : "<p>Represents an MSK Configuration.</p>",
       "refs" : {
         "__listOfConfiguration$member" : null
       }
     },
     "ConfigurationInfo" : {
-      "base" : "\n            <p>Specifies the configuration to use for the brokers.</p>\n         ",
+      "base" : "<p>Specifies the configuration to use for the brokers.</p>",
       "refs" : {
-        "CreateClusterRequest$ConfigurationInfo" : "\n            <p>Represents the configuration that you want MSK to use for the brokers in a cluster.</p>\n         ",
-        "MutableClusterInfo$ConfigurationInfo" : "\n            <p>Information about the changes in the configuration of the brokers.</p>\n         ",
-        "UpdateClusterConfigurationRequest$ConfigurationInfo" : "\n            <p>Represents the configuration that you want MSK to use for the brokers in a cluster.</p>\n         "
+        "CreateClusterRequest$ConfigurationInfo" : "<p>Represents the configuration that you want MSK to use for the cluster.</p>",
+        "MutableClusterInfo$ConfigurationInfo" : "<p>Information about the changes in the configuration of the brokers.</p>",
+        "UpdateClusterConfigurationRequest$ConfigurationInfo" : "<p>Represents the configuration that you want MSK to use for the cluster.</p>"
       }
     },
     "ConfigurationRevision" : {
-      "base" : "\n            <p>Describes a configuration revision.</p>\n         ",
+      "base" : "<p>Describes a configuration revision.</p>",
       "refs" : {
-        "Configuration$LatestRevision" : "\n            <p>Latest revision of the configuration.</p>\n         ",
-        "CreateConfigurationResponse$LatestRevision" : "\n            <p>Latest revision of the configuration.</p>\n         ",
-        "DescribeConfigurationResponse$LatestRevision" : "\n            <p>Latest revision of the configuration.</p>\n         ",
+        "Configuration$LatestRevision" : "<p>Latest revision of the configuration.</p>",
+        "CreateConfigurationResponse$LatestRevision" : "<p>Latest revision of the configuration.</p>",
+        "DescribeConfigurationResponse$LatestRevision" : "<p>Latest revision of the configuration.</p>",
         "__listOfConfigurationRevision$member" : null
       }
     },
     "ConflictException" : {
-      "base" : "\n            <p>Returns information about an error.</p>\n         ",
+      "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
     },
     "CreateClusterRequest" : {
-      "base" : "\n            <p>Creates a cluster.</p>\n         ",
+      "base" : "<p>Creates a cluster.</p>",
       "refs" : { }
     },
     "CreateClusterResponse" : {
-      "base" : "\n            <p>Returns information about the created cluster.</p>\n         ",
+      "base" : "<p>Returns information about the created cluster.</p>",
       "refs" : { }
     },
     "CreateConfigurationRequest" : {
-      "base" : "\n            <p>Request body for CreateConfiguration.</p>\n         ",
+      "base" : "<p>Request body for CreateConfiguration.</p>",
       "refs" : { }
     },
     "CreateConfigurationResponse" : {
-      "base" : "\n            <p>Response body for CreateConfiguration</p>\n         ",
+      "base" : "<p>Response body for CreateConfiguration</p>",
       "refs" : { }
     },
     "DeleteClusterResponse" : {
-      "base" : "\n            <p>Returns information about the deleted cluster.</p>\n         ",
+      "base" : "<p>Returns information about the deleted cluster.</p>",
       "refs" : { }
     },
     "DescribeClusterOperationResponse" : {
-      "base" : "\n            <p>Information about a cluster operation.</p>\n         ",
+      "base" : "<p>Information about a cluster operation.</p>",
       "refs" : { }
     },
     "DescribeClusterResponse" : {
-      "base" : "\n            <p>Returns information about a cluster.</p>\n         ",
+      "base" : "<p>Returns information about a cluster.</p>",
       "refs" : { }
     },
     "DescribeConfigurationResponse" : {
-      "base" : "\n            <p>Response body for DescribeConfiguration.</p>\n         ",
+      "base" : "<p>Response body for DescribeConfiguration.</p>",
       "refs" : { }
     },
     "DescribeConfigurationRevisionResponse" : {
-      "base" : "\n            <p>Response body for DescribeConfigurationRevision.</p>\n         ",
+      "base" : "<p>Response body for DescribeConfigurationRevision.</p>",
       "refs" : { }
     },
     "EBSStorageInfo" : {
-      "base" : "\n            <p>Contains information about the EBS storage volumes attached to Kafka broker nodes.</p>\n         ",
+      "base" : "<p>Contains information about the EBS storage volumes attached to Kafka broker nodes.</p>",
       "refs" : {
-        "StorageInfo$EbsStorageInfo" : "\n            <p>EBS volume information.</p>\n         "
+        "StorageInfo$EbsStorageInfo" : "<p>EBS volume information.</p>"
       }
     },
     "EncryptionAtRest" : {
-      "base" : "\n            <p>The data-volume encryption details.</p>\n         ",
+      "base" : "<p>The data-volume encryption details.</p>",
       "refs" : {
-        "EncryptionInfo$EncryptionAtRest" : "\n            <p>The data-volume encryption details.</p>\n         "
+        "EncryptionInfo$EncryptionAtRest" : "<p>The data-volume encryption details.</p>"
       }
     },
     "EncryptionInTransit" : {
-      "base" : "\n            <p>The settings for encrypting data in transit.</p>\n         ",
+      "base" : "<p>The settings for encrypting data in transit.</p>",
       "refs" : {
-        "EncryptionInfo$EncryptionInTransit" : "\n            <p>The details for encryption in transit.</p>\n         "
+        "EncryptionInfo$EncryptionInTransit" : "<p>The details for encryption in transit.</p>"
       }
     },
     "EncryptionInfo" : {
-      "base" : "\n            <p>Includes encryption-related information, such as the AWS KMS key used for encrypting data at rest and whether you want MSK to encrypt your data in transit.</p>\n         ",
+      "base" : "<p>Includes encryption-related information, such as the AWS KMS key used for encrypting data at rest and whether you want MSK to encrypt your data in transit.</p>",
       "refs" : {
-        "ClusterInfo$EncryptionInfo" : "\n            <p>Includes all encryption-related information.</p>\n         ",
-        "CreateClusterRequest$EncryptionInfo" : "\n            <p>Includes all encryption-related information.</p>\n         "
+        "ClusterInfo$EncryptionInfo" : "<p>Includes all encryption-related information.</p>",
+        "CreateClusterRequest$EncryptionInfo" : "<p>Includes all encryption-related information.</p>"
       }
     },
     "EnhancedMonitoring" : {
-      "base" : "\n            <p>Specifies which metrics are gathered for the MSK cluster. This property has three possible values: DEFAULT, PER_BROKER, and PER_TOPIC_PER_BROKER. For a list of the metrics associated with each of these three levels of monitoring, see <a href=\"https://docs.aws.amazon.com/msk/latest/developerguide/monitoring.html\">Monitoring</a>.</p>\n         ",
+      "base" : "<p>Specifies which metrics are gathered for the MSK cluster. This property has three possible values: DEFAULT, PER_BROKER, and PER_TOPIC_PER_BROKER. For a list of the metrics associated with each of these three levels of monitoring, see <a href=\"https://docs.aws.amazon.com/msk/latest/developerguide/monitoring.html\">Monitoring</a>.</p>",
       "refs" : {
-        "ClusterInfo$EnhancedMonitoring" : "\n            <p>Specifies which metrics are gathered for the MSK cluster. This property has three possible values: DEFAULT, PER_BROKER, and PER_TOPIC_PER_BROKER. For a list of the metrics associated with each of these three levels of monitoring, see <a href=\"https://docs.aws.amazon.com/msk/latest/developerguide/monitoring.html\">Monitoring</a>.</p>\n         ",
-        "CreateClusterRequest$EnhancedMonitoring" : "\n            <p>Specifies the level of monitoring for the MSK cluster. The possible values are DEFAULT, PER_BROKER, and PER_TOPIC_PER_BROKER.</p>\n         "
+        "ClusterInfo$EnhancedMonitoring" : "<p>Specifies which metrics are gathered for the MSK cluster. This property has three possible values: DEFAULT, PER_BROKER, and PER_TOPIC_PER_BROKER. For a list of the metrics associated with each of these three levels of monitoring, see <a href=\"https://docs.aws.amazon.com/msk/latest/developerguide/monitoring.html\">Monitoring</a>.</p>",
+        "CreateClusterRequest$EnhancedMonitoring" : "<p>Specifies the level of monitoring for the MSK cluster. The possible values are DEFAULT, PER_BROKER, and PER_TOPIC_PER_BROKER.</p>"
       }
     },
     "Error" : {
-      "base" : "\n            <p>Returns information about an error.</p>\n         ",
+      "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
     },
     "ErrorInfo" : {
-      "base" : "\n            <p>Returns information about an error state of the cluster.</p>\n         ",
+      "base" : "<p>Returns information about an error state of the cluster.</p>",
       "refs" : {
-        "ClusterOperationInfo$ErrorInfo" : "\n            <p>Describes the error if the operation fails.</p>\n         "
+        "ClusterOperationInfo$ErrorInfo" : "<p>Describes the error if the operation fails.</p>"
       }
     },
     "ForbiddenException" : {
-      "base" : "\n            <p>Returns information about an error.</p>\n         ",
+      "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
     },
     "GetBootstrapBrokersResponse" : {
-      "base" : "\n            <p>Returns a string containing one or more hostname:port pairs.</p>\n         ",
+      "base" : "<p>Returns a string containing one or more hostname:port pairs.</p>",
       "refs" : { }
     },
     "InternalServerErrorException" : {
-      "base" : "\n            <p>Returns information about an error.</p>\n         ",
+      "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
     },
     "ListClusterOperationsResponse" : {
-      "base" : "\n            <p>The response contains an array containing cluster operation information and a next token if the response is truncated.</p>\n         ",
+      "base" : "<p>The response contains an array containing cluster operation information and a next token if the response is truncated.</p>",
       "refs" : { }
     },
     "ListClustersResponse" : {
-      "base" : "\n            <p>The response contains an array containing cluster information and a next token if the response is truncated.</p>\n         ",
+      "base" : "<p>The response contains an array containing cluster information and a next token if the response is truncated.</p>",
       "refs" : { }
     },
     "ListConfigurationRevisionsResponse" : {
-      "base" : "\n            <p>Information about revisions of an MSK configuration.</p>\n         ",
+      "base" : "<p>Information about revisions of an MSK configuration.</p>",
       "refs" : { }
     },
     "ListConfigurationsResponse" : {
-      "base" : "\n            <p>The response contains an array of Configuration and a next token if the response is truncated.</p>\n         ",
+      "base" : "<p>The response contains an array of Configuration and a next token if the response is truncated.</p>",
       "refs" : { }
     },
     "ListNodesResponse" : {
-      "base" : "\n            <p>Information about nodes in the cluster.</p>\n         ",
+      "base" : "<p>Information about nodes in the cluster.</p>",
       "refs" : { }
     },
     "ListTagsForResourceResponse" : {
-      "base" : "\n            <p>Response of listing tags for a resource.</p>\n         ",
+      "base" : "<p>Response of listing tags for a resource.</p>",
       "refs" : { }
     },
     "MutableClusterInfo" : {
-      "base" : "\n            <p>Information about cluster attributes that can be updated via update APIs.</p>\n         ",
+      "base" : "<p>Information about cluster attributes that can be updated via update APIs.</p>",
       "refs" : {
-        "ClusterOperationInfo$SourceClusterInfo" : "\n            <p>Information about cluster attributes before a cluster is updated.</p>\n         ",
-        "ClusterOperationInfo$TargetClusterInfo" : "\n            <p>Information about cluster attributes after a cluster is updated.</p>\n         "
+        "ClusterOperationInfo$SourceClusterInfo" : "<p>Information about cluster attributes before a cluster is updated.</p>",
+        "ClusterOperationInfo$TargetClusterInfo" : "<p>Information about cluster attributes after a cluster is updated.</p>"
       }
     },
     "NodeInfo" : {
-      "base" : "\n            <p>The node information object.</p>\n         ",
+      "base" : "<p>The node information object.</p>",
       "refs" : {
         "__listOfNodeInfo$member" : null
       }
     },
     "NodeType" : {
-      "base" : "\n            <p>The broker or Zookeeper node.</p>\n         ",
+      "base" : "<p>The broker or Zookeeper node.</p>",
       "refs" : {
-        "NodeInfo$NodeType" : "\n            <p>The node type.</p>\n         "
+        "NodeInfo$NodeType" : "<p>The node type.</p>"
       }
     },
     "NotFoundException" : {
-      "base" : "\n            <p>Returns information about an error.</p>\n         ",
+      "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
     },
     "ServiceUnavailableException" : {
-      "base" : "\n            <p>Returns information about an error.</p>\n         ",
+      "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
     },
     "StorageInfo" : {
-      "base" : "\n            <p>Contains information about storage volumes attached to MSK broker nodes.</p>\n         ",
+      "base" : "<p>Contains information about storage volumes attached to MSK broker nodes.</p>",
       "refs" : {
-        "BrokerNodeGroupInfo$StorageInfo" : "\n            <p>Contains information about storage volumes attached to MSK broker nodes.</p>\n         "
+        "BrokerNodeGroupInfo$StorageInfo" : "<p>Contains information about storage volumes attached to MSK broker nodes.</p>"
       }
     },
     "TagResourceRequest" : {
-      "base" : "\n            <p>Tag a resource.</p>\n         ",
+      "base" : "<p>Tag a resource.</p>",
       "refs" : { }
     },
     "Tls" : {
-      "base" : "\n            <p>Details for client authentication using TLS.</p>\n         ",
+      "base" : "<p>Details for client authentication using TLS.</p>",
       "refs" : {
-        "ClientAuthentication$Tls" : "\n            <p>Details for ClientAuthentication using TLS.</p>\n         "
+        "ClientAuthentication$Tls" : "<p>Details for ClientAuthentication using TLS.</p>"
       }
     },
     "TooManyRequestsException" : {
-      "base" : "\n            <p>Returns information about an error.</p>\n         ",
+      "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
     },
     "UnauthorizedException" : {
-      "base" : "\n            <p>Returns information about an error.</p>\n         ",
+      "base" : "<p>Returns information about an error.</p>",
+      "refs" : { }
+    },
+    "UpdateBrokerCountRequest" : {
+      "base" : "<p>Request body for UpdateBrokerCount.</p>",
+      "refs" : { }
+    },
+    "UpdateBrokerCountResponse" : {
+      "base" : "<p>Response body for UpdateBrokerCount.</p>",
       "refs" : { }
     },
     "UpdateBrokerStorageRequest" : {
-      "base" : "\n            <p>Request object for UpdateBrokerStorage.</p>\n         ",
+      "base" : "<p>Request object for UpdateBrokerStorage.</p>",
       "refs" : { }
     },
     "UpdateBrokerStorageResponse" : {
-      "base" : "\n            <p>Response body for UpdateBrokerStorage.</p>\n         ",
+      "base" : "<p>Response body for UpdateBrokerStorage.</p>",
       "refs" : { }
     },
     "UpdateClusterConfigurationRequest" : {
-      "base" : "\n            <p>Request body for UpdateClusterConfiguration.</p>\n         ",
+      "base" : "<p>Request body for UpdateClusterConfiguration.</p>",
       "refs" : { }
     },
     "UpdateClusterConfigurationResponse" : {
-      "base" : "\n            <p>Response body for UpdateClusterConfiguration.</p>\n         ",
+      "base" : "<p>Response body for UpdateClusterConfiguration.</p>",
       "refs" : { }
     },
     "ZookeeperNodeInfo" : {
-      "base" : "\n            <p>Zookeeper node information.</p>\n         ",
+      "base" : "<p>Zookeeper node information.</p>",
       "refs" : {
-        "NodeInfo$ZookeeperNodeInfo" : "\n            <p>The ZookeeperNodeInfo.</p>\n         "
+        "NodeInfo$ZookeeperNodeInfo" : "<p>The ZookeeperNodeInfo.</p>"
       }
     },
     "__boolean" : {
       "base" : null,
       "refs" : {
-        "EncryptionInTransit$InCluster" : "\n            <p>When set to true, it indicates that data communication among the broker nodes of the cluster is encrypted. When set to false, the communication happens in plaintext.</p>\n            <p>The default value is true.</p>\n         "
+        "EncryptionInTransit$InCluster" : "<p>When set to true, it indicates that data communication among the broker nodes of the cluster is encrypted. When set to false, the communication happens in plaintext.</p> <p>The default value is true.</p>"
       }
     },
     "__double" : {
       "base" : null,
       "refs" : {
-        "BrokerNodeInfo$BrokerId" : "\n            <p>The ID of the broker.</p>\n         ",
-        "ZookeeperNodeInfo$ZookeeperId" : "\n            <p>The role-specific ID for Zookeeper.</p>\n         "
+        "BrokerNodeInfo$BrokerId" : "<p>The ID of the broker.</p>",
+        "ZookeeperNodeInfo$ZookeeperId" : "<p>The role-specific ID for Zookeeper.</p>"
       }
     },
     "__integer" : {
@@ -332,143 +341,147 @@
     "__integerMin1Max15" : {
       "base" : null,
       "refs" : {
-        "CreateClusterRequest$NumberOfBrokerNodes" : "<p>The number of Kafka broker nodes in the Amazon MSK cluster.</p>"
+        "CreateClusterRequest$NumberOfBrokerNodes": "<p>The number of Kafka broker nodes in the Amazon MSK cluster.</p>",
+        "UpdateBrokerCountRequest$TargetNumberOfBrokerNodes" : "<p>The number of broker nodes that you want the cluster to have after this operation completes successfully.</p>"
       }
     },
     "__integerMin1Max16384" : {
       "base" : null,
       "refs" : {
-        "EBSStorageInfo$VolumeSize" : "\n            <p>The size in GiB of the EBS volume for the data drive on each broker node.</p>\n         "
+        "EBSStorageInfo$VolumeSize" : "<p>The size in GiB of the EBS volume for the data drive on each broker node.</p>"
       }
     },
     "__listOfBrokerEBSVolumeInfo" : {
       "base" : null,
       "refs" : {
-        "MutableClusterInfo$BrokerEBSVolumeInfo" : "\n            <p>Specifies the size of the EBS volume and the ID of the associated broker.</p>\n         ",
-        "UpdateBrokerStorageRequest$TargetBrokerEBSVolumeInfo" : "\n            <p>Describes the target volume size and the ID of the broker to apply the update to.</p>\n         "
+        "MutableClusterInfo$BrokerEBSVolumeInfo" : "<p>Specifies the size of the EBS volume and the ID of the associated broker.</p>",
+        "UpdateBrokerStorageRequest$TargetBrokerEBSVolumeInfo" : "<p>Describes the target volume size and the ID of the broker to apply the update to.</p> <p>The value you specify for Target-Volume-in-GiB must be a whole number that is greater than 100 GiB.</p> <p>The storage per broker after the update operation can't exceed 16384 GiB.</p>"
       }
     },
     "__listOfClusterInfo" : {
       "base" : null,
       "refs" : {
-        "ListClustersResponse$ClusterInfoList" : "\n            <p>Information on each of the MSK clusters in the response.</p>\n         "
+        "ListClustersResponse$ClusterInfoList" : "<p>Information on each of the MSK clusters in the response.</p>"
       }
     },
     "__listOfClusterOperationInfo" : {
       "base" : null,
       "refs" : {
-        "ListClusterOperationsResponse$ClusterOperationInfoList" : "\n            <p>An array of cluster operation information objects.</p>\n         "
+        "ListClusterOperationsResponse$ClusterOperationInfoList" : "<p>An array of cluster operation information objects.</p>"
       }
     },
     "__listOfConfiguration" : {
       "base" : null,
       "refs" : {
-        "ListConfigurationsResponse$Configurations" : "\n            <p>An array of MSK configurations.</p>\n         "
+        "ListConfigurationsResponse$Configurations" : "<p>An array of MSK configurations.</p>"
       }
     },
     "__listOfConfigurationRevision" : {
       "base" : null,
       "refs" : {
-        "ListConfigurationRevisionsResponse$Revisions" : "\n            <p>List of ConfigurationRevision objects.</p>\n         "
+        "ListConfigurationRevisionsResponse$Revisions" : "<p>List of ConfigurationRevision objects.</p>"
       }
     },
     "__listOfNodeInfo" : {
       "base" : null,
       "refs" : {
-        "ListNodesResponse$NodeInfoList" : "\n            <p>List containing a NodeInfo object.</p>\n         "
+        "ListNodesResponse$NodeInfoList" : "<p>List containing a NodeInfo object.</p>"
       }
     },
     "__listOf__string" : {
       "base" : null,
       "refs" : {
-        "BrokerNodeGroupInfo$ClientSubnets" : "\n            <p>The list of subnets to connect to in the client virtual private cloud (VPC). AWS creates elastic network interfaces inside these subnets. Client applications use elastic network interfaces to produce and consume data. Client subnets can't be in Availability Zone us-east-1e.</p>\n         ",
-        "BrokerNodeGroupInfo$SecurityGroups" : "\n            <p>The AWS security groups to associate with the elastic network interfaces in order to specify who can connect to and communicate with the Amazon MSK cluster. If you don't specify a security group, Amazon MSK uses the default security group associated with the VPC.</p>\n         ",
-        "BrokerNodeInfo$Endpoints" : "\n            <p>Endpoints for accessing the broker.</p>\n         ",
-        "Configuration$KafkaVersions" : "\n            <p>An array of the versions of Apache Kafka with which you can use this MSK configuration. You can use this configuration for an MSK cluster only if the Apache Kafka version specified for the cluster appears in this array.</p>\n         ",
-        "CreateConfigurationRequest$KafkaVersions" : "\n            <p>The versions of Apache Kafka with which you can use this MSK configuration.</p>\n         ",
-        "DescribeConfigurationResponse$KafkaVersions" : "\n            <p>The versions of Apache Kafka with which you can use this MSK configuration.</p>\n         ",
-        "Tls$CertificateAuthorityArnList" : "\n            <p>List of ACM Certificate Authority ARNs.</p>\n         ",
-        "ZookeeperNodeInfo$Endpoints" : "\n            <p>Endpoints for accessing the ZooKeeper.</p>\n         "
+        "BrokerNodeGroupInfo$ClientSubnets" : "<p>The list of subnets to connect to in the client virtual private cloud (VPC). AWS creates elastic network interfaces inside these subnets. Client applications use elastic network interfaces to produce and consume data. Client subnets can't be in Availability Zone us-east-1e.</p>",
+        "BrokerNodeGroupInfo$SecurityGroups" : "<p>The AWS security groups to associate with the elastic network interfaces in order to specify who can connect to and communicate with the Amazon MSK cluster. If you don't specify a security group, Amazon MSK uses the default security group associated with the VPC. If you specify security groups that were shared with you, you must ensure that you have permissions to them. Specifically, you need the ec2:DescribeSecurityGroups permission.</p>",
+        "BrokerNodeInfo$Endpoints" : "<p>Endpoints for accessing the broker.</p>",
+        "Configuration$KafkaVersions" : "<p>An array of the versions of Apache Kafka with which you can use this MSK configuration. You can use this configuration for an MSK cluster only if the Apache Kafka version specified for the cluster appears in this array.</p>",
+        "CreateConfigurationRequest$KafkaVersions" : "<p>The versions of Apache Kafka with which you can use this MSK configuration.</p>",
+        "DescribeConfigurationResponse$KafkaVersions" : "<p>The versions of Apache Kafka with which you can use this MSK configuration.</p>",
+        "Tls$CertificateAuthorityArnList" : "<p>List of ACM Certificate Authority ARNs.</p>",
+        "ZookeeperNodeInfo$Endpoints" : "<p>Endpoints for accessing the ZooKeeper.</p>"
       }
     },
     "__long" : {
       "base" : null,
       "refs" : {
-        "BrokerSoftwareInfo$ConfigurationRevision" : "\n            <p>The revision of the configuration to use. This field isn't visible in this preview release.</p>\n         ",
-        "ConfigurationRevision$Revision" : "\n            <p>The revision number.</p>\n         ",
-        "DescribeConfigurationRevisionResponse$Revision" : "\n            <p>The revision number.</p>\n         ",
-        "ConfigurationInfo$Revision" : "\n            <p>The revision of the configuration to use.</p>\n         "
+        "BrokerSoftwareInfo$ConfigurationRevision" : "<p>The revision of the configuration to use. This field isn't visible in this preview release.</p>",
+        "ConfigurationRevision$Revision" : "<p>The revision number.</p>",
+        "DescribeConfigurationRevisionResponse$Revision" : "<p>The revision number.</p>",
+        "ConfigurationInfo$Revision" : "<p>The revision of the configuration to use.</p>"
       }
     },
     "__mapOf__string" : {
       "base" : null,
       "refs" : {
-        "ClusterInfo$Tags" : "\n            <p>Tags attached to the cluster.</p>\n         ",
-        "CreateClusterRequest$Tags" : "\n            <p>Create tags when creating the cluster.</p>\n         ",
-        "ListTagsForResourceResponse$Tags" : "\n            <p>The key-value pair for the resource tag.</p>\n         ",
-        "TagResourceRequest$Tags" : "\n            <p>The key-value pair for the resource tag.</p>\n         "
+        "ClusterInfo$Tags" : "<p>Tags attached to the cluster.</p>",
+        "CreateClusterRequest$Tags" : "<p>Create tags when creating the cluster.</p>",
+        "ListTagsForResourceResponse$Tags" : "<p>The key-value pair for the resource tag.</p>",
+        "TagResourceRequest$Tags" : "<p>The key-value pair for the resource tag.</p>"
       }
     },
     "__string" : {
       "base" : null,
       "refs" : {
-        "BrokerEBSVolumeInfo$KafkaBrokerNodeId" : "\n            <p>The ID of the broker to update.</p>\n         ",
-        "BrokerNodeInfo$AttachedENIId" : "\n            <p>The attached elastic network interface of the broker.</p>\n         ",
-        "BrokerNodeInfo$ClientSubnet" : "\n            <p>The client subnet to which this broker node belongs.</p>\n         ",
-        "BrokerNodeInfo$ClientVpcIpAddress" : "\n            <p>The virtual private cloud (VPC) of the client.</p>\n         ",
-        "BrokerSoftwareInfo$ConfigurationArn" : "\n            <p>The Amazon Resource Name (ARN) of the configuration used for the cluster. This field isn't visible in this preview release.</p>\n         ",
-        "BrokerSoftwareInfo$KafkaVersion" : "\n            <p>The version of Apache Kafka.</p>\n         ",
-        "ClusterInfo$ActiveOperationArn" : "\n            <p>Arn of active cluster operation.</p>\n         ",
-        "ClusterInfo$ClusterArn" : "\n            <p>The Amazon Resource Name (ARN) that uniquely identifies the cluster.</p>\n         ",
-        "ClusterInfo$ClusterName" : "\n            <p>The name of the cluster.</p>\n         ",
-        "ClusterInfo$CurrentVersion" : "\n            <p>The current version of the MSK cluster.</p>\n         ",
-        "ClusterInfo$ZookeeperConnectString" : "\n            <p>The connection string to use to connect to the Apache ZooKeeper cluster.</p>\n         ",
-        "ClusterOperationInfo$ClientRequestId" : "\n            <p>The ID of the API request that triggered this operation.</p>\n         ",
-        "ClusterOperationInfo$ClusterArn" : "\n            <p>ARN of the cluster.</p>\n         ",
-        "ClusterOperationInfo$OperationArn" : "\n            <p>ARN of the cluster operation.</p>\n         ",
-        "ClusterOperationInfo$OperationState" : "\n            <p>State of the cluster operation.</p>\n         ",
-        "ClusterOperationInfo$OperationType" : "\n            <p>Type of the cluster operation.</p>\n         ",
-        "Configuration$Arn" : "\n            <p>The Amazon Resource Name (ARN) of the configuration.</p>\n         ",
-        "Configuration$Description" : "\n            <p>The description of the configuration.</p>\n         ",
-        "Configuration$Name" : "\n            <p>The name of the configuration.</p>\n         ",
-        "ConfigurationInfo$Arn" : "\n            <p>ARN of the configuration to use.</p>\n         ",
-        "ConfigurationRevision$Description" : "\n            <p>The description of the configuration revision.</p>\n         ",
-        "CreateClusterResponse$ClusterArn" : "\n            <p>The Amazon Resource Name (ARN) of the cluster.</p>\n         ",
-        "CreateClusterResponse$ClusterName" : "\n            <p>The name of the MSK cluster.</p>\n         ",
-        "CreateConfigurationRequest$Description" : "\n            <p>The description of the configuration.</p>\n         ",
-        "CreateConfigurationRequest$Name" : "\n            <p>The name of the configuration.</p>\n         ",
-        "CreateConfigurationResponse$Arn" : "\n            <p>The Amazon Resource Name (ARN) of the configuration.</p>\n         ",
-        "CreateConfigurationResponse$Name" : "\n            <p>The name of the configuration.</p>\n         ",
-        "DeleteClusterResponse$ClusterArn" : "\n            <p>The Amazon Resource Name (ARN) of the cluster.</p>\n         ",
-        "DescribeConfigurationResponse$Arn" : "\n            <p>The Amazon Resource Name (ARN) of the configuration.</p>\n         ",
-        "DescribeConfigurationResponse$Description" : "\n            <p>The description of the configuration.</p>\n         ",
-        "DescribeConfigurationResponse$Name" : "\n            <p>The name of the configuration.</p>\n         ",
-        "DescribeConfigurationRevisionResponse$Arn" : "\n            <p>The Amazon Resource Name (ARN) of the configuration.</p>\n         ",
-        "DescribeConfigurationRevisionResponse$Description" : "\n            <p>The description of the configuration.</p>\n         ",
-        "EncryptionAtRest$DataVolumeKMSKeyId" : "\n            <p>The ARN of the AWS KMS key for encrypting data at rest. If you don't specify a KMS key, MSK creates one for you and uses it.</p>\n         ",
-        "Error$InvalidParameter" : "\n            <p>The parameter that caused the error.</p>\n         ",
-        "Error$Message" : "\n            <p>The description of the error.</p>\n         ",
-        "ErrorInfo$ErrorCode" : "\n            <p>A number describing the error programmatically.</p>\n         ",
-        "ErrorInfo$ErrorString" : "\n            <p>An optional field to provide more details about the error.</p>\n         ",
-        "GetBootstrapBrokersResponse$BootstrapBrokerString" : "\n            <p>A string containing one or more hostname:port pairs.</p>\n         ",
-        "GetBootstrapBrokersResponse$BootstrapBrokerStringTls" : "\n            <p>A string containing one or more DNS names (or IP) and TLS port pairs.</p>\n         ",
-        "ListClusterOperationsResponse$NextToken" : "\n            <p>If the response of ListClusterOperations is truncated, it returns a NextToken in the response. This Nexttoken should be sent in the subsequent request to ListClusterOperations.</p>\n         ",
-        "ListClustersResponse$NextToken" : "\n            <p>The paginated results marker. When the result of a ListClusters operation is truncated, the call returns NextToken in the response. \n               To get another batch of clusters, provide this token in your next request.</p>\n         ",
-        "ListConfigurationRevisionsResponse$NextToken" : "\n            <p>Paginated results marker.</p>\n         ",
-        "ListConfigurationsResponse$NextToken" : "\n            <p>The paginated results marker. When the result of a ListConfigurations operation is truncated, the call returns NextToken in the response. \n               To get another batch of configurations, provide this token in your next request.</p>\n         ",
-        "ListNodesResponse$NextToken" : "\n            <p>The paginated results marker. When the result of a ListNodes operation is truncated, the call returns NextToken in the response. \n               To get another batch of nodes, provide this token in your next request.</p>\n         ",
-        "NodeInfo$AddedToClusterTime" : "\n            <p>The start time.</p>\n         ",
-        "NodeInfo$InstanceType" : "\n            <p>The instance type.</p>\n         ",
-        "NodeInfo$NodeARN" : "\n            <p>The Amazon Resource Name (ARN) of the node.</p>\n         ",
-        "UpdateBrokerStorageRequest$CurrentVersion" : "\n            <p>The version of cluster to update from. A successful operation will then generate a new version.</p>\n         ",
-        "UpdateBrokerStorageResponse$ClusterArn" : "\n            <p>The Amazon Resource Name (ARN) of the cluster.</p>\n         ",
-        "UpdateBrokerStorageResponse$ClusterOperationArn" : "\n            <p>The Amazon Resource Name (ARN) of the cluster operation.</p>\n         ",
-        "UpdateClusterConfigurationRequest$CurrentVersion" : "\n            <p>The version of the cluster that needs to be updated.</p>\n         ",
-        "UpdateClusterConfigurationResponse$ClusterArn" : "\n            <p>The Amazon Resource Name (ARN) of the cluster.</p>\n         ",
-        "UpdateClusterConfigurationResponse$ClusterOperationArn" : "\n            <p>The Amazon Resource Name (ARN) of the cluster operation.</p>\n         ",
-        "ZookeeperNodeInfo$AttachedENIId" : "\n            <p>The attached elastic network interface of the broker.</p>\n         ",
-        "ZookeeperNodeInfo$ClientVpcIpAddress" : "\n            <p>The virtual private cloud (VPC) IP address of the client.</p>\n         ",
-        "ZookeeperNodeInfo$ZookeeperVersion" : "\n            <p>The version of Zookeeper.</p>\n         ",
+        "BrokerEBSVolumeInfo$KafkaBrokerNodeId" : "<p>The ID of the broker to update.</p>",
+        "BrokerNodeInfo$AttachedENIId" : "<p>The attached elastic network interface of the broker.</p>",
+        "BrokerNodeInfo$ClientSubnet" : "<p>The client subnet to which this broker node belongs.</p>",
+        "BrokerNodeInfo$ClientVpcIpAddress" : "<p>The virtual private cloud (VPC) of the client.</p>",
+        "BrokerSoftwareInfo$ConfigurationArn" : "<p>The Amazon Resource Name (ARN) of the configuration used for the cluster. This field isn't visible in this preview release.</p>",
+        "BrokerSoftwareInfo$KafkaVersion" : "<p>The version of Apache Kafka.</p>",
+        "ClusterInfo$ActiveOperationArn" : "<p>Arn of active cluster operation.</p>",
+        "ClusterInfo$ClusterArn" : "<p>The Amazon Resource Name (ARN) that uniquely identifies the cluster.</p>",
+        "ClusterInfo$ClusterName" : "<p>The name of the cluster.</p>",
+        "ClusterInfo$CurrentVersion" : "<p>The current version of the MSK cluster. Cluster versions aren't simple integers. You can obtain the current version by describing the cluster. An example version is KTVPDKIKX0DER.</p>",
+        "ClusterInfo$ZookeeperConnectString" : "<p>The connection string to use to connect to the Apache ZooKeeper cluster.</p>",
+        "ClusterOperationInfo$ClientRequestId" : "<p>The ID of the API request that triggered this operation.</p>",
+        "ClusterOperationInfo$ClusterArn" : "<p>ARN of the cluster.</p>",
+        "ClusterOperationInfo$OperationArn" : "<p>ARN of the cluster operation.</p>",
+        "ClusterOperationInfo$OperationState" : "<p>State of the cluster operation.</p>",
+        "ClusterOperationInfo$OperationType" : "<p>Type of the cluster operation.</p>",
+        "Configuration$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
+        "Configuration$Description" : "<p>The description of the configuration.</p>",
+        "Configuration$Name" : "<p>The name of the configuration. Configuration names are strings that match the regex \"^[0-9A-Za-z-]+$\".</p>",
+        "ConfigurationInfo$Arn" : "<p>ARN of the configuration to use.</p>",
+        "ConfigurationRevision$Description" : "<p>The description of the configuration revision.</p>",
+        "CreateClusterResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
+        "CreateClusterResponse$ClusterName" : "<p>The name of the MSK cluster.</p>",
+        "CreateConfigurationRequest$Description" : "<p>The description of the configuration.</p>",
+        "CreateConfigurationRequest$Name" : "<p>The name of the configuration. Configuration names are strings that match the regex \"^[0-9A-Za-z-]+$\".</p>",
+        "CreateConfigurationResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
+        "CreateConfigurationResponse$Name" : "<p>The name of the configuration. Configuration names are strings that match the regex \"^[0-9A-Za-z-]+$\".</p>",
+        "DeleteClusterResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
+        "DescribeConfigurationResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
+        "DescribeConfigurationResponse$Description" : "<p>The description of the configuration.</p>",
+        "DescribeConfigurationResponse$Name" : "<p>The name of the configuration. Configuration names are strings that match the regex \"^[0-9A-Za-z-]+$\".</p>",
+        "DescribeConfigurationRevisionResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
+        "DescribeConfigurationRevisionResponse$Description" : "<p>The description of the configuration.</p>",
+        "EncryptionAtRest$DataVolumeKMSKeyId" : "<p>The ARN of the AWS KMS key for encrypting data at rest. If you don't specify a KMS key, MSK creates one for you and uses it.</p>",
+        "Error$InvalidParameter" : "<p>The parameter that caused the error.</p>",
+        "Error$Message" : "<p>The description of the error.</p>",
+        "ErrorInfo$ErrorCode" : "<p>A number describing the error programmatically.</p>",
+        "ErrorInfo$ErrorString" : "<p>An optional field to provide more details about the error.</p>",
+        "GetBootstrapBrokersResponse$BootstrapBrokerString" : "<p>A string containing one or more hostname:port pairs.</p>",
+        "GetBootstrapBrokersResponse$BootstrapBrokerStringTls" : "<p>A string containing one or more DNS names (or IP) and TLS port pairs. The following is an example.</p> <programlisting>{\n    \"BootstrapBrokerStringTls\": \"b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094\"\n}</programlisting>",
+        "ListClusterOperationsResponse$NextToken" : "<p>If the response of ListClusterOperations is truncated, it returns a NextToken in the response. This Nexttoken should be sent in the subsequent request to ListClusterOperations.</p>",
+        "ListClustersResponse$NextToken" : "<p>The paginated results marker. When the result of a ListClusters operation is truncated, the call returns NextToken in the response. To get another batch of clusters, provide this token in your next request.</p>",
+        "ListConfigurationRevisionsResponse$NextToken" : "<p>Paginated results marker.</p>",
+        "ListConfigurationsResponse$NextToken" : "<p>The paginated results marker. When the result of a ListConfigurations operation is truncated, the call returns NextToken in the response. To get another batch of configurations, provide this token in your next request.</p>",
+        "ListNodesResponse$NextToken" : "<p>The paginated results marker. When the result of a ListNodes operation is truncated, the call returns NextToken in the response. To get another batch of nodes, provide this token in your next request.</p>",
+        "NodeInfo$AddedToClusterTime" : "<p>The start time.</p>",
+        "NodeInfo$InstanceType" : "<p>The instance type.</p>",
+        "NodeInfo$NodeARN" : "<p>The Amazon Resource Name (ARN) of the node.</p>",
+        "UpdateBrokerCountRequest$CurrentVersion" : "<p>The current version of the cluster.</p>",
+        "UpdateBrokerCountResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
+        "UpdateBrokerCountResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",
+        "UpdateBrokerStorageRequest$CurrentVersion" : "<p>The version of cluster to update from. A successful operation will then generate a new version.</p>",
+        "UpdateBrokerStorageResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
+        "UpdateBrokerStorageResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",
+        "UpdateClusterConfigurationRequest$CurrentVersion" : "<p>The version of the cluster that you want to update.</p>",
+        "UpdateClusterConfigurationResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
+        "UpdateClusterConfigurationResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",
+        "ZookeeperNodeInfo$AttachedENIId" : "<p>The attached elastic network interface of the broker.</p>",
+        "ZookeeperNodeInfo$ClientVpcIpAddress" : "<p>The virtual private cloud (VPC) IP address of the client.</p>",
+        "ZookeeperNodeInfo$ZookeeperVersion" : "<p>The version of Zookeeper.</p>",
         "__listOf__string$member" : null,
         "__mapOf__string$member" : null
       }
@@ -476,19 +489,19 @@
     "__stringMin1Max128" : {
       "base" : null,
       "refs" : {
-        "CreateClusterRequest$KafkaVersion" : "\n            <p>The version of Apache Kafka.</p>\n         "
+        "CreateClusterRequest$KafkaVersion" : "<p>The version of Apache Kafka.</p>"
       }
     },
     "__stringMin1Max64" : {
       "base" : null,
       "refs" : {
-        "CreateClusterRequest$ClusterName" : "\n            <p>The name of the cluster.</p>\n         "
+        "CreateClusterRequest$ClusterName" : "<p>The name of the cluster.</p>"
       }
     },
     "__stringMin5Max32" : {
       "base" : null,
       "refs" : {
-        "BrokerNodeGroupInfo$InstanceType" : "\n            <p>The type of Amazon EC2 instances to use for Kafka brokers. The following instance types are allowed: kafka.m5.large, kafka.m5.xlarge, kafka.m5.2xlarge,\nkafka.m5.4xlarge, kafka.m5.12xlarge, and kafka.m5.24xlarge.</p>\n         "
+        "BrokerNodeGroupInfo$InstanceType" : "<p>The type of Amazon EC2 instances to use for Kafka brokers. The following instance types are allowed: kafka.m5.large, kafka.m5.xlarge, kafka.m5.2xlarge, kafka.m5.4xlarge, kafka.m5.12xlarge, and kafka.m5.24xlarge.</p>"
       }
     },
     "__timestampIso8601" : {

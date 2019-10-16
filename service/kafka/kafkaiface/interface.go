@@ -139,6 +139,10 @@ type KafkaAPI interface {
 	UntagResourceWithContext(aws.Context, *kafka.UntagResourceInput, ...request.Option) (*kafka.UntagResourceOutput, error)
 	UntagResourceRequest(*kafka.UntagResourceInput) (*request.Request, *kafka.UntagResourceOutput)
 
+	UpdateBrokerCount(*kafka.UpdateBrokerCountInput) (*kafka.UpdateBrokerCountOutput, error)
+	UpdateBrokerCountWithContext(aws.Context, *kafka.UpdateBrokerCountInput, ...request.Option) (*kafka.UpdateBrokerCountOutput, error)
+	UpdateBrokerCountRequest(*kafka.UpdateBrokerCountInput) (*request.Request, *kafka.UpdateBrokerCountOutput)
+
 	UpdateBrokerStorage(*kafka.UpdateBrokerStorageInput) (*kafka.UpdateBrokerStorageOutput, error)
 	UpdateBrokerStorageWithContext(aws.Context, *kafka.UpdateBrokerStorageInput, ...request.Option) (*kafka.UpdateBrokerStorageOutput, error)
 	UpdateBrokerStorageRequest(*kafka.UpdateBrokerStorageInput) (*request.Request, *kafka.UpdateBrokerStorageOutput)

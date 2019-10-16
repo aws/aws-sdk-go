@@ -10680,6 +10680,9 @@ const (
 const (
 	// RobotSoftwareSuiteTypeRos is a RobotSoftwareSuiteType enum value
 	RobotSoftwareSuiteTypeRos = "ROS"
+
+	// RobotSoftwareSuiteTypeRos2 is a RobotSoftwareSuiteType enum value
+	RobotSoftwareSuiteTypeRos2 = "ROS2"
 )
 
 const (
@@ -10688,6 +10691,9 @@ const (
 
 	// RobotSoftwareSuiteVersionTypeMelodic is a RobotSoftwareSuiteVersionType enum value
 	RobotSoftwareSuiteVersionTypeMelodic = "Melodic"
+
+	// RobotSoftwareSuiteVersionTypeDashing is a RobotSoftwareSuiteVersionType enum value
+	RobotSoftwareSuiteVersionTypeDashing = "Dashing"
 )
 
 const (

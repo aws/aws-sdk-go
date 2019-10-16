@@ -1,3 +1,12 @@
+Release v1.25.14 (2019-10-16)
+===
+
+### Service Client Updates
+* `service/kafka`: Updates service API and documentation
+* `service/marketplacecommerceanalytics`: Updates service API and documentation
+  * add 2 more values for the supporting sections - age of past due funds + uncollected funds breakdown
+* `service/robomaker`: Updates service API
+
 Release v1.25.13 (2019-10-15)
 ===
 
