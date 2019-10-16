@@ -1228,7 +1228,8 @@
     "EnvironmentVariableValue":{
       "type":"string",
       "max":1024,
-      "min":1
+      "min":1,
+      "pattern":".*"
     },
     "FailureBehavior":{
       "type":"string",
@@ -1284,7 +1285,8 @@
     "Id":{
       "type":"string",
       "max":1224,
-      "min":1
+      "min":1,
+      "pattern":".*"
     },
     "IdempotentParameterMismatchException":{
       "type":"structure",
@@ -1491,7 +1493,8 @@
     "Path":{
       "type":"string",
       "max":1024,
-      "min":1
+      "min":1,
+      "pattern":".*"
     },
     "PercentDone":{
       "type":"float",
@@ -1696,13 +1699,17 @@
     },
     "RobotSoftwareSuiteType":{
       "type":"string",
-      "enum":["ROS"]
+      "enum":[
+        "ROS",
+        "ROS2"
+      ]
     },
     "RobotSoftwareSuiteVersionType":{
       "type":"string",
       "enum":[
         "Kinetic",
-        "Melodic"
+        "Melodic",
+        "Dashing"
       ]
     },
     "RobotStatus":{
@@ -1912,7 +1919,7 @@
     },
     "SimulationSoftwareSuiteVersionType":{
       "type":"string",
-      "pattern":"7|9|Kinetic|Melodic"
+      "pattern":"7|9|Kinetic|Melodic|Dashing"
     },
     "SimulationTimeMillis":{"type":"long"},
     "Source":{

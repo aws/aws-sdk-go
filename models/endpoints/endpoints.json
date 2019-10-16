@@ -1121,6 +1121,12 @@
             },
             "hostname" : "rds.ap-northeast-2.amazonaws.com"
           },
+          "ap-southeast-1" : {
+            "credentialScope" : {
+              "region" : "ap-southeast-1"
+            },
+            "hostname" : "rds.ap-southeast-1.amazonaws.com"
+          },
           "ap-southeast-2" : {
             "credentialScope" : {
               "region" : "ap-southeast-2"
