@@ -192,3 +192,13 @@ func newUploader(clientConfig ClientConfig, sdkConfig SDKConfig, options ...requ
 
 	return uploader
 }
+
+func getUploadPartSize(fileSize, uploadPartSize int64) int64 {
+	partSize := uploadPartSize
+
+	if fileSize/partSize > s3manager.MaxUploadParts {
+		partSize = (fileSize / s3manager.MaxUploadParts) + 1
+	}
+
+	return partSize
+}
