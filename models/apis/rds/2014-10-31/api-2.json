@@ -210,6 +210,23 @@
         {"shape":"OptionGroupQuotaExceededFault"}
       ]
     },
+    "CreateCustomAvailabilityZone":{
+      "name":"CreateCustomAvailabilityZone",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateCustomAvailabilityZoneMessage"},
+      "output":{
+        "shape":"CreateCustomAvailabilityZoneResult",
+        "resultWrapper":"CreateCustomAvailabilityZoneResult"
+      },
+      "errors":[
+        {"shape":"CustomAvailabilityZoneAlreadyExistsFault"},
+        {"shape":"CustomAvailabilityZoneQuotaExceededFault"},
+        {"shape":"KMSKeyNotAccessibleFault"}
+      ]
+    },
     "CreateDBCluster":{
       "name":"CreateDBCluster",
       "http":{
@@ -488,6 +505,22 @@
         {"shape":"OptionGroupQuotaExceededFault"}
       ]
     },
+    "DeleteCustomAvailabilityZone":{
+      "name":"DeleteCustomAvailabilityZone",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteCustomAvailabilityZoneMessage"},
+      "output":{
+        "shape":"DeleteCustomAvailabilityZoneResult",
+        "resultWrapper":"DeleteCustomAvailabilityZoneResult"
+      },
+      "errors":[
+        {"shape":"CustomAvailabilityZoneNotFoundFault"},
+        {"shape":"KMSKeyNotAccessibleFault"}
+      ]
+    },
     "DeleteDBCluster":{
       "name":"DeleteDBCluster",
       "http":{
@@ -673,6 +706,21 @@
         {"shape":"InvalidGlobalClusterStateFault"}
       ]
     },
+    "DeleteInstallationMedia":{
+      "name":"DeleteInstallationMedia",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteInstallationMediaMessage"},
+      "output":{
+        "shape":"InstallationMedia",
+        "resultWrapper":"DeleteInstallationMediaResult"
+      },
+      "errors":[
+        {"shape":"InstallationMediaNotFoundFault"}
+      ]
+    },
     "DeleteOptionGroup":{
       "name":"DeleteOptionGroup",
       "http":{
@@ -710,6 +758,21 @@
       },
       "errors":[
         {"shape":"CertificateNotFoundFault"}
+      ]
+    },
+    "DescribeCustomAvailabilityZones":{
+      "name":"DescribeCustomAvailabilityZones",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeCustomAvailabilityZonesMessage"},
+      "output":{
+        "shape":"CustomAvailabilityZoneMessage",
+        "resultWrapper":"DescribeCustomAvailabilityZonesResult"
+      },
+      "errors":[
+        {"shape":"CustomAvailabilityZoneNotFoundFault"}
       ]
     },
     "DescribeDBClusterBacktracks":{
@@ -1043,6 +1106,21 @@
         {"shape":"GlobalClusterNotFoundFault"}
       ]
     },
+    "DescribeInstallationMedia":{
+      "name":"DescribeInstallationMedia",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeInstallationMediaMessage"},
+      "output":{
+        "shape":"InstallationMediaMessage",
+        "resultWrapper":"DescribeInstallationMediaResult"
+      },
+      "errors":[
+        {"shape":"InstallationMediaNotFoundFault"}
+      ]
+    },
     "DescribeOptionGroupOptions":{
       "name":"DescribeOptionGroupOptions",
       "http":{
@@ -1186,6 +1264,22 @@
         {"shape":"DBClusterNotFoundFault"},
         {"shape":"InvalidDBClusterStateFault"},
         {"shape":"InvalidDBInstanceStateFault"}
+      ]
+    },
+    "ImportInstallationMedia":{
+      "name":"ImportInstallationMedia",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ImportInstallationMediaMessage"},
+      "output":{
+        "shape":"InstallationMedia",
+        "resultWrapper":"ImportInstallationMediaResult"
+      },
+      "errors":[
+        {"shape":"CustomAvailabilityZoneNotFoundFault"},
+        {"shape":"InstallationMediaAlreadyExistsFault"}
       ]
     },
     "ListTagsForResource":{
@@ -2341,6 +2435,22 @@
         "OptionGroup":{"shape":"OptionGroup"}
       }
     },
+    "CreateCustomAvailabilityZoneMessage":{
+      "type":"structure",
+      "required":["CustomAvailabilityZoneName"],
+      "members":{
+        "CustomAvailabilityZoneName":{"shape":"String"},
+        "ExistingVpnId":{"shape":"String"},
+        "NewVpnTunnelName":{"shape":"String"},
+        "VpnTunnelOriginatorIP":{"shape":"String"}
+      }
+    },
+    "CreateCustomAvailabilityZoneResult":{
+      "type":"structure",
+      "members":{
+        "CustomAvailabilityZone":{"shape":"CustomAvailabilityZone"}
+      }
+    },
     "CreateDBClusterEndpointMessage":{
       "type":"structure",
       "required":[
@@ -2683,6 +2793,63 @@
       "members":{
         "OptionGroup":{"shape":"OptionGroup"}
       }
+    },
+    "CustomAvailabilityZone":{
+      "type":"structure",
+      "members":{
+        "CustomAvailabilityZoneId":{"shape":"String"},
+        "CustomAvailabilityZoneName":{"shape":"String"},
+        "CustomAvailabilityZoneStatus":{"shape":"String"},
+        "VpnDetails":{"shape":"VpnDetails"}
+      },
+      "wrapper":true
+    },
+    "CustomAvailabilityZoneAlreadyExistsFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"CustomAvailabilityZoneAlreadyExists",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "CustomAvailabilityZoneList":{
+      "type":"list",
+      "member":{
+        "shape":"CustomAvailabilityZone",
+        "locationName":"CustomAvailabilityZone"
+      }
+    },
+    "CustomAvailabilityZoneMessage":{
+      "type":"structure",
+      "members":{
+        "Marker":{"shape":"String"},
+        "CustomAvailabilityZones":{"shape":"CustomAvailabilityZoneList"}
+      }
+    },
+    "CustomAvailabilityZoneNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"CustomAvailabilityZoneNotFound",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "CustomAvailabilityZoneQuotaExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"CustomAvailabilityZoneQuotaExceeded",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
     },
     "DBCluster":{
       "type":"structure",
@@ -3753,6 +3920,19 @@
       },
       "exception":true
     },
+    "DeleteCustomAvailabilityZoneMessage":{
+      "type":"structure",
+      "required":["CustomAvailabilityZoneId"],
+      "members":{
+        "CustomAvailabilityZoneId":{"shape":"String"}
+      }
+    },
+    "DeleteCustomAvailabilityZoneResult":{
+      "type":"structure",
+      "members":{
+        "CustomAvailabilityZone":{"shape":"CustomAvailabilityZone"}
+      }
+    },
     "DeleteDBClusterEndpointMessage":{
       "type":"structure",
       "required":["DBClusterEndpointIdentifier"],
@@ -3884,6 +4064,13 @@
         "GlobalCluster":{"shape":"GlobalCluster"}
       }
     },
+    "DeleteInstallationMediaMessage":{
+      "type":"structure",
+      "required":["InstallationMediaId"],
+      "members":{
+        "InstallationMediaId":{"shape":"String"}
+      }
+    },
     "DeleteOptionGroupMessage":{
       "type":"structure",
       "required":["OptionGroupName"],
@@ -3900,6 +4087,15 @@
       "type":"structure",
       "members":{
         "CertificateIdentifier":{"shape":"String"},
+        "Filters":{"shape":"FilterList"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
+      }
+    },
+    "DescribeCustomAvailabilityZonesMessage":{
+      "type":"structure",
+      "members":{
+        "CustomAvailabilityZoneId":{"shape":"String"},
         "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
         "Marker":{"shape":"String"}
@@ -4182,6 +4378,15 @@
       "type":"structure",
       "members":{
         "GlobalClusterIdentifier":{"shape":"String"},
+        "Filters":{"shape":"FilterList"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
+      }
+    },
+    "DescribeInstallationMediaMessage":{
+      "type":"structure",
+      "members":{
+        "InstallationMediaId":{"shape":"String"},
         "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
         "Marker":{"shape":"String"}
@@ -4614,6 +4819,78 @@
         "shape":"IPRange",
         "locationName":"IPRange"
       }
+    },
+    "ImportInstallationMediaMessage":{
+      "type":"structure",
+      "required":[
+        "CustomAvailabilityZoneId",
+        "Engine",
+        "EngineVersion",
+        "EngineInstallationMediaPath",
+        "OSInstallationMediaPath"
+      ],
+      "members":{
+        "CustomAvailabilityZoneId":{"shape":"String"},
+        "Engine":{"shape":"String"},
+        "EngineVersion":{"shape":"String"},
+        "EngineInstallationMediaPath":{"shape":"String"},
+        "OSInstallationMediaPath":{"shape":"String"}
+      }
+    },
+    "InstallationMedia":{
+      "type":"structure",
+      "members":{
+        "InstallationMediaId":{"shape":"String"},
+        "CustomAvailabilityZoneId":{"shape":"String"},
+        "Engine":{"shape":"String"},
+        "EngineVersion":{"shape":"String"},
+        "EngineInstallationMediaPath":{"shape":"String"},
+        "OSInstallationMediaPath":{"shape":"String"},
+        "Status":{"shape":"String"},
+        "FailureCause":{"shape":"InstallationMediaFailureCause"}
+      }
+    },
+    "InstallationMediaAlreadyExistsFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InstallationMediaAlreadyExists",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InstallationMediaFailureCause":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      }
+    },
+    "InstallationMediaList":{
+      "type":"list",
+      "member":{
+        "shape":"InstallationMedia",
+        "locationName":"InstallationMedia"
+      }
+    },
+    "InstallationMediaMessage":{
+      "type":"structure",
+      "members":{
+        "Marker":{"shape":"String"},
+        "InstallationMedia":{"shape":"InstallationMediaList"}
+      }
+    },
+    "InstallationMediaNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InstallationMediaNotFound",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
     },
     "InstanceQuotaExceededFault":{
       "type":"structure",
@@ -6414,6 +6691,10 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "StringSensitive":{
+      "type":"string",
+      "sensitive":true
+    },
     "Subnet":{
       "type":"structure",
       "members":{
@@ -6582,6 +6863,17 @@
       "member":{
         "shape":"VpcSecurityGroupMembership",
         "locationName":"VpcSecurityGroupMembership"
+      }
+    },
+    "VpnDetails":{
+      "type":"structure",
+      "members":{
+        "VpnId":{"shape":"String"},
+        "VpnTunnelOriginatorIP":{"shape":"String"},
+        "VpnGatewayIp":{"shape":"String"},
+        "VpnPSK":{"shape":"StringSensitive"},
+        "VpnName":{"shape":"String"},
+        "VpnState":{"shape":"String"}
       }
     }
   }

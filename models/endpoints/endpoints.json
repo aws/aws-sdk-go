@@ -110,6 +110,7 @@
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
+          "me-south-1" : { },
           "us-east-1" : { },
           "us-east-2" : { },
           "us-west-1" : { },
@@ -641,6 +642,7 @@
           "eu-west-2" : { },
           "eu-west-3" : { },
           "me-south-1" : { },
+          "sa-east-1" : { },
           "us-east-1" : { },
           "us-east-2" : { },
           "us-west-1" : { },
@@ -4857,6 +4859,11 @@
           }
         }
       },
+      "api.sagemaker" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
       "apigateway" : {
         "endpoints" : {
           "us-iso-east-1" : { }
@@ -5038,6 +5045,11 @@
         },
         "isRegionalized" : false,
         "partitionEndpoint" : "aws-iso-global"
+      },
+      "runtime.sagemaker" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
       },
       "s3" : {
         "defaults" : {
