@@ -305,6 +305,14 @@
         "UNMANAGED"
       ]
     },
+    "CRAllocationStrategy":{
+      "type":"string",
+      "enum":[
+        "BEST_FIT",
+        "BEST_FIT_PROGRESSIVE",
+        "SPOT_CAPACITY_OPTIMIZED"
+      ]
+    },
     "CRType":{
       "type":"string",
       "enum":[
@@ -386,6 +394,7 @@
       ],
       "members":{
         "type":{"shape":"CRType"},
+        "allocationStrategy":{"shape":"CRAllocationStrategy"},
         "minvCpus":{"shape":"Integer"},
         "maxvCpus":{"shape":"Integer"},
         "desiredvCpus":{"shape":"Integer"},

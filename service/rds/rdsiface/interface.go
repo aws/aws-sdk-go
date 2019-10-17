@@ -108,6 +108,10 @@ type RDSAPI interface {
 	CopyOptionGroupWithContext(aws.Context, *rds.CopyOptionGroupInput, ...request.Option) (*rds.CopyOptionGroupOutput, error)
 	CopyOptionGroupRequest(*rds.CopyOptionGroupInput) (*request.Request, *rds.CopyOptionGroupOutput)
 
+	CreateCustomAvailabilityZone(*rds.CreateCustomAvailabilityZoneInput) (*rds.CreateCustomAvailabilityZoneOutput, error)
+	CreateCustomAvailabilityZoneWithContext(aws.Context, *rds.CreateCustomAvailabilityZoneInput, ...request.Option) (*rds.CreateCustomAvailabilityZoneOutput, error)
+	CreateCustomAvailabilityZoneRequest(*rds.CreateCustomAvailabilityZoneInput) (*request.Request, *rds.CreateCustomAvailabilityZoneOutput)
+
 	CreateDBCluster(*rds.CreateDBClusterInput) (*rds.CreateDBClusterOutput, error)
 	CreateDBClusterWithContext(aws.Context, *rds.CreateDBClusterInput, ...request.Option) (*rds.CreateDBClusterOutput, error)
 	CreateDBClusterRequest(*rds.CreateDBClusterInput) (*request.Request, *rds.CreateDBClusterOutput)
@@ -160,6 +164,10 @@ type RDSAPI interface {
 	CreateOptionGroupWithContext(aws.Context, *rds.CreateOptionGroupInput, ...request.Option) (*rds.CreateOptionGroupOutput, error)
 	CreateOptionGroupRequest(*rds.CreateOptionGroupInput) (*request.Request, *rds.CreateOptionGroupOutput)
 
+	DeleteCustomAvailabilityZone(*rds.DeleteCustomAvailabilityZoneInput) (*rds.DeleteCustomAvailabilityZoneOutput, error)
+	DeleteCustomAvailabilityZoneWithContext(aws.Context, *rds.DeleteCustomAvailabilityZoneInput, ...request.Option) (*rds.DeleteCustomAvailabilityZoneOutput, error)
+	DeleteCustomAvailabilityZoneRequest(*rds.DeleteCustomAvailabilityZoneInput) (*request.Request, *rds.DeleteCustomAvailabilityZoneOutput)
+
 	DeleteDBCluster(*rds.DeleteDBClusterInput) (*rds.DeleteDBClusterOutput, error)
 	DeleteDBClusterWithContext(aws.Context, *rds.DeleteDBClusterInput, ...request.Option) (*rds.DeleteDBClusterOutput, error)
 	DeleteDBClusterRequest(*rds.DeleteDBClusterInput) (*request.Request, *rds.DeleteDBClusterOutput)
@@ -208,6 +216,10 @@ type RDSAPI interface {
 	DeleteGlobalClusterWithContext(aws.Context, *rds.DeleteGlobalClusterInput, ...request.Option) (*rds.DeleteGlobalClusterOutput, error)
 	DeleteGlobalClusterRequest(*rds.DeleteGlobalClusterInput) (*request.Request, *rds.DeleteGlobalClusterOutput)
 
+	DeleteInstallationMedia(*rds.DeleteInstallationMediaInput) (*rds.DeleteInstallationMediaOutput, error)
+	DeleteInstallationMediaWithContext(aws.Context, *rds.DeleteInstallationMediaInput, ...request.Option) (*rds.DeleteInstallationMediaOutput, error)
+	DeleteInstallationMediaRequest(*rds.DeleteInstallationMediaInput) (*request.Request, *rds.DeleteInstallationMediaOutput)
+
 	DeleteOptionGroup(*rds.DeleteOptionGroupInput) (*rds.DeleteOptionGroupOutput, error)
 	DeleteOptionGroupWithContext(aws.Context, *rds.DeleteOptionGroupInput, ...request.Option) (*rds.DeleteOptionGroupOutput, error)
 	DeleteOptionGroupRequest(*rds.DeleteOptionGroupInput) (*request.Request, *rds.DeleteOptionGroupOutput)
@@ -219,6 +231,13 @@ type RDSAPI interface {
 	DescribeCertificates(*rds.DescribeCertificatesInput) (*rds.DescribeCertificatesOutput, error)
 	DescribeCertificatesWithContext(aws.Context, *rds.DescribeCertificatesInput, ...request.Option) (*rds.DescribeCertificatesOutput, error)
 	DescribeCertificatesRequest(*rds.DescribeCertificatesInput) (*request.Request, *rds.DescribeCertificatesOutput)
+
+	DescribeCustomAvailabilityZones(*rds.DescribeCustomAvailabilityZonesInput) (*rds.DescribeCustomAvailabilityZonesOutput, error)
+	DescribeCustomAvailabilityZonesWithContext(aws.Context, *rds.DescribeCustomAvailabilityZonesInput, ...request.Option) (*rds.DescribeCustomAvailabilityZonesOutput, error)
+	DescribeCustomAvailabilityZonesRequest(*rds.DescribeCustomAvailabilityZonesInput) (*request.Request, *rds.DescribeCustomAvailabilityZonesOutput)
+
+	DescribeCustomAvailabilityZonesPages(*rds.DescribeCustomAvailabilityZonesInput, func(*rds.DescribeCustomAvailabilityZonesOutput, bool) bool) error
+	DescribeCustomAvailabilityZonesPagesWithContext(aws.Context, *rds.DescribeCustomAvailabilityZonesInput, func(*rds.DescribeCustomAvailabilityZonesOutput, bool) bool, ...request.Option) error
 
 	DescribeDBClusterBacktracks(*rds.DescribeDBClusterBacktracksInput) (*rds.DescribeDBClusterBacktracksOutput, error)
 	DescribeDBClusterBacktracksWithContext(aws.Context, *rds.DescribeDBClusterBacktracksInput, ...request.Option) (*rds.DescribeDBClusterBacktracksOutput, error)
@@ -354,6 +373,13 @@ type RDSAPI interface {
 	DescribeGlobalClustersPages(*rds.DescribeGlobalClustersInput, func(*rds.DescribeGlobalClustersOutput, bool) bool) error
 	DescribeGlobalClustersPagesWithContext(aws.Context, *rds.DescribeGlobalClustersInput, func(*rds.DescribeGlobalClustersOutput, bool) bool, ...request.Option) error
 
+	DescribeInstallationMedia(*rds.DescribeInstallationMediaInput) (*rds.DescribeInstallationMediaOutput, error)
+	DescribeInstallationMediaWithContext(aws.Context, *rds.DescribeInstallationMediaInput, ...request.Option) (*rds.DescribeInstallationMediaOutput, error)
+	DescribeInstallationMediaRequest(*rds.DescribeInstallationMediaInput) (*request.Request, *rds.DescribeInstallationMediaOutput)
+
+	DescribeInstallationMediaPages(*rds.DescribeInstallationMediaInput, func(*rds.DescribeInstallationMediaOutput, bool) bool) error
+	DescribeInstallationMediaPagesWithContext(aws.Context, *rds.DescribeInstallationMediaInput, func(*rds.DescribeInstallationMediaOutput, bool) bool, ...request.Option) error
+
 	DescribeOptionGroupOptions(*rds.DescribeOptionGroupOptionsInput) (*rds.DescribeOptionGroupOptionsOutput, error)
 	DescribeOptionGroupOptionsWithContext(aws.Context, *rds.DescribeOptionGroupOptionsInput, ...request.Option) (*rds.DescribeOptionGroupOptionsOutput, error)
 	DescribeOptionGroupOptionsRequest(*rds.DescribeOptionGroupOptionsInput) (*request.Request, *rds.DescribeOptionGroupOptionsOutput)
@@ -411,6 +437,10 @@ type RDSAPI interface {
 	FailoverDBCluster(*rds.FailoverDBClusterInput) (*rds.FailoverDBClusterOutput, error)
 	FailoverDBClusterWithContext(aws.Context, *rds.FailoverDBClusterInput, ...request.Option) (*rds.FailoverDBClusterOutput, error)
 	FailoverDBClusterRequest(*rds.FailoverDBClusterInput) (*request.Request, *rds.FailoverDBClusterOutput)
+
+	ImportInstallationMedia(*rds.ImportInstallationMediaInput) (*rds.ImportInstallationMediaOutput, error)
+	ImportInstallationMediaWithContext(aws.Context, *rds.ImportInstallationMediaInput, ...request.Option) (*rds.ImportInstallationMediaOutput, error)
+	ImportInstallationMediaRequest(*rds.ImportInstallationMediaInput) (*request.Request, *rds.ImportInstallationMediaOutput)
 
 	ListTagsForResource(*rds.ListTagsForResourceInput) (*rds.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *rds.ListTagsForResourceInput, ...request.Option) (*rds.ListTagsForResourceOutput, error)

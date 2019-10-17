@@ -1,3 +1,12 @@
+Release v1.25.15 (2019-10-17)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API and documentation
+  * Adding support for Compute Environment Allocation Strategies
+* `service/rds`: Updates service API, documentation, and paginators
+  * Amazon RDS now supports Amazon RDS on VMware with the introduction of APIs related to Custom Availability Zones and Media installation.
+
 Release v1.25.14 (2019-10-16)
 ===
 
