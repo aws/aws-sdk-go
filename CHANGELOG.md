@@ -1,3 +1,10 @@
+Release v1.25.16 (2019-10-18)
+===
+
+### Service Client Updates
+* `service/monitoring`: Updates service API and documentation
+  * New Period parameter added to MetricDataQuery structure.
+
 Release v1.25.15 (2019-10-17)
 ===
 

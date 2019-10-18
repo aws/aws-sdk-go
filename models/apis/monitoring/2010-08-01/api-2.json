@@ -1098,7 +1098,8 @@
         "MetricStat":{"shape":"MetricStat"},
         "Expression":{"shape":"MetricExpression"},
         "Label":{"shape":"MetricLabel"},
-        "ReturnData":{"shape":"ReturnData"}
+        "ReturnData":{"shape":"ReturnData"},
+        "Period":{"shape":"Period"}
       }
     },
     "MetricDataResult":{
