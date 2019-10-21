@@ -53,10 +53,10 @@ func putTestFile(t *testing.T, filename, key string) {
 }
 
 func putTestContent(t *testing.T, reader io.ReadSeeker, key string) {
-	fmt.Println(bucketName, key, svc)
+	t.Logf("uploading test file %s/%s", *bucketName, key)
 	_, err := svc.PutObject(&s3.PutObjectInput{
 		Bucket: bucketName,
-		Key:    aws.String(key),
+		Key:    &key,
 		Body:   reader,
 	})
 	if err != nil {

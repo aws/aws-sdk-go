@@ -309,6 +309,8 @@ type EmptyStreamEventStream struct {
 // may result in resource leaks.
 func (es *EmptyStreamEventStream) Close() (err error) {
 	es.Reader.Close()
+	es.StreamCloser.Close()
+
 	return es.Err()
 }
 
@@ -318,8 +320,6 @@ func (es *EmptyStreamEventStream) Err() error {
 	if err := es.Reader.Err(); err != nil {
 		return err
 	}
-	es.StreamCloser.Close()
-
 	return nil
 }
 
@@ -720,6 +720,8 @@ type GetEventStreamEventStream struct {
 // may result in resource leaks.
 func (es *GetEventStreamEventStream) Close() (err error) {
 	es.Reader.Close()
+	es.StreamCloser.Close()
+
 	return es.Err()
 }
 
@@ -729,8 +731,6 @@ func (es *GetEventStreamEventStream) Err() error {
 	if err := es.Reader.Err(); err != nil {
 		return err
 	}
-	es.StreamCloser.Close()
-
 	return nil
 }
 

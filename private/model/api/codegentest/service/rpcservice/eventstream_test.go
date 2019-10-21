@@ -238,6 +238,16 @@ func TestGetEventStream_ReadClose(t *testing.T) {
 		t.Fatalf("expect no error got, %v", err)
 	}
 
+	// Assert calling Err before close does not close the stream.
+	resp.AEventStreamRef.Err()
+	select {
+	case _, ok := <-resp.AEventStreamRef.Events():
+		if !ok {
+			t.Fatalf("expect stream not to be closed, but was")
+		}
+	default:
+	}
+
 	resp.AEventStreamRef.Close()
 	<-resp.AEventStreamRef.Events()
 

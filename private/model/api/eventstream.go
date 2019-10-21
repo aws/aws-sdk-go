@@ -208,7 +208,7 @@ func setupEventStream(topShape *Shape) *EventStream {
 			eventRef.Shape.EventFor = append(eventRef.Shape.EventFor, eventStream)
 
 			// Exceptions and events are two different lists to allow the SDK
-			// to easly generate code with the two handled differently.
+			// to easily generate code with the two handled differently.
 			event := &Event{
 				Name:  eventRefName,
 				Shape: eventRef.Shape,
@@ -335,6 +335,8 @@ func (es *{{ $.ShapeName }}) Close() (err error) {
 		es.Writer.Close()
 	{{ end -}}
 
+	es.StreamCloser.Close()
+
 	return es.Err()
 }
 
@@ -352,8 +354,6 @@ func (es *{{ $.ShapeName }}) Err() error {
 			return err
 		}
 	{{ end -}}
-
-	es.StreamCloser.Close()
 
 	return nil
 }
@@ -973,6 +973,18 @@ func (c *loopReader) Read(p []byte) (int, error) {
 		if err != nil {
 			t.Fatalf("expect no error got, %v", err)
 		}
+
+		{{ if gt (len $.Inbound.Events) 0 -}}
+			// Assert calling Err before close does not close the stream.
+			resp.{{ $esMemberName }}.Err()
+			select {
+			case _, ok := <-resp.{{ $esMemberName }}.Events():
+				if !ok {
+					t.Fatalf("expect stream not to be closed, but was")
+				}
+			default:
+			}
+		{{- end }}
 
 		resp.{{ $esMemberName }}.Close()
 		<-resp.{{ $esMemberName }}.Events()
