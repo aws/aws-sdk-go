@@ -292,6 +292,10 @@ func (c *OpsWorksCM) CreateServerRequest(input *CreateServerInput) (req *request
 // and address ranges only. To edit security group rules, open Security Groups
 // in the navigation pane of the EC2 management console.
 //
+// To specify your own domain for a server, and provide your own self-signed
+// or CA-signed certificate and private key, specify values for CustomDomain,
+// CustomCertificate, and CustomPrivateKey.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2012,6 +2016,42 @@ type CreateServerInput struct {
 	// exceeded. The default value is 1.
 	BackupRetentionCount *int64 `min:"1" type:"integer"`
 
+	// A PEM-formatted HTTPS certificate. The value can be be a single, self-signed
+	// certificate, or a certificate chain. If you specify a custom certificate,
+	// you must also specify values for CustomDomain and CustomPrivateKey. The following
+	// are requirements for the CustomCertificate value:
+	//
+	//    * You can provide either a self-signed, custom certificate, or the full
+	//    certificate chain.
+	//
+	//    * The certificate must be a valid X509 certificate, or a certificate chain
+	//    in PEM format.
+	//
+	//    * The certificate must be valid at the time of upload. A certificate can't
+	//    be used before its validity period begins (the certificate's NotBefore
+	//    date), or after it expires (the certificate's NotAfter date).
+	//
+	//    * The certificate’s common name or subject alternative names (SANs),
+	//    if present, must match the value of CustomDomain.
+	//
+	//    * The certificate must match the value of CustomPrivateKey.
+	CustomCertificate *string `type:"string"`
+
+	// An optional public endpoint of a server, such as https://aws.my-company.com.
+	// To access the server, create a CNAME DNS record in your preferred DNS service
+	// that points the custom domain to the endpoint that is generated when the
+	// server is created (the value of the CreateServer Endpoint attribute). You
+	// cannot access the server by using the generated Endpoint value if the server
+	// is using a custom domain. If you specify a custom domain, you must also specify
+	// values for CustomCertificate and CustomPrivateKey.
+	CustomDomain *string `type:"string"`
+
+	// A private key in PEM format for connecting to the server by using HTTPS.
+	// The private key must not be encrypted; it cannot be protected by a password
+	// or passphrase. If you specify a custom private key, you must also specify
+	// values for CustomDomain and CustomCertificate.
+	CustomPrivateKey *string `type:"string" sensitive:"true"`
+
 	// Enable or disable scheduled backups. Valid values are true or false. The
 	// default value is true.
 	DisableAutomatedBackup *bool `type:"boolean"`
@@ -2198,6 +2238,24 @@ func (s *CreateServerInput) SetBackupId(v string) *CreateServerInput {
 // SetBackupRetentionCount sets the BackupRetentionCount field's value.
 func (s *CreateServerInput) SetBackupRetentionCount(v int64) *CreateServerInput {
 	s.BackupRetentionCount = &v
+	return s
+}
+
+// SetCustomCertificate sets the CustomCertificate field's value.
+func (s *CreateServerInput) SetCustomCertificate(v string) *CreateServerInput {
+	s.CustomCertificate = &v
+	return s
+}
+
+// SetCustomDomain sets the CustomDomain field's value.
+func (s *CreateServerInput) SetCustomDomain(v string) *CreateServerInput {
+	s.CustomDomain = &v
+	return s
+}
+
+// SetCustomPrivateKey sets the CustomPrivateKey field's value.
+func (s *CreateServerInput) SetCustomPrivateKey(v string) *CreateServerInput {
+	s.CustomPrivateKey = &v
 	return s
 }
 
@@ -3203,11 +3261,18 @@ type Server struct {
 	// Time stamp of server creation. Example 2016-07-29T13:38:47.520Z
 	CreatedAt *time.Time `type:"timestamp"`
 
+	// An optional public endpoint of a server, such as https://aws.my-company.com.
+	// You cannot access the server by using the Endpoint value if the server has
+	// a CustomDomain specified.
+	CustomDomain *string `type:"string"`
+
 	// Disables automated backups. The number of stored backups is dependent on
 	// the value of PreferredBackupCount.
 	DisableAutomatedBackup *bool `type:"boolean"`
 
-	// A DNS name that can be used to access the engine. Example: myserver-asdfghjkl.us-east-1.opsworks.io
+	// A DNS name that can be used to access the engine. Example: myserver-asdfghjkl.us-east-1.opsworks.io.
+	// You cannot access the server by using the Endpoint value if the server has
+	// a CustomDomain specified.
 	Endpoint *string `type:"string"`
 
 	// The engine type of the server. Valid values in this release include ChefAutomate
@@ -3327,6 +3392,12 @@ func (s *Server) SetCloudFormationStackArn(v string) *Server {
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *Server) SetCreatedAt(v time.Time) *Server {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetCustomDomain sets the CustomDomain field's value.
+func (s *Server) SetCustomDomain(v string) *Server {
+	s.CustomDomain = &v
 	return s
 }
 
