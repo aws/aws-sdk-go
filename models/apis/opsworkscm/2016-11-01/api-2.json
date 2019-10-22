@@ -273,7 +273,11 @@
       "min":1,
       "pattern":"[A-Z][A-Z0-9_]*"
     },
-    "AttributeValue":{"type":"string"},
+    "AttributeValue":{
+      "type":"string",
+      "max":10000,
+      "pattern":"(?s).*"
+    },
     "Backup":{
       "type":"structure",
       "members":{
@@ -311,7 +315,8 @@
     },
     "BackupId":{
       "type":"string",
-      "max":79
+      "max":79,
+      "pattern":"[a-zA-Z][a-zA-Z0-9\\-\\.\\:]*"
     },
     "BackupRetentionCountDefinition":{
       "type":"integer",
@@ -362,6 +367,9 @@
       ],
       "members":{
         "AssociatePublicIpAddress":{"shape":"Boolean"},
+        "CustomDomain":{"shape":"CustomDomain"},
+        "CustomCertificate":{"shape":"CustomCertificate"},
+        "CustomPrivateKey":{"shape":"CustomPrivateKey"},
         "DisableAutomatedBackup":{"shape":"Boolean"},
         "Engine":{"shape":"String"},
         "EngineModel":{"shape":"String"},
@@ -385,6 +393,22 @@
       "members":{
         "Server":{"shape":"Server"}
       }
+    },
+    "CustomCertificate":{
+      "type":"string",
+      "max":2097152,
+      "pattern":"(?s)\\s*-----BEGIN CERTIFICATE-----.+-----END CERTIFICATE-----\\s*"
+    },
+    "CustomDomain":{
+      "type":"string",
+      "max":253,
+      "pattern":"^(((?!-)[A-Za-z0-9-]{0,62}[A-Za-z0-9])\\.)+((?!-)[A-Za-z0-9-]{1,62}[A-Za-z0-9])$"
+    },
+    "CustomPrivateKey":{
+      "type":"string",
+      "max":4096,
+      "pattern":"(?ms)\\s*^-----BEGIN (?-s:.*)PRIVATE KEY-----$.*?^-----END (?-s:.*)PRIVATE KEY-----$\\s*",
+      "sensitive":true
     },
     "DeleteBackupRequest":{
       "type":"structure",
@@ -511,9 +535,15 @@
         "Value":{"shape":"EngineAttributeValue"}
       }
     },
-    "EngineAttributeName":{"type":"string"},
+    "EngineAttributeName":{
+      "type":"string",
+      "max":10000,
+      "pattern":"(?s).*"
+    },
     "EngineAttributeValue":{
       "type":"string",
+      "max":10000,
+      "pattern":"(?s).*",
       "sensitive":true
     },
     "EngineAttributes":{
@@ -541,6 +571,7 @@
     },
     "InstanceProfileArn":{
       "type":"string",
+      "max":10000,
       "pattern":"arn:aws:iam::[0-9]{12}:instance-profile/.*"
     },
     "Integer":{"type":"integer"},
@@ -558,7 +589,11 @@
       },
       "exception":true
     },
-    "KeyPair":{"type":"string"},
+    "KeyPair":{
+      "type":"string",
+      "max":10000,
+      "pattern":".*"
+    },
     "LimitExceededException":{
       "type":"structure",
       "members":{
@@ -577,7 +612,11 @@
       "type":"integer",
       "min":1
     },
-    "NextToken":{"type":"string"},
+    "NextToken":{
+      "type":"string",
+      "max":10000,
+      "pattern":"(?s).*"
+    },
     "NodeAssociationStatus":{
       "type":"string",
       "enum":[
@@ -586,9 +625,14 @@
         "IN_PROGRESS"
       ]
     },
-    "NodeAssociationStatusToken":{"type":"string"},
+    "NodeAssociationStatusToken":{
+      "type":"string",
+      "max":10000,
+      "pattern":"(?s).*"
+    },
     "NodeName":{
       "type":"string",
+      "max":10000,
       "pattern":"^[\\-\\p{Alnum}_:.]+$"
     },
     "ResourceAlreadyExistsException":{
@@ -631,6 +675,7 @@
         "ServerName":{"shape":"String"},
         "CreatedAt":{"shape":"Timestamp"},
         "CloudFormationStackArn":{"shape":"String"},
+        "CustomDomain":{"shape":"CustomDomain"},
         "DisableAutomatedBackup":{"shape":"Boolean"},
         "Endpoint":{"shape":"String"},
         "Engine":{"shape":"String"},
@@ -694,6 +739,7 @@
     },
     "ServiceRoleArn":{
       "type":"string",
+      "max":10000,
       "pattern":"arn:aws:iam::[0-9]{12}:role/.*"
     },
     "StartMaintenanceRequest":{
@@ -710,13 +756,18 @@
         "Server":{"shape":"Server"}
       }
     },
-    "String":{"type":"string"},
+    "String":{
+      "type":"string",
+      "max":10000,
+      "pattern":"(?s).*"
+    },
     "Strings":{
       "type":"list",
       "member":{"shape":"String"}
     },
     "TimeWindowDefinition":{
       "type":"string",
+      "max":10000,
       "pattern":"^((Mon|Tue|Wed|Thu|Fri|Sat|Sun):)?([0-1][0-9]|2[0-3]):[0-5][0-9]$"
     },
     "Timestamp":{"type":"timestamp"},

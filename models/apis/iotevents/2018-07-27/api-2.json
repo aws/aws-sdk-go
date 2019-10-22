@@ -344,7 +344,8 @@
         "detectorModelDescription":{"shape":"DetectorModelDescription"},
         "key":{"shape":"AttributeJsonPath"},
         "roleArn":{"shape":"AmazonResourceName"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "evaluationMethod":{"shape":"EvaluationMethod"}
       }
     },
     "CreateDetectorModelResponse":{
@@ -487,7 +488,8 @@
         "creationTime":{"shape":"Timestamp"},
         "lastUpdateTime":{"shape":"Timestamp"},
         "status":{"shape":"DetectorModelVersionStatus"},
-        "key":{"shape":"AttributeJsonPath"}
+        "key":{"shape":"AttributeJsonPath"},
+        "evaluationMethod":{"shape":"EvaluationMethod"}
       }
     },
     "DetectorModelDefinition":{
@@ -553,8 +555,16 @@
         "roleArn":{"shape":"AmazonResourceName"},
         "creationTime":{"shape":"Timestamp"},
         "lastUpdateTime":{"shape":"Timestamp"},
-        "status":{"shape":"DetectorModelVersionStatus"}
+        "status":{"shape":"DetectorModelVersionStatus"},
+        "evaluationMethod":{"shape":"EvaluationMethod"}
       }
+    },
+    "EvaluationMethod":{
+      "type":"string",
+      "enum":[
+        "BATCH",
+        "SERIAL"
+      ]
     },
     "Event":{
       "type":"structure",
@@ -1083,7 +1093,8 @@
         },
         "detectorModelDefinition":{"shape":"DetectorModelDefinition"},
         "detectorModelDescription":{"shape":"DetectorModelDescription"},
-        "roleArn":{"shape":"AmazonResourceName"}
+        "roleArn":{"shape":"AmazonResourceName"},
+        "evaluationMethod":{"shape":"EvaluationMethod"}
       }
     },
     "UpdateDetectorModelResponse":{
