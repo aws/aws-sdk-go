@@ -3578,44 +3578,29 @@ var awsPartition = partition{
 		},
 		"sts": service{
 			PartitionEndpoint: "aws-global",
-			Defaults: endpoint{
-				Hostname: "sts.amazonaws.com",
-				CredentialScope: credentialScope{
-					Region: "us-east-1",
-				},
-			},
+
 			Endpoints: endpoints{
-				"ap-east-1": endpoint{
-					Hostname: "sts.ap-east-1.amazonaws.com",
-					CredentialScope: credentialScope{
-						Region: "ap-east-1",
-					},
-				},
+				"ap-east-1":      endpoint{},
 				"ap-northeast-1": endpoint{},
-				"ap-northeast-2": endpoint{
-					Hostname: "sts.ap-northeast-2.amazonaws.com",
-					CredentialScope: credentialScope{
-						Region: "ap-northeast-2",
-					},
-				},
+				"ap-northeast-2": endpoint{},
 				"ap-south-1":     endpoint{},
 				"ap-southeast-1": endpoint{},
 				"ap-southeast-2": endpoint{},
-				"aws-global":     endpoint{},
-				"ca-central-1":   endpoint{},
-				"eu-central-1":   endpoint{},
-				"eu-north-1":     endpoint{},
-				"eu-west-1":      endpoint{},
-				"eu-west-2":      endpoint{},
-				"eu-west-3":      endpoint{},
-				"me-south-1": endpoint{
-					Hostname: "sts.me-south-1.amazonaws.com",
+				"aws-global": endpoint{
+					Hostname: "sts.amazonaws.com",
 					CredentialScope: credentialScope{
-						Region: "me-south-1",
+						Region: "us-east-1",
 					},
 				},
-				"sa-east-1": endpoint{},
-				"us-east-1": endpoint{},
+				"ca-central-1": endpoint{},
+				"eu-central-1": endpoint{},
+				"eu-north-1":   endpoint{},
+				"eu-west-1":    endpoint{},
+				"eu-west-2":    endpoint{},
+				"eu-west-3":    endpoint{},
+				"me-south-1":   endpoint{},
+				"sa-east-1":    endpoint{},
+				"us-east-1":    endpoint{},
 				"us-east-1-fips": endpoint{
 					Hostname: "sts-fips.us-east-1.amazonaws.com",
 					CredentialScope: credentialScope{

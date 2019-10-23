@@ -2440,6 +2440,9 @@ const (
 	// VoiceIdBrian is a VoiceId enum value
 	VoiceIdBrian = "Brian"
 
+	// VoiceIdCamila is a VoiceId enum value
+	VoiceIdCamila = "Camila"
+
 	// VoiceIdCarla is a VoiceId enum value
 	VoiceIdCarla = "Carla"
 
@@ -2526,6 +2529,9 @@ const (
 
 	// VoiceIdLucia is a VoiceId enum value
 	VoiceIdLucia = "Lucia"
+
+	// VoiceIdLupe is a VoiceId enum value
+	VoiceIdLupe = "Lupe"
 
 	// VoiceIdMads is a VoiceId enum value
 	VoiceIdMads = "Mads"

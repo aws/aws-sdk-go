@@ -19,7 +19,7 @@ const (
 	// ErrCodeDuplicateResourceException for service response error code
 	// "DuplicateResourceException".
 	//
-	// A resource with that name already exists.
+	// A resource with the specified name already exists.
 	ErrCodeDuplicateResourceException = "DuplicateResourceException"
 
 	// ErrCodeInternalServiceException for service response error code
@@ -31,7 +31,7 @@ const (
 	// ErrCodeInvalidParameterException for service response error code
 	// "InvalidParameterException".
 	//
-	// One or more of the parameters provided to the operation are not valid.
+	// One or more of the specified parameters are not valid.
 	ErrCodeInvalidParameterException = "InvalidParameterException"
 
 	// ErrCodeInvalidRequestException for service response error code
@@ -43,7 +43,7 @@ const (
 	// ErrCodeLimitExceededException for service response error code
 	// "LimitExceededException".
 	//
-	// The allowed limit for the resource has been reached.
+	// The allowed limit for the resource has been exceeded.
 	ErrCodeLimitExceededException = "LimitExceededException"
 
 	// ErrCodeOutboundContactNotPermittedException for service response error code
