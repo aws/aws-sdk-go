@@ -1,3 +1,5 @@
+// +build go1.7
+
 package endpoints
 
 import (
@@ -253,72 +255,6 @@ func TestEndpointMergeIn(t *testing.T) {
 	}
 }
 
-var testPartitions = partitions{
-	partition{
-		ID:        "part-id",
-		Name:      "partitionName",
-		DNSSuffix: "amazonaws.com",
-		RegionRegex: regionRegex{
-			Regexp: func() *regexp.Regexp {
-				reg, _ := regexp.Compile("^(us|eu|ap|sa|ca)\\-\\w+\\-\\d+$")
-				return reg
-			}(),
-		},
-		Defaults: endpoint{
-			Hostname:          "{service}.{region}.{dnsSuffix}",
-			Protocols:         []string{"https"},
-			SignatureVersions: []string{"v4"},
-		},
-		Regions: regions{
-			"us-east-1": region{
-				Description: "region description",
-			},
-			"us-west-2": region{},
-		},
-		Services: services{
-			"s3": service{},
-			"service1": service{
-				Defaults: endpoint{
-					CredentialScope: credentialScope{
-						Service: "service1",
-					},
-				},
-				Endpoints: endpoints{
-					"us-east-1": {},
-					"us-west-2": {
-						HasDualStack:      boxedTrue,
-						DualStackHostname: "{service}.dualstack.{region}.{dnsSuffix}",
-					},
-				},
-			},
-			"service2": service{
-				Defaults: endpoint{
-					CredentialScope: credentialScope{
-						Service: "service2",
-					},
-				},
-			},
-			"httpService": service{
-				Defaults: endpoint{
-					Protocols: []string{"http"},
-				},
-			},
-			"globalService": service{
-				IsRegionalized:    boxedFalse,
-				PartitionEndpoint: "aws-global",
-				Endpoints: endpoints{
-					"aws-global": endpoint{
-						CredentialScope: credentialScope{
-							Region: "us-east-1",
-						},
-						Hostname: "globalService.amazonaws.com",
-					},
-				},
-			},
-		},
-	},
-}
-
 func TestResolveEndpoint(t *testing.T) {
 	resolved, err := testPartitions.EndpointFor("service2", "us-west-2")
 
@@ -537,5 +473,69 @@ func TestResolveEndpoint_AwsGlobal(t *testing.T) {
 	}
 	if !resolved.SigningNameDerived {
 		t.Errorf("expect the signing name to be derived")
+	}
+}
+
+func TestEndpointFor_RegionalFlag(t *testing.T) {
+	// AwsPartition resolver for STS regional endpoints in AWS Partition
+	resolver := AwsPartition()
+
+	cases := map[string]struct {
+		service, region                                     string
+		regional                                            bool
+		ExpectURL, ExpectSigningMethod, ExpectSigningRegion string
+		ExpectSigningNameDerived                            bool
+	}{
+		"acm/ap-northeast-1/regional": {
+			service:                  "acm",
+			region:                   "ap-northeast-1",
+			regional:                 true,
+			ExpectURL:                "https://acm.ap-northeast-1.amazonaws.com",
+			ExpectSigningMethod:      "v4",
+			ExpectSigningNameDerived: true,
+			ExpectSigningRegion:      "ap-northeast-1",
+		},
+		"acm/ap-northeast-1/legacy": {
+			service:                  "acm",
+			region:                   "ap-northeast-1",
+			regional:                 false,
+			ExpectURL:                "https://acm.ap-northeast-1.amazonaws.com",
+			ExpectSigningMethod:      "v4",
+			ExpectSigningNameDerived: true,
+			ExpectSigningRegion:      "ap-northeast-1",
+		},
+	}
+
+	for name, c := range cases {
+		t.Run(name, func(t *testing.T) {
+			var optionSlice []func(o *Options)
+			optionSlice = append(optionSlice, func(o *Options) {
+				if c.regional {
+					o.STSRegionalEndpoint = RegionalSTSEndpoint
+				}
+			})
+
+			actual, err := resolver.EndpointFor(c.service, c.region, optionSlice...)
+			if err != nil {
+				t.Fatalf("failed to resolve endpoint, %v", err)
+			}
+
+			if e, a := c.ExpectURL, actual.URL; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+
+			if e, a := c.ExpectSigningMethod, actual.SigningMethod; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+
+			if e, a := c.ExpectSigningNameDerived, actual.SigningNameDerived; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+
+			if e, a := c.ExpectSigningRegion, actual.SigningRegion; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+
+		})
 	}
 }

@@ -296,8 +296,8 @@ func ExampleFooService_Foo_shared00() {
 }
 `
 	if expected != a.ExamplesGoCode() {
-			t.Errorf("Expected:\n%s\nReceived:\n%s\n", expected, a.ExamplesGoCode())
-		}
+		t.Errorf("Expected:\n%s\nReceived:\n%s\n", expected, a.ExamplesGoCode())
+	}
 }
 
 func TestBuildShape(t *testing.T) {

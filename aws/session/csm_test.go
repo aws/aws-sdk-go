@@ -101,7 +101,10 @@ func TestSession_loadCSMConfig(t *testing.T) {
 				os.Setenv(name, v)
 			}
 
-			envCfg := loadEnvConfig()
+			envCfg, err := loadEnvConfig()
+			if err != nil {
+				t.Fatalf("failed to load the envcfg, %v", err)
+			}
 			csmCfg, err := loadCSMConfig(envCfg, c.ConfigFiles)
 			if len(c.Err) != 0 {
 				if err == nil {
