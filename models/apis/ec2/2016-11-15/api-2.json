@@ -6042,7 +6042,11 @@
         "LogsStorageLocation":{"shape":"StorageLocation"},
         "Description":{"shape":"String"},
         "Name":{"shape":"String"},
-        "ClientToken":{"shape":"String"}
+        "ClientToken":{"shape":"String"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        }
       }
     },
     "CreateFpgaImageResult":{
