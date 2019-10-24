@@ -68,11 +68,11 @@ type OutputService1ProtocolTest struct {
 //     svc := outputservice1protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService1ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService1ProtocolTest {
 	c := p.ClientConfig("outputservice1protocoltest", cfgs...)
-	return newOutputService1ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newOutputService1ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService1ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *OutputService1ProtocolTest {
+func newOutputService1ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService1ProtocolTest {
 	svc := &OutputService1ProtocolTest{
 		Client: client.New(
 			cfg,
@@ -81,6 +81,7 @@ func newOutputService1ProtocolTestClient(cfg aws.Config, handlers request.Handle
 				ServiceID:     "OutputService1ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
+				PartitionID:   partitionID,
 				Endpoint:      endpoint,
 				APIVersion:    "",
 			},
@@ -492,11 +493,11 @@ type OutputService2ProtocolTest struct {
 //     svc := outputservice2protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService2ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService2ProtocolTest {
 	c := p.ClientConfig("outputservice2protocoltest", cfgs...)
-	return newOutputService2ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newOutputService2ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService2ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *OutputService2ProtocolTest {
+func newOutputService2ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService2ProtocolTest {
 	svc := &OutputService2ProtocolTest{
 		Client: client.New(
 			cfg,
@@ -505,6 +506,7 @@ func newOutputService2ProtocolTestClient(cfg aws.Config, handlers request.Handle
 				ServiceID:     "OutputService2ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
+				PartitionID:   partitionID,
 				Endpoint:      endpoint,
 				APIVersion:    "",
 			},
@@ -637,11 +639,11 @@ type OutputService3ProtocolTest struct {
 //     svc := outputservice3protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService3ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService3ProtocolTest {
 	c := p.ClientConfig("outputservice3protocoltest", cfgs...)
-	return newOutputService3ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newOutputService3ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService3ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *OutputService3ProtocolTest {
+func newOutputService3ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService3ProtocolTest {
 	svc := &OutputService3ProtocolTest{
 		Client: client.New(
 			cfg,
@@ -650,6 +652,7 @@ func newOutputService3ProtocolTestClient(cfg aws.Config, handlers request.Handle
 				ServiceID:     "OutputService3ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
+				PartitionID:   partitionID,
 				Endpoint:      endpoint,
 				APIVersion:    "",
 			},
@@ -781,11 +784,11 @@ type OutputService4ProtocolTest struct {
 //     svc := outputservice4protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService4ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService4ProtocolTest {
 	c := p.ClientConfig("outputservice4protocoltest", cfgs...)
-	return newOutputService4ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newOutputService4ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService4ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *OutputService4ProtocolTest {
+func newOutputService4ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService4ProtocolTest {
 	svc := &OutputService4ProtocolTest{
 		Client: client.New(
 			cfg,
@@ -794,6 +797,7 @@ func newOutputService4ProtocolTestClient(cfg aws.Config, handlers request.Handle
 				ServiceID:     "OutputService4ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
+				PartitionID:   partitionID,
 				Endpoint:      endpoint,
 				APIVersion:    "",
 			},
@@ -925,11 +929,11 @@ type OutputService5ProtocolTest struct {
 //     svc := outputservice5protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService5ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService5ProtocolTest {
 	c := p.ClientConfig("outputservice5protocoltest", cfgs...)
-	return newOutputService5ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newOutputService5ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService5ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *OutputService5ProtocolTest {
+func newOutputService5ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService5ProtocolTest {
 	svc := &OutputService5ProtocolTest{
 		Client: client.New(
 			cfg,
@@ -938,6 +942,7 @@ func newOutputService5ProtocolTestClient(cfg aws.Config, handlers request.Handle
 				ServiceID:     "OutputService5ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
+				PartitionID:   partitionID,
 				Endpoint:      endpoint,
 				APIVersion:    "",
 			},
@@ -1069,11 +1074,11 @@ type OutputService6ProtocolTest struct {
 //     svc := outputservice6protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService6ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService6ProtocolTest {
 	c := p.ClientConfig("outputservice6protocoltest", cfgs...)
-	return newOutputService6ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newOutputService6ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService6ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *OutputService6ProtocolTest {
+func newOutputService6ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService6ProtocolTest {
 	svc := &OutputService6ProtocolTest{
 		Client: client.New(
 			cfg,
@@ -1082,6 +1087,7 @@ func newOutputService6ProtocolTestClient(cfg aws.Config, handlers request.Handle
 				ServiceID:     "OutputService6ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
+				PartitionID:   partitionID,
 				Endpoint:      endpoint,
 				APIVersion:    "",
 			},
@@ -1225,11 +1231,11 @@ type OutputService7ProtocolTest struct {
 //     svc := outputservice7protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService7ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService7ProtocolTest {
 	c := p.ClientConfig("outputservice7protocoltest", cfgs...)
-	return newOutputService7ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newOutputService7ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService7ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *OutputService7ProtocolTest {
+func newOutputService7ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService7ProtocolTest {
 	svc := &OutputService7ProtocolTest{
 		Client: client.New(
 			cfg,
@@ -1238,6 +1244,7 @@ func newOutputService7ProtocolTestClient(cfg aws.Config, handlers request.Handle
 				ServiceID:     "OutputService7ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
+				PartitionID:   partitionID,
 				Endpoint:      endpoint,
 				APIVersion:    "",
 			},
@@ -1369,11 +1376,11 @@ type OutputService8ProtocolTest struct {
 //     svc := outputservice8protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService8ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService8ProtocolTest {
 	c := p.ClientConfig("outputservice8protocoltest", cfgs...)
-	return newOutputService8ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newOutputService8ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService8ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *OutputService8ProtocolTest {
+func newOutputService8ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService8ProtocolTest {
 	svc := &OutputService8ProtocolTest{
 		Client: client.New(
 			cfg,
@@ -1382,6 +1389,7 @@ func newOutputService8ProtocolTestClient(cfg aws.Config, handlers request.Handle
 				ServiceID:     "OutputService8ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
+				PartitionID:   partitionID,
 				Endpoint:      endpoint,
 				APIVersion:    "",
 			},
@@ -1513,11 +1521,11 @@ type OutputService9ProtocolTest struct {
 //     svc := outputservice9protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService9ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService9ProtocolTest {
 	c := p.ClientConfig("outputservice9protocoltest", cfgs...)
-	return newOutputService9ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newOutputService9ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService9ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *OutputService9ProtocolTest {
+func newOutputService9ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService9ProtocolTest {
 	svc := &OutputService9ProtocolTest{
 		Client: client.New(
 			cfg,
@@ -1526,6 +1534,7 @@ func newOutputService9ProtocolTestClient(cfg aws.Config, handlers request.Handle
 				ServiceID:     "OutputService9ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
+				PartitionID:   partitionID,
 				Endpoint:      endpoint,
 				APIVersion:    "",
 			},
@@ -1677,11 +1686,11 @@ type OutputService10ProtocolTest struct {
 //     svc := outputservice10protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService10ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService10ProtocolTest {
 	c := p.ClientConfig("outputservice10protocoltest", cfgs...)
-	return newOutputService10ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newOutputService10ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService10ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *OutputService10ProtocolTest {
+func newOutputService10ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService10ProtocolTest {
 	svc := &OutputService10ProtocolTest{
 		Client: client.New(
 			cfg,
@@ -1690,6 +1699,7 @@ func newOutputService10ProtocolTestClient(cfg aws.Config, handlers request.Handl
 				ServiceID:     "OutputService10ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
+				PartitionID:   partitionID,
 				Endpoint:      endpoint,
 				APIVersion:    "",
 			},
@@ -1821,11 +1831,11 @@ type OutputService11ProtocolTest struct {
 //     svc := outputservice11protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService11ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService11ProtocolTest {
 	c := p.ClientConfig("outputservice11protocoltest", cfgs...)
-	return newOutputService11ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newOutputService11ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService11ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *OutputService11ProtocolTest {
+func newOutputService11ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService11ProtocolTest {
 	svc := &OutputService11ProtocolTest{
 		Client: client.New(
 			cfg,
@@ -1834,6 +1844,7 @@ func newOutputService11ProtocolTestClient(cfg aws.Config, handlers request.Handl
 				ServiceID:     "OutputService11ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
+				PartitionID:   partitionID,
 				Endpoint:      endpoint,
 				APIVersion:    "",
 			},
@@ -2029,11 +2040,11 @@ type OutputService12ProtocolTest struct {
 //     svc := outputservice12protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService12ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService12ProtocolTest {
 	c := p.ClientConfig("outputservice12protocoltest", cfgs...)
-	return newOutputService12ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newOutputService12ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService12ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *OutputService12ProtocolTest {
+func newOutputService12ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService12ProtocolTest {
 	svc := &OutputService12ProtocolTest{
 		Client: client.New(
 			cfg,
@@ -2042,6 +2053,7 @@ func newOutputService12ProtocolTestClient(cfg aws.Config, handlers request.Handl
 				ServiceID:     "OutputService12ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
+				PartitionID:   partitionID,
 				Endpoint:      endpoint,
 				APIVersion:    "",
 			},
@@ -2173,11 +2185,11 @@ type OutputService13ProtocolTest struct {
 //     svc := outputservice13protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService13ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService13ProtocolTest {
 	c := p.ClientConfig("outputservice13protocoltest", cfgs...)
-	return newOutputService13ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newOutputService13ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService13ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *OutputService13ProtocolTest {
+func newOutputService13ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService13ProtocolTest {
 	svc := &OutputService13ProtocolTest{
 		Client: client.New(
 			cfg,
@@ -2186,6 +2198,7 @@ func newOutputService13ProtocolTestClient(cfg aws.Config, handlers request.Handl
 				ServiceID:     "OutputService13ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
+				PartitionID:   partitionID,
 				Endpoint:      endpoint,
 				APIVersion:    "",
 			},
@@ -2385,11 +2398,11 @@ type OutputService14ProtocolTest struct {
 //     svc := outputservice14protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService14ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService14ProtocolTest {
 	c := p.ClientConfig("outputservice14protocoltest", cfgs...)
-	return newOutputService14ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newOutputService14ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService14ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *OutputService14ProtocolTest {
+func newOutputService14ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService14ProtocolTest {
 	svc := &OutputService14ProtocolTest{
 		Client: client.New(
 			cfg,
@@ -2398,6 +2411,7 @@ func newOutputService14ProtocolTestClient(cfg aws.Config, handlers request.Handl
 				ServiceID:     "OutputService14ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
+				PartitionID:   partitionID,
 				Endpoint:      endpoint,
 				APIVersion:    "",
 			},
@@ -2662,11 +2676,11 @@ type OutputService15ProtocolTest struct {
 //     svc := outputservice15protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewOutputService15ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *OutputService15ProtocolTest {
 	c := p.ClientConfig("outputservice15protocoltest", cfgs...)
-	return newOutputService15ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newOutputService15ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newOutputService15ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *OutputService15ProtocolTest {
+func newOutputService15ProtocolTestClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *OutputService15ProtocolTest {
 	svc := &OutputService15ProtocolTest{
 		Client: client.New(
 			cfg,
@@ -2675,6 +2689,7 @@ func newOutputService15ProtocolTestClient(cfg aws.Config, handlers request.Handl
 				ServiceID:     "OutputService15ProtocolTest",
 				SigningName:   signingName,
 				SigningRegion: signingRegion,
+				PartitionID:   partitionID,
 				Endpoint:      endpoint,
 				APIVersion:    "",
 			},
