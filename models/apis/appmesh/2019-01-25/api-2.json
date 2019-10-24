@@ -1185,6 +1185,30 @@
       "min": 0,
       "max": 50
     },
+    "GrpcRetryPolicy": {
+      "type": "structure",
+      "required": [
+        "maxRetries",
+        "perRetryTimeout"
+      ],
+      "members": {
+        "grpcRetryEvents": {
+          "shape": "GrpcRetryPolicyEvents"
+        },
+        "httpRetryEvents": {
+          "shape": "HttpRetryPolicyEvents"
+        },
+        "maxRetries": {
+          "shape": "MaxRetries"
+        },
+        "perRetryTimeout": {
+          "shape": "Duration"
+        },
+        "tcpRetryEvents": {
+          "shape": "TcpRetryPolicyEvents"
+        }
+      }
+    },
     "ListTagsForResourceInput": {
       "type": "structure",
       "required": [
@@ -1227,6 +1251,14 @@
           "shape": "AccessLog"
         }
       }
+    },
+    "GrpcRetryPolicyEvents": {
+      "type": "list",
+      "member": {
+        "shape": "GrpcRetryPolicyEvent"
+      },
+      "min": 1,
+      "max": 5
     },
     "ServiceUnavailableException": {
       "type": "structure",
@@ -1400,7 +1432,9 @@
     "PortProtocol": {
       "type": "string",
       "enum": [
+        "grpc",
         "http",
+        "http2",
         "tcp"
       ]
     },
@@ -1514,6 +1548,19 @@
       "type": "integer",
       "min": 0,
       "max": 100
+    },
+    "GrpcRouteMetadataList": {
+      "type": "list",
+      "member": {
+        "shape": "GrpcRouteMetadata"
+      },
+      "min": 1,
+      "max": 10
+    },
+    "MethodName": {
+      "type": "string",
+      "min": 1,
+      "max": 50
     },
     "TagValue": {
       "type": "string",
@@ -1775,6 +1822,17 @@
         }
       }
     },
+    "GrpcRouteAction": {
+      "type": "structure",
+      "required": [
+        "weightedTargets"
+      ],
+      "members": {
+        "weightedTargets": {
+          "shape": "WeightedTargets"
+        }
+      }
+    },
     "DescribeVirtualNodeOutput": {
       "type": "structure",
       "required": [
@@ -1830,6 +1888,26 @@
         }
       },
       "payload": "route"
+    },
+    "GrpcRouteMetadataMatchMethod": {
+      "type": "structure",
+      "members": {
+        "exact": {
+          "shape": "HeaderMatch"
+        },
+        "prefix": {
+          "shape": "HeaderMatch"
+        },
+        "range": {
+          "shape": "MatchRange"
+        },
+        "regex": {
+          "shape": "HeaderMatch"
+        },
+        "suffix": {
+          "shape": "HeaderMatch"
+        }
+      }
     },
     "DnsServiceDiscovery": {
       "type": "structure",
@@ -2627,6 +2705,24 @@
         }
       }
     },
+    "GrpcRoute": {
+      "type": "structure",
+      "required": [
+        "action",
+        "match"
+      ],
+      "members": {
+        "action": {
+          "shape": "GrpcRouteAction"
+        },
+        "match": {
+          "shape": "GrpcRouteMatch"
+        },
+        "retryPolicy": {
+          "shape": "GrpcRetryPolicy"
+        }
+      }
+    },
     "DeleteVirtualNodeInput": {
       "type": "structure",
       "required": [
@@ -2740,6 +2836,16 @@
       },
       "min": 0,
       "max": 50
+    },
+    "GrpcRetryPolicyEvent": {
+      "type": "string",
+      "enum": [
+        "cancelled",
+        "deadline-exceeded",
+        "internal",
+        "resource-exhausted",
+        "unavailable"
+      ]
     },
     "HttpRetryPolicy": {
       "type": "structure",
@@ -2888,6 +2994,23 @@
         }
       }
     },
+    "GrpcRouteMetadata": {
+      "type": "structure",
+      "required": [
+        "name"
+      ],
+      "members": {
+        "invert": {
+          "shape": "Boolean"
+        },
+        "match": {
+          "shape": "GrpcRouteMetadataMatchMethod"
+        },
+        "name": {
+          "shape": "HeaderName"
+        }
+      }
+    },
     "CreateRouteInput": {
       "type": "structure",
       "required": [
@@ -2946,6 +3069,20 @@
         },
         "virtualRouter": {
           "shape": "VirtualRouterServiceProvider"
+        }
+      }
+    },
+    "GrpcRouteMatch": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "shape": "GrpcRouteMetadataList"
+        },
+        "methodName": {
+          "shape": "MethodName"
+        },
+        "serviceName": {
+          "shape": "ServiceName"
         }
       }
     },
@@ -3075,6 +3212,12 @@
     "RouteSpec": {
       "type": "structure",
       "members": {
+        "grpcRoute": {
+          "shape": "GrpcRoute"
+        },
+        "http2Route": {
+          "shape": "HttpRoute"
+        },
         "httpRoute": {
           "shape": "HttpRoute"
         },

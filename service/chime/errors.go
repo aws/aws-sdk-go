@@ -4,6 +4,12 @@ package chime
 
 const (
 
+	// ErrCodeAccessDeniedException for service response error code
+	// "AccessDeniedException".
+	//
+	// You don't have permissions to perform the requested operation.
+	ErrCodeAccessDeniedException = "AccessDeniedException"
+
 	// ErrCodeBadRequestException for service response error code
 	// "BadRequestException".
 	//

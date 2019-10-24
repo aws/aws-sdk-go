@@ -3741,7 +3741,10 @@
       "enum":[
         "ml.eia1.medium",
         "ml.eia1.large",
-        "ml.eia1.xlarge"
+        "ml.eia1.xlarge",
+        "ml.eia2.medium",
+        "ml.eia2.large",
+        "ml.eia2.xlarge"
       ]
     },
     "NotebookInstanceAcceleratorTypes":{
@@ -4048,7 +4051,10 @@
       "enum":[
         "ml.eia1.medium",
         "ml.eia1.large",
-        "ml.eia1.xlarge"
+        "ml.eia1.xlarge",
+        "ml.eia2.medium",
+        "ml.eia2.large",
+        "ml.eia2.xlarge"
       ]
     },
     "ProductionVariantInstanceType":{
@@ -4069,6 +4075,12 @@
         "ml.m5.4xlarge",
         "ml.m5.12xlarge",
         "ml.m5.24xlarge",
+        "ml.m5d.large",
+        "ml.m5d.xlarge",
+        "ml.m5d.2xlarge",
+        "ml.m5d.4xlarge",
+        "ml.m5d.12xlarge",
+        "ml.m5d.24xlarge",
         "ml.c4.large",
         "ml.c4.xlarge",
         "ml.c4.2xlarge",
@@ -4086,6 +4098,12 @@
         "ml.c5.4xlarge",
         "ml.c5.9xlarge",
         "ml.c5.18xlarge",
+        "ml.c5d.large",
+        "ml.c5d.xlarge",
+        "ml.c5d.2xlarge",
+        "ml.c5d.4xlarge",
+        "ml.c5d.9xlarge",
+        "ml.c5d.18xlarge",
         "ml.g4dn.xlarge",
         "ml.g4dn.2xlarge",
         "ml.g4dn.4xlarge",
@@ -4097,7 +4115,13 @@
         "ml.r5.2xlarge",
         "ml.r5.4xlarge",
         "ml.r5.12xlarge",
-        "ml.r5.24xlarge"
+        "ml.r5.24xlarge",
+        "ml.r5d.large",
+        "ml.r5d.xlarge",
+        "ml.r5d.2xlarge",
+        "ml.r5d.4xlarge",
+        "ml.r5d.12xlarge",
+        "ml.r5d.24xlarge"
       ]
     },
     "ProductionVariantList":{
