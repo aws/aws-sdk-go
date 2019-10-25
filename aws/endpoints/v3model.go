@@ -77,18 +77,18 @@ func (p partition) canResolveEndpoint(service, region string, strictMatch bool) 
 
 func allowLegacyEmptyRegion(service string) bool {
 	legacy := map[string]struct{}{
-		"budgets":       struct{}{},
-		"ce":            struct{}{},
-		"chime":         struct{}{},
-		"cloudfront":    struct{}{},
-		"ec2metadata":   struct{}{},
-		"iam":           struct{}{},
-		"importexport":  struct{}{},
-		"organizations": struct{}{},
-		"route53":       struct{}{},
-		"sts":           struct{}{},
-		"support":       struct{}{},
-		"waf":           struct{}{},
+		"budgets":       {},
+		"ce":            {},
+		"chime":         {},
+		"cloudfront":    {},
+		"ec2metadata":   {},
+		"iam":           {},
+		"importexport":  {},
+		"organizations": {},
+		"route53":       {},
+		"sts":           {},
+		"support":       {},
+		"waf":           {},
 	}
 
 	_, allowed := legacy[service]
