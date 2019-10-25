@@ -5,7 +5,6 @@ var stsLegacyGlobalRegions = map[string]struct{}{
 	"ap-south-1":     {},
 	"ap-southeast-1": {},
 	"ap-southeast-2": {},
-	"aws-global":     {},
 	"ca-central-1":   {},
 	"eu-central-1":   {},
 	"eu-north-1":     {},

@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"reflect"
 	"regexp"
+	"strings"
 	"testing"
 )
 
@@ -534,6 +535,59 @@ func TestEndpointFor_RegionalFlag(t *testing.T) {
 
 			if e, a := c.ExpectSigningRegion, actual.SigningRegion; e != a {
 				t.Errorf("expect %v, got %v", e, a)
+			}
+
+		})
+	}
+}
+
+func TestEndpointFor_EmptyRegion(t *testing.T) {
+	cases := map[string]struct {
+		Service    string
+		Region     string
+		RealRegion string
+		ExpectErr  string
+	}{
+		// Legacy services that previous accepted empty region
+		"budgets":       {Service: "budgets", RealRegion: "aws-global"},
+		"ce":            {Service: "ce", RealRegion: "aws-global"},
+		"chime":         {Service: "chime", RealRegion: "aws-global"},
+		"ec2metadata":   {Service: "ec2metadata", RealRegion: "aws-global"},
+		"iam":           {Service: "iam", RealRegion: "aws-global"},
+		"importexport":  {Service: "importexport", RealRegion: "aws-global"},
+		"organizations": {Service: "organizations", RealRegion: "aws-global"},
+		"route53":       {Service: "route53", RealRegion: "aws-global"},
+		"sts":           {Service: "sts", RealRegion: "aws-global"},
+		"support":       {Service: "support", RealRegion: "aws-global"},
+		"waf":           {Service: "waf", RealRegion: "aws-global"},
+
+		// Other services
+		"s3":           {Service: "s3", Region: "us-east-1", RealRegion: "us-east-1"},
+		"s3 no region": {Service: "s3", ExpectErr: "could not resolve endpoint"},
+	}
+
+	for name, c := range cases {
+		t.Run(name, func(t *testing.T) {
+			actual, err := DefaultResolver().EndpointFor(c.Service, c.Region)
+			if len(c.ExpectErr) != 0 {
+				if e, a := c.ExpectErr, err.Error(); !strings.Contains(a, e) {
+					t.Errorf("expect %q error in %q", e, a)
+				}
+				return
+			}
+			if err != nil {
+				t.Fatalf("expect no error got, %v", err)
+			}
+
+			expect, err := DefaultResolver().EndpointFor(c.Service, c.RealRegion)
+			if err != nil {
+				t.Fatalf("failed to get endpoint for default resolver")
+			}
+			if e, a := expect.URL, actual.URL; e != a {
+				t.Errorf("expect %v URL, got %v", e, a)
+			}
+			if e, a := expect.SigningRegion, actual.SigningRegion; e != a {
+				t.Errorf("expect %v signing region, got %v", e, a)
 			}
 
 		})

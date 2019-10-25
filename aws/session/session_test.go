@@ -15,6 +15,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/defaults"
 	"github.com/aws/aws-sdk-go/aws/endpoints"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/s3"
 )
 
@@ -146,6 +147,39 @@ func TestSessionClientConfig(t *testing.T) {
 	}
 	if e, a := "other-region", *cfg.Config.Region; e != a {
 		t.Errorf("expect %v, got %v", e, a)
+	}
+}
+
+func TestNewSession_ResolveEndpointError(t *testing.T) {
+	logger := mockLogger{Buffer: bytes.NewBuffer(nil)}
+	sess, err := NewSession(defaults.Config(), &aws.Config{
+		Region: aws.String(""),
+		Logger: logger,
+		EndpointResolver: endpoints.ResolverFunc(
+			func(service, region string, opts ...func(*endpoints.Options)) (endpoints.ResolvedEndpoint, error) {
+				return endpoints.ResolvedEndpoint{}, fmt.Errorf("mock error")
+			},
+		),
+	})
+	if err != nil {
+		t.Fatalf("expect no error got %v", err)
+	}
+
+	cfg := sess.ClientConfig("mock service")
+
+	var r request.Request
+	cfg.Handlers.Validate.Run(&r)
+
+	if r.Error == nil {
+		t.Fatalf("expect validation error, got none")
+	}
+
+	if e, a := aws.ErrMissingRegion.Error(), r.Error.Error(); !strings.Contains(a, e) {
+		t.Errorf("expect %v validation error, got %v", e, a)
+	}
+
+	if e, a := "unable to resolve", logger.Buffer.String(); !strings.Contains(a, e) {
+		t.Errorf("expect %v logged, got %v", e, a)
 	}
 }
 
