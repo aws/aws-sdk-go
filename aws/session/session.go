@@ -614,40 +614,15 @@ func (s *Session) Copy(cfgs ...*aws.Config) *Session {
 // ClientConfig satisfies the client.ConfigProvider interface and is used to
 // configure the service client instances. Passing the Session to the service
 // client's constructor (New) will use this method to configure the client.
-func (s *Session) ClientConfig(serviceName string, cfgs ...*aws.Config) client.Config {
-	// Backwards compatibility, the error will be eaten if user calls ClientConfig
-	// directly. All SDK services will use ClientconfigWithError.
-	cfg, _ := s.clientConfigWithErr(serviceName, cfgs...)
-
-	return cfg
-}
-
-func (s *Session) clientConfigWithErr(serviceName string, cfgs ...*aws.Config) (client.Config, error) {
+func (s *Session) ClientConfig(service string, cfgs ...*aws.Config) client.Config {
 	s = s.Copy(cfgs...)
 
-	var resolved endpoints.ResolvedEndpoint
-	var err error
-
 	region := aws.StringValue(s.Config.Region)
-
-	if endpoint := aws.StringValue(s.Config.Endpoint); len(endpoint) != 0 {
-		resolved.URL = endpoints.AddScheme(endpoint, aws.BoolValue(s.Config.DisableSSL))
-		resolved.SigningRegion = region
-	} else {
-		resolved, err = s.Config.EndpointResolver.EndpointFor(
-			serviceName, region,
-			func(opt *endpoints.Options) {
-				opt.DisableSSL = aws.BoolValue(s.Config.DisableSSL)
-				opt.UseDualStack = aws.BoolValue(s.Config.UseDualStack)
-				// Support for STSRegionalEndpoint where the STSRegionalEndpoint is
-				// provided in envconfig or sharedconfig with envconfig getting precedence.
-				opt.STSRegionalEndpoint = s.Config.STSRegionalEndpoint
-
-				// Support the condition where the service is modeled but its
-				// endpoint metadata is not available.
-				opt.ResolveUnknownService = true
-			},
-		)
+	resolved, err := s.resolveEndpoint(service, region, s.Config)
+	if err != nil && s.Config.Logger != nil {
+		s.Config.Logger.Log(fmt.Sprintf(
+			"ERROR: unable to resolve endpoint for service %q, region %q, err: %v",
+			service, region, err))
 	}
 
 	return client.Config{
@@ -657,7 +632,37 @@ func (s *Session) clientConfigWithErr(serviceName string, cfgs ...*aws.Config) (
 		SigningRegion:      resolved.SigningRegion,
 		SigningNameDerived: resolved.SigningNameDerived,
 		SigningName:        resolved.SigningName,
-	}, err
+	}
+}
+
+func (s *Session) resolveEndpoint(service, region string, cfg *aws.Config) (endpoints.ResolvedEndpoint, error) {
+
+	if ep := aws.StringValue(cfg.Endpoint); len(ep) != 0 {
+		return endpoints.ResolvedEndpoint{
+			URL:           endpoints.AddScheme(ep, aws.BoolValue(cfg.DisableSSL)),
+			SigningRegion: region,
+		}, nil
+	}
+
+	resolved, err := cfg.EndpointResolver.EndpointFor(service, region,
+		func(opt *endpoints.Options) {
+			opt.DisableSSL = aws.BoolValue(cfg.DisableSSL)
+			opt.UseDualStack = aws.BoolValue(cfg.UseDualStack)
+			// Support for STSRegionalEndpoint where the STSRegionalEndpoint is
+			// provided in envConfig or sharedConfig with envConfig getting
+			// precedence.
+			opt.STSRegionalEndpoint = cfg.STSRegionalEndpoint
+
+			// Support the condition where the service is modeled but its
+			// endpoint metadata is not available.
+			opt.ResolveUnknownService = true
+		},
+	)
+	if err != nil {
+		return endpoints.ResolvedEndpoint{}, err
+	}
+
+	return resolved, nil
 }
 
 // ClientConfigNoResolveEndpoint is the same as ClientConfig with the exception
@@ -667,12 +672,9 @@ func (s *Session) ClientConfigNoResolveEndpoint(cfgs ...*aws.Config) client.Conf
 	s = s.Copy(cfgs...)
 
 	var resolved endpoints.ResolvedEndpoint
-
-	region := aws.StringValue(s.Config.Region)
-
 	if ep := aws.StringValue(s.Config.Endpoint); len(ep) > 0 {
 		resolved.URL = endpoints.AddScheme(ep, aws.BoolValue(s.Config.DisableSSL))
-		resolved.SigningRegion = region
+		resolved.SigningRegion = aws.StringValue(s.Config.Region)
 	}
 
 	return client.Config{
