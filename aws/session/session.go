@@ -623,9 +623,6 @@ func (s *Session) ClientConfig(service string, cfgs ...*aws.Config) client.Confi
 		s.Config.Logger.Log(fmt.Sprintf(
 			"ERROR: unable to resolve endpoint for service %q, region %q, err: %v",
 			service, region, err))
-		//		s.Handlers.Validate.PushFront(func(r *request.Request) {
-		//			r.Error = err
-		//		})
 	}
 
 	return client.Config{
