@@ -9,7 +9,6 @@ import (
 	"github.com/aws/aws-sdk-go/service/kms"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3iface"
-	"golang.org/x/net/context"
 )
 
 // WrapEntry is builder that return a proper key decrypter and error
@@ -117,7 +116,7 @@ func (c *DecryptionClient) GetObjectRequest(ctx aws.Context, input *s3.GetObject
 
 // GetObject is a wrapper for GetObjectRequest
 func (c *DecryptionClient) GetObject(input *s3.GetObjectInput) (*s3.GetObjectOutput, error) {
-	req, out := c.GetObjectRequest(context.Background(), input)
+	req, out := c.GetObjectRequest(aws.BackgroundContext(), input)
 	return out, req.Send()
 }
 
