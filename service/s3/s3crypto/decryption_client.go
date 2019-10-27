@@ -96,7 +96,7 @@ func (c *DecryptionClient) GetObjectRequest(input *s3.GetObjectInput) (*request.
 
 		// If KMS should return the correct CEK algorithm with the proper
 		// KMS key provider
-		cipher, err := c.contentCipherFromEnvelope(env)
+		cipher, err := c.contentCipherFromEnvelope(r.Context(), env)
 		if err != nil {
 			r.Error = err
 			out.Body.Close()
@@ -131,5 +131,6 @@ func (c *DecryptionClient) GetObjectWithContext(ctx aws.Context, input *s3.GetOb
 	req, out := c.GetObjectRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
+	req.SetContext(ctx)
 	return out, req.Send()
 }
