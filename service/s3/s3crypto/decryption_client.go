@@ -131,6 +131,5 @@ func (c *DecryptionClient) GetObjectWithContext(ctx aws.Context, input *s3.GetOb
 	req, out := c.GetObjectRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
-	req.SetContext(ctx)
 	return out, req.Send()
 }
