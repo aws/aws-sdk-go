@@ -99,7 +99,7 @@ func (kp kmsKeyHandler) decryptHandler(env Envelope) (CipherDataDecrypter, error
 // DecryptKey makes a call to KMS to decrypt the key.
 func (kp *kmsKeyHandler) DecryptKey(key []byte) ([]byte, error) {
 	out, err := kp.kms.Decrypt(&kms.DecryptInput{
-		EncryptionContext: map[string]*string(kp.CipherData.MaterialDescription),
+		EncryptionContext: kp.CipherData.MaterialDescription,
 		CiphertextBlob:    key,
 		GrantTokens:       []*string{},
 	})
