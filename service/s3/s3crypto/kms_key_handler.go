@@ -109,6 +109,19 @@ func (kp *kmsKeyHandler) DecryptKey(key []byte) ([]byte, error) {
 	return out.Plaintext, nil
 }
 
+// DecryptKeyWithContext makes a call to KMS to decrypt the key with request context.
+func (kp *kmsKeyHandler) DecryptKeyWithContext(ctx aws.Context, key []byte) ([]byte, error) {
+	out, err := kp.kms.DecryptWithContext(ctx, &kms.DecryptInput{
+		EncryptionContext: kp.CipherData.MaterialDescription,
+		CiphertextBlob:    key,
+		GrantTokens:       []*string{},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return out.Plaintext, nil
+}
+
 // GenerateCipherData makes a call to KMS to generate a data key, Upon making
 // the call, it also sets the encrypted key.
 func (kp *kmsKeyHandler) GenerateCipherData(keySize, ivSize int) (CipherData, error) {
