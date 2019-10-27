@@ -55,7 +55,13 @@ func (client *DecryptionClient) cekFromEnvelope(env Envelope, decrypter CipherDa
 	if err != nil {
 		return nil, err
 	}
-	key, err = decrypter.DecryptKey(key)
+
+	if d, ok := decrypter.(CipherDataDecrypterWithContext); ok {
+		key, err = d.DecryptKeyWithContext(ctx, key)
+	} else {
+		key, err = decrypter.DecryptKey(key)
+	}
+
 	if err != nil {
 		return nil, err
 	}
