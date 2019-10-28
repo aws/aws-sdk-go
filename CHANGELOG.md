@@ -1,3 +1,10 @@
+Release v1.25.21 (2019-10-28)
+===
+
+### Service Client Updates
+* `service/s3`: Updates service API, documentation, and examples
+  * Adding support in SelectObjectContent for scanning a portion of an object specified by a scan range.
+
 Release v1.25.20 (2019-10-28)
 ===
 
