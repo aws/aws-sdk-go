@@ -2296,6 +2296,7 @@
         "ReplicaKmsKeyID":{"shape":"ReplicaKmsKeyID"}
       }
     },
+    "End":{"type":"long"},
     "EndEvent":{
       "type":"structure",
       "members":{
@@ -5988,6 +5989,13 @@
       },
       "locationName":"SSE-S3"
     },
+    "ScanRange":{
+      "type":"structure",
+      "members":{
+        "Start":{"shape":"Start"},
+        "End":{"shape":"End"}
+      }
+    },
     "SelectObjectContentEventStream":{
       "type":"structure",
       "members":{
@@ -6046,7 +6054,8 @@
         "ExpressionType":{"shape":"ExpressionType"},
         "RequestProgress":{"shape":"RequestProgress"},
         "InputSerialization":{"shape":"InputSerialization"},
-        "OutputSerialization":{"shape":"OutputSerialization"}
+        "OutputSerialization":{"shape":"OutputSerialization"},
+        "ScanRange":{"shape":"ScanRange"}
       }
     },
     "SelectParameters":{
@@ -6122,6 +6131,7 @@
         "Disabled"
       ]
     },
+    "Start":{"type":"long"},
     "StartAfter":{"type":"string"},
     "Stats":{
       "type":"structure",

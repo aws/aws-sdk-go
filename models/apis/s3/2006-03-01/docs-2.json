@@ -1067,6 +1067,12 @@
         "Destination$EncryptionConfiguration": "<p>A container that provides information about encryption. If <code>SourceSelectionCriteria</code> is specified, you must specify this element.</p>"
       }
     },
+    "End": {
+      "base": null,
+      "refs": {
+        "ScanRange$End": "<p>Specifies the end of the byte range. This parameter is optional. Valid values: non-negative integers. The default value is one less than the size of the object being queried.</p>"
+      }
+    },
     "EndEvent": {
       "base": "<p/>",
       "refs": {
@@ -3229,6 +3235,12 @@
         "InventoryEncryption$SSES3": "<p>Specifies the use of SSE-S3 to encrypt delivered Inventory reports.</p>"
       }
     },
+    "ScanRange": {
+      "base": null,
+      "refs": {
+        "SelectObjectContentRequest$ScanRange": "<p>Specifies the byte range of the object to get the records from. A record is processed when its first byte is contained by the range. This parameter is optional, but when specified, it must not be empty. See RFC 2616, Section 14.35.1 about how to specify the start and end of the range.</p>"
+      }
+    },
     "SelectObjectContentEventStream": {
       "base": "<p/>",
       "refs": {
@@ -3327,6 +3339,12 @@
       "base": null,
       "refs": {
         "SseKmsEncryptedObjects$Status": "<p>Specifies whether Amazon S3 replicates objects created with server-side encryption using an AWS KMS-managed key.</p>"
+      }
+    },
+    "Start": {
+      "base": null,
+      "refs": {
+        "ScanRange$Start": "<p>Specifies the start of the byte range. This parameter is optional. Valid values: non-negative integers. The default value is 0.</p>"
       }
     },
     "StartAfter": {
