@@ -76,6 +76,10 @@ type ElastiCacheAPI interface {
 	BatchStopUpdateActionWithContext(aws.Context, *elasticache.BatchStopUpdateActionInput, ...request.Option) (*elasticache.BatchStopUpdateActionOutput, error)
 	BatchStopUpdateActionRequest(*elasticache.BatchStopUpdateActionInput) (*request.Request, *elasticache.BatchStopUpdateActionOutput)
 
+	CompleteMigration(*elasticache.CompleteMigrationInput) (*elasticache.CompleteMigrationOutput, error)
+	CompleteMigrationWithContext(aws.Context, *elasticache.CompleteMigrationInput, ...request.Option) (*elasticache.CompleteMigrationOutput, error)
+	CompleteMigrationRequest(*elasticache.CompleteMigrationInput) (*request.Request, *elasticache.CompleteMigrationOutput)
+
 	CopySnapshot(*elasticache.CopySnapshotInput) (*elasticache.CopySnapshotOutput, error)
 	CopySnapshotWithContext(aws.Context, *elasticache.CopySnapshotInput, ...request.Option) (*elasticache.CopySnapshotOutput, error)
 	CopySnapshotRequest(*elasticache.CopySnapshotInput) (*request.Request, *elasticache.CopySnapshotOutput)
@@ -281,6 +285,10 @@ type ElastiCacheAPI interface {
 	RevokeCacheSecurityGroupIngress(*elasticache.RevokeCacheSecurityGroupIngressInput) (*elasticache.RevokeCacheSecurityGroupIngressOutput, error)
 	RevokeCacheSecurityGroupIngressWithContext(aws.Context, *elasticache.RevokeCacheSecurityGroupIngressInput, ...request.Option) (*elasticache.RevokeCacheSecurityGroupIngressOutput, error)
 	RevokeCacheSecurityGroupIngressRequest(*elasticache.RevokeCacheSecurityGroupIngressInput) (*request.Request, *elasticache.RevokeCacheSecurityGroupIngressOutput)
+
+	StartMigration(*elasticache.StartMigrationInput) (*elasticache.StartMigrationOutput, error)
+	StartMigrationWithContext(aws.Context, *elasticache.StartMigrationInput, ...request.Option) (*elasticache.StartMigrationOutput, error)
+	StartMigrationRequest(*elasticache.StartMigrationInput) (*request.Request, *elasticache.StartMigrationOutput)
 
 	TestFailover(*elasticache.TestFailoverInput) (*elasticache.TestFailoverOutput, error)
 	TestFailoverWithContext(aws.Context, *elasticache.TestFailoverInput, ...request.Option) (*elasticache.TestFailoverOutput, error)

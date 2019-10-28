@@ -70,7 +70,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"InternalServiceError"},
         {"shape":"InvalidRequestException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "DeleteUser":{
@@ -130,7 +131,8 @@
         {"shape":"InternalServiceError"},
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceExistsException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "ListServers":{
@@ -190,7 +192,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"InternalServiceError"},
         {"shape":"InvalidRequestException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "StopServer":{
@@ -204,7 +207,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"InternalServiceError"},
         {"shape":"InvalidRequestException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "TagResource":{
@@ -217,7 +221,8 @@
       "errors":[
         {"shape":"ServiceUnavailableException"},
         {"shape":"InternalServiceError"},
-        {"shape":"InvalidRequestException"}
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "TestIdentityProvider":{
@@ -245,7 +250,8 @@
       "errors":[
         {"shape":"ServiceUnavailableException"},
         {"shape":"InternalServiceError"},
-        {"shape":"InvalidRequestException"}
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "UpdateServer":{
@@ -260,7 +266,9 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"InternalServiceError"},
         {"shape":"InvalidRequestException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "UpdateUser":{
@@ -275,7 +283,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"InternalServiceError"},
         {"shape":"InvalidRequestException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     }
   },
@@ -283,7 +292,8 @@
     "Arn":{
       "type":"string",
       "max":1600,
-      "min":20
+      "min":20,
+      "pattern":"arn:.*"
     },
     "CreateServerRequest":{
       "type":"structure",
@@ -313,6 +323,8 @@
       ],
       "members":{
         "HomeDirectory":{"shape":"HomeDirectory"},
+        "HomeDirectoryType":{"shape":"HomeDirectoryType"},
+        "HomeDirectoryMappings":{"shape":"HomeDirectoryMappings"},
         "Policy":{"shape":"Policy"},
         "Role":{"shape":"Role"},
         "ServerId":{"shape":"ServerId"},
@@ -423,6 +435,8 @@
       "members":{
         "Arn":{"shape":"Arn"},
         "HomeDirectory":{"shape":"HomeDirectory"},
+        "HomeDirectoryMappings":{"shape":"HomeDirectoryMappings"},
+        "HomeDirectoryType":{"shape":"HomeDirectoryType"},
         "Policy":{"shape":"Policy"},
         "Role":{"shape":"Role"},
         "SshPublicKeys":{"shape":"SshPublicKeys"},
@@ -447,6 +461,30 @@
       "type":"string",
       "max":1024,
       "pattern":"^$|/.*"
+    },
+    "HomeDirectoryMapEntry":{
+      "type":"structure",
+      "required":[
+        "Entry",
+        "Target"
+      ],
+      "members":{
+        "Entry":{"shape":"MapEntry"},
+        "Target":{"shape":"MapTarget"}
+      }
+    },
+    "HomeDirectoryMappings":{
+      "type":"list",
+      "member":{"shape":"HomeDirectoryMapEntry"},
+      "max":50,
+      "min":1
+    },
+    "HomeDirectoryType":{
+      "type":"string",
+      "enum":[
+        "PATH",
+        "LOGICAL"
+      ]
     },
     "HostKey":{
       "type":"string",
@@ -595,6 +633,7 @@
       "members":{
         "Arn":{"shape":"Arn"},
         "HomeDirectory":{"shape":"HomeDirectory"},
+        "HomeDirectoryType":{"shape":"HomeDirectoryType"},
         "Role":{"shape":"Role"},
         "SshPublicKeyCount":{"shape":"SshPublicKeyCount"},
         "UserName":{"shape":"UserName"}
@@ -603,6 +642,16 @@
     "ListedUsers":{
       "type":"list",
       "member":{"shape":"ListedUser"}
+    },
+    "MapEntry":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^/.*"
+    },
+    "MapTarget":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^/.*"
     },
     "MaxResults":{
       "type":"integer",
@@ -617,9 +666,13 @@
     },
     "NullableRole":{
       "type":"string",
+      "max":2048,
       "pattern":"^$|arn:.*role/.*"
     },
-    "Policy":{"type":"string"},
+    "Policy":{
+      "type":"string",
+      "max":2048
+    },
     "Resource":{"type":"string"},
     "ResourceExistsException":{
       "type":"structure",
@@ -651,12 +704,17 @@
     },
     "ResourceType":{"type":"string"},
     "Response":{"type":"string"},
+    "RetryAfterSeconds":{"type":"string"},
     "Role":{
       "type":"string",
+      "max":2048,
+      "min":20,
       "pattern":"arn:.*role/.*"
     },
     "ServerId":{
       "type":"string",
+      "max":19,
+      "min":19,
       "pattern":"^s-([0-9a-f]{17})$"
     },
     "ServiceErrorMessage":{"type":"string"},
@@ -690,6 +748,8 @@
     "SshPublicKeyCount":{"type":"integer"},
     "SshPublicKeyId":{
       "type":"string",
+      "max":21,
+      "min":21,
       "pattern":"^key-[0-9a-f]{17}$"
     },
     "SshPublicKeys":{
@@ -734,7 +794,10 @@
         "Value":{"shape":"TagValue"}
       }
     },
-    "TagKey":{"type":"string"},
+    "TagKey":{
+      "type":"string",
+      "max":128
+    },
     "TagKeys":{
       "type":"list",
       "member":{"shape":"TagKey"},
@@ -752,7 +815,10 @@
         "Tags":{"shape":"Tags"}
       }
     },
-    "TagValue":{"type":"string"},
+    "TagValue":{
+      "type":"string",
+      "max":256
+    },
     "Tags":{
       "type":"list",
       "member":{"shape":"Tag"},
@@ -783,6 +849,13 @@
         "Message":{"shape":"Message"},
         "Url":{"shape":"Url"}
       }
+    },
+    "ThrottlingException":{
+      "type":"structure",
+      "members":{
+        "RetryAfterSeconds":{"shape":"RetryAfterSeconds"}
+      },
+      "exception":true
     },
     "UntagResourceRequest":{
       "type":"structure",
@@ -822,6 +895,8 @@
       ],
       "members":{
         "HomeDirectory":{"shape":"HomeDirectory"},
+        "HomeDirectoryType":{"shape":"HomeDirectoryType"},
+        "HomeDirectoryMappings":{"shape":"HomeDirectoryMappings"},
         "Policy":{"shape":"Policy"},
         "Role":{"shape":"Role"},
         "ServerId":{"shape":"ServerId"},
@@ -839,18 +914,26 @@
         "UserName":{"shape":"UserName"}
       }
     },
-    "Url":{"type":"string"},
+    "Url":{
+      "type":"string",
+      "max":255
+    },
     "UserCount":{"type":"integer"},
     "UserName":{
       "type":"string",
+      "max":32,
+      "min":3,
       "pattern":"^[a-zA-Z0-9_][a-zA-Z0-9_-]{2,31}$"
     },
     "UserPassword":{
       "type":"string",
+      "max":2048,
       "sensitive":true
     },
     "VpcEndpointId":{
       "type":"string",
+      "max":22,
+      "min":22,
       "pattern":"^vpce-[0-9a-f]{17}$"
     }
   }
