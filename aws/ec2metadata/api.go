@@ -12,20 +12,62 @@ import (
 	"github.com/aws/aws-sdk-go/internal/sdkuri"
 )
 
+func (c *EC2Metadata) getToken() error {
+	// check if token exists and is not expired
+	if c.token != nil && !c.token.IsExpired() {
+		return nil
+	}
+
+	op := &request.Operation{
+		Name:       "GetToken",
+		HTTPMethod: "PUT",
+		HTTPPath:   sdkuri.PathJoin("/api/token"),
+	}
+
+	output := &tokenOutput{}
+
+	c.Handlers.Unmarshal.Swap("unmarshalMetadataHandler", unmarshalTokenHandler)
+	defer c.Handlers.Unmarshal.Swap("unmarshalTokenHandler", unmarshalHandler)
+
+	req := c.NewRequest(op, nil, output)
+	req.HTTPRequest.Header.Set("x-aws-ec2-metadata-token-ttl-seconds", "21600")
+	err := req.Send()
+
+	c.token = &ec2Token{}
+	c.token.content = output.Content
+	c.token.SetExpiration(time.Now().Add(output.ttl), 10*time.Second)
+	return err
+}
+
 // GetMetadata uses the path provided to request information from the EC2
-// instance metdata service. The content will be returned as a string, or
+// instance metadata service. The content will be returned as a string, or
 // error if the request failed.
 func (c *EC2Metadata) GetMetadata(p string) (string, error) {
+
 	op := &request.Operation{
 		Name:       "GetMetadata",
 		HTTPMethod: "GET",
 		HTTPPath:   sdkuri.PathJoin("/meta-data", p),
 	}
-
 	output := &metadataOutput{}
 	req := c.NewRequest(op, nil, output)
-	err := req.Send()
 
+	err := c.getToken()
+	fmt.Println(err)
+	if err == nil {
+		req.HTTPRequest.Header.Set("x-aws-ec2-metadata-token", c.token.content)
+	}
+
+	req.Handlers.UnmarshalError.PushBack(func(r *request.Request) {
+		switch r.HTTPResponse.StatusCode {
+		case http.StatusUnauthorized:
+			r.Error = awserr.New("Unauthorized", "request status unauthorized", r.Error)
+		case http.StatusBadRequest:
+			r.Error = awserr.New("BadRequest", "bad request", r.Error)
+		}
+	})
+
+	err = req.Send()
 	return output.Content, err
 }
 
@@ -42,12 +84,21 @@ func (c *EC2Metadata) GetUserData() (string, error) {
 	output := &metadataOutput{}
 	req := c.NewRequest(op, nil, output)
 	req.Handlers.UnmarshalError.PushBack(func(r *request.Request) {
-		if r.HTTPResponse.StatusCode == http.StatusNotFound {
+		switch r.HTTPResponse.StatusCode {
+		case http.StatusUnauthorized:
 			r.Error = awserr.New("NotFoundError", "user-data not found", r.Error)
+		case http.StatusBadRequest:
+			r.Error = awserr.New("BadRequest", "bad request", r.Error)
 		}
 	})
-	err := req.Send()
 
+	err := c.getToken()
+
+	if err == nil {
+		req.HTTPRequest.Header.Set("x-aws-ec2-metadata-token", c.token.content)
+	}
+
+	err = req.Send()
 	return output.Content, err
 }
 
@@ -63,8 +114,22 @@ func (c *EC2Metadata) GetDynamicData(p string) (string, error) {
 
 	output := &metadataOutput{}
 	req := c.NewRequest(op, nil, output)
-	err := req.Send()
 
+	err := c.getToken()
+	if err == nil {
+		req.HTTPRequest.Header.Set("x-aws-ec2-metadata-token", c.token.content)
+	}
+
+	req.Handlers.UnmarshalError.PushBack(func(r *request.Request) {
+		switch r.HTTPResponse.StatusCode {
+		case http.StatusUnauthorized:
+			r.Error = awserr.New("RequestTokenExpired", "request status unauthorized", r.Error)
+		case http.StatusBadRequest:
+			r.Error = awserr.New("BadRequest", "bad request", r.Error)
+		}
+	})
+
+	err = req.Send()
 	return output.Content, err
 }
 

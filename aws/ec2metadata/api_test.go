@@ -1,8 +1,11 @@
+// +build go1.7
+
 package ec2metadata_test
 
 import (
 	"bytes"
 	"fmt"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -12,7 +15,6 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/ec2metadata"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
@@ -50,14 +52,69 @@ const unsuccessfulIamInfo = `{
   "InstanceProfileId" : "AIPAABCDEFGHIJKLMN123"
 }`
 
-func initTestServer(path string, resp string) *httptest.Server {
+type testInput struct {
+	name    string
+	path    string
+	headers map[string]string
+	method  string
+	resp    string
+}
+
+func initInsecureServer(input testInput) *httptest.Server {
 	return httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if r.RequestURI != path {
+
+		switch r.RequestURI {
+		case "/latest/api/token":
+			http.Error(w, "not found", http.StatusNotFound)
+			return
+
+		case input.path:
+			break
+		default:
 			http.Error(w, "not found", http.StatusNotFound)
 			return
 		}
 
-		w.Write([]byte(resp))
+		if r.Method != input.method {
+			http.Error(w, "Incorrect http method called", http.StatusBadRequest)
+			return
+		}
+
+		w.Write([]byte(input.resp))
+	}))
+}
+
+func initSecureServer(input testInput) *httptest.Server {
+	return httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+
+		switch r.RequestURI {
+		case "/latest/api/token":
+			if r.Method == "PUT" && r.Header.Get("x-aws-ec2-metadata-token-ttl-seconds") != "" {
+				w.Header().Set("X-aws-ec2-metadata-token-ttl-seconds", "21600")
+				w.Write([]byte("Aeioubcdefghijklmnopqrstuvw"))
+				return
+			}
+			http.Error(w, "bad request", http.StatusBadRequest)
+			return
+
+		case input.path:
+			if r.Method == "GET" && r.Header.Get("x-aws-ec2-metadata-token") == "Aeioubcdefghijklmnopqrstuvw" {
+				break
+			}
+			http.Error(w, "Unauthorized for an expired, invalid, or missing token header", http.StatusUnauthorized)
+			return
+
+		default:
+			http.Error(w, "not found", http.StatusNotFound)
+			return
+		}
+
+		if r.Method != input.method {
+			http.Error(w, "Incorrect http method called", http.StatusBadRequest)
+			return
+		}
+
+		w.Write([]byte(input.resp))
 	}))
 }
 
@@ -79,40 +136,99 @@ func TestEndpoint(t *testing.T) {
 }
 
 func TestGetMetadata(t *testing.T) {
-	server := initTestServer(
-		"/latest/meta-data/some/path",
-		"success", // real response includes suffix
-	)
-	defer server.Close()
-	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
-
-	resp, err := c.GetMetadata("some/path")
-
-	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+	cases := map[string]struct {
+		input            testInput
+		server           func(input testInput) *httptest.Server
+		expectedResponse string
+	}{
+		"Insecure server": {
+			testInput{
+				path:    "/latest/meta-data/some/path",
+				headers: nil,
+				method:  "GET",
+				resp:    "success", // real response includes suffix ,
+			},
+			initInsecureServer,
+			"success",
+		},
+		"Secure server": {
+			testInput{
+				path: "/latest/meta-data/some/path",
+				headers: map[string]string{
+					"x-aws-ec2-metadata-token": "Aeioubcdefghijklmnopqrstuv",
+				},
+				method: "GET",
+				resp:   "success", // real response includes suffix ,
+			},
+			initSecureServer,
+			"success",
+		},
 	}
-	if e, a := "success", resp; e != a {
-		t.Errorf("expect %v, got %v", e, a)
+
+	for name, in := range cases {
+		t.Run(name, func(t *testing.T) {
+			server := in.server(in.input)
+			defer server.Close()
+			c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+			resp, err := c.GetMetadata("some/path")
+
+			if err != nil {
+				t.Errorf("expect no error, got %v", err)
+			}
+			if e, a := in.expectedResponse, resp; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
 	}
 }
 
 func TestGetUserData(t *testing.T) {
-	server := initTestServer(
-		"/latest/user-data",
-		"success", // real response includes suffix
-	)
-	defer server.Close()
-	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
-
-	resp, err := c.GetUserData()
-
-	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+	cases := map[string]struct {
+		input            testInput
+		server           func(input testInput) *httptest.Server
+		expectedResponse string
+	}{
+		"Insecure server": {
+			testInput{
+				path:    "/latest/user-data",
+				headers: nil,
+				method:  "GET",
+				resp:    "success", // real response includes suffix ,
+			},
+			initInsecureServer,
+			"success",
+		},
+		"Secure server": {
+			testInput{
+				path: "/latest/user-data",
+				headers: map[string]string{
+					"x-aws-ec2-metadata-token": "Aeioubcdefghijklmnopqrstuv",
+				},
+				method: "GET",
+				resp:   "success", // real response includes suffix ,
+			},
+			initSecureServer,
+			"success",
+		},
 	}
-	if e, a := "success", resp; e != a {
-		t.Errorf("expect %v, got %v", e, a)
+
+	for name, in := range cases {
+		t.Run(name, func(t *testing.T) {
+			server := in.server(in.input)
+			defer server.Close()
+			c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+			resp, err := c.GetUserData()
+
+			if err != nil {
+				t.Errorf("expect no error, got %v", err)
+			}
+			if e, a := in.expectedResponse, resp; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
 	}
 }
+
 
 func TestGetUserData_Error(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -151,98 +267,250 @@ func TestGetUserData_Error(t *testing.T) {
 }
 
 func TestGetRegion(t *testing.T) {
-	server := initTestServer(
-		"/latest/meta-data/placement/availability-zone",
-		"us-west-2a", // real response includes suffix
-	)
-	defer server.Close()
-	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
-
-	region, err := c.Region()
-
-	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+	cases := map[string]struct {
+		input            testInput
+		server           func(input testInput) *httptest.Server
+		expectedResponse string
+	}{
+		"Insecure server": {
+			testInput{
+				path:    "/latest/meta-data/placement/availability-zone",
+				headers: nil,
+				method:  "GET",
+				resp:    "us-west-2a", // real response includes suffix ,
+			},
+			initInsecureServer,
+			"us-west-2",
+		},
+		"Secure server": {
+			testInput{
+				path: "/latest/meta-data/placement/availability-zone",
+				headers: map[string]string{
+					"x-aws-ec2-metadata-token": "Aeioubcdefghijklmnopqrstuv",
+				},
+				method: "GET",
+				resp:   "us-west-2a", // real response includes suffix ,
+			},
+			initSecureServer,
+			"us-west-2",
+		},
 	}
-	if e, a := "us-west-2", region; e != a {
-		t.Errorf("expect %v, got %v", e, a)
+
+	for name, in := range cases {
+		t.Run(name, func(t *testing.T) {
+			server := in.server(in.input)
+			defer server.Close()
+			c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+			region, err := c.Region()
+
+			if err != nil {
+				t.Errorf("expect no error, got %v", err)
+			}
+			if e, a := in.expectedResponse, region; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
 	}
 }
 
-func TestGetRegion_invalidResponse(t *testing.T) {
-	server := initTestServer(
-		"/latest/meta-data/placement/availability-zone",
-		"", // no data in response
-	)
-	defer server.Close()
-	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
 
-	region, err := c.Region()
-	if err == nil {
-		t.Errorf("expected error, got %v", err)
+func TestGetRegion_invalidResponse(t *testing.T) {
+	cases := map[string]struct {
+		input            testInput
+		server           func(input testInput) *httptest.Server
+		expectedResponse string
+	}{
+		"Insecure server": {
+			testInput{
+				path:    "/latest/meta-data/placement/availability-zone",
+				headers: nil,
+				method:  "GET",
+				resp:    "", // real response includes suffix ,
+			},
+			initInsecureServer,
+			"",
+		},
+		"Secure server": {
+			testInput{
+				path: "/latest/meta-data/placement/availability-zone",
+				headers: map[string]string{
+					"x-aws-ec2-metadata-token": "Aeioubcdefghijklmnopqrstuv",
+				},
+				method: "GET",
+				resp:   "", // real response includes suffix ,
+			},
+			initSecureServer,
+			"",
+		},
 	}
-	if e, a := "", region; e != a {
-		t.Errorf("expect %v, got %v", e, a)
+
+	for name, in := range cases {
+		t.Run(name, func(t *testing.T) {
+			server := in.server(in.input)
+			defer server.Close()
+			c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+			region, err := c.Region()
+
+			if err == nil {
+				t.Errorf("expect no error, got %v", err)
+			}
+			if e, a := in.expectedResponse, region; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
 	}
 }
 
 func TestMetadataAvailable(t *testing.T) {
-	server := initTestServer(
-		"/latest/meta-data/instance-id",
-		"instance-id",
-	)
-	defer server.Close()
-	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+	cases := map[string]struct {
+		input            testInput
+		server           func(input testInput) *httptest.Server
+		expectedResponse string
+	}{
+		"Insecure server": {
+			testInput{
+				path:    "/latest/meta-data/instance-id",
+				headers: nil,
+				method:  "GET",
+				resp:    "instance-id", // real response includes suffix ,
+			},
+			initInsecureServer,
+			"instance-id",
+		},
+		"Secure server": {
+			testInput{
+				path: "/latest/meta-data/instance-id",
+				headers: map[string]string{
+					"x-aws-ec2-metadata-token": "Aeioubcdefghijklmnopqrstuv",
+				},
+				method: "GET",
+				resp:   "instance-id", // real response includes suffix ,
+			},
+			initSecureServer,
+			"instance-id",
+		},
+	}
 
-	if !c.Available() {
-		t.Errorf("expect available")
+	for name, in := range cases {
+		t.Run(name, func(t *testing.T) {
+			server := in.server(in.input)
+			defer server.Close()
+			c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+
+			if !c.Available() {
+				t.Errorf("expect available")
+			}
+		})
 	}
 }
+
 
 func TestMetadataIAMInfo_success(t *testing.T) {
-	server := initTestServer(
-		"/latest/meta-data/iam/info",
-		validIamInfo,
-	)
-	defer server.Close()
-	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+	cases := map[string]struct {
+		input            testInput
+		server           func(input testInput) *httptest.Server
+		expectedResponse string
+	}{
+		"Insecure server": {
+			testInput{
+				path:    "/latest/meta-data/iam/info",
+				headers: nil,
+				method:  "GET",
+				resp:    validIamInfo, // real response includes suffix ,
+			},
+			initInsecureServer,
+			validIamInfo,
+		},
+		"Secure server": {
+			testInput{
+				path: "/latest/meta-data/iam/info",
+				headers: map[string]string{
+					"x-aws-ec2-metadata-token": "Aeioubcdefghijklmnopqrstuv",
+				},
+				method: "GET",
+				resp:   validIamInfo, // real response includes suffix ,
+			},
+			initSecureServer,
+			validIamInfo,
+		},
+	}
 
-	iamInfo, err := c.IAMInfo()
-	if err != nil {
-		t.Errorf("expect no error, got %v", err)
-	}
-	if e, a := "Success", iamInfo.Code; e != a {
-		t.Errorf("expect %v, got %v", e, a)
-	}
-	if e, a := "arn:aws:iam::123456789012:instance-profile/my-instance-profile", iamInfo.InstanceProfileArn; e != a {
-		t.Errorf("expect %v, got %v", e, a)
-	}
-	if e, a := "AIPAABCDEFGHIJKLMN123", iamInfo.InstanceProfileID; e != a {
-		t.Errorf("expect %v, got %v", e, a)
+	for name, in := range cases {
+		t.Run(name, func(t *testing.T) {
+			server := in.server(in.input)
+			defer server.Close()
+			c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+			iamInfo, err := c.IAMInfo()
+
+			if err != nil {
+				t.Errorf("expect no error, got %v", err)
+			}
+			if e, a := "Success", iamInfo.Code; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+			if e, a := "arn:aws:iam::123456789012:instance-profile/my-instance-profile", iamInfo.InstanceProfileArn; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+			if e, a := "AIPAABCDEFGHIJKLMN123", iamInfo.InstanceProfileID; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
 	}
 }
+
 
 func TestMetadataIAMInfo_failure(t *testing.T) {
-	server := initTestServer(
-		"/latest/meta-data/iam/info",
-		unsuccessfulIamInfo,
-	)
-	defer server.Close()
-	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+	cases := map[string]struct {
+		input            testInput
+		server           func(input testInput) *httptest.Server
+		expectedResponse string
+	}{
+		"Insecure server": {
+			testInput{
+				path:    "/latest/meta-data/iam/info",
+				headers: nil,
+				method:  "GET",
+				resp:    unsuccessfulIamInfo, // real response includes suffix ,
+			},
+			initInsecureServer,
+			unsuccessfulIamInfo,
+		},
+		"Secure server": {
+			testInput{
+				path: "/latest/meta-data/iam/info",
+				headers: map[string]string{
+					"x-aws-ec2-metadata-token": "Aeioubcdefghijklmnopqrstuv",
+				},
+				method: "GET",
+				resp:   unsuccessfulIamInfo, // real response includes suffix ,
+			},
+			initSecureServer,
+			unsuccessfulIamInfo,
+		},
+	}
 
-	iamInfo, err := c.IAMInfo()
-	if err == nil {
-		t.Errorf("expect error")
-	}
-	if e, a := "", iamInfo.Code; e != a {
-		t.Errorf("expect %v, got %v", e, a)
-	}
-	if e, a := "", iamInfo.InstanceProfileArn; e != a {
-		t.Errorf("expect %v, got %v", e, a)
-	}
-	if e, a := "", iamInfo.InstanceProfileID; e != a {
-		t.Errorf("expect %v, got %v", e, a)
+	for name, in := range cases {
+		t.Run(name, func(t *testing.T) {
+			server := in.server(in.input)
+			defer server.Close()
+			c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+			iamInfo, err := c.IAMInfo()
+			if err == nil {
+				t.Errorf("expect error")
+			}
+			if e, a := "", iamInfo.Code; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+			if e, a := "", iamInfo.InstanceProfileArn; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+			if e, a := "", iamInfo.InstanceProfileID; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
 	}
 }
+
 
 func TestMetadataNotAvailable(t *testing.T) {
 	c := ec2metadata.New(unit.Session)
@@ -283,25 +551,56 @@ func TestMetadataErrorResponse(t *testing.T) {
 	}
 }
 
-func TestEC2RoleProviderInstanceIdentity(t *testing.T) {
-	server := initTestServer(
-		"/latest/dynamic/instance-identity/document",
-		instanceIdentityDocument,
-	)
-	defer server.Close()
-	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
 
-	doc, err := c.GetInstanceIdentityDocument()
-	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+func TestEC2RoleProviderInstanceIdentity(t *testing.T) {
+	cases := map[string]struct {
+		input            testInput
+		server           func(input testInput) *httptest.Server
+		expectedResponse string
+	}{
+		"Insecure server": {
+			testInput{
+				path:    "/latest/dynamic/instance-identity/document",
+				headers: nil,
+				method:  "GET",
+				resp:    instanceIdentityDocument, // real response includes suffix ,
+			},
+			initInsecureServer,
+			instanceIdentityDocument,
+		},
+		"Secure server": {
+			testInput{
+				path: "/latest/dynamic/instance-identity/document",
+				headers: map[string]string{
+					"x-aws-ec2-metadata-token": "Aeioubcdefghijklmnopqrstuv",
+				},
+				method: "GET",
+				resp:   instanceIdentityDocument, // real response includes suffix ,
+			},
+			initSecureServer,
+			instanceIdentityDocument,
+		},
 	}
-	if e, a := doc.AccountID, "123456789012"; e != a {
-		t.Errorf("expect %v, got %v", e, a)
-	}
-	if e, a := doc.AvailabilityZone, "us-east-1d"; e != a {
-		t.Errorf("expect %v, got %v", e, a)
-	}
-	if e, a := doc.Region, "us-east-1"; e != a {
-		t.Errorf("expect %v, got %v", e, a)
+
+	for name, in := range cases {
+		t.Run(name, func(t *testing.T) {
+			server := in.server(in.input)
+			defer server.Close()
+			c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+			doc, err := c.GetInstanceIdentityDocument()
+			if err != nil {
+				t.Errorf("expect no error, got %v", err)
+			}
+			if e, a := doc.AccountID, "123456789012"; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+			if e, a := doc.AvailabilityZone, "us-east-1d"; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+			if e, a := doc.Region, "us-east-1"; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
 	}
 }
+
