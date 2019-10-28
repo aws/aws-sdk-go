@@ -1,3 +1,24 @@
+Release v1.25.20 (2019-10-28)
+===
+
+### Service Client Updates
+* `service/ecr`: Updates service API, documentation, and paginators
+  * This release of Amazon Elastic Container Registry Service (Amazon ECR) introduces support for image scanning. This identifies the software vulnerabilities in the container image based on the Common Vulnerabilities and Exposures (CVE) database.
+* `service/elasticache`: Updates service API and documentation
+  * Amazon ElastiCache adds support for migrating Redis workloads hosted on Amazon EC2 into ElastiCache by syncing the data between the source Redis cluster and target ElastiCache for Redis cluster in real time. For more information, see https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/migrate-to-elasticache.html.
+* `service/transfer`: Updates service API and documentation
+  * This release adds logical directories support to your AWS SFTP server endpoint, so you can now create logical directory structures mapped to Amazon Simple Storage Service (Amazon S3) bucket paths for users created and stored within the service. Amazon S3 bucket names and paths can now be hidden from AWS SFTP users, providing an additional level of privacy to meet security requirements. You can lock down your SFTP users' access to designated folders (commonly referred to as 'chroot'), and simplify complex folder structures for data distribution through SFTP without replicating files across multiple users.
+
+### SDK Enhancements
+* `aws/client`: Add PartitionID to Config ([#2902](https://github.com/aws/aws-sdk-go/pull/2902))
+* `aws/client/metadata`: Add PartitionID to ClientInfo ([#2902](https://github.com/aws/aws-sdk-go/pull/2902))
+* `aws/endpoints`: Add PartitionID to ResolvedEndpoint ([#2902](https://github.com/aws/aws-sdk-go/pull/2902))
+
+### SDK Bugs
+* `aws/endpoints`: Fix resolve endpoint with empty region ([#2911](https://github.com/aws/aws-sdk-go/pull/2911))
+  * Fixes the SDK's behavior when attempting to resolve a service's endpoint when no region was provided. Adds legacy support for services that were able to resolve a valid endpoint. No new service will support resolving an endpoint without an region.
+  * Fixes [#2909](https://github.com/aws/aws-sdk-go/issues/2909)
+
 Release v1.25.19 (2019-10-24)
 ===
 

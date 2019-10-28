@@ -137,6 +137,22 @@
         {"shape":"RepositoryPolicyNotFoundException"}
       ]
     },
+    "DescribeImageScanFindings":{
+      "name":"DescribeImageScanFindings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeImageScanFindingsRequest"},
+      "output":{"shape":"DescribeImageScanFindingsResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"RepositoryNotFoundException"},
+        {"shape":"ImageNotFoundException"},
+        {"shape":"ScanNotFoundException"}
+      ]
+    },
     "DescribeImages":{
       "name":"DescribeImages",
       "http":{
@@ -300,6 +316,20 @@
         {"shape":"ImageTagAlreadyExistsException"}
       ]
     },
+    "PutImageScanningConfiguration":{
+      "name":"PutImageScanningConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutImageScanningConfigurationRequest"},
+      "output":{"shape":"PutImageScanningConfigurationResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"RepositoryNotFoundException"}
+      ]
+    },
     "PutImageTagMutability":{
       "name":"PutImageTagMutability",
       "http":{
@@ -340,6 +370,21 @@
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
         {"shape":"RepositoryNotFoundException"}
+      ]
+    },
+    "StartImageScan":{
+      "name":"StartImageScan",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartImageScanRequest"},
+      "output":{"shape":"StartImageScanResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"RepositoryNotFoundException"},
+        {"shape":"ImageNotFoundException"}
       ]
     },
     "StartLifecyclePolicyPreview":{
@@ -410,6 +455,30 @@
   },
   "shapes":{
     "Arn":{"type":"string"},
+    "Attribute":{
+      "type":"structure",
+      "required":["key"],
+      "members":{
+        "key":{"shape":"AttributeKey"},
+        "value":{"shape":"AttributeValue"}
+      }
+    },
+    "AttributeKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "AttributeList":{
+      "type":"list",
+      "member":{"shape":"Attribute"},
+      "max":50,
+      "min":0
+    },
+    "AttributeValue":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
     "AuthorizationData":{
       "type":"structure",
       "members":{
@@ -524,7 +593,8 @@
       "members":{
         "repositoryName":{"shape":"RepositoryName"},
         "tags":{"shape":"TagList"},
-        "imageTagMutability":{"shape":"ImageTagMutability"}
+        "imageTagMutability":{"shape":"ImageTagMutability"},
+        "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"}
       }
     },
     "CreateRepositoryResponse":{
@@ -582,6 +652,31 @@
         "repository":{"shape":"Repository"}
       }
     },
+    "DescribeImageScanFindingsRequest":{
+      "type":"structure",
+      "required":[
+        "repositoryName",
+        "imageId"
+      ],
+      "members":{
+        "registryId":{"shape":"RegistryId"},
+        "repositoryName":{"shape":"RepositoryName"},
+        "imageId":{"shape":"ImageIdentifier"},
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"MaxResults"}
+      }
+    },
+    "DescribeImageScanFindingsResponse":{
+      "type":"structure",
+      "members":{
+        "registryId":{"shape":"RegistryId"},
+        "repositoryName":{"shape":"RepositoryName"},
+        "imageId":{"shape":"ImageIdentifier"},
+        "imageScanStatus":{"shape":"ImageScanStatus"},
+        "imageScanFindings":{"shape":"ImageScanFindings"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "DescribeImagesFilter":{
       "type":"structure",
       "members":{
@@ -633,6 +728,24 @@
     "EvaluationTimestamp":{"type":"timestamp"},
     "ExceptionMessage":{"type":"string"},
     "ExpirationTimestamp":{"type":"timestamp"},
+    "FindingDescription":{"type":"string"},
+    "FindingName":{"type":"string"},
+    "FindingSeverity":{
+      "type":"string",
+      "enum":[
+        "INFORMATIONAL",
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL",
+        "UNDEFINED"
+      ]
+    },
+    "FindingSeverityCounts":{
+      "type":"map",
+      "key":{"shape":"FindingSeverity"},
+      "value":{"shape":"SeverityCount"}
+    },
     "ForceFlag":{"type":"boolean"},
     "GetAuthorizationTokenRegistryIdList":{
       "type":"list",
@@ -760,7 +873,9 @@
         "imageDigest":{"shape":"ImageDigest"},
         "imageTags":{"shape":"ImageTagList"},
         "imageSizeInBytes":{"shape":"ImageSizeInBytes"},
-        "imagePushedAt":{"shape":"PushTimestamp"}
+        "imagePushedAt":{"shape":"PushTimestamp"},
+        "imageScanStatus":{"shape":"ImageScanStatus"},
+        "imageScanFindingsSummary":{"shape":"ImageScanFindingsSummary"}
       }
     },
     "ImageDetailList":{
@@ -808,13 +923,61 @@
       "type":"list",
       "member":{"shape":"Image"}
     },
-    "ImageManifest":{"type":"string"},
+    "ImageManifest":{
+      "type":"string",
+      "max":4194304,
+      "min":1
+    },
     "ImageNotFoundException":{
       "type":"structure",
       "members":{
         "message":{"shape":"ExceptionMessage"}
       },
       "exception":true
+    },
+    "ImageScanFinding":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"FindingName"},
+        "description":{"shape":"FindingDescription"},
+        "uri":{"shape":"Url"},
+        "severity":{"shape":"FindingSeverity"},
+        "attributes":{"shape":"AttributeList"}
+      }
+    },
+    "ImageScanFindingList":{
+      "type":"list",
+      "member":{"shape":"ImageScanFinding"}
+    },
+    "ImageScanFindings":{
+      "type":"structure",
+      "members":{
+        "imageScanCompletedAt":{"shape":"ScanTimestamp"},
+        "vulnerabilitySourceUpdatedAt":{"shape":"VulnerabilitySourceUpdateTimestamp"},
+        "findings":{"shape":"ImageScanFindingList"},
+        "findingSeverityCounts":{"shape":"FindingSeverityCounts"}
+      }
+    },
+    "ImageScanFindingsSummary":{
+      "type":"structure",
+      "members":{
+        "imageScanCompletedAt":{"shape":"ScanTimestamp"},
+        "vulnerabilitySourceUpdatedAt":{"shape":"VulnerabilitySourceUpdateTimestamp"},
+        "findingSeverityCounts":{"shape":"FindingSeverityCounts"}
+      }
+    },
+    "ImageScanStatus":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"ScanStatus"},
+        "description":{"shape":"ScanStatusDescription"}
+      }
+    },
+    "ImageScanningConfiguration":{
+      "type":"structure",
+      "members":{
+        "scanOnPush":{"shape":"ScanOnPushFlag"}
+      }
     },
     "ImageSizeInBytes":{"type":"long"},
     "ImageTag":{
@@ -951,7 +1114,11 @@
       "type":"list",
       "member":{"shape":"Layer"}
     },
-    "LayerPartBlob":{"type":"blob"},
+    "LayerPartBlob":{
+      "type":"blob",
+      "max":20971520,
+      "min":0
+    },
     "LayerPartTooSmallException":{
       "type":"structure",
       "members":{
@@ -1125,6 +1292,26 @@
         "image":{"shape":"Image"}
       }
     },
+    "PutImageScanningConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "repositoryName",
+        "imageScanningConfiguration"
+      ],
+      "members":{
+        "registryId":{"shape":"RegistryId"},
+        "repositoryName":{"shape":"RepositoryName"},
+        "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"}
+      }
+    },
+    "PutImageScanningConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "registryId":{"shape":"RegistryId"},
+        "repositoryName":{"shape":"RepositoryName"},
+        "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"}
+      }
+    },
     "PutImageTagMutabilityRequest":{
       "type":"structure",
       "required":[
@@ -1177,7 +1364,8 @@
         "repositoryName":{"shape":"RepositoryName"},
         "repositoryUri":{"shape":"Url"},
         "createdAt":{"shape":"CreationTimestamp"},
-        "imageTagMutability":{"shape":"ImageTagMutability"}
+        "imageTagMutability":{"shape":"ImageTagMutability"},
+        "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"}
       }
     },
     "RepositoryAlreadyExistsException":{
@@ -1229,6 +1417,24 @@
       "max":10240,
       "min":0
     },
+    "ScanNotFoundException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
+    "ScanOnPushFlag":{"type":"boolean"},
+    "ScanStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "COMPLETE",
+        "FAILED"
+      ]
+    },
+    "ScanStatusDescription":{"type":"string"},
+    "ScanTimestamp":{"type":"timestamp"},
     "ServerException":{
       "type":"structure",
       "members":{
@@ -1256,6 +1462,31 @@
         "registryId":{"shape":"RegistryId"},
         "repositoryName":{"shape":"RepositoryName"},
         "policyText":{"shape":"RepositoryPolicyText"}
+      }
+    },
+    "SeverityCount":{
+      "type":"integer",
+      "min":0
+    },
+    "StartImageScanRequest":{
+      "type":"structure",
+      "required":[
+        "repositoryName",
+        "imageId"
+      ],
+      "members":{
+        "registryId":{"shape":"RegistryId"},
+        "repositoryName":{"shape":"RepositoryName"},
+        "imageId":{"shape":"ImageIdentifier"}
+      }
+    },
+    "StartImageScanResponse":{
+      "type":"structure",
+      "members":{
+        "registryId":{"shape":"RegistryId"},
+        "repositoryName":{"shape":"RepositoryName"},
+        "imageId":{"shape":"ImageIdentifier"},
+        "imageScanStatus":{"shape":"ImageScanStatus"}
       }
     },
     "StartLifecyclePolicyPreviewRequest":{
@@ -1378,6 +1609,7 @@
       },
       "exception":true
     },
-    "Url":{"type":"string"}
+    "Url":{"type":"string"},
+    "VulnerabilitySourceUpdateTimestamp":{"type":"timestamp"}
   }
 }

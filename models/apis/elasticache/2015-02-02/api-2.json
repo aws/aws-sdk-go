@@ -80,6 +80,23 @@
         {"shape":"InvalidParameterValueException"}
       ]
     },
+    "CompleteMigration":{
+      "name":"CompleteMigration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CompleteMigrationMessage"},
+      "output":{
+        "shape":"CompleteMigrationResponse",
+        "resultWrapper":"CompleteMigrationResult"
+      },
+      "errors":[
+        {"shape":"ReplicationGroupNotFoundFault"},
+        {"shape":"InvalidReplicationGroupStateFault"},
+        {"shape":"ReplicationGroupNotUnderMigrationFault"}
+      ]
+    },
     "CopySnapshot":{
       "name":"CopySnapshot",
       "http":{
@@ -854,6 +871,24 @@
         {"shape":"InvalidParameterCombinationException"}
       ]
     },
+    "StartMigration":{
+      "name":"StartMigration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartMigrationMessage"},
+      "output":{
+        "shape":"StartMigrationResponse",
+        "resultWrapper":"StartMigrationResult"
+      },
+      "errors":[
+        {"shape":"ReplicationGroupNotFoundFault"},
+        {"shape":"InvalidReplicationGroupStateFault"},
+        {"shape":"ReplicationGroupAlreadyUnderMigrationFault"},
+        {"shape":"InvalidParameterValueException"}
+      ]
+    },
     "TestFailover":{
       "name":"TestFailover",
       "http":{
@@ -1443,6 +1478,20 @@
       },
       "exception":true
     },
+    "CompleteMigrationMessage":{
+      "type":"structure",
+      "required":["ReplicationGroupId"],
+      "members":{
+        "ReplicationGroupId":{"shape":"String"},
+        "Force":{"shape":"Boolean"}
+      }
+    },
+    "CompleteMigrationResponse":{
+      "type":"structure",
+      "members":{
+        "ReplicationGroup":{"shape":"ReplicationGroup"}
+      }
+    },
     "ConfigureShard":{
       "type":"structure",
       "required":[
@@ -1623,6 +1672,17 @@
       "members":{
         "Snapshot":{"shape":"Snapshot"}
       }
+    },
+    "CustomerNodeEndpoint":{
+      "type":"structure",
+      "members":{
+        "Address":{"shape":"String"},
+        "Port":{"shape":"IntegerOptional"}
+      }
+    },
+    "CustomerNodeEndpointList":{
+      "type":"list",
+      "member":{"shape":"CustomerNodeEndpoint"}
     },
     "DecreaseReplicaCountMessage":{
       "type":"structure",
@@ -2588,6 +2648,17 @@
       },
       "exception":true
     },
+    "ReplicationGroupAlreadyUnderMigrationFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ReplicationGroupAlreadyUnderMigrationFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "ReplicationGroupIdList":{
       "type":"list",
       "member":{"shape":"String"},
@@ -2614,6 +2685,17 @@
       "error":{
         "code":"ReplicationGroupNotFoundFault",
         "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ReplicationGroupNotUnderMigrationFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ReplicationGroupNotUnderMigrationFault",
+        "httpStatusCode":400,
         "senderFault":true
       },
       "exception":true
@@ -2988,6 +3070,23 @@
         "cache-subnet-group",
         "replication-group"
       ]
+    },
+    "StartMigrationMessage":{
+      "type":"structure",
+      "required":[
+        "ReplicationGroupId",
+        "CustomerNodeEndpointList"
+      ],
+      "members":{
+        "ReplicationGroupId":{"shape":"String"},
+        "CustomerNodeEndpointList":{"shape":"CustomerNodeEndpointList"}
+      }
+    },
+    "StartMigrationResponse":{
+      "type":"structure",
+      "members":{
+        "ReplicationGroup":{"shape":"ReplicationGroup"}
+      }
     },
     "String":{"type":"string"},
     "Subnet":{

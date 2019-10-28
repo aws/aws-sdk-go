@@ -6,6 +6,7 @@
     "AuthorizeCacheSecurityGroupIngress": "<p>Allows network ingress to a cache security group. Applications using ElastiCache must be running on Amazon EC2, and Amazon EC2 security groups are used as the authorization mechanism.</p> <note> <p>You cannot authorize ingress from an Amazon EC2 security group in one region to an ElastiCache cluster in another region.</p> </note>",
     "BatchApplyUpdateAction": "<p>Apply the service update. For more information on service updates and applying them, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/applying-updates.html\">Applying Service Updates</a>.</p>",
     "BatchStopUpdateAction": "<p>Stop the service update. For more information on service updates and stopping them, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/stopping-self-service-updates.html\">Stopping Service Updates</a>.</p>",
+    "CompleteMigration": "<p>Complete the migration of data.</p>",
     "CopySnapshot": "<p>Makes a copy of an existing snapshot.</p> <note> <p>This operation is valid for Redis only.</p> </note> <important> <p>Users or groups that have permissions to use the <code>CopySnapshot</code> operation can create their own Amazon S3 buckets and copy snapshots to it. To control access to your snapshots, use an IAM policy to control who has the ability to use the <code>CopySnapshot</code> operation. For more information about using IAM to control the use of ElastiCache operations, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/backups-exporting.html\">Exporting Snapshots</a> and <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/IAM.html\">Authentication &amp; Access Control</a>.</p> </important> <p>You could receive the following error messages.</p> <p class=\"title\"> <b>Error Messages</b> </p> <ul> <li> <p> <b>Error Message:</b> The S3 bucket %s is outside of the region.</p> <p> <b>Solution:</b> Create an Amazon S3 bucket in the same region as your snapshot. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/backups-exporting.html#backups-exporting-create-s3-bucket\">Step 1: Create an Amazon S3 Bucket</a> in the ElastiCache User Guide.</p> </li> <li> <p> <b>Error Message:</b> The S3 bucket %s does not exist.</p> <p> <b>Solution:</b> Create an Amazon S3 bucket in the same region as your snapshot. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/backups-exporting.html#backups-exporting-create-s3-bucket\">Step 1: Create an Amazon S3 Bucket</a> in the ElastiCache User Guide.</p> </li> <li> <p> <b>Error Message:</b> The S3 bucket %s is not owned by the authenticated user.</p> <p> <b>Solution:</b> Create an Amazon S3 bucket in the same region as your snapshot. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/backups-exporting.html#backups-exporting-create-s3-bucket\">Step 1: Create an Amazon S3 Bucket</a> in the ElastiCache User Guide.</p> </li> <li> <p> <b>Error Message:</b> The authenticated user does not have sufficient permissions to perform the desired activity.</p> <p> <b>Solution:</b> Contact your system administrator to get the needed permissions.</p> </li> <li> <p> <b>Error Message:</b> The S3 bucket %s already contains an object with key %s.</p> <p> <b>Solution:</b> Give the <code>TargetSnapshotName</code> a new and unique value. If exporting a snapshot, you could alternatively create a new Amazon S3 bucket and use this same value for <code>TargetSnapshotName</code>.</p> </li> <li> <p> <b>Error Message: </b> ElastiCache has not been granted READ permissions %s on the S3 Bucket.</p> <p> <b>Solution:</b> Add List and Read permissions on the bucket. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/backups-exporting.html#backups-exporting-grant-access\">Step 2: Grant ElastiCache Access to Your Amazon S3 Bucket</a> in the ElastiCache User Guide.</p> </li> <li> <p> <b>Error Message: </b> ElastiCache has not been granted WRITE permissions %s on the S3 Bucket.</p> <p> <b>Solution:</b> Add Upload/Delete permissions on the bucket. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/backups-exporting.html#backups-exporting-grant-access\">Step 2: Grant ElastiCache Access to Your Amazon S3 Bucket</a> in the ElastiCache User Guide.</p> </li> <li> <p> <b>Error Message: </b> ElastiCache has not been granted READ_ACP permissions %s on the S3 Bucket.</p> <p> <b>Solution:</b> Add View Permissions on the bucket. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/backups-exporting.html#backups-exporting-grant-access\">Step 2: Grant ElastiCache Access to Your Amazon S3 Bucket</a> in the ElastiCache User Guide.</p> </li> </ul>",
     "CreateCacheCluster": "<p>Creates a cluster. All nodes in the cluster run the same protocol-compliant cache engine software, either Memcached or Redis.</p> <p>This operation is not supported for Redis (cluster mode enabled) clusters.</p>",
     "CreateCacheParameterGroup": "<p>Creates a new Amazon ElastiCache cache parameter group. An ElastiCache cache parameter group is a collection of parameters and their values that are applied to all of the nodes in any cluster or replication group using the CacheParameterGroup.</p> <p>A newly created CacheParameterGroup is an exact duplicate of the default parameter group for the CacheParameterGroupFamily. To customize the newly created CacheParameterGroup you can change the values of specific parameters. For more information, see:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_ModifyCacheParameterGroup.html\">ModifyCacheParameterGroup</a> in the ElastiCache API Reference.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/ParameterGroups.html\">Parameters and Parameter Groups</a> in the ElastiCache User Guide.</p> </li> </ul>",
@@ -47,6 +48,7 @@
     "RemoveTagsFromResource": "<p>Removes the tags identified by the <code>TagKeys</code> list from the named resource.</p>",
     "ResetCacheParameterGroup": "<p>Modifies the parameters of a cache parameter group to the engine or system default value. You can reset specific parameters by submitting a list of parameter names. To reset the entire cache parameter group, specify the <code>ResetAllParameters</code> and <code>CacheParameterGroupName</code> parameters.</p>",
     "RevokeCacheSecurityGroupIngress": "<p>Revokes ingress from a cache security group. Use this operation to disallow access from an Amazon EC2 security group that had been previously authorized.</p>",
+    "StartMigration": "<p>Start the migration of data.</p>",
     "TestFailover": "<p>Represents the input of a <code>TestFailover</code> operation which test automatic failover on a specified node group (called shard in the console) in a replication group (called cluster in the console).</p> <p class=\"title\"> <b>Note the following</b> </p> <ul> <li> <p>A customer can use this operation to test automatic failover on up to 5 shards (called node groups in the ElastiCache API and AWS CLI) in any rolling 24-hour period.</p> </li> <li> <p>If calling this operation on shards in different clusters (called replication groups in the API and CLI), the calls can be made concurrently.</p> <p> </p> </li> <li> <p>If calling this operation multiple times on different shards in the same Redis (cluster mode enabled) replication group, the first node replacement must complete before a subsequent call can be made.</p> </li> <li> <p>To determine whether the node replacement is complete you can check Events using the Amazon ElastiCache console, the AWS CLI, or the ElastiCache API. Look for the following automatic failover related events, listed here in order of occurrance:</p> <ol> <li> <p>Replication group message: <code>Test Failover API called for node group &lt;node-group-id&gt;</code> </p> </li> <li> <p>Cache cluster message: <code>Failover from master node &lt;primary-node-id&gt; to replica node &lt;node-id&gt; completed</code> </p> </li> <li> <p>Replication group message: <code>Failover from master node &lt;primary-node-id&gt; to replica node &lt;node-id&gt; completed</code> </p> </li> <li> <p>Cache cluster message: <code>Recovering cache nodes &lt;node-id&gt;</code> </p> </li> <li> <p>Cache cluster message: <code>Finished recovery for cache nodes &lt;node-id&gt;</code> </p> </li> </ol> <p>For more information see:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/ECEvents.Viewing.html\">Viewing ElastiCache Events</a> in the <i>ElastiCache User Guide</i> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DescribeEvents.html\">DescribeEvents</a> in the ElastiCache API Reference</p> </li> </ul> </li> </ul> <p>Also see, <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/AutoFailover.html#auto-failover-test\">Testing Multi-AZ with Automatic Failover</a> in the <i>ElastiCache User Guide</i>.</p>"
   },
   "shapes": {
@@ -146,6 +148,7 @@
       "refs": {
         "CacheCluster$AutoMinorVersionUpgrade": "<p>This parameter is currently disabled.</p>",
         "CacheNodeTypeSpecificParameter$IsModifiable": "<p>Indicates whether (<code>true</code>) or not (<code>false</code>) the parameter can be modified. Some parameters have security or operational implications that prevent them from being changed.</p>",
+        "CompleteMigrationMessage$Force": "<p>Forces the migration to stop without ensuring that data is in sync. It is recommended to use this option only to abort the migration and not recommended when application wants to continue migration to ElastiCache.</p>",
         "DecreaseReplicaCountMessage$ApplyImmediately": "<p>If <code>True</code>, the number of replica nodes is decreased immediately. <code>ApplyImmediately=False</code> is not currently supported.</p>",
         "DescribeCacheEngineVersionsMessage$DefaultOnly": "<p>If <code>true</code>, specifies that only the default version of the specified engine or engine and major version combination is to be returned.</p>",
         "IncreaseReplicaCountMessage$ApplyImmediately": "<p>If <code>True</code>, the number of replica nodes is increased immediately. <code>ApplyImmediately=False</code> is not currently supported.</p>",
@@ -464,6 +467,16 @@
       "refs": {
       }
     },
+    "CompleteMigrationMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CompleteMigrationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ConfigureShard": {
       "base": "<p>Node group (shard) configuration options when adding or removing replicas. Each node group (shard) configuration has the following members: NodeGroupId, NewReplicaCount, and PreferredAvailabilityZones. </p>",
       "refs": {
@@ -538,6 +551,18 @@
     "CreateSnapshotResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "CustomerNodeEndpoint": {
+      "base": "<p>The endpoint from which data should be migrated.</p>",
+      "refs": {
+        "CustomerNodeEndpointList$member": null
+      }
+    },
+    "CustomerNodeEndpointList": {
+      "base": null,
+      "refs": {
+        "StartMigrationMessage$CustomerNodeEndpointList": "<p>List of endpoints from which data should be migrated. For Redis (cluster mode disabled), list should have only one element.</p>"
       }
     },
     "DecreaseReplicaCountMessage": {
@@ -771,6 +796,7 @@
         "CreateReplicationGroupMessage$ReplicasPerNodeGroup": "<p>An optional parameter that specifies the number of replica nodes in each node group (shard). Valid values are 0 to 5.</p>",
         "CreateReplicationGroupMessage$Port": "<p>The port number on which each member of the replication group accepts connections.</p>",
         "CreateReplicationGroupMessage$SnapshotRetentionLimit": "<p>The number of days for which ElastiCache retains automatic snapshots before deleting them. For example, if you set <code>SnapshotRetentionLimit</code> to 5, a snapshot that was taken today is retained for 5 days before being deleted.</p> <p>Default: 0 (i.e., automatic backups are disabled for this cluster).</p>",
+        "CustomerNodeEndpoint$Port": "<p>The port of the node endpoint</p>",
         "DecreaseReplicaCountMessage$NewReplicaCount": "<p>The number of read replica nodes you want at the completion of this operation. For Redis (cluster mode disabled) replication groups, this is the number of replica nodes in the replication group. For Redis (cluster mode enabled) replication groups, this is the number of replica nodes in each of the replication group's node groups.</p> <p>The minimum number of replicas in a shard or replication group is:</p> <ul> <li> <p>Redis (cluster mode disabled)</p> <ul> <li> <p>If Multi-AZ with Automatic Failover is enabled: 1</p> </li> <li> <p>If Multi-AZ with Automatic Failover is not enabled: 0</p> </li> </ul> </li> <li> <p>Redis (cluster mode enabled): 0 (though you will not be able to failover to a replica if your primary node fails)</p> </li> </ul>",
         "DescribeCacheClustersMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a marker is included in the response so that the remaining results can be retrieved.</p> <p>Default: 100</p> <p>Constraints: minimum 20; maximum 100.</p>",
         "DescribeCacheEngineVersionsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a marker is included in the response so that the remaining results can be retrieved.</p> <p>Default: 100</p> <p>Constraints: minimum 20; maximum 100.</p>",
@@ -1166,6 +1192,7 @@
     "ReplicationGroup": {
       "base": "<p>Contains all of the attributes of a specific Redis replication group.</p>",
       "refs": {
+        "CompleteMigrationResponse$ReplicationGroup": null,
         "CreateReplicationGroupResult$ReplicationGroup": null,
         "DecreaseReplicaCountResult$ReplicationGroup": null,
         "DeleteReplicationGroupResult$ReplicationGroup": null,
@@ -1173,11 +1200,17 @@
         "ModifyReplicationGroupResult$ReplicationGroup": null,
         "ModifyReplicationGroupShardConfigurationResult$ReplicationGroup": null,
         "ReplicationGroupList$member": null,
+        "StartMigrationResponse$ReplicationGroup": null,
         "TestFailoverResult$ReplicationGroup": null
       }
     },
     "ReplicationGroupAlreadyExistsFault": {
       "base": "<p>The specified replication group already exists.</p>",
+      "refs": {
+      }
+    },
+    "ReplicationGroupAlreadyUnderMigrationFault": {
+      "base": "<p>The targeted replication group is not available. </p>",
       "refs": {
       }
     },
@@ -1202,6 +1235,11 @@
     },
     "ReplicationGroupNotFoundFault": {
       "base": "<p>The specified replication group does not exist.</p>",
+      "refs": {
+      }
+    },
+    "ReplicationGroupNotUnderMigrationFault": {
+      "base": "<p>The designated replication group is not available for data migration.</p>",
       "refs": {
       }
     },
@@ -1437,6 +1475,16 @@
         "Event$SourceType": "<p>Specifies the origin of this event - a cluster, a parameter group, a security group, etc.</p>"
       }
     },
+    "StartMigrationMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartMigrationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "String": {
       "base": null,
       "refs": {
@@ -1502,6 +1550,7 @@
         "CacheSubnetGroup$VpcId": "<p>The Amazon Virtual Private Cloud identifier (VPC ID) of the cache subnet group.</p>",
         "CacheSubnetGroupMessage$Marker": "<p>Provides an identifier to allow retrieval of paginated results.</p>",
         "ClusterIdList$member": null,
+        "CompleteMigrationMessage$ReplicationGroupId": "<p>The ID of the replication group to which data is being migrated.</p>",
         "CopySnapshotMessage$SourceSnapshotName": "<p>The name of an existing snapshot from which to make a copy.</p>",
         "CopySnapshotMessage$TargetSnapshotName": "<p>A name for the snapshot copy. ElastiCache does not permit overwriting a snapshot, therefore this name must be unique within its context - ElastiCache or an Amazon S3 bucket if exporting.</p>",
         "CopySnapshotMessage$TargetBucket": "<p>The Amazon S3 bucket to which the snapshot is exported. This parameter is used only when exporting a snapshot for external access.</p> <p>When using this parameter to export a snapshot, be sure Amazon ElastiCache has the needed permissions to this S3 bucket. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/backups-exporting.html#backups-exporting-grant-access\">Step 2: Grant ElastiCache Access to Your Amazon S3 Bucket</a> in the <i>Amazon ElastiCache User Guide</i>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Snapshots.Exporting.html\">Exporting a Snapshot</a> in the <i>Amazon ElastiCache User Guide</i>.</p>",
@@ -1544,6 +1593,7 @@
         "CreateSnapshotMessage$CacheClusterId": "<p>The identifier of an existing cluster. The snapshot is created from this cluster.</p>",
         "CreateSnapshotMessage$SnapshotName": "<p>A name for the snapshot being created.</p>",
         "CreateSnapshotMessage$KmsKeyId": "<p>The ID of the KMS key used to encrypt the snapshot.</p>",
+        "CustomerNodeEndpoint$Address": "<p>The address of the node endpoint</p>",
         "DecreaseReplicaCountMessage$ReplicationGroupId": "<p>The id of the replication group from which you want to remove replica nodes.</p>",
         "DeleteCacheClusterMessage$CacheClusterId": "<p>The cluster identifier for the cluster to be deleted. This parameter is not case sensitive.</p>",
         "DeleteCacheClusterMessage$FinalSnapshotIdentifier": "<p>The user-supplied name of a final cluster snapshot. This is the unique name that identifies the snapshot. ElastiCache creates the snapshot, and then deletes the cluster immediately afterward.</p>",
@@ -1730,6 +1780,7 @@
         "Snapshot$SnapshotWindow": "<p>The daily time range during which ElastiCache takes daily snapshots of the source cluster.</p>",
         "Snapshot$KmsKeyId": "<p>The ID of the KMS key used to encrypt the snapshot.</p>",
         "SnapshotArnsList$member": null,
+        "StartMigrationMessage$ReplicationGroupId": "<p>The ID of the replication group to which data should be migrated.</p>",
         "Subnet$SubnetIdentifier": "<p>The unique identifier for the subnet.</p>",
         "SubnetIdentifierList$member": null,
         "Tag$Key": "<p>The key for the tag. May not be null.</p>",
