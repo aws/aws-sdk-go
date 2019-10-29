@@ -170,7 +170,6 @@ var unmarshalHandler = request.NamedHandler{
 
 		if data, ok := r.Data.(*metadataOutput); ok {
 			data.Content = b.String()
-
 		}
 	},
 }
