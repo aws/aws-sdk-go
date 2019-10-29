@@ -964,7 +964,8 @@
         "UserSettings":{"shape":"UserSettingList"},
         "ApplicationSettings":{"shape":"ApplicationSettings"},
         "Tags":{"shape":"Tags"},
-        "AccessEndpoints":{"shape":"AccessEndpointList"}
+        "AccessEndpoints":{"shape":"AccessEndpointList"},
+        "EmbedHostDomains":{"shape":"EmbedHostDomains"}
       }
     },
     "CreateStackResult":{
@@ -1360,7 +1361,8 @@
     },
     "Domain":{
       "type":"string",
-      "max":64
+      "max":64,
+      "min":1
     },
     "DomainJoinInfo":{
       "type":"structure",
@@ -1373,6 +1375,17 @@
       "type":"list",
       "member":{"shape":"Domain"},
       "max":10
+    },
+    "EmbedHostDomain":{
+      "type":"string",
+      "max":128,
+      "pattern":"(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]"
+    },
+    "EmbedHostDomains":{
+      "type":"list",
+      "member":{"shape":"EmbedHostDomain"},
+      "max":20,
+      "min":1
     },
     "EnableUserRequest":{
       "type":"structure",
@@ -1923,7 +1936,8 @@
         "StackErrors":{"shape":"StackErrors"},
         "UserSettings":{"shape":"UserSettingList"},
         "ApplicationSettings":{"shape":"ApplicationSettingsResponse"},
-        "AccessEndpoints":{"shape":"AccessEndpointList"}
+        "AccessEndpoints":{"shape":"AccessEndpointList"},
+        "EmbedHostDomains":{"shape":"EmbedHostDomains"}
       }
     },
     "StackAttribute":{
@@ -1937,6 +1951,7 @@
         "FEEDBACK_URL",
         "THEME_NAME",
         "USER_SETTINGS",
+        "EMBED_HOST_DOMAINS",
         "IAM_ROLE_ARN",
         "ACCESS_ENDPOINTS"
       ]
@@ -2195,7 +2210,8 @@
         "AttributesToDelete":{"shape":"StackAttributes"},
         "UserSettings":{"shape":"UserSettingList"},
         "ApplicationSettings":{"shape":"ApplicationSettings"},
-        "AccessEndpoints":{"shape":"AccessEndpointList"}
+        "AccessEndpoints":{"shape":"AccessEndpointList"},
+        "EmbedHostDomains":{"shape":"EmbedHostDomains"}
       }
     },
     "UpdateStackResult":{

@@ -1,3 +1,12 @@
+Release v1.25.22 (2019-10-29)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API and documentation
+  * Adds support for providing domain names that can embed streaming sessions
+* `service/cloud9`: Updates service API, documentation, and examples
+  * Added CREATING and CREATE_FAILED environment lifecycle statuses.
+
 Release v1.25.21 (2019-10-28)
 ===
 

@@ -130,23 +130,23 @@
       "refs": {
         "ArnList$member": null,
         "CreateFleetRequest$ImageArn": "<p>The ARN of the public, private, or shared image to use.</p>",
-        "CreateFleetRequest$IamRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to apply to the fleet. To assume a role, a fleet instance calls the AWS Security Token Service (STS) <code>AssumeRole</code> API operation and passes the ARN of the role to use. The operation creates a new session with temporary credentials.</p>",
+        "CreateFleetRequest$IamRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to apply to the fleet. To assume a role, a fleet instance calls the AWS Security Token Service (STS) <code>AssumeRole</code> API operation and passes the ARN of the role to use. The operation creates a new session with temporary credentials. AppStream 2.0 retrieves the temporary credentials and creates the <b>AppStream_Machine_Role</b> credential profile on the instance.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/appstream2/latest/developerguide/using-iam-roles-to-grant-permissions-to-applications-scripts-streaming-instances.html\">Using an IAM Role to Grant Permissions to Applications and Scripts Running on AppStream 2.0 Streaming Instances</a> in the <i>Amazon AppStream 2.0 Administration Guide</i>.</p>",
         "CreateImageBuilderRequest$ImageArn": "<p>The ARN of the public, private, or shared image to use.</p>",
-        "CreateImageBuilderRequest$IamRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to apply to the image builder. To assume a role, the image builder calls the AWS Security Token Service (STS) <code>AssumeRole</code> API operation and passes the ARN of the role to use. The operation creates a new session with temporary credentials.</p>",
+        "CreateImageBuilderRequest$IamRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to apply to the image builder. To assume a role, the image builder calls the AWS Security Token Service (STS) <code>AssumeRole</code> API operation and passes the ARN of the role to use. The operation creates a new session with temporary credentials. AppStream 2.0 retrieves the temporary credentials and creates the <b>AppStream_Machine_Role</b> credential profile on the instance.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/appstream2/latest/developerguide/using-iam-roles-to-grant-permissions-to-applications-scripts-streaming-instances.html\">Using an IAM Role to Grant Permissions to Applications and Scripts Running on AppStream 2.0 Streaming Instances</a> in the <i>Amazon AppStream 2.0 Administration Guide</i>.</p>",
         "Fleet$Arn": "<p>The Amazon Resource Name (ARN) for the fleet.</p>",
         "Fleet$ImageArn": "<p>The ARN for the public, private, or shared image.</p>",
-        "Fleet$IamRoleArn": "<p>The ARN of the IAM role that is applied to the fleet. To assume a role, the fleet instance calls the AWS Security Token Service (STS) <code>AssumeRole</code> API operation and passes the ARN of the role to use. The operation creates a new session with temporary credentials.</p>",
+        "Fleet$IamRoleArn": "<p>The ARN of the IAM role that is applied to the fleet. To assume a role, the fleet instance calls the AWS Security Token Service (STS) <code>AssumeRole</code> API operation and passes the ARN of the role to use. The operation creates a new session with temporary credentials. AppStream 2.0 retrieves the temporary credentials and creates the <b>AppStream_Machine_Role</b> credential profile on the instance.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/appstream2/latest/developerguide/using-iam-roles-to-grant-permissions-to-applications-scripts-streaming-instances.html\">Using an IAM Role to Grant Permissions to Applications and Scripts Running on AppStream 2.0 Streaming Instances</a> in the <i>Amazon AppStream 2.0 Administration Guide</i>.</p>",
         "Image$Arn": "<p>The ARN of the image.</p>",
         "Image$BaseImageArn": "<p>The ARN of the image from which this image was created.</p>",
         "ImageBuilder$Arn": "<p>The ARN for the image builder.</p>",
         "ImageBuilder$ImageArn": "<p>The ARN of the image from which this builder was created.</p>",
-        "ImageBuilder$IamRoleArn": "<p>The ARN of the IAM role that is applied to the image builder. To assume a role, the image builder calls the AWS Security Token Service (STS) <code>AssumeRole</code> API operation and passes the ARN of the role to use. The operation creates a new session with temporary credentials. </p>",
+        "ImageBuilder$IamRoleArn": "<p>The ARN of the IAM role that is applied to the image builder. To assume a role, the image builder calls the AWS Security Token Service (STS) <code>AssumeRole</code> API operation and passes the ARN of the role to use. The operation creates a new session with temporary credentials. AppStream 2.0 retrieves the temporary credentials and creates the <b>AppStream_Machine_Role</b> credential profile on the instance.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/appstream2/latest/developerguide/using-iam-roles-to-grant-permissions-to-applications-scripts-streaming-instances.html\">Using an IAM Role to Grant Permissions to Applications and Scripts Running on AppStream 2.0 Streaming Instances</a> in the <i>Amazon AppStream 2.0 Administration Guide</i>.</p>",
         "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "Stack$Arn": "<p>The ARN of the stack.</p>",
         "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "UpdateFleetRequest$ImageArn": "<p>The ARN of the public, private, or shared image to use.</p>",
-        "UpdateFleetRequest$IamRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to apply to the fleet. To assume a role, a fleet instance calls the AWS Security Token Service (STS) <code>AssumeRole</code> API operation and passes the ARN of the role to use. The operation creates a new session with temporary credentials.</p>",
+        "UpdateFleetRequest$IamRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to apply to the fleet. To assume a role, a fleet instance calls the AWS Security Token Service (STS) <code>AssumeRole</code> API operation and passes the ARN of the role to use. The operation creates a new session with temporary credentials. AppStream 2.0 retrieves the temporary credentials and creates the <b>AppStream_Machine_Role</b> credential profile on the instance.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/appstream2/latest/developerguide/using-iam-roles-to-grant-permissions-to-applications-scripts-streaming-instances.html\">Using an IAM Role to Grant Permissions to Applications and Scripts Running on AppStream 2.0 Streaming Instances</a> in the <i>Amazon AppStream 2.0 Administration Guide</i>.</p>",
         "User$Arn": "<p>The ARN of the user.</p>"
       }
     },
@@ -627,6 +627,20 @@
       "base": null,
       "refs": {
         "StorageConnector$Domains": "<p>The names of the domains for the account.</p>"
+      }
+    },
+    "EmbedHostDomain": {
+      "base": "Specifies a valid domain that can embed AppStream. Valid examples include: [\"testorigin.tt--com\", \"testingorigin.com.us\", \"test.com.us\"] Invalid examples include: [\"test,com\", \".com\", \"h*llo.com\". \"\"]",
+      "refs": {
+        "EmbedHostDomains$member": null
+      }
+    },
+    "EmbedHostDomains": {
+      "base": null,
+      "refs": {
+        "CreateStackRequest$EmbedHostDomains": "<p>The domains where AppStream 2.0 streaming sessions can be embedded in an iframe. You must approve the domains that you want to host embedded AppStream 2.0 streaming sessions.</p>",
+        "Stack$EmbedHostDomains": "<p>The domains where AppStream 2.0 streaming sessions can be embedded in an iframe. You must approve the domains that you want to host embedded AppStream 2.0 streaming sessions.</p>",
+        "UpdateStackRequest$EmbedHostDomains": "<p>The domains where AppStream 2.0 streaming sessions can be embedded in an iframe. You must approve the domains that you want to host embedded AppStream 2.0 streaming sessions.</p>"
       }
     },
     "EnableUserRequest": {
@@ -1212,7 +1226,7 @@
         "CreateFleetRequest$ImageName": "<p>The name of the image used to create the fleet.</p>",
         "CreateFleetRequest$InstanceType": "<p>The instance type to use when launching fleet instances. The following instance types are available:</p> <ul> <li> <p>stream.standard.medium</p> </li> <li> <p>stream.standard.large</p> </li> <li> <p>stream.compute.large</p> </li> <li> <p>stream.compute.xlarge</p> </li> <li> <p>stream.compute.2xlarge</p> </li> <li> <p>stream.compute.4xlarge</p> </li> <li> <p>stream.compute.8xlarge</p> </li> <li> <p>stream.memory.large</p> </li> <li> <p>stream.memory.xlarge</p> </li> <li> <p>stream.memory.2xlarge</p> </li> <li> <p>stream.memory.4xlarge</p> </li> <li> <p>stream.memory.8xlarge</p> </li> <li> <p>stream.graphics-design.large</p> </li> <li> <p>stream.graphics-design.xlarge</p> </li> <li> <p>stream.graphics-design.2xlarge</p> </li> <li> <p>stream.graphics-design.4xlarge</p> </li> <li> <p>stream.graphics-desktop.2xlarge</p> </li> <li> <p>stream.graphics-pro.4xlarge</p> </li> <li> <p>stream.graphics-pro.8xlarge</p> </li> <li> <p>stream.graphics-pro.16xlarge</p> </li> </ul>",
         "CreateImageBuilderRequest$ImageName": "<p>The name of the image used to create the image builder.</p>",
-        "CreateImageBuilderRequest$InstanceType": "<p>The instance type to use when launching the image builder.</p>",
+        "CreateImageBuilderRequest$InstanceType": "<p>The instance type to use when launching the image builder. The following instance types are available:</p> <ul> <li> <p>stream.standard.medium</p> </li> <li> <p>stream.standard.large</p> </li> <li> <p>stream.compute.large</p> </li> <li> <p>stream.compute.xlarge</p> </li> <li> <p>stream.compute.2xlarge</p> </li> <li> <p>stream.compute.4xlarge</p> </li> <li> <p>stream.compute.8xlarge</p> </li> <li> <p>stream.memory.large</p> </li> <li> <p>stream.memory.xlarge</p> </li> <li> <p>stream.memory.2xlarge</p> </li> <li> <p>stream.memory.4xlarge</p> </li> <li> <p>stream.memory.8xlarge</p> </li> <li> <p>stream.graphics-design.large</p> </li> <li> <p>stream.graphics-design.xlarge</p> </li> <li> <p>stream.graphics-design.2xlarge</p> </li> <li> <p>stream.graphics-design.4xlarge</p> </li> <li> <p>stream.graphics-desktop.2xlarge</p> </li> <li> <p>stream.graphics-pro.4xlarge</p> </li> <li> <p>stream.graphics-pro.8xlarge</p> </li> <li> <p>stream.graphics-pro.16xlarge</p> </li> </ul>",
         "CreateImageBuilderStreamingURLRequest$Name": "<p>The name of the image builder.</p>",
         "CreateImageBuilderStreamingURLResult$StreamingURL": "<p>The URL to start the AppStream 2.0 streaming session.</p>",
         "CreateStreamingURLRequest$StackName": "<p>The name of the stack.</p>",
@@ -1253,7 +1267,7 @@
         "Fleet$DisplayName": "<p>The fleet name to display.</p>",
         "Fleet$Description": "<p>The description to display.</p>",
         "Fleet$ImageName": "<p>The name of the image used to create the fleet.</p>",
-        "Fleet$InstanceType": "<p>The instance type to use when launching fleet instances.</p>",
+        "Fleet$InstanceType": "<p>The instance type to use when launching fleet instances. The following instance types are available:</p> <ul> <li> <p>stream.standard.medium</p> </li> <li> <p>stream.standard.large</p> </li> <li> <p>stream.compute.large</p> </li> <li> <p>stream.compute.xlarge</p> </li> <li> <p>stream.compute.2xlarge</p> </li> <li> <p>stream.compute.4xlarge</p> </li> <li> <p>stream.compute.8xlarge</p> </li> <li> <p>stream.memory.large</p> </li> <li> <p>stream.memory.xlarge</p> </li> <li> <p>stream.memory.2xlarge</p> </li> <li> <p>stream.memory.4xlarge</p> </li> <li> <p>stream.memory.8xlarge</p> </li> <li> <p>stream.graphics-design.large</p> </li> <li> <p>stream.graphics-design.xlarge</p> </li> <li> <p>stream.graphics-design.2xlarge</p> </li> <li> <p>stream.graphics-design.4xlarge</p> </li> <li> <p>stream.graphics-desktop.2xlarge</p> </li> <li> <p>stream.graphics-pro.4xlarge</p> </li> <li> <p>stream.graphics-pro.8xlarge</p> </li> <li> <p>stream.graphics-pro.16xlarge</p> </li> </ul>",
         "FleetError$ErrorMessage": "<p>The error message.</p>",
         "Image$Name": "<p>The name of the image.</p>",
         "Image$DisplayName": "<p>The image name to display.</p>",
@@ -1262,7 +1276,7 @@
         "ImageBuilder$Name": "<p>The name of the image builder.</p>",
         "ImageBuilder$Description": "<p>The description to display.</p>",
         "ImageBuilder$DisplayName": "<p>The image builder name to display.</p>",
-        "ImageBuilder$InstanceType": "<p>The instance type for the image builder.</p>",
+        "ImageBuilder$InstanceType": "<p>The instance type for the image builder. The following instance types are available:</p> <ul> <li> <p>stream.standard.medium</p> </li> <li> <p>stream.standard.large</p> </li> <li> <p>stream.compute.large</p> </li> <li> <p>stream.compute.xlarge</p> </li> <li> <p>stream.compute.2xlarge</p> </li> <li> <p>stream.compute.4xlarge</p> </li> <li> <p>stream.compute.8xlarge</p> </li> <li> <p>stream.memory.large</p> </li> <li> <p>stream.memory.xlarge</p> </li> <li> <p>stream.memory.2xlarge</p> </li> <li> <p>stream.memory.4xlarge</p> </li> <li> <p>stream.memory.8xlarge</p> </li> <li> <p>stream.graphics-design.large</p> </li> <li> <p>stream.graphics-design.xlarge</p> </li> <li> <p>stream.graphics-design.2xlarge</p> </li> <li> <p>stream.graphics-design.4xlarge</p> </li> <li> <p>stream.graphics-desktop.2xlarge</p> </li> <li> <p>stream.graphics-pro.4xlarge</p> </li> <li> <p>stream.graphics-pro.8xlarge</p> </li> <li> <p>stream.graphics-pro.16xlarge</p> </li> </ul>",
         "ImageBuilderStateChangeReason$Message": "<p>The state change reason message.</p>",
         "ImageStateChangeReason$Message": "<p>The state change reason message.</p>",
         "LastReportGenerationExecutionError$ErrorMessage": "<p>The error message for the error that is returned when a usage report can't be generated.</p>",
