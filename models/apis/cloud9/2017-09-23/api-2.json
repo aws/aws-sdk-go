@@ -376,7 +376,9 @@
     "EnvironmentLifecycleStatus":{
       "type":"string",
       "enum":[
+        "CREATING",
         "CREATED",
+        "CREATE_FAILED",
         "DELETING",
         "DELETE_FAILED"
       ]
@@ -541,7 +543,7 @@
     },
     "UserArn":{
       "type":"string",
-      "pattern":"arn:aws:(iam|sts)::\\d+:(root|user|federated-user|assumed-role)\\/?\\S*"
+      "pattern":"^arn:aws:(iam|sts)::\\d+:(root|(user\\/[\\w+=/:,.@-]{1,64}|federated-user\\/[\\w+=/:,.@-]{2,32}|assumed-role\\/[\\w+=/:,.@-]{1,64}\\/[\\w+=/:,.@-]{1,64}))$"
     }
   }
 }
