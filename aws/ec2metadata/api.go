@@ -33,9 +33,14 @@ func (c *EC2Metadata) getToken() error {
 	req.HTTPRequest.Header.Set("x-aws-ec2-metadata-token-ttl-seconds", "21600")
 	err := req.Send()
 
+	if err!= nil {
+		return awserr.New(http.StatusText(req.HTTPResponse.StatusCode), err.Error(), err)
+	}
+
 	c.token = &ec2Token{}
 	c.token.content = output.Content
 	c.token.SetExpiration(time.Now().Add(output.ttl), 10*time.Second)
+
 	return err
 }
 
@@ -53,8 +58,16 @@ func (c *EC2Metadata) GetMetadata(p string) (string, error) {
 	req := c.NewRequest(op, nil, output)
 
 	err := c.getToken()
+
 	if err == nil {
 		req.HTTPRequest.Header.Set("x-aws-ec2-metadata-token", c.token.content)
+	}
+
+	// if error code is 400, return the error
+	if e, ok := err.(awserr.Error); ok {
+		if e.Code() == http.StatusText(400) {
+			return "", e
+		}
 	}
 
 	req.Handlers.UnmarshalError.PushBack(func(r *request.Request) {
@@ -94,9 +107,15 @@ func (c *EC2Metadata) GetUserData() (string, error) {
 	})
 
 	err := c.getToken()
-
 	if err == nil {
 		req.HTTPRequest.Header.Set("x-aws-ec2-metadata-token", c.token.content)
+	}
+
+	// if error code is 400, return the error
+	if e, ok := err.(awserr.Error); ok {
+		if e.Code() == http.StatusText(400) {
+			return "", e
+		}
 	}
 
 	err = req.Send()
@@ -119,6 +138,13 @@ func (c *EC2Metadata) GetDynamicData(p string) (string, error) {
 	err := c.getToken()
 	if err == nil {
 		req.HTTPRequest.Header.Set("x-aws-ec2-metadata-token", c.token.content)
+	}
+
+	// if error code is 400, return the error
+	if e, ok := err.(awserr.Error); ok {
+		if e.Code() == http.StatusText(400) {
+			return "", e
+		}
 	}
 
 	req.Handlers.UnmarshalError.PushBack(func(r *request.Request) {

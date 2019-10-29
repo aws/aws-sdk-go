@@ -751,9 +751,9 @@ func TestEC2MetadataRetryFailure(t *testing.T) {
 	mux.HandleFunc("/latest/api/token", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == "PUT" && r.Header.Get("x-aws-ec2-metadata-token-ttl-seconds") != "" {
 			w.Header().Set("X-aws-ec2-metadata-token-ttl-seconds", "200")
-			i:= rand.Intn(40)
-			if i<50{
-				http.Error(w,"service unavailable", http.StatusServiceUnavailable)
+			i := rand.Intn(40)
+			if i < 50 {
+				http.Error(w, "service unavailable", http.StatusServiceUnavailable)
 				t.Logf("%v received, retrying", http.StatusServiceUnavailable)
 				return
 			}
@@ -769,7 +769,7 @@ func TestEC2MetadataRetryFailure(t *testing.T) {
 		w.Write([]byte(r.Header.Get("x-aws-ec2-metadata-token")))
 	})
 
-	server:=  httptest.NewServer(mux)
+	server := httptest.NewServer(mux)
 	defer server.Close()
 	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
 	_, err := c.GetMetadata("some/path")
@@ -777,7 +777,7 @@ func TestEC2MetadataRetryFailure(t *testing.T) {
 	if secureDataFlow {
 		t.Errorf("Expected secure data flow to be %v, got %v", !secureDataFlow, secureDataFlow)
 	}
-	if err!=nil{
+	if err != nil {
 		t.Errorf("Expected none, got error %v", err)
 	}
 }
@@ -791,9 +791,9 @@ func TestEC2MetadataRandomRetries(t *testing.T) {
 
 		if r.Method == "PUT" && r.Header.Get("x-aws-ec2-metadata-token-ttl-seconds") != "" {
 			w.Header().Set("X-aws-ec2-metadata-token-ttl-seconds", "200")
-			i:= rand.Intn(10)
-			if i<5{
-				http.Error(w,"service unavailable", http.StatusServiceUnavailable)
+			i := rand.Intn(10)
+			if i < 5 {
+				http.Error(w, "service unavailable", http.StatusServiceUnavailable)
 				t.Logf("%v received, retrying", http.StatusServiceUnavailable)
 				return
 			}
@@ -809,17 +809,43 @@ func TestEC2MetadataRandomRetries(t *testing.T) {
 		w.Write([]byte(r.Header.Get("x-aws-ec2-metadata-token")))
 	})
 
-	server:=  httptest.NewServer(mux)
+	server := httptest.NewServer(mux)
 	defer server.Close()
 	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
 	_, err := c.GetMetadata("some/path")
-
 
 	if !secureDataFlow {
 		t.Errorf("Expected secure data flow to be %v, got %v", secureDataFlow, !secureDataFlow)
 	}
 
-	if err!=nil{
+	if err != nil {
 		t.Errorf("Expected none, got error %v", err)
+	}
+}
+
+func TestTokenErrorWith400(t *testing.T) {
+	mux := http.NewServeMux()
+
+	// returns a random token each time `/latest/api/token` endpoint is hit
+	mux.HandleFunc("/latest/api/token", func(w http.ResponseWriter, r *http.Request) {
+		http.Error(w, "bad request", http.StatusBadRequest)
+	})
+
+	// meta-data endpoint for this test, just returns the token
+	mux.HandleFunc("/latest/meta-data/", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("token"))
+	})
+
+	server := httptest.NewServer(mux)
+	defer server.Close()
+	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+	resp, err := c.GetMetadata("some/path")
+
+	if err == nil {
+		t.Error("Expected error, got none")
+	}
+
+	if resp == "token" {
+		t.Errorf("Expected empty response, got %v", resp)
 	}
 }

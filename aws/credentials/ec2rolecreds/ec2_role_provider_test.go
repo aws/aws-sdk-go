@@ -2,10 +2,8 @@ package ec2rolecreds_test
 
 import (
 	"fmt"
-	"math/rand"
 	"net/http"
 	"net/http/httptest"
-	"strconv"
 	"testing"
 	"time"
 
@@ -43,62 +41,11 @@ func initTestServer(expireOn string, failAssume bool) *httptest.Server {
 				fmt.Fprintf(w, credsRespTmpl, expireOn)
 			}
 		} else {
-			http.Error(w, "bad request", http.StatusBadRequest)
+			http.Error(w, "Not found", http.StatusNotFound)
 		}
 	}))
 
 	return server
-}
-
-func TestEC2CredentialRetrieverWithToken(t *testing.T) {
-	mux := http.NewServeMux()
-
-	// returns a random token each time `/latest/api/token` endpoint is hit
-	mux.HandleFunc("/latest/api/token", func(w http.ResponseWriter, r *http.Request) {
-
-		if r.Method == "PUT" && r.Header.Get("x-aws-ec2-metadata-token-ttl-seconds") != "" {
-			i := rand.Intn(10)
-			if i < 5 {
-				w.Header().Set("X-aws-ec2-metadata-token-ttl-seconds", "0")
-				t.Log("Received expired token, fetching token again")
-			} else {
-				w.Header().Set("X-aws-ec2-metadata-token-ttl-seconds", "200")
-			}
-			w.Write([]byte(strconv.Itoa(i)))
-			return
-		}
-		http.Error(w, "bad request", http.StatusBadRequest)
-	})
-
-	// meta-data endpoint for this test, just returns the token
-	mux.HandleFunc("/latest/meta-data/iam/security-credentials/RoleName", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, credsRespTmpl, "2014-12-16T01:51:37Z")
-	})
-
-	// meta-data endpoint for this test, just returns the token
-	mux.HandleFunc("/latest/meta-data/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "RoleName")
-	})
-
-	server := httptest.NewServer(mux)
-	defer server.Close()
-	p := &ec2rolecreds.EC2RoleProvider{
-		Client: ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")}),
-	}
-
-	creds, err := p.Retrieve()
-	if err != nil {
-		t.Errorf("Expect no error, got %v", err)
-	}
-	if e, a := "accessKey", creds.AccessKeyID; e != a {
-		t.Errorf("Expect access key ID to match, %v got %v", e, a)
-	}
-	if e, a := "secret", creds.SecretAccessKey; e != a {
-		t.Errorf("Expect secret access key to match, %v got %v", e, a)
-	}
-	if e, a := "token", creds.SessionToken; e != a {
-		t.Errorf("Expect session token to match, %v got %v", e, a)
-	}
 }
 
 func TestEC2RoleProvider(t *testing.T) {
