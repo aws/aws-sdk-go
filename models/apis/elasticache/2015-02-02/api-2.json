@@ -956,6 +956,20 @@
         "ScaleDownModifications":{"shape":"NodeTypeList"}
       }
     },
+    "AuthTokenUpdateStatus":{
+      "type":"string",
+      "enum":[
+        "SETTING",
+        "ROTATING"
+      ]
+    },
+    "AuthTokenUpdateStrategyType":{
+      "type":"string",
+      "enum":[
+        "SET",
+        "ROTATE"
+      ]
+    },
     "AuthorizationAlreadyExistsFault":{
       "type":"structure",
       "members":{
@@ -1067,6 +1081,7 @@
         "SnapshotRetentionLimit":{"shape":"IntegerOptional"},
         "SnapshotWindow":{"shape":"String"},
         "AuthTokenEnabled":{"shape":"BooleanOptional"},
+        "AuthTokenLastModifiedDate":{"shape":"TStamp"},
         "TransitEncryptionEnabled":{"shape":"BooleanOptional"},
         "AtRestEncryptionEnabled":{"shape":"BooleanOptional"}
       },
@@ -2176,7 +2191,9 @@
         "AutoMinorVersionUpgrade":{"shape":"BooleanOptional"},
         "SnapshotRetentionLimit":{"shape":"IntegerOptional"},
         "SnapshotWindow":{"shape":"String"},
-        "CacheNodeType":{"shape":"String"}
+        "CacheNodeType":{"shape":"String"},
+        "AuthToken":{"shape":"String"},
+        "AuthTokenUpdateStrategy":{"shape":"AuthTokenUpdateStrategyType"}
       }
     },
     "ModifyCacheClusterResult":{
@@ -2220,6 +2237,10 @@
         "PrimaryClusterId":{"shape":"String"},
         "SnapshottingClusterId":{"shape":"String"},
         "AutomaticFailoverEnabled":{"shape":"BooleanOptional"},
+        "NodeGroupId":{
+          "shape":"String",
+          "deprecated":true
+        },
         "CacheSecurityGroupNames":{"shape":"CacheSecurityGroupNameList"},
         "SecurityGroupIds":{"shape":"SecurityGroupIdsList"},
         "PreferredMaintenanceWindow":{"shape":"String"},
@@ -2232,10 +2253,8 @@
         "SnapshotRetentionLimit":{"shape":"IntegerOptional"},
         "SnapshotWindow":{"shape":"String"},
         "CacheNodeType":{"shape":"String"},
-        "NodeGroupId":{
-          "shape":"String",
-          "deprecated":true
-        }
+        "AuthToken":{"shape":"String"},
+        "AuthTokenUpdateStrategy":{"shape":"AuthTokenUpdateStrategyType"}
       }
     },
     "ModifyReplicationGroupResult":{
@@ -2519,7 +2538,8 @@
         "NumCacheNodes":{"shape":"IntegerOptional"},
         "CacheNodeIdsToRemove":{"shape":"CacheNodeIdsList"},
         "EngineVersion":{"shape":"String"},
-        "CacheNodeType":{"shape":"String"}
+        "CacheNodeType":{"shape":"String"},
+        "AuthTokenStatus":{"shape":"AuthTokenUpdateStatus"}
       }
     },
     "PreferredAvailabilityZoneList":{
@@ -2631,6 +2651,7 @@
         "ClusterEnabled":{"shape":"BooleanOptional"},
         "CacheNodeType":{"shape":"String"},
         "AuthTokenEnabled":{"shape":"BooleanOptional"},
+        "AuthTokenLastModifiedDate":{"shape":"TStamp"},
         "TransitEncryptionEnabled":{"shape":"BooleanOptional"},
         "AtRestEncryptionEnabled":{"shape":"BooleanOptional"},
         "KmsKeyId":{"shape":"String"}
@@ -2705,7 +2726,8 @@
       "members":{
         "PrimaryClusterId":{"shape":"String"},
         "AutomaticFailoverStatus":{"shape":"PendingAutomaticFailoverStatus"},
-        "Resharding":{"shape":"ReshardingStatus"}
+        "Resharding":{"shape":"ReshardingStatus"},
+        "AuthTokenStatus":{"shape":"AuthTokenUpdateStatus"}
       }
     },
     "ReservedCacheNode":{

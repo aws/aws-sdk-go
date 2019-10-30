@@ -1,3 +1,10 @@
+Release v1.25.23 (2019-10-30)
+===
+
+### Service Client Updates
+* `service/elasticache`: Updates service API and documentation
+  * Amazon ElastiCache for Redis 5.0.5 now allows you to modify authentication tokens by setting and rotating new tokens. You can now modify active tokens while in use, or add brand-new tokens to existing encryption-in-transit enabled clusters that were previously setup without authentication tokens. This is a two-step process that allows you to set and rotate the token without interrupting client requests.
+
 Release v1.25.22 (2019-10-29)
 ===
 
