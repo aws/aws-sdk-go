@@ -12,38 +12,6 @@ import (
 	"github.com/aws/aws-sdk-go/internal/sdkuri"
 )
 
-func (c *EC2Metadata) getToken() error {
-	// check if token exists and is not expired
-	if c.token != nil && !c.token.IsExpired() {
-		return nil
-	}
-
-	op := &request.Operation{
-		Name:       "GetToken",
-		HTTPMethod: "PUT",
-		HTTPPath:   sdkuri.PathJoin("/api/token"),
-	}
-
-	output := &tokenOutput{}
-
-	c.Handlers.Unmarshal.Swap("unmarshalMetadataHandler", unmarshalTokenHandler)
-	defer c.Handlers.Unmarshal.Swap("unmarshalTokenHandler", unmarshalHandler)
-
-	req := c.NewRequest(op, nil, output)
-	req.HTTPRequest.Header.Set("x-aws-ec2-metadata-token-ttl-seconds", "21600")
-	err := req.Send()
-
-	if err!= nil {
-		return awserr.New(http.StatusText(req.HTTPResponse.StatusCode), err.Error(), err)
-	}
-
-	c.token = &ec2Token{}
-	c.token.content = output.Content
-	c.token.SetExpiration(time.Now().Add(output.ttl), 10*time.Second)
-
-	return err
-}
-
 // GetMetadata uses the path provided to request information from the EC2
 // instance metadata service. The content will be returned as a string, or
 // error if the request failed.
@@ -55,31 +23,17 @@ func (c *EC2Metadata) GetMetadata(p string) (string, error) {
 		HTTPPath:   sdkuri.PathJoin("/meta-data", p),
 	}
 	output := &metadataOutput{}
+
 	req := c.NewRequest(op, nil, output)
 
-	err := c.getToken()
-
-	if err == nil {
-		req.HTTPRequest.Header.Set("x-aws-ec2-metadata-token", c.token.content)
-	}
-
-	// if error code is 400, return the error
-	if e, ok := err.(awserr.Error); ok {
-		if e.Code() == http.StatusText(400) {
-			return "", e
-		}
-	}
-
 	req.Handlers.UnmarshalError.PushBack(func(r *request.Request) {
-		switch r.HTTPResponse.StatusCode {
-		case http.StatusUnauthorized:
-			r.Error = awserr.New("Unauthorized", "request status unauthorized", r.Error)
-		case http.StatusBadRequest:
-			r.Error = awserr.New("BadRequest", "bad request", r.Error)
+		if r.HTTPResponse.StatusCode != http.StatusOK {
+			err := awserr.New("Request Failed", http.StatusText(r.HTTPResponse.StatusCode), r.Error)
+			r.Error = awserr.NewRequestFailure(err, r.HTTPResponse.StatusCode, r.RequestID)
 		}
 	})
 
-	err = req.Send()
+	err := req.Send()
 	return output.Content, err
 }
 
@@ -95,30 +49,15 @@ func (c *EC2Metadata) GetUserData() (string, error) {
 
 	output := &metadataOutput{}
 	req := c.NewRequest(op, nil, output)
+
 	req.Handlers.UnmarshalError.PushBack(func(r *request.Request) {
-		switch r.HTTPResponse.StatusCode {
-		case http.StatusNotFound:
-			r.Error = awserr.New("NotFoundError", "user-data not found", r.Error)
-		case http.StatusBadRequest:
-			r.Error = awserr.New("BadRequest", "bad request", r.Error)
-		case http.StatusUnauthorized:
-			r.Error = awserr.New("Unauthorized", "Unauthorized for an expired, invalid, or missing token header", r.Error)
+		if r.HTTPResponse.StatusCode != http.StatusOK {
+			err := awserr.New("Request Failed", http.StatusText(r.HTTPResponse.StatusCode), r.Error)
+			r.Error = awserr.NewRequestFailure(err, r.HTTPResponse.StatusCode, r.RequestID)
 		}
 	})
 
-	err := c.getToken()
-	if err == nil {
-		req.HTTPRequest.Header.Set("x-aws-ec2-metadata-token", c.token.content)
-	}
-
-	// if error code is 400, return the error
-	if e, ok := err.(awserr.Error); ok {
-		if e.Code() == http.StatusText(400) {
-			return "", e
-		}
-	}
-
-	err = req.Send()
+	err := req.Send()
 	return output.Content, err
 }
 
@@ -135,28 +74,14 @@ func (c *EC2Metadata) GetDynamicData(p string) (string, error) {
 	output := &metadataOutput{}
 	req := c.NewRequest(op, nil, output)
 
-	err := c.getToken()
-	if err == nil {
-		req.HTTPRequest.Header.Set("x-aws-ec2-metadata-token", c.token.content)
-	}
-
-	// if error code is 400, return the error
-	if e, ok := err.(awserr.Error); ok {
-		if e.Code() == http.StatusText(400) {
-			return "", e
-		}
-	}
-
 	req.Handlers.UnmarshalError.PushBack(func(r *request.Request) {
-		switch r.HTTPResponse.StatusCode {
-		case http.StatusUnauthorized:
-			r.Error = awserr.New("RequestTokenExpired", "request status unauthorized", r.Error)
-		case http.StatusBadRequest:
-			r.Error = awserr.New("BadRequest", "bad request", r.Error)
+		if r.HTTPResponse.StatusCode != http.StatusOK {
+			err := awserr.New("Request Failed", http.StatusText(r.HTTPResponse.StatusCode), r.Error)
+			r.Error = awserr.NewRequestFailure(err, r.HTTPResponse.StatusCode, r.RequestID)
 		}
 	})
 
-	err = req.Send()
+	err := req.Send()
 	return output.Content, err
 }
 

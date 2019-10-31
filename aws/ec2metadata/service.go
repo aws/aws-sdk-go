@@ -30,16 +30,27 @@ import (
 const ServiceName = "ec2metadata"
 const disableServiceEnvVar = "AWS_EC2_METADATA_DISABLED"
 
+const TokenHeader = "x-aws-ec2-metadata-token"
+const TTLHeader = "x-aws-ec2-metadata-token-ttl-seconds"
+const defaultTTL = "21600"
+
+// NamedHandler for EC2Metadata client used to fetch token for IMDS
+var fetchTokenHandler request.NamedHandler
+
 // A EC2Metadata is an EC2 Metadata service Client.
 type EC2Metadata struct {
 	*client.Client
-	token *ec2Token
+	tokenTTL string
 }
 
+// A ec2Token struct helps use of token in EC2 Metadata service ops
 type ec2Token struct {
-	content string
+	Token string
 	credentials.Expiry
 }
+
+// token points to an ec2Token
+var token *ec2Token
 
 // New creates a new instance of the EC2Metadata client with a session.
 // This client is safe to use across multiple goroutines.
@@ -88,13 +99,22 @@ func NewClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
 		),
 	}
 
+	svc.tokenTTL = defaultTTL
+
+	token = &ec2Token{}
+	fetchTokenHandler = request.NamedHandler{
+		Name: "FetchTokenHandler",
+		Fn:   svc.fetchTokenHandler,
+	}
+
+	svc.Handlers.Build.PushBackNamed(fetchTokenHandler)
 	svc.Handlers.Unmarshal.PushBackNamed(unmarshalHandler)
 	svc.Handlers.UnmarshalError.PushBack(unmarshalError)
 	svc.Handlers.Validate.Clear()
 	svc.Handlers.Validate.PushBack(validateEndpointHandler)
 
 	// Disable the EC2 Metadata service if the environment variable is set.
-	// This shortcirctes the service's functionality to always fail to send
+	// This short-circuits the service's functionality to always fail to send
 	// requests.
 	if strings.ToLower(os.Getenv(disableServiceEnvVar)) == "true" {
 		svc.Handlers.Send.SwapNamed(request.NamedHandler{
@@ -115,8 +135,12 @@ func NewClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
 	for _, option := range opts {
 		option(svc.Client)
 	}
-
 	return svc
+}
+
+// SetTokenTTL exposes tokenTTL config on client
+func (c *EC2Metadata) SetTokenTTL (TTL string){
+	c.tokenTTL = TTL
 }
 
 func httpClientZero(c *http.Client) bool {
@@ -128,23 +152,23 @@ type metadataOutput struct {
 }
 
 type tokenOutput struct {
-	Content string
-	ttl     time.Duration
+	Token string
+	TTL   time.Duration
 }
 
 // unmarshal handler for token data
 var unmarshalTokenHandler = request.NamedHandler{
 	Name: "unmarshalTokenHandler",
 	Fn: func(r *request.Request) {
-		b := &bytes.Buffer{}
-		if _, err := io.Copy(b, r.HTTPResponse.Body); err != nil {
+		var b bytes.Buffer
+		if _, err := io.Copy(&b, r.HTTPResponse.Body); err != nil {
 			r.Error = awserr.New(request.ErrCodeSerialization, "unable to unmarshal EC2 metadata response", err)
 			return
 		}
 
-		v := r.HTTPResponse.Header.Get("X-aws-ec2-metadata-token-ttl-seconds")
+		v := r.HTTPResponse.Header.Get(TTLHeader)
 		if data, ok := r.Data.(*tokenOutput); ok {
-			data.Content = b.String()
+			data.Token = b.String()
 			// TTL is in seconds
 			i, err := strconv.Atoi(v)
 			if err != nil {
@@ -152,7 +176,7 @@ var unmarshalTokenHandler = request.NamedHandler{
 				return
 			}
 			t := time.Duration(i) * time.Second
-			data.ttl = t
+			data.TTL = t
 		}
 	},
 }
@@ -161,9 +185,8 @@ var unmarshalHandler = request.NamedHandler{
 	Name: "unmarshalMetadataHandler",
 	Fn: func(r *request.Request) {
 		defer r.HTTPResponse.Body.Close()
-		b := &bytes.Buffer{}
-
-		if _, err := io.Copy(b, r.HTTPResponse.Body); err != nil {
+		var b bytes.Buffer
+		if _, err := io.Copy(&b, r.HTTPResponse.Body); err != nil {
 			r.Error = awserr.New(request.ErrCodeSerialization, "unable to unmarshal EC2 metadata response", err)
 			return
 		}
@@ -176,9 +199,10 @@ var unmarshalHandler = request.NamedHandler{
 
 func unmarshalError(r *request.Request) {
 	defer r.HTTPResponse.Body.Close()
-	b := &bytes.Buffer{}
-	if _, err := io.Copy(b, r.HTTPResponse.Body); err != nil {
-		r.Error = awserr.New(request.ErrCodeSerialization, "unable to unmarshal EC2 metadata error response", err)
+	var b bytes.Buffer
+	if _, err := io.Copy(&b, r.HTTPResponse.Body); err != nil {
+		e:= awserr.New(request.ErrCodeSerialization, "unable to unmarshal EC2 metadata error response", err)
+		r.Error = awserr.NewRequestFailure(e, r.HTTPResponse.StatusCode, r.RequestID)
 		return
 	}
 
@@ -191,4 +215,46 @@ func validateEndpointHandler(r *request.Request) {
 	if r.ClientInfo.Endpoint == "" {
 		r.Error = aws.ErrMissingEndpoint
 	}
+}
+
+// fetchTokenHandler fetches token for EC2Metadata service client by default.
+func (c *EC2Metadata) fetchTokenHandler(r *request.Request) {
+
+	if token != nil && !token.IsExpired() {
+		r.HTTPRequest.Header.Set("x-aws-ec2-metadata-token", token.Token)
+		return
+	}
+
+	c.Handlers.Build.Remove(fetchTokenHandler)
+	defer c.Handlers.Build.PushBackNamed(fetchTokenHandler)
+
+	op := &request.Operation{
+		Name:       "GetToken",
+		HTTPMethod: "PUT",
+		HTTPPath:   "/api/token",
+	}
+
+	var output tokenOutput
+	req := c.NewRequest(op, nil, &output)
+
+	req.Handlers.Unmarshal.Swap("unmarshalMetadataHandler", unmarshalTokenHandler)
+	defer req.Handlers.Unmarshal.Swap("unmarshalTokenHandler", unmarshalHandler)
+
+	req.HTTPRequest.Header.Set(TTLHeader,c.tokenTTL)
+	err := req.Send()
+
+	if err != nil {
+		// Errors with bad request status should be returned.
+		if req.HTTPResponse.StatusCode == http.StatusBadRequest {
+			e := awserr.New(req.HTTPResponse.Status, "Fetch token failed", err)
+			r.Error = awserr.NewRequestFailure(e, req.HTTPResponse.StatusCode, req.RequestID)
+		}
+		return
+	}
+
+	token.Token = output.Token
+	token.SetExpiration(time.Now().Add(output.TTL), 10*time.Second)
+
+	// Inject token header to the request.
+	r.HTTPRequest.Header.Set(TokenHeader, token.Token)
 }

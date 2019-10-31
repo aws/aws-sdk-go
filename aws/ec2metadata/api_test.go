@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
-	"math/rand"
 	"net/http"
 	"net/http/httptest"
 	"path"
@@ -54,21 +53,12 @@ const unsuccessfulIamInfo = `{
   "InstanceProfileId" : "AIPAABCDEFGHIJKLMN123"
 }`
 
-type testInput struct {
-	name    string
-	path    string
-	headers map[string]string
-	method  string
-	resp    string
-}
-
-type testConfig struct {
-	serverType        serverType
-	path              string
-	headers           map[string]string
-	method            string
-	resp              string
-	callCountForToken int
+type testServer struct {
+	t             *testing.T
+	serverType    serverType
+	returnedToken []string
+	httpMethod    string
+	resp          string
 }
 
 type serverType int
@@ -78,21 +68,21 @@ const (
 	secure   serverType = 1
 )
 
-func initServer(t testConfig) *httptest.Server {
+func initServer(s testServer) *httptest.Server {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/latest/api/token", t.tokenHandler)
-	mux.HandleFunc("/latest/meta-data/", t.metadataHandler)
-	mux.HandleFunc("/latest/user-data/", t.metadataHandler)
-	mux.HandleFunc("/latest/dynamic/", t.metadataHandler)
+	mux.HandleFunc("/latest/api/token", s.tokenHandler)
+	mux.HandleFunc("/latest/", s.metadataHandler)
 	return httptest.NewServer(mux)
 }
 
-func (config testConfig) tokenHandler(w http.ResponseWriter, r *http.Request) {
-	switch config.serverType {
+func (s testServer) tokenHandler(w http.ResponseWriter, r *http.Request) {
+	switch s.serverType {
 	case secure:
-		if r.Method == "PUT" && r.Header.Get("x-aws-ec2-metadata-token-ttl-seconds") != "" {
-			w.Header().Set("X-aws-ec2-metadata-token-ttl-seconds", r.Header.Get("x-aws-ec2-metadata-token-ttl-seconds"))
-			w.Write([]byte(config.headers["x-aws-ec2-metadata-token"]))
+		if r.Method == "PUT" && r.Header.Get(ec2metadata.TTLHeader) != "" {
+			w.Header().Set(ec2metadata.TTLHeader, r.Header.Get(ec2metadata.TTLHeader))
+			if len(s.returnedToken)!=0{
+				w.Write([]byte(s.returnedToken[0]))
+			}
 			return
 		}
 		http.Error(w, "bad request", http.StatusBadRequest)
@@ -101,22 +91,22 @@ func (config testConfig) tokenHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (config testConfig) metadataHandler(w http.ResponseWriter, r *http.Request) {
+func (s testServer) metadataHandler(w http.ResponseWriter, r *http.Request) {
 
-	if r.Method != config.method {
+	if r.Method != s.httpMethod {
 		http.Error(w, "bad request", http.StatusBadRequest)
 		return
 	}
 
-	switch config.serverType {
+	switch s.serverType {
 	case secure:
-		if r.Header.Get("x-aws-ec2-metadata-token") == "token" {
-			w.Write([]byte(config.resp))
+		if r.Header.Get(ec2metadata.TokenHeader) == "token" {
+			w.Write([]byte(s.resp))
 			return
 		}
 		http.Error(w, "Unauthorized for an expired, invalid, or missing token header", http.StatusUnauthorized)
 	default: // insecure
-		w.Write([]byte(config.resp))
+		w.Write([]byte(s.resp))
 	}
 }
 
@@ -139,53 +129,45 @@ func TestEndpoint(t *testing.T) {
 
 func TestGetMetadata(t *testing.T) {
 	cases := map[string]struct {
-		config           testConfig
+		config           testServer
 		expectedResponse string
 		expectedError    string
 	}{
 		"Insecure server success case": {
-			testConfig{
-				path:    "/latest/meta-data/some/path",
-				headers: nil,
-				method:  "GET",
-				resp:    "profile_name",
+			testServer{
+				t:             t,
+				returnedToken: nil,
+				httpMethod:    "GET",
+				resp:          "profile_name",
 			},
 			"profile_name",
 			"",
 		},
 		"Secure server success case": {
-			testConfig{
-				serverType: secure,
-				path:       "/latest/meta-data/some/path",
-				headers: map[string]string{
-					"x-aws-ec2-metadata-token": "token",
-				},
-				method: "GET",
-				resp:   "profile_name", // real response includes suffix ,
+			testServer{
+				serverType:    secure,
+				returnedToken: []string{"token"},
+				httpMethod:    "GET",
+				resp:          "profile_name", // real response includes suffix ,
 			},
 			"profile_name",
 			"",
 		},
 		"Insecure server failure case": {
-			testConfig{
-
-				path:    "/latest/meta-data/some/path",
-				headers: nil,
-				method:  "PUT",
-				resp:    "",
+			testServer{
+				returnedToken: nil,
+				httpMethod:    "PUT",
+				resp:          "",
 			},
 			"",
 			"bad request",
 		},
 		"Secure server failure case": {
-			testConfig{
-				serverType: secure,
-				path:       "/latest/meta-data/some/path",
-				headers: map[string]string{
-					"x-aws-ec2-metadata-token": "invalid token",
-				},
-				method: "GET",
-				resp:   "", // real response includes suffix ,
+			testServer{
+				serverType:    secure,
+				returnedToken: []string{"invalid token"},
+				httpMethod:    "GET",
+				resp:          "", // real response includes suffix ,
 			},
 			"",
 			"Unauthorized",
@@ -200,7 +182,7 @@ func TestGetMetadata(t *testing.T) {
 			resp, err := c.GetMetadata("some/path")
 
 			if err == nil && in.expectedError != "" {
-				t.Errorf("expect nil, got %v", in.expectedError)
+				t.Errorf("expect %v, got %v", in.expectedError, err)
 			}
 
 			if e, a := in.expectedError, err; a != nil {
@@ -218,54 +200,48 @@ func TestGetMetadata(t *testing.T) {
 
 func TestGetUserData(t *testing.T) {
 	cases := map[string]struct {
-		config           testConfig
+		config           testServer
 		expectedResponse string
 		expectedError    string
 	}{
 		"Insecure server successful case": {
-			testConfig{
-				serverType: insecure,
-				path:       "/latest/user-data",
-				headers:    nil,
-				method:     "GET",
-				resp:       "user-data",
+			testServer{
+				serverType:    insecure,
+				returnedToken: nil,
+				httpMethod:    "GET",
+				resp:          "user-data",
 			},
 			"user-data",
 			"",
 		},
 
 		"Secure server successful case": {
-			testConfig{
-				serverType: secure,
-				path:       "/latest/user-data",
-				headers: map[string]string{
-					"x-aws-ec2-metadata-token": "token",
-				},
-				method: "GET",
-				resp:   "user-data",
+			testServer{
+				serverType:    secure,
+				returnedToken: []string{"token"},
+				httpMethod:    "GET",
+				resp:          "user-data",
 			},
 			"user-data",
 			"",
 		},
 		"Insecure server failure case": {
-			testConfig{
-				serverType: insecure,
-				path:       "/latest/user-data",
-				headers:    nil,
-				method:     "PUT",
-				resp:       "user-data",
+			testServer{
+				serverType:    insecure,
+				returnedToken: nil,
+				httpMethod:    "PUT",
+				resp:          "user-data",
 			},
 			"",
 			"bad request",
 		},
 
 		"Secure server failure case": {
-			testConfig{
-				serverType: secure,
-				path:       "/latest/user-data",
-				headers:    nil,
-				method:     "GET",
-				resp:       "user-data",
+			testServer{
+				serverType:    secure,
+				returnedToken: nil,
+				httpMethod:    "GET",
+				resp:          "user-data",
 			},
 			"",
 			"Unauthorized",
@@ -326,62 +302,57 @@ func TestGetUserData_Error(t *testing.T) {
 		t.Errorf("expect empty, got %v", resp)
 	}
 
-	aerr := err.(awserr.Error)
-	if e, a := "NotFoundError", aerr.Code(); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+	if requestFailedError, ok := err.(awserr.RequestFailure); ok {
+		if e, a := http.StatusNotFound, requestFailedError.StatusCode(); e != a {
+			t.Errorf("expect %v, got %v", e, a)
+		}
 	}
 }
 
 func TestGetRegion(t *testing.T) {
 	cases := map[string]struct {
-		config           testConfig
+		config           testServer
 		expectedResponse string
 		expectedError    string
 	}{
 		"Insecure server successful case": {
-			testConfig{
-				serverType: insecure,
-				path:       "/latest/meta-data/placement/availability-zone",
-				headers:    nil,
-				method:     "GET",
-				resp:       "us-west-2a",
+			testServer{
+				serverType:    insecure,
+				returnedToken: nil,
+				httpMethod:    "GET",
+				resp:          "us-west-2a",
 			},
 			"us-west-2",
 			"",
 		},
 
 		"Secure server successful case": {
-			testConfig{
-				serverType: secure,
-				path:       "/latest/meta-data/placement/availability-zone",
-				headers: map[string]string{
-					"x-aws-ec2-metadata-token": "token",
-				},
-				method: "GET",
-				resp:   "us-west-2a",
+			testServer{
+				serverType:    secure,
+				returnedToken: []string{"token"},
+				httpMethod:    "GET",
+				resp:          "us-west-2a",
 			},
 			"us-west-2",
 			"",
 		},
 		"Insecure server failure case": {
-			testConfig{
-				serverType: insecure,
-				path:       "/latest/user-data",
-				headers:    nil,
-				method:     "PUT",
-				resp:       "us-west-2a",
+			testServer{
+				serverType:    insecure,
+				returnedToken: nil,
+				httpMethod:    "PUT",
+				resp:          "us-west-2a",
 			},
 			"",
 			"bad request",
 		},
 
 		"Secure server failure case": {
-			testConfig{
-				serverType: secure,
-				path:       "/latest/user-data",
-				headers:    nil,
-				method:     "GET",
-				resp:       "us-west-2a",
+			testServer{
+				serverType:    secure,
+				returnedToken: nil,
+				httpMethod:    "GET",
+				resp:          "us-west-2a",
 			},
 			"",
 			"Unauthorized",
@@ -414,54 +385,48 @@ func TestGetRegion(t *testing.T) {
 
 func TestMetadataAvailable(t *testing.T) {
 	cases := map[string]struct {
-		config           testConfig
+		config           testServer
 		expectedResponse bool
 		expectedError    string
 	}{
 		"Insecure server successful case": {
-			testConfig{
-				serverType: insecure,
-				path:       "/latest/meta-data/instance-id",
-				headers:    nil,
-				method:     "GET",
-				resp:       "instance-id",
+			testServer{
+				serverType:    insecure,
+				returnedToken: nil,
+				httpMethod:    "GET",
+				resp:          "instance-id",
 			},
 			true,
 			"",
 		},
 
 		"Secure server successful case": {
-			testConfig{
-				serverType: secure,
-				path:       "/latest/meta-data/instance-id",
-				headers: map[string]string{
-					"x-aws-ec2-metadata-token": "token",
-				},
-				method: "GET",
-				resp:   "instance-id",
+			testServer{
+				serverType:    secure,
+				returnedToken: []string{"token"},
+				httpMethod:    "GET",
+				resp:          "instance-id",
 			},
 			true,
 			"",
 		},
 		"Insecure server failure case": {
-			testConfig{
-				serverType: insecure,
-				path:       "/latest/meta-data/instance-id",
-				headers:    nil,
-				method:     "PUT",
-				resp:       "",
+			testServer{
+				serverType:    insecure,
+				returnedToken: nil,
+				httpMethod:    "PUT",
+				resp:          "",
 			},
 			false,
 			"bad request",
 		},
 
 		"Secure server failure case": {
-			testConfig{
-				serverType: secure,
-				path:       "/latest/meta-data/instance-id",
-				headers:    nil,
-				method:     "GET",
-				resp:       "",
+			testServer{
+				serverType:    secure,
+				returnedToken: nil,
+				httpMethod:    "GET",
+				resp:          "",
 			},
 			false,
 			"Unauthorized",
@@ -482,28 +447,25 @@ func TestMetadataAvailable(t *testing.T) {
 
 func TestMetadataIAMInfo_success(t *testing.T) {
 	cases := map[string]struct {
-		config        testConfig
+		config        testServer
 		expectedError string
 	}{
 		"Insecure server successful case": {
-			testConfig{
-				serverType: insecure,
-				path:       "/latest/meta-data/iam/info",
-				headers:    nil,
-				method:     "GET",
-				resp:       validIamInfo,
+			testServer{
+				serverType:    insecure,
+				returnedToken: nil,
+				httpMethod:    "GET",
+				resp:          validIamInfo,
 			},
 			"",
 		},
 		"Secure server successful case": {
-			testConfig{
-				serverType: secure,
-				path:       "/latest/meta-data/iam/info",
-				headers: map[string]string{
-					"x-aws-ec2-metadata-token": "token",
-				},
-				method: "GET",
-				resp:   validIamInfo,
+			testServer{
+				serverType:    secure,
+				returnedToken: []string{"token"},
+
+				httpMethod: "GET",
+				resp:       validIamInfo,
 			},
 			"",
 		},
@@ -534,27 +496,25 @@ func TestMetadataIAMInfo_success(t *testing.T) {
 
 func TestMetadataIAMInfo_failure(t *testing.T) {
 	cases := map[string]struct {
-		config        testConfig
+		config        testServer
 		expectedError string
 	}{
 		"Insecure server failure case": {
-			testConfig{
-				serverType: insecure,
-				path:       "/latest/meta-data/iam/info",
-				headers:    nil,
-				method:     "PUT",
-				resp:       unsuccessfulIamInfo,
+			testServer{
+				serverType:    insecure,
+				returnedToken: nil,
+				httpMethod:    "PUT",
+				resp:          unsuccessfulIamInfo,
 			},
 			"bad request",
 		},
 
 		"Secure server failure case": {
-			testConfig{
-				serverType: secure,
-				path:       "/latest/meta-data/iam/info",
-				headers:    nil,
-				method:     "GET",
-				resp:       unsuccessfulIamInfo,
+			testServer{
+				serverType:    secure,
+				returnedToken: nil,
+				httpMethod:    "GET",
+				resp:          unsuccessfulIamInfo,
 			},
 			"Unauthorized",
 		},
@@ -581,7 +541,6 @@ func TestMetadataIAMInfo_failure(t *testing.T) {
 	}
 }
 
-//
 func TestMetadataNotAvailable(t *testing.T) {
 	c := ec2metadata.New(unit.Session)
 	c.Handlers.Send.Clear()
@@ -624,31 +583,27 @@ func TestMetadataErrorResponse(t *testing.T) {
 //
 func TestEC2RoleProviderInstanceIdentity(t *testing.T) {
 	cases := map[string]struct {
-		config           testConfig
+		config           testServer
 		expectedResponse string
 		expectedError    string
 	}{
 		"Insecure server successful case": {
-			testConfig{
-				serverType: insecure,
-				path:       "/latest/dynamic/instance-identity/document",
-				headers:    nil,
-				method:     "GET",
-				resp:       instanceIdentityDocument,
+			testServer{
+				serverType:    insecure,
+				returnedToken: nil,
+				httpMethod:    "GET",
+				resp:          instanceIdentityDocument,
 			},
 			instanceIdentityDocument,
 			"",
 		},
 
 		"Secure server successful case": {
-			testConfig{
-				serverType: secure,
-				path:       "/latest/dynamic/instance-identity/document",
-				headers: map[string]string{
-					"x-aws-ec2-metadata-token": "token",
-				},
-				method: "GET",
-				resp:   instanceIdentityDocument,
+			testServer{
+				serverType:    secure,
+				returnedToken: []string{"token"},
+				httpMethod:    "GET",
+				resp:          instanceIdentityDocument,
 			},
 			instanceIdentityDocument,
 			"",
@@ -686,13 +641,13 @@ func TestEC2RoleProviderInstanceIdentity(t *testing.T) {
 }
 
 func TestTokenExpired(t *testing.T) {
+	var token = 100
 	mux := http.NewServeMux()
-
-	// returns a random token each time `/latest/api/token` endpoint is hit
 	mux.HandleFunc("/latest/api/token", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method == "PUT" && r.Header.Get("x-aws-ec2-metadata-token-ttl-seconds") != "" {
-			w.Header().Set("X-aws-ec2-metadata-token-ttl-seconds", "0")
-			w.Write([]byte(strconv.Itoa(rand.Intn(1000))))
+		if r.Method == "PUT" && r.Header.Get(ec2metadata.TTLHeader) != "" {
+			w.Header().Set(ec2metadata.TTLHeader, "0")
+			w.Write([]byte(strconv.Itoa(token)))
+			token++
 			return
 		}
 		http.Error(w, "bad request", http.StatusBadRequest)
@@ -700,7 +655,7 @@ func TestTokenExpired(t *testing.T) {
 
 	// meta-data endpoint for this test, just returns the token
 	mux.HandleFunc("/latest/meta-data/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(r.Header.Get("x-aws-ec2-metadata-token")))
+		w.Write([]byte(r.Header.Get(ec2metadata.TokenHeader)))
 	})
 
 	server := httptest.NewServer(mux)
@@ -716,12 +671,12 @@ func TestTokenExpired(t *testing.T) {
 
 func TestTokenAlive(t *testing.T) {
 	mux := http.NewServeMux()
-
-	// returns a random token each time `/latest/api/token` endpoint is hit
+	var token = 100
 	mux.HandleFunc("/latest/api/token", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method == "PUT" && r.Header.Get("x-aws-ec2-metadata-token-ttl-seconds") != "" {
-			w.Header().Set("X-aws-ec2-metadata-token-ttl-seconds", "200")
-			w.Write([]byte(strconv.Itoa(rand.Intn(1000))))
+		if r.Method == "PUT" && r.Header.Get(ec2metadata.TTLHeader) != "" {
+			w.Header().Set(ec2metadata.TTLHeader, "200")
+			w.Write([]byte(strconv.Itoa(token)))
+			token++
 			return
 		}
 		http.Error(w, "bad request", http.StatusBadRequest)
@@ -729,7 +684,7 @@ func TestTokenAlive(t *testing.T) {
 
 	// meta-data endpoint for this test, just returns the token
 	mux.HandleFunc("/latest/meta-data/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(r.Header.Get("x-aws-ec2-metadata-token")))
+		w.Write([]byte(r.Header.Get(ec2metadata.TokenHeader)))
 	})
 
 	server := httptest.NewServer(mux)
@@ -744,21 +699,13 @@ func TestTokenAlive(t *testing.T) {
 }
 
 func TestEC2MetadataRetryFailure(t *testing.T) {
-	var secureDataFlow bool
 	mux := http.NewServeMux()
 
-	// returns a random token each time `/latest/api/token` endpoint is hit
 	mux.HandleFunc("/latest/api/token", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method == "PUT" && r.Header.Get("x-aws-ec2-metadata-token-ttl-seconds") != "" {
-			w.Header().Set("X-aws-ec2-metadata-token-ttl-seconds", "200")
-			i := rand.Intn(40)
-			if i < 50 {
-				http.Error(w, "service unavailable", http.StatusServiceUnavailable)
-				t.Logf("%v received, retrying", http.StatusServiceUnavailable)
-				return
-			}
-			w.Write([]byte(strconv.Itoa(i)))
-			secureDataFlow = true
+		if r.Method == "PUT" && r.Header.Get(ec2metadata.TTLHeader) != "" {
+			w.Header().Set(ec2metadata.TTLHeader, "200")
+			http.Error(w, "service unavailable", http.StatusServiceUnavailable)
+			t.Logf("%v received, retrying", http.StatusServiceUnavailable)
 			return
 		}
 		http.Error(w, "bad request", http.StatusBadRequest)
@@ -766,7 +713,7 @@ func TestEC2MetadataRetryFailure(t *testing.T) {
 
 	// meta-data endpoint for this test, just returns the token
 	mux.HandleFunc("/latest/meta-data/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(r.Header.Get("x-aws-ec2-metadata-token")))
+		w.Write([]byte(r.Header.Get(ec2metadata.TokenHeader)))
 	})
 
 	server := httptest.NewServer(mux)
@@ -774,9 +721,6 @@ func TestEC2MetadataRetryFailure(t *testing.T) {
 	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
 	_, err := c.GetMetadata("some/path")
 
-	if secureDataFlow {
-		t.Errorf("Expected secure data flow to be %v, got %v", !secureDataFlow, secureDataFlow)
-	}
 	if err != nil {
 		t.Errorf("Expected none, got error %v", err)
 	}
@@ -784,20 +728,19 @@ func TestEC2MetadataRetryFailure(t *testing.T) {
 
 func TestEC2MetadataRandomRetries(t *testing.T) {
 	var secureDataFlow bool
+	var retry = true
 	mux := http.NewServeMux()
 
-	// returns a random token each time `/latest/api/token` endpoint is hit
 	mux.HandleFunc("/latest/api/token", func(w http.ResponseWriter, r *http.Request) {
-
-		if r.Method == "PUT" && r.Header.Get("x-aws-ec2-metadata-token-ttl-seconds") != "" {
-			w.Header().Set("X-aws-ec2-metadata-token-ttl-seconds", "200")
-			i := rand.Intn(10)
-			if i < 5 {
+		if r.Method == "PUT" && r.Header.Get(ec2metadata.TTLHeader) != "" {
+			w.Header().Set(ec2metadata.TTLHeader, "200")
+			for retry {
+				retry = false
 				http.Error(w, "service unavailable", http.StatusServiceUnavailable)
 				t.Logf("%v received, retrying", http.StatusServiceUnavailable)
 				return
 			}
-			w.Write([]byte(strconv.Itoa(i)))
+			w.Write([]byte("token"))
 			secureDataFlow = true
 			return
 		}
@@ -806,7 +749,7 @@ func TestEC2MetadataRandomRetries(t *testing.T) {
 
 	// meta-data endpoint for this test, just returns the token
 	mux.HandleFunc("/latest/meta-data/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(r.Header.Get("x-aws-ec2-metadata-token")))
+		w.Write([]byte(r.Header.Get(ec2metadata.TokenHeader)))
 	})
 
 	server := httptest.NewServer(mux)
@@ -825,8 +768,6 @@ func TestEC2MetadataRandomRetries(t *testing.T) {
 
 func TestTokenErrorWith400(t *testing.T) {
 	mux := http.NewServeMux()
-
-	// returns a random token each time `/latest/api/token` endpoint is hit
 	mux.HandleFunc("/latest/api/token", func(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "bad request", http.StatusBadRequest)
 	})
