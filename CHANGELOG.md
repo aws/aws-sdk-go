@@ -1,3 +1,13 @@
+Release v1.25.24 (2019-10-31)
+===
+
+### Service Client Updates
+* `service/amplify`: Updates service API and documentation
+* `service/s3`: Updates service API and examples
+  * S3 Inventory now supports a new field 'IntelligentTieringAccessTier' that reports the access tier (frequent or infrequent) of objects stored in Intelligent-Tiering storage class.
+* `service/support`: Updates service API, documentation, and paginators
+  * The status descriptions for TrustedAdvisorCheckRefreshStatus have been updated
+
 Release v1.25.23 (2019-10-30)
 ===
 

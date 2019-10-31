@@ -12,7 +12,7 @@
     "DeleteDomainAssociation": "<p> Deletes a DomainAssociation. </p>",
     "DeleteJob": "<p> Delete a job, for an Amplify branch, part of Amplify App. </p>",
     "DeleteWebhook": "<p> Deletes a webhook. </p>",
-    "GenerateAccessLogs": "<p> Retrieve website access logs for a specific time range via a pre-signed URL. Optionally, deliver the logs to a given S3 bucket. </p>",
+    "GenerateAccessLogs": "<p> Retrieve website access logs for a specific time range via a pre-signed URL. </p>",
     "GetApp": "<p> Retrieves an existing Amplify App by appId. </p>",
     "GetArtifactUrl": "<p> Retrieves artifact info that corresponds to a artifactId. </p>",
     "GetBranch": "<p> Retrieves a branch for an Amplify App. </p>",
@@ -122,12 +122,6 @@
         "GetArtifactUrlResult$artifactId": "<p> Unique Id for a artifact. </p>"
       }
     },
-    "ArtifactType": {
-      "base": null,
-      "refs": {
-        "ListArtifactsRequest$artifactType": "<p> Type for an artifact. </p>"
-      }
-    },
     "ArtifactUrl": {
       "base": null,
       "refs": {
@@ -178,6 +172,14 @@
         "App$autoBranchCreationPatterns": "<p> Automated branch creation glob patterns for the Amplify App. </p>",
         "CreateAppRequest$autoBranchCreationPatterns": "<p> Automated branch creation glob patterns for the Amplify App. </p>",
         "UpdateAppRequest$autoBranchCreationPatterns": "<p> Automated branch creation glob patterns for the Amplify App. </p>"
+      }
+    },
+    "BackendEnvironmentArn": {
+      "base": null,
+      "refs": {
+        "Branch$backendEnvironmentArn": "<p> ARN for a Backend Environment, part of an Amplify App. </p>",
+        "CreateBranchRequest$backendEnvironmentArn": "<p> ARN for a Backend Environment, part of an Amplify App. </p>",
+        "UpdateBranchRequest$backendEnvironmentArn": "<p> ARN for a Backend Environment, part of an Amplify App. </p>"
       }
     },
     "BadRequestException": {
@@ -540,9 +542,9 @@
     "EnableAutoSubDomain": {
       "base": null,
       "refs": {
-        "CreateDomainAssociationRequest$enableAutoSubDomain": "<p> Enables automated creation of Subdomains for branches. </p>",
-        "DomainAssociation$enableAutoSubDomain": "<p> Enables automated creation of Subdomains for branches. </p>",
-        "UpdateDomainAssociationRequest$enableAutoSubDomain": "<p> Enables automated creation of Subdomains for branches. </p>"
+        "CreateDomainAssociationRequest$enableAutoSubDomain": "<p> Enables automated creation of Subdomains for branches. (Currently not supported) </p>",
+        "DomainAssociation$enableAutoSubDomain": "<p> Enables automated creation of Subdomains for branches. (Currently not supported) </p>",
+        "UpdateDomainAssociationRequest$enableAutoSubDomain": "<p> Enables automated creation of Subdomains for branches. (Currently not supported) </p>"
       }
     },
     "EnableBasicAuth": {
@@ -684,7 +686,7 @@
       }
     },
     "GetBranchRequest": {
-      "base": "<p> Result structure for get branch request. </p>",
+      "base": "<p> Request structure for get branch request. </p>",
       "refs": {
       }
     },
@@ -944,6 +946,15 @@
       "base": "<p> Structure with Production Branch information. </p>",
       "refs": {
         "App$productionBranch": "<p> Structure with Production Branch information. </p>"
+      }
+    },
+    "PullRequestEnvironmentName": {
+      "base": null,
+      "refs": {
+        "AutoBranchCreationConfig$pullRequestEnvironmentName": "<p> The Amplify Environment name for the pull request. </p>",
+        "Branch$pullRequestEnvironmentName": "<p> The Amplify Environment name for the pull request. </p>",
+        "CreateBranchRequest$pullRequestEnvironmentName": "<p> The Amplify Environment name for the pull request. </p>",
+        "UpdateBranchRequest$pullRequestEnvironmentName": "<p> The Amplify Environment name for the pull request. </p>"
       }
     },
     "Repository": {
