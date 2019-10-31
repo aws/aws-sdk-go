@@ -606,10 +606,6 @@
       "type":"string",
       "max":255
     },
-    "ArtifactType":{
-      "type":"string",
-      "enum":["TEST"]
-    },
     "ArtifactUrl":{
       "type":"string",
       "max":1000
@@ -641,7 +637,8 @@
         "basicAuthCredentials":{"shape":"BasicAuthCredentials"},
         "enableBasicAuth":{"shape":"EnableBasicAuth"},
         "buildSpec":{"shape":"BuildSpec"},
-        "enablePullRequestPreview":{"shape":"EnablePullRequestPreview"}
+        "enablePullRequestPreview":{"shape":"EnablePullRequestPreview"},
+        "pullRequestEnvironmentName":{"shape":"PullRequestEnvironmentName"}
       }
     },
     "AutoBranchCreationPattern":{
@@ -652,6 +649,11 @@
     "AutoBranchCreationPatterns":{
       "type":"list",
       "member":{"shape":"AutoBranchCreationPattern"}
+    },
+    "BackendEnvironmentArn":{
+      "type":"string",
+      "max":1000,
+      "min":1
     },
     "BadRequestException":{
       "type":"structure",
@@ -709,8 +711,10 @@
         "ttl":{"shape":"TTL"},
         "associatedResources":{"shape":"AssociatedResources"},
         "enablePullRequestPreview":{"shape":"EnablePullRequestPreview"},
+        "pullRequestEnvironmentName":{"shape":"PullRequestEnvironmentName"},
         "destinationBranch":{"shape":"BranchName"},
-        "sourceBranch":{"shape":"BranchName"}
+        "sourceBranch":{"shape":"BranchName"},
+        "backendEnvironmentArn":{"shape":"BackendEnvironmentArn"}
       }
     },
     "BranchArn":{
@@ -807,7 +811,9 @@
         "buildSpec":{"shape":"BuildSpec"},
         "ttl":{"shape":"TTL"},
         "displayName":{"shape":"DisplayName"},
-        "enablePullRequestPreview":{"shape":"EnablePullRequestPreview"}
+        "enablePullRequestPreview":{"shape":"EnablePullRequestPreview"},
+        "pullRequestEnvironmentName":{"shape":"PullRequestEnvironmentName"},
+        "backendEnvironmentArn":{"shape":"BackendEnvironmentArn"}
       }
     },
     "CreateBranchResult":{
@@ -1464,7 +1470,6 @@
           "location":"uri",
           "locationName":"jobId"
         },
-        "artifactType":{"shape":"ArtifactType"},
         "nextToken":{
           "shape":"NextToken",
           "location":"querystring",
@@ -1672,6 +1677,10 @@
         "thumbnailUrl":{"shape":"ThumbnailUrl"},
         "branchName":{"shape":"BranchName"}
       }
+    },
+    "PullRequestEnvironmentName":{
+      "type":"string",
+      "max":20
     },
     "Repository":{
       "type":"string",
@@ -2054,7 +2063,9 @@
         "buildSpec":{"shape":"BuildSpec"},
         "ttl":{"shape":"TTL"},
         "displayName":{"shape":"DisplayName"},
-        "enablePullRequestPreview":{"shape":"EnablePullRequestPreview"}
+        "enablePullRequestPreview":{"shape":"EnablePullRequestPreview"},
+        "pullRequestEnvironmentName":{"shape":"PullRequestEnvironmentName"},
+        "backendEnvironmentArn":{"shape":"BackendEnvironmentArn"}
       }
     },
     "UpdateBranchResult":{
