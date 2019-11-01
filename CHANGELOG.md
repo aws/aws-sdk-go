@@ -1,3 +1,14 @@
+Release v1.25.25 (2019-11-01)
+===
+
+### Service Client Updates
+* `service/cloudtrail`: Updates service API, documentation, and paginators
+  * This release adds two new APIs, GetTrail and ListTrails, and support for adding tags when you create a trail by using a new TagsList parameter on CreateTrail operations.
+* `service/dms`: Updates service API and documentation
+  * This release contains task timeline attributes in replication task statistics. This release also adds a note to the documentation for the CdcStartPosition task request parameter. This note describes how to enable the use of native CDC start points for a PostgreSQL source by setting the new slotName extra connection attribute on the source endpoint to the name of an existing logical replication slot.
+* `service/pinpoint`: Updates service API and documentation
+  * This release of the Amazon Pinpoint API introduces support for using and managing journeys, and querying analytics data for journeys.
+
 Release v1.25.24 (2019-10-31)
 ===
 

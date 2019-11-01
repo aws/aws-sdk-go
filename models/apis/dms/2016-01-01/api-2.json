@@ -2014,7 +2014,12 @@
         "TablesLoaded":{"shape":"Integer"},
         "TablesLoading":{"shape":"Integer"},
         "TablesQueued":{"shape":"Integer"},
-        "TablesErrored":{"shape":"Integer"}
+        "TablesErrored":{"shape":"Integer"},
+        "FreshStartDate":{"shape":"TStamp"},
+        "StartDate":{"shape":"TStamp"},
+        "StopDate":{"shape":"TStamp"},
+        "FullLoadStartDate":{"shape":"TStamp"},
+        "FullLoadFinishDate":{"shape":"TStamp"}
       }
     },
     "ResourceAlreadyExistsFault":{

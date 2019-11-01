@@ -62,6 +62,7 @@
         {"shape":"InvalidCloudWatchLogsLogGroupArnException"},
         {"shape":"InvalidCloudWatchLogsRoleArnException"},
         {"shape":"CloudWatchLogsDeliveryUnavailableException"},
+        {"shape":"InvalidTagParameterException"},
         {"shape":"UnsupportedOperationException"},
         {"shape":"OperationNotPermittedException"},
         {"shape":"CloudTrailAccessNotEnabledException"},
@@ -121,6 +122,22 @@
       ],
       "idempotent":true
     },
+    "GetTrail":{
+      "name":"GetTrail",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetTrailRequest"},
+      "output":{"shape":"GetTrailResponse"},
+      "errors":[
+        {"shape":"TrailNotFoundException"},
+        {"shape":"InvalidTrailNameException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"OperationNotPermittedException"}
+      ],
+      "idempotent":true
+    },
     "GetTrailStatus":{
       "name":"GetTrailStatus",
       "http":{
@@ -167,6 +184,20 @@
         {"shape":"UnsupportedOperationException"},
         {"shape":"OperationNotPermittedException"},
         {"shape":"InvalidTokenException"}
+      ],
+      "idempotent":true
+    },
+    "ListTrails":{
+      "name":"ListTrails",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTrailsRequest"},
+      "output":{"shape":"ListTrailsResponse"},
+      "errors":[
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"OperationNotPermittedException"}
       ],
       "idempotent":true
     },
@@ -354,7 +385,8 @@
         "CloudWatchLogsLogGroupArn":{"shape":"String"},
         "CloudWatchLogsRoleArn":{"shape":"String"},
         "KmsKeyId":{"shape":"String"},
-        "IsOrganizationTrail":{"shape":"Boolean"}
+        "IsOrganizationTrail":{"shape":"Boolean"},
+        "TagsList":{"shape":"TagsList"}
       }
     },
     "CreateTrailResponse":{
@@ -461,6 +493,19 @@
       "members":{
         "TrailARN":{"shape":"String"},
         "EventSelectors":{"shape":"EventSelectors"}
+      }
+    },
+    "GetTrailRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"String"}
+      }
+    },
+    "GetTrailResponse":{
+      "type":"structure",
+      "members":{
+        "Trail":{"shape":"Trail"}
       }
     },
     "GetTrailStatusRequest":{
@@ -658,6 +703,19 @@
       "type":"structure",
       "members":{
         "ResourceTagList":{"shape":"ResourceTagList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListTrailsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListTrailsResponse":{
+      "type":"structure",
+      "members":{
+        "Trails":{"shape":"Trails"},
         "NextToken":{"shape":"String"}
       }
     },
@@ -910,6 +968,14 @@
       },
       "exception":true
     },
+    "TrailInfo":{
+      "type":"structure",
+      "members":{
+        "TrailARN":{"shape":"String"},
+        "Name":{"shape":"String"},
+        "HomeRegion":{"shape":"String"}
+      }
+    },
     "TrailList":{
       "type":"list",
       "member":{"shape":"Trail"}
@@ -929,6 +995,10 @@
       "members":{
       },
       "exception":true
+    },
+    "Trails":{
+      "type":"list",
+      "member":{"shape":"TrailInfo"}
     },
     "UnsupportedOperationException":{
       "type":"structure",
