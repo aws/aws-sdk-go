@@ -80,6 +80,10 @@ type PinpointAPI interface {
 	CreateImportJobWithContext(aws.Context, *pinpoint.CreateImportJobInput, ...request.Option) (*pinpoint.CreateImportJobOutput, error)
 	CreateImportJobRequest(*pinpoint.CreateImportJobInput) (*request.Request, *pinpoint.CreateImportJobOutput)
 
+	CreateJourney(*pinpoint.CreateJourneyInput) (*pinpoint.CreateJourneyOutput, error)
+	CreateJourneyWithContext(aws.Context, *pinpoint.CreateJourneyInput, ...request.Option) (*pinpoint.CreateJourneyOutput, error)
+	CreateJourneyRequest(*pinpoint.CreateJourneyInput) (*request.Request, *pinpoint.CreateJourneyOutput)
+
 	CreatePushTemplate(*pinpoint.CreatePushTemplateInput) (*pinpoint.CreatePushTemplateOutput, error)
 	CreatePushTemplateWithContext(aws.Context, *pinpoint.CreatePushTemplateInput, ...request.Option) (*pinpoint.CreatePushTemplateOutput, error)
 	CreatePushTemplateRequest(*pinpoint.CreatePushTemplateInput) (*request.Request, *pinpoint.CreatePushTemplateOutput)
@@ -143,6 +147,10 @@ type PinpointAPI interface {
 	DeleteGcmChannel(*pinpoint.DeleteGcmChannelInput) (*pinpoint.DeleteGcmChannelOutput, error)
 	DeleteGcmChannelWithContext(aws.Context, *pinpoint.DeleteGcmChannelInput, ...request.Option) (*pinpoint.DeleteGcmChannelOutput, error)
 	DeleteGcmChannelRequest(*pinpoint.DeleteGcmChannelInput) (*request.Request, *pinpoint.DeleteGcmChannelOutput)
+
+	DeleteJourney(*pinpoint.DeleteJourneyInput) (*pinpoint.DeleteJourneyOutput, error)
+	DeleteJourneyWithContext(aws.Context, *pinpoint.DeleteJourneyInput, ...request.Option) (*pinpoint.DeleteJourneyOutput, error)
+	DeleteJourneyRequest(*pinpoint.DeleteJourneyInput) (*request.Request, *pinpoint.DeleteJourneyOutput)
 
 	DeletePushTemplate(*pinpoint.DeletePushTemplateInput) (*pinpoint.DeletePushTemplateOutput, error)
 	DeletePushTemplateWithContext(aws.Context, *pinpoint.DeletePushTemplateInput, ...request.Option) (*pinpoint.DeletePushTemplateOutput, error)
@@ -272,6 +280,22 @@ type PinpointAPI interface {
 	GetImportJobsWithContext(aws.Context, *pinpoint.GetImportJobsInput, ...request.Option) (*pinpoint.GetImportJobsOutput, error)
 	GetImportJobsRequest(*pinpoint.GetImportJobsInput) (*request.Request, *pinpoint.GetImportJobsOutput)
 
+	GetJourney(*pinpoint.GetJourneyInput) (*pinpoint.GetJourneyOutput, error)
+	GetJourneyWithContext(aws.Context, *pinpoint.GetJourneyInput, ...request.Option) (*pinpoint.GetJourneyOutput, error)
+	GetJourneyRequest(*pinpoint.GetJourneyInput) (*request.Request, *pinpoint.GetJourneyOutput)
+
+	GetJourneyDateRangeKpi(*pinpoint.GetJourneyDateRangeKpiInput) (*pinpoint.GetJourneyDateRangeKpiOutput, error)
+	GetJourneyDateRangeKpiWithContext(aws.Context, *pinpoint.GetJourneyDateRangeKpiInput, ...request.Option) (*pinpoint.GetJourneyDateRangeKpiOutput, error)
+	GetJourneyDateRangeKpiRequest(*pinpoint.GetJourneyDateRangeKpiInput) (*request.Request, *pinpoint.GetJourneyDateRangeKpiOutput)
+
+	GetJourneyExecutionActivityMetrics(*pinpoint.GetJourneyExecutionActivityMetricsInput) (*pinpoint.GetJourneyExecutionActivityMetricsOutput, error)
+	GetJourneyExecutionActivityMetricsWithContext(aws.Context, *pinpoint.GetJourneyExecutionActivityMetricsInput, ...request.Option) (*pinpoint.GetJourneyExecutionActivityMetricsOutput, error)
+	GetJourneyExecutionActivityMetricsRequest(*pinpoint.GetJourneyExecutionActivityMetricsInput) (*request.Request, *pinpoint.GetJourneyExecutionActivityMetricsOutput)
+
+	GetJourneyExecutionMetrics(*pinpoint.GetJourneyExecutionMetricsInput) (*pinpoint.GetJourneyExecutionMetricsOutput, error)
+	GetJourneyExecutionMetricsWithContext(aws.Context, *pinpoint.GetJourneyExecutionMetricsInput, ...request.Option) (*pinpoint.GetJourneyExecutionMetricsOutput, error)
+	GetJourneyExecutionMetricsRequest(*pinpoint.GetJourneyExecutionMetricsInput) (*request.Request, *pinpoint.GetJourneyExecutionMetricsOutput)
+
 	GetPushTemplate(*pinpoint.GetPushTemplateInput) (*pinpoint.GetPushTemplateOutput, error)
 	GetPushTemplateWithContext(aws.Context, *pinpoint.GetPushTemplateInput, ...request.Option) (*pinpoint.GetPushTemplateOutput, error)
 	GetPushTemplateRequest(*pinpoint.GetPushTemplateInput) (*request.Request, *pinpoint.GetPushTemplateOutput)
@@ -315,6 +339,10 @@ type PinpointAPI interface {
 	GetVoiceChannel(*pinpoint.GetVoiceChannelInput) (*pinpoint.GetVoiceChannelOutput, error)
 	GetVoiceChannelWithContext(aws.Context, *pinpoint.GetVoiceChannelInput, ...request.Option) (*pinpoint.GetVoiceChannelOutput, error)
 	GetVoiceChannelRequest(*pinpoint.GetVoiceChannelInput) (*request.Request, *pinpoint.GetVoiceChannelOutput)
+
+	ListJourneys(*pinpoint.ListJourneysInput) (*pinpoint.ListJourneysOutput, error)
+	ListJourneysWithContext(aws.Context, *pinpoint.ListJourneysInput, ...request.Option) (*pinpoint.ListJourneysOutput, error)
+	ListJourneysRequest(*pinpoint.ListJourneysInput) (*request.Request, *pinpoint.ListJourneysOutput)
 
 	ListTagsForResource(*pinpoint.ListTagsForResourceInput) (*pinpoint.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *pinpoint.ListTagsForResourceInput, ...request.Option) (*pinpoint.ListTagsForResourceOutput, error)
@@ -407,6 +435,14 @@ type PinpointAPI interface {
 	UpdateGcmChannel(*pinpoint.UpdateGcmChannelInput) (*pinpoint.UpdateGcmChannelOutput, error)
 	UpdateGcmChannelWithContext(aws.Context, *pinpoint.UpdateGcmChannelInput, ...request.Option) (*pinpoint.UpdateGcmChannelOutput, error)
 	UpdateGcmChannelRequest(*pinpoint.UpdateGcmChannelInput) (*request.Request, *pinpoint.UpdateGcmChannelOutput)
+
+	UpdateJourney(*pinpoint.UpdateJourneyInput) (*pinpoint.UpdateJourneyOutput, error)
+	UpdateJourneyWithContext(aws.Context, *pinpoint.UpdateJourneyInput, ...request.Option) (*pinpoint.UpdateJourneyOutput, error)
+	UpdateJourneyRequest(*pinpoint.UpdateJourneyInput) (*request.Request, *pinpoint.UpdateJourneyOutput)
+
+	UpdateJourneyState(*pinpoint.UpdateJourneyStateInput) (*pinpoint.UpdateJourneyStateOutput, error)
+	UpdateJourneyStateWithContext(aws.Context, *pinpoint.UpdateJourneyStateInput, ...request.Option) (*pinpoint.UpdateJourneyStateOutput, error)
+	UpdateJourneyStateRequest(*pinpoint.UpdateJourneyStateInput) (*request.Request, *pinpoint.UpdateJourneyStateOutput)
 
 	UpdatePushTemplate(*pinpoint.UpdatePushTemplateInput) (*pinpoint.UpdatePushTemplateOutput, error)
 	UpdatePushTemplateWithContext(aws.Context, *pinpoint.UpdatePushTemplateInput, ...request.Option) (*pinpoint.UpdatePushTemplateOutput, error)
