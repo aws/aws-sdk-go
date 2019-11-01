@@ -12,6 +12,34 @@ import (
 	"github.com/aws/aws-sdk-go/internal/sdkuri"
 )
 
+func (c *EC2Metadata) getToken(duration string) (tokenOutput, error) {
+
+	op := &request.Operation{
+		Name:       "GetToken",
+		HTTPMethod: "PUT",
+		HTTPPath:   "/api/token",
+	}
+
+	var output tokenOutput
+	req := c.NewRequest(op, nil, &output)
+
+	// remove the fetch token handler from the request handlers to avoid infinite recursion
+	req.Handlers.Sign.RemoveByName(fetchTokenHandler)
+	req.Handlers.Unmarshal.Swap("unmarshalMetadataHandler", unmarshalTokenHandler)
+	defer req.Handlers.Unmarshal.Swap("unmarshalTokenHandler", unmarshalHandler)
+	req.HTTPRequest.Header.Set(TTLHeader,duration)
+
+	err := req.Send()
+
+	// Errors with bad request status should be returned.
+	if req.HTTPResponse.StatusCode == http.StatusBadRequest {
+		e := awserr.New(req.HTTPResponse.Status, "Fetch token failed", err)
+		err = awserr.NewRequestFailure(e, req.HTTPResponse.StatusCode, req.RequestID)
+	}
+
+	return output, err
+}
+
 // GetMetadata uses the path provided to request information from the EC2
 // instance metadata service. The content will be returned as a string, or
 // error if the request failed.

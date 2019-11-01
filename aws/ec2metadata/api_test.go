@@ -12,10 +12,12 @@ import (
 	"path"
 	"strconv"
 	"strings"
+	"sync"
 	"testing"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
+
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/ec2metadata"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
@@ -54,60 +56,98 @@ const unsuccessfulIamInfo = `{
 }`
 
 type testServer struct {
-	t             *testing.T
-	serverType    serverType
-	returnedToken []string
-	httpMethod    string
-	resp          string
+	t                          *testing.T
+	tokenProvider              *tokenAccessProvider
+	dataProvider               *dataAccessProvider
+	expectedTokens             []int
+	expectedTokenProviderError string
 }
 
-type serverType int
+type tokenAccessProvider struct {
+	token      int
+	HTTPMethod string
+}
 
-const (
-	insecure serverType = 0
-	secure   serverType = 1
-)
+type dataAccessProvider struct {
+	data       string
+	HTTPMethod string
+}
 
-func initServer(s testServer) *httptest.Server {
+func initSecureServer(s testServer) *httptest.Server {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/latest/api/token", s.tokenHandler)
-	mux.HandleFunc("/latest/", s.metadataHandler)
+	mux.HandleFunc("/latest/api/token", s.secureTokenHandler)
+	mux.HandleFunc("/latest/", s.secureMetadataHandler)
 	return httptest.NewServer(mux)
 }
 
-func (s testServer) tokenHandler(w http.ResponseWriter, r *http.Request) {
-	switch s.serverType {
-	case secure:
-		if r.Method == "PUT" && r.Header.Get(ec2metadata.TTLHeader) != "" {
-			w.Header().Set(ec2metadata.TTLHeader, r.Header.Get(ec2metadata.TTLHeader))
-			if len(s.returnedToken)!=0{
-				w.Write([]byte(s.returnedToken[0]))
-			}
-			return
-		}
-		http.Error(w, "bad request", http.StatusBadRequest)
-	default:
-		http.Error(w, "not found", http.StatusNotFound)
+func initInsecureServer(s testServer) *httptest.Server {
+	mux := http.NewServeMux()
+	mux.HandleFunc("/latest/api/token", s.insecureTokenHandler)
+	mux.HandleFunc("/latest/", s.insecureMetadataHandler)
+	return httptest.NewServer(mux)
+}
+
+func (s *testServer) insecureTokenHandler(w http.ResponseWriter, r *http.Request) {
+	s.t.Logf("Insecure token handler called \n")
+	http.Error(w, "not found", http.StatusNotFound)
+	if !strings.Contains("not found", s.expectedTokenProviderError) {
+		s.t.Errorf("Expected %v, got not found error \n", s.expectedTokenProviderError)
 	}
 }
 
-func (s testServer) metadataHandler(w http.ResponseWriter, r *http.Request) {
+func (s *testServer) insecureMetadataHandler(w http.ResponseWriter, r *http.Request) {
+	s.t.Logf("Insecure metadata handler called \n")
 
-	if r.Method != s.httpMethod {
+	if r.Method != s.dataProvider.HTTPMethod {
 		http.Error(w, "bad request", http.StatusBadRequest)
 		return
 	}
 
-	switch s.serverType {
-	case secure:
-		if r.Header.Get(ec2metadata.TokenHeader) == "token" {
-			w.Write([]byte(s.resp))
+	w.Write([]byte(s.dataProvider.data))
+}
+
+func (s *testServer) secureTokenHandler(w http.ResponseWriter, r *http.Request) {
+	s.t.Logf("Secure token handler called \n")
+	if r.Method != s.tokenProvider.HTTPMethod {
+		http.Error(w, "bad request", http.StatusBadRequest)
+		if !strings.Contains("bad request", s.expectedTokenProviderError) {
+			s.t.Errorf("Expected %v, got bad request error \n", s.expectedTokenProviderError)
+		}
+		return
+	}
+
+	if r.Header.Get(ec2metadata.TTLHeader) == "" {
+		http.Error(w, "TTL not set for token retrieval", http.StatusBadRequest)
+		if !strings.Contains("TTL not set for token retrieval", s.expectedTokenProviderError) {
+			s.t.Errorf("Expected %v, got TTL not set for token retrieval error \n", s.expectedTokenProviderError)
+		}
+		return
+	}
+
+	// increment token for each call to secure server for token
+	s.tokenProvider.token++
+
+	w.Header().Set(ec2metadata.TTLHeader, r.Header.Get(ec2metadata.TTLHeader))
+	w.Write([]byte(strconv.Itoa(s.tokenProvider.token)))
+}
+
+func (s *testServer) secureMetadataHandler(w http.ResponseWriter, r *http.Request) {
+	s.t.Logf("secure metadata handler called \n")
+
+	if r.Method != s.dataProvider.HTTPMethod {
+		http.Error(w, "bad request", http.StatusBadRequest)
+		return
+	}
+
+	if token := r.Header.Get(ec2metadata.TokenHeader); token != "" {
+		if i, ok := strconv.Atoi(token); ok == nil && i != s.expectedTokens[i-1] {
+			http.Error(w, "Unauthorized for an expired, invalid, or missing token header", http.StatusUnauthorized)
 			return
 		}
-		http.Error(w, "Unauthorized for an expired, invalid, or missing token header", http.StatusUnauthorized)
-	default: // insecure
-		w.Write([]byte(s.resp))
 	}
+
+	w.Header().Set(ec2metadata.TTLHeader, r.Header.Get(ec2metadata.TTLHeader))
+	w.Write([]byte(s.dataProvider.data))
 }
 
 func TestEndpoint(t *testing.T) {
@@ -129,69 +169,120 @@ func TestEndpoint(t *testing.T) {
 
 func TestGetMetadata(t *testing.T) {
 	cases := map[string]struct {
-		config           testServer
-		expectedResponse string
-		expectedError    string
+		s                         testServer
+		expectedDataResponse      string
+		expectedDataProviderError string
+		serverType                string
 	}{
 		"Insecure server success case": {
-			testServer{
-				t:             t,
-				returnedToken: nil,
-				httpMethod:    "GET",
-				resp:          "profile_name",
+			s: testServer{
+				t: t,
+				tokenProvider: &tokenAccessProvider{
+					token:      0,
+					HTTPMethod: "PUT",
+				},
+				dataProvider: &dataAccessProvider{
+					data:       "profile_name",
+					HTTPMethod: "GET",
+				},
+				expectedTokens:             []int{},
+				expectedTokenProviderError: "not found",
 			},
-			"profile_name",
-			"",
-		},
-		"Secure server success case": {
-			testServer{
-				serverType:    secure,
-				returnedToken: []string{"token"},
-				httpMethod:    "GET",
-				resp:          "profile_name", // real response includes suffix ,
-			},
-			"profile_name",
-			"",
+			expectedDataResponse:      "profile_name",
+			expectedDataProviderError: "",
+			serverType:                "insecure",
 		},
 		"Insecure server failure case": {
-			testServer{
-				returnedToken: nil,
-				httpMethod:    "PUT",
-				resp:          "",
+			s: testServer{
+				t: t,
+				tokenProvider: &tokenAccessProvider{
+					token:      0,
+					HTTPMethod: "PUT",
+				},
+				dataProvider: &dataAccessProvider{
+					data:       "profile_name",
+					HTTPMethod: "PUT",
+				},
+				expectedTokens:             []int{},
+				expectedTokenProviderError: "not found",
 			},
-			"",
-			"bad request",
+			expectedDataResponse:      "",
+			expectedDataProviderError: "bad request",
+			serverType:                "insecure",
+		},
+		"Secure server success case": {
+			s: testServer{
+				t: t,
+				tokenProvider: &tokenAccessProvider{
+					token:      0,
+					HTTPMethod: "PUT",
+				},
+				dataProvider: &dataAccessProvider{
+					data:       "profile_name",
+					HTTPMethod: "GET",
+				},
+				expectedTokens:             []int{1, 2, 3},
+				expectedTokenProviderError: "",
+			},
+			expectedDataResponse:      "profile_name",
+			expectedDataProviderError: "",
+			serverType:                "secure",
 		},
 		"Secure server failure case": {
-			testServer{
-				serverType:    secure,
-				returnedToken: []string{"invalid token"},
-				httpMethod:    "GET",
-				resp:          "", // real response includes suffix ,
+			s: testServer{
+				t: t,
+				tokenProvider: &tokenAccessProvider{
+					token:      0,
+					HTTPMethod: "PUT",
+				},
+				dataProvider: &dataAccessProvider{
+					data:       "profile_name",
+					HTTPMethod: "GET",
+				},
+				expectedTokens:             []int{0, 1, 2},
+				expectedTokenProviderError: "",
 			},
-			"",
-			"Unauthorized",
+			expectedDataResponse:      "",
+			expectedDataProviderError: "Unauthorized",
+			serverType:                "secure",
 		},
 	}
 
-	for name, in := range cases {
+	for name, x := range cases {
 		t.Run(name, func(t *testing.T) {
-			server := initServer(in.config)
+			var server *httptest.Server
+			// change this
+			if x.serverType == "insecure" {
+				server = initInsecureServer(x.s)
+			} else {
+				server = initSecureServer(x.s)
+			}
+
 			defer server.Close()
+
 			c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
 			resp, err := c.GetMetadata("some/path")
 
-			if err == nil && in.expectedError != "" {
-				t.Errorf("expect %v, got %v", in.expectedError, err)
+			// Set Token TTL to 0, this will reset the token, thus there should be a change in token
+			c.SetTokenTTL(0)
+			resp, err = c.GetMetadata("some/path")
+
+			// since earlier token was expires this should fetch new token
+			resp, err = c.GetMetadata("some/path")
+
+			if err != nil && x.expectedDataProviderError == "" {
+				t.Errorf("expected no error, got %v", err)
 			}
 
-			if e, a := in.expectedError, err; a != nil {
+			if e, a := x.expectedDataProviderError, err; a != nil {
 				if !strings.Contains(a.Error(), e) {
-					t.Errorf("expect %v, got %v", in.expectedError, err)
+					t.Errorf("expect %v, got %v", x.expectedDataProviderError, err)
 				}
+			} else if x.expectedDataProviderError != "" {
+				t.Errorf("expected %v, got none", x.expectedDataProviderError)
 			}
 
-			if e, a := in.expectedResponse, resp; e != a {
+			if e, a := x.expectedDataResponse, resp; e != a {
 				t.Errorf("expect %v, got %v", e, a)
 			}
 		})
@@ -200,72 +291,112 @@ func TestGetMetadata(t *testing.T) {
 
 func TestGetUserData(t *testing.T) {
 	cases := map[string]struct {
-		config           testServer
-		expectedResponse string
-		expectedError    string
+		s                         testServer
+		expectedDataResponse      string
+		expectedDataProviderError string
+		serverType                string
 	}{
-		"Insecure server successful case": {
-			testServer{
-				serverType:    insecure,
-				returnedToken: nil,
-				httpMethod:    "GET",
-				resp:          "user-data",
+		"Insecure server success case": {
+			s: testServer{
+				t: t,
+				tokenProvider: &tokenAccessProvider{
+					token:      0,
+					HTTPMethod: "PUT",
+				},
+				dataProvider: &dataAccessProvider{
+					data:       "user_data",
+					HTTPMethod: "GET",
+				},
+				expectedTokens:             []int{},
+				expectedTokenProviderError: "not found",
 			},
-			"user-data",
-			"",
-		},
-
-		"Secure server successful case": {
-			testServer{
-				serverType:    secure,
-				returnedToken: []string{"token"},
-				httpMethod:    "GET",
-				resp:          "user-data",
-			},
-			"user-data",
-			"",
+			expectedDataResponse:      "user_data",
+			expectedDataProviderError: "",
+			serverType:                "insecure",
 		},
 		"Insecure server failure case": {
-			testServer{
-				serverType:    insecure,
-				returnedToken: nil,
-				httpMethod:    "PUT",
-				resp:          "user-data",
+			s: testServer{
+				t: t,
+				tokenProvider: &tokenAccessProvider{
+					token:      0,
+					HTTPMethod: "PUT",
+				},
+				dataProvider: &dataAccessProvider{
+					data:       "user_data",
+					HTTPMethod: "PUT",
+				},
+				expectedTokens:             []int{},
+				expectedTokenProviderError: "not found",
 			},
-			"",
-			"bad request",
+			expectedDataResponse:      "",
+			expectedDataProviderError: "bad request",
+			serverType:                "insecure",
 		},
-
-		"Secure server failure case": {
-			testServer{
-				serverType:    secure,
-				returnedToken: nil,
-				httpMethod:    "GET",
-				resp:          "user-data",
+		"Secure server success case": {
+			s: testServer{
+				t: t,
+				tokenProvider: &tokenAccessProvider{
+					token:      0,
+					HTTPMethod: "PUT",
+				},
+				dataProvider: &dataAccessProvider{
+					data:       "user_data",
+					HTTPMethod: "GET",
+				},
+				expectedTokens:             []int{1},
+				expectedTokenProviderError: "",
 			},
-			"",
-			"Unauthorized",
+			expectedDataResponse:      "user_data",
+			expectedDataProviderError: "",
+			serverType:                "secure",
+		},
+		"Secure server failure case": {
+			s: testServer{
+				t: t,
+				tokenProvider: &tokenAccessProvider{
+					token:      0,
+					HTTPMethod: "PUT",
+				},
+				dataProvider: &dataAccessProvider{
+					data:       "user_data",
+					HTTPMethod: "GET",
+				},
+				expectedTokens:             []int{0},
+				expectedTokenProviderError: "",
+			},
+			expectedDataResponse:      "",
+			expectedDataProviderError: "Unauthorized",
+			serverType:                "secure",
 		},
 	}
-
-	for name, in := range cases {
+	for name, x := range cases {
 		t.Run(name, func(t *testing.T) {
-			server := initServer(in.config)
+			var server *httptest.Server
+			// change this
+			if x.serverType == "insecure" {
+				server = initInsecureServer(x.s)
+			} else {
+				server = initSecureServer(x.s)
+			}
+
 			defer server.Close()
+
 			c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
 			resp, err := c.GetUserData()
 
-			if err == nil && in.expectedError != "" {
-				t.Errorf("expect nil, got %v", in.expectedError)
+			if err != nil && x.expectedDataProviderError == "" {
+				t.Errorf("expected no error, got %v", err)
 			}
 
-			if e, a := in.expectedError, err; a != nil {
+			if e, a := x.expectedDataProviderError, err; a != nil {
 				if !strings.Contains(a.Error(), e) {
-					t.Errorf("expect %v, got %v", in.expectedError, err)
+					t.Errorf("expect %v, got %v", x.expectedDataProviderError, err)
 				}
+			} else if x.expectedDataProviderError != "" {
+				t.Errorf("expected %v, got none", x.expectedDataProviderError)
 			}
 
-			if e, a := in.expectedResponse, resp; e != a {
+			if e, a := x.expectedDataResponse, resp; e != a {
 				t.Errorf("expect %v, got %v", e, a)
 			}
 		})
@@ -311,72 +442,112 @@ func TestGetUserData_Error(t *testing.T) {
 
 func TestGetRegion(t *testing.T) {
 	cases := map[string]struct {
-		config           testServer
-		expectedResponse string
-		expectedError    string
+		s                         testServer
+		expectedDataResponse      string
+		expectedDataProviderError string
+		serverType                string
 	}{
-		"Insecure server successful case": {
-			testServer{
-				serverType:    insecure,
-				returnedToken: nil,
-				httpMethod:    "GET",
-				resp:          "us-west-2a",
+		"Insecure server success case": {
+			s: testServer{
+				t: t,
+				tokenProvider: &tokenAccessProvider{
+					token:      0,
+					HTTPMethod: "PUT",
+				},
+				dataProvider: &dataAccessProvider{
+					data:       "us-west-2a",
+					HTTPMethod: "GET",
+				},
+				expectedTokens:             []int{},
+				expectedTokenProviderError: "not found",
 			},
-			"us-west-2",
-			"",
-		},
-
-		"Secure server successful case": {
-			testServer{
-				serverType:    secure,
-				returnedToken: []string{"token"},
-				httpMethod:    "GET",
-				resp:          "us-west-2a",
-			},
-			"us-west-2",
-			"",
+			expectedDataResponse:      "us-west-2",
+			expectedDataProviderError: "",
+			serverType:                "insecure",
 		},
 		"Insecure server failure case": {
-			testServer{
-				serverType:    insecure,
-				returnedToken: nil,
-				httpMethod:    "PUT",
-				resp:          "us-west-2a",
+			s: testServer{
+				t: t,
+				tokenProvider: &tokenAccessProvider{
+					token:      0,
+					HTTPMethod: "PUT",
+				},
+				dataProvider: &dataAccessProvider{
+					data:       "us-west-2a",
+					HTTPMethod: "PUT",
+				},
+				expectedTokens:             []int{},
+				expectedTokenProviderError: "not found",
 			},
-			"",
-			"bad request",
+			expectedDataResponse:      "",
+			expectedDataProviderError: "bad request",
+			serverType:                "insecure",
 		},
-
-		"Secure server failure case": {
-			testServer{
-				serverType:    secure,
-				returnedToken: nil,
-				httpMethod:    "GET",
-				resp:          "us-west-2a",
+		"Secure server success case": {
+			s: testServer{
+				t: t,
+				tokenProvider: &tokenAccessProvider{
+					token:      0,
+					HTTPMethod: "PUT",
+				},
+				dataProvider: &dataAccessProvider{
+					data:       "us-west-2a",
+					HTTPMethod: "GET",
+				},
+				expectedTokens:             []int{1},
+				expectedTokenProviderError: "",
 			},
-			"",
-			"Unauthorized",
+			expectedDataResponse:      "us-west-2",
+			expectedDataProviderError: "",
+			serverType:                "secure",
+		},
+		"Secure server failure case": {
+			s: testServer{
+				t: t,
+				tokenProvider: &tokenAccessProvider{
+					token:      0,
+					HTTPMethod: "PUT",
+				},
+				dataProvider: &dataAccessProvider{
+					data:       "us-west-2a",
+					HTTPMethod: "GET",
+				},
+				expectedTokens:             []int{0},
+				expectedTokenProviderError: "",
+			},
+			expectedDataResponse:      "",
+			expectedDataProviderError: "Unauthorized",
+			serverType:                "secure",
 		},
 	}
-
-	for name, in := range cases {
+	for name, x := range cases {
 		t.Run(name, func(t *testing.T) {
-			server := initServer(in.config)
+			var server *httptest.Server
+			// change this
+			if x.serverType == "insecure" {
+				server = initInsecureServer(x.s)
+			} else {
+				server = initSecureServer(x.s)
+			}
+
 			defer server.Close()
+
 			c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
-			region, err := c.Region()
+			resp, err := c.Region()
 
-			if err == nil && in.expectedError != "" {
-				t.Errorf("expect nil, got %v", in.expectedError)
+			if err != nil && x.expectedDataProviderError == "" {
+				t.Errorf("expected no error, got %v", err)
 			}
 
-			if e, a := in.expectedError, err; a != nil {
+			if e, a := x.expectedDataProviderError, err; a != nil {
 				if !strings.Contains(a.Error(), e) {
-					t.Errorf("expect %v, got %v", in.expectedError, err)
+					t.Errorf("expect %v, got %v", x.expectedDataProviderError, err)
 				}
+			} else if x.expectedDataProviderError != "" {
+				t.Errorf("expected %v, got none", x.expectedDataProviderError)
 			}
 
-			if e, a := in.expectedResponse, region; e != a {
+			if e, a := x.expectedDataResponse, resp; e != a {
 				t.Errorf("expect %v, got %v", e, a)
 			}
 		})
@@ -385,61 +556,94 @@ func TestGetRegion(t *testing.T) {
 
 func TestMetadataAvailable(t *testing.T) {
 	cases := map[string]struct {
-		config           testServer
-		expectedResponse bool
-		expectedError    string
+		s                    testServer
+		expectedDataResponse bool
+		serverType           string
 	}{
-		"Insecure server successful case": {
-			testServer{
-				serverType:    insecure,
-				returnedToken: nil,
-				httpMethod:    "GET",
-				resp:          "instance-id",
+		"Insecure server success case": {
+			s: testServer{
+				t: t,
+				tokenProvider: &tokenAccessProvider{
+					token:      0,
+					HTTPMethod: "PUT",
+				},
+				dataProvider: &dataAccessProvider{
+					data:       "instance-id",
+					HTTPMethod: "GET",
+				},
+				expectedTokens:             []int{},
+				expectedTokenProviderError: "not found",
 			},
-			true,
-			"",
-		},
-
-		"Secure server successful case": {
-			testServer{
-				serverType:    secure,
-				returnedToken: []string{"token"},
-				httpMethod:    "GET",
-				resp:          "instance-id",
-			},
-			true,
-			"",
+			expectedDataResponse: true,
+			serverType:           "insecure",
 		},
 		"Insecure server failure case": {
-			testServer{
-				serverType:    insecure,
-				returnedToken: nil,
-				httpMethod:    "PUT",
-				resp:          "",
+			s: testServer{
+				t: t,
+				tokenProvider: &tokenAccessProvider{
+					token:      0,
+					HTTPMethod: "PUT",
+				},
+				dataProvider: &dataAccessProvider{
+					data:       "instance-id",
+					HTTPMethod: "PUT",
+				},
+				expectedTokens:             []int{},
+				expectedTokenProviderError: "not found",
 			},
-			false,
-			"bad request",
+			expectedDataResponse: false,
+			serverType:           "insecure",
 		},
-
-		"Secure server failure case": {
-			testServer{
-				serverType:    secure,
-				returnedToken: nil,
-				httpMethod:    "GET",
-				resp:          "",
+		"Secure server success case": {
+			s: testServer{
+				t: t,
+				tokenProvider: &tokenAccessProvider{
+					token:      0,
+					HTTPMethod: "PUT",
+				},
+				dataProvider: &dataAccessProvider{
+					data:       "instance-id",
+					HTTPMethod: "GET",
+				},
+				expectedTokens:             []int{1},
+				expectedTokenProviderError: "",
 			},
-			false,
-			"Unauthorized",
+			expectedDataResponse: true,
+			serverType:           "secure",
+		},
+		"Secure server failure case": {
+			s: testServer{
+				t: t,
+				tokenProvider: &tokenAccessProvider{
+					token:      0,
+					HTTPMethod: "PUT",
+				},
+				dataProvider: &dataAccessProvider{
+					data:       "instance-id",
+					HTTPMethod: "GET",
+				},
+				expectedTokens:             []int{0},
+				expectedTokenProviderError: "",
+			},
+			expectedDataResponse: false,
+			serverType:           "secure",
 		},
 	}
-
-	for name, in := range cases {
+	for name, x := range cases {
 		t.Run(name, func(t *testing.T) {
-			server := initServer(in.config)
+			var server *httptest.Server
+			// change this
+			if x.serverType == "insecure" {
+				server = initInsecureServer(x.s)
+			} else {
+				server = initSecureServer(x.s)
+			}
+
 			defer server.Close()
+
 			c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
-			if e, a := in.expectedResponse, c.Available(); e != a {
-				t.Errorf("expect availability as %v, got %v", e, a)
+			if e, a := x.expectedDataResponse, c.Available(); e != a {
+				t.Errorf("expect availability to be %v, got %v \n", e, a)
 			}
 		})
 	}
@@ -447,34 +651,60 @@ func TestMetadataAvailable(t *testing.T) {
 
 func TestMetadataIAMInfo_success(t *testing.T) {
 	cases := map[string]struct {
-		config        testServer
-		expectedError string
+		s                         testServer
+		expectedDataResponse      string
+		expectedDataProviderError string
+		serverType                string
 	}{
-		"Insecure server successful case": {
-			testServer{
-				serverType:    insecure,
-				returnedToken: nil,
-				httpMethod:    "GET",
-				resp:          validIamInfo,
+		"Insecure server success case": {
+			s: testServer{
+				t: t,
+				tokenProvider: &tokenAccessProvider{
+					token:      0,
+					HTTPMethod: "PUT",
+				},
+				dataProvider: &dataAccessProvider{
+					data:       validIamInfo,
+					HTTPMethod: "GET",
+				},
+				expectedTokens:             []int{},
+				expectedTokenProviderError: "not found",
 			},
-			"",
+			expectedDataResponse:      validIamInfo,
+			expectedDataProviderError: "",
+			serverType:                "insecure",
 		},
-		"Secure server successful case": {
-			testServer{
-				serverType:    secure,
-				returnedToken: []string{"token"},
-
-				httpMethod: "GET",
-				resp:       validIamInfo,
+		"Secure server success case": {
+			s: testServer{
+				t: t,
+				tokenProvider: &tokenAccessProvider{
+					token:      0,
+					HTTPMethod: "PUT",
+				},
+				dataProvider: &dataAccessProvider{
+					data:       validIamInfo,
+					HTTPMethod: "GET",
+				},
+				expectedTokens:             []int{1},
+				expectedTokenProviderError: "",
 			},
-			"",
+			expectedDataResponse:      validIamInfo,
+			expectedDataProviderError: "",
+			serverType:                "secure",
 		},
 	}
-
-	for name, in := range cases {
+	for name, x := range cases {
 		t.Run(name, func(t *testing.T) {
-			server := initServer(in.config)
+			var server *httptest.Server
+			// change this
+			if x.serverType == "insecure" {
+				server = initInsecureServer(x.s)
+			} else {
+				server = initSecureServer(x.s)
+			}
+
 			defer server.Close()
+
 			c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
 			iamInfo, err := c.IAMInfo()
 			if err != nil {
@@ -491,38 +721,64 @@ func TestMetadataIAMInfo_success(t *testing.T) {
 			}
 		})
 	}
-
 }
 
 func TestMetadataIAMInfo_failure(t *testing.T) {
 	cases := map[string]struct {
-		config        testServer
-		expectedError string
+		s                         testServer
+		expectedDataResponse      string
+		expectedDataProviderError string
+		serverType                string
 	}{
 		"Insecure server failure case": {
-			testServer{
-				serverType:    insecure,
-				returnedToken: nil,
-				httpMethod:    "PUT",
-				resp:          unsuccessfulIamInfo,
+			s: testServer{
+				t: t,
+				tokenProvider: &tokenAccessProvider{
+					token:      0,
+					HTTPMethod: "PUT",
+				},
+				dataProvider: &dataAccessProvider{
+					data:       unsuccessfulIamInfo,
+					HTTPMethod: "GET",
+				},
+				expectedTokens:             []int{},
+				expectedTokenProviderError: "not found",
 			},
-			"bad request",
+			expectedDataResponse:      unsuccessfulIamInfo,
+			expectedDataProviderError: "",
+			serverType:                "insecure",
 		},
-
 		"Secure server failure case": {
-			testServer{
-				serverType:    secure,
-				returnedToken: nil,
-				httpMethod:    "GET",
-				resp:          unsuccessfulIamInfo,
+			s: testServer{
+				t: t,
+				tokenProvider: &tokenAccessProvider{
+					token:      0,
+					HTTPMethod: "PUT",
+				},
+				dataProvider: &dataAccessProvider{
+					data:       unsuccessfulIamInfo,
+					HTTPMethod: "GET",
+				},
+				expectedTokens:             []int{1},
+				expectedTokenProviderError: "",
 			},
-			"Unauthorized",
+			expectedDataResponse:      unsuccessfulIamInfo,
+			expectedDataProviderError: "",
+			serverType:                "secure",
 		},
 	}
-	for name, in := range cases {
+	for name, x := range cases {
 		t.Run(name, func(t *testing.T) {
-			server := initServer(in.config)
+			var server *httptest.Server
+			// change this
+			if x.serverType == "insecure" {
+				server = initInsecureServer(x.s)
+			} else {
+				server = initSecureServer(x.s)
+			}
+
 			defer server.Close()
+
 			c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
 			iamInfo, err := c.IAMInfo()
 			if err == nil {
@@ -580,53 +836,68 @@ func TestMetadataErrorResponse(t *testing.T) {
 	}
 }
 
-//
 func TestEC2RoleProviderInstanceIdentity(t *testing.T) {
 	cases := map[string]struct {
-		config           testServer
-		expectedResponse string
-		expectedError    string
+		s                         testServer
+		expectedDataResponse      string
+		expectedDataProviderError string
+		serverType                string
 	}{
-		"Insecure server successful case": {
-			testServer{
-				serverType:    insecure,
-				returnedToken: nil,
-				httpMethod:    "GET",
-				resp:          instanceIdentityDocument,
+		"Insecure server success case": {
+			s: testServer{
+				t: t,
+				tokenProvider: &tokenAccessProvider{
+					token:      0,
+					HTTPMethod: "PUT",
+				},
+				dataProvider: &dataAccessProvider{
+					data:       instanceIdentityDocument,
+					HTTPMethod: "GET",
+				},
+				expectedTokens:             []int{},
+				expectedTokenProviderError: "not found",
 			},
-			instanceIdentityDocument,
-			"",
+			expectedDataResponse:      instanceIdentityDocument,
+			expectedDataProviderError: "",
+			serverType:                "insecure",
 		},
-
-		"Secure server successful case": {
-			testServer{
-				serverType:    secure,
-				returnedToken: []string{"token"},
-				httpMethod:    "GET",
-				resp:          instanceIdentityDocument,
+		"Secure server success case": {
+			s: testServer{
+				t: t,
+				tokenProvider: &tokenAccessProvider{
+					token:      0,
+					HTTPMethod: "PUT",
+				},
+				dataProvider: &dataAccessProvider{
+					data:       instanceIdentityDocument,
+					HTTPMethod: "GET",
+				},
+				expectedTokens:             []int{1},
+				expectedTokenProviderError: "",
 			},
-			instanceIdentityDocument,
-			"",
+			expectedDataResponse:      instanceIdentityDocument,
+			expectedDataProviderError: "",
+			serverType:                "secure",
 		},
 	}
-
-	for name, in := range cases {
+	for name, x := range cases {
 		t.Run(name, func(t *testing.T) {
-			server := initServer(in.config)
+			var server *httptest.Server
+			// change this
+			if x.serverType == "insecure" {
+				server = initInsecureServer(x.s)
+			} else {
+				server = initSecureServer(x.s)
+			}
+
 			defer server.Close()
+
 			c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
 			doc, err := c.GetInstanceIdentityDocument()
 
-			if err == nil && in.expectedError != "" {
-				t.Errorf("expect nil, got %v", in.expectedError)
+			if err != nil {
+				t.Errorf("Expected no error, got %v \n", err)
 			}
-
-			if e, a := in.expectedError, err; a != nil {
-				if !strings.Contains(a.Error(), e) {
-					t.Errorf("expect %v, got %v", in.expectedError, err)
-				}
-			}
-
 			if e, a := doc.AccountID, "123456789012"; e != a {
 				t.Errorf("expect %v, got %v", e, a)
 			}
@@ -726,7 +997,7 @@ func TestEC2MetadataRetryFailure(t *testing.T) {
 	}
 }
 
-func TestEC2MetadataRandomRetries(t *testing.T) {
+func TestEC2MetadataRetryOnce(t *testing.T) {
 	var secureDataFlow bool
 	var retry = true
 	mux := http.NewServeMux()
@@ -789,4 +1060,37 @@ func TestTokenErrorWith400(t *testing.T) {
 	if resp == "token" {
 		t.Errorf("Expected empty response, got %v", resp)
 	}
+}
+
+func TestEC2Metadata_Concurrency(t *testing.T) {
+	mux := http.NewServeMux()
+	mux.HandleFunc("/latest/api/token", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("token"))
+	})
+
+	// meta-data endpoint for this test, just returns the token
+	mux.HandleFunc("/latest/meta-data/", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("profile_name"))
+	})
+
+	server := httptest.NewServer(mux)
+	defer server.Close()
+	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+
+	var wg sync.WaitGroup
+	wg.Add(10)
+	for i := 0; i < 10; i++ {
+		go func() {
+			resp, err := c.GetMetadata("some/data")
+			if err != nil  {
+				t.Errorf("expect no error, got %v", err)
+			}
+
+			if e, a := "profile_name", resp; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+			wg.Done()
+		}()
+	}
+	wg.Wait()
 }
