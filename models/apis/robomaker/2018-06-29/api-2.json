@@ -978,7 +978,8 @@
       "members":{
         "concurrentDeploymentPercentage":{"shape":"Percentage"},
         "failureThresholdPercentage":{"shape":"Percentage"},
-        "robotDeploymentTimeoutInSeconds":{"shape":"DeploymentTimeout"}
+        "robotDeploymentTimeoutInSeconds":{"shape":"DeploymentTimeout"},
+        "downloadConditionFile":{"shape":"S3Object"}
       }
     },
     "DeploymentJob":{
@@ -1013,6 +1014,7 @@
         "PreLaunchFileFailure",
         "PostLaunchFileFailure",
         "BadPermissionError",
+        "DownloadConditionFailed",
         "InternalServerError"
       ]
     },
@@ -1680,6 +1682,7 @@
       "enum":[
         "Validating",
         "DownloadingExtracting",
+        "ExecutingDownloadCondition",
         "ExecutingPreLaunch",
         "Launching",
         "ExecutingPostLaunch",
@@ -1759,6 +1762,18 @@
       "member":{"shape":"S3Key"},
       "max":100,
       "min":1
+    },
+    "S3Object":{
+      "type":"structure",
+      "required":[
+        "bucket",
+        "key"
+      ],
+      "members":{
+        "bucket":{"shape":"S3Bucket"},
+        "key":{"shape":"S3Key"},
+        "etag":{"shape":"S3Etag"}
+      }
     },
     "SecurityGroups":{
       "type":"list",

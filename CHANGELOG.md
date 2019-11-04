@@ -1,3 +1,13 @@
+Release v1.25.26 (2019-11-04)
+===
+
+### Service Client Updates
+* `service/dax`: Updates service documentation
+  * Documentation updates for dax
+* `service/ec2`: Updates service API and documentation
+  * Documentation updates for ec2
+* `service/robomaker`: Updates service API and documentation
+
 Release v1.25.25 (2019-11-01)
 ===
 
