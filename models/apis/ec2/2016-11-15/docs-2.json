@@ -69,14 +69,14 @@
     "CreateRouteTable": "<p>Creates a route table for the specified VPC. After you create a route table, you can add routes and associate the table with a subnet.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html\">Route Tables</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "CreateSecurityGroup": "<p>Creates a security group.</p> <p>A security group acts as a virtual firewall for your instance to control inbound and outbound traffic. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html\">Amazon EC2 Security Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i> and <a href=\"https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html\">Security Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p> <p>When you create a security group, you specify a friendly name of your choice. You can have a security group for use in EC2-Classic with the same name as a security group for use in a VPC. However, you can't have two security groups for use in EC2-Classic with the same name or two security groups for use in a VPC with the same name.</p> <p>You have a default security group for use in EC2-Classic and a default security group for use in your VPC. If you don't specify a security group when you launch an instance, the instance is launched into the appropriate default security group. A default security group includes a default rule that grants instances unrestricted network access to each other.</p> <p>You can add or remove rules from your security groups using <a>AuthorizeSecurityGroupIngress</a>, <a>AuthorizeSecurityGroupEgress</a>, <a>RevokeSecurityGroupIngress</a>, and <a>RevokeSecurityGroupEgress</a>.</p> <p>For more information about VPC security group limits, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html\">Amazon VPC Limits</a>.</p>",
     "CreateSnapshot": "<p>Creates a snapshot of an EBS volume and stores it in Amazon S3. You can use snapshots for backups, to make copies of EBS volumes, and to save data before shutting down an instance.</p> <p>When a snapshot is created, any AWS Marketplace product codes that are associated with the source volume are propagated to the snapshot.</p> <p>You can take a snapshot of an attached volume that is in use. However, snapshots only capture data that has been written to your EBS volume at the time the snapshot command is issued; this may exclude any data that has been cached by any applications or the operating system. If you can pause any file systems on the volume long enough to take a snapshot, your snapshot should be complete. However, if you cannot pause all file writes to the volume, you should unmount the volume from within the instance, issue the snapshot command, and then remount the volume to ensure a consistent and complete snapshot. You may remount and use your volume while the snapshot status is <code>pending</code>.</p> <p>To create a snapshot for EBS volumes that serve as root devices, you should stop the instance before taking the snapshot.</p> <p>Snapshots that are taken from encrypted volumes are automatically encrypted. Volumes that are created from encrypted snapshots are also automatically encrypted. Your encrypted volumes and any associated snapshots always remain protected.</p> <p>You can tag your snapshots during creation. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">Tagging Your Amazon EC2 Resources</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html\">Amazon Elastic Block Store</a> and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
-    "CreateSnapshots": "<p>Creates crash-consistent snapshots of multiple EBS volumes and stores the data in S3. Volumes are chosen by specifying an instance. Any attached volumes will produce one snapshot each that is crash-consistent across the instance. Boot volumes can be excluded by changing the paramaters. </p>",
+    "CreateSnapshots": "<p>Creates crash-consistent snapshots of multiple EBS volumes and stores the data in S3. Volumes are chosen by specifying an instance. Any attached volumes will produce one snapshot each that is crash-consistent across the instance. Boot volumes can be excluded by changing the parameters. </p>",
     "CreateSpotDatafeedSubscription": "<p>Creates a data feed for Spot Instances, enabling you to view Spot Instance usage logs. You can create one data feed per AWS account. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html\">Spot Instance Data Feed</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p>",
     "CreateSubnet": "<p>Creates a subnet in an existing VPC.</p> <p>When you create each subnet, you provide the VPC ID and IPv4 CIDR block for the subnet. After you create a subnet, you can't change its CIDR block. The size of the subnet's IPv4 CIDR block can be the same as a VPC's IPv4 CIDR block, or a subset of a VPC's IPv4 CIDR block. If you create more than one subnet in a VPC, the subnets' CIDR blocks must not overlap. The smallest IPv4 subnet (and VPC) you can create uses a /28 netmask (16 IPv4 addresses), and the largest uses a /16 netmask (65,536 IPv4 addresses).</p> <p>If you've associated an IPv6 CIDR block with your VPC, you can create a subnet with an IPv6 CIDR block that uses a /64 prefix length. </p> <important> <p>AWS reserves both the first four and the last IPv4 address in each subnet's CIDR block. They're not available for use.</p> </important> <p>If you add more than one subnet to a VPC, they're set up in a star topology with a logical router in the middle.</p> <p>If you launch an instance in a VPC using an Amazon EBS-backed AMI, the IP address doesn't change if you stop and restart the instance (unlike a similar instance launched outside a VPC, which gets a new IP address when restarted). It's therefore possible to have a subnet with no running instances (they're all stopped), but no remaining IP addresses available.</p> <p>For more information about subnets, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html\">Your VPC and Subnets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "CreateTags": "<p>Adds or overwrites the specified tags for the specified Amazon EC2 resource or resources. Each resource can have a maximum of 50 tags. Each tag consists of a key and optional value. Tag keys must be unique per resource.</p> <p>For more information about tags, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">Tagging Your Resources</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. For more information about creating IAM policies that control users' access to resources based on tags, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-iam-actions-resources.html\">Supported Resource-Level Permissions for Amazon EC2 API Actions</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
-    "CreateTrafficMirrorFilter": "<p>Creates a Traffic Mirror filter.</p> <p>A Traffic Mirror filter is a set of rules that defines the traffic to mirror.</p> <p>By default, no traffic is mirrored. To mirror traffic, use <a>CreateTrafficMirrorFilterRule</a> to add Traffic Mirror rules to the filter. The rules you add define what traffic gets mirrored. You can also use <a>ModifyTrafficMirrorFilterNetworkServices</a> to mirror supported network services.</p>",
-    "CreateTrafficMirrorFilterRule": "<p>Creates a Traffic Mirror rule. </p> <p>A Traffic Mirror rule defines the Traffic Mirror source traffic to mirror.</p> <p>You need the Traffic Mirror filter ID when you create the rule.</p>",
-    "CreateTrafficMirrorSession": "<p>Creates a Traffic Mirror session.</p> <p>A Traffic Mirror session actively copies packets from a Traffic Mirror source to a Traffic Mirror target. Create a filter, and then assign it to the session to define a subset of the traffic to mirror, for example all TCP traffic.</p> <p>The Traffic Mirror source and the Traffic Mirror target (monitoring appliances) can be in the same VPC, or in a different VPC connected via VPC peering or a transit gateway. </p> <p>By default, no traffic is mirrored. Use <a>CreateTrafficMirrorFilter</a> to create filter rules that specify the traffic to mirror.</p>",
-    "CreateTrafficMirrorTarget": "<p>Creates a target for your Traffic Mirror session.</p> <p>A Traffic Mirror target is the destination for mirrored traffic. The Traffic Mirror source and the Traffic Mirror target (monitoring appliances) can be in the same VPC, or in different VPCs connected via VPC peering or a transit gateway.</p> <p>A Traffic Mirror target can be a network interface, or a Network Load Balancer.</p> <p>To use the target in a Traffic Mirror session, use <a>CreateTrafficMirrorSession</a>.</p>",
+    "CreateTrafficMirrorFilter": "<p>Creates a Traffic Mirror filter.</p> <p>A Traffic Mirror filter is a set of rules that defines the traffic to mirror.</p> <p>By default, no traffic is mirrored. To mirror traffic, use <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTrafficMirrorFilterRule.htm\">CreateTrafficMirrorFilterRule</a> to add Traffic Mirror rules to the filter. The rules you add define what traffic gets mirrored. You can also use <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyTrafficMirrorFilterNetworkServices.html\">ModifyTrafficMirrorFilterNetworkServices</a> to mirror supported network services.</p>",
+    "CreateTrafficMirrorFilterRule": "<p>Creates a Traffic Mirror filter rule. </p> <p>A Traffic Mirror rule defines the Traffic Mirror source traffic to mirror.</p> <p>You need the Traffic Mirror filter ID when you create the rule.</p>",
+    "CreateTrafficMirrorSession": "<p>Creates a Traffic Mirror session.</p> <p>A Traffic Mirror session actively copies packets from a Traffic Mirror source to a Traffic Mirror target. Create a filter, and then assign it to the session to define a subset of the traffic to mirror, for example all TCP traffic.</p> <p>The Traffic Mirror source and the Traffic Mirror target (monitoring appliances) can be in the same VPC, or in a different VPC connected via VPC peering or a transit gateway. </p> <p>By default, no traffic is mirrored. Use <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTrafficMirrorFilter.htm\">CreateTrafficMirrorFilter</a> to create filter rules that specify the traffic to mirror.</p>",
+    "CreateTrafficMirrorTarget": "<p>Creates a target for your Traffic Mirror session.</p> <p>A Traffic Mirror target is the destination for mirrored traffic. The Traffic Mirror source and the Traffic Mirror target (monitoring appliances) can be in the same VPC, or in different VPCs connected via VPC peering or a transit gateway.</p> <p>A Traffic Mirror target can be a network interface, or a Network Load Balancer.</p> <p>To use the target in a Traffic Mirror session, use <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTrafficMirrorSession.htm\">CreateTrafficMirrorSession</a>.</p>",
     "CreateTransitGateway": "<p>Creates a transit gateway.</p> <p>You can use a transit gateway to interconnect your virtual private clouds (VPC) and on-premises networks. After the transit gateway enters the <code>available</code> state, you can attach your VPCs and VPN connections to the transit gateway.</p> <p>To attach your VPCs, use <a>CreateTransitGatewayVpcAttachment</a>.</p> <p>To attach a VPN connection, use <a>CreateCustomerGateway</a> to create a customer gateway and specify the ID of the customer gateway and the ID of the transit gateway in a call to <a>CreateVpnConnection</a>.</p> <p>When you create a transit gateway, we create a default transit gateway route table and use it as the default association route table and the default propagation route table. You can use <a>CreateTransitGatewayRouteTable</a> to create additional transit gateway route tables. If you disable automatic route propagation, we do not create a default transit gateway route table. You can use <a>EnableTransitGatewayRouteTablePropagation</a> to propagate routes from a resource attachment to a transit gateway route table. If you disable automatic associations, you can use <a>AssociateTransitGatewayRouteTable</a> to associate a resource attachment with a transit gateway route table.</p>",
     "CreateTransitGatewayRoute": "<p>Creates a static route for the specified transit gateway route table.</p>",
     "CreateTransitGatewayRouteTable": "<p>Creates a route table for the specified transit gateway.</p>",
@@ -282,7 +282,7 @@
     "ModifyCapacityReservation": "<p>Modifies a Capacity Reservation's capacity and the conditions under which it is to be released. You cannot change a Capacity Reservation's instance type, EBS optimization, instance store settings, platform, Availability Zone, or instance eligibility. If you need to modify any of these attributes, we recommend that you cancel the Capacity Reservation, and then create a new one with the required attributes.</p>",
     "ModifyClientVpnEndpoint": "<p>Modifies the specified Client VPN endpoint. You can only modify an endpoint's server certificate information, client connection logging information, DNS server, and description. Modifying the DNS server resets existing client connections.</p>",
     "ModifyEbsDefaultKmsKeyId": "<p>Changes the default customer master key (CMK) for EBS encryption by default for your account in this Region.</p> <p>AWS creates a unique AWS managed CMK in each Region for use with encryption by default. If you change the default CMK to a customer managed CMK, it is used instead of the AWS managed CMK. To reset the default CMK to the AWS managed CMK for EBS, use <a>ResetEbsDefaultKmsKeyId</a>.</p> <p>If you delete or disable the customer managed CMK that you specified for use with encryption by default, your instances will fail to launch.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
-    "ModifyFleet": "<p>Modifies the specified EC2 Fleet.</p> <p>You can only modify an EC2 Fleet request of type <code>maintain</code>.</p> <p>While the EC2 Fleet is being modified, it is in the <code>modifying</code> state.</p> <p>To scale up your EC2 Fleet, increase its target capacity. The EC2 Fleet launches the additional Spot Instances according to the allocation strategy for the EC2 Fleet request. If the allocation strategy is <code>lowestPrice</code>, the EC2 Fleet launches instances using the Spot Instance pool with the lowest price. If the allocation strategy is <code>diversified</code>, the EC2 Fleet distributes the instances across the Spot Instance pools. If the allocation strategy is <code>capacityOptimized</code>, EC2 Fleet launches instances from Spot Instance pools with optimal capacity for the number of instances that are launching.</p> <p>To scale down your EC2 Fleet, decrease its target capacity. First, the EC2 Fleet cancels any open requests that exceed the new target capacity. You can request that the EC2 Fleet terminate Spot Instances until the size of the fleet no longer exceeds the new target capacity. If the allocation strategy is <code>lowestPrice</code>, the EC2 Fleet terminates the instances with the highest price per unit. If the allocation strategy is <code>capacityOptimized</code>, the EC2 Fleet terminates the instances in the Spot Instance pools that have the least available Spot Instance capacity. If the allocation strategy is <code>diversified</code>, the EC2 Fleet terminates instances across the Spot Instance pools. Alternatively, you can request that the EC2 Fleet keep the fleet at its current size, but not replace any Spot Instances that are interrupted or that you terminate manually.</p> <p>If you are finished with your EC2 Fleet for now, but will use it again later, you can set the target capacity to 0.</p>",
+    "ModifyFleet": "<p>Modifies the specified EC2 Fleet.</p> <p>You can only modify an EC2 Fleet request of type <code>maintain</code>.</p> <p>While the EC2 Fleet is being modified, it is in the <code>modifying</code> state.</p> <p>To scale up your EC2 Fleet, increase its target capacity. The EC2 Fleet launches the additional Spot Instances according to the allocation strategy for the EC2 Fleet request. If the allocation strategy is <code>lowest-price</code>, the EC2 Fleet launches instances using the Spot Instance pool with the lowest price. If the allocation strategy is <code>diversified</code>, the EC2 Fleet distributes the instances across the Spot Instance pools. If the allocation strategy is <code>capacity-optimized</code>, EC2 Fleet launches instances from Spot Instance pools with optimal capacity for the number of instances that are launching.</p> <p>To scale down your EC2 Fleet, decrease its target capacity. First, the EC2 Fleet cancels any open requests that exceed the new target capacity. You can request that the EC2 Fleet terminate Spot Instances until the size of the fleet no longer exceeds the new target capacity. If the allocation strategy is <code>lowest-price</code>, the EC2 Fleet terminates the instances with the highest price per unit. If the allocation strategy is <code>capacity-optimized</code>, the EC2 Fleet terminates the instances in the Spot Instance pools that have the least available Spot Instance capacity. If the allocation strategy is <code>diversified</code>, the EC2 Fleet terminates instances across the Spot Instance pools. Alternatively, you can request that the EC2 Fleet keep the fleet at its current size, but not replace any Spot Instances that are interrupted or that you terminate manually.</p> <p>If you are finished with your EC2 Fleet for now, but will use it again later, you can set the target capacity to 0.</p>",
     "ModifyFpgaImageAttribute": "<p>Modifies the specified attribute of the specified Amazon FPGA Image (AFI).</p>",
     "ModifyHosts": "<p>Modify the auto-placement setting of a Dedicated Host. When auto-placement is enabled, any instances that you launch with a tenancy of <code>host</code> but without a specific host ID are placed onto any available Dedicated Host in your account that has auto-placement enabled. When auto-placement is disabled, you need to provide a host ID to have the instance launch onto a specific host. If no host ID is provided, the instance is launched onto a suitable host with auto-placement enabled.</p>",
     "ModifyIdFormat": "<p>Modifies the ID format for the specified resource on a per-Region basis. You can specify that resources should receive longer IDs (17-character IDs) when they are created.</p> <p>This request can only be used to modify longer ID settings for resource types that are within the opt-in period. Resources currently in their opt-in period include: <code>bundle</code> | <code>conversion-task</code> | <code>customer-gateway</code> | <code>dhcp-options</code> | <code>elastic-ip-allocation</code> | <code>elastic-ip-association</code> | <code>export-task</code> | <code>flow-log</code> | <code>image</code> | <code>import-task</code> | <code>internet-gateway</code> | <code>network-acl</code> | <code>network-acl-association</code> | <code>network-interface</code> | <code>network-interface-attachment</code> | <code>prefix-list</code> | <code>route-table</code> | <code>route-table-association</code> | <code>security-group</code> | <code>subnet</code> | <code>subnet-cidr-block-association</code> | <code>vpc</code> | <code>vpc-cidr-block-association</code> | <code>vpc-endpoint</code> | <code>vpc-peering-connection</code> | <code>vpn-connection</code> | <code>vpn-gateway</code>.</p> <p>This setting applies to the IAM user who makes the request; it does not apply to the entire AWS account. By default, an IAM user defaults to the same settings as the root user. If you're using this action as the root user, then these settings apply to the entire account, unless an IAM user explicitly overrides these settings for themselves. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/resource-ids.html\">Resource IDs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Resources created with longer IDs are visible to all IAM roles and users, regardless of these settings and provided that they have permission to use the relevant <code>Describe</code> command for the resource type.</p>",
@@ -299,7 +299,7 @@
     "ModifySnapshotAttribute": "<p>Adds or removes permission settings for the specified snapshot. You may add or remove specified AWS account IDs from a snapshot's list of create volume permissions, but you cannot do both in a single operation. If you need to both add and remove account IDs for a snapshot, you must use multiple operations. You can make up to 500 modifications to a snapshot in a single operation.</p> <p>Encrypted snapshots and snapshots with AWS Marketplace product codes cannot be made public. Snapshots encrypted with your default CMK cannot be shared with other accounts.</p> <p>For more information about modifying snapshot permissions, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modifying-snapshot-permissions.html\">Sharing Snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "ModifySpotFleetRequest": "<p>Modifies the specified Spot Fleet request.</p> <p>You can only modify a Spot Fleet request of type <code>maintain</code>.</p> <p>While the Spot Fleet request is being modified, it is in the <code>modifying</code> state.</p> <p>To scale up your Spot Fleet, increase its target capacity. The Spot Fleet launches the additional Spot Instances according to the allocation strategy for the Spot Fleet request. If the allocation strategy is <code>lowestPrice</code>, the Spot Fleet launches instances using the Spot Instance pool with the lowest price. If the allocation strategy is <code>diversified</code>, the Spot Fleet distributes the instances across the Spot Instance pools. If the allocation strategy is <code>capacityOptimized</code>, Spot Fleet launches instances from Spot Instance pools with optimal capacity for the number of instances that are launching.</p> <p>To scale down your Spot Fleet, decrease its target capacity. First, the Spot Fleet cancels any open requests that exceed the new target capacity. You can request that the Spot Fleet terminate Spot Instances until the size of the fleet no longer exceeds the new target capacity. If the allocation strategy is <code>lowestPrice</code>, the Spot Fleet terminates the instances with the highest price per unit. If the allocation strategy is <code>capacityOptimized</code>, the Spot Fleet terminates the instances in the Spot Instance pools that have the least available Spot Instance capacity. If the allocation strategy is <code>diversified</code>, the Spot Fleet terminates instances across the Spot Instance pools. Alternatively, you can request that the Spot Fleet keep the fleet at its current size, but not replace any Spot Instances that are interrupted or that you terminate manually.</p> <p>If you are finished with your Spot Fleet for now, but will use it again later, you can set the target capacity to 0.</p>",
     "ModifySubnetAttribute": "<p>Modifies a subnet attribute. You can only modify one attribute at a time.</p>",
-    "ModifyTrafficMirrorFilterNetworkServices": "<p>Allows or restricts mirroring network services.</p> <p> By default, Amazon DNS network services are not eligible for Traffic Mirror. Use <code>AddNetworkServices</code> to add network services to a Traffic Mirror filter. When a network service is added to the Traffic Mirror filter, all traffic related to that network service will be mirrored. When you no longer want to mirror network services, use <code>RemoveNetworkServices</code> to remove the network services from the Traffic Mirror filter. </p> <p>FFor information about filter rule properties, see <a href=\"https://docs.aws.amazon.com/vpc/latest/mirroring/traffic-mirroring-considerations.html#traffic-mirroring-network-services\">Network Services</a> in the <i>Traffic Mirroring User Guide </i>.</p>",
+    "ModifyTrafficMirrorFilterNetworkServices": "<p>Allows or restricts mirroring network services.</p> <p> By default, Amazon DNS network services are not eligible for Traffic Mirror. Use <code>AddNetworkServices</code> to add network services to a Traffic Mirror filter. When a network service is added to the Traffic Mirror filter, all traffic related to that network service will be mirrored. When you no longer want to mirror network services, use <code>RemoveNetworkServices</code> to remove the network services from the Traffic Mirror filter. </p> <p>For information about filter rule properties, see <a href=\"https://docs.aws.amazon.com/vpc/latest/mirroring/traffic-mirroring-considerations.html\">Network Services</a> in the <i>Traffic Mirroring User Guide </i>.</p>",
     "ModifyTrafficMirrorFilterRule": "<p>Modifies the specified Traffic Mirror rule.</p> <p> <code>DestinationCidrBlock</code> and <code>SourceCidrBlock</code> must both be an IPv4 range or an IPv6 range.</p>",
     "ModifyTrafficMirrorSession": "<p>Modifies a Traffic Mirror session.</p>",
     "ModifyTransitGatewayVpcAttachment": "<p>Modifies the specified VPC attachment.</p>",
@@ -504,6 +504,14 @@
     "AllocateHostsResult": {
       "base": "<p>Contains the output of AllocateHosts.</p>",
       "refs": {
+      }
+    },
+    "AllocationId": {
+      "base": null,
+      "refs": {
+        "AssociateAddressRequest$AllocationId": "<p>[EC2-VPC] The allocation ID. This is required for EC2-VPC.</p>",
+        "CreateNatGatewayRequest$AllocationId": "<p>The allocation ID of an Elastic IP address to associate with the NAT gateway. If the Elastic IP address is associated with another resource, you must first disassociate it.</p>",
+        "ReleaseAddressRequest$AllocationId": "<p>[EC2-VPC] The allocation ID. Required for EC2-VPC.</p>"
       }
     },
     "AllocationIdList": {
@@ -738,6 +746,12 @@
     "AttachVpnGatewayResult": {
       "base": "<p>Contains the output of AttachVpnGateway.</p>",
       "refs": {
+      }
+    },
+    "AttachmentId": {
+      "base": null,
+      "refs": {
+        "DetachNetworkInterfaceRequest$AttachmentId": "<p>The ID of the attachment.</p>"
       }
     },
     "AttachmentStatus": {
@@ -1647,6 +1661,14 @@
         "CreateCapacityReservationResult$CapacityReservation": "<p>Information about the Capacity Reservation.</p>"
       }
     },
+    "CapacityReservationId": {
+      "base": null,
+      "refs": {
+        "CancelCapacityReservationRequest$CapacityReservationId": "<p>The ID of the Capacity Reservation to be cancelled.</p>",
+        "GetCapacityReservationUsageRequest$CapacityReservationId": "<p>The ID of the Capacity Reservation.</p>",
+        "ModifyCapacityReservationRequest$CapacityReservationId": "<p>The ID of the Capacity Reservation.</p>"
+      }
+    },
     "CapacityReservationIdSet": {
       "base": null,
       "refs": {
@@ -1884,6 +1906,24 @@
         "EndpointSet$member": null
       }
     },
+    "ClientVpnEndpointId": {
+      "base": null,
+      "refs": {
+        "ApplySecurityGroupsToClientVpnTargetNetworkRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
+        "AssociateClientVpnTargetNetworkRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
+        "AuthorizeClientVpnIngressRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
+        "CreateClientVpnRouteRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint to which to add the route.</p>",
+        "DeleteClientVpnEndpointRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN to be deleted.</p>",
+        "DeleteClientVpnRouteRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint from which the route is to be deleted.</p>",
+        "DisassociateClientVpnTargetNetworkRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint from which to disassociate the target network.</p>",
+        "ExportClientVpnClientCertificateRevocationListRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
+        "ExportClientVpnClientConfigurationRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
+        "ImportClientVpnClientCertificateRevocationListRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint to which the client certificate revocation list applies.</p>",
+        "ModifyClientVpnEndpointRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint to modify.</p>",
+        "RevokeClientVpnIngressRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint with which the authorization rule is associated.</p>",
+        "TerminateClientVpnConnectionsRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint to which the client is connected.</p>"
+      }
+    },
     "ClientVpnEndpointStatus": {
       "base": "<p>Describes the state of a Client VPN endpoint.</p>",
       "refs": {
@@ -1961,6 +2001,12 @@
         "CreateVpcEndpointConnectionNotificationResult$ConnectionNotification": "<p>Information about the notification.</p>"
       }
     },
+    "ConnectionNotificationId": {
+      "base": null,
+      "refs": {
+        "ModifyVpcEndpointConnectionNotificationRequest$ConnectionNotificationId": "<p>The ID of the notification.</p>"
+      }
+    },
     "ConnectionNotificationSet": {
       "base": null,
       "refs": {
@@ -1998,6 +2044,12 @@
         "DescribeConversionTaskList$member": null,
         "ImportInstanceResult$ConversionTask": "<p>Information about the conversion task.</p>",
         "ImportVolumeResult$ConversionTask": "<p>Information about the conversion task.</p>"
+      }
+    },
+    "ConversionTaskId": {
+      "base": null,
+      "refs": {
+        "CancelConversionRequest$ConversionTaskId": "<p>The ID of the conversion task.</p>"
       }
     },
     "ConversionTaskState": {
@@ -2595,6 +2647,14 @@
         "CustomerGatewayList$member": null
       }
     },
+    "CustomerGatewayId": {
+      "base": null,
+      "refs": {
+        "CreateVpnConnectionRequest$CustomerGatewayId": "<p>The ID of the customer gateway.</p>",
+        "DeleteCustomerGatewayRequest$CustomerGatewayId": "<p>The ID of the customer gateway.</p>",
+        "ModifyVpnConnectionRequest$CustomerGatewayId": "<p>The ID of the customer gateway at your end of the VPN connection.</p>"
+      }
+    },
     "CustomerGatewayIdStringList": {
       "base": null,
       "refs": {
@@ -2669,7 +2729,7 @@
         "NetworkInterfaceAttachment$AttachTime": "<p>The timestamp indicating when the attachment initiated.</p>",
         "ProvisionedBandwidth$ProvisionTime": "<p>Reserved. If you need to sustain traffic greater than the <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html\">documented limits</a>, contact us through the <a href=\"https://console.aws.amazon.com/support/home?\">Support Center</a>.</p>",
         "ProvisionedBandwidth$RequestTime": "<p>Reserved. If you need to sustain traffic greater than the <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html\">documented limits</a>, contact us through the <a href=\"https://console.aws.amazon.com/support/home?\">Support Center</a>.</p>",
-        "PurchaseReservedInstancesOfferingRequest$PurchaseTime": "<p>The time at which to purchase the Reserved Instance.</p>",
+        "PurchaseReservedInstancesOfferingRequest$PurchaseTime": "<p>The time at which to purchase the Reserved Instance, in UTC format (for example, <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z).</p>",
         "ReportInstanceStatusRequest$EndTime": "<p>The time at which the reported instance health state ended.</p>",
         "ReportInstanceStatusRequest$StartTime": "<p>The time at which the reported instance health state began.</p>",
         "RequestSpotInstancesRequest$ValidFrom": "<p>The start date of the request. If this is a one-time request, the request becomes active at this date and time and remains active until all instances launch, the request expires, or the request is canceled. If the request is persistent, the request becomes active at this date and time and remains active until it expires or is canceled.</p> <p>The specified start date and time cannot be equal to the current date and time. You must specify a start date and time that occurs after the current date and time.</p>",
@@ -4448,6 +4508,13 @@
         "DhcpOptionsList$member": null
       }
     },
+    "DhcpOptionsId": {
+      "base": null,
+      "refs": {
+        "AssociateDhcpOptionsRequest$DhcpOptionsId": "<p>The ID of the DHCP options set, or <code>default</code> to associate no DHCP options with the VPC.</p>",
+        "DeleteDhcpOptionsRequest$DhcpOptionsId": "<p>The ID of the DHCP options set.</p>"
+      }
+    },
     "DhcpOptionsIdStringList": {
       "base": null,
       "refs": {
@@ -4710,9 +4777,11 @@
     "EgressOnlyInternetGatewayId": {
       "base": null,
       "refs": {
+        "CreateRouteRequest$EgressOnlyInternetGatewayId": "<p>[IPv6 traffic only] The ID of an egress-only internet gateway.</p>",
         "DeleteEgressOnlyInternetGatewayRequest$EgressOnlyInternetGatewayId": "<p>The ID of the egress-only internet gateway.</p>",
         "EgressOnlyInternetGateway$EgressOnlyInternetGatewayId": "<p>The ID of the egress-only internet gateway.</p>",
-        "EgressOnlyInternetGatewayIdList$member": null
+        "EgressOnlyInternetGatewayIdList$member": null,
+        "ReplaceRouteRequest$EgressOnlyInternetGatewayId": "<p>[IPv6 traffic only] The ID of an egress-only internet gateway.</p>"
       }
     },
     "EgressOnlyInternetGatewayIdList": {
@@ -4987,6 +5056,12 @@
       "refs": {
         "CreateInstanceExportTaskResult$ExportTask": "<p>Information about the instance export task.</p>",
         "ExportTaskList$member": null
+      }
+    },
+    "ExportTaskId": {
+      "base": null,
+      "refs": {
+        "CancelExportTaskRequest$ExportTaskId": "<p>The ID of the export task. This is the ID returned by <code>CreateInstanceExportTask</code>.</p>"
       }
     },
     "ExportTaskIdStringList": {
@@ -5332,6 +5407,14 @@
         "ModifyFpgaImageAttributeRequest$Attribute": "<p>The name of the attribute.</p>"
       }
     },
+    "FpgaImageId": {
+      "base": null,
+      "refs": {
+        "DeleteFpgaImageRequest$FpgaImageId": "<p>The ID of the AFI.</p>",
+        "ModifyFpgaImageAttributeRequest$FpgaImageId": "<p>The ID of the AFI.</p>",
+        "ResetFpgaImageAttributeRequest$FpgaImageId": "<p>The ID of the AFI.</p>"
+      }
+    },
     "FpgaImageIdList": {
       "base": null,
       "refs": {
@@ -5540,13 +5623,13 @@
       }
     },
     "HibernationOptions": {
-      "base": "<p>Indicates whether your instance is configured for hibernation. This parameter is valid only if the instance meets the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites\">hibernation prerequisites</a>. Hibernation is currently supported only for Amazon Linux. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html\">Hibernate Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+      "base": "<p>Indicates whether your instance is configured for hibernation. This parameter is valid only if the instance meets the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites\">hibernation prerequisites</a>. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html\">Hibernate Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
       "refs": {
         "Instance$HibernationOptions": "<p>Indicates whether the instance is enabled for hibernation.</p>"
       }
     },
     "HibernationOptionsRequest": {
-      "base": "<p>Indicates whether your instance is configured for hibernation. This parameter is valid only if the instance meets the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites\">hibernation prerequisites</a>. Hibernation is currently supported only for Amazon Linux. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html\">Hibernate Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+      "base": "<p>Indicates whether your instance is configured for hibernation. This parameter is valid only if the instance meets the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites\">hibernation prerequisites</a>. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html\">Hibernate Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
       "refs": {
         "RunInstancesRequest$HibernationOptions": "<p>Indicates whether an instance is enabled for hibernation. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html\">Hibernate Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
       }
@@ -5579,6 +5662,13 @@
       "base": "<p>Describes the properties of the Dedicated Host.</p>",
       "refs": {
         "HostList$member": null
+      }
+    },
+    "HostId": {
+      "base": null,
+      "refs": {
+        "ModifyInstancePlacementRequest$HostId": "<p>The ID of the Dedicated Host with which to associate the instance.</p>",
+        "RequestHostIdSet$member": null
       }
     },
     "HostInstance": {
@@ -5772,6 +5862,16 @@
         "ImportImageRequest$DiskContainers": "<p>Information about the disk containers.</p>"
       }
     },
+    "ImageId": {
+      "base": null,
+      "refs": {
+        "DeregisterImageRequest$ImageId": "<p>The ID of the AMI.</p>",
+        "ExportImageRequest$ImageId": "<p>The ID of the image.</p>",
+        "ModifyImageAttributeRequest$ImageId": "<p>The ID of the AMI.</p>",
+        "ResetImageAttributeRequest$ImageId": "<p>The ID of the AMI.</p>",
+        "RunInstancesRequest$ImageId": "<p>The ID of the AMI. An AMI ID is required to launch an instance and must be specified here or in a launch template.</p>"
+      }
+    },
     "ImageIdStringList": {
       "base": null,
       "refs": {
@@ -5892,6 +5992,12 @@
       "base": null,
       "refs": {
         "DescribeImportSnapshotTasksResult$ImportSnapshotTasks": "<p>A list of zero or more import snapshot tasks that are currently active or were completed or canceled in the previous 7 days.</p>"
+      }
+    },
+    "ImportTaskId": {
+      "base": null,
+      "refs": {
+        "CancelImportTaskRequest$ImportTaskId": "<p>The ID of the import image or import snapshot task to be canceled.</p>"
       }
     },
     "ImportTaskIdList": {
@@ -6024,7 +6130,30 @@
     "InstanceId": {
       "base": null,
       "refs": {
-        "InstanceIdsSet$member": null
+        "AssociateAddressRequest$InstanceId": "<p>The ID of the instance. This is required for EC2-Classic. For EC2-VPC, you can specify either the instance ID or the network interface ID, but not both. The operation fails if you specify an instance ID unless exactly one network interface is attached.</p>",
+        "AssociateIamInstanceProfileRequest$InstanceId": "<p>The ID of the instance.</p>",
+        "AttachClassicLinkVpcRequest$InstanceId": "<p>The ID of an EC2-Classic instance to link to the ClassicLink-enabled VPC.</p>",
+        "AttachNetworkInterfaceRequest$InstanceId": "<p>The ID of the instance.</p>",
+        "AttachVolumeRequest$InstanceId": "<p>The ID of the instance.</p>",
+        "BundleInstanceRequest$InstanceId": "<p>The ID of the instance to bundle.</p> <p>Type: String</p> <p>Default: None</p> <p>Required: Yes</p>",
+        "ConfirmProductInstanceRequest$InstanceId": "<p>The ID of the instance.</p>",
+        "CreateImageRequest$InstanceId": "<p>The ID of the instance.</p>",
+        "CreateInstanceExportTaskRequest$InstanceId": "<p>The ID of the instance.</p>",
+        "CreateRouteRequest$InstanceId": "<p>The ID of a NAT instance in your VPC. The operation fails if you specify an instance ID unless exactly one network interface is attached.</p>",
+        "DetachClassicLinkVpcRequest$InstanceId": "<p>The ID of the instance to unlink from the VPC.</p>",
+        "DetachVolumeRequest$InstanceId": "<p>The ID of the instance.</p>",
+        "GetConsoleOutputRequest$InstanceId": "<p>The ID of the instance.</p>",
+        "GetConsoleScreenshotRequest$InstanceId": "<p>The ID of the instance.</p>",
+        "GetLaunchTemplateDataRequest$InstanceId": "<p>The ID of the instance.</p>",
+        "GetPasswordDataRequest$InstanceId": "<p>The ID of the Windows instance.</p>",
+        "InstanceIdsSet$member": null,
+        "ModifyInstanceAttributeRequest$InstanceId": "<p>The ID of the instance.</p>",
+        "ModifyInstanceCapacityReservationAttributesRequest$InstanceId": "<p>The ID of the instance to be modified.</p>",
+        "ModifyInstanceEventStartTimeRequest$InstanceId": "<p>The ID of the instance with the scheduled event.</p>",
+        "ModifyInstancePlacementRequest$InstanceId": "<p>The ID of the instance that you are modifying.</p>",
+        "ReplaceRouteRequest$InstanceId": "<p>The ID of a NAT instance in your VPC.</p>",
+        "ResetInstanceAttributeRequest$InstanceId": "<p>The ID of the instance.</p>",
+        "SendDiagnosticInterruptRequest$InstanceId": "<p>The ID of the instance.</p>"
       }
     },
     "InstanceIdSet": {
@@ -6342,7 +6471,7 @@
         "CreateReservedInstancesListingRequest$InstanceCount": "<p>The number of instances that are a part of a Reserved Instance account to be listed in the Reserved Instance Marketplace. This number should be less than or equal to the instance count associated with the Reserved Instance ID specified in this call.</p>",
         "CreateTrafficMirrorFilterRuleRequest$RuleNumber": "<p>The number of the Traffic Mirror rule. This number must be unique for each Traffic Mirror rule in a given direction. The rules are processed in ascending order by rule number.</p>",
         "CreateTrafficMirrorFilterRuleRequest$Protocol": "<p>The protocol, for example UDP, to assign to the Traffic Mirror rule.</p> <p>For information about the protocol value, see <a href=\"https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml\">Protocol Numbers</a> on the Internet Assigned Numbers Authority (IANA) website.</p>",
-        "CreateTrafficMirrorSessionRequest$PacketLength": "<p>The number of bytes in each packet to mirror. These are bytes after the VXLAN header. Do not specify this parameter when you want to mirror the entire packet. To mirror a subset of the packet, set this to the length (in bytes) that you want to mirror. For example, if you set this value to 1network0, then the first 100 bytes that meet the filter criteria are copied to the target.</p> <p>If you do not want to mirror the entire packet, use the <code>PacketLength</code> parameter to specify the number of bytes in each packet to mirror.</p>",
+        "CreateTrafficMirrorSessionRequest$PacketLength": "<p>The number of bytes in each packet to mirror. These are bytes after the VXLAN header. Do not specify this parameter when you want to mirror the entire packet. To mirror a subset of the packet, set this to the length (in bytes) that you want to mirror. For example, if you set this value to 100, then the first 100 bytes that meet the filter criteria are copied to the target.</p> <p>If you do not want to mirror the entire packet, use the <code>PacketLength</code> parameter to specify the number of bytes in each packet to mirror.</p>",
         "CreateTrafficMirrorSessionRequest$SessionNumber": "<p>The session number determines the order in which sessions are evaluated when an interface is used by multiple sessions. The first session with a matching filter is the one that mirrors the packets.</p> <p>Valid values are 1-32766.</p>",
         "CreateTrafficMirrorSessionRequest$VirtualNetworkId": "<p>The VXLAN ID for the Traffic Mirror session. For more information about the VXLAN protocol, see <a href=\"https://tools.ietf.org/html/rfc7348\">RFC 7348</a>. If you do not specify a <code>VirtualNetworkId</code>, an account-wide unique id is chosen at random.</p>",
         "CreateVolumeRequest$Iops": "<p>The number of I/O operations per second (IOPS) to provision for the volume, with a maximum ratio of 50 IOPS/GiB. Range is 100 to 64,000 IOPS for volumes in most Regions. Maximum IOPS of 64,000 is guaranteed only on <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances\">Nitro-based instances</a>. Other instance families guarantee performance up to 32,000 IOPS. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html\">Amazon EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>This parameter is valid only for Provisioned IOPS SSD (io1) volumes.</p>",
@@ -6496,7 +6625,7 @@
         "SpotFleetRequestConfigData$InstancePoolsToUseCount": "<p>The number of Spot pools across which to allocate your target Spot capacity. Valid only when Spot <b>AllocationStrategy</b> is set to <code>lowest-price</code>. Spot Fleet selects the cheapest Spot pools and evenly allocates your target Spot capacity across the number of Spot pools that you specify.</p>",
         "SpotInstanceRequest$BlockDurationMinutes": "<p>The duration for the Spot Instance, in minutes.</p>",
         "SpotMarketOptions$BlockDurationMinutes": "<p>The required duration for the Spot Instances (also known as Spot blocks), in minutes. This value must be a multiple of 60 (60, 120, 180, 240, 300, or 360).</p>",
-        "SpotOptions$InstancePoolsToUseCount": "<p>The number of Spot pools across which to allocate your target Spot capacity. Valid only when <b>AllocationStrategy</b> is set to <code>lowestPrice</code>. EC2 Fleet selects the cheapest Spot pools and evenly allocates your target Spot capacity across the number of Spot pools that you specify.</p>",
+        "SpotOptions$InstancePoolsToUseCount": "<p>The number of Spot pools across which to allocate your target Spot capacity. Valid only when <b>AllocationStrategy</b> is set to <code>lowest-price</code>. EC2 Fleet selects the cheapest Spot pools and evenly allocates your target Spot capacity across the number of Spot pools that you specify.</p>",
         "SpotOptions$MinTargetCapacity": "<p>The minimum target capacity for Spot Instances in the fleet. If the minimum target capacity is not reached, the fleet launches no instances.</p>",
         "SpotOptionsRequest$InstancePoolsToUseCount": "<p>The number of Spot pools across which to allocate your target Spot capacity. Valid only when Spot <b>AllocationStrategy</b> is set to <code>lowest-price</code>. EC2 Fleet selects the cheapest Spot pools and evenly allocates your target Spot capacity across the number of Spot pools that you specify.</p>",
         "SpotOptionsRequest$MinTargetCapacity": "<p>The minimum target capacity for Spot Instances in the fleet. If the minimum target capacity is not reached, the fleet launches no instances.</p>",
@@ -6566,6 +6695,14 @@
       "refs": {
         "EgressOnlyInternetGateway$Attachments": "<p>Information about the attachment of the egress-only internet gateway.</p>",
         "InternetGateway$Attachments": "<p>Any VPCs attached to the internet gateway.</p>"
+      }
+    },
+    "InternetGatewayId": {
+      "base": null,
+      "refs": {
+        "AttachInternetGatewayRequest$InternetGatewayId": "<p>The ID of the internet gateway.</p>",
+        "DeleteInternetGatewayRequest$InternetGatewayId": "<p>The ID of the internet gateway.</p>",
+        "DetachInternetGatewayRequest$InternetGatewayId": "<p>The ID of the internet gateway.</p>"
       }
     },
     "InternetGatewayList": {
@@ -6658,6 +6795,12 @@
         "TransitGatewayVpcAttachmentOptions$Ipv6Support": "<p>Indicates whether IPv6 support is enabled.</p>"
       }
     },
+    "KernelId": {
+      "base": null,
+      "refs": {
+        "RegisterImageRequest$KernelId": "<p>The ID of the kernel.</p>"
+      }
+    },
     "KeyNameStringList": {
       "base": null,
       "refs": {
@@ -6679,6 +6822,23 @@
       "base": null,
       "refs": {
         "DescribeKeyPairsResult$KeyPairs": "<p>Information about the key pairs.</p>"
+      }
+    },
+    "KeyPairName": {
+      "base": null,
+      "refs": {
+        "CreateKeyPairRequest$KeyName": "<p>A unique name for the key pair.</p> <p>Constraints: Up to 255 ASCII characters</p>"
+      }
+    },
+    "KmsKeyId": {
+      "base": null,
+      "refs": {
+        "CopyImageRequest$KmsKeyId": "<p>An identifier for the AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted volume. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p> <p>To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name, or alias ARN. When using an alias name, prefix it with \"alias/\". For example:</p> <ul> <li> <p>Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Key ARN: <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Alias name: <code>alias/ExampleAlias</code> </p> </li> <li> <p>Alias ARN: <code>arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias</code> </p> </li> </ul> <p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. This action will eventually report failure. </p> <p>The specified CMK must exist in the Region that the snapshot is being copied to. </p>",
+        "CopySnapshotRequest$KmsKeyId": "<p>The identifier of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use for Amazon EBS encryption. If this parameter is not specified, your AWS managed CMK for EBS is used. If <code>KmsKeyId</code> is specified, the encrypted state must be <code>true</code>.</p> <p>You can specify the CMK using any of the following:</p> <ul> <li> <p>Key ID. For example, key/1234abcd-12ab-34cd-56ef-1234567890ab.</p> </li> <li> <p>Key alias. For example, alias/ExampleAlias.</p> </li> <li> <p>Key ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p> </li> <li> <p>Alias ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p> </li> </ul> <p>AWS authenticates the CMK asynchronously. Therefore, if you specify an ID, alias, or ARN that is not valid, the action can appear to complete, but eventually fails.</p>",
+        "CreateVolumeRequest$KmsKeyId": "<p>The identifier of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use for Amazon EBS encryption. If this parameter is not specified, your AWS managed CMK for EBS is used. If <code>KmsKeyId</code> is specified, the encrypted state must be <code>true</code>.</p> <p>You can specify the CMK using any of the following:</p> <ul> <li> <p>Key ID. For example, key/1234abcd-12ab-34cd-56ef-1234567890ab.</p> </li> <li> <p>Key alias. For example, alias/ExampleAlias.</p> </li> <li> <p>Key ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p> </li> <li> <p>Alias ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p> </li> </ul> <p>AWS authenticates the CMK asynchronously. Therefore, if you specify an ID, alias, or ARN that is not valid, the action can appear to complete, but eventually fails.</p>",
+        "ImportImageRequest$KmsKeyId": "<p>An identifier for the AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted AMI. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p> <p>The CMK identifier may be provided in any of the following formats: </p> <ul> <li> <p>Key ID</p> </li> <li> <p>Key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p> </li> <li> <p>ARN using key ID. The ID ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>key</code> namespace, and then the CMK ID. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p> </li> <li> <p>ARN using key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>. </p> </li> </ul> <p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. This action will eventually report failure. </p> <p>The specified CMK must exist in the Region that the AMI is being copied to.</p>",
+        "ImportSnapshotRequest$KmsKeyId": "<p>An identifier for the AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted snapshot. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p> <p>The CMK identifier may be provided in any of the following formats: </p> <ul> <li> <p>Key ID</p> </li> <li> <p>Key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p> </li> <li> <p>ARN using key ID. The ID ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>key</code> namespace, and then the CMK ID. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p> </li> <li> <p>ARN using key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>. </p> </li> </ul> <p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. This action will eventually report failure. </p> <p>The specified CMK must exist in the Region that the snapshot is being copied to.</p>",
+        "ModifyEbsDefaultKmsKeyIdRequest$KmsKeyId": "<p>The identifier of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use for Amazon EBS encryption. If this parameter is not specified, your AWS managed CMK for EBS is used. If <code>KmsKeyId</code> is specified, the encrypted state must be <code>true</code>.</p> <p>You can specify the CMK using any of the following:</p> <ul> <li> <p>Key ID. For example, key/1234abcd-12ab-34cd-56ef-1234567890ab.</p> </li> <li> <p>Key alias. For example, alias/ExampleAlias.</p> </li> <li> <p>Key ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p> </li> <li> <p>Alias ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p> </li> </ul> <p>AWS authenticates the CMK asynchronously. Therefore, if you specify an ID, alias, or ARN that is not valid, the action can appear to complete, but eventually fails.</p>"
       }
     },
     "LaunchPermission": {
@@ -6840,9 +7000,9 @@
       }
     },
     "LaunchTemplateHibernationOptionsRequest": {
-      "base": "<p>Indicates whether the instance is configured for hibernation. This parameter is valid only if the instance meets the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites\">hibernation prerequisites</a>. Hibernation is currently supported only for Amazon Linux.</p>",
+      "base": "<p>Indicates whether the instance is configured for hibernation. This parameter is valid only if the instance meets the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites\">hibernation prerequisites</a>.</p>",
       "refs": {
-        "RequestLaunchTemplateData$HibernationOptions": "<p>Indicates whether an instance is enabled for hibernation. This parameter is valid only if the instance meets the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites\">hibernation prerequisites</a>. Hibernation is currently supported only for Amazon Linux. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html\">Hibernate Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
+        "RequestLaunchTemplateData$HibernationOptions": "<p>Indicates whether an instance is enabled for hibernation. This parameter is valid only if the instance meets the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites\">hibernation prerequisites</a>. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html\">Hibernate Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
       }
     },
     "LaunchTemplateIamInstanceProfileSpecification": {
@@ -6855,6 +7015,15 @@
       "base": "<p>An IAM instance profile.</p>",
       "refs": {
         "RequestLaunchTemplateData$IamInstanceProfile": "<p>The IAM instance profile.</p>"
+      }
+    },
+    "LaunchTemplateId": {
+      "base": null,
+      "refs": {
+        "CreateLaunchTemplateVersionRequest$LaunchTemplateId": "<p>The ID of the launch template. You must specify either the launch template ID or launch template name in the request.</p>",
+        "DeleteLaunchTemplateRequest$LaunchTemplateId": "<p>The ID of the launch template. You must specify either the launch template ID or launch template name in the request.</p>",
+        "DeleteLaunchTemplateVersionsRequest$LaunchTemplateId": "<p>The ID of the launch template. You must specify either the launch template ID or launch template name in the request.</p>",
+        "ModifyLaunchTemplateRequest$LaunchTemplateId": "<p>The ID of the launch template. You must specify either the launch template ID or launch template name in the request.</p>"
       }
     },
     "LaunchTemplateInstanceMarketOptions": {
@@ -7556,6 +7725,14 @@
         "NatGateway$NatGatewayAddresses": "<p>Information about the IP addresses and network interface associated with the NAT gateway.</p>"
       }
     },
+    "NatGatewayId": {
+      "base": null,
+      "refs": {
+        "CreateRouteRequest$NatGatewayId": "<p>[IPv4 traffic only] The ID of a NAT gateway.</p>",
+        "DeleteNatGatewayRequest$NatGatewayId": "<p>The ID of the NAT gateway.</p>",
+        "ReplaceRouteRequest$NatGatewayId": "<p>[IPv4 traffic only] The ID of a NAT gateway.</p>"
+      }
+    },
     "NatGatewayList": {
       "base": null,
       "refs": {
@@ -7581,6 +7758,12 @@
         "NetworkAclAssociationList$member": null
       }
     },
+    "NetworkAclAssociationId": {
+      "base": null,
+      "refs": {
+        "ReplaceNetworkAclAssociationRequest$AssociationId": "<p>The ID of the current association between the original network ACL and the subnet.</p>"
+      }
+    },
     "NetworkAclAssociationList": {
       "base": null,
       "refs": {
@@ -7597,6 +7780,16 @@
       "base": null,
       "refs": {
         "NetworkAcl$Entries": "<p>One or more entries (rules) in the network ACL.</p>"
+      }
+    },
+    "NetworkAclId": {
+      "base": null,
+      "refs": {
+        "CreateNetworkAclEntryRequest$NetworkAclId": "<p>The ID of the network ACL.</p>",
+        "DeleteNetworkAclEntryRequest$NetworkAclId": "<p>The ID of the network ACL.</p>",
+        "DeleteNetworkAclRequest$NetworkAclId": "<p>The ID of the network ACL.</p>",
+        "ReplaceNetworkAclAssociationRequest$NetworkAclId": "<p>The ID of the new network ACL to associate with the subnet.</p>",
+        "ReplaceNetworkAclEntryRequest$NetworkAclId": "<p>The ID of the ACL.</p>"
       }
     },
     "NetworkAclList": {
@@ -7642,6 +7835,25 @@
       "base": null,
       "refs": {
         "CreateNetworkInterfaceRequest$InterfaceType": "<p>Indicates the type of network interface. To create an Elastic Fabric Adapter (EFA), specify <code>efa</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html\"> Elastic Fabric Adapter</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
+      }
+    },
+    "NetworkInterfaceId": {
+      "base": null,
+      "refs": {
+        "AssignIpv6AddressesRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
+        "AssignPrivateIpAddressesRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
+        "AssociateAddressRequest$NetworkInterfaceId": "<p>[EC2-VPC] The ID of the network interface. If the instance has more than one network interface, you must specify a network interface ID.</p> <p>For EC2-VPC, you can specify either the instance ID or the network interface ID, but not both. </p>",
+        "AttachNetworkInterfaceRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
+        "CreateNetworkInterfacePermissionRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
+        "CreateRouteRequest$NetworkInterfaceId": "<p>The ID of a network interface.</p>",
+        "CreateTrafficMirrorSessionRequest$NetworkInterfaceId": "<p>The ID of the source network interface.</p>",
+        "CreateTrafficMirrorTargetRequest$NetworkInterfaceId": "<p>The network interface ID that is associated with the target.</p>",
+        "DeleteNetworkInterfaceRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
+        "ModifyNetworkInterfaceAttributeRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
+        "ReplaceRouteRequest$NetworkInterfaceId": "<p>The ID of a network interface.</p>",
+        "ResetNetworkInterfaceAttributeRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
+        "UnassignIpv6AddressesRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
+        "UnassignPrivateIpAddressesRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>"
       }
     },
     "NetworkInterfaceIdList": {
@@ -7781,6 +7993,13 @@
         "DescribeReservedInstancesRequest$OfferingClass": "<p>Describes whether the Reserved Instance is Standard or Convertible.</p>",
         "ReservedInstances$OfferingClass": "<p>The offering class of the Reserved Instance.</p>",
         "ReservedInstancesOffering$OfferingClass": "<p>If <code>convertible</code> it can be exchanged for Reserved Instances of the same or higher monetary value, with different configurations. If <code>standard</code>, it is not possible to perform an exchange.</p>"
+      }
+    },
+    "OfferingId": {
+      "base": null,
+      "refs": {
+        "GetHostReservationPurchasePreviewRequest$OfferingId": "<p>The offering ID of the reservation.</p>",
+        "PurchaseHostReservationRequest$OfferingId": "<p>The ID of the offering.</p>"
       }
     },
     "OfferingTypeValues": {
@@ -8032,6 +8251,12 @@
       "base": null,
       "refs": {
         "DescribePlacementGroupsResult$PlacementGroups": "<p>Information about the placement groups.</p>"
+      }
+    },
+    "PlacementGroupName": {
+      "base": null,
+      "refs": {
+        "ModifyInstancePlacementRequest$GroupName": "<p>The name of the placement group in which to place the instance. For spread placement groups, the instance must have a tenancy of <code>default</code>. For cluster and partition placement groups, the instance must have a tenancy of <code>default</code> or <code>dedicated</code>.</p> <p>To remove an instance from a placement group, specify an empty string (\"\").</p>"
       }
     },
     "PlacementGroupState": {
@@ -8363,6 +8588,12 @@
         "SpotPrice$ProductDescription": "<p>A general description of the AMI.</p>"
       }
     },
+    "RamdiskId": {
+      "base": null,
+      "refs": {
+        "RegisterImageRequest$RamdiskId": "<p>The ID of the RAM disk.</p>"
+      }
+    },
     "ReasonCodesList": {
       "base": null,
       "refs": {
@@ -8683,6 +8914,12 @@
         "ReservedInstancesListingList$member": null
       }
     },
+    "ReservedInstancesListingId": {
+      "base": null,
+      "refs": {
+        "CancelReservedInstancesListingRequest$ReservedInstancesListingId": "<p>The ID of the Reserved Instance listing.</p>"
+      }
+    },
     "ReservedInstancesListingList": {
       "base": null,
       "refs": {
@@ -8921,10 +9158,36 @@
         "RouteTableAssociationList$member": null
       }
     },
+    "RouteTableAssociationId": {
+      "base": null,
+      "refs": {
+        "DisassociateRouteTableRequest$AssociationId": "<p>The association ID representing the current association between the route table and subnet.</p>",
+        "ReplaceRouteTableAssociationRequest$AssociationId": "<p>The association ID.</p>"
+      }
+    },
     "RouteTableAssociationList": {
       "base": null,
       "refs": {
         "RouteTable$Associations": "<p>The associations between the route table and one or more subnets.</p>"
+      }
+    },
+    "RouteTableGatewayId": {
+      "base": null,
+      "refs": {
+        "CreateRouteRequest$GatewayId": "<p>The ID of an internet gateway or virtual private gateway attached to your VPC.</p>",
+        "ReplaceRouteRequest$GatewayId": "<p>The ID of an internet gateway or virtual private gateway.</p>"
+      }
+    },
+    "RouteTableId": {
+      "base": null,
+      "refs": {
+        "AssociateRouteTableRequest$RouteTableId": "<p>The ID of the route table.</p>",
+        "CreateRouteRequest$RouteTableId": "<p>The ID of the route table for the route.</p>",
+        "DeleteRouteRequest$RouteTableId": "<p>The ID of the route table.</p>",
+        "DisableVgwRoutePropagationRequest$RouteTableId": "<p>The ID of the route table.</p>",
+        "EnableVgwRoutePropagationRequest$RouteTableId": "<p>The ID of the route table. The routing table must be associated with the same VPC that the virtual private gateway is attached to. </p>",
+        "ReplaceRouteRequest$RouteTableId": "<p>The ID of the route table.</p>",
+        "ReplaceRouteTableAssociationRequest$RouteTableId": "<p>The ID of the new route table to associate with the subnet.</p>"
       }
     },
     "RouteTableList": {
@@ -8987,6 +9250,12 @@
       "base": null,
       "refs": {
         "DescribeScheduledInstanceAvailabilityResult$ScheduledInstanceAvailabilitySet": "<p>Information about the available Scheduled Instances.</p>"
+      }
+    },
+    "ScheduledInstanceId": {
+      "base": null,
+      "refs": {
+        "RunScheduledInstancesRequest$ScheduledInstanceId": "<p>The Scheduled Instance ID.</p>"
       }
     },
     "ScheduledInstanceIdRequestSet": {
@@ -9158,6 +9427,12 @@
       "refs": {
       }
     },
+    "SensitiveUserData": {
+      "base": null,
+      "refs": {
+        "KeyPair$KeyMaterial": "<p>An unencrypted PEM encoded RSA private key.</p>"
+      }
+    },
     "ServiceConfiguration": {
       "base": "<p>Describes a service configuration for a VPC endpoint service.</p>",
       "refs": {
@@ -9181,6 +9456,15 @@
       "base": null,
       "refs": {
         "DescribeVpcEndpointServicesResult$ServiceDetails": "<p>Information about the service.</p>"
+      }
+    },
+    "ServiceId": {
+      "base": null,
+      "refs": {
+        "AcceptVpcEndpointConnectionsRequest$ServiceId": "<p>The ID of the endpoint service.</p>",
+        "CreateVpcEndpointConnectionNotificationRequest$ServiceId": "<p>The ID of the endpoint service.</p>",
+        "ModifyVpcEndpointServiceConfigurationRequest$ServiceId": "<p>The ID of the service.</p>",
+        "RejectVpcEndpointConnectionsRequest$ServiceId": "<p>The ID of the service.</p>"
       }
     },
     "ServiceState": {
@@ -9262,6 +9546,15 @@
         "ImportSnapshotRequest$DiskContainer": "<p>Information about the disk container.</p>"
       }
     },
+    "SnapshotId": {
+      "base": null,
+      "refs": {
+        "CreateVolumeRequest$SnapshotId": "<p>The snapshot from which to create the volume.</p> <note> <p>At least one of Size or SnapshotId are required.</p> </note>",
+        "DeleteSnapshotRequest$SnapshotId": "<p>The ID of the EBS snapshot.</p>",
+        "ModifySnapshotAttributeRequest$SnapshotId": "<p>The ID of the snapshot.</p>",
+        "ResetSnapshotAttributeRequest$SnapshotId": "<p>The ID of the snapshot.</p>"
+      }
+    },
     "SnapshotIdStringList": {
       "base": null,
       "refs": {
@@ -9303,8 +9596,8 @@
     "SpotAllocationStrategy": {
       "base": null,
       "refs": {
-        "SpotOptions$AllocationStrategy": "<p>Indicates how to allocate the target Spot Instance capacity across the Spot Instance pools specified by the EC2 Fleet.</p> <p>If the allocation strategy is <code>lowestPrice</code>, EC2 Fleet launches instances from the Spot Instance pools with the lowest price. This is the default allocation strategy.</p> <p>If the allocation strategy is <code>diversified</code>, EC2 Fleet launches instances from all the Spot Instance pools that you specify.</p> <p>If the allocation strategy is <code>capacityOptimized</code>, EC2 Fleet launches instances from Spot Instance pools with optimal capacity for the number of instances that are launching.</p>",
-        "SpotOptionsRequest$AllocationStrategy": "<p>Indicates how to allocate the target Spot Instance capacity across the Spot Instance pools specified by the EC2 Fleet.</p> <p>If the allocation strategy is <code>lowestPrice</code>, EC2 Fleet launches instances from the Spot Instance pools with the lowest price. This is the default allocation strategy.</p> <p>If the allocation strategy is <code>diversified</code>, EC2 Fleet launches instances from all the Spot Instance pools that you specify.</p> <p>If the allocation strategy is <code>capacityOptimized</code>, EC2 Fleet launches instances from Spot Instance pools with optimal capacity for the number of instances that are launching.</p>"
+        "SpotOptions$AllocationStrategy": "<p>Indicates how to allocate the target Spot Instance capacity across the Spot Instance pools specified by the EC2 Fleet.</p> <p>If the allocation strategy is <code>lowest-price</code>, EC2 Fleet launches instances from the Spot Instance pools with the lowest price. This is the default allocation strategy.</p> <p>If the allocation strategy is <code>diversified</code>, EC2 Fleet launches instances from all the Spot Instance pools that you specify.</p> <p>If the allocation strategy is <code>capacity-optimized</code>, EC2 Fleet launches instances from Spot Instance pools with optimal capacity for the number of instances that are launching.</p>",
+        "SpotOptionsRequest$AllocationStrategy": "<p>Indicates how to allocate the target Spot Instance capacity across the Spot Instance pools specified by the EC2 Fleet.</p> <p>If the allocation strategy is <code>lowest-price</code>, EC2 Fleet launches instances from the Spot Instance pools with the lowest price. This is the default allocation strategy.</p> <p>If the allocation strategy is <code>diversified</code>, EC2 Fleet launches instances from all the Spot Instance pools that you specify.</p> <p>If the allocation strategy is <code>capacity-optimized</code>, EC2 Fleet launches instances from Spot Instance pools with optimal capacity for the number of instances that are launching.</p>"
       }
     },
     "SpotDatafeedSubscription": {
@@ -9343,6 +9636,12 @@
       "base": null,
       "refs": {
         "DescribeSpotFleetRequestsResponse$SpotFleetRequestConfigs": "<p>Information about the configuration of your Spot Fleet.</p>"
+      }
+    },
+    "SpotFleetRequestId": {
+      "base": null,
+      "refs": {
+        "ModifySpotFleetRequestRequest$SpotFleetRequestId": "<p>The ID of the Spot Fleet request.</p>"
       }
     },
     "SpotFleetTagSpecification": {
@@ -9547,9 +9846,6 @@
       "base": null,
       "refs": {
         "AcceptReservedInstancesExchangeQuoteResult$ExchangeId": "<p>The ID of the successful exchange.</p>",
-        "AcceptTransitGatewayVpcAttachmentRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
-        "AcceptVpcEndpointConnectionsRequest$ServiceId": "<p>The ID of the endpoint service.</p>",
-        "AcceptVpcPeeringConnectionRequest$VpcPeeringConnectionId": "<p>The ID of the VPC peering connection. You must specify this parameter in the request.</p>",
         "AccountAttribute$AttributeName": "<p>The name of the account attribute.</p>",
         "AccountAttributeValue$AttributeValue": "<p>The value of the attribute.</p>",
         "ActiveInstance$InstanceId": "<p>The ID of the instance.</p>",
@@ -9574,58 +9870,29 @@
         "AllocateHostsRequest$InstanceType": "<p>Specifies the instance type for which to configure your Dedicated Hosts. When you specify the instance type, that is the only instance type that you can launch onto that host.</p>",
         "AllocationIdList$member": null,
         "AllowedPrincipal$Principal": "<p>The Amazon Resource Name (ARN) of the principal.</p>",
-        "ApplySecurityGroupsToClientVpnTargetNetworkRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
-        "ApplySecurityGroupsToClientVpnTargetNetworkRequest$VpcId": "<p>The ID of the VPC in which the associated target network is located.</p>",
-        "AssignIpv6AddressesRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "AssignIpv6AddressesResult$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
-        "AssignPrivateIpAddressesRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "AssignPrivateIpAddressesResult$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "AssignedPrivateIpAddress$PrivateIpAddress": "<p>The private IP address assigned to the network interface.</p>",
-        "AssociateAddressRequest$AllocationId": "<p>[EC2-VPC] The allocation ID. This is required for EC2-VPC.</p>",
-        "AssociateAddressRequest$InstanceId": "<p>The ID of the instance. This is required for EC2-Classic. For EC2-VPC, you can specify either the instance ID or the network interface ID, but not both. The operation fails if you specify an instance ID unless exactly one network interface is attached.</p>",
         "AssociateAddressRequest$PublicIp": "<p>The Elastic IP address to associate with the instance. This is required for EC2-Classic.</p>",
-        "AssociateAddressRequest$NetworkInterfaceId": "<p>[EC2-VPC] The ID of the network interface. If the instance has more than one network interface, you must specify a network interface ID.</p> <p>For EC2-VPC, you can specify either the instance ID or the network interface ID, but not both. </p>",
         "AssociateAddressRequest$PrivateIpAddress": "<p>[EC2-VPC] The primary or secondary private IP address to associate with the Elastic IP address. If no private IP address is specified, the Elastic IP address is associated with the primary private IP address.</p>",
         "AssociateAddressResult$AssociationId": "<p>[EC2-VPC] The ID that represents the association of the Elastic IP address with an instance.</p>",
-        "AssociateClientVpnTargetNetworkRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
-        "AssociateClientVpnTargetNetworkRequest$SubnetId": "<p>The ID of the subnet to associate with the Client VPN endpoint.</p>",
         "AssociateClientVpnTargetNetworkRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
         "AssociateClientVpnTargetNetworkResult$AssociationId": "<p>The unique ID of the target network association.</p>",
-        "AssociateDhcpOptionsRequest$DhcpOptionsId": "<p>The ID of the DHCP options set, or <code>default</code> to associate no DHCP options with the VPC.</p>",
-        "AssociateDhcpOptionsRequest$VpcId": "<p>The ID of the VPC.</p>",
-        "AssociateIamInstanceProfileRequest$InstanceId": "<p>The ID of the instance.</p>",
-        "AssociateRouteTableRequest$RouteTableId": "<p>The ID of the route table.</p>",
-        "AssociateRouteTableRequest$SubnetId": "<p>The ID of the subnet.</p>",
         "AssociateRouteTableResult$AssociationId": "<p>The route table association ID. This ID is required for disassociating the route table.</p>",
         "AssociateSubnetCidrBlockRequest$Ipv6CidrBlock": "<p>The IPv6 CIDR block for your subnet. The subnet must have a /64 prefix length.</p>",
-        "AssociateSubnetCidrBlockRequest$SubnetId": "<p>The ID of your subnet.</p>",
         "AssociateSubnetCidrBlockResult$SubnetId": "<p>The ID of the subnet.</p>",
-        "AssociateTransitGatewayRouteTableRequest$TransitGatewayRouteTableId": "<p>The ID of the transit gateway route table.</p>",
-        "AssociateTransitGatewayRouteTableRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
         "AssociateVpcCidrBlockRequest$CidrBlock": "<p>An IPv4 CIDR block to associate with the VPC.</p>",
-        "AssociateVpcCidrBlockRequest$VpcId": "<p>The ID of the VPC.</p>",
         "AssociateVpcCidrBlockResult$VpcId": "<p>The ID of the VPC.</p>",
         "AssociatedTargetNetwork$NetworkId": "<p>The ID of the subnet.</p>",
         "AssociationIdList$member": null,
         "AssociationStatus$Message": "<p>A message about the status of the target network association, if applicable.</p>",
-        "AttachClassicLinkVpcRequest$InstanceId": "<p>The ID of an EC2-Classic instance to link to the ClassicLink-enabled VPC.</p>",
-        "AttachClassicLinkVpcRequest$VpcId": "<p>The ID of a ClassicLink-enabled VPC.</p>",
-        "AttachInternetGatewayRequest$InternetGatewayId": "<p>The ID of the internet gateway.</p>",
-        "AttachInternetGatewayRequest$VpcId": "<p>The ID of the VPC.</p>",
-        "AttachNetworkInterfaceRequest$InstanceId": "<p>The ID of the instance.</p>",
-        "AttachNetworkInterfaceRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "AttachNetworkInterfaceResult$AttachmentId": "<p>The ID of the network interface attachment.</p>",
         "AttachVolumeRequest$Device": "<p>The device name (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p>",
-        "AttachVolumeRequest$InstanceId": "<p>The ID of the instance.</p>",
-        "AttachVolumeRequest$VolumeId": "<p>The ID of the EBS volume. The volume and instance must be within the same Availability Zone.</p>",
-        "AttachVpnGatewayRequest$VpcId": "<p>The ID of the VPC.</p>",
-        "AttachVpnGatewayRequest$VpnGatewayId": "<p>The ID of the virtual private gateway.</p>",
         "AttributeValue$Value": "<p>The attribute value. The value is case-sensitive.</p>",
         "AuthorizationRule$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint with which the authorization rule is associated.</p>",
         "AuthorizationRule$Description": "<p>A brief description of the authorization rule.</p>",
         "AuthorizationRule$GroupId": "<p>The ID of the Active Directory group to which the authorization rule grants access.</p>",
         "AuthorizationRule$DestinationCidr": "<p>The IPv4 address range, in CIDR notation, of the network to which the authorization rule applies.</p>",
-        "AuthorizeClientVpnIngressRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
         "AuthorizeClientVpnIngressRequest$TargetNetworkCidr": "<p>The IPv4 address range, in CIDR notation, of the network for which access is being authorized.</p>",
         "AuthorizeClientVpnIngressRequest$AccessGroupId": "<p>The ID of the Active Directory group to grant access.</p>",
         "AuthorizeClientVpnIngressRequest$Description": "<p>A brief description of the authorization rule.</p>",
@@ -9650,7 +9917,6 @@
         "BlockDeviceMapping$VirtualName": "<p>The virtual device name (<code>ephemeral</code>N). Instance store volumes are numbered starting from 0. An instance type with 2 available instance store volumes can specify mappings for <code>ephemeral0</code> and <code>ephemeral1</code>. The number of available instance store volumes depends on the instance type. After you connect to the instance, you must mount the volume.</p> <p>NVMe instance store volumes are automatically enumerated and assigned a device name. Including them in your block device mapping has no effect.</p> <p>Constraints: For M3 instances, you must specify instance store volumes in the block device mapping for the instance. When you launch an M3 instance, we ignore any instance store volumes specified in the block device mapping for the AMI.</p>",
         "BlockDeviceMapping$NoDevice": "<p>Suppresses the specified device included in the block device mapping of the AMI.</p>",
         "BundleIdStringList$member": null,
-        "BundleInstanceRequest$InstanceId": "<p>The ID of the instance to bundle.</p> <p>Type: String</p> <p>Default: None</p> <p>Required: Yes</p>",
         "BundleTask$BundleId": "<p>The ID of the bundle task.</p>",
         "BundleTask$InstanceId": "<p>The ID of the instance associated with this bundle task.</p>",
         "BundleTask$Progress": "<p>The level of task completion, as a percent (for example, 20%).</p>",
@@ -9660,16 +9926,11 @@
         "ByoipCidr$Description": "<p>The description of the address range.</p>",
         "ByoipCidr$StatusMessage": "<p>Upon success, contains the ID of the address pool. Otherwise, contains an error message.</p>",
         "CancelBundleTaskRequest$BundleId": "<p>The ID of the bundle task.</p>",
-        "CancelCapacityReservationRequest$CapacityReservationId": "<p>The ID of the Capacity Reservation to be cancelled.</p>",
-        "CancelConversionRequest$ConversionTaskId": "<p>The ID of the conversion task.</p>",
         "CancelConversionRequest$ReasonMessage": "<p>The reason for canceling the conversion task.</p>",
-        "CancelExportTaskRequest$ExportTaskId": "<p>The ID of the export task. This is the ID returned by <code>CreateInstanceExportTask</code>.</p>",
         "CancelImportTaskRequest$CancelReason": "<p>The reason for canceling the task.</p>",
-        "CancelImportTaskRequest$ImportTaskId": "<p>The ID of the import image or import snapshot task to be canceled.</p>",
         "CancelImportTaskResult$ImportTaskId": "<p>The ID of the task being canceled.</p>",
         "CancelImportTaskResult$PreviousState": "<p>The current state of the task being canceled.</p>",
         "CancelImportTaskResult$State": "<p>The current state of the task being canceled.</p>",
-        "CancelReservedInstancesListingRequest$ReservedInstancesListingId": "<p>The ID of the Reserved Instance listing.</p>",
         "CancelSpotFleetRequestsError$Message": "<p>The description for the error code.</p>",
         "CancelSpotFleetRequestsErrorItem$SpotFleetRequestId": "<p>The ID of the Spot Fleet request.</p>",
         "CancelSpotFleetRequestsSuccessItem$SpotFleetRequestId": "<p>The ID of the Spot Fleet request.</p>",
@@ -9724,7 +9985,6 @@
         "ClientVpnRoute$Description": "<p>A brief description of the route.</p>",
         "ClientVpnRouteStatus$Message": "<p>A message about the status of the Client VPN endpoint route, if applicable.</p>",
         "ClientVpnSecurityGroupIdSet$member": null,
-        "ConfirmProductInstanceRequest$InstanceId": "<p>The ID of the instance.</p>",
         "ConfirmProductInstanceRequest$ProductCode": "<p>The product code. This must be a product code that you own.</p>",
         "ConfirmProductInstanceResult$OwnerId": "<p>The AWS account ID of the instance owner. This is only present if the product code is attached to the instance.</p>",
         "ConnectionLogOptions$CloudwatchLogGroup": "<p>The name of the CloudWatch Logs log group.</p>",
@@ -9747,14 +10007,12 @@
         "CopyFpgaImageResult$FpgaImageId": "<p>The ID of the new AFI.</p>",
         "CopyImageRequest$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "CopyImageRequest$Description": "<p>A description for the new AMI in the destination Region.</p>",
-        "CopyImageRequest$KmsKeyId": "<p>An identifier for the AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted volume. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p> <p>To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name, or alias ARN. When using an alias name, prefix it with \"alias/\". For example:</p> <ul> <li> <p>Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Key ARN: <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Alias name: <code>alias/ExampleAlias</code> </p> </li> <li> <p>Alias ARN: <code>arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias</code> </p> </li> </ul> <p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. This action will eventually report failure. </p> <p>The specified CMK must exist in the Region that the snapshot is being copied to. </p>",
         "CopyImageRequest$Name": "<p>The name of the new AMI in the destination Region.</p>",
         "CopyImageRequest$SourceImageId": "<p>The ID of the AMI to copy.</p>",
         "CopyImageRequest$SourceRegion": "<p>The name of the Region that contains the AMI to copy.</p>",
         "CopyImageResult$ImageId": "<p>The ID of the new AMI.</p>",
         "CopySnapshotRequest$Description": "<p>A description for the EBS snapshot.</p>",
         "CopySnapshotRequest$DestinationRegion": "<p>The destination Region to use in the <code>PresignedUrl</code> parameter of a snapshot copy operation. This parameter is only valid for specifying the destination Region in a <code>PresignedUrl</code> parameter, where it is required.</p> <p>The snapshot copy is sent to the regional endpoint that you sent the HTTP request to (for example, <code>ec2.us-east-1.amazonaws.com</code>). With the AWS CLI, this is specified using the <code>--region</code> parameter or the default Region in your AWS configuration file.</p>",
-        "CopySnapshotRequest$KmsKeyId": "<p>The identifier of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use for Amazon EBS encryption. If this parameter is not specified, your AWS managed CMK for EBS is used. If <code>KmsKeyId</code> is specified, the encrypted state must be <code>true</code>.</p> <p>You can specify the CMK using any of the following:</p> <ul> <li> <p>Key ID. For example, key/1234abcd-12ab-34cd-56ef-1234567890ab.</p> </li> <li> <p>Key alias. For example, alias/ExampleAlias.</p> </li> <li> <p>Key ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p> </li> <li> <p>Alias ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p> </li> </ul> <p>AWS authenticates the CMK asynchronously. Therefore, if you specify an ID, alias, or ARN that is not valid, the action can appear to complete, but eventually fails.</p>",
         "CopySnapshotRequest$PresignedUrl": "<p>When you copy an encrypted source snapshot using the Amazon EC2 Query API, you must supply a pre-signed URL. This parameter is optional for unencrypted snapshots. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html\">Query Requests</a>.</p> <p>The <code>PresignedUrl</code> should use the snapshot source endpoint, the <code>CopySnapshot</code> action, and include the <code>SourceRegion</code>, <code>SourceSnapshotId</code>, and <code>DestinationRegion</code> parameters. The <code>PresignedUrl</code> must be signed using AWS Signature Version 4. Because EBS snapshots are stored in Amazon S3, the signing algorithm for this parameter uses the same logic that is described in <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html\">Authenticating Requests by Using Query Parameters (AWS Signature Version 4)</a> in the <i>Amazon Simple Storage Service API Reference</i>. An invalid or improperly signed <code>PresignedUrl</code> will cause the copy operation to fail asynchronously, and the snapshot will move to an <code>error</code> state.</p>",
         "CopySnapshotRequest$SourceRegion": "<p>The ID of the Region that contains the snapshot to be copied.</p>",
         "CopySnapshotRequest$SourceSnapshotId": "<p>The ID of the EBS snapshot to copy.</p>",
@@ -9769,7 +10027,6 @@
         "CreateClientVpnEndpointRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
         "CreateClientVpnEndpointResult$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
         "CreateClientVpnEndpointResult$DnsName": "<p>The DNS name to be used by clients when establishing their VPN session.</p>",
-        "CreateClientVpnRouteRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint to which to add the route.</p>",
         "CreateClientVpnRouteRequest$DestinationCidrBlock": "<p>The IPv4 address range, in CIDR notation, of the route destination. For example:</p> <ul> <li> <p>To add a route for Internet access, enter <code>0.0.0.0/0</code> </p> </li> <li> <p>To add a route for a peered VPC, enter the peered VPC's IPv4 CIDR range</p> </li> <li> <p>To add a route for an on-premises network, enter the AWS Site-to-Site VPN connection's IPv4 CIDR range</p> </li> </ul> <p>Route address ranges cannot overlap with the CIDR range specified for client allocation.</p>",
         "CreateClientVpnRouteRequest$TargetVpcSubnetId": "<p>The ID of the subnet through which you want to route traffic. The specified subnet must be an existing target network of the Client VPN endpoint.</p>",
         "CreateClientVpnRouteRequest$Description": "<p>A brief description of the route.</p>",
@@ -9778,7 +10035,6 @@
         "CreateCustomerGatewayRequest$CertificateArn": "<p>The Amazon Resource Name (ARN) for the customer gateway certificate.</p>",
         "CreateDefaultSubnetRequest$AvailabilityZone": "<p>The Availability Zone in which to create the default subnet.</p>",
         "CreateEgressOnlyInternetGatewayRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
-        "CreateEgressOnlyInternetGatewayRequest$VpcId": "<p>The ID of the VPC for which to create the egress-only internet gateway.</p>",
         "CreateEgressOnlyInternetGatewayResult$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "CreateFleetError$ErrorCode": "<p>The error code that indicates why the instance could not be launched. For more information about error codes, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/errors-overview.html.html\">Error Codes</a>.</p>",
         "CreateFleetError$ErrorMessage": "<p>The error message that describes why the instance could not be launched. For more information about error messages, see ee <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/errors-overview.html.html\">Error Codes</a>.</p>",
@@ -9795,51 +10051,30 @@
         "CreateFpgaImageResult$FpgaImageId": "<p>The FPGA image identifier (AFI ID).</p>",
         "CreateFpgaImageResult$FpgaImageGlobalId": "<p>The global FPGA image identifier (AGFI ID).</p>",
         "CreateImageRequest$Description": "<p>A description for the new image.</p>",
-        "CreateImageRequest$InstanceId": "<p>The ID of the instance.</p>",
         "CreateImageRequest$Name": "<p>A name for the new image.</p> <p>Constraints: 3-128 alphanumeric characters, parentheses (()), square brackets ([]), spaces ( ), periods (.), slashes (/), dashes (-), single quotes ('), at-signs (@), or underscores(_)</p>",
         "CreateImageResult$ImageId": "<p>The ID of the new AMI.</p>",
         "CreateInstanceExportTaskRequest$Description": "<p>A description for the conversion task or the resource being exported. The maximum length is 255 bytes.</p>",
-        "CreateInstanceExportTaskRequest$InstanceId": "<p>The ID of the instance.</p>",
-        "CreateKeyPairRequest$KeyName": "<p>A unique name for the key pair.</p> <p>Constraints: Up to 255 ASCII characters</p>",
         "CreateLaunchTemplateRequest$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p> <p>Constraint: Maximum 128 ASCII characters.</p>",
         "CreateLaunchTemplateVersionRequest$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p> <p>Constraint: Maximum 128 ASCII characters.</p>",
-        "CreateLaunchTemplateVersionRequest$LaunchTemplateId": "<p>The ID of the launch template. You must specify either the launch template ID or launch template name in the request.</p>",
         "CreateLaunchTemplateVersionRequest$SourceVersion": "<p>The version number of the launch template version on which to base the new version. The new version inherits the same launch parameters as the source version, except for parameters that you specify in <code>LaunchTemplateData</code>. Snapshots applied to the block device mapping are ignored when creating a new version unless they are explicitly included.</p>",
-        "CreateNatGatewayRequest$AllocationId": "<p>The allocation ID of an Elastic IP address to associate with the NAT gateway. If the Elastic IP address is associated with another resource, you must first disassociate it.</p>",
         "CreateNatGatewayRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p> <p>Constraint: Maximum 64 ASCII characters.</p>",
-        "CreateNatGatewayRequest$SubnetId": "<p>The subnet in which to create the NAT gateway.</p>",
         "CreateNatGatewayResult$ClientToken": "<p>Unique, case-sensitive identifier to ensure the idempotency of the request. Only returned if a client token was provided in the request.</p>",
         "CreateNetworkAclEntryRequest$CidrBlock": "<p>The IPv4 network range to allow or deny, in CIDR notation (for example <code>172.16.0.0/24</code>).</p>",
         "CreateNetworkAclEntryRequest$Ipv6CidrBlock": "<p>The IPv6 network range to allow or deny, in CIDR notation (for example <code>2001:db8:1234:1a00::/64</code>).</p>",
-        "CreateNetworkAclEntryRequest$NetworkAclId": "<p>The ID of the network ACL.</p>",
         "CreateNetworkAclEntryRequest$Protocol": "<p>The protocol number. A value of \"-1\" means all protocols. If you specify \"-1\" or a protocol number other than \"6\" (TCP), \"17\" (UDP), or \"1\" (ICMP), traffic on all ports is allowed, regardless of any ports or ICMP types or codes that you specify. If you specify protocol \"58\" (ICMPv6) and specify an IPv4 CIDR block, traffic for all ICMP types and codes allowed, regardless of any that you specify. If you specify protocol \"58\" (ICMPv6) and specify an IPv6 CIDR block, you must specify an ICMP type and code.</p>",
-        "CreateNetworkAclRequest$VpcId": "<p>The ID of the VPC.</p>",
-        "CreateNetworkInterfacePermissionRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "CreateNetworkInterfacePermissionRequest$AwsAccountId": "<p>The AWS account ID.</p>",
         "CreateNetworkInterfacePermissionRequest$AwsService": "<p>The AWS service. Currently not supported.</p>",
         "CreateNetworkInterfaceRequest$Description": "<p>A description for the network interface.</p>",
         "CreateNetworkInterfaceRequest$PrivateIpAddress": "<p>The primary private IPv4 address of the network interface. If you don't specify an IPv4 address, Amazon EC2 selects one for you from the subnet's IPv4 CIDR range. If you specify an IP address, you cannot indicate any IP addresses specified in <code>privateIpAddresses</code> as primary (only one IP address can be designated as primary).</p>",
-        "CreateNetworkInterfaceRequest$SubnetId": "<p>The ID of the subnet to associate with the network interface.</p>",
         "CreatePlacementGroupRequest$GroupName": "<p>A name for the placement group. Must be unique within the scope of your account for the Region.</p> <p>Constraints: Up to 255 ASCII characters</p>",
         "CreateReservedInstancesListingRequest$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure idempotency of your listings. This helps avoid duplicate listings. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
         "CreateReservedInstancesListingRequest$ReservedInstancesId": "<p>The ID of the active Standard Reserved Instance.</p>",
         "CreateRouteRequest$DestinationCidrBlock": "<p>The IPv4 CIDR address block used for the destination match. Routing decisions are based on the most specific match.</p>",
         "CreateRouteRequest$DestinationIpv6CidrBlock": "<p>The IPv6 CIDR block used for the destination match. Routing decisions are based on the most specific match.</p>",
-        "CreateRouteRequest$EgressOnlyInternetGatewayId": "<p>[IPv6 traffic only] The ID of an egress-only internet gateway.</p>",
-        "CreateRouteRequest$GatewayId": "<p>The ID of an internet gateway or virtual private gateway attached to your VPC.</p>",
-        "CreateRouteRequest$InstanceId": "<p>The ID of a NAT instance in your VPC. The operation fails if you specify an instance ID unless exactly one network interface is attached.</p>",
-        "CreateRouteRequest$NatGatewayId": "<p>[IPv4 traffic only] The ID of a NAT gateway.</p>",
-        "CreateRouteRequest$TransitGatewayId": "<p>The ID of a transit gateway.</p>",
-        "CreateRouteRequest$NetworkInterfaceId": "<p>The ID of a network interface.</p>",
-        "CreateRouteRequest$RouteTableId": "<p>The ID of the route table for the route.</p>",
-        "CreateRouteRequest$VpcPeeringConnectionId": "<p>The ID of a VPC peering connection.</p>",
-        "CreateRouteTableRequest$VpcId": "<p>The ID of the VPC.</p>",
         "CreateSecurityGroupRequest$Description": "<p>A description for the security group. This is informational only.</p> <p>Constraints: Up to 255 characters in length</p> <p>Constraints for EC2-Classic: ASCII characters</p> <p>Constraints for EC2-VPC: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&amp;;{}!$*</p>",
         "CreateSecurityGroupRequest$GroupName": "<p>The name of the security group.</p> <p>Constraints: Up to 255 characters in length. Cannot start with <code>sg-</code>.</p> <p>Constraints for EC2-Classic: ASCII characters</p> <p>Constraints for EC2-VPC: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&amp;;{}!$*</p>",
-        "CreateSecurityGroupRequest$VpcId": "<p>[EC2-VPC] The ID of the VPC. Required for EC2-VPC.</p>",
         "CreateSecurityGroupResult$GroupId": "<p>The ID of the security group.</p>",
         "CreateSnapshotRequest$Description": "<p>A description for the snapshot.</p>",
-        "CreateSnapshotRequest$VolumeId": "<p>The ID of the EBS volume.</p>",
         "CreateSnapshotsRequest$Description": "<p> A description propagated to every snapshot specified by the instance.</p>",
         "CreateSpotDatafeedSubscriptionRequest$Bucket": "<p>The Amazon S3 bucket in which to store the Spot Instance data feed.</p>",
         "CreateSpotDatafeedSubscriptionRequest$Prefix": "<p>A prefix for the data feed file names.</p>",
@@ -9847,44 +10082,28 @@
         "CreateSubnetRequest$AvailabilityZoneId": "<p>The AZ ID of the subnet.</p>",
         "CreateSubnetRequest$CidrBlock": "<p>The IPv4 network range for the subnet, in CIDR notation. For example, <code>10.0.0.0/24</code>.</p>",
         "CreateSubnetRequest$Ipv6CidrBlock": "<p>The IPv6 network range for the subnet, in CIDR notation. The subnet size must use a /64 prefix length.</p>",
-        "CreateSubnetRequest$VpcId": "<p>The ID of the VPC.</p>",
         "CreateTrafficMirrorFilterRequest$Description": "<p>The description of the Traffic Mirror filter.</p>",
         "CreateTrafficMirrorFilterRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
         "CreateTrafficMirrorFilterResult$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
-        "CreateTrafficMirrorFilterRuleRequest$TrafficMirrorFilterId": "<p>The ID of the filter that this rule is associated with.</p>",
         "CreateTrafficMirrorFilterRuleRequest$DestinationCidrBlock": "<p>The destination CIDR block to assign to the Traffic Mirror rule.</p>",
         "CreateTrafficMirrorFilterRuleRequest$SourceCidrBlock": "<p>The source CIDR block to assign to the Traffic Mirror rule.</p>",
         "CreateTrafficMirrorFilterRuleRequest$Description": "<p>The description of the Traffic Mirror rule.</p>",
         "CreateTrafficMirrorFilterRuleRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
         "CreateTrafficMirrorFilterRuleResult$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
-        "CreateTrafficMirrorSessionRequest$NetworkInterfaceId": "<p>The ID of the source network interface.</p>",
-        "CreateTrafficMirrorSessionRequest$TrafficMirrorTargetId": "<p>The ID of the Traffic Mirror target.</p>",
-        "CreateTrafficMirrorSessionRequest$TrafficMirrorFilterId": "<p>The ID of the Traffic Mirror filter.</p>",
         "CreateTrafficMirrorSessionRequest$Description": "<p>The description of the Traffic Mirror session.</p>",
         "CreateTrafficMirrorSessionRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
         "CreateTrafficMirrorSessionResult$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
-        "CreateTrafficMirrorTargetRequest$NetworkInterfaceId": "<p>The network interface ID that is associated with the target.</p>",
         "CreateTrafficMirrorTargetRequest$NetworkLoadBalancerArn": "<p>The Amazon Resource Name (ARN) of the Network Load Balancer that is associated with the target.</p>",
         "CreateTrafficMirrorTargetRequest$Description": "<p>The description of the Traffic Mirror target.</p>",
         "CreateTrafficMirrorTargetRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
         "CreateTrafficMirrorTargetResult$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
         "CreateTransitGatewayRequest$Description": "<p>A description of the transit gateway.</p>",
         "CreateTransitGatewayRouteRequest$DestinationCidrBlock": "<p>The CIDR range used for destination matches. Routing decisions are based on the most specific match.</p>",
-        "CreateTransitGatewayRouteRequest$TransitGatewayRouteTableId": "<p>The ID of the transit gateway route table.</p>",
-        "CreateTransitGatewayRouteRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
-        "CreateTransitGatewayRouteTableRequest$TransitGatewayId": "<p>The ID of the transit gateway.</p>",
-        "CreateTransitGatewayVpcAttachmentRequest$TransitGatewayId": "<p>The ID of the transit gateway.</p>",
-        "CreateTransitGatewayVpcAttachmentRequest$VpcId": "<p>The ID of the VPC.</p>",
         "CreateVolumePermission$UserId": "<p>The AWS account ID to be added or removed.</p>",
         "CreateVolumeRequest$AvailabilityZone": "<p>The Availability Zone in which to create the volume.</p>",
-        "CreateVolumeRequest$KmsKeyId": "<p>The identifier of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use for Amazon EBS encryption. If this parameter is not specified, your AWS managed CMK for EBS is used. If <code>KmsKeyId</code> is specified, the encrypted state must be <code>true</code>.</p> <p>You can specify the CMK using any of the following:</p> <ul> <li> <p>Key ID. For example, key/1234abcd-12ab-34cd-56ef-1234567890ab.</p> </li> <li> <p>Key alias. For example, alias/ExampleAlias.</p> </li> <li> <p>Key ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p> </li> <li> <p>Alias ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p> </li> </ul> <p>AWS authenticates the CMK asynchronously. Therefore, if you specify an ID, alias, or ARN that is not valid, the action can appear to complete, but eventually fails.</p>",
-        "CreateVolumeRequest$SnapshotId": "<p>The snapshot from which to create the volume.</p> <note> <p>At least one of Size or SnapshotId are required.</p> </note>",
-        "CreateVpcEndpointConnectionNotificationRequest$ServiceId": "<p>The ID of the endpoint service.</p>",
-        "CreateVpcEndpointConnectionNotificationRequest$VpcEndpointId": "<p>The ID of the endpoint. </p>",
         "CreateVpcEndpointConnectionNotificationRequest$ConnectionNotificationArn": "<p>The ARN of the SNS topic for the notifications.</p>",
         "CreateVpcEndpointConnectionNotificationRequest$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
         "CreateVpcEndpointConnectionNotificationResult$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request.</p>",
-        "CreateVpcEndpointRequest$VpcId": "<p>The ID of the VPC in which the endpoint will be used.</p>",
         "CreateVpcEndpointRequest$ServiceName": "<p>The service name. To get a list of available services, use the <a>DescribeVpcEndpointServices</a> request, or get the name from the service provider.</p>",
         "CreateVpcEndpointRequest$PolicyDocument": "<p>A policy to attach to the endpoint that controls access to the service. The policy must be in valid JSON format. If this parameter is not specified, we attach a default policy that allows full access to the service.</p>",
         "CreateVpcEndpointRequest$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
@@ -9893,15 +10112,10 @@
         "CreateVpcEndpointServiceConfigurationResult$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request.</p>",
         "CreateVpcPeeringConnectionRequest$PeerOwnerId": "<p>The AWS account ID of the owner of the accepter VPC.</p> <p>Default: Your AWS account ID</p>",
         "CreateVpcPeeringConnectionRequest$PeerVpcId": "<p>The ID of the VPC with which you are creating the VPC peering connection. You must specify this parameter in the request.</p>",
-        "CreateVpcPeeringConnectionRequest$VpcId": "<p>The ID of the requester VPC. You must specify this parameter in the request.</p>",
         "CreateVpcPeeringConnectionRequest$PeerRegion": "<p>The Region code for the accepter VPC, if the accepter VPC is located in a Region other than the Region in which you make the request.</p> <p>Default: The Region in which you make the request.</p>",
         "CreateVpcRequest$CidrBlock": "<p>The IPv4 network range for the VPC, in CIDR notation. For example, <code>10.0.0.0/16</code>.</p>",
-        "CreateVpnConnectionRequest$CustomerGatewayId": "<p>The ID of the customer gateway.</p>",
         "CreateVpnConnectionRequest$Type": "<p>The type of VPN connection (<code>ipsec.1</code>).</p>",
-        "CreateVpnConnectionRequest$VpnGatewayId": "<p>The ID of the virtual private gateway. If you specify a virtual private gateway, you cannot specify a transit gateway.</p>",
-        "CreateVpnConnectionRequest$TransitGatewayId": "<p>The ID of the transit gateway. If you specify a transit gateway, you cannot specify a virtual private gateway.</p>",
         "CreateVpnConnectionRouteRequest$DestinationCidrBlock": "<p>The CIDR block associated with the local subnet of the customer network.</p>",
-        "CreateVpnConnectionRouteRequest$VpnConnectionId": "<p>The ID of the VPN connection.</p>",
         "CreateVpnGatewayRequest$AvailabilityZone": "<p>The Availability Zone for the virtual private gateway.</p>",
         "CreditSpecification$CpuCredits": "<p>The credit option for CPU usage of a T2 or T3 instance. Valid values are <code>standard</code> and <code>unlimited</code>.</p>",
         "CreditSpecificationRequest$CpuCredits": "<p>The credit option for CPU usage of a T2 or T3 instance. Valid values are <code>standard</code> and <code>unlimited</code>.</p>",
@@ -9912,61 +10126,31 @@
         "CustomerGateway$State": "<p>The current state of the customer gateway (<code>pending | available | deleting | deleted</code>).</p>",
         "CustomerGateway$Type": "<p>The type of VPN connection the customer gateway supports (<code>ipsec.1</code>).</p>",
         "CustomerGatewayIdStringList$member": null,
-        "DeleteClientVpnEndpointRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN to be deleted.</p>",
-        "DeleteClientVpnRouteRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint from which the route is to be deleted.</p>",
         "DeleteClientVpnRouteRequest$TargetVpcSubnetId": "<p>The ID of the target subnet used by the route.</p>",
         "DeleteClientVpnRouteRequest$DestinationCidrBlock": "<p>The IPv4 address range, in CIDR notation, of the route to be deleted.</p>",
-        "DeleteCustomerGatewayRequest$CustomerGatewayId": "<p>The ID of the customer gateway.</p>",
-        "DeleteDhcpOptionsRequest$DhcpOptionsId": "<p>The ID of the DHCP options set.</p>",
         "DeleteFleetError$Message": "<p>The description for the error code.</p>",
-        "DeleteFpgaImageRequest$FpgaImageId": "<p>The ID of the AFI.</p>",
-        "DeleteInternetGatewayRequest$InternetGatewayId": "<p>The ID of the internet gateway.</p>",
         "DeleteKeyPairRequest$KeyName": "<p>The name of the key pair.</p>",
-        "DeleteLaunchTemplateRequest$LaunchTemplateId": "<p>The ID of the launch template. You must specify either the launch template ID or launch template name in the request.</p>",
-        "DeleteLaunchTemplateVersionsRequest$LaunchTemplateId": "<p>The ID of the launch template. You must specify either the launch template ID or launch template name in the request.</p>",
         "DeleteLaunchTemplateVersionsResponseErrorItem$LaunchTemplateId": "<p>The ID of the launch template.</p>",
         "DeleteLaunchTemplateVersionsResponseErrorItem$LaunchTemplateName": "<p>The name of the launch template.</p>",
         "DeleteLaunchTemplateVersionsResponseSuccessItem$LaunchTemplateId": "<p>The ID of the launch template.</p>",
         "DeleteLaunchTemplateVersionsResponseSuccessItem$LaunchTemplateName": "<p>The name of the launch template.</p>",
-        "DeleteNatGatewayRequest$NatGatewayId": "<p>The ID of the NAT gateway.</p>",
         "DeleteNatGatewayResult$NatGatewayId": "<p>The ID of the NAT gateway.</p>",
-        "DeleteNetworkAclEntryRequest$NetworkAclId": "<p>The ID of the network ACL.</p>",
-        "DeleteNetworkAclRequest$NetworkAclId": "<p>The ID of the network ACL.</p>",
         "DeleteNetworkInterfacePermissionRequest$NetworkInterfacePermissionId": "<p>The ID of the network interface permission.</p>",
-        "DeleteNetworkInterfaceRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "DeletePlacementGroupRequest$GroupName": "<p>The name of the placement group.</p>",
         "DeleteQueuedReservedInstancesError$Message": "<p>The error message.</p>",
         "DeleteQueuedReservedInstancesIdList$member": null,
         "DeleteRouteRequest$DestinationCidrBlock": "<p>The IPv4 CIDR range for the route. The value you specify must match the CIDR for the route exactly.</p>",
         "DeleteRouteRequest$DestinationIpv6CidrBlock": "<p>The IPv6 CIDR range for the route. The value you specify must match the CIDR for the route exactly.</p>",
-        "DeleteRouteRequest$RouteTableId": "<p>The ID of the route table.</p>",
         "DeleteRouteTableRequest$RouteTableId": "<p>The ID of the route table.</p>",
         "DeleteSecurityGroupRequest$GroupId": "<p>The ID of the security group. Required for a nondefault VPC.</p>",
         "DeleteSecurityGroupRequest$GroupName": "<p>[EC2-Classic, default VPC] The name of the security group. You can specify either the security group name or the security group ID.</p>",
-        "DeleteSnapshotRequest$SnapshotId": "<p>The ID of the EBS snapshot.</p>",
-        "DeleteSubnetRequest$SubnetId": "<p>The ID of the subnet.</p>",
-        "DeleteTrafficMirrorFilterRequest$TrafficMirrorFilterId": "<p>The ID of the Traffic Mirror filter.</p>",
         "DeleteTrafficMirrorFilterResult$TrafficMirrorFilterId": "<p>The ID of the Traffic Mirror filter.</p>",
-        "DeleteTrafficMirrorFilterRuleRequest$TrafficMirrorFilterRuleId": "<p>The ID of the Traffic Mirror rule.</p>",
         "DeleteTrafficMirrorFilterRuleResult$TrafficMirrorFilterRuleId": "<p>The ID of the deleted Traffic Mirror rule.</p>",
-        "DeleteTrafficMirrorSessionRequest$TrafficMirrorSessionId": "<p>The ID of the Traffic Mirror session.</p>",
         "DeleteTrafficMirrorSessionResult$TrafficMirrorSessionId": "<p>The ID of the deleted Traffic Mirror session.</p>",
-        "DeleteTrafficMirrorTargetRequest$TrafficMirrorTargetId": "<p>The ID of the Traffic Mirror target.</p>",
         "DeleteTrafficMirrorTargetResult$TrafficMirrorTargetId": "<p>The ID of the deleted Traffic Mirror target.</p>",
-        "DeleteTransitGatewayRequest$TransitGatewayId": "<p>The ID of the transit gateway.</p>",
-        "DeleteTransitGatewayRouteRequest$TransitGatewayRouteTableId": "<p>The ID of the transit gateway route table.</p>",
         "DeleteTransitGatewayRouteRequest$DestinationCidrBlock": "<p>The CIDR range for the route. This must match the CIDR for the route exactly.</p>",
-        "DeleteTransitGatewayRouteTableRequest$TransitGatewayRouteTableId": "<p>The ID of the transit gateway route table.</p>",
-        "DeleteTransitGatewayVpcAttachmentRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
-        "DeleteVolumeRequest$VolumeId": "<p>The ID of the volume.</p>",
-        "DeleteVpcPeeringConnectionRequest$VpcPeeringConnectionId": "<p>The ID of the VPC peering connection.</p>",
-        "DeleteVpcRequest$VpcId": "<p>The ID of the VPC.</p>",
-        "DeleteVpnConnectionRequest$VpnConnectionId": "<p>The ID of the VPN connection.</p>",
         "DeleteVpnConnectionRouteRequest$DestinationCidrBlock": "<p>The CIDR block associated with the local subnet of the customer network.</p>",
-        "DeleteVpnConnectionRouteRequest$VpnConnectionId": "<p>The ID of the VPN connection.</p>",
-        "DeleteVpnGatewayRequest$VpnGatewayId": "<p>The ID of the virtual private gateway.</p>",
         "DeprovisionByoipCidrRequest$Cidr": "<p>The public IPv4 address range, in CIDR notation. The prefix must be the same prefix that you specified when you provisioned the address range.</p>",
-        "DeregisterImageRequest$ImageId": "<p>The ID of the AMI.</p>",
         "DescribeByoipCidrsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeCapacityReservationsRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
         "DescribeCapacityReservationsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
@@ -10075,7 +10259,6 @@
         "DescribeSpotPriceHistoryRequest$AvailabilityZone": "<p>Filters the results by the specified Availability Zone.</p>",
         "DescribeSpotPriceHistoryRequest$NextToken": "<p>The token for the next set of results.</p>",
         "DescribeSpotPriceHistoryResult$NextToken": "<p>The token required to retrieve the next set of results. This value is null or an empty string when there are no more results to return.</p>",
-        "DescribeStaleSecurityGroupsRequest$VpcId": "<p>The ID of the VPC.</p>",
         "DescribeStaleSecurityGroupsResult$NextToken": "<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>",
         "DescribeSubnetsRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeSubnetsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
@@ -10120,40 +10303,19 @@
         "DescribeVpcPeeringConnectionsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeVpcsRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeVpcsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
-        "DetachClassicLinkVpcRequest$InstanceId": "<p>The ID of the instance to unlink from the VPC.</p>",
-        "DetachClassicLinkVpcRequest$VpcId": "<p>The ID of the VPC to which the instance is linked.</p>",
-        "DetachInternetGatewayRequest$InternetGatewayId": "<p>The ID of the internet gateway.</p>",
-        "DetachInternetGatewayRequest$VpcId": "<p>The ID of the VPC.</p>",
-        "DetachNetworkInterfaceRequest$AttachmentId": "<p>The ID of the attachment.</p>",
         "DetachVolumeRequest$Device": "<p>The device name.</p>",
-        "DetachVolumeRequest$InstanceId": "<p>The ID of the instance.</p>",
-        "DetachVolumeRequest$VolumeId": "<p>The ID of the volume.</p>",
-        "DetachVpnGatewayRequest$VpcId": "<p>The ID of the VPC.</p>",
-        "DetachVpnGatewayRequest$VpnGatewayId": "<p>The ID of the virtual private gateway.</p>",
         "DhcpConfiguration$Key": "<p>The name of a DHCP option.</p>",
         "DhcpOptions$DhcpOptionsId": "<p>The ID of the set of DHCP options.</p>",
         "DhcpOptions$OwnerId": "<p>The ID of the AWS account that owns the DHCP options set.</p>",
         "DhcpOptionsIdStringList$member": null,
         "DirectoryServiceAuthentication$DirectoryId": "<p>The ID of the Active Directory used for authentication.</p>",
         "DirectoryServiceAuthenticationRequest$DirectoryId": "<p>The ID of the Active Directory to be used for authentication.</p>",
-        "DisableTransitGatewayRouteTablePropagationRequest$TransitGatewayRouteTableId": "<p>The ID of the propagation route table.</p>",
-        "DisableTransitGatewayRouteTablePropagationRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
-        "DisableVgwRoutePropagationRequest$GatewayId": "<p>The ID of the virtual private gateway.</p>",
-        "DisableVgwRoutePropagationRequest$RouteTableId": "<p>The ID of the route table.</p>",
-        "DisableVpcClassicLinkDnsSupportRequest$VpcId": "<p>The ID of the VPC.</p>",
-        "DisableVpcClassicLinkRequest$VpcId": "<p>The ID of the VPC.</p>",
         "DisassociateAddressRequest$AssociationId": "<p>[EC2-VPC] The association ID. Required for EC2-VPC.</p>",
         "DisassociateAddressRequest$PublicIp": "<p>[EC2-Classic] The Elastic IP address. Required for EC2-Classic.</p>",
-        "DisassociateClientVpnTargetNetworkRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint from which to disassociate the target network.</p>",
         "DisassociateClientVpnTargetNetworkRequest$AssociationId": "<p>The ID of the target network association.</p>",
         "DisassociateClientVpnTargetNetworkResult$AssociationId": "<p>The ID of the target network association.</p>",
         "DisassociateIamInstanceProfileRequest$AssociationId": "<p>The ID of the IAM instance profile association.</p>",
-        "DisassociateRouteTableRequest$AssociationId": "<p>The association ID representing the current association between the route table and subnet.</p>",
-        "DisassociateSubnetCidrBlockRequest$AssociationId": "<p>The association ID for the CIDR block.</p>",
         "DisassociateSubnetCidrBlockResult$SubnetId": "<p>The ID of the subnet.</p>",
-        "DisassociateTransitGatewayRouteTableRequest$TransitGatewayRouteTableId": "<p>The ID of the transit gateway route table.</p>",
-        "DisassociateTransitGatewayRouteTableRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
-        "DisassociateVpcCidrBlockRequest$AssociationId": "<p>The association ID for the CIDR block.</p>",
         "DisassociateVpcCidrBlockResult$VpcId": "<p>The ID of the VPC.</p>",
         "DiskImage$Description": "<p>A description of the disk image.</p>",
         "DiskImageDescription$Checksum": "<p>The checksum computed for the disk image.</p>",
@@ -10181,24 +10343,14 @@
         "ElasticInferenceAcceleratorAssociation$ElasticInferenceAcceleratorArn": "<p> The Amazon Resource Name (ARN) of the elastic inference accelerator. </p>",
         "ElasticInferenceAcceleratorAssociation$ElasticInferenceAcceleratorAssociationId": "<p> The ID of the association. </p>",
         "ElasticInferenceAcceleratorAssociation$ElasticInferenceAcceleratorAssociationState": "<p> The state of the elastic inference accelerator. </p>",
-        "EnableTransitGatewayRouteTablePropagationRequest$TransitGatewayRouteTableId": "<p>The ID of the propagation route table.</p>",
-        "EnableTransitGatewayRouteTablePropagationRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
-        "EnableVgwRoutePropagationRequest$GatewayId": "<p>The ID of the virtual private gateway that is attached to a VPC. The virtual private gateway must be attached to the same VPC that the routing tables are associated with. </p>",
-        "EnableVgwRoutePropagationRequest$RouteTableId": "<p>The ID of the route table. The routing table must be associated with the same VPC that the virtual private gateway is attached to. </p>",
-        "EnableVolumeIORequest$VolumeId": "<p>The ID of the volume.</p>",
-        "EnableVpcClassicLinkDnsSupportRequest$VpcId": "<p>The ID of the VPC.</p>",
-        "EnableVpcClassicLinkRequest$VpcId": "<p>The ID of the VPC.</p>",
         "EventInformation$EventDescription": "<p>The description of the event.</p>",
         "EventInformation$EventSubType": "<p>The event.</p> <p>The following are the <code>error</code> events:</p> <ul> <li> <p> <code>iamFleetRoleInvalid</code> - The EC2 Fleet or Spot Fleet did not have the required permissions either to launch or terminate an instance.</p> </li> <li> <p> <code>spotFleetRequestConfigurationInvalid</code> - The configuration is not valid. For more information, see the description of the event.</p> </li> <li> <p> <code>spotInstanceCountLimitExceeded</code> - You've reached the limit on the number of Spot Instances that you can launch.</p> </li> </ul> <p>The following are the <code>fleetRequestChange</code> events:</p> <ul> <li> <p> <code>active</code> - The EC2 Fleet or Spot Fleet request has been validated and Amazon EC2 is attempting to maintain the target number of running Spot Instances.</p> </li> <li> <p> <code>cancelled</code> - The EC2 Fleet or Spot Fleet request is canceled and has no running Spot Instances. The EC2 Fleet or Spot Fleet will be deleted two days after its instances were terminated.</p> </li> <li> <p> <code>cancelled_running</code> - The EC2 Fleet or Spot Fleet request is canceled and does not launch additional Spot Instances. Existing Spot Instances continue to run until they are interrupted or terminated.</p> </li> <li> <p> <code>cancelled_terminating</code> - The EC2 Fleet or Spot Fleet request is canceled and its Spot Instances are terminating.</p> </li> <li> <p> <code>expired</code> - The EC2 Fleet or Spot Fleet request has expired. A subsequent event indicates that the instances were terminated, if the request was created with <code>TerminateInstancesWithExpiration</code> set.</p> </li> <li> <p> <code>modify_in_progress</code> - A request to modify the EC2 Fleet or Spot Fleet request was accepted and is in progress.</p> </li> <li> <p> <code>modify_successful</code> - The EC2 Fleet or Spot Fleet request was modified.</p> </li> <li> <p> <code>price_update</code> - The price for a launch configuration was adjusted because it was too high. This change is permanent.</p> </li> <li> <p> <code>submitted</code> - The EC2 Fleet or Spot Fleet request is being evaluated and Amazon EC2 is preparing to launch the target number of Spot Instances.</p> </li> </ul> <p>The following are the <code>instanceChange</code> events:</p> <ul> <li> <p> <code>launched</code> - A request was fulfilled and a new instance was launched.</p> </li> <li> <p> <code>terminated</code> - An instance was terminated by the user.</p> </li> </ul> <p>The following are the <code>Information</code> events:</p> <ul> <li> <p> <code>launchSpecTemporarilyBlacklisted</code> - The configuration is not valid and several attempts to launch instances have failed. For more information, see the description of the event.</p> </li> <li> <p> <code>launchSpecUnusable</code> - The price in a launch specification is not valid because it is below the Spot price or the Spot price is above the On-Demand price.</p> </li> <li> <p> <code>fleetProgressHalted</code> - The price in every launch specification is not valid. A launch specification might become valid if the Spot price changes.</p> </li> </ul>",
         "EventInformation$InstanceId": "<p>The ID of the instance. This information is available only for <code>instanceChange</code> events.</p>",
         "ExecutableByStringList$member": null,
-        "ExportClientVpnClientCertificateRevocationListRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
         "ExportClientVpnClientCertificateRevocationListResult$CertificateRevocationList": "<p>Information about the client certificate revocation list.</p>",
-        "ExportClientVpnClientConfigurationRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
         "ExportClientVpnClientConfigurationResult$ClientConfiguration": "<p>The contents of the Client VPN endpoint configuration file.</p>",
         "ExportImageRequest$ClientToken": "<p>Token to enable idempotency for export image requests.</p>",
         "ExportImageRequest$Description": "<p>A description of the image being exported. The maximum length is 255 bytes.</p>",
-        "ExportImageRequest$ImageId": "<p>The ID of the image.</p>",
         "ExportImageRequest$RoleName": "<p>The name of the role that grants VM Import/Export permission to export images to your S3 bucket. If this parameter is not specified, the default role is named 'vmimport'.</p>",
         "ExportImageResult$Description": "<p>A description of the image being exported.</p>",
         "ExportImageResult$ExportImageTaskId": "<p>The ID of the export image task.</p>",
@@ -10226,7 +10378,6 @@
         "ExportToS3Task$S3Key": "<p>The encryption key for your S3 bucket.</p>",
         "ExportToS3TaskSpecification$S3Bucket": "<p>The S3 bucket for the destination image. The destination bucket must exist and grant WRITE and READ_ACP permissions to the AWS account <code>vm-import-export@amazon.com</code>.</p>",
         "ExportToS3TaskSpecification$S3Prefix": "<p>The image is written to a single object in the S3 bucket at the S3 key s3prefix + exportTaskId + '.' + diskImageFormat.</p>",
-        "ExportTransitGatewayRoutesRequest$TransitGatewayRouteTableId": "<p>The ID of the route table.</p>",
         "ExportTransitGatewayRoutesRequest$S3Bucket": "<p>The name of the S3 bucket.</p>",
         "ExportTransitGatewayRoutesResult$S3Location": "<p>The URL of the exported file in Amazon S3. For example, s3://<i>bucket_name</i>/VPCTransitGateway/TransitGatewayRouteTables/<i>file_name</i>.</p>",
         "FailedQueuedPurchaseDeletion$ReservedInstancesId": "<p>The ID of the Reserved Instance.</p>",
@@ -10263,35 +10414,26 @@
         "FpgaImageAttribute$Description": "<p>The description of the AFI.</p>",
         "FpgaImageIdList$member": null,
         "FpgaImageState$Message": "<p>If the state is <code>failed</code>, this is the error message.</p>",
-        "GetCapacityReservationUsageRequest$CapacityReservationId": "<p>The ID of the Capacity Reservation.</p>",
         "GetCapacityReservationUsageRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
         "GetCapacityReservationUsageResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "GetCapacityReservationUsageResult$CapacityReservationId": "<p>The ID of the Capacity Reservation.</p>",
         "GetCapacityReservationUsageResult$InstanceType": "<p>The type of instance for which the Capacity Reservation reserves capacity.</p>",
-        "GetConsoleOutputRequest$InstanceId": "<p>The ID of the instance.</p>",
         "GetConsoleOutputResult$InstanceId": "<p>The ID of the instance.</p>",
         "GetConsoleOutputResult$Output": "<p>The console output, base64-encoded. If you are using a command line tool, the tool decodes the output for you.</p>",
-        "GetConsoleScreenshotRequest$InstanceId": "<p>The ID of the instance.</p>",
         "GetConsoleScreenshotResult$ImageData": "<p>The data that comprises the image.</p>",
         "GetConsoleScreenshotResult$InstanceId": "<p>The ID of the instance.</p>",
         "GetEbsDefaultKmsKeyIdResult$KmsKeyId": "<p>The Amazon Resource Name (ARN) of the default CMK for encryption by default.</p>",
-        "GetHostReservationPurchasePreviewRequest$OfferingId": "<p>The offering ID of the reservation.</p>",
         "GetHostReservationPurchasePreviewResult$TotalHourlyPrice": "<p>The potential total hourly price of the reservation per hour.</p>",
         "GetHostReservationPurchasePreviewResult$TotalUpfrontPrice": "<p>The potential total upfront price. This is billed immediately.</p>",
-        "GetLaunchTemplateDataRequest$InstanceId": "<p>The ID of the instance.</p>",
-        "GetPasswordDataRequest$InstanceId": "<p>The ID of the Windows instance.</p>",
         "GetPasswordDataResult$InstanceId": "<p>The ID of the Windows instance.</p>",
         "GetPasswordDataResult$PasswordData": "<p>The password of the instance. Returns an empty string if the password is not available.</p>",
         "GetReservedInstancesExchangeQuoteResult$CurrencyCode": "<p>The currency of the transaction.</p>",
         "GetReservedInstancesExchangeQuoteResult$PaymentDue": "<p>The total true upfront charge for the exchange.</p>",
         "GetReservedInstancesExchangeQuoteResult$ValidationFailureReason": "<p>Describes the reason why the exchange cannot be completed.</p>",
-        "GetTransitGatewayAttachmentPropagationsRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
         "GetTransitGatewayAttachmentPropagationsRequest$NextToken": "<p>The token for the next page of results.</p>",
         "GetTransitGatewayAttachmentPropagationsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
-        "GetTransitGatewayRouteTableAssociationsRequest$TransitGatewayRouteTableId": "<p>The ID of the transit gateway route table.</p>",
         "GetTransitGatewayRouteTableAssociationsRequest$NextToken": "<p>The token for the next page of results.</p>",
         "GetTransitGatewayRouteTableAssociationsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
-        "GetTransitGatewayRouteTablePropagationsRequest$TransitGatewayRouteTableId": "<p>The ID of the transit gateway route table.</p>",
         "GetTransitGatewayRouteTablePropagationsRequest$NextToken": "<p>The token for the next page of results.</p>",
         "GetTransitGatewayRouteTablePropagationsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "GroupIdStringList$member": null,
@@ -10343,13 +10485,11 @@
         "ImageDiskContainer$SnapshotId": "<p>The ID of the EBS snapshot to be used for importing the snapshot.</p>",
         "ImageDiskContainer$Url": "<p>The URL to the Amazon S3-based disk image being imported. The URL can either be a https URL (https://..) or an Amazon S3 URL (s3://..)</p>",
         "ImageIdStringList$member": null,
-        "ImportClientVpnClientCertificateRevocationListRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint to which the client certificate revocation list applies.</p>",
         "ImportClientVpnClientCertificateRevocationListRequest$CertificateRevocationList": "<p>The client certificate revocation list file. For more information, see <a href=\"https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/cvpn-working-certificates.html#cvpn-working-certificates-generate\">Generate a Client Certificate Revocation List</a> in the <i>AWS Client VPN Administrator Guide</i>.</p>",
         "ImportImageRequest$Architecture": "<p>The architecture of the virtual machine.</p> <p>Valid values: <code>i386</code> | <code>x86_64</code> | <code>arm64</code> </p>",
         "ImportImageRequest$ClientToken": "<p>The token to enable idempotency for VM import requests.</p>",
         "ImportImageRequest$Description": "<p>A description string for the import image task.</p>",
         "ImportImageRequest$Hypervisor": "<p>The target hypervisor platform.</p> <p>Valid values: <code>xen</code> </p>",
-        "ImportImageRequest$KmsKeyId": "<p>An identifier for the AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted AMI. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p> <p>The CMK identifier may be provided in any of the following formats: </p> <ul> <li> <p>Key ID</p> </li> <li> <p>Key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p> </li> <li> <p>ARN using key ID. The ID ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>key</code> namespace, and then the CMK ID. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p> </li> <li> <p>ARN using key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>. </p> </li> </ul> <p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. This action will eventually report failure. </p> <p>The specified CMK must exist in the Region that the AMI is being copied to.</p>",
         "ImportImageRequest$LicenseType": "<p>The license type to be used for the Amazon Machine Image (AMI) after importing.</p> <p>By default, we detect the source-system operating system (OS) and apply the appropriate license. Specify <code>AWS</code> to replace the source-system license with an AWS license, if appropriate. Specify <code>BYOL</code> to retain the source-system license, if appropriate.</p> <p>To use <code>BYOL</code>, you must have existing licenses with rights to use these licenses in a third party cloud, such as AWS. For more information, see <a href=\"https://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-image-import.html#prerequisites-image\">Prerequisites</a> in the VM Import/Export User Guide.</p>",
         "ImportImageRequest$Platform": "<p>The operating system of the virtual machine.</p> <p>Valid values: <code>Windows</code> | <code>Linux</code> </p>",
         "ImportImageRequest$RoleName": "<p>The name of the role to use when not using the default role, 'vmimport'.</p>",
@@ -10390,7 +10530,6 @@
         "ImportKeyPairResult$KeyName": "<p>The key pair name you provided.</p>",
         "ImportSnapshotRequest$ClientToken": "<p>Token to enable idempotency for VM import requests.</p>",
         "ImportSnapshotRequest$Description": "<p>The description string for the import snapshot task.</p>",
-        "ImportSnapshotRequest$KmsKeyId": "<p>An identifier for the AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted snapshot. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p> <p>The CMK identifier may be provided in any of the following formats: </p> <ul> <li> <p>Key ID</p> </li> <li> <p>Key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p> </li> <li> <p>ARN using key ID. The ID ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>key</code> namespace, and then the CMK ID. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p> </li> <li> <p>ARN using key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>. </p> </li> </ul> <p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. This action will eventually report failure. </p> <p>The specified CMK must exist in the Region that the snapshot is being copied to.</p>",
         "ImportSnapshotRequest$RoleName": "<p>The name of the role to use when not using the default role, 'vmimport'.</p>",
         "ImportSnapshotResult$Description": "<p>A description of the import snapshot task.</p>",
         "ImportSnapshotResult$ImportTaskId": "<p>The ID of the import snapshot task.</p>",
@@ -10473,7 +10612,6 @@
         "Ipv6Range$Description": "<p>A description for the security group rule that references this IPv6 address range.</p> <p>Constraints: Up to 255 characters in length. Allowed characters are a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=;{}!$*</p>",
         "KeyNameStringList$member": null,
         "KeyPair$KeyFingerprint": "<p>The SHA-1 digest of the DER encoded private key.</p>",
-        "KeyPair$KeyMaterial": "<p>An unencrypted PEM encoded RSA private key.</p>",
         "KeyPair$KeyName": "<p>The name of the key pair.</p>",
         "KeyPairInfo$KeyFingerprint": "<p>If you used <a>CreateKeyPair</a> to create the key pair, this is the SHA-1 digest of the DER encoded private key. If you used <a>ImportKeyPair</a> to provide AWS the public key, this is the MD5 public key fingerprint as specified in section 4 of RFC4716.</p>",
         "KeyPairInfo$KeyName": "<p>The name of the key pair.</p>",
@@ -10539,67 +10677,31 @@
         "LicenseConfigurationRequest$LicenseConfigurationArn": "<p>The Amazon Resource Name (ARN) of the license configuration.</p>",
         "LoadPermission$UserId": "<p>The AWS account ID.</p>",
         "LoadPermissionRequest$UserId": "<p>The AWS account ID.</p>",
-        "ModifyCapacityReservationRequest$CapacityReservationId": "<p>The ID of the Capacity Reservation.</p>",
-        "ModifyClientVpnEndpointRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint to modify.</p>",
         "ModifyClientVpnEndpointRequest$ServerCertificateArn": "<p>The ARN of the server certificate to be used. The server certificate must be provisioned in AWS Certificate Manager (ACM).</p>",
         "ModifyClientVpnEndpointRequest$Description": "<p>A brief description of the Client VPN endpoint.</p>",
-        "ModifyEbsDefaultKmsKeyIdRequest$KmsKeyId": "<p>The identifier of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use for Amazon EBS encryption. If this parameter is not specified, your AWS managed CMK for EBS is used. If <code>KmsKeyId</code> is specified, the encrypted state must be <code>true</code>.</p> <p>You can specify the CMK using any of the following:</p> <ul> <li> <p>Key ID. For example, key/1234abcd-12ab-34cd-56ef-1234567890ab.</p> </li> <li> <p>Key alias. For example, alias/ExampleAlias.</p> </li> <li> <p>Key ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p> </li> <li> <p>Alias ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p> </li> </ul> <p>AWS authenticates the CMK asynchronously. Therefore, if you specify an ID, alias, or ARN that is not valid, the action can appear to complete, but eventually fails.</p>",
         "ModifyEbsDefaultKmsKeyIdResult$KmsKeyId": "<p>The Amazon Resource Name (ARN) of the default CMK for encryption by default.</p>",
-        "ModifyFpgaImageAttributeRequest$FpgaImageId": "<p>The ID of the AFI.</p>",
         "ModifyFpgaImageAttributeRequest$Description": "<p>A description for the AFI.</p>",
         "ModifyFpgaImageAttributeRequest$Name": "<p>A name for the AFI.</p>",
         "ModifyIdFormatRequest$Resource": "<p>The type of resource: <code>bundle</code> | <code>conversion-task</code> | <code>customer-gateway</code> | <code>dhcp-options</code> | <code>elastic-ip-allocation</code> | <code>elastic-ip-association</code> | <code>export-task</code> | <code>flow-log</code> | <code>image</code> | <code>import-task</code> | <code>internet-gateway</code> | <code>network-acl</code> | <code>network-acl-association</code> | <code>network-interface</code> | <code>network-interface-attachment</code> | <code>prefix-list</code> | <code>route-table</code> | <code>route-table-association</code> | <code>security-group</code> | <code>subnet</code> | <code>subnet-cidr-block-association</code> | <code>vpc</code> | <code>vpc-cidr-block-association</code> | <code>vpc-endpoint</code> | <code>vpc-peering-connection</code> | <code>vpn-connection</code> | <code>vpn-gateway</code>.</p> <p>Alternatively, use the <code>all-current</code> option to include all resource types that are currently within their opt-in period for longer IDs.</p>",
         "ModifyIdentityIdFormatRequest$PrincipalArn": "<p>The ARN of the principal, which can be an IAM user, IAM role, or the root user. Specify <code>all</code> to modify the ID format for all IAM users, IAM roles, and the root user of the account.</p>",
         "ModifyIdentityIdFormatRequest$Resource": "<p>The type of resource: <code>bundle</code> | <code>conversion-task</code> | <code>customer-gateway</code> | <code>dhcp-options</code> | <code>elastic-ip-allocation</code> | <code>elastic-ip-association</code> | <code>export-task</code> | <code>flow-log</code> | <code>image</code> | <code>import-task</code> | <code>internet-gateway</code> | <code>network-acl</code> | <code>network-acl-association</code> | <code>network-interface</code> | <code>network-interface-attachment</code> | <code>prefix-list</code> | <code>route-table</code> | <code>route-table-association</code> | <code>security-group</code> | <code>subnet</code> | <code>subnet-cidr-block-association</code> | <code>vpc</code> | <code>vpc-cidr-block-association</code> | <code>vpc-endpoint</code> | <code>vpc-peering-connection</code> | <code>vpn-connection</code> | <code>vpn-gateway</code>.</p> <p>Alternatively, use the <code>all-current</code> option to include all resource types that are currently within their opt-in period for longer IDs.</p>",
         "ModifyImageAttributeRequest$Attribute": "<p>The name of the attribute to modify. The valid values are <code>description</code>, <code>launchPermission</code>, and <code>productCodes</code>.</p>",
-        "ModifyImageAttributeRequest$ImageId": "<p>The ID of the AMI.</p>",
         "ModifyImageAttributeRequest$Value": "<p>The value of the attribute being modified. This parameter can be used only when the <code>Attribute</code> parameter is <code>description</code> or <code>productCodes</code>.</p>",
-        "ModifyInstanceAttributeRequest$InstanceId": "<p>The ID of the instance.</p>",
         "ModifyInstanceAttributeRequest$Value": "<p>A new value for the attribute. Use only with the <code>kernel</code>, <code>ramdisk</code>, <code>userData</code>, <code>disableApiTermination</code>, or <code>instanceInitiatedShutdownBehavior</code> attribute.</p>",
-        "ModifyInstanceCapacityReservationAttributesRequest$InstanceId": "<p>The ID of the instance to be modified.</p>",
         "ModifyInstanceCreditSpecificationRequest$ClientToken": "<p>A unique, case-sensitive token that you provide to ensure idempotency of your modification request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
-        "ModifyInstanceEventStartTimeRequest$InstanceId": "<p>The ID of the instance with the scheduled event.</p>",
         "ModifyInstanceEventStartTimeRequest$InstanceEventId": "<p>The ID of the event whose date and time you are modifying.</p>",
-        "ModifyInstancePlacementRequest$GroupName": "<p>The name of the placement group in which to place the instance. For spread placement groups, the instance must have a tenancy of <code>default</code>. For cluster and partition placement groups, the instance must have a tenancy of <code>default</code> or <code>dedicated</code>.</p> <p>To remove an instance from a placement group, specify an empty string (\"\").</p>",
-        "ModifyInstancePlacementRequest$HostId": "<p>The ID of the Dedicated Host with which to associate the instance.</p>",
-        "ModifyInstancePlacementRequest$InstanceId": "<p>The ID of the instance that you are modifying.</p>",
         "ModifyLaunchTemplateRequest$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p> <p>Constraint: Maximum 128 ASCII characters.</p>",
-        "ModifyLaunchTemplateRequest$LaunchTemplateId": "<p>The ID of the launch template. You must specify either the launch template ID or launch template name in the request.</p>",
         "ModifyLaunchTemplateRequest$DefaultVersion": "<p>The version number of the launch template to set as the default version.</p>",
-        "ModifyNetworkInterfaceAttributeRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "ModifyReservedInstancesRequest$ClientToken": "<p>A unique, case-sensitive token you provide to ensure idempotency of your modification request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
         "ModifyReservedInstancesResult$ReservedInstancesModificationId": "<p>The ID for the modification.</p>",
-        "ModifySnapshotAttributeRequest$SnapshotId": "<p>The ID of the snapshot.</p>",
-        "ModifySpotFleetRequestRequest$SpotFleetRequestId": "<p>The ID of the Spot Fleet request.</p>",
-        "ModifySubnetAttributeRequest$SubnetId": "<p>The ID of the subnet.</p>",
-        "ModifyTrafficMirrorFilterNetworkServicesRequest$TrafficMirrorFilterId": "<p>The ID of the Traffic Mirror filter.</p>",
-        "ModifyTrafficMirrorFilterRuleRequest$TrafficMirrorFilterRuleId": "<p>The ID of the Traffic Mirror rule.</p>",
         "ModifyTrafficMirrorFilterRuleRequest$DestinationCidrBlock": "<p>The destination CIDR block to assign to the Traffic Mirror rule.</p>",
         "ModifyTrafficMirrorFilterRuleRequest$SourceCidrBlock": "<p>The source CIDR block to assign to the Traffic Mirror rule.</p>",
         "ModifyTrafficMirrorFilterRuleRequest$Description": "<p>The description to assign to the Traffic Mirror rule.</p>",
-        "ModifyTrafficMirrorSessionRequest$TrafficMirrorSessionId": "<p>The ID of the Traffic Mirror session.</p>",
-        "ModifyTrafficMirrorSessionRequest$TrafficMirrorTargetId": "<p>The Traffic Mirror target. The target must be in the same VPC as the source, or have a VPC peering connection with the source.</p>",
-        "ModifyTrafficMirrorSessionRequest$TrafficMirrorFilterId": "<p>The ID of the Traffic Mirror filter.</p>",
         "ModifyTrafficMirrorSessionRequest$Description": "<p>The description to assign to the Traffic Mirror session.</p>",
-        "ModifyTransitGatewayVpcAttachmentRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
-        "ModifyVolumeAttributeRequest$VolumeId": "<p>The ID of the volume.</p>",
-        "ModifyVolumeRequest$VolumeId": "<p>The ID of the volume.</p>",
-        "ModifyVpcAttributeRequest$VpcId": "<p>The ID of the VPC.</p>",
-        "ModifyVpcEndpointConnectionNotificationRequest$ConnectionNotificationId": "<p>The ID of the notification.</p>",
         "ModifyVpcEndpointConnectionNotificationRequest$ConnectionNotificationArn": "<p>The ARN for the SNS topic for the notification.</p>",
-        "ModifyVpcEndpointRequest$VpcEndpointId": "<p>The ID of the endpoint.</p>",
         "ModifyVpcEndpointRequest$PolicyDocument": "<p>A policy to attach to the endpoint that controls access to the service. The policy must be in valid JSON format.</p>",
-        "ModifyVpcEndpointServiceConfigurationRequest$ServiceId": "<p>The ID of the service.</p>",
         "ModifyVpcEndpointServicePermissionsRequest$ServiceId": "<p>The ID of the service.</p>",
-        "ModifyVpcPeeringConnectionOptionsRequest$VpcPeeringConnectionId": "<p>The ID of the VPC peering connection.</p>",
-        "ModifyVpcTenancyRequest$VpcId": "<p>The ID of the VPC.</p>",
-        "ModifyVpnConnectionRequest$VpnConnectionId": "<p>The ID of the VPN connection.</p>",
-        "ModifyVpnConnectionRequest$TransitGatewayId": "<p>The ID of the transit gateway.</p>",
-        "ModifyVpnConnectionRequest$CustomerGatewayId": "<p>The ID of the customer gateway at your end of the VPN connection.</p>",
-        "ModifyVpnConnectionRequest$VpnGatewayId": "<p>The ID of the virtual private gateway at the AWS side of the VPN connection.</p>",
-        "ModifyVpnTunnelCertificateRequest$VpnConnectionId": "<p>The ID of the AWS Site-to-Site VPN connection.</p>",
         "ModifyVpnTunnelCertificateRequest$VpnTunnelOutsideIpAddress": "<p>The external IP address of the VPN tunnel.</p>",
-        "ModifyVpnTunnelOptionsRequest$VpnConnectionId": "<p>The ID of the AWS Site-to-Site VPN connection.</p>",
         "ModifyVpnTunnelOptionsRequest$VpnTunnelOutsideIpAddress": "<p>The external IP address of the VPN tunnel.</p>",
         "ModifyVpnTunnelOptionsSpecification$TunnelInsideCidr": "<p>The range of inside IP addresses for the tunnel. Any specified CIDR blocks must be unique across all VPN connections that use the same virtual private gateway. </p> <p>Constraints: A size /30 CIDR block from the <code>169.254.0.0/16</code> range. The following CIDR blocks are reserved and cannot be used:</p> <ul> <li> <p> <code>169.254.0.0/30</code> </p> </li> <li> <p> <code>169.254.1.0/30</code> </p> </li> <li> <p> <code>169.254.2.0/30</code> </p> </li> <li> <p> <code>169.254.3.0/30</code> </p> </li> <li> <p> <code>169.254.4.0/30</code> </p> </li> <li> <p> <code>169.254.5.0/30</code> </p> </li> <li> <p> <code>169.254.169.252/30</code> </p> </li> </ul>",
         "ModifyVpnTunnelOptionsSpecification$PreSharedKey": "<p>The pre-shared key (PSK) to establish initial authentication between the virtual private gateway and the customer gateway.</p> <p>Constraints: Allowed characters are alphanumeric characters, periods (.), and underscores (_). Must be between 8 and 64 characters in length and cannot start with zero (0).</p>",
@@ -10705,7 +10807,6 @@
         "Purchase$UpfrontPrice": "<p>The upfront price of the reservation.</p>",
         "PurchaseHostReservationRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
         "PurchaseHostReservationRequest$LimitPrice": "<p>The specified limit is checked against the total upfront cost of the reservation (calculated as the offering's upfront cost multiplied by the host count). If the total upfront cost is greater than the specified price limit, the request fails. This is used to ensure that the purchase does not exceed the expected upfront cost of the purchase. At this time, the only supported currency is <code>USD</code>. For example, to indicate a limit price of USD 100, specify 100.00.</p>",
-        "PurchaseHostReservationRequest$OfferingId": "<p>The ID of the offering.</p>",
         "PurchaseHostReservationResult$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
         "PurchaseHostReservationResult$TotalHourlyPrice": "<p>The total hourly price of the reservation calculated per hour.</p>",
         "PurchaseHostReservationResult$TotalUpfrontPrice": "<p>The total amount charged to your account when you purchase the reservation.</p>",
@@ -10719,45 +10820,23 @@
         "RegionNameStringList$member": null,
         "RegisterImageRequest$ImageLocation": "<p>The full path to your AMI manifest in Amazon S3 storage. The specified bucket must have the <code>aws-exec-read</code> canned access control list (ACL) to ensure that it can be accessed by Amazon EC2. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl\">Canned ACLs</a> in the <i>Amazon S3 Service Developer Guide</i>.</p>",
         "RegisterImageRequest$Description": "<p>A description for your AMI.</p>",
-        "RegisterImageRequest$KernelId": "<p>The ID of the kernel.</p>",
         "RegisterImageRequest$Name": "<p>A name for your AMI.</p> <p>Constraints: 3-128 alphanumeric characters, parentheses (()), square brackets ([]), spaces ( ), periods (.), slashes (/), dashes (-), single quotes ('), at-signs (@), or underscores(_)</p>",
-        "RegisterImageRequest$RamdiskId": "<p>The ID of the RAM disk.</p>",
         "RegisterImageRequest$RootDeviceName": "<p>The device name of the root device volume (for example, <code>/dev/sda1</code>).</p>",
         "RegisterImageRequest$SriovNetSupport": "<p>Set to <code>simple</code> to enable enhanced networking with the Intel 82599 Virtual Function interface for the AMI and any instances that you launch from the AMI.</p> <p>There is no way to disable <code>sriovNetSupport</code> at this time.</p> <p>This option is supported only for HVM AMIs. Specifying this option with a PV AMI can make instances launched from the AMI unreachable.</p>",
         "RegisterImageRequest$VirtualizationType": "<p>The type of virtualization (<code>hvm</code> | <code>paravirtual</code>).</p> <p>Default: <code>paravirtual</code> </p>",
         "RegisterImageResult$ImageId": "<p>The ID of the newly registered AMI.</p>",
-        "RejectTransitGatewayVpcAttachmentRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
-        "RejectVpcEndpointConnectionsRequest$ServiceId": "<p>The ID of the service.</p>",
-        "RejectVpcPeeringConnectionRequest$VpcPeeringConnectionId": "<p>The ID of the VPC peering connection.</p>",
-        "ReleaseAddressRequest$AllocationId": "<p>[EC2-VPC] The allocation ID. Required for EC2-VPC.</p>",
         "ReleaseAddressRequest$PublicIp": "<p>[EC2-Classic] The Elastic IP address. Required for EC2-Classic.</p>",
         "ReplaceIamInstanceProfileAssociationRequest$AssociationId": "<p>The ID of the existing IAM instance profile association.</p>",
-        "ReplaceNetworkAclAssociationRequest$AssociationId": "<p>The ID of the current association between the original network ACL and the subnet.</p>",
-        "ReplaceNetworkAclAssociationRequest$NetworkAclId": "<p>The ID of the new network ACL to associate with the subnet.</p>",
         "ReplaceNetworkAclAssociationResult$NewAssociationId": "<p>The ID of the new association.</p>",
         "ReplaceNetworkAclEntryRequest$CidrBlock": "<p>The IPv4 network range to allow or deny, in CIDR notation (for example <code>172.16.0.0/24</code>).</p>",
         "ReplaceNetworkAclEntryRequest$Ipv6CidrBlock": "<p>The IPv6 network range to allow or deny, in CIDR notation (for example <code>2001:bd8:1234:1a00::/64</code>).</p>",
-        "ReplaceNetworkAclEntryRequest$NetworkAclId": "<p>The ID of the ACL.</p>",
         "ReplaceNetworkAclEntryRequest$Protocol": "<p>The protocol number. A value of \"-1\" means all protocols. If you specify \"-1\" or a protocol number other than \"6\" (TCP), \"17\" (UDP), or \"1\" (ICMP), traffic on all ports is allowed, regardless of any ports or ICMP types or codes that you specify. If you specify protocol \"58\" (ICMPv6) and specify an IPv4 CIDR block, traffic for all ICMP types and codes allowed, regardless of any that you specify. If you specify protocol \"58\" (ICMPv6) and specify an IPv6 CIDR block, you must specify an ICMP type and code.</p>",
         "ReplaceRouteRequest$DestinationCidrBlock": "<p>The IPv4 CIDR address block used for the destination match. The value that you provide must match the CIDR of an existing route in the table.</p>",
         "ReplaceRouteRequest$DestinationIpv6CidrBlock": "<p>The IPv6 CIDR address block used for the destination match. The value that you provide must match the CIDR of an existing route in the table.</p>",
-        "ReplaceRouteRequest$EgressOnlyInternetGatewayId": "<p>[IPv6 traffic only] The ID of an egress-only internet gateway.</p>",
-        "ReplaceRouteRequest$GatewayId": "<p>The ID of an internet gateway or virtual private gateway.</p>",
-        "ReplaceRouteRequest$InstanceId": "<p>The ID of a NAT instance in your VPC.</p>",
-        "ReplaceRouteRequest$NatGatewayId": "<p>[IPv4 traffic only] The ID of a NAT gateway.</p>",
-        "ReplaceRouteRequest$TransitGatewayId": "<p>The ID of a transit gateway.</p>",
-        "ReplaceRouteRequest$NetworkInterfaceId": "<p>The ID of a network interface.</p>",
-        "ReplaceRouteRequest$RouteTableId": "<p>The ID of the route table.</p>",
-        "ReplaceRouteRequest$VpcPeeringConnectionId": "<p>The ID of a VPC peering connection.</p>",
-        "ReplaceRouteTableAssociationRequest$AssociationId": "<p>The association ID.</p>",
-        "ReplaceRouteTableAssociationRequest$RouteTableId": "<p>The ID of the new route table to associate with the subnet.</p>",
         "ReplaceRouteTableAssociationResult$NewAssociationId": "<p>The ID of the new association.</p>",
         "ReplaceTransitGatewayRouteRequest$DestinationCidrBlock": "<p>The CIDR range used for the destination match. Routing decisions are based on the most specific match.</p>",
-        "ReplaceTransitGatewayRouteRequest$TransitGatewayRouteTableId": "<p>The ID of the route table.</p>",
-        "ReplaceTransitGatewayRouteRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
         "ReportInstanceStatusRequest$Description": "<p>Descriptive text about the health state of your instance.</p>",
         "RequestHostIdList$member": null,
-        "RequestHostIdSet$member": null,
         "RequestLaunchTemplateData$KernelId": "<p>The ID of the kernel.</p> <important> <p>We recommend that you use PV-GRUB instead of kernels and RAM disks. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html\">User Provided Kernels</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> </important>",
         "RequestLaunchTemplateData$ImageId": "<p>The ID of the AMI.</p>",
         "RequestLaunchTemplateData$KeyName": "<p>The name of the key pair. You can create a key pair using <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateKeyPair.html\">CreateKeyPair</a> or <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportKeyPair.html\">ImportKeyPair</a>.</p> <important> <p>If you do not specify a key pair, you can't connect to the instance unless you choose an AMI that is configured to allow users another way to log in.</p> </important>",
@@ -10803,12 +10882,7 @@
         "ReservedInstancesOffering$ReservedInstancesOfferingId": "<p>The ID of the Reserved Instance offering. This is the offering ID used in <a>GetReservedInstancesExchangeQuote</a> to confirm that an exchange can be made.</p>",
         "ReservedInstancesOfferingIdStringList$member": null,
         "ResetEbsDefaultKmsKeyIdResult$KmsKeyId": "<p>The Amazon Resource Name (ARN) of the default CMK for EBS encryption by default.</p>",
-        "ResetFpgaImageAttributeRequest$FpgaImageId": "<p>The ID of the AFI.</p>",
-        "ResetImageAttributeRequest$ImageId": "<p>The ID of the AMI.</p>",
-        "ResetInstanceAttributeRequest$InstanceId": "<p>The ID of the instance.</p>",
-        "ResetNetworkInterfaceAttributeRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "ResetNetworkInterfaceAttributeRequest$SourceDestCheck": "<p>The source/destination checking attribute. Resets the value to <code>true</code>.</p>",
-        "ResetSnapshotAttributeRequest$SnapshotId": "<p>The ID of the snapshot.</p>",
         "ResourceIdList$member": null,
         "ResourceList$member": null,
         "ResponseError$Message": "<p>The error message, if applicable.</p>",
@@ -10822,7 +10896,6 @@
         "RestorableByStringList$member": null,
         "RestoreAddressToClassicRequest$PublicIp": "<p>The Elastic IP address.</p>",
         "RestoreAddressToClassicResult$PublicIp": "<p>The Elastic IP address.</p>",
-        "RevokeClientVpnIngressRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint with which the authorization rule is associated.</p>",
         "RevokeClientVpnIngressRequest$TargetNetworkCidr": "<p>The IPv4 address range, in CIDR notation, of the network for which access is being removed.</p>",
         "RevokeClientVpnIngressRequest$AccessGroupId": "<p>The ID of the Active Directory group for which to revoke access. </p>",
         "RevokeSecurityGroupEgressRequest$GroupId": "<p>The ID of the security group.</p>",
@@ -10853,7 +10926,6 @@
         "RouteTableAssociation$RouteTableAssociationId": "<p>The ID of the association between a route table and a subnet.</p>",
         "RouteTableAssociation$RouteTableId": "<p>The ID of the route table.</p>",
         "RouteTableAssociation$SubnetId": "<p>The ID of the subnet. A subnet ID is not returned for an implicit association.</p>",
-        "RunInstancesRequest$ImageId": "<p>The ID of the AMI. An AMI ID is required to launch an instance and must be specified here or in a launch template.</p>",
         "RunInstancesRequest$KernelId": "<p>The ID of the kernel.</p> <important> <p>We recommend that you use PV-GRUB instead of kernels and RAM disks. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html\"> PV-GRUB</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> </important>",
         "RunInstancesRequest$KeyName": "<p>The name of the key pair. You can create a key pair using <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateKeyPair.html\">CreateKeyPair</a> or <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportKeyPair.html\">ImportKeyPair</a>.</p> <important> <p>If you do not specify a key pair, you can't connect to the instance unless you choose an AMI that is configured to allow users another way to log in.</p> </important>",
         "RunInstancesRequest$RamdiskId": "<p>The ID of the RAM disk to select. Some kernels require additional drivers at launch. Check the kernel requirements for information about whether you need to specify a RAM disk. To find kernel requirements, go to the AWS Resource Center and search for the kernel ID.</p> <important> <p>We recommend that you use PV-GRUB instead of kernels and RAM disks. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html\"> PV-GRUB</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> </important>",
@@ -10863,7 +10935,6 @@
         "RunInstancesRequest$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p> <p>Constraints: Maximum 64 ASCII characters</p>",
         "RunInstancesRequest$PrivateIpAddress": "<p>[EC2-VPC] The primary IPv4 address. You must specify a value from the IPv4 address range of the subnet.</p> <p>Only one private IP address can be designated as primary. You can't specify this option if you've specified the option to designate a private IP address as the primary IP address in a network interface specification. You cannot specify this option if you're launching more than one instance in the request.</p> <p>You cannot specify this option and the network interfaces option in the same request.</p>",
         "RunScheduledInstancesRequest$ClientToken": "<p>Unique, case-sensitive identifier that ensures the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
-        "RunScheduledInstancesRequest$ScheduledInstanceId": "<p>The Scheduled Instance ID.</p>",
         "S3Storage$AWSAccessKeyId": "<p>The access key ID of the owner of the bucket. Before you specify a value for your access key ID, review and follow the guidance in <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html\">Best Practices for Managing AWS Access Keys</a>.</p>",
         "S3Storage$Bucket": "<p>The bucket in which to store the AMI. You can specify a bucket that you already own or a new bucket that Amazon EC2 creates on your behalf. If you specify a bucket that belongs to someone else, Amazon EC2 returns an error.</p>",
         "S3Storage$Prefix": "<p>The beginning of the file name of the AMI.</p>",
@@ -10907,7 +10978,6 @@
         "ScheduledInstancesPlacement$GroupName": "<p>The name of the placement group.</p>",
         "ScheduledInstancesPrivateIpAddressConfig$PrivateIpAddress": "<p>The IPv4 address.</p>",
         "ScheduledInstancesSecurityGroupIdSet$member": null,
-        "SearchTransitGatewayRoutesRequest$TransitGatewayRouteTableId": "<p>The ID of the transit gateway route table.</p>",
         "SecurityGroup$Description": "<p>A description of the security group.</p>",
         "SecurityGroup$GroupName": "<p>The name of the security group.</p>",
         "SecurityGroup$OwnerId": "<p>The AWS account ID of the owner of the security group.</p>",
@@ -10920,7 +10990,6 @@
         "SecurityGroupReference$ReferencingVpcId": "<p>The ID of the VPC with the referencing security group.</p>",
         "SecurityGroupReference$VpcPeeringConnectionId": "<p>The ID of the VPC peering connection.</p>",
         "SecurityGroupStringList$member": null,
-        "SendDiagnosticInterruptRequest$InstanceId": "<p>The ID of the instance.</p>",
         "ServiceConfiguration$ServiceId": "<p>The ID of the service.</p>",
         "ServiceConfiguration$ServiceName": "<p>The name of the service.</p>",
         "ServiceConfiguration$PrivateDnsName": "<p>The private DNS name for the service.</p>",
@@ -11033,7 +11102,6 @@
         "TargetNetwork$VpcId": "<p>The ID of the VPC in which the target network (subnet) is located.</p>",
         "TargetNetwork$TargetNetworkId": "<p>The ID of the subnet specified as the target network.</p>",
         "TargetNetwork$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint with which the target network is associated.</p>",
-        "TerminateClientVpnConnectionsRequest$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint to which the client is connected.</p>",
         "TerminateClientVpnConnectionsRequest$ConnectionId": "<p>The ID of the client connection to be terminated.</p>",
         "TerminateClientVpnConnectionsRequest$Username": "<p>The name of the user who initiated the connection. Use this option to terminate all active connections for the specified user. This option can only be used if the user has established up to five connections.</p>",
         "TerminateClientVpnConnectionsResult$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint.</p>",
@@ -11095,9 +11163,7 @@
         "TunnelOption$OutsideIpAddress": "<p>The external IP address of the VPN tunnel.</p>",
         "TunnelOption$TunnelInsideCidr": "<p>The range of inside IP addresses for the tunnel.</p>",
         "TunnelOption$PreSharedKey": "<p>The pre-shared key (PSK) to establish initial authentication between the virtual private gateway and the customer gateway.</p>",
-        "UnassignIpv6AddressesRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "UnassignIpv6AddressesResult$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
-        "UnassignPrivateIpAddressesRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "UnsuccessfulInstanceCreditSpecificationItem$InstanceId": "<p>The ID of the instance.</p>",
         "UnsuccessfulInstanceCreditSpecificationItemError$Message": "<p>The applicable error message.</p>",
         "UnsuccessfulItem$ResourceId": "<p>The ID of the resource.</p>",
@@ -11199,6 +11265,12 @@
         "SubnetList$member": null
       }
     },
+    "SubnetCidrAssociationId": {
+      "base": null,
+      "refs": {
+        "DisassociateSubnetCidrBlockRequest$AssociationId": "<p>The association ID for the CIDR block.</p>"
+      }
+    },
     "SubnetCidrBlockState": {
       "base": "<p>Describes the state of a CIDR block.</p>",
       "refs": {
@@ -11209,6 +11281,18 @@
       "base": null,
       "refs": {
         "SubnetCidrBlockState$State": "<p>The state of a CIDR block.</p>"
+      }
+    },
+    "SubnetId": {
+      "base": null,
+      "refs": {
+        "AssociateClientVpnTargetNetworkRequest$SubnetId": "<p>The ID of the subnet to associate with the Client VPN endpoint.</p>",
+        "AssociateRouteTableRequest$SubnetId": "<p>The ID of the subnet.</p>",
+        "AssociateSubnetCidrBlockRequest$SubnetId": "<p>The ID of your subnet.</p>",
+        "CreateNatGatewayRequest$SubnetId": "<p>The subnet in which to create the NAT gateway.</p>",
+        "CreateNetworkInterfaceRequest$SubnetId": "<p>The ID of the subnet to associate with the network interface.</p>",
+        "DeleteSubnetRequest$SubnetId": "<p>The ID of the subnet.</p>",
+        "ModifySubnetAttributeRequest$SubnetId": "<p>The ID of the subnet.</p>"
       }
     },
     "SubnetIdStringList": {
@@ -11513,6 +11597,16 @@
         "TrafficMirrorFilterSet$member": null
       }
     },
+    "TrafficMirrorFilterId": {
+      "base": null,
+      "refs": {
+        "CreateTrafficMirrorFilterRuleRequest$TrafficMirrorFilterId": "<p>The ID of the filter that this rule is associated with.</p>",
+        "CreateTrafficMirrorSessionRequest$TrafficMirrorFilterId": "<p>The ID of the Traffic Mirror filter.</p>",
+        "DeleteTrafficMirrorFilterRequest$TrafficMirrorFilterId": "<p>The ID of the Traffic Mirror filter.</p>",
+        "ModifyTrafficMirrorFilterNetworkServicesRequest$TrafficMirrorFilterId": "<p>The ID of the Traffic Mirror filter.</p>",
+        "ModifyTrafficMirrorSessionRequest$TrafficMirrorFilterId": "<p>The ID of the Traffic Mirror filter.</p>"
+      }
+    },
     "TrafficMirrorFilterRule": {
       "base": "<p>Describes the Traffic Mirror rule.</p>",
       "refs": {
@@ -11531,6 +11625,13 @@
       "base": null,
       "refs": {
         "ModifyTrafficMirrorFilterRuleRequest$RemoveFields": "<p>The properties that you want to remove from the Traffic Mirror filter rule.</p> <p>When you remove a property from a Traffic Mirror filter rule, the property is set to the default.</p>"
+      }
+    },
+    "TrafficMirrorFilterRuleId": {
+      "base": null,
+      "refs": {
+        "DeleteTrafficMirrorFilterRuleRequest$TrafficMirrorFilterRuleId": "<p>The ID of the Traffic Mirror rule.</p>",
+        "ModifyTrafficMirrorFilterRuleRequest$TrafficMirrorFilterRuleId": "<p>The ID of the Traffic Mirror rule.</p>"
       }
     },
     "TrafficMirrorFilterRuleList": {
@@ -11604,6 +11705,13 @@
         "ModifyTrafficMirrorSessionRequest$RemoveFields": "<p>The properties that you want to remove from the Traffic Mirror session.</p> <p>When you remove a property from a Traffic Mirror session, the property is set to the default.</p>"
       }
     },
+    "TrafficMirrorSessionId": {
+      "base": null,
+      "refs": {
+        "DeleteTrafficMirrorSessionRequest$TrafficMirrorSessionId": "<p>The ID of the Traffic Mirror session.</p>",
+        "ModifyTrafficMirrorSessionRequest$TrafficMirrorSessionId": "<p>The ID of the Traffic Mirror session.</p>"
+      }
+    },
     "TrafficMirrorSessionSet": {
       "base": null,
       "refs": {
@@ -11615,6 +11723,14 @@
       "refs": {
         "CreateTrafficMirrorTargetResult$TrafficMirrorTarget": "<p>Information about the Traffic Mirror target.</p>",
         "TrafficMirrorTargetSet$member": null
+      }
+    },
+    "TrafficMirrorTargetId": {
+      "base": null,
+      "refs": {
+        "CreateTrafficMirrorSessionRequest$TrafficMirrorTargetId": "<p>The ID of the Traffic Mirror target.</p>",
+        "DeleteTrafficMirrorTargetRequest$TrafficMirrorTargetId": "<p>The ID of the Traffic Mirror target.</p>",
+        "ModifyTrafficMirrorSessionRequest$TrafficMirrorTargetId": "<p>The Traffic Mirror target. The target must be in the same VPC as the source, or have a VPC peering connection with the source.</p>"
       }
     },
     "TrafficMirrorTargetSet": {
@@ -11679,6 +11795,22 @@
         "TransitGatewayAttachment$Association": "<p>The association.</p>"
       }
     },
+    "TransitGatewayAttachmentId": {
+      "base": null,
+      "refs": {
+        "AcceptTransitGatewayVpcAttachmentRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
+        "AssociateTransitGatewayRouteTableRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
+        "CreateTransitGatewayRouteRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
+        "DeleteTransitGatewayVpcAttachmentRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
+        "DisableTransitGatewayRouteTablePropagationRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
+        "DisassociateTransitGatewayRouteTableRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
+        "EnableTransitGatewayRouteTablePropagationRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
+        "GetTransitGatewayAttachmentPropagationsRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
+        "ModifyTransitGatewayVpcAttachmentRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
+        "RejectTransitGatewayVpcAttachmentRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>",
+        "ReplaceTransitGatewayRouteRequest$TransitGatewayAttachmentId": "<p>The ID of the attachment.</p>"
+      }
+    },
     "TransitGatewayAttachmentIdStringList": {
       "base": null,
       "refs": {
@@ -11720,6 +11852,18 @@
       "refs": {
         "TransitGatewayAttachment$State": "<p>The attachment state.</p>",
         "TransitGatewayVpcAttachment$State": "<p>The state of the VPC attachment.</p>"
+      }
+    },
+    "TransitGatewayId": {
+      "base": null,
+      "refs": {
+        "CreateRouteRequest$TransitGatewayId": "<p>The ID of a transit gateway.</p>",
+        "CreateTransitGatewayRouteTableRequest$TransitGatewayId": "<p>The ID of the transit gateway.</p>",
+        "CreateTransitGatewayVpcAttachmentRequest$TransitGatewayId": "<p>The ID of the transit gateway.</p>",
+        "CreateVpnConnectionRequest$TransitGatewayId": "<p>The ID of the transit gateway. If you specify a transit gateway, you cannot specify a virtual private gateway.</p>",
+        "DeleteTransitGatewayRequest$TransitGatewayId": "<p>The ID of the transit gateway.</p>",
+        "ModifyVpnConnectionRequest$TransitGatewayId": "<p>The ID of the transit gateway.</p>",
+        "ReplaceRouteRequest$TransitGatewayId": "<p>The ID of a transit gateway.</p>"
       }
     },
     "TransitGatewayIdStringList": {
@@ -11825,6 +11969,23 @@
       "base": null,
       "refs": {
         "GetTransitGatewayRouteTableAssociationsResult$Associations": "<p>Information about the associations.</p>"
+      }
+    },
+    "TransitGatewayRouteTableId": {
+      "base": null,
+      "refs": {
+        "AssociateTransitGatewayRouteTableRequest$TransitGatewayRouteTableId": "<p>The ID of the transit gateway route table.</p>",
+        "CreateTransitGatewayRouteRequest$TransitGatewayRouteTableId": "<p>The ID of the transit gateway route table.</p>",
+        "DeleteTransitGatewayRouteRequest$TransitGatewayRouteTableId": "<p>The ID of the transit gateway route table.</p>",
+        "DeleteTransitGatewayRouteTableRequest$TransitGatewayRouteTableId": "<p>The ID of the transit gateway route table.</p>",
+        "DisableTransitGatewayRouteTablePropagationRequest$TransitGatewayRouteTableId": "<p>The ID of the propagation route table.</p>",
+        "DisassociateTransitGatewayRouteTableRequest$TransitGatewayRouteTableId": "<p>The ID of the transit gateway route table.</p>",
+        "EnableTransitGatewayRouteTablePropagationRequest$TransitGatewayRouteTableId": "<p>The ID of the propagation route table.</p>",
+        "ExportTransitGatewayRoutesRequest$TransitGatewayRouteTableId": "<p>The ID of the route table.</p>",
+        "GetTransitGatewayRouteTableAssociationsRequest$TransitGatewayRouteTableId": "<p>The ID of the transit gateway route table.</p>",
+        "GetTransitGatewayRouteTablePropagationsRequest$TransitGatewayRouteTableId": "<p>The ID of the transit gateway route table.</p>",
+        "ReplaceTransitGatewayRouteRequest$TransitGatewayRouteTableId": "<p>The ID of the route table.</p>",
+        "SearchTransitGatewayRoutesRequest$TransitGatewayRouteTableId": "<p>The ID of the transit gateway route table.</p>"
       }
     },
     "TransitGatewayRouteTableIdStringList": {
@@ -12212,6 +12373,18 @@
         "ImportVolumeRequest$Volume": "<p>The volume size.</p>"
       }
     },
+    "VolumeId": {
+      "base": null,
+      "refs": {
+        "AttachVolumeRequest$VolumeId": "<p>The ID of the EBS volume. The volume and instance must be within the same Availability Zone.</p>",
+        "CreateSnapshotRequest$VolumeId": "<p>The ID of the EBS volume.</p>",
+        "DeleteVolumeRequest$VolumeId": "<p>The ID of the volume.</p>",
+        "DetachVolumeRequest$VolumeId": "<p>The ID of the volume.</p>",
+        "EnableVolumeIORequest$VolumeId": "<p>The ID of the volume.</p>",
+        "ModifyVolumeAttributeRequest$VolumeId": "<p>The ID of the volume.</p>",
+        "ModifyVolumeRequest$VolumeId": "<p>The ID of the volume.</p>"
+      }
+    },
     "VolumeIdStringList": {
       "base": null,
       "refs": {
@@ -12357,6 +12530,12 @@
         "DescribeVpcAttributeRequest$Attribute": "<p>The VPC attribute.</p>"
       }
     },
+    "VpcCidrAssociationId": {
+      "base": null,
+      "refs": {
+        "DisassociateVpcCidrBlockRequest$AssociationId": "<p>The association ID for the CIDR block.</p>"
+      }
+    },
     "VpcCidrBlockAssociation": {
       "base": "<p>Describes an IPv4 CIDR block associated with a VPC.</p>",
       "refs": {
@@ -12422,6 +12601,13 @@
         "DescribeVpcEndpointConnectionsResult$VpcEndpointConnections": "<p>Information about one or more VPC endpoint connections.</p>"
       }
     },
+    "VpcEndpointId": {
+      "base": null,
+      "refs": {
+        "CreateVpcEndpointConnectionNotificationRequest$VpcEndpointId": "<p>The ID of the endpoint. </p>",
+        "ModifyVpcEndpointRequest$VpcEndpointId": "<p>The ID of the endpoint.</p>"
+      }
+    },
     "VpcEndpointSet": {
       "base": null,
       "refs": {
@@ -12433,6 +12619,36 @@
       "refs": {
         "CreateVpcEndpointRequest$VpcEndpointType": "<p>The type of endpoint.</p> <p>Default: Gateway</p>",
         "VpcEndpoint$VpcEndpointType": "<p>The type of endpoint.</p>"
+      }
+    },
+    "VpcId": {
+      "base": null,
+      "refs": {
+        "ApplySecurityGroupsToClientVpnTargetNetworkRequest$VpcId": "<p>The ID of the VPC in which the associated target network is located.</p>",
+        "AssociateDhcpOptionsRequest$VpcId": "<p>The ID of the VPC.</p>",
+        "AssociateVpcCidrBlockRequest$VpcId": "<p>The ID of the VPC.</p>",
+        "AttachClassicLinkVpcRequest$VpcId": "<p>The ID of a ClassicLink-enabled VPC.</p>",
+        "AttachInternetGatewayRequest$VpcId": "<p>The ID of the VPC.</p>",
+        "AttachVpnGatewayRequest$VpcId": "<p>The ID of the VPC.</p>",
+        "CreateEgressOnlyInternetGatewayRequest$VpcId": "<p>The ID of the VPC for which to create the egress-only internet gateway.</p>",
+        "CreateNetworkAclRequest$VpcId": "<p>The ID of the VPC.</p>",
+        "CreateRouteTableRequest$VpcId": "<p>The ID of the VPC.</p>",
+        "CreateSecurityGroupRequest$VpcId": "<p>[EC2-VPC] The ID of the VPC. Required for EC2-VPC.</p>",
+        "CreateSubnetRequest$VpcId": "<p>The ID of the VPC.</p>",
+        "CreateTransitGatewayVpcAttachmentRequest$VpcId": "<p>The ID of the VPC.</p>",
+        "CreateVpcEndpointRequest$VpcId": "<p>The ID of the VPC in which the endpoint will be used.</p>",
+        "CreateVpcPeeringConnectionRequest$VpcId": "<p>The ID of the requester VPC. You must specify this parameter in the request.</p>",
+        "DeleteVpcRequest$VpcId": "<p>The ID of the VPC.</p>",
+        "DescribeStaleSecurityGroupsRequest$VpcId": "<p>The ID of the VPC.</p>",
+        "DetachClassicLinkVpcRequest$VpcId": "<p>The ID of the VPC to which the instance is linked.</p>",
+        "DetachInternetGatewayRequest$VpcId": "<p>The ID of the VPC.</p>",
+        "DetachVpnGatewayRequest$VpcId": "<p>The ID of the VPC.</p>",
+        "DisableVpcClassicLinkDnsSupportRequest$VpcId": "<p>The ID of the VPC.</p>",
+        "DisableVpcClassicLinkRequest$VpcId": "<p>The ID of the VPC.</p>",
+        "EnableVpcClassicLinkDnsSupportRequest$VpcId": "<p>The ID of the VPC.</p>",
+        "EnableVpcClassicLinkRequest$VpcId": "<p>The ID of the VPC.</p>",
+        "ModifyVpcAttributeRequest$VpcId": "<p>The ID of the VPC.</p>",
+        "ModifyVpcTenancyRequest$VpcId": "<p>The ID of the VPC.</p>"
       }
     },
     "VpcIdStringList": {
@@ -12467,6 +12683,17 @@
         "AcceptVpcPeeringConnectionResult$VpcPeeringConnection": "<p>Information about the VPC peering connection.</p>",
         "CreateVpcPeeringConnectionResult$VpcPeeringConnection": "<p>Information about the VPC peering connection.</p>",
         "VpcPeeringConnectionList$member": null
+      }
+    },
+    "VpcPeeringConnectionId": {
+      "base": null,
+      "refs": {
+        "AcceptVpcPeeringConnectionRequest$VpcPeeringConnectionId": "<p>The ID of the VPC peering connection. You must specify this parameter in the request.</p>",
+        "CreateRouteRequest$VpcPeeringConnectionId": "<p>The ID of a VPC peering connection.</p>",
+        "DeleteVpcPeeringConnectionRequest$VpcPeeringConnectionId": "<p>The ID of the VPC peering connection.</p>",
+        "ModifyVpcPeeringConnectionOptionsRequest$VpcPeeringConnectionId": "<p>The ID of the VPC peering connection.</p>",
+        "RejectVpcPeeringConnectionRequest$VpcPeeringConnectionId": "<p>The ID of the VPC peering connection.</p>",
+        "ReplaceRouteRequest$VpcPeeringConnectionId": "<p>The ID of a VPC peering connection.</p>"
       }
     },
     "VpcPeeringConnectionList": {
@@ -12522,6 +12749,17 @@
         "VpnConnectionList$member": null
       }
     },
+    "VpnConnectionId": {
+      "base": null,
+      "refs": {
+        "CreateVpnConnectionRouteRequest$VpnConnectionId": "<p>The ID of the VPN connection.</p>",
+        "DeleteVpnConnectionRequest$VpnConnectionId": "<p>The ID of the VPN connection.</p>",
+        "DeleteVpnConnectionRouteRequest$VpnConnectionId": "<p>The ID of the VPN connection.</p>",
+        "ModifyVpnConnectionRequest$VpnConnectionId": "<p>The ID of the VPN connection.</p>",
+        "ModifyVpnTunnelCertificateRequest$VpnConnectionId": "<p>The ID of the AWS Site-to-Site VPN connection.</p>",
+        "ModifyVpnTunnelOptionsRequest$VpnConnectionId": "<p>The ID of the AWS Site-to-Site VPN connection.</p>"
+      }
+    },
     "VpnConnectionIdStringList": {
       "base": null,
       "refs": {
@@ -12558,6 +12796,18 @@
       "refs": {
         "CreateVpnGatewayResult$VpnGateway": "<p>Information about the virtual private gateway.</p>",
         "VpnGatewayList$member": null
+      }
+    },
+    "VpnGatewayId": {
+      "base": null,
+      "refs": {
+        "AttachVpnGatewayRequest$VpnGatewayId": "<p>The ID of the virtual private gateway.</p>",
+        "CreateVpnConnectionRequest$VpnGatewayId": "<p>The ID of the virtual private gateway. If you specify a virtual private gateway, you cannot specify a transit gateway.</p>",
+        "DeleteVpnGatewayRequest$VpnGatewayId": "<p>The ID of the virtual private gateway.</p>",
+        "DetachVpnGatewayRequest$VpnGatewayId": "<p>The ID of the virtual private gateway.</p>",
+        "DisableVgwRoutePropagationRequest$GatewayId": "<p>The ID of the virtual private gateway.</p>",
+        "EnableVgwRoutePropagationRequest$GatewayId": "<p>The ID of the virtual private gateway that is attached to a VPC. The virtual private gateway must be attached to the same VPC that the routing tables are associated with. </p>",
+        "ModifyVpnConnectionRequest$VpnGatewayId": "<p>The ID of the virtual private gateway at the AWS side of the VPN connection.</p>"
       }
     },
     "VpnGatewayIdStringList": {

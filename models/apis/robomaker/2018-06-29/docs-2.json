@@ -817,7 +817,7 @@
       "base": "<p>Describes a network interface.</p>",
       "refs": {
         "DescribeSimulationJobResponse$networkInterface": "<p>The network interface information for the simulation job.</p>",
-        "SimulationJob$networkInterface": "<p/>"
+        "SimulationJob$networkInterface": "<p>Information about a network interface.</p>"
       }
     },
     "NonEmptyString": {
@@ -1088,6 +1088,7 @@
         "DataSource$s3Bucket": "<p>The S3 bucket where the data files are located.</p>",
         "DataSourceConfig$s3Bucket": "<p>The S3 bucket where the data files are located.</p>",
         "OutputLocation$s3Bucket": "<p>The S3 bucket for output.</p>",
+        "S3Object$bucket": "<p>The bucket containing the object.</p>",
         "Source$s3Bucket": "<p>The s3 bucket name.</p>",
         "SourceConfig$s3Bucket": "<p>The Amazon S3 bucket name.</p>"
       }
@@ -1096,6 +1097,7 @@
       "base": null,
       "refs": {
         "S3KeyOutput$etag": "<p>The etag for the object.</p>",
+        "S3Object$etag": "<p>The etag of the object.</p>",
         "Source$etag": "<p>A hash of the object specified by <code>s3Bucket</code> and <code>s3Key</code>.</p>"
       }
     },
@@ -1105,6 +1107,7 @@
         "OutputLocation$s3Prefix": "<p>The S3 folder in the <code>s3Bucket</code> where output files will be placed.</p>",
         "S3KeyOutput$s3Key": "<p>The S3 key.</p>",
         "S3Keys$member": null,
+        "S3Object$key": "<p>The key of the object.</p>",
         "Source$s3Key": "<p>The s3 object key.</p>",
         "SourceConfig$s3Key": "<p>The s3 object key.</p>"
       }
@@ -1125,6 +1128,12 @@
       "base": null,
       "refs": {
         "DataSourceConfig$s3Keys": "<p>The list of S3 keys identifying the data source files.</p>"
+      }
+    },
+    "S3Object": {
+      "base": "<p>Information about an S3 object.</p>",
+      "refs": {
+        "DeploymentConfig$downloadConditionFile": "<p>The download condition file.</p>"
       }
     },
     "SecurityGroups": {
