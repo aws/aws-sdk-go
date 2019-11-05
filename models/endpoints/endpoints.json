@@ -758,6 +758,7 @@
             },
             "hostname" : "codecommit-fips.ca-central-1.amazonaws.com"
           },
+          "me-south-1" : { },
           "sa-east-1" : { },
           "us-east-1" : { },
           "us-east-2" : { },
@@ -1195,6 +1196,7 @@
       },
       "ds" : {
         "endpoints" : {
+          "ap-east-1" : { },
           "ap-northeast-1" : { },
           "ap-northeast-2" : { },
           "ap-south-1" : { },
@@ -2354,6 +2356,12 @@
             },
             "hostname" : "rds.ap-southeast-2.amazonaws.com"
           },
+          "ca-central-1" : {
+            "credentialScope" : {
+              "region" : "ca-central-1"
+            },
+            "hostname" : "rds.ca-central-1.amazonaws.com"
+          },
           "eu-central-1" : {
             "credentialScope" : {
               "region" : "eu-central-1"
@@ -2377,6 +2385,12 @@
               "region" : "eu-west-2"
             },
             "hostname" : "rds.eu-west-2.amazonaws.com"
+          },
+          "me-south-1" : {
+            "credentialScope" : {
+              "region" : "me-south-1"
+            },
+            "hostname" : "rds.me-south-1.amazonaws.com"
           },
           "us-east-1" : {
             "credentialScope" : {
