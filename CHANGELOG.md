@@ -1,3 +1,11 @@
+Release v1.25.27 (2019-11-05)
+===
+
+### Service Client Updates
+* `service/codestar-notifications`: Adds new service
+* `service/rds`: Updates service documentation
+  * Documentation updates for Amazon RDS
+
 Release v1.25.26 (2019-11-04)
 ===
 
