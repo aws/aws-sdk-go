@@ -42,7 +42,7 @@ func TestSerializationErrConnectionReset_accept(t *testing.T) {
 		},
 		"read not temporary": {
 			Err:            errReadConnectionResetStub,
-			ExpectAttempts: 1,
+			ExpectAttempts: 6,
 		},
 		"write with temporary": {
 			Err:            errWriteConnectionResetStub,

@@ -97,6 +97,63 @@ func TestShouldRetryError_cancelled(t *testing.T) {
 	}
 }
 
+func TestShouldRetryError_connection_reset(t *testing.T) {
+	reqWait := make(chan bool)
+	var ln net.Listener
+	go func() {
+		// Start server that listens for one connection, accepts it, and
+		// then closes it abruptly with a RST.
+		var err error
+		ln, err = net.Listen("tcp", "127.0.0.1:0")
+		if err != nil {
+			t.Fatalf("Error starting listener: %s", err)
+		}
+		defer ln.Close()
+		close(reqWait)
+
+		// Accept one connection.
+		conn, err := ln.Accept()
+		if err != nil {
+			t.Fatalf("Error accepting connection: %s", err)
+		}
+
+		// Force an RST, credit to Jake Pittis:
+		// https://gist.github.com/jpittis/4357d817dc425ae99fbf719828ab1800
+		tcpConn := conn.(*net.TCPConn)
+		tcpConn.SetLinger(0)
+
+		// Close the connction to send the RST
+		err = conn.Close()
+		if err != nil {
+			t.Fatalf("Error closing connection: %s", err)
+		}
+	}()
+
+	// Wait for listener
+	<-reqWait
+
+	// Perform request
+	tr := &http.Transport{}
+	defer tr.CloseIdleConnections()
+	client := http.Client{
+		Transport: tr,
+	}
+	r := newRequest(t, "http://"+ln.Addr().String())
+	resp, err := client.Do(r)
+	if resp != nil {
+		resp.Body.Close()
+	}
+	if err == nil {
+		t.Fatal("This should have failed.")
+	}
+
+	debugerr(t, err)
+
+	if shouldRetryError(err) == false {
+		t.Errorf("this connection was reset by peer and should be retried")
+	}
+}
+
 func TestShouldRetry(t *testing.T) {
 
 	syscallError := os.SyscallError{

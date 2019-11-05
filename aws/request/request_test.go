@@ -48,18 +48,19 @@ var (
 		isTemp: true, op: "accept", msg: "connection reset",
 	}
 
-	// net.OpError read for ECONNRESET is not temporary.
+	// net.OpError read for ECONNRESET may not be temporary, but is treated as
+	// temporary by the SDK.
 	errReadConnectionResetStub = &tempNetworkError{
 		isTemp: false, op: "read", msg: "connection reset",
 	}
 
-	// net.OpError write for ECONNRESET may not be temporary, but is treaded as
+	// net.OpError write for ECONNRESET may not be temporary, but is treated as
 	// temporary by the SDK.
 	errWriteConnectionResetStub = &tempNetworkError{
 		isTemp: false, op: "write", msg: "connection reset",
 	}
 
-	// net.OpError write for broken pipe may not be temporary, but is treaded as
+	// net.OpError write for broken pipe may not be temporary, but is treated as
 	// temporary by the SDK.
 	errWriteBrokenPipeStub = &tempNetworkError{
 		isTemp: false, op: "write", msg: "broken pipe",
