@@ -524,8 +524,10 @@ var awsPartition = partition{
 				"eu-north-1":     endpoint{},
 				"eu-west-1":      endpoint{},
 				"eu-west-2":      endpoint{},
+				"eu-west-3":      endpoint{},
 				"us-east-1":      endpoint{},
 				"us-east-2":      endpoint{},
+				"us-west-1":      endpoint{},
 				"us-west-2":      endpoint{},
 			},
 		},
@@ -3135,6 +3137,19 @@ var awsPartition = partition{
 					SignatureVersions: []string{"s3v4"},
 					CredentialScope: credentialScope{
 						Region: "us-west-2",
+					},
+				},
+			},
+		},
+		"savingsplans": service{
+			PartitionEndpoint: "aws-global",
+			IsRegionalized:    boxedFalse,
+
+			Endpoints: endpoints{
+				"aws-global": endpoint{
+					Hostname: "savingsplans.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-east-1",
 					},
 				},
 			},
