@@ -9,6 +9,10 @@
     "GetReservationPurchaseRecommendation": "<p>Gets recommendations for which reservations to purchase. These recommendations could help you reduce your costs. Reservations provide a discounted hourly rate (up to 75%) compared to On-Demand pricing.</p> <p>AWS generates your recommendations by identifying your On-Demand usage during a specific time period and collecting your usage into categories that are eligible for a reservation. After AWS has these categories, it simulates every combination of reservations in each category of usage to identify the best number of each type of RI to purchase to maximize your estimated savings. </p> <p>For example, AWS automatically aggregates your Amazon EC2 Linux, shared tenancy, and c4 family usage in the US West (Oregon) Region and recommends that you buy size-flexible regional reservations to apply to the c4 family usage. AWS recommends the smallest size instance in an instance family. This makes it easier to purchase a size-flexible RI. AWS also shows the equal number of normalized units so that you can purchase any instance size that you want. For this example, your RI recommendation would be for <code>c4.large</code> because that is the smallest size instance in the c4 instance family.</p>",
     "GetReservationUtilization": "<p>Retrieves the reservation utilization for your account. Master accounts in an organization have access to member accounts. You can filter data by dimensions in a time period. You can use <code>GetDimensionValues</code> to determine the possible dimension values. Currently, you can group only by <code>SUBSCRIPTION_ID</code>. </p>",
     "GetRightsizingRecommendation": "<p>Creates recommendations that helps you save cost by identifying idle and underutilized Amazon EC2 instances.</p> <p>Recommendations are generated to either downsize or terminate instances, along with providing savings detail and metrics. For details on calculation and function, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-what-is.html\">Optimizing Your Cost with Rightsizing Recommendations</a>.</p>",
+    "GetSavingsPlansCoverage": "<p>Retrieves the Savings Plans covered for your account. This enables you to see how much of your cost is covered by a Savings Plan. An organization’s master account can see the coverage of the associated member accounts. For any time period, you can filter data for Savings Plans usage with the following dimensions:</p> <ul> <li> <p> <code>LINKED_ACCOUNT</code> </p> </li> <li> <p> <code>REGION</code> </p> </li> <li> <p> <code>SERVICE</code> </p> </li> <li> <p> <code>INSTANCE_FAMILY</code> </p> </li> </ul> <p>To determine valid values for a dimension, use the <code>GetDimensionValues</code> operation.</p>",
+    "GetSavingsPlansPurchaseRecommendation": "<p>Retrieves your request parameters, Savings Plan Recommendations Summary and Details.</p>",
+    "GetSavingsPlansUtilization": "<p>Retrieves the Savings Plans utilization for your account across date ranges with daily or monthly granularity. Master accounts in an organization have access to member accounts. You can use <code>GetDimensionValues</code> to determine the possible dimension values.</p> <note> <p>You cannot group by any dimension values for <code>GetSavingsPlansUtilization</code>.</p> </note>",
+    "GetSavingsPlansUtilizationDetails": "<p>Retrieves a single daily or monthly Savings Plans utilization rate and details for your account. Master accounts in an organization have access to member accounts. You can use <code>GetDimensionValues</code> to determine the possible dimension values.</p> <note> <p>You can't group by any dimension values for <code>GetSavingsPlansUtilizationDetails</code>.</p> </note>",
     "GetTags": "<p>Queries for available tag keys and tag values for a specified period. You can search the tag values for an arbitrary string. </p>",
     "GetUsageForecast": "<p>Retrieves a forecast for how much Amazon Web Services predicts that you will use over the forecast time period that you select, based on your past usage. </p>"
   },
@@ -49,7 +53,9 @@
       "refs": {
         "DimensionValuesWithAttributes$Attributes": "<p>The attribute that applies to a specific <code>Dimension</code>.</p>",
         "ReservationCoverageGroup$Attributes": "<p>The attributes for this group of reservations.</p>",
-        "ReservationUtilizationGroup$Attributes": "<p>The attributes for this group of reservations.</p>"
+        "ReservationUtilizationGroup$Attributes": "<p>The attributes for this group of reservations.</p>",
+        "SavingsPlansCoverage$Attributes": "<p>The attribute that applies to a specific <code>Dimension</code>.</p>",
+        "SavingsPlansUtilizationDetail$Attributes": "<p>The attribute that applies to a specific <code>Dimension</code>.</p>"
       }
     },
     "BillExpirationException": {
@@ -60,7 +66,7 @@
     "Context": {
       "base": null,
       "refs": {
-        "GetDimensionValuesRequest$Context": "<p>The context for the call to <code>GetDimensionValues</code>. This can be <code>RESERVATIONS</code> or <code>COST_AND_USAGE</code>. The default value is <code>COST_AND_USAGE</code>. If the context is set to <code>RESERVATIONS</code>, the resulting dimension values can be used in the <code>GetReservationUtilization</code> operation. If the context is set to <code>COST_AND_USAGE</code>, the resulting dimension values can be used in the <code>GetCostAndUsage</code> operation.</p> <p>If you set the context to <code>COST_AND_USAGE</code>, you can use the following dimensions for searching:</p> <ul> <li> <p>AZ - The Availability Zone. An example is <code>us-east-1a</code>.</p> </li> <li> <p>DATABASE_ENGINE - The Amazon Relational Database Service database. Examples are Aurora or MySQL.</p> </li> <li> <p>INSTANCE_TYPE - The type of Amazon EC2 instance. An example is <code>m4.xlarge</code>.</p> </li> <li> <p>LEGAL_ENTITY_NAME - The name of the organization that sells you AWS services, such as Amazon Web Services.</p> </li> <li> <p>LINKED_ACCOUNT - The description in the attribute map that includes the full name of the member account. The value field contains the AWS ID of the member account.</p> </li> <li> <p>OPERATING_SYSTEM - The operating system. Examples are Windows or Linux.</p> </li> <li> <p>OPERATION - The action performed. Examples include <code>RunInstance</code> and <code>CreateBucket</code>.</p> </li> <li> <p>PLATFORM - The Amazon EC2 operating system. Examples are Windows or Linux.</p> </li> <li> <p>PURCHASE_TYPE - The reservation type of the purchase to which this usage is related. Examples include On-Demand Instances and Standard Reserved Instances.</p> </li> <li> <p>SERVICE - The AWS service such as Amazon DynamoDB.</p> </li> <li> <p>USAGE_TYPE - The type of usage. An example is DataTransfer-In-Bytes. The response for the <code>GetDimensionValues</code> operation includes a unit attribute. Examples include GB and Hrs.</p> </li> <li> <p>USAGE_TYPE_GROUP - The grouping of common usage types. An example is Amazon EC2: CloudWatch – Alarms. The response for this operation includes a unit attribute.</p> </li> <li> <p>RECORD_TYPE - The different types of charges such as RI fees, usage costs, tax refunds, and credits.</p> </li> </ul> <p>If you set the context to <code>RESERVATIONS</code>, you can use the following dimensions for searching:</p> <ul> <li> <p>AZ - The Availability Zone. An example is <code>us-east-1a</code>.</p> </li> <li> <p>CACHE_ENGINE - The Amazon ElastiCache operating system. Examples are Windows or Linux.</p> </li> <li> <p>DEPLOYMENT_OPTION - The scope of Amazon Relational Database Service deployments. Valid values are <code>SingleAZ</code> and <code>MultiAZ</code>.</p> </li> <li> <p>INSTANCE_TYPE - The type of Amazon EC2 instance. An example is <code>m4.xlarge</code>.</p> </li> <li> <p>LINKED_ACCOUNT - The description in the attribute map that includes the full name of the member account. The value field contains the AWS ID of the member account.</p> </li> <li> <p>PLATFORM - The Amazon EC2 operating system. Examples are Windows or Linux.</p> </li> <li> <p>REGION - The AWS Region.</p> </li> <li> <p>SCOPE (Utilization only) - The scope of a Reserved Instance (RI). Values are regional or a single Availability Zone.</p> </li> <li> <p>TAG (Coverage only) - The tags that are associated with a Reserved Instance (RI).</p> </li> <li> <p>TENANCY - The tenancy of a resource. Examples are shared or dedicated.</p> </li> </ul>"
+        "GetDimensionValuesRequest$Context": "<p>The context for the call to <code>GetDimensionValues</code>. This can be <code>RESERVATIONS</code> or <code>COST_AND_USAGE</code>. The default value is <code>COST_AND_USAGE</code>. If the context is set to <code>RESERVATIONS</code>, the resulting dimension values can be used in the <code>GetReservationUtilization</code> operation. If the context is set to <code>COST_AND_USAGE</code>, the resulting dimension values can be used in the <code>GetCostAndUsage</code> operation.</p> <p>If you set the context to <code>COST_AND_USAGE</code>, you can use the following dimensions for searching:</p> <ul> <li> <p>AZ - The Availability Zone. An example is <code>us-east-1a</code>.</p> </li> <li> <p>DATABASE_ENGINE - The Amazon Relational Database Service database. Examples are Aurora or MySQL.</p> </li> <li> <p>INSTANCE_TYPE - The type of Amazon EC2 instance. An example is <code>m4.xlarge</code>.</p> </li> <li> <p>LEGAL_ENTITY_NAME - The name of the organization that sells you AWS services, such as Amazon Web Services.</p> </li> <li> <p>LINKED_ACCOUNT - The description in the attribute map that includes the full name of the member account. The value field contains the AWS ID of the member account.</p> </li> <li> <p>OPERATING_SYSTEM - The operating system. Examples are Windows or Linux.</p> </li> <li> <p>OPERATION - The action performed. Examples include <code>RunInstance</code> and <code>CreateBucket</code>.</p> </li> <li> <p>PLATFORM - The Amazon EC2 operating system. Examples are Windows or Linux.</p> </li> <li> <p>PURCHASE_TYPE - The reservation type of the purchase to which this usage is related. Examples include On-Demand Instances and Standard Reserved Instances.</p> </li> <li> <p>SERVICE - The AWS service such as Amazon DynamoDB.</p> </li> <li> <p>USAGE_TYPE - The type of usage. An example is DataTransfer-In-Bytes. The response for the <code>GetDimensionValues</code> operation includes a unit attribute. Examples include GB and Hrs.</p> </li> <li> <p>USAGE_TYPE_GROUP - The grouping of common usage types. An example is Amazon EC2: CloudWatch – Alarms. The response for this operation includes a unit attribute.</p> </li> <li> <p>RECORD_TYPE - The different types of charges such as RI fees, usage costs, tax refunds, and credits.</p> </li> </ul> <p>If you set the context to <code>RESERVATIONS</code>, you can use the following dimensions for searching:</p> <ul> <li> <p>AZ - The Availability Zone. An example is <code>us-east-1a</code>.</p> </li> <li> <p>CACHE_ENGINE - The Amazon ElastiCache operating system. Examples are Windows or Linux.</p> </li> <li> <p>DEPLOYMENT_OPTION - The scope of Amazon Relational Database Service deployments. Valid values are <code>SingleAZ</code> and <code>MultiAZ</code>.</p> </li> <li> <p>INSTANCE_TYPE - The type of Amazon EC2 instance. An example is <code>m4.xlarge</code>.</p> </li> <li> <p>LINKED_ACCOUNT - The description in the attribute map that includes the full name of the member account. The value field contains the AWS ID of the member account.</p> </li> <li> <p>PLATFORM - The Amazon EC2 operating system. Examples are Windows or Linux.</p> </li> <li> <p>REGION - The AWS Region.</p> </li> <li> <p>SCOPE (Utilization only) - The scope of a Reserved Instance (RI). Values are regional or a single Availability Zone.</p> </li> <li> <p>TAG (Coverage only) - The tags that are associated with a Reserved Instance (RI).</p> </li> <li> <p>TENANCY - The tenancy of a resource. Examples are shared or dedicated.</p> </li> </ul> <p>If you set the context to <code>SAVINGS_PLANS</code>, you can use the following dimensions for searching:</p> <ul> <li> <p>SAVINGS_PLANS_TYPE - Type of Savings Plans (EC2 Instance or Compute)</p> </li> <li> <p>PAYMENT_OPTION - Payment option for the given Savings Plans (for example, All Upfront)</p> </li> <li> <p>REGION - The AWS Region.</p> </li> <li> <p>INSTANCE_TYPE_FAMILY - The family of instances (For example, <code>m5</code>)</p> </li> <li> <p>LINKED_ACCOUNT - The description in the attribute map that includes the full name of the member account. The value field contains the AWS ID of the member account.</p> </li> <li> <p>SAVINGS_PLAN_ARN - The unique identifier for your Savings Plan</p> </li> </ul>"
       }
     },
     "Coverage": {
@@ -134,9 +140,15 @@
         "GetDimensionValuesRequest$TimePeriod": "<p>The start and end dates for retrieving the dimension values. The start date is inclusive, but the end date is exclusive. For example, if <code>start</code> is <code>2017-01-01</code> and <code>end</code> is <code>2017-05-01</code>, then the cost and usage data is retrieved from <code>2017-01-01</code> up to and including <code>2017-04-30</code> but not including <code>2017-05-01</code>.</p>",
         "GetReservationCoverageRequest$TimePeriod": "<p>The start and end dates of the period that you want to retrieve data about reservation coverage for. You can retrieve data for a maximum of 13 months: the last 12 months and the current month. The start date is inclusive, but the end date is exclusive. For example, if <code>start</code> is <code>2017-01-01</code> and <code>end</code> is <code>2017-05-01</code>, then the cost and usage data is retrieved from <code>2017-01-01</code> up to and including <code>2017-04-30</code> but not including <code>2017-05-01</code>. </p>",
         "GetReservationUtilizationRequest$TimePeriod": "<p>Sets the start and end dates for retrieving RI utilization. The start date is inclusive, but the end date is exclusive. For example, if <code>start</code> is <code>2017-01-01</code> and <code>end</code> is <code>2017-05-01</code>, then the cost and usage data is retrieved from <code>2017-01-01</code> up to and including <code>2017-04-30</code> but not including <code>2017-05-01</code>. </p>",
+        "GetSavingsPlansCoverageRequest$TimePeriod": "<p>The time period that you want the usage and costs for. The <code>Start</code> date must be within 13 months. The <code>End</code> date must be after the <code>Start</code> date, and before the current date. Future dates can't be used as an <code>End</code> date.</p>",
+        "GetSavingsPlansUtilizationDetailsRequest$TimePeriod": "<p>The time period that you want the usage and costs for. The <code>Start</code> date must be within 13 months. The <code>End</code> date must be after the <code>Start</code> date, and before the current date. Future dates can't be used as an <code>End</code> date.</p>",
+        "GetSavingsPlansUtilizationDetailsResponse$TimePeriod": null,
+        "GetSavingsPlansUtilizationRequest$TimePeriod": "<p>The time period that you want the usage and costs for. The <code>Start</code> date must be within 13 months. The <code>End</code> date must be after the <code>Start</code> date, and before the current date. Future dates can't be used as an <code>End</code> date.</p>",
         "GetTagsRequest$TimePeriod": "<p>The start and end dates for retrieving the dimension values. The start date is inclusive, but the end date is exclusive. For example, if <code>start</code> is <code>2017-01-01</code> and <code>end</code> is <code>2017-05-01</code>, then the cost and usage data is retrieved from <code>2017-01-01</code> up to and including <code>2017-04-30</code> but not including <code>2017-05-01</code>.</p>",
         "GetUsageForecastRequest$TimePeriod": "<p>The start and end dates of the period that you want to retrieve usage forecast for. The start date is inclusive, but the end date is exclusive. For example, if <code>start</code> is <code>2017-01-01</code> and <code>end</code> is <code>2017-05-01</code>, then the cost and usage data is retrieved from <code>2017-01-01</code> up to and including <code>2017-04-30</code> but not including <code>2017-05-01</code>.</p>",
         "ResultByTime$TimePeriod": "<p>The time period that the result covers.</p>",
+        "SavingsPlansCoverage$TimePeriod": null,
+        "SavingsPlansUtilizationByTime$TimePeriod": null,
         "UtilizationByTime$TimePeriod": "<p>The period of time that this utilization was used for.</p>"
       }
     },
@@ -144,7 +156,7 @@
       "base": null,
       "refs": {
         "DimensionValues$Key": "<p>The names of the metadata types that you can use to filter and group your results. For example, <code>AZ</code> returns a list of Availability Zones.</p>",
-        "GetDimensionValuesRequest$Dimension": "<p>The name of the dimension. Each <code>Dimension</code> is available for a different <code>Context</code>. For more information, see <code>Context</code>.</p>"
+        "GetDimensionValuesRequest$Dimension": "<p>The name of the dimension. Each <code>Dimension</code> is available for a different <code>Context</code>. For more information, see <code>Context</code>. </p>"
       }
     },
     "DimensionValues": {
@@ -162,7 +174,7 @@
     "DimensionValuesWithAttributesList": {
       "base": null,
       "refs": {
-        "GetDimensionValuesResponse$DimensionValues": "<p>The filters that you used to filter your request. Some dimensions are available only for a specific context.</p> <p>If you set the context to <code>COST_AND_USAGE</code>, you can use the following dimensions for searching:</p> <ul> <li> <p>AZ - The Availability Zone. An example is <code>us-east-1a</code>.</p> </li> <li> <p>DATABASE_ENGINE - The Amazon Relational Database Service database. Examples are Aurora or MySQL.</p> </li> <li> <p>INSTANCE_TYPE - The type of Amazon EC2 instance. An example is <code>m4.xlarge</code>.</p> </li> <li> <p>LEGAL_ENTITY_NAME - The name of the organization that sells you AWS services, such as Amazon Web Services.</p> </li> <li> <p>LINKED_ACCOUNT - The description in the attribute map that includes the full name of the member account. The value field contains the AWS ID of the member account.</p> </li> <li> <p>OPERATING_SYSTEM - The operating system. Examples are Windows or Linux.</p> </li> <li> <p>OPERATION - The action performed. Examples include <code>RunInstance</code> and <code>CreateBucket</code>.</p> </li> <li> <p>PLATFORM - The Amazon EC2 operating system. Examples are Windows or Linux.</p> </li> <li> <p>PURCHASE_TYPE - The reservation type of the purchase to which this usage is related. Examples include On-Demand Instances and Standard Reserved Instances.</p> </li> <li> <p>SERVICE - The AWS service such as Amazon DynamoDB.</p> </li> <li> <p>USAGE_TYPE - The type of usage. An example is DataTransfer-In-Bytes. The response for the <code>GetDimensionValues</code> operation includes a unit attribute. Examples include GB and Hrs.</p> </li> <li> <p>USAGE_TYPE_GROUP - The grouping of common usage types. An example is Amazon EC2: CloudWatch – Alarms. The response for this operation includes a unit attribute.</p> </li> <li> <p>RECORD_TYPE - The different types of charges such as RI fees, usage costs, tax refunds, and credits.</p> </li> </ul> <p>If you set the context to <code>RESERVATIONS</code>, you can use the following dimensions for searching:</p> <ul> <li> <p>AZ - The Availability Zone. An example is <code>us-east-1a</code>.</p> </li> <li> <p>CACHE_ENGINE - The Amazon ElastiCache operating system. Examples are Windows or Linux.</p> </li> <li> <p>DEPLOYMENT_OPTION - The scope of Amazon Relational Database Service deployments. Valid values are <code>SingleAZ</code> and <code>MultiAZ</code>.</p> </li> <li> <p>INSTANCE_TYPE - The type of Amazon EC2 instance. An example is <code>m4.xlarge</code>.</p> </li> <li> <p>LINKED_ACCOUNT - The description in the attribute map that includes the full name of the member account. The value field contains the AWS ID of the member account.</p> </li> <li> <p>PLATFORM - The Amazon EC2 operating system. Examples are Windows or Linux.</p> </li> <li> <p>REGION - The AWS Region.</p> </li> <li> <p>SCOPE (Utilization only) - The scope of a Reserved Instance (RI). Values are regional or a single Availability Zone.</p> </li> <li> <p>TAG (Coverage only) - The tags that are associated with a Reserved Instance (RI).</p> </li> <li> <p>TENANCY - The tenancy of a resource. Examples are shared or dedicated.</p> </li> </ul>"
+        "GetDimensionValuesResponse$DimensionValues": "<p>The filters that you used to filter your request. Some dimensions are available only for a specific context.</p> <p>If you set the context to <code>COST_AND_USAGE</code>, you can use the following dimensions for searching:</p> <ul> <li> <p>AZ - The Availability Zone. An example is <code>us-east-1a</code>.</p> </li> <li> <p>DATABASE_ENGINE - The Amazon Relational Database Service database. Examples are Aurora or MySQL.</p> </li> <li> <p>INSTANCE_TYPE - The type of Amazon EC2 instance. An example is <code>m4.xlarge</code>.</p> </li> <li> <p>LEGAL_ENTITY_NAME - The name of the organization that sells you AWS services, such as Amazon Web Services.</p> </li> <li> <p>LINKED_ACCOUNT - The description in the attribute map that includes the full name of the member account. The value field contains the AWS ID of the member account.</p> </li> <li> <p>OPERATING_SYSTEM - The operating system. Examples are Windows or Linux.</p> </li> <li> <p>OPERATION - The action performed. Examples include <code>RunInstance</code> and <code>CreateBucket</code>.</p> </li> <li> <p>PLATFORM - The Amazon EC2 operating system. Examples are Windows or Linux.</p> </li> <li> <p>PURCHASE_TYPE - The reservation type of the purchase to which this usage is related. Examples include On-Demand Instances and Standard Reserved Instances.</p> </li> <li> <p>SERVICE - The AWS service such as Amazon DynamoDB.</p> </li> <li> <p>USAGE_TYPE - The type of usage. An example is DataTransfer-In-Bytes. The response for the <code>GetDimensionValues</code> operation includes a unit attribute. Examples include GB and Hrs.</p> </li> <li> <p>USAGE_TYPE_GROUP - The grouping of common usage types. An example is Amazon EC2: CloudWatch – Alarms. The response for this operation includes a unit attribute.</p> </li> <li> <p>RECORD_TYPE - The different types of charges such as RI fees, usage costs, tax refunds, and credits.</p> </li> </ul> <p>If you set the context to <code>RESERVATIONS</code>, you can use the following dimensions for searching:</p> <ul> <li> <p>AZ - The Availability Zone. An example is <code>us-east-1a</code>.</p> </li> <li> <p>CACHE_ENGINE - The Amazon ElastiCache operating system. Examples are Windows or Linux.</p> </li> <li> <p>DEPLOYMENT_OPTION - The scope of Amazon Relational Database Service deployments. Valid values are <code>SingleAZ</code> and <code>MultiAZ</code>.</p> </li> <li> <p>INSTANCE_TYPE - The type of Amazon EC2 instance. An example is <code>m4.xlarge</code>.</p> </li> <li> <p>LINKED_ACCOUNT - The description in the attribute map that includes the full name of the member account. The value field contains the AWS ID of the member account.</p> </li> <li> <p>PLATFORM - The Amazon EC2 operating system. Examples are Windows or Linux.</p> </li> <li> <p>REGION - The AWS Region.</p> </li> <li> <p>SCOPE (Utilization only) - The scope of a Reserved Instance (RI). Values are regional or a single Availability Zone.</p> </li> <li> <p>TAG (Coverage only) - The tags that are associated with a Reserved Instance (RI).</p> </li> <li> <p>TENANCY - The tenancy of a resource. Examples are shared or dedicated.</p> </li> </ul> <p>If you set the context to <code>SAVINGS_PLANS</code>, you can use the following dimensions for searching:</p> <ul> <li> <p>SAVINGS_PLANS_TYPE - Type of Savings Plans (EC2 Instance or Compute)</p> </li> <li> <p>PAYMENT_OPTION - Payment option for the given Savings Plans (for example, All Upfront)</p> </li> <li> <p>REGION - The AWS Region.</p> </li> <li> <p>INSTANCE_TYPE_FAMILY - The family of instances (For example, <code>m5</code>)</p> </li> <li> <p>LINKED_ACCOUNT - The description in the attribute map that includes the full name of the member account. The value field contains the AWS ID of the member account.</p> </li> <li> <p>SAVINGS_PLAN_ARN - The unique identifier for your Savings Plan</p> </li> </ul>"
       }
     },
     "EC2InstanceDetails": {
@@ -225,7 +237,7 @@
       }
     },
     "Expression": {
-      "base": "<p>Use <code>Expression</code> to filter by cost or by usage. There are two patterns: </p> <ul> <li> <p>Simple dimension values - You can set the dimension name and values for the filters that you plan to use. For example, you can filter for <code>REGION==us-east-1 OR REGION==us-west-1</code>. The <code>Expression</code> for that looks like this:</p> <p> <code>{ \"Dimensions\": { \"Key\": \"REGION\", \"Values\": [ \"us-east-1\", “us-west-1” ] } }</code> </p> <p>The list of dimension values are OR'd together to retrieve cost or usage data. You can create <code>Expression</code> and <code>DimensionValues</code> objects using either <code>with*</code> methods or <code>set*</code> methods in multiple lines. </p> </li> <li> <p>Compound dimension values with logical operations - You can use multiple <code>Expression</code> types and the logical operators <code>AND/OR/NOT</code> to create a list of one or more <code>Expression</code> objects. This allows you to filter on more advanced options. For example, you can filter on <code>((REGION == us-east-1 OR REGION == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer)</code>. The <code>Expression</code> for that looks like this:</p> <p> <code>{ \"And\": [ {\"Or\": [ {\"Dimensions\": { \"Key\": \"REGION\", \"Values\": [ \"us-east-1\", \"us-west-1\" ] }}, {\"Tags\": { \"Key\": \"TagName\", \"Values\": [\"Value1\"] } } ]}, {\"Not\": {\"Dimensions\": { \"Key\": \"USAGE_TYPE\", \"Values\": [\"DataTransfer\"] }}} ] } </code> </p> <note> <p>Because each <code>Expression</code> can have only one operator, the service returns an error if more than one is specified. The following example shows an <code>Expression</code> object that creates an error.</p> </note> <p> <code> { \"And\": [ ... ], \"DimensionValues\": { \"Dimension\": \"USAGE_TYPE\", \"Values\": [ \"DataTransfer\" ] } } </code> </p> </li> </ul> <note> <p>For <code>GetRightsizingRecommendation</code> action, a combination of OR and NOT is not supported. OR is not supported between different dimensions, or dimensions and tags. NOT operators aren't supported. Dimentions are also limited to <code>LINKED_ACCOUNT</code>, <code>REGION</code>, or <code>RIGHTSIZING_TYPE</code>.</p> </note>",
+      "base": "<p>Use <code>Expression</code> to filter by cost or by usage. There are two patterns: </p> <ul> <li> <p>Simple dimension values - You can set the dimension name and values for the filters that you plan to use. For example, you can filter for <code>REGION==us-east-1 OR REGION==us-west-1</code>. The <code>Expression</code> for that looks like this:</p> <p> <code>{ \"Dimensions\": { \"Key\": \"REGION\", \"Values\": [ \"us-east-1\", “us-west-1” ] } }</code> </p> <p>The list of dimension values are OR'd together to retrieve cost or usage data. You can create <code>Expression</code> and <code>DimensionValues</code> objects using either <code>with*</code> methods or <code>set*</code> methods in multiple lines. </p> </li> <li> <p>Compound dimension values with logical operations - You can use multiple <code>Expression</code> types and the logical operators <code>AND/OR/NOT</code> to create a list of one or more <code>Expression</code> objects. This allows you to filter on more advanced options. For example, you can filter on <code>((REGION == us-east-1 OR REGION == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer)</code>. The <code>Expression</code> for that looks like this:</p> <p> <code>{ \"And\": [ {\"Or\": [ {\"Dimensions\": { \"Key\": \"REGION\", \"Values\": [ \"us-east-1\", \"us-west-1\" ] }}, {\"Tags\": { \"Key\": \"TagName\", \"Values\": [\"Value1\"] } } ]}, {\"Not\": {\"Dimensions\": { \"Key\": \"USAGE_TYPE\", \"Values\": [\"DataTransfer\"] }}} ] } </code> </p> <note> <p>Because each <code>Expression</code> can have only one operator, the service returns an error if more than one is specified. The following example shows an <code>Expression</code> object that creates an error.</p> </note> <p> <code> { \"And\": [ ... ], \"DimensionValues\": { \"Dimension\": \"USAGE_TYPE\", \"Values\": [ \"DataTransfer\" ] } } </code> </p> </li> </ul> <note> <p>For <code>GetRightsizingRecommendation</code> action, a combination of OR and NOT is not supported. OR is not supported between different dimensions, or dimensions and tags. NOT operators aren't supported. Dimensions are also limited to <code>LINKED_ACCOUNT</code>, <code>REGION</code>, or <code>RIGHTSIZING_TYPE</code>.</p> </note>",
       "refs": {
         "Expression$Not": "<p>Return results that don't match a <code>Dimension</code> object.</p>",
         "Expressions$member": null,
@@ -234,6 +246,9 @@
         "GetReservationCoverageRequest$Filter": "<p>Filters utilization data by dimensions. You can filter by the following dimensions:</p> <ul> <li> <p>AZ</p> </li> <li> <p>CACHE_ENGINE</p> </li> <li> <p>DATABASE_ENGINE</p> </li> <li> <p>DEPLOYMENT_OPTION</p> </li> <li> <p>INSTANCE_TYPE</p> </li> <li> <p>LINKED_ACCOUNT</p> </li> <li> <p>OPERATING_SYSTEM</p> </li> <li> <p>PLATFORM</p> </li> <li> <p>REGION</p> </li> <li> <p>SERVICE</p> </li> <li> <p>TAG</p> </li> <li> <p>TENANCY</p> </li> </ul> <p> <code>GetReservationCoverage</code> uses the same <a href=\"http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html\">Expression</a> object as the other operations, but only <code>AND</code> is supported among each dimension. You can nest only one level deep. If there are multiple values for a dimension, they are OR'd together.</p> <p>If you don't provide a <code>SERVICE</code> filter, Cost Explorer defaults to EC2.</p>",
         "GetReservationUtilizationRequest$Filter": "<p>Filters utilization data by dimensions. You can filter by the following dimensions:</p> <ul> <li> <p>AZ</p> </li> <li> <p>CACHE_ENGINE</p> </li> <li> <p>DATABASE_ENGINE</p> </li> <li> <p>DEPLOYMENT_OPTION</p> </li> <li> <p>INSTANCE_TYPE</p> </li> <li> <p>LINKED_ACCOUNT</p> </li> <li> <p>OPERATING_SYSTEM</p> </li> <li> <p>PLATFORM</p> </li> <li> <p>REGION</p> </li> <li> <p>SERVICE</p> </li> <li> <p>SCOPE</p> </li> <li> <p>TENANCY</p> </li> </ul> <p> <code>GetReservationUtilization</code> uses the same <a href=\"http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html\">Expression</a> object as the other operations, but only <code>AND</code> is supported among each dimension, and nesting is supported up to only one level deep. If there are multiple values for a dimension, they are OR'd together.</p>",
         "GetRightsizingRecommendationRequest$Filter": null,
+        "GetSavingsPlansCoverageRequest$Filter": "<p>Filters Savings Plans coverage data by dimensions. You can filter data for Savings Plans usage with the following dimensions:</p> <ul> <li> <p> <code>LINKED_ACCOUNT</code> </p> </li> <li> <p> <code>REGION</code> </p> </li> <li> <p> <code>SERVICE</code> </p> </li> <li> <p> <code>INSTANCE_FAMILY</code> </p> </li> </ul> <p> <code>GetSavingsPlansCoverage</code> uses the same <a href=\"http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html\">Expression</a> object as the other operations, but only <code>AND</code> is supported among each dimension. If there are multiple values for a dimension, they are OR'd together.</p>",
+        "GetSavingsPlansUtilizationDetailsRequest$Filter": "<p>Filters Savings Plans utilization coverage data for active Savings Plans dimensions. You can filter data with the following dimensions:</p> <ul> <li> <p> <code>LINKED_ACCOUNT</code> </p> </li> <li> <p> <code>SAVINGS_PLAN_ARN</code> </p> </li> <li> <p> <code>REGION</code> </p> </li> <li> <p> <code>PAYMENT_OPTIONS</code> </p> </li> <li> <p> <code>INSTANCE_TYPE_FAMILY</code> </p> </li> </ul> <p> <code>GetSavingsPlansUtilizationDetails</code> uses the same <a href=\"http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html\">Expression</a> object as the other operations, but only <code>AND</code> is supported among each dimension. If there are multiple values for a dimension, they are OR'd together.</p>",
+        "GetSavingsPlansUtilizationRequest$Filter": "<p>Filters Savings Plans utilization coverage data for active Savings Plans dimensions. You can filter data with the following dimensions:</p> <ul> <li> <p> <code>LINKED_ACCOUNT</code> </p> </li> <li> <p> <code>SAVINGS_PLAN_ARN</code> </p> </li> <li> <p> <code>SAVINGS_PLANS_TYPE</code> </p> </li> <li> <p> <code>REGION</code> </p> </li> <li> <p> <code>PAYMENT_OPTIONS</code> </p> </li> <li> <p> <code>INSTANCE_TYPE_FAMILY</code> </p> </li> </ul> <p> <code>GetSavingsPlansUtilization</code> uses the same <a href=\"http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html\">Expression</a> object as the other operations, but only <code>AND</code> is supported among each dimension. If there are multiple values for a dimension, they are OR'd together.</p>",
         "GetUsageForecastRequest$Filter": "<p>The filters that you want to use to filter your forecast. Cost Explorer API supports all of the Cost Explorer filters.</p>"
       }
     },
@@ -278,6 +293,7 @@
       "refs": {
         "CurrentInstance$ResourceId": "<p>Resource ID of the current instance.</p>",
         "CurrentInstance$ReservationCoveredHoursInLookbackPeriod": "<p> Number of hours during the lookback period covered by reservations.</p>",
+        "CurrentInstance$SavingsPlansCoveredHoursInLookbackPeriod": "<p>Number of hours during the lookback period covered by Savings Plans.</p>",
         "CurrentInstance$OnDemandHoursInLookbackPeriod": "<p> Number of hours during the lookback period billed at On Demand rates.</p>",
         "CurrentInstance$TotalRunningHoursInLookbackPeriod": "<p> The total number of hours the instance ran during the lookback period.</p>",
         "CurrentInstance$MonthlyCost": "<p> Current On Demand cost of operating this instance on a monthly basis.</p>",
@@ -312,7 +328,7 @@
         "ForecastResult$PredictionIntervalUpperBound": "<p>The upper limit for the prediction interval. </p>",
         "GetReservationPurchaseRecommendationRequest$AccountId": "<p>The account ID that is associated with the recommendation. </p>",
         "GetReservationPurchaseRecommendationRequest$Service": "<p>The specific service that you want recommendations for.</p>",
-        "GetRightsizingRecommendationRequest$Service": "<p>The specific service that you want recommendations for.</p>",
+        "GetRightsizingRecommendationRequest$Service": "<p>The specific service that you want recommendations for. The only valid value for <code>GetRightsizingRecommendation</code> is \"<code>AmazonEC2</code>\".</p>",
         "RDSInstanceDetails$Family": "<p>The instance family of the recommended reservation.</p>",
         "RDSInstanceDetails$InstanceType": "<p>The type of instance that AWS recommends.</p>",
         "RDSInstanceDetails$Region": "<p>The AWS Region of the recommended reservation.</p>",
@@ -338,7 +354,7 @@
         "ReservationPurchaseRecommendationDetail$EstimatedMonthlySavingsAmount": "<p>How much AWS estimates that this specific recommendation could save you in a month.</p>",
         "ReservationPurchaseRecommendationDetail$EstimatedMonthlySavingsPercentage": "<p>How much AWS estimates that this specific recommendation could save you in a month, as a percentage of your overall costs.</p>",
         "ReservationPurchaseRecommendationDetail$EstimatedMonthlyOnDemandCost": "<p>How much AWS estimates that you spend on On-Demand Instances in a month.</p>",
-        "ReservationPurchaseRecommendationDetail$EstimatedReservationCostForLookbackPeriod": "<p>How much AWS estimates that you would have spent for all usage during the specified historical period if you had had a reservation.</p>",
+        "ReservationPurchaseRecommendationDetail$EstimatedReservationCostForLookbackPeriod": "<p>How much AWS estimates that you would have spent for all usage during the specified historical period if you had a reservation.</p>",
         "ReservationPurchaseRecommendationDetail$UpfrontCost": "<p>How much purchasing this instance costs you upfront.</p>",
         "ReservationPurchaseRecommendationDetail$RecurringStandardMonthlyCost": "<p>How much purchasing this instance costs you on a monthly basis.</p>",
         "ReservationPurchaseRecommendationMetadata$RecommendationId": "<p>The ID for this specific recommendation.</p>",
@@ -353,6 +369,48 @@
         "RightsizingRecommendationSummary$EstimatedTotalMonthlySavingsAmount": "<p> Estimated total savings resulting from modifications, on a monthly basis.</p>",
         "RightsizingRecommendationSummary$SavingsCurrencyCode": "<p> The currency code that Amazon Web Services used to calculate the savings.</p>",
         "RightsizingRecommendationSummary$SavingsPercentage": "<p> Savings percentage based on the recommended modifications, relative to the total On Demand costs associated with these instances.</p>",
+        "SavingsPlansAmortizedCommitment$AmortizedRecurringCommitment": "<p>The amortized amount of your Savings Plans commitment that was purchased with either a <code>Partial</code> or a <code>NoUpfront</code>.</p>",
+        "SavingsPlansAmortizedCommitment$AmortizedUpfrontCommitment": "<p>The amortized amount of your Savings Plans commitment that was purchased with an <code>Upfront</code> or <code>PartialUpfront</code> Savings Plans.</p>",
+        "SavingsPlansAmortizedCommitment$TotalAmortizedCommitment": "<p>The total amortized amount of your Savings Plans commitment, regardless of your Savings Plans purchase method. </p>",
+        "SavingsPlansCoverageData$SpendCoveredBySavingsPlans": "<p>The amount of your Amazon Web Services usage that is covered by a Savings Plans.</p>",
+        "SavingsPlansCoverageData$OnDemandCost": "<p>The cost of your Amazon Web Services usage at the public On-Demand rate.</p>",
+        "SavingsPlansCoverageData$TotalCost": "<p>The total cost of your Amazon Web Services usage, regardless of your purchase option.</p>",
+        "SavingsPlansCoverageData$CoveragePercentage": "<p>The percentage of your existing Savings Planscovered usage, divided by all of your eligible Savings Plans usage in an account(or set of accounts).</p>",
+        "SavingsPlansDetails$Region": "<p>A geographic location where the Savings Plans is hosted.</p>",
+        "SavingsPlansDetails$InstanceFamily": "<p>A group of instance types that Savings Plans applies to.</p>",
+        "SavingsPlansDetails$OfferingId": "<p>The unique ID used to distinguish Savings Plans from one another.</p>",
+        "SavingsPlansPurchaseRecommendationDetail$AccountId": "<p>The <code>AccountID</code> the recommendation is generated for.</p>",
+        "SavingsPlansPurchaseRecommendationDetail$UpfrontCost": "<p>The upfront cost of the recommended Savings Plans, based on the selected payment option.</p>",
+        "SavingsPlansPurchaseRecommendationDetail$EstimatedROI": "<p>The estimated return on investment based on the recommended Savings Plans purchased. This is calculated as <code>estimatedSavingsAmount</code>/ <code>estimatedSPCost</code>*100.</p>",
+        "SavingsPlansPurchaseRecommendationDetail$CurrencyCode": "<p>The currency code Amazon Web Services used to generate the recommendations and present potential savings.</p>",
+        "SavingsPlansPurchaseRecommendationDetail$EstimatedSPCost": "<p>The cost of the recommended Savings Plans over the length of the lookback period.</p>",
+        "SavingsPlansPurchaseRecommendationDetail$EstimatedOnDemandCost": "<p>The remaining On-Demand cost estimated to not be covered by the recommended Savings Plans, over the length of the lookback period.</p>",
+        "SavingsPlansPurchaseRecommendationDetail$EstimatedSavingsAmount": "<p>The estimated savings amount based on the recommended Savings Plans over the length of the lookback period.</p>",
+        "SavingsPlansPurchaseRecommendationDetail$EstimatedSavingsPercentage": "<p>The estimated savings percentage relative to the total cost of applicable On-Demand usage over the lookback period.</p>",
+        "SavingsPlansPurchaseRecommendationDetail$HourlyCommitmentToPurchase": "<p>The recommended hourly commitment level for the Savings Plans type, and configuration based on the usage during the lookback period.</p>",
+        "SavingsPlansPurchaseRecommendationDetail$EstimatedAverageUtilization": "<p>The estimated utilization of the recommended Savings Plans.</p>",
+        "SavingsPlansPurchaseRecommendationDetail$EstimatedMonthlySavingsAmount": "<p>The estimated monthly savings amount, based on the recommended Savings Plans.</p>",
+        "SavingsPlansPurchaseRecommendationDetail$CurrentMinimumHourlyOnDemandSpend": "<p>The lowest value of hourly On-Demand spend over the lookback period of the applicable usage type.</p>",
+        "SavingsPlansPurchaseRecommendationDetail$CurrentMaximumHourlyOnDemandSpend": "<p>The highest value of hourly On-Demand spend over the lookback period of the applicable usage type.</p>",
+        "SavingsPlansPurchaseRecommendationDetail$CurrentAverageHourlyOnDemandSpend": "<p>The average value of hourly On-Demand spend over the lookback period of the applicable usage type.</p>",
+        "SavingsPlansPurchaseRecommendationMetadata$RecommendationId": "<p>The unique identifier for the recommendation set.</p>",
+        "SavingsPlansPurchaseRecommendationMetadata$GenerationTimestamp": "<p>The timestamp showing when the recommendations were generated.</p>",
+        "SavingsPlansPurchaseRecommendationSummary$EstimatedROI": "<p>The estimated return on investment based on the recommended Savings Plans and estimated savings.</p>",
+        "SavingsPlansPurchaseRecommendationSummary$CurrencyCode": "<p>The currency code Amazon Web Services used to generate the recommendations and present potential savings.</p>",
+        "SavingsPlansPurchaseRecommendationSummary$EstimatedTotalCost": "<p>The estimated total cost of the usage after purchasing the recommended Savings Plans. This is a sum of the cost of Savings Plans during this term, and the remaining On-Demand usage.</p>",
+        "SavingsPlansPurchaseRecommendationSummary$CurrentOnDemandSpend": "<p>The current total on demand spend of the applicable usage types over the lookback period.</p>",
+        "SavingsPlansPurchaseRecommendationSummary$EstimatedSavingsAmount": "<p>The estimated total savings over the lookback period, based on the purchase of the recommended Savings Plans.</p>",
+        "SavingsPlansPurchaseRecommendationSummary$TotalRecommendationCount": "<p>The aggregate number of Savings Plans recommendations that exist for your account.</p>",
+        "SavingsPlansPurchaseRecommendationSummary$DailyCommitmentToPurchase": "<p>The recommended Savings Plans cost on a daily (24 hourly) basis.</p>",
+        "SavingsPlansPurchaseRecommendationSummary$HourlyCommitmentToPurchase": "<p>The recommended hourly commitment based on the recommendation parameters.</p>",
+        "SavingsPlansPurchaseRecommendationSummary$EstimatedSavingsPercentage": "<p>The estimated savings relative to the total cost of On-Demand usage, over the lookback period. This is calculated as <code>estimatedSavingsAmount</code>/ <code>CurrentOnDemandSpend</code>*100.</p>",
+        "SavingsPlansPurchaseRecommendationSummary$EstimatedMonthlySavingsAmount": "<p>The estimated monthly savings amount, based on the recommended Savings Plans purchase.</p>",
+        "SavingsPlansSavings$NetSavings": "<p>The savings amount that you are accumulating for the usage that is covered by a Savings Plans, when compared to the On-Demand equivalent of the same usage.</p>",
+        "SavingsPlansSavings$OnDemandCostEquivalent": "<p>How much the amount that the usage would have cost if it was accrued at the On-Demand rate.</p>",
+        "SavingsPlansUtilization$TotalCommitment": "<p>The total amount of Savings Plans commitment that's been purchased in an account (or set of accounts).</p>",
+        "SavingsPlansUtilization$UsedCommitment": "<p>The amount of your Savings Plans commitment that was not consumed from Savings Plans eligible usage in a specific period.</p>",
+        "SavingsPlansUtilization$UnusedCommitment": "<p>The amount of your Savings Plans commitment that was not consumed from Savings Plans eligible usage in a specific period.</p>",
+        "SavingsPlansUtilization$UtilizationPercentage": "<p>The amount of <code>UsedCommitment</code> divided by the <code>TotalCommitment</code> for your Savings Plans.</p>",
         "TargetInstance$EstimatedMonthlyCost": "<p> Expected cost to operate this instance type on a monthly basis.</p>",
         "TargetInstance$EstimatedMonthlySavings": "<p> Estimated savings resulting from modification, on a monthly basis.</p>",
         "TargetInstance$CurrencyCode": "<p> The currency code that Amazon Web Services used to calculate the costs for this instance.</p>",
@@ -430,6 +488,46 @@
       "refs": {
       }
     },
+    "GetSavingsPlansCoverageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSavingsPlansCoverageResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSavingsPlansPurchaseRecommendationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSavingsPlansPurchaseRecommendationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSavingsPlansUtilizationDetailsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSavingsPlansUtilizationDetailsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSavingsPlansUtilizationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSavingsPlansUtilizationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetTagsRequest": {
       "base": null,
       "refs": {
@@ -457,6 +555,8 @@
         "GetCostForecastRequest$Granularity": "<p>How granular you want the forecast to be. You can get 3 months of <code>DAILY</code> forecasts or 12 months of <code>MONTHLY</code> forecasts.</p> <p>The <code>GetCostForecast</code> operation supports only <code>DAILY</code> and <code>MONTHLY</code> granularities.</p>",
         "GetReservationCoverageRequest$Granularity": "<p>The granularity of the AWS cost data for the reservation. Valid values are <code>MONTHLY</code> and <code>DAILY</code>.</p> <p>If <code>GroupBy</code> is set, <code>Granularity</code> can't be set. If <code>Granularity</code> isn't set, the response object doesn't include <code>Granularity</code>, either <code>MONTHLY</code> or <code>DAILY</code>.</p> <p>The <code>GetReservationCoverage</code> operation supports only <code>DAILY</code> and <code>MONTHLY</code> granularities.</p>",
         "GetReservationUtilizationRequest$Granularity": "<p>If <code>GroupBy</code> is set, <code>Granularity</code> can't be set. If <code>Granularity</code> isn't set, the response object doesn't include <code>Granularity</code>, either <code>MONTHLY</code> or <code>DAILY</code>. If both <code>GroupBy</code> and <code>Granularity</code> aren't set, <code>GetReservationUtilization</code> defaults to <code>DAILY</code>.</p> <p>The <code>GetReservationUtilization</code> operation supports only <code>DAILY</code> and <code>MONTHLY</code> granularities.</p>",
+        "GetSavingsPlansCoverageRequest$Granularity": "<p>The granularity of the Amazon Web Services cost data for your Savings Plans. <code>Granularity</code> can't be set if <code>GroupBy</code> is set.</p>",
+        "GetSavingsPlansUtilizationRequest$Granularity": "<p>The granularity of the Amazon Web Services utillization data for your Savings Plans.</p>",
         "GetUsageForecastRequest$Granularity": "<p>How granular you want the forecast to be. You can get 3 months of <code>DAILY</code> forecasts or 12 months of <code>MONTHLY</code> forecasts.</p> <p>The <code>GetUsageForecast</code> operation supports only <code>DAILY</code> and <code>MONTHLY</code> granularities.</p>"
       }
     },
@@ -490,7 +590,8 @@
         "GetCostAndUsageRequest$GroupBy": "<p>You can group AWS costs using up to two different groups, either dimensions, tag keys, or both.</p> <p>When you group by tag key, you get all tag values, including empty strings.</p> <p>Valid values are <code>AZ</code>, <code>INSTANCE_TYPE</code>, <code>LEGAL_ENTITY_NAME</code>, <code>LINKED_ACCOUNT</code>, <code>OPERATION</code>, <code>PLATFORM</code>, <code>PURCHASE_TYPE</code>, <code>SERVICE</code>, <code>TAGS</code>, <code>TENANCY</code>, and <code>USAGE_TYPE</code>.</p>",
         "GetCostAndUsageResponse$GroupDefinitions": "<p>The groups that are specified by the <code>Filter</code> or <code>GroupBy</code> parameters in the request.</p>",
         "GetReservationCoverageRequest$GroupBy": "<p>You can group the data by the following attributes:</p> <ul> <li> <p>AZ</p> </li> <li> <p>CACHE_ENGINE</p> </li> <li> <p>DATABASE_ENGINE</p> </li> <li> <p>DEPLOYMENT_OPTION</p> </li> <li> <p>INSTANCE_TYPE</p> </li> <li> <p>LINKED_ACCOUNT</p> </li> <li> <p>OPERATING_SYSTEM</p> </li> <li> <p>PLATFORM</p> </li> <li> <p>REGION</p> </li> <li> <p>TENANCY</p> </li> </ul>",
-        "GetReservationUtilizationRequest$GroupBy": "<p>Groups only by <code>SUBSCRIPTION_ID</code>. Metadata is included.</p>"
+        "GetReservationUtilizationRequest$GroupBy": "<p>Groups only by <code>SUBSCRIPTION_ID</code>. Metadata is included.</p>",
+        "GetSavingsPlansCoverageRequest$GroupBy": "<p>You can group the data using the attributes <code>INSTANCE_FAMILY</code>, <code>REGION</code>, or <code>SERVICE</code>.</p>"
       }
     },
     "Groups": {
@@ -531,8 +632,17 @@
       "base": null,
       "refs": {
         "GetReservationPurchaseRecommendationRequest$LookbackPeriodInDays": "<p>The number of previous days that you want AWS to consider when it calculates your recommendations.</p>",
+        "GetSavingsPlansPurchaseRecommendationRequest$LookbackPeriodInDays": "<p>The lookback period used to generate the recommendation.</p>",
         "ReservationPurchaseRecommendation$LookbackPeriodInDays": "<p>How many days of previous usage that AWS considers when making this recommendation.</p>",
-        "RightsizingRecommendationMetadata$LookbackPeriodInDays": "<p> How many days of previous usage that Amazon Web Services considers when making this recommendation.</p>"
+        "RightsizingRecommendationMetadata$LookbackPeriodInDays": "<p> How many days of previous usage that Amazon Web Services considers when making this recommendation.</p>",
+        "SavingsPlansPurchaseRecommendation$LookbackPeriodInDays": "<p>The lookback period in days, used to generate the recommendation.</p>"
+      }
+    },
+    "MaxResults": {
+      "base": null,
+      "refs": {
+        "GetSavingsPlansCoverageRequest$MaxResults": "<p>The number of items to be returned in a response. The default is <code>20</code>, with a minimum value of <code>1</code>.</p>",
+        "GetSavingsPlansUtilizationDetailsRequest$MaxResults": "<p>The number of items to be returned in a response. The default is <code>20</code>, with a minimum value of <code>1</code>.</p>"
       }
     },
     "Metric": {
@@ -559,7 +669,8 @@
       "base": null,
       "refs": {
         "GetCostAndUsageRequest$Metrics": "<p>Which metrics are returned in the query. For more information about blended and unblended rates, see <a href=\"https://aws.amazon.com/premiumsupport/knowledge-center/blended-rates-intro/\">Why does the \"blended\" annotation appear on some line items in my bill?</a>. </p> <p>Valid values are <code>AmortizedCost</code>, <code>BlendedCost</code>, <code>NetAmortizedCost</code>, <code>NetUnblendedCost</code>, <code>NormalizedUsageAmount</code>, <code>UnblendedCost</code>, and <code>UsageQuantity</code>. </p> <note> <p>If you return the <code>UsageQuantity</code> metric, the service aggregates all usage numbers without taking into account the units. For example, if you aggregate <code>usageQuantity</code> across all of Amazon EC2, the results aren't meaningful because Amazon EC2 compute hours and data transfer are measured in different units (for example, hours vs. GB). To get more meaningful <code>UsageQuantity</code> metrics, filter by <code>UsageType</code> or <code>UsageTypeGroups</code>. </p> </note> <p> <code>Metrics</code> is required for <code>GetCostAndUsage</code> requests.</p>",
-        "GetReservationCoverageRequest$Metrics": "<p>The measurement that you want your reservation coverage reported in.</p> <p>Valid values are <code>Hour</code>, <code>Unit</code>, and <code>Cost</code>. You can use multiple values in a request.</p>"
+        "GetReservationCoverageRequest$Metrics": "<p>The measurement that you want your reservation coverage reported in.</p> <p>Valid values are <code>Hour</code>, <code>Unit</code>, and <code>Cost</code>. You can use multiple values in a request.</p>",
+        "GetSavingsPlansCoverageRequest$Metrics": "<p>The measurement that you want your Savings Plans coverage reported in. The only valid value is <code>spendCoveredBySavingsPlans</code>.</p>"
       }
     },
     "MetricUnit": {
@@ -610,6 +721,12 @@
         "GetReservationUtilizationResponse$NextPageToken": "<p>The token for the next set of retrievable results. AWS provides the token when the response from a previous call has more results than the maximum page size.</p>",
         "GetRightsizingRecommendationRequest$NextPageToken": "<p>The pagination token that indicates the next set of results that you want to retrieve.</p>",
         "GetRightsizingRecommendationResponse$NextPageToken": "<p>The token to retrieve the next set of results.</p>",
+        "GetSavingsPlansCoverageRequest$NextToken": "<p>The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size.</p>",
+        "GetSavingsPlansCoverageResponse$NextToken": "<p>The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size.</p>",
+        "GetSavingsPlansPurchaseRecommendationRequest$NextPageToken": "<p>The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size.</p>",
+        "GetSavingsPlansPurchaseRecommendationResponse$NextPageToken": "<p>The token for the next set of retrievable results. AWS provides the token when the response from a previous call has more results than the maximum page size.</p>",
+        "GetSavingsPlansUtilizationDetailsRequest$NextToken": "<p>The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size.</p>",
+        "GetSavingsPlansUtilizationDetailsResponse$NextToken": "<p>The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size.</p>",
         "GetTagsRequest$NextPageToken": "<p>The token to retrieve the next set of results. AWS provides the token when the response from a previous call has more results than the maximum page size.</p>",
         "GetTagsResponse$NextPageToken": "<p>The token for the next set of retrievable results. AWS provides the token when the response from a previous call has more results than the maximum page size.</p>"
       }
@@ -618,7 +735,8 @@
       "base": null,
       "refs": {
         "GetReservationPurchaseRecommendationRequest$PageSize": "<p>The number of recommendations that you want returned in a single response object.</p>",
-        "GetRightsizingRecommendationRequest$PageSize": "<p>The number of recommendations that you want returned in a single response object.</p>"
+        "GetRightsizingRecommendationRequest$PageSize": "<p>The number of recommendations that you want returned in a single response object.</p>",
+        "GetSavingsPlansPurchaseRecommendationRequest$PageSize": "<p>The number of recommendations that you want returned in a single response object.</p>"
       }
     },
     "OfferingClass": {
@@ -664,7 +782,9 @@
       "base": null,
       "refs": {
         "GetReservationPurchaseRecommendationRequest$PaymentOption": "<p>The reservation purchase option that you want recommendations for.</p>",
-        "ReservationPurchaseRecommendation$PaymentOption": "<p>The payment option for the reservation. For example, <code>AllUpfront</code> or <code>NoUpfront</code>.</p>"
+        "GetSavingsPlansPurchaseRecommendationRequest$PaymentOption": "<p>The payment option used to generate these recommendations.</p>",
+        "ReservationPurchaseRecommendation$PaymentOption": "<p>The payment option for the reservation. For example, <code>AllUpfront</code> or <code>NoUpfront</code>.</p>",
+        "SavingsPlansPurchaseRecommendation$PaymentOption": "<p>The payment option used to generate the recommendation.</p>"
       }
     },
     "PredictionIntervalLevel": {
@@ -851,6 +971,121 @@
         "RightsizingRecommendation$RightsizingType": "<p>Recommendation to either terminate or modify the resource.</p>"
       }
     },
+    "SavingsPlanArn": {
+      "base": null,
+      "refs": {
+        "SavingsPlansUtilizationDetail$SavingsPlanArn": "<p>The unique Amazon Resource Name (ARN) for a particular Savings Plan.</p>"
+      }
+    },
+    "SavingsPlansAmortizedCommitment": {
+      "base": "<p>The amortized amount of Savings Plans purchased in a specific account during a specific time interval.</p>",
+      "refs": {
+        "SavingsPlansUtilizationAggregates$AmortizedCommitment": "<p>The total amortized commitment for a Savings Plans. This includes the sum of the upfront and recurring Savings Plans fees.</p>",
+        "SavingsPlansUtilizationByTime$AmortizedCommitment": "<p>The total amortized commitment for a Savings Plans. This includes the sum of the upfront and recurring Savings Plans fees.</p>",
+        "SavingsPlansUtilizationDetail$AmortizedCommitment": "<p>The total amortized commitment for a Savings Plans. Includes the sum of the upfront and recurring Savings Plans fees.</p>"
+      }
+    },
+    "SavingsPlansCoverage": {
+      "base": "<p>The amount of Savings Plans eligible usage that is covered by Savings Plans. All calculations consider the On-Demand equivalent of your Savings Plans usage.</p>",
+      "refs": {
+        "SavingsPlansCoverages$member": null
+      }
+    },
+    "SavingsPlansCoverageData": {
+      "base": "<p>Specific coverage percentage, On-Demand costs, and spend covered by Savings Plans, and total Savings Plans costs for an account.</p>",
+      "refs": {
+        "SavingsPlansCoverage$Coverage": "<p>The amount of Savings Plans eligible usage that the Savings Plans covered.</p>"
+      }
+    },
+    "SavingsPlansCoverages": {
+      "base": null,
+      "refs": {
+        "GetSavingsPlansCoverageResponse$SavingsPlansCoverages": "<p>The amount of spend that your Savings Plans covered.</p>"
+      }
+    },
+    "SavingsPlansDetails": {
+      "base": "<p>Attribute details on a specific Savings Plan.</p>",
+      "refs": {
+        "SavingsPlansPurchaseRecommendationDetail$SavingsPlansDetails": "<p>Details for your recommended Savings Plans.</p>"
+      }
+    },
+    "SavingsPlansPurchaseRecommendation": {
+      "base": "<p>Contains your request parameters, Savings Plan Recommendations Summary, and Details.</p>",
+      "refs": {
+        "GetSavingsPlansPurchaseRecommendationResponse$SavingsPlansPurchaseRecommendation": "<p>Contains your request parameters, Savings Plan Recommendations Summary, and Details.</p>"
+      }
+    },
+    "SavingsPlansPurchaseRecommendationDetail": {
+      "base": "<p>Details for your recommended Savings Plans.</p>",
+      "refs": {
+        "SavingsPlansPurchaseRecommendationDetailList$member": null
+      }
+    },
+    "SavingsPlansPurchaseRecommendationDetailList": {
+      "base": null,
+      "refs": {
+        "SavingsPlansPurchaseRecommendation$SavingsPlansPurchaseRecommendationDetails": "<p>Details for the Savings Plans we recommend you to purchase to cover existing, Savings Plans eligible workloads.</p>"
+      }
+    },
+    "SavingsPlansPurchaseRecommendationMetadata": {
+      "base": "<p>Metadata about your Savings Plans Purchase Recommendations.</p>",
+      "refs": {
+        "GetSavingsPlansPurchaseRecommendationResponse$Metadata": "<p>The accountIDs these recommendations are generated for.</p>"
+      }
+    },
+    "SavingsPlansPurchaseRecommendationSummary": {
+      "base": "<p>Summary metrics for your Savings Plans Purchase Recommendations.</p>",
+      "refs": {
+        "SavingsPlansPurchaseRecommendation$SavingsPlansPurchaseRecommendationSummary": "<p>Summary metrics for your Savings Plans Recommendations. </p>"
+      }
+    },
+    "SavingsPlansSavings": {
+      "base": "<p>The amount of savings you're accumulating, against the public On-Demand rate of the usage accrued in an account.</p>",
+      "refs": {
+        "SavingsPlansUtilizationAggregates$Savings": "<p>The amount saved by using existing Savings Plans. Savings returns both net savings from Savings Plans, as well as the <code>onDemandCostEquivalent</code> of the Savings Plans when considering the utilization rate.</p>",
+        "SavingsPlansUtilizationByTime$Savings": "<p>The amount saved by using existing Savings Plans. Savings returns both net savings from Savings Plans as well as the <code>onDemandCostEquivalent</code> of the Savings Plans when considering the utilization rate.</p>",
+        "SavingsPlansUtilizationDetail$Savings": "<p>The amount saved by using existing Savings Plans. Savings returns both net savings from savings plans as well as the <code>onDemandCostEquivalent</code> of the Savings Plans when considering the utilization rate.</p>"
+      }
+    },
+    "SavingsPlansUtilization": {
+      "base": "<p>The measurement of how well you are using your existing Savings Plans.</p>",
+      "refs": {
+        "SavingsPlansUtilizationAggregates$Utilization": "<p>A ratio of your effectiveness of using existing Savings Plans to apply to workloads that are Savings Plans eligible.</p>",
+        "SavingsPlansUtilizationByTime$Utilization": "<p>A ratio of your effectiveness of using existing Savings Plans to apply to workloads that are Savings Plans eligible.</p>",
+        "SavingsPlansUtilizationDetail$Utilization": "<p>A ratio of your effectiveness of using existing Savings Plans to apply to workloads that are Savings Plans eligible.</p>"
+      }
+    },
+    "SavingsPlansUtilizationAggregates": {
+      "base": "<p>The aggregated utilization metrics for your Savings Plans usage.</p>",
+      "refs": {
+        "GetSavingsPlansUtilizationDetailsResponse$Total": "<p>The total Savings Plans utilization, regardless of time period.</p>",
+        "GetSavingsPlansUtilizationResponse$Total": "<p>The total amount of time that you used your Savings Plans, regardless of date ranges.</p>"
+      }
+    },
+    "SavingsPlansUtilizationByTime": {
+      "base": "<p>The amount of Savings Plans utilization, in hours.</p>",
+      "refs": {
+        "SavingsPlansUtilizationsByTime$member": null
+      }
+    },
+    "SavingsPlansUtilizationDetail": {
+      "base": "<p>A single daily or monthly Savings Plans utilization rate, and details for your account. Master accounts in an organization have access to member accounts. You can use <code>GetDimensionValues</code> to determine the possible dimension values. </p>",
+      "refs": {
+        "SavingsPlansUtilizationDetails$member": null
+      }
+    },
+    "SavingsPlansUtilizationDetails": {
+      "base": null,
+      "refs": {
+        "GetSavingsPlansUtilizationDetailsResponse$SavingsPlansUtilizationDetails": "<p>Retrieves a single daily or monthly Savings Plans utilization rate and details for your account.</p>"
+      }
+    },
+    "SavingsPlansUtilizationsByTime": {
+      "base": null,
+      "refs": {
+        "GetSavingsPlansUtilizationResponse$SavingsPlansUtilizationsByTime": "<p>The amount of time (in hours) ou used your Savings Plans. This allows you to specify date ranges.</p>"
+      }
+    },
     "SearchString": {
       "base": null,
       "refs": {
@@ -863,6 +1098,13 @@
       "refs": {
         "GetReservationPurchaseRecommendationRequest$ServiceSpecification": "<p>The hardware specifications for the service instances that you want recommendations for, such as standard or convertible Amazon EC2 instances.</p>",
         "ReservationPurchaseRecommendation$ServiceSpecification": "<p>Hardware specifications for the service that you want recommendations for.</p>"
+      }
+    },
+    "SupportedSavingsPlansType": {
+      "base": null,
+      "refs": {
+        "GetSavingsPlansPurchaseRecommendationRequest$SavingsPlansType": "<p>The Savings Plans recommendation type requested.</p>",
+        "SavingsPlansPurchaseRecommendation$SavingsPlansType": "<p>The requested Savings Plans recommendation type.</p>"
       }
     },
     "TagKey": {
@@ -907,7 +1149,9 @@
       "base": null,
       "refs": {
         "GetReservationPurchaseRecommendationRequest$TermInYears": "<p>The reservation term that you want recommendations for.</p>",
-        "ReservationPurchaseRecommendation$TermInYears": "<p>The term of the reservation that you want recommendations for, in years.</p>"
+        "GetSavingsPlansPurchaseRecommendationRequest$TermInYears": "<p>The savings plan recommendation term used to generated these recommendations.</p>",
+        "ReservationPurchaseRecommendation$TermInYears": "<p>The term of the reservation that you want recommendations for, in years.</p>",
+        "SavingsPlansPurchaseRecommendation$TermInYears": "<p>The Savings Plans recommendation term in years, used to generate the recommendation.</p>"
       }
     },
     "TerminateRecommendationDetail": {

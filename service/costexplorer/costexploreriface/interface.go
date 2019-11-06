@@ -88,6 +88,28 @@ type CostExplorerAPI interface {
 	GetRightsizingRecommendationWithContext(aws.Context, *costexplorer.GetRightsizingRecommendationInput, ...request.Option) (*costexplorer.GetRightsizingRecommendationOutput, error)
 	GetRightsizingRecommendationRequest(*costexplorer.GetRightsizingRecommendationInput) (*request.Request, *costexplorer.GetRightsizingRecommendationOutput)
 
+	GetSavingsPlansCoverage(*costexplorer.GetSavingsPlansCoverageInput) (*costexplorer.GetSavingsPlansCoverageOutput, error)
+	GetSavingsPlansCoverageWithContext(aws.Context, *costexplorer.GetSavingsPlansCoverageInput, ...request.Option) (*costexplorer.GetSavingsPlansCoverageOutput, error)
+	GetSavingsPlansCoverageRequest(*costexplorer.GetSavingsPlansCoverageInput) (*request.Request, *costexplorer.GetSavingsPlansCoverageOutput)
+
+	GetSavingsPlansCoveragePages(*costexplorer.GetSavingsPlansCoverageInput, func(*costexplorer.GetSavingsPlansCoverageOutput, bool) bool) error
+	GetSavingsPlansCoveragePagesWithContext(aws.Context, *costexplorer.GetSavingsPlansCoverageInput, func(*costexplorer.GetSavingsPlansCoverageOutput, bool) bool, ...request.Option) error
+
+	GetSavingsPlansPurchaseRecommendation(*costexplorer.GetSavingsPlansPurchaseRecommendationInput) (*costexplorer.GetSavingsPlansPurchaseRecommendationOutput, error)
+	GetSavingsPlansPurchaseRecommendationWithContext(aws.Context, *costexplorer.GetSavingsPlansPurchaseRecommendationInput, ...request.Option) (*costexplorer.GetSavingsPlansPurchaseRecommendationOutput, error)
+	GetSavingsPlansPurchaseRecommendationRequest(*costexplorer.GetSavingsPlansPurchaseRecommendationInput) (*request.Request, *costexplorer.GetSavingsPlansPurchaseRecommendationOutput)
+
+	GetSavingsPlansUtilization(*costexplorer.GetSavingsPlansUtilizationInput) (*costexplorer.GetSavingsPlansUtilizationOutput, error)
+	GetSavingsPlansUtilizationWithContext(aws.Context, *costexplorer.GetSavingsPlansUtilizationInput, ...request.Option) (*costexplorer.GetSavingsPlansUtilizationOutput, error)
+	GetSavingsPlansUtilizationRequest(*costexplorer.GetSavingsPlansUtilizationInput) (*request.Request, *costexplorer.GetSavingsPlansUtilizationOutput)
+
+	GetSavingsPlansUtilizationDetails(*costexplorer.GetSavingsPlansUtilizationDetailsInput) (*costexplorer.GetSavingsPlansUtilizationDetailsOutput, error)
+	GetSavingsPlansUtilizationDetailsWithContext(aws.Context, *costexplorer.GetSavingsPlansUtilizationDetailsInput, ...request.Option) (*costexplorer.GetSavingsPlansUtilizationDetailsOutput, error)
+	GetSavingsPlansUtilizationDetailsRequest(*costexplorer.GetSavingsPlansUtilizationDetailsInput) (*request.Request, *costexplorer.GetSavingsPlansUtilizationDetailsOutput)
+
+	GetSavingsPlansUtilizationDetailsPages(*costexplorer.GetSavingsPlansUtilizationDetailsInput, func(*costexplorer.GetSavingsPlansUtilizationDetailsOutput, bool) bool) error
+	GetSavingsPlansUtilizationDetailsPagesWithContext(aws.Context, *costexplorer.GetSavingsPlansUtilizationDetailsInput, func(*costexplorer.GetSavingsPlansUtilizationDetailsOutput, bool) bool, ...request.Option) error
+
 	GetTags(*costexplorer.GetTagsInput) (*costexplorer.GetTagsOutput, error)
 	GetTagsWithContext(aws.Context, *costexplorer.GetTagsInput, ...request.Option) (*costexplorer.GetTagsOutput, error)
 	GetTagsRequest(*costexplorer.GetTagsInput) (*request.Request, *costexplorer.GetTagsOutput)

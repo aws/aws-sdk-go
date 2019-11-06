@@ -338,6 +338,7 @@
       "members":{
         "id":{"shape":"NonEmptyString"},
         "arn":{"shape":"NonEmptyString"},
+        "buildNumber":{"shape":"WrapperLong"},
         "startTime":{"shape":"Timestamp"},
         "endTime":{"shape":"Timestamp"},
         "currentPhase":{"shape":"String"},
@@ -361,7 +362,8 @@
         "initiator":{"shape":"String"},
         "vpcConfig":{"shape":"VpcConfig"},
         "networkInterface":{"shape":"NetworkInterface"},
-        "encryptionKey":{"shape":"NonEmptyString"}
+        "encryptionKey":{"shape":"NonEmptyString"},
+        "exportedEnvironmentVariables":{"shape":"ExportedEnvironmentVariables"}
       }
     },
     "BuildArtifacts":{
@@ -615,12 +617,24 @@
       "type":"string",
       "enum":[
         "PLAINTEXT",
-        "PARAMETER_STORE"
+        "PARAMETER_STORE",
+        "SECRETS_MANAGER"
       ]
     },
     "EnvironmentVariables":{
       "type":"list",
       "member":{"shape":"EnvironmentVariable"}
+    },
+    "ExportedEnvironmentVariable":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"NonEmptyString"},
+        "value":{"shape":"String"}
+      }
+    },
+    "ExportedEnvironmentVariables":{
+      "type":"list",
+      "member":{"shape":"ExportedEnvironmentVariable"}
     },
     "FilterGroup":{
       "type":"list",

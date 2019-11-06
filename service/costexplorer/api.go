@@ -675,6 +675,477 @@ func (c *CostExplorer) GetRightsizingRecommendationWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+const opGetSavingsPlansCoverage = "GetSavingsPlansCoverage"
+
+// GetSavingsPlansCoverageRequest generates a "aws/request.Request" representing the
+// client's request for the GetSavingsPlansCoverage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSavingsPlansCoverage for more information on using the GetSavingsPlansCoverage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetSavingsPlansCoverageRequest method.
+//    req, resp := client.GetSavingsPlansCoverageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetSavingsPlansCoverage
+func (c *CostExplorer) GetSavingsPlansCoverageRequest(input *GetSavingsPlansCoverageInput) (req *request.Request, output *GetSavingsPlansCoverageOutput) {
+	op := &request.Operation{
+		Name:       opGetSavingsPlansCoverage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetSavingsPlansCoverageInput{}
+	}
+
+	output = &GetSavingsPlansCoverageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSavingsPlansCoverage API operation for AWS Cost Explorer Service.
+//
+// Retrieves the Savings Plans covered for your account. This enables you to
+// see how much of your cost is covered by a Savings Plan. An organization’s
+// master account can see the coverage of the associated member accounts. For
+// any time period, you can filter data for Savings Plans usage with the following
+// dimensions:
+//
+//    * LINKED_ACCOUNT
+//
+//    * REGION
+//
+//    * SERVICE
+//
+//    * INSTANCE_FAMILY
+//
+// To determine valid values for a dimension, use the GetDimensionValues operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cost Explorer Service's
+// API operation GetSavingsPlansCoverage for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   You made too many calls in a short period of time. Try again later.
+//
+//   * ErrCodeDataUnavailableException "DataUnavailableException"
+//   The requested data is unavailable.
+//
+//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   The pagination token is invalid. Try again without a pagination token.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetSavingsPlansCoverage
+func (c *CostExplorer) GetSavingsPlansCoverage(input *GetSavingsPlansCoverageInput) (*GetSavingsPlansCoverageOutput, error) {
+	req, out := c.GetSavingsPlansCoverageRequest(input)
+	return out, req.Send()
+}
+
+// GetSavingsPlansCoverageWithContext is the same as GetSavingsPlansCoverage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSavingsPlansCoverage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) GetSavingsPlansCoverageWithContext(ctx aws.Context, input *GetSavingsPlansCoverageInput, opts ...request.Option) (*GetSavingsPlansCoverageOutput, error) {
+	req, out := c.GetSavingsPlansCoverageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetSavingsPlansCoveragePages iterates over the pages of a GetSavingsPlansCoverage operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetSavingsPlansCoverage method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetSavingsPlansCoverage operation.
+//    pageNum := 0
+//    err := client.GetSavingsPlansCoveragePages(params,
+//        func(page *costexplorer.GetSavingsPlansCoverageOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *CostExplorer) GetSavingsPlansCoveragePages(input *GetSavingsPlansCoverageInput, fn func(*GetSavingsPlansCoverageOutput, bool) bool) error {
+	return c.GetSavingsPlansCoveragePagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetSavingsPlansCoveragePagesWithContext same as GetSavingsPlansCoveragePages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) GetSavingsPlansCoveragePagesWithContext(ctx aws.Context, input *GetSavingsPlansCoverageInput, fn func(*GetSavingsPlansCoverageOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetSavingsPlansCoverageInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetSavingsPlansCoverageRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*GetSavingsPlansCoverageOutput), !p.HasNextPage())
+	}
+	return p.Err()
+}
+
+const opGetSavingsPlansPurchaseRecommendation = "GetSavingsPlansPurchaseRecommendation"
+
+// GetSavingsPlansPurchaseRecommendationRequest generates a "aws/request.Request" representing the
+// client's request for the GetSavingsPlansPurchaseRecommendation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSavingsPlansPurchaseRecommendation for more information on using the GetSavingsPlansPurchaseRecommendation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetSavingsPlansPurchaseRecommendationRequest method.
+//    req, resp := client.GetSavingsPlansPurchaseRecommendationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetSavingsPlansPurchaseRecommendation
+func (c *CostExplorer) GetSavingsPlansPurchaseRecommendationRequest(input *GetSavingsPlansPurchaseRecommendationInput) (req *request.Request, output *GetSavingsPlansPurchaseRecommendationOutput) {
+	op := &request.Operation{
+		Name:       opGetSavingsPlansPurchaseRecommendation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetSavingsPlansPurchaseRecommendationInput{}
+	}
+
+	output = &GetSavingsPlansPurchaseRecommendationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSavingsPlansPurchaseRecommendation API operation for AWS Cost Explorer Service.
+//
+// Retrieves your request parameters, Savings Plan Recommendations Summary and
+// Details.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cost Explorer Service's
+// API operation GetSavingsPlansPurchaseRecommendation for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   You made too many calls in a short period of time. Try again later.
+//
+//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   The pagination token is invalid. Try again without a pagination token.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetSavingsPlansPurchaseRecommendation
+func (c *CostExplorer) GetSavingsPlansPurchaseRecommendation(input *GetSavingsPlansPurchaseRecommendationInput) (*GetSavingsPlansPurchaseRecommendationOutput, error) {
+	req, out := c.GetSavingsPlansPurchaseRecommendationRequest(input)
+	return out, req.Send()
+}
+
+// GetSavingsPlansPurchaseRecommendationWithContext is the same as GetSavingsPlansPurchaseRecommendation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSavingsPlansPurchaseRecommendation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) GetSavingsPlansPurchaseRecommendationWithContext(ctx aws.Context, input *GetSavingsPlansPurchaseRecommendationInput, opts ...request.Option) (*GetSavingsPlansPurchaseRecommendationOutput, error) {
+	req, out := c.GetSavingsPlansPurchaseRecommendationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetSavingsPlansUtilization = "GetSavingsPlansUtilization"
+
+// GetSavingsPlansUtilizationRequest generates a "aws/request.Request" representing the
+// client's request for the GetSavingsPlansUtilization operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSavingsPlansUtilization for more information on using the GetSavingsPlansUtilization
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetSavingsPlansUtilizationRequest method.
+//    req, resp := client.GetSavingsPlansUtilizationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetSavingsPlansUtilization
+func (c *CostExplorer) GetSavingsPlansUtilizationRequest(input *GetSavingsPlansUtilizationInput) (req *request.Request, output *GetSavingsPlansUtilizationOutput) {
+	op := &request.Operation{
+		Name:       opGetSavingsPlansUtilization,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetSavingsPlansUtilizationInput{}
+	}
+
+	output = &GetSavingsPlansUtilizationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSavingsPlansUtilization API operation for AWS Cost Explorer Service.
+//
+// Retrieves the Savings Plans utilization for your account across date ranges
+// with daily or monthly granularity. Master accounts in an organization have
+// access to member accounts. You can use GetDimensionValues to determine the
+// possible dimension values.
+//
+// You cannot group by any dimension values for GetSavingsPlansUtilization.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cost Explorer Service's
+// API operation GetSavingsPlansUtilization for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   You made too many calls in a short period of time. Try again later.
+//
+//   * ErrCodeDataUnavailableException "DataUnavailableException"
+//   The requested data is unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetSavingsPlansUtilization
+func (c *CostExplorer) GetSavingsPlansUtilization(input *GetSavingsPlansUtilizationInput) (*GetSavingsPlansUtilizationOutput, error) {
+	req, out := c.GetSavingsPlansUtilizationRequest(input)
+	return out, req.Send()
+}
+
+// GetSavingsPlansUtilizationWithContext is the same as GetSavingsPlansUtilization with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSavingsPlansUtilization for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) GetSavingsPlansUtilizationWithContext(ctx aws.Context, input *GetSavingsPlansUtilizationInput, opts ...request.Option) (*GetSavingsPlansUtilizationOutput, error) {
+	req, out := c.GetSavingsPlansUtilizationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetSavingsPlansUtilizationDetails = "GetSavingsPlansUtilizationDetails"
+
+// GetSavingsPlansUtilizationDetailsRequest generates a "aws/request.Request" representing the
+// client's request for the GetSavingsPlansUtilizationDetails operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSavingsPlansUtilizationDetails for more information on using the GetSavingsPlansUtilizationDetails
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetSavingsPlansUtilizationDetailsRequest method.
+//    req, resp := client.GetSavingsPlansUtilizationDetailsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetSavingsPlansUtilizationDetails
+func (c *CostExplorer) GetSavingsPlansUtilizationDetailsRequest(input *GetSavingsPlansUtilizationDetailsInput) (req *request.Request, output *GetSavingsPlansUtilizationDetailsOutput) {
+	op := &request.Operation{
+		Name:       opGetSavingsPlansUtilizationDetails,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetSavingsPlansUtilizationDetailsInput{}
+	}
+
+	output = &GetSavingsPlansUtilizationDetailsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSavingsPlansUtilizationDetails API operation for AWS Cost Explorer Service.
+//
+// Retrieves a single daily or monthly Savings Plans utilization rate and details
+// for your account. Master accounts in an organization have access to member
+// accounts. You can use GetDimensionValues to determine the possible dimension
+// values.
+//
+// You can't group by any dimension values for GetSavingsPlansUtilizationDetails.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cost Explorer Service's
+// API operation GetSavingsPlansUtilizationDetails for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   You made too many calls in a short period of time. Try again later.
+//
+//   * ErrCodeDataUnavailableException "DataUnavailableException"
+//   The requested data is unavailable.
+//
+//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   The pagination token is invalid. Try again without a pagination token.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetSavingsPlansUtilizationDetails
+func (c *CostExplorer) GetSavingsPlansUtilizationDetails(input *GetSavingsPlansUtilizationDetailsInput) (*GetSavingsPlansUtilizationDetailsOutput, error) {
+	req, out := c.GetSavingsPlansUtilizationDetailsRequest(input)
+	return out, req.Send()
+}
+
+// GetSavingsPlansUtilizationDetailsWithContext is the same as GetSavingsPlansUtilizationDetails with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSavingsPlansUtilizationDetails for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) GetSavingsPlansUtilizationDetailsWithContext(ctx aws.Context, input *GetSavingsPlansUtilizationDetailsInput, opts ...request.Option) (*GetSavingsPlansUtilizationDetailsOutput, error) {
+	req, out := c.GetSavingsPlansUtilizationDetailsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetSavingsPlansUtilizationDetailsPages iterates over the pages of a GetSavingsPlansUtilizationDetails operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetSavingsPlansUtilizationDetails method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetSavingsPlansUtilizationDetails operation.
+//    pageNum := 0
+//    err := client.GetSavingsPlansUtilizationDetailsPages(params,
+//        func(page *costexplorer.GetSavingsPlansUtilizationDetailsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *CostExplorer) GetSavingsPlansUtilizationDetailsPages(input *GetSavingsPlansUtilizationDetailsInput, fn func(*GetSavingsPlansUtilizationDetailsOutput, bool) bool) error {
+	return c.GetSavingsPlansUtilizationDetailsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetSavingsPlansUtilizationDetailsPagesWithContext same as GetSavingsPlansUtilizationDetailsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) GetSavingsPlansUtilizationDetailsPagesWithContext(ctx aws.Context, input *GetSavingsPlansUtilizationDetailsInput, fn func(*GetSavingsPlansUtilizationDetailsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetSavingsPlansUtilizationDetailsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetSavingsPlansUtilizationDetailsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	cont := true
+	for p.Next() && cont {
+		cont = fn(p.Page().(*GetSavingsPlansUtilizationDetailsOutput), !p.HasNextPage())
+	}
+	return p.Err()
+}
+
 const opGetTags = "GetTags"
 
 // GetTagsRequest generates a "aws/request.Request" representing the
@@ -1104,6 +1575,9 @@ type CurrentInstance struct {
 	// Utilization information of the current instance during the lookback period.
 	ResourceUtilization *ResourceUtilization `type:"structure"`
 
+	// Number of hours during the lookback period covered by Savings Plans.
+	SavingsPlansCoveredHoursInLookbackPeriod *string `type:"string"`
+
 	// Cost allocation resource tags applied to the instance.
 	Tags []*TagValues `type:"list"`
 
@@ -1160,6 +1634,12 @@ func (s *CurrentInstance) SetResourceId(v string) *CurrentInstance {
 // SetResourceUtilization sets the ResourceUtilization field's value.
 func (s *CurrentInstance) SetResourceUtilization(v *ResourceUtilization) *CurrentInstance {
 	s.ResourceUtilization = v
+	return s
+}
+
+// SetSavingsPlansCoveredHoursInLookbackPeriod sets the SavingsPlansCoveredHoursInLookbackPeriod field's value.
+func (s *CurrentInstance) SetSavingsPlansCoveredHoursInLookbackPeriod(v string) *CurrentInstance {
+	s.SavingsPlansCoveredHoursInLookbackPeriod = &v
 	return s
 }
 
@@ -1715,7 +2195,7 @@ func (s *ElastiCacheInstanceDetails) SetSizeFlexEligible(v bool) *ElastiCacheIns
 //
 // For GetRightsizingRecommendation action, a combination of OR and NOT is not
 // supported. OR is not supported between different dimensions, or dimensions
-// and tags. NOT operators aren't supported. Dimentions are also limited to
+// and tags. NOT operators aren't supported. Dimensions are also limited to
 // LINKED_ACCOUNT, REGION, or RIGHTSIZING_TYPE.
 type Expression struct {
 	_ struct{} `type:"structure"`
@@ -2216,6 +2696,24 @@ type GetDimensionValuesInput struct {
 	//    (RI).
 	//
 	//    * TENANCY - The tenancy of a resource. Examples are shared or dedicated.
+	//
+	// If you set the context to SAVINGS_PLANS, you can use the following dimensions
+	// for searching:
+	//
+	//    * SAVINGS_PLANS_TYPE - Type of Savings Plans (EC2 Instance or Compute)
+	//
+	//    * PAYMENT_OPTION - Payment option for the given Savings Plans (for example,
+	//    All Upfront)
+	//
+	//    * REGION - The AWS Region.
+	//
+	//    * INSTANCE_TYPE_FAMILY - The family of instances (For example, m5)
+	//
+	//    * LINKED_ACCOUNT - The description in the attribute map that includes
+	//    the full name of the member account. The value field contains the AWS
+	//    ID of the member account.
+	//
+	//    * SAVINGS_PLAN_ARN - The unique identifier for your Savings Plan
 	Context *string `type:"string" enum:"Context"`
 
 	// The name of the dimension. Each Dimension is available for a different Context.
@@ -2378,6 +2876,24 @@ type GetDimensionValuesOutput struct {
 	//    (RI).
 	//
 	//    * TENANCY - The tenancy of a resource. Examples are shared or dedicated.
+	//
+	// If you set the context to SAVINGS_PLANS, you can use the following dimensions
+	// for searching:
+	//
+	//    * SAVINGS_PLANS_TYPE - Type of Savings Plans (EC2 Instance or Compute)
+	//
+	//    * PAYMENT_OPTION - Payment option for the given Savings Plans (for example,
+	//    All Upfront)
+	//
+	//    * REGION - The AWS Region.
+	//
+	//    * INSTANCE_TYPE_FAMILY - The family of instances (For example, m5)
+	//
+	//    * LINKED_ACCOUNT - The description in the attribute map that includes
+	//    the full name of the member account. The value field contains the AWS
+	//    ID of the member account.
+	//
+	//    * SAVINGS_PLAN_ARN - The unique identifier for your Savings Plan
 	//
 	// DimensionValues is a required field
 	DimensionValues []*DimensionValuesWithAttributes `type:"list" required:"true"`
@@ -2986,7 +3502,7 @@ type GetRightsizingRecommendationInput struct {
 	//
 	// For GetRightsizingRecommendation action, a combination of OR and NOT is not
 	// supported. OR is not supported between different dimensions, or dimensions
-	// and tags. NOT operators aren't supported. Dimentions are also limited to
+	// and tags. NOT operators aren't supported. Dimensions are also limited to
 	// LINKED_ACCOUNT, REGION, or RIGHTSIZING_TYPE.
 	Filter *Expression `type:"structure"`
 
@@ -2998,7 +3514,8 @@ type GetRightsizingRecommendationInput struct {
 	// object.
 	PageSize *int64 `type:"integer"`
 
-	// The specific service that you want recommendations for.
+	// The specific service that you want recommendations for. The only valid value
+	// for GetRightsizingRecommendation is "AmazonEC2".
 	//
 	// Service is a required field
 	Service *string `type:"string" required:"true"`
@@ -3098,6 +3615,574 @@ func (s *GetRightsizingRecommendationOutput) SetRightsizingRecommendations(v []*
 // SetSummary sets the Summary field's value.
 func (s *GetRightsizingRecommendationOutput) SetSummary(v *RightsizingRecommendationSummary) *GetRightsizingRecommendationOutput {
 	s.Summary = v
+	return s
+}
+
+type GetSavingsPlansCoverageInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters Savings Plans coverage data by dimensions. You can filter data for
+	// Savings Plans usage with the following dimensions:
+	//
+	//    * LINKED_ACCOUNT
+	//
+	//    * REGION
+	//
+	//    * SERVICE
+	//
+	//    * INSTANCE_FAMILY
+	//
+	// GetSavingsPlansCoverage uses the same Expression (http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
+	// object as the other operations, but only AND is supported among each dimension.
+	// If there are multiple values for a dimension, they are OR'd together.
+	Filter *Expression `type:"structure"`
+
+	// The granularity of the Amazon Web Services cost data for your Savings Plans.
+	// Granularity can't be set if GroupBy is set.
+	Granularity *string `type:"string" enum:"Granularity"`
+
+	// You can group the data using the attributes INSTANCE_FAMILY, REGION, or SERVICE.
+	GroupBy []*GroupDefinition `type:"list"`
+
+	// The number of items to be returned in a response. The default is 20, with
+	// a minimum value of 1.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The measurement that you want your Savings Plans coverage reported in. The
+	// only valid value is spendCoveredBySavingsPlans.
+	Metrics []*string `type:"list"`
+
+	// The token to retrieve the next set of results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
+	NextToken *string `type:"string"`
+
+	// The time period that you want the usage and costs for. The Start date must
+	// be within 13 months. The End date must be after the Start date, and before
+	// the current date. Future dates can't be used as an End date.
+	//
+	// TimePeriod is a required field
+	TimePeriod *DateInterval `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GetSavingsPlansCoverageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSavingsPlansCoverageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSavingsPlansCoverageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSavingsPlansCoverageInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.TimePeriod == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimePeriod"))
+	}
+	if s.TimePeriod != nil {
+		if err := s.TimePeriod.Validate(); err != nil {
+			invalidParams.AddNested("TimePeriod", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *GetSavingsPlansCoverageInput) SetFilter(v *Expression) *GetSavingsPlansCoverageInput {
+	s.Filter = v
+	return s
+}
+
+// SetGranularity sets the Granularity field's value.
+func (s *GetSavingsPlansCoverageInput) SetGranularity(v string) *GetSavingsPlansCoverageInput {
+	s.Granularity = &v
+	return s
+}
+
+// SetGroupBy sets the GroupBy field's value.
+func (s *GetSavingsPlansCoverageInput) SetGroupBy(v []*GroupDefinition) *GetSavingsPlansCoverageInput {
+	s.GroupBy = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetSavingsPlansCoverageInput) SetMaxResults(v int64) *GetSavingsPlansCoverageInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *GetSavingsPlansCoverageInput) SetMetrics(v []*string) *GetSavingsPlansCoverageInput {
+	s.Metrics = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetSavingsPlansCoverageInput) SetNextToken(v string) *GetSavingsPlansCoverageInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTimePeriod sets the TimePeriod field's value.
+func (s *GetSavingsPlansCoverageInput) SetTimePeriod(v *DateInterval) *GetSavingsPlansCoverageInput {
+	s.TimePeriod = v
+	return s
+}
+
+type GetSavingsPlansCoverageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token to retrieve the next set of results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
+	NextToken *string `type:"string"`
+
+	// The amount of spend that your Savings Plans covered.
+	//
+	// SavingsPlansCoverages is a required field
+	SavingsPlansCoverages []*SavingsPlansCoverage `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s GetSavingsPlansCoverageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSavingsPlansCoverageOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetSavingsPlansCoverageOutput) SetNextToken(v string) *GetSavingsPlansCoverageOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSavingsPlansCoverages sets the SavingsPlansCoverages field's value.
+func (s *GetSavingsPlansCoverageOutput) SetSavingsPlansCoverages(v []*SavingsPlansCoverage) *GetSavingsPlansCoverageOutput {
+	s.SavingsPlansCoverages = v
+	return s
+}
+
+type GetSavingsPlansPurchaseRecommendationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The lookback period used to generate the recommendation.
+	//
+	// LookbackPeriodInDays is a required field
+	LookbackPeriodInDays *string `type:"string" required:"true" enum:"LookbackPeriodInDays"`
+
+	// The token to retrieve the next set of results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
+	NextPageToken *string `type:"string"`
+
+	// The number of recommendations that you want returned in a single response
+	// object.
+	PageSize *int64 `type:"integer"`
+
+	// The payment option used to generate these recommendations.
+	//
+	// PaymentOption is a required field
+	PaymentOption *string `type:"string" required:"true" enum:"PaymentOption"`
+
+	// The Savings Plans recommendation type requested.
+	//
+	// SavingsPlansType is a required field
+	SavingsPlansType *string `type:"string" required:"true" enum:"SupportedSavingsPlansType"`
+
+	// The savings plan recommendation term used to generated these recommendations.
+	//
+	// TermInYears is a required field
+	TermInYears *string `type:"string" required:"true" enum:"TermInYears"`
+}
+
+// String returns the string representation
+func (s GetSavingsPlansPurchaseRecommendationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSavingsPlansPurchaseRecommendationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSavingsPlansPurchaseRecommendationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSavingsPlansPurchaseRecommendationInput"}
+	if s.LookbackPeriodInDays == nil {
+		invalidParams.Add(request.NewErrParamRequired("LookbackPeriodInDays"))
+	}
+	if s.PaymentOption == nil {
+		invalidParams.Add(request.NewErrParamRequired("PaymentOption"))
+	}
+	if s.SavingsPlansType == nil {
+		invalidParams.Add(request.NewErrParamRequired("SavingsPlansType"))
+	}
+	if s.TermInYears == nil {
+		invalidParams.Add(request.NewErrParamRequired("TermInYears"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLookbackPeriodInDays sets the LookbackPeriodInDays field's value.
+func (s *GetSavingsPlansPurchaseRecommendationInput) SetLookbackPeriodInDays(v string) *GetSavingsPlansPurchaseRecommendationInput {
+	s.LookbackPeriodInDays = &v
+	return s
+}
+
+// SetNextPageToken sets the NextPageToken field's value.
+func (s *GetSavingsPlansPurchaseRecommendationInput) SetNextPageToken(v string) *GetSavingsPlansPurchaseRecommendationInput {
+	s.NextPageToken = &v
+	return s
+}
+
+// SetPageSize sets the PageSize field's value.
+func (s *GetSavingsPlansPurchaseRecommendationInput) SetPageSize(v int64) *GetSavingsPlansPurchaseRecommendationInput {
+	s.PageSize = &v
+	return s
+}
+
+// SetPaymentOption sets the PaymentOption field's value.
+func (s *GetSavingsPlansPurchaseRecommendationInput) SetPaymentOption(v string) *GetSavingsPlansPurchaseRecommendationInput {
+	s.PaymentOption = &v
+	return s
+}
+
+// SetSavingsPlansType sets the SavingsPlansType field's value.
+func (s *GetSavingsPlansPurchaseRecommendationInput) SetSavingsPlansType(v string) *GetSavingsPlansPurchaseRecommendationInput {
+	s.SavingsPlansType = &v
+	return s
+}
+
+// SetTermInYears sets the TermInYears field's value.
+func (s *GetSavingsPlansPurchaseRecommendationInput) SetTermInYears(v string) *GetSavingsPlansPurchaseRecommendationInput {
+	s.TermInYears = &v
+	return s
+}
+
+type GetSavingsPlansPurchaseRecommendationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The accountIDs these recommendations are generated for.
+	Metadata *SavingsPlansPurchaseRecommendationMetadata `type:"structure"`
+
+	// The token for the next set of retrievable results. AWS provides the token
+	// when the response from a previous call has more results than the maximum
+	// page size.
+	NextPageToken *string `type:"string"`
+
+	// Contains your request parameters, Savings Plan Recommendations Summary, and
+	// Details.
+	SavingsPlansPurchaseRecommendation *SavingsPlansPurchaseRecommendation `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetSavingsPlansPurchaseRecommendationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSavingsPlansPurchaseRecommendationOutput) GoString() string {
+	return s.String()
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *GetSavingsPlansPurchaseRecommendationOutput) SetMetadata(v *SavingsPlansPurchaseRecommendationMetadata) *GetSavingsPlansPurchaseRecommendationOutput {
+	s.Metadata = v
+	return s
+}
+
+// SetNextPageToken sets the NextPageToken field's value.
+func (s *GetSavingsPlansPurchaseRecommendationOutput) SetNextPageToken(v string) *GetSavingsPlansPurchaseRecommendationOutput {
+	s.NextPageToken = &v
+	return s
+}
+
+// SetSavingsPlansPurchaseRecommendation sets the SavingsPlansPurchaseRecommendation field's value.
+func (s *GetSavingsPlansPurchaseRecommendationOutput) SetSavingsPlansPurchaseRecommendation(v *SavingsPlansPurchaseRecommendation) *GetSavingsPlansPurchaseRecommendationOutput {
+	s.SavingsPlansPurchaseRecommendation = v
+	return s
+}
+
+type GetSavingsPlansUtilizationDetailsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters Savings Plans utilization coverage data for active Savings Plans
+	// dimensions. You can filter data with the following dimensions:
+	//
+	//    * LINKED_ACCOUNT
+	//
+	//    * SAVINGS_PLAN_ARN
+	//
+	//    * REGION
+	//
+	//    * PAYMENT_OPTIONS
+	//
+	//    * INSTANCE_TYPE_FAMILY
+	//
+	// GetSavingsPlansUtilizationDetails uses the same Expression (http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
+	// object as the other operations, but only AND is supported among each dimension.
+	// If there are multiple values for a dimension, they are OR'd together.
+	Filter *Expression `type:"structure"`
+
+	// The number of items to be returned in a response. The default is 20, with
+	// a minimum value of 1.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token to retrieve the next set of results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
+	NextToken *string `type:"string"`
+
+	// The time period that you want the usage and costs for. The Start date must
+	// be within 13 months. The End date must be after the Start date, and before
+	// the current date. Future dates can't be used as an End date.
+	//
+	// TimePeriod is a required field
+	TimePeriod *DateInterval `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GetSavingsPlansUtilizationDetailsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSavingsPlansUtilizationDetailsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSavingsPlansUtilizationDetailsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSavingsPlansUtilizationDetailsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.TimePeriod == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimePeriod"))
+	}
+	if s.TimePeriod != nil {
+		if err := s.TimePeriod.Validate(); err != nil {
+			invalidParams.AddNested("TimePeriod", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *GetSavingsPlansUtilizationDetailsInput) SetFilter(v *Expression) *GetSavingsPlansUtilizationDetailsInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetSavingsPlansUtilizationDetailsInput) SetMaxResults(v int64) *GetSavingsPlansUtilizationDetailsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetSavingsPlansUtilizationDetailsInput) SetNextToken(v string) *GetSavingsPlansUtilizationDetailsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTimePeriod sets the TimePeriod field's value.
+func (s *GetSavingsPlansUtilizationDetailsInput) SetTimePeriod(v *DateInterval) *GetSavingsPlansUtilizationDetailsInput {
+	s.TimePeriod = v
+	return s
+}
+
+type GetSavingsPlansUtilizationDetailsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token to retrieve the next set of results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
+	NextToken *string `type:"string"`
+
+	// Retrieves a single daily or monthly Savings Plans utilization rate and details
+	// for your account.
+	//
+	// SavingsPlansUtilizationDetails is a required field
+	SavingsPlansUtilizationDetails []*SavingsPlansUtilizationDetail `type:"list" required:"true"`
+
+	// The time period that you want the usage and costs for.
+	//
+	// TimePeriod is a required field
+	TimePeriod *DateInterval `type:"structure" required:"true"`
+
+	// The total Savings Plans utilization, regardless of time period.
+	Total *SavingsPlansUtilizationAggregates `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetSavingsPlansUtilizationDetailsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSavingsPlansUtilizationDetailsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetSavingsPlansUtilizationDetailsOutput) SetNextToken(v string) *GetSavingsPlansUtilizationDetailsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSavingsPlansUtilizationDetails sets the SavingsPlansUtilizationDetails field's value.
+func (s *GetSavingsPlansUtilizationDetailsOutput) SetSavingsPlansUtilizationDetails(v []*SavingsPlansUtilizationDetail) *GetSavingsPlansUtilizationDetailsOutput {
+	s.SavingsPlansUtilizationDetails = v
+	return s
+}
+
+// SetTimePeriod sets the TimePeriod field's value.
+func (s *GetSavingsPlansUtilizationDetailsOutput) SetTimePeriod(v *DateInterval) *GetSavingsPlansUtilizationDetailsOutput {
+	s.TimePeriod = v
+	return s
+}
+
+// SetTotal sets the Total field's value.
+func (s *GetSavingsPlansUtilizationDetailsOutput) SetTotal(v *SavingsPlansUtilizationAggregates) *GetSavingsPlansUtilizationDetailsOutput {
+	s.Total = v
+	return s
+}
+
+type GetSavingsPlansUtilizationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters Savings Plans utilization coverage data for active Savings Plans
+	// dimensions. You can filter data with the following dimensions:
+	//
+	//    * LINKED_ACCOUNT
+	//
+	//    * SAVINGS_PLAN_ARN
+	//
+	//    * SAVINGS_PLANS_TYPE
+	//
+	//    * REGION
+	//
+	//    * PAYMENT_OPTIONS
+	//
+	//    * INSTANCE_TYPE_FAMILY
+	//
+	// GetSavingsPlansUtilization uses the same Expression (http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
+	// object as the other operations, but only AND is supported among each dimension.
+	// If there are multiple values for a dimension, they are OR'd together.
+	Filter *Expression `type:"structure"`
+
+	// The granularity of the Amazon Web Services utillization data for your Savings
+	// Plans.
+	Granularity *string `type:"string" enum:"Granularity"`
+
+	// The time period that you want the usage and costs for. The Start date must
+	// be within 13 months. The End date must be after the Start date, and before
+	// the current date. Future dates can't be used as an End date.
+	//
+	// TimePeriod is a required field
+	TimePeriod *DateInterval `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GetSavingsPlansUtilizationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSavingsPlansUtilizationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSavingsPlansUtilizationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSavingsPlansUtilizationInput"}
+	if s.TimePeriod == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimePeriod"))
+	}
+	if s.TimePeriod != nil {
+		if err := s.TimePeriod.Validate(); err != nil {
+			invalidParams.AddNested("TimePeriod", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *GetSavingsPlansUtilizationInput) SetFilter(v *Expression) *GetSavingsPlansUtilizationInput {
+	s.Filter = v
+	return s
+}
+
+// SetGranularity sets the Granularity field's value.
+func (s *GetSavingsPlansUtilizationInput) SetGranularity(v string) *GetSavingsPlansUtilizationInput {
+	s.Granularity = &v
+	return s
+}
+
+// SetTimePeriod sets the TimePeriod field's value.
+func (s *GetSavingsPlansUtilizationInput) SetTimePeriod(v *DateInterval) *GetSavingsPlansUtilizationInput {
+	s.TimePeriod = v
+	return s
+}
+
+type GetSavingsPlansUtilizationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The amount of time (in hours) ou used your Savings Plans. This allows you
+	// to specify date ranges.
+	SavingsPlansUtilizationsByTime []*SavingsPlansUtilizationByTime `type:"list"`
+
+	// The total amount of time that you used your Savings Plans, regardless of
+	// date ranges.
+	//
+	// Total is a required field
+	Total *SavingsPlansUtilizationAggregates `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GetSavingsPlansUtilizationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSavingsPlansUtilizationOutput) GoString() string {
+	return s.String()
+}
+
+// SetSavingsPlansUtilizationsByTime sets the SavingsPlansUtilizationsByTime field's value.
+func (s *GetSavingsPlansUtilizationOutput) SetSavingsPlansUtilizationsByTime(v []*SavingsPlansUtilizationByTime) *GetSavingsPlansUtilizationOutput {
+	s.SavingsPlansUtilizationsByTime = v
+	return s
+}
+
+// SetTotal sets the Total field's value.
+func (s *GetSavingsPlansUtilizationOutput) SetTotal(v *SavingsPlansUtilizationAggregates) *GetSavingsPlansUtilizationOutput {
+	s.Total = v
 	return s
 }
 
@@ -4022,7 +5107,7 @@ type ReservationPurchaseRecommendationDetail struct {
 	EstimatedMonthlySavingsPercentage *string `type:"string"`
 
 	// How much AWS estimates that you would have spent for all usage during the
-	// specified historical period if you had had a reservation.
+	// specified historical period if you had a reservation.
 	EstimatedReservationCostForLookbackPeriod *string `type:"string"`
 
 	// Details about the instances that AWS recommends that you purchase.
@@ -4568,6 +5653,837 @@ func (s *RightsizingRecommendationSummary) SetTotalRecommendationCount(v string)
 	return s
 }
 
+// The amortized amount of Savings Plans purchased in a specific account during
+// a specific time interval.
+type SavingsPlansAmortizedCommitment struct {
+	_ struct{} `type:"structure"`
+
+	// The amortized amount of your Savings Plans commitment that was purchased
+	// with either a Partial or a NoUpfront.
+	AmortizedRecurringCommitment *string `type:"string"`
+
+	// The amortized amount of your Savings Plans commitment that was purchased
+	// with an Upfront or PartialUpfront Savings Plans.
+	AmortizedUpfrontCommitment *string `type:"string"`
+
+	// The total amortized amount of your Savings Plans commitment, regardless of
+	// your Savings Plans purchase method.
+	TotalAmortizedCommitment *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SavingsPlansAmortizedCommitment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SavingsPlansAmortizedCommitment) GoString() string {
+	return s.String()
+}
+
+// SetAmortizedRecurringCommitment sets the AmortizedRecurringCommitment field's value.
+func (s *SavingsPlansAmortizedCommitment) SetAmortizedRecurringCommitment(v string) *SavingsPlansAmortizedCommitment {
+	s.AmortizedRecurringCommitment = &v
+	return s
+}
+
+// SetAmortizedUpfrontCommitment sets the AmortizedUpfrontCommitment field's value.
+func (s *SavingsPlansAmortizedCommitment) SetAmortizedUpfrontCommitment(v string) *SavingsPlansAmortizedCommitment {
+	s.AmortizedUpfrontCommitment = &v
+	return s
+}
+
+// SetTotalAmortizedCommitment sets the TotalAmortizedCommitment field's value.
+func (s *SavingsPlansAmortizedCommitment) SetTotalAmortizedCommitment(v string) *SavingsPlansAmortizedCommitment {
+	s.TotalAmortizedCommitment = &v
+	return s
+}
+
+// The amount of Savings Plans eligible usage that is covered by Savings Plans.
+// All calculations consider the On-Demand equivalent of your Savings Plans
+// usage.
+type SavingsPlansCoverage struct {
+	_ struct{} `type:"structure"`
+
+	// The attribute that applies to a specific Dimension.
+	Attributes map[string]*string `type:"map"`
+
+	// The amount of Savings Plans eligible usage that the Savings Plans covered.
+	Coverage *SavingsPlansCoverageData `type:"structure"`
+
+	// The time period that you want the usage and costs for.
+	TimePeriod *DateInterval `type:"structure"`
+}
+
+// String returns the string representation
+func (s SavingsPlansCoverage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SavingsPlansCoverage) GoString() string {
+	return s.String()
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *SavingsPlansCoverage) SetAttributes(v map[string]*string) *SavingsPlansCoverage {
+	s.Attributes = v
+	return s
+}
+
+// SetCoverage sets the Coverage field's value.
+func (s *SavingsPlansCoverage) SetCoverage(v *SavingsPlansCoverageData) *SavingsPlansCoverage {
+	s.Coverage = v
+	return s
+}
+
+// SetTimePeriod sets the TimePeriod field's value.
+func (s *SavingsPlansCoverage) SetTimePeriod(v *DateInterval) *SavingsPlansCoverage {
+	s.TimePeriod = v
+	return s
+}
+
+// Specific coverage percentage, On-Demand costs, and spend covered by Savings
+// Plans, and total Savings Plans costs for an account.
+type SavingsPlansCoverageData struct {
+	_ struct{} `type:"structure"`
+
+	// The percentage of your existing Savings Planscovered usage, divided by all
+	// of your eligible Savings Plans usage in an account(or set of accounts).
+	CoveragePercentage *string `type:"string"`
+
+	// The cost of your Amazon Web Services usage at the public On-Demand rate.
+	OnDemandCost *string `type:"string"`
+
+	// The amount of your Amazon Web Services usage that is covered by a Savings
+	// Plans.
+	SpendCoveredBySavingsPlans *string `type:"string"`
+
+	// The total cost of your Amazon Web Services usage, regardless of your purchase
+	// option.
+	TotalCost *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SavingsPlansCoverageData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SavingsPlansCoverageData) GoString() string {
+	return s.String()
+}
+
+// SetCoveragePercentage sets the CoveragePercentage field's value.
+func (s *SavingsPlansCoverageData) SetCoveragePercentage(v string) *SavingsPlansCoverageData {
+	s.CoveragePercentage = &v
+	return s
+}
+
+// SetOnDemandCost sets the OnDemandCost field's value.
+func (s *SavingsPlansCoverageData) SetOnDemandCost(v string) *SavingsPlansCoverageData {
+	s.OnDemandCost = &v
+	return s
+}
+
+// SetSpendCoveredBySavingsPlans sets the SpendCoveredBySavingsPlans field's value.
+func (s *SavingsPlansCoverageData) SetSpendCoveredBySavingsPlans(v string) *SavingsPlansCoverageData {
+	s.SpendCoveredBySavingsPlans = &v
+	return s
+}
+
+// SetTotalCost sets the TotalCost field's value.
+func (s *SavingsPlansCoverageData) SetTotalCost(v string) *SavingsPlansCoverageData {
+	s.TotalCost = &v
+	return s
+}
+
+// Attribute details on a specific Savings Plan.
+type SavingsPlansDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A group of instance types that Savings Plans applies to.
+	InstanceFamily *string `type:"string"`
+
+	// The unique ID used to distinguish Savings Plans from one another.
+	OfferingId *string `type:"string"`
+
+	// A geographic location where the Savings Plans is hosted.
+	Region *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SavingsPlansDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SavingsPlansDetails) GoString() string {
+	return s.String()
+}
+
+// SetInstanceFamily sets the InstanceFamily field's value.
+func (s *SavingsPlansDetails) SetInstanceFamily(v string) *SavingsPlansDetails {
+	s.InstanceFamily = &v
+	return s
+}
+
+// SetOfferingId sets the OfferingId field's value.
+func (s *SavingsPlansDetails) SetOfferingId(v string) *SavingsPlansDetails {
+	s.OfferingId = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *SavingsPlansDetails) SetRegion(v string) *SavingsPlansDetails {
+	s.Region = &v
+	return s
+}
+
+// Contains your request parameters, Savings Plan Recommendations Summary, and
+// Details.
+type SavingsPlansPurchaseRecommendation struct {
+	_ struct{} `type:"structure"`
+
+	// The lookback period in days, used to generate the recommendation.
+	LookbackPeriodInDays *string `type:"string" enum:"LookbackPeriodInDays"`
+
+	// The payment option used to generate the recommendation.
+	PaymentOption *string `type:"string" enum:"PaymentOption"`
+
+	// Details for the Savings Plans we recommend you to purchase to cover existing,
+	// Savings Plans eligible workloads.
+	SavingsPlansPurchaseRecommendationDetails []*SavingsPlansPurchaseRecommendationDetail `type:"list"`
+
+	// Summary metrics for your Savings Plans Recommendations.
+	SavingsPlansPurchaseRecommendationSummary *SavingsPlansPurchaseRecommendationSummary `type:"structure"`
+
+	// The requested Savings Plans recommendation type.
+	SavingsPlansType *string `type:"string" enum:"SupportedSavingsPlansType"`
+
+	// The Savings Plans recommendation term in years, used to generate the recommendation.
+	TermInYears *string `type:"string" enum:"TermInYears"`
+}
+
+// String returns the string representation
+func (s SavingsPlansPurchaseRecommendation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SavingsPlansPurchaseRecommendation) GoString() string {
+	return s.String()
+}
+
+// SetLookbackPeriodInDays sets the LookbackPeriodInDays field's value.
+func (s *SavingsPlansPurchaseRecommendation) SetLookbackPeriodInDays(v string) *SavingsPlansPurchaseRecommendation {
+	s.LookbackPeriodInDays = &v
+	return s
+}
+
+// SetPaymentOption sets the PaymentOption field's value.
+func (s *SavingsPlansPurchaseRecommendation) SetPaymentOption(v string) *SavingsPlansPurchaseRecommendation {
+	s.PaymentOption = &v
+	return s
+}
+
+// SetSavingsPlansPurchaseRecommendationDetails sets the SavingsPlansPurchaseRecommendationDetails field's value.
+func (s *SavingsPlansPurchaseRecommendation) SetSavingsPlansPurchaseRecommendationDetails(v []*SavingsPlansPurchaseRecommendationDetail) *SavingsPlansPurchaseRecommendation {
+	s.SavingsPlansPurchaseRecommendationDetails = v
+	return s
+}
+
+// SetSavingsPlansPurchaseRecommendationSummary sets the SavingsPlansPurchaseRecommendationSummary field's value.
+func (s *SavingsPlansPurchaseRecommendation) SetSavingsPlansPurchaseRecommendationSummary(v *SavingsPlansPurchaseRecommendationSummary) *SavingsPlansPurchaseRecommendation {
+	s.SavingsPlansPurchaseRecommendationSummary = v
+	return s
+}
+
+// SetSavingsPlansType sets the SavingsPlansType field's value.
+func (s *SavingsPlansPurchaseRecommendation) SetSavingsPlansType(v string) *SavingsPlansPurchaseRecommendation {
+	s.SavingsPlansType = &v
+	return s
+}
+
+// SetTermInYears sets the TermInYears field's value.
+func (s *SavingsPlansPurchaseRecommendation) SetTermInYears(v string) *SavingsPlansPurchaseRecommendation {
+	s.TermInYears = &v
+	return s
+}
+
+// Details for your recommended Savings Plans.
+type SavingsPlansPurchaseRecommendationDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The AccountID the recommendation is generated for.
+	AccountId *string `type:"string"`
+
+	// The currency code Amazon Web Services used to generate the recommendations
+	// and present potential savings.
+	CurrencyCode *string `type:"string"`
+
+	// The average value of hourly On-Demand spend over the lookback period of the
+	// applicable usage type.
+	CurrentAverageHourlyOnDemandSpend *string `type:"string"`
+
+	// The highest value of hourly On-Demand spend over the lookback period of the
+	// applicable usage type.
+	CurrentMaximumHourlyOnDemandSpend *string `type:"string"`
+
+	// The lowest value of hourly On-Demand spend over the lookback period of the
+	// applicable usage type.
+	CurrentMinimumHourlyOnDemandSpend *string `type:"string"`
+
+	// The estimated utilization of the recommended Savings Plans.
+	EstimatedAverageUtilization *string `type:"string"`
+
+	// The estimated monthly savings amount, based on the recommended Savings Plans.
+	EstimatedMonthlySavingsAmount *string `type:"string"`
+
+	// The remaining On-Demand cost estimated to not be covered by the recommended
+	// Savings Plans, over the length of the lookback period.
+	EstimatedOnDemandCost *string `type:"string"`
+
+	// The estimated return on investment based on the recommended Savings Plans
+	// purchased. This is calculated as estimatedSavingsAmount/ estimatedSPCost*100.
+	EstimatedROI *string `type:"string"`
+
+	// The cost of the recommended Savings Plans over the length of the lookback
+	// period.
+	EstimatedSPCost *string `type:"string"`
+
+	// The estimated savings amount based on the recommended Savings Plans over
+	// the length of the lookback period.
+	EstimatedSavingsAmount *string `type:"string"`
+
+	// The estimated savings percentage relative to the total cost of applicable
+	// On-Demand usage over the lookback period.
+	EstimatedSavingsPercentage *string `type:"string"`
+
+	// The recommended hourly commitment level for the Savings Plans type, and configuration
+	// based on the usage during the lookback period.
+	HourlyCommitmentToPurchase *string `type:"string"`
+
+	// Details for your recommended Savings Plans.
+	SavingsPlansDetails *SavingsPlansDetails `type:"structure"`
+
+	// The upfront cost of the recommended Savings Plans, based on the selected
+	// payment option.
+	UpfrontCost *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SavingsPlansPurchaseRecommendationDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SavingsPlansPurchaseRecommendationDetail) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *SavingsPlansPurchaseRecommendationDetail) SetAccountId(v string) *SavingsPlansPurchaseRecommendationDetail {
+	s.AccountId = &v
+	return s
+}
+
+// SetCurrencyCode sets the CurrencyCode field's value.
+func (s *SavingsPlansPurchaseRecommendationDetail) SetCurrencyCode(v string) *SavingsPlansPurchaseRecommendationDetail {
+	s.CurrencyCode = &v
+	return s
+}
+
+// SetCurrentAverageHourlyOnDemandSpend sets the CurrentAverageHourlyOnDemandSpend field's value.
+func (s *SavingsPlansPurchaseRecommendationDetail) SetCurrentAverageHourlyOnDemandSpend(v string) *SavingsPlansPurchaseRecommendationDetail {
+	s.CurrentAverageHourlyOnDemandSpend = &v
+	return s
+}
+
+// SetCurrentMaximumHourlyOnDemandSpend sets the CurrentMaximumHourlyOnDemandSpend field's value.
+func (s *SavingsPlansPurchaseRecommendationDetail) SetCurrentMaximumHourlyOnDemandSpend(v string) *SavingsPlansPurchaseRecommendationDetail {
+	s.CurrentMaximumHourlyOnDemandSpend = &v
+	return s
+}
+
+// SetCurrentMinimumHourlyOnDemandSpend sets the CurrentMinimumHourlyOnDemandSpend field's value.
+func (s *SavingsPlansPurchaseRecommendationDetail) SetCurrentMinimumHourlyOnDemandSpend(v string) *SavingsPlansPurchaseRecommendationDetail {
+	s.CurrentMinimumHourlyOnDemandSpend = &v
+	return s
+}
+
+// SetEstimatedAverageUtilization sets the EstimatedAverageUtilization field's value.
+func (s *SavingsPlansPurchaseRecommendationDetail) SetEstimatedAverageUtilization(v string) *SavingsPlansPurchaseRecommendationDetail {
+	s.EstimatedAverageUtilization = &v
+	return s
+}
+
+// SetEstimatedMonthlySavingsAmount sets the EstimatedMonthlySavingsAmount field's value.
+func (s *SavingsPlansPurchaseRecommendationDetail) SetEstimatedMonthlySavingsAmount(v string) *SavingsPlansPurchaseRecommendationDetail {
+	s.EstimatedMonthlySavingsAmount = &v
+	return s
+}
+
+// SetEstimatedOnDemandCost sets the EstimatedOnDemandCost field's value.
+func (s *SavingsPlansPurchaseRecommendationDetail) SetEstimatedOnDemandCost(v string) *SavingsPlansPurchaseRecommendationDetail {
+	s.EstimatedOnDemandCost = &v
+	return s
+}
+
+// SetEstimatedROI sets the EstimatedROI field's value.
+func (s *SavingsPlansPurchaseRecommendationDetail) SetEstimatedROI(v string) *SavingsPlansPurchaseRecommendationDetail {
+	s.EstimatedROI = &v
+	return s
+}
+
+// SetEstimatedSPCost sets the EstimatedSPCost field's value.
+func (s *SavingsPlansPurchaseRecommendationDetail) SetEstimatedSPCost(v string) *SavingsPlansPurchaseRecommendationDetail {
+	s.EstimatedSPCost = &v
+	return s
+}
+
+// SetEstimatedSavingsAmount sets the EstimatedSavingsAmount field's value.
+func (s *SavingsPlansPurchaseRecommendationDetail) SetEstimatedSavingsAmount(v string) *SavingsPlansPurchaseRecommendationDetail {
+	s.EstimatedSavingsAmount = &v
+	return s
+}
+
+// SetEstimatedSavingsPercentage sets the EstimatedSavingsPercentage field's value.
+func (s *SavingsPlansPurchaseRecommendationDetail) SetEstimatedSavingsPercentage(v string) *SavingsPlansPurchaseRecommendationDetail {
+	s.EstimatedSavingsPercentage = &v
+	return s
+}
+
+// SetHourlyCommitmentToPurchase sets the HourlyCommitmentToPurchase field's value.
+func (s *SavingsPlansPurchaseRecommendationDetail) SetHourlyCommitmentToPurchase(v string) *SavingsPlansPurchaseRecommendationDetail {
+	s.HourlyCommitmentToPurchase = &v
+	return s
+}
+
+// SetSavingsPlansDetails sets the SavingsPlansDetails field's value.
+func (s *SavingsPlansPurchaseRecommendationDetail) SetSavingsPlansDetails(v *SavingsPlansDetails) *SavingsPlansPurchaseRecommendationDetail {
+	s.SavingsPlansDetails = v
+	return s
+}
+
+// SetUpfrontCost sets the UpfrontCost field's value.
+func (s *SavingsPlansPurchaseRecommendationDetail) SetUpfrontCost(v string) *SavingsPlansPurchaseRecommendationDetail {
+	s.UpfrontCost = &v
+	return s
+}
+
+// Metadata about your Savings Plans Purchase Recommendations.
+type SavingsPlansPurchaseRecommendationMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp showing when the recommendations were generated.
+	GenerationTimestamp *string `type:"string"`
+
+	// The unique identifier for the recommendation set.
+	RecommendationId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SavingsPlansPurchaseRecommendationMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SavingsPlansPurchaseRecommendationMetadata) GoString() string {
+	return s.String()
+}
+
+// SetGenerationTimestamp sets the GenerationTimestamp field's value.
+func (s *SavingsPlansPurchaseRecommendationMetadata) SetGenerationTimestamp(v string) *SavingsPlansPurchaseRecommendationMetadata {
+	s.GenerationTimestamp = &v
+	return s
+}
+
+// SetRecommendationId sets the RecommendationId field's value.
+func (s *SavingsPlansPurchaseRecommendationMetadata) SetRecommendationId(v string) *SavingsPlansPurchaseRecommendationMetadata {
+	s.RecommendationId = &v
+	return s
+}
+
+// Summary metrics for your Savings Plans Purchase Recommendations.
+type SavingsPlansPurchaseRecommendationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The currency code Amazon Web Services used to generate the recommendations
+	// and present potential savings.
+	CurrencyCode *string `type:"string"`
+
+	// The current total on demand spend of the applicable usage types over the
+	// lookback period.
+	CurrentOnDemandSpend *string `type:"string"`
+
+	// The recommended Savings Plans cost on a daily (24 hourly) basis.
+	DailyCommitmentToPurchase *string `type:"string"`
+
+	// The estimated monthly savings amount, based on the recommended Savings Plans
+	// purchase.
+	EstimatedMonthlySavingsAmount *string `type:"string"`
+
+	// The estimated return on investment based on the recommended Savings Plans
+	// and estimated savings.
+	EstimatedROI *string `type:"string"`
+
+	// The estimated total savings over the lookback period, based on the purchase
+	// of the recommended Savings Plans.
+	EstimatedSavingsAmount *string `type:"string"`
+
+	// The estimated savings relative to the total cost of On-Demand usage, over
+	// the lookback period. This is calculated as estimatedSavingsAmount/ CurrentOnDemandSpend*100.
+	EstimatedSavingsPercentage *string `type:"string"`
+
+	// The estimated total cost of the usage after purchasing the recommended Savings
+	// Plans. This is a sum of the cost of Savings Plans during this term, and the
+	// remaining On-Demand usage.
+	EstimatedTotalCost *string `type:"string"`
+
+	// The recommended hourly commitment based on the recommendation parameters.
+	HourlyCommitmentToPurchase *string `type:"string"`
+
+	// The aggregate number of Savings Plans recommendations that exist for your
+	// account.
+	TotalRecommendationCount *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SavingsPlansPurchaseRecommendationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SavingsPlansPurchaseRecommendationSummary) GoString() string {
+	return s.String()
+}
+
+// SetCurrencyCode sets the CurrencyCode field's value.
+func (s *SavingsPlansPurchaseRecommendationSummary) SetCurrencyCode(v string) *SavingsPlansPurchaseRecommendationSummary {
+	s.CurrencyCode = &v
+	return s
+}
+
+// SetCurrentOnDemandSpend sets the CurrentOnDemandSpend field's value.
+func (s *SavingsPlansPurchaseRecommendationSummary) SetCurrentOnDemandSpend(v string) *SavingsPlansPurchaseRecommendationSummary {
+	s.CurrentOnDemandSpend = &v
+	return s
+}
+
+// SetDailyCommitmentToPurchase sets the DailyCommitmentToPurchase field's value.
+func (s *SavingsPlansPurchaseRecommendationSummary) SetDailyCommitmentToPurchase(v string) *SavingsPlansPurchaseRecommendationSummary {
+	s.DailyCommitmentToPurchase = &v
+	return s
+}
+
+// SetEstimatedMonthlySavingsAmount sets the EstimatedMonthlySavingsAmount field's value.
+func (s *SavingsPlansPurchaseRecommendationSummary) SetEstimatedMonthlySavingsAmount(v string) *SavingsPlansPurchaseRecommendationSummary {
+	s.EstimatedMonthlySavingsAmount = &v
+	return s
+}
+
+// SetEstimatedROI sets the EstimatedROI field's value.
+func (s *SavingsPlansPurchaseRecommendationSummary) SetEstimatedROI(v string) *SavingsPlansPurchaseRecommendationSummary {
+	s.EstimatedROI = &v
+	return s
+}
+
+// SetEstimatedSavingsAmount sets the EstimatedSavingsAmount field's value.
+func (s *SavingsPlansPurchaseRecommendationSummary) SetEstimatedSavingsAmount(v string) *SavingsPlansPurchaseRecommendationSummary {
+	s.EstimatedSavingsAmount = &v
+	return s
+}
+
+// SetEstimatedSavingsPercentage sets the EstimatedSavingsPercentage field's value.
+func (s *SavingsPlansPurchaseRecommendationSummary) SetEstimatedSavingsPercentage(v string) *SavingsPlansPurchaseRecommendationSummary {
+	s.EstimatedSavingsPercentage = &v
+	return s
+}
+
+// SetEstimatedTotalCost sets the EstimatedTotalCost field's value.
+func (s *SavingsPlansPurchaseRecommendationSummary) SetEstimatedTotalCost(v string) *SavingsPlansPurchaseRecommendationSummary {
+	s.EstimatedTotalCost = &v
+	return s
+}
+
+// SetHourlyCommitmentToPurchase sets the HourlyCommitmentToPurchase field's value.
+func (s *SavingsPlansPurchaseRecommendationSummary) SetHourlyCommitmentToPurchase(v string) *SavingsPlansPurchaseRecommendationSummary {
+	s.HourlyCommitmentToPurchase = &v
+	return s
+}
+
+// SetTotalRecommendationCount sets the TotalRecommendationCount field's value.
+func (s *SavingsPlansPurchaseRecommendationSummary) SetTotalRecommendationCount(v string) *SavingsPlansPurchaseRecommendationSummary {
+	s.TotalRecommendationCount = &v
+	return s
+}
+
+// The amount of savings you're accumulating, against the public On-Demand rate
+// of the usage accrued in an account.
+type SavingsPlansSavings struct {
+	_ struct{} `type:"structure"`
+
+	// The savings amount that you are accumulating for the usage that is covered
+	// by a Savings Plans, when compared to the On-Demand equivalent of the same
+	// usage.
+	NetSavings *string `type:"string"`
+
+	// How much the amount that the usage would have cost if it was accrued at the
+	// On-Demand rate.
+	OnDemandCostEquivalent *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SavingsPlansSavings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SavingsPlansSavings) GoString() string {
+	return s.String()
+}
+
+// SetNetSavings sets the NetSavings field's value.
+func (s *SavingsPlansSavings) SetNetSavings(v string) *SavingsPlansSavings {
+	s.NetSavings = &v
+	return s
+}
+
+// SetOnDemandCostEquivalent sets the OnDemandCostEquivalent field's value.
+func (s *SavingsPlansSavings) SetOnDemandCostEquivalent(v string) *SavingsPlansSavings {
+	s.OnDemandCostEquivalent = &v
+	return s
+}
+
+// The measurement of how well you are using your existing Savings Plans.
+type SavingsPlansUtilization struct {
+	_ struct{} `type:"structure"`
+
+	// The total amount of Savings Plans commitment that's been purchased in an
+	// account (or set of accounts).
+	TotalCommitment *string `type:"string"`
+
+	// The amount of your Savings Plans commitment that was not consumed from Savings
+	// Plans eligible usage in a specific period.
+	UnusedCommitment *string `type:"string"`
+
+	// The amount of your Savings Plans commitment that was not consumed from Savings
+	// Plans eligible usage in a specific period.
+	UsedCommitment *string `type:"string"`
+
+	// The amount of UsedCommitment divided by the TotalCommitment for your Savings
+	// Plans.
+	UtilizationPercentage *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SavingsPlansUtilization) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SavingsPlansUtilization) GoString() string {
+	return s.String()
+}
+
+// SetTotalCommitment sets the TotalCommitment field's value.
+func (s *SavingsPlansUtilization) SetTotalCommitment(v string) *SavingsPlansUtilization {
+	s.TotalCommitment = &v
+	return s
+}
+
+// SetUnusedCommitment sets the UnusedCommitment field's value.
+func (s *SavingsPlansUtilization) SetUnusedCommitment(v string) *SavingsPlansUtilization {
+	s.UnusedCommitment = &v
+	return s
+}
+
+// SetUsedCommitment sets the UsedCommitment field's value.
+func (s *SavingsPlansUtilization) SetUsedCommitment(v string) *SavingsPlansUtilization {
+	s.UsedCommitment = &v
+	return s
+}
+
+// SetUtilizationPercentage sets the UtilizationPercentage field's value.
+func (s *SavingsPlansUtilization) SetUtilizationPercentage(v string) *SavingsPlansUtilization {
+	s.UtilizationPercentage = &v
+	return s
+}
+
+// The aggregated utilization metrics for your Savings Plans usage.
+type SavingsPlansUtilizationAggregates struct {
+	_ struct{} `type:"structure"`
+
+	// The total amortized commitment for a Savings Plans. This includes the sum
+	// of the upfront and recurring Savings Plans fees.
+	AmortizedCommitment *SavingsPlansAmortizedCommitment `type:"structure"`
+
+	// The amount saved by using existing Savings Plans. Savings returns both net
+	// savings from Savings Plans, as well as the onDemandCostEquivalent of the
+	// Savings Plans when considering the utilization rate.
+	Savings *SavingsPlansSavings `type:"structure"`
+
+	// A ratio of your effectiveness of using existing Savings Plans to apply to
+	// workloads that are Savings Plans eligible.
+	//
+	// Utilization is a required field
+	Utilization *SavingsPlansUtilization `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s SavingsPlansUtilizationAggregates) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SavingsPlansUtilizationAggregates) GoString() string {
+	return s.String()
+}
+
+// SetAmortizedCommitment sets the AmortizedCommitment field's value.
+func (s *SavingsPlansUtilizationAggregates) SetAmortizedCommitment(v *SavingsPlansAmortizedCommitment) *SavingsPlansUtilizationAggregates {
+	s.AmortizedCommitment = v
+	return s
+}
+
+// SetSavings sets the Savings field's value.
+func (s *SavingsPlansUtilizationAggregates) SetSavings(v *SavingsPlansSavings) *SavingsPlansUtilizationAggregates {
+	s.Savings = v
+	return s
+}
+
+// SetUtilization sets the Utilization field's value.
+func (s *SavingsPlansUtilizationAggregates) SetUtilization(v *SavingsPlansUtilization) *SavingsPlansUtilizationAggregates {
+	s.Utilization = v
+	return s
+}
+
+// The amount of Savings Plans utilization, in hours.
+type SavingsPlansUtilizationByTime struct {
+	_ struct{} `type:"structure"`
+
+	// The total amortized commitment for a Savings Plans. This includes the sum
+	// of the upfront and recurring Savings Plans fees.
+	AmortizedCommitment *SavingsPlansAmortizedCommitment `type:"structure"`
+
+	// The amount saved by using existing Savings Plans. Savings returns both net
+	// savings from Savings Plans as well as the onDemandCostEquivalent of the Savings
+	// Plans when considering the utilization rate.
+	Savings *SavingsPlansSavings `type:"structure"`
+
+	// The time period that you want the usage and costs for.
+	//
+	// TimePeriod is a required field
+	TimePeriod *DateInterval `type:"structure" required:"true"`
+
+	// A ratio of your effectiveness of using existing Savings Plans to apply to
+	// workloads that are Savings Plans eligible.
+	//
+	// Utilization is a required field
+	Utilization *SavingsPlansUtilization `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s SavingsPlansUtilizationByTime) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SavingsPlansUtilizationByTime) GoString() string {
+	return s.String()
+}
+
+// SetAmortizedCommitment sets the AmortizedCommitment field's value.
+func (s *SavingsPlansUtilizationByTime) SetAmortizedCommitment(v *SavingsPlansAmortizedCommitment) *SavingsPlansUtilizationByTime {
+	s.AmortizedCommitment = v
+	return s
+}
+
+// SetSavings sets the Savings field's value.
+func (s *SavingsPlansUtilizationByTime) SetSavings(v *SavingsPlansSavings) *SavingsPlansUtilizationByTime {
+	s.Savings = v
+	return s
+}
+
+// SetTimePeriod sets the TimePeriod field's value.
+func (s *SavingsPlansUtilizationByTime) SetTimePeriod(v *DateInterval) *SavingsPlansUtilizationByTime {
+	s.TimePeriod = v
+	return s
+}
+
+// SetUtilization sets the Utilization field's value.
+func (s *SavingsPlansUtilizationByTime) SetUtilization(v *SavingsPlansUtilization) *SavingsPlansUtilizationByTime {
+	s.Utilization = v
+	return s
+}
+
+// A single daily or monthly Savings Plans utilization rate, and details for
+// your account. Master accounts in an organization have access to member accounts.
+// You can use GetDimensionValues to determine the possible dimension values.
+type SavingsPlansUtilizationDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The total amortized commitment for a Savings Plans. Includes the sum of the
+	// upfront and recurring Savings Plans fees.
+	AmortizedCommitment *SavingsPlansAmortizedCommitment `type:"structure"`
+
+	// The attribute that applies to a specific Dimension.
+	Attributes map[string]*string `type:"map"`
+
+	// The amount saved by using existing Savings Plans. Savings returns both net
+	// savings from savings plans as well as the onDemandCostEquivalent of the Savings
+	// Plans when considering the utilization rate.
+	Savings *SavingsPlansSavings `type:"structure"`
+
+	// The unique Amazon Resource Name (ARN) for a particular Savings Plan.
+	SavingsPlanArn *string `type:"string"`
+
+	// A ratio of your effectiveness of using existing Savings Plans to apply to
+	// workloads that are Savings Plans eligible.
+	Utilization *SavingsPlansUtilization `type:"structure"`
+}
+
+// String returns the string representation
+func (s SavingsPlansUtilizationDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SavingsPlansUtilizationDetail) GoString() string {
+	return s.String()
+}
+
+// SetAmortizedCommitment sets the AmortizedCommitment field's value.
+func (s *SavingsPlansUtilizationDetail) SetAmortizedCommitment(v *SavingsPlansAmortizedCommitment) *SavingsPlansUtilizationDetail {
+	s.AmortizedCommitment = v
+	return s
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *SavingsPlansUtilizationDetail) SetAttributes(v map[string]*string) *SavingsPlansUtilizationDetail {
+	s.Attributes = v
+	return s
+}
+
+// SetSavings sets the Savings field's value.
+func (s *SavingsPlansUtilizationDetail) SetSavings(v *SavingsPlansSavings) *SavingsPlansUtilizationDetail {
+	s.Savings = v
+	return s
+}
+
+// SetSavingsPlanArn sets the SavingsPlanArn field's value.
+func (s *SavingsPlansUtilizationDetail) SetSavingsPlanArn(v string) *SavingsPlansUtilizationDetail {
+	s.SavingsPlanArn = &v
+	return s
+}
+
+// SetUtilization sets the Utilization field's value.
+func (s *SavingsPlansUtilizationDetail) SetUtilization(v *SavingsPlansUtilization) *SavingsPlansUtilizationDetail {
+	s.Utilization = v
+	return s
+}
+
 // Hardware specifications for the service that you want recommendations for.
 type ServiceSpecification struct {
 	_ struct{} `type:"structure"`
@@ -4787,6 +6703,9 @@ const (
 
 	// ContextReservations is a Context enum value
 	ContextReservations = "RESERVATIONS"
+
+	// ContextSavingsPlans is a Context enum value
+	ContextSavingsPlans = "SAVINGS_PLANS"
 )
 
 const (
@@ -4858,6 +6777,15 @@ const (
 
 	// DimensionRightsizingType is a Dimension enum value
 	DimensionRightsizingType = "RIGHTSIZING_TYPE"
+
+	// DimensionSavingsPlansType is a Dimension enum value
+	DimensionSavingsPlansType = "SAVINGS_PLANS_TYPE"
+
+	// DimensionSavingsPlanArn is a Dimension enum value
+	DimensionSavingsPlanArn = "SAVINGS_PLAN_ARN"
+
+	// DimensionPaymentOption is a Dimension enum value
+	DimensionPaymentOption = "PAYMENT_OPTION"
 )
 
 const (
@@ -4947,6 +6875,14 @@ const (
 
 	// RightsizingTypeModify is a RightsizingType enum value
 	RightsizingTypeModify = "MODIFY"
+)
+
+const (
+	// SupportedSavingsPlansTypeComputeSp is a SupportedSavingsPlansType enum value
+	SupportedSavingsPlansTypeComputeSp = "COMPUTE_SP"
+
+	// SupportedSavingsPlansTypeEc2InstanceSp is a SupportedSavingsPlansType enum value
+	SupportedSavingsPlansTypeEc2InstanceSp = "EC2_INSTANCE_SP"
 )
 
 const (

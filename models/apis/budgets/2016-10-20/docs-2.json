@@ -18,6 +18,11 @@
     "UpdateSubscriber": "<p>Updates a subscriber.</p>"
   },
   "shapes": {
+    "AccessDeniedException": {
+      "base": "<p>You are not authorized to use this operation with the given parameters.</p>",
+      "refs": {
+      }
+    },
     "AccountId": {
       "base": "<p>The account ID of the user. It should be a 12-digit number.</p>",
       "refs": {
@@ -73,7 +78,7 @@
     "BudgetType": {
       "base": "<p> The type of a budget. It must be one of the following types: </p> <p> <code>COST</code>, <code>USAGE</code>, <code>RI_UTILIZATION</code>, or <code>RI_COVERAGE</code>.</p>",
       "refs": {
-        "Budget$BudgetType": "<p>Whether this budget tracks costs, usage, RI utilization, or RI coverage.</p>",
+        "Budget$BudgetType": "<p>Whether this budget tracks costs, usage, RI utilization, RI coverage, Savings Plans utilization, or Savings Plans coverage.</p>",
         "BudgetPerformanceHistory$BudgetType": null
       }
     },
@@ -117,7 +122,7 @@
     "CostTypes": {
       "base": "<p>The types of cost that are included in a <code>COST</code> budget, such as tax and subscriptions.</p> <p> <code>USAGE</code>, <code>RI_UTILIZATION</code>, and <code>RI_COVERAGE</code> budgets do not have <code>CostTypes</code>.</p>",
       "refs": {
-        "Budget$CostTypes": "<p>The types of costs that are included in this <code>COST</code> budget.</p> <p> <code>USAGE</code>, <code>RI_UTILIZATION</code>, and <code>RI_COVERAGE</code> budgets do not have <code>CostTypes</code>.</p>",
+        "Budget$CostTypes": "<p>The types of costs that are included in this <code>COST</code> budget.</p> <p> <code>USAGE</code>, <code>RI_UTILIZATION</code>, <code>RI_COVERAGE</code>, <code>Savings_Plans_Utilization</code>, and <code>Savings_Plans_Coverage</code> budgets do not have <code>CostTypes</code>.</p>",
         "BudgetPerformanceHistory$CostTypes": "<p>The history of the cost types for a budget during the specified time period.</p>"
       }
     },
@@ -387,7 +392,7 @@
     "Spend": {
       "base": "<p>The amount of cost or usage that is measured for a budget.</p> <p>For example, a <code>Spend</code> for <code>3 GB</code> of S3 usage would have the following parameters:</p> <ul> <li> <p>An <code>Amount</code> of <code>3</code> </p> </li> <li> <p>A <code>unit</code> of <code>GB</code> </p> </li> </ul>",
       "refs": {
-        "Budget$BudgetLimit": "<p>The total amount of cost, usage, RI utilization, or RI coverage that you want to track with your budget.</p> <p> <code>BudgetLimit</code> is required for cost or usage budgets, but optional for RI utilization or coverage budgets. RI utilization or coverage budgets default to <code>100</code>, which is the only valid value for RI utilization or coverage budgets. You can't use <code>BudgetLimit</code> with <code>PlannedBudgetLimits</code> for <code>CreateBudget</code> and <code>UpdateBudget</code> actions. </p>",
+        "Budget$BudgetLimit": "<p>The total amount of cost, usage, RI utilization, RI coverage, Savings Plans utilization, or Savings Plans coverage that you want to track with your budget.</p> <p> <code>BudgetLimit</code> is required for cost or usage budgets, but optional for RI or Savings Plans utilization or coverage budgets. RI and Savings Plans utilization or coverage budgets default to <code>100</code>, which is the only valid value for RI or Savings Plans utilization or coverage budgets. You can't use <code>BudgetLimit</code> with <code>PlannedBudgetLimits</code> for <code>CreateBudget</code> and <code>UpdateBudget</code> actions. </p>",
         "BudgetedAndActualAmounts$BudgetedAmount": "<p>The amount of cost or usage that you created the budget for.</p>",
         "BudgetedAndActualAmounts$ActualAmount": "<p>Your actual costs or usage for a budget period.</p>",
         "CalculatedSpend$ActualSpend": "<p>The amount of cost, usage, or RI units that you have used.</p>",
@@ -408,7 +413,7 @@
     "SubscriberAddress": {
       "base": "<p> A string that contains an email address or SNS topic for the subscriber's address.</p>",
       "refs": {
-        "Subscriber$Address": "<p>The address that AWS sends budget notifications to, either an SNS topic or an email.</p> <p>AWS validates the address for a <code>CreateSubscriber</code> request with the <code>.*</code> regex.</p>"
+        "Subscriber$Address": "<p>The address that AWS sends budget notifications to, either an SNS topic or an email.</p> <p>When you create a subscriber, the value of <code>Address</code> can't contain line breaks.</p>"
       }
     },
     "Subscribers": {
@@ -442,7 +447,7 @@
     "TimeUnit": {
       "base": "<p> The time unit of the budget, such as MONTHLY or QUARTERLY.</p>",
       "refs": {
-        "Budget$TimeUnit": "<p>The length of time until a budget resets the actual and forecasted spend. <code>DAILY</code> is available only for <code>RI_UTILIZATION</code> and <code>RI_COVERAGE</code> budgets.</p>",
+        "Budget$TimeUnit": "<p>The length of time until a budget resets the actual and forecasted spend. <code>DAILY</code> is available only for <code>RI_UTILIZATION</code>, <code>RI_COVERAGE</code>, <code>Savings_Plans_Utilization</code>, and <code>Savings_Plans_Coverage</code> budgets.</p>",
         "BudgetPerformanceHistory$TimeUnit": null
       }
     },
@@ -485,6 +490,7 @@
     "errorMessage": {
       "base": "<p>The error message the exception carries.</p>",
       "refs": {
+        "AccessDeniedException$Message": null,
         "CreationLimitExceededException$Message": null,
         "DuplicateRecordException$Message": null,
         "ExpiredNextTokenException$Message": null,
