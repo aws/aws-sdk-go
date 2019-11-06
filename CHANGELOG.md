@@ -1,3 +1,9 @@
+Release v1.25.29 (2019-11-06)
+===
+
+### Service Client Updates
+* `service/savingsplans`: Updates service documentation
+
 Release v1.25.28 (2019-11-06)
 ===
 
