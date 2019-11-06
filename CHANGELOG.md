@@ -1,3 +1,18 @@
+Release v1.25.28 (2019-11-06)
+===
+
+### Service Client Updates
+* `service/budgets`: Updates service API and documentation
+  * Documentation updates for budgets to track Savings Plans utilization and coverage
+* `service/ce`: Updates service API, documentation, and paginators
+* `service/codebuild`: Updates service API and documentation
+  * Add support for Build Number, Secrets Manager and Exported Environment Variables.
+* `service/elasticfilesystem`: Updates service API
+  * EFS customers can select a lifecycle policy that automatically moves files that have not been accessed for 7 days into the EFS Infrequent Access (EFS IA) storage class. EFS IA provides price/performance that is cost-optimized for files that are not accessed every day.
+* `service/savingsplans`: Adds new service
+* `service/signer`: Updates service API and documentation
+  * This release adds support for tagging code-signing profiles in AWS Signer.
+
 Release v1.25.27 (2019-11-05)
 ===
 

@@ -114,6 +114,60 @@
         {"shape":"InvalidNextTokenException"}
       ]
     },
+    "GetSavingsPlansCoverage":{
+      "name":"GetSavingsPlansCoverage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetSavingsPlansCoverageRequest"},
+      "output":{"shape":"GetSavingsPlansCoverageResponse"},
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"DataUnavailableException"},
+        {"shape":"InvalidNextTokenException"}
+      ]
+    },
+    "GetSavingsPlansPurchaseRecommendation":{
+      "name":"GetSavingsPlansPurchaseRecommendation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetSavingsPlansPurchaseRecommendationRequest"},
+      "output":{"shape":"GetSavingsPlansPurchaseRecommendationResponse"},
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidNextTokenException"}
+      ]
+    },
+    "GetSavingsPlansUtilization":{
+      "name":"GetSavingsPlansUtilization",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetSavingsPlansUtilizationRequest"},
+      "output":{"shape":"GetSavingsPlansUtilizationResponse"},
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"DataUnavailableException"}
+      ]
+    },
+    "GetSavingsPlansUtilizationDetails":{
+      "name":"GetSavingsPlansUtilizationDetails",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetSavingsPlansUtilizationDetailsRequest"},
+      "output":{"shape":"GetSavingsPlansUtilizationDetailsResponse"},
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"DataUnavailableException"},
+        {"shape":"InvalidNextTokenException"}
+      ]
+    },
     "GetTags":{
       "name":"GetTags",
       "http":{
@@ -173,7 +227,8 @@
       "type":"string",
       "enum":[
         "COST_AND_USAGE",
-        "RESERVATIONS"
+        "RESERVATIONS",
+        "SAVINGS_PLANS"
       ]
     },
     "Coverage":{
@@ -230,6 +285,7 @@
         "ResourceDetails":{"shape":"ResourceDetails"},
         "ResourceUtilization":{"shape":"ResourceUtilization"},
         "ReservationCoveredHoursInLookbackPeriod":{"shape":"GenericString"},
+        "SavingsPlansCoveredHoursInLookbackPeriod":{"shape":"GenericString"},
         "OnDemandHoursInLookbackPeriod":{"shape":"GenericString"},
         "TotalRunningHoursInLookbackPeriod":{"shape":"GenericString"},
         "MonthlyCost":{"shape":"GenericString"},
@@ -279,7 +335,10 @@
         "INSTANCE_TYPE_FAMILY",
         "BILLING_ENTITY",
         "RESERVATION_ID",
-        "RIGHTSIZING_TYPE"
+        "RIGHTSIZING_TYPE",
+        "SAVINGS_PLANS_TYPE",
+        "SAVINGS_PLAN_ARN",
+        "PAYMENT_OPTION"
       ]
     },
     "DimensionValues":{
@@ -547,6 +606,98 @@
         "NextPageToken":{"shape":"NextPageToken"}
       }
     },
+    "GetSavingsPlansCoverageRequest":{
+      "type":"structure",
+      "required":["TimePeriod"],
+      "members":{
+        "TimePeriod":{"shape":"DateInterval"},
+        "GroupBy":{"shape":"GroupDefinitions"},
+        "Granularity":{"shape":"Granularity"},
+        "Filter":{"shape":"Expression"},
+        "Metrics":{"shape":"MetricNames"},
+        "NextToken":{"shape":"NextPageToken"},
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true
+        }
+      }
+    },
+    "GetSavingsPlansCoverageResponse":{
+      "type":"structure",
+      "required":["SavingsPlansCoverages"],
+      "members":{
+        "SavingsPlansCoverages":{"shape":"SavingsPlansCoverages"},
+        "NextToken":{"shape":"NextPageToken"}
+      }
+    },
+    "GetSavingsPlansPurchaseRecommendationRequest":{
+      "type":"structure",
+      "required":[
+        "SavingsPlansType",
+        "TermInYears",
+        "PaymentOption",
+        "LookbackPeriodInDays"
+      ],
+      "members":{
+        "SavingsPlansType":{"shape":"SupportedSavingsPlansType"},
+        "TermInYears":{"shape":"TermInYears"},
+        "PaymentOption":{"shape":"PaymentOption"},
+        "NextPageToken":{"shape":"NextPageToken"},
+        "PageSize":{"shape":"NonNegativeInteger"},
+        "LookbackPeriodInDays":{"shape":"LookbackPeriodInDays"}
+      }
+    },
+    "GetSavingsPlansPurchaseRecommendationResponse":{
+      "type":"structure",
+      "members":{
+        "Metadata":{"shape":"SavingsPlansPurchaseRecommendationMetadata"},
+        "SavingsPlansPurchaseRecommendation":{"shape":"SavingsPlansPurchaseRecommendation"},
+        "NextPageToken":{"shape":"NextPageToken"}
+      }
+    },
+    "GetSavingsPlansUtilizationDetailsRequest":{
+      "type":"structure",
+      "required":["TimePeriod"],
+      "members":{
+        "TimePeriod":{"shape":"DateInterval"},
+        "Filter":{"shape":"Expression"},
+        "NextToken":{"shape":"NextPageToken"},
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true
+        }
+      }
+    },
+    "GetSavingsPlansUtilizationDetailsResponse":{
+      "type":"structure",
+      "required":[
+        "SavingsPlansUtilizationDetails",
+        "TimePeriod"
+      ],
+      "members":{
+        "SavingsPlansUtilizationDetails":{"shape":"SavingsPlansUtilizationDetails"},
+        "Total":{"shape":"SavingsPlansUtilizationAggregates"},
+        "TimePeriod":{"shape":"DateInterval"},
+        "NextToken":{"shape":"NextPageToken"}
+      }
+    },
+    "GetSavingsPlansUtilizationRequest":{
+      "type":"structure",
+      "required":["TimePeriod"],
+      "members":{
+        "TimePeriod":{"shape":"DateInterval"},
+        "Granularity":{"shape":"Granularity"},
+        "Filter":{"shape":"Expression"}
+      }
+    },
+    "GetSavingsPlansUtilizationResponse":{
+      "type":"structure",
+      "required":["Total"],
+      "members":{
+        "SavingsPlansUtilizationsByTime":{"shape":"SavingsPlansUtilizationsByTime"},
+        "Total":{"shape":"SavingsPlansUtilizationAggregates"}
+      }
+    },
     "GetTagsRequest":{
       "type":"structure",
       "required":["TimePeriod"],
@@ -667,6 +818,10 @@
         "THIRTY_DAYS",
         "SIXTY_DAYS"
       ]
+    },
+    "MaxResults":{
+      "type":"integer",
+      "min":1
     },
     "Metric":{
       "type":"string",
@@ -941,12 +1096,170 @@
         "MODIFY"
       ]
     },
+    "SavingsPlanArn":{"type":"string"},
+    "SavingsPlansAmortizedCommitment":{
+      "type":"structure",
+      "members":{
+        "AmortizedRecurringCommitment":{"shape":"GenericString"},
+        "AmortizedUpfrontCommitment":{"shape":"GenericString"},
+        "TotalAmortizedCommitment":{"shape":"GenericString"}
+      }
+    },
+    "SavingsPlansCoverage":{
+      "type":"structure",
+      "members":{
+        "Attributes":{"shape":"Attributes"},
+        "Coverage":{"shape":"SavingsPlansCoverageData"},
+        "TimePeriod":{"shape":"DateInterval"}
+      }
+    },
+    "SavingsPlansCoverageData":{
+      "type":"structure",
+      "members":{
+        "SpendCoveredBySavingsPlans":{"shape":"GenericString"},
+        "OnDemandCost":{"shape":"GenericString"},
+        "TotalCost":{"shape":"GenericString"},
+        "CoveragePercentage":{"shape":"GenericString"}
+      }
+    },
+    "SavingsPlansCoverages":{
+      "type":"list",
+      "member":{"shape":"SavingsPlansCoverage"}
+    },
+    "SavingsPlansDetails":{
+      "type":"structure",
+      "members":{
+        "Region":{"shape":"GenericString"},
+        "InstanceFamily":{"shape":"GenericString"},
+        "OfferingId":{"shape":"GenericString"}
+      }
+    },
+    "SavingsPlansPurchaseRecommendation":{
+      "type":"structure",
+      "members":{
+        "SavingsPlansType":{"shape":"SupportedSavingsPlansType"},
+        "TermInYears":{"shape":"TermInYears"},
+        "PaymentOption":{"shape":"PaymentOption"},
+        "LookbackPeriodInDays":{"shape":"LookbackPeriodInDays"},
+        "SavingsPlansPurchaseRecommendationDetails":{"shape":"SavingsPlansPurchaseRecommendationDetailList"},
+        "SavingsPlansPurchaseRecommendationSummary":{"shape":"SavingsPlansPurchaseRecommendationSummary"}
+      }
+    },
+    "SavingsPlansPurchaseRecommendationDetail":{
+      "type":"structure",
+      "members":{
+        "SavingsPlansDetails":{"shape":"SavingsPlansDetails"},
+        "AccountId":{"shape":"GenericString"},
+        "UpfrontCost":{"shape":"GenericString"},
+        "EstimatedROI":{"shape":"GenericString"},
+        "CurrencyCode":{"shape":"GenericString"},
+        "EstimatedSPCost":{"shape":"GenericString"},
+        "EstimatedOnDemandCost":{"shape":"GenericString"},
+        "EstimatedSavingsAmount":{"shape":"GenericString"},
+        "EstimatedSavingsPercentage":{"shape":"GenericString"},
+        "HourlyCommitmentToPurchase":{"shape":"GenericString"},
+        "EstimatedAverageUtilization":{"shape":"GenericString"},
+        "EstimatedMonthlySavingsAmount":{"shape":"GenericString"},
+        "CurrentMinimumHourlyOnDemandSpend":{"shape":"GenericString"},
+        "CurrentMaximumHourlyOnDemandSpend":{"shape":"GenericString"},
+        "CurrentAverageHourlyOnDemandSpend":{"shape":"GenericString"}
+      }
+    },
+    "SavingsPlansPurchaseRecommendationDetailList":{
+      "type":"list",
+      "member":{"shape":"SavingsPlansPurchaseRecommendationDetail"}
+    },
+    "SavingsPlansPurchaseRecommendationMetadata":{
+      "type":"structure",
+      "members":{
+        "RecommendationId":{"shape":"GenericString"},
+        "GenerationTimestamp":{"shape":"GenericString"}
+      }
+    },
+    "SavingsPlansPurchaseRecommendationSummary":{
+      "type":"structure",
+      "members":{
+        "EstimatedROI":{"shape":"GenericString"},
+        "CurrencyCode":{"shape":"GenericString"},
+        "EstimatedTotalCost":{"shape":"GenericString"},
+        "CurrentOnDemandSpend":{"shape":"GenericString"},
+        "EstimatedSavingsAmount":{"shape":"GenericString"},
+        "TotalRecommendationCount":{"shape":"GenericString"},
+        "DailyCommitmentToPurchase":{"shape":"GenericString"},
+        "HourlyCommitmentToPurchase":{"shape":"GenericString"},
+        "EstimatedSavingsPercentage":{"shape":"GenericString"},
+        "EstimatedMonthlySavingsAmount":{"shape":"GenericString"}
+      }
+    },
+    "SavingsPlansSavings":{
+      "type":"structure",
+      "members":{
+        "NetSavings":{"shape":"GenericString"},
+        "OnDemandCostEquivalent":{"shape":"GenericString"}
+      }
+    },
+    "SavingsPlansUtilization":{
+      "type":"structure",
+      "members":{
+        "TotalCommitment":{"shape":"GenericString"},
+        "UsedCommitment":{"shape":"GenericString"},
+        "UnusedCommitment":{"shape":"GenericString"},
+        "UtilizationPercentage":{"shape":"GenericString"}
+      }
+    },
+    "SavingsPlansUtilizationAggregates":{
+      "type":"structure",
+      "required":["Utilization"],
+      "members":{
+        "Utilization":{"shape":"SavingsPlansUtilization"},
+        "Savings":{"shape":"SavingsPlansSavings"},
+        "AmortizedCommitment":{"shape":"SavingsPlansAmortizedCommitment"}
+      }
+    },
+    "SavingsPlansUtilizationByTime":{
+      "type":"structure",
+      "required":[
+        "TimePeriod",
+        "Utilization"
+      ],
+      "members":{
+        "TimePeriod":{"shape":"DateInterval"},
+        "Utilization":{"shape":"SavingsPlansUtilization"},
+        "Savings":{"shape":"SavingsPlansSavings"},
+        "AmortizedCommitment":{"shape":"SavingsPlansAmortizedCommitment"}
+      }
+    },
+    "SavingsPlansUtilizationDetail":{
+      "type":"structure",
+      "members":{
+        "SavingsPlanArn":{"shape":"SavingsPlanArn"},
+        "Attributes":{"shape":"Attributes"},
+        "Utilization":{"shape":"SavingsPlansUtilization"},
+        "Savings":{"shape":"SavingsPlansSavings"},
+        "AmortizedCommitment":{"shape":"SavingsPlansAmortizedCommitment"}
+      }
+    },
+    "SavingsPlansUtilizationDetails":{
+      "type":"list",
+      "member":{"shape":"SavingsPlansUtilizationDetail"}
+    },
+    "SavingsPlansUtilizationsByTime":{
+      "type":"list",
+      "member":{"shape":"SavingsPlansUtilizationByTime"}
+    },
     "SearchString":{"type":"string"},
     "ServiceSpecification":{
       "type":"structure",
       "members":{
         "EC2Specification":{"shape":"EC2Specification"}
       }
+    },
+    "SupportedSavingsPlansType":{
+      "type":"string",
+      "enum":[
+        "COMPUTE_SP",
+        "EC2_INSTANCE_SP"
+      ]
     },
     "TagKey":{"type":"string"},
     "TagList":{
