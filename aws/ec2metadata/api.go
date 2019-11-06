@@ -3,7 +3,7 @@ package ec2metadata
 import (
 	"encoding/json"
 	"fmt"
-	"net/http"
+	"strconv"
 	"strings"
 	"time"
 
@@ -12,7 +12,9 @@ import (
 	"github.com/aws/aws-sdk-go/internal/sdkuri"
 )
 
-func (c *EC2Metadata) getToken(duration string) (tokenOutput, error) {
+// getToken uses the duration to return a token for EC2 metadata service,
+// or an error if the request failed.
+func (c *EC2Metadata) getToken(duration time.Duration) (tokenOutput, error) {
 
 	op := &request.Operation{
 		Name:       "GetToken",
@@ -24,17 +26,21 @@ func (c *EC2Metadata) getToken(duration string) (tokenOutput, error) {
 	req := c.NewRequest(op, nil, &output)
 
 	// remove the fetch token handler from the request handlers to avoid infinite recursion
-	req.Handlers.Sign.RemoveByName(fetchTokenHandler)
-	req.Handlers.Unmarshal.Swap("unmarshalMetadataHandler", unmarshalTokenHandler)
-	defer req.Handlers.Unmarshal.Swap("unmarshalTokenHandler", unmarshalHandler)
-	req.HTTPRequest.Header.Set(TTLHeader,duration)
+	req.Handlers.Sign.RemoveByName(fetchTokenHandlerName)
+
+	// Swap the unmarshalMetadataHandler with unmarshalTokenHandler on this request.
+	req.Handlers.Unmarshal.Swap(unmarshalMetadataHandlerName, unmarshalTokenHandler)
+
+	ttl := strconv.Itoa(int(duration / time.Second))
+	req.HTTPRequest.Header.Set(ttlHeader, ttl)
 
 	err := req.Send()
 
 	// Errors with bad request status should be returned.
-	if req.HTTPResponse.StatusCode == http.StatusBadRequest {
-		e := awserr.New(req.HTTPResponse.Status, "Fetch token failed", err)
-		err = awserr.NewRequestFailure(e, req.HTTPResponse.StatusCode, req.RequestID)
+	if err != nil {
+		err = awserr.NewRequestFailure(
+			awserr.New(req.HTTPResponse.Status, "Fetch token failed", err),
+			req.HTTPResponse.StatusCode, req.RequestID)
 	}
 
 	return output, err
@@ -54,13 +60,6 @@ func (c *EC2Metadata) GetMetadata(p string) (string, error) {
 
 	req := c.NewRequest(op, nil, output)
 
-	req.Handlers.UnmarshalError.PushBack(func(r *request.Request) {
-		if r.HTTPResponse.StatusCode != http.StatusOK {
-			err := awserr.New("Request Failed", http.StatusText(r.HTTPResponse.StatusCode), r.Error)
-			r.Error = awserr.NewRequestFailure(err, r.HTTPResponse.StatusCode, r.RequestID)
-		}
-	})
-
 	err := req.Send()
 	return output.Content, err
 }
@@ -78,13 +77,6 @@ func (c *EC2Metadata) GetUserData() (string, error) {
 	output := &metadataOutput{}
 	req := c.NewRequest(op, nil, output)
 
-	req.Handlers.UnmarshalError.PushBack(func(r *request.Request) {
-		if r.HTTPResponse.StatusCode != http.StatusOK {
-			err := awserr.New("Request Failed", http.StatusText(r.HTTPResponse.StatusCode), r.Error)
-			r.Error = awserr.NewRequestFailure(err, r.HTTPResponse.StatusCode, r.RequestID)
-		}
-	})
-
 	err := req.Send()
 	return output.Content, err
 }
@@ -101,13 +93,6 @@ func (c *EC2Metadata) GetDynamicData(p string) (string, error) {
 
 	output := &metadataOutput{}
 	req := c.NewRequest(op, nil, output)
-
-	req.Handlers.UnmarshalError.PushBack(func(r *request.Request) {
-		if r.HTTPResponse.StatusCode != http.StatusOK {
-			err := awserr.New("Request Failed", http.StatusText(r.HTTPResponse.StatusCode), r.Error)
-			r.Error = awserr.NewRequestFailure(err, r.HTTPResponse.StatusCode, r.RequestID)
-		}
-	})
 
 	err := req.Send()
 	return output.Content, err

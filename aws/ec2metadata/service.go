@@ -27,39 +27,55 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 )
 
-// ServiceName is the name of the service.
-const ServiceName = "ec2metadata"
-const disableServiceEnvVar = "AWS_EC2_METADATA_DISABLED"
+const (
+	// ServiceName is the name of the service.
+	ServiceName          = "ec2metadata"
+	disableServiceEnvVar = "AWS_EC2_METADATA_DISABLED"
 
-// Headers for Token and TTL
-const TokenHeader = "x-aws-ec2-metadata-token"
-const TTLHeader = "x-aws-ec2-metadata-token-ttl-seconds"
+	// Headers for Token and TTL
+	ttlHeader   = "x-aws-ec2-metadata-token-ttl-seconds"
+	tokenHeader = "x-aws-ec2-metadata-token"
 
-const defaultTTL = 21600 * time.Second
-const fetchTokenHandler = "FetchTokenHandler"
+	// Named Handler constants
+	fetchTokenHandlerName          = "FetchTokenHandler"
+	unmarshalMetadataHandlerName   = "unmarshalMetadataHandler"
+	unmarshalTokenHandlerName      = "unmarshalTokenHandler"
+	enableTokenProviderHandlerName = "enableTokenProviderHandler"
+
+	// TTL constants
+	defaultTTL          = 21600 * time.Second
+	ttlExpirationWindow = 1000 * time.Second
+)
 
 // A EC2Metadata is an EC2 Metadata service Client.
 type EC2Metadata struct {
 	*client.Client
 }
 
-// A ec2Token struct helps use of token in EC2 Metadata service ops
+// A tokenProvider struct provides access to EC2Metadata client
+// and atomic instance of a token, along with ttl for it.
+// tokenProvider also provides an atomic flag to disable the
+// fetch token operation.
+// The disabled member will use 0 as false, and 1 as true.
 type tokenProvider struct {
-	client *EC2Metadata
-	token  atomic.Value
-	ttl    time.Duration
+	client   *EC2Metadata
+	disabled atomic.Value
+	token    atomic.Value
+	ttl      time.Duration
 }
 
+// A ec2Token struct helps use of token in EC2 Metadata service ops
 type ec2Token struct {
 	token string
 	credentials.Expiry
 }
 
 // newTokenProvider provides a pointer to a tokenProvider instance
-func newTokenProvider(c *EC2Metadata) *tokenProvider {
+func newTokenProvider(c *EC2Metadata, duration time.Duration) *tokenProvider {
 	var t tokenProvider
 	t.client = c
-	t.ttl = defaultTTL
+	t.ttl = duration
+	t.disabled.Store(0)
 	return &t
 }
 
@@ -111,12 +127,17 @@ func NewClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
 	}
 
 	// token provider instance
-	tp := newTokenProvider(svc)
+	tp := newTokenProvider(svc, defaultTTL)
 
 	// NamedHandler for fetching token
 	svc.Handlers.Sign.PushBackNamed(request.NamedHandler{
-		Name: fetchTokenHandler,
+		Name: fetchTokenHandlerName,
 		Fn:   tp.fetchTokenHandler,
+	})
+
+	svc.Handlers.Complete.PushBackNamed(request.NamedHandler{
+		Name: enableTokenProviderHandlerName,
+		Fn:   tp.enableTokenProviderHandler,
 	})
 
 	svc.Handlers.Unmarshal.PushBackNamed(unmarshalHandler)
@@ -149,15 +170,20 @@ func NewClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
 	return svc
 }
 
-// SetTokenTTL exposes tokenTTL config on client
-func (c *EC2Metadata) SetTokenTTL(TTL time.Duration) {
-	tp := newTokenProvider(c)
-	tp.ttl = TTL
+// SetTokenTTL exposes token TTL config on client.
+// Note: SetTokenTTL is not safe to use concurrently with EC2Metadata operation calls.
+func (c *EC2Metadata) SetTokenTTL(duration time.Duration) {
+	tp := newTokenProvider(c, duration)
 
-	// swap  the fetch token handler with a new handler with updated TTL
+	// swap the fetch token handler with a new handler with updated TTL
 	c.Handlers.Sign.SwapNamed(request.NamedHandler{
-		Name: fetchTokenHandler,
+		Name: fetchTokenHandlerName,
 		Fn:   tp.fetchTokenHandler,
+	})
+
+	c.Handlers.Complete.SwapNamed(request.NamedHandler{
+		Name: enableTokenProviderHandlerName,
+		Fn:   tp.enableTokenProviderHandler,
 	})
 }
 
@@ -174,23 +200,25 @@ type tokenOutput struct {
 	TTL   time.Duration
 }
 
-// unmarshal handler for EC2Token
+// unmarshal token handler is used to parse the response of a getToken operation
 var unmarshalTokenHandler = request.NamedHandler{
-	Name: "unmarshalTokenHandler",
+	Name: unmarshalTokenHandlerName,
 	Fn: func(r *request.Request) {
 		var b bytes.Buffer
 		if _, err := io.Copy(&b, r.HTTPResponse.Body); err != nil {
-			r.Error = awserr.New(request.ErrCodeSerialization, "unable to unmarshal EC2 metadata response", err)
+			r.Error = awserr.NewRequestFailure(awserr.New(request.ErrCodeSerialization,
+				"unable to unmarshal EC2 metadata response", err), r.HTTPResponse.StatusCode, r.RequestID)
 			return
 		}
 
-		v := r.HTTPResponse.Header.Get(TTLHeader)
+		v := r.HTTPResponse.Header.Get(ttlHeader)
 		if data, ok := r.Data.(*tokenOutput); ok {
 			data.Token = b.String()
 			// TTL is in seconds
 			i, err := strconv.Atoi(v)
 			if err != nil {
-				r.Error = awserr.New(request.ParamFormatErrCode, "unable to parse EC2 token TTL response", err)
+				r.Error = awserr.NewRequestFailure(awserr.New(request.ParamFormatErrCode,
+					"unable to parse EC2 token TTL response", err), r.HTTPResponse.StatusCode, r.RequestID)
 				return
 			}
 			t := time.Duration(i) * time.Second
@@ -200,7 +228,7 @@ var unmarshalTokenHandler = request.NamedHandler{
 }
 
 var unmarshalHandler = request.NamedHandler{
-	Name: "unmarshalMetadataHandler",
+	Name: unmarshalMetadataHandlerName,
 	Fn: func(r *request.Request) {
 		defer r.HTTPResponse.Body.Close()
 		var b bytes.Buffer
@@ -218,15 +246,26 @@ var unmarshalHandler = request.NamedHandler{
 func unmarshalError(r *request.Request) {
 	defer r.HTTPResponse.Body.Close()
 	var b bytes.Buffer
+
 	if _, err := io.Copy(&b, r.HTTPResponse.Body); err != nil {
-		e := awserr.New(request.ErrCodeSerialization, "unable to unmarshal EC2 metadata error response", err)
-		r.Error = awserr.NewRequestFailure(e, r.HTTPResponse.StatusCode, r.RequestID)
+		r.Error = awserr.NewRequestFailure(
+			awserr.New(request.ErrCodeSerialization, "unable to unmarshal EC2 metadata error response", err),
+			r.HTTPResponse.StatusCode, r.RequestID)
+		return
+	}
+
+	// check if retries are expired
+	if r.MaxRetries() == r.RetryCount {
+		r.Error = awserr.NewRequestFailure(
+			awserr.New(request.ErrCodeResponseTimeout, "Request timeout", errors.New(b.String())),
+			r.HTTPResponse.StatusCode, r.RequestID)
 		return
 	}
 
 	// Response body format is not consistent between metadata endpoints.
 	// Grab the error message as a string and include that as the source error
-	r.Error = awserr.New("EC2MetadataError", "failed to make EC2Metadata request", errors.New(b.String()))
+	r.Error = awserr.NewRequestFailure(awserr.New("EC2MetadataError", "failed to make EC2Metadata request", errors.New(b.String())),
+		r.HTTPResponse.StatusCode, r.RequestID)
 }
 
 func validateEndpointHandler(r *request.Request) {
@@ -238,20 +277,32 @@ func validateEndpointHandler(r *request.Request) {
 // fetchTokenHandler fetches token for EC2Metadata service client by default.
 func (t *tokenProvider) fetchTokenHandler(r *request.Request) {
 
+	// short-circuits to insecure data flow if tokenProvider is disabled.
+	if t.disabled.Load() == 1 {
+		return
+	}
+
 	if ec2Token, ok := t.token.Load().(ec2Token); ok {
 		if !ec2Token.IsExpired() {
-			r.HTTPRequest.Header.Set(TokenHeader, ec2Token.token)
+			r.HTTPRequest.Header.Set(tokenHeader, ec2Token.token)
 			return
 		}
 	}
 
-	input := strconv.Itoa(int(t.ttl / time.Second))
-	output, err := t.client.getToken(input)
+	output, err := t.client.getToken(t.ttl)
 
-
-	if err !=nil{
+	if err != nil {
+		// change the disabled flag on token provider to true,
+		// when error is request timeout error.
 		if requestFailureError, ok := err.(awserr.RequestFailure); ok {
-			r.Error = requestFailureError
+			if e, ok := requestFailureError.OrigErr().(awserr.Error); ok &&
+				e.Code() == request.ErrCodeResponseTimeout {
+				t.disabled.Store(1)
+			}
+
+			if requestFailureError.StatusCode() == http.StatusBadRequest {
+				r.Error = requestFailureError
+			}
 		}
 		return
 	}
@@ -259,12 +310,24 @@ func (t *tokenProvider) fetchTokenHandler(r *request.Request) {
 	newToken := ec2Token{
 		token: output.Token,
 	}
-	newToken.SetExpiration(time.Now().Add(output.TTL), 10*time.Second)
+	newToken.SetExpiration(time.Now().Add(output.TTL), ttlExpirationWindow)
 	t.token.Store(newToken)
 
 	// Inject token header to the request.
 	if ec2Token, ok := t.token.Load().(ec2Token); ok {
-		r.HTTPRequest.Header.Set(TokenHeader, ec2Token.token)
+		r.HTTPRequest.Header.Set(tokenHeader, ec2Token.token)
+	}
+}
+
+// enableTokenProviderHandler enables the token provider
+func (t *tokenProvider) enableTokenProviderHandler(r *request.Request) {
+	if r.Error == nil {
+		return
 	}
 
+	// If the error code status is 401, we enable the token provider
+	if e, ok := r.Error.(awserr.RequestFailure); ok &&
+		e.StatusCode() == http.StatusUnauthorized {
+		t.disabled.Store(0)
+	}
 }

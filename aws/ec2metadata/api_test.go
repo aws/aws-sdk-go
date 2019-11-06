@@ -10,14 +10,12 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"path"
-	"strconv"
 	"strings"
 	"sync"
 	"testing"
 
-	"github.com/aws/aws-sdk-go/aws/awserr"
-
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/ec2metadata"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
@@ -55,99 +53,149 @@ const unsuccessfulIamInfo = `{
   "InstanceProfileId" : "AIPAABCDEFGHIJKLMN123"
 }`
 
+const (
+	ttlHeader   = "x-aws-ec2-metadata-token-ttl-seconds"
+	tokenHeader = "x-aws-ec2-metadata-token"
+)
+
+type testType int
+
+const (
+	SecureTestType testType = iota
+	InsecureTestType
+	BadRequestTestType
+	ServerErrorForTokenTestType
+	retryTimeOutForTokenTestType
+	retryTimeOutWith401TestType
+)
+
 type testServer struct {
-	t                          *testing.T
-	tokenProvider              *tokenAccessProvider
-	dataProvider               *dataAccessProvider
-	expectedTokens             []int
-	expectedTokenProviderError string
+	t *testing.T
+
+	tokens      []string
+	activeToken string
+	data        string
 }
 
-type tokenAccessProvider struct {
-	token      int
-	HTTPMethod string
+type operationListProvider struct {
+	operationsPerformed []string
 }
 
-type dataAccessProvider struct {
-	data       string
-	HTTPMethod string
-}
-
-func initSecureServer(s testServer) *httptest.Server {
-	mux := http.NewServeMux()
-	mux.HandleFunc("/latest/api/token", s.secureTokenHandler)
-	mux.HandleFunc("/latest/", s.secureMetadataHandler)
-	return httptest.NewServer(mux)
-}
-
-func initInsecureServer(s testServer) *httptest.Server {
-	mux := http.NewServeMux()
-	mux.HandleFunc("/latest/api/token", s.insecureTokenHandler)
-	mux.HandleFunc("/latest/", s.insecureMetadataHandler)
-	return httptest.NewServer(mux)
-}
-
-func (s *testServer) insecureTokenHandler(w http.ResponseWriter, r *http.Request) {
-	s.t.Logf("Insecure token handler called \n")
-	http.Error(w, "not found", http.StatusNotFound)
-	if !strings.Contains("not found", s.expectedTokenProviderError) {
-		s.t.Errorf("Expected %v, got not found error \n", s.expectedTokenProviderError)
-	}
-}
-
-func (s *testServer) insecureMetadataHandler(w http.ResponseWriter, r *http.Request) {
-	s.t.Logf("Insecure metadata handler called \n")
-
-	if r.Method != s.dataProvider.HTTPMethod {
-		http.Error(w, "bad request", http.StatusBadRequest)
-		return
-	}
-
-	w.Write([]byte(s.dataProvider.data))
-}
-
-func (s *testServer) secureTokenHandler(w http.ResponseWriter, r *http.Request) {
-	s.t.Logf("Secure token handler called \n")
-	if r.Method != s.tokenProvider.HTTPMethod {
-		http.Error(w, "bad request", http.StatusBadRequest)
-		if !strings.Contains("bad request", s.expectedTokenProviderError) {
-			s.t.Errorf("Expected %v, got bad request error \n", s.expectedTokenProviderError)
-		}
-		return
-	}
-
-	if r.Header.Get(ec2metadata.TTLHeader) == "" {
-		http.Error(w, "TTL not set for token retrieval", http.StatusBadRequest)
-		if !strings.Contains("TTL not set for token retrieval", s.expectedTokenProviderError) {
-			s.t.Errorf("Expected %v, got TTL not set for token retrieval error \n", s.expectedTokenProviderError)
-		}
-		return
-	}
-
-	// increment token for each call to secure server for token
-	s.tokenProvider.token++
-
-	w.Header().Set(ec2metadata.TTLHeader, r.Header.Get(ec2metadata.TTLHeader))
-	w.Write([]byte(strconv.Itoa(s.tokenProvider.token)))
-}
-
-func (s *testServer) secureMetadataHandler(w http.ResponseWriter, r *http.Request) {
-	s.t.Logf("secure metadata handler called \n")
-
-	if r.Method != s.dataProvider.HTTPMethod {
-		http.Error(w, "bad request", http.StatusBadRequest)
-		return
-	}
-
-	if token := r.Header.Get(ec2metadata.TokenHeader); token != "" {
-		if i, ok := strconv.Atoi(token); ok == nil && i != s.expectedTokens[i-1] {
-			http.Error(w, "Unauthorized for an expired, invalid, or missing token header", http.StatusUnauthorized)
+func getTokenRequiredParams(t *testing.T, fn http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if e, a := "PUT", r.Method; e != a {
+			t.Errorf("expect %v, http method got %v", e, a)
+			http.Error(w, "wrong method", 400)
 			return
 		}
+		if len(r.Header.Get(ttlHeader)) == 0 {
+			t.Errorf("expect ttl header to be present in the request headers, got none")
+			http.Error(w, "wrong method", 400)
+			return
+		}
+
+		fn(w, r)
+	}
+}
+
+func newTestServer(t *testing.T, testType testType, testServer *testServer) *httptest.Server {
+
+	mux := http.NewServeMux()
+
+	switch testType {
+	case SecureTestType:
+		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.secureGetTokenHandler))
+		mux.HandleFunc("/latest/", testServer.secureGetLatestHandler)
+	case InsecureTestType:
+		mux.HandleFunc("/latest/api/token", testServer.insecureGetTokenHandler)
+		mux.HandleFunc("/latest/", testServer.insecureGetLatestHandler)
+	case BadRequestTestType:
+		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.badRequestGetTokenHandler))
+		mux.HandleFunc("/latest/", testServer.badRequestGetLatestHandler)
+	case ServerErrorForTokenTestType:
+		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.serverErrorGetTokenHandler))
+		mux.HandleFunc("/latest/", testServer.insecureGetLatestHandler)
+	case retryTimeOutForTokenTestType:
+		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.retryableErrorGetTokenHandler))
+		mux.HandleFunc("/latest/", testServer.insecureGetLatestHandler)
+	case retryTimeOutWith401TestType:
+		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.retryableErrorGetTokenHandler))
+		mux.HandleFunc("/latest/", testServer.unauthorizedGetLatestHandler)
+
 	}
 
-	w.Header().Set(ec2metadata.TTLHeader, r.Header.Get(ec2metadata.TTLHeader))
-	w.Write([]byte(s.dataProvider.data))
+	return httptest.NewServer(mux)
+}
+
+func (s *testServer) secureGetTokenHandler(w http.ResponseWriter, r *http.Request) {
+
+	token := s.tokens[0]
+
+	// set the active token
+	s.activeToken = token
+
+	// rotate the token
+	if len(s.tokens) > 1 {
+		s.tokens = s.tokens[1:]
+	}
+
+	// set the header and response body
+	w.Header().Set(ttlHeader, r.Header.Get(ttlHeader))
+	w.Write([]byte(s.activeToken))
+}
+
+func (s *testServer) secureGetLatestHandler(w http.ResponseWriter, r *http.Request) {
+	if len(s.activeToken) == 0 {
+		s.t.Errorf("expect token to have been requested, was not")
+		http.Error(w, "", 401)
+		return
+	}
+	if e, a := s.activeToken, r.Header.Get(tokenHeader); e != a {
+		s.t.Errorf("expect %v token, got %v", e, a)
+		http.Error(w, "", 401)
+		return
+	}
+
+	w.Header().Set("ttlheader", r.Header.Get(ttlHeader))
+	w.Write([]byte(s.data))
+}
+
+func (s *testServer) insecureGetTokenHandler(w http.ResponseWriter, r *http.Request) {
+	http.Error(w, "", 404)
+}
+
+func (s *testServer) insecureGetLatestHandler(w http.ResponseWriter, r *http.Request) {
+	if len(r.Header.Get(tokenHeader)) != 0 {
+		s.t.Errorf("Request token found, expected none")
+		http.Error(w, "", 400)
+		return
+	}
+
+	w.Write([]byte(s.data))
+}
+
+func (s *testServer) badRequestGetTokenHandler(w http.ResponseWriter, r *http.Request) {
+	http.Error(w, "", 400)
+}
+
+func (s *testServer) badRequestGetLatestHandler(w http.ResponseWriter, r *http.Request) {
+	s.t.Errorf("Expected no call to this handler, incorrect behavior found")
+}
+
+func (s *testServer) serverErrorGetTokenHandler(w http.ResponseWriter, r *http.Request) {
+	http.Error(w, "", 403)
+}
+
+func (s *testServer) retryableErrorGetTokenHandler(w http.ResponseWriter, r *http.Request) {
+	http.Error(w, "service unavailable", http.StatusServiceUnavailable)
+}
+
+func (s *testServer) unauthorizedGetLatestHandler(w http.ResponseWriter, r *http.Request) {
+	http.Error(w, "", 401)
+}
+
+func (opListProvider *operationListProvider) addToOperationPerformedList(r *request.Request) {
+	opListProvider.operationsPerformed = append(opListProvider.operationsPerformed, r.Operation.Name)
 }
 
 func TestEndpoint(t *testing.T) {
@@ -169,236 +217,123 @@ func TestEndpoint(t *testing.T) {
 
 func TestGetMetadata(t *testing.T) {
 	cases := map[string]struct {
-		s                         testServer
-		expectedDataResponse      string
-		expectedDataProviderError string
-		serverType                string
+		NewServer                   func(t *testing.T) *httptest.Server
+		expectedData                string
+		expectedError               string
+		expectedOperationsPerformed []string
 	}{
 		"Insecure server success case": {
-			s: testServer{
-				t: t,
-				tokenProvider: &tokenAccessProvider{
-					token:      0,
-					HTTPMethod: "PUT",
-				},
-				dataProvider: &dataAccessProvider{
-					data:       "profile_name",
-					HTTPMethod: "GET",
-				},
-				expectedTokens:             []int{},
-				expectedTokenProviderError: "not found",
+			NewServer: func(t *testing.T) *httptest.Server {
+				testType := InsecureTestType
+				Ts := &testServer{
+					t:           t,
+					tokens:      nil,
+					activeToken: "",
+					data:        "IMDSProfileForGoSDK",
+				}
+				return newTestServer(t, testType, Ts)
 			},
-			expectedDataResponse:      "profile_name",
-			expectedDataProviderError: "",
-			serverType:                "insecure",
-		},
-		"Insecure server failure case": {
-			s: testServer{
-				t: t,
-				tokenProvider: &tokenAccessProvider{
-					token:      0,
-					HTTPMethod: "PUT",
-				},
-				dataProvider: &dataAccessProvider{
-					data:       "profile_name",
-					HTTPMethod: "PUT",
-				},
-				expectedTokens:             []int{},
-				expectedTokenProviderError: "not found",
-			},
-			expectedDataResponse:      "",
-			expectedDataProviderError: "bad request",
-			serverType:                "insecure",
+			expectedData:                "IMDSProfileForGoSDK",
+			expectedError:               "",
+			expectedOperationsPerformed: []string{"GetToken", "GetMetadata", "GetToken", "GetMetadata", "GetToken", "GetMetadata", "GetToken", "GetMetadata"},
 		},
 		"Secure server success case": {
-			s: testServer{
-				t: t,
-				tokenProvider: &tokenAccessProvider{
-					token:      0,
-					HTTPMethod: "PUT",
-				},
-				dataProvider: &dataAccessProvider{
-					data:       "profile_name",
-					HTTPMethod: "GET",
-				},
-				expectedTokens:             []int{1, 2, 3},
-				expectedTokenProviderError: "",
+			NewServer: func(t *testing.T) *httptest.Server {
+				testType := SecureTestType
+				Ts := &testServer{
+					t:           t,
+					tokens:      []string{"firstToken", "secondToken", "thirdToken"},
+					activeToken: "",
+					data:        "IMDSProfileForGoSDK",
+				}
+				return newTestServer(t, testType, Ts)
 			},
-			expectedDataResponse:      "profile_name",
-			expectedDataProviderError: "",
-			serverType:                "secure",
+			expectedData:                "IMDSProfileForGoSDK",
+			expectedError:               "",
+			expectedOperationsPerformed: []string{"GetToken", "GetMetadata", "GetMetadata", "GetToken", "GetMetadata", "GetToken", "GetMetadata"},
 		},
-		"Secure server failure case": {
-			s: testServer{
-				t: t,
-				tokenProvider: &tokenAccessProvider{
-					token:      0,
-					HTTPMethod: "PUT",
-				},
-				dataProvider: &dataAccessProvider{
-					data:       "profile_name",
-					HTTPMethod: "GET",
-				},
-				expectedTokens:             []int{0, 1, 2},
-				expectedTokenProviderError: "",
+		"Bad request case": {
+			NewServer: func(t *testing.T) *httptest.Server {
+				testType := BadRequestTestType
+				Ts := &testServer{
+					t:           t,
+					tokens:      []string{"firstToken", "secondToken", "thirdToken"},
+					activeToken: "",
+					data:        "IMDSProfileForGoSDK",
+				}
+				return newTestServer(t, testType, Ts)
 			},
-			expectedDataResponse:      "",
-			expectedDataProviderError: "Unauthorized",
-			serverType:                "secure",
+			expectedData:                "",
+			expectedError:               "400",
+			expectedOperationsPerformed: []string{"GetToken", "GetMetadata", "GetToken", "GetMetadata", "GetToken", "GetMetadata", "GetToken", "GetMetadata"},
+		},
+		"ServerErrorForTokenTestType": {
+			NewServer: func(t *testing.T) *httptest.Server {
+				testType := ServerErrorForTokenTestType
+				Ts := &testServer{
+					t:           t,
+					tokens:      []string{},
+					activeToken: "",
+					data:        "IMDSProfileForGoSDK",
+				}
+				return newTestServer(t, testType, Ts)
+			},
+			expectedData:                "IMDSProfileForGoSDK",
+			expectedError:               "",
+			expectedOperationsPerformed: []string{"GetToken", "GetMetadata", "GetToken", "GetMetadata", "GetToken", "GetMetadata", "GetToken", "GetMetadata"},
 		},
 	}
 
 	for name, x := range cases {
 		t.Run(name, func(t *testing.T) {
-			var server *httptest.Server
-			// change this
-			if x.serverType == "insecure" {
-				server = initInsecureServer(x.s)
-			} else {
-				server = initSecureServer(x.s)
-			}
 
+			server := x.NewServer(t)
 			defer server.Close()
 
+			op := &operationListProvider{}
+
 			c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+			c.Handlers.Complete.PushBack(op.addToOperationPerformedList)
+
 			resp, err := c.GetMetadata("some/path")
+
+			// token should stay alive, since default duration is 26000 seconds
+			resp, err = c.GetMetadata("some/path")
 
 			// Set Token TTL to 0, this will reset the token, thus there should be a change in token
 			c.SetTokenTTL(0)
 			resp, err = c.GetMetadata("some/path")
 
-			// since earlier token was expires this should fetch new token
+			// since earlier token ttl was set to 0. The ttl has expired and this should fetch new token
 			resp, err = c.GetMetadata("some/path")
 
-			if err != nil && x.expectedDataProviderError == "" {
+			if e, a := x.expectedData, resp; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+
+			if err != nil && len(x.expectedError) == 0 {
 				t.Errorf("expected no error, got %v", err)
 			}
 
-			if e, a := x.expectedDataProviderError, err; a != nil {
-				if !strings.Contains(a.Error(), e) {
-					t.Errorf("expect %v, got %v", x.expectedDataProviderError, err)
+			if err == nil && len(x.expectedError) != 0 {
+				t.Errorf("expected %v, got none", x.expectedError)
+			}
+
+			if err != nil && !strings.Contains(err.Error(), x.expectedError) {
+				t.Errorf("expect %v, got %v", x.expectedError, err)
+			}
+
+			if len(x.expectedOperationsPerformed) != len(op.operationsPerformed) {
+				t.Errorf("expected operation list to be %v, got %v", x.expectedOperationsPerformed, op.operationsPerformed)
+				return
+			}
+
+			for i := 0; i < len(op.operationsPerformed); i++ {
+				if op.operationsPerformed[i] != x.expectedOperationsPerformed[i] {
+					t.Errorf("expected operation list to be %v, got %v", x.expectedOperationsPerformed, op.operationsPerformed)
 				}
-			} else if x.expectedDataProviderError != "" {
-				t.Errorf("expected %v, got none", x.expectedDataProviderError)
 			}
 
-			if e, a := x.expectedDataResponse, resp; e != a {
-				t.Errorf("expect %v, got %v", e, a)
-			}
-		})
-	}
-}
-
-func TestGetUserData(t *testing.T) {
-	cases := map[string]struct {
-		s                         testServer
-		expectedDataResponse      string
-		expectedDataProviderError string
-		serverType                string
-	}{
-		"Insecure server success case": {
-			s: testServer{
-				t: t,
-				tokenProvider: &tokenAccessProvider{
-					token:      0,
-					HTTPMethod: "PUT",
-				},
-				dataProvider: &dataAccessProvider{
-					data:       "user_data",
-					HTTPMethod: "GET",
-				},
-				expectedTokens:             []int{},
-				expectedTokenProviderError: "not found",
-			},
-			expectedDataResponse:      "user_data",
-			expectedDataProviderError: "",
-			serverType:                "insecure",
-		},
-		"Insecure server failure case": {
-			s: testServer{
-				t: t,
-				tokenProvider: &tokenAccessProvider{
-					token:      0,
-					HTTPMethod: "PUT",
-				},
-				dataProvider: &dataAccessProvider{
-					data:       "user_data",
-					HTTPMethod: "PUT",
-				},
-				expectedTokens:             []int{},
-				expectedTokenProviderError: "not found",
-			},
-			expectedDataResponse:      "",
-			expectedDataProviderError: "bad request",
-			serverType:                "insecure",
-		},
-		"Secure server success case": {
-			s: testServer{
-				t: t,
-				tokenProvider: &tokenAccessProvider{
-					token:      0,
-					HTTPMethod: "PUT",
-				},
-				dataProvider: &dataAccessProvider{
-					data:       "user_data",
-					HTTPMethod: "GET",
-				},
-				expectedTokens:             []int{1},
-				expectedTokenProviderError: "",
-			},
-			expectedDataResponse:      "user_data",
-			expectedDataProviderError: "",
-			serverType:                "secure",
-		},
-		"Secure server failure case": {
-			s: testServer{
-				t: t,
-				tokenProvider: &tokenAccessProvider{
-					token:      0,
-					HTTPMethod: "PUT",
-				},
-				dataProvider: &dataAccessProvider{
-					data:       "user_data",
-					HTTPMethod: "GET",
-				},
-				expectedTokens:             []int{0},
-				expectedTokenProviderError: "",
-			},
-			expectedDataResponse:      "",
-			expectedDataProviderError: "Unauthorized",
-			serverType:                "secure",
-		},
-	}
-	for name, x := range cases {
-		t.Run(name, func(t *testing.T) {
-			var server *httptest.Server
-			// change this
-			if x.serverType == "insecure" {
-				server = initInsecureServer(x.s)
-			} else {
-				server = initSecureServer(x.s)
-			}
-
-			defer server.Close()
-
-			c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
-			resp, err := c.GetUserData()
-
-			if err != nil && x.expectedDataProviderError == "" {
-				t.Errorf("expected no error, got %v", err)
-			}
-
-			if e, a := x.expectedDataProviderError, err; a != nil {
-				if !strings.Contains(a.Error(), e) {
-					t.Errorf("expect %v, got %v", x.expectedDataProviderError, err)
-				}
-			} else if x.expectedDataProviderError != "" {
-				t.Errorf("expected %v, got none", x.expectedDataProviderError)
-			}
-
-			if e, a := x.expectedDataResponse, resp; e != a {
-				t.Errorf("expect %v, got %v", e, a)
-			}
 		})
 	}
 }
@@ -442,270 +377,167 @@ func TestGetUserData_Error(t *testing.T) {
 
 func TestGetRegion(t *testing.T) {
 	cases := map[string]struct {
-		s                         testServer
-		expectedDataResponse      string
-		expectedDataProviderError string
-		serverType                string
+		NewServer                   func(t *testing.T) *httptest.Server
+		expectedData                string
+		expectedError               string
+		expectedOperationsPerformed []string
 	}{
 		"Insecure server success case": {
-			s: testServer{
-				t: t,
-				tokenProvider: &tokenAccessProvider{
-					token:      0,
-					HTTPMethod: "PUT",
-				},
-				dataProvider: &dataAccessProvider{
-					data:       "us-west-2a",
-					HTTPMethod: "GET",
-				},
-				expectedTokens:             []int{},
-				expectedTokenProviderError: "not found",
+			NewServer: func(t *testing.T) *httptest.Server {
+				testType := InsecureTestType
+				Ts := &testServer{
+					t:           t,
+					tokens:      nil,
+					activeToken: "",
+					data:        "us-west-2a",
+				}
+				return newTestServer(t, testType, Ts)
 			},
-			expectedDataResponse:      "us-west-2",
-			expectedDataProviderError: "",
-			serverType:                "insecure",
-		},
-		"Insecure server failure case": {
-			s: testServer{
-				t: t,
-				tokenProvider: &tokenAccessProvider{
-					token:      0,
-					HTTPMethod: "PUT",
-				},
-				dataProvider: &dataAccessProvider{
-					data:       "us-west-2a",
-					HTTPMethod: "PUT",
-				},
-				expectedTokens:             []int{},
-				expectedTokenProviderError: "not found",
-			},
-			expectedDataResponse:      "",
-			expectedDataProviderError: "bad request",
-			serverType:                "insecure",
+			expectedData:                "us-west-2",
+			expectedError:               "",
+			expectedOperationsPerformed: []string{"GetToken", "GetMetadata"},
 		},
 		"Secure server success case": {
-			s: testServer{
-				t: t,
-				tokenProvider: &tokenAccessProvider{
-					token:      0,
-					HTTPMethod: "PUT",
-				},
-				dataProvider: &dataAccessProvider{
-					data:       "us-west-2a",
-					HTTPMethod: "GET",
-				},
-				expectedTokens:             []int{1},
-				expectedTokenProviderError: "",
+			NewServer: func(t *testing.T) *httptest.Server {
+				testType := SecureTestType
+				Ts := &testServer{
+					t:           t,
+					tokens:      []string{"firstToken", "secondToken", "thirdToken"},
+					activeToken: "",
+					data:        "us-west-2a",
+				}
+				return newTestServer(t, testType, Ts)
 			},
-			expectedDataResponse:      "us-west-2",
-			expectedDataProviderError: "",
-			serverType:                "secure",
+			expectedData:                "us-west-2",
+			expectedError:               "",
+			expectedOperationsPerformed: []string{"GetToken", "GetMetadata"},
 		},
-		"Secure server failure case": {
-			s: testServer{
-				t: t,
-				tokenProvider: &tokenAccessProvider{
-					token:      0,
-					HTTPMethod: "PUT",
-				},
-				dataProvider: &dataAccessProvider{
-					data:       "us-west-2a",
-					HTTPMethod: "GET",
-				},
-				expectedTokens:             []int{0},
-				expectedTokenProviderError: "",
+		"Bad request case": {
+			NewServer: func(t *testing.T) *httptest.Server {
+				testType := BadRequestTestType
+				Ts := &testServer{
+					t:           t,
+					tokens:      []string{"firstToken", "secondToken", "thirdToken"},
+					activeToken: "",
+					data:        "us-west-2a",
+				}
+				return newTestServer(t, testType, Ts)
 			},
-			expectedDataResponse:      "",
-			expectedDataProviderError: "Unauthorized",
-			serverType:                "secure",
+			expectedData:                "",
+			expectedError:               "400",
+			expectedOperationsPerformed: []string{"GetToken", "GetMetadata"},
+		},
+		"ServerErrorForTokenTestType": {
+			NewServer: func(t *testing.T) *httptest.Server {
+				testType := ServerErrorForTokenTestType
+				Ts := &testServer{
+					t:           t,
+					tokens:      []string{},
+					activeToken: "",
+					data:        "us-west-2a",
+				}
+				return newTestServer(t, testType, Ts)
+			},
+			expectedData:                "us-west-2",
+			expectedError:               "",
+			expectedOperationsPerformed: []string{"GetToken", "GetMetadata"},
 		},
 	}
+
 	for name, x := range cases {
 		t.Run(name, func(t *testing.T) {
-			var server *httptest.Server
-			// change this
-			if x.serverType == "insecure" {
-				server = initInsecureServer(x.s)
-			} else {
-				server = initSecureServer(x.s)
-			}
 
+			server := x.NewServer(t)
 			defer server.Close()
 
+			op := &operationListProvider{}
+
 			c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+			c.Handlers.Complete.PushBack(op.addToOperationPerformedList)
+
 			resp, err := c.Region()
 
-			if err != nil && x.expectedDataProviderError == "" {
+			if e, a := x.expectedData, resp; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+
+			if err != nil && len(x.expectedError) == 0 {
 				t.Errorf("expected no error, got %v", err)
 			}
 
-			if e, a := x.expectedDataProviderError, err; a != nil {
-				if !strings.Contains(a.Error(), e) {
-					t.Errorf("expect %v, got %v", x.expectedDataProviderError, err)
+			if err == nil && len(x.expectedError) != 0 {
+				t.Errorf("expected %v, got none", x.expectedError)
+			}
+
+			if err != nil && !strings.Contains(err.Error(), x.expectedError) {
+				t.Errorf("expect %v, got %v", x.expectedError, err)
+			}
+
+			if len(x.expectedOperationsPerformed) != len(op.operationsPerformed) {
+				t.Errorf("expected operation list to be %v, got %v", x.expectedOperationsPerformed, op.operationsPerformed)
+				return
+			}
+
+			for i := 0; i < len(op.operationsPerformed); i++ {
+				if op.operationsPerformed[i] != x.expectedOperationsPerformed[i] {
+					t.Errorf("expected operation list to be %v, got %v", x.expectedOperationsPerformed, op.operationsPerformed)
 				}
-			} else if x.expectedDataProviderError != "" {
-				t.Errorf("expected %v, got none", x.expectedDataProviderError)
 			}
 
-			if e, a := x.expectedDataResponse, resp; e != a {
-				t.Errorf("expect %v, got %v", e, a)
-			}
-		})
-	}
-}
-
-func TestMetadataAvailable(t *testing.T) {
-	cases := map[string]struct {
-		s                    testServer
-		expectedDataResponse bool
-		serverType           string
-	}{
-		"Insecure server success case": {
-			s: testServer{
-				t: t,
-				tokenProvider: &tokenAccessProvider{
-					token:      0,
-					HTTPMethod: "PUT",
-				},
-				dataProvider: &dataAccessProvider{
-					data:       "instance-id",
-					HTTPMethod: "GET",
-				},
-				expectedTokens:             []int{},
-				expectedTokenProviderError: "not found",
-			},
-			expectedDataResponse: true,
-			serverType:           "insecure",
-		},
-		"Insecure server failure case": {
-			s: testServer{
-				t: t,
-				tokenProvider: &tokenAccessProvider{
-					token:      0,
-					HTTPMethod: "PUT",
-				},
-				dataProvider: &dataAccessProvider{
-					data:       "instance-id",
-					HTTPMethod: "PUT",
-				},
-				expectedTokens:             []int{},
-				expectedTokenProviderError: "not found",
-			},
-			expectedDataResponse: false,
-			serverType:           "insecure",
-		},
-		"Secure server success case": {
-			s: testServer{
-				t: t,
-				tokenProvider: &tokenAccessProvider{
-					token:      0,
-					HTTPMethod: "PUT",
-				},
-				dataProvider: &dataAccessProvider{
-					data:       "instance-id",
-					HTTPMethod: "GET",
-				},
-				expectedTokens:             []int{1},
-				expectedTokenProviderError: "",
-			},
-			expectedDataResponse: true,
-			serverType:           "secure",
-		},
-		"Secure server failure case": {
-			s: testServer{
-				t: t,
-				tokenProvider: &tokenAccessProvider{
-					token:      0,
-					HTTPMethod: "PUT",
-				},
-				dataProvider: &dataAccessProvider{
-					data:       "instance-id",
-					HTTPMethod: "GET",
-				},
-				expectedTokens:             []int{0},
-				expectedTokenProviderError: "",
-			},
-			expectedDataResponse: false,
-			serverType:           "secure",
-		},
-	}
-	for name, x := range cases {
-		t.Run(name, func(t *testing.T) {
-			var server *httptest.Server
-			// change this
-			if x.serverType == "insecure" {
-				server = initInsecureServer(x.s)
-			} else {
-				server = initSecureServer(x.s)
-			}
-
-			defer server.Close()
-
-			c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
-			if e, a := x.expectedDataResponse, c.Available(); e != a {
-				t.Errorf("expect availability to be %v, got %v \n", e, a)
-			}
 		})
 	}
 }
 
 func TestMetadataIAMInfo_success(t *testing.T) {
 	cases := map[string]struct {
-		s                         testServer
-		expectedDataResponse      string
-		expectedDataProviderError string
-		serverType                string
+		NewServer                   func(t *testing.T) *httptest.Server
+		expectedData                string
+		expectedError               string
+		expectedOperationsPerformed []string
 	}{
 		"Insecure server success case": {
-			s: testServer{
-				t: t,
-				tokenProvider: &tokenAccessProvider{
-					token:      0,
-					HTTPMethod: "PUT",
-				},
-				dataProvider: &dataAccessProvider{
-					data:       validIamInfo,
-					HTTPMethod: "GET",
-				},
-				expectedTokens:             []int{},
-				expectedTokenProviderError: "not found",
+			NewServer: func(t *testing.T) *httptest.Server {
+				testType := InsecureTestType
+				Ts := &testServer{
+					t:           t,
+					tokens:      nil,
+					activeToken: "",
+					data:        validIamInfo,
+				}
+				return newTestServer(t, testType, Ts)
 			},
-			expectedDataResponse:      validIamInfo,
-			expectedDataProviderError: "",
-			serverType:                "insecure",
+			expectedData:                validIamInfo,
+			expectedError:               "",
+			expectedOperationsPerformed: []string{"GetToken", "GetMetadata"},
 		},
 		"Secure server success case": {
-			s: testServer{
-				t: t,
-				tokenProvider: &tokenAccessProvider{
-					token:      0,
-					HTTPMethod: "PUT",
-				},
-				dataProvider: &dataAccessProvider{
-					data:       validIamInfo,
-					HTTPMethod: "GET",
-				},
-				expectedTokens:             []int{1},
-				expectedTokenProviderError: "",
+			NewServer: func(t *testing.T) *httptest.Server {
+				testType := SecureTestType
+				Ts := &testServer{
+					t:           t,
+					tokens:      []string{"firstToken", "secondToken", "thirdToken"},
+					activeToken: "",
+					data:        validIamInfo,
+				}
+				return newTestServer(t, testType, Ts)
 			},
-			expectedDataResponse:      validIamInfo,
-			expectedDataProviderError: "",
-			serverType:                "secure",
+			expectedData:                validIamInfo,
+			expectedError:               "",
+			expectedOperationsPerformed: []string{"GetToken", "GetMetadata"},
 		},
 	}
+
 	for name, x := range cases {
 		t.Run(name, func(t *testing.T) {
-			var server *httptest.Server
-			// change this
-			if x.serverType == "insecure" {
-				server = initInsecureServer(x.s)
-			} else {
-				server = initSecureServer(x.s)
-			}
 
+			server := x.NewServer(t)
 			defer server.Close()
 
+			op := &operationListProvider{}
+
 			c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+			c.Handlers.Complete.PushBack(op.addToOperationPerformedList)
+
 			iamInfo, err := c.IAMInfo()
 			if err != nil {
 				t.Errorf("expect no error, got %v", err)
@@ -719,67 +551,72 @@ func TestMetadataIAMInfo_success(t *testing.T) {
 			if e, a := "AIPAABCDEFGHIJKLMN123", iamInfo.InstanceProfileID; e != a {
 				t.Errorf("expect %v, got %v", e, a)
 			}
+
+			if len(x.expectedOperationsPerformed) != len(op.operationsPerformed) {
+				t.Errorf("expected operation list to be %v, got %v", x.expectedOperationsPerformed, op.operationsPerformed)
+				return
+			}
+
+			for i := 0; i < len(op.operationsPerformed); i++ {
+				if op.operationsPerformed[i] != x.expectedOperationsPerformed[i] {
+					t.Errorf("expected operation list to be %v, got %v", x.expectedOperationsPerformed, op.operationsPerformed)
+				}
+			}
+
 		})
 	}
 }
 
 func TestMetadataIAMInfo_failure(t *testing.T) {
 	cases := map[string]struct {
-		s                         testServer
-		expectedDataResponse      string
-		expectedDataProviderError string
-		serverType                string
+		NewServer                   func(t *testing.T) *httptest.Server
+		expectedData                string
+		expectedError               string
+		expectedOperationsPerformed []string
 	}{
-		"Insecure server failure case": {
-			s: testServer{
-				t: t,
-				tokenProvider: &tokenAccessProvider{
-					token:      0,
-					HTTPMethod: "PUT",
-				},
-				dataProvider: &dataAccessProvider{
-					data:       unsuccessfulIamInfo,
-					HTTPMethod: "GET",
-				},
-				expectedTokens:             []int{},
-				expectedTokenProviderError: "not found",
+		"Insecure server success case": {
+			NewServer: func(t *testing.T) *httptest.Server {
+				testType := InsecureTestType
+				Ts := &testServer{
+					t:           t,
+					tokens:      nil,
+					activeToken: "",
+					data:        unsuccessfulIamInfo,
+				}
+				return newTestServer(t, testType, Ts)
 			},
-			expectedDataResponse:      unsuccessfulIamInfo,
-			expectedDataProviderError: "",
-			serverType:                "insecure",
+			expectedData:                unsuccessfulIamInfo,
+			expectedError:               "",
+			expectedOperationsPerformed: []string{"GetToken", "GetMetadata"},
 		},
-		"Secure server failure case": {
-			s: testServer{
-				t: t,
-				tokenProvider: &tokenAccessProvider{
-					token:      0,
-					HTTPMethod: "PUT",
-				},
-				dataProvider: &dataAccessProvider{
-					data:       unsuccessfulIamInfo,
-					HTTPMethod: "GET",
-				},
-				expectedTokens:             []int{1},
-				expectedTokenProviderError: "",
+		"Secure server success case": {
+			NewServer: func(t *testing.T) *httptest.Server {
+				testType := SecureTestType
+				Ts := &testServer{
+					t:           t,
+					tokens:      []string{"firstToken", "secondToken", "thirdToken"},
+					activeToken: "",
+					data:        unsuccessfulIamInfo,
+				}
+				return newTestServer(t, testType, Ts)
 			},
-			expectedDataResponse:      unsuccessfulIamInfo,
-			expectedDataProviderError: "",
-			serverType:                "secure",
+			expectedData:                unsuccessfulIamInfo,
+			expectedError:               "",
+			expectedOperationsPerformed: []string{"GetToken", "GetMetadata"},
 		},
 	}
+
 	for name, x := range cases {
 		t.Run(name, func(t *testing.T) {
-			var server *httptest.Server
-			// change this
-			if x.serverType == "insecure" {
-				server = initInsecureServer(x.s)
-			} else {
-				server = initSecureServer(x.s)
-			}
 
+			server := x.NewServer(t)
 			defer server.Close()
 
+			op := &operationListProvider{}
+
 			c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+			c.Handlers.Complete.PushBack(op.addToOperationPerformedList)
+
 			iamInfo, err := c.IAMInfo()
 			if err == nil {
 				t.Errorf("expect error")
@@ -793,6 +630,18 @@ func TestMetadataIAMInfo_failure(t *testing.T) {
 			if e, a := "", iamInfo.InstanceProfileID; e != a {
 				t.Errorf("expect %v, got %v", e, a)
 			}
+
+			if len(x.expectedOperationsPerformed) != len(op.operationsPerformed) {
+				t.Errorf("expected operation list to be %v, got %v", x.expectedOperationsPerformed, op.operationsPerformed)
+				return
+			}
+
+			for i := 0; i < len(op.operationsPerformed); i++ {
+				if op.operationsPerformed[i] != x.expectedOperationsPerformed[i] {
+					t.Errorf("expected operation list to be %v, got %v", x.expectedOperationsPerformed, op.operationsPerformed)
+				}
+			}
+
 		})
 	}
 }
@@ -838,65 +687,57 @@ func TestMetadataErrorResponse(t *testing.T) {
 
 func TestEC2RoleProviderInstanceIdentity(t *testing.T) {
 	cases := map[string]struct {
-		s                         testServer
-		expectedDataResponse      string
-		expectedDataProviderError string
-		serverType                string
+		NewServer                   func(t *testing.T) *httptest.Server
+		expectedData                string
+		expectedError               string
+		expectedOperationsPerformed []string
 	}{
 		"Insecure server success case": {
-			s: testServer{
-				t: t,
-				tokenProvider: &tokenAccessProvider{
-					token:      0,
-					HTTPMethod: "PUT",
-				},
-				dataProvider: &dataAccessProvider{
-					data:       instanceIdentityDocument,
-					HTTPMethod: "GET",
-				},
-				expectedTokens:             []int{},
-				expectedTokenProviderError: "not found",
+			NewServer: func(t *testing.T) *httptest.Server {
+				testType := InsecureTestType
+				Ts := &testServer{
+					t:           t,
+					tokens:      nil,
+					activeToken: "",
+					data:        instanceIdentityDocument,
+				}
+				return newTestServer(t, testType, Ts)
 			},
-			expectedDataResponse:      instanceIdentityDocument,
-			expectedDataProviderError: "",
-			serverType:                "insecure",
+			expectedData:                instanceIdentityDocument,
+			expectedError:               "",
+			expectedOperationsPerformed: []string{"GetToken", "GetDynamicData"},
 		},
 		"Secure server success case": {
-			s: testServer{
-				t: t,
-				tokenProvider: &tokenAccessProvider{
-					token:      0,
-					HTTPMethod: "PUT",
-				},
-				dataProvider: &dataAccessProvider{
-					data:       instanceIdentityDocument,
-					HTTPMethod: "GET",
-				},
-				expectedTokens:             []int{1},
-				expectedTokenProviderError: "",
+			NewServer: func(t *testing.T) *httptest.Server {
+				testType := SecureTestType
+				Ts := &testServer{
+					t:           t,
+					tokens:      []string{"firstToken", "secondToken", "thirdToken"},
+					activeToken: "",
+					data:        instanceIdentityDocument,
+				}
+				return newTestServer(t, testType, Ts)
 			},
-			expectedDataResponse:      instanceIdentityDocument,
-			expectedDataProviderError: "",
-			serverType:                "secure",
+			expectedData:                instanceIdentityDocument,
+			expectedError:               "",
+			expectedOperationsPerformed: []string{"GetToken", "GetDynamicData"},
 		},
 	}
+
 	for name, x := range cases {
 		t.Run(name, func(t *testing.T) {
-			var server *httptest.Server
-			// change this
-			if x.serverType == "insecure" {
-				server = initInsecureServer(x.s)
-			} else {
-				server = initSecureServer(x.s)
-			}
 
+			server := x.NewServer(t)
 			defer server.Close()
 
+			op := &operationListProvider{}
+
 			c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+			c.Handlers.Complete.PushBack(op.addToOperationPerformedList)
 			doc, err := c.GetInstanceIdentityDocument()
 
 			if err != nil {
-				t.Errorf("Expected no error, got %v \n", err)
+				t.Errorf("Expected no error, got %v ", err)
 			}
 			if e, a := doc.AccountID, "123456789012"; e != a {
 				t.Errorf("expect %v, got %v", e, a)
@@ -907,65 +748,19 @@ func TestEC2RoleProviderInstanceIdentity(t *testing.T) {
 			if e, a := doc.Region, "us-east-1"; e != a {
 				t.Errorf("expect %v, got %v", e, a)
 			}
+
+			if len(x.expectedOperationsPerformed) != len(op.operationsPerformed) {
+				t.Errorf("expected operation list to be %v, got %v", x.expectedOperationsPerformed, op.operationsPerformed)
+				return
+			}
+
+			for i := 0; i < len(op.operationsPerformed); i++ {
+				if op.operationsPerformed[i] != x.expectedOperationsPerformed[i] {
+					t.Errorf("expected operation list to be %v, got %v", x.expectedOperationsPerformed, op.operationsPerformed)
+				}
+			}
+
 		})
-	}
-}
-
-func TestTokenExpired(t *testing.T) {
-	var token = 100
-	mux := http.NewServeMux()
-	mux.HandleFunc("/latest/api/token", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method == "PUT" && r.Header.Get(ec2metadata.TTLHeader) != "" {
-			w.Header().Set(ec2metadata.TTLHeader, "0")
-			w.Write([]byte(strconv.Itoa(token)))
-			token++
-			return
-		}
-		http.Error(w, "bad request", http.StatusBadRequest)
-	})
-
-	// meta-data endpoint for this test, just returns the token
-	mux.HandleFunc("/latest/meta-data/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(r.Header.Get(ec2metadata.TokenHeader)))
-	})
-
-	server := httptest.NewServer(mux)
-	defer server.Close()
-	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
-	f, _ := c.GetMetadata("some/path")
-	s, _ := c.GetMetadata("some/path")
-
-	if f == s {
-		t.Errorf("Expected different tokens to be returned, got %v instead", f)
-	}
-}
-
-func TestTokenAlive(t *testing.T) {
-	mux := http.NewServeMux()
-	var token = 100
-	mux.HandleFunc("/latest/api/token", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method == "PUT" && r.Header.Get(ec2metadata.TTLHeader) != "" {
-			w.Header().Set(ec2metadata.TTLHeader, "200")
-			w.Write([]byte(strconv.Itoa(token)))
-			token++
-			return
-		}
-		http.Error(w, "bad request", http.StatusBadRequest)
-	})
-
-	// meta-data endpoint for this test, just returns the token
-	mux.HandleFunc("/latest/meta-data/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(r.Header.Get(ec2metadata.TokenHeader)))
-	})
-
-	server := httptest.NewServer(mux)
-	defer server.Close()
-	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
-	f, _ := c.GetMetadata("some/path")
-	s, _ := c.GetMetadata("some/path")
-
-	if f != s {
-		t.Errorf("Expected same token to be returned, got %v instead of %v", f, s)
 	}
 }
 
@@ -973,10 +768,9 @@ func TestEC2MetadataRetryFailure(t *testing.T) {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/latest/api/token", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method == "PUT" && r.Header.Get(ec2metadata.TTLHeader) != "" {
-			w.Header().Set(ec2metadata.TTLHeader, "200")
+		if r.Method == "PUT" && r.Header.Get(ttlHeader) != "" {
+			w.Header().Set(ttlHeader, "200")
 			http.Error(w, "service unavailable", http.StatusServiceUnavailable)
-			t.Logf("%v received, retrying", http.StatusServiceUnavailable)
 			return
 		}
 		http.Error(w, "bad request", http.StatusBadRequest)
@@ -984,14 +778,27 @@ func TestEC2MetadataRetryFailure(t *testing.T) {
 
 	// meta-data endpoint for this test, just returns the token
 	mux.HandleFunc("/latest/meta-data/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(r.Header.Get(ec2metadata.TokenHeader)))
+		w.Write([]byte("profile_name"))
 	})
 
 	server := httptest.NewServer(mux)
 	defer server.Close()
-	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
-	_, err := c.GetMetadata("some/path")
 
+	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+
+	c.Handlers.AfterRetry.PushBack(func(i *request.Request) {
+		t.Logf("%v received, retrying operation %v", i.HTTPResponse.StatusCode, i.Operation.Name)
+	})
+	c.Handlers.Complete.PushBack(func(i *request.Request) {
+		t.Logf("%v operation exited with status %v", i.Operation.Name, i.HTTPResponse.StatusCode)
+	})
+
+	resp, err := c.GetMetadata("some/path")
+	resp, err = c.GetMetadata("some/path")
+
+	if resp != "profile_name" {
+		t.Errorf("Expected response to be profile_name, got %v", resp)
+	}
 	if err != nil {
 		t.Errorf("Expected none, got error %v", err)
 	}
@@ -1003,12 +810,11 @@ func TestEC2MetadataRetryOnce(t *testing.T) {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/latest/api/token", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method == "PUT" && r.Header.Get(ec2metadata.TTLHeader) != "" {
-			w.Header().Set(ec2metadata.TTLHeader, "200")
+		if r.Method == "PUT" && r.Header.Get(ttlHeader) != "" {
+			w.Header().Set(ttlHeader, "200")
 			for retry {
 				retry = false
 				http.Error(w, "service unavailable", http.StatusServiceUnavailable)
-				t.Logf("%v received, retrying", http.StatusServiceUnavailable)
 				return
 			}
 			w.Write([]byte("token"))
@@ -1020,13 +826,26 @@ func TestEC2MetadataRetryOnce(t *testing.T) {
 
 	// meta-data endpoint for this test, just returns the token
 	mux.HandleFunc("/latest/meta-data/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(r.Header.Get(ec2metadata.TokenHeader)))
+		w.Write([]byte(r.Header.Get(tokenHeader)))
 	})
+
+	var tokenRetryCount int
 
 	server := httptest.NewServer(mux)
 	defer server.Close()
 	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+
+	// Handler on client that logs if retried
+	c.Handlers.AfterRetry.PushBack(func(i *request.Request) {
+		t.Logf("%v received, retrying operation %v", i.HTTPResponse.StatusCode, i.Operation.Name)
+		tokenRetryCount++
+	})
+
 	_, err := c.GetMetadata("some/path")
+
+	if tokenRetryCount != 1 {
+		t.Errorf("Expected number of retries for fetching token to be 1, got %v", tokenRetryCount)
+	}
 
 	if !secureDataFlow {
 		t.Errorf("Expected secure data flow to be %v, got %v", secureDataFlow, !secureDataFlow)
@@ -1037,60 +856,169 @@ func TestEC2MetadataRetryOnce(t *testing.T) {
 	}
 }
 
-func TestTokenErrorWith400(t *testing.T) {
-	mux := http.NewServeMux()
-	mux.HandleFunc("/latest/api/token", func(w http.ResponseWriter, r *http.Request) {
-		http.Error(w, "bad request", http.StatusBadRequest)
-	})
-
-	// meta-data endpoint for this test, just returns the token
-	mux.HandleFunc("/latest/meta-data/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("token"))
-	})
-
-	server := httptest.NewServer(mux)
-	defer server.Close()
-	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
-	resp, err := c.GetMetadata("some/path")
-
-	if err == nil {
-		t.Error("Expected error, got none")
-	}
-
-	if resp == "token" {
-		t.Errorf("Expected empty response, got %v", resp)
-	}
-}
-
 func TestEC2Metadata_Concurrency(t *testing.T) {
-	mux := http.NewServeMux()
-	mux.HandleFunc("/latest/api/token", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("token"))
-	})
+	ts := &testServer{
+		t:           t,
+		tokens:      []string{"firstToken"},
+		activeToken: "",
+		data:        "IMDSProfileForSDKGo",
+	}
 
-	// meta-data endpoint for this test, just returns the token
-	mux.HandleFunc("/latest/meta-data/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("profile_name"))
-	})
-
-	server := httptest.NewServer(mux)
+	server := newTestServer(t, SecureTestType, ts)
 	defer server.Close()
+
 	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
 
 	var wg sync.WaitGroup
 	wg.Add(10)
 	for i := 0; i < 10; i++ {
 		go func() {
-			resp, err := c.GetMetadata("some/data")
-			if err != nil  {
-				t.Errorf("expect no error, got %v", err)
-			}
+			for j := 0; j < 10; j++ {
+				resp, err := c.GetMetadata("some/data")
+				if err != nil {
+					t.Errorf("expect no error, got %v", err)
+				}
 
-			if e, a := "profile_name", resp; e != a {
-				t.Errorf("expect %v, got %v", e, a)
+				if e, a := "IMDSProfileForSDKGo", resp; e != a {
+					t.Errorf("expect %v, got %v", e, a)
+				}
 			}
 			wg.Done()
 		}()
 	}
 	wg.Wait()
+}
+
+func TestRequestOnMetadata(t *testing.T) {
+	ts := &testServer{
+		t:           t,
+		tokens:      []string{"firstToken", "secondToken"},
+		activeToken: "",
+		data:        "profile_name",
+	}
+	server := newTestServer(t, SecureTestType, ts)
+	defer server.Close()
+
+	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+	req := c.NewRequest(&request.Operation{
+		Name:            "Ec2Metadata request",
+		HTTPMethod:      "GET",
+		HTTPPath:        "/latest",
+		Paginator:       nil,
+		BeforePresignFn: nil,
+	}, nil, nil)
+
+	op := operationListProvider{}
+	c.Handlers.Complete.PushBack(op.addToOperationPerformedList)
+	err := req.Send()
+
+	if err != nil {
+		t.Errorf("expect no error, got %v", err)
+	}
+
+	if len(op.operationsPerformed) < 1 {
+		t.Errorf("Expected atleast one operation GetToken to be called on EC2Metadata client")
+		return
+	}
+
+	if op.operationsPerformed[0] != "GetToken" {
+		t.Errorf("Expected GetToken operation to be called")
+	}
+
+}
+
+func TestExhaustiveRetryToFetchToken(t *testing.T) {
+	ts := &testServer{
+		t:           t,
+		tokens:      []string{"firstToken", "secondToken"},
+		activeToken: "",
+		data:        "IMDSProfileForSDKGo",
+	}
+
+	server := newTestServer(t, retryTimeOutForTokenTestType, ts)
+	defer server.Close()
+
+	op := &operationListProvider{}
+
+	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+	c.Handlers.Complete.PushBack(op.addToOperationPerformedList)
+
+	c.Handlers.AfterRetry.PushBack(func(i *request.Request) {
+		t.Logf("Retried %v operation for status code %v", i.Operation.Name, i.HTTPResponse.StatusCode)
+	})
+
+	c.Handlers.Complete.PushBack(func(i *request.Request) {
+		t.Logf("Operation %v completed, with status %v", i.Operation.Name, i.HTTPResponse.StatusCode)
+	})
+
+	resp, err := c.GetMetadata("/some/path")
+	resp, err = c.GetMetadata("/some/path")
+	resp, err = c.GetMetadata("/some/path")
+	resp, err = c.GetMetadata("/some/path")
+
+	expectedOperationsPerformed := []string{"GetToken", "GetMetadata", "GetMetadata", "GetMetadata", "GetMetadata"}
+
+	if e, a := "IMDSProfileForSDKGo", resp; e != a {
+		t.Errorf("Expected %v, got %v", e, a)
+	}
+
+	if err != nil {
+		t.Errorf("Expected no error, got %v", err)
+	}
+
+	if len(expectedOperationsPerformed) != len(op.operationsPerformed) {
+		t.Errorf("expected operation list to be %v, got %v", expectedOperationsPerformed, op.operationsPerformed)
+		return
+	}
+
+	for i := 0; i < len(op.operationsPerformed); i++ {
+		if op.operationsPerformed[i] != expectedOperationsPerformed[i] {
+			t.Errorf("expected operation list to be %v, got %v", expectedOperationsPerformed, op.operationsPerformed)
+		}
+	}
+
+}
+
+func TestExhaustiveRetryWith401(t *testing.T) {
+	ts := &testServer{
+		t:           t,
+		tokens:      []string{"firstToken", "secondToken"},
+		activeToken: "",
+		data:        "IMDSProfileForSDKGo",
+	}
+
+	server := newTestServer(t, retryTimeOutWith401TestType, ts)
+	defer server.Close()
+
+	op := &operationListProvider{}
+
+	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+	c.Handlers.Complete.PushBack(op.addToOperationPerformedList)
+
+	resp, err := c.GetMetadata("/some/path")
+	resp, err = c.GetMetadata("/some/path")
+	resp, err = c.GetMetadata("/some/path")
+	resp, err = c.GetMetadata("/some/path")
+
+	expectedOperationsPerformed := []string{"GetToken", "GetMetadata", "GetToken", "GetMetadata", "GetToken", "GetMetadata", "GetToken", "GetMetadata"}
+
+	if e, a := "", resp; e != a {
+		t.Errorf("Expected %v, got %v", e, a)
+	}
+
+	if err == nil {
+		t.Errorf("Expected %v error, got none", err)
+	}
+
+	if len(expectedOperationsPerformed) != len(op.operationsPerformed) {
+		t.Errorf("expected operation list to be %v, got %v", expectedOperationsPerformed, op.operationsPerformed)
+		return
+	}
+
+	for i := 0; i < len(op.operationsPerformed); i++ {
+		if op.operationsPerformed[i] != expectedOperationsPerformed[i] {
+			t.Errorf("expected operation list to be %v, got %v", expectedOperationsPerformed, op.operationsPerformed)
+		}
+	}
+
 }

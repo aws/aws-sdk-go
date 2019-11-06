@@ -65,7 +65,7 @@ func TestClientOverrideDefaultHTTPClientTimeoutRace(t *testing.T) {
 	defer server.Close()
 
 	cfg := aws.NewConfig().WithEndpoint(server.URL)
-	runEC2MetadataClients(t, cfg, 100)
+	runEC2MetadataClients(t, cfg, 2)
 }
 
 func TestClientOverrideDefaultHTTPClientTimeoutRaceWithTransport(t *testing.T) {
@@ -78,7 +78,7 @@ func TestClientOverrideDefaultHTTPClientTimeoutRaceWithTransport(t *testing.T) {
 		Transport: http.DefaultTransport,
 	})
 
-	runEC2MetadataClients(t, cfg, 100)
+	runEC2MetadataClients(t, cfg, 2)
 }
 
 func TestClientDisableIMDS(t *testing.T) {
