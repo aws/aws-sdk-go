@@ -542,10 +542,6 @@ func TestEndpointFor_RegionalFlag(t *testing.T) {
 }
 
 func TestEndpointFor_EmptyRegion(t *testing.T) {
-	// skip this test for partitions outside `aws` partition
-	if DefaultPartitions()[0].id != "aws" {
-		t.Skip()
-	}
 
 	cases := map[string]struct {
 		Service    string
