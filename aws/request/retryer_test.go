@@ -5,7 +5,9 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/client/metadata"
 )
 
 func TestRequestThrottling(t *testing.T) {
@@ -62,5 +64,18 @@ func TestIsErrorRetryable(t *testing.T) {
 		if e, a := c.Retryable, retryable; e != a {
 			t.Errorf("%d, expect %t temporary error, got %t", i, e, a)
 		}
+	}
+}
+
+func TestRequest_NilRetyer(t *testing.T) {
+	clientInfo := metadata.ClientInfo{Endpoint: "https://mock.region.amazonaws.com"}
+	req := New(aws.Config{}, clientInfo, Handlers{}, nil, &Operation{}, nil, nil)
+
+	if req.Retryer == nil {
+		t.Fatalf("expect retryer to be set")
+	}
+
+	if e, a := 0, req.MaxRetries(); e != a {
+		t.Errorf("expect no retries, got %v", a)
 	}
 }
