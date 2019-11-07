@@ -37,6 +37,12 @@ type Retryer interface {
 // WithRetryer sets a Retryer value to the given Config returning the Config
 // value for chaining. The value must not be nil.
 func WithRetryer(cfg *aws.Config, retryer Retryer) *aws.Config {
+	if retryer == nil {
+		if cfg.Logger != nil {
+			cfg.Logger.Log("ERROR: Request.WithRetryer called with nil retryer. Replacing with retry disabled Retryer.")
+		}
+		retryer = noOpRetryer{}
+	}
 	cfg.Retryer = retryer
 	return cfg
 
