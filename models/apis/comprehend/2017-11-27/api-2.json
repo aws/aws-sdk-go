@@ -900,7 +900,7 @@
     "ComprehendArnName":{
       "type":"string",
       "max":63,
-      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$"
     },
     "ConcurrentModificationException":{
       "type":"structure",
@@ -1603,7 +1603,13 @@
         "fr",
         "de",
         "it",
-        "pt"
+        "pt",
+        "ar",
+        "hi",
+        "ja",
+        "ko",
+        "zh",
+        "zh-TW"
       ]
     },
     "ListDocumentClassificationJobsRequest":{

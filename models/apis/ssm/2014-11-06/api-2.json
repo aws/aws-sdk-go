@@ -8048,7 +8048,7 @@
     },
     "SessionFilterValue":{
       "type":"string",
-      "max":200,
+      "max":400,
       "min":1
     },
     "SessionId":{
@@ -8126,7 +8126,7 @@
     },
     "SessionTarget":{
       "type":"string",
-      "max":50,
+      "max":400,
       "min":1
     },
     "SeveritySummary":{

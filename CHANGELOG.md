@@ -1,3 +1,14 @@
+Release v1.25.30 (2019-11-07)
+===
+
+### Service Client Updates
+* `service/comprehend`: Updates service API and documentation
+* `service/ssm`: Updates service API
+  * AWS Systems Manager Session Manager target length increased to 400.
+* `service/sso`: Adds new service
+  * This is an initial release of AWS Single Sign-On (SSO) end-user access. This release adds support for accessing AWS accounts assigned in AWS SSO using short term credentials.
+* `service/sso-oidc`: Adds new service
+
 Release v1.25.29 (2019-11-06)
 ===
 
