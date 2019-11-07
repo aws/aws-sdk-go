@@ -8311,7 +8311,7 @@ type EntityRecognizerMetadataEntityTypesListItem struct {
 	// item on the list of entity types.
 	EvaluationMetrics *EntityTypesEvaluationMetrics `type:"structure"`
 
-	// indicates the number of times the given entity name was seen in the training
+	// Indicates the number of times the given entity type was seen in the training
 	// data.
 	NumberOfTrainMentions *int64 `type:"integer"`
 
@@ -12312,6 +12312,24 @@ const (
 
 	// LanguageCodePt is a LanguageCode enum value
 	LanguageCodePt = "pt"
+
+	// LanguageCodeAr is a LanguageCode enum value
+	LanguageCodeAr = "ar"
+
+	// LanguageCodeHi is a LanguageCode enum value
+	LanguageCodeHi = "hi"
+
+	// LanguageCodeJa is a LanguageCode enum value
+	LanguageCodeJa = "ja"
+
+	// LanguageCodeKo is a LanguageCode enum value
+	LanguageCodeKo = "ko"
+
+	// LanguageCodeZh is a LanguageCode enum value
+	LanguageCodeZh = "zh"
+
+	// LanguageCodeZhTw is a LanguageCode enum value
+	LanguageCodeZhTw = "zh-TW"
 )
 
 const (
