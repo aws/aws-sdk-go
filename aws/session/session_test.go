@@ -566,3 +566,97 @@ func TestNewSession_EnvCredsWithInvalidConfigFile(t *testing.T) {
 		})
 	}
 }
+
+func TestSession_RegionalEndpoints(t *testing.T) {
+	cases := map[string]struct {
+		Env    map[string]string
+		Config aws.Config
+
+		ExpectErr       string
+		ExpectSTS       endpoints.STSRegionalEndpoint
+		ExpectS3UsEast1 endpoints.S3UsEast1RegionalEndpoint
+	}{
+		"default": {
+			ExpectSTS:       endpoints.LegacySTSEndpoint,
+			ExpectS3UsEast1: endpoints.LegacyS3UsEast1Endpoint,
+		},
+		"enable regional": {
+			Config: aws.Config{
+				STSRegionalEndpoint:       endpoints.RegionalSTSEndpoint,
+				S3UsEast1RegionalEndpoint: endpoints.RegionalS3UsEast1Endpoint,
+			},
+			ExpectSTS:       endpoints.RegionalSTSEndpoint,
+			ExpectS3UsEast1: endpoints.RegionalS3UsEast1Endpoint,
+		},
+		"sts env enable": {
+			Env: map[string]string{
+				"AWS_STS_REGIONAL_ENDPOINTS": "regional",
+			},
+			ExpectSTS:       endpoints.RegionalSTSEndpoint,
+			ExpectS3UsEast1: endpoints.LegacyS3UsEast1Endpoint,
+		},
+		"sts us-east-1 env merge enable": {
+			Env: map[string]string{
+				"AWS_STS_REGIONAL_ENDPOINTS": "legacy",
+			},
+			Config: aws.Config{
+				STSRegionalEndpoint: endpoints.RegionalSTSEndpoint,
+			},
+			ExpectSTS:       endpoints.RegionalSTSEndpoint,
+			ExpectS3UsEast1: endpoints.LegacyS3UsEast1Endpoint,
+		},
+		"s3 us-east-1 env enable": {
+			Env: map[string]string{
+				"AWS_S3_US_EAST_1_REGIONAL_ENDPOINT": "regional",
+			},
+			ExpectSTS:       endpoints.LegacySTSEndpoint,
+			ExpectS3UsEast1: endpoints.RegionalS3UsEast1Endpoint,
+		},
+		"s3 us-east-1 env merge enable": {
+			Env: map[string]string{
+				"AWS_S3_US_EAST_1_REGIONAL_ENDPOINT": "legacy",
+			},
+			Config: aws.Config{
+				S3UsEast1RegionalEndpoint: endpoints.RegionalS3UsEast1Endpoint,
+			},
+			ExpectSTS:       endpoints.LegacySTSEndpoint,
+			ExpectS3UsEast1: endpoints.RegionalS3UsEast1Endpoint,
+		},
+	}
+
+	for name, c := range cases {
+		t.Run(name, func(t *testing.T) {
+			restoreEnvFn := initSessionTestEnv()
+			defer restoreEnvFn()
+
+			for k, v := range c.Env {
+				os.Setenv(k, v)
+			}
+
+			s, err := NewSession(&c.Config)
+			if len(c.ExpectErr) != 0 {
+				if err == nil {
+					t.Fatalf("expect session error, got none")
+				}
+				if e, a := c.ExpectErr, err.Error(); !strings.Contains(a, e) {
+					t.Fatalf("expect session error to contain %q, got %v", e, a)
+				}
+				return
+			}
+
+			if err != nil {
+				t.Fatalf("expect no error, got %v", err)
+			}
+
+			if e, a := c.ExpectSTS, s.Config.STSRegionalEndpoint; e != a {
+				t.Errorf("expect %v STSRegionalEndpoint, got %v", e, a)
+			}
+
+			if e, a := c.ExpectS3UsEast1, s.Config.S3UsEast1RegionalEndpoint; e != a {
+				t.Errorf("expect %v S3UsEast1RegionalEndpoint, got %v", e, a)
+			}
+
+			// Asserts
+		})
+	}
+}

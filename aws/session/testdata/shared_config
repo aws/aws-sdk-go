@@ -79,3 +79,9 @@ source_profile = assume_role_with_credential_source
 [multiple_assume_role_with_credential_source2]
 role_arn = multiple_assume_role_with_credential_source2_role_arn
 source_profile = multiple_assume_role_with_credential_source
+
+[with_sts_regional]
+sts_regional_endpoints = regional
+
+[with_s3_us_east_1_regional]
+s3_us_east_1_regional_endpoint = regional
