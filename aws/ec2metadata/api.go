@@ -16,7 +16,6 @@ import (
 // getToken uses the duration to return a token for EC2 metadata service,
 // or an error if the request failed.
 func (c *EC2Metadata) getToken(duration time.Duration) (tokenOutput, error) {
-
 	op := &request.Operation{
 		Name:       "GetToken",
 		HTTPMethod: "PUT",
@@ -32,7 +31,7 @@ func (c *EC2Metadata) getToken(duration time.Duration) (tokenOutput, error) {
 	// Swap the unmarshalMetadataHandler with unmarshalTokenHandler on this request.
 	req.Handlers.Unmarshal.Swap(unmarshalMetadataHandlerName, unmarshalTokenHandler)
 
-	ttl := strconv.Itoa(int(duration / time.Second))
+	ttl := strconv.FormatInt(int64(duration / time.Second),10)
 	req.HTTPRequest.Header.Set(ttlHeader, ttl)
 
 	err := req.Send()
@@ -51,7 +50,6 @@ func (c *EC2Metadata) getToken(duration time.Duration) (tokenOutput, error) {
 // instance metadata service. The content will be returned as a string, or
 // error if the request failed.
 func (c *EC2Metadata) GetMetadata(p string) (string, error) {
-
 	op := &request.Operation{
 		Name:       "GetMetadata",
 		HTTPMethod: "GET",

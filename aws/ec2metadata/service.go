@@ -41,8 +41,8 @@ const (
 	enableTokenProviderHandlerName = "enableTokenProviderHandler"
 
 	// TTL constants
-	defaultTTL          = 21600 * time.Second
-	ttlExpirationWindow = 1000 * time.Second
+	defaultTTL = 21600 * time.Second
+	ttlExpirationWindow = 30 * time.Second
 )
 
 // A EC2Metadata is an EC2 Metadata service Client.
@@ -141,23 +141,6 @@ func NewClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
 	return svc
 }
 
-// SetTokenTTL exposes token TTL config on client.
-// Note: SetTokenTTL is not safe to use concurrently with EC2Metadata operation calls.
-func (c *EC2Metadata) SetTokenTTL(duration time.Duration) {
-	tp := newTokenProvider(c, duration)
-
-	// swap the fetch token handler with a new handler with updated TTL
-	c.Handlers.Sign.SwapNamed(request.NamedHandler{
-		Name: fetchTokenHandlerName,
-		Fn:   tp.fetchTokenHandler,
-	})
-
-	c.Handlers.Complete.SwapNamed(request.NamedHandler{
-		Name: enableTokenProviderHandlerName,
-		Fn:   tp.enableTokenProviderHandler,
-	})
-}
-
 func httpClientZero(c *http.Client) bool {
 	return c == nil || (c.Transport == nil && c.CheckRedirect == nil && c.Jar == nil && c.Timeout == 0)
 }
@@ -175,7 +158,6 @@ type tokenOutput struct {
 var unmarshalTokenHandler = request.NamedHandler{
 	Name: unmarshalTokenHandlerName,
 	Fn: func(r *request.Request) {
-
 		var b bytes.Buffer
 		if _, err := io.Copy(&b, r.HTTPResponse.Body); err != nil {
 			r.Error = awserr.NewRequestFailure(awserr.New(request.ErrCodeSerialization,
@@ -183,23 +165,22 @@ var unmarshalTokenHandler = request.NamedHandler{
 			return
 		}
 
-		if len(r.HTTPResponse.Header.Get(ttlHeader)) == 0 {
+		v := r.HTTPResponse.Header.Get(ttlHeader)
+		data, ok := r.Data.(*tokenOutput)
+		if !ok {
 			return
 		}
 
-		v := r.HTTPResponse.Header.Get(ttlHeader)
-		if data, ok := r.Data.(*tokenOutput); ok {
-			data.Token = b.String()
-			// TTL is in seconds
-			i, err := strconv.Atoi(v)
-			if err != nil {
-				r.Error = awserr.NewRequestFailure(awserr.New(request.ParamFormatErrCode,
-					"unable to parse EC2 token TTL response", err), r.HTTPResponse.StatusCode, r.RequestID)
-				return
-			}
-			t := time.Duration(i) * time.Second
-			data.TTL = t
+		data.Token = b.String()
+		// TTL is in seconds
+		i, err := strconv.ParseInt(v, 10, 64)
+		if err != nil {
+			r.Error = awserr.NewRequestFailure(awserr.New(request.ParamFormatErrCode,
+				"unable to parse EC2 token TTL response", err), r.HTTPResponse.StatusCode, r.RequestID)
+			return
 		}
+		t := time.Duration(i) * time.Second
+		data.TTL = t
 	},
 }
 
@@ -209,7 +190,8 @@ var unmarshalHandler = request.NamedHandler{
 		defer r.HTTPResponse.Body.Close()
 		var b bytes.Buffer
 		if _, err := io.Copy(&b, r.HTTPResponse.Body); err != nil {
-			r.Error = awserr.New(request.ErrCodeSerialization, "unable to unmarshal EC2 metadata response", err)
+			r.Error = awserr.NewRequestFailure(awserr.New(request.ErrCodeSerialization,
+				"unable to unmarshal EC2 metadata response", err), r.HTTPResponse.StatusCode, r.RequestID)
 			return
 		}
 

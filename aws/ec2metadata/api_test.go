@@ -13,6 +13,7 @@ import (
 	"reflect"
 	"strings"
 	"sync"
+	"sync/atomic"
 	"testing"
 	"time"
 
@@ -75,7 +76,7 @@ type testServer struct {
 	t *testing.T
 
 	tokens      []string
-	activeToken string
+	activeToken atomic.Value
 	data        string
 }
 
@@ -101,9 +102,7 @@ func getTokenRequiredParams(t *testing.T, fn http.HandlerFunc) http.HandlerFunc 
 }
 
 func newTestServer(t *testing.T, testType testType, testServer *testServer) *httptest.Server {
-
 	mux := http.NewServeMux()
-
 	switch testType {
 	case SecureTestType:
 		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.secureGetTokenHandler))
@@ -130,11 +129,10 @@ func newTestServer(t *testing.T, testType testType, testServer *testServer) *htt
 }
 
 func (s *testServer) secureGetTokenHandler(w http.ResponseWriter, r *http.Request) {
-
 	token := s.tokens[0]
 
 	// set the active token
-	s.activeToken = token
+	s.activeToken.Store(token)
 
 	// rotate the token
 	if len(s.tokens) > 1 {
@@ -143,16 +141,21 @@ func (s *testServer) secureGetTokenHandler(w http.ResponseWriter, r *http.Reques
 
 	// set the header and response body
 	w.Header().Set(ttlHeader, r.Header.Get(ttlHeader))
-	w.Write([]byte(s.activeToken))
+	if activeToken, ok := s.activeToken.Load().(string); ok {
+		w.Write([]byte(activeToken))
+	} else {
+		s.t.Fatalf("Expected activeToken to be of type string, got %v", activeToken)
+	}
 }
 
 func (s *testServer) secureGetLatestHandler(w http.ResponseWriter, r *http.Request) {
-	if len(s.activeToken) == 0 {
+	if s.activeToken.Load() == nil {
 		s.t.Errorf("expect token to have been requested, was not")
 		http.Error(w, "", 401)
 		return
 	}
-	if e, a := s.activeToken, r.Header.Get(tokenHeader); e != a {
+
+	if e, a := s.activeToken.Load(), r.Header.Get(tokenHeader); e != a {
 		s.t.Errorf("expect %v token, got %v", e, a)
 		http.Error(w, "", 401)
 		return
@@ -234,7 +237,7 @@ func TestGetMetadata(t *testing.T) {
 				return newTestServer(t, testType, Ts)
 			},
 			expectedData:                "IMDSProfileForGoSDK",
-			expectedOperationsPerformed: []string{"GetToken", "GetMetadata", "GetMetadata", "GetToken", "GetMetadata", "GetMetadata"},
+			expectedOperationsPerformed: []string{"GetToken", "GetMetadata", "GetMetadata"},
 		},
 		"Secure server success case": {
 			NewServer: func(t *testing.T) *httptest.Server {
@@ -248,7 +251,7 @@ func TestGetMetadata(t *testing.T) {
 			},
 			expectedData:                "IMDSProfileForGoSDK",
 			expectedError:               "",
-			expectedOperationsPerformed: []string{"GetToken", "GetMetadata", "GetMetadata", "GetToken", "GetMetadata", "GetToken", "GetMetadata"},
+			expectedOperationsPerformed: []string{"GetToken", "GetMetadata", "GetMetadata"},
 		},
 		"Bad request case": {
 			NewServer: func(t *testing.T) *httptest.Server {
@@ -261,7 +264,7 @@ func TestGetMetadata(t *testing.T) {
 				return newTestServer(t, testType, Ts)
 			},
 			expectedError:               "400",
-			expectedOperationsPerformed: []string{"GetToken", "GetMetadata", "GetToken", "GetMetadata", "GetToken", "GetMetadata", "GetToken", "GetMetadata"},
+			expectedOperationsPerformed: []string{"GetToken", "GetMetadata", "GetToken", "GetMetadata"},
 		},
 		"ServerErrorForTokenTestType": {
 			NewServer: func(t *testing.T) *httptest.Server {
@@ -274,7 +277,7 @@ func TestGetMetadata(t *testing.T) {
 				return newTestServer(t, testType, Ts)
 			},
 			expectedData:                "IMDSProfileForGoSDK",
-			expectedOperationsPerformed: []string{"GetToken", "GetMetadata", "GetMetadata", "GetToken", "GetMetadata", "GetMetadata"},
+			expectedOperationsPerformed: []string{"GetToken", "GetMetadata", "GetMetadata"},
 		},
 	}
 
@@ -292,13 +295,6 @@ func TestGetMetadata(t *testing.T) {
 			resp, err := c.GetMetadata("some/path")
 
 			// token should stay alive, since default duration is 26000 seconds
-			resp, err = c.GetMetadata("some/path")
-
-			// Set Token TTL to 0, this will reset the token, thus there should be a change in token
-			c.SetTokenTTL(0)
-			resp, err = c.GetMetadata("some/path")
-
-			// since earlier token ttl was set to 0. The ttl has expired and this should fetch new token
 			resp, err = c.GetMetadata("some/path")
 
 			if len(x.expectedError) != 0 {
@@ -1028,6 +1024,71 @@ func TestRequestTimeOut(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Expected no error, got %v", err)
 	}
+
+	if e, a := expectedOperationsPerformed, op.operationsPerformed; !reflect.DeepEqual(e, a) {
+		t.Fatalf("expect %v operations, got %v", e, a)
+	}
+}
+
+func TestTokenExpiredBehavior(t *testing.T) {
+	tokens := []string{"firstToken", "secondToken", "thirdToken"}
+	var activeToken string
+	mux := http.NewServeMux()
+
+	mux.HandleFunc("/latest/api/token", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method == "PUT" && r.Header.Get(ttlHeader) != "" {
+			// set ttl to 0, so TTL is expired.
+			w.Header().Set(ttlHeader, "0")
+			activeToken = tokens[0]
+			if len(tokens) > 1 {
+				tokens = tokens[1:]
+			}
+
+			w.Write([]byte(activeToken))
+			return
+		}
+		http.Error(w, "bad request", http.StatusBadRequest)
+	})
+
+	// meta-data endpoint for this test, just returns the token
+	mux.HandleFunc("/latest/meta-data/", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set(ttlHeader, r.Header.Get(ttlHeader))
+		w.Write([]byte(r.Header.Get(tokenHeader)))
+	})
+
+	server := httptest.NewServer(mux)
+	defer server.Close()
+
+	op := &operationListProvider{}
+
+	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+	c.Handlers.Complete.PushBack(op.addToOperationPerformedList)
+
+	resp, err := c.GetMetadata("/some/path")
+	if err != nil {
+		t.Fatalf("Expected no error, got %v", err)
+	}
+	if e, a := activeToken, resp; e != a {
+		t.Fatalf("Expected %v, got %v", e, a)
+	}
+
+	// store the token received before
+	var firstToken = activeToken
+
+	resp, err = c.GetMetadata("/some/path")
+	if err != nil {
+		t.Fatalf("Expected no error, got %v", err)
+	}
+	if e, a := activeToken, resp; e != a {
+		t.Fatalf("Expected %v, got %v", e, a)
+	}
+
+	// Since TTL is 0, we should have received a new token
+	if firstToken == activeToken {
+		t.Fatalf("Expected token should have expired, and not the same")
+	}
+
+	expectedOperationsPerformed := []string{"GetToken", "GetMetadata", "GetToken", "GetMetadata"}
 
 	if e, a := expectedOperationsPerformed, op.operationsPerformed; !reflect.DeepEqual(e, a) {
 		t.Fatalf("expect %v operations, got %v", e, a)

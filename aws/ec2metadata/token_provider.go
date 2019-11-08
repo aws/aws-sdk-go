@@ -2,7 +2,6 @@ package ec2metadata
 
 import (
 	"net/http"
-	"strings"
 	"sync/atomic"
 	"time"
 
@@ -11,19 +10,16 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 )
 
-// Error constant
-const errTimeOutError = "net/http: request canceled (Client.Timeout exceeded while awaiting headers)"
-
 // A tokenProvider struct provides access to EC2Metadata client
-// and atomic instance of a token, along with ttl for it.
+// and atomic instance of a token, along with configuredTTL for it.
 // tokenProvider also provides an atomic flag to disable the
 // fetch token operation.
 // The disabled member will use 0 as false, and 1 as true.
 type tokenProvider struct {
-	client   *EC2Metadata
-	token    atomic.Value
-	ttl      time.Duration
-	disabled uint32
+	client        *EC2Metadata
+	token         atomic.Value
+	configuredTTL time.Duration
+	disabled      uint32
 }
 
 // A ec2Token struct helps use of token in EC2 Metadata service ops
@@ -34,7 +30,7 @@ type ec2Token struct {
 
 // newTokenProvider provides a pointer to a tokenProvider instance
 func newTokenProvider(c *EC2Metadata, duration time.Duration) *tokenProvider {
-	return &tokenProvider{client: c, ttl: duration}
+	return &tokenProvider{client: c, configuredTTL: duration}
 }
 
 // fetchTokenHandler fetches token for EC2Metadata service client by default.
@@ -45,14 +41,12 @@ func (t *tokenProvider) fetchTokenHandler(r *request.Request) {
 		return
 	}
 
-	if ec2Token, ok := t.token.Load().(ec2Token); ok {
-		if !ec2Token.IsExpired() {
-			r.HTTPRequest.Header.Set(tokenHeader, ec2Token.token)
-			return
-		}
+	if ec2Token, ok := t.token.Load().(ec2Token); ok && !ec2Token.IsExpired() {
+		r.HTTPRequest.Header.Set(tokenHeader, ec2Token.token)
+		return
 	}
 
-	output, err := t.client.getToken(t.ttl)
+	output, err := t.client.getToken(t.configuredTTL)
 
 	if err != nil {
 
@@ -60,11 +54,7 @@ func (t *tokenProvider) fetchTokenHandler(r *request.Request) {
 		// when error is request timeout error.
 		if requestFailureError, ok := err.(awserr.RequestFailure); ok {
 			switch requestFailureError.StatusCode() {
-			case http.StatusForbidden:
-				fallthrough
-			case http.StatusNotFound:
-				fallthrough
-			case http.StatusMethodNotAllowed:
+			case http.StatusForbidden, http.StatusNotFound, http.StatusMethodNotAllowed:
 				atomic.StoreUint32(&t.disabled, 1)
 			case http.StatusBadRequest:
 				r.Error = requestFailureError
@@ -72,8 +62,7 @@ func (t *tokenProvider) fetchTokenHandler(r *request.Request) {
 
 			// Check if request timed out while waiting for response
 			if e, ok := requestFailureError.OrigErr().(awserr.Error); ok {
-				if timeoutError := e.OrigErr(); timeoutError != nil &&
-					strings.Contains(timeoutError.Error(), errTimeOutError) {
+				if e.Code() == "RequestError" {
 					atomic.StoreUint32(&t.disabled, 1)
 				}
 			}
