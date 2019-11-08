@@ -396,6 +396,7 @@
       "max":128,
       "min":1
     },
+    "ClassicFlow":{"type":"boolean"},
     "CognitoIdentityProvider":{
       "type":"structure",
       "members":{
@@ -440,6 +441,7 @@
       "members":{
         "IdentityPoolName":{"shape":"IdentityPoolName"},
         "AllowUnauthenticatedIdentities":{"shape":"IdentityPoolUnauthenticated"},
+        "AllowClassicFlow":{"shape":"ClassicFlow"},
         "SupportedLoginProviders":{"shape":"IdentityProviders"},
         "DeveloperProviderName":{"shape":"DeveloperProviderName"},
         "OpenIdConnectProviderARNs":{"shape":"OIDCProviderList"},
@@ -646,6 +648,7 @@
         "IdentityPoolId":{"shape":"IdentityPoolId"},
         "IdentityPoolName":{"shape":"IdentityPoolName"},
         "AllowUnauthenticatedIdentities":{"shape":"IdentityPoolUnauthenticated"},
+        "AllowClassicFlow":{"shape":"ClassicFlow"},
         "SupportedLoginProviders":{"shape":"IdentityProviders"},
         "DeveloperProviderName":{"shape":"DeveloperProviderName"},
         "OpenIdConnectProviderARNs":{"shape":"OIDCProviderList"},
@@ -664,7 +667,7 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"[\\w ]+"
+      "pattern":"[\\w\\s+=,.@-]+"
     },
     "IdentityPoolShortDescription":{
       "type":"structure",
@@ -968,7 +971,10 @@
     },
     "TagResourceInput":{
       "type":"structure",
-      "required":["ResourceArn"],
+      "required":[
+        "ResourceArn",
+        "Tags"
+      ],
       "members":{
         "ResourceArn":{"shape":"ARNString"},
         "Tags":{"shape":"IdentityPoolTagsType"}
@@ -1038,7 +1044,10 @@
     },
     "UntagResourceInput":{
       "type":"structure",
-      "required":["ResourceArn"],
+      "required":[
+        "ResourceArn",
+        "TagKeys"
+      ],
       "members":{
         "ResourceArn":{"shape":"ARNString"},
         "TagKeys":{"shape":"IdentityPoolTagsListType"}
