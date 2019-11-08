@@ -3,6 +3,7 @@ package ec2metadata
 import (
 	"encoding/json"
 	"fmt"
+	"net/http"
 	"strconv"
 	"strings"
 	"time"
@@ -39,7 +40,7 @@ func (c *EC2Metadata) getToken(duration time.Duration) (tokenOutput, error) {
 	// Errors with bad request status should be returned.
 	if err != nil {
 		err = awserr.NewRequestFailure(
-			awserr.New(req.HTTPResponse.Status, "Fetch token failed", err),
+			awserr.New(req.HTTPResponse.Status, http.StatusText(req.HTTPResponse.StatusCode), err),
 			req.HTTPResponse.StatusCode, req.RequestID)
 	}
 

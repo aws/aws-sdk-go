@@ -10,9 +10,11 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"path"
+	"reflect"
 	"strings"
 	"sync"
 	"testing"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
@@ -65,8 +67,8 @@ const (
 	InsecureTestType
 	BadRequestTestType
 	ServerErrorForTokenTestType
-	retryTimeOutForTokenTestType
-	retryTimeOutWith401TestType
+	pageNotFoundForTokenTestType
+	pageNotFoundWith401TestType
 )
 
 type testServer struct {
@@ -115,11 +117,11 @@ func newTestServer(t *testing.T, testType testType, testServer *testServer) *htt
 	case ServerErrorForTokenTestType:
 		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.serverErrorGetTokenHandler))
 		mux.HandleFunc("/latest/", testServer.insecureGetLatestHandler)
-	case retryTimeOutForTokenTestType:
-		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.retryableErrorGetTokenHandler))
+	case pageNotFoundForTokenTestType:
+		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.pageNotFoundGetTokenHandler))
 		mux.HandleFunc("/latest/", testServer.insecureGetLatestHandler)
-	case retryTimeOutWith401TestType:
-		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.retryableErrorGetTokenHandler))
+	case pageNotFoundWith401TestType:
+		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.pageNotFoundGetTokenHandler))
 		mux.HandleFunc("/latest/", testServer.unauthorizedGetLatestHandler)
 
 	}
@@ -156,7 +158,7 @@ func (s *testServer) secureGetLatestHandler(w http.ResponseWriter, r *http.Reque
 		return
 	}
 
-	w.Header().Set("ttlheader", r.Header.Get(ttlHeader))
+	w.Header().Set(ttlHeader, r.Header.Get(ttlHeader))
 	w.Write([]byte(s.data))
 }
 
@@ -186,8 +188,8 @@ func (s *testServer) serverErrorGetTokenHandler(w http.ResponseWriter, r *http.R
 	http.Error(w, "", 403)
 }
 
-func (s *testServer) retryableErrorGetTokenHandler(w http.ResponseWriter, r *http.Request) {
-	http.Error(w, "service unavailable", http.StatusServiceUnavailable)
+func (s *testServer) pageNotFoundGetTokenHandler(w http.ResponseWriter, r *http.Request) {
+	http.Error(w, "Page not found error", 404)
 }
 
 func (s *testServer) unauthorizedGetLatestHandler(w http.ResponseWriter, r *http.Request) {
@@ -226,25 +228,21 @@ func TestGetMetadata(t *testing.T) {
 			NewServer: func(t *testing.T) *httptest.Server {
 				testType := InsecureTestType
 				Ts := &testServer{
-					t:           t,
-					tokens:      nil,
-					activeToken: "",
-					data:        "IMDSProfileForGoSDK",
+					t:    t,
+					data: "IMDSProfileForGoSDK",
 				}
 				return newTestServer(t, testType, Ts)
 			},
 			expectedData:                "IMDSProfileForGoSDK",
-			expectedError:               "",
-			expectedOperationsPerformed: []string{"GetToken", "GetMetadata", "GetToken", "GetMetadata", "GetToken", "GetMetadata", "GetToken", "GetMetadata"},
+			expectedOperationsPerformed: []string{"GetToken", "GetMetadata", "GetMetadata", "GetToken", "GetMetadata", "GetMetadata"},
 		},
 		"Secure server success case": {
 			NewServer: func(t *testing.T) *httptest.Server {
 				testType := SecureTestType
 				Ts := &testServer{
-					t:           t,
-					tokens:      []string{"firstToken", "secondToken", "thirdToken"},
-					activeToken: "",
-					data:        "IMDSProfileForGoSDK",
+					t:      t,
+					tokens: []string{"firstToken", "secondToken", "thirdToken"},
+					data:   "IMDSProfileForGoSDK",
 				}
 				return newTestServer(t, testType, Ts)
 			},
@@ -256,14 +254,12 @@ func TestGetMetadata(t *testing.T) {
 			NewServer: func(t *testing.T) *httptest.Server {
 				testType := BadRequestTestType
 				Ts := &testServer{
-					t:           t,
-					tokens:      []string{"firstToken", "secondToken", "thirdToken"},
-					activeToken: "",
-					data:        "IMDSProfileForGoSDK",
+					t:      t,
+					tokens: []string{"firstToken", "secondToken", "thirdToken"},
+					data:   "IMDSProfileForGoSDK",
 				}
 				return newTestServer(t, testType, Ts)
 			},
-			expectedData:                "",
 			expectedError:               "400",
 			expectedOperationsPerformed: []string{"GetToken", "GetMetadata", "GetToken", "GetMetadata", "GetToken", "GetMetadata", "GetToken", "GetMetadata"},
 		},
@@ -271,16 +267,14 @@ func TestGetMetadata(t *testing.T) {
 			NewServer: func(t *testing.T) *httptest.Server {
 				testType := ServerErrorForTokenTestType
 				Ts := &testServer{
-					t:           t,
-					tokens:      []string{},
-					activeToken: "",
-					data:        "IMDSProfileForGoSDK",
+					t:      t,
+					tokens: []string{},
+					data:   "IMDSProfileForGoSDK",
 				}
 				return newTestServer(t, testType, Ts)
 			},
 			expectedData:                "IMDSProfileForGoSDK",
-			expectedError:               "",
-			expectedOperationsPerformed: []string{"GetToken", "GetMetadata", "GetToken", "GetMetadata", "GetToken", "GetMetadata", "GetToken", "GetMetadata"},
+			expectedOperationsPerformed: []string{"GetToken", "GetMetadata", "GetMetadata", "GetToken", "GetMetadata", "GetMetadata"},
 		},
 	}
 
@@ -307,31 +301,23 @@ func TestGetMetadata(t *testing.T) {
 			// since earlier token ttl was set to 0. The ttl has expired and this should fetch new token
 			resp, err = c.GetMetadata("some/path")
 
-			if e, a := x.expectedData, resp; e != a {
-				t.Errorf("expect %v, got %v", e, a)
-			}
-
-			if err != nil && len(x.expectedError) == 0 {
-				t.Errorf("expected no error, got %v", err)
-			}
-
-			if err == nil && len(x.expectedError) != 0 {
-				t.Errorf("expected %v, got none", x.expectedError)
-			}
-
-			if err != nil && !strings.Contains(err.Error(), x.expectedError) {
-				t.Errorf("expect %v, got %v", x.expectedError, err)
-			}
-
-			if len(x.expectedOperationsPerformed) != len(op.operationsPerformed) {
-				t.Errorf("expected operation list to be %v, got %v", x.expectedOperationsPerformed, op.operationsPerformed)
-				return
-			}
-
-			for i := 0; i < len(op.operationsPerformed); i++ {
-				if op.operationsPerformed[i] != x.expectedOperationsPerformed[i] {
-					t.Errorf("expected operation list to be %v, got %v", x.expectedOperationsPerformed, op.operationsPerformed)
+			if len(x.expectedError) != 0 {
+				if err == nil {
+					t.Fatalf("expect %v error, got none", x.expectedError)
 				}
+				if e, a := x.expectedError, err.Error(); !strings.Contains(a, e) {
+					t.Fatalf("expect %v error, got %v", e, a)
+				}
+			} else if err != nil {
+				t.Fatalf("expect no error, got %v", err)
+			}
+
+			if e, a := x.expectedData, resp; e != a {
+				t.Fatalf("expect %v, got %v", e, a)
+			}
+
+			if e, a := x.expectedOperationsPerformed, op.operationsPerformed; !reflect.DeepEqual(e, a) {
+				t.Errorf("expect %v operations, got %v", e, a)
 			}
 
 		})
@@ -362,15 +348,15 @@ func TestGetUserData_Error(t *testing.T) {
 
 	resp, err := c.GetUserData()
 	if err == nil {
-		t.Errorf("expect error")
+		t.Fatalf("expect error")
 	}
 	if len(resp) != 0 {
-		t.Errorf("expect empty, got %v", resp)
+		t.Fatalf("expect empty, got %v", resp)
 	}
 
 	if requestFailedError, ok := err.(awserr.RequestFailure); ok {
 		if e, a := http.StatusNotFound, requestFailedError.StatusCode(); e != a {
-			t.Errorf("expect %v, got %v", e, a)
+			t.Fatalf("expect %v, got %v", e, a)
 		}
 	}
 }
@@ -386,44 +372,37 @@ func TestGetRegion(t *testing.T) {
 			NewServer: func(t *testing.T) *httptest.Server {
 				testType := InsecureTestType
 				Ts := &testServer{
-					t:           t,
-					tokens:      nil,
-					activeToken: "",
-					data:        "us-west-2a",
+					t:    t,
+					data: "us-west-2a",
 				}
 				return newTestServer(t, testType, Ts)
 			},
 			expectedData:                "us-west-2",
-			expectedError:               "",
 			expectedOperationsPerformed: []string{"GetToken", "GetMetadata"},
 		},
 		"Secure server success case": {
 			NewServer: func(t *testing.T) *httptest.Server {
 				testType := SecureTestType
 				Ts := &testServer{
-					t:           t,
-					tokens:      []string{"firstToken", "secondToken", "thirdToken"},
-					activeToken: "",
-					data:        "us-west-2a",
+					t:      t,
+					tokens: []string{"firstToken", "secondToken", "thirdToken"},
+					data:   "us-west-2a",
 				}
 				return newTestServer(t, testType, Ts)
 			},
 			expectedData:                "us-west-2",
-			expectedError:               "",
 			expectedOperationsPerformed: []string{"GetToken", "GetMetadata"},
 		},
 		"Bad request case": {
 			NewServer: func(t *testing.T) *httptest.Server {
 				testType := BadRequestTestType
 				Ts := &testServer{
-					t:           t,
-					tokens:      []string{"firstToken", "secondToken", "thirdToken"},
-					activeToken: "",
-					data:        "us-west-2a",
+					t:      t,
+					tokens: []string{"firstToken", "secondToken", "thirdToken"},
+					data:   "us-west-2a",
 				}
 				return newTestServer(t, testType, Ts)
 			},
-			expectedData:                "",
 			expectedError:               "400",
 			expectedOperationsPerformed: []string{"GetToken", "GetMetadata"},
 		},
@@ -431,15 +410,13 @@ func TestGetRegion(t *testing.T) {
 			NewServer: func(t *testing.T) *httptest.Server {
 				testType := ServerErrorForTokenTestType
 				Ts := &testServer{
-					t:           t,
-					tokens:      []string{},
-					activeToken: "",
-					data:        "us-west-2a",
+					t:      t,
+					tokens: []string{},
+					data:   "us-west-2a",
 				}
 				return newTestServer(t, testType, Ts)
 			},
 			expectedData:                "us-west-2",
-			expectedError:               "",
 			expectedOperationsPerformed: []string{"GetToken", "GetMetadata"},
 		},
 	}
@@ -457,33 +434,24 @@ func TestGetRegion(t *testing.T) {
 
 			resp, err := c.Region()
 
-			if e, a := x.expectedData, resp; e != a {
-				t.Errorf("expect %v, got %v", e, a)
-			}
-
-			if err != nil && len(x.expectedError) == 0 {
-				t.Errorf("expected no error, got %v", err)
-			}
-
-			if err == nil && len(x.expectedError) != 0 {
-				t.Errorf("expected %v, got none", x.expectedError)
-			}
-
-			if err != nil && !strings.Contains(err.Error(), x.expectedError) {
-				t.Errorf("expect %v, got %v", x.expectedError, err)
-			}
-
-			if len(x.expectedOperationsPerformed) != len(op.operationsPerformed) {
-				t.Errorf("expected operation list to be %v, got %v", x.expectedOperationsPerformed, op.operationsPerformed)
-				return
-			}
-
-			for i := 0; i < len(op.operationsPerformed); i++ {
-				if op.operationsPerformed[i] != x.expectedOperationsPerformed[i] {
-					t.Errorf("expected operation list to be %v, got %v", x.expectedOperationsPerformed, op.operationsPerformed)
+			if len(x.expectedError) != 0 {
+				if err == nil {
+					t.Fatalf("expect %v error, got none", x.expectedError)
 				}
+				if e, a := x.expectedError, err.Error(); !strings.Contains(a, e) {
+					t.Fatalf("expect %v error, got %v", e, a)
+				}
+			} else if err != nil {
+				t.Fatalf("expect no error, got %v", err)
 			}
 
+			if e, a := x.expectedData, resp; e != a {
+				t.Fatalf("expect %v, got %v", e, a)
+			}
+
+			if e, a := x.expectedOperationsPerformed, op.operationsPerformed; !reflect.DeepEqual(e, a) {
+				t.Fatalf("expect %v operations, got %v", e, a)
+			}
 		})
 	}
 }
@@ -499,30 +467,25 @@ func TestMetadataIAMInfo_success(t *testing.T) {
 			NewServer: func(t *testing.T) *httptest.Server {
 				testType := InsecureTestType
 				Ts := &testServer{
-					t:           t,
-					tokens:      nil,
-					activeToken: "",
-					data:        validIamInfo,
+					t:    t,
+					data: validIamInfo,
 				}
 				return newTestServer(t, testType, Ts)
 			},
 			expectedData:                validIamInfo,
-			expectedError:               "",
 			expectedOperationsPerformed: []string{"GetToken", "GetMetadata"},
 		},
 		"Secure server success case": {
 			NewServer: func(t *testing.T) *httptest.Server {
 				testType := SecureTestType
 				Ts := &testServer{
-					t:           t,
-					tokens:      []string{"firstToken", "secondToken", "thirdToken"},
-					activeToken: "",
-					data:        validIamInfo,
+					t:      t,
+					tokens: []string{"firstToken", "secondToken", "thirdToken"},
+					data:   validIamInfo,
 				}
 				return newTestServer(t, testType, Ts)
 			},
 			expectedData:                validIamInfo,
-			expectedError:               "",
 			expectedOperationsPerformed: []string{"GetToken", "GetMetadata"},
 		},
 	}
@@ -539,30 +502,31 @@ func TestMetadataIAMInfo_success(t *testing.T) {
 			c.Handlers.Complete.PushBack(op.addToOperationPerformedList)
 
 			iamInfo, err := c.IAMInfo()
-			if err != nil {
-				t.Errorf("expect no error, got %v", err)
+
+			if len(x.expectedError) != 0 {
+				if err == nil {
+					t.Fatalf("expect %v error, got none", x.expectedError)
+				}
+				if e, a := x.expectedError, err.Error(); !strings.Contains(a, e) {
+					t.Fatalf("expect %v error, got %v", e, a)
+				}
+			} else if err != nil {
+				t.Fatalf("expect no error, got %v", err)
 			}
+
 			if e, a := "Success", iamInfo.Code; e != a {
-				t.Errorf("expect %v, got %v", e, a)
+				t.Fatalf("expect %v, got %v", e, a)
 			}
 			if e, a := "arn:aws:iam::123456789012:instance-profile/my-instance-profile", iamInfo.InstanceProfileArn; e != a {
-				t.Errorf("expect %v, got %v", e, a)
+				t.Fatalf("expect %v, got %v", e, a)
 			}
 			if e, a := "AIPAABCDEFGHIJKLMN123", iamInfo.InstanceProfileID; e != a {
-				t.Errorf("expect %v, got %v", e, a)
+				t.Fatalf("expect %v, got %v", e, a)
 			}
 
-			if len(x.expectedOperationsPerformed) != len(op.operationsPerformed) {
-				t.Errorf("expected operation list to be %v, got %v", x.expectedOperationsPerformed, op.operationsPerformed)
-				return
+			if e, a := x.expectedOperationsPerformed, op.operationsPerformed; !reflect.DeepEqual(e, a) {
+				t.Fatalf("expect %v operations, got %v", e, a)
 			}
-
-			for i := 0; i < len(op.operationsPerformed); i++ {
-				if op.operationsPerformed[i] != x.expectedOperationsPerformed[i] {
-					t.Errorf("expected operation list to be %v, got %v", x.expectedOperationsPerformed, op.operationsPerformed)
-				}
-			}
-
 		})
 	}
 }
@@ -578,30 +542,26 @@ func TestMetadataIAMInfo_failure(t *testing.T) {
 			NewServer: func(t *testing.T) *httptest.Server {
 				testType := InsecureTestType
 				Ts := &testServer{
-					t:           t,
-					tokens:      nil,
-					activeToken: "",
-					data:        unsuccessfulIamInfo,
+					t:      t,
+					tokens: nil,
+					data:   unsuccessfulIamInfo,
 				}
 				return newTestServer(t, testType, Ts)
 			},
 			expectedData:                unsuccessfulIamInfo,
-			expectedError:               "",
 			expectedOperationsPerformed: []string{"GetToken", "GetMetadata"},
 		},
 		"Secure server success case": {
 			NewServer: func(t *testing.T) *httptest.Server {
 				testType := SecureTestType
 				Ts := &testServer{
-					t:           t,
-					tokens:      []string{"firstToken", "secondToken", "thirdToken"},
-					activeToken: "",
-					data:        unsuccessfulIamInfo,
+					t:      t,
+					tokens: []string{"firstToken", "secondToken", "thirdToken"},
+					data:   unsuccessfulIamInfo,
 				}
 				return newTestServer(t, testType, Ts)
 			},
 			expectedData:                unsuccessfulIamInfo,
-			expectedError:               "",
 			expectedOperationsPerformed: []string{"GetToken", "GetMetadata"},
 		},
 	}
@@ -619,29 +579,20 @@ func TestMetadataIAMInfo_failure(t *testing.T) {
 
 			iamInfo, err := c.IAMInfo()
 			if err == nil {
-				t.Errorf("expect error")
+				t.Fatalf("expect error")
 			}
 			if e, a := "", iamInfo.Code; e != a {
-				t.Errorf("expect %v, got %v", e, a)
+				t.Fatalf("expect %v, got %v", e, a)
 			}
 			if e, a := "", iamInfo.InstanceProfileArn; e != a {
-				t.Errorf("expect %v, got %v", e, a)
+				t.Fatalf("expect %v, got %v", e, a)
 			}
 			if e, a := "", iamInfo.InstanceProfileID; e != a {
-				t.Errorf("expect %v, got %v", e, a)
+				t.Fatalf("expect %v, got %v", e, a)
 			}
-
-			if len(x.expectedOperationsPerformed) != len(op.operationsPerformed) {
-				t.Errorf("expected operation list to be %v, got %v", x.expectedOperationsPerformed, op.operationsPerformed)
-				return
+			if e, a := x.expectedOperationsPerformed, op.operationsPerformed; !reflect.DeepEqual(e, a) {
+				t.Fatalf("expect %v operations, got %v", e, a)
 			}
-
-			for i := 0; i < len(op.operationsPerformed); i++ {
-				if op.operationsPerformed[i] != x.expectedOperationsPerformed[i] {
-					t.Errorf("expected operation list to be %v, got %v", x.expectedOperationsPerformed, op.operationsPerformed)
-				}
-			}
-
 		})
 	}
 }
@@ -660,7 +611,7 @@ func TestMetadataNotAvailable(t *testing.T) {
 	})
 
 	if c.Available() {
-		t.Errorf("expect not available")
+		t.Fatalf("expect not available")
 	}
 }
 
@@ -677,49 +628,45 @@ func TestMetadataErrorResponse(t *testing.T) {
 	})
 
 	data, err := c.GetMetadata("uri/path")
-	if len(data) != 0 {
-		t.Errorf("expect empty, got %v", data)
-	}
 	if e, a := "error message text", err.Error(); !strings.Contains(a, e) {
-		t.Errorf("expect %v to be in %v", e, a)
+		t.Fatalf("expect %v to be in %v", e, a)
 	}
+	if len(data) != 0 {
+		t.Fatalf("expect empty, got %v", data)
+	}
+
 }
 
 func TestEC2RoleProviderInstanceIdentity(t *testing.T) {
 	cases := map[string]struct {
 		NewServer                   func(t *testing.T) *httptest.Server
 		expectedData                string
-		expectedError               string
 		expectedOperationsPerformed []string
 	}{
 		"Insecure server success case": {
 			NewServer: func(t *testing.T) *httptest.Server {
 				testType := InsecureTestType
 				Ts := &testServer{
-					t:           t,
-					tokens:      nil,
-					activeToken: "",
-					data:        instanceIdentityDocument,
+					t:      t,
+					tokens: nil,
+					data:   instanceIdentityDocument,
 				}
 				return newTestServer(t, testType, Ts)
 			},
 			expectedData:                instanceIdentityDocument,
-			expectedError:               "",
 			expectedOperationsPerformed: []string{"GetToken", "GetDynamicData"},
 		},
 		"Secure server success case": {
 			NewServer: func(t *testing.T) *httptest.Server {
 				testType := SecureTestType
 				Ts := &testServer{
-					t:           t,
-					tokens:      []string{"firstToken", "secondToken", "thirdToken"},
-					activeToken: "",
-					data:        instanceIdentityDocument,
+					t:      t,
+					tokens: []string{"firstToken", "secondToken", "thirdToken"},
+					data:   instanceIdentityDocument,
 				}
 				return newTestServer(t, testType, Ts)
 			},
 			expectedData:                instanceIdentityDocument,
-			expectedError:               "",
 			expectedOperationsPerformed: []string{"GetToken", "GetDynamicData"},
 		},
 	}
@@ -737,29 +684,21 @@ func TestEC2RoleProviderInstanceIdentity(t *testing.T) {
 			doc, err := c.GetInstanceIdentityDocument()
 
 			if err != nil {
-				t.Errorf("Expected no error, got %v ", err)
+				t.Fatalf("expected no error, got %v", err)
 			}
+
 			if e, a := doc.AccountID, "123456789012"; e != a {
-				t.Errorf("expect %v, got %v", e, a)
+				t.Fatalf("expect %v, got %v", e, a)
 			}
 			if e, a := doc.AvailabilityZone, "us-east-1d"; e != a {
-				t.Errorf("expect %v, got %v", e, a)
+				t.Fatalf("expect %v, got %v", e, a)
 			}
 			if e, a := doc.Region, "us-east-1"; e != a {
-				t.Errorf("expect %v, got %v", e, a)
+				t.Fatalf("expect %v, got %v", e, a)
 			}
-
-			if len(x.expectedOperationsPerformed) != len(op.operationsPerformed) {
-				t.Errorf("expected operation list to be %v, got %v", x.expectedOperationsPerformed, op.operationsPerformed)
-				return
+			if e, a := x.expectedOperationsPerformed, op.operationsPerformed; !reflect.DeepEqual(e, a) {
+				t.Fatalf("expect %v operations, got %v", e, a)
 			}
-
-			for i := 0; i < len(op.operationsPerformed); i++ {
-				if op.operationsPerformed[i] != x.expectedOperationsPerformed[i] {
-					t.Errorf("expected operation list to be %v, got %v", x.expectedOperationsPerformed, op.operationsPerformed)
-				}
-			}
-
 		})
 	}
 }
@@ -794,13 +733,19 @@ func TestEC2MetadataRetryFailure(t *testing.T) {
 	})
 
 	resp, err := c.GetMetadata("some/path")
-	resp, err = c.GetMetadata("some/path")
-
-	if resp != "profile_name" {
-		t.Errorf("Expected response to be profile_name, got %v", resp)
-	}
 	if err != nil {
-		t.Errorf("Expected none, got error %v", err)
+		t.Fatalf("Expected none, got error %v", err)
+	}
+	if resp != "profile_name" {
+		t.Fatalf("Expected response to be profile_name, got %v", resp)
+	}
+
+	resp, err = c.GetMetadata("some/path")
+	if err != nil {
+		t.Fatalf("Expected none, got error %v", err)
+	}
+	if resp != "profile_name" {
+		t.Fatalf("Expected response to be profile_name, got %v", resp)
 	}
 }
 
@@ -844,24 +789,23 @@ func TestEC2MetadataRetryOnce(t *testing.T) {
 	_, err := c.GetMetadata("some/path")
 
 	if tokenRetryCount != 1 {
-		t.Errorf("Expected number of retries for fetching token to be 1, got %v", tokenRetryCount)
+		t.Fatalf("Expected number of retries for fetching token to be 1, got %v", tokenRetryCount)
 	}
 
 	if !secureDataFlow {
-		t.Errorf("Expected secure data flow to be %v, got %v", secureDataFlow, !secureDataFlow)
+		t.Fatalf("Expected secure data flow to be %v, got %v", secureDataFlow, !secureDataFlow)
 	}
 
 	if err != nil {
-		t.Errorf("Expected none, got error %v", err)
+		t.Fatalf("Expected none, got error %v", err)
 	}
 }
 
 func TestEC2Metadata_Concurrency(t *testing.T) {
 	ts := &testServer{
-		t:           t,
-		tokens:      []string{"firstToken"},
-		activeToken: "",
-		data:        "IMDSProfileForSDKGo",
+		t:      t,
+		tokens: []string{"firstToken"},
+		data:   "IMDSProfileForSDKGo",
 	}
 
 	server := newTestServer(t, SecureTestType, ts)
@@ -891,10 +835,9 @@ func TestEC2Metadata_Concurrency(t *testing.T) {
 
 func TestRequestOnMetadata(t *testing.T) {
 	ts := &testServer{
-		t:           t,
-		tokens:      []string{"firstToken", "secondToken"},
-		activeToken: "",
-		data:        "profile_name",
+		t:      t,
+		tokens: []string{"firstToken", "secondToken"},
+		data:   "profile_name",
 	}
 	server := newTestServer(t, SecureTestType, ts)
 	defer server.Close()
@@ -908,34 +851,33 @@ func TestRequestOnMetadata(t *testing.T) {
 		BeforePresignFn: nil,
 	}, nil, nil)
 
-	op := operationListProvider{}
+	op := &operationListProvider{}
 	c.Handlers.Complete.PushBack(op.addToOperationPerformedList)
 	err := req.Send()
 
 	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatalf("expect no error, got %v", err)
 	}
 
 	if len(op.operationsPerformed) < 1 {
-		t.Errorf("Expected atleast one operation GetToken to be called on EC2Metadata client")
+		t.Fatalf("Expected atleast one operation GetToken to be called on EC2Metadata client")
 		return
 	}
 
 	if op.operationsPerformed[0] != "GetToken" {
-		t.Errorf("Expected GetToken operation to be called")
+		t.Fatalf("Expected GetToken operation to be called")
 	}
 
 }
 
 func TestExhaustiveRetryToFetchToken(t *testing.T) {
 	ts := &testServer{
-		t:           t,
-		tokens:      []string{"firstToken", "secondToken"},
-		activeToken: "",
-		data:        "IMDSProfileForSDKGo",
+		t:      t,
+		tokens: []string{"firstToken", "secondToken"},
+		data:   "IMDSProfileForSDKGo",
 	}
 
-	server := newTestServer(t, retryTimeOutForTokenTestType, ts)
+	server := newTestServer(t, pageNotFoundForTokenTestType, ts)
 	defer server.Close()
 
 	op := &operationListProvider{}
@@ -943,51 +885,51 @@ func TestExhaustiveRetryToFetchToken(t *testing.T) {
 	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
 	c.Handlers.Complete.PushBack(op.addToOperationPerformedList)
 
-	c.Handlers.AfterRetry.PushBack(func(i *request.Request) {
-		t.Logf("Retried %v operation for status code %v", i.Operation.Name, i.HTTPResponse.StatusCode)
-	})
-
-	c.Handlers.Complete.PushBack(func(i *request.Request) {
-		t.Logf("Operation %v completed, with status %v", i.Operation.Name, i.HTTPResponse.StatusCode)
-	})
-
 	resp, err := c.GetMetadata("/some/path")
-	resp, err = c.GetMetadata("/some/path")
-	resp, err = c.GetMetadata("/some/path")
-	resp, err = c.GetMetadata("/some/path")
-
-	expectedOperationsPerformed := []string{"GetToken", "GetMetadata", "GetMetadata", "GetMetadata", "GetMetadata"}
-
-	if e, a := "IMDSProfileForSDKGo", resp; e != a {
-		t.Errorf("Expected %v, got %v", e, a)
-	}
-
 	if err != nil {
-		t.Errorf("Expected no error, got %v", err)
+		t.Fatalf("Expected no error, got %v", err)
+	}
+	if e, a := "IMDSProfileForSDKGo", resp; e != a {
+		t.Fatalf("Expected %v, got %v", e, a)
 	}
 
-	if len(expectedOperationsPerformed) != len(op.operationsPerformed) {
-		t.Errorf("expected operation list to be %v, got %v", expectedOperationsPerformed, op.operationsPerformed)
-		return
+	resp, err = c.GetMetadata("/some/path")
+	if err != nil {
+		t.Fatalf("Expected no error, got %v", err)
+	}
+	if e, a := "IMDSProfileForSDKGo", resp; e != a {
+		t.Fatalf("Expected %v, got %v", e, a)
 	}
 
-	for i := 0; i < len(op.operationsPerformed); i++ {
-		if op.operationsPerformed[i] != expectedOperationsPerformed[i] {
-			t.Errorf("expected operation list to be %v, got %v", expectedOperationsPerformed, op.operationsPerformed)
-		}
+	resp, err = c.GetMetadata("/some/path")
+	if err != nil {
+		t.Fatalf("Expected no error, got %v", err)
+	}
+	if e, a := "IMDSProfileForSDKGo", resp; e != a {
+		t.Fatalf("Expected %v, got %v", e, a)
 	}
 
+	resp, err = c.GetMetadata("/some/path")
+	expectedOperationsPerformed := []string{"GetToken", "GetMetadata", "GetMetadata", "GetMetadata", "GetMetadata"}
+	if err != nil {
+		t.Fatalf("Expected no error, got %v", err)
+	}
+	if e, a := "IMDSProfileForSDKGo", resp; e != a {
+		t.Fatalf("Expected %v, got %v", e, a)
+	}
+	if e, a := expectedOperationsPerformed, op.operationsPerformed; !reflect.DeepEqual(e, a) {
+		t.Fatalf("expect %v operations, got %v", e, a)
+	}
 }
 
 func TestExhaustiveRetryWith401(t *testing.T) {
 	ts := &testServer{
-		t:           t,
-		tokens:      []string{"firstToken", "secondToken"},
-		activeToken: "",
-		data:        "IMDSProfileForSDKGo",
+		t:      t,
+		tokens: []string{"firstToken", "secondToken"},
+		data:   "IMDSProfileForSDKGo",
 	}
 
-	server := newTestServer(t, retryTimeOutWith401TestType, ts)
+	server := newTestServer(t, pageNotFoundWith401TestType, ts)
 	defer server.Close()
 
 	op := &operationListProvider{}
@@ -996,29 +938,98 @@ func TestExhaustiveRetryWith401(t *testing.T) {
 	c.Handlers.Complete.PushBack(op.addToOperationPerformedList)
 
 	resp, err := c.GetMetadata("/some/path")
+	if err == nil {
+		t.Fatalf("Expected %v error, got none", err)
+	}
+	if e, a := "", resp; e != a {
+		t.Fatalf("Expected %v, got %v", e, a)
+	}
 	resp, err = c.GetMetadata("/some/path")
+	if err == nil {
+		t.Fatalf("Expected %v error, got none", err)
+	}
+	if e, a := "", resp; e != a {
+		t.Fatalf("Expected %v, got %v", e, a)
+	}
 	resp, err = c.GetMetadata("/some/path")
+	if err == nil {
+		t.Fatalf("Expected %v error, got none", err)
+	}
+	if e, a := "", resp; e != a {
+		t.Fatalf("Expected %v, got %v", e, a)
+	}
 	resp, err = c.GetMetadata("/some/path")
 
 	expectedOperationsPerformed := []string{"GetToken", "GetMetadata", "GetToken", "GetMetadata", "GetToken", "GetMetadata", "GetToken", "GetMetadata"}
 
-	if e, a := "", resp; e != a {
-		t.Errorf("Expected %v, got %v", e, a)
-	}
-
 	if err == nil {
-		t.Errorf("Expected %v error, got none", err)
+		t.Fatalf("Expected %v error, got none", err)
 	}
-
-	if len(expectedOperationsPerformed) != len(op.operationsPerformed) {
-		t.Errorf("expected operation list to be %v, got %v", expectedOperationsPerformed, op.operationsPerformed)
-		return
+	if e, a := "", resp; e != a {
+		t.Fatalf("Expected %v, got %v", e, a)
 	}
+	if e, a := expectedOperationsPerformed, op.operationsPerformed; !reflect.DeepEqual(e, a) {
+		t.Fatalf("expect %v operations, got %v", e, a)
+	}
+}
 
-	for i := 0; i < len(op.operationsPerformed); i++ {
-		if op.operationsPerformed[i] != expectedOperationsPerformed[i] {
-			t.Errorf("expected operation list to be %v, got %v", expectedOperationsPerformed, op.operationsPerformed)
+func TestRequestTimeOut(t *testing.T) {
+	mux := http.NewServeMux()
+	done := make(chan bool)
+	mux.HandleFunc("/latest/api/token", func(w http.ResponseWriter, r *http.Request) {
+		// wait to read from channel done
+		<-done
+	})
+
+	mux.HandleFunc("/latest/", func(w http.ResponseWriter, r *http.Request) {
+		if len(r.Header.Get(tokenHeader)) != 0 {
+			http.Error(w, "", 400)
+			return
 		}
+		w.Write([]byte("IMDSProfileForSDKGo"))
+	})
+
+	server := httptest.NewServer(mux)
+	defer server.Close()
+	defer close(done)
+
+	op := &operationListProvider{}
+
+	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+	// for test, change the timeout to 100 ms
+	c.Config.HTTPClient.Timeout = 100 * time.Millisecond
+
+	c.Handlers.Complete.PushBack(op.addToOperationPerformedList)
+
+	resp, err := c.GetMetadata("/some/path")
+
+	expectedOperationsPerformed := []string{"GetToken", "GetMetadata"}
+
+	if e, a := "IMDSProfileForSDKGo", resp; e != a {
+		t.Fatalf("Expected %v, got %v", e, a)
 	}
 
+	if err != nil {
+		t.Fatalf("Expected no error, got %v", err)
+	}
+
+	if e, a := expectedOperationsPerformed, op.operationsPerformed; !reflect.DeepEqual(e, a) {
+		t.Fatalf("expect %v operations, got %v", e, a)
+	}
+
+	resp, err = c.GetMetadata("/some/path")
+
+	expectedOperationsPerformed = []string{"GetToken", "GetMetadata", "GetMetadata"}
+
+	if e, a := "IMDSProfileForSDKGo", resp; e != a {
+		t.Fatalf("Expected %v, got %v", e, a)
+	}
+
+	if err != nil {
+		t.Fatalf("Expected no error, got %v", err)
+	}
+
+	if e, a := expectedOperationsPerformed, op.operationsPerformed; !reflect.DeepEqual(e, a) {
+		t.Fatalf("expect %v operations, got %v", e, a)
+	}
 }
