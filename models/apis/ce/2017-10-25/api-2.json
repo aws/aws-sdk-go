@@ -30,6 +30,22 @@
         {"shape":"RequestChangedException"}
       ]
     },
+    "GetCostAndUsageWithResources":{
+      "name":"GetCostAndUsageWithResources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetCostAndUsageWithResourcesRequest"},
+      "output":{"shape":"GetCostAndUsageWithResourcesResponse"},
+      "errors":[
+        {"shape":"DataUnavailableException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"BillExpirationException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"RequestChangedException"}
+      ]
+    },
     "GetCostForecast":{
       "name":"GetCostForecast",
       "http":{
@@ -335,6 +351,7 @@
         "INSTANCE_TYPE_FAMILY",
         "BILLING_ENTITY",
         "RESERVATION_ID",
+        "RESOURCE_ID",
         "RIGHTSIZING_TYPE",
         "SAVINGS_PLANS_TYPE",
         "SAVINGS_PLAN_ARN",
@@ -466,6 +483,26 @@
       }
     },
     "GetCostAndUsageResponse":{
+      "type":"structure",
+      "members":{
+        "NextPageToken":{"shape":"NextPageToken"},
+        "GroupDefinitions":{"shape":"GroupDefinitions"},
+        "ResultsByTime":{"shape":"ResultsByTime"}
+      }
+    },
+    "GetCostAndUsageWithResourcesRequest":{
+      "type":"structure",
+      "required":["TimePeriod"],
+      "members":{
+        "TimePeriod":{"shape":"DateInterval"},
+        "Granularity":{"shape":"Granularity"},
+        "Filter":{"shape":"Expression"},
+        "Metrics":{"shape":"MetricNames"},
+        "GroupBy":{"shape":"GroupDefinitions"},
+        "NextPageToken":{"shape":"NextPageToken"}
+      }
+    },
+    "GetCostAndUsageWithResourcesResponse":{
       "type":"structure",
       "members":{
         "NextPageToken":{"shape":"NextPageToken"},

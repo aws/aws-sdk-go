@@ -64,6 +64,10 @@ type CostExplorerAPI interface {
 	GetCostAndUsageWithContext(aws.Context, *costexplorer.GetCostAndUsageInput, ...request.Option) (*costexplorer.GetCostAndUsageOutput, error)
 	GetCostAndUsageRequest(*costexplorer.GetCostAndUsageInput) (*request.Request, *costexplorer.GetCostAndUsageOutput)
 
+	GetCostAndUsageWithResources(*costexplorer.GetCostAndUsageWithResourcesInput) (*costexplorer.GetCostAndUsageWithResourcesOutput, error)
+	GetCostAndUsageWithResourcesWithContext(aws.Context, *costexplorer.GetCostAndUsageWithResourcesInput, ...request.Option) (*costexplorer.GetCostAndUsageWithResourcesOutput, error)
+	GetCostAndUsageWithResourcesRequest(*costexplorer.GetCostAndUsageWithResourcesInput) (*request.Request, *costexplorer.GetCostAndUsageWithResourcesOutput)
+
 	GetCostForecast(*costexplorer.GetCostForecastInput) (*costexplorer.GetCostForecastOutput, error)
 	GetCostForecastWithContext(aws.Context, *costexplorer.GetCostForecastInput, ...request.Option) (*costexplorer.GetCostForecastOutput, error)
 	GetCostForecastRequest(*costexplorer.GetCostForecastInput) (*request.Request, *costexplorer.GetCostForecastOutput)

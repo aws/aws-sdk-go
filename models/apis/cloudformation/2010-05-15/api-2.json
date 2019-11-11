@@ -741,7 +741,8 @@
       "enum":[
         "Add",
         "Modify",
-        "Remove"
+        "Remove",
+        "Import"
       ]
     },
     "ChangeSetId":{
@@ -805,7 +806,8 @@
       "type":"string",
       "enum":[
         "CREATE",
-        "UPDATE"
+        "UPDATE",
+        "IMPORT"
       ]
     },
     "ChangeSource":{
@@ -873,7 +875,8 @@
         "ChangeSetName":{"shape":"ChangeSetName"},
         "ClientToken":{"shape":"ClientToken"},
         "Description":{"shape":"Description"},
-        "ChangeSetType":{"shape":"ChangeSetType"}
+        "ChangeSetType":{"shape":"ChangeSetType"},
+        "ResourcesToImport":{"shape":"ResourcesToImport"}
       }
     },
     "CreateChangeSetOutput":{
@@ -1401,7 +1404,8 @@
         "ResourceTypes":{"shape":"ResourceTypes"},
         "Version":{"shape":"Version"},
         "Metadata":{"shape":"Metadata"},
-        "DeclaredTransforms":{"shape":"TransformsList"}
+        "DeclaredTransforms":{"shape":"TransformsList"},
+        "ResourceIdentifierSummaries":{"shape":"ResourceIdentifierSummaries"}
       }
     },
     "Imports":{
@@ -1838,6 +1842,39 @@
       "type":"list",
       "member":{"shape":"ResourceChangeDetail"}
     },
+    "ResourceIdentifierProperties":{
+      "type":"map",
+      "key":{"shape":"ResourceIdentifierPropertyKey"},
+      "value":{"shape":"ResourceIdentifierPropertyValue"},
+      "max":256,
+      "min":1
+    },
+    "ResourceIdentifierPropertyKey":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
+    "ResourceIdentifierPropertyValue":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
+    "ResourceIdentifierSummaries":{
+      "type":"list",
+      "member":{"shape":"ResourceIdentifierSummary"}
+    },
+    "ResourceIdentifierSummary":{
+      "type":"structure",
+      "members":{
+        "ResourceType":{"shape":"ResourceType"},
+        "LogicalResourceIds":{"shape":"LogicalResourceIds"},
+        "ResourceIdentifiers":{"shape":"ResourceIdentifiers"}
+      }
+    },
+    "ResourceIdentifiers":{
+      "type":"list",
+      "member":{"shape":"ResourceIdentifierPropertyKey"}
+    },
     "ResourceProperties":{"type":"string"},
     "ResourceSignalStatus":{
       "type":"string",
@@ -1863,7 +1900,13 @@
         "DELETE_SKIPPED",
         "UPDATE_IN_PROGRESS",
         "UPDATE_FAILED",
-        "UPDATE_COMPLETE"
+        "UPDATE_COMPLETE",
+        "IMPORT_FAILED",
+        "IMPORT_COMPLETE",
+        "IMPORT_IN_PROGRESS",
+        "IMPORT_ROLLBACK_IN_PROGRESS",
+        "IMPORT_ROLLBACK_FAILED",
+        "IMPORT_ROLLBACK_COMPLETE"
       ]
     },
     "ResourceStatusReason":{"type":"string"},
@@ -1873,6 +1916,19 @@
         "Attribute":{"shape":"ResourceAttribute"},
         "Name":{"shape":"PropertyName"},
         "RequiresRecreation":{"shape":"RequiresRecreation"}
+      }
+    },
+    "ResourceToImport":{
+      "type":"structure",
+      "required":[
+        "ResourceType",
+        "LogicalResourceId",
+        "ResourceIdentifier"
+      ],
+      "members":{
+        "ResourceType":{"shape":"ResourceType"},
+        "LogicalResourceId":{"shape":"LogicalResourceId"},
+        "ResourceIdentifier":{"shape":"ResourceIdentifierProperties"}
       }
     },
     "ResourceToSkip":{
@@ -1887,6 +1943,11 @@
     "ResourceTypes":{
       "type":"list",
       "member":{"shape":"ResourceType"}
+    },
+    "ResourcesToImport":{
+      "type":"list",
+      "member":{"shape":"ResourceToImport"},
+      "max":200
     },
     "ResourcesToSkip":{
       "type":"list",
@@ -2415,7 +2476,12 @@
         "UPDATE_ROLLBACK_FAILED",
         "UPDATE_ROLLBACK_COMPLETE_CLEANUP_IN_PROGRESS",
         "UPDATE_ROLLBACK_COMPLETE",
-        "REVIEW_IN_PROGRESS"
+        "REVIEW_IN_PROGRESS",
+        "IMPORT_IN_PROGRESS",
+        "IMPORT_COMPLETE",
+        "IMPORT_ROLLBACK_IN_PROGRESS",
+        "IMPORT_ROLLBACK_FAILED",
+        "IMPORT_ROLLBACK_COMPLETE"
       ]
     },
     "StackStatusFilter":{

@@ -104,13 +104,19 @@
         },
         {
           "argument": "Stacks[].StackStatus",
+          "expected": "UPDATE_ROLLBACK_IN_PROGRESS",
+          "matcher": "pathAny",
+          "state": "failure"
+        },
+        {
+          "argument": "Stacks[].StackStatus",
           "expected": "UPDATE_ROLLBACK_FAILED",
           "matcher": "pathAny",
           "state": "failure"
         },
         {
           "argument": "Stacks[].StackStatus",
-          "expected": "UPDATE_ROLLBACK_IN_PROGRESS",
+          "expected": "UPDATE_ROLLBACK_COMPLETE",
           "matcher": "pathAny",
           "state": "failure"
         }
@@ -142,6 +148,55 @@
         },
         {
           "expected": "UPDATE_ROLLBACK_COMPLETE",
+          "matcher": "pathAny",
+          "state": "failure",
+          "argument": "Stacks[].StackStatus"
+        },
+        {
+          "expected": "ValidationError",
+          "matcher": "error",
+          "state": "failure"
+        }
+      ]
+    },
+    "StackImportComplete": {
+      "delay": 30,
+      "maxAttempts": 120,
+      "operation": "DescribeStacks",
+      "description": "Wait until stack status is IMPORT_COMPLETE.",
+      "acceptors": [
+        {
+          "argument": "Stacks[].StackStatus",
+          "expected": "IMPORT_COMPLETE",
+          "matcher": "pathAll",
+          "state": "success"
+        },
+        {
+          "expected": "ROLLBACK_COMPLETE",
+          "matcher": "pathAny",
+          "state": "failure",
+          "argument": "Stacks[].StackStatus"
+        },
+        {
+          "expected": "ROLLBACK_FAILED",
+          "matcher": "pathAny",
+          "state": "failure",
+          "argument": "Stacks[].StackStatus"
+        },
+        {
+          "argument": "Stacks[].StackStatus",
+          "expected": "IMPORT_ROLLBACK_IN_PROGRESS",
+          "matcher": "pathAny",
+          "state": "failure"
+        },
+        {
+          "argument": "Stacks[].StackStatus",
+          "expected": "IMPORT_ROLLBACK_FAILED",
+          "matcher": "pathAny",
+          "state": "failure"
+        },
+        {
+          "expected": "IMPORT_ROLLBACK_COMPLETE",
           "matcher": "pathAny",
           "state": "failure",
           "argument": "Stacks[].StackStatus"

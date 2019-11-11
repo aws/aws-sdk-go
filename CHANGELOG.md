@@ -1,3 +1,11 @@
+Release v1.25.32 (2019-11-11)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/cloudformation`: Updates service API, documentation, and waiters
+  * The Resource Import feature enables customers to import existing AWS resources into new or existing CloudFormation Stacks.
+
 Release v1.25.31 (2019-11-08)
 ===
 
