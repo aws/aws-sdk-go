@@ -273,6 +273,9 @@ type CloudFormationAPI interface {
 	WaitUntilStackExists(*cloudformation.DescribeStacksInput) error
 	WaitUntilStackExistsWithContext(aws.Context, *cloudformation.DescribeStacksInput, ...request.WaiterOption) error
 
+	WaitUntilStackImportComplete(*cloudformation.DescribeStacksInput) error
+	WaitUntilStackImportCompleteWithContext(aws.Context, *cloudformation.DescribeStacksInput, ...request.WaiterOption) error
+
 	WaitUntilStackUpdateComplete(*cloudformation.DescribeStacksInput) error
 	WaitUntilStackUpdateCompleteWithContext(aws.Context, *cloudformation.DescribeStacksInput, ...request.WaiterOption) error
 }

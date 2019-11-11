@@ -106,6 +106,110 @@ func (c *CostExplorer) GetCostAndUsageWithContext(ctx aws.Context, input *GetCos
 	return out, req.Send()
 }
 
+const opGetCostAndUsageWithResources = "GetCostAndUsageWithResources"
+
+// GetCostAndUsageWithResourcesRequest generates a "aws/request.Request" representing the
+// client's request for the GetCostAndUsageWithResources operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCostAndUsageWithResources for more information on using the GetCostAndUsageWithResources
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetCostAndUsageWithResourcesRequest method.
+//    req, resp := client.GetCostAndUsageWithResourcesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetCostAndUsageWithResources
+func (c *CostExplorer) GetCostAndUsageWithResourcesRequest(input *GetCostAndUsageWithResourcesInput) (req *request.Request, output *GetCostAndUsageWithResourcesOutput) {
+	op := &request.Operation{
+		Name:       opGetCostAndUsageWithResources,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetCostAndUsageWithResourcesInput{}
+	}
+
+	output = &GetCostAndUsageWithResourcesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCostAndUsageWithResources API operation for AWS Cost Explorer Service.
+//
+// Retrieves cost and usage metrics with resources for your account. You can
+// specify which cost and usage-related metric, such as BlendedCosts or UsageQuantity,
+// that you want the request to return. You can also filter and group your data
+// by various dimensions, such as SERVICE or AZ, in a specific time range. For
+// a complete list of valid dimensions, see the GetDimensionValues (http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html)
+// operation. Master accounts in an organization in AWS Organizations have access
+// to all member accounts. This API is currently available for the Amazon Elastic
+// Compute Cloud – Compute service only.
+//
+// This is an opt-in only feature. You can enable this feature from the Cost
+// Explorer Settings page. For information on how to access the Settings page,
+// see Controlling Access for Cost Explorer (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-access.html)
+// in the AWS Billing and Cost Management User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cost Explorer Service's
+// API operation GetCostAndUsageWithResources for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeDataUnavailableException "DataUnavailableException"
+//   The requested data is unavailable.
+//
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   You made too many calls in a short period of time. Try again later.
+//
+//   * ErrCodeBillExpirationException "BillExpirationException"
+//   The requested report expired. Update the date interval and try again.
+//
+//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   The pagination token is invalid. Try again without a pagination token.
+//
+//   * ErrCodeRequestChangedException "RequestChangedException"
+//   Your request parameters changed between pages. Try again with the old parameters
+//   or without a pagination token.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetCostAndUsageWithResources
+func (c *CostExplorer) GetCostAndUsageWithResources(input *GetCostAndUsageWithResourcesInput) (*GetCostAndUsageWithResourcesOutput, error) {
+	req, out := c.GetCostAndUsageWithResourcesRequest(input)
+	return out, req.Send()
+}
+
+// GetCostAndUsageWithResourcesWithContext is the same as GetCostAndUsageWithResources with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCostAndUsageWithResources for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) GetCostAndUsageWithResourcesWithContext(ctx aws.Context, input *GetCostAndUsageWithResourcesInput, opts ...request.Option) (*GetCostAndUsageWithResourcesOutput, error) {
+	req, out := c.GetCostAndUsageWithResourcesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetCostForecast = "GetCostForecast"
 
 // GetCostForecastRequest generates a "aws/request.Request" representing the
@@ -959,8 +1063,8 @@ func (c *CostExplorer) GetSavingsPlansUtilizationRequest(input *GetSavingsPlansU
 //
 // Retrieves the Savings Plans utilization for your account across date ranges
 // with daily or monthly granularity. Master accounts in an organization have
-// access to member accounts. You can use GetDimensionValues to determine the
-// possible dimension values.
+// access to member accounts. You can use GetDimensionValues in SAVINGS_PLANS
+// to determine the possible dimension values.
 //
 // You cannot group by any dimension values for GetSavingsPlansUtilization.
 //
@@ -1050,12 +1154,15 @@ func (c *CostExplorer) GetSavingsPlansUtilizationDetailsRequest(input *GetSaving
 
 // GetSavingsPlansUtilizationDetails API operation for AWS Cost Explorer Service.
 //
-// Retrieves a single daily or monthly Savings Plans utilization rate and details
-// for your account. Master accounts in an organization have access to member
-// accounts. You can use GetDimensionValues to determine the possible dimension
+// Retrieves attribute data along with aggregate utilization and savings data
+// for a given time period. This doesn't support granular or grouped data (daily/monthly)
+// in response. You can't retrieve data by dates in a single response similar
+// to GetSavingsPlanUtilization, but you have the option to make multiple calls
+// to GetSavingsPlanUtilizationDetails by providing individual dates. You can
+// use GetDimensionValues in SAVINGS_PLANS to determine the possible dimension
 // values.
 //
-// You can't group by any dimension values for GetSavingsPlansUtilizationDetails.
+// GetSavingsPlanUtilizationDetails internally groups data by SavingsPlansArn.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2316,8 +2423,9 @@ type GetCostAndUsageInput struct {
 	// of dimension filters. For more information, see Expression (http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html).
 	Filter *Expression `type:"structure"`
 
-	// Sets the AWS cost granularity to MONTHLY or DAILY. If Granularity isn't set,
-	// the response object doesn't include the Granularity, either MONTHLY or DAILY.
+	// Sets the AWS cost granularity to MONTHLY or DAILY, or HOURLY. If Granularity
+	// isn't set, the response object doesn't include the Granularity, either MONTHLY
+	// or DAILY, or HOURLY.
 	//
 	// The GetCostAndUsageRequest operation supports only DAILY and MONTHLY granularities.
 	Granularity *string `type:"string" enum:"Granularity"`
@@ -2466,6 +2574,169 @@ func (s *GetCostAndUsageOutput) SetNextPageToken(v string) *GetCostAndUsageOutpu
 
 // SetResultsByTime sets the ResultsByTime field's value.
 func (s *GetCostAndUsageOutput) SetResultsByTime(v []*ResultByTime) *GetCostAndUsageOutput {
+	s.ResultsByTime = v
+	return s
+}
+
+type GetCostAndUsageWithResourcesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters Amazon Web Services costs by different dimensions. For example, you
+	// can specify SERVICE and LINKED_ACCOUNT and get the costs that are associated
+	// with that account's usage of that service. You can nest Expression objects
+	// to define any combination of dimension filters. For more information, see
+	// Expression (http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html).
+	//
+	// The GetCostAndUsageWithResources operation requires that you either group
+	// by or filter by a ResourceId.
+	Filter *Expression `type:"structure"`
+
+	// Sets the AWS cost granularity to MONTHLY, DAILY, or HOURLY. If Granularity
+	// isn't set, the response object doesn't include the Granularity, MONTHLY,
+	// DAILY, or HOURLY.
+	Granularity *string `type:"string" enum:"Granularity"`
+
+	// You can group Amazon Web Services costs using up to two different groups:
+	// either dimensions, tag keys, or both.
+	GroupBy []*GroupDefinition `type:"list"`
+
+	// Which metrics are returned in the query. For more information about blended
+	// and unblended rates, see Why does the "blended" annotation appear on some
+	// line items in my bill? (https://aws.amazon.com/premiumsupport/knowledge-center/blended-rates-intro/).
+	//
+	// Valid values are AmortizedCost, BlendedCost, NetAmortizedCost, NetUnblendedCost,
+	// NormalizedUsageAmount, UnblendedCost, and UsageQuantity.
+	//
+	// If you return the UsageQuantity metric, the service aggregates all usage
+	// numbers without taking the units into account. For example, if you aggregate
+	// usageQuantity across all of Amazon EC2, the results aren't meaningful because
+	// Amazon EC2 compute hours and data transfer are measured in different units
+	// (for example, hours vs. GB). To get more meaningful UsageQuantity metrics,
+	// filter by UsageType or UsageTypeGroups.
+	//
+	// Metrics is required for GetCostAndUsageWithResources requests.
+	Metrics []*string `type:"list"`
+
+	// The token to retrieve the next set of results. AWS provides the token when
+	// the response from a previous call has more results than the maximum page
+	// size.
+	NextPageToken *string `type:"string"`
+
+	// Sets the start and end dates for retrieving Amazon Web Services costs. The
+	// range must be within the last 14 days (the start date cannot be earlier than
+	// 14 days ago). The start date is inclusive, but the end date is exclusive.
+	// For example, if start is 2017-01-01 and end is 2017-05-01, then the cost
+	// and usage data is retrieved from 2017-01-01 up to and including 2017-04-30
+	// but not including 2017-05-01.
+	//
+	// TimePeriod is a required field
+	TimePeriod *DateInterval `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GetCostAndUsageWithResourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetCostAndUsageWithResourcesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCostAndUsageWithResourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCostAndUsageWithResourcesInput"}
+	if s.TimePeriod == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimePeriod"))
+	}
+	if s.TimePeriod != nil {
+		if err := s.TimePeriod.Validate(); err != nil {
+			invalidParams.AddNested("TimePeriod", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *GetCostAndUsageWithResourcesInput) SetFilter(v *Expression) *GetCostAndUsageWithResourcesInput {
+	s.Filter = v
+	return s
+}
+
+// SetGranularity sets the Granularity field's value.
+func (s *GetCostAndUsageWithResourcesInput) SetGranularity(v string) *GetCostAndUsageWithResourcesInput {
+	s.Granularity = &v
+	return s
+}
+
+// SetGroupBy sets the GroupBy field's value.
+func (s *GetCostAndUsageWithResourcesInput) SetGroupBy(v []*GroupDefinition) *GetCostAndUsageWithResourcesInput {
+	s.GroupBy = v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *GetCostAndUsageWithResourcesInput) SetMetrics(v []*string) *GetCostAndUsageWithResourcesInput {
+	s.Metrics = v
+	return s
+}
+
+// SetNextPageToken sets the NextPageToken field's value.
+func (s *GetCostAndUsageWithResourcesInput) SetNextPageToken(v string) *GetCostAndUsageWithResourcesInput {
+	s.NextPageToken = &v
+	return s
+}
+
+// SetTimePeriod sets the TimePeriod field's value.
+func (s *GetCostAndUsageWithResourcesInput) SetTimePeriod(v *DateInterval) *GetCostAndUsageWithResourcesInput {
+	s.TimePeriod = v
+	return s
+}
+
+type GetCostAndUsageWithResourcesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The groups that are specified by the Filter or GroupBy parameters in the
+	// request.
+	GroupDefinitions []*GroupDefinition `type:"list"`
+
+	// The token for the next set of retrievable results. AWS provides the token
+	// when the response from a previous call has more results than the maximum
+	// page size.
+	NextPageToken *string `type:"string"`
+
+	// The time period that is covered by the results in the response.
+	ResultsByTime []*ResultByTime `type:"list"`
+}
+
+// String returns the string representation
+func (s GetCostAndUsageWithResourcesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetCostAndUsageWithResourcesOutput) GoString() string {
+	return s.String()
+}
+
+// SetGroupDefinitions sets the GroupDefinitions field's value.
+func (s *GetCostAndUsageWithResourcesOutput) SetGroupDefinitions(v []*GroupDefinition) *GetCostAndUsageWithResourcesOutput {
+	s.GroupDefinitions = v
+	return s
+}
+
+// SetNextPageToken sets the NextPageToken field's value.
+func (s *GetCostAndUsageWithResourcesOutput) SetNextPageToken(v string) *GetCostAndUsageWithResourcesOutput {
+	s.NextPageToken = &v
+	return s
+}
+
+// SetResultsByTime sets the ResultsByTime field's value.
+func (s *GetCostAndUsageWithResourcesOutput) SetResultsByTime(v []*ResultByTime) *GetCostAndUsageWithResourcesOutput {
 	s.ResultsByTime = v
 	return s
 }
@@ -2667,6 +2938,9 @@ type GetDimensionValuesInput struct {
 	//    * RECORD_TYPE - The different types of charges such as RI fees, usage
 	//    costs, tax refunds, and credits.
 	//
+	//    * RESOURCE_ID - The unique identifier of the resource. ResourceId is an
+	//    opt-in feature only available for last 14 days for EC2-Compute Service.
+	//
 	// If you set the context to RESERVATIONS, you can use the following dimensions
 	// for searching:
 	//
@@ -2846,6 +3120,9 @@ type GetDimensionValuesOutput struct {
 	//
 	//    * RECORD_TYPE - The different types of charges such as RI fees, usage
 	//    costs, tax refunds, and credits.
+	//
+	//    * RESOURCE_ID - The unique identifier of the resource. ResourceId is an
+	//    opt-in feature only available for last 14 days for EC2-Compute Service.
 	//
 	// If you set the context to RESERVATIONS, you can use the following dimensions
 	// for searching:
@@ -3639,6 +3916,8 @@ type GetSavingsPlansCoverageInput struct {
 
 	// The granularity of the Amazon Web Services cost data for your Savings Plans.
 	// Granularity can't be set if GroupBy is set.
+	//
+	// The GetSavingsPlansCoverage operation supports only DAILY and MONTHLY granularities.
 	Granularity *string `type:"string" enum:"Granularity"`
 
 	// You can group the data using the attributes INSTANCE_FAMILY, REGION, or SERVICE.
@@ -3649,7 +3928,7 @@ type GetSavingsPlansCoverageInput struct {
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// The measurement that you want your Savings Plans coverage reported in. The
-	// only valid value is spendCoveredBySavingsPlans.
+	// only valid value is SpendCoveredBySavingsPlans.
 	Metrics []*string `type:"list"`
 
 	// The token to retrieve the next set of results. Amazon Web Services provides
@@ -3878,7 +4157,7 @@ func (s *GetSavingsPlansPurchaseRecommendationInput) SetTermInYears(v string) *G
 type GetSavingsPlansPurchaseRecommendationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The accountIDs these recommendations are generated for.
+	// Information regarding this specific recommendation set.
 	Metadata *SavingsPlansPurchaseRecommendationMetadata `type:"structure"`
 
 	// The token for the next set of retrievable results. AWS provides the token
@@ -3931,13 +4210,12 @@ type GetSavingsPlansUtilizationDetailsInput struct {
 	//
 	//    * REGION
 	//
-	//    * PAYMENT_OPTIONS
+	//    * PAYMENT_OPTION
 	//
 	//    * INSTANCE_TYPE_FAMILY
 	//
 	// GetSavingsPlansUtilizationDetails uses the same Expression (http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
 	// object as the other operations, but only AND is supported among each dimension.
-	// If there are multiple values for a dimension, they are OR'd together.
 	Filter *Expression `type:"structure"`
 
 	// The number of items to be returned in a response. The default is 20, with
@@ -4083,17 +4361,19 @@ type GetSavingsPlansUtilizationInput struct {
 	//
 	//    * REGION
 	//
-	//    * PAYMENT_OPTIONS
+	//    * PAYMENT_OPTION
 	//
 	//    * INSTANCE_TYPE_FAMILY
 	//
 	// GetSavingsPlansUtilization uses the same Expression (http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
 	// object as the other operations, but only AND is supported among each dimension.
-	// If there are multiple values for a dimension, they are OR'd together.
 	Filter *Expression `type:"structure"`
 
 	// The granularity of the Amazon Web Services utillization data for your Savings
 	// Plans.
+	//
+	// The GetSavingsPlansUtilization operation supports only DAILY and MONTHLY
+	// granularities.
 	Granularity *string `type:"string" enum:"Granularity"`
 
 	// The time period that you want the usage and costs for. The Start date must
@@ -4153,12 +4433,12 @@ func (s *GetSavingsPlansUtilizationInput) SetTimePeriod(v *DateInterval) *GetSav
 type GetSavingsPlansUtilizationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The amount of time (in hours) ou used your Savings Plans. This allows you
+	// The amount of cost/commitment you used your Savings Plans. This allows you
 	// to specify date ranges.
 	SavingsPlansUtilizationsByTime []*SavingsPlansUtilizationByTime `type:"list"`
 
-	// The total amount of time that you used your Savings Plans, regardless of
-	// date ranges.
+	// The total amount of cost/commitment that you used your Savings Plans, regardless
+	// of date ranges.
 	//
 	// Total is a required field
 	Total *SavingsPlansUtilizationAggregates `type:"structure" required:"true"`
@@ -5808,7 +6088,8 @@ type SavingsPlansDetails struct {
 	// The unique ID used to distinguish Savings Plans from one another.
 	OfferingId *string `type:"string"`
 
-	// A geographic location where the Savings Plans is hosted.
+	// A collection of AWS resources in a geographic area. Each AWS Region is isolated
+	// and independent of the other Regions.
 	Region *string `type:"string"`
 }
 
@@ -6268,7 +6549,7 @@ type SavingsPlansUtilization struct {
 	// Plans eligible usage in a specific period.
 	UnusedCommitment *string `type:"string"`
 
-	// The amount of your Savings Plans commitment that was not consumed from Savings
+	// The amount of your Savings Plans commitment that was consumed from Savings
 	// Plans eligible usage in a specific period.
 	UsedCommitment *string `type:"string"`
 
@@ -6774,6 +7055,9 @@ const (
 
 	// DimensionReservationId is a Dimension enum value
 	DimensionReservationId = "RESERVATION_ID"
+
+	// DimensionResourceId is a Dimension enum value
+	DimensionResourceId = "RESOURCE_ID"
 
 	// DimensionRightsizingType is a Dimension enum value
 	DimensionRightsizingType = "RIGHTSIZING_TYPE"
