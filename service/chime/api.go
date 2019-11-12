@@ -4517,10 +4517,12 @@ func (c *Chime) ListAccountsPagesWithContext(ctx aws.Context, input *ListAccount
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListAccountsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListAccountsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -4669,10 +4671,12 @@ func (c *Chime) ListBotsPagesWithContext(ctx aws.Context, input *ListBotsInput, 
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListBotsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListBotsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -4820,10 +4824,12 @@ func (c *Chime) ListPhoneNumberOrdersPagesWithContext(ctx aws.Context, input *Li
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListPhoneNumberOrdersOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListPhoneNumberOrdersOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -4972,10 +4978,12 @@ func (c *Chime) ListPhoneNumbersPagesWithContext(ctx aws.Context, input *ListPho
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListPhoneNumbersOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListPhoneNumbersOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -5128,10 +5136,12 @@ func (c *Chime) ListUsersPagesWithContext(ctx aws.Context, input *ListUsersInput
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListUsersOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListUsersOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -5280,10 +5290,12 @@ func (c *Chime) ListVoiceConnectorGroupsPagesWithContext(ctx aws.Context, input 
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListVoiceConnectorGroupsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListVoiceConnectorGroupsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -5529,10 +5541,12 @@ func (c *Chime) ListVoiceConnectorsPagesWithContext(ctx aws.Context, input *List
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListVoiceConnectorsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListVoiceConnectorsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 

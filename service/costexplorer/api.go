@@ -927,10 +927,12 @@ func (c *CostExplorer) GetSavingsPlansCoveragePagesWithContext(ctx aws.Context, 
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*GetSavingsPlansCoverageOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*GetSavingsPlansCoverageOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1246,10 +1248,12 @@ func (c *CostExplorer) GetSavingsPlansUtilizationDetailsPagesWithContext(ctx aws
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*GetSavingsPlansUtilizationDetailsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*GetSavingsPlansUtilizationDetailsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 

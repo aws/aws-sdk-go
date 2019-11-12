@@ -1697,10 +1697,12 @@ func (c *Rekognition) GetCelebrityRecognitionPagesWithContext(ctx aws.Context, i
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*GetCelebrityRecognitionOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*GetCelebrityRecognitionOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1882,10 +1884,12 @@ func (c *Rekognition) GetContentModerationPagesWithContext(ctx aws.Context, inpu
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*GetContentModerationOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*GetContentModerationOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2055,10 +2059,12 @@ func (c *Rekognition) GetFaceDetectionPagesWithContext(ctx aws.Context, input *G
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*GetFaceDetectionOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*GetFaceDetectionOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2238,10 +2244,12 @@ func (c *Rekognition) GetFaceSearchPagesWithContext(ctx aws.Context, input *GetF
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*GetFaceSearchOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*GetFaceSearchOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2420,10 +2428,12 @@ func (c *Rekognition) GetLabelDetectionPagesWithContext(ctx aws.Context, input *
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*GetLabelDetectionOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*GetLabelDetectionOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2605,10 +2615,12 @@ func (c *Rekognition) GetPersonTrackingPagesWithContext(ctx aws.Context, input *
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*GetPersonTrackingOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*GetPersonTrackingOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2962,10 +2974,12 @@ func (c *Rekognition) ListCollectionsPagesWithContext(ctx aws.Context, input *Li
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListCollectionsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListCollectionsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -3121,10 +3135,12 @@ func (c *Rekognition) ListFacesPagesWithContext(ctx aws.Context, input *ListFace
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListFacesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListFacesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -3271,10 +3287,12 @@ func (c *Rekognition) ListStreamProcessorsPagesWithContext(ctx aws.Context, inpu
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListStreamProcessorsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListStreamProcessorsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 

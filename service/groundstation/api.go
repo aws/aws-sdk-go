@@ -1266,10 +1266,12 @@ func (c *GroundStation) ListConfigsPagesWithContext(ctx aws.Context, input *List
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListConfigsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListConfigsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1410,10 +1412,12 @@ func (c *GroundStation) ListContactsPagesWithContext(ctx aws.Context, input *Lis
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListContactsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListContactsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1551,10 +1555,12 @@ func (c *GroundStation) ListDataflowEndpointGroupsPagesWithContext(ctx aws.Conte
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListDataflowEndpointGroupsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListDataflowEndpointGroupsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1692,10 +1698,12 @@ func (c *GroundStation) ListGroundStationsPagesWithContext(ctx aws.Context, inpu
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListGroundStationsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListGroundStationsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1833,10 +1841,12 @@ func (c *GroundStation) ListMissionProfilesPagesWithContext(ctx aws.Context, inp
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListMissionProfilesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListMissionProfilesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1974,10 +1984,12 @@ func (c *GroundStation) ListSatellitesPagesWithContext(ctx aws.Context, input *L
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListSatellitesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListSatellitesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 

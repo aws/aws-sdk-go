@@ -435,10 +435,12 @@ func (c *MarketplaceCatalog) ListChangeSetsPagesWithContext(ctx aws.Context, inp
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListChangeSetsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListChangeSetsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -582,10 +584,12 @@ func (c *MarketplaceCatalog) ListEntitiesPagesWithContext(ctx aws.Context, input
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListEntitiesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListEntitiesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 

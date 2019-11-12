@@ -1363,10 +1363,12 @@ func (c *SMS) GetConnectorsPagesWithContext(ctx aws.Context, input *GetConnector
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*GetConnectorsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*GetConnectorsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1505,10 +1507,12 @@ func (c *SMS) GetReplicationJobsPagesWithContext(ctx aws.Context, input *GetRepl
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*GetReplicationJobsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*GetReplicationJobsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1647,10 +1651,12 @@ func (c *SMS) GetReplicationRunsPagesWithContext(ctx aws.Context, input *GetRepl
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*GetReplicationRunsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*GetReplicationRunsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1785,10 +1791,12 @@ func (c *SMS) GetServersPagesWithContext(ctx aws.Context, input *GetServersInput
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*GetServersOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*GetServersOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 

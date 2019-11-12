@@ -922,10 +922,12 @@ func (c *ApplicationDiscoveryService) DescribeContinuousExportsPagesWithContext(
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*DescribeContinuousExportsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*DescribeContinuousExportsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1261,10 +1263,12 @@ func (c *ApplicationDiscoveryService) DescribeImportTasksPagesWithContext(ctx aw
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*DescribeImportTasksOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*DescribeImportTasksOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 

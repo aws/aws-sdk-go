@@ -1133,10 +1133,12 @@ func (c *Route53Domains) ListDomainsPagesWithContext(ctx aws.Context, input *Lis
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListDomainsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListDomainsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1270,10 +1272,12 @@ func (c *Route53Domains) ListOperationsPagesWithContext(ctx aws.Context, input *
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListOperationsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListOperationsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 

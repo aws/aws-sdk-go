@@ -149,10 +149,12 @@ func (c *Health) DescribeAffectedEntitiesPagesWithContext(ctx aws.Context, input
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*DescribeAffectedEntitiesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*DescribeAffectedEntitiesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -362,10 +364,12 @@ func (c *Health) DescribeEventAggregatesPagesWithContext(ctx aws.Context, input 
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*DescribeEventAggregatesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*DescribeEventAggregatesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -587,10 +591,12 @@ func (c *Health) DescribeEventTypesPagesWithContext(ctx aws.Context, input *Desc
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*DescribeEventTypesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*DescribeEventTypesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -732,10 +738,12 @@ func (c *Health) DescribeEventsPagesWithContext(ctx aws.Context, input *Describe
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*DescribeEventsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*DescribeEventsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 

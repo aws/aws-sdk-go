@@ -2666,10 +2666,12 @@ func (c *Personalize) ListCampaignsPagesWithContext(ctx aws.Context, input *List
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListCampaignsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListCampaignsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2803,10 +2805,12 @@ func (c *Personalize) ListDatasetGroupsPagesWithContext(ctx aws.Context, input *
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListDatasetGroupsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListDatasetGroupsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2946,10 +2950,12 @@ func (c *Personalize) ListDatasetImportJobsPagesWithContext(ctx aws.Context, inp
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListDatasetImportJobsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListDatasetImportJobsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -3086,10 +3092,12 @@ func (c *Personalize) ListDatasetsPagesWithContext(ctx aws.Context, input *ListD
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListDatasetsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListDatasetsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -3226,10 +3234,12 @@ func (c *Personalize) ListEventTrackersPagesWithContext(ctx aws.Context, input *
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListEventTrackersOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListEventTrackersOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -3362,10 +3372,12 @@ func (c *Personalize) ListRecipesPagesWithContext(ctx aws.Context, input *ListRe
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListRecipesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListRecipesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -3499,10 +3511,12 @@ func (c *Personalize) ListSchemasPagesWithContext(ctx aws.Context, input *ListSc
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListSchemasOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListSchemasOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -3643,10 +3657,12 @@ func (c *Personalize) ListSolutionVersionsPagesWithContext(ctx aws.Context, inpu
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListSolutionVersionsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListSolutionVersionsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -3784,10 +3800,12 @@ func (c *Personalize) ListSolutionsPagesWithContext(ctx aws.Context, input *List
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListSolutionsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListSolutionsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 

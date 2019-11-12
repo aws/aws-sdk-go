@@ -697,10 +697,12 @@ func (c *Snowball) DescribeAddressesPagesWithContext(ctx aws.Context, input *Des
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*DescribeAddressesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*DescribeAddressesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1615,10 +1617,12 @@ func (c *Snowball) ListJobsPagesWithContext(ctx aws.Context, input *ListJobsInpu
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListJobsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListJobsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 

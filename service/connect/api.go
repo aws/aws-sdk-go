@@ -702,10 +702,12 @@ func (c *Connect) GetCurrentMetricDataPagesWithContext(ctx aws.Context, input *G
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*GetCurrentMetricDataOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*GetCurrentMetricDataOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -946,10 +948,12 @@ func (c *Connect) GetMetricDataPagesWithContext(ctx aws.Context, input *GetMetri
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*GetMetricDataOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*GetMetricDataOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1094,10 +1098,12 @@ func (c *Connect) ListContactFlowsPagesWithContext(ctx aws.Context, input *ListC
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListContactFlowsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListContactFlowsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1242,10 +1248,12 @@ func (c *Connect) ListHoursOfOperationsPagesWithContext(ctx aws.Context, input *
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListHoursOfOperationsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListHoursOfOperationsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1390,10 +1398,12 @@ func (c *Connect) ListPhoneNumbersPagesWithContext(ctx aws.Context, input *ListP
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListPhoneNumbersOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListPhoneNumbersOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1537,10 +1547,12 @@ func (c *Connect) ListQueuesPagesWithContext(ctx aws.Context, input *ListQueuesI
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListQueuesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListQueuesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1685,10 +1697,12 @@ func (c *Connect) ListRoutingProfilesPagesWithContext(ctx aws.Context, input *Li
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListRoutingProfilesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListRoutingProfilesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1833,10 +1847,12 @@ func (c *Connect) ListSecurityProfilesPagesWithContext(ctx aws.Context, input *L
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListSecurityProfilesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListSecurityProfilesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1981,10 +1997,12 @@ func (c *Connect) ListUserHierarchyGroupsPagesWithContext(ctx aws.Context, input
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListUserHierarchyGroupsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListUserHierarchyGroupsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2129,10 +2147,12 @@ func (c *Connect) ListUsersPagesWithContext(ctx aws.Context, input *ListUsersInp
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListUsersOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListUsersOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 

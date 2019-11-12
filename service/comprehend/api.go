@@ -2235,10 +2235,12 @@ func (c *Comprehend) ListDocumentClassificationJobsPagesWithContext(ctx aws.Cont
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListDocumentClassificationJobsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListDocumentClassificationJobsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2379,10 +2381,12 @@ func (c *Comprehend) ListDocumentClassifiersPagesWithContext(ctx aws.Context, in
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListDocumentClassifiersOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListDocumentClassifiersOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2523,10 +2527,12 @@ func (c *Comprehend) ListDominantLanguageDetectionJobsPagesWithContext(ctx aws.C
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListDominantLanguageDetectionJobsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListDominantLanguageDetectionJobsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2667,10 +2673,12 @@ func (c *Comprehend) ListEntitiesDetectionJobsPagesWithContext(ctx aws.Context, 
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListEntitiesDetectionJobsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListEntitiesDetectionJobsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2818,10 +2826,12 @@ func (c *Comprehend) ListEntityRecognizersPagesWithContext(ctx aws.Context, inpu
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListEntityRecognizersOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListEntityRecognizersOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2962,10 +2972,12 @@ func (c *Comprehend) ListKeyPhrasesDetectionJobsPagesWithContext(ctx aws.Context
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListKeyPhrasesDetectionJobsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListKeyPhrasesDetectionJobsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -3106,10 +3118,12 @@ func (c *Comprehend) ListSentimentDetectionJobsPagesWithContext(ctx aws.Context,
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListSentimentDetectionJobsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListSentimentDetectionJobsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -3336,10 +3350,12 @@ func (c *Comprehend) ListTopicsDetectionJobsPagesWithContext(ctx aws.Context, in
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListTopicsDetectionJobsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListTopicsDetectionJobsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 

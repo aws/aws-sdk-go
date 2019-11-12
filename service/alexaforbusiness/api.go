@@ -4251,10 +4251,12 @@ func (c *AlexaForBusiness) ListBusinessReportSchedulesPagesWithContext(ctx aws.C
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListBusinessReportSchedulesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListBusinessReportSchedulesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -4381,10 +4383,12 @@ func (c *AlexaForBusiness) ListConferenceProvidersPagesWithContext(ctx aws.Conte
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListConferenceProvidersOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListConferenceProvidersOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -4517,10 +4521,12 @@ func (c *AlexaForBusiness) ListDeviceEventsPagesWithContext(ctx aws.Context, inp
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListDeviceEventsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListDeviceEventsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -4648,10 +4654,12 @@ func (c *AlexaForBusiness) ListGatewayGroupsPagesWithContext(ctx aws.Context, in
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListGatewayGroupsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListGatewayGroupsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -4781,10 +4789,12 @@ func (c *AlexaForBusiness) ListGatewaysPagesWithContext(ctx aws.Context, input *
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListGatewaysOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListGatewaysOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -4911,10 +4921,12 @@ func (c *AlexaForBusiness) ListSkillsPagesWithContext(ctx aws.Context, input *Li
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListSkillsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListSkillsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -5041,10 +5053,12 @@ func (c *AlexaForBusiness) ListSkillsStoreCategoriesPagesWithContext(ctx aws.Con
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListSkillsStoreCategoriesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListSkillsStoreCategoriesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -5171,10 +5185,12 @@ func (c *AlexaForBusiness) ListSkillsStoreSkillsByCategoryPagesWithContext(ctx a
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListSkillsStoreSkillsByCategoryOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListSkillsStoreSkillsByCategoryOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -5306,10 +5322,12 @@ func (c *AlexaForBusiness) ListSmartHomeAppliancesPagesWithContext(ctx aws.Conte
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListSmartHomeAppliancesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListSmartHomeAppliancesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -5441,10 +5459,12 @@ func (c *AlexaForBusiness) ListTagsPagesWithContext(ctx aws.Context, input *List
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*ListTagsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListTagsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -6240,10 +6260,12 @@ func (c *AlexaForBusiness) SearchAddressBooksPagesWithContext(ctx aws.Context, i
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*SearchAddressBooksOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*SearchAddressBooksOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -6370,10 +6392,12 @@ func (c *AlexaForBusiness) SearchContactsPagesWithContext(ctx aws.Context, input
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*SearchContactsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*SearchContactsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -6500,10 +6524,12 @@ func (c *AlexaForBusiness) SearchDevicesPagesWithContext(ctx aws.Context, input 
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*SearchDevicesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*SearchDevicesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -6631,10 +6657,12 @@ func (c *AlexaForBusiness) SearchNetworkProfilesPagesWithContext(ctx aws.Context
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*SearchNetworkProfilesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*SearchNetworkProfilesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -6761,10 +6789,12 @@ func (c *AlexaForBusiness) SearchProfilesPagesWithContext(ctx aws.Context, input
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*SearchProfilesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*SearchProfilesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -6891,10 +6921,12 @@ func (c *AlexaForBusiness) SearchRoomsPagesWithContext(ctx aws.Context, input *S
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*SearchRoomsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*SearchRoomsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -7022,10 +7054,12 @@ func (c *AlexaForBusiness) SearchSkillGroupsPagesWithContext(ctx aws.Context, in
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*SearchSkillGroupsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*SearchSkillGroupsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -7152,10 +7186,12 @@ func (c *AlexaForBusiness) SearchUsersPagesWithContext(ctx aws.Context, input *S
 		},
 	}
 
-	cont := true
-	for cont && p.Next() {
-		cont = fn(p.Page().(*SearchUsersOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*SearchUsersOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
