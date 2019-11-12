@@ -791,7 +791,7 @@ func (c *FSx) DescribeBackupsPagesWithContext(ctx aws.Context, input *DescribeBa
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeBackupsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -955,7 +955,7 @@ func (c *FSx) DescribeFileSystemsPagesWithContext(ctx aws.Context, input *Descri
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeFileSystemsOutput), !p.HasNextPage())
 	}
 	return p.Err()

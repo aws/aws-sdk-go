@@ -3189,7 +3189,7 @@ func (c *SES) ListCustomVerificationEmailTemplatesPagesWithContext(ctx aws.Conte
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListCustomVerificationEmailTemplatesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3323,7 +3323,7 @@ func (c *SES) ListIdentitiesPagesWithContext(ctx aws.Context, input *ListIdentit
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListIdentitiesOutput), !p.HasNextPage())
 	}
 	return p.Err()

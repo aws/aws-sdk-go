@@ -977,7 +977,7 @@ func (c *SFN) GetExecutionHistoryPagesWithContext(ctx aws.Context, input *GetExe
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetExecutionHistoryOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1121,7 +1121,7 @@ func (c *SFN) ListActivitiesPagesWithContext(ctx aws.Context, input *ListActivit
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListActivitiesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1272,7 +1272,7 @@ func (c *SFN) ListExecutionsPagesWithContext(ctx aws.Context, input *ListExecuti
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListExecutionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1416,7 +1416,7 @@ func (c *SFN) ListStateMachinesPagesWithContext(ctx aws.Context, input *ListStat
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListStateMachinesOutput), !p.HasNextPage())
 	}
 	return p.Err()

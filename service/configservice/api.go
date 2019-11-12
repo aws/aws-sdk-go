@@ -2884,7 +2884,7 @@ func (c *ConfigService) DescribeRemediationExceptionsPagesWithContext(ctx aws.Co
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeRemediationExceptionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3026,7 +3026,7 @@ func (c *ConfigService) DescribeRemediationExecutionStatusPagesWithContext(ctx a
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeRemediationExecutionStatusOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4203,7 +4203,7 @@ func (c *ConfigService) GetResourceConfigHistoryPagesWithContext(ctx aws.Context
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetResourceConfigHistoryOutput), !p.HasNextPage())
 	}
 	return p.Err()

@@ -3843,7 +3843,7 @@ func (c *APIGateway) GetApiKeysPagesWithContext(ctx aws.Context, input *GetApiKe
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetApiKeysOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4239,7 +4239,7 @@ func (c *APIGateway) GetBasePathMappingsPagesWithContext(ctx aws.Context, input 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetBasePathMappingsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4462,7 +4462,7 @@ func (c *APIGateway) GetClientCertificatesPagesWithContext(ctx aws.Context, inpu
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetClientCertificatesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4693,7 +4693,7 @@ func (c *APIGateway) GetDeploymentsPagesWithContext(ctx aws.Context, input *GetD
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetDeploymentsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5253,7 +5253,7 @@ func (c *APIGateway) GetDomainNamesPagesWithContext(ctx aws.Context, input *GetD
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetDomainNamesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -6163,7 +6163,7 @@ func (c *APIGateway) GetModelsPagesWithContext(ctx aws.Context, input *GetModels
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetModelsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -6559,7 +6559,7 @@ func (c *APIGateway) GetResourcesPagesWithContext(ctx aws.Context, input *GetRes
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetResourcesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -6782,7 +6782,7 @@ func (c *APIGateway) GetRestApisPagesWithContext(ctx aws.Context, input *GetRest
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetRestApisOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -7431,7 +7431,7 @@ func (c *APIGateway) GetUsagePagesWithContext(ctx aws.Context, input *GetUsageIn
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*Usage), !p.HasNextPage())
 	}
 	return p.Err()
@@ -7749,7 +7749,7 @@ func (c *APIGateway) GetUsagePlanKeysPagesWithContext(ctx aws.Context, input *Ge
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetUsagePlanKeysOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -7896,7 +7896,7 @@ func (c *APIGateway) GetUsagePlansPagesWithContext(ctx aws.Context, input *GetUs
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetUsagePlansOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -8119,7 +8119,7 @@ func (c *APIGateway) GetVpcLinksPagesWithContext(ctx aws.Context, input *GetVpcL
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetVpcLinksOutput), !p.HasNextPage())
 	}
 	return p.Err()

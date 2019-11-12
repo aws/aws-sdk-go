@@ -366,7 +366,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}PagesWithContext(` +
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().({{ .OutputRef.GoType }}), !p.HasNextPage())
 	}
 	return p.Err()

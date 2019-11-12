@@ -4152,7 +4152,7 @@ func (c *Glue) GetClassifiersPagesWithContext(ctx aws.Context, input *GetClassif
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetClassifiersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4384,7 +4384,7 @@ func (c *Glue) GetConnectionsPagesWithContext(ctx aws.Context, input *GetConnect
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetConnectionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4601,7 +4601,7 @@ func (c *Glue) GetCrawlerMetricsPagesWithContext(ctx aws.Context, input *GetCraw
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetCrawlerMetricsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4736,7 +4736,7 @@ func (c *Glue) GetCrawlersPagesWithContext(ctx aws.Context, input *GetCrawlersIn
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetCrawlersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5056,7 +5056,7 @@ func (c *Glue) GetDatabasesPagesWithContext(ctx aws.Context, input *GetDatabases
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetDatabasesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5383,7 +5383,7 @@ func (c *Glue) GetDevEndpointsPagesWithContext(ctx aws.Context, input *GetDevEnd
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetDevEndpointsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5794,7 +5794,7 @@ func (c *Glue) GetJobRunsPagesWithContext(ctx aws.Context, input *GetJobRunsInpu
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetJobRunsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5938,7 +5938,7 @@ func (c *Glue) GetJobsPagesWithContext(ctx aws.Context, input *GetJobsInput, fn 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetJobsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -6181,7 +6181,7 @@ func (c *Glue) GetMLTaskRunsPagesWithContext(ctx aws.Context, input *GetMLTaskRu
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetMLTaskRunsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -6421,7 +6421,7 @@ func (c *Glue) GetMLTransformsPagesWithContext(ctx aws.Context, input *GetMLTran
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetMLTransformsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -6747,7 +6747,7 @@ func (c *Glue) GetPartitionsPagesWithContext(ctx aws.Context, input *GetPartitio
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetPartitionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -7152,7 +7152,7 @@ func (c *Glue) GetSecurityConfigurationsPagesWithContext(ctx aws.Context, input 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetSecurityConfigurationsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -7482,7 +7482,7 @@ func (c *Glue) GetTableVersionsPagesWithContext(ctx aws.Context, input *GetTable
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetTableVersionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -7629,7 +7629,7 @@ func (c *Glue) GetTablesPagesWithContext(ctx aws.Context, input *GetTablesInput,
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetTablesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -7949,7 +7949,7 @@ func (c *Glue) GetTriggersPagesWithContext(ctx aws.Context, input *GetTriggersIn
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetTriggersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -8187,7 +8187,7 @@ func (c *Glue) GetUserDefinedFunctionsPagesWithContext(ctx aws.Context, input *G
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetUserDefinedFunctionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -8595,7 +8595,7 @@ func (c *Glue) GetWorkflowRunsPagesWithContext(ctx aws.Context, input *GetWorkfl
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetWorkflowRunsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -8819,7 +8819,7 @@ func (c *Glue) ListCrawlersPagesWithContext(ctx aws.Context, input *ListCrawlers
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListCrawlersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -8969,7 +8969,7 @@ func (c *Glue) ListDevEndpointsPagesWithContext(ctx aws.Context, input *ListDevE
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListDevEndpointsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -9119,7 +9119,7 @@ func (c *Glue) ListJobsPagesWithContext(ctx aws.Context, input *ListJobsInput, f
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListJobsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -9269,7 +9269,7 @@ func (c *Glue) ListTriggersPagesWithContext(ctx aws.Context, input *ListTriggers
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListTriggersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -9410,7 +9410,7 @@ func (c *Glue) ListWorkflowsPagesWithContext(ctx aws.Context, input *ListWorkflo
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListWorkflowsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -9927,7 +9927,7 @@ func (c *Glue) SearchTablesPagesWithContext(ctx aws.Context, input *SearchTables
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*SearchTablesOutput), !p.HasNextPage())
 	}
 	return p.Err()

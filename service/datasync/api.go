@@ -1612,7 +1612,7 @@ func (c *DataSync) ListAgentsPagesWithContext(ctx aws.Context, input *ListAgents
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListAgentsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1755,7 +1755,7 @@ func (c *DataSync) ListLocationsPagesWithContext(ctx aws.Context, input *ListLoc
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListLocationsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1893,7 +1893,7 @@ func (c *DataSync) ListTagsForResourcePagesWithContext(ctx aws.Context, input *L
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListTagsForResourceOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2031,7 +2031,7 @@ func (c *DataSync) ListTaskExecutionsPagesWithContext(ctx aws.Context, input *Li
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListTaskExecutionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2169,7 +2169,7 @@ func (c *DataSync) ListTasksPagesWithContext(ctx aws.Context, input *ListTasksIn
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListTasksOutput), !p.HasNextPage())
 	}
 	return p.Err()

@@ -703,7 +703,7 @@ func (c *Connect) GetCurrentMetricDataPagesWithContext(ctx aws.Context, input *G
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetCurrentMetricDataOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -947,7 +947,7 @@ func (c *Connect) GetMetricDataPagesWithContext(ctx aws.Context, input *GetMetri
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetMetricDataOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1095,7 +1095,7 @@ func (c *Connect) ListContactFlowsPagesWithContext(ctx aws.Context, input *ListC
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListContactFlowsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1243,7 +1243,7 @@ func (c *Connect) ListHoursOfOperationsPagesWithContext(ctx aws.Context, input *
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListHoursOfOperationsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1391,7 +1391,7 @@ func (c *Connect) ListPhoneNumbersPagesWithContext(ctx aws.Context, input *ListP
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListPhoneNumbersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1538,7 +1538,7 @@ func (c *Connect) ListQueuesPagesWithContext(ctx aws.Context, input *ListQueuesI
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListQueuesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1686,7 +1686,7 @@ func (c *Connect) ListRoutingProfilesPagesWithContext(ctx aws.Context, input *Li
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListRoutingProfilesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1834,7 +1834,7 @@ func (c *Connect) ListSecurityProfilesPagesWithContext(ctx aws.Context, input *L
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListSecurityProfilesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1982,7 +1982,7 @@ func (c *Connect) ListUserHierarchyGroupsPagesWithContext(ctx aws.Context, input
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListUserHierarchyGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2130,7 +2130,7 @@ func (c *Connect) ListUsersPagesWithContext(ctx aws.Context, input *ListUsersInp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListUsersOutput), !p.HasNextPage())
 	}
 	return p.Err()

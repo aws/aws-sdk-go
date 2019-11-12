@@ -2202,7 +2202,7 @@ func (c *DeviceFarm) GetOfferingStatusPagesWithContext(ctx aws.Context, input *G
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetOfferingStatusOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3050,7 +3050,7 @@ func (c *DeviceFarm) ListArtifactsPagesWithContext(ctx aws.Context, input *ListA
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListArtifactsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3283,7 +3283,7 @@ func (c *DeviceFarm) ListDevicePoolsPagesWithContext(ctx aws.Context, input *Lis
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListDevicePoolsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3427,7 +3427,7 @@ func (c *DeviceFarm) ListDevicesPagesWithContext(ctx aws.Context, input *ListDev
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListDevicesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3659,7 +3659,7 @@ func (c *DeviceFarm) ListJobsPagesWithContext(ctx aws.Context, input *ListJobsIn
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListJobsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3996,7 +3996,7 @@ func (c *DeviceFarm) ListOfferingTransactionsPagesWithContext(ctx aws.Context, i
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListOfferingTransactionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4149,7 +4149,7 @@ func (c *DeviceFarm) ListOfferingsPagesWithContext(ctx aws.Context, input *ListO
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListOfferingsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4293,7 +4293,7 @@ func (c *DeviceFarm) ListProjectsPagesWithContext(ctx aws.Context, input *ListPr
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListProjectsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4525,7 +4525,7 @@ func (c *DeviceFarm) ListRunsPagesWithContext(ctx aws.Context, input *ListRunsIn
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListRunsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4669,7 +4669,7 @@ func (c *DeviceFarm) ListSamplesPagesWithContext(ctx aws.Context, input *ListSam
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListSamplesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4813,7 +4813,7 @@ func (c *DeviceFarm) ListSuitesPagesWithContext(ctx aws.Context, input *ListSuit
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListSuitesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5039,7 +5039,7 @@ func (c *DeviceFarm) ListTestsPagesWithContext(ctx aws.Context, input *ListTests
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListTestsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5183,7 +5183,7 @@ func (c *DeviceFarm) ListUniqueProblemsPagesWithContext(ctx aws.Context, input *
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListUniqueProblemsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5327,7 +5327,7 @@ func (c *DeviceFarm) ListUploadsPagesWithContext(ctx aws.Context, input *ListUpl
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListUploadsOutput), !p.HasNextPage())
 	}
 	return p.Err()

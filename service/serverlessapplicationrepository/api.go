@@ -907,7 +907,7 @@ func (c *ServerlessApplicationRepository) ListApplicationDependenciesPagesWithCo
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListApplicationDependenciesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1057,7 +1057,7 @@ func (c *ServerlessApplicationRepository) ListApplicationVersionsPagesWithContex
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListApplicationVersionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1203,7 +1203,7 @@ func (c *ServerlessApplicationRepository) ListApplicationsPagesWithContext(ctx a
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListApplicationsOutput), !p.HasNextPage())
 	}
 	return p.Err()

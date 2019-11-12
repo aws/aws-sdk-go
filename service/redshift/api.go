@@ -3163,7 +3163,7 @@ func (c *Redshift) DescribeClusterParameterGroupsPagesWithContext(ctx aws.Contex
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeClusterParameterGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3309,7 +3309,7 @@ func (c *Redshift) DescribeClusterParametersPagesWithContext(ctx aws.Context, in
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeClusterParametersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3464,7 +3464,7 @@ func (c *Redshift) DescribeClusterSecurityGroupsPagesWithContext(ctx aws.Context
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeClusterSecurityGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3619,7 +3619,7 @@ func (c *Redshift) DescribeClusterSnapshotsPagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeClusterSnapshotsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3770,7 +3770,7 @@ func (c *Redshift) DescribeClusterSubnetGroupsPagesWithContext(ctx aws.Context, 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeClusterSubnetGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3986,7 +3986,7 @@ func (c *Redshift) DescribeClusterVersionsPagesWithContext(ctx aws.Context, inpu
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeClusterVersionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4137,7 +4137,7 @@ func (c *Redshift) DescribeClustersPagesWithContext(ctx aws.Context, input *Desc
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeClustersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4271,7 +4271,7 @@ func (c *Redshift) DescribeDefaultClusterParametersPagesWithContext(ctx aws.Cont
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeDefaultClusterParametersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4498,7 +4498,7 @@ func (c *Redshift) DescribeEventSubscriptionsPagesWithContext(ctx aws.Context, i
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeEventSubscriptionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4631,7 +4631,7 @@ func (c *Redshift) DescribeEventsPagesWithContext(ctx aws.Context, input *Descri
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeEventsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4781,7 +4781,7 @@ func (c *Redshift) DescribeHsmClientCertificatesPagesWithContext(ctx aws.Context
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeHsmClientCertificatesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4931,7 +4931,7 @@ func (c *Redshift) DescribeHsmConfigurationsPagesWithContext(ctx aws.Context, in
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeHsmConfigurationsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5151,7 +5151,7 @@ func (c *Redshift) DescribeNodeConfigurationOptionsPagesWithContext(ctx aws.Cont
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeNodeConfigurationOptionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5289,7 +5289,7 @@ func (c *Redshift) DescribeOrderableClusterOptionsPagesWithContext(ctx aws.Conte
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeOrderableClusterOptionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5440,7 +5440,7 @@ func (c *Redshift) DescribeReservedNodeOfferingsPagesWithContext(ctx aws.Context
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeReservedNodeOfferingsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5579,7 +5579,7 @@ func (c *Redshift) DescribeReservedNodesPagesWithContext(ctx aws.Context, input 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeReservedNodesOutput), !p.HasNextPage())
 	}
 	return p.Err()

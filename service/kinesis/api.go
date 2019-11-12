@@ -792,7 +792,7 @@ func (c *Kinesis) DescribeStreamPagesWithContext(ctx aws.Context, input *Describ
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeStreamOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1826,7 +1826,7 @@ func (c *Kinesis) ListStreamConsumersPagesWithContext(ctx aws.Context, input *Li
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListStreamConsumersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1977,7 +1977,7 @@ func (c *Kinesis) ListStreamsPagesWithContext(ctx aws.Context, input *ListStream
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListStreamsOutput), !p.HasNextPage())
 	}
 	return p.Err()

@@ -464,7 +464,7 @@ func (c *ApplicationAutoScaling) DescribeScalableTargetsPagesWithContext(ctx aws
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeScalableTargetsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -618,7 +618,7 @@ func (c *ApplicationAutoScaling) DescribeScalingActivitiesPagesWithContext(ctx a
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeScalingActivitiesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -778,7 +778,7 @@ func (c *ApplicationAutoScaling) DescribeScalingPoliciesPagesWithContext(ctx aws
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeScalingPoliciesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -931,7 +931,7 @@ func (c *ApplicationAutoScaling) DescribeScheduledActionsPagesWithContext(ctx aw
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeScheduledActionsOutput), !p.HasNextPage())
 	}
 	return p.Err()

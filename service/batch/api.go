@@ -718,7 +718,7 @@ func (c *Batch) DescribeComputeEnvironmentsPagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeComputeEnvironmentsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -859,7 +859,7 @@ func (c *Batch) DescribeJobDefinitionsPagesWithContext(ctx aws.Context, input *D
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeJobDefinitionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -999,7 +999,7 @@ func (c *Batch) DescribeJobQueuesPagesWithContext(ctx aws.Context, input *Descri
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeJobQueuesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1234,7 +1234,7 @@ func (c *Batch) ListJobsPagesWithContext(ctx aws.Context, input *ListJobsInput, 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListJobsOutput), !p.HasNextPage())
 	}
 	return p.Err()

@@ -1903,7 +1903,7 @@ func (c *DocDB) DescribeDBClustersPagesWithContext(ctx aws.Context, input *Descr
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeDBClustersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2033,7 +2033,7 @@ func (c *DocDB) DescribeDBEngineVersionsPagesWithContext(ctx aws.Context, input 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeDBEngineVersionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2169,7 +2169,7 @@ func (c *DocDB) DescribeDBInstancesPagesWithContext(ctx aws.Context, input *Desc
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeDBInstancesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2305,7 +2305,7 @@ func (c *DocDB) DescribeDBSubnetGroupsPagesWithContext(ctx aws.Context, input *D
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeDBSubnetGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2589,7 +2589,7 @@ func (c *DocDB) DescribeEventsPagesWithContext(ctx aws.Context, input *DescribeE
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeEventsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2719,7 +2719,7 @@ func (c *DocDB) DescribeOrderableDBInstanceOptionsPagesWithContext(ctx aws.Conte
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeOrderableDBInstanceOptionsOutput), !p.HasNextPage())
 	}
 	return p.Err()

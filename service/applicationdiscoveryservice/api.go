@@ -923,7 +923,7 @@ func (c *ApplicationDiscoveryService) DescribeContinuousExportsPagesWithContext(
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeContinuousExportsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1262,7 +1262,7 @@ func (c *ApplicationDiscoveryService) DescribeImportTasksPagesWithContext(ctx aw
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeImportTasksOutput), !p.HasNextPage())
 	}
 	return p.Err()

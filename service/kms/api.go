@@ -3405,7 +3405,7 @@ func (c *KMS) ListAliasesPagesWithContext(ctx aws.Context, input *ListAliasesInp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListAliasesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3568,7 +3568,7 @@ func (c *KMS) ListGrantsPagesWithContext(ctx aws.Context, input *ListGrantsInput
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListGrantsResponse), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3727,7 +3727,7 @@ func (c *KMS) ListKeyPoliciesPagesWithContext(ctx aws.Context, input *ListKeyPol
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListKeyPoliciesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3872,7 +3872,7 @@ func (c *KMS) ListKeysPagesWithContext(ctx aws.Context, input *ListKeysInput, fn
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListKeysOutput), !p.HasNextPage())
 	}
 	return p.Err()

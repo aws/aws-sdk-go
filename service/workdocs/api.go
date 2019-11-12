@@ -2107,7 +2107,7 @@ func (c *WorkDocs) DescribeDocumentVersionsPagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeDocumentVersionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2265,7 +2265,7 @@ func (c *WorkDocs) DescribeFolderContentsPagesWithContext(ctx aws.Context, input
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeFolderContentsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2793,7 +2793,7 @@ func (c *WorkDocs) DescribeUsersPagesWithContext(ctx aws.Context, input *Describ
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeUsersOutput), !p.HasNextPage())
 	}
 	return p.Err()

@@ -2160,7 +2160,7 @@ func (c *DirectoryService) DescribeDomainControllersPagesWithContext(ctx aws.Con
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeDomainControllersOutput), !p.HasNextPage())
 	}
 	return p.Err()

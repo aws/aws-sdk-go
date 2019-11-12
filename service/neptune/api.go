@@ -2570,7 +2570,7 @@ func (c *Neptune) DescribeDBEngineVersionsPagesWithContext(ctx aws.Context, inpu
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeDBEngineVersionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2705,7 +2705,7 @@ func (c *Neptune) DescribeDBInstancesPagesWithContext(ctx aws.Context, input *De
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeDBInstancesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2842,7 +2842,7 @@ func (c *Neptune) DescribeDBParameterGroupsPagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeDBParameterGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2977,7 +2977,7 @@ func (c *Neptune) DescribeDBParametersPagesWithContext(ctx aws.Context, input *D
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeDBParametersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3115,7 +3115,7 @@ func (c *Neptune) DescribeDBSubnetGroupsPagesWithContext(ctx aws.Context, input 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeDBSubnetGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3321,7 +3321,7 @@ func (c *Neptune) DescribeEngineDefaultParametersPagesWithContext(ctx aws.Contex
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeEngineDefaultParametersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3535,7 +3535,7 @@ func (c *Neptune) DescribeEventSubscriptionsPagesWithContext(ctx aws.Context, in
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeEventSubscriptionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3669,7 +3669,7 @@ func (c *Neptune) DescribeEventsPagesWithContext(ctx aws.Context, input *Describ
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeEventsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3799,7 +3799,7 @@ func (c *Neptune) DescribeOrderableDBInstanceOptionsPagesWithContext(ctx aws.Con
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeOrderableDBInstanceOptionsOutput), !p.HasNextPage())
 	}
 	return p.Err()

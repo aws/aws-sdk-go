@@ -2061,7 +2061,7 @@ func (c *ForecastService) ListDatasetGroupsPagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListDatasetGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2204,7 +2204,7 @@ func (c *ForecastService) ListDatasetImportJobsPagesWithContext(ctx aws.Context,
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListDatasetImportJobsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2342,7 +2342,7 @@ func (c *ForecastService) ListDatasetsPagesWithContext(ctx aws.Context, input *L
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListDatasetsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2485,7 +2485,7 @@ func (c *ForecastService) ListForecastExportJobsPagesWithContext(ctx aws.Context
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListForecastExportJobsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2628,7 +2628,7 @@ func (c *ForecastService) ListForecastsPagesWithContext(ctx aws.Context, input *
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListForecastsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2771,7 +2771,7 @@ func (c *ForecastService) ListPredictorsPagesWithContext(ctx aws.Context, input 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListPredictorsOutput), !p.HasNextPage())
 	}
 	return p.Err()

@@ -2270,7 +2270,7 @@ func (c *ElasticBeanstalk) DescribeEventsPagesWithContext(ctx aws.Context, input
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeEventsOutput), !p.HasNextPage())
 	}
 	return p.Err()

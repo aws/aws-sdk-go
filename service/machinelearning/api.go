@@ -1465,7 +1465,7 @@ func (c *MachineLearning) DescribeBatchPredictionsPagesWithContext(ctx aws.Conte
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeBatchPredictionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1601,7 +1601,7 @@ func (c *MachineLearning) DescribeDataSourcesPagesWithContext(ctx aws.Context, i
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeDataSourcesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1738,7 +1738,7 @@ func (c *MachineLearning) DescribeEvaluationsPagesWithContext(ctx aws.Context, i
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeEvaluationsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1874,7 +1874,7 @@ func (c *MachineLearning) DescribeMLModelsPagesWithContext(ctx aws.Context, inpu
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeMLModelsOutput), !p.HasNextPage())
 	}
 	return p.Err()

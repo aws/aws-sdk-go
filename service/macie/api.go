@@ -501,7 +501,7 @@ func (c *Macie) ListMemberAccountsPagesWithContext(ctx aws.Context, input *ListM
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListMemberAccountsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -647,7 +647,7 @@ func (c *Macie) ListS3ResourcesPagesWithContext(ctx aws.Context, input *ListS3Re
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListS3ResourcesOutput), !p.HasNextPage())
 	}
 	return p.Err()

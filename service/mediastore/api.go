@@ -964,7 +964,7 @@ func (c *MediaStore) ListContainersPagesWithContext(ctx aws.Context, input *List
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListContainersOutput), !p.HasNextPage())
 	}
 	return p.Err()

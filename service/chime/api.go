@@ -4518,7 +4518,7 @@ func (c *Chime) ListAccountsPagesWithContext(ctx aws.Context, input *ListAccount
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListAccountsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4670,7 +4670,7 @@ func (c *Chime) ListBotsPagesWithContext(ctx aws.Context, input *ListBotsInput, 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListBotsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4821,7 +4821,7 @@ func (c *Chime) ListPhoneNumberOrdersPagesWithContext(ctx aws.Context, input *Li
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListPhoneNumberOrdersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4973,7 +4973,7 @@ func (c *Chime) ListPhoneNumbersPagesWithContext(ctx aws.Context, input *ListPho
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListPhoneNumbersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5129,7 +5129,7 @@ func (c *Chime) ListUsersPagesWithContext(ctx aws.Context, input *ListUsersInput
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListUsersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5281,7 +5281,7 @@ func (c *Chime) ListVoiceConnectorGroupsPagesWithContext(ctx aws.Context, input 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListVoiceConnectorGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5530,7 +5530,7 @@ func (c *Chime) ListVoiceConnectorsPagesWithContext(ctx aws.Context, input *List
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListVoiceConnectorsOutput), !p.HasNextPage())
 	}
 	return p.Err()

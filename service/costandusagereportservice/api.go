@@ -223,7 +223,7 @@ func (c *CostandUsageReportService) DescribeReportDefinitionsPagesWithContext(ct
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeReportDefinitionsOutput), !p.HasNextPage())
 	}
 	return p.Err()

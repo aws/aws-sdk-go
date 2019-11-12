@@ -1283,7 +1283,7 @@ func (c *SecurityHub) DescribeActionTargetsPagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeActionTargetsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1524,7 +1524,7 @@ func (c *SecurityHub) DescribeProductsPagesWithContext(ctx aws.Context, input *D
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeProductsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2337,7 +2337,7 @@ func (c *SecurityHub) GetFindingsPagesWithContext(ctx aws.Context, input *GetFin
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetFindingsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2579,7 +2579,7 @@ func (c *SecurityHub) GetInsightsPagesWithContext(ctx aws.Context, input *GetIns
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetInsightsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3099,7 +3099,7 @@ func (c *SecurityHub) ListEnabledProductsForImportPagesWithContext(ctx aws.Conte
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListEnabledProductsForImportOutput), !p.HasNextPage())
 	}
 	return p.Err()

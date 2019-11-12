@@ -2388,7 +2388,7 @@ func (c *GuardDuty) ListDetectorsPagesWithContext(ctx aws.Context, input *ListDe
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListDetectorsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2526,7 +2526,7 @@ func (c *GuardDuty) ListFiltersPagesWithContext(ctx aws.Context, input *ListFilt
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListFiltersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2664,7 +2664,7 @@ func (c *GuardDuty) ListFindingsPagesWithContext(ctx aws.Context, input *ListFin
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListFindingsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2802,7 +2802,7 @@ func (c *GuardDuty) ListIPSetsPagesWithContext(ctx aws.Context, input *ListIPSet
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListIPSetsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2941,7 +2941,7 @@ func (c *GuardDuty) ListInvitationsPagesWithContext(ctx aws.Context, input *List
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListInvitationsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3080,7 +3080,7 @@ func (c *GuardDuty) ListMembersPagesWithContext(ctx aws.Context, input *ListMemb
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListMembersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3304,7 +3304,7 @@ func (c *GuardDuty) ListThreatIntelSetsPagesWithContext(ctx aws.Context, input *
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListThreatIntelSetsOutput), !p.HasNextPage())
 	}
 	return p.Err()

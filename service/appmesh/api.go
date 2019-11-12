@@ -1735,7 +1735,7 @@ func (c *AppMesh) ListMeshesPagesWithContext(ctx aws.Context, input *ListMeshesI
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListMeshesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1888,7 +1888,7 @@ func (c *AppMesh) ListRoutesPagesWithContext(ctx aws.Context, input *ListRoutesI
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListRoutesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2041,7 +2041,7 @@ func (c *AppMesh) ListTagsForResourcePagesWithContext(ctx aws.Context, input *Li
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListTagsForResourceOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2194,7 +2194,7 @@ func (c *AppMesh) ListVirtualNodesPagesWithContext(ctx aws.Context, input *ListV
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListVirtualNodesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2347,7 +2347,7 @@ func (c *AppMesh) ListVirtualRoutersPagesWithContext(ctx aws.Context, input *Lis
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListVirtualRoutersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2500,7 +2500,7 @@ func (c *AppMesh) ListVirtualServicesPagesWithContext(ctx aws.Context, input *Li
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListVirtualServicesOutput), !p.HasNextPage())
 	}
 	return p.Err()

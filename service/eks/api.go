@@ -592,7 +592,7 @@ func (c *EKS) ListClustersPagesWithContext(ctx aws.Context, input *ListClustersI
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListClustersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -825,7 +825,7 @@ func (c *EKS) ListUpdatesPagesWithContext(ctx aws.Context, input *ListUpdatesInp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListUpdatesOutput), !p.HasNextPage())
 	}
 	return p.Err()

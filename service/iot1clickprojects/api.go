@@ -905,7 +905,7 @@ func (c *IoT1ClickProjects) ListPlacementsPagesWithContext(ctx aws.Context, inpu
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListPlacementsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1042,7 +1042,7 @@ func (c *IoT1ClickProjects) ListProjectsPagesWithContext(ctx aws.Context, input 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListProjectsOutput), !p.HasNextPage())
 	}
 	return p.Err()

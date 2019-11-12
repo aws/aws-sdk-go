@@ -246,7 +246,7 @@ func (c *SSO) ListAccountRolesPagesWithContext(ctx aws.Context, input *ListAccou
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListAccountRolesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -397,7 +397,7 @@ func (c *SSO) ListAccountsPagesWithContext(ctx aws.Context, input *ListAccountsI
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListAccountsOutput), !p.HasNextPage())
 	}
 	return p.Err()

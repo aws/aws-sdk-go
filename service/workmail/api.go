@@ -2010,7 +2010,7 @@ func (c *WorkMail) ListAliasesPagesWithContext(ctx aws.Context, input *ListAlias
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListAliasesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2162,7 +2162,7 @@ func (c *WorkMail) ListGroupMembersPagesWithContext(ctx aws.Context, input *List
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListGroupMembersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2309,7 +2309,7 @@ func (c *WorkMail) ListGroupsPagesWithContext(ctx aws.Context, input *ListGroups
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2457,7 +2457,7 @@ func (c *WorkMail) ListMailboxPermissionsPagesWithContext(ctx aws.Context, input
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListMailboxPermissionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2592,7 +2592,7 @@ func (c *WorkMail) ListOrganizationsPagesWithContext(ctx aws.Context, input *Lis
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListOrganizationsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2744,7 +2744,7 @@ func (c *WorkMail) ListResourceDelegatesPagesWithContext(ctx aws.Context, input 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListResourceDelegatesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2887,7 +2887,7 @@ func (c *WorkMail) ListResourcesPagesWithContext(ctx aws.Context, input *ListRes
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListResourcesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3030,7 +3030,7 @@ func (c *WorkMail) ListUsersPagesWithContext(ctx aws.Context, input *ListUsersIn
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListUsersOutput), !p.HasNextPage())
 	}
 	return p.Err()

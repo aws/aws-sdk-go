@@ -1721,7 +1721,7 @@ func (c *Inspector) GetExclusionsPreviewPagesWithContext(ctx aws.Context, input 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetExclusionsPreviewOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1959,7 +1959,7 @@ func (c *Inspector) ListAssessmentRunAgentsPagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListAssessmentRunAgentsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2106,7 +2106,7 @@ func (c *Inspector) ListAssessmentRunsPagesWithContext(ctx aws.Context, input *L
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListAssessmentRunsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2250,7 +2250,7 @@ func (c *Inspector) ListAssessmentTargetsPagesWithContext(ctx aws.Context, input
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListAssessmentTargetsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2397,7 +2397,7 @@ func (c *Inspector) ListAssessmentTemplatesPagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListAssessmentTemplatesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2545,7 +2545,7 @@ func (c *Inspector) ListEventSubscriptionsPagesWithContext(ctx aws.Context, inpu
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListEventSubscriptionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2691,7 +2691,7 @@ func (c *Inspector) ListExclusionsPagesWithContext(ctx aws.Context, input *ListE
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListExclusionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2838,7 +2838,7 @@ func (c *Inspector) ListFindingsPagesWithContext(ctx aws.Context, input *ListFin
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListFindingsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2980,7 +2980,7 @@ func (c *Inspector) ListRulesPackagesPagesWithContext(ctx aws.Context, input *Li
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListRulesPackagesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3221,7 +3221,7 @@ func (c *Inspector) PreviewAgentsPagesWithContext(ctx aws.Context, input *Previe
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*PreviewAgentsOutput), !p.HasNextPage())
 	}
 	return p.Err()

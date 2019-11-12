@@ -1094,7 +1094,7 @@ func (c *ApplicationInsights) ListApplicationsPagesWithContext(ctx aws.Context, 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListApplicationsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1235,7 +1235,7 @@ func (c *ApplicationInsights) ListComponentsPagesWithContext(ctx aws.Context, in
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListComponentsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1376,7 +1376,7 @@ func (c *ApplicationInsights) ListProblemsPagesWithContext(ctx aws.Context, inpu
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListProblemsOutput), !p.HasNextPage())
 	}
 	return p.Err()

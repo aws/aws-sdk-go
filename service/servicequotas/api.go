@@ -992,7 +992,7 @@ func (c *ServiceQuotas) ListAWSDefaultServiceQuotasPagesWithContext(ctx aws.Cont
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListAWSDefaultServiceQuotasOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1143,7 +1143,7 @@ func (c *ServiceQuotas) ListRequestedServiceQuotaChangeHistoryPagesWithContext(c
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListRequestedServiceQuotaChangeHistoryOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1297,7 +1297,7 @@ func (c *ServiceQuotas) ListRequestedServiceQuotaChangeHistoryByQuotaPagesWithCo
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListRequestedServiceQuotaChangeHistoryByQuotaOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1456,7 +1456,7 @@ func (c *ServiceQuotas) ListServiceQuotaIncreaseRequestsInTemplatePagesWithConte
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListServiceQuotaIncreaseRequestsInTemplateOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1615,7 +1615,7 @@ func (c *ServiceQuotas) ListServiceQuotasPagesWithContext(ctx aws.Context, input
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListServiceQuotasOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1765,7 +1765,7 @@ func (c *ServiceQuotas) ListServicesPagesWithContext(ctx aws.Context, input *Lis
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListServicesOutput), !p.HasNextPage())
 	}
 	return p.Err()

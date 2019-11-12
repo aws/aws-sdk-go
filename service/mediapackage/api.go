@@ -856,7 +856,7 @@ func (c *MediaPackage) ListChannelsPagesWithContext(ctx aws.Context, input *List
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListChannelsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1000,7 +1000,7 @@ func (c *MediaPackage) ListHarvestJobsPagesWithContext(ctx aws.Context, input *L
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListHarvestJobsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1144,7 +1144,7 @@ func (c *MediaPackage) ListOriginEndpointsPagesWithContext(ctx aws.Context, inpu
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListOriginEndpointsOutput), !p.HasNextPage())
 	}
 	return p.Err()

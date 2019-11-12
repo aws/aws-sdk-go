@@ -1819,7 +1819,7 @@ func (c *IoTAnalytics) ListChannelsPagesWithContext(ctx aws.Context, input *List
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListChannelsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1966,7 +1966,7 @@ func (c *IoTAnalytics) ListDatasetContentsPagesWithContext(ctx aws.Context, inpu
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListDatasetContentsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2110,7 +2110,7 @@ func (c *IoTAnalytics) ListDatasetsPagesWithContext(ctx aws.Context, input *List
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListDatasetsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2254,7 +2254,7 @@ func (c *IoTAnalytics) ListDatastoresPagesWithContext(ctx aws.Context, input *Li
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListDatastoresOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2398,7 +2398,7 @@ func (c *IoTAnalytics) ListPipelinesPagesWithContext(ctx aws.Context, input *Lis
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListPipelinesOutput), !p.HasNextPage())
 	}
 	return p.Err()

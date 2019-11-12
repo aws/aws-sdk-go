@@ -408,7 +408,7 @@ func (c *MediaStoreData) ListItemsPagesWithContext(ctx aws.Context, input *ListI
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListItemsOutput), !p.HasNextPage())
 	}
 	return p.Err()

@@ -1942,7 +1942,7 @@ func (c *CodeCommit) DescribeMergeConflictsPagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeMergeConflictsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2118,7 +2118,7 @@ func (c *CodeCommit) DescribePullRequestEventsPagesWithContext(ctx aws.Context, 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribePullRequestEventsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2617,7 +2617,7 @@ func (c *CodeCommit) GetCommentsForComparedCommitPagesWithContext(ctx aws.Contex
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetCommentsForComparedCommitOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2810,7 +2810,7 @@ func (c *CodeCommit) GetCommentsForPullRequestPagesWithContext(ctx aws.Context, 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetCommentsForPullRequestOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3111,7 +3111,7 @@ func (c *CodeCommit) GetDifferencesPagesWithContext(ctx aws.Context, input *GetD
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetDifferencesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3688,7 +3688,7 @@ func (c *CodeCommit) GetMergeConflictsPagesWithContext(ctx aws.Context, input *G
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetMergeConflictsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4302,7 +4302,7 @@ func (c *CodeCommit) ListBranchesPagesWithContext(ctx aws.Context, input *ListBr
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListBranchesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4480,7 +4480,7 @@ func (c *CodeCommit) ListPullRequestsPagesWithContext(ctx aws.Context, input *Li
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListPullRequestsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4621,7 +4621,7 @@ func (c *CodeCommit) ListRepositoriesPagesWithContext(ctx aws.Context, input *Li
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListRepositoriesOutput), !p.HasNextPage())
 	}
 	return p.Err()

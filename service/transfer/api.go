@@ -918,7 +918,7 @@ func (c *Transfer) ListServersPagesWithContext(ctx aws.Context, input *ListServe
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListServersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1064,7 +1064,7 @@ func (c *Transfer) ListTagsForResourcePagesWithContext(ctx aws.Context, input *L
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListTagsForResourceOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1213,7 +1213,7 @@ func (c *Transfer) ListUsersPagesWithContext(ctx aws.Context, input *ListUsersIn
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListUsersOutput), !p.HasNextPage())
 	}
 	return p.Err()

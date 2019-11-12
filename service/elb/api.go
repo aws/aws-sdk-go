@@ -1808,7 +1808,7 @@ func (c *ELB) DescribeLoadBalancersPagesWithContext(ctx aws.Context, input *Desc
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeLoadBalancersOutput), !p.HasNextPage())
 	}
 	return p.Err()

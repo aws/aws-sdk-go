@@ -1591,7 +1591,7 @@ func (c *MediaLive) DescribeSchedulePagesWithContext(ctx aws.Context, input *Des
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeScheduleOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1735,7 +1735,7 @@ func (c *MediaLive) ListChannelsPagesWithContext(ctx aws.Context, input *ListCha
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListChannelsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1879,7 +1879,7 @@ func (c *MediaLive) ListInputSecurityGroupsPagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListInputSecurityGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2023,7 +2023,7 @@ func (c *MediaLive) ListInputsPagesWithContext(ctx aws.Context, input *ListInput
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListInputsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2167,7 +2167,7 @@ func (c *MediaLive) ListOfferingsPagesWithContext(ctx aws.Context, input *ListOf
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListOfferingsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2311,7 +2311,7 @@ func (c *MediaLive) ListReservationsPagesWithContext(ctx aws.Context, input *Lis
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListReservationsOutput), !p.HasNextPage())
 	}
 	return p.Err()

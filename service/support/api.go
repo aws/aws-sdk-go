@@ -578,7 +578,7 @@ func (c *Support) DescribeCasesPagesWithContext(ctx aws.Context, input *Describe
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeCasesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -725,7 +725,7 @@ func (c *Support) DescribeCommunicationsPagesWithContext(ctx aws.Context, input 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeCommunicationsOutput), !p.HasNextPage())
 	}
 	return p.Err()

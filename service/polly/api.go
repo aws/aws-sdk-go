@@ -600,7 +600,7 @@ func (c *Polly) ListSpeechSynthesisTasksPagesWithContext(ctx aws.Context, input 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListSpeechSynthesisTasksOutput), !p.HasNextPage())
 	}
 	return p.Err()

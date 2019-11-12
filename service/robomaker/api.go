@@ -2197,7 +2197,7 @@ func (c *RoboMaker) ListDeploymentJobsPagesWithContext(ctx aws.Context, input *L
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListDeploymentJobsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2344,7 +2344,7 @@ func (c *RoboMaker) ListFleetsPagesWithContext(ctx aws.Context, input *ListFleet
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListFleetsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2488,7 +2488,7 @@ func (c *RoboMaker) ListRobotApplicationsPagesWithContext(ctx aws.Context, input
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListRobotApplicationsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2635,7 +2635,7 @@ func (c *RoboMaker) ListRobotsPagesWithContext(ctx aws.Context, input *ListRobot
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListRobotsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2779,7 +2779,7 @@ func (c *RoboMaker) ListSimulationApplicationsPagesWithContext(ctx aws.Context, 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListSimulationApplicationsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2923,7 +2923,7 @@ func (c *RoboMaker) ListSimulationJobsPagesWithContext(ctx aws.Context, input *L
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListSimulationJobsOutput), !p.HasNextPage())
 	}
 	return p.Err()

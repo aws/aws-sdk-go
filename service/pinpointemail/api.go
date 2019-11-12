@@ -1467,7 +1467,7 @@ func (c *PinpointEmail) GetDedicatedIpsPagesWithContext(ctx aws.Context, input *
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetDedicatedIpsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2052,7 +2052,7 @@ func (c *PinpointEmail) ListConfigurationSetsPagesWithContext(ctx aws.Context, i
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListConfigurationSetsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2191,7 +2191,7 @@ func (c *PinpointEmail) ListDedicatedIpPoolsPagesWithContext(ctx aws.Context, in
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListDedicatedIpPoolsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2335,7 +2335,7 @@ func (c *PinpointEmail) ListDeliverabilityTestReportsPagesWithContext(ctx aws.Co
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListDeliverabilityTestReportsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2479,7 +2479,7 @@ func (c *PinpointEmail) ListDomainDeliverabilityCampaignsPagesWithContext(ctx aw
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListDomainDeliverabilityCampaignsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2620,7 +2620,7 @@ func (c *PinpointEmail) ListEmailIdentitiesPagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListEmailIdentitiesOutput), !p.HasNextPage())
 	}
 	return p.Err()

@@ -160,7 +160,7 @@ func (c *ResourceGroupsTaggingAPI) GetResourcesPagesWithContext(ctx aws.Context,
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetResourcesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -307,7 +307,7 @@ func (c *ResourceGroupsTaggingAPI) GetTagKeysPagesWithContext(ctx aws.Context, i
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetTagKeysOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -455,7 +455,7 @@ func (c *ResourceGroupsTaggingAPI) GetTagValuesPagesWithContext(ctx aws.Context,
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetTagValuesOutput), !p.HasNextPage())
 	}
 	return p.Err()

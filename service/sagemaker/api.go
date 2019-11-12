@@ -3868,7 +3868,7 @@ func (c *SageMaker) ListCompilationJobsPagesWithContext(ctx aws.Context, input *
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListCompilationJobsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3998,7 +3998,7 @@ func (c *SageMaker) ListEndpointConfigsPagesWithContext(ctx aws.Context, input *
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListEndpointConfigsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4128,7 +4128,7 @@ func (c *SageMaker) ListEndpointsPagesWithContext(ctx aws.Context, input *ListEn
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListEndpointsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4259,7 +4259,7 @@ func (c *SageMaker) ListHyperParameterTuningJobsPagesWithContext(ctx aws.Context
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListHyperParameterTuningJobsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4389,7 +4389,7 @@ func (c *SageMaker) ListLabelingJobsPagesWithContext(ctx aws.Context, input *Lis
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListLabelingJobsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4524,7 +4524,7 @@ func (c *SageMaker) ListLabelingJobsForWorkteamPagesWithContext(ctx aws.Context,
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListLabelingJobsForWorkteamOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4729,7 +4729,7 @@ func (c *SageMaker) ListModelsPagesWithContext(ctx aws.Context, input *ListModel
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListModelsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4860,7 +4860,7 @@ func (c *SageMaker) ListNotebookInstanceLifecycleConfigsPagesWithContext(ctx aws
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListNotebookInstanceLifecycleConfigsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4991,7 +4991,7 @@ func (c *SageMaker) ListNotebookInstancesPagesWithContext(ctx aws.Context, input
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListNotebookInstancesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5123,7 +5123,7 @@ func (c *SageMaker) ListSubscribedWorkteamsPagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListSubscribedWorkteamsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5253,7 +5253,7 @@ func (c *SageMaker) ListTagsPagesWithContext(ctx aws.Context, input *ListTagsInp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListTagsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5383,7 +5383,7 @@ func (c *SageMaker) ListTrainingJobsPagesWithContext(ctx aws.Context, input *Lis
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListTrainingJobsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5519,7 +5519,7 @@ func (c *SageMaker) ListTrainingJobsForHyperParameterTuningJobPagesWithContext(c
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListTrainingJobsForHyperParameterTuningJobOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5649,7 +5649,7 @@ func (c *SageMaker) ListTransformJobsPagesWithContext(ctx aws.Context, input *Li
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListTransformJobsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5781,7 +5781,7 @@ func (c *SageMaker) ListWorkteamsPagesWithContext(ctx aws.Context, input *ListWo
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListWorkteamsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5991,7 +5991,7 @@ func (c *SageMaker) SearchPagesWithContext(ctx aws.Context, input *SearchInput, 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*SearchOutput), !p.HasNextPage())
 	}
 	return p.Err()

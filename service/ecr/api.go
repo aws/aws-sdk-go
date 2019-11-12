@@ -919,7 +919,7 @@ func (c *ECR) DescribeImageScanFindingsPagesWithContext(ctx aws.Context, input *
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeImageScanFindingsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1071,7 +1071,7 @@ func (c *ECR) DescribeImagesPagesWithContext(ctx aws.Context, input *DescribeIma
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeImagesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1214,7 +1214,7 @@ func (c *ECR) DescribeRepositoriesPagesWithContext(ctx aws.Context, input *Descr
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeRepositoriesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1640,7 +1640,7 @@ func (c *ECR) GetLifecyclePolicyPreviewPagesWithContext(ctx aws.Context, input *
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetLifecyclePolicyPreviewOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1971,7 +1971,7 @@ func (c *ECR) ListImagesPagesWithContext(ctx aws.Context, input *ListImagesInput
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListImagesOutput), !p.HasNextPage())
 	}
 	return p.Err()

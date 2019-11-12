@@ -1901,7 +1901,7 @@ func (c *MTurk) ListAssignmentsForHITPagesWithContext(ctx aws.Context, input *Li
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListAssignmentsForHITOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2041,7 +2041,7 @@ func (c *MTurk) ListBonusPaymentsPagesWithContext(ctx aws.Context, input *ListBo
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListBonusPaymentsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2182,7 +2182,7 @@ func (c *MTurk) ListHITsPagesWithContext(ctx aws.Context, input *ListHITsInput, 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListHITsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2324,7 +2324,7 @@ func (c *MTurk) ListHITsForQualificationTypePagesWithContext(ctx aws.Context, in
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListHITsForQualificationTypeOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2466,7 +2466,7 @@ func (c *MTurk) ListQualificationRequestsPagesWithContext(ctx aws.Context, input
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListQualificationRequestsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2606,7 +2606,7 @@ func (c *MTurk) ListQualificationTypesPagesWithContext(ctx aws.Context, input *L
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListQualificationTypesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2749,7 +2749,7 @@ func (c *MTurk) ListReviewPolicyResultsForHITPagesWithContext(ctx aws.Context, i
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListReviewPolicyResultsForHITOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2890,7 +2890,7 @@ func (c *MTurk) ListReviewableHITsPagesWithContext(ctx aws.Context, input *ListR
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListReviewableHITsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3030,7 +3030,7 @@ func (c *MTurk) ListWorkerBlocksPagesWithContext(ctx aws.Context, input *ListWor
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListWorkerBlocksOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3170,7 +3170,7 @@ func (c *MTurk) ListWorkersWithQualificationTypePagesWithContext(ctx aws.Context
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListWorkersWithQualificationTypeOutput), !p.HasNextPage())
 	}
 	return p.Err()

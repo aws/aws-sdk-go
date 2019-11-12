@@ -863,7 +863,7 @@ func (c *Athena) GetQueryResultsPagesWithContext(ctx aws.Context, input *GetQuer
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetQueryResultsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1092,7 +1092,7 @@ func (c *Athena) ListNamedQueriesPagesWithContext(ctx aws.Context, input *ListNa
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListNamedQueriesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1238,7 +1238,7 @@ func (c *Athena) ListQueryExecutionsPagesWithContext(ctx aws.Context, input *Lis
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListQueryExecutionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1465,7 +1465,7 @@ func (c *Athena) ListWorkGroupsPagesWithContext(ctx aws.Context, input *ListWork
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListWorkGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()

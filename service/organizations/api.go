@@ -6544,7 +6544,7 @@ func (c *Organizations) ListAWSServiceAccessForOrganizationPagesWithContext(ctx 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListAWSServiceAccessForOrganizationOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -6772,7 +6772,7 @@ func (c *Organizations) ListAccountsPagesWithContext(ctx aws.Context, input *Lis
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListAccountsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -7005,7 +7005,7 @@ func (c *Organizations) ListAccountsForParentPagesWithContext(ctx aws.Context, i
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListAccountsForParentOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -7236,7 +7236,7 @@ func (c *Organizations) ListChildrenPagesWithContext(ctx aws.Context, input *Lis
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListChildrenOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -7466,7 +7466,7 @@ func (c *Organizations) ListCreateAccountStatusPagesWithContext(ctx aws.Context,
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListCreateAccountStatusOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -7697,7 +7697,7 @@ func (c *Organizations) ListHandshakesForAccountPagesWithContext(ctx aws.Context
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListHandshakesForAccountOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -7934,7 +7934,7 @@ func (c *Organizations) ListHandshakesForOrganizationPagesWithContext(ctx aws.Co
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListHandshakesForOrganizationOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -8163,7 +8163,7 @@ func (c *Organizations) ListOrganizationalUnitsForParentPagesWithContext(ctx aws
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListOrganizationalUnitsForParentOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -8397,7 +8397,7 @@ func (c *Organizations) ListParentsPagesWithContext(ctx aws.Context, input *List
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListParentsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -8623,7 +8623,7 @@ func (c *Organizations) ListPoliciesPagesWithContext(ctx aws.Context, input *Lis
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListPoliciesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -8854,7 +8854,7 @@ func (c *Organizations) ListPoliciesForTargetPagesWithContext(ctx aws.Context, i
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListPoliciesForTargetOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -9086,7 +9086,7 @@ func (c *Organizations) ListRootsPagesWithContext(ctx aws.Context, input *ListRo
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListRootsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -9312,7 +9312,7 @@ func (c *Organizations) ListTagsForResourcePagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListTagsForResourceOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -9542,7 +9542,7 @@ func (c *Organizations) ListTargetsForPolicyPagesWithContext(ctx aws.Context, in
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListTargetsForPolicyOutput), !p.HasNextPage())
 	}
 	return p.Err()

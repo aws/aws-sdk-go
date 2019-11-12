@@ -943,7 +943,7 @@ func (c *MediaPackageVod) ListAssetsPagesWithContext(ctx aws.Context, input *Lis
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListAssetsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1087,7 +1087,7 @@ func (c *MediaPackageVod) ListPackagingConfigurationsPagesWithContext(ctx aws.Co
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListPackagingConfigurationsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1231,7 +1231,7 @@ func (c *MediaPackageVod) ListPackagingGroupsPagesWithContext(ctx aws.Context, i
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListPackagingGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()

@@ -744,7 +744,7 @@ func (c *ElasticTranscoder) ListJobsByPipelinePagesWithContext(ctx aws.Context, 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListJobsByPipelineOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -892,7 +892,7 @@ func (c *ElasticTranscoder) ListJobsByStatusPagesWithContext(ctx aws.Context, in
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListJobsByStatusOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1034,7 +1034,7 @@ func (c *ElasticTranscoder) ListPipelinesPagesWithContext(ctx aws.Context, input
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListPipelinesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1176,7 +1176,7 @@ func (c *ElasticTranscoder) ListPresetsPagesWithContext(ctx aws.Context, input *
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListPresetsOutput), !p.HasNextPage())
 	}
 	return p.Err()

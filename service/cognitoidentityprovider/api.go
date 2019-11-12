@@ -1824,7 +1824,7 @@ func (c *CognitoIdentityProvider) AdminListGroupsForUserPagesWithContext(ctx aws
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*AdminListGroupsForUserOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1981,7 +1981,7 @@ func (c *CognitoIdentityProvider) AdminListUserAuthEventsPagesWithContext(ctx aw
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*AdminListUserAuthEventsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -7535,7 +7535,7 @@ func (c *CognitoIdentityProvider) ListGroupsPagesWithContext(ctx aws.Context, in
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -7685,7 +7685,7 @@ func (c *CognitoIdentityProvider) ListIdentityProvidersPagesWithContext(ctx aws.
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListIdentityProvidersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -7835,7 +7835,7 @@ func (c *CognitoIdentityProvider) ListResourceServersPagesWithContext(ctx aws.Co
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListResourceServersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -8179,7 +8179,7 @@ func (c *CognitoIdentityProvider) ListUserPoolClientsPagesWithContext(ctx aws.Co
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListUserPoolClientsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -8325,7 +8325,7 @@ func (c *CognitoIdentityProvider) ListUserPoolsPagesWithContext(ctx aws.Context,
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListUserPoolsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -8475,7 +8475,7 @@ func (c *CognitoIdentityProvider) ListUsersPagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListUsersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -8627,7 +8627,7 @@ func (c *CognitoIdentityProvider) ListUsersInGroupPagesWithContext(ctx aws.Conte
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListUsersInGroupOutput), !p.HasNextPage())
 	}
 	return p.Err()

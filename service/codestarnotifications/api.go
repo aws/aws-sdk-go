@@ -498,7 +498,7 @@ func (c *CodeStarNotifications) ListEventTypesPagesWithContext(ctx aws.Context, 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListEventTypesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -637,7 +637,7 @@ func (c *CodeStarNotifications) ListNotificationRulesPagesWithContext(ctx aws.Co
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListNotificationRulesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -859,7 +859,7 @@ func (c *CodeStarNotifications) ListTargetsPagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListTargetsOutput), !p.HasNextPage())
 	}
 	return p.Err()

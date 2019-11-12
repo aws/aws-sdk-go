@@ -1174,7 +1174,7 @@ func (c *SecretsManager) ListSecretVersionIdsPagesWithContext(ctx aws.Context, i
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListSecretVersionIdsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1334,7 +1334,7 @@ func (c *SecretsManager) ListSecretsPagesWithContext(ctx aws.Context, input *Lis
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListSecretsOutput), !p.HasNextPage())
 	}
 	return p.Err()

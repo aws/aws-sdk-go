@@ -2186,7 +2186,7 @@ func (c *ElastiCache) DescribeCacheClustersPagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeCacheClustersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2316,7 +2316,7 @@ func (c *ElastiCache) DescribeCacheEngineVersionsPagesWithContext(ctx aws.Contex
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeCacheEngineVersionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2460,7 +2460,7 @@ func (c *ElastiCache) DescribeCacheParameterGroupsPagesWithContext(ctx aws.Conte
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeCacheParameterGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2602,7 +2602,7 @@ func (c *ElastiCache) DescribeCacheParametersPagesWithContext(ctx aws.Context, i
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeCacheParametersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2746,7 +2746,7 @@ func (c *ElastiCache) DescribeCacheSecurityGroupsPagesWithContext(ctx aws.Contex
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeCacheSecurityGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2885,7 +2885,7 @@ func (c *ElastiCache) DescribeCacheSubnetGroupsPagesWithContext(ctx aws.Context,
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeCacheSubnetGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3024,7 +3024,7 @@ func (c *ElastiCache) DescribeEngineDefaultParametersPagesWithContext(ctx aws.Co
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeEngineDefaultParametersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3167,7 +3167,7 @@ func (c *ElastiCache) DescribeEventsPagesWithContext(ctx aws.Context, input *Des
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeEventsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3312,7 +3312,7 @@ func (c *ElastiCache) DescribeReplicationGroupsPagesWithContext(ctx aws.Context,
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeReplicationGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3454,7 +3454,7 @@ func (c *ElastiCache) DescribeReservedCacheNodesPagesWithContext(ctx aws.Context
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeReservedCacheNodesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3595,7 +3595,7 @@ func (c *ElastiCache) DescribeReservedCacheNodesOfferingsPagesWithContext(ctx aw
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeReservedCacheNodesOfferingsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3736,7 +3736,7 @@ func (c *ElastiCache) DescribeServiceUpdatesPagesWithContext(ctx aws.Context, in
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeServiceUpdatesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3885,7 +3885,7 @@ func (c *ElastiCache) DescribeSnapshotsPagesWithContext(ctx aws.Context, input *
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeSnapshotsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4023,7 +4023,7 @@ func (c *ElastiCache) DescribeUpdateActionsPagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeUpdateActionsOutput), !p.HasNextPage())
 	}
 	return p.Err()

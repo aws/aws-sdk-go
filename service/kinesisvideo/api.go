@@ -549,7 +549,7 @@ func (c *KinesisVideo) ListStreamsPagesWithContext(ctx aws.Context, input *ListS
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListStreamsOutput), !p.HasNextPage())
 	}
 	return p.Err()

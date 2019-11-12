@@ -4252,7 +4252,7 @@ func (c *AlexaForBusiness) ListBusinessReportSchedulesPagesWithContext(ctx aws.C
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListBusinessReportSchedulesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4382,7 +4382,7 @@ func (c *AlexaForBusiness) ListConferenceProvidersPagesWithContext(ctx aws.Conte
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListConferenceProvidersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4518,7 +4518,7 @@ func (c *AlexaForBusiness) ListDeviceEventsPagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListDeviceEventsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4649,7 +4649,7 @@ func (c *AlexaForBusiness) ListGatewayGroupsPagesWithContext(ctx aws.Context, in
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListGatewayGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4782,7 +4782,7 @@ func (c *AlexaForBusiness) ListGatewaysPagesWithContext(ctx aws.Context, input *
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListGatewaysOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4912,7 +4912,7 @@ func (c *AlexaForBusiness) ListSkillsPagesWithContext(ctx aws.Context, input *Li
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListSkillsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5042,7 +5042,7 @@ func (c *AlexaForBusiness) ListSkillsStoreCategoriesPagesWithContext(ctx aws.Con
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListSkillsStoreCategoriesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5172,7 +5172,7 @@ func (c *AlexaForBusiness) ListSkillsStoreSkillsByCategoryPagesWithContext(ctx a
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListSkillsStoreSkillsByCategoryOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5307,7 +5307,7 @@ func (c *AlexaForBusiness) ListSmartHomeAppliancesPagesWithContext(ctx aws.Conte
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListSmartHomeAppliancesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5442,7 +5442,7 @@ func (c *AlexaForBusiness) ListTagsPagesWithContext(ctx aws.Context, input *List
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListTagsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -6241,7 +6241,7 @@ func (c *AlexaForBusiness) SearchAddressBooksPagesWithContext(ctx aws.Context, i
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*SearchAddressBooksOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -6371,7 +6371,7 @@ func (c *AlexaForBusiness) SearchContactsPagesWithContext(ctx aws.Context, input
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*SearchContactsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -6501,7 +6501,7 @@ func (c *AlexaForBusiness) SearchDevicesPagesWithContext(ctx aws.Context, input 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*SearchDevicesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -6632,7 +6632,7 @@ func (c *AlexaForBusiness) SearchNetworkProfilesPagesWithContext(ctx aws.Context
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*SearchNetworkProfilesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -6762,7 +6762,7 @@ func (c *AlexaForBusiness) SearchProfilesPagesWithContext(ctx aws.Context, input
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*SearchProfilesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -6892,7 +6892,7 @@ func (c *AlexaForBusiness) SearchRoomsPagesWithContext(ctx aws.Context, input *S
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*SearchRoomsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -7023,7 +7023,7 @@ func (c *AlexaForBusiness) SearchSkillGroupsPagesWithContext(ctx aws.Context, in
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*SearchSkillGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -7153,7 +7153,7 @@ func (c *AlexaForBusiness) SearchUsersPagesWithContext(ctx aws.Context, input *S
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*SearchUsersOutput), !p.HasNextPage())
 	}
 	return p.Err()

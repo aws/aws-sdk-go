@@ -3417,7 +3417,7 @@ func (c *StorageGateway) DescribeTapeArchivesPagesWithContext(ctx aws.Context, i
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeTapeArchivesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3563,7 +3563,7 @@ func (c *StorageGateway) DescribeTapeRecoveryPointsPagesWithContext(ctx aws.Cont
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeTapeRecoveryPointsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3706,7 +3706,7 @@ func (c *StorageGateway) DescribeTapesPagesWithContext(ctx aws.Context, input *D
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeTapesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3937,7 +3937,7 @@ func (c *StorageGateway) DescribeVTLDevicesPagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeVTLDevicesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4435,7 +4435,7 @@ func (c *StorageGateway) ListFileSharesPagesWithContext(ctx aws.Context, input *
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListFileSharesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4585,7 +4585,7 @@ func (c *StorageGateway) ListGatewaysPagesWithContext(ctx aws.Context, input *Li
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListGatewaysOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4819,7 +4819,7 @@ func (c *StorageGateway) ListTagsForResourcePagesWithContext(ctx aws.Context, in
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListTagsForResourceOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4969,7 +4969,7 @@ func (c *StorageGateway) ListTapesPagesWithContext(ctx aws.Context, input *ListT
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListTapesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5297,7 +5297,7 @@ func (c *StorageGateway) ListVolumesPagesWithContext(ctx aws.Context, input *Lis
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListVolumesOutput), !p.HasNextPage())
 	}
 	return p.Err()

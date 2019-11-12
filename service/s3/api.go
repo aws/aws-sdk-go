@@ -4247,7 +4247,7 @@ func (c *S3) ListMultipartUploadsPagesWithContext(ctx aws.Context, input *ListMu
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListMultipartUploadsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4377,7 +4377,7 @@ func (c *S3) ListObjectVersionsPagesWithContext(ctx aws.Context, input *ListObje
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListObjectVersionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4514,7 +4514,7 @@ func (c *S3) ListObjectsPagesWithContext(ctx aws.Context, input *ListObjectsInpu
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListObjectsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4652,7 +4652,7 @@ func (c *S3) ListObjectsV2PagesWithContext(ctx aws.Context, input *ListObjectsV2
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListObjectsV2Output), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4782,7 +4782,7 @@ func (c *S3) ListPartsPagesWithContext(ctx aws.Context, input *ListPartsInput, f
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListPartsOutput), !p.HasNextPage())
 	}
 	return p.Err()

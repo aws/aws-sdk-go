@@ -1447,7 +1447,7 @@ func (c *ELBV2) DescribeListenersPagesWithContext(ctx aws.Context, input *Descri
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeListenersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1669,7 +1669,7 @@ func (c *ELBV2) DescribeLoadBalancersPagesWithContext(ctx aws.Context, input *De
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeLoadBalancersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2154,7 +2154,7 @@ func (c *ELBV2) DescribeTargetGroupsPagesWithContext(ctx aws.Context, input *Des
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeTargetGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()

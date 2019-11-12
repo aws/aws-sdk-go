@@ -2277,7 +2277,7 @@ func (c *Lambda) ListAliasesPagesWithContext(ctx aws.Context, input *ListAliases
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListAliasesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2425,7 +2425,7 @@ func (c *Lambda) ListEventSourceMappingsPagesWithContext(ctx aws.Context, input 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListEventSourceMappingsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2573,7 +2573,7 @@ func (c *Lambda) ListFunctionsPagesWithContext(ctx aws.Context, input *ListFunct
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListFunctionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2723,7 +2723,7 @@ func (c *Lambda) ListLayerVersionsPagesWithContext(ctx aws.Context, input *ListL
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListLayerVersionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2869,7 +2869,7 @@ func (c *Lambda) ListLayersPagesWithContext(ctx aws.Context, input *ListLayersIn
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListLayersOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3109,7 +3109,7 @@ func (c *Lambda) ListVersionsByFunctionPagesWithContext(ctx aws.Context, input *
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListVersionsByFunctionOutput), !p.HasNextPage())
 	}
 	return p.Err()

@@ -147,7 +147,7 @@ func (c *XRay) BatchGetTracesPagesWithContext(ctx aws.Context, input *BatchGetTr
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*BatchGetTracesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -787,7 +787,7 @@ func (c *XRay) GetGroupsPagesWithContext(ctx aws.Context, input *GetGroupsInput,
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -925,7 +925,7 @@ func (c *XRay) GetSamplingRulesPagesWithContext(ctx aws.Context, input *GetSampl
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetSamplingRulesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1063,7 +1063,7 @@ func (c *XRay) GetSamplingStatisticSummariesPagesWithContext(ctx aws.Context, in
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetSamplingStatisticSummariesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1287,7 +1287,7 @@ func (c *XRay) GetServiceGraphPagesWithContext(ctx aws.Context, input *GetServic
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetServiceGraphOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1425,7 +1425,7 @@ func (c *XRay) GetTimeSeriesServiceStatisticsPagesWithContext(ctx aws.Context, i
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetTimeSeriesServiceStatisticsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1563,7 +1563,7 @@ func (c *XRay) GetTraceGraphPagesWithContext(ctx aws.Context, input *GetTraceGra
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetTraceGraphOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1717,7 +1717,7 @@ func (c *XRay) GetTraceSummariesPagesWithContext(ctx aws.Context, input *GetTrac
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetTraceSummariesOutput), !p.HasNextPage())
 	}
 	return p.Err()

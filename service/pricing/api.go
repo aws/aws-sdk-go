@@ -157,7 +157,7 @@ func (c *Pricing) DescribeServicesPagesWithContext(ctx aws.Context, input *Descr
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeServicesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -308,7 +308,7 @@ func (c *Pricing) GetAttributeValuesPagesWithContext(ctx aws.Context, input *Get
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetAttributeValuesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -456,7 +456,7 @@ func (c *Pricing) GetProductsPagesWithContext(ctx aws.Context, input *GetProduct
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetProductsOutput), !p.HasNextPage())
 	}
 	return p.Err()

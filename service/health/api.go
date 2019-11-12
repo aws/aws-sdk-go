@@ -150,7 +150,7 @@ func (c *Health) DescribeAffectedEntitiesPagesWithContext(ctx aws.Context, input
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeAffectedEntitiesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -363,7 +363,7 @@ func (c *Health) DescribeEventAggregatesPagesWithContext(ctx aws.Context, input 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeEventAggregatesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -588,7 +588,7 @@ func (c *Health) DescribeEventTypesPagesWithContext(ctx aws.Context, input *Desc
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeEventTypesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -733,7 +733,7 @@ func (c *Health) DescribeEventsPagesWithContext(ctx aws.Context, input *Describe
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeEventsOutput), !p.HasNextPage())
 	}
 	return p.Err()

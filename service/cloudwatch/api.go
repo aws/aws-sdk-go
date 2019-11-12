@@ -403,7 +403,7 @@ func (c *CloudWatch) DescribeAlarmHistoryPagesWithContext(ctx aws.Context, input
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeAlarmHistoryOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -540,7 +540,7 @@ func (c *CloudWatch) DescribeAlarmsPagesWithContext(ctx aws.Context, input *Desc
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeAlarmsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1118,7 +1118,7 @@ func (c *CloudWatch) GetMetricDataPagesWithContext(ctx aws.Context, input *GetMe
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetMetricDataOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1491,7 +1491,7 @@ func (c *CloudWatch) ListDashboardsPagesWithContext(ctx aws.Context, input *List
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListDashboardsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1637,7 +1637,7 @@ func (c *CloudWatch) ListMetricsPagesWithContext(ctx aws.Context, input *ListMet
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListMetricsOutput), !p.HasNextPage())
 	}
 	return p.Err()

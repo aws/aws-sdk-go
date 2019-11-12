@@ -964,7 +964,7 @@ func (c *FMS) ListComplianceStatusPagesWithContext(ctx aws.Context, input *ListC
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListComplianceStatusOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1107,7 +1107,7 @@ func (c *FMS) ListMemberAccountsPagesWithContext(ctx aws.Context, input *ListMem
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListMemberAccountsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1257,7 +1257,7 @@ func (c *FMS) ListPoliciesPagesWithContext(ctx aws.Context, input *ListPoliciesI
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListPoliciesOutput), !p.HasNextPage())
 	}
 	return p.Err()

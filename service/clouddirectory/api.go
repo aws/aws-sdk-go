@@ -3990,7 +3990,7 @@ func (c *CloudDirectory) ListAppliedSchemaArnsPagesWithContext(ctx aws.Context, 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListAppliedSchemaArnsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4156,7 +4156,7 @@ func (c *CloudDirectory) ListAttachedIndicesPagesWithContext(ctx aws.Context, in
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListAttachedIndicesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4322,7 +4322,7 @@ func (c *CloudDirectory) ListDevelopmentSchemaArnsPagesWithContext(ctx aws.Conte
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListDevelopmentSchemaArnsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4485,7 +4485,7 @@ func (c *CloudDirectory) ListDirectoriesPagesWithContext(ctx aws.Context, input 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListDirectoriesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4654,7 +4654,7 @@ func (c *CloudDirectory) ListFacetAttributesPagesWithContext(ctx aws.Context, in
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListFacetAttributesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -4820,7 +4820,7 @@ func (c *CloudDirectory) ListFacetNamesPagesWithContext(ctx aws.Context, input *
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListFacetNamesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5115,7 +5115,7 @@ func (c *CloudDirectory) ListIndexPagesWithContext(ctx aws.Context, input *ListI
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListIndexOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5271,7 +5271,7 @@ func (c *CloudDirectory) ListManagedSchemaArnsPagesWithContext(ctx aws.Context, 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListManagedSchemaArnsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5444,7 +5444,7 @@ func (c *CloudDirectory) ListObjectAttributesPagesWithContext(ctx aws.Context, i
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListObjectAttributesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5618,7 +5618,7 @@ func (c *CloudDirectory) ListObjectChildrenPagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListObjectChildrenOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5797,7 +5797,7 @@ func (c *CloudDirectory) ListObjectParentPathsPagesWithContext(ctx aws.Context, 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListObjectParentPathsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -5970,7 +5970,7 @@ func (c *CloudDirectory) ListObjectParentsPagesWithContext(ctx aws.Context, inpu
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListObjectParentsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -6139,7 +6139,7 @@ func (c *CloudDirectory) ListObjectPoliciesPagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListObjectPoliciesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -6430,7 +6430,7 @@ func (c *CloudDirectory) ListPolicyAttachmentsPagesWithContext(ctx aws.Context, 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListPolicyAttachmentsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -6598,7 +6598,7 @@ func (c *CloudDirectory) ListPublishedSchemaArnsPagesWithContext(ctx aws.Context
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListPublishedSchemaArnsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -6768,7 +6768,7 @@ func (c *CloudDirectory) ListTagsForResourcePagesWithContext(ctx aws.Context, in
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListTagsForResourceOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -6938,7 +6938,7 @@ func (c *CloudDirectory) ListTypedLinkFacetAttributesPagesWithContext(ctx aws.Co
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListTypedLinkFacetAttributesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -7105,7 +7105,7 @@ func (c *CloudDirectory) ListTypedLinkFacetNamesPagesWithContext(ctx aws.Context
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListTypedLinkFacetNamesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -7280,7 +7280,7 @@ func (c *CloudDirectory) LookupPolicyPagesWithContext(ctx aws.Context, input *Lo
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*LookupPolicyOutput), !p.HasNextPage())
 	}
 	return p.Err()

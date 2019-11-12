@@ -1506,7 +1506,7 @@ func (c *DatabaseMigrationService) DescribeCertificatesPagesWithContext(ctx aws.
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeCertificatesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1642,7 +1642,7 @@ func (c *DatabaseMigrationService) DescribeConnectionsPagesWithContext(ctx aws.C
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeConnectionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1772,7 +1772,7 @@ func (c *DatabaseMigrationService) DescribeEndpointTypesPagesWithContext(ctx aws
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeEndpointTypesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1907,7 +1907,7 @@ func (c *DatabaseMigrationService) DescribeEndpointsPagesWithContext(ctx aws.Con
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeEndpointsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2124,7 +2124,7 @@ func (c *DatabaseMigrationService) DescribeEventSubscriptionsPagesWithContext(ct
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeEventSubscriptionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2257,7 +2257,7 @@ func (c *DatabaseMigrationService) DescribeEventsPagesWithContext(ctx aws.Contex
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeEventsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2388,7 +2388,7 @@ func (c *DatabaseMigrationService) DescribeOrderableReplicationInstancesPagesWit
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeOrderableReplicationInstancesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2523,7 +2523,7 @@ func (c *DatabaseMigrationService) DescribePendingMaintenanceActionsPagesWithCon
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribePendingMaintenanceActionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2745,7 +2745,7 @@ func (c *DatabaseMigrationService) DescribeReplicationInstanceTaskLogsPagesWithC
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeReplicationInstanceTaskLogsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2881,7 +2881,7 @@ func (c *DatabaseMigrationService) DescribeReplicationInstancesPagesWithContext(
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeReplicationInstancesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3016,7 +3016,7 @@ func (c *DatabaseMigrationService) DescribeReplicationSubnetGroupsPagesWithConte
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeReplicationSubnetGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3152,7 +3152,7 @@ func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentResultsPages
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeReplicationTaskAssessmentResultsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3288,7 +3288,7 @@ func (c *DatabaseMigrationService) DescribeReplicationTasksPagesWithContext(ctx 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeReplicationTasksOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3427,7 +3427,7 @@ func (c *DatabaseMigrationService) DescribeSchemasPagesWithContext(ctx aws.Conte
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeSchemasOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3571,7 +3571,7 @@ func (c *DatabaseMigrationService) DescribeTableStatisticsPagesWithContext(ctx a
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeTableStatisticsOutput), !p.HasNextPage())
 	}
 	return p.Err()

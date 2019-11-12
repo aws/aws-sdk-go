@@ -2381,7 +2381,7 @@ func (c *OpsWorks) DescribeEcsClustersPagesWithContext(ctx aws.Context, input *D
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeEcsClustersOutput), !p.HasNextPage())
 	}
 	return p.Err()

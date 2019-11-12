@@ -817,7 +817,7 @@ func (c *KinesisVideoArchivedMedia) ListFragmentsPagesWithContext(ctx aws.Contex
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListFragmentsOutput), !p.HasNextPage())
 	}
 	return p.Err()

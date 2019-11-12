@@ -1698,7 +1698,7 @@ func (c *Rekognition) GetCelebrityRecognitionPagesWithContext(ctx aws.Context, i
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetCelebrityRecognitionOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1883,7 +1883,7 @@ func (c *Rekognition) GetContentModerationPagesWithContext(ctx aws.Context, inpu
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetContentModerationOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2056,7 +2056,7 @@ func (c *Rekognition) GetFaceDetectionPagesWithContext(ctx aws.Context, input *G
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetFaceDetectionOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2239,7 +2239,7 @@ func (c *Rekognition) GetFaceSearchPagesWithContext(ctx aws.Context, input *GetF
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetFaceSearchOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2421,7 +2421,7 @@ func (c *Rekognition) GetLabelDetectionPagesWithContext(ctx aws.Context, input *
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetLabelDetectionOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2606,7 +2606,7 @@ func (c *Rekognition) GetPersonTrackingPagesWithContext(ctx aws.Context, input *
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetPersonTrackingOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2963,7 +2963,7 @@ func (c *Rekognition) ListCollectionsPagesWithContext(ctx aws.Context, input *Li
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListCollectionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3122,7 +3122,7 @@ func (c *Rekognition) ListFacesPagesWithContext(ctx aws.Context, input *ListFace
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListFacesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3272,7 +3272,7 @@ func (c *Rekognition) ListStreamProcessorsPagesWithContext(ctx aws.Context, inpu
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListStreamProcessorsOutput), !p.HasNextPage())
 	}
 	return p.Err()

@@ -2797,7 +2797,7 @@ func (c *CodeDeploy) ListApplicationRevisionsPagesWithContext(ctx aws.Context, i
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListApplicationRevisionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2932,7 +2932,7 @@ func (c *CodeDeploy) ListApplicationsPagesWithContext(ctx aws.Context, input *Li
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListApplicationsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3067,7 +3067,7 @@ func (c *CodeDeploy) ListDeploymentConfigsPagesWithContext(ctx aws.Context, inpu
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListDeploymentConfigsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3212,7 +3212,7 @@ func (c *CodeDeploy) ListDeploymentGroupsPagesWithContext(ctx aws.Context, input
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListDeploymentGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3395,7 +3395,7 @@ func (c *CodeDeploy) ListDeploymentInstancesPagesWithContext(ctx aws.Context, in
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListDeploymentInstancesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -3658,7 +3658,7 @@ func (c *CodeDeploy) ListDeploymentsPagesWithContext(ctx aws.Context, input *Lis
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListDeploymentsOutput), !p.HasNextPage())
 	}
 	return p.Err()

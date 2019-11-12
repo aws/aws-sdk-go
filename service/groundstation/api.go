@@ -1267,7 +1267,7 @@ func (c *GroundStation) ListConfigsPagesWithContext(ctx aws.Context, input *List
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListConfigsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1411,7 +1411,7 @@ func (c *GroundStation) ListContactsPagesWithContext(ctx aws.Context, input *Lis
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListContactsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1552,7 +1552,7 @@ func (c *GroundStation) ListDataflowEndpointGroupsPagesWithContext(ctx aws.Conte
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListDataflowEndpointGroupsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1693,7 +1693,7 @@ func (c *GroundStation) ListGroundStationsPagesWithContext(ctx aws.Context, inpu
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListGroundStationsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1834,7 +1834,7 @@ func (c *GroundStation) ListMissionProfilesPagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListMissionProfilesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1975,7 +1975,7 @@ func (c *GroundStation) ListSatellitesPagesWithContext(ctx aws.Context, input *L
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListSatellitesOutput), !p.HasNextPage())
 	}
 	return p.Err()

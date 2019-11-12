@@ -928,7 +928,7 @@ func (c *CostExplorer) GetSavingsPlansCoveragePagesWithContext(ctx aws.Context, 
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetSavingsPlansCoverageOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1247,7 +1247,7 @@ func (c *CostExplorer) GetSavingsPlansUtilizationDetailsPagesWithContext(ctx aws
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*GetSavingsPlansUtilizationDetailsOutput), !p.HasNextPage())
 	}
 	return p.Err()

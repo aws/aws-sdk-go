@@ -748,7 +748,7 @@ func (c *Mobile) ListBundlesPagesWithContext(ctx aws.Context, input *ListBundles
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListBundlesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -899,7 +899,7 @@ func (c *Mobile) ListProjectsPagesWithContext(ctx aws.Context, input *ListProjec
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListProjectsOutput), !p.HasNextPage())
 	}
 	return p.Err()

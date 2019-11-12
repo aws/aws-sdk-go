@@ -2301,7 +2301,7 @@ func (c *Glacier) ListJobsPagesWithContext(ctx aws.Context, input *ListJobsInput
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListJobsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2472,7 +2472,7 @@ func (c *Glacier) ListMultipartUploadsPagesWithContext(ctx aws.Context, input *L
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListMultipartUploadsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2637,7 +2637,7 @@ func (c *Glacier) ListPartsPagesWithContext(ctx aws.Context, input *ListPartsInp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListPartsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2970,7 +2970,7 @@ func (c *Glacier) ListVaultsPagesWithContext(ctx aws.Context, input *ListVaultsI
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListVaultsOutput), !p.HasNextPage())
 	}
 	return p.Err()

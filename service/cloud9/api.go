@@ -553,7 +553,7 @@ func (c *Cloud9) DescribeEnvironmentMembershipsPagesWithContext(ctx aws.Context,
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeEnvironmentMembershipsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -900,7 +900,7 @@ func (c *Cloud9) ListEnvironmentsPagesWithContext(ctx aws.Context, input *ListEn
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListEnvironmentsOutput), !p.HasNextPage())
 	}
 	return p.Err()

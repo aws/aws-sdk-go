@@ -2177,7 +2177,7 @@ func (c *AppStream) DescribeImagePermissionsPagesWithContext(ctx aws.Context, in
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeImagePermissionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2317,7 +2317,7 @@ func (c *AppStream) DescribeImagesPagesWithContext(ctx aws.Context, input *Descr
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*DescribeImagesOutput), !p.HasNextPage())
 	}
 	return p.Err()

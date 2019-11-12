@@ -1379,7 +1379,7 @@ func (c *ACMPCA) ListCertificateAuthoritiesPagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListCertificateAuthoritiesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1531,7 +1531,7 @@ func (c *ACMPCA) ListPermissionsPagesWithContext(ctx aws.Context, input *ListPer
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListPermissionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1678,7 +1678,7 @@ func (c *ACMPCA) ListTagsPagesWithContext(ctx aws.Context, input *ListTagsInput,
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListTagsOutput), !p.HasNextPage())
 	}
 	return p.Err()

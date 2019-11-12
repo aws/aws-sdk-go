@@ -1492,7 +1492,7 @@ func (c *CodePipeline) ListActionExecutionsPagesWithContext(ctx aws.Context, inp
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListActionExecutionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1632,7 +1632,7 @@ func (c *CodePipeline) ListActionTypesPagesWithContext(ctx aws.Context, input *L
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListActionTypesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1774,7 +1774,7 @@ func (c *CodePipeline) ListPipelineExecutionsPagesWithContext(ctx aws.Context, i
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListPipelineExecutionsOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -1913,7 +1913,7 @@ func (c *CodePipeline) ListPipelinesPagesWithContext(ctx aws.Context, input *Lis
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListPipelinesOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2058,7 +2058,7 @@ func (c *CodePipeline) ListTagsForResourcePagesWithContext(ctx aws.Context, inpu
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListTagsForResourceOutput), !p.HasNextPage())
 	}
 	return p.Err()
@@ -2199,7 +2199,7 @@ func (c *CodePipeline) ListWebhooksPagesWithContext(ctx aws.Context, input *List
 	}
 
 	cont := true
-	for p.Next() && cont {
+	for cont && p.Next() {
 		cont = fn(p.Page().(*ListWebhooksOutput), !p.HasNextPage())
 	}
 	return p.Err()
