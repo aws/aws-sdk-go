@@ -237,6 +237,13 @@
         "WebhookDefinition$targetAction": "<p>The name of the action in a pipeline you want to connect to the webhook. The action must be from the source (first) stage of the pipeline.</p>"
       }
     },
+    "ActionNamespace": {
+      "base": null,
+      "refs": {
+        "ActionDeclaration$namespace": "<p>The variable namespace associated with the action. All variables produced as output by this action fall under this namespace.</p>",
+        "ActionExecutionInput$namespace": "<p>The variable namespace associated with the action. All variables produced as output by this action fall under this namespace.</p>"
+      }
+    },
     "ActionNotFoundException": {
       "base": "<p>The specified action cannot be found.</p>",
       "refs": {
@@ -991,6 +998,7 @@
         "FailureDetails$message": "<p>The message about the failure.</p>",
         "InvalidArnException$message": null,
         "InvalidTagsException$message": null,
+        "OutputVariablesSizeExceededException$message": null,
         "TooManyTagsException$message": null
       }
     },
@@ -1041,6 +1049,30 @@
       "base": null,
       "refs": {
         "ActionDeclaration$outputArtifacts": "<p>The name or ID of the result of the action declaration, such as a test or build artifact.</p>"
+      }
+    },
+    "OutputVariablesKey": {
+      "base": null,
+      "refs": {
+        "OutputVariablesMap$key": null
+      }
+    },
+    "OutputVariablesMap": {
+      "base": null,
+      "refs": {
+        "ActionExecutionOutput$outputVariables": "<p>The outputVariables field shows the key-value pairs that were output as part of that execution.</p>",
+        "PutJobSuccessResultInput$outputVariables": "<p>Key-value pairs produced as output by a job worker that can be made available to a downstream action configuration. <code>outputVariables</code> can be included only when there is no continuation token on the request.</p>"
+      }
+    },
+    "OutputVariablesSizeExceededException": {
+      "base": "<p>Exceeded the total size limit for all variables in the pipeline.</p>",
+      "refs": {
+      }
+    },
+    "OutputVariablesValue": {
+      "base": null,
+      "refs": {
+        "OutputVariablesMap$value": null
       }
     },
     "Percentage": {
@@ -1279,6 +1311,12 @@
       "refs": {
       }
     },
+    "ResolvedActionConfigurationMap": {
+      "base": null,
+      "refs": {
+        "ActionExecutionInput$resolvedConfiguration": "<p>Configuration data for an action execution with all variable references replaced with their real values for the execution.</p>"
+      }
+    },
     "ResourceArn": {
       "base": null,
       "refs": {
@@ -1489,6 +1527,13 @@
     "StartPipelineExecutionOutput": {
       "base": "<p>Represents the output of a <code>StartPipelineExecution</code> action.</p>",
       "refs": {
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "ResolvedActionConfigurationMap$key": null,
+        "ResolvedActionConfigurationMap$value": null
       }
     },
     "Tag": {

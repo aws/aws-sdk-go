@@ -463,6 +463,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"TransactionCanceledException"},
         {"shape":"ProvisionedThroughputExceededException"},
+        {"shape":"RequestLimitExceeded"},
         {"shape":"InternalServerError"}
       ],
       "endpointdiscovery":{
@@ -482,6 +483,7 @@
         {"shape":"TransactionInProgressException"},
         {"shape":"IdempotentParameterMismatchException"},
         {"shape":"ProvisionedThroughputExceededException"},
+        {"shape":"RequestLimitExceeded"},
         {"shape":"InternalServerError"}
       ],
       "endpointdiscovery":{
@@ -942,7 +944,7 @@
     "CancellationReasonList":{
       "type":"list",
       "member":{"shape":"CancellationReason"},
-      "max":10,
+      "max":25,
       "min":1
     },
     "Capacity":{
@@ -1633,7 +1635,7 @@
     "ItemResponseList":{
       "type":"list",
       "member":{"shape":"ItemResponse"},
-      "max":10,
+      "max":25,
       "min":1
     },
     "KMSMasterKeyArn":{"type":"string"},
@@ -2181,7 +2183,11 @@
       ],
       "members":{
         "TargetTableName":{"shape":"TableName"},
-        "BackupArn":{"shape":"BackupArn"}
+        "BackupArn":{"shape":"BackupArn"},
+        "BillingModeOverride":{"shape":"BillingMode"},
+        "GlobalSecondaryIndexOverride":{"shape":"GlobalSecondaryIndexList"},
+        "LocalSecondaryIndexOverride":{"shape":"LocalSecondaryIndexList"},
+        "ProvisionedThroughputOverride":{"shape":"ProvisionedThroughput"}
       }
     },
     "RestoreTableFromBackupOutput":{
@@ -2200,7 +2206,11 @@
         "SourceTableName":{"shape":"TableName"},
         "TargetTableName":{"shape":"TableName"},
         "UseLatestRestorableTime":{"shape":"BooleanObject"},
-        "RestoreDateTime":{"shape":"Date"}
+        "RestoreDateTime":{"shape":"Date"},
+        "BillingModeOverride":{"shape":"BillingMode"},
+        "GlobalSecondaryIndexOverride":{"shape":"GlobalSecondaryIndexList"},
+        "LocalSecondaryIndexOverride":{"shape":"LocalSecondaryIndexList"},
+        "ProvisionedThroughputOverride":{"shape":"ProvisionedThroughput"}
       }
     },
     "RestoreTableToPointInTimeOutput":{
@@ -2552,7 +2562,7 @@
     "TransactGetItemList":{
       "type":"list",
       "member":{"shape":"TransactGetItem"},
-      "max":10,
+      "max":25,
       "min":1
     },
     "TransactGetItemsInput":{
@@ -2582,7 +2592,7 @@
     "TransactWriteItemList":{
       "type":"list",
       "member":{"shape":"TransactWriteItem"},
-      "max":10,
+      "max":25,
       "min":1
     },
     "TransactWriteItemsInput":{

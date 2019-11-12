@@ -1,3 +1,15 @@
+Release v1.25.33 (2019-11-12)
+===
+
+### Service Client Updates
+* `service/codepipeline`: Updates service API and documentation
+  * AWS CodePipeline now supports the use of variables in action configuration.
+* `service/dynamodb`: Updates service API and documentation
+  * Amazon DynamoDB enables you to restore your data to a new DynamoDB table using a point-in-time or on-demand backup. You now can modify the settings on the new restored table. Specifically, you can exclude some or all of the local and global secondary indexes from being created with the restored table. In addition, you can change the billing mode and provisioned capacity settings.
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/marketplace-catalog`: Adds new service
+* `service/transcribe`: Updates service API and documentation
+
 Release v1.25.32 (2019-11-11)
 ===
 

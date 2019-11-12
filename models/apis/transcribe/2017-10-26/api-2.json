@@ -263,7 +263,15 @@
         "hi-IN",
         "ar-SA",
         "ru-RU",
-        "zh-CN"
+        "zh-CN",
+        "nl-NL",
+        "id-ID",
+        "ta-IN",
+        "fa-IR",
+        "en-IE",
+        "en-AB",
+        "en-WL",
+        "pt-PT"
       ]
     },
     "LimitExceededException":{

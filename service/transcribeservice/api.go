@@ -82,9 +82,9 @@ func (c *TranscribeService) CreateVocabularyRequest(input *CreateVocabularyInput
 //   again.
 //
 //   * ErrCodeConflictException "ConflictException"
-//   When you are using the StartTranscriptionJob operation, the JobName field
-//   is a duplicate of a previously entered job name. Resend your request with
-//   a different name.
+//   When you are using the CreateVocabulary operation, the JobName field is a
+//   duplicate of a previously entered job name. Resend your request with a different
+//   name.
 //
 //   When you are using the UpdateVocabulary operation, there are two jobs running
 //   at the same time. Resend the second request later.
@@ -851,9 +851,9 @@ func (c *TranscribeService) StartTranscriptionJobRequest(input *StartTranscripti
 //   again.
 //
 //   * ErrCodeConflictException "ConflictException"
-//   When you are using the StartTranscriptionJob operation, the JobName field
-//   is a duplicate of a previously entered job name. Resend your request with
-//   a different name.
+//   When you are using the CreateVocabulary operation, the JobName field is a
+//   duplicate of a previously entered job name. Resend your request with a different
+//   name.
 //
 //   When you are using the UpdateVocabulary operation, there are two jobs running
 //   at the same time. Resend the second request later.
@@ -955,9 +955,9 @@ func (c *TranscribeService) UpdateVocabularyRequest(input *UpdateVocabularyInput
 //   again.
 //
 //   * ErrCodeConflictException "ConflictException"
-//   When you are using the StartTranscriptionJob operation, the JobName field
-//   is a duplicate of a previously entered job name. Resend your request with
-//   a different name.
+//   When you are using the CreateVocabulary operation, the JobName field is a
+//   duplicate of a previously entered job name. Resend your request with a different
+//   name.
 //
 //   When you are using the UpdateVocabulary operation, there are two jobs running
 //   at the same time. Resend the second request later.
@@ -999,11 +999,11 @@ type CreateVocabularyInput struct {
 	// vocabulary. The URI must be in the same region as the API endpoint that you
 	// are calling. The general form is
 	//
-	// https://s3-<aws-region>.amazonaws.com/<bucket-name>/<keyprefix>/<objectkey>
+	// https://s3.<aws-region>.amazonaws.com/<bucket-name>/<keyprefix>/<objectkey>
 	//
 	// For example:
 	//
-	// https://s3-us-east-1.amazonaws.com/examplebucket/vocab.txt
+	// https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt
 	//
 	// For more information about S3 object names, see Object Keys (http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
 	// in the Amazon S3 Developer Guide.
@@ -1662,13 +1662,13 @@ type Media struct {
 	// The S3 location of the input media file. The URI must be in the same region
 	// as the API endpoint that you are calling. The general form is:
 	//
-	// https://s3-<aws-region>.amazonaws.com/<bucket-name>/<keyprefix>/<objectkey>
+	// https://s3.<aws-region>.amazonaws.com/<bucket-name>/<keyprefix>/<objectkey>
 	//
 	// For example:
 	//
-	// https://s3-us-east-1.amazonaws.com/examplebucket/example.mp4
+	// https://s3.us-east-1.amazonaws.com/examplebucket/example.mp4
 	//
-	// https://s3-us-east-1.amazonaws.com/examplebucket/mediadocs/example.mp4
+	// https://s3.us-east-1.amazonaws.com/examplebucket/mediadocs/example.mp4
 	//
 	// For more information about S3 object names, see Object Keys (http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
 	// in the Amazon S3 Developer Guide.
@@ -1822,15 +1822,41 @@ type StartTranscriptionJobInput struct {
 	// the bucket. For more information, see Permissions Required for IAM User Roles
 	// (https://docs.aws.amazon.com/transcribe/latest/dg/security_iam_id-based-policy-examples.html#auth-role-iam-user).
 	//
-	// Amazon Transcribe uses the default Amazon S3 key for server-side encryption
-	// of transcripts that are placed in your S3 bucket. You can't specify your
-	// own encryption key.
+	// You can specify an AWS Key Management Service (KMS) key to encrypt the output
+	// of your transcription using the OutputEncryptionKMSKeyId parameter. If you
+	// don't specify a KMS key, Amazon Transcribe uses the default Amazon S3 key
+	// for server-side encryption of transcripts that are placed in your S3 bucket.
 	//
 	// If you don't set the OutputBucketName, Amazon Transcribe generates a pre-signed
 	// URL, a shareable URL that provides secure access to your transcription, and
 	// returns it in the TranscriptFileUri field. Use this URL to download the transcription.
 	OutputBucketName *string `type:"string"`
 
+	// The Amazon Resource Name (ARN) of the AWS Key Management Service (KMS) key
+	// used to encrypt the output of the transcription job. The user calling the
+	// StartTranscriptionJob operation must have permission to use the specified
+	// KMS key.
+	//
+	// You can use either of the following to identify a KMS key in the current
+	// account:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * KMS Key Alias: "alias/ExampleAlias"
+	//
+	// You can use either of the following to identify a KMS key in the current
+	// account or another account:
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:region:account
+	//    ID:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * ARN of a KMS Key Alias: "arn:aws:kms:region:account ID:alias/ExampleAlias"
+	//
+	// If you don't specify an encryption key, the output of the transcription job
+	// is encrypted with the default Amazon S3 key (SSE-S3).
+	//
+	// If you specify a KMS key to encrypt your output, you must also specify an
+	// output location in the OutputBucketName parameter.
 	OutputEncryptionKMSKeyId *string `min:"1" type:"string"`
 
 	// A Settings object that provides optional settings for a transcription job.
@@ -2242,11 +2268,11 @@ type UpdateVocabularyInput struct {
 	// vocabulary. The URI must be in the same region as the API endpoint that you
 	// are calling. The general form is
 	//
-	// https://s3-<aws-region>.amazonaws.com/<bucket-name>/<keyprefix>/<objectkey>
+	// https://s3.<aws-region>.amazonaws.com/<bucket-name>/<keyprefix>/<objectkey>
 	//
 	// For example:
 	//
-	// https://s3-us-east-1.amazonaws.com/examplebucket/vocab.txt
+	// https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt
 	//
 	// For more information about S3 object names, see Object Keys (http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
 	// in the Amazon S3 Developer Guide.
@@ -2467,6 +2493,30 @@ const (
 
 	// LanguageCodeZhCn is a LanguageCode enum value
 	LanguageCodeZhCn = "zh-CN"
+
+	// LanguageCodeNlNl is a LanguageCode enum value
+	LanguageCodeNlNl = "nl-NL"
+
+	// LanguageCodeIdId is a LanguageCode enum value
+	LanguageCodeIdId = "id-ID"
+
+	// LanguageCodeTaIn is a LanguageCode enum value
+	LanguageCodeTaIn = "ta-IN"
+
+	// LanguageCodeFaIr is a LanguageCode enum value
+	LanguageCodeFaIr = "fa-IR"
+
+	// LanguageCodeEnIe is a LanguageCode enum value
+	LanguageCodeEnIe = "en-IE"
+
+	// LanguageCodeEnAb is a LanguageCode enum value
+	LanguageCodeEnAb = "en-AB"
+
+	// LanguageCodeEnWl is a LanguageCode enum value
+	LanguageCodeEnWl = "en-WL"
+
+	// LanguageCodePtPt is a LanguageCode enum value
+	LanguageCodePtPt = "pt-PT"
 )
 
 const (
