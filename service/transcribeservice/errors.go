@@ -16,9 +16,9 @@ const (
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
 	//
-	// When you are using the StartTranscriptionJob operation, the JobName field
-	// is a duplicate of a previously entered job name. Resend your request with
-	// a different name.
+	// When you are using the CreateVocabulary operation, the JobName field is a
+	// duplicate of a previously entered job name. Resend your request with a different
+	// name.
 	//
 	// When you are using the UpdateVocabulary operation, there are two jobs running
 	// at the same time. Resend the second request later.

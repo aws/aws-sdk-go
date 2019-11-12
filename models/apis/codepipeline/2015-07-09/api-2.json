@@ -388,7 +388,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"JobNotFoundException"},
-        {"shape":"InvalidJobStateException"}
+        {"shape":"InvalidJobStateException"},
+        {"shape":"OutputVariablesSizeExceededException"}
       ]
     },
     "PutThirdPartyJobFailureResult":{
@@ -682,7 +683,8 @@
         "outputArtifacts":{"shape":"OutputArtifactList"},
         "inputArtifacts":{"shape":"InputArtifactList"},
         "roleArn":{"shape":"RoleArn"},
-        "region":{"shape":"AWSRegionName"}
+        "region":{"shape":"AWSRegionName"},
+        "namespace":{"shape":"ActionNamespace"}
       }
     },
     "ActionExecution":{
@@ -730,16 +732,19 @@
       "members":{
         "actionTypeId":{"shape":"ActionTypeId"},
         "configuration":{"shape":"ActionConfigurationMap"},
+        "resolvedConfiguration":{"shape":"ResolvedActionConfigurationMap"},
         "roleArn":{"shape":"RoleArn"},
         "region":{"shape":"AWSRegionName"},
-        "inputArtifacts":{"shape":"ArtifactDetailList"}
+        "inputArtifacts":{"shape":"ArtifactDetailList"},
+        "namespace":{"shape":"ActionNamespace"}
       }
     },
     "ActionExecutionOutput":{
       "type":"structure",
       "members":{
         "outputArtifacts":{"shape":"ArtifactDetailList"},
-        "executionResult":{"shape":"ActionExecutionResult"}
+        "executionResult":{"shape":"ActionExecutionResult"},
+        "outputVariables":{"shape":"OutputVariablesMap"}
       }
     },
     "ActionExecutionResult":{
@@ -764,6 +769,12 @@
       "max":100,
       "min":1,
       "pattern":"[A-Za-z0-9.@\\-_]+"
+    },
+    "ActionNamespace":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"[A-Za-z0-9@\\-_]+"
     },
     "ActionNotFoundException":{
       "type":"structure",
@@ -1666,6 +1677,23 @@
       "type":"list",
       "member":{"shape":"OutputArtifact"}
     },
+    "OutputVariablesKey":{
+      "type":"string",
+      "pattern":"[A-Za-z0-9@\\-_]+"
+    },
+    "OutputVariablesMap":{
+      "type":"map",
+      "key":{"shape":"OutputVariablesKey"},
+      "value":{"shape":"OutputVariablesValue"}
+    },
+    "OutputVariablesSizeExceededException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"Message"}
+      },
+      "exception":true
+    },
+    "OutputVariablesValue":{"type":"string"},
     "Percentage":{
       "type":"integer",
       "max":100,
@@ -1890,7 +1918,8 @@
         "jobId":{"shape":"JobId"},
         "currentRevision":{"shape":"CurrentRevision"},
         "continuationToken":{"shape":"ContinuationToken"},
-        "executionDetails":{"shape":"ExecutionDetails"}
+        "executionDetails":{"shape":"ExecutionDetails"},
+        "outputVariables":{"shape":"OutputVariablesMap"}
       }
     },
     "PutThirdPartyJobFailureResultInput":{
@@ -1951,6 +1980,11 @@
       "type":"structure",
       "members":{
       }
+    },
+    "ResolvedActionConfigurationMap":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"String"}
     },
     "ResourceArn":{
       "type":"string",
@@ -2153,6 +2187,7 @@
         "pipelineExecutionId":{"shape":"PipelineExecutionId"}
       }
     },
+    "String":{"type":"string"},
     "Tag":{
       "type":"structure",
       "required":[
