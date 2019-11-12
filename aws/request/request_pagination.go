@@ -18,7 +18,7 @@ import (
 // configuration that will be used per page request.
 //
 //     cont := true
-//     for p.Next() && cont {
+//     for cont && p.Next() {
 //         data := p.Page().(*s3.ListObjectsOutput)
 //         // process the page's data
 //     }
