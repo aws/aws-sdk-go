@@ -209,6 +209,15 @@
     {
         "Bucket": "bucket-name",
         "ConfiguredAddressingStyle": "default",
+        "ExpectedUri": "https://bucket-name.s3.us-west-2.amazonaws.com",
+        "Region": "us-west-2",
+        "UseDualstack": false,
+        "UseS3Accelerate": false,
+        "S3UsEast1RegionalEndpoint": "regional"
+    },
+    {
+        "Bucket": "bucket-name",
+        "ConfiguredAddressingStyle": "default",
         "ExpectedUri": "https://bucket-name.s3.dualstack.us-east-1.amazonaws.com",
         "Region": "us-east-1",
         "UseDualstack": true,
