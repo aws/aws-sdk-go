@@ -505,10 +505,12 @@ func (c *Signer) ListSigningJobsPagesWithContext(ctx aws.Context, input *ListSig
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListSigningJobsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListSigningJobsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -654,10 +656,12 @@ func (c *Signer) ListSigningPlatformsPagesWithContext(ctx aws.Context, input *Li
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListSigningPlatformsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListSigningPlatformsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -801,10 +805,12 @@ func (c *Signer) ListSigningProfilesPagesWithContext(ctx aws.Context, input *Lis
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListSigningProfilesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListSigningProfilesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 

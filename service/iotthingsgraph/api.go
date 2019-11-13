@@ -1499,10 +1499,12 @@ func (c *IoTThingsGraph) GetFlowTemplateRevisionsPagesWithContext(ctx aws.Contex
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*GetFlowTemplateRevisionsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*GetFlowTemplateRevisionsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1892,10 +1894,12 @@ func (c *IoTThingsGraph) GetSystemTemplateRevisionsPagesWithContext(ctx aws.Cont
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*GetSystemTemplateRevisionsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*GetSystemTemplateRevisionsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2117,10 +2121,12 @@ func (c *IoTThingsGraph) ListFlowExecutionMessagesPagesWithContext(ctx aws.Conte
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListFlowExecutionMessagesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListFlowExecutionMessagesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2257,10 +2263,12 @@ func (c *IoTThingsGraph) ListTagsForResourcePagesWithContext(ctx aws.Context, in
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListTagsForResourceOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListTagsForResourceOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2396,10 +2404,12 @@ func (c *IoTThingsGraph) SearchEntitiesPagesWithContext(ctx aws.Context, input *
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*SearchEntitiesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*SearchEntitiesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2536,10 +2546,12 @@ func (c *IoTThingsGraph) SearchFlowExecutionsPagesWithContext(ctx aws.Context, i
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*SearchFlowExecutionsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*SearchFlowExecutionsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2674,10 +2686,12 @@ func (c *IoTThingsGraph) SearchFlowTemplatesPagesWithContext(ctx aws.Context, in
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*SearchFlowTemplatesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*SearchFlowTemplatesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2812,10 +2826,12 @@ func (c *IoTThingsGraph) SearchSystemInstancesPagesWithContext(ctx aws.Context, 
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*SearchSystemInstancesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*SearchSystemInstancesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2952,10 +2968,12 @@ func (c *IoTThingsGraph) SearchSystemTemplatesPagesWithContext(ctx aws.Context, 
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*SearchSystemTemplatesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*SearchSystemTemplatesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -3100,10 +3118,12 @@ func (c *IoTThingsGraph) SearchThingsPagesWithContext(ctx aws.Context, input *Se
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*SearchThingsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*SearchThingsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 

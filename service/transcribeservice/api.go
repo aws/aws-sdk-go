@@ -628,10 +628,12 @@ func (c *TranscribeService) ListTranscriptionJobsPagesWithContext(ctx aws.Contex
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListTranscriptionJobsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListTranscriptionJobsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -775,10 +777,12 @@ func (c *TranscribeService) ListVocabulariesPagesWithContext(ctx aws.Context, in
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListVocabulariesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListVocabulariesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 

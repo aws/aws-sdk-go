@@ -1466,10 +1466,12 @@ func (c *PinpointEmail) GetDedicatedIpsPagesWithContext(ctx aws.Context, input *
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*GetDedicatedIpsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*GetDedicatedIpsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2051,10 +2053,12 @@ func (c *PinpointEmail) ListConfigurationSetsPagesWithContext(ctx aws.Context, i
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListConfigurationSetsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListConfigurationSetsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2190,10 +2194,12 @@ func (c *PinpointEmail) ListDedicatedIpPoolsPagesWithContext(ctx aws.Context, in
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListDedicatedIpPoolsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListDedicatedIpPoolsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2334,10 +2340,12 @@ func (c *PinpointEmail) ListDeliverabilityTestReportsPagesWithContext(ctx aws.Co
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListDeliverabilityTestReportsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListDeliverabilityTestReportsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2478,10 +2486,12 @@ func (c *PinpointEmail) ListDomainDeliverabilityCampaignsPagesWithContext(ctx aw
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListDomainDeliverabilityCampaignsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListDomainDeliverabilityCampaignsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2619,10 +2629,12 @@ func (c *PinpointEmail) ListEmailIdentitiesPagesWithContext(ctx aws.Context, inp
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListEmailIdentitiesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListEmailIdentitiesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 

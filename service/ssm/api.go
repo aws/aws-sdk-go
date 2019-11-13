@@ -2434,10 +2434,12 @@ func (c *SSM) DescribeActivationsPagesWithContext(ctx aws.Context, input *Descri
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*DescribeActivationsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*DescribeActivationsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -3597,10 +3599,12 @@ func (c *SSM) DescribeInstanceInformationPagesWithContext(ctx aws.Context, input
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*DescribeInstanceInformationOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*DescribeInstanceInformationOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -4866,10 +4870,12 @@ func (c *SSM) DescribeParametersPagesWithContext(ctx aws.Context, input *Describ
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*DescribeParametersOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*DescribeParametersOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -6865,10 +6871,12 @@ func (c *SSM) GetParameterHistoryPagesWithContext(ctx aws.Context, input *GetPar
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*GetParameterHistoryOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*GetParameterHistoryOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -7111,10 +7119,12 @@ func (c *SSM) GetParametersByPathPagesWithContext(ctx aws.Context, input *GetPar
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*GetParametersByPathOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*GetParametersByPathOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -7722,10 +7732,12 @@ func (c *SSM) ListAssociationsPagesWithContext(ctx aws.Context, input *ListAssoc
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListAssociationsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListAssociationsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -7881,10 +7893,12 @@ func (c *SSM) ListCommandInvocationsPagesWithContext(ctx aws.Context, input *Lis
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListCommandInvocationsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListCommandInvocationsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -8036,10 +8050,12 @@ func (c *SSM) ListCommandsPagesWithContext(ctx aws.Context, input *ListCommandsI
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListCommandsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListCommandsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -8447,10 +8463,12 @@ func (c *SSM) ListDocumentsPagesWithContext(ctx aws.Context, input *ListDocument
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListDocumentsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListDocumentsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
