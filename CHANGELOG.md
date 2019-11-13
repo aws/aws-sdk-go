@@ -1,3 +1,18 @@
+Release v1.25.34 (2019-11-13)
+===
+
+### Service Client Updates
+* `service/cloudsearch`: Updates service API, documentation, paginators, and examples
+  * Amazon CloudSearch domains let you require that all traffic to the domain arrive over HTTPS. This security feature helps you block clients that send unencrypted requests to the domain.
+* `service/dataexchange`: Adds new service
+* `service/dlm`: Updates service API and documentation
+* `service/iot`: Updates service API and documentation
+  * This release adds the custom fields definition support in the index definition for AWS IoT Fleet Indexing Service. Custom fields can be used as an aggregation field to run aggregations with both existing GetStatistics API and newly added GetCardinality, GetPercentiles APIs. GetStatistics will return all statistics (min/max/sum/avg/count...) with this release. For more information, please refer to our latest documentation: https://docs.aws.amazon.com/iot/latest/developerguide/iot-indexing.html
+* `service/sesv2`: Adds new service
+
+### SDK Enhancements
+* Replaced case-insensitive string comparisons with `strings.EqualFold(...)` ([#2922](https://github.com/aws/aws-sdk-go/pull/2922))
+
 Release v1.25.33 (2019-11-12)
 ===
 
