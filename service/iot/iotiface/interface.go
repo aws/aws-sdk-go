@@ -396,6 +396,10 @@ type IoTAPI interface {
 	EnableTopicRuleWithContext(aws.Context, *iot.EnableTopicRuleInput, ...request.Option) (*iot.EnableTopicRuleOutput, error)
 	EnableTopicRuleRequest(*iot.EnableTopicRuleInput) (*request.Request, *iot.EnableTopicRuleOutput)
 
+	GetCardinality(*iot.GetCardinalityInput) (*iot.GetCardinalityOutput, error)
+	GetCardinalityWithContext(aws.Context, *iot.GetCardinalityInput, ...request.Option) (*iot.GetCardinalityOutput, error)
+	GetCardinalityRequest(*iot.GetCardinalityInput) (*request.Request, *iot.GetCardinalityOutput)
+
 	GetEffectivePolicies(*iot.GetEffectivePoliciesInput) (*iot.GetEffectivePoliciesOutput, error)
 	GetEffectivePoliciesWithContext(aws.Context, *iot.GetEffectivePoliciesInput, ...request.Option) (*iot.GetEffectivePoliciesOutput, error)
 	GetEffectivePoliciesRequest(*iot.GetEffectivePoliciesInput) (*request.Request, *iot.GetEffectivePoliciesOutput)
@@ -415,6 +419,10 @@ type IoTAPI interface {
 	GetOTAUpdate(*iot.GetOTAUpdateInput) (*iot.GetOTAUpdateOutput, error)
 	GetOTAUpdateWithContext(aws.Context, *iot.GetOTAUpdateInput, ...request.Option) (*iot.GetOTAUpdateOutput, error)
 	GetOTAUpdateRequest(*iot.GetOTAUpdateInput) (*request.Request, *iot.GetOTAUpdateOutput)
+
+	GetPercentiles(*iot.GetPercentilesInput) (*iot.GetPercentilesOutput, error)
+	GetPercentilesWithContext(aws.Context, *iot.GetPercentilesInput, ...request.Option) (*iot.GetPercentilesOutput, error)
+	GetPercentilesRequest(*iot.GetPercentilesInput) (*request.Request, *iot.GetPercentilesOutput)
 
 	GetPolicy(*iot.GetPolicyInput) (*iot.GetPolicyOutput, error)
 	GetPolicyWithContext(aws.Context, *iot.GetPolicyInput, ...request.Option) (*iot.GetPolicyOutput, error)

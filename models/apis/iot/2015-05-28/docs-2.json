@@ -29,7 +29,7 @@
     "CreateRoleAlias": "<p>Creates a role alias.</p>",
     "CreateScheduledAudit": "<p>Creates a scheduled audit that is run at a specified time interval.</p>",
     "CreateSecurityProfile": "<p>Creates a Device Defender security profile.</p>",
-    "CreateStream": "<p>Creates a stream for delivering one or more large files in chunks over MQTT. A stream transports data bytes in chunks or blocks packaged as MQTT messages from a source like S3. You can have one or more files associated with a stream. The total size of a file associated with the stream cannot exceed more than 2 MB. The stream will be created with version 0. If a stream is created with the same streamID as a stream that existed and was deleted within last 90 days, we will resurrect that old stream by incrementing the version by 1.</p>",
+    "CreateStream": "<p>Creates a stream for delivering one or more large files in chunks over MQTT. A stream transports data bytes in chunks or blocks packaged as MQTT messages from a source like S3. You can have one or more files associated with a stream.</p>",
     "CreateThing": "<p>Creates a thing record in the registry. If this call is made multiple times using the same thing name and configuration, the call will succeed. If this call is made with the same thing name but different configuration a <code>ResourceAlreadyExistsException</code> is thrown.</p> <note> <p>This is a control plane operation. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note>",
     "CreateThingGroup": "<p>Create a thing group.</p> <note> <p>This is a control plane operation. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note>",
     "CreateThingType": "<p>Creates a new thing type.</p>",
@@ -86,15 +86,17 @@
     "DetachThingPrincipal": "<p>Detaches the specified principal from the specified thing. A principal can be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities or federated identities.</p> <note> <p>This call is asynchronous. It might take several seconds for the detachment to propagate.</p> </note>",
     "DisableTopicRule": "<p>Disables the rule.</p>",
     "EnableTopicRule": "<p>Enables the rule.</p>",
+    "GetCardinality": "<p>Returns the number of things with distinct values for the aggregation field. </p>",
     "GetEffectivePolicies": "<p>Gets a list of the policies that have an effect on the authorization behavior of the specified device when it connects to the AWS IoT device gateway.</p>",
     "GetIndexingConfiguration": "<p>Gets the search configuration.</p>",
     "GetJobDocument": "<p>Gets a job document.</p>",
     "GetLoggingOptions": "<p>Gets the logging options.</p> <p>NOTE: use of this command is not recommended. Use <code>GetV2LoggingOptions</code> instead.</p>",
     "GetOTAUpdate": "<p>Gets an OTA update.</p>",
+    "GetPercentiles": "<p>Returns the percentile values for the aggregation field. The results from GetPercentiles is an approximation. The default percentile groupings are: 1,5,25,50,75,95,99. You can specify custom percentile grouping using the percents argument to the GetPercentiles API.</p>",
     "GetPolicy": "<p>Gets information about the specified policy with the policy document of the default version.</p>",
     "GetPolicyVersion": "<p>Gets information about the specified policy version.</p>",
     "GetRegistrationCode": "<p>Gets a registration code used to register a CA certificate with AWS IoT.</p>",
-    "GetStatistics": "<p>Gets statistics about things that match the specified query.</p>",
+    "GetStatistics": "<p>Gets statistics returns the count, average, sum, minimum, maximum, sumOfSquares, variance, and standard deviation for the specified aggregated field. If the aggregation field is of type String, only the count statistic is returned.</p>",
     "GetTopicRule": "<p>Gets information about the rule.</p>",
     "GetV2LoggingOptions": "<p>Gets the fine grained logging options.</p>",
     "ListActiveViolations": "<p>Lists the active violations for a given Device Defender security profile.</p>",
@@ -142,7 +144,7 @@
     "ListViolationEvents": "<p>Lists the Device Defender security profile violations discovered during the given time period. You can use filters to limit the results to those alerts issued for a particular security profile, behavior, or thing (device).</p>",
     "RegisterCACertificate": "<p>Registers a CA certificate with AWS IoT. This CA certificate can then be used to sign device certificates, which can be then registered with AWS IoT. You can register up to 10 CA certificates per AWS account that have the same subject field. This enables you to have up to 10 certificate authorities sign your device certificates. If you have more than one CA certificate registered, make sure you pass the CA certificate when you register your device certificates with the RegisterCertificate API.</p>",
     "RegisterCertificate": "<p>Registers a device certificate with AWS IoT. If you have more than one CA certificate that has the same subject field, you must specify the CA certificate that was used to sign the device certificate being registered.</p>",
-    "RegisterThing": "<p>Provisions a thing.</p>",
+    "RegisterThing": "<p>Provisions a thing in the device registry. RegisterThing calls other AWS IoT control plane APIs. These calls might exceed your account level <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_iot\"> AWS IoT Throttling Limits</a> and cause throttle errors. Please contact <a href=\"https://console.aws.amazon.com/support/home\">AWS Customer Support</a> to raise your throttling limits if necessary.</p>",
     "RejectCertificateTransfer": "<p>Rejects a pending certificate transfer. After AWS IoT rejects a certificate transfer, the certificate status changes from <b>PENDING_TRANSFER</b> to <b>INACTIVE</b>.</p> <p>To check for pending certificate transfers, call <a>ListCertificates</a> to enumerate your certificates.</p> <p>This operation can only be called by the transfer destination. After it is called, the certificate will be returned to the source's account in the INACTIVE state.</p>",
     "RemoveThingFromBillingGroup": "<p>Removes the given thing from the billing group.</p>",
     "RemoveThingFromThingGroup": "<p>Remove the specified thing from the specified group.</p>",
@@ -297,7 +299,9 @@
     "AggregationField": {
       "base": null,
       "refs": {
-        "GetStatisticsRequest$aggregationField": "<p>The aggregation field name. Currently not supported.</p>"
+        "GetCardinalityRequest$aggregationField": "<p>The field to aggregate.</p>",
+        "GetPercentilesRequest$aggregationField": "<p>The field to aggregate.</p>",
+        "GetStatisticsRequest$aggregationField": "<p>The aggregation field name.</p>"
       }
     },
     "AlarmName": {
@@ -759,6 +763,12 @@
       "refs": {
         "CACertificateDescription$autoRegistrationStatus": "<p>Whether the CA certificate configured for auto registration of device certificates. Valid values are \"ENABLE\" and \"DISABLE\"</p>",
         "UpdateCACertificateRequest$newAutoRegistrationStatus": "<p>The new value for the auto registration status. Valid values are: \"ENABLE\" or \"DISABLE\".</p>"
+      }
+    },
+    "Average": {
+      "base": null,
+      "refs": {
+        "Statistics$average": "<p>The average of the aggregated field values.</p>"
       }
     },
     "AwsAccountId": {
@@ -1303,6 +1313,7 @@
       "refs": {
         "DescribeThingRegistrationTaskResponse$successCount": "<p>The number of things successfully provisioned.</p>",
         "DescribeThingRegistrationTaskResponse$failureCount": "<p>The number of things that failed to be provisioned.</p>",
+        "GetCardinalityResponse$cardinality": "<p>The number of things that match the query.</p>",
         "Statistics$count": "<p>The count of things that match the query.</p>"
       }
     },
@@ -1534,8 +1545,8 @@
         "CertificateValidity$notAfter": "<p>The certificate is not valid after this date.</p>",
         "GetPolicyResponse$creationDate": "<p>The date the policy was created.</p>",
         "GetPolicyResponse$lastModifiedDate": "<p>The date the policy was last modified.</p>",
-        "GetPolicyVersionResponse$creationDate": "<p>The date the policy version was created.</p>",
-        "GetPolicyVersionResponse$lastModifiedDate": "<p>The date the policy version was last modified.</p>",
+        "GetPolicyVersionResponse$creationDate": "<p>The date the policy was created.</p>",
+        "GetPolicyVersionResponse$lastModifiedDate": "<p>The date the policy was last modified.</p>",
         "Job$createdAt": "<p>The time, in seconds since the epoch, when the job was created.</p>",
         "Job$lastUpdatedAt": "<p>The time, in seconds since the epoch, when the job was last updated.</p>",
         "Job$completedAt": "<p>The time, in seconds since the epoch, when the job was completed.</p>",
@@ -2356,6 +2367,33 @@
         "JobProcessDetails$numberOfFailedThings": "<p>The number of things that failed executing the job.</p>"
       }
     },
+    "Field": {
+      "base": "<p>Describes the name and data type at a field.</p>",
+      "refs": {
+        "Fields$member": null
+      }
+    },
+    "FieldName": {
+      "base": null,
+      "refs": {
+        "Field$name": "<p>The name of the field.</p>"
+      }
+    },
+    "FieldType": {
+      "base": null,
+      "refs": {
+        "Field$type": "<p>The datatype of the field.</p>"
+      }
+    },
+    "Fields": {
+      "base": null,
+      "refs": {
+        "ThingGroupIndexingConfiguration$managedFields": "<p>Contains fields that are indexed and whose types are already known by the Fleet Indexing service.</p>",
+        "ThingGroupIndexingConfiguration$customFields": "<p>Contains custom field names and their data type.</p>",
+        "ThingIndexingConfiguration$managedFields": "<p>Contains fields that are indexed and whose types are already known by the Fleet Indexing service.</p>",
+        "ThingIndexingConfiguration$customFields": "<p>Contains custom field names and their data type.</p>"
+      }
+    },
     "FileId": {
       "base": null,
       "refs": {
@@ -2459,6 +2497,16 @@
         "GetPolicyVersionResponse$generationId": "<p>The generation ID of the policy version.</p>"
       }
     },
+    "GetCardinalityRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCardinalityResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetEffectivePoliciesRequest": {
       "base": null,
       "refs": {
@@ -2505,6 +2553,16 @@
       }
     },
     "GetOTAUpdateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetPercentilesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetPercentilesResponse": {
       "base": null,
       "refs": {
       }
@@ -2632,6 +2690,8 @@
         "DescribeIndexRequest$indexName": "<p>The index name.</p>",
         "DescribeIndexResponse$indexName": "<p>The index name.</p>",
         "DescribeThingGroupResponse$indexName": "<p>The dynamic thing group index name.</p>",
+        "GetCardinalityRequest$indexName": "<p>The name of the index to search.</p>",
+        "GetPercentilesRequest$indexName": "<p>The name of the index to search.</p>",
         "GetStatisticsRequest$indexName": "<p>The name of the index to search. The default value is <code>AWS_Things</code>.</p>",
         "IndexNamesList$member": null,
         "SearchIndexRequest$indexName": "<p>The search index name.</p>",
@@ -3507,6 +3567,12 @@
         "ListViolationEventsRequest$maxResults": "<p>The maximum number of results to return at one time.</p>"
       }
     },
+    "Maximum": {
+      "base": null,
+      "refs": {
+        "Statistics$maximum": "<p>The maximum aggregated field value.</p>"
+      }
+    },
     "MaximumPerMinute": {
       "base": null,
       "refs": {
@@ -3541,6 +3607,12 @@
         "ActiveViolation$lastViolationValue": "<p>The value of the metric (the measurement) which caused the most recent violation.</p>",
         "BehaviorCriteria$value": "<p>The value to be compared with the <code>metric</code>.</p>",
         "ViolationEvent$metricValue": "<p>The value of the metric (the measurement).</p>"
+      }
+    },
+    "Minimum": {
+      "base": null,
+      "refs": {
+        "Statistics$minimum": "<p>The minimum aggregated field value.</p>"
       }
     },
     "MinimumNumberOfExecutedThings": {
@@ -3889,10 +3961,41 @@
         "DynamoDBAction$payloadField": "<p>The action payload. This name can be customized.</p>"
       }
     },
+    "Percent": {
+      "base": null,
+      "refs": {
+        "PercentList$member": null,
+        "PercentPair$percent": "<p>The percentile.</p>"
+      }
+    },
+    "PercentList": {
+      "base": null,
+      "refs": {
+        "GetPercentilesRequest$percents": "<p>The percentile groups returned.</p>"
+      }
+    },
+    "PercentPair": {
+      "base": "<p>Describes the percentile and percentile value.</p>",
+      "refs": {
+        "Percentiles$member": null
+      }
+    },
+    "PercentValue": {
+      "base": null,
+      "refs": {
+        "PercentPair$value": "<p>The value.</p>"
+      }
+    },
     "Percentage": {
       "base": null,
       "refs": {
         "DescribeThingRegistrationTaskResponse$percentageProgress": "<p>The progress of the bulk provisioning task expressed as a percentage.</p>"
+      }
+    },
+    "Percentiles": {
+      "base": null,
+      "refs": {
+        "GetPercentilesResponse$percentiles": "<p>The percentile values of the aggregated fields.</p>"
       }
     },
     "Platform": {
@@ -4064,7 +4167,7 @@
       "base": null,
       "refs": {
         "AttachPrincipalPolicyRequest$principal": "<p>The principal, which can be a certificate ARN (as returned from the CreateCertificate operation) or an Amazon Cognito ID.</p>",
-        "AttachThingPrincipalRequest$principal": "<p>The principal, such as a certificate or other credential.</p>",
+        "AttachThingPrincipalRequest$principal": "<p>The principal, which can be a certificate ARN (as returned from the CreateCertificate operation) or an Amazon Cognito ID.</p>",
         "DetachPrincipalPolicyRequest$principal": "<p>The principal.</p> <p>If the principal is a certificate, specify the certificate ARN. If the principal is an Amazon Cognito identity, specify the identity ID.</p>",
         "DetachThingPrincipalRequest$principal": "<p>If the principal is a certificate, this value must be ARN of the certificate. If the principal is an Amazon Cognito identity, this value must be the ID of the Amazon Cognito identity.</p>",
         "GetEffectivePoliciesRequest$principal": "<p>The principal.</p>",
@@ -4139,7 +4242,7 @@
     "Qos": {
       "base": null,
       "refs": {
-        "RepublishAction$qos": "<p>The Quality of Service (QoS) level to use when republishing messages.</p>"
+        "RepublishAction$qos": "<p>The Quality of Service (QoS) level to use when republishing messages. The default value is 0.</p>"
       }
     },
     "QueryMaxResults": {
@@ -4155,6 +4258,8 @@
         "CreateDynamicThingGroupRequest$queryString": "<p>The dynamic thing group search query string.</p> <p>See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html\">Query Syntax</a> for information about query string syntax.</p>",
         "CreateDynamicThingGroupResponse$queryString": "<p>The dynamic thing group search query string.</p>",
         "DescribeThingGroupResponse$queryString": "<p>The dynamic thing group search query string.</p>",
+        "GetCardinalityRequest$queryString": "<p>The search query.</p>",
+        "GetPercentilesRequest$queryString": "<p>The query string.</p>",
         "GetStatisticsRequest$queryString": "<p>The query used to search. You can specify \"*\" for the query string to get the count of all indexed things in your AWS account.</p>",
         "SearchIndexRequest$queryString": "<p>The search query string.</p>",
         "UpdateDynamicThingGroupRequest$queryString": "<p>The dynamic thing group search query string to update.</p>"
@@ -4166,6 +4271,8 @@
         "CreateDynamicThingGroupRequest$queryVersion": "<p>The dynamic thing group query version.</p> <note> <p>Currently one query version is supported: \"2017-09-30\". If not specified, the query version defaults to this value.</p> </note>",
         "CreateDynamicThingGroupResponse$queryVersion": "<p>The dynamic thing group query version.</p>",
         "DescribeThingGroupResponse$queryVersion": "<p>The dynamic thing group query version.</p>",
+        "GetCardinalityRequest$queryVersion": "<p>The query version.</p>",
+        "GetPercentilesRequest$queryVersion": "<p>The query version.</p>",
         "GetStatisticsRequest$queryVersion": "<p>The version of the query used to search.</p>",
         "SearchIndexRequest$queryVersion": "<p>The query version.</p>",
         "UpdateDynamicThingGroupRequest$queryVersion": "<p>The dynamic thing group query version to update.</p> <note> <p>Currently one query version is supported: \"2017-09-30\". If not specified, the query version defaults to this value.</p> </note>"
@@ -4961,6 +5068,12 @@
         "ListThingRegistrationTasksRequest$status": "<p>The status of the bulk thing provisioning task.</p>"
       }
     },
+    "StdDeviation": {
+      "base": null,
+      "refs": {
+        "Statistics$stdDeviation": "<p>The standard deviation of the aggregated field valuesl</p>"
+      }
+    },
     "StepFunctionsAction": {
       "base": "<p>Starts execution of a Step Functions state machine.</p>",
       "refs": {
@@ -5094,6 +5207,18 @@
       "base": null,
       "refs": {
         "JobProcessDetails$numberOfSucceededThings": "<p>The number of things which successfully completed the job.</p>"
+      }
+    },
+    "Sum": {
+      "base": null,
+      "refs": {
+        "Statistics$sum": "<p>The sum of the aggregated field values.</p>"
+      }
+    },
+    "SumOfSquares": {
+      "base": null,
+      "refs": {
+        "Statistics$sumOfSquares": "<p>The sum of the squares of the aggregated field values.</p>"
       }
     },
     "TableName": {
@@ -5944,6 +6069,12 @@
         "AdditionalParameterMap$value": null,
         "AttributesMap$value": null,
         "Parameters$value": null
+      }
+    },
+    "Variance": {
+      "base": null,
+      "refs": {
+        "Statistics$variance": "<p>The variance of the aggregated field values.</p>"
       }
     },
     "Version": {

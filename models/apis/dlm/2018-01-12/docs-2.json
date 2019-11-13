@@ -6,6 +6,9 @@
     "DeleteLifecyclePolicy": "<p>Deletes the specified lifecycle policy and halts the automated operations that the policy specified.</p>",
     "GetLifecyclePolicies": "<p>Gets summary information about all or the specified data lifecycle policies.</p> <p>To get complete information about a policy, use <a>GetLifecyclePolicy</a>.</p>",
     "GetLifecyclePolicy": "<p>Gets detailed information about the specified lifecycle policy.</p>",
+    "ListTagsForResource": "<p>Lists the tags for the specified resource.</p>",
+    "TagResource": "<p>Adds the specified tags to the specified resource.</p>",
+    "UntagResource": "<p>Removes the specified tags from the specified resource.</p>",
     "UpdateLifecyclePolicy": "<p>Updates the specified lifecycle policy.</p>"
   },
   "shapes": {
@@ -152,6 +155,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Parameter": {
       "base": null,
       "refs": {
@@ -171,6 +184,15 @@
         "PolicyDetails$Parameters": "<p>A set of optional parameters that can be provided by the policy. </p>"
       }
     },
+    "PolicyArn": {
+      "base": null,
+      "refs": {
+        "LifecyclePolicy$PolicyArn": "<p>The Amazon Resource Name (ARN) of the policy.</p>",
+        "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>"
+      }
+    },
     "PolicyDescription": {
       "base": null,
       "refs": {
@@ -183,9 +205,9 @@
     "PolicyDetails": {
       "base": "<p>Specifies the configuration of a lifecycle policy.</p>",
       "refs": {
-        "CreateLifecyclePolicyRequest$PolicyDetails": "<p>The configuration details of the lifecycle policy.</p> <p>Target tags cannot be re-used across lifecycle policies.</p>",
+        "CreateLifecyclePolicyRequest$PolicyDetails": "<p>The configuration details of the lifecycle policy.</p>",
         "LifecyclePolicy$PolicyDetails": "<p>The configuration of the lifecycle policy</p>",
-        "UpdateLifecyclePolicyRequest$PolicyDetails": "<p>The configuration of the lifecycle policy.</p> <p>Target tags cannot be re-used across policies.</p>"
+        "UpdateLifecyclePolicyRequest$PolicyDetails": "<p>The configuration of the lifecycle policy. You cannot update the policy type or the resource type.</p>"
       }
     },
     "PolicyId": {
@@ -262,6 +284,12 @@
         "UpdateLifecyclePolicyRequest$State": "<p>The desired activation state of the lifecycle policy after creation.</p>"
       }
     },
+    "StatusMessage": {
+      "base": null,
+      "refs": {
+        "LifecyclePolicy$StatusMessage": "<p>The description of the status.</p>"
+      }
+    },
     "String": {
       "base": null,
       "refs": {
@@ -284,6 +312,45 @@
       "refs": {
         "TagsToAddFilterList$member": null,
         "TargetTagsFilterList$member": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "TagKeyList$member": null,
+        "TagMap$key": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": "<p>The tag keys.</p>"
+      }
+    },
+    "TagMap": {
+      "base": null,
+      "refs": {
+        "CreateLifecyclePolicyRequest$Tags": "<p>The tags to apply to the lifecycle policy during creation.</p>",
+        "LifecyclePolicy$Tags": "<p>The tags.</p>",
+        "LifecyclePolicySummary$Tags": "<p>The tags.</p>",
+        "ListTagsForResourceResponse$Tags": "<p>Information about the tags.</p>",
+        "TagResourceRequest$Tags": "<p>One or more tags.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "TagMap$value": null
       }
     },
     "TagsToAddFilterList": {
@@ -327,6 +394,16 @@
       "refs": {
         "LifecyclePolicy$DateCreated": "<p>The local date and time when the lifecycle policy was created.</p>",
         "LifecyclePolicy$DateModified": "<p>The local date and time when the lifecycle policy was last modified.</p>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateLifecyclePolicyRequest": {
