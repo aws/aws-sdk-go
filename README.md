@@ -94,9 +94,9 @@ API operation require parameters.
 
 [`Service Developer Guide`](https://aws.amazon.com/documentation/) - Use this
 documentation to learn how to interface with AWS services. These guides are
-great for if you are getting started with a service, or looking for more 
-information on a service. This document is not needed for coding, but the
-services do supply helpful samples to look out for.
+great for getting started with a service, or when looking for more 
+information about a service. While this document is not required for coding, 
+services may supply helpful samples to look out for.
 
 [`SDK Examples`](https://github.com/aws/aws-sdk-go/tree/master/example) -
 Included in the SDK's repo are several hand crafted examples using the SDK
