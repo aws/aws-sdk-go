@@ -1158,10 +1158,12 @@ func (c *DataExchange) ListDataSetRevisionsPagesWithContext(ctx aws.Context, inp
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListDataSetRevisionsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListDataSetRevisionsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1304,10 +1306,12 @@ func (c *DataExchange) ListDataSetsPagesWithContext(ctx aws.Context, input *List
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListDataSetsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListDataSetsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1448,10 +1452,12 @@ func (c *DataExchange) ListJobsPagesWithContext(ctx aws.Context, input *ListJobs
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListJobsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListJobsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1593,10 +1599,12 @@ func (c *DataExchange) ListRevisionAssetsPagesWithContext(ctx aws.Context, input
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListRevisionAssetsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListRevisionAssetsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
