@@ -3071,7 +3071,7 @@ var awsPartition = partition{
 			},
 		},
 		"s3": service{
-			PartitionEndpoint: "us-east-1",
+			PartitionEndpoint: "aws-global",
 			IsRegionalized:    boxedTrue,
 			Defaults: endpoint{
 				Protocols:         []string{"http", "https"},
@@ -3096,6 +3096,12 @@ var awsPartition = partition{
 					Hostname:          "s3.ap-southeast-2.amazonaws.com",
 					SignatureVersions: []string{"s3", "s3v4"},
 				},
+				"aws-global": endpoint{
+					Hostname: "s3.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-east-1",
+					},
+				},
 				"ca-central-1": endpoint{},
 				"eu-central-1": endpoint{},
 				"eu-north-1":   endpoint{},
@@ -3117,10 +3123,7 @@ var awsPartition = partition{
 					Hostname:          "s3.sa-east-1.amazonaws.com",
 					SignatureVersions: []string{"s3", "s3v4"},
 				},
-				"us-east-1": endpoint{
-					Hostname:          "s3.amazonaws.com",
-					SignatureVersions: []string{"s3", "s3v4"},
-				},
+				"us-east-1": endpoint{},
 				"us-east-2": endpoint{},
 				"us-west-1": endpoint{
 					Hostname:          "s3.us-west-1.amazonaws.com",

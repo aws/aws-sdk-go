@@ -11,6 +11,7 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws/credentials"
+	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"github.com/aws/aws-sdk-go/internal/ini"
 )
 
@@ -175,6 +176,20 @@ func TestLoadSharedConfig(t *testing.T) {
 						CredentialSource: credSourceEc2Metadata,
 					},
 				},
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "with_sts_regional",
+			Expected: sharedConfig{
+				STSRegionalEndpoint: endpoints.RegionalSTSEndpoint,
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "with_s3_us_east_1_regional",
+			Expected: sharedConfig{
+				S3UsEast1RegionalEndpoint: endpoints.RegionalS3UsEast1Endpoint,
 			},
 		},
 	}

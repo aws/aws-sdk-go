@@ -9,6 +9,7 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws/credentials"
+	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/internal/sdktesting"
 	"github.com/aws/aws-sdk-go/internal/shareddefaults"
@@ -269,6 +270,26 @@ func TestLoadEnvConfig(t *testing.T) {
 			Config: envConfig{
 				SharedCredentialsFile: "/path/to/credentials/file",
 				SharedConfigFile:      "/path/to/config/file",
+			},
+		},
+		{
+			Env: map[string]string{
+				"AWS_STS_REGIONAL_ENDPOINTS": "regional",
+			},
+			Config: envConfig{
+				STSRegionalEndpoint:   endpoints.RegionalSTSEndpoint,
+				SharedCredentialsFile: shareddefaults.SharedCredentialsFilename(),
+				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
+			},
+		},
+		{
+			Env: map[string]string{
+				"AWS_S3_US_EAST_1_REGIONAL_ENDPOINT": "regional",
+			},
+			Config: envConfig{
+				S3UsEast1RegionalEndpoint: endpoints.RegionalS3UsEast1Endpoint,
+				SharedCredentialsFile:     shareddefaults.SharedCredentialsFilename(),
+				SharedConfigFile:          shareddefaults.SharedConfigFilename(),
 			},
 		},
 	}
