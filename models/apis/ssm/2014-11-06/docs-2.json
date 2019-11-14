@@ -528,6 +528,12 @@
         "AttachmentContent$HashType": "<p>The hash algorithm used to calculate the hash value.</p>"
       }
     },
+    "AttachmentIdentifier": {
+      "base": null,
+      "refs": {
+        "AttachmentsSource$Name": "<p>The name of the document attachment file.</p>"
+      }
+    },
     "AttachmentInformation": {
       "base": "<p>An attribute of an attachment, such as the attachment name.</p>",
       "refs": {
@@ -554,7 +560,7 @@
       }
     },
     "AttachmentsSource": {
-      "base": "<p>A key and value pair that identifies the location of an attachment to a document.</p>",
+      "base": "<p>Identifying information about a document attachment, including the file name and a key-value pair that identifies the location of an attachment to a document.</p>",
       "refs": {
         "AttachmentsSourceList$member": null
       }
@@ -562,7 +568,7 @@
     "AttachmentsSourceKey": {
       "base": null,
       "refs": {
-        "AttachmentsSource$Key": "<p>The key of a key and value pair that identifies the location of an attachment to a document.</p>"
+        "AttachmentsSource$Key": "<p>The key of a key-value pair that identifies the location of an attachment to a document.</p>"
       }
     },
     "AttachmentsSourceList": {
@@ -581,7 +587,7 @@
     "AttachmentsSourceValues": {
       "base": null,
       "refs": {
-        "AttachmentsSource$Values": "<p>The URL of the location of a document attachment, such as the URL of an Amazon S3 bucket.</p>"
+        "AttachmentsSource$Values": "<p>The value of a key-value pair that identifies the location of an attachment to a document. The format is the URL of the location of a document attachment, such as the URL of an Amazon S3 bucket.</p>"
       }
     },
     "AttributeName": {
@@ -907,7 +913,7 @@
     "CommandFilterList": {
       "base": null,
       "refs": {
-        "ListCommandInvocationsRequest$Filters": "<p>(Optional) One or more filters. Use a filter to return a more specific list of results.</p>",
+        "ListCommandInvocationsRequest$Filters": "<p>(Optional) One or more filters. Use a filter to return a more specific list of results. Note that the <code>DocumentName</code> filter is not supported for ListCommandInvocations.</p>",
         "ListCommandsRequest$Filters": "<p>(Optional) One or more filters. Use a filter to return a more specific list of results. </p>"
       }
     },
@@ -2700,7 +2706,7 @@
         "ListCommandsRequest$InstanceId": "<p>(Optional) Lists commands issued against this instance ID.</p>",
         "ListInventoryEntriesRequest$InstanceId": "<p>The instance ID for which you want inventory information.</p>",
         "ListInventoryEntriesResult$InstanceId": "<p>The instance ID targeted by the request to query inventory information.</p>",
-        "PutInventoryRequest$InstanceId": "<p>One or more instance IDs where you want to add or update inventory items.</p>",
+        "PutInventoryRequest$InstanceId": "<p>An instance ID where you want to add or update inventory items.</p>",
         "UpdateAssociationStatusRequest$InstanceId": "<p>The ID of the instance.</p>"
       }
     },
@@ -6465,7 +6471,7 @@
       }
     },
     "Target": {
-      "base": "<p>An array of search criteria that targets instances using a Key,Value combination that you specify. </p> <p>Supported formats include the following.</p> <ul> <li> <p> <code>Key=InstanceIds,Values=<i>instance-id-1</i>,<i>instance-id-2</i>,<i>instance-id-3</i> </code> </p> </li> <li> <p> <code>Key=tag:<i>my-tag-key</i>,Values=<i>my-tag-value-1</i>,<i>my-tag-value-2</i> </code> </p> </li> <li> <p> <code>Key=tag-key,Values=<i>my-tag-key-1</i>,<i>my-tag-key-2</i> </code> </p> </li> <li> <p>(Maintenance window targets only) <code>Key=resource-groups:Name,Values=<i>resource-group-name</i> </code> </p> </li> <li> <p>(Maintenance window targets only) <code>Key=resource-groups:ResourceTypeFilters,Values=<i>resource-type-1</i>,<i>resource-type-2</i> </code> </p> </li> </ul> <p>For example:</p> <ul> <li> <p> <code>Key=InstanceIds,Values=i-02573cafcfEXAMPLE,i-0471e04240EXAMPLE,i-07782c72faEXAMPLE</code> </p> </li> <li> <p> <code>Key=tag:CostCenter,Values=CostCenter1,CostCenter2,CostCenter3</code> </p> </li> <li> <p> <code>Key=tag-key,Values=Name,Instance-Type,CostCenter</code> </p> </li> <li> <p>(Maintenance window targets only) <code>Key=resource-groups:Name,Values=ProductionResourceGroup</code> </p> </li> <li> <p>(Maintenance window targets only) <code>Key=resource-groups:ResourceTypeFilters,Values=<i>AWS::EC2::INSTANCE</i>,<i>AWS::EC2::VPC</i> </code> </p> </li> </ul> <p>For information about how to send commands that target instances using <code>Key,Value</code> parameters, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html#send-commands-targeting\">Using Targets and Rate Controls to Send Commands to a Fleet</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
+      "base": "<p>An array of search criteria that targets instances using a Key,Value combination that you specify. </p> <p>Supported formats include the following.</p> <ul> <li> <p> <code>Key=InstanceIds,Values=<i>instance-id-1</i>,<i>instance-id-2</i>,<i>instance-id-3</i> </code> </p> </li> <li> <p> <code>Key=tag:<i>my-tag-key</i>,Values=<i>my-tag-value-1</i>,<i>my-tag-value-2</i> </code> </p> </li> <li> <p> <code>Key=tag-key,Values=<i>my-tag-key-1</i>,<i>my-tag-key-2</i> </code> </p> </li> <li> <p>(Maintenance window targets only) <code>Key=resource-groups:Name,Values=<i>resource-group-name</i> </code> </p> </li> <li> <p>(Maintenance window targets only) <code>Key=resource-groups:ResourceTypeFilters,Values=<i>resource-type-1</i>,<i>resource-type-2</i> </code> </p> </li> </ul> <p>For example:</p> <ul> <li> <p> <code>Key=InstanceIds,Values=i-02573cafcfEXAMPLE,i-0471e04240EXAMPLE,i-07782c72faEXAMPLE</code> </p> </li> <li> <p> <code>Key=tag:CostCenter,Values=CostCenter1,CostCenter2,CostCenter3</code> </p> </li> <li> <p> <code>Key=tag-key,Values=Name,Instance-Type,CostCenter</code> </p> </li> <li> <p>(Maintenance window targets only) <code>Key=resource-groups:Name,Values=ProductionResourceGroup</code> </p> <p>This example demonstrates how to target all resources in the resource group <b>ProductionResourceGroup</b> in your maintenance window.</p> </li> <li> <p>(Maintenance window targets only) <code>Key=resource-groups:ResourceTypeFilters,Values=<i>AWS::EC2::INSTANCE</i>,<i>AWS::EC2::VPC</i> </code> </p> <p>This example demonstrates how to target only Amazon EC2 instances and VPCs in your maintenance window.</p> </li> <li> <p>(State Manager association targets only) <code>Key=InstanceIds,Values=<i>*</i> </code> </p> <p>This example demonstrates how to target all managed instances in the AWS Region where the association was created.</p> </li> </ul> <p>For information about how to send commands that target instances using <code>Key,Value</code> parameters, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html#send-commands-targeting\">Using Targets and Rate Controls to Send Commands to a Fleet</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
       "refs": {
         "Targets$member": null
       }

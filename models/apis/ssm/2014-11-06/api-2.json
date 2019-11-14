@@ -2198,6 +2198,10 @@
       "type":"string",
       "enum":["Sha256"]
     },
+    "AttachmentIdentifier":{
+      "type":"string",
+      "pattern":"^[a-zA-Z0-9_\\-.]{3,128}$"
+    },
     "AttachmentInformation":{
       "type":"structure",
       "members":{
@@ -2217,17 +2221,21 @@
       "type":"structure",
       "members":{
         "Key":{"shape":"AttachmentsSourceKey"},
-        "Values":{"shape":"AttachmentsSourceValues"}
+        "Values":{"shape":"AttachmentsSourceValues"},
+        "Name":{"shape":"AttachmentIdentifier"}
       }
     },
     "AttachmentsSourceKey":{
       "type":"string",
-      "enum":["SourceUrl"]
+      "enum":[
+        "SourceUrl",
+        "S3FileUrl"
+      ]
     },
     "AttachmentsSourceList":{
       "type":"list",
       "member":{"shape":"AttachmentsSource"},
-      "max":1,
+      "max":20,
       "min":0
     },
     "AttachmentsSourceValue":{
