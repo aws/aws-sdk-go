@@ -32,6 +32,12 @@ const (
 	//
 	// The specified multipart upload does not exist.
 	ErrCodeNoSuchUpload = "NoSuchUpload"
+	
+	// ErrCodeNotFound for service response error code
+	// "NotFound".
+	//
+	// Not Found.
+	ErrCodeNotFound = "NotFound"
 
 	// ErrCodeObjectAlreadyInActiveTierError for service response error code
 	// "ObjectAlreadyInActiveTierError".
