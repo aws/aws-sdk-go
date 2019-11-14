@@ -46,7 +46,8 @@
         {"shape":"InvalidEndpointRegionException"},
         {"shape":"TimestampOutOfBoundsException"},
         {"shape":"DuplicateRequestException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"CustomerNotEntitledException"}
       ]
     },
     "RegisterUsage":{

@@ -2,6 +2,7 @@
   "version": "2.0",
   "service": "<p>Amazon Personalize is a machine learning service that makes it easy to add individualized recommendations to customers.</p>",
   "operations": {
+    "CreateBatchInferenceJob": "<p>Creates a batch inference job. The operation can handle up to 50 million records and the input file must be in JSON format. For more information, see <a>recommendations-batch</a>.</p>",
     "CreateCampaign": "<p>Creates a campaign by deploying a solution version. When a client calls the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html\">GetRecommendations</a> and <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetPersonalizedRanking.html\">GetPersonalizedRanking</a> APIs, a campaign is specified in the request.</p> <p> <b>Minimum Provisioned TPS and Auto-Scaling</b> </p> <p>A transaction is a single <code>GetRecommendations</code> or <code>GetPersonalizedRanking</code> call. Transactions per second (TPS) is the throughput and unit of billing for Amazon Personalize. The minimum provisioned TPS (<code>minProvisionedTPS</code>) specifies the baseline throughput provisioned by Amazon Personalize, and thus, the minimum billing charge. If your TPS increases beyond <code>minProvisionedTPS</code>, Amazon Personalize auto-scales the provisioned capacity up and down, but never below <code>minProvisionedTPS</code>, to maintain a 70% utilization. There's a short time delay while the capacity is increased that might cause loss of transactions. It's recommended to start with a low <code>minProvisionedTPS</code>, track your usage using Amazon CloudWatch metrics, and then increase the <code>minProvisionedTPS</code> as necessary.</p> <p> <b>Status</b> </p> <p>A campaign can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul> <p>To get the campaign status, call <a>DescribeCampaign</a>.</p> <note> <p>Wait until the <code>status</code> of the campaign is <code>ACTIVE</code> before asking the campaign for recommendations.</p> </note> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a>ListCampaigns</a> </p> </li> <li> <p> <a>DescribeCampaign</a> </p> </li> <li> <p> <a>UpdateCampaign</a> </p> </li> <li> <p> <a>DeleteCampaign</a> </p> </li> </ul>",
     "CreateDataset": "<p>Creates an empty dataset and adds it to the specified dataset group. Use <a>CreateDatasetImportJob</a> to import your training data to a dataset.</p> <p>There are three types of datasets:</p> <ul> <li> <p>Interactions</p> </li> <li> <p>Items</p> </li> <li> <p>Users</p> </li> </ul> <p>Each dataset type has an associated schema with required field types. Only the <code>Interactions</code> dataset is required in order to train a model (also referred to as creating a solution).</p> <p>A dataset can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul> <p>To get the status of the dataset, call <a>DescribeDataset</a>.</p> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a>CreateDatasetGroup</a> </p> </li> <li> <p> <a>ListDatasets</a> </p> </li> <li> <p> <a>DescribeDataset</a> </p> </li> <li> <p> <a>DeleteDataset</a> </p> </li> </ul>",
     "CreateDatasetGroup": "<p>Creates an empty dataset group. A dataset group contains related datasets that supply data for training a model. A dataset group can contain at most three datasets, one for each type of dataset:</p> <ul> <li> <p>Interactions</p> </li> <li> <p>Items</p> </li> <li> <p>Users</p> </li> </ul> <p>To train a model (create a solution), a dataset group that contains an <code>Interactions</code> dataset is required. Call <a>CreateDataset</a> to add a dataset to the group.</p> <p>A dataset group can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING</p> </li> </ul> <p>To get the status of the dataset group, call <a>DescribeDatasetGroup</a>. If the status shows as CREATE FAILED, the response includes a <code>failureReason</code> key, which describes why the creation failed.</p> <note> <p>You must wait until the <code>status</code> of the dataset group is <code>ACTIVE</code> before adding a dataset to the group.</p> </note> <p>You can specify an AWS Key Management Service (KMS) key to encrypt the datasets in the group. If you specify a KMS key, you must also include an AWS Identity and Access Management (IAM) role that has permission to access the key.</p> <p class=\"title\"> <b>APIs that require a dataset group ARN in the request</b> </p> <ul> <li> <p> <a>CreateDataset</a> </p> </li> <li> <p> <a>CreateEventTracker</a> </p> </li> <li> <p> <a>CreateSolution</a> </p> </li> </ul> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a>ListDatasetGroups</a> </p> </li> <li> <p> <a>DescribeDatasetGroup</a> </p> </li> <li> <p> <a>DeleteDatasetGroup</a> </p> </li> </ul>",
@@ -17,6 +18,7 @@
     "DeleteSchema": "<p>Deletes a schema. Before deleting a schema, you must delete all datasets referencing the schema. For more information on schemas, see <a>CreateSchema</a>.</p>",
     "DeleteSolution": "<p>Deletes all versions of a solution and the <code>Solution</code> object itself. Before deleting a solution, you must delete all campaigns based on the solution. To determine what campaigns are using the solution, call <a>ListCampaigns</a> and supply the Amazon Resource Name (ARN) of the solution. You can't delete a solution if an associated <code>SolutionVersion</code> is in the CREATE PENDING or IN PROGRESS state. For more information on solutions, see <a>CreateSolution</a>.</p>",
     "DescribeAlgorithm": "<p>Describes the given algorithm.</p>",
+    "DescribeBatchInferenceJob": "<p>Gets the properties of a batch inference job including name, Amazon Resource Name (ARN), status, input and output configurations, and the ARN of the solution version used to generate the recommendations.</p>",
     "DescribeCampaign": "<p>Describes the given campaign, including its status.</p> <p>A campaign can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul> <p>When the <code>status</code> is <code>CREATE FAILED</code>, the response includes the <code>failureReason</code> key, which describes why.</p> <p>For more information on campaigns, see <a>CreateCampaign</a>.</p>",
     "DescribeDataset": "<p>Describes the given dataset. For more information on datasets, see <a>CreateDataset</a>.</p>",
     "DescribeDatasetGroup": "<p>Describes the given dataset group. For more information on dataset groups, see <a>CreateDatasetGroup</a>.</p>",
@@ -28,6 +30,7 @@
     "DescribeSolution": "<p>Describes a solution. For more information on solutions, see <a>CreateSolution</a>.</p>",
     "DescribeSolutionVersion": "<p>Describes a specific version of a solution. For more information on solutions, see <a>CreateSolution</a>.</p>",
     "GetSolutionMetrics": "<p>Gets the metrics for the specified solution version.</p>",
+    "ListBatchInferenceJobs": "<p>Gets a list of the batch inference jobs that have been performed off of a solution version.</p>",
     "ListCampaigns": "<p>Returns a list of campaigns that use the given solution. When a solution is not specified, all the campaigns associated with the account are listed. The response provides the properties for each campaign, including the Amazon Resource Name (ARN). For more information on campaigns, see <a>CreateCampaign</a>.</p>",
     "ListDatasetGroups": "<p>Returns a list of dataset groups. The response provides the properties for each dataset group, including the Amazon Resource Name (ARN). For more information on dataset groups, see <a>CreateDatasetGroup</a>.</p>",
     "ListDatasetImportJobs": "<p>Returns a list of dataset import jobs that use the given dataset. When a dataset is not specified, all the dataset import jobs associated with the account are listed. The response provides the properties for each dataset import job, including the Amazon Resource Name (ARN). For more information on dataset import jobs, see <a>CreateDatasetImportJob</a>. For more information on datasets, see <a>CreateDataset</a>.</p>",
@@ -65,10 +68,15 @@
         "Algorithm$roleArn": "<p>The Amazon Resource Name (ARN) of the role.</p>",
         "ArnList$member": null,
         "AutoMLResult$bestRecipeArn": "<p>The Amazon Resource Name (ARN) of the best recipe.</p>",
+        "BatchInferenceJob$batchInferenceJobArn": "<p>The Amazon Resource Name (ARN) of the batch inference job.</p>",
+        "BatchInferenceJob$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of the solution version from which the batch inference job was created.</p>",
+        "BatchInferenceJobSummary$batchInferenceJobArn": "<p>The Amazon Resource Name (ARN) of the batch inference job.</p>",
         "Campaign$campaignArn": "<p>The Amazon Resource Name (ARN) of the campaign. </p>",
         "Campaign$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of a specific version of the solution.</p>",
         "CampaignSummary$campaignArn": "<p>The Amazon Resource Name (ARN) of the campaign.</p>",
         "CampaignUpdateSummary$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of the deployed solution version.</p>",
+        "CreateBatchInferenceJobRequest$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of the solution version that will be used to generate the batch inference recommendations.</p>",
+        "CreateBatchInferenceJobResponse$batchInferenceJobArn": "<p>The ARN of the batch inference job.</p>",
         "CreateCampaignRequest$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of the solution version to deploy.</p>",
         "CreateCampaignResponse$campaignArn": "<p>The Amazon Resource Name (ARN) of the campaign.</p>",
         "CreateDatasetGroupResponse$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the new dataset group.</p>",
@@ -104,6 +112,7 @@
         "DeleteSchemaRequest$schemaArn": "<p>The Amazon Resource Name (ARN) of the schema to delete.</p>",
         "DeleteSolutionRequest$solutionArn": "<p>The ARN of the solution to delete.</p>",
         "DescribeAlgorithmRequest$algorithmArn": "<p>The Amazon Resource Name (ARN) of the algorithm to describe.</p>",
+        "DescribeBatchInferenceJobRequest$batchInferenceJobArn": "<p>The ARN of the batch inference job to describe.</p>",
         "DescribeCampaignRequest$campaignArn": "<p>The Amazon Resource Name (ARN) of the campaign.</p>",
         "DescribeDatasetGroupRequest$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group to describe.</p>",
         "DescribeDatasetImportJobRequest$datasetImportJobArn": "<p>The Amazon Resource Name (ARN) of the dataset import job to describe.</p>",
@@ -120,6 +129,7 @@
         "FeatureTransformation$featureTransformationArn": "<p>The Amazon Resource Name (ARN) of the FeatureTransformation object.</p>",
         "GetSolutionMetricsRequest$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of the solution version for which to get metrics.</p>",
         "GetSolutionMetricsResponse$solutionVersionArn": "<p>The same solution version ARN as specified in the request.</p>",
+        "ListBatchInferenceJobsRequest$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of the solution version from which the batch inference jobs were created.</p>",
         "ListCampaignsRequest$solutionArn": "<p>The Amazon Resource Name (ARN) of the solution to list the campaigns for. When a solution is not specified, all the campaigns associated with the account are listed.</p>",
         "ListDatasetImportJobsRequest$datasetArn": "<p>The Amazon Resource Name (ARN) of the dataset to list the dataset import jobs for.</p>",
         "ListDatasetsRequest$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group that contains the datasets to list.</p>",
@@ -167,6 +177,38 @@
       "refs": {
         "CreateSchemaRequest$schema": "<p>A schema in Avro JSON format.</p>",
         "DatasetSchema$schema": "<p>The schema.</p>"
+      }
+    },
+    "BatchInferenceJob": {
+      "base": "<p>Contains information on a batch inference job.</p>",
+      "refs": {
+        "DescribeBatchInferenceJobResponse$batchInferenceJob": "<p>Information on the specified batch inference job.</p>"
+      }
+    },
+    "BatchInferenceJobInput": {
+      "base": "<p>The input configuration of a batch inference job.</p>",
+      "refs": {
+        "BatchInferenceJob$jobInput": "<p>The Amazon S3 path that leads to the input data used to generate the batch inference job.</p>",
+        "CreateBatchInferenceJobRequest$jobInput": "<p>The Amazon S3 path that leads to the input file to base your recommendations on. The input material must be in JSON format.</p>"
+      }
+    },
+    "BatchInferenceJobOutput": {
+      "base": "<p>The output configuration parameters of a batch inference job.</p>",
+      "refs": {
+        "BatchInferenceJob$jobOutput": "<p>The Amazon S3 bucket that contains the output data generated by the batch inference job.</p>",
+        "CreateBatchInferenceJobRequest$jobOutput": "<p>The path to the Amazon S3 bucket where the job's output will be stored.</p>"
+      }
+    },
+    "BatchInferenceJobSummary": {
+      "base": "<p>A truncated version of the <a>BatchInferenceJob</a> datatype. The <a>ListBatchInferenceJobs</a> operation returns a list of batch inference job summaries.</p>",
+      "refs": {
+        "BatchInferenceJobs$member": null
+      }
+    },
+    "BatchInferenceJobs": {
+      "base": null,
+      "refs": {
+        "ListBatchInferenceJobsResponse$batchInferenceJobs": "<p>A list containing information on each job that is returned.</p>"
       }
     },
     "Boolean": {
@@ -248,6 +290,16 @@
       "refs": {
         "ContinuousHyperParameterRange$minValue": "<p>The minimum allowable value for the hyperparameter.</p>",
         "DefaultContinuousHyperParameterRange$minValue": "<p>The minimum allowable value for the hyperparameter.</p>"
+      }
+    },
+    "CreateBatchInferenceJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateBatchInferenceJobResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "CreateCampaignRequest": {
@@ -416,6 +468,10 @@
       "refs": {
         "Algorithm$creationDateTime": "<p>The date and time (in Unix time) that the algorithm was created.</p>",
         "Algorithm$lastUpdatedDateTime": "<p>The date and time (in Unix time) that the algorithm was last updated.</p>",
+        "BatchInferenceJob$creationDateTime": "<p>The time at which the batch inference job was created.</p>",
+        "BatchInferenceJob$lastUpdatedDateTime": "<p>The time at which the batch inference job was last updated.</p>",
+        "BatchInferenceJobSummary$creationDateTime": "<p>The time at which the batch inference job was created.</p>",
+        "BatchInferenceJobSummary$lastUpdatedDateTime": "<p>The time at which the batch inference job was last updated.</p>",
         "Campaign$creationDateTime": "<p>The date and time (in Unix format) that the campaign was created.</p>",
         "Campaign$lastUpdatedDateTime": "<p>The date and time (in Unix format) that the campaign was last updated.</p>",
         "CampaignSummary$creationDateTime": "<p>The date and time (in Unix time) that the campaign was created.</p>",
@@ -536,6 +592,16 @@
       }
     },
     "DescribeAlgorithmResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeBatchInferenceJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeBatchInferenceJobResponse": {
       "base": null,
       "refs": {
       }
@@ -698,6 +764,8 @@
     "FailureReason": {
       "base": null,
       "refs": {
+        "BatchInferenceJob$failureReason": "<p>If the batch inference job failed, the reason for the failure.</p>",
+        "BatchInferenceJobSummary$failureReason": "<p>If the batch inference job failed, the reason for the failure.</p>",
         "Campaign$failureReason": "<p>If a campaign fails, the reason behind the failure.</p>",
         "CampaignSummary$failureReason": "<p>If a campaign fails, the reason behind the failure.</p>",
         "CampaignUpdateSummary$failureReason": "<p>If a campaign update fails, the reason behind the failure.</p>",
@@ -740,7 +808,7 @@
     "HPOConfig": {
       "base": "<p>Describes the properties for hyperparameter optimization (HPO). For use with the bring-your-own-recipe feature. Do not use for Amazon Personalize native recipes.</p>",
       "refs": {
-        "SolutionConfig$hpoConfig": "<p>Describes the properties for hyperparameter optimization (HPO). For use with the bring-your-own-recipe feature. Not used with Amazon Personalize predefined recipes.</p>"
+        "SolutionConfig$hpoConfig": "<p>Describes the properties for hyperparameter optimization (HPO).</p>"
       }
     },
     "HPOObjective": {
@@ -821,11 +889,22 @@
       "base": null,
       "refs": {
         "CreateDatasetGroupRequest$kmsKeyArn": "<p>The Amazon Resource Name (ARN) of a KMS key used to encrypt the datasets.</p>",
-        "DatasetGroup$kmsKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key used to encrypt the datasets.</p>"
+        "DatasetGroup$kmsKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key used to encrypt the datasets.</p>",
+        "S3DataConfig$kmsKeyArn": "<p>The Amazon Resource Name (ARN) of the Amazon Key Management Service (KMS) key that Amazon Personalize uses to encrypt or decrypt the input and output files of a batch inference job.</p>"
       }
     },
     "LimitExceededException": {
       "base": "<p>The limit on the number of requests per second has been exceeded.</p>",
+      "refs": {
+      }
+    },
+    "ListBatchInferenceJobsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListBatchInferenceJobsResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -922,6 +1001,7 @@
     "MaxResults": {
       "base": null,
       "refs": {
+        "ListBatchInferenceJobsRequest$maxResults": "<p>The maximum number of batch inference job results to return in each page. The default value is 100.</p>",
         "ListCampaignsRequest$maxResults": "<p>The maximum number of campaigns to return.</p>",
         "ListDatasetGroupsRequest$maxResults": "<p>The maximum number of dataset groups to return.</p>",
         "ListDatasetImportJobsRequest$maxResults": "<p>The maximum number of dataset import jobs to return.</p>",
@@ -964,8 +1044,11 @@
       "refs": {
         "Algorithm$name": "<p>The name of the algorithm.</p>",
         "AlgorithmImage$name": "<p>The name of the algorithm image.</p>",
+        "BatchInferenceJob$jobName": "<p>The name of the batch inference job.</p>",
+        "BatchInferenceJobSummary$jobName": "<p>The name of the batch inference job.</p>",
         "Campaign$name": "<p>The name of the campaign.</p>",
         "CampaignSummary$name": "<p>The name of the campaign.</p>",
+        "CreateBatchInferenceJobRequest$jobName": "<p>The name of the batch inference job to create.</p>",
         "CreateCampaignRequest$name": "<p>A name for the new campaign. The campaign name must be unique within your account.</p>",
         "CreateDatasetGroupRequest$name": "<p>The name for the new dataset group.</p>",
         "CreateDatasetImportJobRequest$jobName": "<p>The name for the dataset import job.</p>",
@@ -993,6 +1076,8 @@
     "NextToken": {
       "base": null,
       "refs": {
+        "ListBatchInferenceJobsRequest$nextToken": "<p>The token to request the next page of results.</p>",
+        "ListBatchInferenceJobsResponse$nextToken": "<p>The token to use to retreive the next page of results. The value is <code>null</code> when there are no more results to return.</p>",
         "ListCampaignsRequest$nextToken": "<p>A token returned from the previous call to <code>ListCampaigns</code> for getting the next set of campaigns (if they exist).</p>",
         "ListCampaignsResponse$nextToken": "<p>A token for getting the next set of campaigns (if they exist).</p>",
         "ListDatasetGroupsRequest$nextToken": "<p>A token returned from the previous call to <code>ListDatasetGroups</code> for getting the next set of dataset groups (if they exist).</p>",
@@ -1011,6 +1096,13 @@
         "ListSolutionVersionsResponse$nextToken": "<p>A token for getting the next set of solution versions (if they exist).</p>",
         "ListSolutionsRequest$nextToken": "<p>A token returned from the previous call to <code>ListSolutions</code> for getting the next set of solutions (if they exist).</p>",
         "ListSolutionsResponse$nextToken": "<p>A token for getting the next set of solutions (if they exist).</p>"
+      }
+    },
+    "NumBatchResults": {
+      "base": null,
+      "refs": {
+        "BatchInferenceJob$numResults": "<p>The number of recommendations generated by the batch inference job. This number includes the error messages generated for failed input records.</p>",
+        "CreateBatchInferenceJobRequest$numResults": "<p>The number of recommendations to retreive.</p>"
       }
     },
     "ParameterName": {
@@ -1106,15 +1198,25 @@
     "RoleArn": {
       "base": null,
       "refs": {
+        "BatchInferenceJob$roleArn": "<p>The ARN of the Amazon Identity and Access Management (IAM) role that requested the batch inference job.</p>",
+        "CreateBatchInferenceJobRequest$roleArn": "<p>The ARN of the Amazon Identity and Access Management role that has permissions to read and write to your input and out Amazon S3 buckets respectively.</p>",
         "CreateDatasetGroupRequest$roleArn": "<p>The ARN of the IAM role that has permissions to access the KMS key. Supplying an IAM role is only valid when also specifying a KMS key.</p>",
         "CreateDatasetImportJobRequest$roleArn": "<p>The ARN of the IAM role that has permissions to read from the Amazon S3 data source.</p>",
         "DatasetGroup$roleArn": "<p>The ARN of the IAM role that has permissions to create the dataset group.</p>"
       }
     },
+    "S3DataConfig": {
+      "base": "<p>The configuration details of an Amazon S3 input or output bucket.</p>",
+      "refs": {
+        "BatchInferenceJobInput$s3DataSource": "<p>The URI of the Amazon S3 location that contains your input data. The Amazon S3 bucket must be in the same region as the API endpoint you are calling.</p>",
+        "BatchInferenceJobOutput$s3DataDestination": "<p>Information on the Amazon S3 bucket in which the batch inference job's output is stored.</p>"
+      }
+    },
     "S3Location": {
       "base": null,
       "refs": {
-        "DataSource$dataLocation": "<p>The path to the Amazon S3 bucket where the data that you want to upload to your dataset is stored. For example: </p> <p> <code>s3://bucket-name/training-data.csv</code> </p>"
+        "DataSource$dataLocation": "<p>The path to the Amazon S3 bucket where the data that you want to upload to your dataset is stored. For example: </p> <p> <code>s3://bucket-name/training-data.csv</code> </p>",
+        "S3DataConfig$path": "<p>The file path of the Amazon S3 bucket.</p>"
       }
     },
     "Schemas": {
@@ -1171,6 +1273,8 @@
     "Status": {
       "base": null,
       "refs": {
+        "BatchInferenceJob$status": "<p>The status of the batch inference job. The status is one of the following values:</p> <ul> <li> <p>PENDING</p> </li> <li> <p>IN PROGRESS</p> </li> <li> <p>ACTIVE</p> </li> <li> <p>CREATE FAILED</p> </li> </ul>",
+        "BatchInferenceJobSummary$status": "<p>The status of the batch inference job. The status is one of the following values:</p> <ul> <li> <p>PENDING</p> </li> <li> <p>IN PROGRESS</p> </li> <li> <p>ACTIVE</p> </li> <li> <p>CREATE FAILED</p> </li> </ul>",
         "Campaign$status": "<p>The status of the campaign.</p> <p>A campaign can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul>",
         "CampaignSummary$status": "<p>The status of the campaign.</p> <p>A campaign can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul>",
         "CampaignUpdateSummary$status": "<p>The status of the campaign update.</p> <p>A campaign update can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul>",

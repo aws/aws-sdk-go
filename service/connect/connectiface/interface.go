@@ -144,6 +144,10 @@ type ConnectAPI interface {
 	ListSecurityProfilesPages(*connect.ListSecurityProfilesInput, func(*connect.ListSecurityProfilesOutput, bool) bool) error
 	ListSecurityProfilesPagesWithContext(aws.Context, *connect.ListSecurityProfilesInput, func(*connect.ListSecurityProfilesOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*connect.ListTagsForResourceInput) (*connect.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *connect.ListTagsForResourceInput, ...request.Option) (*connect.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*connect.ListTagsForResourceInput) (*request.Request, *connect.ListTagsForResourceOutput)
+
 	ListUserHierarchyGroups(*connect.ListUserHierarchyGroupsInput) (*connect.ListUserHierarchyGroupsOutput, error)
 	ListUserHierarchyGroupsWithContext(aws.Context, *connect.ListUserHierarchyGroupsInput, ...request.Option) (*connect.ListUserHierarchyGroupsOutput, error)
 	ListUserHierarchyGroupsRequest(*connect.ListUserHierarchyGroupsInput) (*request.Request, *connect.ListUserHierarchyGroupsOutput)
@@ -165,6 +169,14 @@ type ConnectAPI interface {
 	StopContact(*connect.StopContactInput) (*connect.StopContactOutput, error)
 	StopContactWithContext(aws.Context, *connect.StopContactInput, ...request.Option) (*connect.StopContactOutput, error)
 	StopContactRequest(*connect.StopContactInput) (*request.Request, *connect.StopContactOutput)
+
+	TagResource(*connect.TagResourceInput) (*connect.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *connect.TagResourceInput, ...request.Option) (*connect.TagResourceOutput, error)
+	TagResourceRequest(*connect.TagResourceInput) (*request.Request, *connect.TagResourceOutput)
+
+	UntagResource(*connect.UntagResourceInput) (*connect.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *connect.UntagResourceInput, ...request.Option) (*connect.UntagResourceOutput, error)
+	UntagResourceRequest(*connect.UntagResourceInput) (*request.Request, *connect.UntagResourceOutput)
 
 	UpdateContactAttributes(*connect.UpdateContactAttributesInput) (*connect.UpdateContactAttributesOutput, error)
 	UpdateContactAttributesWithContext(aws.Context, *connect.UpdateContactAttributesInput, ...request.Option) (*connect.UpdateContactAttributesOutput, error)

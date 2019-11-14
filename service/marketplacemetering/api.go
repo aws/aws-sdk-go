@@ -205,6 +205,10 @@ func (c *MarketplaceMetering) MeterUsageRequest(input *MeterUsageInput) (req *re
 //   * ErrCodeThrottlingException "ThrottlingException"
 //   The calls to the API are throttled.
 //
+//   * ErrCodeCustomerNotEntitledException "CustomerNotEntitledException"
+//   Exception thrown when the customer does not have a valid subscription for
+//   the product.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/meteringmarketplace-2016-01-14/MeterUsage
 func (c *MarketplaceMetering) MeterUsage(input *MeterUsageInput) (*MeterUsageOutput, error) {
 	req, out := c.MeterUsageRequest(input)
@@ -273,12 +277,11 @@ func (c *MarketplaceMetering) RegisterUsageRequest(input *RegisterUsageInput) (r
 //
 // Paid container software products sold through AWS Marketplace must integrate
 // with the AWS Marketplace Metering Service and call the RegisterUsage operation
-// for software entitlement and metering. Calling RegisterUsage from containers
-// running outside of ECS is not currently supported. Free and BYOL products
-// for ECS aren't required to call RegisterUsage, but you may choose to do so
-// if you would like to receive usage data in your seller reports. The sections
-// below explain the behavior of RegisterUsage. RegisterUsage performs two primary
-// functions: metering and entitlement.
+// for software entitlement and metering. Free and BYOL products for Amazon
+// ECS or Amazon EKS aren't required to call RegisterUsage, but you may choose
+// to do so if you would like to receive usage data in your seller reports.
+// The sections below explain the behavior of RegisterUsage. RegisterUsage performs
+// two primary functions: metering and entitlement.
 //
 //    * Entitlement: RegisterUsage allows you to verify that the customer running
 //    your paid software is subscribed to your product on AWS Marketplace, enabling
@@ -286,22 +289,23 @@ func (c *MarketplaceMetering) RegisterUsageRequest(input *RegisterUsageInput) (r
 //    with RegisterUsage is only required to guard against unauthorized use
 //    at container startup, as such a CustomerNotSubscribedException/PlatformNotSupportedException
 //    will only be thrown on the initial call to RegisterUsage. Subsequent calls
-//    from the same Amazon ECS task instance (e.g. task-id) will not throw a
-//    CustomerNotSubscribedException, even if the customer unsubscribes while
-//    the Amazon ECS task is still running.
+//    from the same Amazon ECS task instance (e.g. task-id) or Amazon EKS pod
+//    will not throw a CustomerNotSubscribedException, even if the customer
+//    unsubscribes while the Amazon ECS task or Amazon EKS pod is still running.
 //
 //    * Metering: RegisterUsage meters software use per ECS task, per hour,
-//    with usage prorated to the second. A minimum of 1 minute of usage applies
-//    to tasks that are short lived. For example, if a customer has a 10 node
-//    ECS cluster and creates an ECS service configured as a Daemon Set, then
-//    ECS will launch a task on all 10 cluster nodes and the customer will be
-//    charged: (10 * hourly_rate). Metering for software use is automatically
-//    handled by the AWS Marketplace Metering Control Plane -- your software
-//    is not required to perform any metering specific actions, other than call
-//    RegisterUsage once for metering of software use to commence. The AWS Marketplace
-//    Metering Control Plane will also continue to bill customers for running
-//    ECS tasks, regardless of the customers subscription state, removing the
-//    need for your software to perform entitlement checks at runtime.
+//    or per pod for Amazon EKS with usage prorated to the second. A minimum
+//    of 1 minute of usage applies to tasks that are short lived. For example,
+//    if a customer has a 10 node Amazon ECS or Amazon EKS cluster and a service
+//    configured as a Daemon Set, then Amazon ECS or Amazon EKS will launch
+//    a task on all 10 cluster nodes and the customer will be charged: (10 *
+//    hourly_rate). Metering for software use is automatically handled by the
+//    AWS Marketplace Metering Control Plane -- your software is not required
+//    to perform any metering specific actions, other than call RegisterUsage
+//    once for metering of software use to commence. The AWS Marketplace Metering
+//    Control Plane will also continue to bill customers for running ECS tasks
+//    and Amazon EKS pods, regardless of the customers subscription state, removing
+//    the need for your software to perform entitlement checks at runtime.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about

@@ -13089,16 +13089,21 @@ func (s *AttachmentInformation) SetName(v string) *AttachmentInformation {
 	return s
 }
 
-// A key and value pair that identifies the location of an attachment to a document.
+// Identifying information about a document attachment, including the file name
+// and a key-value pair that identifies the location of an attachment to a document.
 type AttachmentsSource struct {
 	_ struct{} `type:"structure"`
 
-	// The key of a key and value pair that identifies the location of an attachment
+	// The key of a key-value pair that identifies the location of an attachment
 	// to a document.
 	Key *string `type:"string" enum:"AttachmentsSourceKey"`
 
-	// The URL of the location of a document attachment, such as the URL of an Amazon
-	// S3 bucket.
+	// The name of the document attachment file.
+	Name *string `type:"string"`
+
+	// The value of a key-value pair that identifies the location of an attachment
+	// to a document. The format is the URL of the location of a document attachment,
+	// such as the URL of an Amazon S3 bucket.
 	Values []*string `min:"1" type:"list"`
 }
 
@@ -13128,6 +13133,12 @@ func (s *AttachmentsSource) Validate() error {
 // SetKey sets the Key field's value.
 func (s *AttachmentsSource) SetKey(v string) *AttachmentsSource {
 	s.Key = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AttachmentsSource) SetName(v string) *AttachmentsSource {
+	s.Name = &v
 	return s
 }
 
@@ -26714,7 +26725,7 @@ type ListCommandInvocationsInput struct {
 	Details *bool `type:"boolean"`
 
 	// (Optional) One or more filters. Use a filter to return a more specific list
-	// of results.
+	// of results. Note that the DocumentName filter is not supported for ListCommandInvocations.
 	Filters []*CommandFilter `min:"1" type:"list"`
 
 	// (Optional) The command execution details for a specific instance ID.
@@ -31391,7 +31402,7 @@ func (s PutComplianceItemsOutput) GoString() string {
 type PutInventoryInput struct {
 	_ struct{} `type:"structure"`
 
-	// One or more instance IDs where you want to add or update inventory items.
+	// An instance ID where you want to add or update inventory items.
 	//
 	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
@@ -34757,8 +34768,16 @@ func (s *Tag) SetValue(v string) *Tag {
 //    * Key=tag-key,Values=Name,Instance-Type,CostCenter
 //
 //    * (Maintenance window targets only) Key=resource-groups:Name,Values=ProductionResourceGroup
+//    This example demonstrates how to target all resources in the resource
+//    group ProductionResourceGroup in your maintenance window.
 //
 //    * (Maintenance window targets only) Key=resource-groups:ResourceTypeFilters,Values=AWS::EC2::INSTANCE,AWS::EC2::VPC
+//    This example demonstrates how to target only Amazon EC2 instances and
+//    VPCs in your maintenance window.
+//
+//    * (State Manager association targets only) Key=InstanceIds,Values=* This
+//    example demonstrates how to target all managed instances in the AWS Region
+//    where the association was created.
 //
 // For information about how to send commands that target instances using Key,Value
 // parameters, see Using Targets and Rate Controls to Send Commands to a Fleet
@@ -37109,6 +37128,9 @@ const (
 const (
 	// AttachmentsSourceKeySourceUrl is a AttachmentsSourceKey enum value
 	AttachmentsSourceKeySourceUrl = "SourceUrl"
+
+	// AttachmentsSourceKeyS3fileUrl is a AttachmentsSourceKey enum value
+	AttachmentsSourceKeyS3fileUrl = "S3FileUrl"
 )
 
 const (

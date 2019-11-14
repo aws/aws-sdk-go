@@ -2571,7 +2571,8 @@
         "REFRESH_TOKEN",
         "CUSTOM_AUTH",
         "ADMIN_NO_SRP_AUTH",
-        "USER_PASSWORD_AUTH"
+        "USER_PASSWORD_AUTH",
+        "ADMIN_USER_PASSWORD_AUTH"
       ]
     },
     "AuthParametersType":{
@@ -2960,7 +2961,8 @@
         "AllowedOAuthFlows":{"shape":"OAuthFlowsType"},
         "AllowedOAuthScopes":{"shape":"ScopeListType"},
         "AllowedOAuthFlowsUserPoolClient":{"shape":"BooleanType"},
-        "AnalyticsConfiguration":{"shape":"AnalyticsConfigurationType"}
+        "AnalyticsConfiguration":{"shape":"AnalyticsConfigurationType"},
+        "PreventUserExistenceErrors":{"shape":"PreventUserExistenceErrorTypes"}
       }
     },
     "CreateUserPoolClientResponse":{
@@ -3488,7 +3490,12 @@
       "enum":[
         "ADMIN_NO_SRP_AUTH",
         "CUSTOM_AUTH_FLOW_ONLY",
-        "USER_PASSWORD_AUTH"
+        "USER_PASSWORD_AUTH",
+        "ALLOW_ADMIN_USER_PASSWORD_AUTH",
+        "ALLOW_CUSTOM_AUTH",
+        "ALLOW_USER_PASSWORD_AUTH",
+        "ALLOW_USER_SRP_AUTH",
+        "ALLOW_REFRESH_TOKEN_AUTH"
       ]
     },
     "FeedbackValueType":{
@@ -4217,6 +4224,13 @@
         "message":{"shape":"MessageType"}
       },
       "exception":true
+    },
+    "PreventUserExistenceErrorTypes":{
+      "type":"string",
+      "enum":[
+        "LEGACY",
+        "ENABLED"
+      ]
     },
     "ProviderDescription":{
       "type":"structure",
@@ -4961,7 +4975,8 @@
         "AllowedOAuthFlows":{"shape":"OAuthFlowsType"},
         "AllowedOAuthScopes":{"shape":"ScopeListType"},
         "AllowedOAuthFlowsUserPoolClient":{"shape":"BooleanType"},
-        "AnalyticsConfiguration":{"shape":"AnalyticsConfigurationType"}
+        "AnalyticsConfiguration":{"shape":"AnalyticsConfigurationType"},
+        "PreventUserExistenceErrors":{"shape":"PreventUserExistenceErrorTypes"}
       }
     },
     "UpdateUserPoolClientResponse":{
@@ -5156,7 +5171,8 @@
           "shape":"BooleanType",
           "box":true
         },
-        "AnalyticsConfiguration":{"shape":"AnalyticsConfigurationType"}
+        "AnalyticsConfiguration":{"shape":"AnalyticsConfigurationType"},
+        "PreventUserExistenceErrors":{"shape":"PreventUserExistenceErrorTypes"}
       }
     },
     "UserPoolDescriptionType":{
