@@ -1,4 +1,3 @@
-FROM ubuntu:12.04
 FROM golang:1.12
 
 ADD . /go/src/github.com/aws/aws-sdk-go

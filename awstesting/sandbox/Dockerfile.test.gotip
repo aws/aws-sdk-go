@@ -1,5 +1,6 @@
-FROM ubuntu:12.04
 FROM aws-golang:tip
+
+ENV GOPROXY=direct
 
 ADD . /go/src/github.com/aws/aws-sdk-go
 
