@@ -27,7 +27,9 @@ func TestInteg_00_ListStacks(t *testing.T) {
 	sess := integration.SessionWithDefaultRegion("us-west-2")
 	svc := cloudformation.New(sess)
 	params := &cloudformation.ListStacksInput{}
-	_, err := svc.ListStacksWithContext(ctx, params)
+	_, err := svc.ListStacksWithContext(ctx, params, func(r *request.Request) {
+		r.Handlers.Validate.RemoveByName("core.ValidateParametersHandler")
+	})
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
@@ -42,7 +44,9 @@ func TestInteg_01_CreateStack(t *testing.T) {
 		StackName:   aws.String("fakestack"),
 		TemplateURL: aws.String("http://s3.amazonaws.com/foo/bar"),
 	}
-	_, err := svc.CreateStackWithContext(ctx, params)
+	_, err := svc.CreateStackWithContext(ctx, params, func(r *request.Request) {
+		r.Handlers.Validate.RemoveByName("core.ValidateParametersHandler")
+	})
 	if err == nil {
 		t.Fatalf("expect request to fail")
 	}

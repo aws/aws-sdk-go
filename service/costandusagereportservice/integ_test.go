@@ -27,7 +27,9 @@ func TestInteg_00_DescribeReportDefinitions(t *testing.T) {
 	sess := integration.SessionWithDefaultRegion("us-east-1")
 	svc := costandusagereportservice.New(sess)
 	params := &costandusagereportservice.DescribeReportDefinitionsInput{}
-	_, err := svc.DescribeReportDefinitionsWithContext(ctx, params)
+	_, err := svc.DescribeReportDefinitionsWithContext(ctx, params, func(r *request.Request) {
+		r.Handlers.Validate.RemoveByName("core.ValidateParametersHandler")
+	})
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}

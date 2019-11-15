@@ -99,7 +99,9 @@ var smokeTestTmpl = template.Must(template.New(`smokeTestTmpl`).Parse(`
 		sess := integration.SessionWithDefaultRegion("{{ $.DefaultRegion }}")
 		svc := {{ $.API.PackageName }}.New(sess)
 		params := {{ $testCase.BuildInputShape $op.InputRef }}
-		_, err := svc.{{ $op.ExportedName }}WithContext(ctx, params)
+		_, err := svc.{{ $op.ExportedName }}WithContext(ctx, params, func(r *request.Request) {
+			r.Handlers.Validate.RemoveByName("core.ValidateParametersHandler")
+		})
 		{{- if $testCase.ExpectErr }}
 			if err == nil {
 				t.Fatalf("expect request to fail")

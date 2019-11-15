@@ -27,7 +27,9 @@ func TestInteg_00_ListClusters(t *testing.T) {
 	sess := integration.SessionWithDefaultRegion("us-west-2")
 	svc := ecs.New(sess)
 	params := &ecs.ListClustersInput{}
-	_, err := svc.ListClustersWithContext(ctx, params)
+	_, err := svc.ListClustersWithContext(ctx, params, func(r *request.Request) {
+		r.Handlers.Validate.RemoveByName("core.ValidateParametersHandler")
+	})
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
@@ -41,7 +43,9 @@ func TestInteg_01_StopTask(t *testing.T) {
 	params := &ecs.StopTaskInput{
 		Task: aws.String("xxxxxxxxxxx-xxxxxxxxxxxx-xxxxxxxxxxx"),
 	}
-	_, err := svc.StopTaskWithContext(ctx, params)
+	_, err := svc.StopTaskWithContext(ctx, params, func(r *request.Request) {
+		r.Handlers.Validate.RemoveByName("core.ValidateParametersHandler")
+	})
 	if err == nil {
 		t.Fatalf("expect request to fail")
 	}

@@ -27,7 +27,9 @@ func TestInteg_00_DescribeServices(t *testing.T) {
 	sess := integration.SessionWithDefaultRegion("us-east-1")
 	svc := support.New(sess)
 	params := &support.DescribeServicesInput{}
-	_, err := svc.DescribeServicesWithContext(ctx, params)
+	_, err := svc.DescribeServicesWithContext(ctx, params, func(r *request.Request) {
+		r.Handlers.Validate.RemoveByName("core.ValidateParametersHandler")
+	})
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
@@ -45,7 +47,9 @@ func TestInteg_01_CreateCase(t *testing.T) {
 		SeverityCode:      aws.String("low"),
 		Subject:           aws.String("subject"),
 	}
-	_, err := svc.CreateCaseWithContext(ctx, params)
+	_, err := svc.CreateCaseWithContext(ctx, params, func(r *request.Request) {
+		r.Handlers.Validate.RemoveByName("core.ValidateParametersHandler")
+	})
 	if err == nil {
 		t.Fatalf("expect request to fail")
 	}

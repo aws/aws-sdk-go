@@ -27,7 +27,9 @@ func TestInteg_00_DescribeDomains(t *testing.T) {
 	sess := integration.SessionWithDefaultRegion("us-west-2")
 	svc := cloudsearch.New(sess)
 	params := &cloudsearch.DescribeDomainsInput{}
-	_, err := svc.DescribeDomainsWithContext(ctx, params)
+	_, err := svc.DescribeDomainsWithContext(ctx, params, func(r *request.Request) {
+		r.Handlers.Validate.RemoveByName("core.ValidateParametersHandler")
+	})
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
@@ -41,7 +43,9 @@ func TestInteg_01_DescribeIndexFields(t *testing.T) {
 	params := &cloudsearch.DescribeIndexFieldsInput{
 		DomainName: aws.String("fakedomain"),
 	}
-	_, err := svc.DescribeIndexFieldsWithContext(ctx, params)
+	_, err := svc.DescribeIndexFieldsWithContext(ctx, params, func(r *request.Request) {
+		r.Handlers.Validate.RemoveByName("core.ValidateParametersHandler")
+	})
 	if err == nil {
 		t.Fatalf("expect request to fail")
 	}
