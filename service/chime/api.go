@@ -318,6 +318,103 @@ func (c *Chime) AssociatePhoneNumbersWithVoiceConnectorGroupWithContext(ctx aws.
 	return out, req.Send()
 }
 
+const opBatchCreateRoomMembership = "BatchCreateRoomMembership"
+
+// BatchCreateRoomMembershipRequest generates a "aws/request.Request" representing the
+// client's request for the BatchCreateRoomMembership operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchCreateRoomMembership for more information on using the BatchCreateRoomMembership
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the BatchCreateRoomMembershipRequest method.
+//    req, resp := client.BatchCreateRoomMembershipRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/BatchCreateRoomMembership
+func (c *Chime) BatchCreateRoomMembershipRequest(input *BatchCreateRoomMembershipInput) (req *request.Request, output *BatchCreateRoomMembershipOutput) {
+	op := &request.Operation{
+		Name:       opBatchCreateRoomMembership,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{accountId}/rooms/{roomId}/memberships?operation=batch-create",
+	}
+
+	if input == nil {
+		input = &BatchCreateRoomMembershipInput{}
+	}
+
+	output = &BatchCreateRoomMembershipOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchCreateRoomMembership API operation for Amazon Chime.
+//
+// Adds up to 50 members to a chat room. Members can be either users or bots.
+// The member role designates whether the member is a chat room administrator
+// or a general chat room member.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation BatchCreateRoomMembership for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   The client is not currently authorized to make the request.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input parameters don't match the service's restrictions.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   The service is currently unavailable.
+//
+//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/BatchCreateRoomMembership
+func (c *Chime) BatchCreateRoomMembership(input *BatchCreateRoomMembershipInput) (*BatchCreateRoomMembershipOutput, error) {
+	req, out := c.BatchCreateRoomMembershipRequest(input)
+	return out, req.Send()
+}
+
+// BatchCreateRoomMembershipWithContext is the same as BatchCreateRoomMembership with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchCreateRoomMembership for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) BatchCreateRoomMembershipWithContext(ctx aws.Context, input *BatchCreateRoomMembershipInput, opts ...request.Option) (*BatchCreateRoomMembershipOutput, error) {
+	req, out := c.BatchCreateRoomMembershipRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchDeletePhoneNumber = "BatchDeletePhoneNumber"
 
 // BatchDeletePhoneNumberRequest generates a "aws/request.Request" representing the
@@ -1148,6 +1245,208 @@ func (c *Chime) CreatePhoneNumberOrderWithContext(ctx aws.Context, input *Create
 	return out, req.Send()
 }
 
+const opCreateRoom = "CreateRoom"
+
+// CreateRoomRequest generates a "aws/request.Request" representing the
+// client's request for the CreateRoom operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateRoom for more information on using the CreateRoom
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateRoomRequest method.
+//    req, resp := client.CreateRoomRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateRoom
+func (c *Chime) CreateRoomRequest(input *CreateRoomInput) (req *request.Request, output *CreateRoomOutput) {
+	op := &request.Operation{
+		Name:       opCreateRoom,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{accountId}/rooms",
+	}
+
+	if input == nil {
+		input = &CreateRoomInput{}
+	}
+
+	output = &CreateRoomOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateRoom API operation for Amazon Chime.
+//
+// Creates a chat room for the specified Amazon Chime account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation CreateRoom for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNotFoundException "NotFoundException"
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input parameters don't match the service's restrictions.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   The client is not currently authorized to make the request.
+//
+//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
+//   The request exceeds the resource limit.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   The service is currently unavailable.
+//
+//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateRoom
+func (c *Chime) CreateRoom(input *CreateRoomInput) (*CreateRoomOutput, error) {
+	req, out := c.CreateRoomRequest(input)
+	return out, req.Send()
+}
+
+// CreateRoomWithContext is the same as CreateRoom with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateRoom for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) CreateRoomWithContext(ctx aws.Context, input *CreateRoomInput, opts ...request.Option) (*CreateRoomOutput, error) {
+	req, out := c.CreateRoomRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateRoomMembership = "CreateRoomMembership"
+
+// CreateRoomMembershipRequest generates a "aws/request.Request" representing the
+// client's request for the CreateRoomMembership operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateRoomMembership for more information on using the CreateRoomMembership
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateRoomMembershipRequest method.
+//    req, resp := client.CreateRoomMembershipRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateRoomMembership
+func (c *Chime) CreateRoomMembershipRequest(input *CreateRoomMembershipInput) (req *request.Request, output *CreateRoomMembershipOutput) {
+	op := &request.Operation{
+		Name:       opCreateRoomMembership,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{accountId}/rooms/{roomId}/memberships",
+	}
+
+	if input == nil {
+		input = &CreateRoomMembershipInput{}
+	}
+
+	output = &CreateRoomMembershipOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateRoomMembership API operation for Amazon Chime.
+//
+// Adds a member to a chat room. A member can be either a user or a bot. The
+// member role designates whether the member is a chat room administrator or
+// a general chat room member.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation CreateRoomMembership for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeConflictException "ConflictException"
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   The client is not currently authorized to make the request.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input parameters don't match the service's restrictions.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
+//   The request exceeds the resource limit.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   The service is currently unavailable.
+//
+//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateRoomMembership
+func (c *Chime) CreateRoomMembership(input *CreateRoomMembershipInput) (*CreateRoomMembershipOutput, error) {
+	req, out := c.CreateRoomMembershipRequest(input)
+	return out, req.Send()
+}
+
+// CreateRoomMembershipWithContext is the same as CreateRoomMembership with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateRoomMembership for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) CreateRoomMembershipWithContext(ctx aws.Context, input *CreateRoomMembershipInput, opts ...request.Option) (*CreateRoomMembershipOutput, error) {
+	req, out := c.CreateRoomMembershipRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateVoiceConnector = "CreateVoiceConnector"
 
 // CreateVoiceConnectorRequest generates a "aws/request.Request" representing the
@@ -1674,6 +1973,198 @@ func (c *Chime) DeletePhoneNumber(input *DeletePhoneNumberInput) (*DeletePhoneNu
 // for more information on using Contexts.
 func (c *Chime) DeletePhoneNumberWithContext(ctx aws.Context, input *DeletePhoneNumberInput, opts ...request.Option) (*DeletePhoneNumberOutput, error) {
 	req, out := c.DeletePhoneNumberRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteRoom = "DeleteRoom"
+
+// DeleteRoomRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteRoom operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteRoom for more information on using the DeleteRoom
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteRoomRequest method.
+//    req, resp := client.DeleteRoomRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteRoom
+func (c *Chime) DeleteRoomRequest(input *DeleteRoomInput) (req *request.Request, output *DeleteRoomOutput) {
+	op := &request.Operation{
+		Name:       opDeleteRoom,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/accounts/{accountId}/rooms/{roomId}",
+	}
+
+	if input == nil {
+		input = &DeleteRoomInput{}
+	}
+
+	output = &DeleteRoomOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteRoom API operation for Amazon Chime.
+//
+// Deletes a chat room.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DeleteRoom for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input parameters don't match the service's restrictions.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   The client is not currently authorized to make the request.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   The service is currently unavailable.
+//
+//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteRoom
+func (c *Chime) DeleteRoom(input *DeleteRoomInput) (*DeleteRoomOutput, error) {
+	req, out := c.DeleteRoomRequest(input)
+	return out, req.Send()
+}
+
+// DeleteRoomWithContext is the same as DeleteRoom with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteRoom for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DeleteRoomWithContext(ctx aws.Context, input *DeleteRoomInput, opts ...request.Option) (*DeleteRoomOutput, error) {
+	req, out := c.DeleteRoomRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteRoomMembership = "DeleteRoomMembership"
+
+// DeleteRoomMembershipRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteRoomMembership operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteRoomMembership for more information on using the DeleteRoomMembership
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteRoomMembershipRequest method.
+//    req, resp := client.DeleteRoomMembershipRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteRoomMembership
+func (c *Chime) DeleteRoomMembershipRequest(input *DeleteRoomMembershipInput) (req *request.Request, output *DeleteRoomMembershipOutput) {
+	op := &request.Operation{
+		Name:       opDeleteRoomMembership,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/accounts/{accountId}/rooms/{roomId}/memberships/{memberId}",
+	}
+
+	if input == nil {
+		input = &DeleteRoomMembershipInput{}
+	}
+
+	output = &DeleteRoomMembershipOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteRoomMembership API operation for Amazon Chime.
+//
+// Removes a member from a chat room.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DeleteRoomMembership for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   The client is not currently authorized to make the request.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input parameters don't match the service's restrictions.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   The service is currently unavailable.
+//
+//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteRoomMembership
+func (c *Chime) DeleteRoomMembership(input *DeleteRoomMembershipInput) (*DeleteRoomMembershipOutput, error) {
+	req, out := c.DeleteRoomMembershipRequest(input)
+	return out, req.Send()
+}
+
+// DeleteRoomMembershipWithContext is the same as DeleteRoomMembership with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteRoomMembership for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DeleteRoomMembershipWithContext(ctx aws.Context, input *DeleteRoomMembershipInput, opts ...request.Option) (*DeleteRoomMembershipOutput, error) {
+	req, out := c.DeleteRoomMembershipRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3370,6 +3861,101 @@ func (c *Chime) GetPhoneNumberSettingsWithContext(ctx aws.Context, input *GetPho
 	return out, req.Send()
 }
 
+const opGetRoom = "GetRoom"
+
+// GetRoomRequest generates a "aws/request.Request" representing the
+// client's request for the GetRoom operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetRoom for more information on using the GetRoom
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetRoomRequest method.
+//    req, resp := client.GetRoomRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetRoom
+func (c *Chime) GetRoomRequest(input *GetRoomInput) (req *request.Request, output *GetRoomOutput) {
+	op := &request.Operation{
+		Name:       opGetRoom,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{accountId}/rooms/{roomId}",
+	}
+
+	if input == nil {
+		input = &GetRoomInput{}
+	}
+
+	output = &GetRoomOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetRoom API operation for Amazon Chime.
+//
+// Retrieves room details, such as name.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation GetRoom for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input parameters don't match the service's restrictions.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   The client is not currently authorized to make the request.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   The service is currently unavailable.
+//
+//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetRoom
+func (c *Chime) GetRoom(input *GetRoomInput) (*GetRoomOutput, error) {
+	req, out := c.GetRoomRequest(input)
+	return out, req.Send()
+}
+
+// GetRoomWithContext is the same as GetRoom with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetRoom for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) GetRoomWithContext(ctx aws.Context, input *GetRoomInput, opts ...request.Option) (*GetRoomOutput, error) {
+	req, out := c.GetRoomRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetUser = "GetUser"
 
 // GetUserRequest generates a "aws/request.Request" representing the
@@ -4014,8 +4600,8 @@ func (c *Chime) GetVoiceConnectorStreamingConfigurationRequest(input *GetVoiceCo
 //
 // Retrieves the streaming configuration details for the specified Amazon Chime
 // Voice Connector. Shows whether media streaming is enabled for sending to
-// Amazon Kinesis, and shows the retention period for the Amazon Kinesis data,
-// in hours.
+// Amazon Kinesis. It also shows the retention period, in hours, for the Amazon
+// Kinesis data.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4311,9 +4897,9 @@ func (c *Chime) InviteUsersRequest(input *InviteUsersInput) (req *request.Reques
 
 // InviteUsers API operation for Amazon Chime.
 //
-// Sends email invites to as many as 50 users, inviting them to the specified
-// Amazon Chime Team account. Only Team account types are currently supported
-// for this action.
+// Sends email to a maximum of 50 users, inviting them to the specified Amazon
+// Chime Team account. Only Team account types are currently supported for this
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4980,6 +5566,315 @@ func (c *Chime) ListPhoneNumbersPagesWithContext(ctx aws.Context, input *ListPho
 
 	for p.Next() {
 		if !fn(p.Page().(*ListPhoneNumbersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListRoomMemberships = "ListRoomMemberships"
+
+// ListRoomMembershipsRequest generates a "aws/request.Request" representing the
+// client's request for the ListRoomMemberships operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRoomMemberships for more information on using the ListRoomMemberships
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListRoomMembershipsRequest method.
+//    req, resp := client.ListRoomMembershipsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListRoomMemberships
+func (c *Chime) ListRoomMembershipsRequest(input *ListRoomMembershipsInput) (req *request.Request, output *ListRoomMembershipsOutput) {
+	op := &request.Operation{
+		Name:       opListRoomMemberships,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{accountId}/rooms/{roomId}/memberships",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListRoomMembershipsInput{}
+	}
+
+	output = &ListRoomMembershipsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRoomMemberships API operation for Amazon Chime.
+//
+// Lists the membership details for the specified room, such as member IDs,
+// member email addresses, and member names.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation ListRoomMemberships for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNotFoundException "NotFoundException"
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input parameters don't match the service's restrictions.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   The client is not currently authorized to make the request.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   The service is currently unavailable.
+//
+//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListRoomMemberships
+func (c *Chime) ListRoomMemberships(input *ListRoomMembershipsInput) (*ListRoomMembershipsOutput, error) {
+	req, out := c.ListRoomMembershipsRequest(input)
+	return out, req.Send()
+}
+
+// ListRoomMembershipsWithContext is the same as ListRoomMemberships with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRoomMemberships for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListRoomMembershipsWithContext(ctx aws.Context, input *ListRoomMembershipsInput, opts ...request.Option) (*ListRoomMembershipsOutput, error) {
+	req, out := c.ListRoomMembershipsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListRoomMembershipsPages iterates over the pages of a ListRoomMemberships operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRoomMemberships method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListRoomMemberships operation.
+//    pageNum := 0
+//    err := client.ListRoomMembershipsPages(params,
+//        func(page *chime.ListRoomMembershipsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Chime) ListRoomMembershipsPages(input *ListRoomMembershipsInput, fn func(*ListRoomMembershipsOutput, bool) bool) error {
+	return c.ListRoomMembershipsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRoomMembershipsPagesWithContext same as ListRoomMembershipsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListRoomMembershipsPagesWithContext(ctx aws.Context, input *ListRoomMembershipsInput, fn func(*ListRoomMembershipsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRoomMembershipsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRoomMembershipsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRoomMembershipsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListRooms = "ListRooms"
+
+// ListRoomsRequest generates a "aws/request.Request" representing the
+// client's request for the ListRooms operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRooms for more information on using the ListRooms
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListRoomsRequest method.
+//    req, resp := client.ListRoomsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListRooms
+func (c *Chime) ListRoomsRequest(input *ListRoomsInput) (req *request.Request, output *ListRoomsOutput) {
+	op := &request.Operation{
+		Name:       opListRooms,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{accountId}/rooms",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListRoomsInput{}
+	}
+
+	output = &ListRoomsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRooms API operation for Amazon Chime.
+//
+// Lists the room details for the specified Amazon Chime account. Optionally,
+// filter the results by a member ID (user ID or bot ID) to see a list of rooms
+// that the member belongs to.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation ListRooms for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNotFoundException "NotFoundException"
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input parameters don't match the service's restrictions.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   The client is not currently authorized to make the request.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   The service is currently unavailable.
+//
+//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListRooms
+func (c *Chime) ListRooms(input *ListRoomsInput) (*ListRoomsOutput, error) {
+	req, out := c.ListRoomsRequest(input)
+	return out, req.Send()
+}
+
+// ListRoomsWithContext is the same as ListRooms with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRooms for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListRoomsWithContext(ctx aws.Context, input *ListRoomsInput, opts ...request.Option) (*ListRoomsOutput, error) {
+	req, out := c.ListRoomsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListRoomsPages iterates over the pages of a ListRooms operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRooms method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListRooms operation.
+//    pageNum := 0
+//    err := client.ListRoomsPages(params,
+//        func(page *chime.ListRoomsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Chime) ListRoomsPages(input *ListRoomsInput, fn func(*ListRoomsOutput, bool) bool) error {
+	return c.ListRoomsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRoomsPagesWithContext same as ListRoomsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListRoomsPagesWithContext(ctx aws.Context, input *ListRoomsInput, fn func(*ListRoomsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRoomsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRoomsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRoomsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -5994,8 +6889,8 @@ func (c *Chime) PutVoiceConnectorStreamingConfigurationRequest(input *PutVoiceCo
 //
 // Adds a streaming configuration for the specified Amazon Chime Voice Connector.
 // The streaming configuration specifies whether media streaming is enabled
-// for sending to Amazon Kinesis, and sets the retention period for the Amazon
-// Kinesis data, in hours.
+// for sending to Amazon Kinesis. It also sets the retention period, in hours,
+// for the Amazon Kinesis data.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7196,7 +8091,7 @@ func (c *Chime) UpdatePhoneNumberSettingsRequest(input *UpdatePhoneNumberSetting
 // Updates the phone number settings for the administrator's AWS account, such
 // as the default outbound calling name. You can update the default outbound
 // calling name once every seven days. Outbound calling names can take up to
-// 72 hours to be updated.
+// 72 hours to update.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7242,6 +8137,198 @@ func (c *Chime) UpdatePhoneNumberSettings(input *UpdatePhoneNumberSettingsInput)
 // for more information on using Contexts.
 func (c *Chime) UpdatePhoneNumberSettingsWithContext(ctx aws.Context, input *UpdatePhoneNumberSettingsInput, opts ...request.Option) (*UpdatePhoneNumberSettingsOutput, error) {
 	req, out := c.UpdatePhoneNumberSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateRoom = "UpdateRoom"
+
+// UpdateRoomRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateRoom operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateRoom for more information on using the UpdateRoom
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateRoomRequest method.
+//    req, resp := client.UpdateRoomRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateRoom
+func (c *Chime) UpdateRoomRequest(input *UpdateRoomInput) (req *request.Request, output *UpdateRoomOutput) {
+	op := &request.Operation{
+		Name:       opUpdateRoom,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{accountId}/rooms/{roomId}",
+	}
+
+	if input == nil {
+		input = &UpdateRoomInput{}
+	}
+
+	output = &UpdateRoomOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateRoom API operation for Amazon Chime.
+//
+// Updates room details, such as the room name.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation UpdateRoom for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input parameters don't match the service's restrictions.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   The client is not currently authorized to make the request.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   The service is currently unavailable.
+//
+//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateRoom
+func (c *Chime) UpdateRoom(input *UpdateRoomInput) (*UpdateRoomOutput, error) {
+	req, out := c.UpdateRoomRequest(input)
+	return out, req.Send()
+}
+
+// UpdateRoomWithContext is the same as UpdateRoom with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateRoom for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) UpdateRoomWithContext(ctx aws.Context, input *UpdateRoomInput, opts ...request.Option) (*UpdateRoomOutput, error) {
+	req, out := c.UpdateRoomRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateRoomMembership = "UpdateRoomMembership"
+
+// UpdateRoomMembershipRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateRoomMembership operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateRoomMembership for more information on using the UpdateRoomMembership
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateRoomMembershipRequest method.
+//    req, resp := client.UpdateRoomMembershipRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateRoomMembership
+func (c *Chime) UpdateRoomMembershipRequest(input *UpdateRoomMembershipInput) (req *request.Request, output *UpdateRoomMembershipOutput) {
+	op := &request.Operation{
+		Name:       opUpdateRoomMembership,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{accountId}/rooms/{roomId}/memberships/{memberId}",
+	}
+
+	if input == nil {
+		input = &UpdateRoomMembershipInput{}
+	}
+
+	output = &UpdateRoomMembershipOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateRoomMembership API operation for Amazon Chime.
+//
+// Updates room membership details, such as member role. The member role designates
+// whether the member is a chat room administrator or a general chat room member.
+// Member role can only be updated for user IDs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation UpdateRoomMembership for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   The client is not currently authorized to make the request.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input parameters don't match the service's restrictions.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   The service is currently unavailable.
+//
+//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateRoomMembership
+func (c *Chime) UpdateRoomMembership(input *UpdateRoomMembershipInput) (*UpdateRoomMembershipOutput, error) {
+	req, out := c.UpdateRoomMembershipRequest(input)
+	return out, req.Send()
+}
+
+// UpdateRoomMembershipWithContext is the same as UpdateRoomMembership with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateRoomMembership for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) UpdateRoomMembershipWithContext(ctx aws.Context, input *UpdateRoomMembershipInput, opts ...request.Option) (*UpdateRoomMembershipOutput, error) {
+	req, out := c.UpdateRoomMembershipRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8031,6 +9118,102 @@ func (s *AssociatePhoneNumbersWithVoiceConnectorOutput) SetPhoneNumberErrors(v [
 	return s
 }
 
+type BatchCreateRoomMembershipInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime account ID.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+
+	// The list of membership items.
+	//
+	// MembershipItemList is a required field
+	MembershipItemList []*MembershipItem `type:"list" required:"true"`
+
+	// The room ID.
+	//
+	// RoomId is a required field
+	RoomId *string `location:"uri" locationName:"roomId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s BatchCreateRoomMembershipInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchCreateRoomMembershipInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchCreateRoomMembershipInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchCreateRoomMembershipInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.MembershipItemList == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipItemList"))
+	}
+	if s.RoomId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoomId"))
+	}
+	if s.RoomId != nil && len(*s.RoomId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoomId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *BatchCreateRoomMembershipInput) SetAccountId(v string) *BatchCreateRoomMembershipInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetMembershipItemList sets the MembershipItemList field's value.
+func (s *BatchCreateRoomMembershipInput) SetMembershipItemList(v []*MembershipItem) *BatchCreateRoomMembershipInput {
+	s.MembershipItemList = v
+	return s
+}
+
+// SetRoomId sets the RoomId field's value.
+func (s *BatchCreateRoomMembershipInput) SetRoomId(v string) *BatchCreateRoomMembershipInput {
+	s.RoomId = &v
+	return s
+}
+
+type BatchCreateRoomMembershipOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If the action fails for one or more of the member IDs in the request, a list
+	// of the member IDs is returned, along with error codes and error messages.
+	Errors []*MemberError `type:"list"`
+}
+
+// String returns the string representation
+func (s BatchCreateRoomMembershipOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchCreateRoomMembershipOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchCreateRoomMembershipOutput) SetErrors(v []*MemberError) *BatchCreateRoomMembershipOutput {
+	s.Errors = v
+	return s
+}
+
 type BatchDeletePhoneNumberInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8770,6 +9953,200 @@ func (s *CreatePhoneNumberOrderOutput) SetPhoneNumberOrder(v *PhoneNumberOrder) 
 	return s
 }
 
+type CreateRoomInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime account ID.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+
+	// The idempotency token for the request.
+	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
+
+	// The room name.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s CreateRoomInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateRoomInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateRoomInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateRoomInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 2))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *CreateRoomInput) SetAccountId(v string) *CreateRoomInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateRoomInput) SetClientRequestToken(v string) *CreateRoomInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateRoomInput) SetName(v string) *CreateRoomInput {
+	s.Name = &v
+	return s
+}
+
+type CreateRoomMembershipInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime account ID.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+
+	// The Amazon Chime member ID (user ID or bot ID).
+	//
+	// MemberId is a required field
+	MemberId *string `type:"string" required:"true"`
+
+	// The role of the member.
+	Role *string `type:"string" enum:"RoomMembershipRole"`
+
+	// The room ID.
+	//
+	// RoomId is a required field
+	RoomId *string `location:"uri" locationName:"roomId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateRoomMembershipInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateRoomMembershipInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateRoomMembershipInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateRoomMembershipInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.MemberId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberId"))
+	}
+	if s.RoomId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoomId"))
+	}
+	if s.RoomId != nil && len(*s.RoomId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoomId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *CreateRoomMembershipInput) SetAccountId(v string) *CreateRoomMembershipInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetMemberId sets the MemberId field's value.
+func (s *CreateRoomMembershipInput) SetMemberId(v string) *CreateRoomMembershipInput {
+	s.MemberId = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *CreateRoomMembershipInput) SetRole(v string) *CreateRoomMembershipInput {
+	s.Role = &v
+	return s
+}
+
+// SetRoomId sets the RoomId field's value.
+func (s *CreateRoomMembershipInput) SetRoomId(v string) *CreateRoomMembershipInput {
+	s.RoomId = &v
+	return s
+}
+
+type CreateRoomMembershipOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The room membership details.
+	RoomMembership *RoomMembership `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateRoomMembershipOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateRoomMembershipOutput) GoString() string {
+	return s.String()
+}
+
+// SetRoomMembership sets the RoomMembership field's value.
+func (s *CreateRoomMembershipOutput) SetRoomMembership(v *RoomMembership) *CreateRoomMembershipOutput {
+	s.RoomMembership = v
+	return s
+}
+
+type CreateRoomOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The room details.
+	Room *Room `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateRoomOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateRoomOutput) GoString() string {
+	return s.String()
+}
+
+// SetRoom sets the Room field's value.
+func (s *CreateRoomOutput) SetRoom(v *Room) *CreateRoomOutput {
+	s.Room = v
+	return s
+}
+
 type CreateVoiceConnectorGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9156,6 +10533,167 @@ func (s DeletePhoneNumberOutput) String() string {
 
 // GoString returns the string representation
 func (s DeletePhoneNumberOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteRoomInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime account ID.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+
+	// The chat room ID.
+	//
+	// RoomId is a required field
+	RoomId *string `location:"uri" locationName:"roomId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteRoomInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRoomInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteRoomInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteRoomInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.RoomId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoomId"))
+	}
+	if s.RoomId != nil && len(*s.RoomId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoomId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteRoomInput) SetAccountId(v string) *DeleteRoomInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetRoomId sets the RoomId field's value.
+func (s *DeleteRoomInput) SetRoomId(v string) *DeleteRoomInput {
+	s.RoomId = &v
+	return s
+}
+
+type DeleteRoomMembershipInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime account ID.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+
+	// The member ID (user ID or bot ID).
+	//
+	// MemberId is a required field
+	MemberId *string `location:"uri" locationName:"memberId" type:"string" required:"true"`
+
+	// The room ID.
+	//
+	// RoomId is a required field
+	RoomId *string `location:"uri" locationName:"roomId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteRoomMembershipInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRoomMembershipInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteRoomMembershipInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteRoomMembershipInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.MemberId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberId"))
+	}
+	if s.MemberId != nil && len(*s.MemberId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberId", 1))
+	}
+	if s.RoomId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoomId"))
+	}
+	if s.RoomId != nil && len(*s.RoomId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoomId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteRoomMembershipInput) SetAccountId(v string) *DeleteRoomMembershipInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetMemberId sets the MemberId field's value.
+func (s *DeleteRoomMembershipInput) SetMemberId(v string) *DeleteRoomMembershipInput {
+	s.MemberId = &v
+	return s
+}
+
+// SetRoomId sets the RoomId field's value.
+func (s *DeleteRoomMembershipInput) SetRoomId(v string) *DeleteRoomMembershipInput {
+	s.RoomId = &v
+	return s
+}
+
+type DeleteRoomMembershipOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteRoomMembershipOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRoomMembershipOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteRoomOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteRoomOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRoomOutput) GoString() string {
 	return s.String()
 }
 
@@ -10274,6 +11812,87 @@ func (s *GetPhoneNumberSettingsOutput) SetCallingNameUpdatedTimestamp(v time.Tim
 	return s
 }
 
+type GetRoomInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime account ID.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+
+	// The room ID.
+	//
+	// RoomId is a required field
+	RoomId *string `location:"uri" locationName:"roomId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetRoomInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetRoomInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetRoomInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetRoomInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.RoomId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoomId"))
+	}
+	if s.RoomId != nil && len(*s.RoomId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoomId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetRoomInput) SetAccountId(v string) *GetRoomInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetRoomId sets the RoomId field's value.
+func (s *GetRoomInput) SetRoomId(v string) *GetRoomInput {
+	s.RoomId = &v
+	return s
+}
+
+type GetRoomOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The room details.
+	Room *Room `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetRoomOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetRoomOutput) GoString() string {
+	return s.String()
+}
+
+// SetRoom sets the Room field's value.
+func (s *GetRoomOutput) SetRoom(v *Room) *GetRoomOutput {
+	s.Room = v
+	return s
+}
+
 type GetUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10944,7 +12563,7 @@ type InviteUsersInput struct {
 	// AccountId is a required field
 	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
-	// The user email addresses to which to send the invite.
+	// The user email addresses to which to send the email invitation.
 	//
 	// UserEmailList is a required field
 	UserEmailList []*string `type:"list" required:"true"`
@@ -10994,7 +12613,7 @@ func (s *InviteUsersInput) SetUserEmailList(v []*string) *InviteUsersInput {
 type InviteUsersOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The invite details.
+	// The email invitation details.
 	Invites []*Invite `type:"list"`
 }
 
@@ -11120,7 +12739,8 @@ type ListBotsInput struct {
 	// AccountId is a required field
 	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
-	// The maximum number of results to return in a single call. Default is 10.
+	// The maximum number of results to return in a single call. The default is
+	// 10.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
 	// The token to use to retrieve the next page of results.
@@ -11393,6 +13013,220 @@ func (s *ListPhoneNumbersOutput) SetNextToken(v string) *ListPhoneNumbersOutput 
 // SetPhoneNumbers sets the PhoneNumbers field's value.
 func (s *ListPhoneNumbersOutput) SetPhoneNumbers(v []*PhoneNumber) *ListPhoneNumbersOutput {
 	s.PhoneNumbers = v
+	return s
+}
+
+type ListRoomMembershipsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime account ID.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+
+	// The maximum number of results to return in a single call.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token to use to retrieve the next page of results.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+
+	// The room ID.
+	//
+	// RoomId is a required field
+	RoomId *string `location:"uri" locationName:"roomId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListRoomMembershipsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListRoomMembershipsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRoomMembershipsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRoomMembershipsInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.RoomId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoomId"))
+	}
+	if s.RoomId != nil && len(*s.RoomId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoomId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListRoomMembershipsInput) SetAccountId(v string) *ListRoomMembershipsInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListRoomMembershipsInput) SetMaxResults(v int64) *ListRoomMembershipsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRoomMembershipsInput) SetNextToken(v string) *ListRoomMembershipsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRoomId sets the RoomId field's value.
+func (s *ListRoomMembershipsInput) SetRoomId(v string) *ListRoomMembershipsInput {
+	s.RoomId = &v
+	return s
+}
+
+type ListRoomMembershipsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token to use to retrieve the next page of results.
+	NextToken *string `type:"string"`
+
+	// The room membership details.
+	RoomMemberships []*RoomMembership `type:"list"`
+}
+
+// String returns the string representation
+func (s ListRoomMembershipsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListRoomMembershipsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRoomMembershipsOutput) SetNextToken(v string) *ListRoomMembershipsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRoomMemberships sets the RoomMemberships field's value.
+func (s *ListRoomMembershipsOutput) SetRoomMemberships(v []*RoomMembership) *ListRoomMembershipsOutput {
+	s.RoomMemberships = v
+	return s
+}
+
+type ListRoomsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime account ID.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+
+	// The maximum number of results to return in a single call.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The member ID (user ID or bot ID).
+	MemberId *string `location:"querystring" locationName:"member-id" type:"string"`
+
+	// The token to use to retrieve the next page of results.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+}
+
+// String returns the string representation
+func (s ListRoomsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListRoomsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRoomsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRoomsInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListRoomsInput) SetAccountId(v string) *ListRoomsInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListRoomsInput) SetMaxResults(v int64) *ListRoomsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMemberId sets the MemberId field's value.
+func (s *ListRoomsInput) SetMemberId(v string) *ListRoomsInput {
+	s.MemberId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRoomsInput) SetNextToken(v string) *ListRoomsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListRoomsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token to use to retrieve the next page of results.
+	NextToken *string `type:"string"`
+
+	// The room details.
+	Rooms []*Room `type:"list"`
+}
+
+// String returns the string representation
+func (s ListRoomsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListRoomsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRoomsOutput) SetNextToken(v string) *ListRoomsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRooms sets the Rooms field's value.
+func (s *ListRoomsOutput) SetRooms(v []*Room) *ListRoomsOutput {
+	s.Rooms = v
 	return s
 }
 
@@ -11813,6 +13647,141 @@ func (s LogoutUserOutput) String() string {
 // GoString returns the string representation
 func (s LogoutUserOutput) GoString() string {
 	return s.String()
+}
+
+// The member details, such as email address, name, member ID, and member type.
+type Member struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime account ID.
+	AccountId *string `type:"string"`
+
+	// The member email address.
+	Email *string `type:"string" sensitive:"true"`
+
+	// The member name.
+	FullName *string `type:"string" sensitive:"true"`
+
+	// The member ID (user ID or bot ID).
+	MemberId *string `type:"string"`
+
+	// The member type.
+	MemberType *string `type:"string" enum:"MemberType"`
+}
+
+// String returns the string representation
+func (s Member) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Member) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *Member) SetAccountId(v string) *Member {
+	s.AccountId = &v
+	return s
+}
+
+// SetEmail sets the Email field's value.
+func (s *Member) SetEmail(v string) *Member {
+	s.Email = &v
+	return s
+}
+
+// SetFullName sets the FullName field's value.
+func (s *Member) SetFullName(v string) *Member {
+	s.FullName = &v
+	return s
+}
+
+// SetMemberId sets the MemberId field's value.
+func (s *Member) SetMemberId(v string) *Member {
+	s.MemberId = &v
+	return s
+}
+
+// SetMemberType sets the MemberType field's value.
+func (s *Member) SetMemberType(v string) *Member {
+	s.MemberType = &v
+	return s
+}
+
+// The list of errors returned when a member action results in an error.
+type MemberError struct {
+	_ struct{} `type:"structure"`
+
+	// The error code.
+	ErrorCode *string `type:"string" enum:"ErrorCode"`
+
+	// The error message.
+	ErrorMessage *string `type:"string"`
+
+	// The member ID.
+	MemberId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s MemberError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MemberError) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *MemberError) SetErrorCode(v string) *MemberError {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *MemberError) SetErrorMessage(v string) *MemberError {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetMemberId sets the MemberId field's value.
+func (s *MemberError) SetMemberId(v string) *MemberError {
+	s.MemberId = &v
+	return s
+}
+
+// Membership details, such as member ID and member role.
+type MembershipItem struct {
+	_ struct{} `type:"structure"`
+
+	// The member ID.
+	MemberId *string `type:"string"`
+
+	// The member role.
+	Role *string `type:"string" enum:"RoomMembershipRole"`
+}
+
+// String returns the string representation
+func (s MembershipItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MembershipItem) GoString() string {
+	return s.String()
+}
+
+// SetMemberId sets the MemberId field's value.
+func (s *MembershipItem) SetMemberId(v string) *MembershipItem {
+	s.MemberId = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *MembershipItem) SetRole(v string) *MembershipItem {
+	s.Role = &v
+	return s
 }
 
 // A phone number for which an order has been placed.
@@ -13056,6 +15025,135 @@ func (s *RestorePhoneNumberOutput) SetPhoneNumber(v *PhoneNumber) *RestorePhoneN
 	return s
 }
 
+// The Amazon Chime chat room details.
+type Room struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime account ID.
+	AccountId *string `type:"string"`
+
+	// The identifier of the room creator.
+	CreatedBy *string `type:"string"`
+
+	// The room creation timestamp, in ISO 8601 format.
+	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The room name.
+	Name *string `type:"string" sensitive:"true"`
+
+	// The room ID.
+	RoomId *string `type:"string"`
+
+	// The room update timestamp, in ISO 8601 format.
+	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation
+func (s Room) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Room) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *Room) SetAccountId(v string) *Room {
+	s.AccountId = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *Room) SetCreatedBy(v string) *Room {
+	s.CreatedBy = &v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *Room) SetCreatedTimestamp(v time.Time) *Room {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Room) SetName(v string) *Room {
+	s.Name = &v
+	return s
+}
+
+// SetRoomId sets the RoomId field's value.
+func (s *Room) SetRoomId(v string) *Room {
+	s.RoomId = &v
+	return s
+}
+
+// SetUpdatedTimestamp sets the UpdatedTimestamp field's value.
+func (s *Room) SetUpdatedTimestamp(v time.Time) *Room {
+	s.UpdatedTimestamp = &v
+	return s
+}
+
+// The room membership details.
+type RoomMembership struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the user that invited the room member.
+	InvitedBy *string `type:"string"`
+
+	// The member details, such as email address, name, member ID, and member type.
+	Member *Member `type:"structure"`
+
+	// The membership role.
+	Role *string `type:"string" enum:"RoomMembershipRole"`
+
+	// The room ID.
+	RoomId *string `type:"string"`
+
+	// The room membership update timestamp, in ISO 8601 format.
+	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation
+func (s RoomMembership) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RoomMembership) GoString() string {
+	return s.String()
+}
+
+// SetInvitedBy sets the InvitedBy field's value.
+func (s *RoomMembership) SetInvitedBy(v string) *RoomMembership {
+	s.InvitedBy = &v
+	return s
+}
+
+// SetMember sets the Member field's value.
+func (s *RoomMembership) SetMember(v *Member) *RoomMembership {
+	s.Member = v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *RoomMembership) SetRole(v string) *RoomMembership {
+	s.Role = &v
+	return s
+}
+
+// SetRoomId sets the RoomId field's value.
+func (s *RoomMembership) SetRoomId(v string) *RoomMembership {
+	s.RoomId = &v
+	return s
+}
+
+// SetUpdatedTimestamp sets the UpdatedTimestamp field's value.
+func (s *RoomMembership) SetUpdatedTimestamp(v time.Time) *RoomMembership {
+	s.UpdatedTimestamp = &v
+	return s
+}
+
 type SearchAvailablePhoneNumbersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13178,7 +15276,7 @@ func (s *SearchAvailablePhoneNumbersOutput) SetE164PhoneNumbers(v []*string) *Se
 type StreamingConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The retention period for the Amazon Kinesis data, in hours.
+	// The retention period, in hours, for the Amazon Kinesis data.
 	//
 	// DataRetentionInHours is a required field
 	DataRetentionInHours *int64 `type:"integer" required:"true"`
@@ -13890,6 +15988,203 @@ func (s UpdatePhoneNumberSettingsOutput) String() string {
 // GoString returns the string representation
 func (s UpdatePhoneNumberSettingsOutput) GoString() string {
 	return s.String()
+}
+
+type UpdateRoomInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime account ID.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+
+	// The room name.
+	Name *string `type:"string" sensitive:"true"`
+
+	// The room ID.
+	//
+	// RoomId is a required field
+	RoomId *string `location:"uri" locationName:"roomId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateRoomInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateRoomInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateRoomInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateRoomInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.RoomId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoomId"))
+	}
+	if s.RoomId != nil && len(*s.RoomId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoomId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *UpdateRoomInput) SetAccountId(v string) *UpdateRoomInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateRoomInput) SetName(v string) *UpdateRoomInput {
+	s.Name = &v
+	return s
+}
+
+// SetRoomId sets the RoomId field's value.
+func (s *UpdateRoomInput) SetRoomId(v string) *UpdateRoomInput {
+	s.RoomId = &v
+	return s
+}
+
+type UpdateRoomMembershipInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime account ID.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+
+	// The member ID.
+	//
+	// MemberId is a required field
+	MemberId *string `location:"uri" locationName:"memberId" type:"string" required:"true"`
+
+	// The role of the member.
+	Role *string `type:"string" enum:"RoomMembershipRole"`
+
+	// The room ID.
+	//
+	// RoomId is a required field
+	RoomId *string `location:"uri" locationName:"roomId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateRoomMembershipInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateRoomMembershipInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateRoomMembershipInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateRoomMembershipInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.MemberId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberId"))
+	}
+	if s.MemberId != nil && len(*s.MemberId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberId", 1))
+	}
+	if s.RoomId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoomId"))
+	}
+	if s.RoomId != nil && len(*s.RoomId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoomId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *UpdateRoomMembershipInput) SetAccountId(v string) *UpdateRoomMembershipInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetMemberId sets the MemberId field's value.
+func (s *UpdateRoomMembershipInput) SetMemberId(v string) *UpdateRoomMembershipInput {
+	s.MemberId = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *UpdateRoomMembershipInput) SetRole(v string) *UpdateRoomMembershipInput {
+	s.Role = &v
+	return s
+}
+
+// SetRoomId sets the RoomId field's value.
+func (s *UpdateRoomMembershipInput) SetRoomId(v string) *UpdateRoomMembershipInput {
+	s.RoomId = &v
+	return s
+}
+
+type UpdateRoomMembershipOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The room membership details.
+	RoomMembership *RoomMembership `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateRoomMembershipOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateRoomMembershipOutput) GoString() string {
+	return s.String()
+}
+
+// SetRoomMembership sets the RoomMembership field's value.
+func (s *UpdateRoomMembershipOutput) SetRoomMembership(v *RoomMembership) *UpdateRoomMembershipOutput {
+	s.RoomMembership = v
+	return s
+}
+
+type UpdateRoomOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The room details.
+	Room *Room `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateRoomOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateRoomOutput) GoString() string {
+	return s.String()
+}
+
+// SetRoom sets the Room field's value.
+func (s *UpdateRoomOutput) SetRoom(v *Room) *UpdateRoomOutput {
+	s.Room = v
+	return s
 }
 
 type UpdateUserInput struct {
@@ -14870,6 +17165,17 @@ const (
 )
 
 const (
+	// MemberTypeUser is a MemberType enum value
+	MemberTypeUser = "User"
+
+	// MemberTypeBot is a MemberType enum value
+	MemberTypeBot = "Bot"
+
+	// MemberTypeWebhook is a MemberType enum value
+	MemberTypeWebhook = "Webhook"
+)
+
+const (
 	// OrderedPhoneNumberStatusProcessing is a OrderedPhoneNumberStatus enum value
 	OrderedPhoneNumberStatusProcessing = "Processing"
 
@@ -14967,6 +17273,14 @@ const (
 
 	// RegistrationStatusSuspended is a RegistrationStatus enum value
 	RegistrationStatusSuspended = "Suspended"
+)
+
+const (
+	// RoomMembershipRoleAdministrator is a RoomMembershipRole enum value
+	RoomMembershipRoleAdministrator = "Administrator"
+
+	// RoomMembershipRoleMember is a RoomMembershipRole enum value
+	RoomMembershipRoleMember = "Member"
 )
 
 const (

@@ -72,6 +72,10 @@ type ChimeAPI interface {
 	AssociatePhoneNumbersWithVoiceConnectorGroupWithContext(aws.Context, *chime.AssociatePhoneNumbersWithVoiceConnectorGroupInput, ...request.Option) (*chime.AssociatePhoneNumbersWithVoiceConnectorGroupOutput, error)
 	AssociatePhoneNumbersWithVoiceConnectorGroupRequest(*chime.AssociatePhoneNumbersWithVoiceConnectorGroupInput) (*request.Request, *chime.AssociatePhoneNumbersWithVoiceConnectorGroupOutput)
 
+	BatchCreateRoomMembership(*chime.BatchCreateRoomMembershipInput) (*chime.BatchCreateRoomMembershipOutput, error)
+	BatchCreateRoomMembershipWithContext(aws.Context, *chime.BatchCreateRoomMembershipInput, ...request.Option) (*chime.BatchCreateRoomMembershipOutput, error)
+	BatchCreateRoomMembershipRequest(*chime.BatchCreateRoomMembershipInput) (*request.Request, *chime.BatchCreateRoomMembershipOutput)
+
 	BatchDeletePhoneNumber(*chime.BatchDeletePhoneNumberInput) (*chime.BatchDeletePhoneNumberOutput, error)
 	BatchDeletePhoneNumberWithContext(aws.Context, *chime.BatchDeletePhoneNumberInput, ...request.Option) (*chime.BatchDeletePhoneNumberOutput, error)
 	BatchDeletePhoneNumberRequest(*chime.BatchDeletePhoneNumberInput) (*request.Request, *chime.BatchDeletePhoneNumberOutput)
@@ -104,6 +108,14 @@ type ChimeAPI interface {
 	CreatePhoneNumberOrderWithContext(aws.Context, *chime.CreatePhoneNumberOrderInput, ...request.Option) (*chime.CreatePhoneNumberOrderOutput, error)
 	CreatePhoneNumberOrderRequest(*chime.CreatePhoneNumberOrderInput) (*request.Request, *chime.CreatePhoneNumberOrderOutput)
 
+	CreateRoom(*chime.CreateRoomInput) (*chime.CreateRoomOutput, error)
+	CreateRoomWithContext(aws.Context, *chime.CreateRoomInput, ...request.Option) (*chime.CreateRoomOutput, error)
+	CreateRoomRequest(*chime.CreateRoomInput) (*request.Request, *chime.CreateRoomOutput)
+
+	CreateRoomMembership(*chime.CreateRoomMembershipInput) (*chime.CreateRoomMembershipOutput, error)
+	CreateRoomMembershipWithContext(aws.Context, *chime.CreateRoomMembershipInput, ...request.Option) (*chime.CreateRoomMembershipOutput, error)
+	CreateRoomMembershipRequest(*chime.CreateRoomMembershipInput) (*request.Request, *chime.CreateRoomMembershipOutput)
+
 	CreateVoiceConnector(*chime.CreateVoiceConnectorInput) (*chime.CreateVoiceConnectorOutput, error)
 	CreateVoiceConnectorWithContext(aws.Context, *chime.CreateVoiceConnectorInput, ...request.Option) (*chime.CreateVoiceConnectorOutput, error)
 	CreateVoiceConnectorRequest(*chime.CreateVoiceConnectorInput) (*request.Request, *chime.CreateVoiceConnectorOutput)
@@ -123,6 +135,14 @@ type ChimeAPI interface {
 	DeletePhoneNumber(*chime.DeletePhoneNumberInput) (*chime.DeletePhoneNumberOutput, error)
 	DeletePhoneNumberWithContext(aws.Context, *chime.DeletePhoneNumberInput, ...request.Option) (*chime.DeletePhoneNumberOutput, error)
 	DeletePhoneNumberRequest(*chime.DeletePhoneNumberInput) (*request.Request, *chime.DeletePhoneNumberOutput)
+
+	DeleteRoom(*chime.DeleteRoomInput) (*chime.DeleteRoomOutput, error)
+	DeleteRoomWithContext(aws.Context, *chime.DeleteRoomInput, ...request.Option) (*chime.DeleteRoomOutput, error)
+	DeleteRoomRequest(*chime.DeleteRoomInput) (*request.Request, *chime.DeleteRoomOutput)
+
+	DeleteRoomMembership(*chime.DeleteRoomMembershipInput) (*chime.DeleteRoomMembershipOutput, error)
+	DeleteRoomMembershipWithContext(aws.Context, *chime.DeleteRoomMembershipInput, ...request.Option) (*chime.DeleteRoomMembershipOutput, error)
+	DeleteRoomMembershipRequest(*chime.DeleteRoomMembershipInput) (*request.Request, *chime.DeleteRoomMembershipOutput)
 
 	DeleteVoiceConnector(*chime.DeleteVoiceConnectorInput) (*chime.DeleteVoiceConnectorOutput, error)
 	DeleteVoiceConnectorWithContext(aws.Context, *chime.DeleteVoiceConnectorInput, ...request.Option) (*chime.DeleteVoiceConnectorOutput, error)
@@ -192,6 +212,10 @@ type ChimeAPI interface {
 	GetPhoneNumberSettingsWithContext(aws.Context, *chime.GetPhoneNumberSettingsInput, ...request.Option) (*chime.GetPhoneNumberSettingsOutput, error)
 	GetPhoneNumberSettingsRequest(*chime.GetPhoneNumberSettingsInput) (*request.Request, *chime.GetPhoneNumberSettingsOutput)
 
+	GetRoom(*chime.GetRoomInput) (*chime.GetRoomOutput, error)
+	GetRoomWithContext(aws.Context, *chime.GetRoomInput, ...request.Option) (*chime.GetRoomOutput, error)
+	GetRoomRequest(*chime.GetRoomInput) (*request.Request, *chime.GetRoomOutput)
+
 	GetUser(*chime.GetUserInput) (*chime.GetUserOutput, error)
 	GetUserWithContext(aws.Context, *chime.GetUserInput, ...request.Option) (*chime.GetUserOutput, error)
 	GetUserRequest(*chime.GetUserInput) (*request.Request, *chime.GetUserOutput)
@@ -259,6 +283,20 @@ type ChimeAPI interface {
 
 	ListPhoneNumbersPages(*chime.ListPhoneNumbersInput, func(*chime.ListPhoneNumbersOutput, bool) bool) error
 	ListPhoneNumbersPagesWithContext(aws.Context, *chime.ListPhoneNumbersInput, func(*chime.ListPhoneNumbersOutput, bool) bool, ...request.Option) error
+
+	ListRoomMemberships(*chime.ListRoomMembershipsInput) (*chime.ListRoomMembershipsOutput, error)
+	ListRoomMembershipsWithContext(aws.Context, *chime.ListRoomMembershipsInput, ...request.Option) (*chime.ListRoomMembershipsOutput, error)
+	ListRoomMembershipsRequest(*chime.ListRoomMembershipsInput) (*request.Request, *chime.ListRoomMembershipsOutput)
+
+	ListRoomMembershipsPages(*chime.ListRoomMembershipsInput, func(*chime.ListRoomMembershipsOutput, bool) bool) error
+	ListRoomMembershipsPagesWithContext(aws.Context, *chime.ListRoomMembershipsInput, func(*chime.ListRoomMembershipsOutput, bool) bool, ...request.Option) error
+
+	ListRooms(*chime.ListRoomsInput) (*chime.ListRoomsOutput, error)
+	ListRoomsWithContext(aws.Context, *chime.ListRoomsInput, ...request.Option) (*chime.ListRoomsOutput, error)
+	ListRoomsRequest(*chime.ListRoomsInput) (*request.Request, *chime.ListRoomsOutput)
+
+	ListRoomsPages(*chime.ListRoomsInput, func(*chime.ListRoomsOutput, bool) bool) error
+	ListRoomsPagesWithContext(aws.Context, *chime.ListRoomsInput, func(*chime.ListRoomsOutput, bool) bool, ...request.Option) error
 
 	ListUsers(*chime.ListUsersInput) (*chime.ListUsersOutput, error)
 	ListUsersWithContext(aws.Context, *chime.ListUsersInput, ...request.Option) (*chime.ListUsersOutput, error)
@@ -352,6 +390,14 @@ type ChimeAPI interface {
 	UpdatePhoneNumberSettings(*chime.UpdatePhoneNumberSettingsInput) (*chime.UpdatePhoneNumberSettingsOutput, error)
 	UpdatePhoneNumberSettingsWithContext(aws.Context, *chime.UpdatePhoneNumberSettingsInput, ...request.Option) (*chime.UpdatePhoneNumberSettingsOutput, error)
 	UpdatePhoneNumberSettingsRequest(*chime.UpdatePhoneNumberSettingsInput) (*request.Request, *chime.UpdatePhoneNumberSettingsOutput)
+
+	UpdateRoom(*chime.UpdateRoomInput) (*chime.UpdateRoomOutput, error)
+	UpdateRoomWithContext(aws.Context, *chime.UpdateRoomInput, ...request.Option) (*chime.UpdateRoomOutput, error)
+	UpdateRoomRequest(*chime.UpdateRoomInput) (*request.Request, *chime.UpdateRoomOutput)
+
+	UpdateRoomMembership(*chime.UpdateRoomMembershipInput) (*chime.UpdateRoomMembershipOutput, error)
+	UpdateRoomMembershipWithContext(aws.Context, *chime.UpdateRoomMembershipInput, ...request.Option) (*chime.UpdateRoomMembershipOutput, error)
+	UpdateRoomMembershipRequest(*chime.UpdateRoomMembershipInput) (*request.Request, *chime.UpdateRoomMembershipOutput)
 
 	UpdateUser(*chime.UpdateUserInput) (*chime.UpdateUserOutput, error)
 	UpdateUserWithContext(aws.Context, *chime.UpdateUserInput, ...request.Option) (*chime.UpdateUserOutput, error)

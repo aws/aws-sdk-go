@@ -3359,7 +3359,9 @@
       "members":{
         "SourceArn":{"shape":"ArnType"},
         "ReplyToEmailAddress":{"shape":"EmailAddressType"},
-        "EmailSendingAccount":{"shape":"EmailSendingAccountType"}
+        "EmailSendingAccount":{"shape":"EmailSendingAccountType"},
+        "From":{"shape":"StringType"},
+        "ConfigurationSet":{"shape":"SESConfigurationSet"}
       }
     },
     "EmailNotificationBodyType":{
@@ -4437,6 +4439,12 @@
       "max":1024,
       "min":3,
       "pattern":"^[0-9A-Za-z\\.\\-_]*(?<!\\.)$"
+    },
+    "SESConfigurationSet":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9_-]+$"
     },
     "SMSMfaSettingsType":{
       "type":"structure",

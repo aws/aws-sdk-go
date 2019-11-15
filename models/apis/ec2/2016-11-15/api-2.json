@@ -5634,7 +5634,7 @@
           "locationName":"encrypted"
         },
         "KmsKeyId":{
-          "shape":"KmsKeyId",
+          "shape":"String",
           "locationName":"kmsKeyId"
         },
         "PresignedUrl":{
@@ -5643,6 +5643,10 @@
         },
         "SourceRegion":{"shape":"String"},
         "SourceSnapshotId":{"shape":"String"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        },
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -5655,6 +5659,10 @@
         "SnapshotId":{
           "shape":"String",
           "locationName":"snapshotId"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },

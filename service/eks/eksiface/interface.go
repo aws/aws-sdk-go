@@ -64,13 +64,25 @@ type EKSAPI interface {
 	CreateClusterWithContext(aws.Context, *eks.CreateClusterInput, ...request.Option) (*eks.CreateClusterOutput, error)
 	CreateClusterRequest(*eks.CreateClusterInput) (*request.Request, *eks.CreateClusterOutput)
 
+	CreateNodegroup(*eks.CreateNodegroupInput) (*eks.CreateNodegroupOutput, error)
+	CreateNodegroupWithContext(aws.Context, *eks.CreateNodegroupInput, ...request.Option) (*eks.CreateNodegroupOutput, error)
+	CreateNodegroupRequest(*eks.CreateNodegroupInput) (*request.Request, *eks.CreateNodegroupOutput)
+
 	DeleteCluster(*eks.DeleteClusterInput) (*eks.DeleteClusterOutput, error)
 	DeleteClusterWithContext(aws.Context, *eks.DeleteClusterInput, ...request.Option) (*eks.DeleteClusterOutput, error)
 	DeleteClusterRequest(*eks.DeleteClusterInput) (*request.Request, *eks.DeleteClusterOutput)
 
+	DeleteNodegroup(*eks.DeleteNodegroupInput) (*eks.DeleteNodegroupOutput, error)
+	DeleteNodegroupWithContext(aws.Context, *eks.DeleteNodegroupInput, ...request.Option) (*eks.DeleteNodegroupOutput, error)
+	DeleteNodegroupRequest(*eks.DeleteNodegroupInput) (*request.Request, *eks.DeleteNodegroupOutput)
+
 	DescribeCluster(*eks.DescribeClusterInput) (*eks.DescribeClusterOutput, error)
 	DescribeClusterWithContext(aws.Context, *eks.DescribeClusterInput, ...request.Option) (*eks.DescribeClusterOutput, error)
 	DescribeClusterRequest(*eks.DescribeClusterInput) (*request.Request, *eks.DescribeClusterOutput)
+
+	DescribeNodegroup(*eks.DescribeNodegroupInput) (*eks.DescribeNodegroupOutput, error)
+	DescribeNodegroupWithContext(aws.Context, *eks.DescribeNodegroupInput, ...request.Option) (*eks.DescribeNodegroupOutput, error)
+	DescribeNodegroupRequest(*eks.DescribeNodegroupInput) (*request.Request, *eks.DescribeNodegroupOutput)
 
 	DescribeUpdate(*eks.DescribeUpdateInput) (*eks.DescribeUpdateOutput, error)
 	DescribeUpdateWithContext(aws.Context, *eks.DescribeUpdateInput, ...request.Option) (*eks.DescribeUpdateOutput, error)
@@ -82,6 +94,13 @@ type EKSAPI interface {
 
 	ListClustersPages(*eks.ListClustersInput, func(*eks.ListClustersOutput, bool) bool) error
 	ListClustersPagesWithContext(aws.Context, *eks.ListClustersInput, func(*eks.ListClustersOutput, bool) bool, ...request.Option) error
+
+	ListNodegroups(*eks.ListNodegroupsInput) (*eks.ListNodegroupsOutput, error)
+	ListNodegroupsWithContext(aws.Context, *eks.ListNodegroupsInput, ...request.Option) (*eks.ListNodegroupsOutput, error)
+	ListNodegroupsRequest(*eks.ListNodegroupsInput) (*request.Request, *eks.ListNodegroupsOutput)
+
+	ListNodegroupsPages(*eks.ListNodegroupsInput, func(*eks.ListNodegroupsOutput, bool) bool) error
+	ListNodegroupsPagesWithContext(aws.Context, *eks.ListNodegroupsInput, func(*eks.ListNodegroupsOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*eks.ListTagsForResourceInput) (*eks.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *eks.ListTagsForResourceInput, ...request.Option) (*eks.ListTagsForResourceOutput, error)
@@ -110,11 +129,25 @@ type EKSAPI interface {
 	UpdateClusterVersionWithContext(aws.Context, *eks.UpdateClusterVersionInput, ...request.Option) (*eks.UpdateClusterVersionOutput, error)
 	UpdateClusterVersionRequest(*eks.UpdateClusterVersionInput) (*request.Request, *eks.UpdateClusterVersionOutput)
 
+	UpdateNodegroupConfig(*eks.UpdateNodegroupConfigInput) (*eks.UpdateNodegroupConfigOutput, error)
+	UpdateNodegroupConfigWithContext(aws.Context, *eks.UpdateNodegroupConfigInput, ...request.Option) (*eks.UpdateNodegroupConfigOutput, error)
+	UpdateNodegroupConfigRequest(*eks.UpdateNodegroupConfigInput) (*request.Request, *eks.UpdateNodegroupConfigOutput)
+
+	UpdateNodegroupVersion(*eks.UpdateNodegroupVersionInput) (*eks.UpdateNodegroupVersionOutput, error)
+	UpdateNodegroupVersionWithContext(aws.Context, *eks.UpdateNodegroupVersionInput, ...request.Option) (*eks.UpdateNodegroupVersionOutput, error)
+	UpdateNodegroupVersionRequest(*eks.UpdateNodegroupVersionInput) (*request.Request, *eks.UpdateNodegroupVersionOutput)
+
 	WaitUntilClusterActive(*eks.DescribeClusterInput) error
 	WaitUntilClusterActiveWithContext(aws.Context, *eks.DescribeClusterInput, ...request.WaiterOption) error
 
 	WaitUntilClusterDeleted(*eks.DescribeClusterInput) error
 	WaitUntilClusterDeletedWithContext(aws.Context, *eks.DescribeClusterInput, ...request.WaiterOption) error
+
+	WaitUntilNodegroupActive(*eks.DescribeNodegroupInput) error
+	WaitUntilNodegroupActiveWithContext(aws.Context, *eks.DescribeNodegroupInput, ...request.WaiterOption) error
+
+	WaitUntilNodegroupDeleted(*eks.DescribeNodegroupInput) error
+	WaitUntilNodegroupDeletedWithContext(aws.Context, *eks.DescribeNodegroupInput, ...request.WaiterOption) error
 }
 
 var _ EKSAPI = (*eks.EKS)(nil)

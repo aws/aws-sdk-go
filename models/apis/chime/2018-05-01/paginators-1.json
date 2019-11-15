@@ -20,6 +20,16 @@
       "output_token": "NextToken",
       "limit_key": "MaxResults"
     },
+    "ListRoomMemberships": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
+    "ListRooms": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
     "ListUsers": {
       "input_token": "NextToken",
       "output_token": "NextToken",

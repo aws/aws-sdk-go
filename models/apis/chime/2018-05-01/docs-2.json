@@ -5,6 +5,7 @@
     "AssociatePhoneNumberWithUser": "<p>Associates a phone number with the specified Amazon Chime user.</p>",
     "AssociatePhoneNumbersWithVoiceConnector": "<p>Associates phone numbers with the specified Amazon Chime Voice Connector.</p>",
     "AssociatePhoneNumbersWithVoiceConnectorGroup": "<p>Associates phone numbers with the specified Amazon Chime Voice Connector group.</p>",
+    "BatchCreateRoomMembership": "<p>Adds up to 50 members to a chat room. Members can be either users or bots. The member role designates whether the member is a chat room administrator or a general chat room member.</p>",
     "BatchDeletePhoneNumber": "<p>Moves phone numbers into the <b>Deletion queue</b>. Phone numbers must be disassociated from any users or Amazon Chime Voice Connectors before they can be deleted.</p> <p>Phone numbers remain in the <b>Deletion queue</b> for 7 days before they are deleted permanently.</p>",
     "BatchSuspendUser": "<p>Suspends up to 50 users from a <code>Team</code> or <code>EnterpriseLWA</code> Amazon Chime account. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p>Users suspended from a <code>Team</code> account are dissasociated from the account, but they can continue to use Amazon Chime as free users. To remove the suspension from suspended <code>Team</code> account users, invite them to the <code>Team</code> account again. You can use the <a>InviteUsers</a> action to do so.</p> <p>Users suspended from an <code>EnterpriseLWA</code> account are immediately signed out of Amazon Chime and can no longer sign in. To remove the suspension from suspended <code>EnterpriseLWA</code> account users, use the <a>BatchUnsuspendUser</a> action. </p> <p>To sign out users without suspending them, use the <a>LogoutUser</a> action.</p>",
     "BatchUnsuspendUser": "<p>Removes the suspension from up to 50 previously suspended users for the specified Amazon Chime <code>EnterpriseLWA</code> account. Only users on <code>EnterpriseLWA</code> accounts can be unsuspended using this action. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p>Previously suspended users who are unsuspended using this action are returned to <code>Registered</code> status. Users who are not previously suspended are ignored.</p>",
@@ -13,11 +14,15 @@
     "CreateAccount": "<p>Creates an Amazon Chime account under the administrator's AWS account. Only <code>Team</code> account types are currently supported for this action. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
     "CreateBot": "<p>Creates a bot for an Amazon Chime Enterprise account.</p>",
     "CreatePhoneNumberOrder": "<p>Creates an order for phone numbers to be provisioned. Choose from Amazon Chime Business Calling and Amazon Chime Voice Connector product types. For toll-free numbers, you must use the Amazon Chime Voice Connector product type.</p>",
+    "CreateRoom": "<p>Creates a chat room for the specified Amazon Chime account.</p>",
+    "CreateRoomMembership": "<p>Adds a member to a chat room. A member can be either a user or a bot. The member role designates whether the member is a chat room administrator or a general chat room member.</p>",
     "CreateVoiceConnector": "<p>Creates an Amazon Chime Voice Connector under the administrator's AWS account. You can choose to create an Amazon Chime Voice Connector in a specific AWS Region.</p> <p>Enabling <a>CreateVoiceConnectorRequest$RequireEncryption</a> configures your Amazon Chime Voice Connector to use TLS transport for SIP signaling and Secure RTP (SRTP) for media. Inbound calls use TLS transport, and unencrypted outbound calls are blocked.</p>",
     "CreateVoiceConnectorGroup": "<p>Creates an Amazon Chime Voice Connector group under the administrator's AWS account. You can associate up to three existing Amazon Chime Voice Connectors with the Amazon Chime Voice Connector group by including <code>VoiceConnectorItems</code> in the request.</p> <p>You can include Amazon Chime Voice Connectors from different AWS Regions in your group. This creates a fault tolerant mechanism for fallback in case of availability events.</p>",
     "DeleteAccount": "<p>Deletes the specified Amazon Chime account. You must suspend all users before deleting a <code>Team</code> account. You can use the <a>BatchSuspendUser</a> action to do so.</p> <p>For <code>EnterpriseLWA</code> and <code>EnterpriseAD</code> accounts, you must release the claimed domains for your Amazon Chime account before deletion. As soon as you release the domain, all users under that account are suspended.</p> <p>Deleted accounts appear in your <code>Disabled</code> accounts list for 90 days. To restore a deleted account from your <code>Disabled</code> accounts list, you must contact AWS Support.</p> <p>After 90 days, deleted accounts are permanently removed from your <code>Disabled</code> accounts list.</p>",
     "DeleteEventsConfiguration": "<p>Deletes the events configuration that allows a bot to receive outgoing events.</p>",
     "DeletePhoneNumber": "<p>Moves the specified phone number into the <b>Deletion queue</b>. A phone number must be disassociated from any users or Amazon Chime Voice Connectors before it can be deleted.</p> <p>Deleted phone numbers remain in the <b>Deletion queue</b> for 7 days before they are deleted permanently.</p>",
+    "DeleteRoom": "<p>Deletes a chat room.</p>",
+    "DeleteRoomMembership": "<p>Removes a member from a chat room.</p>",
     "DeleteVoiceConnector": "<p>Deletes the specified Amazon Chime Voice Connector. Any phone numbers associated with the Amazon Chime Voice Connector must be disassociated from it before it can be deleted.</p>",
     "DeleteVoiceConnectorGroup": "<p>Deletes the specified Amazon Chime Voice Connector group. Any <code>VoiceConnectorItems</code> and phone numbers associated with the group must be removed before it can be deleted.</p>",
     "DeleteVoiceConnectorOrigination": "<p>Deletes the origination settings for the specified Amazon Chime Voice Connector.</p>",
@@ -35,20 +40,23 @@
     "GetPhoneNumber": "<p>Retrieves details for the specified phone number ID, such as associations, capabilities, and product type.</p>",
     "GetPhoneNumberOrder": "<p>Retrieves details for the specified phone number order, such as order creation timestamp, phone numbers in E.164 format, product type, and order status.</p>",
     "GetPhoneNumberSettings": "<p>Retrieves the phone number settings for the administrator's AWS account, such as the default outbound calling name.</p>",
+    "GetRoom": "<p>Retrieves room details, such as name.</p>",
     "GetUser": "<p>Retrieves details for the specified user ID, such as primary email address, license type, and personal meeting PIN.</p> <p>To retrieve user details with an email address instead of a user ID, use the <a>ListUsers</a> action, and then filter by email address.</p>",
     "GetUserSettings": "<p>Retrieves settings for the specified user ID, such as any associated phone number settings.</p>",
     "GetVoiceConnector": "<p>Retrieves details for the specified Amazon Chime Voice Connector, such as timestamps, name, outbound host, and encryption requirements.</p>",
     "GetVoiceConnectorGroup": "<p>Retrieves details for the specified Amazon Chime Voice Connector group, such as timestamps, name, and associated <code>VoiceConnectorItems</code>.</p>",
     "GetVoiceConnectorLoggingConfiguration": "<p>Retrieves the logging configuration details for the specified Amazon Chime Voice Connector. Shows whether SIP message logs are enabled for sending to Amazon CloudWatch Logs.</p>",
     "GetVoiceConnectorOrigination": "<p>Retrieves origination setting details for the specified Amazon Chime Voice Connector.</p>",
-    "GetVoiceConnectorStreamingConfiguration": "<p>Retrieves the streaming configuration details for the specified Amazon Chime Voice Connector. Shows whether media streaming is enabled for sending to Amazon Kinesis, and shows the retention period for the Amazon Kinesis data, in hours.</p>",
+    "GetVoiceConnectorStreamingConfiguration": "<p>Retrieves the streaming configuration details for the specified Amazon Chime Voice Connector. Shows whether media streaming is enabled for sending to Amazon Kinesis. It also shows the retention period, in hours, for the Amazon Kinesis data.</p>",
     "GetVoiceConnectorTermination": "<p>Retrieves termination setting details for the specified Amazon Chime Voice Connector.</p>",
     "GetVoiceConnectorTerminationHealth": "<p>Retrieves information about the last time a SIP <code>OPTIONS</code> ping was received from your SIP infrastructure for the specified Amazon Chime Voice Connector.</p>",
-    "InviteUsers": "<p>Sends email invites to as many as 50 users, inviting them to the specified Amazon Chime <code>Team</code> account. Only <code>Team</code> account types are currently supported for this action. </p>",
+    "InviteUsers": "<p>Sends email to a maximum of 50 users, inviting them to the specified Amazon Chime <code>Team</code> account. Only <code>Team</code> account types are currently supported for this action. </p>",
     "ListAccounts": "<p>Lists the Amazon Chime accounts under the administrator's AWS account. You can filter accounts by account name prefix. To find out which Amazon Chime account a user belongs to, you can filter by the user's email address, which returns one account result.</p>",
     "ListBots": "<p>Lists the bots associated with the administrator's Amazon Chime Enterprise account ID.</p>",
     "ListPhoneNumberOrders": "<p>Lists the phone number orders for the administrator's Amazon Chime account.</p>",
     "ListPhoneNumbers": "<p>Lists the phone numbers for the specified Amazon Chime account, Amazon Chime user, Amazon Chime Voice Connector, or Amazon Chime Voice Connector group.</p>",
+    "ListRoomMemberships": "<p>Lists the membership details for the specified room, such as member IDs, member email addresses, and member names.</p>",
+    "ListRooms": "<p>Lists the room details for the specified Amazon Chime account. Optionally, filter the results by a member ID (user ID or bot ID) to see a list of rooms that the member belongs to.</p>",
     "ListUsers": "<p>Lists the users that belong to the specified Amazon Chime account. You can specify an email address to list only the user that the email address belongs to.</p>",
     "ListVoiceConnectorGroups": "<p>Lists the Amazon Chime Voice Connector groups for the administrator's AWS account.</p>",
     "ListVoiceConnectorTerminationCredentials": "<p>Lists the SIP credentials for the specified Amazon Chime Voice Connector.</p>",
@@ -57,7 +65,7 @@
     "PutEventsConfiguration": "<p>Creates an events configuration that allows a bot to receive outgoing events sent by Amazon Chime. Choose either an HTTPS endpoint or a Lambda function ARN. For more information, see <a>Bot</a>.</p>",
     "PutVoiceConnectorLoggingConfiguration": "<p>Adds a logging configuration for the specified Amazon Chime Voice Connector. The logging configuration specifies whether SIP message logs are enabled for sending to Amazon CloudWatch Logs.</p>",
     "PutVoiceConnectorOrigination": "<p>Adds origination settings for the specified Amazon Chime Voice Connector.</p>",
-    "PutVoiceConnectorStreamingConfiguration": "<p>Adds a streaming configuration for the specified Amazon Chime Voice Connector. The streaming configuration specifies whether media streaming is enabled for sending to Amazon Kinesis, and sets the retention period for the Amazon Kinesis data, in hours.</p>",
+    "PutVoiceConnectorStreamingConfiguration": "<p>Adds a streaming configuration for the specified Amazon Chime Voice Connector. The streaming configuration specifies whether media streaming is enabled for sending to Amazon Kinesis. It also sets the retention period, in hours, for the Amazon Kinesis data.</p>",
     "PutVoiceConnectorTermination": "<p>Adds termination settings for the specified Amazon Chime Voice Connector.</p>",
     "PutVoiceConnectorTerminationCredentials": "<p>Adds termination SIP credentials for the specified Amazon Chime Voice Connector.</p>",
     "RegenerateSecurityToken": "<p>Regenerates the security token for a bot.</p>",
@@ -69,7 +77,9 @@
     "UpdateBot": "<p>Updates the status of the specified bot, such as starting or stopping the bot from running in your Amazon Chime Enterprise account.</p>",
     "UpdateGlobalSettings": "<p>Updates global settings for the administrator's AWS account, such as Amazon Chime Business Calling and Amazon Chime Voice Connector settings.</p>",
     "UpdatePhoneNumber": "<p>Updates phone number details, such as product type or calling name, for the specified phone number ID. You can update one phone number detail at a time. For example, you can update either the product type or the calling name in one action.</p> <p>For toll-free numbers, you must use the Amazon Chime Voice Connector product type.</p> <p>Updates to outbound calling names can take up to 72 hours to complete. Pending updates to outbound calling names must be complete before you can request another update.</p>",
-    "UpdatePhoneNumberSettings": "<p>Updates the phone number settings for the administrator's AWS account, such as the default outbound calling name. You can update the default outbound calling name once every seven days. Outbound calling names can take up to 72 hours to be updated.</p>",
+    "UpdatePhoneNumberSettings": "<p>Updates the phone number settings for the administrator's AWS account, such as the default outbound calling name. You can update the default outbound calling name once every seven days. Outbound calling names can take up to 72 hours to update.</p>",
+    "UpdateRoom": "<p>Updates room details, such as the room name.</p>",
+    "UpdateRoomMembership": "<p>Updates room membership details, such as member role. The member role designates whether the member is a chat room administrator or a general chat room member. Member role can only be updated for user IDs.</p>",
     "UpdateUser": "<p>Updates user details for a specified user ID. Currently, only <code>LicenseType</code> updates are supported for this action.</p>",
     "UpdateUserSettings": "<p>Updates the settings for the specified user, such as phone number settings.</p>",
     "UpdateVoiceConnector": "<p>Updates details for the specified Amazon Chime Voice Connector.</p>",
@@ -149,6 +159,16 @@
     },
     "BadRequestException": {
       "base": "<p>The input parameters don't match the service's restrictions.</p>",
+      "refs": {
+      }
+    },
+    "BatchCreateRoomMembershipRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchCreateRoomMembershipResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -276,6 +296,12 @@
         "Termination$CallingRegions": "<p>The countries to which calls are allowed, in ISO 3166-1 alpha-2 format. Required.</p>"
       }
     },
+    "ClientRequestToken": {
+      "base": null,
+      "refs": {
+        "CreateRoomRequest$ClientRequestToken": "<p>The idempotency token for the request.</p>"
+      }
+    },
     "ConflictException": {
       "base": "<p>The request could not be processed because of conflict in the current state of the resource.</p>",
       "refs": {
@@ -317,6 +343,26 @@
       "refs": {
       }
     },
+    "CreateRoomMembershipRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateRoomMembershipResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateRoomRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateRoomResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateVoiceConnectorGroupRequest": {
       "base": null,
       "refs": {
@@ -352,7 +398,7 @@
     "DataRetentionInHours": {
       "base": null,
       "refs": {
-        "StreamingConfiguration$DataRetentionInHours": "<p>The retention period for the Amazon Kinesis data, in hours.</p>"
+        "StreamingConfiguration$DataRetentionInHours": "<p>The retention period, in hours, for the Amazon Kinesis data.</p>"
       }
     },
     "DeleteAccountRequest": {
@@ -371,6 +417,16 @@
       }
     },
     "DeletePhoneNumberRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteRoomMembershipRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteRoomRequest": {
       "base": null,
       "refs": {
       }
@@ -479,6 +535,7 @@
         "BadRequestException$Code": null,
         "ConflictException$Code": null,
         "ForbiddenException$Code": null,
+        "MemberError$ErrorCode": "<p>The error code.</p>",
         "NotFoundException$Code": null,
         "PhoneNumberError$ErrorCode": "<p>The error code.</p>",
         "ResourceLimitExceededException$Code": null,
@@ -568,6 +625,16 @@
       }
     },
     "GetPhoneNumberSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetRoomRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetRoomResponse": {
       "base": null,
       "refs": {
       }
@@ -678,7 +745,7 @@
     "InviteList": {
       "base": null,
       "refs": {
-        "InviteUsersResponse$Invites": "<p>The invite details.</p>"
+        "InviteUsersResponse$Invites": "<p>The email invitation details.</p>"
       }
     },
     "InviteStatus": {
@@ -711,6 +778,9 @@
         "PhoneNumberAssociation$AssociatedTimestamp": "<p>The timestamp of the phone number association, in ISO 8601 format.</p>",
         "PhoneNumberOrder$CreatedTimestamp": "<p>The phone number order creation timestamp, in ISO 8601 format.</p>",
         "PhoneNumberOrder$UpdatedTimestamp": "<p>The updated phone number order timestamp, in ISO 8601 format.</p>",
+        "Room$CreatedTimestamp": "<p>The room creation timestamp, in ISO 8601 format.</p>",
+        "Room$UpdatedTimestamp": "<p>The room update timestamp, in ISO 8601 format.</p>",
+        "RoomMembership$UpdatedTimestamp": "<p>The room membership update timestamp, in ISO 8601 format.</p>",
         "TerminationHealth$Timestamp": "<p>The timestamp, in ISO 8601 format.</p>",
         "User$RegisteredOn": "<p>Date and time when the user is registered, in ISO 8601 format.</p>",
         "User$InvitedOn": "<p>Date and time when the user is invited to the Amazon Chime account, in ISO 8601 format.</p>",
@@ -776,6 +846,26 @@
       "refs": {
       }
     },
+    "ListRoomMembershipsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRoomMembershipsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRoomsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRoomsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListUsersRequest": {
       "base": null,
       "refs": {
@@ -834,19 +924,66 @@
       "refs": {
       }
     },
+    "Member": {
+      "base": "<p>The member details, such as email address, name, member ID, and member type.</p>",
+      "refs": {
+        "RoomMembership$Member": null
+      }
+    },
+    "MemberError": {
+      "base": "<p>The list of errors returned when a member action results in an error.</p>",
+      "refs": {
+        "MemberErrorList$member": null
+      }
+    },
+    "MemberErrorList": {
+      "base": null,
+      "refs": {
+        "BatchCreateRoomMembershipResponse$Errors": "<p>If the action fails for one or more of the member IDs in the request, a list of the member IDs is returned, along with error codes and error messages.</p>"
+      }
+    },
+    "MemberType": {
+      "base": null,
+      "refs": {
+        "Member$MemberType": "<p>The member type.</p>"
+      }
+    },
+    "MembershipItem": {
+      "base": "<p>Membership details, such as member ID and member role.</p>",
+      "refs": {
+        "MembershipItemList$member": null
+      }
+    },
+    "MembershipItemList": {
+      "base": null,
+      "refs": {
+        "BatchCreateRoomMembershipRequest$MembershipItemList": "<p>The list of membership items.</p>"
+      }
+    },
     "NonEmptyString": {
       "base": null,
       "refs": {
         "AssociatePhoneNumbersWithVoiceConnectorGroupRequest$VoiceConnectorGroupId": "<p>The Amazon Chime Voice Connector group ID.</p>",
         "AssociatePhoneNumbersWithVoiceConnectorRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
+        "BatchCreateRoomMembershipRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "BatchCreateRoomMembershipRequest$RoomId": "<p>The room ID.</p>",
         "BatchSuspendUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "BatchUnsuspendUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "BatchUpdateUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "CreateBotRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "CreateBotRequest$Domain": "<p>The domain of the Amazon Chime Enterprise account.</p>",
+        "CreateRoomMembershipRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "CreateRoomMembershipRequest$RoomId": "<p>The room ID.</p>",
+        "CreateRoomMembershipRequest$MemberId": "<p>The Amazon Chime member ID (user ID or bot ID).</p>",
+        "CreateRoomRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "DeleteAccountRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "DeleteEventsConfigurationRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "DeleteEventsConfigurationRequest$BotId": "<p>The bot ID.</p>",
+        "DeleteRoomMembershipRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "DeleteRoomMembershipRequest$RoomId": "<p>The room ID.</p>",
+        "DeleteRoomMembershipRequest$MemberId": "<p>The member ID (user ID or bot ID).</p>",
+        "DeleteRoomRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "DeleteRoomRequest$RoomId": "<p>The chat room ID.</p>",
         "DeleteVoiceConnectorGroupRequest$VoiceConnectorGroupId": "<p>The Amazon Chime Voice Connector group ID.</p>",
         "DeleteVoiceConnectorOriginationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "DeleteVoiceConnectorRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
@@ -861,6 +998,8 @@
         "GetBotRequest$BotId": "<p>The bot ID.</p>",
         "GetEventsConfigurationRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "GetEventsConfigurationRequest$BotId": "<p>The bot ID.</p>",
+        "GetRoomRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "GetRoomRequest$RoomId": "<p>The room ID.</p>",
         "GetUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "GetUserRequest$UserId": "<p>The user ID.</p>",
         "GetVoiceConnectorGroupRequest$VoiceConnectorGroupId": "<p>The Amazon Chime Voice Connector group ID.</p>",
@@ -872,10 +1011,17 @@
         "GetVoiceConnectorTerminationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "InviteUsersRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "ListBotsRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "ListRoomMembershipsRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "ListRoomMembershipsRequest$RoomId": "<p>The room ID.</p>",
+        "ListRoomsRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "ListUsersRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "ListVoiceConnectorTerminationCredentialsRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "LogoutUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "LogoutUserRequest$UserId": "<p>The user ID.</p>",
+        "Member$MemberId": "<p>The member ID (user ID or bot ID).</p>",
+        "Member$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "MemberError$MemberId": "<p>The member ID.</p>",
+        "MembershipItem$MemberId": "<p>The member ID.</p>",
         "PhoneNumberError$PhoneNumberId": "<p>The phone number ID for which the action failed.</p>",
         "PutEventsConfigurationRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "PutEventsConfigurationRequest$BotId": "<p>The bot ID.</p>",
@@ -889,11 +1035,21 @@
         "ResetPersonalPINRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "ResetPersonalPINRequest$UserId": "<p>The user ID.</p>",
         "RestorePhoneNumberRequest$PhoneNumberId": "<p>The phone number.</p>",
+        "Room$RoomId": "<p>The room ID.</p>",
+        "Room$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "Room$CreatedBy": "<p>The identifier of the room creator.</p>",
+        "RoomMembership$RoomId": "<p>The room ID.</p>",
+        "RoomMembership$InvitedBy": "<p>The identifier of the user that invited the room member.</p>",
         "UpdateAccountRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "UpdateAccountSettingsRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "UpdateBotRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "UpdateBotRequest$BotId": "<p>The bot ID.</p>",
         "UpdatePhoneNumberRequestItem$PhoneNumberId": "<p>The phone number ID to update.</p>",
+        "UpdateRoomMembershipRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "UpdateRoomMembershipRequest$RoomId": "<p>The room ID.</p>",
+        "UpdateRoomMembershipRequest$MemberId": "<p>The member ID.</p>",
+        "UpdateRoomRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "UpdateRoomRequest$RoomId": "<p>The room ID.</p>",
         "UpdateUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "UpdateUserRequest$UserId": "<p>The user ID.</p>",
         "UpdateUserRequestItem$UserId": "<p>The user ID.</p>",
@@ -1207,11 +1363,51 @@
     "ResultMax": {
       "base": null,
       "refs": {
-        "ListBotsRequest$MaxResults": "<p>The maximum number of results to return in a single call. Default is 10.</p>",
+        "ListBotsRequest$MaxResults": "<p>The maximum number of results to return in a single call. The default is 10.</p>",
         "ListPhoneNumberOrdersRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "ListPhoneNumbersRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
+        "ListRoomMembershipsRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
+        "ListRoomsRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "ListVoiceConnectorGroupsRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "ListVoiceConnectorsRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>"
+      }
+    },
+    "Room": {
+      "base": "<p>The Amazon Chime chat room details.</p>",
+      "refs": {
+        "CreateRoomResponse$Room": "<p>The room details.</p>",
+        "GetRoomResponse$Room": "<p>The room details.</p>",
+        "RoomList$member": null,
+        "UpdateRoomResponse$Room": "<p>The room details.</p>"
+      }
+    },
+    "RoomList": {
+      "base": null,
+      "refs": {
+        "ListRoomsResponse$Rooms": "<p>The room details.</p>"
+      }
+    },
+    "RoomMembership": {
+      "base": "<p>The room membership details.</p>",
+      "refs": {
+        "CreateRoomMembershipResponse$RoomMembership": "<p>The room membership details.</p>",
+        "RoomMembershipList$member": null,
+        "UpdateRoomMembershipResponse$RoomMembership": "<p>The room membership details.</p>"
+      }
+    },
+    "RoomMembershipList": {
+      "base": null,
+      "refs": {
+        "ListRoomMembershipsResponse$RoomMemberships": "<p>The room membership details.</p>"
+      }
+    },
+    "RoomMembershipRole": {
+      "base": null,
+      "refs": {
+        "CreateRoomMembershipRequest$Role": "<p>The role of the member.</p>",
+        "MembershipItem$Role": "<p>The member role.</p>",
+        "RoomMembership$Role": "<p>The membership role.</p>",
+        "UpdateRoomMembershipRequest$Role": "<p>The role of the member.</p>"
       }
     },
     "SearchAvailablePhoneNumbersRequest": {
@@ -1231,13 +1427,18 @@
         "Bot$BotEmail": "<p>The bot email address.</p>",
         "Bot$SecurityToken": "<p>The security token used to authenticate Amazon Chime with the outgoing event endpoint.</p>",
         "CreateBotRequest$DisplayName": "<p>The bot display name.</p>",
+        "CreateRoomRequest$Name": "<p>The room name.</p>",
         "Credential$Username": "<p>The RFC2617 compliant user name associated with the SIP credentials, in US-ASCII format.</p>",
         "Credential$Password": "<p>The RFC2617 compliant password associated with the SIP credentials, in US-ASCII format.</p>",
         "EventsConfiguration$OutboundEventsHTTPSEndpoint": "<p>HTTPS endpoint that allows a bot to receive outgoing events.</p>",
         "EventsConfiguration$LambdaFunctionArn": "<p>Lambda function ARN that allows a bot to receive outgoing events.</p>",
+        "Member$Email": "<p>The member email address.</p>",
+        "Member$FullName": "<p>The member name.</p>",
         "PutEventsConfigurationRequest$OutboundEventsHTTPSEndpoint": "<p>HTTPS endpoint that allows the bot to receive outgoing events.</p>",
         "PutEventsConfigurationRequest$LambdaFunctionArn": "<p>Lambda function ARN that allows the bot to receive outgoing events.</p>",
+        "Room$Name": "<p>The room name.</p>",
         "SensitiveStringList$member": null,
+        "UpdateRoomRequest$Name": "<p>The room name.</p>",
         "User$PrimaryProvisionedNumber": "<p>The primary phone number associated with the user.</p>",
         "User$DisplayName": "<p>The display name of the user.</p>"
       }
@@ -1299,12 +1500,18 @@
         "ListPhoneNumbersRequest$FilterValue": "<p>The value to use for the filter.</p>",
         "ListPhoneNumbersRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListPhoneNumbersResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
+        "ListRoomMembershipsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
+        "ListRoomMembershipsResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
+        "ListRoomsRequest$MemberId": "<p>The member ID (user ID or bot ID).</p>",
+        "ListRoomsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
+        "ListRoomsResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListUsersRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListUsersResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListVoiceConnectorGroupsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListVoiceConnectorGroupsResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListVoiceConnectorsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListVoiceConnectorsResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
+        "MemberError$ErrorMessage": "<p>The error message.</p>",
         "NonEmptyStringList$member": null,
         "NotFoundException$Message": null,
         "OriginationRoute$Host": "<p>The FQDN or IP address to contact for origination traffic.</p>",
@@ -1444,6 +1651,26 @@
       "refs": {
       }
     },
+    "UpdateRoomMembershipRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateRoomMembershipResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateRoomRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateRoomResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateUserRequest": {
       "base": null,
       "refs": {
@@ -1503,7 +1730,7 @@
     "UserEmailList": {
       "base": null,
       "refs": {
-        "InviteUsersRequest$UserEmailList": "<p>The user email addresses to which to send the invite.</p>"
+        "InviteUsersRequest$UserEmailList": "<p>The user email addresses to which to send the email invitation.</p>"
       }
     },
     "UserError": {
