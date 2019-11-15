@@ -40,7 +40,9 @@ func TestInteg_00_GenerateDataSet(t *testing.T) {
 		RoleNameArn:             aws.String("fake-arn"),
 		SnsTopicArn:             aws.String("fake-arn"),
 	}
-	_, err := svc.GenerateDataSetWithContext(ctx, params)
+	_, err := svc.GenerateDataSetWithContext(ctx, params, func(r *request.Request) {
+		r.Handlers.Validate.RemoveByName("core.ValidateParametersHandler")
+	})
 	if err == nil {
 		t.Fatalf("expect request to fail")
 	}
