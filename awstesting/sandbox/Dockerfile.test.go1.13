@@ -1,4 +1,6 @@
-FROM golang:1.11
+FROM golang:1.13
+
+ENV GOPROXY=direct
 
 ADD . /go/src/github.com/aws/aws-sdk-go
 
